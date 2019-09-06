@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  margin-top: 5px;
+  justify-content: space-between;
+  .link {
+  }
+  .disabled {
+    color: var(--grey-color);
+    cursor: not-allowed;
+  }
+}

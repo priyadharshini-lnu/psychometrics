@@ -6,6 +6,16 @@
         p = t('administration.no_data_found')
       - else
         .panel-group.assessments-holder id="assessments-1" role="tablist" aria-multiselectable="true"
-          - @assigns.each do |assign|
-            = render partial: 'assign', locals: { assign: assign }
+          - @single_assigns.each do |assign|
+            - if show_single_assign?(assign)
+              = render partial: 'assign', locals: { assign: assign }
+      - if @multiple_reports.present?
+        h3.assessmentTitles Multiple assessments
+        .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
+          - @multiple_reports.each do |report|
+            = render 'assigns_reports', report: report
+      - if @threesixty_projects
+        .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
+          - @threesixty_projects.each do |campaign|
+            = render 'threesixty_campaign', campaign: campaign
 = render partial: '//assigns/modals/accept_privacy'

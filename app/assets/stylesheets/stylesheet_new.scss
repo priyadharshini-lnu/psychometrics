@@ -235,7 +235,7 @@ a {
 }
 label {
   text-transform: uppercase;
-  color: rgba(53, 53, 53, 0.4);
+  color: rgba(53, 53, 53, 0.8);
   letter-spacing: 1px;
   font-size: 14px;
 }
@@ -263,10 +263,28 @@ div.loginLinks {
 }
 .form-control {
   background: transparent;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  box-shadow: none;
+}
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 6px 15px;
+  transition: border-color .1s ease-in-out,box-shadow .1s ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: transparent url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='18' height='18' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='gray'/></g></svg>") no-repeat;
+  background-position: right 5px top 50%;  
+}
+.custom-select:hover {
+  border: 1px solid #00B4A9;
+  box-shadow: 0 2px 0px 0 rgba(0, 180, 169, 0.05);
+}
+.custom-select:focus {
+  border: 1px solid #00B4A9;
+  box-shadow: 0 3px 0px 0 rgba(0, 180, 169, 0.1);
+  outline: none;
+}
+select::-ms-expand {
+  display:none;
 }
 .input-group .form-control {
   margin-bottom: 25px;

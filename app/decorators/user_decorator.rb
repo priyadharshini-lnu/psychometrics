@@ -4,6 +4,10 @@ class UserDecorator < BaseDecorator
     "#{object.first_name} #{object.last_name}"
   end
 
+  def full_name
+    [object.first_name, object.last_name].compact.join(' ')
+  end
+
   def can_manage_roles
     object.can_manage.map { |role| [User.human_role(role), role] }
   end

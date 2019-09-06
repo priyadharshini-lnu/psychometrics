@@ -1,6 +1,8 @@
 //= require jquery_ujs
 //= require jquery.remotipart
 
+//= require cable
+
 ///// START PLUGINS
 //= require bootstrap-sprockets
 //= require bootstrap-select

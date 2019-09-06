@@ -98,6 +98,8 @@ html
         .col-xs-12.col-md-8.col-md-offset-2
           == flash_messages
       = yield
+      #notification-center-container
+      = javascript_pack_tag 'notificationCenter'      
     footer.loginFooter.solid
       .container-fluid
         .row

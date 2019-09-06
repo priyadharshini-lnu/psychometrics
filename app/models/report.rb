@@ -10,6 +10,7 @@
 #  updated_at    :datetime         not null
 #  type          :integer          default("common")
 #  owner_id      :integer
+#  archived      :boolean          default(false)
 #
 
 class Report < ApplicationRecord
@@ -39,6 +40,7 @@ class Report < ApplicationRecord
   has_and_belongs_to_many :report_families
 
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
+  has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
   has_many :clients_reports # on delete cascade
   has_many :clients, through: :clients_reports
@@ -54,6 +56,7 @@ class Report < ApplicationRecord
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
+  has_many :campaign_templates, dependent: :destroy
 
   has_one :hogan_report_setting
   accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true
@@ -73,6 +76,7 @@ class Report < ApplicationRecord
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
+  enum category: { common: 0, threesixty: 1 }, _prefix: :category
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
@@ -108,6 +112,8 @@ class Report < ApplicationRecord
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
   scope :not_external, -> { where(provider: :internal) }
+  scope :archived, -> { where(archived: true) }
+  scope :unarchived, -> { where(archived: false) }
 
   # Copy report with nested resources
   #

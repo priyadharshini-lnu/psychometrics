@@ -112,3 +112,7 @@ en:
     error_500: Something went wrong. Contact your administrator.
     try_again: Please try again
     invalid_token: Something went wrong. Plese reload the page and try again.
+  my: "My"
+  myself: "Myself"
+  your: "Your"
+  yourself: "Yourself"

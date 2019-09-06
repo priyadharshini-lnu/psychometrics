@@ -84,11 +84,12 @@ FactoryGirl.define do
     factory :project, parent: :project_base, traits: [:project_level, :_end_level]
 
     factory :campaign_base, traits: [:with_reports] do
+      end_level true
       association :parent, factory: [:project_base, :sub_campaign_level]
       sequence(:name) { |i| "Campaign #{i}" }
     end
 
-    factory :campaign, parent: :campaign_base do
+    factory :client_campaign, parent: :campaign_base do
       association :parent, factory: [:project_base, :campaign_level]
       _end_level
     end

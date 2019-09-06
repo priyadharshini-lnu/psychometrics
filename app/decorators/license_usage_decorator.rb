@@ -1,0 +1,2 @@
+class LicenseUsageDecorator < BaseDecorator
+end

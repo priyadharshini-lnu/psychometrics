@@ -1,0 +1,19 @@
+.container {
+  padding: 10px 10px 20px 20px;
+  max-width: 1159px;
+
+  .checkboxContainer{
+    margin: 8px 0px 0px 26px;
+  }
+
+  .sectionContainer {
+    margin-left: 25px;
+    .label {
+      font-weight: bold;
+    }
+
+    .childrenContainer {
+      margin-top: 5px;
+    }
+  }
+}

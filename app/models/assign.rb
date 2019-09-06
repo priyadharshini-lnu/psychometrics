@@ -24,6 +24,9 @@
 class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
+  belongs_to :evaluator, class_name: 'User'
+  belongs_to :subject, class_name: 'User'
+  belongs_to :campaign
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
@@ -80,6 +83,7 @@ class Assign < ApplicationRecord
   after_commit :update_membership_completed
 
   delegate :project_membership, to: :membership
+  delegate :threesixty?, to: :assessment
 
   def set_started_at
     self.started_at = DateTime.current
@@ -132,7 +136,7 @@ class Assign < ApplicationRecord
         scoring_class = "Scoring::#{question.try(:type)}"
         result = results[question.try(:id).try(:to_s)]
         if result && question && !question_scoring.props.empty?
-          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
+          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
           # type 'PickGroupRank' is used for agile methodology
           # for common scoring we need to skip this type
           if question.try(:type) == 'PickGroupRank'
@@ -180,6 +184,10 @@ class Assign < ApplicationRecord
 
   def original_or_self
     original_assign || self
+  end
+
+  def threesixty_subject
+    Threesixty::Subject.find_by(user_id: subject_id, campaign_id: campaign_id)
   end
 
   private

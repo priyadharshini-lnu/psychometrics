@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = @current_project&.name
+    javascript:
+      window.I18n = {
+        locale: '#{I18n.locale}'
+      }
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = render '//layouts/custom_styles'
+    = javascript_include_tag :threesixty
+
+    = stylesheet_link_tag    'threesixty_dependencies', media: 'all'
+    - if Settings.react_dev.assessments
+      = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
+      = javascript_include_tag 'http://localhost:3000/psychometrics_pass_assessment.js'
+    - else
+      = javascript_include_tag :psychometrics_vendor
+      = javascript_include_tag :psychometrics_pass_assessment
+
+    - if Settings.react_dev.reports
+      = javascript_include_tag 'http://localhost:3000/psychometrics_reports_threesixty_report.js'
+    - else
+      = javascript_include_tag :psychometrics_reports_threesixty_report
+  body class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
+    = yield
+    #notification-center-container
+    = javascript_pack_tag 'notificationCenter'

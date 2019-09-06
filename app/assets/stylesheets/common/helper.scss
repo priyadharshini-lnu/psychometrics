@@ -226,9 +226,66 @@ $h-space: 25px;
 .mah {
   margin-left: $h-space !important;
 }
+.mn {
+  margin: 0 !important;
+}
+.mx {
+  margin: $x-space !important;
+}
+.ms {
+  margin: $s-space !important;
+}
+.mm {
+  margin: $m-space !important;
+}
+.ml {
+  margin: $l-space !important;
+}
+.mh {
+  margin: $h-space !important;
+}
+.pn {
+  padding: 0 !important;
+}
+.px {
+  padding: $x-space !important;
+}
+.ps {
+  padding: $s-space !important;
+}
+.pm {
+  padding: $m-space !important;
+}
+.pl {
+  padding: $l-space !important;
+}
+.ph {
+  padding: $h-space !important;
+}
+
 .vertical_middle { vertical-align: middle !important; }
 .text-nowrap { white-space: nowrap; }
+.display-flex {
+  display: flex;
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
 
 .margin-top-minus-10 {
   margin-top: -10px;
+}
+
+.text-align-r {
+  text-align: right !important;
+}
+
+.text-align-c {
+  text-align: center !important;
+}
+
+.float-r {
+  float: right;
 }

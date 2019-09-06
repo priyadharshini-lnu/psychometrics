@@ -4,8 +4,8 @@ gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.1.6'
 gem 'pg',                         '~> 0.18.4'
-gem 'puma',                       '~> 3.8'
-gem 'sass-rails',                 '~> 5.0'
+gem 'puma',                       '~> 4.0.1'
+gem 'sassc-rails',                 '~> 2.1.2'
 gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
@@ -47,6 +47,7 @@ gem 'pundit',                     '~> 1.1.0'
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'bh',                         '~> 1.3'
 gem 'font-awesome-rails',         '~> 4.7'
+gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
@@ -76,8 +77,8 @@ gem 'annotate', '~> 2.7.0'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', branch: 'master'
-gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', branch: 'master'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '586c420c7a067a8e4d8ee9562e3b9147bceb89d4'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '7d5729eeb0d156d58a72b0c20313bd6a88315db5'
 
 ### XLS import
 gem 'rubyXL',                     '~> 3.4.6'
@@ -117,9 +118,11 @@ gem 'deep_cloneable', '~> 2.2.1'
 
 gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
+gem 'carrierwave_direct'
 gem 'remotipart', '~> 1.2'
 gem 'mini_magick', '~> 4.5.1'
 gem 'fog-aws', '~> 2.0.1'
+gem 'aws-sdk-s3', '~> 1'
 
 gem 'ancestry'
 gem 'browser'
@@ -131,7 +134,6 @@ gem 'whenever', '~> 0.9.7', require: false
 gem 'rectify', '~> 0.13.0'
 
 gem 'hashids', '~> 1.0.5'
-gem 'react-rails', '~> 1.10.0'
 gem 'bootstrap-slider-rails'
 
 gem 'money-rails', '~> 1.7.0'
@@ -158,6 +160,7 @@ gem 'rswag-ui', '~> 2.0.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
+gem 'possessive', '~> 1.0.1'
 
 gem 'rails_autoscale_agent', '~> 0.6.3'
 
@@ -195,9 +198,9 @@ group :development do
   gem 'capistrano-nc', '~> 0.2', require: false
   gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.67.2', require: false
   gem 'meta_request'
-  gem 'i18n-tasks', '~> 0.9.5'
+  gem 'i18n-tasks', '~> 0.9.25'
   gem 'db-clone', :git => 'https://github.com/smshuja/db-clone.git', :branch => 'load-with-erb'
 end
 group :test do
@@ -205,15 +208,14 @@ group :test do
   gem 'capybara', '~> 2.13'
   gem 'faker', '~> 1.8.7'
   gem 'capybara-screenshot', '~> 1.0.14'
+  gem 'rails-controller-testing', '~> 1.0.4'
   gem 'selenium-webdriver', '~> 3.141.0'
-  gem 'shoulda', '~> 3.5.0'
+  gem 'shoulda-matchers', '~> 4.0.1'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
-  gem 'rswag-specs', '~> 2.0.5'
   gem 'coveralls', require: false
-  gem 'rails-controller-testing'
   gem 'webdrivers'
 end

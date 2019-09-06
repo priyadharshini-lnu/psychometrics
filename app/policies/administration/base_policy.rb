@@ -2,7 +2,7 @@ module Administration
   class BasePolicy
     attr_reader :user, :record
 
-    def initialize(user, record)
+    def initialize(user, record, extra = {})
       @user = user
       @record = [record].flatten.last
     end

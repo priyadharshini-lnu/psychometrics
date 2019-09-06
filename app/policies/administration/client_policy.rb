@@ -38,12 +38,19 @@ module Administration
       record.prime_project? && @user.is?(:superadmin, :client_admin)
     end
 
+    def search_users?
+      return true if @user.is?(:superadmin)
+      return true if @user.is?(:client_admin) && @user.client_ids.include?(record.client.id)
+
+      @user.is?(:project_admin) && @user.client_ids.include?(record.id)
+    end
+
     def show?
       true
     end
 
     def edit?
-      record.active? && super
+      super
     end
 
     def copy?

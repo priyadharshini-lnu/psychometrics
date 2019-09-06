@@ -1,0 +1,14 @@
+en:
+  activemodel:
+    errors:
+      models:
+        create_one:
+          attributes:
+            email:
+              blank: "Email can't be blank"
+              invalid: 'Email is invalid'
+              already_exists: 'A subject with same email already exists'
+            first_name:
+              blank: "First name can't be blank"
+            last_name:
+              blank: "Last name can't be blank"

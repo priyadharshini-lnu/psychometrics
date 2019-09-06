@@ -15,7 +15,7 @@ module Scoring
           end
         end
       end
-      scoring / choices
+      { value: scoring / choices, options: [] }
     end
   end
 end

@@ -1,0 +1,12 @@
+en:
+  activemodel:
+    errors:
+      models:
+        profile:
+          attributes:
+            first_name:
+              blank: "First name can't be blank"
+            last_name:
+              blank: "Last name can't be blank"
+            password:
+              too_short: 'Password is too short. Minimum 6 character required'
