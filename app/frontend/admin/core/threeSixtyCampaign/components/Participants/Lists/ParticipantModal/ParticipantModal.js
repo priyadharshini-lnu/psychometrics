@@ -7,6 +7,7 @@ import userPresenter from 'presenters/userPresenter'
 import styles from './styles.scss'
 import EvaluatorList from './EvaluatorList'
 import EvaluationList from './EvaluationList'
+import ResultList from './ResultList'
 
 export default function ParticipantModal ({
   closeModal,
@@ -50,6 +51,9 @@ export default function ParticipantModal ({
         </Tabs.TabPane>
         <Tabs.TabPane tab="Evaluations" key="3">
           <EvaluationList match={match} />
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="Results" key="4">
+          <ResultList match={match} />
         </Tabs.TabPane>
       </Tabs>
     </Modal>

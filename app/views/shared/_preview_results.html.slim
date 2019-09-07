@@ -1,0 +1,11 @@
+#psychometrics_preview.html_preview[data-type="view_results"
+  data-is-threesixty="true"
+  data-data="#{@assessment.to_json}"
+  data-result="#{@results}"]
+
+- if Settings.react_dev.assessments
+  = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_preview.js'
+- else
+  = javascript_include_tag :psychometrics_vendor
+  = javascript_include_tag :psychometrics_preview

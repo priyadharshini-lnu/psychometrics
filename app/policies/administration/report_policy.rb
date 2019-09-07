@@ -9,7 +9,7 @@ module Administration
     #   and user is Superadmin or user has grants
     def show?
       @record.hogan_report_setting.blank? &&
-        !@record.mindmill && 
+        !@record.mindmill &&
         (super || @user.has_grant?(:reports, :view))
     end
 

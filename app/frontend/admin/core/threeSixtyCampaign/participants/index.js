@@ -63,3 +63,8 @@ export const getUserSubjects = createSelector(
   getUserId,
   (participants, userId) => participants.filter(p => p.evaluator.id === userId).map(p => ({ ...p, user: p.subject })),
 )
+
+export const getResults = createSelector(
+  getParticipants,
+  participants => participants.filter(p => p.result).map(p => ({ ...p, user: p.subject })),
+)

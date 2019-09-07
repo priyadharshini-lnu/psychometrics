@@ -196,6 +196,7 @@ Rails.application.routes.draw do
           resource :reports, only: [:show] do
             get :download, on: :member
           end
+          resources :evaluations, only: [:show]
         end
         resources :evaluators do
           collection do
