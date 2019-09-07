@@ -22,7 +22,8 @@
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
-             :relationship, :selected_locale, :type, :occupations, :innovation_styles
+             :relationship, :available_translations, :selected_locale, :translations,
+             :type, :occupations, :innovation_styles
 
   has_one :user, serializer: UserSerializer
 
@@ -58,12 +59,20 @@ class AssignSerializer < ActiveModel::Serializer
     object.encode_id
   end
 
+  def available_translations
+    ::Translation.available_translation_for_assessment(object.assessment_id)
+  end
+
   def selected_locale
     locale = object.selected_locale || I18n.default_locale
     {
       code: locale,
       name: I18n.t("languages.#{locale}")
     }
+  end
+
+  def translations
+    ::Translation.to_hash_for_assessment(object.assessment_id, object.selected_locale || I18n.default_locale)
   end
 
   def norm_data
