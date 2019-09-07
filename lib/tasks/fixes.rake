@@ -5,4 +5,22 @@ namespace :fixes do
       dimension.update(factors_count: dimension.factors.count)
     end
   end
+
+  desc 'fix display logic format'
+  task :display_logic_format => :environment do
+    Question.where.not(display_logic: nil).each do |question|
+      if question.display_logic && question.display_logic.is_a?(Array)
+        conditions = question.display_logic.map do |condition|
+          condition.dup.tap do |cond|
+            cond['prefix'] = 'And'
+          end
+        end
+        question.display_logic = {
+          conditions: [{prefix: 'And', conditions: conditions}]
+        }
+
+        question.save
+      end
+    end
+  end
 end
