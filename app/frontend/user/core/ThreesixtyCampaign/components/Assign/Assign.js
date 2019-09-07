@@ -52,15 +52,17 @@ export default function Assign ({
           )}
           onBack={() => history.push('/campaigns')}
         >
-          <Row type="flex" justify="end">
-            <Col>
-              <Language
-                assignId={assignId}
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
-              />
-            </Col>
-          </Row>
+          {availableTranslations && availableTranslations.length > 0 && (
+            <Row type="flex" justify="end">
+              <Col>
+                <Language
+                  assignId={assignId}
+                  selectedLanguage={selectedLanguage}
+                  availableTranslations={availableTranslations || []}
+                />
+              </Col>
+            </Row>
+          )}
           <div className="evaluation-container">
             {!error && (
               <div

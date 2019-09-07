@@ -20,7 +20,7 @@ export default function Language ({ assignId, selectedLanguage, availableTransla
   )
 
   return (
-    <Dropdown trigger="click" overlay={() => LangMenu()}>
+    <Dropdown trigger={['click']} overlay={() => LangMenu()}>
       <div>
         {I18n.t(`languages.${(selectedLanguage && selectedLanguage.code) || 'en'}`)}
         {' '}
