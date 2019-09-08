@@ -45,7 +45,7 @@ export default function List ({
           >
             <Icon type="eye" />
             {' '}
-            {result.id}
+            {result.hash}
           </a>
         )}
       />
