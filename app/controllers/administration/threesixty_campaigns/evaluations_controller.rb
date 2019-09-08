@@ -3,11 +3,10 @@
 module Administration
   module ThreesixtyCampaigns
     class EvaluationsController < Administration::ThreesixtyCampaigns::BaseController
-      include AuthenticateByToken
-
       prepend_before_action :set_resource_class
       before_action :set_resource, only: %i[show]
       append_before_action :pundit_authorize
+      before_action :init_breadcrumbs
 
       def show
         @users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
@@ -40,6 +39,21 @@ module Administration
 
       def pundit_authorize
         authorize [:threesixty, :participant]
+      end
+
+      def init_breadcrumbs
+        client = resource.campaign.client
+        project = resource.campaign.project
+        label = t('administration.breadcrumbs.clients') if current_user.is?(:superadmin)
+        label ||= t('administration.breadcrumbs.home')
+        add_breadcrumb label, [:administration, :root]
+        add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
+        add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
+        add_breadcrumb(
+          t('administration.clients.projects.threesixty_campaigns.index.title'),
+          administration_client_project_threesixty_campaigns_path(client, project)
+        )
+        add_breadcrumb resource.campaign.name, administration_client_project_threesixty_campaign_path(client, project, threesixty_campaign) if params[:action] == 'show'
       end
     end
   end
