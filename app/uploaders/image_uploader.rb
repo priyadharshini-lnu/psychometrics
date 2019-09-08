@@ -15,19 +15,19 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Create different versions of your uploaded files:
-  version :thumb, if: :is_raster? do
+  version :thumb, if: :raster? do
     process resize_to_fill: [50, 50]
   end
 
-  version :small, if: :is_raster? do
+  version :small, if: :raster? do
     process resize_to_fill: [150, 150]
   end
 
-  version :middle, if: :is_raster? do
+  version :middle, if: :raster? do
     process resize_to_fill: [350, 350]
   end
 
-  version :factors_icon, if: :is_raster? do
+  version :factors_icon, if: :raster? do
     process resize_to_fit: [50, 50]
   end
 
@@ -42,7 +42,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def url(version = nil)
-    is_svg? ? super() : super(version)
+    svg? ? super() : super(version)
   end
 
   protected
@@ -52,11 +52,11 @@ class ImageUploader < CarrierWave::Uploader::Base
     model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
-  def is_svg?
+  def svg?
     file && file.extension == 'svg'
   end
 
-  def is_raster?(new_file)
+  def raster?(new_file)
     new_file.extension != 'svg'
   end
 end

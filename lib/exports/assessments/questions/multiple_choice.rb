@@ -14,7 +14,8 @@ module Exports
         def self.result(answers, question, scoring = false)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          (answers || []).map { |answer| scoring && factors_scoring[answer['index']] || (answer['index'] + 1) }.join(',')
+          (answers || []).map { |answer| scoring && factors_scoring[answer['index']] || (answer['index'] + 1) }.
+            join(',')
         end
 
         def self.header(question)

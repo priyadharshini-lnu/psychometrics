@@ -31,9 +31,16 @@ module Threesixty
                              'users_results.created_at as result_created_at',
                              'users_results.completed_at as result_completed_at'
                            ).
-                           joins('LEFT JOIN users_results on users_results.subject_id = threesixty_participants.subject_id and users_results.evaluator_id = threesixty_participants.evaluator_id').
+                           joins(
+                             'LEFT JOIN users_results
+              on users_results.subject_id = threesixty_participants.subject_id
+              and users_results.evaluator_id = threesixty_participants.evaluator_id'
+                           ).
                            includes(:subject, :evaluator, :relationship)
             participants.each do |participant|
+              status = I18n.t(
+                "administration.clients.projects.threesixty_campaigns.completion_statuses.#{get_status(participant)}"
+              )
               sheet.add_row [participant.result_id && UsersResult.encode_id(participant.result_id),
                              participant.subject&.decorate&.full_name,
                              participant.subject&.email,
@@ -42,7 +49,7 @@ module Threesixty
                              participant.relationship.name,
                              participant.result_created_at.try(:strftime, '%D %r'),
                              participant.result_completed_at.try(:strftime, '%D %r'),
-                             I18n.t("administration.clients.projects.threesixty_campaigns.completion_statuses.#{get_status(participant)}")]
+                             status]
             end
           end
         end

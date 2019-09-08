@@ -36,7 +36,10 @@ module Threesixty
     def subject_evaluate_self?
       if @options.participants.dig('subject', 'limit_self_evaluation_by_criteria')
         criteria = @options.participants.dig('subject', 'self_evaluation_criteria')
-        return Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(@campaign, current_user, criteria, current_user) if criteria
+        if criteria
+          return Threesixty::Evaluators::ResolveEvaluatorCriteria.
+                 call!(@campaign, current_user, criteria, current_user)
+        end
       end
       @options.participants.dig('subject', 'can_evaluate_self')
     end

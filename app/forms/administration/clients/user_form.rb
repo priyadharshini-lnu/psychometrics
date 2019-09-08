@@ -78,7 +78,7 @@ module Administration
                     context.client.end_level?
                   else
                     false
-        end
+                end
         errors.add(:role, :invalid) unless valid
       end
     end

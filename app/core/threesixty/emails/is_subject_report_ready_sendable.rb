@@ -15,7 +15,10 @@ module Threesixty
           context[:threesixty_campaign].option,
           subject_evaluator_counters.dig(context[:subject].user_id, :completed)
         )
-        valid_statuses = [Threesixty::Participants::GetReportStatus::AVAILABLE, Threesixty::Participants::GetReportStatus::APPROVED]
+        valid_statuses = [
+          Threesixty::Participants::GetReportStatus::AVAILABLE,
+          Threesixty::Participants::GetReportStatus::APPROVED
+        ]
 
         broadcast :ok, valid_statuses.include?(status)
       end

@@ -54,7 +54,9 @@ module Threesixty
             branch = lookup_branch(match)
             if valid_branch?(branch)
               path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
-              branch[:class_name].constantize.call!(path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context)
+              branch[:class_name].constantize.call!(
+                path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context
+              )
             else
               ''
             end

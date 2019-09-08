@@ -22,7 +22,9 @@ module Threesixty
             end
           end
 
-          broadcast :ok, subjects: result, existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed
+          broadcast :ok,
+                    subjects: result,
+                    existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed
         end
       end
 

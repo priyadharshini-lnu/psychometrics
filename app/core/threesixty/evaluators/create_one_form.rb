@@ -25,7 +25,9 @@ module Threesixty
       end
 
       def check_existing_evaluator_subject_relation
-        if ::Threesixty::Participant.where(relationship: relationship, subject: subject_user, evaluator: evaluator_user, campaign: context.campaign).exists?
+        if ::Threesixty::Participant.where(
+          relationship: relationship, subject: subject_user, evaluator: evaluator_user, campaign: context.campaign
+        ).exists?
           errors.add(:evaluator_email, :already_exists)
         end
       end
@@ -35,7 +37,9 @@ module Threesixty
       end
 
       def subject
-        @subject ||= ::Threesixty::Subject.includes(:user).find_by(campaign_id: context.campaign.id, users: { email: subject_email })
+        @subject ||= ::Threesixty::Subject.includes(:user).find_by(
+          campaign_id: context.campaign.id, users: { email: subject_email }
+        )
       end
 
       def subject_user

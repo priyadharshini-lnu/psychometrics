@@ -25,7 +25,8 @@ module Threesixty
       end
 
       def all_evaluators_ids
-        participants = threesixty_campaign.participants.active.actual_by_options(option).where(subject_id: subject.user_id)
+        participants = threesixty_campaign.participants.active.actual_by_options(option).
+                       where(subject_id: subject.user_id)
         if option.participants.dig('manager', 'can_approve_nominations')
           participants = participants.where(manager_nomination_status: :approved)
         end

@@ -45,6 +45,7 @@ module Threesixty
       validates *ALL_BOOLEAN_FIELDS,
                 inclusion: { in: [true, false], message: "doesn't have a valid value" },
                 allow_nil: true
+
       validate :validate_data_stream_fields
 
       def validate_data_stream_fields

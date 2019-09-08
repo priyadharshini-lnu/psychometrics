@@ -37,7 +37,11 @@ module Exports
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
                                else
-                                 values.map { |value| scoring && factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] || value['index'].to_i + 1 }.join(', ')
+                                 values.map do |value|
+                                   scoring &&
+                                     factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] ||
+                                     value['index'].to_i + 1
+                                 end .join(', ')
                                end
             end
           end

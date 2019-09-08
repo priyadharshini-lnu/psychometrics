@@ -14,7 +14,9 @@ module Threesixty
         result = users.each_with_object({}) do |user, res|
           res[user.id] =
             nomination_requirements.find do |n|
-              Threesixty::NestedConditionResolver.call!(n.subject_conditions, proc { |condition| resolve_condition(condition) })
+              Threesixty::NestedConditionResolver.call!(n.subject_conditions, proc { |condition|
+                                                                                resolve_condition(condition)
+                                                                              })
             end
         end
         broadcast :ok, result

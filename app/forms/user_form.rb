@@ -43,7 +43,10 @@ class UserForm < BaseForm
     save_user! if @user.new_record?
     membership_attributes = { parent_id: parent_id, role: membership_role }
     @user.memberships.create!(membership_attributes.merge(client_id: client.id))
-    @user.memberships.create_with(membership_attributes).find_or_create_by(client_id: client.parent_id) if client.subtenancy?
+    if client.subtenancy?
+      @user.memberships.create_with(membership_attributes).
+        find_or_create_by(client_id: client.parent_id)
+    end
     self
   end
 

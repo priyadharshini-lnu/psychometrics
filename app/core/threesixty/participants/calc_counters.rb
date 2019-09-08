@@ -14,7 +14,8 @@ module Threesixty
           result[user_id] = {} unless result[user_id]
           result[user_id][:total_evaluators] = total_evaluators[user_id].try(:cache_counter) || 0
           result[user_id][:total_evaluations] = total_evaluations[user_id].try(:total_evaluations_count) || 0
-          result[user_id][:completed_evaluations] = completed_evaluations[user_id].try(:completed_evaluations_count) || 0
+          result[user_id][:completed_evaluations] = completed_evaluations[user_id].
+                                                    try(:completed_evaluations_count) || 0
           result[user_id][:completed_evaluators] = completed_evaluators[user_id].try(:cache_counter) || 0
         end
         broadcast :ok, result
@@ -25,7 +26,8 @@ module Threesixty
       attr_reader :user_ids, :option, :threesixty_campaign
 
       def total_evaluators
-        @total_evaluators ||= threesixty_campaign.participants.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).where(subject_id: user_ids).
+        @total_evaluators ||= threesixty_campaign.participants.select('count(id) as cache_counter, subject_id').
+                              active.actual_by_options(option).where(subject_id: user_ids).
                               group(:subject_id).index_by(&:subject_id)
       end
 
@@ -34,7 +36,8 @@ module Threesixty
       end
 
       def completed_evaluations
-        @completed_evaluations ||= Threesixty::Participants::GetCompletedEvaluations.call!(threesixty_campaign, user_ids)
+        @completed_evaluations ||= Threesixty::Participants::GetCompletedEvaluations.
+                                   call!(threesixty_campaign, user_ids)
       end
 
       def completed_evaluators

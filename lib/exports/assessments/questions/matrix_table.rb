@@ -15,7 +15,8 @@ module Exports
           if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             question.props['choices'].to_i.times do |choice|
               question.props['scalePoints'].to_i.times do |scale|
-                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'value')
+                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
+                                 try(:[], 'value')
               end
             end
           else
@@ -28,7 +29,8 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
+                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.
+                               join(',')
             end
           end
           required_size = header(question).size

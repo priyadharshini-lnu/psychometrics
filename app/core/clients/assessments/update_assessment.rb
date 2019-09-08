@@ -11,8 +11,9 @@ module Clients
 
       def call
         return broadcast(:invalid) if form.invalid?
-        return broadcast(:confirm_remove_dependent_reports, removing_dependent_reports) if removing_dependent_reports.present? &&
-                                                                                           !form.is_removing_dependent_reports
+        if removing_dependent_reports.present? && !form.is_removing_dependent_reports
+          return broadcast(:confirm_remove_dependent_reports, removing_dependent_reports)
+        end
 
         transaction do
           reorder_assessments_clients
@@ -79,8 +80,9 @@ module Clients
         return if form.removing_assessment_ids.blank?
         return if removing_dependent_reports.blank?
 
-        ::Clients::Reports::RemoveReport.call!(client, removing_report_ids: removing_dependent_reports.map(&:id),
-                                                       is_applying_to_existing_users: form.is_applying_to_existing_users)
+        ::Clients::Reports::RemoveReport.call!(client,
+                                               removing_report_ids: removing_dependent_reports.map(&:id),
+                                               is_applying_to_existing_users: form.is_applying_to_existing_users)
       end
     end
   end

@@ -15,7 +15,10 @@ module Exports
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           required_size = question.props['choices'].to_i
-          answers = (answers || []).map { |a| a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : '' }
+          answers = (answers || []).
+                    map do |a|
+            a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : ''
+          end
           Utility::Array.ensure_size(answers, required_size)
         end
 

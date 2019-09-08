@@ -17,7 +17,8 @@ module Threesixty
           [:completed]
         )
 
-        evaluations_received = evaluations_recieved_by_relationship.each_with_object({}) do |(user_id, evaluations), acc|
+        evaluations_received = evaluations_recieved_by_relationship.
+                               each_with_object({}) do |(user_id, evaluations), acc|
           acc[user_id] = evaluations[:completed]&.values&.sum || 0
         end
 

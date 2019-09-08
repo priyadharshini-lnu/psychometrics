@@ -12,7 +12,9 @@ module Threesixty
       end
 
       def call
-        broadcast :ok, Threesixty::NestedConditionResolver.call!(conditions, proc { |condition| resolve_condition(condition) })
+        broadcast :ok, Threesixty::NestedConditionResolver.call!(
+          conditions, proc { |condition| resolve_condition(condition) }
+        )
       end
 
       def resolve_condition(condition)

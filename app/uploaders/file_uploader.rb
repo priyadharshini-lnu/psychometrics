@@ -20,7 +20,7 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def url(version = nil)
-    is_svg? ? super() : super(version)
+    svg? ? super() : super(version)
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -35,7 +35,7 @@ class FileUploader < CarrierWave::Uploader::Base
     new_file.extension.downcase.in?(%w[jpg jpeg gif png])
   end
 
-  def is_svg?
+  def svg?
     file && file.extension == 'svg'
   end
 end

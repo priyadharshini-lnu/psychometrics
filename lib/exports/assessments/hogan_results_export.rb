@@ -68,7 +68,9 @@ module Exports
       end
 
       def assigns_report_data(assigns_report, score_type, scale_type, data_type)
-        score = assigns_report&.hogan_score&.dig('participant', 'assessment', 'score')&.find { |i| i['type'] == score_type }
+        score = assigns_report&.hogan_score&.dig('participant', 'assessment', 'score')&.find do |i|
+          i['type'] == score_type
+        end
         return [] if score.nil?
 
         data =
@@ -99,7 +101,8 @@ module Exports
                              call(@client_id, @assessment_id, @report_id).
                              selecting do
           [assign.id.as('assign_id'),
-           assign.membership.user.first_name.op('||', quoted(' ')).op('||', assign.membership.user.last_name).as('full_name'),
+           assign.membership.user.first_name.op('||', quoted(' ')).op('||', assign.membership.user.last_name).
+             as('full_name'),
            assign.membership.user.email.as('user_email'),
            assign.membership.project_membership.hogan_credential.participant_id,
            assign.started_at,

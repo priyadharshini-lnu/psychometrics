@@ -9,7 +9,10 @@ module Threesixty
     end
 
     def call
-      dimension = Dimension.create!(name: "#{@campaign.campaign.name} Dimension", owner_id: @campaign.campaign.project_id)
+      dimension = Dimension.create!(
+        name: "#{@campaign.campaign.name} Dimension",
+        owner_id: @campaign.campaign.project_id
+      )
       assessment = Assessment.new(name: "#{@campaign.campaign.name} Assessment",
                                   dimension_id: dimension.id,
                                   type: Assessment::TYPES[:common],

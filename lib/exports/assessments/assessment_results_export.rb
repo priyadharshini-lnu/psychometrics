@@ -16,7 +16,8 @@ module Exports
 
       def to_xlsx
         if @external
-          Exports::External::BaseExternalExport.build(Assessment::TYPES.key(@assessment.type)).to_xlsx(current_level_assigns)
+          Exports::External::BaseExternalExport.build(Assessment::TYPES.key(@assessment.type)).
+            to_xlsx(current_level_assigns)
         else
           to_xlsx_common
         end
@@ -46,7 +47,9 @@ module Exports
               question_header = parser.header(question)
               header[:header] << question_header
               header[:header2] << Array.new(question_header.size) { |_i| question.name }
-              header[:header3] << Array.new(question_header.size) { |_i| ActionView::Base.full_sanitizer.sanitize(question.props['questionText']) }
+              header[:header3] << Array.new(question_header.size) do |_i|
+                ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])
+              end
             end
             sheet.add_row header[:header].flatten
             sheet.add_row header[:header2].flatten
@@ -117,7 +120,11 @@ module Exports
            status,
            completed_at,
            started_at,
-           original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
+           original_assign.membership.user.
+             last_name.
+             op('||', quoted(', ')).
+             op('||', original_assign.membership.user.first_name).
+             as('user_name'),
            original_assign.membership.user.email.as('user_email')]
         end
       end

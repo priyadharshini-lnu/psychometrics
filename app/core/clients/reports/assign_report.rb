@@ -21,9 +21,10 @@ module Clients
             add_report_access_for_existing_users
           end
 
-          ::Clients::Reports::RemoveReport.call!(client, removing_report_ids: form.removing_report_ids,
-                                                         removing_user_access_report_ids: form.removing_user_access_report_ids,
-                                                         is_applying_to_existing_users: form.is_applying_to_existing_users)
+          ::Clients::Reports::RemoveReport.call!(client,
+                                                 removing_report_ids: form.removing_report_ids,
+                                                 removing_user_access_report_ids: form.removing_user_access_report_ids,
+                                                 is_applying_to_existing_users: form.is_applying_to_existing_users)
         end
 
         broadcast(:ok)

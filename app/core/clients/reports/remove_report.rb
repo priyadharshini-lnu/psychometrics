@@ -3,7 +3,10 @@
 module Clients
   module Reports
     class RemoveReport < ::BaseCommand
-      def initialize(client, removing_report_ids: [], removing_user_access_report_ids: [], is_applying_to_existing_users: false)
+      def initialize(client,
+                     removing_report_ids: [],
+                     removing_user_access_report_ids: [],
+                     is_applying_to_existing_users: false)
         @client = client
         @removing_report_ids = removing_report_ids
         @removing_user_access_report_ids = removing_user_access_report_ids

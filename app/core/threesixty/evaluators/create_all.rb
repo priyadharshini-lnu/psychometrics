@@ -46,7 +46,10 @@ module Threesixty
       end
 
       def create_evaluator(evaluator_attrs, evaluator_user)
-        evaluator = ::Threesixty::Evaluator.find_or_create_by!(user: evaluator_user, campaign: threesixty_campaign.campaign)
+        evaluator = ::Threesixty::Evaluator.find_or_create_by!(
+          user: evaluator_user,
+          campaign: threesixty_campaign.campaign
+        )
         # TODO: (atanych): any idea with counter cache? We need to count only active_participants (check scope :active)
         evaluator.increment!(:evaluations_count)
         evaluator_attrs[:subject].increment!(:evaluators_count)
