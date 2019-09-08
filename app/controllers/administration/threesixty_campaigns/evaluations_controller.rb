@@ -4,26 +4,35 @@ module Administration
   module ThreesixtyCampaigns
     class EvaluationsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show]
+      before_action :set_resource, only: %i[show destroy]
       append_before_action :pundit_authorize
       before_action :init_breadcrumbs
 
       def show
         @users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
-                                            subject_id: resource.user_id,
-                                            evaluator_id: params[:id])
+                                             subject_id: resource.user_id,
+                                             evaluator_id: params[:id])
         @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
                                             evaluator_id: params[:id])
         @users_result.step = 0
         @results = UsersResultSerializer.new(@users_result, participant: @participant, campaign: threesixty_campaign,
-                 current_user: current_user, include: '**').to_json
+                                             current_user: current_user, include: '**')
 
         piped_text_context = {
           evaluator: @users_result.evaluator,
           subject: @users_result.subject,
           threesixty_campaign: threesixty_campaign
         }
+
         @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment, piped_text_context: piped_text_context).to_hash(include: '**')
+      end
+
+      def destroy
+        users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
+                                             subject_id: resource.user_id,
+                                             evaluator_id: params[:id])
+        users_result.destroy!
+        render json: {id: users_result.id}
       end
 
       private

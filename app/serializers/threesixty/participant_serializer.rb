@@ -2,7 +2,7 @@
 
 module Threesixty
   class ParticipantSerializer < ActiveModel::Serializer
-    attributes :id, :manager_nomination_status, :evaluation_status
+    attributes :id, :manager_nomination_status, :evaluation_status, :manager_evaluation_status
 
     has_one :subject, serializer: UserSerializer
     has_one :evaluator, serializer: UserSerializer

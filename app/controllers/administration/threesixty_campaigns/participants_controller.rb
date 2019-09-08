@@ -21,7 +21,10 @@ module Administration
 
       def update
         resource.update!(resource_params)
-        render json: resource
+        respond_to do |format|
+          format.html { redirect_to administration_threesixty_campaign_subject_evaluation_path(threesixty_campaign, resource.threesixty_subject, resource.evaluator_id) }
+          format.json { render json: resource }
+        end
       end
 
       def spoof
@@ -44,7 +47,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:participant).permit(:relationship_id, :manager_nomination_status, :evaluator_nomination_status)
+        params.require(:participant).permit(:relationship_id, :manager_nomination_status, :evaluator_nomination_status, :manager_evaluation_status)
       end
 
       private

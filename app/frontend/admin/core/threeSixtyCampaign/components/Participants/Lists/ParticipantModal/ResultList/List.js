@@ -11,15 +11,25 @@ export default function List ({
   relationships,
   update,
   remove,
+  options,
   match: {
     params: { campaignId },
   },
 }) {
   const updateParticipant = (id, attrs) => update(campaignId, id, attrs)
 
-  const destroyParticipant = (id) => {
+  const destroyEvaluation = (participantId, subjectId, evaluationId) => {
     // eslint-disable-next-line no-alert
-    if (confirm('Are you sure?')) remove(campaignId, id)
+    if (confirm('Are you sure?')) remove(campaignId, participantId, subjectId, evaluationId)
+  }
+
+  const canApproveEvaluations = () => {
+    if (!options) { return true }
+    if (!options.participants) { return true }
+    if (options.participants.manager.can_approves_evaluations) {
+      return true
+    }
+    return false
   }
 
   return (
@@ -33,6 +43,8 @@ export default function List ({
             target="_blank"
             rel="noopener noreferrer"
           >
+            <Icon type="eye" />
+            {' '}
             {result.id}
           </a>
         )}
@@ -58,45 +70,49 @@ export default function List ({
             )
         )}
       />
+      {canApproveEvaluations() && (
       <Table.Column
         title="Approved"
-        key="managerNominationStatus"
-        render={({ managerNominationStatus, id, relationship }) => (
+        key="managerEvaluationStatus"
+        render={({ managerEvaluationStatus, id, relationship }) => (
           <StatusSelect
             disabled={relationship.assignType === ASSIGN_TYPES.AUTOMATIC}
             availableStatuses={MANAGER_STATUSES}
             id={id}
-            name="managerNominationStatus"
+            name="managerEvaluationStatus"
             onChange={updateParticipant}
-            managerNominationStatus={managerNominationStatus}
+            managerEvaluationStatus={managerEvaluationStatus}
           />
         )}
       />
+      )}
       <Table.Column
         title="Start Time"
         key="startTime"
-        render={() => (
-          new Date().toString()
+        render={({ result: { createdAt } }) => (
+          moment(createdAt).format('YYYY-MM-DD HH:mm:ss')
         )}
       />
       <Table.Column
         title="End Time"
         key="endTime"
-        render={() => (
-          new Date().toString()
+        render={({ result: { completedAt } }) => (
+          moment(completedAt).format('YYYY-MM-DD HH:mm:ss')
         )}
       />
       <Table.Column
         title="Duration"
         key="duration"
-        render={() => (
-          '22h 57m 19s'
+        render={({ result: { createdAt, completedAt } }) => (
+          moment.utc(moment(completedAt).diff(moment(createdAt))).format('HH[h] mm[m] ss[s]')
         )}
       />
       <Table.Column
         key="actions"
-        render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
-          <Icon type="delete" onClick={() => destroyParticipant(id)} />
+        render={({
+          id, relationship, result, evaluator,
+        }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
+          <Icon type="delete" onClick={() => destroyEvaluation(id, result.subjectId, evaluator.id)} />
         )}
       />
     </Table>
@@ -121,12 +137,12 @@ const RelationSelect = ({
 )
 
 const StatusSelect = ({
-  availableStatuses, managerNominationStatus, onChange, id, name, disabled,
+  availableStatuses, managerEvaluationStatus, onChange, id, name, disabled,
 }) => (
   <Select
     disabled={disabled}
     style={{ width: '100%' }}
-    value={managerNominationStatus}
+    value={managerEvaluationStatus}
     onChange={v => onChange(id, { [name]: v })}
   >
     {availableStatuses.map(status => (

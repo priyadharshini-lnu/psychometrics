@@ -4,6 +4,14 @@
       .panel-heading
         h3.panel-title = @users_result.evaluator.email
         = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
-
       .panel-body
+        - if @threesixty_campaign.option.participants['manager']['can_approves_evaluations']
+          = I18n.t("threesixty.#{@participant.manager_evaluation_status}")
+          .pull-right
+            = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), method: :put, class: 'btn btn-danger', params: {participant: {manager_evaluation_status: :denied}} do
+              | Deny Evaluation
+          .pull-right
+            = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), method: :put, class: 'btn btn-success', params: {participant: {manager_evaluation_status: :approved}} do
+              | Approve Evaluation
+
         = render partial: 'shared/preview_results'

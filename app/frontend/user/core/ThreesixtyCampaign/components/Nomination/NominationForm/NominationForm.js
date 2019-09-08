@@ -133,6 +133,8 @@ export default function NominationForm (props) {
           : (
             <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
           )}
+      </div>
+      <div>
         {hasEvaluations && (
           <Row type="flex" justify="end" gutter={8}>
             {isSelf && canSendRequestApprovalEmail && (
@@ -152,7 +154,7 @@ export default function NominationForm (props) {
             </Col>
             )}
             {isSelf || !options.participants.manager.canApproveNominations || (
-            <>
+            <React.Fragment>
               <div className="divider" />
               <Col>
                 <Button type="primary" onClick={handleApproveAll}>
@@ -164,7 +166,7 @@ export default function NominationForm (props) {
                   {I18n.t('threesixty.deny_all')}
                 </Button>
               </Col>
-            </>
+            </React.Fragment>
             )}
           </Row>
         )}
