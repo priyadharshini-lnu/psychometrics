@@ -59,8 +59,10 @@ module Threesixty
     end
 
     def subject_evaluator_counters
+      user_ids = @subjects.pluck(:user_id).push(subject.user_id)
+
       @subject_evaluator_counters ||= ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-        [subject.user_id],
+        user_ids,
         @campaign
       )
     end
