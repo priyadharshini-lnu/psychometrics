@@ -19,7 +19,7 @@ module Threesixty
         operator = condition['operator']
         relationship = condition['relationship']
         number_of_evaluator = condition['number_of_evaluator'].to_i
-        {operator: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator}
+        { operator: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator }
       end
 
       def evaluators_by_relationship(relationship)

@@ -18,7 +18,7 @@ module Reports
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       piped_text_context = {
         subject: users_report&.user,
-        threesixty_campaign: users_report&.threesixty_campaign,
+        threesixty_campaign: users_report&.threesixty_campaign
       }
       broadcast :ok,
                 user: Reports::UserSerializer.new(users_report&.user || membership.user).to_json,
@@ -39,6 +39,7 @@ module Reports
 
     def campaign_details
       return {} unless report.category_threesixty?
+
       Threesixty::CampaignDetailsSerializer.new(users_report.threesixty_campaign, users_report: users_report).to_h
     end
 

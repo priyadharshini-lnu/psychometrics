@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeStatusesInParticipants < ActiveRecord::Migration[5.1]
   def change
     rename_column :participants, :manager_status, :manager_nomination_status

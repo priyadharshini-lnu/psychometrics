@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FactorsAlias < ApplicationRecord
   belongs_to :factor
   belongs_to :report

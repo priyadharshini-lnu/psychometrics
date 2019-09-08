@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'swagger_helper'
 
@@ -11,7 +13,6 @@ describe 'Campaigns' do
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
   path '/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
-
     post 'Duplicate a campaign' do
       operationId 'DuplicateCampaign'
       description 'Duplicated campaign will have the same default assessments and reports as the source campaign'
@@ -26,9 +27,9 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
           "id": 770,
-          "name": "Duplicated Campaign Name",
-          "created_at": "2019-03-05T10:56:53.349+04:00",
-          "updated_at": "2019-03-05T10:56:53.349+04:00"
+          "name": 'Duplicated Campaign Name',
+          "created_at": '2019-03-05T10:56:53.349+04:00',
+          "updated_at": '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:campaign_id) { campaign.id }
@@ -46,9 +47,9 @@ describe 'Campaigns' do
       response '400', 'Campaign name is not filled' do
         schema '$ref' => '#/definitions/ApiError'
         examples 'application/json' => {
-          "code" => 1002,
-          "message" => 'Validation error',
-          "more_info" => "Name can't be blank",
+          'code' => 1002,
+          'message' => 'Validation error',
+          'more_info' => "Name can't be blank"
         }
 
         let(:campaign_id) { campaign.id }
@@ -56,11 +57,11 @@ describe 'Campaigns' do
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1002,
-                                "message" => 'Validation error',
-                                "more_info" => "Name can't be blank",
-                              })
+          expect(error).to eq(
+            'code' => 1002,
+                                'message' => 'Validation error',
+                                'more_info' => "Name can't be blank"
+          )
         end
       end
 
@@ -68,28 +69,26 @@ describe 'Campaigns' do
         let(:project_id) { project.id }
         let(:campaign_id) { 1111 }
 
-
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
           "code": 1005,
           "message": 'Resource not found',
-          "more_info": 'Campaign with id=111 is not found',
+          "more_info": 'Campaign with id=111 is not found'
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1005,
-                                "message" => 'Resource not found',
-                                "more_info" => 'Campaign with id=1111 is not found',
-                              })
+          expect(error).to eq(
+            'code' => 1005,
+                                'message' => 'Resource not found',
+                                'more_info' => 'Campaign with id=1111 is not found'
+          )
         end
       end
     end
   end
   path '/projects/{project_id}/users/{user_id}/campaigns' do
-
     post 'Add user to campaigns' do
       operationId 'AddUserCampaigns'
       description 'Adds new campaigns to the user. Adding campaigns to user assigns the campaign\'s default assessments and reports.'
@@ -103,12 +102,12 @@ describe 'Campaigns' do
       response '200', '' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id":           14602,
-          "first_name":   "Kamaru",
-          "last_name":    "Usman",
-          "email":        "marti@gmail.com",
-          "created_at":   "2019-03-04T15:47:33.570+04:00",
-          "updated_at":   "2019-03-04T15:47:33.950+04:00",
+          "id": 14_602,
+          "first_name": 'Kamaru',
+          "last_name": 'Usman',
+          "email": 'marti@gmail.com',
+          "created_at": '2019-03-04T15:47:33.570+04:00',
+          "updated_at": '2019-03-04T15:47:33.950+04:00',
           "campaign_ids": [
             510
           ]
@@ -118,7 +117,7 @@ describe 'Campaigns' do
         let(:campaign_ids) { [campaign.id, campaign_2.id] }
         let(:project_id) { project.id }
         let(:user_id) { user.id }
-        let(:body) { {campaign_ids: campaign_ids } }
+        let(:body) { { campaign_ids: campaign_ids } }
 
         run_test! do |response|
           user = JSON.parse(response.body)
@@ -131,7 +130,6 @@ describe 'Campaigns' do
   end
 
   path '/projects/{project_id}/users/{user_id}/campaigns' do
-
     get 'Get user campaigns' do
       operationId 'GetUserCampaigns'
       description 'returns all campaigns associated with the user'
@@ -147,9 +145,9 @@ describe 'Campaigns' do
         examples 'application/json' => [
           {
             "id": 367,
-            "name": "Employee Engagement Survey",
-            "created_at": "2018-02-11T10:55:25.569+04:00",
-            "updated_at": "2018-02-11T10:55:25.569+04:00"
+            "name": 'Employee Engagement Survey',
+            "created_at": '2018-02-11T10:55:25.569+04:00',
+            "updated_at": '2018-02-11T10:55:25.569+04:00'
           }
         ]
 

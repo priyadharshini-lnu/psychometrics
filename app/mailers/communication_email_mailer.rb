@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mustache'
 class CommunicationEmailMailer < ApplicationMailer
   def create(email_id)
@@ -25,8 +27,7 @@ class CommunicationEmailMailer < ApplicationMailer
     else
       token = create_raw_invitation_token
       options = { id: @recipient.user_id, invitation_token: token, domain: Settings.domain,
-                  subdomain: @project.subdomain
-                }
+                  subdomain: @project.subdomain }
       url = url_for([:accept, @recipient.user.role_scope, :invitation, options])
     end
     "<a href=#{url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"

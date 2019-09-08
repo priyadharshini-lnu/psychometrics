@@ -15,7 +15,7 @@ module Administration
                        actual_by_options(threesixty_campaign.option).
                        where.has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
         user_results = UsersResult.where.
-          has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
+                       has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
         render json: participants, each_serializer: ::Threesixty::ParticipantSerializer, user_result_map: user_results.index_by { |r| [r.evaluator_id, r.subject_id] }
       end
 

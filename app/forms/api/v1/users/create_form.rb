@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     module Users
       class CreateForm < Rectify::Form
         attribute %i[first_name last_name email], String
-        attribute :campaign_ids,  Array
+        attribute :campaign_ids, Array
 
         validates :email, presence: true
         validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -12,7 +14,8 @@ module Api
 
         def uniq_email
           return unless ::Users::Regular.exists?(email: email, project_id: context.project.id)
-          raise Errors::Api::EmailExistsError,"Email address #{email} is already taken"
+
+          raise Errors::Api::EmailExistsError, "Email address #{email} is already taken"
         end
 
         def verify_campaign_ids

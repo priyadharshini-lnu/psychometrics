@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TaskDecorator < BaseDecorator
   def planned_completed_at
     I18n.l object.planned_completed_at, format: :date if object.planned_completed_at

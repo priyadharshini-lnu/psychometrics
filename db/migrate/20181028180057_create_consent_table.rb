@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateConsentTable < ActiveRecord::Migration[5.1]
   def change
     create_table :privacy_consents do |t|

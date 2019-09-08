@@ -10,11 +10,11 @@ describe Threesixty::ParticipatorByCriteria::ByNominationRequirement do
   context 'completed criteria' do
     it 'returns subjects with nomination completed criteria' do
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
-      with(threesixty_campaign, users).
-      and_return({
-        users[0].id => true,
-        users[1].id => true
-      })
+        with(threesixty_campaign, users).
+        and_return(
+          users[0].id => true,
+          users[1].id => true
+        )
 
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
         with(threesixty_campaign, threesixty_subjects[0].user).and_return(true)
@@ -38,11 +38,11 @@ describe Threesixty::ParticipatorByCriteria::ByNominationRequirement do
     it 'returns subjects with nomination not completed criteria' do
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
         with(threesixty_campaign, users).
-        and_return({
+        and_return(
           users[0].id => true,
           users[1].id => false,
-          users[2].id => false,
-        })
+          users[2].id => false
+        )
 
       criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'not_completed' }]
       results = described_class.call!(

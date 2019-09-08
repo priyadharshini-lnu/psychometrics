@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assigns
   class AverageScoring < BaseCommand
     def initialize(scoring, factor)

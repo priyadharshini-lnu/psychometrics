@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ecommerce_orders
@@ -11,6 +13,5 @@
 
 FactoryGirl.define do
   factory :ecommerce_order, class: 'Ecommerce::Order' do
-    
   end
 end

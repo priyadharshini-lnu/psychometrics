@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Translations
     class ReportImport < Imports::BaseImport
@@ -16,7 +18,8 @@ module Imports
                                                     'application/octet-stream',
                                                     'text/plain'] }
 
-      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation innovation_style reports/module external/factor).freeze
+      AVAILABLE_TRANSLATEABLE_TYPES = %w[reports/filter factor occupation
+                                         innovation_style reports/module external/factor].freeze
 
       def process!
         # Return error if form not valid
@@ -25,7 +28,8 @@ module Imports
         imported_items = load_imported_items.compact
 
         report = Report.find report_id
-        extract = imported_items.map(&:locale) & Translation.available_translation_for_report(report_id, report.assessment_id)
+        extract = imported_items.
+                  map(&:locale) & Translation.available_translation_for_report(report_id, report.assessment_id)
         Translation.for_report(report_id).where.not(locale: extract).destroy_all
 
         if imported_items.map(&:valid?).all?
@@ -50,7 +54,7 @@ module Imports
         rows = open_spreadsheet.to_a
         header = rows.shift
 
-        collect_translations = Hash.new
+        collect_translations = {}
 
         rows.each do |row|
           data = Hash[header.zip(row)]
@@ -69,6 +73,7 @@ module Imports
           data.each do |locale, translation|
             locale = locale.split(' / ').last
             next if locale == 'en' || translation.blank? # Default locale or not translated
+
             collect_translations[translateable_type][translateable_id][locale] ||= {}
             collect_translations[translateable_type][translateable_id][locale][key] = translation
           end
@@ -78,13 +83,13 @@ module Imports
         collect_translations.each do |translateable_type, resources|
           resources.each do |translateable_id, locales|
             locales.each do |locale, props|
-              translation = Translation.find_or_initialize_by({
+              translation = Translation.find_or_initialize_by(
                 translateable_id: translateable_id,
                 translateable_type: translateable_type.classify,
                 resource_id: report_id,
                 resource_type: 'Report',
                 locale: locale
-              })
+              )
               translation.props = props
               translations << translation
             end
@@ -100,9 +105,9 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.original_filename)
-        when '.csv' then Roo::CSV.new(file.path)
-        when '.xlsx' then ::Roo::Excelx.new(file.path)
-        else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+          when '.csv' then Roo::CSV.new(file.path)
+          when '.xlsx' then ::Roo::Excelx.new(file.path)
+          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
         end
       end
     end

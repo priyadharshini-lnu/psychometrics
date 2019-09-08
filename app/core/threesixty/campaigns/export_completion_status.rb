@@ -24,15 +24,15 @@ module Threesixty
             ]
             sheet.add_row(header, style: header_style)
             participants = threesixty_campaign.participants.actual_by_options(threesixty_campaign.option).
-              select(
-                'threesixty_participants.*',
-                'users_results.status as result_status',
-                'users_results.id as result_id',
-                'users_results.created_at as result_created_at',
-                'users_results.completed_at as result_completed_at'
-                ).
-              joins('LEFT JOIN users_results on users_results.subject_id = threesixty_participants.subject_id and users_results.evaluator_id = threesixty_participants.evaluator_id').
-              includes(:subject, :evaluator, :relationship)
+                           select(
+                             'threesixty_participants.*',
+                             'users_results.status as result_status',
+                             'users_results.id as result_id',
+                             'users_results.created_at as result_created_at',
+                             'users_results.completed_at as result_completed_at'
+                           ).
+                           joins('LEFT JOIN users_results on users_results.subject_id = threesixty_participants.subject_id and users_results.evaluator_id = threesixty_participants.evaluator_id').
+                           includes(:subject, :evaluator, :relationship)
             participants.each do |participant|
               sheet.add_row [participant.result_id && UsersResult.encode_id(participant.result_id),
                              participant.subject&.decorate&.full_name,

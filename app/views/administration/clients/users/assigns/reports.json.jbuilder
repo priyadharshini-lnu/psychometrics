@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.array!(resources) do |resource|
   selected = @selected_reports.include?(resource) if @selected_reports
   json.name resource.name

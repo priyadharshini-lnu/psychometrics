@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     class CompletionStatusExport
@@ -38,26 +40,30 @@ module Exports
 
       def project_level_assigns
         Queries::Assigns::ProjectLevel::ByClient.call(@client_id).
-          selecting { [id,
-                       membership.user.last_name.op('||', quoted(', ')).op('||', membership.user.first_name).as('user_name'),
-                       membership.user.email.as('user_email'),
-                       assessment.category,
-                       assessment.name,
-                       started_at,
-                       completed_at,
-                       status] }
+          selecting do
+          [id,
+           membership.user.last_name.op('||', quoted(', ')).op('||', membership.user.first_name).as('user_name'),
+           membership.user.email.as('user_email'),
+           assessment.category,
+           assessment.name,
+           started_at,
+           completed_at,
+           status]
+        end
       end
 
       def subproject_level_assigns
         Queries::Assigns::SubProjectLevel::ByClient.call(@client_id).
-          selecting { [id,
-                       original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
-                       original_assign.membership.user.email.as('user_email'),
-                       assessment.category,
-                       assessment.name,
-                       started_at,
-                       completed_at,
-                       status] }
+          selecting do
+          [id,
+           original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
+           original_assign.membership.user.email.as('user_email'),
+           assessment.category,
+           assessment.name,
+           started_at,
+           completed_at,
+           status]
+        end
       end
     end
   end

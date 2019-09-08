@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class LibraryDecorator < BaseDecorator
   def icon
     case object.type
-    when 'folder'
-      'fa fa-folder-o'
-    when 'audio'
-      'fa fa-file-audio-o'
-    when 'video'
-      'fa fa-file-video-o'
-    else
-      'fa fa-file-o'
+      when 'folder'
+        'fa fa-folder-o'
+      when 'audio'
+        'fa fa-file-audio-o'
+      when 'video'
+        'fa fa-file-video-o'
+      else
+        'fa fa-file-o'
     end
   end
 

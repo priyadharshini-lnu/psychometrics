@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ecommerce_orders
@@ -20,7 +22,7 @@ module Ecommerce
     validates :membership, :purchases, presence: true
     validate :equivalent_currencies
 
-    enum status: [:in_proccess, :completed, :cancelled, :failed]
+    enum status: %i[in_proccess completed cancelled failed]
 
     private
 

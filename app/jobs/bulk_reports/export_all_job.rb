@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkReports
   class ExportAllJob < ApplicationJob
     queue_as :default
@@ -31,14 +33,14 @@ module BulkReports
       end
     end
 
-    def job_params(bulk_report, item, params)
+    def job_params(bulk_report, item, _params)
       report = Report.find(item.id)
       {
         bulk_report: bulk_report,
         report: report,
         assign: Assign.find(item.assign_id),
         assigns_report: AssignsReport.find(item.assigns_report_id),
-        user: User.find(item.user_id),
+        user: User.find(item.user_id)
       }
     end
   end

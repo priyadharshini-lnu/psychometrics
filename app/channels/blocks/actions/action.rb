@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blocks
   module Actions
     module Action
@@ -10,9 +12,9 @@ module Blocks
             begin
               data            = yield(request['data'], current_user, block)
               response        = {
-                  type:         'success',
-                  action:       action_name,
-                  request_id:   request['request_id']
+                type: 'success',
+                action: action_name,
+                request_id: request['request_id']
               }
               response[:data] = data if data
               # Skip notification if was passed params

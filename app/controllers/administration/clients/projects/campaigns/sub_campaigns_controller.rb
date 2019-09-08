@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Projects
@@ -9,7 +11,7 @@ module Administration
           def index
             @_filter_form = policy_scope(resource_class).sub_campaigns_of(campaign.id).search(params[:q])
             filter_form.archived_true ||= false
-            filter_form.disabled_true ||= false            
+            filter_form.disabled_true ||= false
             @_resources = filter_form.result.page(params[:page])
 
             respond_to do |format|
@@ -50,7 +52,7 @@ module Administration
             client_root_breadcrumb
             add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
             add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
-            add_breadcrumb campaign.decorate.display_name, { action: :index }
+            add_breadcrumb campaign.decorate.display_name, action: :index
           end
         end
       end

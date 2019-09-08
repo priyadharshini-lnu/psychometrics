@@ -16,7 +16,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      # TODO (atanych): do we really need distinct?
+      # TODO: (atanych): do we really need distinct?
       scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
@@ -32,7 +32,7 @@ module Administration
 
     def upload_data_sheet
       @form = ::Datasheets::DatasheetForm.from_params(params)
-      render json: @form.parsed_file.first.map { |k, v| {name: k, type: v} }
+      render json: @form.parsed_file.first.map { |k, v| { name: k, type: v } }
     end
 
     def show
@@ -48,7 +48,7 @@ module Administration
     def create
       @_resource = resource_class.new(resource_params)
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
-      # TODO (ivan) Move creating and updating to Command and Form
+      # TODO: (ivan) Move creating and updating to Command and Form
       resource.hogan_report_setting&.delete if resource.hogan_report_setting&.hogan_report_id.blank?
 
       respond_to do |format|
@@ -168,7 +168,7 @@ module Administration
                                        hogan_report_setting_attributes: %i[id hogan_report_id _destroy])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
       # Does this need a better fix?
-      report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+      report_params = report_params.except(:assessment_ids) if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
       report_params
     end
 

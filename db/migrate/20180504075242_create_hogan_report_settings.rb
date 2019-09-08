@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateHoganReportSettings < ActiveRecord::Migration[5.1]
   def change
     create_table :hogan_report_settings do |t|

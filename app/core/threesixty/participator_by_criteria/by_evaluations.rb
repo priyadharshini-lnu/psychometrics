@@ -20,7 +20,6 @@ module Threesixty
         criteria['value'] == COMPLETED
       end
 
-
       def evaluations_need_approval
         @evaluations_need_approval ||= threesixty_campaign.
                                        participants.

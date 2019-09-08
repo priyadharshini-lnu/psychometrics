@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class MembershipDecorator < BaseDecorator
   def display_name
     return object.user.decorate.display_name unless object.respond_to?(:first_name)
+
     [object.first_name, object.last_name].reject(&:blank?).join(' ')
   end
 
@@ -20,43 +23,43 @@ class MembershipDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
-        body: I18n.t('administration.users.resource.confirmations.change_password.body')
+      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+      body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
 
   def delete_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
-        body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
+      title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
+      body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
 
   def detach_from_project_confirmation
     {
-        title: I18n.t('administration.projects.users.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
-        body: I18n.t('administration.projects.users.confirmations.detach_from_project.body')
+      title: I18n.t('administration.projects.users.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+      body: I18n.t('administration.projects.users.confirmations.detach_from_project.body')
     }.to_json
   end
 
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-        title: I18n.t(
-            'administration.users.resource.confirmations.toggle_status.title',
-            status: status,
-            name: display_name
-        ),
-        body: I18n.t(
-            'administration.users.resource.confirmations.toggle_status.body',
-            status: status.downcase
-        )
+      title: I18n.t(
+        'administration.users.resource.confirmations.toggle_status.title',
+        status: status,
+        name: display_name
+      ),
+      body: I18n.t(
+        'administration.users.resource.confirmations.toggle_status.body',
+        status: status.downcase
+      )
     }.to_json
   end
 
   def managers_for_select
     # skip self and users that are managed by the current user
-    client.memberships.includes(:user).where.not(id: object.subtree_ids )
+    client.memberships.includes(:user).where.not(id: object.subtree_ids)
   end
 
   def clients_names

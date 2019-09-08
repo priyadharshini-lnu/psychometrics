@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -40,50 +42,50 @@ class User < ApplicationRecord
   include UserValidations
 
   # Roles constant
-  SUPER_ADMIN_ROLE = 'Users::SuperAdmin'.freeze
-  REGULAR_ROLE = 'Users::Regular'.freeze
-  ADMIN_ROLE = 'Users::Admin'.freeze
+  SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
+  REGULAR_ROLE = 'Users::Regular'
+  ADMIN_ROLE = 'Users::Admin'
 
   USER_ROLES = {
-      superadmin: SUPER_ADMIN_ROLE,
-      regular: REGULAR_ROLE,
-      admin: ADMIN_ROLE,
+    superadmin: SUPER_ADMIN_ROLE,
+    regular: REGULAR_ROLE,
+    admin: ADMIN_ROLE
   }.freeze
 
   USER_ROLES_SCOPES = {
-      administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE],
-      user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
+    administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE],
+    user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
   }.freeze
 
   # Contain information about ability to manage list of roles
   USER_ROLES_HIERARCHY = {
-      superadmin: USER_ROLES.values,
-      regular: Membership::MEMBERSHIP_ROLES
+    superadmin: USER_ROLES.values,
+    regular: Membership::MEMBERSHIP_ROLES
   }.freeze
 
   DEFAULT_ADMIN_GRANTS = {
-      assessments: %w(view),
-      reports: %w(view),
-      communications: %w(view manage)
+    assessments: %w[view],
+    reports: %w[view],
+    communications: %w[view manage]
   }.with_indifferent_access.freeze
 
   DEFAULT_PROJECT_ADMIN_GRANTS = {
-    assessments: %w(view),
-    communications: %w(view manage)
+    assessments: %w[view],
+    communications: %w[view manage]
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
-      norms: %w(view manage),
-      dimensions: %w(view manage),
-      clients: %w(manage design),
-      assessments: %w(view manage assign export import),
-      translations: %w(export import),
-      reports: %w(view manage),
-      questions: %w(view manage),
-      libraries: %w(view manage),
-      communications: %w(view manage),
-      projects: %w(view manage),
-      assigns: %w(view)
+    norms: %w[view manage],
+    dimensions: %w[view manage],
+    clients: %w[manage design],
+    assessments: %w[view manage assign export import],
+    translations: %w[export import],
+    reports: %w[view manage],
+    questions: %w[view manage],
+    libraries: %w[view manage],
+    communications: %w[view manage],
+    projects: %w[view manage],
+    assigns: %w[view]
   }.with_indifferent_access.freeze
 
   # Authentication
@@ -119,13 +121,13 @@ class User < ApplicationRecord
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
   has_many :campaigns_users
-  has_many :reminder_histories, class_name: "Threesixty::ReminderHistory"
+  has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory'
 
   accepts_nested_attributes_for :memberships
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
-  validates :email, uniqueness: { scope: [:project_id, :role] }
+  validates :email, uniqueness: { scope: %i[project_id role] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
   validates_presence_of   :email
@@ -138,21 +140,23 @@ class User < ApplicationRecord
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && create_by_invite
-    !persisted? || !password.nil? || !password_confirmation.nil?
+
+    !persisted? || password || password_confirmation
   end
 
   # Time to strong sign out
   def timeout_in
     return 1.year if is?(:superadmin) || is_anonym?
+
     super
   end
 
   def is?(*roles)
     roles.map!(&:to_sym)
     arr = if current_membership
-      [current_membership.role.to_sym]
-    else
-      [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
+            [current_membership.role.to_sym]
+          else
+            [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
     end
     (arr & roles).any?
   end
@@ -176,9 +180,7 @@ class User < ApplicationRecord
   end
 
   def ensure_authentication_token
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
-    end
+    self.authentication_token = generate_authentication_token if authentication_token.blank?
   end
 
   # If user was already created and was invited by mail (with link to set password)
@@ -189,6 +191,7 @@ class User < ApplicationRecord
     if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin, :member)
       return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
     end
+
     # Customizing default mail of devise_inviteable
     # Couse it's gem not support to chagen invite link
     #   Where we need to set subdomain of Client
@@ -233,6 +236,7 @@ class User < ApplicationRecord
   # @deprecated
   def validate_grants
     return if grants.nil?
+
     valid = grants.is_a?(Hash) && (grants.keys - ADMIN_GRANTS.keys).empty?
     if valid
       grants.each do |k, v|
@@ -246,32 +250,32 @@ class User < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in]
+      %i[hris_data_cont role_scope_in]
     end
 
     # Available role for the filter form
     #
     def options_for_with_role
-      %w(all users administration)
+      %w[all users administration]
     end
 
     # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
       # Cut from Subdomain part of expected Subdomain
-      subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
         Users::Regular.enabled.
-            identified.
-            joins(:clients).
-            where.has { project_id.eq(project.id) & email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
-            first
+          identified.
+          joins(:clients).
+          where.has { project_id.eq(project.id) & email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+          first
       else
         enabled.
-            identified.
-            where(project_id: nil, role: ['Users::Admin', 'Users::SuperAdmin']).
-            where('email = LOWER(?)', warden_conditions[:email]).
-            first # If Subdomain not presented going normally
+          identified.
+          where(project_id: nil, role: ['Users::Admin', 'Users::SuperAdmin']).
+          where('email = LOWER(?)', warden_conditions[:email]).
+          first # If Subdomain not presented going normally
       end
     end
   end

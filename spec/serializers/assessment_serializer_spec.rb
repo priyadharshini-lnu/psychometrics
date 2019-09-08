@@ -6,7 +6,7 @@ describe AssessmentSerializer do
   describe 'threesixty' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
     let(:assessment) { threesixty_campaign.assessment }
-    let(:campaign) {  threesixty_campaign.campaign }
+    let(:campaign) { threesixty_campaign.campaign }
 
     describe '#relationships' do
       it { expect(described_class.new(assessment).relationships).to eq [] }

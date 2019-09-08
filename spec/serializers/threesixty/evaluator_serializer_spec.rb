@@ -14,9 +14,8 @@ describe Threesixty::EvaluatorSerializer do
     end
     let!(:option) do
       create(:threesixty_option,
-        participants: { "manager" =>  { "can_approves_evaluations" => true } },
-        reports: { "access" =>  { "self_can_access" => true } }
-      )
+             participants: { 'manager' => { 'can_approves_evaluations' => true } },
+             reports: { 'access' => { 'self_can_access' => true } })
     end
     let!(:evaluator) do
       create(:threesixty_evaluator, user: create(:user), campaign: campaign, completed_evaluations_count: 3, evaluations_count: 5)
@@ -31,7 +30,6 @@ describe Threesixty::EvaluatorSerializer do
     before do
       allow(Threesixty::Reports::IsAvailable).to receive(:call!).and_return(true)
     end
-
 
     it do
       result = described_class.new(evaluator_with_subject, counters: counters, option: option).to_hash

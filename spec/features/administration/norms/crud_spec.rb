@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Norms
 
@@ -44,7 +46,7 @@ feature 'CRUD Norm' do
     end
 
     scenario 'I can Create Norm with privileges' do
-      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!({norms: ['view', 'manage'], dimensions: ['view']}))
+      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!(norms: %w[view manage], dimensions: ['view']))
 
       create_norm(name: 'My norm', dimension_name: dimension.name)
       expect(page).to have_content t('administration.norms.create.successfully', name: 'My norm')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Questions
   class Channel < ApplicationCable::Channel
     include Questions::Actions::Question
@@ -7,10 +9,10 @@ module Questions
 
     def subscribed
       question = Question.find(params['question_id'])
-      transmit({
-                   action: 'question_data',
-                   data:   QuestionSerializer.new(question).to_hash(include: '**')
-               })
+      transmit(
+        action: 'question_data',
+                   data: QuestionSerializer.new(question).to_hash(include: '**')
+      )
     end
 
     def pundit_user

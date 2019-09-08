@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Assigns::CalculateInnovationStyles do
@@ -9,14 +11,29 @@ describe Assigns::CalculateInnovationStyles do
 
   # InnovationStyle and InnovationStylesFactor #1
   let(:innovation_style1) { create(:innovation_style, dimension: dimension) }
-  let(:innovation_styles_factor1_1) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor1) }
-  let(:innovation_styles_factor1_2) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor2) }
-  let(:innovation_styles_factor1_3) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor1, predicate: 'greater_then', value: 4.0, weight: 0.5) }
-  let(:innovation_styles_factor1_4) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor2, predicate: 'greater_then', value: 3.0) }
+  let(:innovation_styles_factor1_1) do
+    create(:innovation_styles_factor, innovation_style: innovation_style1,
+                                             factor: factor1)
+  end
+  let(:innovation_styles_factor1_2) do
+    create(:innovation_styles_factor, innovation_style: innovation_style1,
+                                             factor: factor2)
+  end
+  let(:innovation_styles_factor1_3) do
+    create(:innovation_styles_factor, innovation_style: innovation_style1,
+                                             factor: factor1, predicate: 'greater_then', value: 4.0, weight: 0.5)
+  end
+  let(:innovation_styles_factor1_4) do
+    create(:innovation_styles_factor, innovation_style: innovation_style1,
+                                             factor: factor2, predicate: 'greater_then', value: 3.0)
+  end
 
   # InnovationStyle and InnovationStylesFactor #2
   let(:innovation_style2) { create(:innovation_style, dimension: dimension) }
-  let(:innovation_styles_factor2_1) { create(:innovation_styles_factor, innovation_style: innovation_style2, factor: factor1) }
+  let(:innovation_styles_factor2_1) do
+    create(:innovation_styles_factor, innovation_style:
+    innovation_style2, factor: factor1)
+  end
 
   it '.call!' do
     expect(described_class).to respond_to(:'call!').with_unlimited_arguments
@@ -41,7 +58,7 @@ describe Assigns::CalculateInnovationStyles do
   context '.call' do
     it 'calculates innovation_style score' do
       scoring = {
-        "#{innovation_styles_factor1_1.factor.id}" => {
+        innovation_styles_factor1_1.factor.id.to_s => {
           'results' => [
             {
               value: 4.0
@@ -51,7 +68,7 @@ describe Assigns::CalculateInnovationStyles do
             }
           ]
         },
-        "#{innovation_styles_factor1_2.factor.id}" => {
+        innovation_styles_factor1_2.factor.id.to_s => {
           'results' => [
             {
               value: 3.0
@@ -60,7 +77,7 @@ describe Assigns::CalculateInnovationStyles do
               value: 5.0
             }
           ]
-        },
+        }
       }
       assign.scoring = scoring
       result = described_class.call!(assign)
@@ -69,7 +86,7 @@ describe Assigns::CalculateInnovationStyles do
     end
     it 'calculates weighted innovation_style score' do
       scoring = {
-        "#{innovation_styles_factor1_3.factor.id}" => {
+        innovation_styles_factor1_3.factor.id.to_s => {
           'results' => [
             {
               value: 4.0
@@ -79,7 +96,7 @@ describe Assigns::CalculateInnovationStyles do
             }
           ]
         },
-        "#{innovation_styles_factor1_4.factor.id}" => {
+        innovation_styles_factor1_4.factor.id.to_s => {
           'results' => [
             {
               value: 3.0
@@ -88,12 +105,12 @@ describe Assigns::CalculateInnovationStyles do
               value: 5.0
             }
           ]
-        },
-      }  
+        }
+      }
       assign.scoring = scoring
       result = described_class.call!(assign)
       expect(result.first[:factor_ids]).to eq([innovation_styles_factor1_4.factor.id])
-      expect(result.first[:value]).to eq((1/1.5).round(2) * 100)
+      expect(result.first[:value]).to eq((1 / 1.5).round(2) * 100)
     end
   end
 end

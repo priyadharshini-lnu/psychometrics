@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ProductPolicy < Administration::BasePolicy
     def sidebar?

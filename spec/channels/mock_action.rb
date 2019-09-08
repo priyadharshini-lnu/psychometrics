@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MockAction
   include Assessments::Actions::Block
   def params

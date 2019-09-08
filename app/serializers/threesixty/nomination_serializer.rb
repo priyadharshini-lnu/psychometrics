@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class NominationSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :can_send_request_approval_email

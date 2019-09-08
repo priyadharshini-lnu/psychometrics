@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :have_attributes do |attributes|
   match do |records|
     records.each.with_index do |record, index|
@@ -7,6 +9,6 @@ RSpec::Matchers.define :have_attributes do |attributes|
   end
 
   failure_message do |actual|
-    "Expected #{actual.map{ |a| a.slice(expected.first.keys) }} to have attributes #{expected}."
+    "Expected #{actual.map { |a| a.slice(expected.first.keys) }} to have attributes #{expected}."
   end
 end

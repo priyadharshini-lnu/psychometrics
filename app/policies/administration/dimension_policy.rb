@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::DimensionPolicy < Administration::BasePolicy
   def index?
     super || @user.has_grant?(:dimensions, :view)
@@ -11,6 +13,7 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     def resolve
       scope = super
       return scope if @user.is?(:superadmin)
+
       if @user.has_grant?(:dimensions, :view)
         owner_ids = @user.is?(:client_admin) ? @user.client_admin_clients.ids : @user.project_admin_clients.select('tte_id').distinct
         scope.where(owner_id: owner_ids)

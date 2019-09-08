@@ -15,16 +15,14 @@ module Threesixty
       def call
         user_results =
           threesixty_campaign.
-            users_results.
-            completed.
-            actual_by_options(option).
-            where(evaluator_id: user_ids).
-            group(:evaluator_id).
-            select('evaluator_id, count(users_results.id) as completed_evaluations_count')
+          users_results.
+          completed.
+          actual_by_options(option).
+          where(evaluator_id: user_ids).
+          group(:evaluator_id).
+          select('evaluator_id, count(users_results.id) as completed_evaluations_count')
 
-        if exclude_self_evaluations
-          user_results = user_results.where('subject_id != evaluator_id')
-        end
+        user_results = user_results.where('subject_id != evaluator_id') if exclude_self_evaluations
 
         broadcast :ok, user_results.index_by(&:evaluator_id)
       end

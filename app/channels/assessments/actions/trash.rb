@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assessments
   module Actions
     module Trash
@@ -8,7 +10,6 @@ module Assessments
         assessment.questions.deleted.delete_all
         nil
       end
-
     end
   end
 end

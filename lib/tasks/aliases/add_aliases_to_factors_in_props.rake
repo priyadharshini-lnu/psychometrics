@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :aliases do
   desc 'Remove name and label from Reports::Module'
   task remove_value_and_label_from_props: :environment do

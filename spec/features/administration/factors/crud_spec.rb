@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'CRUD Factor' do
-
   before(:each) { enter_as :superadmin }
   given!(:dimension) { create :dimension }
 
   scenario 'Create Factor' do
     visit "/administration/dimensions/#{dimension.id}/factors"
-    find('.panel-heading a', text:t('administration.factors.index.new')).click
+    find('.panel-heading a', text: t('administration.factors.index.new')).click
     wait_for_ajax
     fill_in 'resource_name', with: 'Employment Thriving Index'
     click_on 'Create'

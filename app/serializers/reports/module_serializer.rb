@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reports_modules
@@ -16,7 +18,6 @@
 module Reports
   class ModuleSerializer < ActiveModel::Serializer
     attributes :id, :name, :position, :props, :type, :assessment_id
-
 
     def props
       return object.props if !@instance_options[:piped_text_context] || object.props['sourceType'] != 'Text'

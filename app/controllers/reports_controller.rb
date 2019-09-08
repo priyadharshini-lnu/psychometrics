@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: Investigate possibility to remove
 # Cause user no more need to view report
 class ReportsController < ApplicationController

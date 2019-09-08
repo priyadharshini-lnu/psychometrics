@@ -60,15 +60,15 @@ module Clients
         return if form.adding_user_access_report_ids.blank?
 
         client.clients_reports.
-               where(report_id: form.adding_user_access_report_ids).
-               update_all(user_access: true)
+          where(report_id: form.adding_user_access_report_ids).
+          update_all(user_access: true)
       end
 
       # Iterates all memberships and assigns reports
       #
       def add_reports_to_existing_users
         return if adding_reports.blank?
-        
+
         client.memberships.includes(:user).find_each do |membership|
           # From ::Clients::Reports::AssignReportToMembership
           add_reports_to_membership(membership)
@@ -81,9 +81,9 @@ module Clients
         return if form.adding_user_access_report_ids.blank?
 
         AssignsReport.joins(assign: :membership).
-                      where(assign: { memberships: { client_id: client.id } }).
-                      where(report_id: form.adding_user_access_report_ids).
-                      update_all(user_access: true)
+          where(assign: { memberships: { client_id: client.id } }).
+          where(report_id: form.adding_user_access_report_ids).
+          update_all(user_access: true)
       end
     end
   end

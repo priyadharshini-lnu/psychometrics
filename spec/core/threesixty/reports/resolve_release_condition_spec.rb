@@ -22,8 +22,8 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       create_participant(campaign, subject, evaluator_2, peer)
 
       option.reports = {
-        "availability" => {
-          "conditions"=> []
+        'availability' => {
+          'conditions' => []
         }
       }
     end
@@ -41,23 +41,23 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       create_participant(campaign, subject, evaluator_2, peer)
 
       option.reports = {
-        "availability" => {
-          "conditions"=> [
+        'availability' => {
+          'conditions' => [
             {
-              "operator"=>"if",
-              "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"1"},
-                {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
+              'operator' => 'if',
+              'conditions' => [
+                { 'type' => 'evaluations', 'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '1' },
+                { 'type' => 'evaluations', 'operator' => 'and', 'relationship' => peer.id, 'number_of_evaluator' => '2' }
               ]
             },
             {
-              "operator" => "and",
-              "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
-                {"type"=>"evaluations", "operator"=>"or", "relationship"=>peer.id, "number_of_evaluator"=>"3"}
+              'operator' => 'and',
+              'conditions' => [
+                { 'type' => 'evaluations', 'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '2' },
+                { 'type' => 'evaluations', 'operator' => 'or', 'relationship' => peer.id, 'number_of_evaluator' => '3' }
               ]
             }
-          ],
+          ]
         }
       }
     end
@@ -72,7 +72,6 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
       expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
-
 
     it do
       create_participant(campaign, subject, evaluator_3, peer)
@@ -89,16 +88,18 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       create_participant(campaign, subject, evaluator_2, peer, :waiting)
 
       option.reports = {
-        "availability" => {
-          "conditions"=> [
+        'availability' => {
+          'conditions' => [
             {
-              "operator"=>"if",
-              "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
-                {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
+              'operator' => 'if',
+              'conditions' => [
+                { 'type' => 'evaluations', 'operator' => 'if',
+                  'relationship' => manager.id, 'number_of_evaluator' => '2' },
+                { 'type' => 'evaluations', 'operator' => 'and',
+                  'relationship' => peer.id, 'number_of_evaluator' => '2' }
               ]
             }
-          ],
+          ]
         }
       }
     end
@@ -128,17 +129,19 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       create_participant(campaign, subject, evaluator_1, manager)
 
       option.reports = {
-        "availability" => {
-          "conditions"=>
+        'availability' => {
+          'conditions' =>
             [
               {
-                "operator"=>"if",
-                "conditions"=> [
-                  {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
-                  {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"1"},
+                'operator' => 'if',
+                'conditions' => [
+                  { 'type' => 'evaluations',
+                    'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '2' },
+                  { 'type' => 'evaluations',
+                    'operator' => 'and', 'relationship' => peer.id, 'number_of_evaluator' => '1' }
                 ]
               }
-            ],
+            ]
         }
       }
     end
@@ -164,13 +167,13 @@ describe Threesixty::Reports::ResolveReleaseCondition do
 
   def create_participant(threesixty_campaign, subject, evaluator, relation, status = :completed)
     create(:threesixty_participant,
-      campaign: threesixty_campaign.campaign,
-      subject: subject.user,
-      evaluator: evaluator.user,
-      relationship: relation,
-      evaluator_nomination_status: status,
-      manager_evaluation_status: :approved,
-    )
-    create(:users_result, campaign: threesixty_campaign.campaign, evaluator: evaluator.user, status: :completed, subject: subject.user)
+           campaign: threesixty_campaign.campaign,
+           subject: subject.user,
+           evaluator: evaluator.user,
+           relationship: relation,
+           evaluator_nomination_status: status,
+           manager_evaluation_status: :approved)
+    create(:users_result, campaign: threesixty_campaign.campaign,
+           evaluator: evaluator.user, status: :completed, subject: subject.user)
   end
 end

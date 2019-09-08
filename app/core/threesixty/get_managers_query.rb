@@ -14,7 +14,7 @@ module Threesixty
         evaluators.
         includes(:user, self_subject: :user).
         joins(participants_join_query).
-        joins("LEFT JOIN relationships ON relationships.id = threesixty_participants.relationship_id").
+        joins('LEFT JOIN relationships ON relationships.id = threesixty_participants.relationship_id').
         where(participants: { relationships: { name: 'Manager', type: :global } }).
         where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{q}%", "%#{q}%", "%#{q}%").
         order(id: :desc).

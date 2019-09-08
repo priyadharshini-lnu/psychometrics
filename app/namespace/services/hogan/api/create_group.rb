@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Services
   module Hogan
     module API
@@ -11,15 +13,13 @@ module Services
           message = response_message(context.response)
           log(self, message)
 
-          unless message[/successfully/i]
-            context.fail!(error: message)
-          end
+          context.fail!(error: message) unless message[/successfully/i]
         end
 
         private
 
         def input_xml
-          %{
+          %(
           <CreateGroup>
             <clientdetails>
               <clientid>#{client_id}</clientid>
@@ -29,7 +29,7 @@ module Services
             </clientdetails>
           </CreateGroup>
 
-        }
+        )
         end
 
         def response(body)

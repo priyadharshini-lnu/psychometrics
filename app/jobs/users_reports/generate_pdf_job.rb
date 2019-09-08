@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UsersReports
   class GeneratePdfJob < ApplicationJob
     queue_as :reports

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TaskHelper
   def render_alert_by_priority(priority)
     alert_class = 'alert-danger' if priority == 'high'

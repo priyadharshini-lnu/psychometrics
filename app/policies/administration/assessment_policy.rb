@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class AssessmentPolicy < Administration::BasePolicy
     def index?
@@ -43,6 +45,7 @@ module Administration
       return true if @user.is?(:client_admin) && @user.has_grant?(:assigns, :view)
       return true if @user.is?(:project_admin) && @record.psychometric? && @user.has_grant?(:assigns, :view)
       return true if @user.is?(:manager) && !@record.psychometric?
+
       false
     end
 
@@ -99,6 +102,7 @@ module Administration
         scope = super
         scope = scope.order(:name)
         return scope if @user.is?(:superadmin)
+
         if @user.has_grant?(:assessments, :view)
           owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct
           scope.where(owner_id: owner_ids)

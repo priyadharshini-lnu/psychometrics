@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class EvaluationsController < ApplicationController
     include ::Threesixty::InitialState
@@ -18,7 +20,7 @@ module Threesixty
           end
 
           if params[:is_edit] == 'true'
-            render(json: {error: '403'}, status: 403) && return unless policy(@participant).edit?
+            render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
             @users_result.step = 0
           end
 

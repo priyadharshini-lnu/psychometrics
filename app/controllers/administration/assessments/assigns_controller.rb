@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Administration
   module Assessments
     class AssignsController < Administration::BaseController
       before_action :set_assessment, :set_resource_class
       # Setup search object on Membership
-      append_before_action :init_search_users, only: [:not_selected_users, :selected_users]
+      append_before_action :init_search_users, only: %i[not_selected_users selected_users]
       append_before_action :init_breadcrumbs
       after_action :pundit_authorize
 
@@ -74,8 +76,8 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), [:administration, :assessments]
+        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), %i[administration assessments]
         add_breadcrumb t('.title', name: @assessment.decorate.display_name), request.path
       end
 
@@ -88,11 +90,11 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
         @clients = policy_scope(::Client).where(id: @assign_form.client_ids)
         @managers = policy_scope(::Membership).
-            select('memberships.*', 'clients.name as client_name').
-            joins(:client).
-            join_user.
-            where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
-            group_by(&:client_name)
+                    select('memberships.*', 'clients.name as client_name').
+                    joins(:client).
+                    join_user.
+                    where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
+                    group_by(&:client_name)
         @_filter_form = Membership.search(client_id_in: @clients.map(&:id))
         filter_form.id_not_in = @assign_form.user_ids
         filter_form.id_in = @assign_form.user_ids
@@ -119,7 +121,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize [:assessments, :assign]
+        authorize %i[assessments assign]
       end
     end
   end

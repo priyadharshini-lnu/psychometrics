@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: blocks
@@ -17,7 +19,7 @@
 
 class Block < ApplicationRecord
   include Copyable
-  
+
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
 
@@ -34,7 +36,7 @@ class Block < ApplicationRecord
   before_save :dup_for_template, if: :save_as_template
 
   acts_as_list scope: :assessment_id
-  enum view: [:assessments, :templates]
+  enum view: %i[assessments templates]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   # Search entity by word
@@ -44,11 +46,9 @@ class Block < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id name created_at updated_at))
-      order("blocks.#{column} #{direction}")
-    end
+    order("blocks.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
   }
 
   def clone_with_params(params = {})
@@ -62,7 +62,7 @@ class Block < ApplicationRecord
   ### Bcenter
   # Create duplicate Assessment Object for Block Center
   def dup_for_template
-    self.template = self.class.create(general_attributes.merge({ view: :templates }))
+    self.template = self.class.create(general_attributes.merge(view: :templates))
     questions.each do |question|
       template.questions << question.dup_for_block
     end
@@ -70,7 +70,7 @@ class Block < ApplicationRecord
 
   # Create duplicate Block Center Object for Assessment
   def dup_for_assessment!(assessment_id)
-    block = self.class.create(general_attributes.merge({ view: :assessments, assessment_id: assessment_id, template_id: id }))
+    block = self.class.create(general_attributes.merge(view: :assessments, assessment_id: assessment_id, template_id: id))
     questions.each do |question|
       question.dup_for_assessment!(block.id)
     end

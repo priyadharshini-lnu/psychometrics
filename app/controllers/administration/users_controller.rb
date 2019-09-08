@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
+  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -16,8 +18,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   # GET /administration/resources/1
-  def show
-  end
+  def show; end
 
   def new
     render 'new'
@@ -69,7 +70,7 @@ class Administration::UsersController < Administration::BaseController
     redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
   end
 
-    def export
+  def export
     @_resources = policy_scope(resource_class).includes(:clients).all
     respond_to do |format|
       format.csv do
@@ -77,13 +78,13 @@ class Administration::UsersController < Administration::BaseController
         headers['Content-Type'] ||= 'text/csv'
       end
     end
-  end
+end
 
   protected
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 
   # Set model

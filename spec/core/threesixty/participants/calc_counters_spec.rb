@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::Participants::CalcCounters do
@@ -5,7 +7,7 @@ describe Threesixty::Participants::CalcCounters do
   let(:subject_2) { create(:threesixty_subject) }
 
   describe '.call' do
-    let(:option_which_does_not_require_approval) { create(:threesixty_option, participants: { "manager" => {}, "subject" => {"can_evaluate_self" => true} }) }
+    let(:option_which_does_not_require_approval) { create(:threesixty_option, participants: { 'manager' => {}, 'subject' => { 'can_evaluate_self' => true } }) }
     before do
       campaign = option_which_does_not_require_approval.threesixty_campaign.campaign
       create(:threesixty_participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)

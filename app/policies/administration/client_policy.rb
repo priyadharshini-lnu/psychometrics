@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
@@ -14,7 +16,8 @@ module Administration
 
     def manage_campaign?
       return true if @user.is?(:superadmin)
-      return true if (@user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage))
+      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+
       false
     end
 
@@ -84,12 +87,13 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
+
         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
         clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
         clients = clients_scope.not_retails.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
         ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
-        scope.where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
+        scope.where('id in (?) or ancestry ~ ?', ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
       end
     end
   end

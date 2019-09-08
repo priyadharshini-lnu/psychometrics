@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   class HrisImport < Imports::BaseImport
     attr_accessor :client_id, :importer
@@ -44,7 +46,6 @@ module Imports
         membership.hris.merge!(hris)
         membership
       end
-
     rescue Roo::HeaderRowNotFoundError
       errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
       [nil]
@@ -52,9 +53,9 @@ module Imports
 
     def open_spreadsheet
       case File.extname(file.original_filename)
-      when '.csv' then Roo::CSV.new(file.path)
-      when '.xlsx' then ::Roo::Excelx.new(file.path)
-      else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+        when '.csv' then Roo::CSV.new(file.path)
+        when '.xlsx' then ::Roo::Excelx.new(file.path)
+        else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
     end
   end

@@ -57,6 +57,7 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
+
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)
@@ -87,7 +88,6 @@ class ApplicationController < ::BaseController
   def allow_iframe
     response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
-
 
   def user_not_authorized
     render plain: 'You does not have access to this page', status: 403

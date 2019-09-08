@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LicenseDecorator < BaseDecorator
   def display_name
     return object.type if object.type_threesixty?
@@ -35,15 +37,15 @@ class LicenseDecorator < BaseDecorator
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-        title: I18n.t(
-            "administration.clients.licenses.resource.confirmations.toggle_status.title",
-            status: status,
-            name: display_name
-        ),
-        body: I18n.t(
-            "administration.clients.licenses.resource.confirmations.toggle_status.body",
-            status: status.downcase
-        )
+      title: I18n.t(
+        'administration.clients.licenses.resource.confirmations.toggle_status.title',
+        status: status,
+        name: display_name
+      ),
+      body: I18n.t(
+        'administration.clients.licenses.resource.confirmations.toggle_status.body',
+        status: status.downcase
+      )
     }.to_json
   end
 end

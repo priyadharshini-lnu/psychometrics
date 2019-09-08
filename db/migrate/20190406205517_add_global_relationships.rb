@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddGlobalRelationships < ActiveRecord::Migration[5.1]
   def change
     Relationship.create(name: 'Manager', type: :global)

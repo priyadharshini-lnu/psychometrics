@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: clients
@@ -33,9 +35,9 @@ class Client < ApplicationRecord
   attr_writer :license_msg
 
   HIERARCHY_LEVEL = {
-      project: 1,
-      campaign: 2,
-      sub_campaign: 3
+    project: 1,
+    campaign: 2,
+    sub_campaign: 3
   }.freeze
 
   has_ancestry cache_depth: true
@@ -79,16 +81,15 @@ class Client < ApplicationRecord
   has_many :assessments_clients, -> { order(:position) } # on delete cascade
   has_many :assessments, through: :assessments_clients, source: :assessment
 
-
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
   has_many :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }, foreign_key: :tte_id, class_name: 'Client'
   has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }, foreign_key: :tte_id, class_name: 'Client'
-  has_many :project_campaigns, class_name: "Campaign", foreign_key: :project_id
+  has_many :project_campaigns, class_name: 'Campaign', foreign_key: :project_id
 
   has_many :norms
   has_many :dimensions
-  # TODO use admins instead of projects_admins
+  # TODO: use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
 
   has_one :datasheet, foreign_key: :project_id, dependent: :destroy
@@ -112,12 +113,12 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
-  after_commit :set_tte, if: -> { parent_id.present? }, on: [:create, :update]
-  after_commit :set_end_level, if: -> { parent_id.present? }, on: [:create, :update]
+  after_commit :set_tte, if: -> { parent_id.present? }, on: %i[create update]
+  after_commit :set_end_level, if: -> { parent_id.present? }, on: %i[create update]
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: [:partner, :corporate, :distributer, :associate, :tte, :retail, :other]
+  enum type: %i[partner corporate distributer associate tte retail other]
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_uploader :logo, ImageUploader
@@ -127,13 +128,13 @@ class Client < ApplicationRecord
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
-  scope :by_report_family_assessment, -> (assessment) { joins(:report_families).where(report_families: { id: assessment.report_family_ids }) }
+  scope :by_report_family_assessment, ->(assessment) { joins(:report_families).where(report_families: { id: assessment.report_family_ids }) }
   scope :end_level, -> { where(end_level: true) }
-  scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
-  scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
-  scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
-  scope :campaigns_and_sub_campaigns_of, -> (client_id) { Client.campaigns_of(client_id).or(Client.sub_campaigns_of(client_id)) }
-  scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
+  scope :projects_of, ->(client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
+  scope :campaigns_of, ->(client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
+  scope :sub_campaigns_of, ->(client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
+  scope :campaigns_and_sub_campaigns_of, ->(client_id) { Client.campaigns_of(client_id).or(Client.sub_campaigns_of(client_id)) }
+  scope :descendants_of_arr, ->(client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
@@ -202,12 +203,14 @@ class Client < ApplicationRecord
     return self if project?
     return parent if campaign?
     return parent.parent if sub_campaign?
+
     nil
   end
 
   def campaign
     return self if campaign?
     return parent if sub_campaign?
+
     nil
   end
 
@@ -239,6 +242,7 @@ class Client < ApplicationRecord
 
   def subdomain_format_validation
     return if subdomain =~ /^[a-zA-Z0-9\-_]+$/
+
     errors.add(:subdomain, 'Wrong subdomain format')
   end
 

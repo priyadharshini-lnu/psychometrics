@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ::Clients::Reports::AssignReport do
@@ -9,7 +11,7 @@ describe ::Clients::Reports::AssignReport do
   let(:assessment) { report.assessments.first }
   let(:report_family) { report.report_families.first }
   let(:clients_report) { create(:clients_report, report: report, report_family: report_family, client: campaign) }
-  let(:assessments_clients) { report.assessments.each { |assessment| create(:assessments_client, assessment: assessment, client: campaign) }}
+  let(:assessments_clients) { report.assessments.each { |assessment| create(:assessments_client, assessment: assessment, client: campaign) } }
   let(:adding_report_ids) { [] }
   let(:removing_report_ids) { [] }
   let(:form) do

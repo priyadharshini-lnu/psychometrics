@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assessments
   class Common < Assessment
     validates :name, :dimension, presence: true

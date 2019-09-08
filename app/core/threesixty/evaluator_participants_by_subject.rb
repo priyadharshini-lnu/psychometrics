@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class EvaluatorParticipantsBySubject < Rectify::Query
     def initialize(subject)
@@ -5,7 +7,7 @@ module Threesixty
     end
 
     def query
-      # TODO (atanych): should be used statuses
+      # TODO: (atanych): should be used statuses
       Threesixty::Participant.
         joins(:evaluator).
         selecting { ['*', 'users.email as evaluator_email'] }.

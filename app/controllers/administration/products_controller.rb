@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class ProductsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy]
+    before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize
 
@@ -88,8 +90,8 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :description, :image, :image_cache,
-                                       prices_attributes: [:id, :cost, :price_currency],
-                                       images_attributes: [:id, :image, :image_cache, :position, :_destroy],
+                                       prices_attributes: %i[id cost price_currency],
+                                       images_attributes: %i[id image image_cache position _destroy],
                                        report_ids: [])
     end
 

@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module Callbacks
   module Models
     module Communications
       class CreateSendEmailJob
         def after_commit(record)
           return if record.send_email_job.blank?
+
           @record = record
           @record.send_email_job.set(params_for_set_job).perform_later(@record)
         end

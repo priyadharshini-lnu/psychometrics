@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class CampaignTemplatesController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar]
+    before_action :set_resource, only: %i[show edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize
 

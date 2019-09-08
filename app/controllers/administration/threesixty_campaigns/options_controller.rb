@@ -39,14 +39,13 @@ module Administration
 
       def form
         @form ||=
-          case
-          when params[:participants]
+          if params[:participants]
             ::Threesixty::Options::ParticipantOptionForm.
               from_params(params[:participants]).
               with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
-          when params[:reports]
+          elsif params[:reports]
             ::Threesixty::Options::ReportOptionForm.from_params(params[:reports])
-          when params[:messages]
+          elsif params[:messages]
             ::Threesixty::Options::MessageOptionForm.from_params(params[:messages])
           end
       end

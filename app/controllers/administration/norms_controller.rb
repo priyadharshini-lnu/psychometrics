@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :editor]
+  before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar export editor]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -64,7 +66,7 @@ class Administration::NormsController < Administration::BaseController
       if @cloned_resource.save
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.norms.copy.error', { id: resource.id }) } }
+        format.js { render :error, locals: { message: t('administration.norms.copy.error', id: resource.id) } }
       end
     end
   end
@@ -107,8 +109,8 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 
   def resource_params

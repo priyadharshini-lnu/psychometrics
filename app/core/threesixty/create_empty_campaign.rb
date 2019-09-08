@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class CreateEmptyCampaign < Rectify::Command
     attr_reader :campaign

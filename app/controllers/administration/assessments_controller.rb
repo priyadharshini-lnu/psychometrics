@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview, :export, :toggle_archive]
+  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy preview export toggle_archive]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -53,7 +55,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def edit
     @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
-    add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+    add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
   end
 
   def update
@@ -111,8 +113,8 @@ class Administration::AssessmentsController < Administration::BaseController
   private
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 
   # Set model
@@ -123,6 +125,6 @@ class Administration::AssessmentsController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing, :status,
                                      :icon, :icon_color, :remove_icon,
-                                     :owner_id, hogan_assessment_setting_attributes: [:id, :hogan_assessment_id])
+                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id])
   end
 end

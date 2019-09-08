@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
-
 
   def index
     @_filter_form = policy_scope(resource_class).search(params[:q])
@@ -67,7 +68,7 @@ class Administration::DimensionsController < Administration::BaseController
       if @cloned_resource
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: resource.id }) } }
+        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', id: resource.id) } }
       end
     end
   end
@@ -79,8 +80,8 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
   end
 
   def resource_params

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class BuildSsoUrl < Rectify::Command
     TTL = 30.minutes

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Exports::Reports::Pdf::BulkReportExport do
@@ -9,7 +11,7 @@ describe Exports::Reports::Pdf::BulkReportExport do
     let(:end_date) { double('end_date') }
     let(:scheme) { 'http' }
     let(:opts) { {} }
-    let(:params) {
+    let(:params) do
       {
         current_user: current_user,
         client: client,
@@ -19,7 +21,7 @@ describe Exports::Reports::Pdf::BulkReportExport do
         scheme: scheme,
         opts: opts
       }
-    }
+    end
 
     context 'project level' do
       let(:client) { double('client', project?: true, id: 1) }
@@ -44,7 +46,7 @@ describe Exports::Reports::Pdf::BulkReportExport do
             report: report,
             assign: assign,
             assigns_report: assigns_report,
-            user: user,
+            user: user
           }
         end
 

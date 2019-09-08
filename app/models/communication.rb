@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: communications
@@ -41,19 +43,18 @@ class Communication < ApplicationRecord
   belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id
   belongs_to :creator, class_name: 'User'
 
-  enum recipients: [:all, :selected], _suffix: true
+  enum recipients: %i[all selected], _suffix: true
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
   enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 
   after_validation :set_delivery_interval, if: :reminder?
   after_initialize :parse_delivery_interval, if: :reminder?
 
-
   after_commit :send_email_now, on: :create
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 
   # SCOPES
-  scope :invitation_for_end_level_id, -> (end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
+  scope :invitation_for_end_level_id, ->(end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.lower_communications(communication)
     Communication.where(kind: communication.kind).where(delivery_rule: communication.delivery_rule).
@@ -86,13 +87,14 @@ class Communication < ApplicationRecord
   # Example: '1 days' to 1 and 'days'
   def parse_delivery_interval
     return if delivery_interval.blank?
+
     self.delivery_interval_number = delivery_interval.split(' ').first.to_i
     self.delivery_interval_period = delivery_interval.split(' ').last
   end
 
   # Copy Communication
   def clone
-    deep_clone include: [:memberships, :copy_memberships]
+    deep_clone include: %i[memberships copy_memberships]
   end
 
   def end_level_id
@@ -105,6 +107,7 @@ class Communication < ApplicationRecord
 
   def current_memberships_ids
     return selected_memberships_ids if end_level.end_level?
+
     selected_memberships_ids - low_level_ids
   end
 
@@ -116,11 +119,13 @@ class Communication < ApplicationRecord
     valid_methods = %w[hour hours day days week weeks month months]
     valid_methods.unshift('minute', 'minutes') unless Rails.env.production?
     return unless reminder? && valid_methods.include?(delivery_interval_period.downcase)
+
     delivery_interval_number.to_i.public_send(delivery_interval_period)
   end
 
   def send_email_job
     return if %w[reminder invitation].exclude?(kind)
+
     REMINDER_AND_INVITATION_JOBS[delivery_rule&.to_sym]
   end
 
@@ -138,6 +143,7 @@ class Communication < ApplicationRecord
 
   def send_email_now
     return unless other? && send_now?
+
     emails_creating
   end
 

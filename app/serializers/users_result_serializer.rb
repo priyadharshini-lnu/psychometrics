@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
@@ -51,6 +53,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   def normalize_hogan_type(type)
     return 'Raw' if type == 'RAW'
     return 'Percentile' if type == 'percentile'
+
     raise "Not supported hogan type #{type}"
   end
 

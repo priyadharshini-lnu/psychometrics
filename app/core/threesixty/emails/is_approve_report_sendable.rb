@@ -22,8 +22,8 @@ module Threesixty
 
       def inform_manager_about_report_approval?
         option = context[:threesixty_campaign].option.reports
-        option.dig("approval", "manager_approves_reports") &&
-        option.dig("approval", "email_manager_when_report_ready_for_approval")
+        option.dig('approval', 'manager_approves_reports') &&
+          option.dig('approval', 'email_manager_when_report_ready_for_approval')
       end
     end
   end

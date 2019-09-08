@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
@@ -9,10 +11,10 @@ Rails.application.routes.draw do
   namespace :administration do
     get 'dashboard', to: 'home#index'
 
-    resource :profiles, only: [:update, :edit]
+    resource :profiles, only: %i[update edit]
 
     scope module: :administrator do
-      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
@@ -22,15 +24,14 @@ Rails.application.routes.draw do
     end
 
     namespace :imports do
-      resource :users, only: [:new, :create]
-      resource :hris, only: [:new, :create], controller: :hris
+      resource :users, only: %i[new create]
+      resource :hris, only: %i[new create], controller: :hris
       scope module: :assessments do
-        resource :results, only: [:new, :create]
+        resource :results, only: %i[new create]
       end
     end
 
-    resources :imports, only: [:new, :create]
-
+    resources :imports, only: %i[new create]
 
     concern :commentable do
       resources :comments
@@ -60,7 +61,7 @@ Rails.application.routes.draw do
         resources :users do
           # user_id means membership_id in this case
           scope module: :users do
-            resources :assigns, only: [:index, :new, :create, :destroy] do
+            resources :assigns, only: %i[index new create destroy] do
               get :reports, on: :collection
               put :reset, on: :member
             end
@@ -158,24 +159,23 @@ Rails.application.routes.draw do
             end
           end
         end
-        resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
+        resources :campaigns, concerns: :client_editable, only: %i[index edit update destroy]
         get '/projects/:project_id/threesixty_campaigns/:id/*all', to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
 
-        resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
+        resources :sub_campaigns, concerns: :client_editable, only: %i[index edit update destroy]
 
         resources :licenses, only: %i[index show new create edit update] do
           resources :license_usages, only: [:index]
           patch :toggle_status, on: :member
           get :overview, on: :collection
         end
-        resources :assessments, only: [:index, :destroy] do
+        resources :assessments, only: %i[index destroy] do
           get :export_results
           get :export_normed_results
           get :export_hogan_results
         end
         resources :datasheet_rows, except: %i[show edit update]
-
       end
     end
 
@@ -265,7 +265,7 @@ Rails.application.routes.draw do
         patch :toggle_archive
       end
       scope module: 'assessments' do
-        resources :assigns, only: [:new, :create] do
+        resources :assigns, only: %i[new create] do
           collection do
             get :step1
             get :step2
@@ -425,7 +425,7 @@ Rails.application.routes.draw do
 
     put '/factors_norms/update', to: 'factors_norms#update'
 
-    resources :communications, only: [:index, :new, :create, :destroy, :show] do
+    resources :communications, only: %i[index new create destroy show] do
       member do
         get :download_history, defaults: { format: :csv }
         get :copy
@@ -433,7 +433,7 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
 
-      match :new_form, on: :collection, via: [:post, :patch, :put]
+      match :new_form, on: :collection, via: %i[post patch put]
     end
 
     namespace :translations do
@@ -476,18 +476,17 @@ Rails.application.routes.draw do
         delete :remove_from_cart
       end
     end
-    resource :carts, only: [:show, :update]
-    resource :orders, only: [:new, :create] do
+    resource :carts, only: %i[show update]
+    resource :orders, only: %i[new create] do
       get :success
     end
     scope module: :users do
-      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
-      resource :registrations, only: [:new, :create], as: :registration
+      resource :registrations, only: %i[new create], as: :registration
     end
   end
-
 
   devise_for :users,
              path: 'users',
@@ -526,7 +525,7 @@ Rails.application.routes.draw do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assigns, only: %i(index update) do
+    resources :assigns, only: %i[index update] do
       get :pass, on: :member
       get :assessment, on: :member
       post :accept_privacy, on: :collection
@@ -539,7 +538,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :threesixty do
-      resources :campaigns, only: %i(show index) do
+      resources :campaigns, only: %i[show index] do
         resources :nominations do
           post :search_evaluators
           get :request_approval
@@ -557,7 +556,7 @@ Rails.application.routes.draw do
           put :update_status
           get :download, on: :member
         end
-        resources :assessments, only: %i(index)
+        resources :assessments, only: %i[index]
         resources :users_results, only: %i[update] do
           member do
             get :upload_media_url
@@ -589,10 +588,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, only: %i(show) do
+    resources :reports, only: %i[show] do
       get :export, on: :member
     end
-    resource :profiles, only: %i(update edit)
+    resource :profiles, only: %i[update edit]
     patch 'users/update_details', to: 'users#update_details'
 
     get 'survey_instructions', to: 'home#survey_instructions'
@@ -601,13 +600,15 @@ Rails.application.routes.draw do
     root to: 'threesixty/campaigns#index'
   end
 
-  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-    # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)
-    # - Use & (do not use &&) so that it doesn't short circuit.
-    # - Use `secure_compare` to stop length information leaking
-    ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
+  if Rails.env.production?
+    Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+      # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)
+      # - Use & (do not use &&) so that it doesn't short circuit.
+      # - Use `secure_compare` to stop length information leaking
+      ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
         ActiveSupport::SecurityUtils.secure_compare(password, 'tte')
-  end if Rails.env.production?
+    end
+  end
   mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new'
@@ -619,7 +620,7 @@ Rails.application.routes.draw do
           resources :users, only: %i[create update] do
             post :sso, on: :member
 
-            resources :campaigns, only: [:index, :create]
+            resources :campaigns, only: %i[index create]
             resources :assessments, only: [:index]
             resources :reports, only: [:index] do
               get :results, on: :member

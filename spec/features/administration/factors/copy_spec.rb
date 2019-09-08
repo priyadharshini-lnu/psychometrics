@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Copy Factor' do
-
   before(:each) { enter_as :superadmin }
   given!(:dimension) { create :dimension }
   given!(:factor) { create(:factor, name: 'Drive', dimension: dimension) }

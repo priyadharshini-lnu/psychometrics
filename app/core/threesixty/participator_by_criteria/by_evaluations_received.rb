@@ -7,6 +7,7 @@ module Threesixty
 
       def user_matches_criteria?(user, criteria)
         return false if evaluations_received[user.id].nil? || criteria['value'].nil?
+
         Comparator::Number.call!(evaluations_received[user.id], criteria['value'], criteria['comparator'])
       end
 

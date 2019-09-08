@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reports
   module ResultTypes
     class BaseType
@@ -9,7 +11,7 @@ module Reports
       end
 
       def self.call(context, data)
-        instance = self.new(context, data)
+        instance = new(context, data)
         instance.call
       end
     end

@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class ProjectAdminsController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
+      before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
+      append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @_filter_form = policy_scope(resource_class)
-                           .includes(user: [:clients, :memberships])
-                           .where(role: Membership::PROJECT_ADMIN_ROLE)
-                           .join_user.search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        includes(user: %i[clients memberships]).
+                        where(role: Membership::PROJECT_ADMIN_ROLE).
+                        join_user.search(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 
@@ -51,6 +53,7 @@ module Administration
 
       def assign_multiple
         return unless client.project?
+
         if client.update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
           render :create
         else
@@ -60,8 +63,8 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb t('administration.breadcrumbs.project_admins'), { action: :index }
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb t('administration.breadcrumbs.project_admins'), action: :index
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
@@ -132,7 +135,7 @@ module Administration
           add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
           add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
         end
-        add_breadcrumb client.decorate.display_name, { action: :index } if client.end_level?
+        add_breadcrumb client.decorate.display_name, action: :index if client.end_level?
       end
 
       def create_resource_params

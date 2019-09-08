@@ -13,7 +13,6 @@ module Hogan
         on(:not_completed) { flash[:error] = t('.not_completed') }
         on(:ok) { flash[:success] = t('.successfully') }
       end
-
     rescue ActiveRecord::RecordNotFound
       flash[:error] = I18n.t('administration.noty.error_500')
     ensure
@@ -32,10 +31,10 @@ module Hogan
 
     def pass
       Hogan::PassAssessment.call(@assign, @current_membership.membership_with_result, @current_project) do
-        on(:ok)      {
+        on(:ok)      do
           respond_to do |format|
             format.html { render(:pass) }
-            format.json {
+            format.json do
               hogan_params = {
                 url: Rails.application.secrets.hogan[:login_url],
                 user_id: current_user.current_membership.hogan_credential&.participant_id,
@@ -51,10 +50,9 @@ module Hogan
                                 assessment_id: 'AssessmentID')
               }
               render json: hogan_params
-            }
+            end
           end
-
-        }
+        end
         on(:invalid) { render(:error, locals: { message: t('errors.error_500') }) }
       end
     end

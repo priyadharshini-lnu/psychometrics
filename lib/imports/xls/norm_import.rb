@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Xls
     class NormImport
@@ -10,9 +12,9 @@ module Imports
 
       # take out to another file, if client must configure this
       XLS_CONFIG = {
-          factor_start_row:  4,
-          factor_start_ceil: 2,
-          pages_count:       2
+        factor_start_row: 4,
+        factor_start_ceil: 2,
+        pages_count: 2
       }.freeze
 
       def process
@@ -38,12 +40,13 @@ module Imports
 
       def import_by_sheet_name(sheet_name, dimension_name)
         raise Errors::ImportError, I18n.t('administration.imports.errors.norm.not_set_dimension') if !@dimension && !dimension_name
+
         sheet_name_arr     = sheet_name.split
         @current_norm_type = sheet_name_arr.pop.downcase
         unless @dimension
           @dimension     = Dimension.find_by(name: dimension_name)
           @new_dimension = true unless @dimension
-          @dimension     = Dimension.create(name: dimension_name) unless @dimension
+          @dimension ||= Dimension.create(name: dimension_name)
         end
         unless @norm
           @norm = Norm.new(name: sheet_name_arr.join(' '), dimension_id: @dimension.id, updated_by: @importer.id)
@@ -58,6 +61,7 @@ module Imports
         (factor_start_row...@current_sheet.count).each do |i|
           factor_name = @current_sheet.try(:[], i).try(:[], factor_start_ceil).try(:value)
           break unless factor_name
+
           @cursor_x = factor_start_ceil
           @cursor_y = i
           factor    = Factor.find_by(dimension_id: @dimension.id, name: factor_name)
@@ -67,7 +71,7 @@ module Imports
                                               dimension: @dimension.name,
                                               factor:    factor_name)
           end
-          factor = @dimension.factors.create!(name: factor_name) unless factor
+          factor ||= @dimension.factors.create!(name: factor_name)
           import_factor_norms(factor, i, factor_start_ceil + 1)
         end
       end
@@ -87,6 +91,7 @@ module Imports
           factor_name     = @current_sheet.try(:[], i).try(:[], 0).try(:value)
           sub_factor_name = @current_sheet.try(:[], i).try(:[], 1).try(:value)
           break unless factor_name
+
           factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
           unless factor
             raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factor_is_not_described',
@@ -100,7 +105,7 @@ module Imports
                                               dimension: @dimension.name,
                                               factor:    factor_name)
           end
-          sub_factor = @dimension.sub_factors.create!(name: sub_factor_name, parent_id: factor.id) unless sub_factor
+          sub_factor ||= @dimension.sub_factors.create!(name: sub_factor_name, parent_id: factor.id)
           import_factor_norms(sub_factor, i, factor_start_ceil + 1)
         end
       end
@@ -108,14 +113,15 @@ module Imports
       def import_factor_norms(factor, row, ceil)
         raw_range = (ceil...ceil + FactorsNorm::LEVELS.size * 2)
         return if @current_sheet[row][raw_range].map(&:value).compact.empty?
+
         factors_norm       = FactorsNorm.new(type: @current_norm_type, norm_id: @norm.id, factor_id: factor.id)
         factors_norm.props = []
         raw_range.each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
           factors_norm.props << {
-              score_from: @current_sheet[row][score_from].try(:value).try(:round, 5),
-              score_to:   @current_sheet[row][score_to].try(:value).try(:round, 5),
-              level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].try(:value)
+            score_from: @current_sheet[row][score_from].try(:value).try(:round, 5),
+            score_to: @current_sheet[row][score_to].try(:value).try(:round, 5),
+            level: @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].try(:value)
           }
         end
         factors_norm.save

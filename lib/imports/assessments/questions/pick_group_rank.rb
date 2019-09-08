@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     module Questions
@@ -13,10 +15,11 @@ module Imports
         #   }, ...]
         def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
+
           answers = []
 
           factors_scoring = question.detect_specified_scoring.
-                            inject({}) { |sum, s| sum[s['value']] = s['index']; sum }
+                            each_with_object({}) { |s, sum| sum[s['value']] = s['index']; }
 
           # Shift only group data column (Example: ['1,2,3', '4,5'])
           groups = data.shift(question.props['scalePoints'].to_i)

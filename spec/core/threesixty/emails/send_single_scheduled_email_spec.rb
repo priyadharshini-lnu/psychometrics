@@ -17,7 +17,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     described_class.call!(email_schedule)
   end
 
-  it "sents schedule email to all recipients" do
+  it 'sents schedule email to all recipients' do
     email_schedule = create(
       :threesixty_email_schedule,
       recipient_ids: recipients.map(&:id),
@@ -34,7 +34,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     described_class.call!(email_schedule)
   end
 
-  it "sents multiple email to recipients if there are multiple subject_ids" do
+  it 'sents multiple email to recipients if there are multiple subject_ids' do
     subjects = create_list(:user, 2)
 
     email_schedule = create(
@@ -68,7 +68,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     described_class.call!(email_schedule)
   end
 
-  it "sents multiple email to recipients if there are multiple evaluator_ids" do
+  it 'sents multiple email to recipients if there are multiple evaluator_ids' do
     evaluators = create_list(:user, 2)
 
     email_schedule = create(
@@ -102,12 +102,12 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     described_class.call!(email_schedule)
   end
 
-  it "create reminder history for reminder email and history is not present" do
+  it 'create reminder history for reminder email and history is not present' do
     email_schedule = create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.now
     )
 
     described_class.call!(email_schedule)
@@ -119,17 +119,17 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     expect(reminder_history.last_sent_at).to be_within(4).of(Time.now)
   end
 
-  it "updates reminder history for reminder history and if history is present" do
+  it 'updates reminder history for reminder history and if history is present' do
     email_schedule = create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.now
     )
 
     reminder_history = recipients[0].reminder_histories.create(
       email_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
-      threesixty_campaign:email_schedule.threesixty_campaign,
+      threesixty_campaign: email_schedule.threesixty_campaign,
       sent_count: 1,
       last_sent_at: Time.now.advance(days: -2)
     )
@@ -141,12 +141,12 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     expect(reminder_history.last_sent_at).to be_within(2.seconds).of(Time.now)
   end
 
-  it "sets delivered_at of email_schedule record" do
+  it 'sets delivered_at of email_schedule record' do
     email_schedule = create(
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now,
+      scheduled_date: Time.now
     )
     expect(email_schedule.delivered_at).to eq(nil)
 

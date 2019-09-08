@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class CampaignsController < BaseController
@@ -19,7 +21,7 @@ module Api
         form = Api::V1::Campaigns::AttachToUserForm.from_params(params).with_context(project: project, user: user)
         Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do
           on(:invalid) { |form| render_validation_errors(form) }
-          on(:license_error) { |form, error|  raise Errors::Api::NotEnoughLicencesError, "aaaa" }
+          on(:license_error) { |_form, _error| raise Errors::Api::NotEnoughLicencesError, 'aaaa' }
           on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end
       end
@@ -29,6 +31,7 @@ module Api
           begin
             c = Client.campaigns_and_sub_campaigns_of(project.id).find_by(id: params[:id])
             raise Errors::Api::ResourceNotFoundError, "Campaign with id=#{params[:id]} is not found" unless c
+
             c
           end
       end

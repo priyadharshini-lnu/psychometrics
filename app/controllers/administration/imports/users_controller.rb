@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Imports
     class UsersController < Administration::Imports::BaseController

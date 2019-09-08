@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
@@ -10,7 +12,7 @@ module Users
       return if params[:return_url].blank?
 
       uri = URI.parse params[:return_url]
-      uri.query = [uri.query, "status=session_expired"].compact.join('&')
+      uri.query = [uri.query, 'status=session_expired'].compact.join('&')
       redirect_to uri.to_s
     end
   end

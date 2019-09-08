@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Mindmill::AssignsController < ApplicationController
   before_action :set_assign
   append_before_action :pundit_authorize

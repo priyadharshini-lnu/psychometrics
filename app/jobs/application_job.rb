@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationJob < ActiveJob::Base
   def self.discard_on(exception)
     rescue_from exception do |error|

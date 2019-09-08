@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OccupationsFactorDecorator < BaseDecorator
   def display_name
     object.factor.name

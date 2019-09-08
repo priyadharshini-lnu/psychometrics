@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class InnovationStylesFactorsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+    before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :set_dimension
     before_action :set_innovation_style
@@ -62,12 +64,12 @@ module Administration
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
       add_breadcrumb I18n.t('administration.breadcrumbs.innovation_styles'), administration_dimension_innovation_styles_path
       add_breadcrumb @innovation_style.name
-      add_breadcrumb I18n.t('administration.breadcrumbs.innovation_styles_factors'), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.innovation_styles_factors'), action: :index
     end
 
     def set_innovation_style

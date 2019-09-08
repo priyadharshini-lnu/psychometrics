@@ -13,6 +13,7 @@ module Threesixty
         if @subject.report_approved? || @subject.report_status_released? || !report_available_to_subject_on_criteria?
           return broadcast :ok, true
         end
+
         broadcast :ok, ResolveReleaseCondition.call!(@subject, @options, @subject_evaluator_counters)
       end
 

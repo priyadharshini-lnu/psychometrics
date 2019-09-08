@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Imports::UserImport do
@@ -16,7 +18,7 @@ RSpec.describe Imports::UserImport do
         Membership.human_attribute_name('last_name'),
         Membership.human_attribute_name('email'),
         Membership.human_attribute_name('password'),
-        Membership.human_attribute_name('created_at'),
+        Membership.human_attribute_name('created_at')
       ]
     ]
   end
@@ -71,7 +73,7 @@ RSpec.describe Imports::UserImport do
 
     context 'With existing user' do
       before(:each) do
-        existing_users.each {|user| body << user }
+        existing_users.each { |user| body << user }
         allow_any_instance_of(Imports::UserImport).to receive(:open_spreadsheet).and_return(open_spreadsheet)
       end
 

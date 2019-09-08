@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module System
   class MembershipsController < BaseController
     def index

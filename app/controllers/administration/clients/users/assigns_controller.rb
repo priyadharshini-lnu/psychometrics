@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Users
@@ -5,7 +7,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: [:destroy, :reset]
+        before_action :set_resource, only: %i[destroy reset]
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
@@ -31,6 +33,7 @@ module Administration
         def create
           # TODO: extract to ActiveModel Form Objects
           return unless resource_params[:assessment_id]
+
           @assessment = client.assessments.find(resource_params[:assessment_id])
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
@@ -65,7 +68,7 @@ module Administration
 
         def reports
           @_resources = client.reports.joins(:assessments_reports).
-            where(assessments_reports: { assessment_id:  params[:assessment_id] }).distinct
+                        where(assessments_reports: { assessment_id: params[:assessment_id] }).distinct
           @selected_reports = client.assign_by_membership_and_assessment(params[:user_id], params[:assessment_id])&.reports
           respond_to do |format|
             format.json
@@ -88,7 +91,7 @@ module Administration
           add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.subtenancy?
           add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
           add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-          add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: membership.decorate.display_name), { action: :index }
+          add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: membership.decorate.display_name), action: :index
         end
 
         def set_membership
@@ -102,6 +105,7 @@ module Administration
 
         def pundit_authorize
           raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+
           super
         end
       end

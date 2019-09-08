@@ -5,13 +5,11 @@ module Threesixty
     module Branches
       module DateTimeFields
         class Current < BaseField
-
           def call
-            return broadcast :ok, Time.now.strftime(params['f'])
+            broadcast :ok, Time.now.strftime(params['f'])
           rescue Exception => e
             broadcast :ok, ''
           end
-
         end
       end
     end

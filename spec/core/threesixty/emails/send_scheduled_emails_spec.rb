@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Threesixty::Emails::SendScheduledEmails do
-  it "calls SendSingleScheduleEmail for each email_schedule record which is not delivered yet" do
+  it 'calls SendSingleScheduleEmail for each email_schedule record which is not delivered yet' do
     not_delivered_email_schedule = create_list(
       :threesixty_email_schedule,
       2,

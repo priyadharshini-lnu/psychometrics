@@ -8,9 +8,11 @@ describe Threesixty::Subjects::CalcSubjectEvaluatorsCounters do
   let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
   let(:threesixty_campaign_with_custom_options) { create(:threesixty_campaign, campaign: campaign) }
   let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
-  let!(:threesixty_custom_option) { create(:threesixty_option,
-                                           threesixty_campaign: threesixty_campaign_with_custom_options,
-                                           participants: { 'manager' => { 'can_approves_evaluations' => true } }) }
+  let!(:threesixty_custom_option) do
+    create(:threesixty_option,
+           threesixty_campaign: threesixty_campaign_with_custom_options,
+             participants: { 'manager' => { 'can_approves_evaluations' => true } })
+  end
   let(:relationship_manager) { create(:relationship, name: 'Manager', type: 0) }
   let(:relationship_peer) { create(:relationship, name: 'Peer', type: 0) }
   let(:subject_1) { create(:threesixty_subject, user: create(:user, project: project), campaign: campaign) }

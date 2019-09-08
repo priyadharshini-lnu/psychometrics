@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class CommentsController < BaseController
     prepend_before_action :set_resource_class
@@ -8,9 +10,7 @@ module Managers
       @resource = @task.comments.new(resource_params)
       @resource.creator = current_user
       respond_to do |format|
-        if @resource.save
-          format.js
-        end
+        format.js if @resource.save
       end
     end
 

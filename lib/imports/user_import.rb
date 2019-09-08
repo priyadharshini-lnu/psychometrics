@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: refactoring this class to use Commands and Form Object
 #   Command: Administration::Clients::CreateUser
 #   FormObject: Administration::Clients::UserForm
@@ -16,10 +18,10 @@ module Imports
       last_name: Membership.human_attribute_name('last_name'),
       email: Membership.human_attribute_name('email'),
       password: Membership.human_attribute_name('password'),
-      created_at: Membership.human_attribute_name('created_at'),
+      created_at: Membership.human_attribute_name('created_at')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name password email).freeze
+    HEADER_IMPORT_KEYS = %i[first_name last_name password email].freeze
 
     # Authorisation flow
     #
@@ -50,12 +52,13 @@ module Imports
     def process!
       # Return error if form not valid
       return false unless valid?
+
       memberships = load_imported_items.compact
-      return false if memberships.size == 0
+      return false if memberships.empty?
 
       ActiveRecord::Base.transaction do
         if memberships.map(&:valid?).all?
-          memberships.each(&:save!).each_with_index do |membership, index|
+          memberships.each(&:save!).each_with_index do |membership, _index|
             membership.user.invite!(importer, client_id)
             apply_assigned_assessments(membership)
             apply_reports(membership)
@@ -110,23 +113,22 @@ module Imports
 
         membership
       end
-
-    rescue => e
+    rescue StandardError => e
       case e.exception
-      when Roo::HeaderRowNotFoundError
-        # Pick up error when header has invalid format
-        errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
-      else
-        errors.add(:base, e.message)
+        when Roo::HeaderRowNotFoundError
+          # Pick up error when header has invalid format
+          errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
+        else
+          errors.add(:base, e.message)
       end
       [nil]
     end
 
     def open_spreadsheet
       case File.extname(file.original_filename)
-      when '.csv' then Roo::CSV.new(file.path)
-      when '.xlsx' then ::Roo::Excelx.new(file.path)
-      else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+        when '.csv' then Roo::CSV.new(file.path)
+        when '.xlsx' then ::Roo::Excelx.new(file.path)
+        else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
     end
 

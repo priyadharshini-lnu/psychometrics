@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
@@ -32,7 +34,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png bmp svg)
+    %w[jpg jpeg gif png bmp svg]
   end
 
   def filename
@@ -47,7 +49,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   def secure_token
     var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+    model.instance_variable_get(var) || model.instance_variable_set(var, SecureRandom.uuid)
   end
 
   def is_svg?
@@ -57,5 +59,4 @@ class ImageUploader < CarrierWave::Uploader::Base
   def is_raster?(new_file)
     new_file.extension != 'svg'
   end
-
 end

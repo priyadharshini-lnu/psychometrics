@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 #
 # Returns the following format
 # {
@@ -61,7 +62,7 @@ module Threesixty
               campaign_id: campaign.id,
               user_result_status: UsersResult.statuses[:completed],
               manager_nomination_status: Threesixty::Participant.manager_nomination_statuses[:denied],
-              evaluator_nomination_status: Threesixty::Participant.evaluator_nomination_statuses[:declined],
+              evaluator_nomination_status: Threesixty::Participant.evaluator_nomination_statuses[:declined]
             }
             Threesixty::Participant.find_by_sql([sql, params]).group_by(&:subject_id)
           end

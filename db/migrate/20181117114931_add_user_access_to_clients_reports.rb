@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserAccessToClientsReports < ActiveRecord::Migration[5.1]
   def self.up
     add_column :clients_reports, :user_access, :boolean, default: false

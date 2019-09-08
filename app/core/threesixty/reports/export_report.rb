@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Threesixty
   module Reports
     class ExportReport < BaseCommand
@@ -35,8 +36,8 @@ module Threesixty
           auth: Rails.application.secrets.http_auth
         }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
-        Rails.logger.info "$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})"
-        system("$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})")
+        Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
+        system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
       end
 
       # Creates folder and file to the report
@@ -90,7 +91,7 @@ module Threesixty
           domain: Settings.domain,
           subdomain: threesixty_campaign.campaign.project.subdomain,
           campaign_id: threesixty_campaign.id,
-          id: users_report.id,
+          id: users_report.id
         )
 
         Rails.

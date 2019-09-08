@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkReports
   class ExportJob < ApplicationJob
     queue_as :default

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class EvaluationsByUserQuery < Rectify::Query
     def initialize(campaign, current_user)
@@ -15,20 +17,20 @@ module Threesixty
 
     def subject_evaluators_scope(scope)
       evaluators = scope.
-        where(evaluator_id: current_user.id).
-        where.not(evaluator_nomination_status: :declined).
-        includes(:evaluator)
+                   where(evaluator_id: current_user.id).
+                   where.not(evaluator_nomination_status: :declined).
+                   includes(:evaluator)
       evaluators = evaluators.where.not(subject_id: current_user.id) unless subject_evaluate_self?
       evaluators = evaluators.where(manager_nomination_status: :approved) if manager_can_approve_nominations?
       evaluators
     end
 
     def manager_ids
-      @campaign.participants.joins(:relationship)
-        .where(relationships: { name: 'Manager', type: :global })
-        .where(evaluator_id: current_user.id)
-        .where.not(subject_id: current_user.id)
-        .pluck(:subject_id)
+      @campaign.participants.joins(:relationship).
+        where(relationships: { name: 'Manager', type: :global }).
+        where(evaluator_id: current_user.id).
+        where.not(subject_id: current_user.id).
+        pluck(:subject_id)
     end
 
     def subject_evaluate_self?

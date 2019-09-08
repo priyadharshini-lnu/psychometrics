@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class NominationsController < ApplicationController
     include ::Threesixty::InitialState
@@ -9,10 +11,10 @@ module Threesixty
     def show
       authorize @subject
       respond_to do |format|
-        format.html {render 'threesixty/campaigns/show'}
-        format.json {
+        format.html { render 'threesixty/campaigns/show' }
+        format.json do
           render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
-        }
+        end
       end
     end
 

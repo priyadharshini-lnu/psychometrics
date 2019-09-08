@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DatetimepickerInput < SimpleForm::Inputs::Base
-  FORMAT_SCOPE = 'time.formats'.freeze
+  FORMAT_SCOPE = 'time.formats'
 
   def input(_wrapper_options)
     input_html_options[:class] = 'form-control'
@@ -15,7 +17,6 @@ class DatetimepickerInput < SimpleForm::Inputs::Base
     end
   end
 
-
   private
 
   def server_format
@@ -26,14 +27,13 @@ class DatetimepickerInput < SimpleForm::Inputs::Base
     options.fetch(:client_format, :datetimepicker_client)
   end
 
-
   def date_picker_options
     value = fetch_value
 
     result = {
       value: value.blank? ? nil : I18n.l(value, format: server_format),
       data: {
-        format: I18n.t(client_format, scope: FORMAT_SCOPE), sidebyside: options[:sidebyside],
+        format: I18n.t(client_format, scope: FORMAT_SCOPE), sidebyside: options[:sidebyside]
       }
     }
     result.tap { |r| r[:data][:min_date] = options[:min_date].to_s if options[:min_date].present? }

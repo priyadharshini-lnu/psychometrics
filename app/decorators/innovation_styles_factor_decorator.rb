@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InnovationStylesFactorDecorator < BaseDecorator
   def display_name
     object.factor.name

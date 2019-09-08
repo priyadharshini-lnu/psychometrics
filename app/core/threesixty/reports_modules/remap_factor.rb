@@ -35,7 +35,7 @@ module Threesixty
       end
 
       def remap_single_factor
-        report.modules.where("reports_modules.props ->> 'factorId' IS NOT NULL", ).each do |m|
+        report.modules.where("reports_modules.props ->> 'factorId' IS NOT NULL").each do |m|
           old_factor_id = m.props['factorId']
           m.props['factorId'] = old_to_new_factor_mapping[old_factor_id]&.id
           m.save!

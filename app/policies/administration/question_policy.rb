@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class QuestionPolicy < Administration::BasePolicy
     def index?
@@ -20,6 +22,7 @@ module Administration
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
+
         if @user.has_grant?(:questions, :view)
           owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct
           scope.where(owner_id: owner_ids)

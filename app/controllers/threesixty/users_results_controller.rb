@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Threesixty
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
     skip_before_action :verify_authenticity_token
-    before_action :set_user_result, only: [:update, :upload_media_url, :remove_media]
+    before_action :set_user_result, only: %i[update upload_media_url remove_media]
 
     def update
       campaign = Threesixty::Campaign.find(params[:campaign_id])

@@ -1,4 +1,5 @@
-# -*- coding: utf-8 -*-
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Incomplete assessment should continue in the same language' do
@@ -7,9 +8,11 @@ feature 'Incomplete assessment should continue in the same language' do
 
   let!(:project) { create(:project) }
   let!(:assessment) { project.assessments.take }
-  let!(:question) { create(:question, assessment_id: assessment.id, position: 1, type: 'StaticContent',
-                           props: {'questionText' => question_text_en, 'hasValidations' => false, 'type' => 'Text'},
-                           block: create(:block, assessment_id: assessment.id)) }
+  let!(:question) do
+    create(:question, assessment_id: assessment.id, position: 1, type: 'StaticContent',
+                           props: { 'questionText' => question_text_en, 'hasValidations' => false, 'type' => 'Text' },
+                           block: create(:block, assessment_id: assessment.id))
+  end
   let!(:report) { create(:report, assessment: assessment) }
   let!(:user) { create(:user) }
   let!(:membership) { create(:membership, user: user, client: project) }
@@ -22,7 +25,7 @@ feature 'Incomplete assessment should continue in the same language' do
                        resource_id: assessment.id,
                        resource_type: Assessment::TYPES[:common],
                        locale: 'ar',
-                       props: {'questionText' => question_text_ar})
+                       props: { 'questionText' => question_text_ar })
   end
 
   let(:dashboard_url) { root_url(subdomain: project.project.subdomain, domain: Settings.domain, port: Settings.port) }

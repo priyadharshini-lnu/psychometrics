@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameActiveToDisabledForApiKeys < ActiveRecord::Migration[5.1]
   def up
     rename_column :api_keys, :active, :disabled

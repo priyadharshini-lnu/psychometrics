@@ -71,9 +71,9 @@ class AssignsController < ApplicationController
 
     respond_to do |format|
       format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
-      format.json {
+      format.json do
         render json: @assign, serializer: AssignSerializer
-      }
+      end
     end
   end
 
@@ -143,8 +143,8 @@ class AssignsController < ApplicationController
 
   def multiple_assigns_reports(user, project, report_ids)
     AssignsReport.includes(assign: %i[membership project_assign]).
-                  where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
-                  where(report_id: report_ids)
+      where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
+      where(report_id: report_ids)
   end
 
   def multiple_reports_ids(reports_ids)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     module Questions
@@ -11,7 +13,7 @@ module Exports
         #   [1]
         def self.result(answers, question, scoring = false)
           factors_scoring = question.detect_specified_scoring.
-                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           (answers || []).map { |answer| scoring && factors_scoring[answer['index']] || (answer['index'] + 1) }.join(',')
         end
 

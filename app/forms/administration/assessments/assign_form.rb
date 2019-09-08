@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Assessments
     class AssignForm < BaseForm
@@ -16,6 +18,7 @@ module Administration
       def access_reports_at_date
         return @access_reports_at_date if @access_reports_at_date
         return @access_reports_at.strftime('%Y-%m-%d') if @access_reports_at
+
         Date.today
       end
 

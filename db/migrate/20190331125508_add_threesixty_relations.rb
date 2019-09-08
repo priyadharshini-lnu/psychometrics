@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 class AddThreesixtyRelations < ActiveRecord::Migration[5.1]
+  # rubocop:disable Metrics/AbcSize
   def change
     create_table :campaigns do |t|
       t.belongs_to :project, foreign_key: { to_table: :clients, on_delete: :restrict }
@@ -57,8 +60,11 @@ class AddThreesixtyRelations < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_reference :assigns, :evaluator, foreign_key: { to_table: :campaigns_users, on_delete: :restrict }
-    add_reference :assigns, :subject, foreign_key: { to_table: :campaigns_users, on_delete: :restrict }
+    add_reference :assigns, :evaluator, foreign_key: { to_table:
+                                                         :campaigns_users, on_delete: :restrict }
+    add_reference :assigns, :subject, foreign_key: { to_table:
+                                                       :campaigns_users, on_delete: :restrict }
     add_reference :assigns, :campaign, foreign_key: { on_delete: :restrict }
   end
+  # rubocop:enable Metrics/AbcSize
 end

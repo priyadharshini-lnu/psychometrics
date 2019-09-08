@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clients
   module Reports
     class RemoveReport < ::BaseCommand
@@ -32,8 +34,8 @@ module Clients
         return if removing_report_ids.blank?
 
         client.clients_reports.
-               where(report_id: removing_report_ids).
-               delete_all
+          where(report_id: removing_report_ids).
+          delete_all
       end
 
       # Removes already assigned reports from all existing users
@@ -42,9 +44,9 @@ module Clients
         return if removing_report_ids.blank?
 
         AssignsReport.joins(assign: :membership).
-                      where(assign: { memberships: { client_id: client.id } }).
-                      where(report_id: removing_report_ids).
-                      delete_all
+          where(assign: { memberships: { client_id: client.id } }).
+          where(report_id: removing_report_ids).
+          delete_all
       end
 
       # Removes the ability to view report from client settings
@@ -53,10 +55,9 @@ module Clients
         return if removing_user_access_report_ids.blank?
 
         client.clients_reports.
-               where(report_id: removing_user_access_report_ids).
-               update_all(user_access: false)
+          where(report_id: removing_user_access_report_ids).
+          update_all(user_access: false)
       end
-
 
       # Removes the ability to view reports for existing users
       #
@@ -64,9 +65,9 @@ module Clients
         return if removing_user_access_report_ids.blank?
 
         AssignsReport.joins(assign: :membership).
-                      where(assign: { memberships: { client_id: client.id } }).
-                      where(report_id: removing_user_access_report_ids).
-                      update_all(user_access: false)
+          where(assign: { memberships: { client_id: client.id } }).
+          where(report_id: removing_user_access_report_ids).
+          update_all(user_access: false)
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reports
   module ResultTypes
     class NormedFactor < BaseType
@@ -30,9 +32,9 @@ module Reports
         #   Then collect SubFactors results
         if scoring.blank? && factor.parent_id.nil?
           scoring = factor.sub_factor_ids.
-            each_with_object([]) { |id, res| res << assign.scoring&.dig(id.to_s, 'results') }.
-            flatten.
-            compact
+                    each_with_object([]) { |id, res| res << assign.scoring&.dig(id.to_s, 'results') }.
+                    flatten.
+                    compact
         end
         # Detects normed result
         decorate(factor, factor_alias, factors_norm.detect_normed_result(scoring))
@@ -50,6 +52,5 @@ module Reports
         }
       end
     end
-
   end
 end

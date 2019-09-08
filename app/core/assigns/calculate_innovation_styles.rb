@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assigns
   class CalculateInnovationStyles < BaseCommand
     def initialize(assign)
@@ -27,8 +29,8 @@ module Assigns
           valid_factors << innovation_styles_factor if condition_valid?(innovation_styles_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        valid_factors_weight_sum = valid_factors.map{|f| f[:weight]}.reduce(&:+) || 0
-        total_factors_weight_sum = innovation_style.innovation_styles_factors.map{|f| f[:weight]}.reduce(&:+)
+        valid_factors_weight_sum = valid_factors.map { |f| f[:weight] }.reduce(&:+) || 0
+        total_factors_weight_sum = innovation_style.innovation_styles_factors.map { |f| f[:weight] }.reduce(&:+)
         value = valid_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) * 100 : 0
 
         mem << {

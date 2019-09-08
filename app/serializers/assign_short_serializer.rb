@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssignShortSerializer < ActiveModel::Serializer
   attributes :id, :status, :user_id, :relationship
 

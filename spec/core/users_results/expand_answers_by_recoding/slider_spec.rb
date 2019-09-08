@@ -18,7 +18,7 @@ describe ::UsersResults::ExpandAnswersByRecoding do
   before do
     create(:assessment, id: 184)
     create(:question, id: 17_160, type: 'Slider')
-    # TODO (atanych): should be improved within https://gitlab.com/tte-lighthouse/psychometrics/issues/312
+    # TODO: (atanych): should be improved within https://gitlab.com/tte-lighthouse/psychometrics/issues/312
     create(:question_recoding, question_id: 17_160, assessment_id: 184, props: [
              { 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }, { 'index' => 2, 'value' => 3 }
            ])

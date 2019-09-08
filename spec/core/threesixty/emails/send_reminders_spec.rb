@@ -17,7 +17,7 @@ describe Threesixty::Emails::SendReminders do
         threesixty_campaign: threesixty_campaign,
         category: :reminders,
         name: email_name,
-        meta: { "reminder_rules" => [{ "days" => 3, "times" => 2 }] }
+        meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }] }
       )
     end
     non_reminder_email_template = create(:threesixty_email_template, category: :invitations)

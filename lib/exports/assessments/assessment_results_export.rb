@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     class AssessmentResultsExport
-      QUESTIONS = %w(ConstantSum GapAnalysis GraphicSlider HotSpot
+      QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
-                     RankOrder SideBySide Slider TextEntry Timing).freeze
+                     RankOrder SideBySide Slider TextEntry Timing].freeze
 
       def initialize(assessment, client_id, options = {})
         @assessment = assessment
@@ -20,25 +22,26 @@ module Exports
         end
       end
 
-      # TODO (atanych): should be refactored
+      # TODO: (atanych): should be refactored
       def to_xlsx_common
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
             questions = Question.
-              joining { block }.
-              not_deleted.
-              includes(:factors_scorings).
-              selecting { [id, name, type, props] }.
-              where.has { |q| q.block.assessment_id == @assessment.id }.
-              ordering { [block.position.asc, position.asc] }
+                        joining { block }.
+                        not_deleted.
+                        includes(:factors_scorings).
+                        selecting { [id, name, type, props] }.
+                        where.has { |q| q.block.assessment_id == @assessment.id }.
+                        ordering { [block.position.asc, position.asc] }
             ## header
             header = {
-                      header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
-                      header2: ['', '', '', '', '', '', ''],
-                      header3: ['', '', '', '', '', '', '']
-                     }
+              header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
+              header2: ['', '', '', '', '', '', ''],
+              header3: ['', '', '', '', '', '', '']
+            }
             questions.each do |question|
               next unless QUESTIONS.include?(question.type)
+
               parser = "Exports::Assessments::Questions::#{question.type}".constantize
               question_header = parser.header(question)
               header[:header] << question_header
@@ -56,6 +59,7 @@ module Exports
                 questions.each do |question|
                   answers = assign.results[question.id.to_s].try(:[], 'answers')
                   next unless QUESTIONS.include?(question.type)
+
                   parser = "Exports::Assessments::Questions::#{question.type}".constantize
                   user_results << parser.result(answers, question, @scoring)
                 end
@@ -90,32 +94,37 @@ module Exports
 
       def project_level_assigns
         Queries::Assigns::ProjectLevel::ByClientAndAssessment.call(@client_id, @assessment.id).
-          selecting { [id,
-                       results,
-                       external_results,
-                       norm_data,
-                       status,
-                       completed_at,
-                       started_at,
-                       membership.user.last_name.op('||', quoted(', ')).op('||', membership.user.first_name).as('user_name'),
-                       membership.user.email.as('user_email')] }
+          selecting do
+          [id,
+           results,
+           external_results,
+           norm_data,
+           status,
+           completed_at,
+           started_at,
+           membership.user.last_name.op('||', quoted(', ')).op('||', membership.user.first_name).as('user_name'),
+           membership.user.email.as('user_email')]
+        end
       end
 
       def subproject_level_assigns
         Queries::Assigns::SubProjectLevel::ByClientAndAssessment.call(@client_id, @assessment.id).
-          selecting { [id,
-                       results,
-                       external_results,
-                       norm_data,
-                       status,
-                       completed_at,
-                       started_at,
-                       original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
-                       original_assign.membership.user.email.as('user_email')] }
+          selecting do
+          [id,
+           results,
+           external_results,
+           norm_data,
+           status,
+           completed_at,
+           started_at,
+           original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
+           original_assign.membership.user.email.as('user_email')]
+        end
       end
 
       def export_norm(norm_data)
         return if norm_data.nil? || norm_data['id'].nil?
+
         norm = Norm.find(norm_data['id'])
         "#{norm.name}:#{norm_data['type']}"
       rescue ActiveRecord::RecordNotFound

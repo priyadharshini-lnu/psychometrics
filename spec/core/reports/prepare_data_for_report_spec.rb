@@ -64,16 +64,16 @@ describe Reports::PrepareDataForReport do
         current_user: evaluator_1
       }
       results = described_class.new(args).serialize_results
-      expect(results[threesixty_campaign.assessment.id].map{|r| r[:relationship]}).to match_array %w[manager peer]
+      expect(results[threesixty_campaign.assessment.id].map { |r| r[:relationship] }).to match_array %w[manager peer]
     end
   end
 
-  def create_users_result threesixty_campaign, subject, evaluator
+  def create_users_result(threesixty_campaign, subject, evaluator)
     create(:users_result,
-      campaign: threesixty_campaign.campaign,
-      status: 'completed',
-      assessment: threesixty_campaign.assessment,
-      subject: subject.user,
-      evaluator: evaluator)
+           campaign: threesixty_campaign.campaign,
+           status: 'completed',
+           assessment: threesixty_campaign.assessment,
+           subject: subject.user,
+           evaluator: evaluator)
   end
 end

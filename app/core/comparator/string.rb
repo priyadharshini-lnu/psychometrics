@@ -12,12 +12,12 @@ module Comparator
 
     def call
       result = case comparator
-      when 'starts_with'
-        lhs&.starts_with?(rhs)
-      when 'equal'
-        lhs == rhs
-      when 'not_equal'
-        lhs != rhs
+                 when 'starts_with'
+                   lhs&.starts_with?(rhs)
+                 when 'equal'
+                   lhs == rhs
+                 when 'not_equal'
+                   lhs != rhs
       end
 
       broadcast :ok, result

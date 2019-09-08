@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::ThreesixtyCampaignsController < Administration::BaseController
   before_action :set_resource
   before_action :pundit_authorize

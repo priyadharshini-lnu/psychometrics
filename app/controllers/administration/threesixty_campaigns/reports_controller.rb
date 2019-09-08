@@ -13,14 +13,14 @@ module Administration
       def show
         users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
 
-        @data = ::Reports::PrepareDataForReport.call!({
+        @data = ::Reports::PrepareDataForReport.call!(
           users_report: users_report,
           locale: user_locale,
           current_user: current_user
-        })
+        )
 
         respond_to do |format|
-          format.html { }
+          format.html {}
           format.pdf { render :export, formats: 'html', layout: 'pdf', content_type: 'text/html' }
         end
       end
@@ -44,7 +44,7 @@ module Administration
       end
 
       def pundit_authorize
-        authorize [:threesixty, :report]
+        authorize %i[threesixty report]
       end
     end
   end

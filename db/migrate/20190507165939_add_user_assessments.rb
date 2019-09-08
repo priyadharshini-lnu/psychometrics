@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserAssessments < ActiveRecord::Migration[5.1]
   def change
     create_table :users_assessments do |t|
@@ -7,6 +9,7 @@ class AddUserAssessments < ActiveRecord::Migration[5.1]
       t.string :selected_locale
       t.timestamps
     end
-    add_index(:users_assessments, %i[user_id campaign_id assessment_id], unique: true, name: 'users_assessments_user_uniquesness_index')
+    add_index(:users_assessments, %i[user_id campaign_id assessment_id],
+              unique: true, name: 'users_assessments_user_uniquesness_index')
   end
 end

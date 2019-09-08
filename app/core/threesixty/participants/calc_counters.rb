@@ -26,7 +26,7 @@ module Threesixty
 
       def total_evaluators
         @total_evaluators ||= threesixty_campaign.participants.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).where(subject_id: user_ids).
-          group(:subject_id).index_by(&:subject_id)
+                              group(:subject_id).index_by(&:subject_id)
       end
 
       def total_evaluations
@@ -39,10 +39,10 @@ module Threesixty
 
       def completed_evaluators
         @completed_evaluators =
-            UsersResult.select('count(id) as cache_counter, subject_id').actual_by_options(option).
-              where(subject_id: user_ids, status: :completed).
-              group(:subject_id).
-              index_by(&:subject_id)
+          UsersResult.select('count(id) as cache_counter, subject_id').actual_by_options(option).
+          where(subject_id: user_ids, status: :completed).
+          group(:subject_id).
+          index_by(&:subject_id)
       end
     end
   end

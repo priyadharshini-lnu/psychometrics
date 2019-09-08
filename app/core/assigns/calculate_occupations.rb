@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assigns
   class CalculateOccupations < BaseCommand
     def initialize(assign)
@@ -27,8 +29,8 @@ module Assigns
           valid_factors << occupations_factor if condition_valid?(occupations_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        valid_factors_weight_sum = valid_factors.map{|f| f[:weight]}.reduce(&:+) || 0
-        total_factors_weight_sum = occupation.occupations_factors.map{|f| f[:weight]}.reduce(&:+)
+        valid_factors_weight_sum = valid_factors.map { |f| f[:weight] }.reduce(&:+) || 0
+        total_factors_weight_sum = occupation.occupations_factors.map { |f| f[:weight] }.reduce(&:+)
         value = valid_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) : 0
 
         mem << {

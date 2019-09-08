@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Users
 
@@ -12,7 +14,7 @@ feature 'CRUD User' do
     context 'on Users page' do
       scenario 'I can create superadmin' do
         create_superadmin(email: 'superadmin@example.com', first_name: 'super', last_name: 'admin')
-        #follow_superadmin_invitation
+        # follow_superadmin_invitation
       end
     end
 
@@ -66,7 +68,7 @@ feature 'CRUD User' do
 
       scenario 'I can create user' do
         create_user(sub_campaign, email: 'user@example.com', first_name: 'Bob', last_name: 'Duke')
-        #follow_user_invitation
+        # follow_user_invitation
       end
     end
   end
@@ -96,7 +98,7 @@ feature 'CRUD User' do
       given(:client_admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
 
       context 'with Privileges to manage Client Tenancies' do
-        before { client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge({ clients: [:manage] })) }
+        before { client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge(clients: [:manage])) }
 
         scenario 'I can create another Client Admin' do
           visit administration_client_path(tenancy)
@@ -132,7 +134,6 @@ feature 'CRUD User' do
       end
     end
   end
-
 
   context 'As Project Admin' do
     given(:project_admin) { create(:project_admin, memberships_options: [{ client: project }]) }

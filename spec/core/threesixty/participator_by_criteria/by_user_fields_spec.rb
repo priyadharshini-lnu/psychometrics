@@ -96,7 +96,7 @@ describe Threesixty::ParticipatorByCriteria::ByUserFields do
     participators = [subject_with_matching_email1, subject_with_matching_email2, subject_without_matching_email]
     criteria_list = [
       { 'field' => 'name_or_email', 'comparator' => 'equal', 'value' => 'james@cc.com' },
-      { 'field' => 'name_or_email', 'comparator' => 'equal', 'value' => 'andrew@cc.com' },
+      { 'field' => 'name_or_email', 'comparator' => 'equal', 'value' => 'andrew@cc.com' }
     ]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,

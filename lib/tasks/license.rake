@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :license do
   desc 'Check expired licenses'
 

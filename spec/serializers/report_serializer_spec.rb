@@ -50,7 +50,7 @@ describe ReportSerializer do
     end
   end
 
-  describe "#to_hash" do
+  describe '#to_hash' do
     before do
       create(:datasheet, columns: { 'field1' => 'Text', 'field2' => 'Number' }, project: campaign.project)
     end

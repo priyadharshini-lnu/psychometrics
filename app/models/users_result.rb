@@ -8,7 +8,7 @@ class UsersResult < ApplicationRecord
   enum status: { not_started: 0, in_progress: 1, completed: 2 }
 
   scope :actual_by_options, lambda { |options|
-    where('subject_id != evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
+    where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
   }
 
   def threesixty_subject

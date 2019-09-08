@@ -12,7 +12,6 @@ describe Threesixty::PipedText::Branches::SubjectFields::Field do
     let(:relationship) { create(:relationship, name: 'Boss') }
 
     before do
-
       create(:threesixty_participant, campaign: threesixty_campaign.campaign, evaluator_id: evaluator.id, subject_id: subject.id, relationship: relationship)
     end
 

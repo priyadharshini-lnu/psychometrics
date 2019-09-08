@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: questions
@@ -38,19 +40,22 @@ class Question < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :translations, as: :translateable, dependent: :destroy
 
-  enum view: [:assessments, :templates, :blocks]
+  enum view: %i[assessments templates blocks]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :ams, lambda { selecting { ['questions.*',
-                                    coalesce(template.props, props).as('props'),
-                                    coalesce(template.type, type).as('type'),
-                                    coalesce(template.name, name).as('name'),
-                                    '(CASE WHEN templates_questions.id IS NOT NULL THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
-                                    '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition'] }.
+  scope :ams, lambda {
+    selecting do
+      ['questions.*',
+       coalesce(template.props, props).as('props'),
+       coalesce(template.type, type).as('type'),
+       coalesce(template.name, name).as('name'),
+       '(CASE WHEN templates_questions.id IS NOT NULL THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
+       '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition']
+    end .
       joining { template.outer }.
       joining { block }.
-      where.has { (template.disabled == false) | (template.id == nil) }.
+      where.has { (template.disabled == false) | template.id.nil? }.
       reorder('reposition ASC')
   }
 
@@ -58,7 +63,7 @@ class Question < ApplicationRecord
   after_update :sync_with_template, if: :template
   before_create :set_view
   after_create :create_in_template_block, if: proc { block && block.template.present? }
-  after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
+  after_create :create_in_assessments_blocks, if: proc { block&.blocks&.any? }
   before_save :dup_for_template, if: :save_as_template
 
   #
@@ -80,11 +85,9 @@ class Question < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id name created_at updated_at))
-      order("questions.#{column} #{direction}")
-    end
+    order("questions.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
   }
 
   # Using for deep clone in Assessment model
@@ -95,17 +98,17 @@ class Question < ApplicationRecord
   ### Qcenter
   # Create duplicate object for Question Center
   def dup_for_template
-    self.template = self.class.create(general_attributes.merge({ view: :templates }))
+    self.template = self.class.create(general_attributes.merge(view: :templates))
   end
 
   # Create duplicate object for Block Center
   def dup_for_block
-    self.class.new(general_attributes.merge({ view: :blocks }))
+    self.class.new(general_attributes.merge(view: :blocks))
   end
 
   def dup_for_assessment!(block_id)
-    question = self.class.new(general_attributes.merge({ view: :assessments, block_id: block_id }))
-    self.questions << question
+    question = self.class.new(general_attributes.merge(view: :assessments, block_id: block_id))
+    questions << question
     save
     question
   end
@@ -121,7 +124,7 @@ class Question < ApplicationRecord
 
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
-      assessment.blocks.create!({ name: name }) if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
+      assessment.blocks.create!(name: name) if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
       dup_for_assessment!(assessment.blocks.last.id)
     end
   end

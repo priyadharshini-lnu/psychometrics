@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class BulkReportsController < Administration::BaseController
     prepend_before_action :set_resource_class

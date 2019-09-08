@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class LibrariesController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+    before_action :set_resource, only: %i[edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :init_breadcrumbs, except: :index
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -44,7 +46,7 @@ module Administration
 
     # GET /administration/resources/1/edit
     def edit
-      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+      add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
     # PATCH/PUT /administration/resources/1
@@ -72,8 +74,8 @@ module Administration
     private
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     # Set model

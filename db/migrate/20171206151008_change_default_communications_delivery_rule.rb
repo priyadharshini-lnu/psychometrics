@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeDefaultCommunicationsDeliveryRule < ActiveRecord::Migration[5.0]
   def up
     change_column :communications, :delivery_rule, :integer, default: :null

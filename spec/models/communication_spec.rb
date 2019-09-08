@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Communication, type: :model do
-
   context 'Associations' do
     it { should have_many(:emails) }
     it { should belong_to(:assessment) }

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require 'rails_helper'
 
@@ -72,12 +73,12 @@ describe Threesixty::Emails::RecipientByCriteria do
 
       described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        email_name: ::Threesixty::Emails::Name::SUBJECT_REMINDER,
+        email_name: ::Threesixty::Emails::Name::SUBJECT_REMINDER
       )
     end
 
     it 'adds default criteria for evaluator_invite email' do
-      default_recipient_criteria = [{ "field" => "atleast_one_non_self_evalaution" }]
+      default_recipient_criteria = [{ 'field' => 'atleast_one_non_self_evalaution' }]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
@@ -88,13 +89,13 @@ describe Threesixty::Emails::RecipientByCriteria do
 
       described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        email_name: ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+        email_name: ::Threesixty::Emails::Name::EVALUATOR_INVITE
       )
     end
 
     it 'adds default criteria for evaluator_reminder email' do
       default_recipient_criteria = [
-        {"field"=>"atleast_one_non_self_evalaution"},
+        { 'field' => 'atleast_one_non_self_evalaution' },
         { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
       ]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
@@ -107,7 +108,7 @@ describe Threesixty::Emails::RecipientByCriteria do
 
       described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        email_name: ::Threesixty::Emails::Name::EVALUATOR_REMINDER,
+        email_name: ::Threesixty::Emails::Name::EVALUATOR_REMINDER
       )
     end
   end

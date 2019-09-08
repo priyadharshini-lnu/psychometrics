@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # config valid only for current version of Capistrano
 lock '3.6.0'
 
@@ -9,17 +11,16 @@ set :repo_url, 'git@gitlab.com:tte-lighthouse/psychometrics.git'
 
 #  Multistage settings
 #
-set :stages, %w(staging production)
+set :stages, %w[staging production]
 set :default_stage, 'staging'
 
 # Default value for :scm is :git
 set :scm, :git
 
-set :ssh_options, {
-  forward_agent: true
-}
+set :ssh_options,
+    forward_agent: true
 
-set :sidekiq_queue, %w(reports mailers communication default)
+set :sidekiq_queue, %w[reports mailers communication default]
 
 # Default value for :pty is false
 set :pty, false

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Results
   class SubjectSerializer < ActiveModel::Serializer
     attributes :id, :data_sheet

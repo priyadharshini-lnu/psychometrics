@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'syslog/logger'
 require 'uglifier'
 
@@ -23,14 +25,18 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  config.action_dispatch.default_headers.merge!({
-    'Access-Control-Allow-Origin' => "*",
-    'Access-Control-Request-Method' => 'GET, OPTIONS',
-    'Access-Control-Allow-Headers' => '*'
-  }) if Settings.asset_host.present?
-  config.public_file_server.headers = {
-    'Access-Control-Allow-Origin' => '*'
-  } if Settings.asset_host.present?
+  if Settings.asset_host.present?
+    config.action_dispatch.default_headers.merge!(
+      'Access-Control-Allow-Origin' => '*',
+      'Access-Control-Request-Method' => 'GET, OPTIONS',
+      'Access-Control-Allow-Headers' => '*'
+    )
+  end
+  if Settings.asset_host.present?
+    config.public_file_server.headers = {
+      'Access-Control-Allow-Origin' => '*'
+    }
+  end
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new output: { comments: :none }
   config.logger = Syslog::Logger.new 'psychometrics'
@@ -42,7 +48,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host =  Settings.asset_host
+  config.action_controller.asset_host = Settings.asset_host
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -75,14 +81,14 @@ Rails.application.configure do
   config.action_mailer.default charset: 'utf-8'
   config.action_mailer.default_url_options = { host: Settings.domain }
 
-  config.action_mailer.smtp_settings =  {
-      user_name: ENV['MAIL_USERNAME'],
-      password: ENV['MAIL_PASSWORD'],
-      domain: ENV['MAIL_DOMAIN'],
-      address: ENV['MAIL_ADDRESS'],
-      port: ENV.fetch('MAIL_PORT', 587),
-      authentication: :plain,
-      enable_starttls_auto: true
+  config.action_mailer.smtp_settings = {
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
+    domain: ENV['MAIL_DOMAIN'],
+    address: ENV['MAIL_ADDRESS'],
+    port: ENV.fetch('MAIL_PORT', 587),
+    authentication: :plain,
+    enable_starttls_auto: true
   }
 
   config.assets.configure do |env|
@@ -117,5 +123,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_cable.disable_request_forgery_protection = true
-  config.action_cable.allowed_request_origins = [%r(https?:\/\/.+\.#{Settings.domain}), %r(https?:\/\/#{Settings.domain})]
+  config.action_cable.allowed_request_origins = [%r{https?:\/\/.+\.#{Settings.domain}}, %r{https?:\/\/#{Settings.domain}}]
 end

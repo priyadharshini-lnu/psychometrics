@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reports
@@ -17,9 +19,9 @@ class Report < ApplicationRecord
   include Copyable
 
   TYPES = [
-    COMMON_TYPE = 'common'.freeze,
-    YTI_TYPE = 'yti'.freeze,
-    ETI_TYPE = 'eti'.freeze
+    COMMON_TYPE = 'common',
+    YTI_TYPE = 'yti',
+    ETI_TYPE = 'eti'
   ].freeze
 
   PROVIDERS = {
@@ -90,7 +92,7 @@ class Report < ApplicationRecord
   #
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
-  scope :with_owner, -> (owner_id) { where(owner_id: owner_id) }
+  scope :with_owner, ->(owner_id) { where(owner_id: owner_id) }
   scope :with_report_families, lambda { |report_family_ids|
     report_family_ids.blank? ? none : joins(:report_families).where(report_families: { id: report_family_ids })
   }
@@ -167,12 +169,14 @@ class Report < ApplicationRecord
 
   def max_assessments_count
     return if assessments.size <= MAX_ASSESSMENT_COUNT
+
     errors.add(:assessments,
                I18n.t('activerecord.errors.models.report.max_assessment_count', max: MAX_ASSESSMENT_COUNT))
   end
 
   def min_assessments_count
     return if assessments.size >= MIN_ASSESSMENT_COUNT
+
     errors.add(:assessments,
                I18n.t('activerecord.errors.models.report.min_assessment_count', min: MIN_ASSESSMENT_COUNT))
   end
@@ -182,18 +186,18 @@ class Report < ApplicationRecord
   end
 
   def delete_hogan_report_setting
-    if hogan_report_setting && !assessment.hogan?
-      hogan_report_setting.destroy
-    end
+    hogan_report_setting.destroy if hogan_report_setting && !assessment.hogan?
   end
 
   def add_factors_aliases(assessment)
     return if assessment.external? || new_record?
+
     assessment.dimension.all_factors.each { |factor| factor.aliases.find_or_create_by(report: self) }
   end
 
   def remove_factor_aliases(assessment)
     return if assessment.external? || !single_dimension?(assessment.dimension_id)
+
     destroy_dimension_aliases(assessment.dimension)
   end
 
@@ -202,12 +206,12 @@ class Report < ApplicationRecord
   end
 
   def set_provider
-    if hogan?
-      self.provider = PROVIDERS[:hogan]
-    elsif mindmill?
-      self.provider = PROVIDERS[:mindmill]
-    else
-      self.provider = PROVIDERS[:internal]
-    end
+    self.provider = if hogan?
+                      PROVIDERS[:hogan]
+                    elsif mindmill?
+                      PROVIDERS[:mindmill]
+                    else
+                      PROVIDERS[:internal]
+                    end
   end
 end

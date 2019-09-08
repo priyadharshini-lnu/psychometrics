@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ecommerce
   class CartsController < ::Ecommerce::BaseController
     def show
@@ -12,7 +14,7 @@ module Ecommerce
         @cart.update(product_id, cart_item['quantity'].to_i)
       end
 
-      redirect_to({ action: :show })
+      redirect_to(action: :show)
     end
   end
 end

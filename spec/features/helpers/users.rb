@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Features
   module Helpers
     module Users
@@ -18,7 +20,7 @@ module Features
         else
           superadmin = User.last
           expect(page).to have_content t('administration.users.create.successfully', name: superadmin.decorate.display_name)
-          expect(page).to have_css("#users_list td", text: superadmin.decorate.display_name)
+          expect(page).to have_css('#users_list td', text: superadmin.decorate.display_name)
           expect(superadmin.role).to eq User::SUPER_ADMIN_ROLE
           superadmin
         end
@@ -128,19 +130,19 @@ module Features
       def follow_superadmin_invitation
         page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
-        #follow_user_invitation
+        # follow_user_invitation
       end
 
       def follow_admin_invitation
         page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
-        #follow_user_invitation
+        # follow_user_invitation
       end
 
       def follow_user_invitation
         email = Capybara::Node::Simple.new(ActionMailer::Base.deliveries.last.body.to_s)
         ActionMailer::Base.deliveries = []
-        accept_link = email.find("a", text: t('devise.mailer.invitation_instructions.accept'))
+        accept_link = email.find('a', text: t('devise.mailer.invitation_instructions.accept'))
         visit accept_link[:href]
         expect(page).to have_css(:h1, text: t('administration.administrator.invitations.edit.title'))
       end

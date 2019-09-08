@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UsersResults
   class UpdatingForm < Rectify::Form
     attribute :status, Integer

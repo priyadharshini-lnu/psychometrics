@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 module Reports
   class BuildResults < Rectify::Command
     attr_reader :report, :assigns
     CLASS_MAP = {
-      user_data:            'Reports::ResultTypes::UserData',
-      external_result:      'Reports::ResultTypes::ExternalResults',
-      normed_factor:        'Reports::ResultTypes::NormedFactor',
-      formula:              'Reports::ResultTypes::Formula',
-      ranked_occupations:   'Reports::ResultTypes::RankedOccupations'
+      user_data: 'Reports::ResultTypes::UserData',
+      external_result: 'Reports::ResultTypes::ExternalResults',
+      normed_factor: 'Reports::ResultTypes::NormedFactor',
+      formula: 'Reports::ResultTypes::Formula',
+      ranked_occupations: 'Reports::ResultTypes::RankedOccupations'
     }.freeze
 
     def initialize(report, assigns)

@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class ReportPolicy < BasePolicy
   def show?
     return false if @current_user.is_anonym?
+
     include_report = if @current_project.end_level?
                        @current_membership.report_ids.include?(@record.id)
                      else

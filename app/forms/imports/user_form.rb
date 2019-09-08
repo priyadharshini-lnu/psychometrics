@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Imports::UserForm < BaseForm
   attr_accessor :file
 

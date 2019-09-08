@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class UsersController < BaseController
@@ -5,7 +7,7 @@ module Api
         form = Api::V1::Users::CreateForm.from_params(params).with_context(project: project)
         Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do
           on(:invalid) { |form| render_validation_errors(form) }
-          on(:license_error) { |form, error| raise Errors::Api::NotEnoughLicencesError, error.message }
+          on(:license_error) { |_form, error| raise Errors::Api::NotEnoughLicencesError, error.message }
           on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end
       end

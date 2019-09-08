@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     module Campaigns
       class AttachToUserForm < Rectify::Form
-        attribute :campaign_ids,  Array
+        attribute :campaign_ids, Array
         validate :verify_campaign_ids
         validate :uniq_campaign_ids
 

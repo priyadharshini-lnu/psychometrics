@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkReports
   class CompressJob < ApplicationJob
     queue_as :default

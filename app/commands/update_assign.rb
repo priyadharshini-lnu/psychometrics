@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateAssign < Rectify::Command
   def initialize(form, assign, current_user)
     @form = form

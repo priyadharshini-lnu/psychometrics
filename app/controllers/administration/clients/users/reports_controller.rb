@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Users
@@ -21,7 +23,7 @@ module Administration
             subject: nil,
             membership: membership,
             report: resource,
-            locale: user_locale,
+            locale: user_locale
           }
 
           @data = ::Reports::PrepareDataForReport.call!(args)
@@ -57,6 +59,7 @@ module Administration
 
         def pundit_authorize
           raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+
           super
         end
 

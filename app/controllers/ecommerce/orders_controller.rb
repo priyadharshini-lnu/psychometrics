@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 module Ecommerce
   class OrdersController < BaseController
     prepend_before_action :authenticate_user!
     before_action :ensure_current_membership
-    before_action :find_products, only: [:new, :create]
+    before_action :find_products, only: %i[new create]
 
     def new
       @order = @current_membership.orders.build
       @products.each do |product|
-        @order.purchases.build({ product: product,
+        @order.purchases.build(product: product,
                                  quantity: @cart.quantity_for(product.id),
-                                 price_currency: current_currency.iso_code })
+                                 price_currency: current_currency.iso_code)
       end
     end
 
@@ -33,14 +35,14 @@ module Ecommerce
 
       @order.purchases.each do |purchase|
         purchase&.product&.reports.each do |report|
-          AssessmentClient.find_or_create_by!({
+          AssessmentClient.find_or_create_by!(
             assessment: report&.assessment,
             client: @current_membership.client
-          })
-          ClientReport.find_or_create_by!({
+          )
+          ClientReport.find_or_create_by!(
             client: @current_membership.client,
             report: report
-          })
+          )
           # Invites specified users to assessment
           purchase.invites.each { |invite| invite_user(invite.email, report&.assessment) }
         end
@@ -60,7 +62,7 @@ module Ecommerce
 
     def order_params
       params.require(:ecommerce_order).permit(purchases_attributes: [:id, :product_id, :price_currency,
-                                                                     :quantity, { invites_attributes: [:id, :email] }])
+                                                                     :quantity, { invites_attributes: %i[id email] }])
     end
 
     # Method provide ability to create or update user
@@ -68,13 +70,13 @@ module Ecommerce
     def invite_user(email, assessment)
       user = User.find_or_initialize_by(email: email)
       if user.new_record?
-        user.assign_attributes({
+        user.assign_attributes(
           operator: current_user,
           role: 'Users::Member',
           memberships_attributes: [{
             client_id: @current_membership.client_id
           }]
-        })
+        )
         user.save
         user.invite!(current_user, @current_membership.client_id)
       end

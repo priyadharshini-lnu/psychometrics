@@ -20,13 +20,13 @@ module Administration
 
       def schedulable_templates
         email_schedules = threesixty_campaign.email_templates.where(schedulable: true).to_a
-        email_schedules.prepend({
+        email_schedules.prepend(
           id: 'custom_message',
           name: 'custom_message',
           from: current_user.decorate.display_name,
           content: '',
           reply_to_email: current_user.email
-        })
+        )
         render json: email_schedules
       end
 

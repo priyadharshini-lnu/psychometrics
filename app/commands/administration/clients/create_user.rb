@@ -11,6 +11,7 @@ module Administration
 
       def call
         return broadcast(:invalid, form) if form.invalid?
+
         transaction do
           clients.each do |client|
             create_membership_and_user(client)

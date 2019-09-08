@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class ReportsController < BaseController
     prepend_before_action :set_resource_class

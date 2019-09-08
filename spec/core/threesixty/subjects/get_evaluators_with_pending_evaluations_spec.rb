@@ -64,7 +64,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
       create(
         :threesixty_option,
         threesixty_campaign: @threesixty_campaign,
-        participants: { "manager" => { "can_approve_nominations" => true } }
+        participants: { 'manager' => { 'can_approve_nominations' => true } }
       )
       actual_result = described_class.new(threesixty_campaign: @threesixty_campaign, subject: @subject).to_a
 
@@ -78,7 +78,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
       create(
         :threesixty_option,
         threesixty_campaign: @threesixty_campaign,
-        participants: { "manager" => { "can_approve_nominations" => false } }
+        participants: { 'manager' => { 'can_approve_nominations' => false } }
       )
       actual_result = described_class.new(threesixty_campaign: @threesixty_campaign, subject: @subject).to_a
 

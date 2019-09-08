@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 feature 'Products Page Test', type: :feature do
   let!(:product) { create(:product, :with_image, :with_prices) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty::EndUser
   class CampaignNomineeSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :campaign_id, :evaluators_count, :counters, :is_nomination_completed

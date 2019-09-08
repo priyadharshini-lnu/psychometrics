@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # 1 step:
 # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map

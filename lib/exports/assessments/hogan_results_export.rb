@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     class HoganResultsExport
@@ -94,14 +96,16 @@ module Exports
 
       def assigns_reports
         @assigns_reports ||= Queries::AssignsReports::ByClientAssessmentAndReportId.
-                               call(@client_id, @assessment_id, @report_id).
-                               selecting { [assign.id.as('assign_id'),
-                                            assign.membership.user.first_name.op('||', quoted(' ')).op('||', assign.membership.user.last_name).as('full_name'),
-                                            assign.membership.user.email.as('user_email'),
-                                            assign.membership.project_membership.hogan_credential.participant_id,
-                                            assign.started_at,
-                                            assign.completed_at,
-                                            hogan_score] }
+                             call(@client_id, @assessment_id, @report_id).
+                             selecting do
+          [assign.id.as('assign_id'),
+           assign.membership.user.first_name.op('||', quoted(' ')).op('||', assign.membership.user.last_name).as('full_name'),
+           assign.membership.user.email.as('user_email'),
+           assign.membership.project_membership.hogan_credential.participant_id,
+           assign.started_at,
+           assign.completed_at,
+           hogan_score]
+        end
       end
 
       def default_headers

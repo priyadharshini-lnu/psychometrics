@@ -70,18 +70,17 @@ module Administration
       #
       def relevant_role
         valid = case role
-        when Membership::CLIENT_ADMIN_ROLE
-          context.client.tenancy?
-        when Membership::PROJECT_ADMIN_ROLE
-          context.client.project?
-        when Membership::MANAGER_ROLE, Membership::MEMBER_ROLE
-          context.client.end_level?
-        else
-          false
+                  when Membership::CLIENT_ADMIN_ROLE
+                    context.client.tenancy?
+                  when Membership::PROJECT_ADMIN_ROLE
+                    context.client.project?
+                  when Membership::MANAGER_ROLE, Membership::MEMBER_ROLE
+                    context.client.end_level?
+                  else
+                    false
         end
         errors.add(:role, :invalid) unless valid
       end
-
     end
   end
 end

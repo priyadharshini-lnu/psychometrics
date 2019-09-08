@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clients
   module Assessments
     class UpdateAssessment < BaseCommand
@@ -57,8 +59,8 @@ module Clients
         return if form.removing_assessment_ids.blank?
 
         client.assessments_clients.
-               where(assessment_id: form.removing_assessment_ids).
-               destroy_all
+          where(assessment_id: form.removing_assessment_ids).
+          destroy_all
       end
 
       # Removes assign and assigns_report from existing users
@@ -67,8 +69,8 @@ module Clients
         return if form.removing_assessment_ids.blank?
 
         Assign.joins(:membership).
-               where(memberships: { client_id: client.id }, assessment_id: form.removing_assessment_ids).
-               destroy_all
+          where(memberships: { client_id: client.id }, assessment_id: form.removing_assessment_ids).
+          destroy_all
       end
 
       # Looks for dependent reports and removes them

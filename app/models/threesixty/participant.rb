@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class Participant < ApplicationRecord
     belongs_to :subject, class_name: 'User'

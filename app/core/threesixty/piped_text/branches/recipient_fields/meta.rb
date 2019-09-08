@@ -7,7 +7,7 @@ module Threesixty
         class Meta < BaseField
           def call
             row = DatasheetRow.joins(:datasheet).
-              find_by(datasheets: { project_id: user.project_id }, email: user.email)
+                  find_by(datasheets: { project_id: user.project_id }, email: user.email)
 
             return broadcast :ok, '' unless row
 

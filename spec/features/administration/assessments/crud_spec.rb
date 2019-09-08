@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Assessments
 
@@ -87,13 +89,13 @@ feature 'CRUD Assessment' do
     before { login_as(client_admin) }
 
     scenario 'I cant Create Assessment if I have not privileges' do
-      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!({assessments: ['view'], dimensions: ['view']}))
+      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!(assessments: ['view'], dimensions: ['view']))
       visit '/administration/assessments'
       expect(page).not_to have_css('.panel-heading a', text: t('administration.assessments.index.new'))
     end
 
     scenario 'I can Create Assessment if I have privileges' do
-      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!({assessments: ['view', 'manage'], dimensions: ['view']}))
+      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!(assessments: %w[view manage], dimensions: ['view']))
 
       create_assessment(name: 'My assessment', dimension_name: dimension.name)
       expect(page).to have_content t('administration.assessments.create.successfully', name: 'My assessment')

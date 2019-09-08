@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: licenses
@@ -47,6 +49,7 @@ class License < ApplicationRecord
 
   def enough_licenses?
     return false if end_date < Date.today || start_date > Date.today
+
     number + overuse_number > used_number
   end
 
@@ -60,8 +63,8 @@ class License < ApplicationRecord
 
   def used_by(client)
     license_usages.joins(assigns_report: { assign: :membership }).
-                   where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
-                   size
+      where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
+      size
   end
 
   private

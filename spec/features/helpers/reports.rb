@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Features
   module Helpers
     module Reports
       def create_report(opts = {})
         visit '/administration/reports'
-        click_link(t('administration.reports.index.add'), href:'/administration/reports/new')
+        click_link(t('administration.reports.index.add'), href: '/administration/reports/new')
         find('.modal-header').click
         fill_in 'resource_name', with: opts[:name]
         select opts[:assessment_name], from: 'resource_assessment_ids', visible: false

@@ -43,7 +43,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
     expect(results).to match_array(threesixty_subjects[0..1])
   end
 
-  it "returns participators who had not completed all evaluations" do
+  it 'returns participators who had not completed all evaluations' do
     threesixty_subjects.each do |threesixty_subject|
       create(
         :threesixty_participant,
@@ -71,7 +71,7 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluations do
     expect(results).to match_array(threesixty_subjects[1..2])
   end
 
-  it "returns participators who have completed all evaluations but are waiting for approval" do
+  it 'returns participators who have completed all evaluations but are waiting for approval' do
     threesixty_subjects[0..1].each do |threesixty_subject|
       create(
         :threesixty_participant,

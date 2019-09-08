@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'User Privileges', clean: false do
@@ -16,28 +18,26 @@ feature 'User Privileges', clean: false do
   given(:manager_membership) { @manager_membership.reload }
   given(:norm) { @norm.reload }
   # TODO: fix
-=begin
-  context 'As SuperAdmin user' do
-    before(:context) { reload_context }
-    before { enter_as :superadmin }
-
-    scenario 'I can see privileges tab for Admin user' do
-      visit edit_administration_client_user_path(client, admin_membership)
-      expect(page).to have_css("a[href='#tab-grants']", text: t('administration.users.edit.grants'))
-    end
-
-    scenario 'I can not see privileges tab for Manager' do
-      visit edit_administration_client_user_path(client, manager_membership)
-      expect(page).to have_no_content(t('administration.users.edit.grants'))
-    end
-
-    scenario 'I can edit Admin user privileges' do
-      edit_user_privileges(client, admin_membership)
-      expect(page).to have_content(t('administration.memberships.update.successfully', name: admin_user.decorate.display_name))
-      expect(page).to have_css('.grants-table input[checked]', visible: false, count: 3)
-    end
-  end
-=end
+  #   context 'As SuperAdmin user' do
+  #     before(:context) { reload_context }
+  #     before { enter_as :superadmin }
+  #
+  #     scenario 'I can see privileges tab for Admin user' do
+  #       visit edit_administration_client_user_path(client, admin_membership)
+  #       expect(page).to have_css("a[href='#tab-grants']", text: t('administration.users.edit.grants'))
+  #     end
+  #
+  #     scenario 'I can not see privileges tab for Manager' do
+  #       visit edit_administration_client_user_path(client, manager_membership)
+  #       expect(page).to have_no_content(t('administration.users.edit.grants'))
+  #     end
+  #
+  #     scenario 'I can edit Admin user privileges' do
+  #       edit_user_privileges(client, admin_membership)
+  #       expect(page).to have_content(t('administration.memberships.update.successfully', name: admin_user.decorate.display_name))
+  #       expect(page).to have_css('.grants-table input[checked]', visible: false, count: 3)
+  #     end
+  #   end
 
   context 'As Client Admin user' do
     before(:context) { reload_context }
@@ -53,7 +53,7 @@ feature 'User Privileges', clean: false do
 
     context 'with privileges' do
       before(:all) do
-        @admin_user.memberships.first.grants.update(data: @admin_user.memberships.first.grants.data.merge!({ norms: %w(view manage), dimensions: %w(view) }))
+        @admin_user.memberships.first.grants.update(data: @admin_user.memberships.first.grants.data.merge!(norms: %w[view manage], dimensions: %w[view]))
       end
       before { login_as admin_user }
       # TODO: fix

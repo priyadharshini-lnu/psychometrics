@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Builders
   class ScoringBuilder
     # Authorisation flow
@@ -41,9 +43,9 @@ module Builders
         }
         rows << factors_scoring
       end
-      #TODO: Remove this by fixing duplicate scoring on frontend
-      rows.uniq! {|r| "#{r[:factor_id]}-#{r[:question_id]}" }
-      FactorsScoring.import rows, on_duplicate_key_update: {conflict_target: [:factor_id, :question_id, :assessment_id], columns: [:props]}
+      # TODO: Remove this by fixing duplicate scoring on frontend
+      rows.uniq! { |r| "#{r[:factor_id]}-#{r[:question_id]}" }
+      FactorsScoring.import rows, on_duplicate_key_update: { conflict_target: %i[factor_id question_id assessment_id], columns: [:props] }
       FactorsScoring.where("props::text = '[]'").delete_all
     end
 
@@ -61,9 +63,9 @@ module Builders
         }
         rows << question_recoding
       end
-      #TODO: Remove this by fixing duplicate scoring on frontend
+      # TODO: Remove this by fixing duplicate scoring on frontend
       rows.uniq! { |r| r[:question_id] }
-      QuestionRecoding.import rows, on_duplicate_key_update: {conflict_target: [:question_id, :assessment_id], columns: [:props]}
+      QuestionRecoding.import rows, on_duplicate_key_update: { conflict_target: %i[question_id assessment_id], columns: [:props] }
       QuestionRecoding.where("props::text = '[]'").delete_all
     end
   end

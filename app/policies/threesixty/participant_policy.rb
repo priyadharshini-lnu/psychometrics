@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class Threesixty::ParticipantPolicy < BasePolicy
   def edit?
     return false if @current_user.is_anonym?
+
     @record.evaluator_id == @current_user.id
   end
 

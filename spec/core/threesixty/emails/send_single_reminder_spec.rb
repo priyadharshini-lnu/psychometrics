@@ -13,7 +13,7 @@ describe Threesixty::Emails::SendSingleReminder do
       threesixty_campaign: threesixty_campaign,
       category: :reminders,
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
-      meta: { "reminder_rules" => [{ "days" => 3, "times" => 2 }] }
+      meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }] }
     )
     create(
       :threesixty_reminder_history,
@@ -24,18 +24,18 @@ describe Threesixty::Emails::SendSingleReminder do
       last_sent_at: Time.now.advance(days: -3)
     )
 
-    expect {
+    expect do
       described_class.call!(email_template)
-    }.to change { Threesixty::EmailSchedule.count }.by(1)
+    end.to change { Threesixty::EmailSchedule.count }.by(1)
   end
 
-  it "creates email_schdule record when it match second reminder rule" do
+  it 'creates email_schdule record when it match second reminder rule' do
     email_template = create(
       :threesixty_email_template,
       threesixty_campaign: threesixty_campaign,
       category: :reminders,
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
-      meta: { "reminder_rules" => [{ "days" => 3, "times" => 2 }, { "days" => 2, "times" => 3 } ] }
+      meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }, { 'days' => 2, 'times' => 3 }] }
     )
     create(
       :threesixty_reminder_history,
@@ -46,9 +46,9 @@ describe Threesixty::Emails::SendSingleReminder do
       last_sent_at: Time.now.advance(days: -2)
     )
 
-    expect {
+    expect do
       described_class.call!(email_template)
-    }.to change { Threesixty::EmailSchedule.count }.by(1)
+    end.to change { Threesixty::EmailSchedule.count }.by(1)
   end
 
   it "doesn't creates email_schedule record when no reminder rule matches" do
@@ -57,22 +57,22 @@ describe Threesixty::Emails::SendSingleReminder do
       threesixty_campaign: threesixty_campaign,
       category: :reminders,
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
-      meta: { "reminder_rules" => [{ "days" => 3, "times" => 2 } ] }
+      meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }] }
     )
     create(
       :threesixty_reminder_history,
       threesixty_campaign: threesixty_campaign,
       email_name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       user: threesixty_subject.user,
-      sent_count: 3,
+      sent_count: 3
     )
 
-    expect {
+    expect do
       described_class.call!(email_template)
-    }.to_not change { Threesixty::EmailSchedule.count }
+    end.to_not change { Threesixty::EmailSchedule.count }
   end
 
-  it "creates email_schedule with multiple subject_ids for evaluator reminders" do
+  it 'creates email_schedule with multiple subject_ids for evaluator reminders' do
     threesixty_evaluator = create(:threesixty_evaluator, campaign: threesixty_campaign.campaign)
     other_threesixty_subject = create(:threesixty_subject, campaign: threesixty_campaign.campaign)
 
@@ -92,18 +92,18 @@ describe Threesixty::Emails::SendSingleReminder do
       threesixty_campaign: threesixty_campaign,
       category: :reminders,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
-      meta: { "reminder_rules" => [{ "days" => 3, "times" => 2 } ] }
+      meta: { 'reminder_rules' => [{ 'days' => 3, 'times' => 2 }] }
     )
     create(
       :threesixty_reminder_history,
       threesixty_campaign: threesixty_campaign,
       email_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       user: threesixty_subject.user,
-      sent_count: 3,
+      sent_count: 3
     )
 
     described_class.call!(email_template)
     email_schedule = Threesixty::EmailSchedule.where(name: Threesixty::Emails::Name::EVALUATOR_REMINDER).last
-    expect(email_schedule.meta["subject_ids"]).to match_array(threesixty_subjects.map(&:user_id))
+    expect(email_schedule.meta['subject_ids']).to match_array(threesixty_subjects.map(&:user_id))
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EndUser
   class AssignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
@@ -32,6 +34,7 @@ module EndUser
     def normalize_hogan_type(type)
       return 'Raw' if type == 'RAW'
       return 'Percentile' if type == 'percentile'
+
       raise "Not supported hogan type #{type}"
     end
 
@@ -81,8 +84,8 @@ module EndUser
 
     def filter_reports_by_type(reports, type)
       return reports unless type
+
       reports.select { |r| r.type == type.downcase || r.common? }
     end
-
   end
 end

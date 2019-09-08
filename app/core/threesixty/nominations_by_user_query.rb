@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class NominationsByUserQuery < Rectify::Query
     def initialize(campaign, current_user)
@@ -13,7 +15,7 @@ module Threesixty
       scope
     end
 
-    def self_subject_scope scope
+    def self_subject_scope(scope)
       if subject_can_manage_evaluations?
         scope.where(user_id: current_user.id).includes(:user)
       else
@@ -22,11 +24,11 @@ module Threesixty
     end
 
     def manager_ids
-      @campaign.participants.joins(:relationship)
-        .where(relationships: { name: 'Manager', type: :global })
-        .where(evaluator_id: current_user.id)
-        .where.not(subject_id: current_user.id)
-        .pluck(:subject_id)
+      @campaign.participants.joins(:relationship).
+        where(relationships: { name: 'Manager', type: :global }).
+        where(evaluator_id: current_user.id).
+        where.not(subject_id: current_user.id).
+        pluck(:subject_id)
     end
 
     private

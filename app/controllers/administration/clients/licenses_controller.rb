@@ -65,7 +65,7 @@ module Administration
       def init_breadcrumbs
         client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb t('administration.breadcrumbs.licenses'), { action: :index }
+        add_breadcrumb t('administration.breadcrumbs.licenses'), action: :index
       end
 
       def pundit_authorize

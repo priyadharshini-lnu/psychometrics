@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Threesixty
   class UsersReportsQuery < Rectify::Query
     AVAILABLE_STATUSES = [
       Threesixty::Participants::GetReportStatus::APPROVED,
-      Threesixty::Participants::GetReportStatus::AVAILABLE,
+      Threesixty::Participants::GetReportStatus::AVAILABLE
     ].freeze
 
     def initialize(campaign, managed_subjects, current_user)
@@ -40,6 +42,7 @@ module Threesixty
 
     def is_available?
       return false unless subject
+
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         [subject.user_id],
         @campaign

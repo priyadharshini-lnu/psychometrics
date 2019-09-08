@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
@@ -14,7 +16,7 @@ module Threesixty
 
       instance_options[:managed_subjects].map do |subject|
         data = ::Threesixty::EndUser::ManagedSubjectSerializer.new(subject, scope: current_user, scope_name: :current_user).
-          to_hash(include: '**')
+               to_hash(include: '**')
         data[:evaluators].present? ? data : nil
       end.compact
     end
@@ -22,7 +24,7 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nomination_users).count{|_,v| v}
+        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nomination_users).count { |_, v| v }
       }
     end
 
@@ -46,7 +48,7 @@ module Threesixty
         {
           name: instruction.name,
           content: Threesixty::PipedText::Perform.call!(instruction.content,
-                      threesixty_campaign: object.campaign.threesixty_campaign)
+                                                        threesixty_campaign: object.campaign.threesixty_campaign)
         }
       end
     end

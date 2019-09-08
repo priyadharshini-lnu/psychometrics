@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class RegenerateReports < Rectify::Command
     def initialize(form, current_user, client)

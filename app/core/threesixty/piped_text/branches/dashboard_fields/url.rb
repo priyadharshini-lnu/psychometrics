@@ -33,6 +33,7 @@ module Threesixty
           end
 
           private
+
           def create_raw_invitation_token
             if context[:recipient].encrypted_invitation_raw.nil?
               context[:recipient].skip_invitation = true

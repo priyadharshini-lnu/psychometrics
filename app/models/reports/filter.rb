@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reports_filters
@@ -19,7 +21,7 @@ module Reports
     after_initialize :init
 
     def init
-      self.conditions  ||= []
+      self.conditions ||= []
     end
 
     def self.table_name_prefix

@@ -8,7 +8,6 @@ describe Threesixty::PipedText::Branches::SubjectSmartTextFields::SecondPersonRe
     let(:subject) { create(:user, first_name: 'Vasiliy', last_name: 'Pupkin', email: 'my@email.com', project: project) }
     let(:evaluator) { create(:user, project: project) }
 
-
     it do
       response = described_class.call!(%w[SecondPersonReflexive], {}, subject: subject, evaluator: evaluator)
       expect(response).to eq('Vasiliy Pupkin’s')

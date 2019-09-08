@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class OccupationsFactorsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+    before_action :set_resource, only: %i[edit update destroy copy toggle_status sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :set_dimension
     before_action :set_occupation
@@ -62,12 +64,12 @@ module Administration
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
       add_breadcrumb I18n.t('administration.breadcrumbs.occupations'), administration_dimension_occupations_path
       add_breadcrumb @occupation.name
-      add_breadcrumb I18n.t('administration.breadcrumbs.occupations_factors'), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.occupations_factors'), action: :index
     end
 
     def set_occupation

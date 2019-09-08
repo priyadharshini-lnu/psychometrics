@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: dimensions
@@ -35,20 +37,20 @@ class Dimension < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     case sort_key.to_s
-    when /^id_/
-      order("dimensions.id #{direction}")
-    when /^active_/
-      order("dimensions.disabled #{direction}")
-    when /^name_/
-      order("dimensions.name #{direction}")
-    when /^factors_count_/
-      order("dimensions.factors_count #{direction}")
-    when /^created_at_/
-      order("dimensions.created_at #{direction}")
-    when /^updated_at_/
-      order("dimensions.updated_at #{direction}")
+      when /^id_/
+        order("dimensions.id #{direction}")
+      when /^active_/
+        order("dimensions.disabled #{direction}")
+      when /^name_/
+        order("dimensions.name #{direction}")
+      when /^factors_count_/
+        order("dimensions.factors_count #{direction}")
+      when /^created_at_/
+        order("dimensions.created_at #{direction}")
+      when /^updated_at_/
+        order("dimensions.updated_at #{direction}")
     end
   }
 
@@ -60,8 +62,6 @@ class Dimension < ApplicationRecord
       # SubFactors have link to original dimension.
       Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
       @cloned_dimension
-    else
-      nil
     end
   end
 end

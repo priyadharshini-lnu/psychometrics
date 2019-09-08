@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: norms
@@ -34,22 +36,22 @@ class Norm < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     case sort_key.to_s
-    when /^id_/
-      order("norms.id #{direction}")
-    when /^active_/
-      order("norms.disabled #{direction}")
-    when /^name_/
-      order("norms.name #{direction}")
-    when /^dimension_id_/
-      joins(:dimension).order("dimensions.name #{direction}")
-    when /^updated_by_/
-      order("norms.updated_by #{direction}")
-    when /^created_at_/
-      order("norms.created_at #{direction}")
-    when /^updated_at_/
-      order("norms.updated_at #{direction}")
+      when /^id_/
+        order("norms.id #{direction}")
+      when /^active_/
+        order("norms.disabled #{direction}")
+      when /^name_/
+        order("norms.name #{direction}")
+      when /^dimension_id_/
+        joins(:dimension).order("dimensions.name #{direction}")
+      when /^updated_by_/
+        order("norms.updated_by #{direction}")
+      when /^created_at_/
+        order("norms.created_at #{direction}")
+      when /^updated_at_/
+        order("norms.updated_at #{direction}")
     end
   }
 end

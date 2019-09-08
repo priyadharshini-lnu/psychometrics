@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Callbacks
   module Models
     module AssessmentsReports

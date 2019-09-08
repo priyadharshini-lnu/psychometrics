@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::HomePolicy < Struct.new(:administrator, :home)
   def initialize(user, record)
     @user = user

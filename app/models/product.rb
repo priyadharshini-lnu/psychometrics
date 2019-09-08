@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: products
@@ -45,7 +47,7 @@ class Product < ApplicationRecord
 
   # Copy Product with prices, images, and reports
   def clone
-    @cloned_item = deep_clone include: [:product_reports, :prices, :images] do |original, kopy|
+    @cloned_item = deep_clone include: %i[product_reports prices images] do |original, kopy|
       kopy.image = original.image if self == original || original.is_a?(ProductImage)
     end
     @cloned_item.gen_uniq_name

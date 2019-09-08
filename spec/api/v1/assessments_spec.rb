@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'swagger_helper'
 
@@ -11,7 +13,6 @@ describe 'Assessments' do
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
   path '/projects/{project_id}/users/{user_id}/assessments' do
-
     get 'Get user assessments' do
       operationId 'GetUserAssessments'
       description 'List of assessments currently assigned to the user'
@@ -37,25 +38,25 @@ describe 'Assessments' do
 
         examples 'application/json' => [
           {
-            "id": "11234",
-            "name": "Assessment 1",
-            "status": "completed",
-            "started_at": "2019-03-04T15:47:33.570+04:00",
-            "completed_at": "2019-03-04T15:47:33.570+04:00",
+            "id": '11234',
+            "name": 'Assessment 1',
+            "status": 'completed',
+            "started_at": '2019-03-04T15:47:33.570+04:00',
+            "completed_at": '2019-03-04T15:47:33.570+04:00'
           },
           {
-            "id": "11235",
-            "name": "Assessment 2",
-            "status": "completed",
-            "started_at": "2019-03-04T15:47:33.570+04:00",
-            "completed_at": "2019-03-04T15:47:33.570+04:00",
+            "id": '11235',
+            "name": 'Assessment 2',
+            "status": 'completed',
+            "started_at": '2019-03-04T15:47:33.570+04:00',
+            "completed_at": '2019-03-04T15:47:33.570+04:00'
           },
           {
-            "id": "11236",
-            "name": "Assessment 3",
-            "status": "completed",
-            "started_at": "2019-03-04T15:47:33.570+04:00",
-            "completed_at": "2019-03-04T15:47:33.570+04:00",
+            "id": '11236',
+            "name": 'Assessment 3',
+            "status": 'completed',
+            "started_at": '2019-03-04T15:47:33.570+04:00',
+            "completed_at": '2019-03-04T15:47:33.570+04:00'
           }
         ]
 
@@ -78,12 +79,12 @@ describe 'Assessments' do
         {
           "code": 1000,
           "message": 'Invalid authentication',
-          "more_info": nil,
+          "more_info": nil
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq ({'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil})
+          expect(error).to eq ({ 'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil })
         end
       end
 
@@ -97,15 +98,15 @@ describe 'Assessments' do
         examples 'application/json' => {
           "code": 1000,
           "message": 'Invalid authentication',
-          "more_info": 'User for api token is disabled',
+          "more_info": 'User for api token is disabled'
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq ({
-            "code" => 1000,
-            "message" => 'Invalid authentication',
-            "more_info" => 'User for api token is disabled',
+            'code' => 1000,
+            'message' => 'Invalid authentication',
+            'more_info' => 'User for api token is disabled'
           })
         end
       end
@@ -119,16 +120,16 @@ describe 'Assessments' do
         examples 'application/json' => {
           "code": 1005,
           "message": 'Resource not found',
-          "more_info": 'User with id=111 is not found',
+          "more_info": 'User with id=111 is not found'
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1005,
-                                "message" => 'Resource not found',
-                                "more_info" => 'User with id=111 is not found',
-                              })
+          expect(error).to eq(
+            'code' => 1005,
+                                'message' => 'Resource not found',
+                                'more_info' => 'User with id=111 is not found'
+          )
         end
       end
     end
