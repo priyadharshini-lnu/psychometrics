@@ -116,9 +116,14 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   const [showConfirm, setShowConfirm] = useState(false)
   const accept = () => {
     acceptPolicy().then(() => {
-      location.href = assign.url
+      let { href, mindmillUrl } = assign.url
+
+      if (mindmill) { href = mindmillUrl }
+
+      location.href = href
     })
   }
+
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Link to={assign.status !== 'completed' ? assign.url : '#'}>
