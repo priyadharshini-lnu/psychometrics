@@ -8,6 +8,7 @@ import './styles.scss'
 import hogan from './hogan.png'
 import ContinueIcon from './ContinueIcon'
 import AssessmentIcon from './AssessmentIcon'
+import PrivacyModal from './PrivacyModal'
 
 const IN_PROGRESS = 'in_progress'
 
@@ -47,12 +48,22 @@ const ReportsMenu = reports => (
 )
 
 const renderButtonContent = ({
-  status, assignedReports,
-}, loginHogan) => {
+  status, assignedReports, needConfirm,
+}, setShowConfirm, loading, loginHogan) => {
+
+  const showPolicyConfirm = (e) => {
+    e.preventDefault()
+    if (needConfirm) {
+      setShowConfirm(true)
+    } else {
+      loginHogan()
+    }
+  }
+
   if (status === IN_PROGRESS) {
     return (
       <a href="#" onClick={loginHogan}>
-        <ContinueIcon />
+        {loading ? <Icon type="loading" /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
       </a>
@@ -86,8 +97,8 @@ const renderButtonContent = ({
     )
   }
   return (
-    <a href="#" onClick={loginHogan}>
-      <Icon type="play-circle" />
+    <a href="#" onClick={showPolicyConfirm}>
+      {loading ? <Icon type="loading" /> : <Icon type="play-circle" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -96,9 +107,11 @@ const renderButtonContent = ({
 
 export default function Hogan ({ campaign: assign, loginHogan }) {
   const [hoganData, setHoganData] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const onLoginHogan = (e) => {
     e.preventDefault()
+    setLoading(true)
     loginHogan(assign.hoganUrl).then((data) => {
       setHoganData(data.response)
     })
@@ -109,6 +122,16 @@ export default function Hogan ({ campaign: assign, loginHogan }) {
       form.submit()
     }
   }, [hoganData])
+
+
+  const accept = (e) => {
+    acceptPolicy().then(() => {
+      onLoginHogan(e)
+
+      loadAssessment(href)
+    })
+  }
+
 
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
@@ -151,12 +174,12 @@ export default function Hogan ({ campaign: assign, loginHogan }) {
             </Row>
             <div className="divider" />
             <div className="button">
-              {renderButtonContent(assign, onLoginHogan)}
+              {renderButtonContent(assign, setShowConfirm, loading, onLoginHogan)}
             </div>
           </div>
         </div>
       </Card>
-
+      {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
       {hoganData && (
         <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>
           <Input type="hidden" name="UserID" value={hoganData.userId} />

@@ -70,7 +70,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS) {
     return (
       <LinkTag>
-        <ContinueIcon />
+        {loading ? <Icon type="loading" /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
       </LinkTag>
@@ -98,7 +98,6 @@ const renderButtonContent = ({
     return (
       <a>
         <Icon type="check" />
-        {loading ? <Icon type="loading" /> : <Icon type="check" />}
         {' '}
         {I18n.t('threesixty.completed')}
       </a>
