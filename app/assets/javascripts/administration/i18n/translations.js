@@ -283,6 +283,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "library": {
         "created_at": "Created Date",
         "id": "ID",
@@ -485,10 +492,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -631,6 +639,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -648,6 +657,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -732,6 +744,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -1045,6 +1059,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -1062,6 +1077,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -2040,6 +2058,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Report's options",
           "view": "View Report"
         },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
+        },
         "toggle_status": {
           "successfully": "Report was successfully updated."
         },
@@ -2457,6 +2478,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -2682,6 +2706,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -2868,6 +2896,103 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -2988,6 +3113,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -3454,6 +3581,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
@@ -5493,6 +5623,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "continue": "Continue",
     "decline": "Decline",
@@ -5534,6 +5665,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "reports": "Reports",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -5886,6 +6018,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "library": {
         "created_at": "Created Date",
         "id": "ID",
@@ -6088,10 +6227,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -6234,6 +6374,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -6251,6 +6392,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -6335,6 +6479,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -6648,6 +6794,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -6665,6 +6812,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -7643,6 +7793,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Report's options",
           "view": "View Report"
         },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
+        },
         "toggle_status": {
           "successfully": "Report was successfully updated."
         },
@@ -8060,6 +8213,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -8285,6 +8441,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -8471,6 +8631,103 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -8591,6 +8848,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -9057,6 +9316,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
@@ -11100,6 +11362,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "continue": "Continue",
     "decline": "Decline",
@@ -11141,6 +11404,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "reports": "Reports",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -11493,6 +11757,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "library": {
         "created_at": "Created Date",
         "id": "ID",
@@ -11695,10 +11966,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -11841,6 +12113,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -11858,6 +12131,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -11942,6 +12218,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -12255,6 +12533,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -12272,6 +12551,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -13250,6 +13532,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Report's options",
           "view": "View Report"
         },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
+        },
         "toggle_status": {
           "successfully": "Report was successfully updated."
         },
@@ -13667,6 +13952,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -13892,6 +14180,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -14078,6 +14370,103 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -14198,6 +14587,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -14664,6 +15055,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
@@ -16703,6 +17097,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "continue": "Continue",
     "decline": "Decline",
@@ -16744,6 +17139,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "reports": "Reports",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",

@@ -5,5 +5,9 @@ module Threesixty
     def subject_id
       object.threesixty_subject.id
     end
+
+    def hash
+      UsersResult.encode_id(object.id)
+    end
   end
 end

@@ -1,8 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { Icon, Select, Table } from 'antd'
+import { Icon, Popconfirm, Table } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
+import { StatusSelect, RelationSelect } from '../List'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 
@@ -19,8 +20,7 @@ export default function List ({
   const updateParticipant = (id, attrs) => update(campaignId, id, attrs)
 
   const destroyEvaluation = (participantId, subjectId, evaluationId) => {
-    // eslint-disable-next-line no-alert
-    if (confirm('Are you sure?')) remove(campaignId, participantId, subjectId, evaluationId)
+    remove(campaignId, participantId, subjectId, evaluationId)
   }
 
   const canApproveEvaluations = () => {
@@ -58,16 +58,12 @@ export default function List ({
         title="Relationship"
         key="relationshipName"
         render={({ relationship, id }) => (
-          relationship.name === 'Self'
-            ? 'Self'
-            : (
-              <RelationSelect
-                id={id}
-                relationships={relationships}
-                onChange={updateParticipant}
-                currentRelationship={relationship}
-              />
-            )
+          <RelationSelect
+            id={id}
+            relationships={relationships}
+            onChange={updateParticipant}
+            currentRelationship={relationship}
+          />
         )}
       />
       {canApproveEvaluations() && (
@@ -81,7 +77,7 @@ export default function List ({
             id={id}
             name="managerEvaluationStatus"
             onChange={updateParticipant}
-            managerEvaluationStatus={managerEvaluationStatus}
+            status={managerEvaluationStatus}
           />
         )}
       />
@@ -112,43 +108,18 @@ export default function List ({
         render={({
           id, relationship, result, evaluator,
         }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
-          <Icon type="delete" onClick={() => destroyEvaluation(id, result.subjectId, evaluator.id)} />
+          <Popconfirm
+            placement="topRight"
+            title={I18n.t('threesixty.confirm')}
+            icon={<Icon type="warning" theme="twoTone" style={{ color: '#f55' }} />}
+            onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Icon type="delete" />
+          </Popconfirm>
         )}
       />
     </Table>
   )
 }
-
-const RelationSelect = ({
-  relationships, currentRelationship, onChange, id,
-}) => (
-  <Select
-    disabled={currentRelationship && currentRelationship.assignType === ASSIGN_TYPES.AUTOMATIC}
-    style={{ width: '100%' }}
-    value={currentRelationship && currentRelationship.id}
-    onChange={v => onChange(id, { relationshipId: v })}
-  >
-    {relationships.map(r => (
-      <Select.Option key={r.id} value={r.id} disabled={r.assignType === ASSIGN_TYPES.AUTOMATIC}>
-        {r.name}
-      </Select.Option>
-    ))}
-  </Select>
-)
-
-const StatusSelect = ({
-  availableStatuses, managerEvaluationStatus, onChange, id, name, disabled,
-}) => (
-  <Select
-    disabled={disabled}
-    style={{ width: '100%' }}
-    value={managerEvaluationStatus}
-    onChange={v => onChange(id, { [name]: v })}
-  >
-    {availableStatuses.map(status => (
-      <Select.Option key={status} value={status}>
-        {status}
-      </Select.Option>
-    ))}
-  </Select>
-)
