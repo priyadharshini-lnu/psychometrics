@@ -50,7 +50,7 @@ const ReportsMenu = reports => (
 
 const renderButtonContent = ({
   mindmill, mindmillUrl, url, status, assignedReports, needConfirm,
-}, setShowConfirm) => {
+}, setShowConfirm, loading, loadAssessment) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
@@ -59,7 +59,7 @@ const renderButtonContent = ({
     if (needConfirm) {
       setShowConfirm(true)
     } else {
-      location.href = href
+      loadAssessment(href)
     }
   }
 
@@ -98,6 +98,7 @@ const renderButtonContent = ({
     return (
       <a>
         <Icon type="check" />
+        {loading ? <Icon type="loading" /> : <Icon type="check" />}
         {' '}
         {I18n.t('threesixty.completed')}
       </a>
@@ -105,7 +106,7 @@ const renderButtonContent = ({
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
-      <Icon type="play-circle" />
+      {loading ? <Icon type="loading" /> : <Icon type="play-circle" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -114,14 +115,21 @@ const renderButtonContent = ({
 
 export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const accept = () => {
     acceptPolicy().then(() => {
       let { href, mindmillUrl } = assign.url
 
       if (mindmill) { href = mindmillUrl }
 
-      location.href = href
+      loadAssessment(href)
     })
+  }
+
+  const loadAssessment = (href) => {
+    setLoading(true)
+    location.href = href
   }
 
   return (
@@ -166,7 +174,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
               </Row>
               <div className="divider" />
               <div className="button">
-                {renderButtonContent(assign, setShowConfirm)}
+                {renderButtonContent(assign, setShowConfirm, loading, loadAssessment)}
               </div>
             </div>
           </div>
