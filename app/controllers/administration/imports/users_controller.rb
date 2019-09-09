@@ -18,7 +18,7 @@ module Administration
       end
 
       def init_import_class
-        @_resource_class ||= ::Imports::UserImport
+        @_resource_class ||= ::Imports::UserImport # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def pundit_authorize

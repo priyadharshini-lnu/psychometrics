@@ -68,7 +68,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Evaluator
+        @_resource_class ||= ::Threesixty::Evaluator # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def validate_and_add_evalutors(evaluators)

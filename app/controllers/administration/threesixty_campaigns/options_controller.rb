@@ -35,7 +35,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Option
+        @_resource_class ||= ::Threesixty::Option # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def form

@@ -87,7 +87,7 @@ module Administration
     end
 
     def set_resource_class
-      @_resource_class ||= Communication
+      @_resource_class ||= Communication # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs

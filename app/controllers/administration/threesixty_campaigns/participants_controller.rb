@@ -62,7 +62,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Participant
+        @_resource_class ||= ::Threesixty::Participant # rubocop:disable Naming/MemoizedInstanceVariableName
       end
     end
   end

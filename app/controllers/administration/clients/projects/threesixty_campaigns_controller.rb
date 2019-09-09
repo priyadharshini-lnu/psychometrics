@@ -87,7 +87,7 @@ module Administration
         end
 
         def set_resource_class
-          @_resource_class ||= ::Threesixty::Campaign
+          @_resource_class ||= ::Threesixty::Campaign # rubocop:disable Naming/MemoizedInstanceVariableName
         end
 
         def threesixty_campaign

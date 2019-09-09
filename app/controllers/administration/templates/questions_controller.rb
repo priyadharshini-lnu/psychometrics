@@ -101,7 +101,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= Question
+        @_resource_class ||= Question # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

@@ -60,7 +60,7 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= OccupationsFactor
+      @_resource_class ||= OccupationsFactor # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs

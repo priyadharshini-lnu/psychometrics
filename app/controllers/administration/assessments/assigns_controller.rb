@@ -122,7 +122,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Assign
+        @_resource_class ||= ::Assign # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_assessment

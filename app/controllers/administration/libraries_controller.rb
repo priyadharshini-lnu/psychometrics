@@ -80,7 +80,7 @@ module Administration
 
     # Set model
     def set_resource_class
-      @_resource_class ||= Library
+      @_resource_class ||= Library # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def set_resource

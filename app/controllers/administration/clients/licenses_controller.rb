@@ -50,7 +50,7 @@ module Administration
       private
 
       def set_resource_class
-        @_resource_class ||= License
+        @_resource_class ||= License # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

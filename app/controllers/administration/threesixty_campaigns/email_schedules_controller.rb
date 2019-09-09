@@ -43,7 +43,7 @@ module Administration
       private
 
       def set_resource_class
-        @_resource_class ||= ::Threesixty::EmailSchedule
+        @_resource_class ||= ::Threesixty::EmailSchedule # rubocop:disable Naming/MemoizedInstanceVariableName
       end
     end
   end

@@ -105,7 +105,7 @@ class Administration::NormsController < Administration::BaseController
   private
 
   def set_resource_class
-    @_resource_class ||= Norm
+    @_resource_class ||= Norm # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
   def init_breadcrumbs

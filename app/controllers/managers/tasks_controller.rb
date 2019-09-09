@@ -88,7 +88,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Task
+      @resource_class ||= Task # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user

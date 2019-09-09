@@ -60,7 +60,7 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= InnovationStylesFactor
+      @_resource_class ||= InnovationStylesFactor # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs

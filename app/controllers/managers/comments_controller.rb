@@ -18,7 +18,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Comment
+      @resource_class ||= Comment # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user

@@ -90,7 +90,7 @@ end
 
   # Set model
   def set_resource_class
-    @_resource_class ||= User
+    @_resource_class ||= User # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
   def create_resource_params

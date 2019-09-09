@@ -24,7 +24,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Membership
+      @resource_class ||= Membership # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user

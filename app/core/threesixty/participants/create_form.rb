@@ -92,8 +92,8 @@ module Threesixty
       end
 
       def nomination_requirement
-        @requirement ||= Threesixty::NominationRequirements::FindForUsers.
-                         call!(subject.user, threesixty_campaign)[subject.user_id]
+        @nomination_requirement ||= Threesixty::NominationRequirements::FindForUsers.
+                                    call!(subject.user, threesixty_campaign)[subject.user_id]
       end
 
       def has_nomination_requirement?

@@ -61,7 +61,7 @@ class Administration::ExamplesController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Dimension
+    @resource_class ||= Dimension # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
   def init_breadcrumbs

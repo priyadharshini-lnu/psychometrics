@@ -194,7 +194,7 @@ module Administration
       end
 
       def set_resource_class
-        @_resource_class ||= ::Membership
+        @_resource_class ||= ::Membership # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

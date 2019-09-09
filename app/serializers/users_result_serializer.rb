@@ -64,7 +64,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   private
 
   def campaign
-    @campaing ||= instance_options[:campaign]
+    @campaign ||= instance_options[:campaign]
   end
 
   def current_user

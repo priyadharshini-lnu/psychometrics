@@ -58,7 +58,7 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= Occupation
+      @_resource_class ||= Occupation # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs

@@ -20,9 +20,11 @@ module Administration
           params.require(:import).permit(:file, :client_id, :assessment_id, :scoring)
         end
 
+        # rubocop:disable Naming/MemoizedInstanceVariableName
         def init_import_class
           @_resource_class ||= ::Imports::Assessments::ResultImport
         end
+        # rubocop:enable Naming/MemoizedInstanceVariableName
 
         def pundit_authorize
           authorize :assign, :import?

@@ -87,7 +87,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= Assessment
+        @_resource_class ||= Assessment # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       # Authorisation user

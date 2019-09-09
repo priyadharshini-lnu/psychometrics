@@ -59,7 +59,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= Relationship
+        @_resource_class ||= Relationship # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def relationship

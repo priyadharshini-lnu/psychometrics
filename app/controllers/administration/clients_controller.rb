@@ -119,7 +119,7 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= Client
+      @_resource_class ||= Client # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs
