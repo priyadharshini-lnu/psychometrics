@@ -13,6 +13,7 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create
         init_assign_form
         @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids).distinct
@@ -46,6 +47,7 @@ module Administration
                       success: t('.successfully', name: @assessment.decorate.display_name))
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def form
         unless assign_params[:client_ids]

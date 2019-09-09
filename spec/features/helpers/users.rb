@@ -27,6 +27,7 @@ module Features
         end
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
         href = new_step_1_administration_client_project_admins_path(project)
@@ -59,7 +60,9 @@ module Features
           admin_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
+      # rubocop:disable Metrics/AbcSize
       def choose_project_admin(project, admin_membership)
         visit administration_client_projects_path(project.tte)
         href = new_administration_client_project_admin_path(project)
@@ -85,6 +88,7 @@ module Features
           new_admin_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def edit_user_privileges(client, membership)
         visit edit_administration_client_user_path(client, membership)
@@ -94,6 +98,7 @@ module Features
         click_on t('administration.update')
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create_user(client, opts = {})
         visit administration_client_users_path(client)
         click_link(t('administration.clients.users.index.new'), href: "/administration/clients/#{client.id}/users/new")
@@ -131,6 +136,7 @@ module Features
           user_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def follow_superadmin_invitation
         page.driver.browser.manage.delete_all_cookies

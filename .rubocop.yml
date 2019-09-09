@@ -18,6 +18,9 @@ Metrics/BlockNesting:
 Metrics/ClassLength:
   Max: 200
 
+Style/DoubleNegation:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
@@ -37,7 +40,7 @@ Style/Documentation:
 
 Metrics/AbcSize:
   Enabled: true
-  Max: 40
+  Max: 50
 
 Metrics/CyclomaticComplexity:
   Max: 10

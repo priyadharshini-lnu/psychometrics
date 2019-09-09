@@ -10,7 +10,7 @@ module Exports
         self.client = Client.find(client_id)
       end
 
-      # rubocop:disable Metrics/BlockLength
+      # rubocop:disable Metrics/BlockLength, Metrics/AbcSize
       def to_xlsx
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentNormedResults') do |sheet|
@@ -94,7 +94,7 @@ module Exports
           end
         end
       end
-      # rubocop:enable Metrics/BlockLength
+      # rubocop:enable Metrics/BlockLength, Metrics/AbcSize
 
       def current_level_assigns
         if client.project?
