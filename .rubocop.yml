@@ -32,6 +32,9 @@ Metrics/AbcSize:
   Enabled: true
   Max: 40
 
+Metrics/CyclomaticComplexity:
+  Max: 10
+
 Style/FormatString:
   Enabled: false
 

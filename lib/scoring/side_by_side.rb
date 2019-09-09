@@ -2,7 +2,6 @@
 
 module Scoring
   class SideBySide
-    # rubocop:disable Metrics/CyclomaticComplexity Metrics/PerceivedComplexity
     def calculate(_question, result, scoring_template)
       values = []
       options = []
@@ -26,6 +25,5 @@ module Scoring
       value = values.empty? ? nil : values.sum.to_f / values.size
       { value: value, options: options }
     end
-    # rubocop:enable Metrics/CyclomaticComplexity Metrics/PerceivedComplexity
   end
 end

@@ -22,6 +22,7 @@ module Api
           object[:value]
         end
 
+        # rubocop:disable Metrics/CyclomaticComplexity
         def stars
           return 0 if value.nil?
 
@@ -34,6 +35,7 @@ module Api
 
           0
         end
+        # rubocop:enable Metrics/CyclomaticComplexity
       end
     end
   end
