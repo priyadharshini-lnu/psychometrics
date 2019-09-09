@@ -15,6 +15,10 @@ Layout/DotPosition:
 Metrics/BlockNesting:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
 Layout/CaseIndentation:
   IndentOneStep: true
 

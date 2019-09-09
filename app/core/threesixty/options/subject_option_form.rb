@@ -42,9 +42,9 @@ module Threesixty
       attribute :limit_nomination_by_subject_to_anyone_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_from_datasheet_criteria, Boolean, default: []
 
-      validates *ALL_BOOLEAN_FIELDS,
+      validates(*ALL_BOOLEAN_FIELDS,
                 inclusion: { in: [true, false], message: "doesn't have a valid value" },
-                allow_nil: true
+                allow_nil: true)
 
       validate :validate_data_stream_fields
 
