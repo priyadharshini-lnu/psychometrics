@@ -49,7 +49,7 @@ module Imports
       # Parse file
       # Return array of new Users
       #
-      # rubocop:disable Metrics/CyclomaticComplexity
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
       def load_imported_items
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
@@ -147,7 +147,7 @@ module Imports
           else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
         end
       end
-      # rubocop:enable Metrics/CyclomaticComplexity
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 
       private
 
