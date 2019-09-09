@@ -76,4 +76,4 @@ deploy_review:
     url: https://review.tte-lighthouse.com
   when: manual
   only:
-  - develop-360
+  - develop
