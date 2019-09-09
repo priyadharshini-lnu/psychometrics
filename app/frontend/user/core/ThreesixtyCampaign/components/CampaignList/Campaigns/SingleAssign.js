@@ -116,22 +116,22 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
+  const loadAssessment = (href) => {
+    setLoading(true)
+    location.href = href
+  }
+
   const accept = () => {
     setShowConfirm(false)
     setLoading(true)
 
     acceptPolicy().then(() => {
-      let { href, mindmillUrl } = assign
+      const { href, mindmillUrl } = assign
 
       if (mindmill) { href = mindmillUrl }
 
       loadAssessment(href)
     })
-  }
-
-  const loadAssessment = (href) => {
-    setLoading(true)
-    location.href = href
   }
 
   return (

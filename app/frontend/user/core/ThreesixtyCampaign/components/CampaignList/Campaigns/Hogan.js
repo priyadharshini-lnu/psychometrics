@@ -50,7 +50,6 @@ const ReportsMenu = reports => (
 const renderButtonContent = ({
   status, assignedReports, needConfirm,
 }, setShowConfirm, loading, loginHogan) => {
-
   const showPolicyConfirm = (e) => {
     e.preventDefault()
     if (needConfirm) {
