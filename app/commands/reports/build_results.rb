@@ -17,10 +17,10 @@ module Reports
     end
 
     def call
-      broadcast :ok, report.flat_data_configuration.map { |data|
-                       CLASS_MAP[data['type'].to_sym].
-                         constantize.call(self, data)
-                     }
+      result = report.flat_data_configuration.map do |data|
+        CLASS_MAP[data['type'].to_sym].constantize.call(self, data)
+      end
+      broadcast :ok, result
     end
 
     def find_assign_by(assessment_id)

@@ -15,7 +15,7 @@ describe Threesixty::Emails::Send do
     expect do
       Threesixty::Emails::Send.call!('subject_report_ready',
                                      threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
-    end.to_not change { Threesixty::EmailSchedule.count }
+    end.to_not(change) { Threesixty::EmailSchedule.count }
   end
 
   it 'creates email_schedules record when condition_class evaluatues condition to be true' do

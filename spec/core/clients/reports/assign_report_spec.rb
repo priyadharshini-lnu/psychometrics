@@ -67,11 +67,11 @@ describe ::Clients::Reports::AssignReport do
       end
 
       it 'ClientsReport' do
-        expect { subject }.not_to change { campaign.reports.count }
+        expect { subject }.not_to(change) { campaign.reports.count }
       end
 
       it 'AssessmentsClient' do
-        expect { subject }.not_to change { campaign.assessments.count }
+        expect { subject }.not_to(change) { campaign.assessments.count }
       end
     end
   end

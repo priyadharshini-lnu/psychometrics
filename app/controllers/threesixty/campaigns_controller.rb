@@ -33,9 +33,9 @@ module Threesixty
           json = @single_assigns.map do |assign|
             ::EndUser::AssignSerializer.new(assign, reports_ids: @reports_ids).to_h
           end
-          json.concat threesixty_projects.map { |campaign|
+          json.concat(threesixty_projects.map do |campaign|
                         Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
-                      }
+                      end)
 
           render json: json
         end

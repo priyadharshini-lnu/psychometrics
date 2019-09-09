@@ -22,7 +22,7 @@ describe ::Clients::Reports::RemoveReport do
   context '#remove_reports_from_client' do
     it 'dont evoke if remove_report_ids is blank' do
       campaign
-      expect { subject }.not_to change { ClientsReport.count }
+      expect { subject }.not_to(change) { ClientsReport.count }
     end
     context 'passed removing_report_ids' do
       let(:removing_report_ids) { [report.id] }
