@@ -1,5 +1,5 @@
 Inspecting 1265 files
-............................................................C.........W.......W..W...........................CC..............W..W.WC..................C.........CC.C..........................................................................................................................W.................W.....C...................................W........C......W......................................C.............................................CCC..C......C.............C.......C...C.............C......................C.C..........W.......................W............................C................................C............................W.................................................................................................................C......................W..W...................................W.............................................................W................................................................................................................................................W.............................................................................................C.........................................................................................................................................
+............................................................C.........W.......W..W...........................CC..............W..W.WC..................C.........CC.C..........................................................................................................................W.................W.....C...................................W...............W......................................C.............................................CCC..C......C.............C.......C...C.............C......................C............W.......................W............................C................................C............................W........................................................................................................................................W..W...................................W.............................................................W................................................................................................................................................W.............................................................................................C.........................................................................................................................................
 
 Offenses:
 
@@ -75,9 +75,6 @@ app/models/product_price.rb:20:3: W: Lint/DuplicateMethods: Method ProductPrice#
 app/models/product_price.rb:24:3: W: Lint/DuplicateMethods: Method ProductPrice#cost is defined at both app/models/product_price.rb:16 and app/models/product_price.rb:24.
   def cost
   ^^^^^^^^
-app/models/assessment.rb:103:5: C: Style/CommentAnnotation: Annotation comment, with keyword TODO, is missing a note.
-  # TODO:
-    ^^^^^
 app/models/concerns/access_reportable.rb:8:3: W: Lint/DuplicateMethods: Method AccessReportable#access_reports is defined at both app/models/concerns/access_reportable.rb:6 and app/models/concerns/access_reportable.rb:8.
   def access_reports
   ^^^^^^^^^^^^^^^^^^
@@ -126,9 +123,6 @@ app/commands/reports/result_types/ranked_occupations.rb:24:11: C: Naming/Accesso
 app/commands/reports/result_types/ranked_occupations.rb:37:11: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
       def get_occupation_from_db
           ^^^^^^^^^^^^^^^^^^^^^^
-app/commands/reports/result_types/normed_factor.rb:25:11: C: Style/CommentAnnotation: Annotation comment, with keyword TODO, is missing a note.
-        # TODO:
-          ^^^^^
 app/jobs/bulk_reports/export_job.rb:48:22: C: Security/Open: The use of Kernel#open is a serious security risk.
       IO.copy_stream(open(url.to_s), output)
                      ^^^^
@@ -138,13 +132,7 @@ app/jobs/bulk_reports/export_job.rb:49:5: W: Lint/HandleExceptions: Do not suppr
 app/controllers/ecommerce/orders_controller.rb:37:35: W: Lint/SafeNavigationChain: Do not chain ordinary method call after safe navigation operator.
         purchase&.product&.reports.each do |report|
                                   ^^^^^
-app/controllers/api/v1/base_controller.rb:37:15: C: Style/IdenticalConditionalBranches: Move p out of the conditional.
-              p
-              ^
-app/controllers/api/v1/base_controller.rb:47:15: C: Style/IdenticalConditionalBranches: Move p out of the conditional.
-              p
-              ^
-app/controllers/api/v1/base_controller.rb:60:24: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+app/controllers/api/v1/base_controller.rb:59:24: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
       def render_error(e)
                        ^
 app/controllers/administration/threesixty_campaigns/base_controller.rb:17:32: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
@@ -153,9 +141,6 @@ app/controllers/administration/threesixty_campaigns/base_controller.rb:17:32: C:
 app/controllers/administration/users_controller.rb:82:1: W: Layout/DefEndAlignment: end at 82, 0 is not aligned with def at 73, 2.
 end
 ^^^
-config/initializers/money.rb:52:32: C: Style/AsciiComments: Use only ascii symbols in comments.
-  #   :symbol              => "€",
-                               ^
 spec/core/threesixty/participants/create_form_spec.rb:14:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
   let (:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
      ^
@@ -181,4 +166,4 @@ lib/exports/reports/pdf/external_report_export.rb:40:30: C: Security/Open: The u
               IO.copy_stream(open(url.to_s), output_path)
                              ^^^^
 
-1265 files inspected, 59 offenses detected
+1265 files inspected, 54 offenses detected

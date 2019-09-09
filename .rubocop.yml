@@ -59,6 +59,9 @@ Style/FormatString:
 Style/GuardClause:
   Enabled: false
 
+Style/AsciiComments:
+  Enabled: false
+
 # using baby_squeel assumes multi blocks
 Style/MultilineBlockChain:
   Enabled: false

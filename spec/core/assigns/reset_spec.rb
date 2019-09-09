@@ -48,7 +48,7 @@ describe Assigns::Reset do
 
   it 'reset assign report data if assessment is completed' do
     expect { subject }.to(change { assign.assigns_reports.first.pdf_identifier }.from('test.pdf').to(nil).
-      and change { assign.assigns_reports.first.generating }.from(true).to(false))
+      and(change { assign.assigns_reports.first.generating }.from(true).to(false)))
   end
 
   it 'dont reset assign report data if assessment is NOT completed' do
