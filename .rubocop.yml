@@ -18,6 +18,10 @@ Metrics/BlockNesting:
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
+    - "lib/tasks/**/*"
+    - "config/environments/**/*"
+    - "config/routes.rb"
+    - "config/initializers/simple_form_bootstrap.rb"
 
 Layout/CaseIndentation:
   IndentOneStep: true

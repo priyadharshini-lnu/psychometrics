@@ -64,7 +64,7 @@ module Imports
                     where.has { |q| q.block.assessment_id == assessment_id }.
                     ordering { [block.position.asc, position.asc] }.
                     group_by(&:id)
-
+        # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
           data = Hash[header.zip(row)]
           # Try to find assign by encoded id
@@ -133,6 +133,7 @@ module Imports
           end
           assign
         end
+      # rubocop:enable Metrics/BlockLength
 
       # Pick up error when header has invalid format
       rescue Roo::HeaderRowNotFoundError

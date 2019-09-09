@@ -19,6 +19,7 @@ module Builders
       @trash = params[:trash].map(&:permit!)
     end
 
+    # rubocop:disable Metrics/BlockLength
     def save
       ActiveRecord::Base.transaction do
         @assessment.update(@assessment_params.slice(:flow, :norm_rules, :enable_back, :enable_progress))
@@ -59,5 +60,6 @@ module Builders
       end
       true
     end
+    # rubocop:enable Metrics/BlockLength
   end
 end

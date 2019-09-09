@@ -7,6 +7,7 @@ module Threesixty
         @threesixty_campaign = threesixty_campaign
       end
 
+      # rubocop:disable Metrics/BlockLength
       def call
         main_package = Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'CompletionStatus') do |sheet|
@@ -55,6 +56,7 @@ module Threesixty
         end
         broadcast :ok, main_package
       end
+      # rubocop:enable Metrics/BlockLength
 
       def get_status(participant)
         return :not_started if participant.result_status == 0 || !participant.result_status

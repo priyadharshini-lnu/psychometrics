@@ -10,6 +10,7 @@ module Reports
         nil
       end
 
+      # rubocop:disable Metrics/BlockLength
       action :change_filters do |data, _current_user, report|
         map_filters = report.filters.all.group_by(&:id)
         new_ids     = data['filters'].map { |f| f['id'] }
@@ -41,6 +42,7 @@ module Reports
           ::Reports::FilterSerializer.new(filter).to_hash
         end
       end
+      # rubocop:enable Metrics/BlockLength
 
       action :change_aliases do |data, _current_user, report|
         ActiveRecord::Base.transaction do

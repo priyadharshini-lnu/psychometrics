@@ -2,7 +2,7 @@
 
 module UserScopes
   extend ActiveSupport::Concern
-
+  # rubocop:disable Metrics/BlockLength
   included do
     scope :enabled, -> { where.not(disabled: true) }
     scope :identified, -> { where(is_anonym: false) }
@@ -70,4 +70,5 @@ module UserScopes
       end
     }
   end
+  # rubocop:enable Metrics/BlockLength
 end

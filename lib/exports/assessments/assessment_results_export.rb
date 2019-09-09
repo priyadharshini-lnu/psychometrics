@@ -24,6 +24,7 @@ module Exports
       end
 
       # TODO: (atanych): should be refactored
+      # rubocop:disable Metrics/BlockLength
       def to_xlsx_common
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
@@ -83,6 +84,7 @@ module Exports
           end
         end
       end
+      # rubocop:enable Metrics/BlockLength
 
       def current_level_assigns
         client = Client.find(@client_id)

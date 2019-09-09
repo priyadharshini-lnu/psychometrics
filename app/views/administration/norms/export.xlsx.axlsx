@@ -2,6 +2,7 @@
 
 xlsx_package.use_shared_strings = true
 wb = xlsx_package.workbook
+# rubocop:disable Metrics/BlockLength
 FactorsNorm::NORM_TYPES.each do |type|
   styles = wb.styles
   text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: :center }, b: true
@@ -43,3 +44,4 @@ FactorsNorm::NORM_TYPES.each do |type|
     sheet.merge_cells 'K3:L3'
   end
 end
+# rubocop:enable Metrics/BlockLength
