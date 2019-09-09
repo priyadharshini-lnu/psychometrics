@@ -68,11 +68,13 @@ module Administration
                              where(assessment_id: assessment_ids).
                              pluck(:hogan_assessment_id).
                              uniq
-      @reports = hogan_assessment_ids ?
+      @reports = if hogan_assessment_ids
                    Settings.providers.hogan.reports.select do |report|
                      report[:assessment_ids].to_set == hogan_assessment_ids.to_set
-                   end :
+                   end
+                 else
                    []
+                 end
       respond_to do |format|
         format.json
       end

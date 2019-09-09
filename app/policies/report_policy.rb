@@ -15,8 +15,10 @@ class ReportPolicy < BasePolicy
   end
 
   def export?
-    @current_project.end_level? ?
-      @current_membership.reports.exists?(id: @record.id) :
+    if @current_project.end_level?
+      @current_membership.reports.exists?(id: @record.id)
+    else
       @current_membership.clients_reports.exists?(id: @record.id)
+    end
   end
 end

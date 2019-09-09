@@ -137,6 +137,7 @@ module Exports
         norm = Norm.find(norm_data['id'])
         "#{norm.name}:#{norm_data['type']}"
       rescue ActiveRecord::RecordNotFound
+        Rails.logger.error("Norm #{norm_data['id']} is not found")
       end
     end
   end

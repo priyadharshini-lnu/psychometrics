@@ -49,7 +49,7 @@ module Administration
 
       def apply_assigned_assessments(client)
         client.assessment_ids.each do |assessment_id|
-          assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
+          membership.assigns.find_or_create_by(assessment_id: assessment_id)
         end
       end
 

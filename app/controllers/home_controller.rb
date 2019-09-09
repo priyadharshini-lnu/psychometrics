@@ -35,7 +35,7 @@ class HomeController < ApplicationController
     uri = URI.parse session[:sso]['return_url']
     uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) if uri.query
     redirect_to uri.to_s
-  rescue URI::InvalidURIError => e
+  rescue URI::InvalidURIError
     redirect_to(root_path)
   end
 end

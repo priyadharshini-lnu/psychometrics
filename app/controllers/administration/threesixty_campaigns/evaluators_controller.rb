@@ -84,7 +84,7 @@ module Administration
 
       def evalutors_from_csv(file_path)
         csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
-        subjects = csv.map { |row| row.to_h.symbolize_keys }
+        csv.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

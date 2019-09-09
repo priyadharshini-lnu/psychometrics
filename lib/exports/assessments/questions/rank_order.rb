@@ -14,8 +14,7 @@ module Exports
         def self.result(answers, question, _scoring = false)
           increase = %w[TextBox].include?(question.props['type']) ? 0 : 1
           answers = (answers || []).sort_by { |a| a['index'] }.map do |a|
-            a['value'].
-              is_a?(Numeric) ? a['value'] + increase : ''
+            a['value'].is_a?(Numeric) ? a['value'] + increase : ''
           end
           required_size = header(question).size
           Utility::Array.ensure_size(answers, required_size)

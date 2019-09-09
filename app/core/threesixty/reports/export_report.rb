@@ -64,9 +64,12 @@ module Threesixty
           format: :pdf
         }
 
-        @url = current_user.is?(:superadmin, :client_admin, :project_admin) ?
-               build_administration_url(params) :
-               build_user_url(params)
+        @url =
+          if current_user.is?(:superadmin, :client_admin, :project_admin)
+            build_administration_url(params)
+          else
+            build_user_url(params)
+          end
       end
 
       # Builds URL for Administration side

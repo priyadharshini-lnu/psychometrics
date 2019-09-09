@@ -22,7 +22,7 @@ FactorsNorm::NORM_TYPES.each do |type|
     end
     sheet.add_row
     sheet.add_row
-    a = sheet.add_row ['factor', 'sub-factor'] + resource.decorate.xls_levels_row, style: text_center_bold
+    sheet.add_row ['factor', 'sub-factor'] + resource.decorate.xls_levels_row, style: text_center_bold
     sheet.merge_cells "C#{sheet.rows.size}:D#{sheet.rows.size}"
     sheet.merge_cells "E#{sheet.rows.size}:F#{sheet.rows.size}"
     sheet.merge_cells "G#{sheet.rows.size}:H#{sheet.rows.size}"

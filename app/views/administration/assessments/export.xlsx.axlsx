@@ -4,7 +4,7 @@ xlsx_package.use_shared_strings = true
 wb = xlsx_package.workbook
 styles = wb.styles
 text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: :center }, b: true
-text_wrap = styles.add_style alignment: { wrap_text: true }
+styles.add_style alignment: { wrap_text: true }
 
 factors = resource.factors.where('factors_scoring.props->>0 is not null').order(:name).distinct
 questions = resource.questions.includes(factors_scorings_with_props: :factor).

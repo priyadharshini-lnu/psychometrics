@@ -13,8 +13,12 @@ module Ecommerce
 
     def current_currency
       @current_currency ||= begin
-        currency = cookies[:currency] && Settings.currencies.
-          include?(cookies[:currency]) ? cookies[:currency] : Settings.default_currency
+        currency =
+          if cookies[:currency] && Settings.currencies.include?(cookies[:currency])
+            cookies[:currency]
+          else
+            Settings.default_currency
+          end
         Money::Currency.find(currency)
       end
     end
