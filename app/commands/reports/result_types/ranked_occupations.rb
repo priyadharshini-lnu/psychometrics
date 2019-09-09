@@ -27,7 +27,7 @@ module Reports
         sorted_occupations.reverse! if data['order'] == 'desc'
 
         # Gets occupation
-        @ranked_occupation = sorted_occupations.at(data['position']) || {}
+        @ranked_occupation = sorted_occupations.at(data['position']-1) || {}
       end
 
       # Gets occupations from DB and groups it by ID

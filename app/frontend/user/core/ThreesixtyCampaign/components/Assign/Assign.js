@@ -34,7 +34,6 @@ export default function Assign ({
     fetchAssessment(params.assignId, edit)
   }, [])
   // TODO: Fix by creating a setting for list of rtl languages
-  const languageDir = selectedLanguage && selectedLanguage.code === 'ar' ? 'rtl' : 'ltr'
   return (
     <Layout>
       <Content className="fluid-container">
@@ -65,7 +64,7 @@ export default function Assign ({
               </Col>
             </Row>
           )}
-          <div className={cs('evaluation-container', languageDir)}>
+          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
             {!error && (
               <div
                 id="pass_assessment"

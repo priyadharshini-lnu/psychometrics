@@ -5,7 +5,7 @@ module EndUser
                :assessment_name, :questions_count, :timing, :mindmill, :hogan
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
-    attribute :need_confirm, if: -> { !object.assessment.hogan? }
+    attribute :need_confirm
 
     def url
       pass_assign_path(object)

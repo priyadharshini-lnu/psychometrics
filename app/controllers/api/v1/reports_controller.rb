@@ -26,6 +26,7 @@ module Api
         # TODO (atanych): we might fetch N different assigns_reports for different campaigns with one project and report id
         # TODO (atanych): How to handle it???
         assigns_report = report.assigns_reports.joins(:assign).find_by(assigns: { membership_id: membership_ids})
+        raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless assigns_report
         # TODO (atanych): we should think through report statuses
         render json: { url: assigns_report.pdf&.url, status: assigns_report.status }
       end
@@ -33,7 +34,7 @@ module Api
       def report
         @report ||=
           begin
-            r = project.reports.find_by(id: params[:id])
+            r = Report.enabled.find_by(id: params[:id])
             raise Errors::Api::ResourceNotFoundError, "Report with id=#{params[:id]} is not found" unless r
             # TODO (atanych): report should be directly checked with user membership
             r

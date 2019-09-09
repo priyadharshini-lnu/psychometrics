@@ -67,7 +67,8 @@ class AssignSerializer < ActiveModel::Serializer
     locale = object.selected_locale || I18n.default_locale
     {
       code: locale,
-      name: I18n.t("languages.#{locale}")
+      name: I18n.t("languages.#{locale}"),
+      direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
     }
   end
 
