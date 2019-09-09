@@ -17,7 +17,8 @@ module Users
     end
 
     def gen_url
-      URI("#{Settings.protocol || 'http'}://#{project.subdomain}.#{Settings.domain}:#{Settings.port}/sso/#{user.id}/#{token}").to_s
+      protocol = Settings.protocol || 'http'
+      URI("#{protocol}://#{project.subdomain}.#{Settings.domain}:#{Settings.port}/sso/#{user.id}/#{token}").to_s
     end
 
     def token

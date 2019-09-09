@@ -39,7 +39,9 @@ module Api
               memberships = current_user.memberships
               project_ids = memberships.select(&:project_admin?).map(&:client_id)
               client_ids  = memberships.select(&:client_admin?).map(&:client_id)
-              p           = Client.projects.where.has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
+              p           = Client.projects.
+                            where.
+                            has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
               raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
 
               p

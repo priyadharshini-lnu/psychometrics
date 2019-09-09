@@ -39,6 +39,8 @@ class CommunicationEmailMailer < ApplicationMailer
       @recipient.user.send(:generate_invitation_token!)
       @recipient.user.update_column(:invitation_sent_at, DateTime.current)
     end
-    Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(@recipient.user.encrypted_invitation_raw)
+    Rails.application.
+      message_verifier(Rails.application.secrets.secret_token_for_generate).
+      verify(@recipient.user.encrypted_invitation_raw)
   end
 end

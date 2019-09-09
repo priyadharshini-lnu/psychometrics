@@ -19,7 +19,8 @@ module Threesixty
           actual_by_options(object.option).
           count
       else
-        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).where('subject_id != evaluator_id').count
+        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).
+          where('subject_id != evaluator_id').count
       end
     end
 

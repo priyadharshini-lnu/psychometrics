@@ -7,13 +7,17 @@ text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: 
 text_wrap = styles.add_style alignment: { wrap_text: true }
 
 factors = resource.factors.where('factors_scoring.props->>0 is not null').order(:name).distinct
-questions = resource.questions.includes(factors_scorings_with_props: :factor).where("questions.props-> 'choices' is not null")
+questions = resource.questions.includes(factors_scorings_with_props: :factor).
+            where("questions.props-> 'choices' is not null")
 tail_cells = Array.new(factors.size + 1)
 
 wb.add_worksheet(name: resource.name.to_s) do |sheet|
   sheet.add_row ['Question Name', 'Question text', 'Answers'] + factors.map(&:name), style: text_center_bold
   questions.each do |question|
-    sheet.add_row [question.name, Nokogiri::HTML(question.props['questionText']).text.delete("\n").gsub(/<!--.*-->/, '')] + tail_cells
+    sheet.add_row [
+      question.name,
+      Nokogiri::HTML(question.props['questionText']).text.delete("\n").gsub(/<!--.*-->/, '')
+    ] + tail_cells
 
     factors_hash = {}
     factors_hash.tap do |h|
@@ -28,7 +32,8 @@ wb.add_worksheet(name: resource.name.to_s) do |sheet|
       sheet.rows[row_index + i].cells[2].value = answer
 
       if factors_hash[i]
-        sheet.rows[row_index + i].cells[factors.ids.index(factors_hash[i][:factor_id]) + 3].value = factors_hash[i][:value]
+        sheet.rows[row_index + i].
+          cells[factors.ids.index(factors_hash[i][:factor_id]) + 3].value = factors_hash[i][:value]
       end
     end
   end

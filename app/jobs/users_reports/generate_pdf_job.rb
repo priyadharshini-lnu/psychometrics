@@ -23,7 +23,8 @@ module UsersReports
     # Generates PDF file and placed it into TMP folder
     #
     def generate_report
-      @pdf_file = ::Exports::Reports::Pdf::ReportExport.export(current_user, report, user, project, users_report: users_report, lang: report.default_language)
+      @pdf_file = ::Exports::Reports::Pdf::ReportExport.
+                  export(current_user, report, user, project, users_report: users_report, lang: report.default_language)
     end
 
     # Uploads PDF file to AssignsReport

@@ -50,7 +50,8 @@ class Membership < ApplicationRecord
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
-  has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
+  has_many :communication_emails,
+           inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
   has_many :orders, inverse_of: :membership, class_name: 'Ecommerce::Order' # on delete cascade
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
@@ -63,7 +64,8 @@ class Membership < ApplicationRecord
   has_many :privacy_consents
 
   has_many :reports_accesses
-  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) }, through: :reports_accesses, source: :report
+  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) },
+           through: :reports_accesses, source: :report
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: %i[user_id role] }
@@ -87,11 +89,25 @@ class Membership < ApplicationRecord
   scope :member_or_manager, -> { where(role: %i[member manager]) }
 
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
-    joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
+    joining do
+      assigns.on(assigns.membership_id.eq(id) &
+                   assigns.assessment_id.eq(assessment_id) &
+                   assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]]))
+    end .
       where.has { |m| m.client_id.eq(client_id) }
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.disabled, user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
+    joining { user }.selecting do
+      [
+        'memberships.*',
+        user.disabled,
+        user.first_name,
+        user.last_name,
+        user.email,
+        user.role.as('user_role'),
+        user.is_anonym
+      ]
+    end
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
@@ -206,7 +222,8 @@ class Membership < ApplicationRecord
 
   def create_other_emails
     communications = Communication.other.where(end_level_id: client.path_ids)
-    communications = communications.send_now.or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
+    communications = communications.send_now.
+                     or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
     communications.find_each(batch_size: 100) do |communication|
       communication.emails.create(membership_id: id) if communication.selected_memberships_ids.include?(id)
     end

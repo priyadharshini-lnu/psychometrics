@@ -21,7 +21,8 @@ module Assessments
     def factors
       factors_scoring = object.factors_scoring.group_by(&:factor_id)
       object.dimension.all_factors.map do |factor|
-        Assessments::FactorSerializer.new(factor, assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []).to_hash
+        Assessments::FactorSerializer.
+          new(factor, assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []).to_hash
       end
     end
 
@@ -42,7 +43,8 @@ module Assessments
     end
 
     def connected_campaign
-      @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
+      @connected_campaign ||= Campaign.
+                              joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
     end
   end
 end

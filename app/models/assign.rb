@@ -108,7 +108,8 @@ class Assign < ApplicationRecord
   # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map
   #
   # 2 step:
-  # Generate hash from questions related with FactorsScoring: {question_id: [Question], question_id: [Question]} - questions_map
+  # Generate hash from questions related with FactorsScoring:
+  # {question_id: [Question], question_id: [Question]} - questions_map
   #
   # 3 step:
   # Run through hash #1:
@@ -146,9 +147,13 @@ class Assign < ApplicationRecord
         # type 'PickGroupRank' is used for agile methodology
         # for common scoring we need to skip this type
         if question.try(:type) == 'PickGroupRank'
-          self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
+          if scoring_point
+            self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
+          end
         else
-          self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
+          if scoring_point
+            self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
+          end
         end
       end
     end
@@ -161,14 +166,18 @@ class Assign < ApplicationRecord
         Notification.create(
           assessment_id: assessment_id,
           membership_id: membership_id,
-          text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          text: I18n.t('assigns.notifications.in_progress',
+                       user_name: user.decorate.display_name,
+                       assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
           assessment_id: assessment_id,
           membership_id: membership_id,
-          text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          text: I18n.t('assigns.notifications.completed',
+                       user_name: user.decorate.display_name,
+                       assessment_name: assessment.name)
         )
       end
     end
@@ -229,7 +238,8 @@ class Assign < ApplicationRecord
   end
 
   def clear_project_assign
-    return if project_assign.nil? || project_membership.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
+    return if project_assign.nil? || project_membership.clients_assigns.pluck('assigns.assessment_id').
+              include?(assessment_id)
 
     project_assign.destroy!
   end
@@ -239,7 +249,9 @@ class Assign < ApplicationRecord
   end
 
   def relevant_reports
-    errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
+    if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
+      errors.add(:reports)
+    end
   end
 
   class << self

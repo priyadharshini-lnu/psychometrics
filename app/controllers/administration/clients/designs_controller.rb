@@ -10,7 +10,8 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:subdomain, :logo, :background, :background_color, :remove_background, :remove_logo)
+        params.require(:resource).permit(:subdomain, :logo, :background, :background_color,
+                                         :remove_background, :remove_logo)
       end
     end
   end

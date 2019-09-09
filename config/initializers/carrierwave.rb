@@ -19,8 +19,12 @@ else
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
     config.use_action_status = true
-    config.asset_host = Settings.file_host.present? ?
-      "#{Settings.protocol}://#{Settings.file_host}" :
-      "#{Settings.protocol}://#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
+    config.asset_host =
+      if Settings.file_host.present?
+        "#{Settings.protocol}://#{Settings.file_host}"
+      else
+        domain = "#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
+        "#{Settings.protocol}://#{domain}"
+      end
   end
 end

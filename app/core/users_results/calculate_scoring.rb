@@ -5,7 +5,8 @@
 # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map
 #
 # 2 step:
-# Generate hash from questions related with FactorsScoring: {question_id: [Question], question_id: [Question]} - questions_map
+# Generate hash from questions related with FactorsScoring: {question_id: [Question],
+# question_id: [Question]} - questions_map
 #
 # 3 step:
 # Run through hash #1:

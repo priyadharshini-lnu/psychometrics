@@ -43,7 +43,8 @@ module Administration
       end
 
       def create
-        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
+        Memberships::CreateAdminCommand.
+          call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
             self.resource = res
@@ -73,7 +74,9 @@ module Administration
         respond_to do |format|
           if resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully', name: resource.user.decorate.display_name))
+              redirect_to({ action: :edit, id: resource },
+                          success: t('administration.memberships.update.successfully',
+                                     name: resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }

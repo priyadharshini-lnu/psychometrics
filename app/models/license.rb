@@ -35,7 +35,11 @@ class License < ApplicationRecord
     where(report_family_id: report_family_id)
   }
   scope :active, -> { where(disabled: false) }
-  scope :available, -> { active.where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
+  scope :available, lambda {
+                      active.
+                        where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
+                              date: Date.today)
+                    }
 
   enum type: { common: 0, threesixty: 1 }, _prefix: :type
 

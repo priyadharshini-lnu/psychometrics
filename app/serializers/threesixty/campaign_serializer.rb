@@ -15,7 +15,8 @@ module Threesixty
       return [] unless instance_options[:managed_subjects]
 
       instance_options[:managed_subjects].map do |subject|
-        data = ::Threesixty::EndUser::ManagedSubjectSerializer.new(subject, scope: current_user, scope_name: :current_user).
+        data = ::Threesixty::EndUser::ManagedSubjectSerializer.
+               new(subject, scope: current_user, scope_name: :current_user).
                to_hash(include: '**')
         data[:evaluators].present? ? data : nil
       end.compact
@@ -24,7 +25,8 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nomination_users).count { |_, v| v }
+        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.
+          call!(object, nomination_users).count { |_, v| v }
       }
     end
 
@@ -82,11 +84,14 @@ module Threesixty
     end
 
     def nominations
-      is_nomination_complete_hash = Threesixty::Subjects::IsNominationRequirementComplete.call!(object.campaign.threesixty_campaign, nomination_users)
+      is_nomination_complete_hash = Threesixty::Subjects::IsNominationRequirementComplete.
+                                    call!(object.campaign.threesixty_campaign, nomination_users)
 
       nomination_subjects.map do |subject|
         Threesixty::EndUser::CampaignNomineeSerializer.
-          new(subject, current_user: current_user, is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
+          new(subject,
+              current_user: current_user,
+              is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
           to_hash
       end
     end

@@ -42,7 +42,9 @@ module UsersResults
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
         if users_result.campaign.threesixty?
-          participant = @threesixty_campaign.participants.find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
+          participant = @threesixty_campaign.
+                        participants.
+                        find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
           participant.update_attributes(evaluator_nomination_status: :completed)
           if participant.relationship_id == Relationship.manager_relationship.id
             participant.update_attributes(manager_evaluation_status: :approved)
@@ -72,9 +74,15 @@ module UsersResults
 
     def send_necessary_emails
       subject = users_result.threesixty_subject
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::MANAGER_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_REPORT, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(
+        Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject
+      )
+      Threesixty::Emails::Send.call!(
+        Threesixty::Emails::Name::MANAGER_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject
+      )
+      Threesixty::Emails::Send.call!(
+        Threesixty::Emails::Name::APPROVE_REPORT, threesixty_campaign: threesixty_campaign, subject: subject
+      )
     end
   end
 end

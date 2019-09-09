@@ -20,13 +20,18 @@ module Reports
         data['filters'].each do |filter|
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
+            db_filter.update_attributes(
+              conditions: filter['conditions'],
+              name: filter['name'], assessment_id: filter['assessment_id']
+            )
           else
-            report.filters.create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
+            report.filters.
+              create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
           end
         end
         # clear unused filter from all modules
-        Reports::Module.joins(:page).where(reports_pages: { report_id: report.id }).where("reports_modules.props ->> 'filter' is not null").each do |r|
+        Reports::Module.joins(:page).where(reports_pages: { report_id: report.id }).
+          where("reports_modules.props ->> 'filter' is not null").each do |r|
           if r.props['filter']&.is_a?(Array)
             r.props['filter'] = r.props['filter'] - removed_ids
             r.save

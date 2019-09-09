@@ -153,7 +153,9 @@ class Assessment < ApplicationRecord
     end
 
     def options_for_select
-      all.map { |assessment| [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }] }
+      all.map do |assessment|
+        [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }]
+      end
     end
   end
 

@@ -13,7 +13,9 @@ module Administration
         @_filter_form = policy_scope(resource_class).search(params[:q])
         @_resources = filter_form.
                       result.
-                      joining { |a| a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id)) }.
+                      joining do |a|
+                        a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id))
+                      end .
                       joining { assessment }.
                       selecting do
                         ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
@@ -34,7 +36,12 @@ module Administration
       def init_breadcrumbs
         client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        unless client.project_level?
+          add_breadcrumb(
+            client.project.decorate.display_name,
+            administration_client_project_campaigns_path(client.client, client.project)
+          )
+        end
         add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
         add_breadcrumb I18n.t('administration.breadcrumbs.statistics'), action: :index
       end

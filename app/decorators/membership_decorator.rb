@@ -9,7 +9,9 @@ class MembershipDecorator < BaseDecorator
 
   def role_name
     role = h.t("activerecord.attributes.membership.roles.#{object.role.demodulize.underscore}")
-    role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}") if object.user.is?(:superadmin)
+    if object.user.is?(:superadmin)
+      role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}")
+    end
     role
   end
 
@@ -30,14 +32,18 @@ class MembershipDecorator < BaseDecorator
 
   def delete_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
+      title: I18n.t('administration.users.resource.confirmations.membership.delete.title',
+                    name: display_name,
+                    client_name: context[:client_name]),
       body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
 
   def detach_from_project_confirmation
     {
-      title: I18n.t('administration.projects.users.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+      title: I18n.t('administration.projects.users.confirmations.detach_from_project.title',
+                    name: display_name,
+                    project_name: context[:project_name]),
       body: I18n.t('administration.projects.users.confirmations.detach_from_project.body')
     }.to_json
   end

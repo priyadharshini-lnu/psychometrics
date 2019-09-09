@@ -43,7 +43,8 @@ module Administration
       end
 
       def create
-        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
+        Memberships::CreateAdminCommand.
+          call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
             self.resource = res
@@ -54,7 +55,8 @@ module Administration
       def assign_multiple
         return unless client.project?
 
-        if client.update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
+        if client.
+           update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
           render :create
         else
           render :error, locals: { message: client.errors.full_messages.join('<br>') }
@@ -73,7 +75,8 @@ module Administration
         respond_to do |format|
           if resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully', name: resource.user.decorate.display_name))
+              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully',
+                                                                      name: resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -132,8 +135,18 @@ module Administration
         client_root_breadcrumb
         unless client.retail?
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
-          add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
+          if client.has_children? || client.subtenancy?
+            add_breadcrumb(
+              client.project.decorate.display_name,
+              administration_client_project_campaigns_path(client.client, client.project)
+            )
+          end
+          if client.sub_campaign?
+            add_breadcrumb(
+              client.parent.decorate.display_name,
+              administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent)
+            )
+          end
         end
         add_breadcrumb client.decorate.display_name, action: :index if client.end_level?
       end

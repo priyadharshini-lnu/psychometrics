@@ -50,8 +50,10 @@ class Question < ApplicationRecord
        coalesce(template.props, props).as('props'),
        coalesce(template.type, type).as('type'),
        coalesce(template.name, name).as('name'),
-       '(CASE WHEN templates_questions.id IS NOT NULL THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
-       '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition']
+       '(CASE WHEN templates_questions.id IS NOT NULL
+ THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
+       '(CASE WHEN blocks.template_id IS NOT NULL
+ THEN templates_questions.position ELSE questions.position END) AS reposition']
     end .
       joining { template.outer }.
       joining { block }.
@@ -124,7 +126,9 @@ class Question < ApplicationRecord
 
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
-      assessment.blocks.create!(name: name) if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
+      if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
+        assessment.blocks.create!(name: name)
+      end
       dup_for_assessment!(assessment.blocks.last.id)
     end
   end

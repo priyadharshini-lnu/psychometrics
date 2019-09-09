@@ -70,7 +70,9 @@ class Block < ApplicationRecord
 
   # Create duplicate Block Center Object for Assessment
   def dup_for_assessment!(assessment_id)
-    block = self.class.create(general_attributes.merge(view: :assessments, assessment_id: assessment_id, template_id: id))
+    block = self.class.create(general_attributes.merge(
+                                view: :assessments, assessment_id: assessment_id, template_id: id
+                              ))
     questions.each do |question|
       question.dup_for_assessment!(block.id)
     end

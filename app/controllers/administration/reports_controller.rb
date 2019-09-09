@@ -9,7 +9,8 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet toggle_archive]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
+                                          regenerate upload_data_sheet toggle_archive]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -68,7 +69,9 @@ module Administration
                              pluck(:hogan_assessment_id).
                              uniq
       @reports = hogan_assessment_ids ?
-                   Settings.providers.hogan.reports.select { |report| report[:assessment_ids].to_set == hogan_assessment_ids.to_set } :
+                   Settings.providers.hogan.reports.select do |report|
+                     report[:assessment_ids].to_set == hogan_assessment_ids.to_set
+                   end :
                    []
       respond_to do |format|
         format.json
@@ -164,11 +167,15 @@ module Administration
 
     def resource_params
       report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
-                                                       :remove_icon, :default_language, report_family_ids: [], assessment_ids: [],
+                                                       :remove_icon, :default_language, report_family_ids: [],
+                                                       assessment_ids: [],
                                        hogan_report_setting_attributes: %i[id hogan_report_id _destroy])
-      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
+      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids
+      # are empty and causes errors
       # Does this need a better fix?
-      report_params = report_params.except(:assessment_ids) if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+      if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+        report_params = report_params.except(:assessment_ids)
+      end
       report_params
     end
 

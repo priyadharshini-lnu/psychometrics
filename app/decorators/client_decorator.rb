@@ -23,14 +23,16 @@ class ClientDecorator < BaseDecorator
 
   def delete_confirmation
     {
-      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
+      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title",
+                    name: display_name),
       body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")[object.depth]
     }.to_json
   end
 
   def archive_confirmation
     {
-      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title", name: display_name),
+      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title",
+                    name: display_name),
       body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")[object.depth]
     }.to_json
   end
@@ -53,7 +55,8 @@ class ClientDecorator < BaseDecorator
 
   def detach_from_project_confirmation
     {
-      title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+      title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title',
+                    name: display_name, project_name: context[:project_name]),
       body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
     }.to_json
   end
@@ -68,12 +71,17 @@ class ClientDecorator < BaseDecorator
 
   def client_project_admins
     client_project_admins_memberships.map do |membership|
-      h.link_to membership.user.decorate.display_name, h.edit_administration_client_project_admin_path(membership.client_id, membership), class: 'text-nowrap'
+      h.link_to(
+        membership.user.decorate.display_name,
+        h.edit_administration_client_project_admin_path(membership.client_id, membership),
+        class: 'text-nowrap'
+      )
     end.join('<br>').html_safe
   end
 
   def project_admins
-    object.projects_admins.distinct.map { |user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap') }.join('<br>').html_safe
+    object.projects_admins.distinct.
+      map { |user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap') }.join('<br>').html_safe
   end
 
   def client_project_admins_memberships
@@ -93,7 +101,9 @@ class ClientDecorator < BaseDecorator
       if object.projects_admins.exists?(user.id)
         membership.user.decorate.display_name
       else
-        h.link_to membership.user.decorate.display_name, h.edit_administration_client_client_admin_path(membership.client_id, membership), class: 'text-nowrap'
+        h.link_to(membership.user.decorate.display_name,
+                  h.edit_administration_client_client_admin_path(membership.client_id, membership),
+                  class: 'text-nowrap')
       end
     end.join('<br>').html_safe
   end
@@ -114,7 +124,10 @@ class ClientDecorator < BaseDecorator
   end
 
   def reports_names
-    object.reports.map { |report| h.content_tag(:span, report.decorate.display_name, class: 'text-nowrap') }.join(', ').html_safe
+    object.reports.map do |report|
+      h.
+        content_tag(:span, report.decorate.display_name, class: 'text-nowrap')
+    end .join(', ').html_safe
   end
 
   def array_reports
@@ -122,7 +135,10 @@ class ClientDecorator < BaseDecorator
   end
 
   def url
-    h.link_to "#{object.subdomain}.#{Settings.domain}", h.root_url(domain: Settings.domain, subdomain: object.subdomain), target: :blank
+    h.link_to(
+      "#{object.subdomain}.#{Settings.domain}",
+      h.root_url(domain: Settings.domain, subdomain: object.subdomain), target: :blank
+    )
   end
 
   def actual_usage

@@ -11,7 +11,10 @@ module Administration
         query = policy_scope(::Threesixty::Subject).
                 includes(:self_evaluator, :user).
                 where(campaign_id: threesixty_campaign.campaign_id).
-                where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").
+                where(
+                  'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
+                  "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%"
+                ).
                 references(:user).
                 order(id: :desc)
         subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]), threesixty_campaign)
@@ -42,7 +45,8 @@ module Administration
       end
 
       def create_all
-        form = ::Threesixty::Subjects::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Subjects::CreateAllForm.from_params(params).
+               with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
           ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
           render json: :ok
@@ -69,7 +73,8 @@ module Administration
       end
 
       def import
-        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).
+               with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
           validate_and_add_subjects_from_csv(form.file.path)
         else
@@ -90,7 +95,10 @@ module Administration
 
       def validate_and_add_subjects_from_csv(file_path)
         form = ::Threesixty::Subjects::CreateAllForm.new(subjects: subjects_from_csv(file_path)).
-               with_context(campaign: threesixty_campaign.campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
+               with_context(
+                 campaign: threesixty_campaign.campaign,
+                 single_subject_form: ::Threesixty::Subjects::ImportOneForm
+               )
 
         if form.valid?
           result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)

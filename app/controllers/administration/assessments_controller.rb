@@ -3,7 +3,8 @@
 class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy preview export toggle_archive]
+  before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
+                                        preview export toggle_archive]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -95,7 +96,9 @@ class Administration::AssessmentsController < Administration::BaseController
         format.js
       else
         format.js do
-          render(:error, locals: { message: t("administration.#{resource_class.model_name.plural}.copy.error", id: resource.id) })
+          render(:error, locals: {
+            message: t("administration.#{resource_class.model_name.plural}.copy.error", id: resource.id)
+          })
         end
       end
     end
@@ -123,7 +126,8 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing, :status,
+    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
+                                     :status,
                                      :icon, :icon_color, :remove_icon,
                                      :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id])
   end

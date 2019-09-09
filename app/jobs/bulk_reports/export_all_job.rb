@@ -5,7 +5,8 @@ module BulkReports
     queue_as :default
 
     def perform(params)
-      items = query(params[:client]).call(params[:client].id, params[:report_ids], params[:start_date], params[:end_date])
+      items = query(params[:client]).
+              call(params[:client].id, params[:report_ids], params[:start_date], params[:end_date])
       return if items.empty?
 
       bulk_report = ::BulkReport.create(user: params[:current_user])

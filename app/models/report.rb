@@ -105,7 +105,8 @@ class Report < ApplicationRecord
     joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
   }
   scope :available_to_view, lambda {
-    joins(:assessments).where.has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
+    joins(:assessments).where.
+      has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
   }
   scope :for_clients, lambda { |client_ids|
     joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }

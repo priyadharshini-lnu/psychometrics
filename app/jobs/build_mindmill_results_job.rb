@@ -14,6 +14,11 @@ class BuildMindmillResultsJob < ApplicationJob
 
     normalised_scores = Imports::External::BaseExternalImport.build(:mindmill).process(mindmill.scores, assign)
     report = "data:application/pdf;base64,#{mindmill.report}"
-    assign.update(mindmill_report: report, external_results: normalised_scores, status: :completed, completed_at: Time.current)
+    assign.update(
+      mindmill_report: report,
+      external_results: normalised_scores,
+      status: :completed,
+      completed_at: Time.current
+    )
   end
 end

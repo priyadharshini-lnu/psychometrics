@@ -42,12 +42,15 @@ module Administration
         if @assign_form.errors.any?
           render :new, locals: { report_errors: report_errors }
         else
-          redirect_to(administration_assessments_path, success: t('.successfully', name: @assessment.decorate.display_name))
+          redirect_to(administration_assessments_path,
+                      success: t('.successfully', name: @assessment.decorate.display_name))
         end
       end
 
       def form
-        return render :noty, locals: { message: t('.empty_client_ids'), type: :warning } unless assign_params[:client_ids]
+        unless assign_params[:client_ids]
+          return render :noty, locals: { message: t('.empty_client_ids'), type: :warning }
+        end
 
         init_assign_form
         respond_to do |format|
@@ -58,7 +61,10 @@ module Administration
       def not_selected_users
         @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
+          format.json do
+            render json: ::ActiveModel::Serializer::CollectionSerializer.
+              new(users, serializer: MembershipSerializer).to_json
+          end
         end
       end
 
@@ -69,7 +75,10 @@ module Administration
 
         @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
+          format.json do
+            render json: ::ActiveModel::Serializer::CollectionSerializer.
+              new(users, serializer: MembershipSerializer).to_json
+          end
         end
       end
 
@@ -102,7 +111,8 @@ module Administration
       end
 
       def init_search_users
-        @search = policy_scope(::Membership).where.not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
+        @search = policy_scope(::Membership).where.
+                  not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
 
         # Limit to use only assigned clients
         #   And clients where user has access

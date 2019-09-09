@@ -2,7 +2,8 @@
 
 module Reports
   class AssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :dimension_id, :factors, :factor_scoring_counters
+    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules,
+               :dimension_id, :factors, :factor_scoring_counters
 
     has_many :blocks, serializer: BlockSerializer do
       object.blocks.
@@ -30,7 +31,8 @@ module Reports
         return external_assessment.factors.flatten
       end
       if object.hogan?
-        external_assessment = Settings.providers.hogan.assessments.detect { |a| a.id == object.hogan_assessment_setting.hogan_assessment_id }
+        external_assessment = Settings.providers.hogan.assessments.
+                              detect { |a| a.id == object.hogan_assessment_setting.hogan_assessment_id }
         return external_assessment.factors.flatten.map(&:to_h)
       end
       []

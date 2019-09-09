@@ -56,7 +56,12 @@ module Administration
       def init_breadcrumbs
         client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.subtenancy?
+        if client.subtenancy?
+          add_breadcrumb(
+            client.project.decorate.display_name,
+            administration_client_project_campaigns_path(client.client, client.project)
+          )
+        end
         add_breadcrumb t('administration.breadcrumbs.datasheets'), action: :index
       end
     end

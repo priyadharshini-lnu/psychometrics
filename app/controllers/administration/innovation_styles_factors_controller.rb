@@ -67,7 +67,10 @@ module Administration
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
-      add_breadcrumb I18n.t('administration.breadcrumbs.innovation_styles'), administration_dimension_innovation_styles_path
+      add_breadcrumb(
+        I18n.t('administration.breadcrumbs.innovation_styles'),
+        administration_dimension_innovation_styles_path
+      )
       add_breadcrumb @innovation_style.name
       add_breadcrumb I18n.t('administration.breadcrumbs.innovation_styles_factors'), action: :index
     end

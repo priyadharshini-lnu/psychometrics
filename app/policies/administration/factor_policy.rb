@@ -15,7 +15,8 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
 
-        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct
+        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.
+          select('tte_id').distinct
         scope.joins(:dimension).where(dimensions: { owner_id: owner_ids })
       end
     end

@@ -34,7 +34,9 @@ module UsersResults
                {
                  media_id: media.id,
                  env: 'dev',
-                 url: Rails.application.routes.url_helpers.upload_media_dev_campaign_users_result_path(users_result.campaign.id, users_result.id)
+                 url: Rails.application.routes.
+                   url_helpers.
+                   upload_media_dev_campaign_users_result_path(users_result.campaign.id, users_result.id)
                }
       end
 

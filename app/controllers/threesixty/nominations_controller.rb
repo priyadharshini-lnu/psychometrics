@@ -19,16 +19,19 @@ module Threesixty
     end
 
     def search_evaluators
-      render json: Threesixty::Evaluators::SearchQuery.new(@campaign.campaign, @subject, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
+      render json: Threesixty::Evaluators::SearchQuery.
+        new(@campaign.campaign, @subject, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
     end
 
     def request_approval
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::REQUEST_APPROVAL, threesixty_campaign: @campaign, subject: @subject)
+      Threesixty::Emails::Send.
+        call!(Threesixty::Emails::Name::REQUEST_APPROVAL, threesixty_campaign: @campaign, subject: @subject)
       render json: :ok
     end
 
     def send_evaluator_reminders
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::EVALUATOR_REMINDER, threesixty_campaign: @campaign, subject: @subject)
+      Threesixty::Emails::Send.
+        call!(Threesixty::Emails::Name::EVALUATOR_REMINDER, threesixty_campaign: @campaign, subject: @subject)
       render json: :ok
     end
 

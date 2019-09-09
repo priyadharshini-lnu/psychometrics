@@ -83,7 +83,8 @@ module Administration
 
         tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
         client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-        client_end_level_ids = Client.end_level.where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
+        client_end_level_ids = Client.end_level.
+                               where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
         scope.
           enabled.
           available_to_view.

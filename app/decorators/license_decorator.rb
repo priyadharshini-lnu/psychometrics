@@ -9,14 +9,18 @@ class LicenseDecorator < BaseDecorator
 
   def used_number(client = nil)
     if client.root?
-      I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_number - object.used_overuse_number, number: object.number)
+      I18n.t('administration.clients.licenses.show.used_out_of',
+             used_number: object.used_number - object.used_overuse_number,
+             number: object.number)
     else
       object.used_by(client)
     end
   end
 
   def used_overuse_number
-    I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_overuse_number, number: object.overuse_number)
+    I18n.t('administration.clients.licenses.show.used_out_of',
+           used_number: object.used_overuse_number,
+           number: object.overuse_number)
   end
 
   def start_date

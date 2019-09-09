@@ -16,7 +16,11 @@ module Threesixty
           @single_assigns = policy_scope(Assign).
                             includes(:single_reports, original_assign: [:single_reports]).
                             joining { original_assign.outer.membership.outer.client.outer }.
-                            joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+                            joins(
+                              'LEFT OUTER JOIN "assessments_clients"
+                               ON "assessments_clients"."client_id" = "clients"."id"
+                               AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"'
+                            ).
                             order('assessments_clients.position ASC').
                             preload(:assessment)
 
@@ -26,8 +30,12 @@ module Threesixty
           campaigns = ::Campaign.where(id: subject_campaigns | evaluator_campaigns)
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
-          json = @single_assigns.map { |assign| ::EndUser::AssignSerializer.new(assign, reports_ids: @reports_ids).to_h }
-          json.concat threesixty_projects.map { |campaign| Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h }
+          json = @single_assigns.map do |assign|
+            ::EndUser::AssignSerializer.new(assign, reports_ids: @reports_ids).to_h
+          end
+          json.concat threesixty_projects.map { |campaign|
+                        Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
+                      }
 
           render json: json
         end

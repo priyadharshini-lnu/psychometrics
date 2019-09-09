@@ -73,8 +73,9 @@ class Administration::UsersController < Administration::BaseController
   def export
     @_resources = policy_scope(resource_class).includes(:clients).all
     respond_to do |format|
+      filename = "#{resource_class.model_name.plural}-#{Date.today}"
       format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"#{resource_class.model_name.plural}-#{Date.today}.csv\""
+        headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
         headers['Content-Type'] ||= 'text/csv'
       end
     end

@@ -67,7 +67,8 @@ module EndUser
     end
 
     def assigned_reports
-      filtered_reports = object.original_assigns_reports.select { |assign| reports_ids.include?(assign.report_id) }.map(&:report)
+      filtered_reports = object.original_assigns_reports.
+                         select { |assign| reports_ids.include?(assign.report_id) }.map(&:report)
       reports = filter_reports_by_type(filtered_reports, object.norm_type)
       reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
     end

@@ -51,7 +51,9 @@ module AdministrationHelper
     label = resource_class.human_attribute_name(name)
     # extract the sort direction from the param value.
     klass = 'sorting'
-    klass = filterrific.sorted_by.match?(/desc$/) ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by.match?(/#{name}/)
+    if filterrific.sorted_by.match?(/#{name}/)
+      klass = filterrific.sorted_by.match?(/desc$/) ? 'sorting_desc' : 'sorting_asc'
+    end
     content_tag :div, class: klass do
       filterrific_sorting_link(filterrific, name, ascending_indicator: '', descending_indicator: '', label: label)
     end
@@ -74,7 +76,8 @@ module AdministrationHelper
 
     content_tag :div, class: 'alert alert-danger' do
       concat content_tag 'strong', 'There are some problems:'
-      concat content_tag 'ul', resource.errors.full_messages.map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
+      concat content_tag 'ul', resource.errors.full_messages.
+        map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
     end
   end
 

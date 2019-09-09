@@ -63,7 +63,8 @@ class Task < ApplicationRecord
   end
 
   #
-  # Return hash statuses for input tasks. key is status name, value is array of statuses (similar as group_by, but we have virtual status: overdue)
+  # Return hash statuses for input tasks. key is status name, value is array of statuses (similar as group_by,
+  # but we have virtual status: overdue)
   # @param [Tasks[]] tasks
   #
   # @return [Hash]

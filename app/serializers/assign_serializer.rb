@@ -53,7 +53,9 @@ class AssignSerializer < ActiveModel::Serializer
         end
       participant&.relationship&.name
     else
-      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
+      if @instance_options[:membership]
+        object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship
+      end
     end
   end
 

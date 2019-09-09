@@ -36,6 +36,9 @@ class QuestionSerializer < ActiveModel::Serializer
   def props
     return object.props unless object.props['questionText']
 
-    object.props.merge(questionText: Threesixty::PipedText::Perform.call!(object.props['questionText'], @instance_options[:piped_text_context]))
+    object.props.merge(
+      questionText: Threesixty::PipedText::Perform.
+        call!(object.props['questionText'], @instance_options[:piped_text_context])
+    )
   end
 end

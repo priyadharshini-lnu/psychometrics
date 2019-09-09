@@ -12,7 +12,10 @@ module Administration
         query = policy_scope(::Threesixty::Evaluator).
                 includes(:user, self_subject: :user).
                 where(campaign_id: threesixty_campaign.campaign_id).
-                where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").
+                where(
+                  'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
+                  "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%"
+                ).
                 references(:user).
                 order(id: :desc)
         evaluators = query.page(params[:page])
@@ -51,7 +54,8 @@ module Administration
       end
 
       def import
-        form = ::Threesixty::Evaluators::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Evaluators::ImportFileForm.from_params(params).
+               with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
           evaluators = evalutors_from_csv(form.file.path)
           validate_and_add_evalutors(evaluators: evaluators)

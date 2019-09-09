@@ -10,7 +10,8 @@ describe Threesixty::NominationRequirements::FindForUsers do
 
   it 'returns first nomination requirement if subject_condition is empty' do
     create(:datasheet_row, datasheet: datasheet, email: current_user.email)
-    nomination_requirement = create(:threesixty_nomination_requirement, threesixty_campaign_id: campaign.id, subject_conditions: [])
+    nomination_requirement = create(:threesixty_nomination_requirement,
+                                    threesixty_campaign_id: campaign.id, subject_conditions: [])
 
     expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nomination_requirement)
   end
@@ -22,7 +23,8 @@ describe Threesixty::NominationRequirements::FindForUsers do
   end
 
   it 'returns nomination with empty condition when there are no datasheet rows present for the user' do
-    nomination_requirement = create(:threesixty_nomination_requirement, threesixty_campaign_id: campaign.id, subject_conditions: [])
+    nomination_requirement = create(:threesixty_nomination_requirement,
+                                    threesixty_campaign_id: campaign.id, subject_conditions: [])
 
     expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nomination_requirement)
   end
@@ -219,7 +221,8 @@ describe Threesixty::NominationRequirements::FindForUsers do
         }
       ]
       @nomination_requirement1 = create(:threesixty_nomination_requirement,
-                                        threesixty_campaign_id: campaign.id, subject_conditions: subject_conditions1, position: 2)
+                                        threesixty_campaign_id: campaign.id,
+                                        subject_conditions: subject_conditions1, position: 2)
 
       subject_conditions2 = [
         {
@@ -231,7 +234,8 @@ describe Threesixty::NominationRequirements::FindForUsers do
       ]
 
       @nomination_requirement2 = create(:threesixty_nomination_requirement,
-                                        threesixty_campaign_id: campaign.id, subject_conditions: subject_conditions2, position: 1)
+                                        threesixty_campaign_id: campaign.id,
+                                        subject_conditions: subject_conditions2, position: 1)
     end
 
     it 'returns top nomination_requirement ordered by position' do

@@ -12,10 +12,19 @@ module Managers
 
     def index
       @filter_form = policy_scope(@resource_class).roots.includes(:factor, membership: [:user]).
-                     where(assessment_id: @assessment.id, membership_id: @managers.pluck(:id), owner_id: @current_membership.id).
+                     where(
+                       assessment_id: @assessment.id,
+                       membership_id: @managers.pluck(:id),
+                       owner_id: @current_membership.id
+                     ).
                      references(:membership).search(params[:q])
       @resources   = @filter_form.result
-      @tasks = Task.roots.joins(:membership).where(assessment_id: @assessment.id, membership_id: @managers.pluck(:id), owner_id: @current_membership.id).all
+      @tasks = Task.roots.joins(:membership).
+               where(
+                 assessment_id: @assessment.id,
+                 membership_id: @managers.pluck(:id),
+                 owner_id: @current_membership.id
+               ).all
       @tasks_by_status = Task.group_by_status(@tasks)
       @managers_tasks_by_status = @managers.each_with_object({}) do |manager, hash|
         tasks = @tasks.select { |task| task.membership_id == manager.id }
@@ -88,7 +97,8 @@ module Managers
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :priority, :membership_id, :status, :factor_id, :planned_completed_at, :parent_id)
+      params.require(:resource).permit(:name, :description, :priority, :membership_id,
+                                       :status, :factor_id, :planned_completed_at, :parent_id)
     end
 
     def set_resource

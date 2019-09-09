@@ -20,7 +20,8 @@ class ReportDecorator < BaseDecorator
   end
 
   def report_families
-    object.report_families.present? ? object.report_families.distinct.map { |rf| rf.decorate.display_name }.join('<br>').html_safe : ''
+    object.report_families.present? ? object.report_families.distinct.
+      map { |rf| rf.decorate.display_name }.join('<br>').html_safe : ''
   end
 
   def assessments_names
@@ -31,8 +32,12 @@ class ReportDecorator < BaseDecorator
   #
   def detach_confirmation
     {
-      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.detach.title", name: display_name),
-      body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.detach.body")
+      title: I18n.t(
+        "administration.#{object.class.model_name.plural}.resource.confirmations.detach.title", name: display_name
+      ),
+      body: I18n.t(
+        "administration.#{object.class.model_name.plural}.resource.confirmations.detach.body"
+      )
     }.to_json
   end
 

@@ -16,8 +16,12 @@ class LibraryDecorator < BaseDecorator
 
   def delete_confirmation
     {
-      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
-      body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body", name: display_name)
+      title: I18n.t(
+        "administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name
+      ),
+      body: I18n.t(
+        "administration.#{object.class.model_name.plural}.resource.confirmations.delete.body", name: display_name
+      )
     }.to_json
   end
 end

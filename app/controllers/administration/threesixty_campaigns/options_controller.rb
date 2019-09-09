@@ -9,7 +9,8 @@ module Administration
 
       def participant_options
         render(json: threesixty_campaign.option.participants.tap do |data|
-          data[:relationships] = Relationships::ByCampaign.new(threesixty_campaign.campaign).map { |r| RelationshipSerializer.new(r).to_h }
+          data[:relationships] = Relationships::ByCampaign.
+            new(threesixty_campaign.campaign).map { |r| RelationshipSerializer.new(r).to_h }
         end)
       end
 

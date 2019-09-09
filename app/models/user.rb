@@ -107,10 +107,12 @@ class User < ApplicationRecord
   has_many :memberships, inverse_of: :user # on delete cascade
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
-  has_many :project_admin_clients, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
+  has_many :project_admin_clients, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
+           through: :memberships, source: 'client'
   has_many :project_admin_clients_ttes, through: :project_admin_clients, source: 'tte', class_name: 'Client'
   has_many :communications, foreign_key: 'creator_id'
-  has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
+  has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) },
+           through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
@@ -129,7 +131,8 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
   validates :email, uniqueness: { scope: %i[project_id role] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
-  validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
+  validates_format_of     :email,
+                          with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
   validates_presence_of   :email
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
@@ -218,7 +221,8 @@ class User < ApplicationRecord
 
   def generate_invitation_token
     super
-    encrypted_token = Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).generate(@raw_invitation_token)
+    encrypted_token = Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).
+                      generate(@raw_invitation_token)
     self.encrypted_invitation_raw = encrypted_token
   end
 
@@ -268,7 +272,12 @@ class User < ApplicationRecord
         Users::Regular.enabled.
           identified.
           joins(:clients).
-          where.has { project_id.eq(project.id) & email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+          where.has do
+          project_id.eq(project.id) &
+            email.eq(warden_conditions[:email]&.downcase) &
+            clients.subdomain.eq(subdomain) &
+            clients.disabled.not_eq(true)
+        end .
           first
       else
         enabled.

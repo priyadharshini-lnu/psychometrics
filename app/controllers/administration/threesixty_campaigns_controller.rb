@@ -11,8 +11,9 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def export_completion_status
     results = Threesixty::Campaigns::ExportCompletionStatus.call!(resource)
+    filename = "completion_status_export_campaign_#{resource.id}.xlsx"
     respond_to do |format|
-      format.xlsx { send_data results.to_stream.read, filename: "completion_status_export_campaign_#{resource.id}.xlsx" }
+      format.xlsx { send_data results.to_stream.read, filename: filename }
     end
   end
 

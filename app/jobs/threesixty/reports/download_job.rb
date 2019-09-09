@@ -27,7 +27,8 @@ module Threesixty
       # Generates PDF file and placed it into TMP folder
       #
       def export_report
-        @pdf_file = ::Threesixty::Reports::ExportReport.call!(current_user, threesixty_campaign, subject, users_report, {})
+        @pdf_file = ::Threesixty::Reports::ExportReport.
+                    call!(current_user, threesixty_campaign, subject, users_report, {})
       end
 
       # Uploads PDF file to AssignsReport
@@ -57,7 +58,9 @@ module Threesixty
         ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
                                      type: 'success',
                                      message: I18n.t('jobs.threesixty.reports.download.message'),
-                                     description: I18n.t('jobs.threesixty.reports.download.description', url: s3_obj.presigned_url(:get))
+                                     description: I18n.t(
+                                       'jobs.threesixty.reports.download.description', url: s3_obj.presigned_url(:get)
+                                     )
       end
 
       def notify_error

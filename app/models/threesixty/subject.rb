@@ -5,7 +5,8 @@ module Threesixty
     include Threesixty::Participator
 
     has_many :participants, foreign_key: :subject_id, primary_key: :user_id
-    belongs_to :self_evaluator, foreign_key: :user_id, primary_key: :user_id, inverse_of: :self_subject, class_name: 'Threesixty::Evaluator'
+    belongs_to :self_evaluator, foreign_key: :user_id, primary_key: :user_id,
+               inverse_of: :self_subject, class_name: 'Threesixty::Evaluator'
     has_many :subjects_relationships, primary_key: :user_id
 
     enum report_approval_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :report

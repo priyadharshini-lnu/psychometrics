@@ -24,7 +24,8 @@
 class AssignsController < ApplicationController
   include ::Threesixty::InitialState
 
-  before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev upload_callback remove_media]
+  before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev
+                                      upload_callback remove_media]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -35,13 +36,15 @@ class AssignsController < ApplicationController
     @assigns = policy_scope(Assign).
                preload(:assessment, original_assigns_reports: :report).
                joining { original_assign.outer.membership.outer.client.outer }.
-               joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+               joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id"
+                      AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
                order('assessments_clients.position ASC')
 
     @single_assigns = policy_scope(Assign).
                       includes(:single_reports, original_assign: [:single_reports]).
                       joining { original_assign.outer.membership.outer.client.outer }.
-                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id"
+                             AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
                       order('assessments_clients.position ASC').
                       preload(:assessment)
 

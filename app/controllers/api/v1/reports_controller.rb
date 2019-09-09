@@ -17,8 +17,11 @@ module Api
       end
 
       def results
-        assigns = Assign.completed.where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not passed" if assigns.blank?
+        assigns = Assign.completed.
+                  where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
+        if assigns.blank?
+          raise Errors::Api::AssessmentIsNotPassedError, "Assessments for report #{report.id} are not passed"
+        end
 
         render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, assigns)[:ok]).to_h
       end
@@ -26,7 +29,8 @@ module Api
       def pdf
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
-        # TODO: (atanych): we might fetch N different assigns_reports for different campaigns with one project and report id
+        # TODO: (atanych): we might fetch N different assigns_reports for different campaigns with one
+        # project and report id
         # TODO (atanych): How to handle it???
         assigns_report = report.assigns_reports.joins(:assign).find_by(assigns: { membership_id: membership_ids })
         # TODO: (atanych): we should think through report statuses

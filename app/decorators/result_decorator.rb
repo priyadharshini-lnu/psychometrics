@@ -6,7 +6,13 @@ class ResultDecorator < BaseDecorator
   end
 
   def completed_at_with_desc
-    return I18n.t('results.decorator.completed', date: I18n.l(object.completed_at, format: :date)) if object.completed_at && object.completed?
+    if object.completed_at && object.completed?
+      return I18n.t(
+        'results.decorator.completed',
+        date: I18n.l(object.completed_at,
+                     format: :date)
+      )
+    end
 
     I18n.t('results.decorator.not_completed')
   end

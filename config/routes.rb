@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     resource :profiles, only: %i[update edit]
 
     scope module: :administrator do
-      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: %i[new create], path: '',
+               path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
@@ -160,7 +161,8 @@ Rails.application.routes.draw do
           end
         end
         resources :campaigns, concerns: :client_editable, only: %i[index edit update destroy]
-        get '/projects/:project_id/threesixty_campaigns/:id/*all', to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
+        get '/projects/:project_id/threesixty_campaigns/:id/*all',
+            to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
 
         resources :sub_campaigns, concerns: :client_editable, only: %i[index edit update destroy]
@@ -481,7 +483,8 @@ Rails.application.routes.draw do
       get :success
     end
     scope module: :users do
-      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: %i[new create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' },
+               as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :registrations, only: %i[new create], as: :registration
