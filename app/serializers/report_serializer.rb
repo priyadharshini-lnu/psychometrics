@@ -12,9 +12,9 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category, :pages, :innovation_styles
+             :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
@@ -68,15 +68,46 @@ class ReportSerializer < ActiveModel::Serializer
     end
   end
 
-  def assigns
+  # Used for Piped Text
+  def result_completed_at
+    return if get_assigns.blank?
+
+    dates = get_assigns.map do |assign|
+      assign&.completed_at&.to_date
+    end.compact.sort
+
+    return '' if dates.empty?
+
+    if dates.first == dates.last
+      dates.first.strftime(I18n.t('time.formats.short_date'))
+    else
+      "#{dates.first.strftime(I18n.t('time.formats.short_date'))} - #{dates.last.strftime(I18n.t('time.formats.short_date'))}"
+    end
+  end
+
+  # Used for Piped Text
+  def norm_used
+    norm_data = get_assigns.pluck(:norm_data).compact
+    return if norm_data.blank?
+    norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
+    norms.map do |norm|
+      norm&.decorate&.display_name
+    end
+  end
+
+  # Used for Piped Text
+  def result_locale
+    get_assigns.map do |assign|
+      locale = assign.selected_locale || I18n.default_locale
+      I18n.t("languages.#{locale}")
+    end.uniq
+  end
+
+  def get_assigns
     return [] unless @instance_options[:membership]
 
-    assigns = Assign.includes(:membership).joins(:membership).
+    @_assigns ||= Assign.includes(:membership).joins(:membership).
       where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id, user_id: @instance_options[:membership].user_id })
-
-    assigns.group_by(&:assessment_id).transform_values do |group|
-      group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
-    end
   end
 
   def factor_norms
