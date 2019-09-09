@@ -57,7 +57,7 @@ module Reports
       action :change_data_configuration do |data, _current_user, report|
         data_configuration = YAML.safe_load(data['dataConfiguration'])
         report.update_attribute(:data_configuration, data_configuration)
-      rescue Exception => e
+      rescue StandardError
         raise StandardError, 'Data Report Configuration is not valid'
       end
     end

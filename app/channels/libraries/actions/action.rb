@@ -25,7 +25,7 @@ module Libraries
               end
 
               transmit(response)
-            rescue Exception => e
+            rescue StandardError => e
               Rails.logger.error("#{e.message}\n")
               Rails.logger.error(e.backtrace.join("\n"))
               transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')

@@ -15,7 +15,7 @@ module Threesixty
         save_to_s3
         remove_tmp_file
         send_to_user
-      rescue Exception => e
+      rescue Exception => e # rubocop:disable Lint/RescueException
         notify_error
         Raven.capture_exception(e)
       end

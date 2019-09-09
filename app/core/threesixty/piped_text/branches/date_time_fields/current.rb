@@ -7,7 +7,7 @@ module Threesixty
         class Current < BaseField
           def call
             broadcast :ok, Time.now.strftime(params['f'])
-          rescue Exception => e
+          rescue StandardError
             broadcast :ok, ''
           end
         end

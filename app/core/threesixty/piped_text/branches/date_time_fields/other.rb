@@ -22,7 +22,7 @@ module Threesixty
             format = params['f']
             time = perform_with_prefix(prefix)
             broadcast :ok, time.strftime(format)
-          rescue Exception => e
+          rescue StandardError
             broadcast :ok, ''
           end
 
