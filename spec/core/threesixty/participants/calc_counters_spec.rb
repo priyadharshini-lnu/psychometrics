@@ -31,14 +31,14 @@ describe Threesixty::Participants::CalcCounters do
     it do
       expect(described_class.
         call!([subject_1.user_id, subject_2.user_id], option_which_does_not_require_approval.threesixty_campaign)).
-        to eq ({
+        to eq(
           subject_1.user_id => {
             total_evaluators: 2, total_evaluations: 1, completed_evaluations: 0, completed_evaluators: 2
           },
           subject_2.user_id => {
             total_evaluators: 1, total_evaluations: 1, completed_evaluations: 0, completed_evaluators: 0
           }
-        })
+        )
     end
   end
 end

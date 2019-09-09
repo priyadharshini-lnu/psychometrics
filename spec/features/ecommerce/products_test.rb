@@ -6,7 +6,6 @@ feature 'Products Page Test', type: :feature do
 
   scenario 'Able to see products list' do
     visit '/ecommerce'
-    save_screenshot('test1.png')
   end
   scenario 'Able add a product to the cart' do
     visit '/ecommerce'

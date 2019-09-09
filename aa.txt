@@ -1,5 +1,5 @@
 Inspecting 1265 files
-............................................................C.........W.......W..W...........................CC..............W..W.WC..................C.........CC.C..........................................................................................................................W.................W.....C...................................W...............W......................................C.............................................CCC..C......C.............C.......C...C.............C......................C............W.......................W............................C................................C............................W........................................................................................................................................W..W...................................W.............................................................W................................................................................................................................................W.............................................................................................C.........................................................................................................................................
+............................................................C.........W.......W..W...........................CC..............W..W.WC..................C.........CC.C..........................................................................................................................W.................W.....C...................................W...............W......................................C.............................................CCC..C......C.............C.......C...C.............C......................C............W.......................W............................C................................C............................W...........................................................................................................................................C..................................................................................................................................................................................................................................................C.......................................................................................................................................................................................................................................
 
 Offenses:
 
@@ -141,29 +141,14 @@ app/controllers/administration/threesixty_campaigns/base_controller.rb:17:32: C:
 app/controllers/administration/users_controller.rb:82:1: W: Layout/DefEndAlignment: end at 82, 0 is not aligned with def at 73, 2.
 end
 ^^^
-spec/core/threesixty/participants/create_form_spec.rb:14:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-  let (:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
-     ^
-spec/core/threesixty/participants/create_form_spec.rb:15:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
-     ^
-spec/core/threesixty/participants/calc_counters_spec.rb:34:14: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-        to eq ({
-             ^
-spec/core/threesixty/evaluators/nominate_evaluator_spec.rb:10:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
-     ^
-spec/features/ecommerce/products_test.rb:9:5: W: Lint/Debugger: Remove debugger entry point save_screenshot('test1.png').
-    save_screenshot('test1.png')
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-spec/api/v1/assessments_spec.rb:87:30: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-          expect(error).to eq ({ 'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil })
-                             ^
-spec/api/v1/assessments_spec.rb:106:30: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
-          expect(error).to eq ({
-                             ^
-lib/exports/reports/pdf/external_report_export.rb:40:30: C: Security/Open: The use of Kernel#open is a serious security risk.
-              IO.copy_stream(open(url.to_s), output_path)
-                             ^^^^
+spec/core/threesixty/participants/calc_counters_spec.rb:34:15: C: [Corrected] Style/BracesAroundHashParameters: Redundant curly braces around a hash parameter.
+        to eq({ ...
+              ^
+spec/api/v1/assessments_spec.rb:87:31: C: [Corrected] Style/BracesAroundHashParameters: Redundant curly braces around a hash parameter.
+          expect(error).to eq({ 'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil })
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/api/v1/assessments_spec.rb:106:31: C: [Corrected] Style/BracesAroundHashParameters: Redundant curly braces around a hash parameter.
+          expect(error).to eq({ ...
+                              ^
 
-1265 files inspected, 54 offenses detected
+1265 files inspected, 49 offenses detected, 3 offenses corrected

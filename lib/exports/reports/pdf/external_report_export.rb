@@ -37,7 +37,7 @@ module Exports
             if remote_file?(external_report.url)
               url = URI(external_report.url)
               url.scheme = 'http'
-              IO.copy_stream(open(url.to_s), output_path)
+              IO.copy_stream(open(url.to_s), output_path) # rubocop:disable Security/Open
             else
               FileUtils.cp(external_report.url, output_path)
             end

@@ -84,7 +84,7 @@ describe 'Assessments' do
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq ({ 'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil })
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil)
         end
       end
 
@@ -103,11 +103,11 @@ describe 'Assessments' do
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq ({
+          expect(error).to eq(
             'code' => 1000,
             'message' => 'Invalid authentication',
             'more_info' => 'User for api token is disabled'
-          })
+          )
         end
       end
 

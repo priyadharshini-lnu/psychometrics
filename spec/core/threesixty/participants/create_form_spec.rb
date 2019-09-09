@@ -11,8 +11,8 @@ describe Threesixty::Participants::CreateForm do
   end
 
   let(:user) { create(:user, email: 'exists@a.com', project: campaign.project) }
-  let (:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
-  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
+  let(:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
+  let(:peer) { create(:relationship, name: 'Peer', type: :campaign) }
 
   before do
     campaign.option = option
