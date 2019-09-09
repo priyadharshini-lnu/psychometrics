@@ -13,6 +13,11 @@ languages:
   - cn
   - ar
   - de
+rtl_languages:
+  - ar
+  - ur
+  - he
+  - fa
 currencies:
   - USD
   - EUR
