@@ -6,12 +6,19 @@
         = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
       .panel-body
         - if @threesixty_campaign.option.participants['manager']['can_approves_evaluations']
-          = I18n.t("threesixty.#{@participant.manager_evaluation_status}")
-          .pull-right
-            = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), method: :put, class: 'btn btn-danger', params: {participant: {manager_evaluation_status: :denied}} do
-              | Deny Evaluation
-          .pull-right
-            = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), method: :put, class: 'btn btn-success', params: {participant: {manager_evaluation_status: :approved}} do
-              | Approve Evaluation
+          .btn-group.pull-right
+            button.btn.btn-success.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+              = I18n.t("threesixty.#{@participant.manager_evaluation_status}")
+              span.caret
+            ul.dropdown-menu
+              li
+                = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), class: 'btn', method: :put, params: {participant: {manager_evaluation_status: :waiting}} do
+                  | Waiting
+              li
+                = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), class: 'btn', method: :put, params: {participant: {manager_evaluation_status: :approved}} do
+                  | Approve
+              li
+                = button_to administration_threesixty_campaign_participant_path(@threesixty_campaign, @participant.id), class: 'btn', method: :put, params: {participant: {manager_evaluation_status: :denied}} do
+                  | Deny
 
         = render partial: 'shared/preview_results'

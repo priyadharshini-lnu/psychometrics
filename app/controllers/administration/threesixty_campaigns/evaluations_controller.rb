@@ -4,9 +4,9 @@ module Administration
   module ThreesixtyCampaigns
     class EvaluationsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show destroy]
+      before_action :set_resource, only: %i[show update destroy]
       append_before_action :pundit_authorize
-      before_action :init_breadcrumbs
+      before_action :init_breadcrumbs, except: %i[update destroy]
 
       def show
         @users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
@@ -25,6 +25,16 @@ module Administration
         }
 
         @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment, piped_text_context: piped_text_context).to_hash(include: '**')
+      end
+
+      def update
+        @users_result = UsersResult.find_by!(campaign_id: threesixty_campaign.campaign_id,
+                                             subject_id: resource.user_id,
+                                             evaluator_id: params[:id])
+        form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
+        ::UsersResults::UpdateUsersResult.call(form, @users_result, threesixty_campaign)
+
+        head :no_content
       end
 
       def destroy
