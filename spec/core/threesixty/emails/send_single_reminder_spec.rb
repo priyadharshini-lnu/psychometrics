@@ -69,7 +69,7 @@ describe Threesixty::Emails::SendSingleReminder do
 
     expect do
       described_class.call!(email_template)
-    end.to_not(change) { Threesixty::EmailSchedule.count }
+    end.to_not(change { Threesixty::EmailSchedule.count })
   end
 
   it 'creates email_schedule with multiple subject_ids for evaluator reminders' do

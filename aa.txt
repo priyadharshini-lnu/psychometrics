@@ -1,0 +1,184 @@
+Inspecting 1265 files
+............................................................C.........W.......W..W...........................CC..............W..W.WC..................C.........CC.C..........................................................................................................................W.................W.....C...................................W........C......W......................................C.............................................CCC..C......C.............C.......C...C.............C......................C.C..........W.......................W............................C................................C............................W.................................................................................................................C......................W..W...................................W.............................................................W................................................................................................................................................W.............................................................................................C.........................................................................................................................................
+
+Offenses:
+
+app/core/threesixty/users_reports_query.rb:43:9: C: Naming/PredicateName: Rename is_available? to available?.
+    def is_available?
+        ^^^^^^^^^^^^^
+app/core/threesixty/emails/send_single_reminder.rb:15:38: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+        return unless reminder_rules = email_template.meta['reminder_rules'].presence
+                                     ^
+app/core/threesixty/emails/send_single_scheduled_email.rb:31:21: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+        if user_ids = schedule_email.meta["#{other_participator}_ids"].presence
+                    ^
+app/core/threesixty/emails/send_single_scheduled_email.rb:42:11: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+      def get_recipient_type
+          ^^^^^^^^^^^^^^^^^^
+app/core/threesixty/piped_text/perform.rb:52:21: W: Lint/AmbiguousRegexpLiteral: Ambiguous regexp literal. Parenthesize the method arguments if it's surely a regexp literal, or add a whitespace to the right of the / if it should be a division.
+          body.gsub /{{(.*?)}}/ do
+                    ^
+app/core/threesixty/piped_text/perform.rb:58:75: W: Lint/UriEscapeUnescape: URI.encode method is obsolete and should not be used. Instead, use CGI.escape, URI.encode_www_form or URI.encode_www_form_component depending on your specific use case.
+                path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context
+                                                                          ^^^^^^^^^^^^^^^^^^
+app/core/threesixty/evaluators/search_in_datasheet_query.rb:10:41: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+      def initialize(campaign, subject, q)
+                                        ^
+app/core/threesixty/evaluators/search_query.rb:10:41: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+      def initialize(campaign, subject, q)
+                                        ^
+app/core/threesixty/participator_by_criteria/by_subject_datasheet_fields.rb:9:44: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+        return false unless subject_emails = evaluators_subjects[user.id]
+                                           ^
+app/core/threesixty/participator_by_criteria/by_subject_datasheet_fields.rb:12:28: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+          if datasheet_row = subject_datasheet_rows[subject_email]
+                           ^
+app/core/threesixty/participator_by_criteria/by_datasheet_fields.rb:9:37: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+        return unless datasheet_row = datasheet_rows[user.email]
+                                    ^
+app/core/threesixty/subjects/create_all.rb:32:17: W: Lint/AssignmentInCondition: Use == if you meant to do a comparison or wrap the expression in parentheses to indicate you meant to assign in a condition.
+        if user = project_users_indexed[subject[:email]]
+                ^
+app/core/threesixty/subjects/users_query.rb:10:32: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+      def initialize(campaign, q)
+                               ^
+app/core/threesixty/get_managers_query.rb:7:41: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+    def initialize(threesixty_campaign, q = nil)
+                                        ^
+app/core/hogan/load_results.rb:46:9: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+    def get_participant_report
+        ^^^^^^^^^^^^^^^^^^^^^^
+app/core/hogan/load_results.rb:57:9: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+    def get_participant_score
+        ^^^^^^^^^^^^^^^^^^^^^
+app/core/hogan/load_results.rb:68:9: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+    def get_assigns_reports_scope
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/core/projects/users_query.rb:9:29: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+    def initialize(project, q)
+                            ^
+app/core/datasheets/datasheet_form.rb:21:9: C: Naming/PredicateName: Rename has_email_column to has_email_column?.
+    def has_email_column
+        ^^^^^^^^^^^^^^^^
+app/models/membership.rb:129:5: W: Lint/HandleExceptions: Do not suppress exceptions.
+    rescue InputError
+    ^^^^^^^^^^^^^^^^^
+app/models/ecommerce/purchase.rb:39:53: W: Lint/SafeNavigationChain: Do not chain ordinary method call after safe navigation operator.
+      self.price = price_currency && product&.prices.find_by(price_currency: price_currency)&.price
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/assign.rb:154:11: C: Style/IfInsideElse: Convert if nested inside else to elsif.
+          if scoring_point
+          ^^
+app/models/product_price.rb:20:3: W: Lint/DuplicateMethods: Method ProductPrice#cost= is defined at both app/models/product_price.rb:16 and app/models/product_price.rb:20.
+  def cost=(value)
+  ^^^^^^^^^
+app/models/product_price.rb:24:3: W: Lint/DuplicateMethods: Method ProductPrice#cost is defined at both app/models/product_price.rb:16 and app/models/product_price.rb:24.
+  def cost
+  ^^^^^^^^
+app/models/assessment.rb:103:5: C: Style/CommentAnnotation: Annotation comment, with keyword TODO, is missing a note.
+  # TODO:
+    ^^^^^
+app/models/concerns/access_reportable.rb:8:3: W: Lint/DuplicateMethods: Method AccessReportable#access_reports is defined at both app/models/concerns/access_reportable.rb:6 and app/models/concerns/access_reportable.rb:8.
+  def access_reports
+  ^^^^^^^^^^^^^^^^^^
+app/models/concerns/access_reportable.rb:12:3: W: Lint/DuplicateMethods: Method AccessReportable#access_reports_at_date is defined at both app/models/concerns/access_reportable.rb:6 and app/models/concerns/access_reportable.rb:12.
+  def access_reports_at_date
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/models/concerns/access_reportable.rb:18:3: W: Lint/DuplicateMethods: Method AccessReportable#access_reports_at_time is defined at both app/models/concerns/access_reportable.rb:6 and app/models/concerns/access_reportable.rb:18.
+  def access_reports_at_time
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/policies/administration/home_policy.rb:3:36: C: Style/StructInheritance: Don't extend an instance initialized by Struct.new. Use a block to customize the struct.
+class Administration::HomePolicy < Struct.new(:administrator, :home)
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/serializers/threesixty/nomination_serializer.rb:18:9: C: Naming/PredicateName: Rename is_self to self?.
+    def is_self
+        ^^^^^^^
+app/serializers/threesixty/current_user_serializer.rb:7:9: C: Naming/PredicateName: Rename is_manager to manager?.
+    def is_manager
+        ^^^^^^^^^^
+app/serializers/threesixty/end_user/evaluation_serializer.rb:22:9: C: Naming/PredicateName: Rename is_self to self?.
+    def is_self
+        ^^^^^^^
+app/serializers/threesixty/end_user/campaign_nominee_serializer.rb:16:9: C: Naming/PredicateName: Rename is_self to self?.
+    def is_self
+        ^^^^^^^
+app/serializers/threesixty/end_user/campaign_nominee_serializer.rb:20:9: C: Naming/PredicateName: Rename is_nomination_completed to nomination_completed?.
+    def is_nomination_completed
+        ^^^^^^^^^^^^^^^^^^^^^^^
+app/serializers/threesixty/evaluator_serializer.rb:37:9: C: Naming/PredicateName: Rename is_subject to subject?.
+    def is_subject
+        ^^^^^^^^^^
+app/serializers/users_report_serializer.rb:16:7: C: Naming/PredicateName: Rename is_self to self?.
+  def is_self
+      ^^^^^^^
+app/serializers/users_result_serializer.rb:22:7: C: Naming/PredicateName: Rename is_self to self?.
+  def is_self
+      ^^^^^^^
+app/serializers/end_user/report_serializer.rb:27:9: C: Naming/PredicateName: Rename has_external_report to has_external_report?.
+    def has_external_report
+        ^^^^^^^^^^^^^^^^^^^
+app/serializers/assign_serializer.rb:56:7: C: Style/IfInsideElse: Convert if nested inside else to elsif.
+      if @instance_options[:membership]
+      ^^
+app/commands/reports/result_types/ranked_occupations.rb:24:11: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+      def get_occupation
+          ^^^^^^^^^^^^^^
+app/commands/reports/result_types/ranked_occupations.rb:37:11: C: Naming/AccessorMethodName: Do not prefix reader method names with get_.
+      def get_occupation_from_db
+          ^^^^^^^^^^^^^^^^^^^^^^
+app/commands/reports/result_types/normed_factor.rb:25:11: C: Style/CommentAnnotation: Annotation comment, with keyword TODO, is missing a note.
+        # TODO:
+          ^^^^^
+app/jobs/bulk_reports/export_job.rb:48:22: C: Security/Open: The use of Kernel#open is a serious security risk.
+      IO.copy_stream(open(url.to_s), output)
+                     ^^^^
+app/jobs/bulk_reports/export_job.rb:49:5: W: Lint/HandleExceptions: Do not suppress exceptions.
+    rescue OpenURI::HTTPError
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+app/controllers/ecommerce/orders_controller.rb:37:35: W: Lint/SafeNavigationChain: Do not chain ordinary method call after safe navigation operator.
+        purchase&.product&.reports.each do |report|
+                                  ^^^^^
+app/controllers/api/v1/base_controller.rb:37:15: C: Style/IdenticalConditionalBranches: Move p out of the conditional.
+              p
+              ^
+app/controllers/api/v1/base_controller.rb:47:15: C: Style/IdenticalConditionalBranches: Move p out of the conditional.
+              p
+              ^
+app/controllers/api/v1/base_controller.rb:60:24: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+      def render_error(e)
+                       ^
+app/controllers/administration/threesixty_campaigns/base_controller.rb:17:32: C: Naming/UncommunicativeMethodParamName: Method parameter must be at least 3 characters long.
+      def render_license_error(e)
+                               ^
+app/controllers/administration/users_controller.rb:82:1: W: Layout/DefEndAlignment: end at 82, 0 is not aligned with def at 73, 2.
+end
+^^^
+config/initializers/money.rb:52:32: C: Style/AsciiComments: Use only ascii symbols in comments.
+  #   :symbol              => "€",
+                               ^
+spec/core/threesixty/participants/create_form_spec.rb:14:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+  let (:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
+     ^
+spec/core/threesixty/participants/create_form_spec.rb:15:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
+     ^
+spec/core/threesixty/participants/calc_counters_spec.rb:34:14: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+        to eq ({
+             ^
+spec/core/threesixty/evaluators/nominate_evaluator_spec.rb:10:6: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
+     ^
+spec/features/ecommerce/products_test.rb:9:5: W: Lint/Debugger: Remove debugger entry point save_screenshot('test1.png').
+    save_screenshot('test1.png')
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+spec/api/v1/assessments_spec.rb:87:30: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+          expect(error).to eq ({ 'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil })
+                             ^
+spec/api/v1/assessments_spec.rb:106:30: W: Lint/ParenthesesAsGroupedExpression: (...) interpreted as grouped expression.
+          expect(error).to eq ({
+                             ^
+lib/exports/reports/pdf/external_report_export.rb:40:30: C: Security/Open: The use of Kernel#open is a serious security risk.
+              IO.copy_stream(open(url.to_s), output_path)
+                             ^^^^
+
+1265 files inspected, 59 offenses detected
