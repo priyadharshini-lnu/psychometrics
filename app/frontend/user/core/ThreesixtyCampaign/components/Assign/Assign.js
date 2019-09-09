@@ -3,6 +3,7 @@ import {
   Layout, Icon, PageHeader, Row, Col,
 } from 'antd'
 import qs from 'query-string'
+import cs from 'classnames'
 import './styles.scss'
 import Language from './Language'
 
@@ -32,7 +33,7 @@ export default function Assign ({
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
   }, [])
-
+  // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
       <Content className="fluid-container">
@@ -63,7 +64,7 @@ export default function Assign ({
               </Col>
             </Row>
           )}
-          <div className="evaluation-container">
+          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
             {!error && (
               <div
                 id="pass_assessment"
