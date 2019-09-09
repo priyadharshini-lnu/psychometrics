@@ -7,7 +7,7 @@
       .panel-body
         - if @threesixty_campaign.option.participants['manager']['can_approves_evaluations']
           .btn-group.pull-right
-            button.btn.btn-success.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            button.btn.btn-default.dropdown-toggle class="#{@participant.manager_evaluation_status == 'approved' ? 'btn-success' : (@participant.manager_evaluation_status == 'denied' ? 'btn-danger' : '')}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
               = I18n.t("threesixty.#{@participant.manager_evaluation_status}")
               span.caret
             ul.dropdown-menu
