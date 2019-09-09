@@ -15,6 +15,9 @@ Layout/DotPosition:
 Metrics/BlockNesting:
   Enabled: false
 
+Metrics/ClassLength:
+  Max: 200
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"

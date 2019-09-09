@@ -18,8 +18,8 @@ class Administration::ImportsController < Administration::BaseController
       if @form.valid?
         begin
           @import.engine.new(@form.file.path, current_user).process
-        rescue ::Errors::ImportError => message
-          format.js { render :error, locals: { message: message } }
+        rescue ::Errors::ImportError => e
+          format.js { render :error, locals: { message: e } }
         end
         format.js
       else
