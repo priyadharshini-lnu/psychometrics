@@ -65,7 +65,8 @@ describe 'Users' do
     post 'Create new user' do
       operationId 'CreateUser'
       tags 'Users'
-      description 'Creates a new user and adds to the campaigns specified along with the campaign\'s default assessments and reports.'
+      description 'Creates a new user and adds to the campaigns specified along with \\
+the campaign\'s default assessments and reports.'
       consumes 'application/json'
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
@@ -159,7 +160,8 @@ describe 'Users' do
         examples 'application/json' => {
           "code": 1003,
           "message": 'Not enough licenses',
-          "more_info": '<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report.'
+          "more_info": '<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough \\
+licenses for <b>Cognitive - Entry Level</b> report.'
         }
 
         let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
@@ -175,7 +177,8 @@ describe 'Users' do
           expect(error).to eq(
             'code' => 1003,
                                 'message' => 'Not enough licenses',
-                                'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not enough licenses for <b>#{report.name}</b> report."
+                                'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not \
+enough licenses for <b>#{report.name}</b> report."
           )
         end
       end

@@ -30,8 +30,10 @@ describe Threesixty::Evaluators::NominateEvaluator do
       it 'should create participants with unexisted and existed users' do
         expect(::Users::Regular.exists?(email: 'unexists@a.com')).to eq false
         expect(::Users::Regular.exists?(email: user.email)).to eq true
-        participant1 = described_class.call!(campaign, subject, evaluator_email: 'unexists@a.com', relationship_id: peer.id)
-        participant2 = described_class.call!(campaign, subject, { evaluator_email: user.email, relationship_id: peer.id }, user)
+        participant1 = described_class.
+                       call!(campaign, subject, evaluator_email: 'unexists@a.com', relationship_id: peer.id)
+        participant2 = described_class.
+                       call!(campaign, subject, { evaluator_email: user.email, relationship_id: peer.id }, user)
 
         expect(subject.participants.count).to eq(2)
         expect(::Users::Regular.exists?(email: 'unexists@a.com')).to eq true

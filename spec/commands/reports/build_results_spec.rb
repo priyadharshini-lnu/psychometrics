@@ -75,7 +75,10 @@ describe Reports::BuildResults do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
-      it { is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: external_results['ed.attempted'], config_data: data) }
+      it {
+        is_expected.to eq(key: 'ed.attempted', name: 'Attempted',
+                             value: external_results['ed.attempted'], config_data: data)
+      }
 
       context 'when data is not valid' do
         it do

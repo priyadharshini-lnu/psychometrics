@@ -18,7 +18,8 @@ describe Threesixty::Subjects::CreateAll do
 
   describe '.call' do
     it 'duplicated emails' do
-      result = described_class.call!([{ email: 'dev.atanov@gmail.com' }, { email: 'fedor@gmail.com' }], threesixty_campaign)
+      result = described_class.
+               call!([{ email: 'dev.atanov@gmail.com' }, { email: 'fedor@gmail.com' }], threesixty_campaign)
       expect(result[:subjects].map { |s| s.user.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
     end
 
@@ -72,7 +73,8 @@ describe Threesixty::Subjects::CreateAll do
     end
 
     it do
-      result = described_class.call!([{ email: 'dev.atanov@gmail.com' }, { email: 'fedor@gmail.com' }], threesixty_campaign)
+      result = described_class.
+               call!([{ email: 'dev.atanov@gmail.com' }, { email: 'fedor@gmail.com' }], threesixty_campaign)
       participants = Threesixty::Participant.all
       expect(result[:subjects].map { |s| s.user.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
       expect(participants.map { |s| s.evaluator.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])

@@ -32,7 +32,8 @@ module Imports
         else
           imported_items.each do |translation|
             translation.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: translation.translateable_id, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                       id: translation.translateable_id, error: message))
             end
           end
         end
@@ -66,7 +67,8 @@ module Imports
         collect_translations.each do |question_id, locales|
           # If can't find question for specified assessment, then add error
           unless Question.ransack(block_assessment_id_eq: assessment_id, id_eq: question_id).result.exists?
-            errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: question_id, error: "Can't find Question")) && next
+            errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                     id: question_id, error: "Can't find Question")) && next
           end
           locales.each do |locale, props|
             translation = Translation.find_or_initialize_by(

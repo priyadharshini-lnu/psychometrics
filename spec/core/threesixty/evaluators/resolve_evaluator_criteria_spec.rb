@@ -6,7 +6,10 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
   let(:user) { create(:user, email: 'user@a.com') }
   let(:subject) { create(:user, email: 'subject@a.com') }
   let(:campaign) { create(:threesixty_campaign) }
-  let(:datasheet) { create(:datasheet, project_id: campaign.project.id, columns: { 'Age' => 'Number', 'No.' => 'Number' }) }
+  let(:datasheet) do
+    create(:datasheet, project_id: campaign.project.id,
+                           columns: { 'Age' => 'Number', 'No.' => 'Number' })
+  end
 
   describe '.call check conditions' do
     before do

@@ -39,7 +39,9 @@ module Imports
       end
 
       def import_by_sheet_name(sheet_name, dimension_name)
-        raise Errors::ImportError, I18n.t('administration.imports.errors.norm.not_set_dimension') if !@dimension && !dimension_name
+        if !@dimension && !dimension_name
+          raise Errors::ImportError, I18n.t('administration.imports.errors.norm.not_set_dimension')
+        end
 
         sheet_name_arr     = sheet_name.split
         @current_norm_type = sheet_name_arr.pop.downcase

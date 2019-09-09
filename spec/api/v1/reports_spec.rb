@@ -29,7 +29,8 @@ describe 'Reports' do
   path '/projects/{project_id}/users/{user_id}/reports' do
     get 'Get user reports' do
       operationId 'GetUserReports'
-      description 'All reports currently assigned to the user. Each report object also contains the required assessments and the user\'s completion status.'
+      description 'All reports currently assigned to the user. Each report object also contains the required\\
+ assessments and the user\'s completion status.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]
@@ -102,8 +103,17 @@ describe 'Reports' do
                                           [{ 'id' => 17,
                                              'name' => 'Thriving Index Assessment',
                                              'results' =>
-                                              { 'normed_factors' => [{ 'key' => 549, 'name' => 'Accountability', 'value' => nil }, { 'key' => 554, 'name' => 'Efficacy', 'value' => nil }],
-                                                'ranked_occupations' => [{ 'key' => 2, 'rank' => 1, 'name' => 'Occupation 2', 'normed_factors' => [] }, { 'key' => 1, 'rank' => 2, 'name' => 'Occupation 1', 'normed_factors' => [] }] } }] }
+                                              { 'normed_factors' => [
+                                                { 'key' => 549, 'name' => 'Accountability', 'value' => nil },
+                                                { 'key' => 554, 'name' => 'Efficacy', 'value' => nil }
+                                              ],
+                                                'ranked_occupations' => [
+                                                  { 'key' => 2, 'rank' => 1, 'name' => 'Occupation 2',
+                                                    'normed_factors' => [] }, {
+                                                      'key' => 1, 'rank' => 2, 'name' => 'Occupation 1',
+                                                      'normed_factors' => []
+                                                    }
+                                                ] } }] }
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
@@ -146,7 +156,8 @@ describe 'Reports' do
   path '/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf' do
     get 'Get user report PDF' do
       operationId 'GetUserReport'
-      description 'Returns the user\'s report PDF url. This url is time-limited, check the expires_at attribute in the response.'
+      description 'Returns the user\'s report PDF url. This url is time-limited,\\
+ check the expires_at attribute in the response.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]

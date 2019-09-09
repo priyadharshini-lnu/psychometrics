@@ -33,7 +33,10 @@ describe ReportSerializer do
 
   describe '#data_sheet_columns' do
     describe 'common report' do
-      it { expect(described_class.new(common_report).data_sheet_columns).to eq [{ 'name' => 'field1', 'type' => 'HTML' }] }
+      it {
+        expect(described_class.new(common_report).data_sheet_columns).
+          to eq [{ 'name' => 'field1', 'type' => 'HTML' }]
+      }
     end
     describe 'threesixty report' do
       before do

@@ -8,7 +8,10 @@ describe Campaigns::Duplicate do
   let!(:campaign) { create(:client_campaign, parent: project, id: 102) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
-  let!(:clients_report) { create(:clients_report, client: campaign, report: report, report_family: create(:report_family)) }
+  let!(:clients_report) do
+    create(:clients_report, client: campaign,
+                                 report: report, report_family: create(:report_family))
+  end
 
   before do
     campaign.assessments = [assessment]

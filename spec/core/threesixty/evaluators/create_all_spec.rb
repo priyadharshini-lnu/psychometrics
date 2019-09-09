@@ -19,8 +19,16 @@ describe Threesixty::Evaluators::CreateAll do
   end
   let(:params) do
     [
-      { evaluator_email: 'dev.atanov@gmail.com', relationship_name: 'peer', subject: subject_1, relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com' },
-      { evaluator_email: 'dev.atanov@gmail.com', relationship_name: 'peer', subject: subject_2, relationship: relationship, subject_user: subject_2.user, subject_email: 'ivan@gmail.com'  }
+      {
+        evaluator_email: 'dev.atanov@gmail.com',
+        relationship_name: 'peer', subject: subject_1,
+        relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+      },
+      {
+        evaluator_email: 'dev.atanov@gmail.com',
+        relationship_name: 'peer', subject: subject_2,
+        relationship: relationship, subject_user: subject_2.user, subject_email: 'ivan@gmail.com'
+      }
     ]
   end
 
@@ -29,7 +37,8 @@ describe Threesixty::Evaluators::CreateAll do
   it '.call' do
     participants = subject
 
-    expect(participants.map { |s| s.evaluator.email }).to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
+    expect(participants.map { |s| s.evaluator.email }).
+      to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
     expect(participants.map { |s| s.subject.email }).to match_array(%w[ivan@gmail.com fedor@gmail.com])
     expect(participants.map { |s| s.relationship.name }).to match_array(%w[peer peer])
     expect(Threesixty::Evaluator.find_by(user_id: participants.first.evaluator_id).evaluations_count).to eq 2
@@ -79,7 +88,8 @@ describe Threesixty::Evaluators::CreateAll do
   end
 
   it 'updates user details if existing used is added as evalautor' do
-    user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel', last_name: 'Col')
+    user = create(:user,
+                  project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel', last_name: 'Col')
     create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
 
     described_class.call!([{

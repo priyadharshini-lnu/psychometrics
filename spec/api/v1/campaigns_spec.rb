@@ -91,7 +91,8 @@ describe 'Campaigns' do
   path '/projects/{project_id}/users/{user_id}/campaigns' do
     post 'Add user to campaigns' do
       operationId 'AddUserCampaigns'
-      description 'Adds new campaigns to the user. Adding campaigns to user assigns the campaign\'s default assessments and reports.'
+      description 'Adds new campaigns to the user. Adding campaigns to user assigns the campaign\'s default \\
+assessments and reports.'
       tags 'Campaigns'
       consumes 'application/json'
       security [basic: []]

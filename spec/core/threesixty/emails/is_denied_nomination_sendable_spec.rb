@@ -11,7 +11,10 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
              threesixty_campaign: threesixty_campaign,
              'participants' => {
                'subject' => { 'can_nominate_evaluators' => true },
-               'manager' => { 'can_approve_nominations' => true, 'email_subject_when_manager_declines_nomination' => true }
+               'manager' => {
+                 'can_approve_nominations' => true,
+                 'email_subject_when_manager_declines_nomination' => true
+               }
              })
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq true
@@ -24,7 +27,9 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
              threesixty_campaign: threesixty_campaign,
              'participants' => {
                'subject' => { 'can_nominate_evaluators' => false },
-               'manager' => { 'can_approve_nominations' => true, 'email_subject_when_manager_declines_nomination' => true }
+               'manager' => {
+                 'can_approve_nominations' => true, 'email_subject_when_manager_declines_nomination' => true
+               }
              })
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq false
@@ -35,7 +40,10 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
              threesixty_campaign: threesixty_campaign,
              'participants' => {
                'subject' => { 'can_nominate_evaluators' => true },
-               'manager' => { 'can_approve_nominations' => false, 'email_subject_when_manager_declines_nomination' => true }
+               'manager' => {
+                 'can_approve_nominations' => false,
+                 'email_subject_when_manager_declines_nomination' => true
+               }
              })
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq false

@@ -88,7 +88,9 @@ describe Threesixty::Participants::CreateForm do
       campaign.option.participants = { 'subject': {
         'can_nominate_anyone_from_datasheet': true,
         'limit_nomination_by_subject_from_datasheet': true,
-        'limit_nomination_by_subject_from_datasheet_criteria': [{ 'field' => 'Age', 'value' => '55', 'comparator' => 'equal' }]
+        'limit_nomination_by_subject_from_datasheet_criteria': [
+          { 'field' => 'Age', 'value' => '55', 'comparator' => 'equal' }
+        ]
       } }
       create(:datasheet_row, datasheet: datasheet, email: subject.user.email, data: { 'Age' => 21, 'No.' => 2 })
     end

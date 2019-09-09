@@ -31,7 +31,11 @@ describe Threesixty::NestedConditionResolver do
       expect(resolver.check_results(results)).to be true
     end
     it do
-      results = [{ operator: 'if', result: false }, { operator: 'or', result: true }, { operator: 'and', result: false }]
+      results = [
+        { operator: 'if', result: false },
+        { operator: 'or', result: true },
+        { operator: 'and', result: false }
+      ]
       expect(resolver.check_results(results)).to be false
     end
   end

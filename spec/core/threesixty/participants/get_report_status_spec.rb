@@ -28,7 +28,10 @@ describe Threesixty::Participants::GetReportStatus do
 
   describe 'report availability is false' do
     before { allow(Threesixty::Reports::IsAvailable).to receive(:call!).and_return(false) }
-    it { expect(described_class.call!(subject, option, {})).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE }
+    it {
+      expect(described_class.call!(subject, option, {})).
+        to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
+    }
   end
 
   describe 'report approved by manager' do

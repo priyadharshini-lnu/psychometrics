@@ -34,7 +34,8 @@ feature 'User Privileges', clean: false do
   #
   #     scenario 'I can edit Admin user privileges' do
   #       edit_user_privileges(client, admin_membership)
-  #       expect(page).to have_content(t('administration.memberships.update.successfully', name: admin_user.decorate.display_name))
+  #       expect(page).to have_content(t('administration.memberships.update.successfully',
+  # name: admin_user.decorate.display_name))
   #       expect(page).to have_css('.grants-table input[checked]', visible: false, count: 3)
   #     end
   #   end
@@ -53,7 +54,8 @@ feature 'User Privileges', clean: false do
 
     context 'with privileges' do
       before(:all) do
-        @admin_user.memberships.first.grants.update(data: @admin_user.memberships.first.grants.data.merge!(norms: %w[view manage], dimensions: %w[view]))
+        @admin_user.memberships.first.grants.update(data: @admin_user.memberships.first.grants.data.
+          merge!(norms: %w[view manage], dimensions: %w[view]))
       end
       before { login_as admin_user }
       # TODO: fix

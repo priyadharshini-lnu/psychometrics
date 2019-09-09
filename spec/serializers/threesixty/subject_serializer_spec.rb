@@ -20,7 +20,8 @@ describe Threesixty::SubjectSerializer do
     end
     let(:counters) do
       {
-        subject.user_id => { total_evaluators: 5, total_evaluations: 5, completed_evaluations: 3, completed_evaluators: 4 }
+        subject.user_id => { total_evaluators: 5, total_evaluations: 5,
+                             completed_evaluations: 3, completed_evaluators: 4 }
       }
     end
     before do
@@ -58,12 +59,14 @@ describe Threesixty::SubjectSerializer do
     end
     let(:counters) do
       {
-        subject.user_id => { total_evaluators: 5, total_evaluations: 5, completed_evaluations: 3, completed_evaluators: 5 }
+        subject.user_id => { total_evaluators: 5,
+                             total_evaluations: 5, completed_evaluations: 3, completed_evaluators: 5 }
       }
     end
 
     it do
-      result = described_class.new(subject, option: option, nomination_requirement: nomination_requirement, counters: counters).to_hash
+      result = described_class.new(subject, option: option,
+                                   nomination_requirement: nomination_requirement, counters: counters).to_hash
       expect(result[:evaluators]).to eq '5 / 5'
       expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
       expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED

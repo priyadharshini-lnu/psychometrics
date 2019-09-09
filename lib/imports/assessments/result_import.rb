@@ -36,7 +36,8 @@ module Imports
         else
           imported_items.each_with_index do |item, index|
             item.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                       row: index + SKIP_ROWS, error: message))
             end
           end
         end
@@ -75,7 +76,8 @@ module Imports
 
           # If Assign not found, going to create user
           unless assign
-            membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
+            membership = Membership.joins(:user).
+                         where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
             membership ||= find_or_create_user(data, index)
             next unless membership
 
@@ -162,7 +164,8 @@ module Imports
                ).
                find_or_create_by(email: data['email'])
         if user.errors.any?
-          errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: user.errors.full_messages.first))
+          errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                   row: index + SKIP_ROWS, error: user.errors.full_messages.first))
           return
         end
         # user.invite!(importer, client_id) unless user.invited_to_sign_up?
@@ -175,7 +178,10 @@ module Imports
         norm_name, norm_type = norm_data.to_s.split(':')
         norm = Norm.
                joining { dimension }.
-               joining { dimension.assessments.alias('assessments').on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id)) }.
+               joining do
+          dimension.assessments.alias('assessments').
+            on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
+        end .
                where(name: norm_name).
                pluck(:id)
         { id: norm.try(:first), type: norm_type }
@@ -187,7 +193,8 @@ module Imports
 
         DateTime.strptime(date.to_s, '%D %r')
       rescue StandardError
-        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
+        errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
       end
     end
   end

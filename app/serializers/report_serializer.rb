@@ -40,7 +40,7 @@ class ReportSerializer < ActiveModel::Serializer
              where('json_array_length(props) > 0')
          )
        ).as('question_ids')]
-    end .
+    end.
               where(dimension_id: object.dimension_ids).
               order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)

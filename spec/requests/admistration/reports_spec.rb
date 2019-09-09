@@ -27,7 +27,8 @@ RSpec.describe 'Administration::ReportsController', type: :request do
   #     end
   #
   #     before(:each) { allow(Settings).to receive_message_chain('providers.hogan.reports') { [hogan_report] } }
-  #     subject { get('/administration/reports/hogan_reports.json', params: { assessment_ids: psy_assessment_ids.join(',') }) }
+  #     subject { get('/administration/reports/hogan_reports.json',
+  # params: { assessment_ids: psy_assessment_ids.join(',') }) }
   #
   #     it 'correct format' do
   #       subject

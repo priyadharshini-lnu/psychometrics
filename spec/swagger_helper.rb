@@ -25,7 +25,10 @@ RSpec.configure do |config|
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
         },
-        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
+        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse \
+with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming \
+languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\n\
+Single Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
       },
       securityDefinitions: { basic: { type: :basic } },
       paths: {},
@@ -116,7 +119,8 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
-            ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' }, 'x-nullable': true }
+            ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' },
+                                  'x-nullable': true }
           }
         },
         NormedFactor: {

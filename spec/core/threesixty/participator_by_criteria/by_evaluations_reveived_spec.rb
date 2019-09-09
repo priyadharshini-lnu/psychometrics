@@ -8,7 +8,10 @@ describe Threesixty::ParticipatorByCriteria::ByEvaluationsReceived do
     create(
       :threesixty_option,
       threesixty_campaign: threesixty_campaign,
-      participants: { 'subject' => { 'can_evaluate_self' => true }, 'manager' => { 'can_approves_evaluations' => true } }
+      participants: {
+        'subject' => { 'can_evaluate_self' => true },
+        'manager' => { 'can_approves_evaluations' => true }
+      }
     )
   end
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3, campaign: threesixty_campaign.campaign) }

@@ -40,7 +40,9 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'returns valid? as true if all values passed are valid' do
     form = described_class.
-           new(subject: { self_evaluation_criteria: [{ 'field': 'valid_field', comparator: 'equal', value: 'value' }] }).
+           new(subject: {
+             self_evaluation_criteria: [{ 'field': 'valid_field', comparator: 'equal', value: 'value' }]
+           }).
            with_context(datasheet_column_names: ['valid_field'])
 
     expect(form.valid?).to eq(true)

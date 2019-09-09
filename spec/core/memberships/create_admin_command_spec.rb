@@ -6,7 +6,13 @@ describe Memberships::CreateAdminCommand do
   describe '.call' do
     let(:client) { create(:tenancy) }
     let(:client_admin) { create(:client_admin) }
-    let(:new_membership) { Membership.new('parent_id' => '', 'user_attributes' => { 'first_name' => 'Jon', 'last_name' => 'Jones', 'email' => 'jon@jones.com' }, 'grants_attributes' => { 'data' => { 'communications' => %w[view manage] } }) }
+    let(:new_membership) do
+      Membership.new(
+        'parent_id' => '',
+        'user_attributes' => { 'first_name' => 'Jon', 'last_name' => 'Jones', 'email' => 'jon@jones.com' },
+        'grants_attributes' => { 'data' => { 'communications' => %w[view manage] } }
+      )
+    end
 
     it do
       events = described_class.call(new_membership, client, client_admin, 'client_admin')

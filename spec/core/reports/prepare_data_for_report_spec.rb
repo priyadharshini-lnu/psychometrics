@@ -43,13 +43,19 @@ describe Reports::PrepareDataForReport do
     let(:evaluator_1) { create(:user) }
     let(:evaluator_2) { create(:user) }
     let(:evaluator_3) { create(:user) }
-    let(:users_report) { create(:users_report, report: threesixty_campaign.report, campaign: threesixty_campaign.campaign, user_id: subject.user_id) }
+    let(:users_report) do
+      create(:users_report, report: threesixty_campaign.report,
+                                campaign: threesixty_campaign.campaign, user_id: subject.user_id)
+    end
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_1, relationship: manager)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_2, relationship: peer)
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign, evaluator: evaluator_3, relationship: customer)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
+             subject: subject.user, evaluator: evaluator_1, relationship: manager)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
+             subject: subject.user, evaluator: evaluator_2, relationship: peer)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
+             evaluator: evaluator_3, relationship: customer)
       create_users_result(threesixty_campaign, subject, evaluator_1)
       create_users_result(threesixty_campaign, subject, evaluator_2)
       create_users_result(threesixty_campaign, subject, evaluator_3)
@@ -64,7 +70,8 @@ describe Reports::PrepareDataForReport do
         current_user: evaluator_1
       }
       results = described_class.new(args).serialize_results
-      expect(results[threesixty_campaign.assessment.id].map { |r| r[:relationship] }).to match_array %w[manager peer]
+      expect(results[threesixty_campaign.assessment.id].
+        map { |r| r[:relationship] }).to match_array %w[manager peer]
     end
   end
 

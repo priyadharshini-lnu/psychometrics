@@ -12,7 +12,11 @@ describe Threesixty::ParticipatorByCriteria::ByUserFields do
     subject_without_matching_email = create(:threesixty_subject, user: create(:user, email: 'andrew@cc.com'))
     subject_without_matching_name = create(:threesixty_subject, user: create(:user, first_name: 'Andrew'))
 
-    participators = [subject_with_matching_email, subject_with_matching_name, subject_without_matching_email, subject_without_matching_name]
+    participators = [
+      subject_with_matching_email,
+      subject_with_matching_name,
+      subject_without_matching_email, subject_without_matching_name
+    ]
     criteria_list = [{ 'field' => 'name_or_email', 'comparator' => 'starts_with', 'value' => 'James' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
@@ -69,7 +73,8 @@ describe Threesixty::ParticipatorByCriteria::ByUserFields do
   end
 
   it 'filters participator by mutiple user fields' do
-    subject_with_matching_details = create(:threesixty_subject, user: create(:user, first_name: 'Smith', email: 'smith@cc.com'))
+    subject_with_matching_details = create(:threesixty_subject,
+                                           user: create(:user, first_name: 'Smith', email: 'smith@cc.com'))
     subject_with_partial_match = create(:threesixty_subject, user: create(:user, first_name: 'Smith'))
     subject_without_matching_details = create(:threesixty_subject, user: create(:user, first_name: 'Andrew'))
 

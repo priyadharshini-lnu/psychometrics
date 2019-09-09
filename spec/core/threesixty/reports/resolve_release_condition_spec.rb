@@ -46,15 +46,19 @@ describe Threesixty::Reports::ResolveReleaseCondition do
             {
               'operator' => 'if',
               'conditions' => [
-                { 'type' => 'evaluations', 'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '1' },
-                { 'type' => 'evaluations', 'operator' => 'and', 'relationship' => peer.id, 'number_of_evaluator' => '2' }
+                { 'type' => 'evaluations',
+                  'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '1' },
+                { 'type' => 'evaluations',
+                  'operator' => 'and', 'relationship' => peer.id, 'number_of_evaluator' => '2' }
               ]
             },
             {
               'operator' => 'and',
               'conditions' => [
-                { 'type' => 'evaluations', 'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '2' },
-                { 'type' => 'evaluations', 'operator' => 'or', 'relationship' => peer.id, 'number_of_evaluator' => '3' }
+                { 'type' => 'evaluations',
+                  'operator' => 'if', 'relationship' => manager.id, 'number_of_evaluator' => '2' },
+                { 'type' => 'evaluations',
+                  'operator' => 'or', 'relationship' => peer.id, 'number_of_evaluator' => '3' }
               ]
             }
           ]

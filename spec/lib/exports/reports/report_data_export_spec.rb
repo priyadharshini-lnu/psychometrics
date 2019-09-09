@@ -76,7 +76,8 @@ describe Exports::Reports::ReportDataExport do
         sheet = report_data_export.to_xlsx.workbook.worksheets.first
 
         expect(sheet).to have_cells(['User Details', '', 'Error Detection', '', 'Thriving Index', '']).in_row(0)
-        expect(sheet).to have_cells(['First Name', 'Last Name', 'Attempted', 'Correct', 'Test factor', 'Fit Score']).in_row(1)
+        expect(sheet).to have_cells(['First Name', 'Last Name', 'Attempted', 'Correct', 'Test factor', 'Fit Score']).
+          in_row(1)
         expect(sheet).to have_cells(['Jon', 'Snow', 1, 2, 3, 3.0]).in_row(2)
       end
     end

@@ -20,7 +20,8 @@ RSpec.describe CommunicationEmail, type: :model do
 
       context 'when user has some CommunicationEmail' do
         it 'returns those emails' do
-          expect(CommunicationEmail.for_user(@user.id).size).to eq(CommunicationEmail.joins(:membership).where(memberships: { user_id: @user.id }).size)
+          expect(CommunicationEmail.for_user(@user.id).size).
+            to eq(CommunicationEmail.joins(:membership).where(memberships: { user_id: @user.id }).size)
         end
       end
       context 'when there are some emails for other users' do

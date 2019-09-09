@@ -12,8 +12,10 @@ describe Threesixty::ParticipatorByCriteria::BySubjectStatus do
     @nomination_requirement_by_user_id = {}
 
     allow_any_instance_of(described_class).to receive(:counters).and_return(@counter)
-    allow_any_instance_of(described_class).to receive(:subject_evaluator_counters).and_return(@subject_evaluator_counters)
-    allow_any_instance_of(described_class).to receive(:nomination_requirement_by_user_id).and_return(@nomination_requirement_by_user_id)
+    allow_any_instance_of(described_class).to receive(:subject_evaluator_counters).
+      and_return(@subject_evaluator_counters)
+    allow_any_instance_of(described_class).to receive(:nomination_requirement_by_user_id).
+      and_return(@nomination_requirement_by_user_id)
   end
 
   it 'returns subject matching criteria status' do

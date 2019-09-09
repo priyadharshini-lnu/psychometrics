@@ -52,7 +52,8 @@ describe Exports::Reports::Pdf::BulkReportExport do
 
         it 'enqueues ExportJob' do
           allow(query).to receive(:call).with(any_args).and_return(items)
-          expect(BulkReport).to receive(:create).with(user: current_user, queue_size: items.size).and_return(bulk_report)
+          expect(BulkReport).to receive(:create).
+            with(user: current_user, queue_size: items.size).and_return(bulk_report)
 
           expect(Report).to receive(:find).with(item.id).and_return(report)
           expect(User).to receive(:find).with(item.user_id).and_return(user)

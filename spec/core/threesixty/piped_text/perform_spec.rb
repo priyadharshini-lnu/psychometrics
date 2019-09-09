@@ -22,17 +22,22 @@ describe Threesixty::PipedText::Perform do
   end
   describe '#valid_branch?' do
     it do
-      response = described_class.new(nil, evaluator: 'some', threesixty_campaign: 'camp').valid_branch?(required_context: %i[evaluator threesixty_campaign])
+      response = described_class.new(nil, evaluator: 'some', threesixty_campaign: 'camp').
+                 valid_branch?(required_context: %i[evaluator threesixty_campaign])
       expect(response).to eq true
     end
     it do
-      response = described_class.new(nil, subject: 'some').valid_branch?(required_context: %i[subject threesixty_campaign])
+      response = described_class.new(nil, subject: 'some').
+                 valid_branch?(required_context: %i[subject threesixty_campaign])
       expect(response).to eq false
     end
   end
 
   describe '.call' do
-    let(:user) { create(:user, project: create(:project), first_name: 'Vasiliy', last_name: 'Pupkin', email: 'vasja@gmail.com') }
+    let(:user) do
+      create(:user, project: create(:project),
+                        first_name: 'Vasiliy', last_name: 'Pupkin', email: 'vasja@gmail.com')
+    end
 
     it do
       response = described_class.call!('{{dash://Url?v=444&c=de}} ss', recipient: user, threesixty_campaign: 'ddd')
@@ -55,7 +60,8 @@ describe Threesixty::PipedText::Perform do
     end
 
     it 'multiple piped text' do
-      response = described_class.call!('{{s://Field/FirstName}} vs {{p://Field/Email}}', recipient: user, subject: user, threesixty_campaign: 'ddd')
+      response = described_class.call!('{{s://Field/FirstName}} vs {{p://Field/Email}}',
+                                       recipient: user, subject: user, threesixty_campaign: 'ddd')
       expect(response).to eq('Vasiliy vs vasja@gmail.com')
     end
 

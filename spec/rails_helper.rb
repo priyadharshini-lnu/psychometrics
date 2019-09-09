@@ -71,7 +71,8 @@ RSpec.configure do |config|
   Capybara::Screenshot.autosave_on_failure = ENV['CIRCLECI'].nil? # skip for circleci artifacts
 
   config.after(:each) do |example|
-    if ENV['CIRCLECI'] && example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
+    if ENV['CIRCLECI'] &&
+       example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end
   end

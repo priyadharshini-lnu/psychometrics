@@ -10,8 +10,10 @@ describe Threesixty::Emails::SendScheduledEmails do
       scheduled_date: Time.now.advance(days: -1),
       delivered_at: nil
     )
-    delivered_email = create(:threesixty_email_schedule, delivered_at: Time.now, scheduled_date: Time.now.advance(days: -1))
-    scheduled_for_future_email = create(:threesixty_email_schedule, delivered_at: Time.now, scheduled_date: Time.now.advance(days: 1))
+    delivered_email = create(:threesixty_email_schedule,
+                             delivered_at: Time.now, scheduled_date: Time.now.advance(days: -1))
+    scheduled_for_future_email = create(:threesixty_email_schedule,
+                                        delivered_at: Time.now, scheduled_date: Time.now.advance(days: 1))
 
     expect(Threesixty::Emails::SendSingleScheduledEmail).to receive(:call!).
       with(not_delivered_email_schedule[0])

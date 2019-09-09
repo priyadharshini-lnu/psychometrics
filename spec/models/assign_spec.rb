@@ -11,7 +11,11 @@ RSpec.describe Assign, type: :model do
       let(:membership) { create(:membership, client: campaign) }
       let!(:assign) { create(:assign, assessment: assessment, membership: membership, status: 'not_started') }
       let(:membership_project) { create(:membership, client: campaign.project) }
-      let!(:assign_project) { create(:assign, assessment: assessment, membership: membership_project, status: 'in_progress') }
+      let!(:assign_project) do
+        create(:assign,
+               assessment: assessment,
+                     membership: membership_project, status: 'in_progress')
+      end
 
       it 'returns by project assign status' do
         assign.project_assign.update_attribute(:status, described_class.statuses[:completed])

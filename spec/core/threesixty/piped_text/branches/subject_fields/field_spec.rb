@@ -12,7 +12,8 @@ describe Threesixty::PipedText::Branches::SubjectFields::Field do
     let(:relationship) { create(:relationship, name: 'Boss') }
 
     before do
-      create(:threesixty_participant, campaign: threesixty_campaign.campaign, evaluator_id: evaluator.id, subject_id: subject.id, relationship: relationship)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign,
+             evaluator_id: evaluator.id, subject_id: subject.id, relationship: relationship)
     end
 
     it do
@@ -31,12 +32,14 @@ describe Threesixty::PipedText::Branches::SubjectFields::Field do
     end
 
     it do
-      response = described_class.call!(%w[Field RelationshipName], {}, subject: subject, evaluator: evaluator, threesixty_campaign: threesixty_campaign)
+      response = described_class.call!(%w[Field RelationshipName], {},
+                                       subject: subject, evaluator: evaluator, threesixty_campaign: threesixty_campaign)
       expect(response).to eq('Boss')
     end
 
     it do
-      response = described_class.call!(%w[Field RelationshipName], {}, subject: subject, threesixty_campaign: threesixty_campaign)
+      response = described_class.call!(%w[Field RelationshipName], {},
+                                       subject: subject, threesixty_campaign: threesixty_campaign)
       expect(response).to eq(nil)
     end
 

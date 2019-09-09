@@ -13,7 +13,8 @@ describe Threesixty::Emails::Send do
     allow(Threesixty::Emails::IsSubjectReportReadySendable).to receive(:call!).and_return(false)
 
     expect do
-      Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      Threesixty::Emails::Send.call!('subject_report_ready',
+                                     threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
     end.to_not change { Threesixty::EmailSchedule.count }
   end
 
@@ -22,15 +23,18 @@ describe Threesixty::Emails::Send do
     allow(Threesixty::Emails::IsSubjectReportReadySendable).to receive(:call!).and_return(true)
 
     expect do
-      Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      Threesixty::Emails::Send.call!('subject_report_ready',
+                                     threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
     end.to change { Threesixty::EmailSchedule.count }.by(1)
   end
 
   it 'email_schedules record created by copying attributes from email template' do
-    email_template = create(:threesixty_email_template, threesixty_campaign: threesixty_campaign, name: 'subject_report_ready')
+    create(:threesixty_email_template,
+           threesixty_campaign: threesixty_campaign, name: 'subject_report_ready')
     allow(Threesixty::Emails::IsSubjectReportReadySendable).to receive(:call!).and_return(true)
 
-    Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+    Threesixty::Emails::Send.call!('subject_report_ready',
+                                   threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
     email_schedule = Threesixty::EmailSchedule.find_by(name: 'subject_report_ready')
     attributes_copied = %i[from reply_to_email content name]
@@ -55,7 +59,8 @@ describe Threesixty::Emails::Send do
     allow(Threesixty::Emails::IsManagerReportReadySendable).to receive(:call!).and_return(true)
 
     expect do
-      Threesixty::Emails::Send.call!('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      Threesixty::Emails::Send.call!('manager_report_ready',
+                                     threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
     end.to change { Threesixty::EmailSchedule.count }.by(1)
 
     recipient_ids = Threesixty::EmailSchedule.find_by(name: 'manager_report_ready').recipient_ids
@@ -76,7 +81,8 @@ describe Threesixty::Emails::Send do
     end
 
     expect do
-      Threesixty::Emails::Send.call!('evaluator_reminder', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      Threesixty::Emails::Send.call!('evaluator_reminder',
+                                     threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
     end.to change { Threesixty::EmailSchedule.count }.by(1)
 
     recipient_ids = Threesixty::EmailSchedule.find_by(name: 'evaluator_reminder').recipient_ids
@@ -92,7 +98,8 @@ describe Threesixty::Emails::Send do
     )
     allow(Threesixty::Emails::IsSubjectReportReadySendable).to receive(:call!).and_return(true)
 
-    Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+    Threesixty::Emails::Send.call!('subject_report_ready',
+                                   threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
     email_schedule = Threesixty::EmailSchedule.find_by(name: 'subject_report_ready')
     expect(email_schedule.meta['subject_ids']).to match([threesixty_subject.user_id])

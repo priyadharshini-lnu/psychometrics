@@ -10,14 +10,16 @@ module Builders
       current_user
     end
 
-    attr_accessor :current_user, :scoring_list, :question_recoding_list, :assessment, :factor_scoring_map, :question_recoding_map
+    attr_accessor :current_user, :scoring_list, :question_recoding_list, :assessment,
+                  :factor_scoring_map, :question_recoding_map
 
     def initialize(assessment, scoring, question_recoding, current_user)
       @current_user = current_user
       @assessment = assessment
       @scoring_list = scoring.map(&:permit!)
       @question_recoding_list = question_recoding.map(&:permit!)
-      @factor_scoring_map = FactorsScoring.where(assessment: assessment).index_by { |fs| [fs.factor_id, fs.question_id] }
+      @factor_scoring_map = FactorsScoring.where(assessment: assessment).
+                            index_by { |fs| [fs.factor_id, fs.question_id] }
       @question_recoding_map = QuestionRecoding.where(assessment: assessment).index_by(&:question_id)
     end
 
@@ -45,7 +47,9 @@ module Builders
       end
       # TODO: Remove this by fixing duplicate scoring on frontend
       rows.uniq! { |r| "#{r[:factor_id]}-#{r[:question_id]}" }
-      FactorsScoring.import rows, on_duplicate_key_update: { conflict_target: %i[factor_id question_id assessment_id], columns: [:props] }
+      FactorsScoring.import rows, on_duplicate_key_update: {
+        conflict_target: %i[factor_id question_id assessment_id], columns: [:props]
+      }
       FactorsScoring.where("props::text = '[]'").delete_all
     end
 
@@ -65,7 +69,9 @@ module Builders
       end
       # TODO: Remove this by fixing duplicate scoring on frontend
       rows.uniq! { |r| r[:question_id] }
-      QuestionRecoding.import rows, on_duplicate_key_update: { conflict_target: %i[question_id assessment_id], columns: [:props] }
+      QuestionRecoding.import rows, on_duplicate_key_update: {
+        conflict_target: %i[question_id assessment_id], columns: [:props]
+      }
       QuestionRecoding.where("props::text = '[]'").delete_all
     end
   end

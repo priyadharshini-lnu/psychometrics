@@ -19,7 +19,8 @@ module Features
           yield
         else
           superadmin = User.last
-          expect(page).to have_content t('administration.users.create.successfully', name: superadmin.decorate.display_name)
+          expect(page).to have_content t('administration.users.create.successfully',
+                                         name: superadmin.decorate.display_name)
           expect(page).to have_css('#users_list td', text: superadmin.decorate.display_name)
           expect(superadmin.role).to eq User::SUPER_ADMIN_ROLE
           superadmin
@@ -28,7 +29,8 @@ module Features
 
       def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_step_1_administration_client_project_admins_path(project)}']").click
+        href = new_step_1_administration_client_project_admins_path(project)
+        find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
         within '.new_prepare_user' do
           fill_in 'prepare_user_email', with: opts[:email]
@@ -46,7 +48,8 @@ module Features
         else
           wait_for_ajax
           admin_membership = Membership.last
-          expect(page).to have_content t('administration.memberships.create.successfully', name: admin_membership.decorate.display_name)
+          expect(page).to have_content t('administration.memberships.create.successfully',
+                                         name: admin_membership.decorate.display_name)
           expect(page).to have_css("#client_#{project.id} td", text: admin_membership.decorate.display_name)
           expect(admin_membership.role).to eq Membership::PROJECT_ADMIN_ROLE
           expect(admin_membership.project?).to be true
@@ -59,7 +62,8 @@ module Features
 
       def choose_project_admin(project, admin_membership)
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
+        href = new_administration_client_project_admin_path(project)
+        find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         find('label', text: t('administration.clients.project_admins.form.choose_admin')).click
         within '#existing-inputs' do
           select admin_membership.decorate.display_name, from: 'project_admin_ids', visible: false
@@ -105,7 +109,8 @@ module Features
           yield
         else
           user_membership = Membership.last
-          expect(page).to have_content t('administration.memberships.create.successfully', name: user_membership.decorate.display_name)
+          expect(page).to have_content t('administration.memberships.create.successfully',
+                                         name: user_membership.decorate.display_name)
           expect(page).to have_css("#membership_#{user_membership.id} td", text: user_membership.user.email)
           expect(user_membership.role).to eq Membership::MEMBER_ROLE
 
