@@ -20,13 +20,13 @@ module Threesixty
       end
 
       def call
-        result = user_ids.each_with_object({}) do |user_id, result|
+        outer_result = user_ids.each_with_object({}) do |user_id, result|
           result[user_id] = {} unless result[user_id]
           types.each do |type|
             result[user_id][type] = gather_relationships(user_id, type)
           end
         end
-        broadcast :ok, result
+        broadcast :ok, outer_result
       end
 
       def gather_relationships(user_id, type)

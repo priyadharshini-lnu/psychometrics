@@ -10,7 +10,7 @@ module Threesixty
       end
 
       def call
-        result = user_ids.each_with_object({}) do |user_id, result|
+        outer_result = user_ids.each_with_object({}) do |user_id, result|
           result[user_id] = {} unless result[user_id]
           result[user_id][:total_evaluators] = total_evaluators[user_id].try(:cache_counter) || 0
           result[user_id][:total_evaluations] = total_evaluations[user_id].try(:total_evaluations_count) || 0
@@ -18,7 +18,7 @@ module Threesixty
                                                     try(:completed_evaluations_count) || 0
           result[user_id][:completed_evaluators] = completed_evaluators[user_id].try(:cache_counter) || 0
         end
-        broadcast :ok, result
+        broadcast :ok, outer_result
       end
 
       private

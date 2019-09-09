@@ -23,9 +23,9 @@ module Exports
           # hash['1-2-3'] = 100
           # Where 1 - choice, 2 - scale, 3 - value index, 100 - scoring value
           factors_scoring = {}
-          question.detect_specified_scoring.each do |scoring|
-            key = "#{scoring['choice']}-#{scoring['scale']}"
-            scoring['values'].each do |value|
+          question.detect_specified_scoring.each do |sc|
+            key = "#{sc['choice']}-#{sc['scale']}"
+            sc['values'].each do |value|
               factors_scoring["#{key}-#{value['index']}"] = value['value']
             end
           end

@@ -6,7 +6,7 @@ module Api
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
         ::Campaigns::Duplicate.call(form, campaign) do
-          on(:invalid) { |form| render_validation_errors(form) }
+          on(:invalid) { |f| render_validation_errors(f) }
           on(:ok) { |new_campaign| render json: Api::V1::CampaignSerializer.new(new_campaign).to_h }
         end
       end
@@ -20,7 +20,7 @@ module Api
       def create
         form = Api::V1::Campaigns::AttachToUserForm.from_params(params).with_context(project: project, user: user)
         Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do
-          on(:invalid) { |form| render_validation_errors(form) }
+          on(:invalid) { |f| render_validation_errors(f) }
           on(:license_error) { |_form, _error| raise Errors::Api::NotEnoughLicencesError, 'aaaa' }
           on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end

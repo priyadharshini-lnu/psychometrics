@@ -13,7 +13,7 @@ FactorsNorm::NORM_TYPES.each do |type|
     @factors_norms[type]['factors'].each do |factor|
       current_row = [nil, factor[:name]]
       FactorsNorm::LEVELS.each do |level|
-        cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
+        cell = factor[:factors_norms_props].find { |c| c['level'] == level }
         current_row << cell.try(:[], 'score_from')
         current_row << cell.try(:[], 'score_to')
       end
@@ -30,7 +30,7 @@ FactorsNorm::NORM_TYPES.each do |type|
     @factors_norms[type]['sub_factors'].each do |factor|
       current_row = factor[:parent].name, factor[:name]
       FactorsNorm::LEVELS.each do |level|
-        cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
+        cell = factor[:factors_norms_props].find { |c| c['level'] == level }
         current_row << cell.try(:[], 'score_from')
         current_row << cell.try(:[], 'score_to')
       end
