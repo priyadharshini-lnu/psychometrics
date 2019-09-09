@@ -29,6 +29,11 @@ Metrics/BlockLength:
     - "config/routes.rb"
     - "config/initializers/simple_form_bootstrap.rb"
 
+Style/MixinUsage:
+  Exclude:
+    - "spec/**/*"
+    - "bin/**/*"
+
 Layout/CaseIndentation:
   IndentOneStep: true
 
