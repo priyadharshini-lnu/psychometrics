@@ -59,7 +59,7 @@ module Threesixty
       # rubocop:enable Metrics/BlockLength
 
       def get_status(participant)
-        return :not_started if participant.result_status == 0 || !participant.result_status
+        return :not_started if participant.result_status.zero? || !participant.result_status
         return :in_progress if participant.result_status == 1
         return :approved if participant.result_status == 2 && participant.manager_evaluation_approved?
         return :denied if participant.result_status == 2 && participant.manager_evaluation_denied?

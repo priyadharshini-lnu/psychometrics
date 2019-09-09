@@ -48,7 +48,7 @@ class License < ApplicationRecord
   end
 
   def in_overuse?
-    used_overuse_number > 0
+    used_overuse_number.positive?
   end
 
   def enough_licenses?

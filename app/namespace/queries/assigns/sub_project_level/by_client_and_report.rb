@@ -15,7 +15,7 @@ module Queries
             assigns_reports.on do |ar|
               (ar.assign_id.eq(id) | ar.assign_id.eq(original_assign.id)) & ar.report_id.eq(report_id)
             end
-          end .
+          end.
             where.has { original_assign.membership.client_id.eq(client_id) }
         end
       end

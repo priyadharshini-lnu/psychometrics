@@ -61,7 +61,7 @@ class AssessmentDecorator < BaseDecorator
 
     answered = assign.results&.size || 0
     total = object.questions&.size
-    return 0 if total.nil? || total == 0
+    return 0 if total.nil? || total.zero?
 
     result = (100 * answered) / total
 

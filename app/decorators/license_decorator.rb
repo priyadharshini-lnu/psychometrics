@@ -34,7 +34,7 @@ class LicenseDecorator < BaseDecorator
   def usage_percent(client = nil)
     used_number = object.used_by(client) if client
     used_number ||= object.used_number
-    used_number = (used_number * 100 / object.number).round(0) if used_number > 0
+    used_number = (used_number * 100 / object.number).round(0) if used_number.positive?
     used_number.to_s + ' %'
   end
 

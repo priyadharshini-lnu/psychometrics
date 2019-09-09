@@ -59,6 +59,10 @@ Style/FormatString:
 Style/GuardClause:
   Enabled: false
 
+# using baby_squeel assumes multi blocks
+Style/MultilineBlockChain:
+  Enabled: false
+
 Layout/IndentHash:
   EnforcedStyle: consistent
 
