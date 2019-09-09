@@ -34,7 +34,7 @@ module Ecommerce
       @order = Order.includes(purchases: [:invites, { product: { reports: :assessment } }]).last
 
       @order.purchases.each do |purchase|
-        purchase&.product&.reports.each do |report|
+        purchase&.product&.reports&.each do |report|
           AssessmentClient.find_or_create_by!(
             assessment: report&.assessment,
             client: @current_membership.client

@@ -36,7 +36,7 @@ module Ecommerce
 
     # Find and set product price with specified currency
     def set_price
-      self.price = price_currency && product&.prices.find_by(price_currency: price_currency)&.price
+      self.price = price_currency && product&.prices&.find_by(price_currency: price_currency)&.price
     end
 
     # In dependent of quantity products

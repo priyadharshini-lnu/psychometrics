@@ -150,10 +150,8 @@ class Assign < ApplicationRecord
           if scoring_point
             self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
           end
-        else
-          if scoring_point
-            self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
-          end
+        elsif scoring_point
+          self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
         end
       end
     end

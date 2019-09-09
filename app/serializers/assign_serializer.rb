@@ -52,10 +52,8 @@ class AssignSerializer < ActiveModel::Serializer
           Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
         end
       participant&.relationship&.name
-    else
-      if @instance_options[:membership]
-        object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship
-      end
+    elsif @instance_options[:membership]
+      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship
     end
   end
 

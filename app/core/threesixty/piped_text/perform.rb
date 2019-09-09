@@ -47,6 +47,7 @@ module Threesixty
         @context = context || {}
       end
 
+      # rubocop:disable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
       def call
         result =
           body.gsub /{{(.*?)}}/ do
@@ -63,6 +64,7 @@ module Threesixty
           end
         broadcast :ok, result
       end
+      # rubocop:enable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first

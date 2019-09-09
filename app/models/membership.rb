@@ -123,11 +123,8 @@ class Membership < ApplicationRecord
   }
   # Search users with specified Assign id (hashed)
   scope :assigns_hash_id_eq, lambda { |hash_id|
-    begin
-      decoded_id = Assign.decode_id(hash_id.to_s).first
-      joins(:assigns).where(assigns: { id: decoded_id })
-    rescue InputError
-    end
+    decoded_id = Assign.decode_id(hash_id.to_s).first
+    joins(:assigns).where(assigns: { id: decoded_id })
   }
 
   # Save HRIS data from form

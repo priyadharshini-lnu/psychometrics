@@ -13,7 +13,6 @@
 #
 
 class ProductPrice < ApplicationRecord
-  attr_accessor :cost
   belongs_to :product
   monetize :price_cents
 

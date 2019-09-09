@@ -47,6 +47,7 @@ module BulkReports
       url.scheme = 'http'
       IO.copy_stream(open(url.to_s), output) # rubocop:disable Security/Open
     rescue OpenURI::HTTPError
+      Rails.logger.error "Unprocessable Entity #{report_file}"
     end
   end
 end

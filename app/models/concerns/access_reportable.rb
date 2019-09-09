@@ -3,8 +3,6 @@
 module AccessReportable
   extend ActiveSupport::Concern
 
-  attr_accessor :access_reports, :access_reports_at_date, :access_reports_at_time
-
   def access_reports
     @access_reports || (access_reports_at.nil? ? 'immediately' : 'specific_datetime')
   end
