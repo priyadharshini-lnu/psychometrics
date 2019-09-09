@@ -43,7 +43,7 @@ test:
   - node_modules/eslint/bin/eslint.js app/frontend/
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
-  - rubocop
+  - bundle exec rubocop
   - bundle exec rspec
   artifacts:
     when: on_failure
