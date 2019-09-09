@@ -1,14 +1,17 @@
 module Threesixty
   class NominationsByUserQuery < Rectify::Query
-    def initialize(campaign, current_user)
+    private_attr_reader :campaign, :current_user, :option, :managed_subjects
+
+    def initialize(campaign, current_user, managed_subjects)
       @campaign = campaign
-      @options = @campaign.option
       @current_user = current_user
+      @option = @campaign.option
+      @managed_subjects = managed_subjects
     end
 
     def query
-      scope = self_subject_scope(@campaign.subjects)
-      scope = scope.or(Subject.where(user_id: manager_ids, campaign_id: @campaign.campaign_id).includes(:user)) if manager_can_manage_evaluations?
+      scope = self_subject_scope(campaign.subjects)
+      scope = scope.or(managed_subjects) if manager_can_manage_evaluations?
 
       scope
     end
@@ -21,22 +24,14 @@ module Threesixty
       end
     end
 
-    def manager_ids
-      @campaign.participants.joins(:relationship)
-        .where(relationships: { name: 'Manager', type: :global })
-        .where(evaluator_id: current_user.id)
-        .where.not(subject_id: current_user.id)
-        .pluck(:subject_id)
-    end
-
     private
 
     def subject_can_manage_evaluations?
-      @options.participants.dig('subject', 'can_nominate_evaluators')
+      option.participants.dig('subject', 'can_nominate_evaluators')
     end
 
     def manager_can_manage_evaluations?
-      manager_opts = @options.participants['manager']
+      manager_opts = option.participants['manager']
       manager_opts['can_view_nominations'] ||
         manager_opts['can_choose_evaluators'] ||
         manager_opts['can_approve_nominations']
