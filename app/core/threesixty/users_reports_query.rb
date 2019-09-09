@@ -30,7 +30,7 @@ module Threesixty
       @subjects.select do |subject|
         if subject.user_id != current_user.id
           if manager_cannot_see_report_until_requirements_are_met?
-            subject.report_status_released?
+            subject_report_available_for_manager?(subject)
           else
             true
           end
@@ -40,18 +40,31 @@ module Threesixty
 
     def is_available?
       return false unless subject
-      subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-        [subject.user_id],
-        @campaign
-      ).dig(subject.user_id, :completed) || {}
 
       status = Threesixty::Participants::GetReportStatus.call!(
         subject,
         @options,
-        subject_evaluator_counters
+        subject_evaluator_counters.dig(subject.user_id, :completed) || {}
       )
 
       AVAILABLE_STATUSES.include?(status)
+    end
+
+    def subject_report_available_for_manager?(subject)
+      Threesixty::Reports::ResolveReleaseCondition.call!(
+        subject,
+        @options,
+        subject_evaluator_counters.dig(subject.user_id, :completed) || {}
+      )
+    end
+
+    def subject_evaluator_counters
+      user_ids = @subjects.pluck(:user_id).push(subject.user_id)
+
+      @subject_evaluator_counters ||= ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+        user_ids,
+        @campaign
+      )
     end
 
     def self_can_access?
