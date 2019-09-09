@@ -181,8 +181,9 @@ group :development, :test do
   ### Generate schema in each model
   gem 'derailed_benchmarks'
   gem 'rswag-specs', '~> 2.0.5'
-  gem 'stackprof'
   gem 'rubocop', '~> 0.67.2', require: false
+  gem 'rubocop-performance', '~> 1.1.0'
+  gem 'stackprof'
 end
 
 group :development do

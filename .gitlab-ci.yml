@@ -41,9 +41,9 @@ test:
   - cp config/application.yml.sample  config/application.yml
   - yarn install
   - node_modules/eslint/bin/eslint.js app/frontend/
+  - bundle exec rubocop
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
-  - bundle exec rubocop
   - bundle exec rspec
   artifacts:
     when: on_failure
