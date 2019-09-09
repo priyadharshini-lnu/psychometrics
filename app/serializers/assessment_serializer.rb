@@ -32,7 +32,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     end .
       joining { template.outer }.
       includes(questions_ams: :comments).
-      where.has { (template.disabled == false) | (template.id == [nil]) }.map do |block|
+      where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
       BlockSerializer.new(block, piped_text_context: @instance_options[:piped_text_context])
     end
   end

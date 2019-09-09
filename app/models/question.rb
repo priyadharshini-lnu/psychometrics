@@ -57,7 +57,7 @@ class Question < ApplicationRecord
     end .
       joining { template.outer }.
       joining { block }.
-      where.has { (template.disabled == false) | (template.id == [nil]) }.
+      where.has { (template.disabled == false) | (template.id == nil) }.
       reorder('reposition ASC')
   }
 

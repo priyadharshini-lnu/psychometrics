@@ -67,7 +67,7 @@ class Assign < ApplicationRecord
     joining { project_assign.outer }.
       where.has do |s|
       (s.project_assign.status == statuses[status]) |
-        ((s.project_assign.id == [nil]) & (s.status == statuses[status]))
+        ((s.project_assign.id == nil) & (s.status == statuses[status]))
     end
   }
 

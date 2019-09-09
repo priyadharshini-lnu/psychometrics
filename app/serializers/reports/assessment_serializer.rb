@@ -13,7 +13,7 @@ module Reports
       end.
         joining { template.outer }.
         includes(questions_ams: :comments).
-        where.has { (template.disabled == false) | (template.id == [nil]) }
+        where.has { (template.disabled == false) | (template.id == nil) }
     end
 
     def factor_scoring_counters

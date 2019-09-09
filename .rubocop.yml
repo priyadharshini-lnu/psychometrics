@@ -60,5 +60,9 @@ Naming/PredicateName:
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
 
+# That's dangerous to use nil comparison together with baby_squeel dsl
+Style/NilComparison:
+  Enabled: false
+
 Style/SingleLineBlockParams:
   Enabled: false
