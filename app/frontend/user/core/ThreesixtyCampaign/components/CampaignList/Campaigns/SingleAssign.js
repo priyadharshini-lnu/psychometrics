@@ -126,7 +126,8 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
     setLoading(true)
 
     acceptPolicy().then(() => {
-      const { href, mindmillUrl } = assign
+      const { mindmillUrl } = assign
+      let { href } = assign
 
       if (mindmill) { href = mindmillUrl }
 
