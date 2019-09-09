@@ -62,7 +62,7 @@ const renderButtonContent = ({
 
   if (status === IN_PROGRESS) {
     return (
-      <a href="#" onClick={loginHogan}>
+      <a href="#" onClick={showPolicyConfirm}>
         {loading ? <Icon type="loading" /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
@@ -105,12 +105,12 @@ const renderButtonContent = ({
   )
 }
 
-export default function Hogan ({ campaign: assign, loginHogan }) {
+export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
   const [hoganData, setHoganData] = useState(null)
+  const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const onLoginHogan = (e) => {
-    e.preventDefault()
+  const onLoginHogan = () => {
     setLoading(true)
     loginHogan(assign.hoganUrl).then((data) => {
       setHoganData(data.response)
@@ -124,14 +124,14 @@ export default function Hogan ({ campaign: assign, loginHogan }) {
   }, [hoganData])
 
 
-  const accept = (e) => {
-    acceptPolicy().then(() => {
-      onLoginHogan(e)
+  const accept = () => {
+    setShowConfirm(false)
+    setLoading(true)
 
-      loadAssessment(href)
+    acceptPolicy().then(() => {
+      onLoginHogan()
     })
   }
-
 
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>

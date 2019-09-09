@@ -117,8 +117,11 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   const [loading, setLoading] = useState(false)
 
   const accept = () => {
+    setShowConfirm(false)
+    setLoading(true)
+
     acceptPolicy().then(() => {
-      let { href, mindmillUrl } = assign.url
+      let { href, mindmillUrl } = assign
 
       if (mindmill) { href = mindmillUrl }
 
@@ -133,52 +136,50 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
 
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
-      <Link to={assign.status !== 'completed' ? assign.url : '#'}>
-        <Card
-          bodyStyle={{ padding: 0 }}
-          hoverable
-          cover={(
-            <div className="cover">
-              <div className="caption">
-                <div className="icon">
-                  <AssessmentIcon />
-                </div>
-                <div className="title">{I18n.t('threesixty.assessment')}</div>
+      <Card
+        bodyStyle={{ padding: 0 }}
+        hoverable
+        cover={(
+          <div className="cover">
+            <div className="caption">
+              <div className="icon">
+                <AssessmentIcon />
               </div>
-              {assign.mindmill && <img className="service" src={mindmill} alt="" />}
-              <div className="card-progress">
-                <Progress
-                  percent={assign.completionPercent || 0}
-                />
-              </div>
+              <div className="title">{I18n.t('threesixty.assessment')}</div>
             </div>
-          )}
-        >
-          <div className="card-body">
-            <div className="card-content">
-              <div className="card-title">
-                {assign.assessmentName}
-              </div>
-              <Row type="flex" className="info-line">
-                <Col className="info-block">
-                  <Icon type="clock-circle" />
-                  {' '}
-                  {assign.timing}
-                </Col>
-                <Col className="info-block">
-                  <Icon type="question-circle" />
-                  {' '}
-                  {assign.questionsCount}
-                </Col>
-              </Row>
-              <div className="divider" />
-              <div className="button">
-                {renderButtonContent(assign, setShowConfirm, loading, loadAssessment)}
-              </div>
+            {assign.mindmill && <img className="service" src={mindmill} alt="" />}
+            <div className="card-progress">
+              <Progress
+                percent={assign.completionPercent || 0}
+              />
             </div>
           </div>
-        </Card>
-      </Link>
+        )}
+      >
+        <div className="card-body">
+          <div className="card-content">
+            <div className="card-title">
+              {assign.assessmentName}
+            </div>
+            <Row type="flex" className="info-line">
+              <Col className="info-block">
+                <Icon type="clock-circle" />
+                {' '}
+                {assign.timing}
+              </Col>
+              <Col className="info-block">
+                <Icon type="question-circle" />
+                {' '}
+                {assign.questionsCount}
+              </Col>
+            </Row>
+            <div className="divider" />
+            <div className="button">
+              {renderButtonContent(assign, setShowConfirm, loading, loadAssessment)}
+            </div>
+          </div>
+        </div>
+      </Card>
       {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
     </Col>
   )
