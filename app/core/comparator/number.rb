@@ -20,7 +20,7 @@ module Comparator
                    lhs < rhs
                  when 'more_than'
                    lhs > rhs
-      end
+               end
 
       broadcast :ok, result
     end

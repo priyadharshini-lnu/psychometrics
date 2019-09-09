@@ -20,7 +20,7 @@ module Administration
                     policy_scope(Client).find(params[:client_id])
                   else
                     resource.client
-      end
+                  end
     end
 
     def project
@@ -28,7 +28,7 @@ module Administration
                      policy_scope(Client).find(params[:project_id])
                    else
                      client.project
-      end
+                   end
     end
 
     def campaign
@@ -36,7 +36,7 @@ module Administration
                       policy_scope(Client).find(params[:campaign_id])
                     else
                       client.campaign
-      end
+                    end
     end
 
     def resource

@@ -52,7 +52,7 @@ module Threesixty
 
           managed_subjects = if @campaign.option.participants.dig('manager', 'can_approves_evaluations')
                                subjects.reject { |subject| subject.user_id == current_user.id }
-          end
+                             end
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
                  subjects: subjects, evaluations: evaluations, current_user: current_user,

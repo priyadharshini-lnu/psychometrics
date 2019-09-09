@@ -239,7 +239,7 @@ class Membership < ApplicationRecord
                 client.end_level? || (project? && client.project?)
               else
                 false
-    end
+            end
     errors.add(:role, 'Invalid') unless valid
   end
 

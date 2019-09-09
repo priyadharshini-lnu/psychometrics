@@ -38,7 +38,7 @@ module UsersResults
                    url_helpers.
                    upload_media_dev_campaign_users_result_path(users_result.campaign.id, users_result.id)
                }
-      end
+             end
 
       broadcast(:ok, data)
     end

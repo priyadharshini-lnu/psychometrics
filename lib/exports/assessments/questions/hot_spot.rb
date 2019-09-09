@@ -23,7 +23,7 @@ module Exports
                                    'Like'
                                  else
                                    'Dislike'
-                                                end
+                               end
                              else
                                (answer.try(:[], 'value') ? 'On' : 'Off')
                              end

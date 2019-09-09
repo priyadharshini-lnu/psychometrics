@@ -160,7 +160,7 @@ class User < ApplicationRecord
             [current_membership.role.to_sym]
           else
             [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
-    end
+          end
     (arr & roles).any?
   end
 

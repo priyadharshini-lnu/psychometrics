@@ -51,7 +51,7 @@ module Administration
                            CampaignTemplate.includes(:assessment).map(&:assessment)
                          else
                            project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
-          end
+                         end
         end
 
         def factors
@@ -60,7 +60,7 @@ module Administration
                        assessment.dimension.factors
                      else
                        []
-          end
+                     end
         end
 
         def destroy

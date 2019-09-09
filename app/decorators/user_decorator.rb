@@ -72,7 +72,7 @@ class UserDecorator < BaseDecorator
                  h.administration_client_project_campaigns_path(clients_array[0], c)
                elsif c.depth == 2 && clients_array[1].sub_campaign_level?
                  h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
-        end
+               end
         path ||= h.administration_client_users_path(c)
         h.link_to c.decorate.display_name, path
       end.compact.join(' > ')

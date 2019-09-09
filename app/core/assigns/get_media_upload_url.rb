@@ -36,7 +36,7 @@ module Assigns
                  env: 'dev',
                  url: Rails.application.routes.url_helpers.upload_media_dev_assign_path(assign.id)
                }
-      end
+             end
 
       broadcast(:ok, data)
     end

@@ -18,7 +18,7 @@ module Comparator
                    lhs == rhs
                  when 'not_equal'
                    lhs != rhs
-      end
+               end
 
       broadcast :ok, result
     end
