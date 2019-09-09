@@ -15,6 +15,7 @@ export default function ParticipantModal ({
   onClose,
   fetchParticipants,
   fetchRelationships,
+  activeKey,
   match: {
     params: { campaignId },
   },
@@ -42,7 +43,7 @@ export default function ParticipantModal ({
         </Button>,
       ]}
     >
-      <Tabs defaultActiveKey="2">
+      <Tabs defaultActiveKey="2" activeKey={activeKey || '2'}>
         <Tabs.TabPane tab="Relationships" key="1">
           Relationships
         </Tabs.TabPane>
@@ -52,7 +53,7 @@ export default function ParticipantModal ({
         <Tabs.TabPane tab="Evaluations" key="3">
           <EvaluationList match={match} />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Results" key="4">
+        <Tabs.TabPane tab="Results" key="results">
           <ResultList match={match} />
         </Tabs.TabPane>
       </Tabs>
