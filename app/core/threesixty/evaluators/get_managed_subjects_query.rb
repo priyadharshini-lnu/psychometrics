@@ -2,7 +2,7 @@
 
 module Threesixty
   module Evaluators
-    class GetManagedSubjects < Rectify::Query
+    class GetManagedSubjectsQuery < Rectify::Query
       private_attr_reader :threesixty_campaign, :option, :user
 
       def initialize(threesixty_campaign, user)
@@ -16,11 +16,11 @@ module Threesixty
       end
 
       def managed_subject_ids
-        managed_subjects = threesixty_campaign.participants.joins(:relationship)
-          .where(relationships: { name: 'Manager', type: :global })
-          .where(evaluator_id: user.id)
-          .where.not(subject_id: user.id, manager_nomination_status: :denied)
-          .pluck(:subject_id)
+        threesixty_campaign.participants.
+          where(relationship_id: Relationship.manager_relationship.id).
+          where(evaluator_id: user.id).
+          where.not(subject_id: user.id, manager_nomination_status: :denied).
+          pluck(:subject_id)
       end
     end
   end
