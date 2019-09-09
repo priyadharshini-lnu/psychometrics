@@ -46,7 +46,8 @@ module Threesixty
       respond_to do |format|
         format.html {}
         format.json do
-          managed_subjects = Threesixty::Evaluators::GetManagedSubjectsQuery.new(@campaign, current_user).query.includes(:user)
+          managed_subjects = Threesixty::Evaluators::GetManagedSubjectsQuery.new(@campaign, current_user).
+                             query.includes(:user)
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user, managed_subjects)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
           reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects.query, current_user)

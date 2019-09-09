@@ -23,7 +23,8 @@ module Reports
       broadcast :ok,
                 user: Reports::UserSerializer.new(users_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
-                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).to_json(include: '**'),
+                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).
+                  to_json(include: '**'),
                 locales: translations.to_json,
                 available_translations: available_translations,
                 campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json

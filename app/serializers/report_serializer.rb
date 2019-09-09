@@ -84,14 +84,17 @@ class ReportSerializer < ActiveModel::Serializer
     if dates.first == dates.last
       dates.first.strftime(I18n.t('time.formats.short_date'))
     else
-      "#{dates.first.strftime(I18n.t('time.formats.short_date'))} - #{dates.last.strftime(I18n.t('time.formats.short_date'))}"
+      "#{dates.first.strftime(I18n.t('time.formats.short_date'))} - #{dates.last.strftime(I18n.t(
+                                                                                            'time.formats.short_date'
+                                                                                          ))}"
     end
   end
 
   # Used for Piped Text
   def norm_used
-    norm_data = get_assigns.pluck(:norm_data).compact
+    norm_data = assigns.pluck(:norm_data).compact
     return if norm_data.blank?
+
     norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
     norms.map do |norm|
       norm&.decorate&.display_name
@@ -100,17 +103,21 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def result_locale
-    get_assigns.map do |assign|
+    assigns.map do |assign|
       locale = assign.selected_locale || I18n.default_locale
       I18n.t("languages.#{locale}")
     end.uniq
   end
 
-  def get_assigns
+  def assigns
     return [] unless @instance_options[:membership]
 
-    @_assigns ||= Assign.includes(:membership).joins(:membership).
-      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id, user_id: @instance_options[:membership].user_id })
+    @assigns ||= Assign.includes(:membership).joins(:membership).
+                 where(assessment_id: object.assessment_ids,
+                        memberships: {
+                          client_id: @instance_options[:membership].client_id,
+                          user_id: @instance_options[:membership].user_id
+                        })
   end
 
   def factor_norms

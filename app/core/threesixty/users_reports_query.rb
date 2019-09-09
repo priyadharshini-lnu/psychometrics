@@ -42,6 +42,7 @@ module Threesixty
 
     def available?
       return false unless subject
+
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         [subject.user_id],
         @campaign
