@@ -56,10 +56,16 @@ Metrics/PerceivedComplexity:
 Style/FormatString:
   Enabled: false
 
+Naming/AccessorMethodName:
+  Enabled: false
+
 Style/GuardClause:
   Enabled: false
 
 Style/AsciiComments:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
   Enabled: false
 
 # using baby_squeel assumes multi blocks

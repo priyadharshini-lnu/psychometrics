@@ -23,7 +23,7 @@ module Threesixty
 
     def user_ids
       ids = []
-      ids << current_user.id if self_can_access? && is_available?
+      ids << current_user.id if self_can_access? && available?
       ids.concat(manager_subjects_ids) if manager_can_see_subject_report?
       ids
     end
@@ -40,7 +40,7 @@ module Threesixty
       end.map(&:user_id)
     end
 
-    def is_available?
+    def available?
       return false unless subject
 
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(

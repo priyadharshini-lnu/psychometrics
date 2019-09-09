@@ -79,7 +79,7 @@ class Administration::UsersController < Administration::BaseController
         headers['Content-Type'] ||= 'text/csv'
       end
     end
-end
+  end
 
   protected
 

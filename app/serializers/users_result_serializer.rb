@@ -19,7 +19,7 @@ class UsersResultSerializer < ActiveModel::Serializer
     object.answers
   end
 
-  def is_self
+  def is_self # rubocop:disable Naming/PredicateName
     object.evaluator_id == object.subject_id
   end
 

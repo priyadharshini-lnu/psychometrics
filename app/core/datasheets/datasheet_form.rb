@@ -18,7 +18,7 @@ module Datasheets
 
     # Checks if there is column Email Address in file
     #
-    def has_email_column
+    def has_email_column # rubocop:disable Naming/PredicateName
       errors.add(:file, :no_email_column) unless parsed_file.first.key?(Datasheet::EMAIL_COLUMN)
     end
 

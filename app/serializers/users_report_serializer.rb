@@ -13,7 +13,7 @@ class UsersReportSerializer < ActiveModel::Serializer
     object.campaign.threesixty_campaign.id
   end
 
-  def is_self
+  def is_self # rubocop:disable Naming/PredicateName
     object.user_id == current_user.id
   end
 

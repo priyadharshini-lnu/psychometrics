@@ -6,10 +6,10 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        return false unless subject_emails = evaluators_subjects[user.id]
+        return false unless (subject_emails = evaluators_subjects[user.id])
 
         subject_emails.any? do |subject_email|
-          if datasheet_row = subject_datasheet_rows[subject_email]
+          if (datasheet_row = subject_datasheet_rows[subject_email])
             datasheet_row.data[criteria['sub_field']] == criteria['value']
           end
         end
