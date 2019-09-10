@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::NestedConditionResolver do
@@ -10,26 +12,30 @@ describe Threesixty::NestedConditionResolver do
     end
 
     it do
-      results = [{operator: 'if', result: true}]
+      results = [{ operator: 'if', result: true }]
       expect(resolver.check_results(results)).to be true
     end
 
     it do
-      results = [{operator: 'if', result: true}, {operator: 'or', result: false}, {operator: 'or', result: true},  ]
+      results = [{ operator: 'if', result: true }, { operator: 'or', result: false }, { operator: 'or', result: true }]
       expect(resolver.check_results(results)).to be true
     end
 
     it do
-      results = [{operator: 'if', result: true}, {operator: 'and', result: false}]
+      results = [{ operator: 'if', result: true }, { operator: 'and', result: false }]
       expect(resolver.check_results(results)).to be false
     end
 
     it do
-      results = [{operator: 'if', result: true}, {operator: 'and', result: true}]
+      results = [{ operator: 'if', result: true }, { operator: 'and', result: true }]
       expect(resolver.check_results(results)).to be true
     end
     it do
-      results = [{operator: 'if', result: false}, {operator: 'or', result: true}, {operator: 'and', result: false},]
+      results = [
+        { operator: 'if', result: false },
+        { operator: 'or', result: true },
+        { operator: 'and', result: false }
+      ]
       expect(resolver.check_results(results)).to be false
     end
   end

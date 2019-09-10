@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class NotificationsController < BaseController
     prepend_before_action :set_resource_class
@@ -12,7 +14,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Notification
+      @resource_class ||= Notification # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user

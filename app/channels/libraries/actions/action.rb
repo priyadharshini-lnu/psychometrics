@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Libraries
   module Actions
     module Action
@@ -9,9 +11,9 @@ module Libraries
             begin
               data            = yield(request['data'], current_user)
               response        = {
-                  type:         'success',
-                  action:       action_name,
-                  request_id:   request['request_id']
+                type: 'success',
+                action: action_name,
+                request_id: request['request_id']
               }
               response[:data] = data if data
               # Skip notification if was passed params
@@ -23,7 +25,7 @@ module Libraries
               end
 
               transmit(response)
-            rescue Exception => e
+            rescue StandardError => e
               Rails.logger.error("#{e.message}\n")
               Rails.logger.error(e.backtrace.join("\n"))
               transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')

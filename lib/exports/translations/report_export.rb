@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Translations
     class ReportExport
@@ -5,7 +7,8 @@ module Exports
         @package = Axlsx::Package.new
         wb = @package.workbook
         wb.add_worksheet(name: 'ReportTranslations') do |sheet|
-          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
+          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).
+            map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
           data.each do |translateable_type, translateables|
             translateables.each do |translateable_id, props|
               translations = ::Translation.

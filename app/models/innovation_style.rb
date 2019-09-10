@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: innovation_styles
 #
-#  id          	:bigint(8)        not null, primary key
-#  name        	:string
-#  icon        	:string
-#  description 	:text
-#  dimension_id	:bigint(8) 				not null 
-#  created_at  	:datetime         not null
-#  updated_at  	:datetime         not null
+#  id            :bigint(8)        not null, primary key
+#  name          :string
+#  icon          :string
+#  description   :text
+#  dimension_id  :bigint(8)         not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class InnovationStyle < ApplicationRecord

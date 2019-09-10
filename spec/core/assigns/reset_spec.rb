@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Assigns::Reset do
@@ -17,8 +19,7 @@ describe Assigns::Reset do
                     started_at: Time.now,
                     norm_data: test,
                     agile_scoring: test,
-                    occupations: test
-    )
+                    occupations: test)
   end
   let(:assign_with_result) { assign.assign_with_result }
 
@@ -29,30 +30,29 @@ describe Assigns::Reset do
   end
 
   it 'reset result data for assign with results' do
-    expect { subject }.to change { assign_with_result.results }.from(test).to({})
-                      .and change { assign_with_result.scoring }.from(test).to({})
-                      .and change { assign_with_result.embedded_data }.from(test).to({})
-                      .and change { assign_with_result.norm_data }.from(test).to({})
-                      .and change { assign_with_result.agile_scoring }.from(test).to({})
-                      .and change { assign_with_result.occupations }.from(test).to([])
-                      .and change { assign_with_result.status }.from('completed').to('not_started')
-                      .and change { assign_with_result.completed_at }.from(Time.now).to(nil)
-                      .and change { assign_with_result.started_at }.from(Time.now).to(nil)
-                      .and change { assign_with_result.step }.from(100).to(0)
-
+    expect { subject }.to change { assign_with_result.results }.from(test).to({}).
+      and change { assign_with_result.scoring }.from(test).to({}).
+      and change { assign_with_result.embedded_data }.from(test).to({}).
+      and change { assign_with_result.norm_data }.from(test).to({}).
+      and change { assign_with_result.agile_scoring }.from(test).to({}).
+      and change { assign_with_result.occupations }.from(test).to([]).
+      and change { assign_with_result.status }.from('completed').to('not_started').
+      and change { assign_with_result.completed_at }.from(Time.now).to(nil).
+      and change { assign_with_result.started_at }.from(Time.now).to(nil).
+      and change { assign_with_result.step }.from(100).to(0)
   end
 
   it 'dont touch original assign' do
-    expect { subject }.not_to change { assign.attributes }
+    expect { subject }.not_to(change { assign.attributes })
   end
 
   it 'reset assign report data if assessment is completed' do
-    expect { subject }.to change { assign.assigns_reports.first.pdf_identifier }.from('test.pdf').to(nil)
-                      .and change { assign.assigns_reports.first.generating }.from(true).to(false)
+    expect { subject }.to(change { assign.assigns_reports.first.pdf_identifier }.from('test.pdf').to(nil).
+      and(change { assign.assigns_reports.first.generating }.from(true).to(false)))
   end
 
   it 'dont reset assign report data if assessment is NOT completed' do
     allow(assign_with_result).to receive(:completed?).and_return(false)
-    expect { subject }.not_to change { assign.assigns_reports.first.attributes }
+    expect { subject }.not_to(change { assign.assigns_reports.first.attributes })
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Users
 
@@ -12,7 +14,7 @@ feature 'CRUD User' do
     context 'on Users page' do
       scenario 'I can create superadmin' do
         create_superadmin(email: 'superadmin@example.com', first_name: 'super', last_name: 'admin')
-        #follow_superadmin_invitation
+        # follow_superadmin_invitation
       end
     end
 
@@ -36,7 +38,8 @@ feature 'CRUD User' do
 
       scenario 'I can create project admin with limit privileges' do
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_step_1_administration_client_project_admins_path(project)}']").click
+        href = new_step_1_administration_client_project_admins_path(project)
+        find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
 
         within '.new_prepare_user' do
@@ -66,7 +69,7 @@ feature 'CRUD User' do
 
       scenario 'I can create user' do
         create_user(sub_campaign, email: 'user@example.com', first_name: 'Bob', last_name: 'Duke')
-        #follow_user_invitation
+        # follow_user_invitation
       end
     end
   end
@@ -96,16 +99,21 @@ feature 'CRUD User' do
       given(:client_admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
 
       context 'with Privileges to manage Client Tenancies' do
-        before { client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge({ clients: [:manage] })) }
+        before do
+          client_admin.memberships.first.grants.
+            update(data: client_admin.memberships.first.grants.data.merge(clients: [:manage]))
+        end
 
         scenario 'I can create another Client Admin' do
           visit administration_client_path(tenancy)
-          expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']")
+          href = new_step_1_administration_client_client_admins_path(tenancy)
+          expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
         end
 
         scenario 'I can create another Client Admin only with my Privileges' do
           visit administration_client_path(tenancy)
-          find("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']").click
+          href = new_step_1_administration_client_client_admins_path(tenancy)
+          find("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']").click
           wait_for_ajax
           fill_in 'prepare_user_email', with: 'romero@gmail.com'
           click_on 'Next'
@@ -127,12 +135,12 @@ feature 'CRUD User' do
 
         scenario 'I cant create another Client Admin' do
           visit administration_client_path(tenancy)
-          expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']")
+          href = new_step_1_administration_client_client_admins_path(tenancy)
+          expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
         end
       end
     end
   end
-
 
   context 'As Project Admin' do
     given(:project_admin) { create(:project_admin, memberships_options: [{ client: project }]) }
@@ -142,14 +150,16 @@ feature 'CRUD User' do
     context 'on Projects page' do
       scenario 'I cant create or choose Project Admin user' do
         visit administration_client_projects_path(project)
-        expect(page).not_to have_css("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']")
+        href = new_administration_client_project_admin_path(project)
+        expect(page).not_to have_css("#client_#{project.id} td .add-icon-box a[href='#{href}']")
       end
     end
 
     scenario 'I cant create Client Admin' do
       tenancy = project.root
       visit administration_client_path(tenancy)
-      expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']")
+      href = new_administration_client_client_admin_path(tenancy)
+      expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'CRUD Dimension' do
@@ -44,13 +46,15 @@ feature 'CRUD Dimension' do
     before { login_as(client_admin) }
 
     scenario 'I cant Create Dimension without privileges' do
-      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!({dimensions: ['view']}))
+      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.
+        data.merge!(dimensions: ['view']))
       visit '/administration/dimensions'
       expect(page).not_to have_css('.panel-heading a', text: t('administration.dimensions.index.new'))
     end
 
     scenario 'I can Create Dimension if I have privileges' do
-      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge!({dimensions: ['view', 'manage']}))
+      client_admin.memberships.first.grants.update(data: client_admin.memberships.first.
+        grants.data.merge!(dimensions: %w[view manage]))
       visit '/administration/dimensions'
       find('.panel-heading a', text: t('administration.dimensions.index.new')).click
       wait_for_ajax
@@ -60,5 +64,4 @@ feature 'CRUD Dimension' do
       expect(page).to have_content 'Employment Thriving Index'
     end
   end
-
 end

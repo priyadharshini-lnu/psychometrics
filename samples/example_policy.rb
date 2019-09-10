@@ -1,3 +1,4 @@
-class Administration::ExamplePolicy < Administration::BasePolicy
+# frozen_string_literal: true
 
+class Administration::ExamplePolicy < Administration::BasePolicy
 end

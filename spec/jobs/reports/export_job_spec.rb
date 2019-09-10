@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Reports::ExportJob do
@@ -23,7 +25,8 @@ describe Reports::ExportJob do
   it '#generate_report' do
     allow_any_instance_of(described_class).to receive_messages(save_to_assign_report: nil, remove_tmp_file: nil)
 
-    expect(Exports::Reports::Pdf::ReportExport).to receive(:export).with(current_user, report, user, project, lang: report.default_language)
+    expect(Exports::Reports::Pdf::ReportExport).to receive(:export).
+      with(current_user, report, user, project, lang: report.default_language)
     subject
   end
 

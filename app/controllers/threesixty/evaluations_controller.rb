@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class EvaluationsController < ApplicationController
     include ::Threesixty::InitialState
@@ -18,7 +20,7 @@ module Threesixty
           end
 
           if params[:is_edit] == 'true'
-            render(json: {error: '403'}, status: 403) && return unless policy(@participant).edit?
+            render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
             @users_result.step = 0
           end
 
@@ -32,7 +34,10 @@ module Threesixty
     end
 
     def decline
-      @participant = @campaign.participants.find_by!(evaluator_id: current_user.id, id: params[:evaluation_id] || params[:id])
+      @participant = @campaign.participants.find_by!(
+        evaluator_id: current_user.id,
+        id: params[:evaluation_id] || params[:id]
+      )
       @participant.update_attributes(evaluator_nomination_status: :declined)
       render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end

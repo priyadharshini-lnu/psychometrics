@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UsersResults
   module ExpandAnswersByRecodingTypes
     class MultipleChoice < BaseType

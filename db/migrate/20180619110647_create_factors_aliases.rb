@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateFactorsAliases < ActiveRecord::Migration[5.1]
   def change
     create_table :factors_aliases do |t|
@@ -7,6 +9,6 @@ class CreateFactorsAliases < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :factors_aliases, [:report_id, :factor_id], unique: true
+    add_index :factors_aliases, %i[report_id factor_id], unique: true
   end
 end

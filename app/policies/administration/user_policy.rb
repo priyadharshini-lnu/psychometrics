@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
     @user.is?(:superadmin, :client_admin, :project_admin)
@@ -59,7 +61,6 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :client_admin, :project_admin) && !@record.is_anonym?
   end
 
-
   # @deprecated
   def manage_grants?
     @user.is?(:superadmin, :client_admin) && @record.scope == :administration
@@ -73,12 +74,14 @@ class Administration::UserPolicy < Administration::BasePolicy
   # @deprecated
   def manage_grants_for_actions?(resource, actions)
     return true if @user.is?(:superadmin)
+
     (@user.grants || {}).key?(resource) && (@user.grants[resource] & actions).any?
   end
 
   class Scope < Administration::BasePolicy::Scope
     def resolve
       return scope if @user.is?(:superadmin)
+
       client_ids = @user.is?(:client_admin) ? @user.client_admin_project_ids : @user.project_admin_client_ids
       scope.enabled.joins(:memberships).where(memberships: { client_id: client_ids })
     end

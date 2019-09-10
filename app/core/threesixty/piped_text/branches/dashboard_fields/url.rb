@@ -27,19 +27,24 @@ module Threesixty
                   protocol: Settings.protocol,
                   port: Settings.port
                 }
-                Rails.application.routes.url_helpers.url_for([:accept, context[:recipient].role_scope, :invitation, options])
+                Rails.application.routes.url_helpers.url_for(
+                  [:accept, context[:recipient].role_scope, :invitation, options]
+                )
               end
             broadcast :ok, url
           end
 
           private
+
           def create_raw_invitation_token
             if context[:recipient].encrypted_invitation_raw.nil?
               context[:recipient].skip_invitation = true
               context[:recipient].send(:generate_invitation_token!)
               context[:recipient].update_column(:invitation_sent_at, ::DateTime.current)
             end
-            Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(context[:recipient].encrypted_invitation_raw)
+            Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(
+              context[:recipient].encrypted_invitation_raw
+            )
           end
         end
       end

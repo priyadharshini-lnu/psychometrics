@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: product_images
@@ -12,7 +14,7 @@
 
 FactoryGirl.define do
   factory :product_image do
-    image "MyString"
+    image 'MyString'
     position 1
   end
 end

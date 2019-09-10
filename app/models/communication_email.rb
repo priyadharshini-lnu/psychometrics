@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: communication_emails
@@ -15,7 +17,7 @@ class CommunicationEmail < ApplicationRecord
 
   after_commit :delivery_email, on: :create
 
-  scope :for_user, -> (user_id){ joins(:membership).where(memberships: { user_id: user_id }) }
+  scope :for_user, ->(user_id) { joins(:membership).where(memberships: { user_id: user_id }) }
   scope :sent, -> { where.not(sent_at: nil) }
 
   private

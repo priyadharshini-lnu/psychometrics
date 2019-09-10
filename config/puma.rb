@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'barnes'
 
 # Puma can serve each request in a thread from an internal thread pool.
@@ -8,16 +10,16 @@ require 'barnes'
 #
 workers Integer(ENV['WEB_CONCURRENCY'] || 2)
 
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 15 }.to_i
+threads_count = ENV.fetch('RAILS_MAX_THREADS') { 15 }.to_i
 threads threads_count, threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
 #
-port        ENV.fetch("PORT") { 3000 }
+port        ENV.fetch('PORT') { 3000 }
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch('RAILS_ENV') { 'development' }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
@@ -47,14 +49,14 @@ rackup      DefaultRackup
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
 before_fork do
-    # worker specific setup
-    puts "Puma master process about to fork. Closing existing Active record connections."
-    ActiveRecord::Base.connection.disconnect!
-    Barnes.start # Must have enabled worker mode for this to block to be called
+  # worker specific setup
+  puts 'Puma master process about to fork. Closing existing Active record connections.'
+  ActiveRecord::Base.connection.disconnect!
+  Barnes.start # Must have enabled worker mode for this to block to be called
 end
 
 on_worker_boot do
-    ActiveRecord::Base.establish_connection
+  ActiveRecord::Base.establish_connection
 end
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

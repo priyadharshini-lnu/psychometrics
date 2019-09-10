@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: licenses
@@ -33,7 +35,11 @@ class License < ApplicationRecord
     where(report_family_id: report_family_id)
   }
   scope :active, -> { where(disabled: false) }
-  scope :available, -> { active.where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
+  scope :available, lambda {
+                      active.
+                        where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
+                              date: Date.today)
+                    }
 
   enum type: { common: 0, threesixty: 1 }, _prefix: :type
 
@@ -42,11 +48,12 @@ class License < ApplicationRecord
   end
 
   def in_overuse?
-    used_overuse_number > 0
+    used_overuse_number.positive?
   end
 
   def enough_licenses?
     return false if end_date < Date.today || start_date > Date.today
+
     number + overuse_number > used_number
   end
 
@@ -60,8 +67,8 @@ class License < ApplicationRecord
 
   def used_by(client)
     license_usages.joins(assigns_report: { assign: :membership }).
-                   where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
-                   size
+      where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
+      size
   end
 
   private

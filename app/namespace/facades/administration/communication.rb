@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Facades
   module Administration
     class Communication
@@ -94,17 +96,18 @@ module Facades
 
       def show_inputs_for_date_and_time?
         return if %w[invitation other].exclude?(form.kind)
+
         form.delivery_rule == 'specific_datetime'
       end
 
       def delivery_interval_periods
-        array = [['Hours', 'hours'], ['Days', 'days'], ['Weeks', 'weeks'], ['Months', 'months']]
-        array.unshift(['Minutes', 'minute']) unless Rails.env.production?
+        array = [%w[Hours hours], %w[Days days], %w[Weeks weeks], %w[Months months]]
+        array.unshift(%w[Minutes minute]) unless Rails.env.production?
         array
       end
 
       def reminder_types
-        [['Timeframes', 'timeframes'], ['Custom', 'custom']]
+        [%w[Timeframes timeframes], %w[Custom custom]]
       end
 
       private
@@ -115,16 +118,19 @@ module Facades
 
       def fetch_projects(user)
         return Client.none if form.client_id.blank?
+
         client_policy_scope(user).projects_of(form.client_id)
       end
 
       def fetch_campaigns(user)
         return Client.none if form.project_id.blank?
+
         client_policy_scope(user).campaigns_of(form.project_id)
       end
 
       def fetch_sub_campaigns(user)
         return Client.none if form.campaign_id.blank?
+
         client_policy_scope(user).sub_campaigns_of(form.campaign_id)
       end
 
@@ -134,16 +140,19 @@ module Facades
 
       def fetch_assessments
         return Assessment.none if form.end_level.blank?
+
         ::Queries::Assessments::ByClientSubtree.call(form.model.end_level)
       end
 
       def fetch_memberships
         return User.none if form.end_level.blank? || !form.model.selected_recipients?
+
         ::Queries::Users::MembersSubtreeByClient.call(form.model.end_level)
       end
 
       def fetch_delivery_rules
         return if form.kind.blank?
+
         ::Communication.delivery_rules.keys.select { |key| EmailDelivery::RULES[kind_type_symbol]&.include?(key) }
       end
 

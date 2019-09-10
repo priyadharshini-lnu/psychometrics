@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Licenses
   class CreateThreesixtySubject < AssignReportBase
     attr_reader :client, :user, :campaign

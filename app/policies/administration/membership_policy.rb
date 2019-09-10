@@ -1,21 +1,23 @@
+# frozen_string_literal: true
+
 module Administration
   class MembershipPolicy < Administration::UserPolicy
-    CREATE_PARAMETERS = [:parent_id, :role].freeze
-    UPDATE_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
-    USER_PARAMETERS = [:first_name, :last_name, :email].freeze
+    CREATE_PARAMETERS = %i[parent_id role].freeze
+    UPDATE_PARAMETERS = [:parent_id, :role, hris_data: %i[key value]].freeze
+    USER_PARAMETERS = %i[first_name last_name email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [data: [
-        norms: [],
-        dimensions: [],
-        clients: [],
-        assessments: [],
-        translations: [],
-        reports: [],
-        questions: [],
-        libraries: [],
-        communications: [],
-        projects: [],
-        assigns: []
+      norms: [],
+      dimensions: [],
+      clients: [],
+      assessments: [],
+      translations: [],
+      reports: [],
+      questions: [],
+      libraries: [],
+      communications: [],
+      projects: [],
+      assigns: []
     ]].freeze
 
     def create?
@@ -31,7 +33,7 @@ module Administration
     end
 
     def create_client_admin?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) &&  @user.has_grant?(:clients, :manage))
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
     def create_project_admin?
@@ -60,11 +62,13 @@ module Administration
 
     def manage_grants_for_actions?(resource, actions, project: nil, client: nil)
       return true if @user.is?(:superadmin)
+
       related_memberships(project, client).any? { |m| ((m.grants&.data.try(:[], resource) || []) & actions).any? }
     end
 
     def overview_assigns?
       return false if record.scope == :administration
+
       @user.is?(:superadmin) || @user.has_grant?(:assigns, :view)
     end
 
@@ -77,6 +81,7 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
+
         # find memberships for clients with 'admin' role and it's subclients
         clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
         client_ids = clients_scope.not_retails.enabled.ids

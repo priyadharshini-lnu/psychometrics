@@ -11,14 +11,14 @@ module Threesixty
       end
 
       def call
-        ids = form.nomination_requirements.each_with_object([]) do |form, ids|
+        ids = form.nomination_requirements.each_with_object([]) do |form, inner_ids|
           if form.persisted?
             nomination_requirement = threesixty_campaign.nomination_requirements.find(form.id)
             nomination_requirement.update!(form.attributes)
           else
             nomination_requirement = threesixty_campaign.nomination_requirements.create!(form.attributes)
           end
-          ids << nomination_requirement.id
+          inner_ids << nomination_requirement.id
         end
         threesixty_campaign.nomination_requirements.where.not(id: ids).map(&:destroy!)
       end

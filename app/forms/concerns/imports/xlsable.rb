@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Xlsable
     extend ActiveSupport::Concern

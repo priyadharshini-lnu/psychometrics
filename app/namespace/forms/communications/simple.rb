@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'reform/form/coercion'
 module Forms
   module Communications
@@ -38,7 +40,6 @@ module Forms
       validates :delivery_interval_number,
                 :delivery_interval_period,
                 presence: true, if: :custom_reminder?
-
 
       validates :delivery_interval_number,
                 numericality: { only_integer: true, greater_than_or_equal_to: 1 },
@@ -98,7 +99,6 @@ module Forms
       def end_level_id
         sub_campaign_id || campaign_id || project_id || client_id
       end
-
 
       def end_level
         sub_campaign || campaign || project || client

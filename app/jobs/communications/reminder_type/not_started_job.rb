@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Communications
   module ReminderType
     class NotStartedJob < ApplicationJob
@@ -5,6 +7,7 @@ module Communications
 
       def perform(communication)
         return if communication.stop_reminder_datetime && communication.stop_reminder_datetime <= DateTime.current
+
         memberships = membership_group_by_project_and_user(communication)
 
         memberships.each do |membership|
@@ -26,7 +29,7 @@ module Communications
       end
 
       def membership_group_by_project_and_user(communication)
-        fetch_memberships(communication).group_by { |member| [ member.client.project.id, member.user_id] }.values
+        fetch_memberships(communication).group_by { |member| [member.client.project.id, member.user_id] }.values
       end
     end
   end

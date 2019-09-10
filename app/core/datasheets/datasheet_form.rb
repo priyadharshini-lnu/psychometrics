@@ -18,18 +18,17 @@ module Datasheets
 
     # Checks if there is column Email Address in file
     #
-    def has_email_column
-      errors.add(:file, :no_email_column) unless parsed_file.first.keys.include? Datasheet::EMAIL_COLUMN
+    def has_email_column # rubocop:disable Naming/PredicateName
+      errors.add(:file, :no_email_column) unless parsed_file.first.key?(Datasheet::EMAIL_COLUMN)
     end
 
     # Checks if there is duplicates in email column
     #
     def no_duplicates
-      errors.add(:file, :email_duplicate) unless parsed_file.
-                                                 map { |item| item[Datasheet::EMAIL_COLUMN] }.
-                                                 reject(&:blank?).
-                                                 uniq!.
-                                                 nil?
+      errors.add(:file, :email_duplicate) if parsed_file.
+                                             map { |item| item[Datasheet::EMAIL_COLUMN] }.
+                                             reject(&:blank?).
+                                             uniq!
     end
   end
 end

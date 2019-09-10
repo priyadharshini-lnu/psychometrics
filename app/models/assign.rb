@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assigns
@@ -52,19 +54,21 @@ class Assign < ApplicationRecord
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
-  enum status: %i(not_started in_progress completed)
-  enum role: %i(member manager admin)
+  enum status: %i[not_started in_progress completed]
+  enum role: %i[member manager admin]
 
   scope :mindmill, lambda {
     joins(:assessment).
       where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
   }
-  scope :projects, ->  { where(project_assign_id: nil) }
-  scope :originals, ->  { where.not(project_assign_id: nil) }
+  scope :projects, -> { where(project_assign_id: nil) }
+  scope :originals, -> { where.not(project_assign_id: nil) }
   scope :with_status, lambda { |status|
     joining { project_assign.outer }.
-      where.has { |s| (s.project_assign.status == self.statuses[status]) |
-                      ((s.project_assign.id == nil) & (s.status == self.statuses[status])) }
+      where.has do |s|
+      (s.project_assign.status == statuses[status]) |
+        ((s.project_assign.id == nil) & (s.status == statuses[status]))
+    end
   }
 
   attribute :user_access, :boolean, default: false
@@ -104,7 +108,8 @@ class Assign < ApplicationRecord
   # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map
   #
   # 2 step:
-  # Generate hash from questions related with FactorsScoring: {question_id: [Question], question_id: [Question]} - questions_map
+  # Generate hash from questions related with FactorsScoring:
+  # {question_id: [Question], question_id: [Question]} - questions_map
   #
   # 3 step:
   # Run through hash #1:
@@ -121,6 +126,7 @@ class Assign < ApplicationRecord
   #
   def calculate_scoring
     raise 'To calculate you need to pass relative assessment' unless completed?
+
     factors_scoring = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
     questions_ids = factors_scoring.pluck(:question_id).uniq
@@ -135,15 +141,17 @@ class Assign < ApplicationRecord
         question = questions_map[question_scoring.question_id].try(:first)
         scoring_class = "Scoring::#{question.try(:type)}"
         result = results[question.try(:id).try(:to_s)]
-        if result && question && !question_scoring.props.empty?
-          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
-          # type 'PickGroupRank' is used for agile methodology
-          # for common scoring we need to skip this type
-          if question.try(:type) == 'PickGroupRank'
-            self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
-          else
-            self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
+        next unless result && question && !question_scoring.props.empty?
+
+        scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
+        # type 'PickGroupRank' is used for agile methodology
+        # for common scoring we need to skip this type
+        if question.try(:type) == 'PickGroupRank'
+          if scoring_point
+            self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
           end
+        elsif scoring_point
+          self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
         end
       end
     end
@@ -156,14 +164,18 @@ class Assign < ApplicationRecord
         Notification.create(
           assessment_id: assessment_id,
           membership_id: membership_id,
-          text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          text: I18n.t('assigns.notifications.in_progress',
+                       user_name: user.decorate.display_name,
+                       assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
           assessment_id: assessment_id,
           membership_id: membership_id,
-          text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          text: I18n.t('assigns.notifications.completed',
+                       user_name: user.decorate.display_name,
+                       assessment_name: assessment.name)
         )
       end
     end
@@ -175,6 +187,7 @@ class Assign < ApplicationRecord
 
   def norm_type
     return norm_data['type'] if norm_data && norm_data['id'] && norm_data['type']
+
     nil
   end
 
@@ -199,14 +212,16 @@ class Assign < ApplicationRecord
 
   def update_membership_completed
     return if project_membership.nil? || membership.destroyed?
+
     assigns = membership.reload.assigns
     completed = assigns.size.positive? && assigns.size == assigns.completed.size
     membership.update_column(:assigns_completed, completed)
   end
 
-  # TODO (atanych): should be refactored
+  # TODO: (atanych): should be refactored
   def set_project_assign
     return if project_membership.nil?
+
     project_assign = project_membership.assigns.where(assessment_id: assessment_id).take
     unless project_assign
       project_assign = dup
@@ -221,16 +236,20 @@ class Assign < ApplicationRecord
   end
 
   def clear_project_assign
-    return if project_assign.nil? || project_membership.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
+    return if project_assign.nil? || project_membership.clients_assigns.pluck('assigns.assessment_id').
+              include?(assessment_id)
+
     project_assign.destroy!
   end
 
   def relevant_membership
     errors.add(:membership) if membership.scope == :administration
   end
-  
+
   def relevant_reports
-    errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
+    if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
+      errors.add(:reports)
+    end
   end
 
   class << self

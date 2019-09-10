@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Administration
   module Assessments
     class AssignsController < Administration::BaseController
       before_action :set_assessment, :set_resource_class
       # Setup search object on Membership
-      append_before_action :init_search_users, only: [:not_selected_users, :selected_users]
+      append_before_action :init_search_users, only: %i[not_selected_users selected_users]
       append_before_action :init_breadcrumbs
       after_action :pundit_authorize
 
@@ -11,6 +13,7 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create
         init_assign_form
         @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids).distinct
@@ -40,12 +43,16 @@ module Administration
         if @assign_form.errors.any?
           render :new, locals: { report_errors: report_errors }
         else
-          redirect_to(administration_assessments_path, success: t('.successfully', name: @assessment.decorate.display_name))
+          redirect_to(administration_assessments_path,
+                      success: t('.successfully', name: @assessment.decorate.display_name))
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def form
-        return render :noty, locals: { message: t('.empty_client_ids'), type: :warning } unless assign_params[:client_ids]
+        unless assign_params[:client_ids]
+          return render :noty, locals: { message: t('.empty_client_ids'), type: :warning }
+        end
 
         init_assign_form
         respond_to do |format|
@@ -56,7 +63,10 @@ module Administration
       def not_selected_users
         @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
+          format.json do
+            render json: ::ActiveModel::Serializer::CollectionSerializer.
+              new(users, serializer: MembershipSerializer).to_json
+          end
         end
       end
 
@@ -67,15 +77,18 @@ module Administration
 
         @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
+          format.json do
+            render json: ::ActiveModel::Serializer::CollectionSerializer.
+              new(users, serializer: MembershipSerializer).to_json
+          end
         end
       end
 
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), [:administration, :assessments]
+        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), %i[administration assessments]
         add_breadcrumb t('.title', name: @assessment.decorate.display_name), request.path
       end
 
@@ -88,11 +101,11 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
         @clients = policy_scope(::Client).where(id: @assign_form.client_ids)
         @managers = policy_scope(::Membership).
-            select('memberships.*', 'clients.name as client_name').
-            joins(:client).
-            join_user.
-            where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
-            group_by(&:client_name)
+                    select('memberships.*', 'clients.name as client_name').
+                    joins(:client).
+                    join_user.
+                    where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
+                    group_by(&:client_name)
         @_filter_form = Membership.search(client_id_in: @clients.map(&:id))
         filter_form.id_not_in = @assign_form.user_ids
         filter_form.id_in = @assign_form.user_ids
@@ -100,7 +113,8 @@ module Administration
       end
 
       def init_search_users
-        @search = policy_scope(::Membership).where.not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
+        @search = policy_scope(::Membership).where.
+                  not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
 
         # Limit to use only assigned clients
         #   And clients where user has access
@@ -110,7 +124,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Assign
+        @_resource_class ||= ::Assign # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_assessment
@@ -119,7 +133,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize [:assessments, :assign]
+        authorize %i[assessments assign]
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::Imports::BaseController < Administration::BaseController
   before_action :init_import_class
   append_before_action :pundit_authorize

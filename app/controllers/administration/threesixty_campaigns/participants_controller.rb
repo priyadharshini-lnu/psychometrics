@@ -13,10 +13,17 @@ module Administration
         participants = policy_scope(::Threesixty::Participant).
                        includes(:subject, :evaluator, :relationship).
                        actual_by_options(threesixty_campaign.option).
-                       where.has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
+                       where.
+                       has do
+          (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
+        end
         user_results = UsersResult.where.
-          has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
-        render json: participants, each_serializer: ::Threesixty::ParticipantSerializer, user_result_map: user_results.index_by { |r| [r.evaluator_id, r.subject_id] }
+                       has do
+          (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id))
+        end
+        render json: participants,
+               each_serializer: ::Threesixty::ParticipantSerializer,
+               user_result_map: user_results.index_by { |r| [r.evaluator_id, r.subject_id] }
       end
 
       def update
@@ -31,7 +38,11 @@ module Administration
         else
           spoof_token = SecureRandom.urlsafe_base64(64)
           user.update_column(:spoof_token, spoof_token)
-          redirect_url = root_url(domain: Settings.domain, subdomain: threesixty_campaign.project.try(:subdomain), spoof_token: spoof_token)
+          redirect_url = root_url(
+            domain: Settings.domain,
+            subdomain: threesixty_campaign.project.try(:subdomain),
+            spoof_token: spoof_token
+          )
         end
         redirect_url ||= administration_root_path
         flash.now[:success] = t('.successfully', name: user.decorate.display_name)
@@ -51,7 +62,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Participant
+        @_resource_class ||= ::Threesixty::Participant # rubocop:disable Naming/MemoizedInstanceVariableName
       end
     end
   end

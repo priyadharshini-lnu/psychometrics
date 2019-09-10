@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reports
   module Actions
     module Report
@@ -8,6 +10,7 @@ module Reports
         nil
       end
 
+      # rubocop:disable Metrics/BlockLength
       action :change_filters do |data, _current_user, report|
         map_filters = report.filters.all.group_by(&:id)
         new_ids     = data['filters'].map { |f| f['id'] }
@@ -18,14 +21,19 @@ module Reports
         data['filters'].each do |filter|
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
+            db_filter.update_attributes(
+              conditions: filter['conditions'],
+              name: filter['name'], assessment_id: filter['assessment_id']
+            )
           else
-            report.filters.create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
+            report.filters.
+              create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
           end
         end
         # clear unused filter from all modules
-        Reports::Module.joins(:page).where(reports_pages: {report_id: report.id}).where("reports_modules.props ->> 'filter' is not null").each do |r|
-          if r.props['filter'] && r.props['filter'].is_a?(Array)
+        Reports::Module.joins(:page).where(reports_pages: { report_id: report.id }).
+          where("reports_modules.props ->> 'filter' is not null").each do |r|
+          if r.props['filter']&.is_a?(Array)
             r.props['filter'] = r.props['filter'] - removed_ids
             r.save
           end
@@ -34,6 +42,7 @@ module Reports
           ::Reports::FilterSerializer.new(filter).to_hash
         end
       end
+      # rubocop:enable Metrics/BlockLength
 
       action :change_aliases do |data, _current_user, report|
         ActiveRecord::Base.transaction do
@@ -48,8 +57,8 @@ module Reports
       action :change_data_configuration do |data, _current_user, report|
         data_configuration = YAML.safe_load(data['dataConfiguration'])
         report.update_attribute(:data_configuration, data_configuration)
-      rescue Exception => e
-        raise StandardError.new('Data Report Configuration is not valid')
+      rescue StandardError
+        raise StandardError, 'Data Report Configuration is not valid'
       end
     end
   end

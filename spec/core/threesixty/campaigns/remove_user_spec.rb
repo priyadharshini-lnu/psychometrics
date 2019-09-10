@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::Campaigns::RemoveUser do
@@ -64,7 +66,7 @@ describe Threesixty::Campaigns::RemoveUser do
 
   it 'deletes participant record where user is a evaluator' do
     evaluator = create(:threesixty_evaluator, campaign: campaign)
-    participant= create(:threesixty_participant, subject: user, evaluator: evaluator.user, campaign: campaign)
+    participant = create(:threesixty_participant, subject: user, evaluator: evaluator.user, campaign: campaign)
     Threesixty::Campaigns::RemoveUser.call(evaluator.user, threesixty_campaign)
 
     expect(Threesixty::Participant.find_by(id: participant.id)).to be_nil

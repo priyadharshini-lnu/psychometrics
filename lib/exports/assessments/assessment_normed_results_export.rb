@@ -10,6 +10,7 @@ module Exports
         self.client = Client.find(client_id)
       end
 
+      # rubocop:disable Metrics/BlockLength, Metrics/AbcSize
       def to_xlsx
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentNormedResults') do |sheet|
@@ -65,7 +66,9 @@ module Exports
                 # Gets sub_factor results
                 if scoring.blank? && !factor_ids[factor_id.to_i].blank?
                   scoring = factor_ids[factor_id.to_i].
-                            each_with_object([]) { |sub_factor_id, res| res << assign.scoring&.dig(sub_factor_id.to_s, 'results') }.
+                            each_with_object([]) do |sub_factor_id, res|
+                    res << assign.scoring&.dig(sub_factor_id.to_s, 'results')
+                  end .
                             flatten.compact
                 end
 
@@ -91,6 +94,7 @@ module Exports
           end
         end
       end
+      # rubocop:enable Metrics/BlockLength, Metrics/AbcSize
 
       def current_level_assigns
         if client.project?
@@ -125,7 +129,8 @@ module Exports
            status,
            completed_at,
            started_at,
-           original_assign.membership.user.last_name.op('||', quoted(', ')).op('||', original_assign.membership.user.first_name).as('user_name'),
+           original_assign.membership.user.last_name.op('||', quoted(', ')).
+             op('||', original_assign.membership.user.first_name).as('user_name'),
            original_assign.membership.user.email.as('user_email')]
         end
       end

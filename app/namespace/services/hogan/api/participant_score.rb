@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Services
   module Hogan
     module API
@@ -12,7 +14,7 @@ module Services
         private
 
         def input_xml
-          %{
+          %(
           <participant>
             <clientdetails>
               <clientid>#{client_id}</clientid>
@@ -30,7 +32,7 @@ module Services
             </assessment>
           </participant>
 
-        }
+        )
         end
 
         def response(body)
@@ -45,7 +47,7 @@ module Services
         end
 
         def score_from_xml(response)
-          ActiveSupport::XmlMini.with_backend("Nokogiri") do
+          ActiveSupport::XmlMini.with_backend('Nokogiri') do
             doc = Nokogiri::XML(response)
             doc.at('//participant/hassignature').remove
             doc.to_hash

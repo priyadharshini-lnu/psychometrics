@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateApiKeys < ActiveRecord::Migration[5.1]
   def change
     create_table :api_keys do |t|
@@ -11,4 +13,3 @@ class CreateApiKeys < ActiveRecord::Migration[5.1]
     add_index :api_keys, [:token], unique: true
   end
 end
-

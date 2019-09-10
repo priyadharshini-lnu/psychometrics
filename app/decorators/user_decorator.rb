@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class UserDecorator < BaseDecorator
   def display_name
     return object.email if object.first_name.blank? && object.last_name.blank?
+
     "#{object.first_name} #{object.last_name}"
   end
 
@@ -17,27 +20,28 @@ class UserDecorator < BaseDecorator
   end
 
   def admin_role
-    return I18n.t("activerecord.attributes.user.roles.admins.project_admin") if object.is?(:project_admin)
+    return I18n.t('activerecord.attributes.user.roles.admins.project_admin') if object.is?(:project_admin)
+
     I18n.t("activerecord.attributes.user.roles.admins.#{User::USER_ROLES.key(object.role)}")
   end
 
   def change_password_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
-        body: I18n.t('administration.users.resource.confirmations.change_password.body')
+      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+      body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
 
   def clients_name
     if h.current_user.is?(:superadmin)
       object.clients.
-          map { |client| client.decorate.display_name }.
-          join(', ')
+        map { |client| client.decorate.display_name }.
+        join(', ')
     else
       object.clients.
-          select { |client| h.current_user.client_ids.include?(client.id) }.
-          map { |client| client.decorate.display_name }.
-          join(', ')
+        select { |client| h.current_user.client_ids.include?(client.id) }.
+        map { |client| client.decorate.display_name }.
+        join(', ')
     end
   end
 
@@ -53,9 +57,7 @@ class UserDecorator < BaseDecorator
 
   def clients_hierarchy
     admin_levels = object.project_admin_clients.map do |client|
-      if client.subtenancy?
-        path = h.administration_client_project_campaigns_path(client.parent_id, client)
-      end
+      path = h.administration_client_project_campaigns_path(client.parent_id, client) if client.subtenancy?
       path ||= h.administration_client_users_path(client)
       h.link_to client.decorate.display_name, path
     end.join('<br/>')
@@ -65,11 +67,12 @@ class UserDecorator < BaseDecorator
       clients_array = client.path.order(:id)
       clients_array.map do |c|
         next if c.tenancy?
+
         path = if c.campaign_level? || c.sub_campaign_level?
-          h.administration_client_project_campaigns_path(clients_array[0], c)
-        elsif c.depth == 2 && clients_array[1].sub_campaign_level?
-          h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
-        end
+                 h.administration_client_project_campaigns_path(clients_array[0], c)
+               elsif c.depth == 2 && clients_array[1].sub_campaign_level?
+                 h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
+               end
         path ||= h.administration_client_users_path(c)
         h.link_to c.decorate.display_name, path
       end.compact.join(' > ')
@@ -80,30 +83,33 @@ class UserDecorator < BaseDecorator
 
   def delete_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
-        body: I18n.t('administration.users.resource.confirmations.delete.body')
+      title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
+      body: I18n.t('administration.users.resource.confirmations.delete.body')
     }.to_json
   end
 
   def delete_membership_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
-        body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
+      title: I18n.t(
+        'administration.users.resource.confirmations.membership.delete.title',
+        name: display_name, client_name: context[:client_name]
+      ),
+      body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
 
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-        title: I18n.t(
-            'administration.users.resource.confirmations.toggle_status.title',
-            status: status,
-            name: display_name
-        ),
-        body: I18n.t(
-            'administration.users.resource.confirmations.toggle_status.body',
-            status: status.downcase
-        )
+      title: I18n.t(
+        'administration.users.resource.confirmations.toggle_status.title',
+        status: status,
+        name: display_name
+      ),
+      body: I18n.t(
+        'administration.users.resource.confirmations.toggle_status.body',
+        status: status.downcase
+      )
     }.to_json
   end
 end

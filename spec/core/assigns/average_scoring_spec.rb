@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Assigns::AverageScoring do
   let(:factor) { double(:factor, id: 1, parent_id: 2) }
-  let(:scoring) {
+  let(:scoring) do
     {
       '1' => {
         'name' => 'Factor Name',
@@ -18,7 +20,7 @@ describe Assigns::AverageScoring do
         ]
       }
     }
-  }
+  end
 
   it '.call!' do
     expect(described_class).to respond_to(:'call!').with_unlimited_arguments

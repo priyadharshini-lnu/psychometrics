@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssessmentDecorator < BaseDecorator
   def category
     I18n.t("activerecord.attributes.assessment.categories.#{Assessment::CATEGORIES.key(object.category)}")
@@ -48,20 +50,22 @@ class AssessmentDecorator < BaseDecorator
 
   def clients_names
     object.clients.
-        map { |client| client.decorate.display_name }.
-        join(', ')
+      map { |client| client.decorate.display_name }.
+      join(', ')
   end
 
-  # todo refactor db, add completion
+  # TODO: refactor db, add completion
   def completion_percent
     assign = object.assigns.where(membership_id: h.pundit_user[:current_membership].id).take
     return 100 if assign.completed?
+
     answered = assign.results&.size || 0
     total = object.questions&.size
-    return 0 if total.nil? || total == 0
+    return 0 if total.nil? || total.zero?
+
     result = (100 * answered) / total
 
-    # TODO (atanych): Store progress bar in DB and calculate only on frontend.
+    # TODO: (atanych): Store progress bar in DB and calculate only on frontend.
     99 if result > 99
     result
   end
@@ -81,5 +85,5 @@ class AssessmentDecorator < BaseDecorator
     return h.image_tag(object.icon.url(:thumb), class: 'img-circle icon-circle') if object.icon?
 
     h.content_tag(:div, object.name.first(2), class: 'icon-circle', style: "background-color: #{object.icon_color}")
-  end  
+  end
 end

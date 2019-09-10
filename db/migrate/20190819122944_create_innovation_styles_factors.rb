@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateInnovationStylesFactors < ActiveRecord::Migration[5.1]
   def change
     create_table :innovation_styles_factors do |t|

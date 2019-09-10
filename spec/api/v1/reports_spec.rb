@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'swagger_helper'
 
@@ -20,15 +22,15 @@ describe 'Reports' do
   end
 
   before do
-    allow_any_instance_of(AssignsReport).to receive(:use_license) { "nth" }
+    allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
     create(:assigns_report, report: report, assign: assign)
   end
 
   path '/projects/{project_id}/users/{user_id}/reports' do
-
     get 'Get user reports' do
       operationId 'GetUserReports'
-      description 'All reports currently assigned to the user. Each report object also contains the required assessments and the user\'s completion status.'
+      description 'All reports currently assigned to the user. Each report object also contains the required\\
+ assessments and the user\'s completion status.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]
@@ -40,31 +42,31 @@ describe 'Reports' do
         examples 'application/json' => [
           {
             "id": 127,
-            "name": "Thriving Index - Alinma Resource - PRO ",
-            "status": "not_ready",
+            "name": 'Thriving Index - Alinma Resource - PRO ',
+            "status": 'not_ready',
             "assessments": [
-                    {
-                      "id": 91731,
-                      "name": "Thriving Index Assessment - Alinma",
-                      "status": "not_started",
-                      "started_at": "2019-01-06T20:54:05.714+04:00",
-                      "completed_at": "2019-01-06T20:54:05.714+04:00"
-                    }
-                  ]
+              {
+                "id": 91_731,
+                "name": 'Thriving Index Assessment - Alinma',
+                "status": 'not_started',
+                "started_at": '2019-01-06T20:54:05.714+04:00',
+                "completed_at": '2019-01-06T20:54:05.714+04:00'
+              }
+            ]
           },
           {
             "id": 110,
-            "name": "Thriving Index - Alinma Custom Report",
-            "status": "not_ready",
+            "name": 'Thriving Index - Alinma Custom Report',
+            "status": 'not_ready',
             "assessments": [
-                    {
-                      "id": 91731,
-                      "name": "Thriving Index Assessment - Alinma",
-                      "status": "not_started",
-                      "started_at": "2019-01-06T20:54:05.714+04:00",
-                      "completed_at": "2019-01-06T20:54:05.714+04:00"
-                    }
-                  ]
+              {
+                "id": 91_731,
+                "name": 'Thriving Index Assessment - Alinma',
+                "status": 'not_started',
+                "started_at": '2019-01-06T20:54:05.714+04:00',
+                "completed_at": '2019-01-06T20:54:05.714+04:00'
+              }
+            ]
           }
         ]
 
@@ -84,7 +86,6 @@ describe 'Reports' do
   end
 
   path '/projects/{project_id}/users/{user_id}/reports/{report_id}/results' do
-
     get 'Get user results' do
       operationId 'GetUserResults'
       description 'Assessment results for the user\'s report. '
@@ -97,13 +98,22 @@ describe 'Reports' do
 
       response '200', 'Get user report results' do
         schema '$ref' => '#/definitions/ReportResults'
-        examples 'application/json' => {"user_data"=>{"first_name"=>"Spider", "last_name"=>"Man"},
-                                        "assessments"=>
-                                          [{"id"=>17,
-                                            "name"=>"Thriving Index Assessment",
-                                            "results"=>
-                                              {"normed_factors"=>[{"key"=>549, "name"=>"Accountability", "value"=>nil}, {"key"=>554, "name"=>"Efficacy", "value"=>nil}],
-                                               "ranked_occupations"=>[{"key"=>2, "rank"=>1, "name"=>"Occupation 2", "normed_factors"=>[]}, {"key"=>1, "rank"=>2, "name"=>"Occupation 1", "normed_factors"=>[]}]}}]}
+        examples 'application/json' => { 'user_data' => { 'first_name' => 'Spider', 'last_name' => 'Man' },
+                                         'assessments' =>
+                                          [{ 'id' => 17,
+                                             'name' => 'Thriving Index Assessment',
+                                             'results' =>
+                                              { 'normed_factors' => [
+                                                { 'key' => 549, 'name' => 'Accountability', 'value' => nil },
+                                                { 'key' => 554, 'name' => 'Efficacy', 'value' => nil }
+                                              ],
+                                                'ranked_occupations' => [
+                                                  { 'key' => 2, 'rank' => 1, 'name' => 'Occupation 2',
+                                                    'normed_factors' => [] }, {
+                                                      'key' => 1, 'rank' => 2, 'name' => 'Occupation 1',
+                                                      'normed_factors' => []
+                                                    }
+                                                ] } }] }
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
@@ -111,18 +121,17 @@ describe 'Reports' do
 
         run_test! do |response|
           result = JSON.parse(response.body)
-          expect(result["assessments"]).to be_an_instance_of(Array)
+          expect(result['assessments']).to be_an_instance_of(Array)
           expect(result).to have_key('user_data')
         end
       end
 
-
       response '403', 'Assessment not completed' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {
-          "code" => 1004,
-          "message" => 'Assessment not completed',
-          "more_info" => 'Assessments for report 111 are not passed'
+          'code' => 1004,
+          'message' => 'Assessment not completed',
+          'more_info' => 'Assessments for report 111 are not passed'
         }
 
         let(:project_id) { project.id }
@@ -134,20 +143,21 @@ describe 'Reports' do
         end
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1004,
-                                "message" => 'Assessment not completed',
-                                "more_info" => "Assessments for report #{report_id} are not passed"
-                              })
+          expect(error).to eq(
+            'code' => 1004,
+                                'message' => 'Assessment not completed',
+                                'more_info' => "Assessments for report #{report_id} are not passed"
+          )
         end
       end
     end
-    end
+  end
 
   path '/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf' do
     get 'Get user report PDF' do
       operationId 'GetUserReport'
-      description 'Returns the user\'s report PDF url. This url is time-limited, check the expires_at attribute in the response.'
+      description 'Returns the user\'s report PDF url. This url is time-limited,\\
+ check the expires_at attribute in the response.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]
@@ -158,8 +168,8 @@ describe 'Reports' do
       response '200', 'Get user report PDF' do
         schema '$ref' => '#/definitions/ReportPdf'
         examples 'application/json' => {
-          url: "https://some.aws.s3.com/report.pdf",
-          status: "ready"
+          url: 'https://some.aws.s3.com/report.pdf',
+          status: 'ready'
         }
 
         let(:project_id) { project.id }

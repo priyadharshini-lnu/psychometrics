@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Queries::Reports::ProjectLevel::BulkReportWithOptions do
@@ -21,7 +23,7 @@ describe Queries::Reports::ProjectLevel::BulkReportWithOptions do
   let(:membership1) { create(:membership, client: project1) }
   let(:membership2) { create(:membership, client: project2) }
 
-  let(:assign_attrs) { {started_at: DateTime.current, completed_at: DateTime.current, status: :completed} }
+  let(:assign_attrs) { { started_at: DateTime.current, completed_at: DateTime.current, status: :completed } }
   let!(:assign1) { create(:assign, assign_attrs.merge(assessment: assessment1, membership: membership1)) }
   let!(:assign2) { create(:assign, assign_attrs.merge(assessment: assessment2, membership: membership2)) }
 

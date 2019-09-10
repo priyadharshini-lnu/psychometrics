@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class CreateFromAssessment < Rectify::Command
     attr_reader :campaign
@@ -25,7 +27,6 @@ module Threesixty
 
       broadcast :ok, @campaign
     end
-
 
     def copy_dimension
       @dimension = @assessment.dimension.deep_clone(include: [:occupations])

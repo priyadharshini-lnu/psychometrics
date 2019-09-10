@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RenameParticipantTable < ActiveRecord::Migration[5.1]
   def change
     rename_table :participants, :threesixty_participants

@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class OccupationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+    before_action :set_resource, only: %i[edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :set_dimension
     append_before_action :init_breadcrumbs
@@ -56,14 +58,14 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= Occupation
+      @_resource_class ||= Occupation # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     def set_dimension
@@ -71,10 +73,14 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :full_description, :potential_areas_of_study, :key_career_tracks,
-                                       :high_school_entry_roles, :diploma_qualification, :bachelors_or_masters_qualification,
-                                       :icon, :remove_icon, :work_environment, :alternative_icon, :remove_alternative_icon,
-                                       :indicative_roles_image, :remove_indicative_roles_image, :key_career_tracks_image,
+      params.require(:resource).permit(:name, :description, :full_description, :potential_areas_of_study,
+                                       :key_career_tracks,
+                                       :high_school_entry_roles, :diploma_qualification,
+                                       :bachelors_or_masters_qualification,
+                                       :icon, :remove_icon, :work_environment, :alternative_icon,
+                                       :remove_alternative_icon,
+                                       :indicative_roles_image, :remove_indicative_roles_image,
+                                       :key_career_tracks_image,
                                        :remove_key_career_tracks_image, :color)
     end
   end

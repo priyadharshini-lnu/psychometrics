@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: tasks
@@ -20,9 +22,9 @@
 
 class Task < ApplicationRecord
   # STATUSES constant
-  STATUSES = [:not_started, :in_progress, :completed].freeze
+  STATUSES = %i[not_started in_progress completed].freeze
   # PRIORITIES constant High, Medium, Low
-  PRIORITIES = [:low, :medium, :high].freeze
+  PRIORITIES = %i[low medium high].freeze
 
   enum status: STATUSES
   enum priority: PRIORITIES
@@ -45,7 +47,7 @@ class Task < ApplicationRecord
   after_save :status_changed_callback, if: proc { status_changed? && !root? }
 
   def overdue?
-    if completed_at  && completed?
+    if completed_at && completed?
       planned_completed_at < completed_at
     else
       planned_completed_at < Date.today
@@ -57,17 +59,18 @@ class Task < ApplicationRecord
   end
 
   def root?
-    !self.parent_id
+    !parent_id
   end
 
   #
-  # Return hash statuses for input tasks. key is status name, value is array of statuses (similar as group_by, but we have virtual status: overdue)
+  # Return hash statuses for input tasks. key is status name, value is array of statuses (similar as group_by,
+  # but we have virtual status: overdue)
   # @param [Tasks[]] tasks
   #
   # @return [Hash]
   #
   def self.group_by_status(tasks)
-    tasks.inject({}) do |map, task|
+    tasks.each_with_object({}) do |task, map|
       if task.overdue?
         map['overdue'] = [] unless map['overdue']
         map['overdue'] << task
@@ -75,14 +78,13 @@ class Task < ApplicationRecord
         map[task.status] = [] unless map[task.status]
         map[task.status] << task
       end
-      map
     end
   end
 
   private
 
   def init
-    self.status = Task.statuses[:not_started] unless self.status
+    self.status = Task.statuses[:not_started] unless status
   end
 
   def completion_callback

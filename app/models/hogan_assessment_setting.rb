@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HoganAssessmentSetting < ApplicationRecord
   belongs_to :assessment
 

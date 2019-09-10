@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :hogan_report_setting do
     hogan_norm_id 'General'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: libraries
@@ -17,7 +19,7 @@ class Library < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_ancestry
 
-  enum type: [:folder, :image, :audio, :video, :other]
+  enum type: %i[folder image audio video other]
 
   mount_uploader :file, FileUploader
 
@@ -39,11 +41,9 @@ class Library < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id name type created_at updated_at))
-      order("libraries.#{column} #{direction}")
-    end
+    order("libraries.#{column} #{direction}") if column.in?(%w[id name type created_at updated_at])
   }
 
   # Search folders and files which have parent
@@ -57,6 +57,7 @@ class Library < ApplicationRecord
 
   scope :with_type, lambda { |type|
     return if type.blank?
+
     where.has { |libraries| (libraries.type == type) | (libraries.type == :folder) }
   }
 
@@ -72,6 +73,7 @@ class Library < ApplicationRecord
     return self.type = :image if !!file.file && file.content_type.start_with?('image')
     return self.type = :audio if !!file.file && file.content_type.start_with?('audio')
     return self.type = :video if !!file.file && file.content_type.start_with?('video')
+
     self.type = :other
   end
 

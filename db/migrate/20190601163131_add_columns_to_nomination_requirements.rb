@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsToNominationRequirements < ActiveRecord::Migration[5.1]
   def change
     add_column :threesixty_nomination_requirements, :position, :integer, null: false

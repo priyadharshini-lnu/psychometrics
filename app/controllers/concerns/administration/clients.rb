@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
-
     private
 
     def ensure_not_root
@@ -22,7 +23,7 @@ module Administration
     def client_root_breadcrumb
       label = t('administration.breadcrumbs.clients') if current_user.is?(:superadmin)
       label ||= t('administration.breadcrumbs.home')
-      add_breadcrumb label, [:administration, :root]
+      add_breadcrumb label, %i[administration root]
     end
   end
 end

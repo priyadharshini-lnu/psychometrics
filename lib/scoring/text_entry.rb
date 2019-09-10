@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Scoring
   class TextEntry
-
     def calculate(_question, result, scoring_template)
       values = []
       result['answers'].each do |answer|

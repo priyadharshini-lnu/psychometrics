@@ -47,7 +47,10 @@ module Threesixty
 
       def add_default_criteria_for_subject_email(recipient_criteria)
         if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
-          recipient_criteria << { 'field' => 'subject_status', 'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED }
+          recipient_criteria << {
+            'field' => 'subject_status',
+            'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED
+          }
         end
         recipient_criteria
       end
@@ -55,7 +58,9 @@ module Threesixty
       def add_default_criteria_for_evaluator_email(recipient_criteria)
         recipient_criteria << { 'field' => 'atleast_one_non_self_evalaution' } if EVALUATOR_EMAILS.include?(email_name)
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
-          recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
+          recipient_criteria << {
+            'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true
+          }
         end
         recipient_criteria
       end

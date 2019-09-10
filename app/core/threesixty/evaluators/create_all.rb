@@ -24,7 +24,7 @@ module Threesixty
 
       def fetch_or_create_evaluator_user(evaluator)
         user = evaluator[:evaluator_user]
-        user = ::Users::Regular.find_by(email: evaluator[:evaluator_email], project: project) unless user
+        user ||= ::Users::Regular.find_by(email: evaluator[:evaluator_email], project: project)
 
         if user
           user.update!(first_name: evaluator[:evaluator_first_name], last_name: evaluator[:evaluator_last_name])
@@ -46,7 +46,10 @@ module Threesixty
       end
 
       def create_evaluator(evaluator_attrs, evaluator_user)
-        evaluator = ::Threesixty::Evaluator.find_or_create_by!(user: evaluator_user, campaign: threesixty_campaign.campaign)
+        evaluator = ::Threesixty::Evaluator.find_or_create_by!(
+          user: evaluator_user,
+          campaign: threesixty_campaign.campaign
+        )
         # TODO: (atanych): any idea with counter cache? We need to count only active_participants (check scope :active)
         evaluator.increment!(:evaluations_count)
         evaluator_attrs[:subject].increment!(:evaluators_count)
@@ -55,11 +58,12 @@ module Threesixty
       def create_participant(evaluator, evaluator_user)
         threesixty_campaign.participants.find_or_create_by!(
           evaluator: evaluator_user,
-          subject: evaluator[:subject_user]) do |participant|
-            participant.manager_nomination_status = :approved
-            participant.relationship = evaluator[:relationship]
-            participant.project_id = threesixty_campaign.campaign.project_id
-          end
+          subject: evaluator[:subject_user]
+        ) do |participant|
+          participant.manager_nomination_status = :approved
+          participant.relationship = evaluator[:relationship]
+          participant.project_id = threesixty_campaign.campaign.project_id
+        end
       end
 
       private

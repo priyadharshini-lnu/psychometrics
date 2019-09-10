@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class SsoAssignSerializer < ActiveModel::Serializer
@@ -5,6 +7,7 @@ module Api
       def id
         object.assessment.id
       end
+
       def name
         object.assessment.name
       end

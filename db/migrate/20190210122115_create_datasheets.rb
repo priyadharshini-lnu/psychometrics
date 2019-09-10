@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDatasheets < ActiveRecord::Migration[5.1]
   def change
     create_table :datasheets do |t|

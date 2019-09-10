@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe BulkReports::ExportAllJob do
@@ -8,7 +10,7 @@ describe BulkReports::ExportAllJob do
   let(:end_date) { double('end_date') }
   let(:scheme) { 'http' }
   let(:opts) { {} }
-  let(:params) {
+  let(:params) do
     {
       current_user: current_user,
       client: client,
@@ -17,7 +19,7 @@ describe BulkReports::ExportAllJob do
       end_date: end_date,
       opts: opts
     }
-  }
+  end
   let(:items) { [] }
   let(:input_dir) { 'dir' }
   let(:bulk_report) { double('bulk_report', input_dir: input_dir) }
@@ -40,7 +42,8 @@ describe BulkReports::ExportAllJob do
         it 'performs ExportJob' do
           expect(query).to receive(:call).with(any_args).and_return(items)
           expect(BulkReport).to receive(:create).with(user: current_user).and_return(bulk_report)
-          expect_any_instance_of(described_class).to receive(:job_params).with(bulk_report, item, params).and_return(job_params)
+          expect_any_instance_of(described_class).to receive(:job_params).with(bulk_report, item, params).
+            and_return(job_params)
           expect(BulkReports::ExportJob).to receive(:perform_now).with(job_params)
           expect(BulkReports::CompressJob).to receive(:perform_now).with(bulk_report)
           expect(BulkReportMailer).to receive_message_chain(:notify, :deliver_later)

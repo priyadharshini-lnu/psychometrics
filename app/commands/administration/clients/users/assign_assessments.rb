@@ -24,7 +24,6 @@ module Administration
         private
 
         attr_reader :form, :membership
-
       end
     end
   end

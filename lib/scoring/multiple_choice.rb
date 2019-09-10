@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Scoring
   class MultipleChoice
-
     def calculate(_question, result, scoring_template)
       values = []
 

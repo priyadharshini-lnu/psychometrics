@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class AssignsController < BaseController
     prepend_before_action :set_resource_class
@@ -10,7 +12,7 @@ module Managers
                      where.has { assessment.disabled.eq(nil) | assessment.disabled.eq(false) }.
                      search(params[:q])
       @reports = @current_project.reports.enabled.
-                 with_assessment_category(%w(360 organisational)).
+                 with_assessment_category(%w[360 organisational]).
                  available_to_view.
                  group_by(&:assessment_id)
       # TODO: implement scope
@@ -25,7 +27,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Assign
+      @resource_class ||= Assign # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def set_resource

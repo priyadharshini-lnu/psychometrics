@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :aliases do
   desc 'Remove name from agile_scoring and scoring.'
   task remove_name_from_scorings: :environment do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.configure do |config|
@@ -23,7 +25,10 @@ RSpec.configure do |config|
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
         },
-        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
+        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse \
+with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming \
+languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\n\
+Single Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
       },
       securityDefinitions: { basic: { type: :basic } },
       paths: {},
@@ -32,15 +37,15 @@ RSpec.configure do |config|
           "basic": []
         }
       ],
-      basePath: "/api/v1",
+      basePath: '/api/v1',
       schemes: [
-        "https"
+        'https'
       ],
       consumes: [
-        "application/json"
+        'application/json'
       ],
       produces: [
-        "application/json"
+        'application/json'
       ],
       definitions: {
         ApiError: {
@@ -54,9 +59,9 @@ RSpec.configure do |config|
         UserAssessment: {
           type: 'object',
           properties: {
-            id: { type: 'integer'},
+            id: { type: 'integer' },
             name: { type: 'string' },
-            status: { type: 'string'},
+            status: { type: 'string' },
             started_at: { type: 'string', 'x-nullable': true },
             completed_at: { type: 'string', 'x-nullable': true }
           }
@@ -64,9 +69,9 @@ RSpec.configure do |config|
         UserReport: {
           type: 'object',
           properties: {
-            id: { type: 'integer'},
+            id: { type: 'integer' },
             name: { type: 'string' },
-            status: { type: 'string'},
+            status: { type: 'string' },
             asessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
           }
         },
@@ -74,7 +79,7 @@ RSpec.configure do |config|
           type: 'object',
           properties: {
             url: { type: 'string', 'x-nullable': true },
-            status: { type: 'string' },
+            status: { type: 'string' }
           }
         },
         NewUser: {
@@ -83,16 +88,16 @@ RSpec.configure do |config|
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string' },
-            campaign_ids: { type: 'array', items: { type: 'integer' }, 'x-nullable': true },
+            campaign_ids: { type: 'array', items: { type: 'integer' }, 'x-nullable': true }
           },
-          required: ['email', 'first_name', 'last_name', 'campaign_ids']
+          required: %w[email first_name last_name campaign_ids]
         },
         UpdatedUser: {
           type: 'object',
           properties: {
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
-            email: { type: 'string', 'x-nullable': true },
+            email: { type: 'string', 'x-nullable': true }
           }
         },
         ReportResults: {
@@ -107,14 +112,15 @@ RSpec.configure do |config|
           properties: {
             id: { type: 'integer', 'x-nullable': true },
             name: { type: 'string', 'x-nullable': true },
-            results: { '$ref' => '#/definitions/ResultAssessmentResults', 'x-nullable': true },
+            results: { '$ref' => '#/definitions/ResultAssessmentResults', 'x-nullable': true }
           }
         },
         ResultAssessmentResults: {
           type: 'object',
           properties: {
             normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
-            ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' }, 'x-nullable': true },
+            ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' },
+                                  'x-nullable': true }
           }
         },
         NormedFactor: {
@@ -122,7 +128,7 @@ RSpec.configure do |config|
           properties: {
             key: { type: 'string', 'x-nullable': true },
             name: { type: 'string', 'x-nullable': true },
-            value: { type: 'string', 'x-nullable': true },
+            value: { type: 'string', 'x-nullable': true }
           }
         },
         RankedOccupation: {
@@ -131,40 +137,40 @@ RSpec.configure do |config|
             key: { type: 'string', 'x-nullable': true },
             name: { type: 'string', 'x-nullable': true },
             rank: { type: 'integer', 'x-nullable': true },
-            normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
+            normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true }
           }
         },
         DuplicatedCampaign: {
           type: 'object',
           properties: {
-            name: { type: 'string' },
+            name: { type: 'string' }
           }
         },
         NewCampaigns: {
           type: 'object',
           properties: {
-            campaign_ids: { type: 'array', items: { type: 'integer' } },
+            campaign_ids: { type: 'array', items: { type: 'integer' } }
           }
         },
         Campaign: {
           type: 'object',
           properties: {
-            id: { type: 'integer'},
+            id: { type: 'integer' },
             name: { type: 'string' },
-            created_at: { type: 'string'},
-            updated_at: { type: 'string'}
+            created_at: { type: 'string' },
+            updated_at: { type: 'string' }
           }
         },
         User: {
           type: 'object',
           properties: {
-            id: { type: 'integer'},
+            id: { type: 'integer' },
             first_name: { type: 'string' },
             last_name: { type: 'string' },
             email: { type: 'string' },
             campaign_ids: { type: 'array', items: { type: 'integer' } },
-            created_at: { type: 'string'},
-            updated_at: { type: 'string'}
+            created_at: { type: 'string' },
+            updated_at: { type: 'string' }
           }
         },
         SsoUrl: {
@@ -178,9 +184,9 @@ RSpec.configure do |config|
         AssessmentSsoUrl: {
           type: 'object',
           properties: {
-            id: { type: 'integer'},
+            id: { type: 'integer' },
             name: { type: 'string' },
-            url: { type: 'string' },
+            url: { type: 'string' }
           }
         }
       }

@@ -25,7 +25,7 @@ module Administration
       private
 
       def set_resource_class
-        @_resource_class ||= ::Threesixty::InstructionTemplate
+        @_resource_class ||= ::Threesixty::InstructionTemplate # rubocop:disable Naming/MemoizedInstanceVariableName
       end
     end
   end

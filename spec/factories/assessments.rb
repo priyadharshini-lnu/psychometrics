@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assessments
@@ -19,10 +21,10 @@
 #
 
 FactoryGirl.define do
-  factory :assessment, class: ::Assessments::Common  do
+  factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
     dimension
-    extra { {icon_color: '#845EC2'} }
+    extra { { icon_color: '#845EC2' } }
 
     trait :with_report do
       after(:create) do |assessment, _evaluator|
@@ -36,8 +38,8 @@ FactoryGirl.define do
       dimension nil
     end
   end
-  factory :assessment_hogan, class: ::Assessments::Hogan  do
+  factory :assessment_hogan, class: ::Assessments::Hogan do
     sequence(:name) { |i| "hogan assessment #{i}" }
-    extra { {icon_color: '#845EC2'} }
+    extra { { icon_color: '#845EC2' } }
   end
 end

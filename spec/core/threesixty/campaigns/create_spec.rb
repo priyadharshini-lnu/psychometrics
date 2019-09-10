@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::Campaigns::Create do
   let(:project) { create(:project) }
-  let(:campaign_params) { { name: "New campaign"} }
+  let(:campaign_params) { { name: 'New campaign' } }
   let(:threesixty_campaign_params) { { factors: [] } }
-
 
   describe '.call' do
     it 'creates a Campaign record' do
@@ -36,7 +37,7 @@ describe Threesixty::Campaigns::Create do
     it 'calls CreateFromAssessment when assessments are passed' do
       expect(::Threesixty::CreateFromAssessment).to receive(:call)
 
-      ::Threesixty::Campaigns::Create.call!(project, campaign_params, { assessment_id: create(:assessment).id })
+      ::Threesixty::Campaigns::Create.call!(project, campaign_params, assessment_id: create(:assessment).id)
     end
   end
 end

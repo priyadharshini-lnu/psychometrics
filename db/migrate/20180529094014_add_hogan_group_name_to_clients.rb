@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddHoganGroupNameToClients < ActiveRecord::Migration[5.1]
   def change
     add_column :clients, :hogan_group_name, :string

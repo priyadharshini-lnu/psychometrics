@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAndRenameColumnForEmailSchedule < ActiveRecord::Migration[5.1]
   def change
     rename_column :threesixty_email_schedules, :recipient_emails, :recipient_ids

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hogan
   class PassAssessment < Rectify::Command
     def initialize(assign, membership, project)
@@ -37,7 +39,5 @@ module Hogan
       }
       ::Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
     end
-
   end
-
 end

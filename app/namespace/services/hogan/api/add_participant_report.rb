@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Services
   module Hogan
     module API
@@ -12,7 +14,7 @@ module Services
         private
 
         def input_xml
-          %{
+          %(
           <participant>
             <clientdetails>
               <clientid>#{client_id}</clientid>
@@ -32,7 +34,7 @@ module Services
               </reportdetails>
             </reports>
           </participant>
-        }
+        )
         end
 
         def response(body)

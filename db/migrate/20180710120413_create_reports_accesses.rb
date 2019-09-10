@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateReportsAccesses < ActiveRecord::Migration[5.1]
   def change
     create_table :reports_accesses do |t|
@@ -5,7 +7,7 @@ class CreateReportsAccesses < ActiveRecord::Migration[5.1]
       t.references :membership, foreign_key: { on_delete: :cascade }
       t.boolean :user_access, null: false
 
-      t.index [:report_id, :membership_id], unique: true
+      t.index %i[report_id membership_id], unique: true
 
       t.timestamps
     end

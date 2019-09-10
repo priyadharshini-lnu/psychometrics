@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 module Callbacks
   module Models
     module Assessments
       class UpdateFactorsAliases
         def before_update(assessment)
           return if dimension_not_changed?(assessment)
+
           previous_dimension_id, current_dimension_id = assessment.changes['dimension_id']
           assessment.reports.find_each do |report|
             if report.single_dimension?(previous_dimension_id)

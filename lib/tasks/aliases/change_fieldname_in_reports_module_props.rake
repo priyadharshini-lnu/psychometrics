@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :aliases do
   desc 'Change fieldname in Reports::Module props.'
   task change_fieldname_in_reports_module_props: :environment do

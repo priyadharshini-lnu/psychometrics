@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Anonym
   class AssessmentsController < ActionController::Base
     include SetLocale
@@ -34,7 +36,7 @@ module Anonym
         break email unless User.exists?(email: email)
       end
       # Create anonym user with membership
-      user = User.new({
+      user = User.new(
         role: User::REGULAR_ROLE,
         first_name: 'Anonymous',
         last_name: 'User',
@@ -45,8 +47,9 @@ module Anonym
         memberships_attributes: [{
           client_id: @client.id
         }]
-      })
+      )
       return unless user.save
+
       bypass_sign_in(user)
       @current_membership = user.memberships.first
     end

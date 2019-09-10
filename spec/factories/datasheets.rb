@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :datasheet do
     project nil
-    columns ""
+    columns ''
   end
 end

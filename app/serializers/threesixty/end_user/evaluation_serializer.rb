@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty::EndUser
   class EvaluationSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status
@@ -17,7 +19,7 @@ module Threesixty::EndUser
       object.evaluator
     end
 
-    def is_self
+    def is_self # rubocop:disable Naming/PredicateName
       object.subject_id == current_user.id
     end
   end

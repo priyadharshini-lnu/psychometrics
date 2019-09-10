@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -17,6 +19,5 @@ module Assessments
     def author
       object.creator.decorate.display_name
     end
-
   end
 end

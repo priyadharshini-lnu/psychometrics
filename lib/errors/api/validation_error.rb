@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Errors
   module Api
     class ValidationError < Errors::ApiError

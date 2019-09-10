@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Helpers
     extend ActiveSupport::Concern
@@ -14,27 +16,27 @@ module Administration
     end
 
     def client
-      @_client ||= if params[:client_id]
-        policy_scope(Client).find(params[:client_id])
-      else
-        resource.client
-      end
+      @client ||= if params[:client_id]
+                    policy_scope(Client).find(params[:client_id])
+                  else
+                    resource.client
+                  end
     end
 
     def project
-      @_project ||= if params[:project_id]
-        policy_scope(Client).find(params[:project_id])
-      else
-        client.project
-      end
+      @project ||= if params[:project_id]
+                     policy_scope(Client).find(params[:project_id])
+                   else
+                     client.project
+                   end
     end
 
     def campaign
-      @_campaign ||= if params[:campaign_id]
-        policy_scope(Client).find(params[:campaign_id])
-      else
-        client.campaign
-      end
+      @campaign ||= if params[:campaign_id]
+                      policy_scope(Client).find(params[:campaign_id])
+                    else
+                      client.campaign
+                    end
     end
 
     def resource
@@ -58,7 +60,7 @@ module Administration
     end
 
     def project_membership
-      @_project_membership ||= membership.project_membership || membership
+      @project_membership ||= membership.project_membership || membership
     end
 
     def assign
@@ -66,7 +68,7 @@ module Administration
     end
 
     def project_assign
-      @_project_assign ||= assign.project_assign || assign
+      @project_assign ||= assign.project_assign || assign
     end
 
     def user

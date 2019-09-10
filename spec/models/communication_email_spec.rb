@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CommunicationEmail, type: :model do
-
   context 'Associations' do
     it { should belong_to(:membership) }
     it { should belong_to(:communication) }
@@ -11,7 +12,7 @@ RSpec.describe CommunicationEmail, type: :model do
     describe '.for_user(user_id)' do
       before do
         @client = create(:tenancy)
-        @project = create(:project_base )
+        @project = create(:project_base)
         @memberships = create(:membership, client_id: @project.id, user: create(:user))
         @user = @memberships.user
         @communication = create(:communication, client_id: @project.id)
@@ -19,7 +20,8 @@ RSpec.describe CommunicationEmail, type: :model do
 
       context 'when user has some CommunicationEmail' do
         it 'returns those emails' do
-          expect(CommunicationEmail.for_user(@user.id).size).to eq(CommunicationEmail.joins(:membership).where(memberships: { user_id: @user.id}).size)
+          expect(CommunicationEmail.for_user(@user.id).size).
+            to eq(CommunicationEmail.joins(:membership).where(memberships: { user_id: @user.id }).size)
         end
       end
       context 'when there are some emails for other users' do

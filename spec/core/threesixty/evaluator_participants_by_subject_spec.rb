@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::EvaluatorParticipantsBySubject do
-
   describe '.call' do
     let(:subject) { create(:threesixty_subject) }
     let(:evaluator_1) { create(:user) }

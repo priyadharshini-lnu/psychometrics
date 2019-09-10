@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hogan
   class AssignAndLoadResultsJob < ApplicationJob
     queue_as :default
@@ -21,16 +23,14 @@ module Hogan
         group: project.hogan_group_name,
         membership: membership_with_result,
         assessment: assign_with_result.assessment,
-        reports: reports,
+        reports: reports
       }
       ::Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
     end
 
     def load_results
       reports.each do |report|
-        if report.hogan?
-          Hogan::LoadResults.call!(assign_with_result, report, membership_with_result, project)
-        end
+        Hogan::LoadResults.call!(assign_with_result, report, membership_with_result, project) if report.hogan?
       end
     end
   end

@@ -47,7 +47,7 @@ describe Threesixty::ParticipatorByCriteria::ByDatasheetFields do
 
     criteria_list = [
       { 'field' => 'datasheet', 'sub_field' => 'gender', 'value' => 'M' },
-      { 'field' => 'datasheet', 'sub_field' => 'role', 'value' => 'qa' },
+      { 'field' => 'datasheet', 'sub_field' => 'role', 'value' => 'qa' }
     ]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,

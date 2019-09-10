@@ -29,7 +29,7 @@ describe Threesixty::Participants::GetTotalEvaluations do
     expect(results[threesixty_evaluators[1].user_id].total_evaluations_count).to eq(1)
   end
 
-  it "excludes nominations which are not approved by manager" do
+  it 'excludes nominations which are not approved by manager' do
     create(
       :threesixty_option,
       threesixty_campaign: threesixty_campaign,

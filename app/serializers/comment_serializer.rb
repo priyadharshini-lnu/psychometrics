@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -17,5 +19,4 @@ class CommentSerializer < ActiveModel::Serializer
   def author
     object.creator.decorate.display_name
   end
-
 end

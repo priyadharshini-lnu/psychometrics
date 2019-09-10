@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCampaignTemplates < ActiveRecord::Migration[5.1]
   def change
     create_table :campaign_templates do |t|

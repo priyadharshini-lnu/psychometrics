@@ -28,7 +28,7 @@ module Administration
       private
 
       def set_resource_class
-        @_resource_class ||= ::Threesixty::NominationRequirement
+        @_resource_class ||= ::Threesixty::NominationRequirement # rubocop:disable Naming/MemoizedInstanceVariableName
       end
     end
   end

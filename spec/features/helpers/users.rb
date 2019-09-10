@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 module Features
   module Helpers
+    # rubocop:disable Metrics/ModuleLength
     module Users
       def create_superadmin(opts = {})
         visit administration_users_path
@@ -17,16 +20,19 @@ module Features
           yield
         else
           superadmin = User.last
-          expect(page).to have_content t('administration.users.create.successfully', name: superadmin.decorate.display_name)
-          expect(page).to have_css("#users_list td", text: superadmin.decorate.display_name)
+          expect(page).to have_content t('administration.users.create.successfully',
+                                         name: superadmin.decorate.display_name)
+          expect(page).to have_css('#users_list td', text: superadmin.decorate.display_name)
           expect(superadmin.role).to eq User::SUPER_ADMIN_ROLE
           superadmin
         end
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_step_1_administration_client_project_admins_path(project)}']").click
+        href = new_step_1_administration_client_project_admins_path(project)
+        find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         wait_for_ajax
         within '.new_prepare_user' do
           fill_in 'prepare_user_email', with: opts[:email]
@@ -44,7 +50,8 @@ module Features
         else
           wait_for_ajax
           admin_membership = Membership.last
-          expect(page).to have_content t('administration.memberships.create.successfully', name: admin_membership.decorate.display_name)
+          expect(page).to have_content t('administration.memberships.create.successfully',
+                                         name: admin_membership.decorate.display_name)
           expect(page).to have_css("#client_#{project.id} td", text: admin_membership.decorate.display_name)
           expect(admin_membership.role).to eq Membership::PROJECT_ADMIN_ROLE
           expect(admin_membership.project?).to be true
@@ -54,10 +61,13 @@ module Features
           admin_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
+      # rubocop:disable Metrics/AbcSize
       def choose_project_admin(project, admin_membership)
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
+        href = new_administration_client_project_admin_path(project)
+        find("#client_#{project.id} td .add-icon-box a[href='#{href}']").click
         find('label', text: t('administration.clients.project_admins.form.choose_admin')).click
         within '#existing-inputs' do
           select admin_membership.decorate.display_name, from: 'project_admin_ids', visible: false
@@ -79,6 +89,7 @@ module Features
           new_admin_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def edit_user_privileges(client, membership)
         visit edit_administration_client_user_path(client, membership)
@@ -88,6 +99,7 @@ module Features
         click_on t('administration.update')
       end
 
+      # rubocop:disable Metrics/AbcSize
       def create_user(client, opts = {})
         visit administration_client_users_path(client)
         click_link(t('administration.clients.users.index.new'), href: "/administration/clients/#{client.id}/users/new")
@@ -103,7 +115,8 @@ module Features
           yield
         else
           user_membership = Membership.last
-          expect(page).to have_content t('administration.memberships.create.successfully', name: user_membership.decorate.display_name)
+          expect(page).to have_content t('administration.memberships.create.successfully',
+                                         name: user_membership.decorate.display_name)
           expect(page).to have_css("#membership_#{user_membership.id} td", text: user_membership.user.email)
           expect(user_membership.role).to eq Membership::MEMBER_ROLE
 
@@ -124,26 +137,28 @@ module Features
           user_membership
         end
       end
+      # rubocop:enable Metrics/AbcSize
 
       def follow_superadmin_invitation
         page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
-        #follow_user_invitation
+        # follow_user_invitation
       end
 
       def follow_admin_invitation
         page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
-        #follow_user_invitation
+        # follow_user_invitation
       end
 
       def follow_user_invitation
         email = Capybara::Node::Simple.new(ActionMailer::Base.deliveries.last.body.to_s)
         ActionMailer::Base.deliveries = []
-        accept_link = email.find("a", text: t('devise.mailer.invitation_instructions.accept'))
+        accept_link = email.find('a', text: t('devise.mailer.invitation_instructions.accept'))
         visit accept_link[:href]
         expect(page).to have_css(:h1, text: t('administration.administrator.invitations.edit.title'))
       end
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end

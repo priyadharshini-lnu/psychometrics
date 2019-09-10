@@ -15,8 +15,8 @@ module Threesixty
 
     def resolve_conditions
       results = conditions.map do |condition|
-        second_results = condition['conditions'].map{ |cond| resolve_condition(cond) }
-        {operator: condition['operator'], result: check_results(second_results)}
+        second_results = condition['conditions'].map { |cond| resolve_condition(cond) }
+        { operator: condition['operator'], result: check_results(second_results) }
       end
       check_results(results)
     end

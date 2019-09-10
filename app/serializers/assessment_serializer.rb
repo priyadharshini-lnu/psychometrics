@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assessments
@@ -23,9 +25,11 @@ class AssessmentSerializer < ActiveModel::Serializer
 
   def blocks
     object.blocks.
-      selecting { ['blocks.*',
-                   coalesce(template.props, props).as('props'),
-                   coalesce(template.name, name).as('name')] }.
+      selecting do
+      ['blocks.*',
+       coalesce(template.props, props).as('props'),
+       coalesce(template.name, name).as('name')]
+    end .
       joining { template.outer }.
       includes(questions_ams: :comments).
       where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
@@ -35,6 +39,7 @@ class AssessmentSerializer < ActiveModel::Serializer
 
   def factors
     return [] unless object.dimension
+
     object.dimension.all_factors.map { |factor| Factors::WithoutSubFactorsSerializer.new(factor).to_hash }
   end
 
@@ -51,6 +56,7 @@ class AssessmentSerializer < ActiveModel::Serializer
   end
 
   def connected_campaign
-    @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
+    @connected_campaign ||= Campaign.joins(:threesixty_campaign).
+                            find_by(threesixty_campaigns: { assessment_id: object.id })
   end
 end

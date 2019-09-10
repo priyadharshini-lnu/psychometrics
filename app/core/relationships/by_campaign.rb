@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Relationships
   class ByCampaign < Rectify::Query
     def initialize(campaign)

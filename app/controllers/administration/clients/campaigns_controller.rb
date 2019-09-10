@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class CampaignsController < Administration::ClientsController
@@ -5,7 +7,8 @@ module Administration
       before_action :ensure_client
 
       def index
-        @_filter_form = policy_scope(resource_class).campaigns_of(client.id).includes(:license_usages).search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        campaigns_of(client.id).includes(:license_usages).search(params[:q])
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])
 
@@ -23,7 +26,7 @@ module Administration
 
       def init_breadcrumbs
         client_root_breadcrumb
-        add_breadcrumb client.decorate.display_name, { action: :index }
+        add_breadcrumb client.decorate.display_name, action: :index
       end
     end
   end

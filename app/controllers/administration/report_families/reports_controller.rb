@@ -47,7 +47,7 @@ module Administration
 
       # Set model
       def resource_class
-        @_resource_class ||= Report
+        @_resource_class ||= Report # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       protected

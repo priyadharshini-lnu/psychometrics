@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAssessmentToReportsModule < ActiveRecord::Migration[5.1]
   disable_ddl_transaction!
 

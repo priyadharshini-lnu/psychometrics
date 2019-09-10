@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   module Policies
     extend ActiveSupport::Concern

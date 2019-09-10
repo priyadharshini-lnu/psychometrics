@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: product_reports
@@ -12,4 +14,4 @@
 class ProductReport < ApplicationRecord
   belongs_to :product
   belongs_to :report
-end  
+end
