@@ -12,7 +12,7 @@ module Blocks
       block = Block.find(params['block_id'])
       transmit(
         action: 'block_data',
-                   data: BlockSerializer.new(block).to_hash(include: '**')
+        data: BlockSerializer.new(block).to_hash(include: '**')
       )
     end
 

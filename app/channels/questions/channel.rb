@@ -11,7 +11,7 @@ module Questions
       question = Question.find(params['question_id'])
       transmit(
         action: 'question_data',
-                   data: QuestionSerializer.new(question).to_hash(include: '**')
+        data: QuestionSerializer.new(question).to_hash(include: '**')
       )
     end
 
