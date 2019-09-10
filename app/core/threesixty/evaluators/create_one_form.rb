@@ -47,7 +47,7 @@ module Threesixty
       end
 
       def evaluator_user
-        @evaluator_user ||= ::Threesixty::Evaluator.includes(:user).where(users: { email: evaluator_email }).first&.user
+        @evaluator_user ||= context.campaign.evaluators.includes(:user).where(users: { email: evaluator_email }).first&.user
       end
     end
   end
