@@ -67,7 +67,11 @@ Style/AsciiComments:
   Enabled: false
 
 Naming/UncommunicativeMethodParamName:
-  Enabled: false
+  AllowedNames:
+    - q
+    - e
+    - id
+    - io
 
 # using baby_squeel assumes multi blocks
 Style/MultilineBlockChain:
