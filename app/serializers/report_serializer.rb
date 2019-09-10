@@ -73,9 +73,9 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def result_completed_at
-    return if get_assigns.blank?
+    return if assigns.blank?
 
-    dates = get_assigns.map do |assign|
+    dates = assigns.map do |assign|
       assign&.completed_at&.to_date
     end.compact.sort
 
