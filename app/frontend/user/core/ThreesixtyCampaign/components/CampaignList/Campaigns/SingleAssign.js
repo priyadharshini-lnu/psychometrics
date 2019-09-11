@@ -5,7 +5,7 @@ import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import './styles.scss'
+import style from './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import mindmill from './mindmill.png'
 import ContinueIcon from './ContinueIcon'
@@ -19,21 +19,21 @@ const openReport = (e, report) => {
   return false
 }
 
-const DownloadLink = ({ report, showName }) => {
+const DownloadLink = ({ report, text }) => {
   if (report.mindmill) {
     return (
       <a href={`${report.mindmillReportUrl}`} onClick={e => openReport(e, report)}>
         <Icon type="download" />
         {' '}
-        {showName ? report.name : I18n.t('threesixty.download_report')}
+        {text ? text : I18n.t('threesixty.download_report')}
       </a>
     )
   }
   return (
-    <a href={`${report.pdfUrl}.pdf`} onClick={e => e.stopPropagation()} target="_blank">
+    <a href={`${report.pdfUrl}`} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
       <Icon type="download" />
       {' '}
-      {showName ? report.name : I18n.t('threesixty.download_report') }
+      {text ? text : I18n.t('threesixty.download_report')}
     </a>
   )
 }
@@ -42,7 +42,7 @@ const ReportsMenu = reports => (
   <Menu>
     {reports.map(report => (
       <Menu.Item key={report.id}>
-        <DownloadLink report={report} showName />
+        <DownloadLink report={report} text={report.generating ? `${report.name} (Processing...)` : report.name} />
       </Menu.Item>
     ))}
   </Menu>
@@ -84,7 +84,7 @@ const renderButtonContent = ({
           trigger={['click']}
           overlay={() => ReportsMenu(assignedReports)}
         >
-          <div>
+          <div className={style.dropdown}>
             <Icon type="download" />
             {' '}
             {I18n.t('threesixty.download_report')}
@@ -93,7 +93,7 @@ const renderButtonContent = ({
       )
     } if (assignedReports.length === 1) {
       const report = assignedReports[0]
-      return <DownloadLink report={report} />
+      return <DownloadLink report={report} text={report.generating ? "Processing Download" : I18n.t('threesixty.download_report')} />
     }
     return (
       <a>
@@ -112,7 +112,7 @@ const renderButtonContent = ({
   )
 }
 
-export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
+export default function SingleAssign({ campaign: assign, acceptPolicy }) {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
