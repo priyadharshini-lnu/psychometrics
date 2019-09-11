@@ -9,11 +9,14 @@ module Administration
 
       def index
         query = policy_scope(::Threesixty::Subject).
-          includes(:self_evaluator, :user).
-          where(campaign_id: threesixty_campaign.campaign_id).
-          where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").
-          references(:user).
-          order(id: :desc)
+                includes(:self_evaluator, :user).
+                where(campaign_id: threesixty_campaign.campaign_id).
+                where(
+                  'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
+                  "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%"
+                ).
+                references(:user).
+                order(id: :desc)
         subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]), threesixty_campaign)
         total = query.count
         render json: { subjects: subjects, total: total }
@@ -42,7 +45,8 @@ module Administration
       end
 
       def create_all
-        form = ::Threesixty::Subjects::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Subjects::CreateAllForm.from_params(params).
+               with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
           ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
           render json: :ok
@@ -54,22 +58,23 @@ module Administration
       def preview_report
         user_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
 
-        @data = ::Reports::PrepareDataForReport.call!({
+        @data = ::Reports::PrepareDataForReport.call!(
           users_report: user_report,
           locale: user_locale,
           current_user: current_user
-        })
+        )
       end
 
       def download_example_import_file
         send_file(
           "#{Rails.root}/public/example_csv/subject_import.csv",
-          type: "text/csv"
+          type: 'text/csv'
         )
       end
 
       def import
-        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).
+               with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
           validate_and_add_subjects_from_csv(form.file.path)
         else
@@ -81,7 +86,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Subject
+        @_resource_class ||= ::Threesixty::Subject # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def resource_params
@@ -89,8 +94,11 @@ module Administration
       end
 
       def validate_and_add_subjects_from_csv(file_path)
-        form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects_from_csv(file_path) }).
-          with_context(campaign: threesixty_campaign.campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
+        form = ::Threesixty::Subjects::CreateAllForm.new(subjects: subjects_from_csv(file_path)).
+               with_context(
+                 campaign: threesixty_campaign.campaign,
+                 single_subject_form: ::Threesixty::Subjects::ImportOneForm
+               )
 
         if form.valid?
           result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
@@ -102,7 +110,7 @@ module Administration
 
       def subjects_from_csv(file_path)
         csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
-        subjects = csv.map { |row| row.to_h.symbolize_keys }
+        csv.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

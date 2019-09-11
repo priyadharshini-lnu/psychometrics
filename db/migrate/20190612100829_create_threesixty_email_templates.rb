@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class CreateThreesixtyEmailTemplates < ActiveRecord::Migration[5.1]
   def change
     create_table :threesixty_email_templates do |t|
-      t.belongs_to :threesixty_campaign, foreign_key: { on_delete: :restrict }, index: { name: :threesixty_email_template_cam_id }
+      t.belongs_to :threesixty_campaign, foreign_key: { on_delete: :restrict }, index: {
+        name: :threesixty_email_template_cam_id
+      }
       t.integer :category
       t.string :name, null: false
       t.string :from, null: false
@@ -14,7 +18,7 @@ class CreateThreesixtyEmailTemplates < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    add_index :threesixty_email_templates, [:threesixty_campaign_id, :name], unique: true,
+    add_index :threesixty_email_templates, %i[threesixty_campaign_id name], unique: true,
       name: :index_threesixty_email_templates_campaign_name
   end
 end

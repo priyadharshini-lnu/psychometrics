@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :schedule_email do
   desc 'Send schedule email'
   task process: :environment do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe BulkReports::ExportJob do
@@ -29,7 +31,7 @@ describe BulkReports::ExportJob do
     context 'for external report' do
       let(:is_external_report) { true }
 
-      it "returns external file" do
+      it 'returns external file' do
         expect(assign).to receive_message_chain(:mindmill_report, :file)
         expect(assigns_report).to receive_message_chain(:external_report, :file)
 

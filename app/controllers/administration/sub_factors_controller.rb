@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Administration::SubFactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+  before_action :set_resource, only: %i[edit update destroy sidebar]
   before_action :skip_authorization, only: [:sidebar]
   before_action :set_dimension
   before_action :set_factor
@@ -58,16 +60,16 @@ class Administration::SubFactorsController < Administration::BaseController
   private
 
   def set_resource_class
-    @_resource_class ||= Factor
+    @_resource_class ||= Factor # rubocop:disable Naming/MemoizedInstanceVariableName
   end
 
   def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
     add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
     add_breadcrumb @dimension.name
     add_breadcrumb I18n.t('administration.breadcrumbs.factors'), administration_dimension_factors_path
     add_breadcrumb @factor.name
-    add_breadcrumb I18n.t('administration.breadcrumbs.sub_factors'), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.sub_factors'), action: :index
   end
 
   def set_dimension

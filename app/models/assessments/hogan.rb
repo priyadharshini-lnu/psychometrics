@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assessments
   class Hogan < Assessment
     validates :name, presence: true, length: { maximum: 150, allow_blank: true }

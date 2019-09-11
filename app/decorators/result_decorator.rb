@@ -1,10 +1,19 @@
+# frozen_string_literal: true
+
 class ResultDecorator < BaseDecorator
   def status
-    I18n.t("activerecord.attributes.results.statuses.#{ object.status }")
+    I18n.t("activerecord.attributes.results.statuses.#{object.status}")
   end
 
   def completed_at_with_desc
-    return I18n.t('results.decorator.completed', date: I18n.l(object.completed_at, format: :date)) if object.completed_at && object.completed?
+    if object.completed_at && object.completed?
+      return I18n.t(
+        'results.decorator.completed',
+        date: I18n.l(object.completed_at,
+                     format: :date)
+      )
+    end
+
     I18n.t('results.decorator.not_completed')
   end
 

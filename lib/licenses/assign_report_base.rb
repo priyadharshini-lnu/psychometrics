@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Licenses
   class AssignReportBase
     def initialize(licenseable)
@@ -16,7 +18,7 @@ module Licenses
 
     # licenseable - it's AssignReport
     def self.use(licenseable)
-      license_usage = self.new(licenseable)
+      license_usage = new(licenseable)
       license_usage
     end
 

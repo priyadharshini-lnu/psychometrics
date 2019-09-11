@@ -16,21 +16,15 @@ module Threesixty
       end
 
       def validate_criteria_comparator(comparator)
-        if ['equal', 'is_same_as_subject'].exclude?(comparator)
-          errors.add(:criteria_list, 'has invalid comparator')
-        end
+        errors.add(:criteria_list, 'has invalid comparator') if %w[equal is_same_as_subject].exclude?(comparator)
       end
 
       def validate_criteria_field(field)
-        if context.datasheet_column_names.exclude?(field)
-          errors.add(:criteria_list, 'has invalid conditional field')
-        end
+        errors.add(:criteria_list, 'has invalid conditional field') if context.datasheet_column_names.exclude?(field)
       end
 
       def validate_criteria_keys(criteria)
-        if (criteria.keys - [:field, :comparator, :value]).present?
-          errors.add(:criteria_list, 'has invalid key')
-        end
+        errors.add(:criteria_list, 'has invalid key') if (criteria.keys - %i[field comparator value]).present?
       end
     end
   end

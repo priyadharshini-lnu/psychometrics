@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NormEditorForm < BaseForm
   attr_accessor :factor_type, :norm_type
   validates :norm_type, inclusion: { in: FactorsNorm::NORM_TYPES }, allow_nil: true

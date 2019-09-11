@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class CreateThreesixtyEmailSchedules < ActiveRecord::Migration[5.1]
   def change
     create_table :threesixty_email_schedules do |t|
-      t.belongs_to :threesixty_campaign, foreign_key: { on_delete: :restrict }, index: { name: :threesixty_email_schedule_cam_id }
+      t.belongs_to :threesixty_campaign, foreign_key: {
+        on_delete: :restrict
+      }, index: { name: :threesixty_email_schedule_cam_id }
       t.string :name
       t.string :from
       t.text :subject

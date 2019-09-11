@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::Campaigns::ResetAllNominations do
@@ -38,7 +40,7 @@ describe Threesixty::Campaigns::ResetAllNominations do
     end
   end
 
-  def create_participant subject, evaluator, campaign
+  def create_participant(subject, evaluator, campaign)
     create(:threesixty_participant, subject: subject, evaluator: evaluator, campaign: campaign)
   end
 end

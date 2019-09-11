@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Imports
     class HrisController < Administration::Imports::BaseController
@@ -16,7 +18,7 @@ module Administration
       end
 
       def init_import_class
-        @_resource_class ||= ::Imports::HrisImport
+        @_resource_class ||= ::Imports::HrisImport # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def pundit_authorize

@@ -1,12 +1,16 @@
+# frozen_string_literal: true
+
 class AssessmentPolicy < BasePolicy
   def index?
     return false if @current_user.is_anonym?
+
     true
   end
 
   # TODO: Refactoring. Move it to controller
   def pass?
     return false if @current_user.is_anonym?
+
     @record.assigns.exists?(membership_id: @current_membership.id)
   end
 

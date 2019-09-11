@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clients
   module Assessments
     class UpdateAssessment < BaseCommand
@@ -9,8 +11,9 @@ module Clients
 
       def call
         return broadcast(:invalid) if form.invalid?
-        return broadcast(:confirm_remove_dependent_reports, removing_dependent_reports) if removing_dependent_reports.present? &&
-                                                                                           !form.is_removing_dependent_reports
+        if removing_dependent_reports.present? && !form.is_removing_dependent_reports
+          return broadcast(:confirm_remove_dependent_reports, removing_dependent_reports)
+        end
 
         transaction do
           reorder_assessments_clients
@@ -57,8 +60,8 @@ module Clients
         return if form.removing_assessment_ids.blank?
 
         client.assessments_clients.
-               where(assessment_id: form.removing_assessment_ids).
-               destroy_all
+          where(assessment_id: form.removing_assessment_ids).
+          destroy_all
       end
 
       # Removes assign and assigns_report from existing users
@@ -67,8 +70,8 @@ module Clients
         return if form.removing_assessment_ids.blank?
 
         Assign.joins(:membership).
-               where(memberships: { client_id: client.id }, assessment_id: form.removing_assessment_ids).
-               destroy_all
+          where(memberships: { client_id: client.id }, assessment_id: form.removing_assessment_ids).
+          destroy_all
       end
 
       # Looks for dependent reports and removes them
@@ -77,8 +80,9 @@ module Clients
         return if form.removing_assessment_ids.blank?
         return if removing_dependent_reports.blank?
 
-        ::Clients::Reports::RemoveReport.call!(client, removing_report_ids: removing_dependent_reports.map(&:id),
-                                                       is_applying_to_existing_users: form.is_applying_to_existing_users)
+        ::Clients::Reports::RemoveReport.call!(client,
+                                               removing_report_ids: removing_dependent_reports.map(&:id),
+                                               is_applying_to_existing_users: form.is_applying_to_existing_users)
       end
     end
   end

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-# TODO (atanych): What do these tests check?
+# TODO: (atanych): What do these tests check?
 describe 'Exports::Assessments::AssessmentResultsExport' do
   let(:assessment) { create(:assessment) }
   let(:client_id) { 0 }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::NormPolicy < Administration::BasePolicy
   def index?
     super || @user.has_grant?(:norms, :view)
@@ -19,8 +21,15 @@ class Administration::NormPolicy < Administration::BasePolicy
     def resolve
       scope = super
       return scope if @user.is?(:superadmin)
+
       if @user.has_grant?(:norms, :view)
-        owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct
+        owner_ids =
+          if @user.is?(:client_admin)
+            @user.client_admin_client_ids
+          else
+            @user.project_admin_clients.select('tte_id').distinct
+          end
+
         scope.where(owner_id: owner_ids)
       else
         scope.none

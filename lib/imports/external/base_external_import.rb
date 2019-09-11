@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module External
     class BaseExternalImport
@@ -7,11 +9,11 @@ module Imports
         "Imports::External::#{type.capitalize}Import".constantize.new
       end
 
-      def normalize_data(data, extra)
+      def normalize_data(_data, _extra)
         raise 'should be implemented in particular external import'
       end
 
-      def process(data, assign, extra = {})
+      def process(data, _assign, extra = {})
         normalize_data(data, extra)
       end
 
@@ -20,6 +22,7 @@ module Imports
           keys = parent_keys + [entity.first]
           key = keys.join('.')
           next normalized_hash if excluded_fields.include?(key)
+
           if entity.last.is_a?(Hash)
             normalized_hash = normalize_nested_hash(entity.last, normalized_hash, keys)
           else

@@ -3,7 +3,7 @@
 module Clients
   module Reports
     class AssignReportForm < Rectify::Form
-      include Virtus.model(:nullify_blank => true)
+      include Virtus.model(nullify_blank: true)
 
       # Fields
       attribute :report_family_id, Integer
@@ -21,7 +21,7 @@ module Clients
       validate :reports_enabled, if: -> { adding_report_ids.any? }
       validate :reports_linked_to_report_family, if: -> { report_family_id && adding_report_ids.any? }
 
-      def initialize(opts={})
+      def initialize(opts = {})
         super
         @removing_user_access_report_ids = [] if removing_user_access_report_ids.reject(&:blank?).blank?
       end
@@ -32,10 +32,13 @@ module Clients
       #
       def report_family_enabled
         errors.add(:adding_report_ids, :report_family_disabled) if ::ReportFamily.
-                                                                  joins(:licenses).
-                                                                  where(licenses: { disabled: true, client_id: context.client_tenancy.id }).
-                                                                  where(id: report_family_id).
-                                                                  exists?
+                                                                   joins(:licenses).
+                                                                   where(licenses: {
+                                                                     disabled: true,
+                                                                     client_id: context.client_tenancy.id
+                                                                   }).
+                                                                   where(id: report_family_id).
+                                                                   exists?
       end
 
       # Returns error if there is at least one disabled Report
@@ -48,8 +51,12 @@ module Clients
       #
       def reports_linked_to_report_family
         report_family_report_ids = ReportFamily.find(report_family_id).report_ids.to_set
-        errors.add(:adding_report_ids, :not_linked_to_report_family) unless adding_report_ids.to_set.subset?(report_family_report_ids)
-        errors.add(:removing_report_ids, :not_linked_to_report_family) unless removing_report_ids.to_set.subset?(report_family_report_ids)
+        unless adding_report_ids.to_set.subset?(report_family_report_ids)
+          errors.add(:adding_report_ids, :not_linked_to_report_family)
+        end
+        unless removing_report_ids.to_set.subset?(report_family_report_ids)
+          errors.add(:removing_report_ids, :not_linked_to_report_family)
+        end
       end
     end
   end

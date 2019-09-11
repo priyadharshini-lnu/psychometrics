@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     module Questions
@@ -15,6 +17,7 @@ module Imports
           data.each_slice(2).each_with_index do |batch, choice|
             scale, values = batch # contain scale and values
             next if scale.nil?
+
             answers << {
               scale: scale - 1,
               choice: choice,
@@ -22,6 +25,7 @@ module Imports
             }
           end
           return nil if answers.blank?
+
           {
             answers: answers,
             question_id: question.id

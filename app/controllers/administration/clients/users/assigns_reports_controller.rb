@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Users
@@ -10,21 +12,21 @@ module Administration
 
         def new
           @report_families = client.root.
-                                    report_families.
-                                    includes(:reports).
-                                    where(reports: { disabled: false }).
-                                    references(:reports).
-                                    distinct
+                             report_families.
+                             includes(:reports).
+                             where(reports: { disabled: false }).
+                             references(:reports).
+                             distinct
           @_resource = ::Clients::Reports::AssignReportForm.new
         end
 
         def create
           @report_families = client.root.
-                                    report_families.
-                                    includes(:reports).
-                                    where(reports: { disabled: false }).
-                                    references(:reports).
-                                    distinct
+                             report_families.
+                             includes(:reports).
+                             where(reports: { disabled: false }).
+                             references(:reports).
+                             distinct
           @_resource = ::Clients::Reports::AssignReportForm.
                        from_params(params[:resource]).
                        with_context(client: client, client_tenancy: client.root)
@@ -41,7 +43,6 @@ module Administration
 
         def toggle_user_access
           resource.toggle!(:user_access)
-
         rescue ActiveRecord::RecordInvalid => e
           respond_to do |format|
             format.js { render(:error, locals: { message: e.message }) }
@@ -50,7 +51,6 @@ module Administration
 
         def destroy
           resource.destroy!
-
         rescue ActiveRecord::RecordInvalid => e
           respond_to do |format|
             format.js { render(:error, locals: { message: e.message }) }
@@ -86,6 +86,7 @@ module Administration
 
         def pundit_authorize
           raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+
           super
         end
       end

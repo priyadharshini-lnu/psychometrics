@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     module Questions
@@ -10,8 +12,10 @@ module Exports
         # TO:
         #   [1, ...]
         def self.result(answers, question, _scoring = false)
-          increase = %w(TextBox).include?(question.props['type']) ? 0 : 1
-          answers = (answers || []).sort_by { |a| a['index'] }.map { |a| a['value'].is_a?(Numeric) ? a['value'] + increase : '' }
+          increase = %w[TextBox].include?(question.props['type']) ? 0 : 1
+          answers = (answers || []).sort_by { |a| a['index'] }.map do |a|
+            a['value'].is_a?(Numeric) ? a['value'] + increase : ''
+          end
           required_size = header(question).size
           Utility::Array.ensure_size(answers, required_size)
         end

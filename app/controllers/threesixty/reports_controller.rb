@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class ReportsController < ApplicationController
     include AuthenticateByToken
@@ -6,7 +8,7 @@ module Threesixty
     before_action :set_campaign
     before_action :set_users_report
     prepend_before_action :authenticate_by_token!, only: %i[show]
-    initial_state_for [:index, :show]
+    initial_state_for %i[index show]
 
     def index
       respond_to do |format|
@@ -21,7 +23,7 @@ module Threesixty
           results = Threesixty::Reports::ResultsForSubject.call!(@users_report, current_user)
           piped_text_context = {
             subject: @users_report.user,
-            threesixty_campaign: @campaign,
+            threesixty_campaign: @campaign
           }
           render json: @users_report, report: @campaign.report,
                  options: @campaign.option, results: results,
@@ -29,11 +31,11 @@ module Threesixty
                  include: '**'
         end
         format.pdf do
-          @data = ::Reports::PrepareDataForReport.call!({
+          @data = ::Reports::PrepareDataForReport.call!(
             users_report: @users_report,
             locale: user_locale,
             current_user: current_user
-          })
+          )
 
           render :export, formats: 'html', layout: 'pdf', content_type: 'text/html'
         end
@@ -43,7 +45,8 @@ module Threesixty
     def update_status
       subject = @users_report.threesixty_subject
       subject.update!(report_approval_status: params[:status])
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign:  @campaign, subject: subject)
+      Threesixty::Emails::Send.
+        call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: @campaign, subject: subject)
       render json: { status: subject.report_approval_status }
     end
 
@@ -62,6 +65,5 @@ module Threesixty
     def set_campaign
       @campaign = Threesixty::Campaign.find(params[:campaign_id])
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Projects
@@ -20,7 +22,7 @@ module Administration
                 id: resource.id,
                 reportId: resource.report_id,
                 dimensionId: resource.assessment.dimension_id
-              },
+              }
             }
           }
         end
@@ -46,19 +48,19 @@ module Administration
         def assessments
           type = params[:type]
           @assessments = if type == ::Threesixty::Campaign::STANDARD_360
-            CampaignTemplate.includes(:assessment).map(&:assessment)
-          else
-            project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
-          end
+                           CampaignTemplate.includes(:assessment).map(&:assessment)
+                         else
+                           project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
+                         end
         end
 
         def factors
           @factors = if params[:assessment_id].present?
-            assessment = Assessment.find(params[:assessment_id])
-            assessment.dimension.factors
-          else
-            []
-          end
+                       assessment = Assessment.find(params[:assessment_id])
+                       assessment.dimension.factors
+                     else
+                       []
+                     end
         end
 
         def destroy
@@ -85,7 +87,7 @@ module Administration
         end
 
         def set_resource_class
-          @_resource_class ||= ::Threesixty::Campaign
+          @_resource_class ||= ::Threesixty::Campaign # rubocop:disable Naming/MemoizedInstanceVariableName
         end
 
         def threesixty_campaign
@@ -100,7 +102,7 @@ module Administration
             t('administration.clients.projects.threesixty_campaigns.index.title'),
             administration_client_project_threesixty_campaigns_path(client, project)
           )
-          add_breadcrumb resource.campaign.name, { action: :show } if params[:action] == 'show'
+          add_breadcrumb resource.campaign.name, action: :show if params[:action] == 'show'
         end
       end
     end

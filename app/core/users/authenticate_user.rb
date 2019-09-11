@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class AuthenticateUser < Rectify::Command
     SPOOF_KEY = :spoof_token
@@ -13,6 +15,7 @@ module Users
       if params[SPOOF_KEY]
         authenticate_by_spoof
         return broadcast :invalid_spoof_token unless user
+
         found_by = :spoof
       end
 
@@ -20,6 +23,7 @@ module Users
       if params[SSO_KEY]
         authenticate_by_sso
         return broadcast(:invalid_sso_token, invalid_sso_redirect_url) unless user
+
         found_by = :sso
       end
 
@@ -38,7 +42,7 @@ module Users
     def authenticate_by_spoof
       @user = User.find_by(spoof_token: params[SPOOF_KEY])
       # Remove temporary spoof token from user
-      user.update_column(:spoof_token, nil) if user
+      user&.update_column(:spoof_token, nil)
     end
 
     # Tries auth by SSO token
@@ -56,7 +60,7 @@ module Users
       return if params[REDIRECT_KEY].blank?
 
       uri = URI.parse params[REDIRECT_KEY]
-      uri.query = uri.query.gsub('ASSESSMENT_STATUS', 'invalid_token') unless uri.query.nil?
+      uri.query = uri.query.gsub('ASSESSMENT_STATUS', 'invalid_token') if uri.query
       uri.to_s
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Virtus
   module Extensions
     Methods.module_eval do

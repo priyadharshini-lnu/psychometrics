@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class AssignAssessmentsController < Administration::BaseController
@@ -58,8 +60,8 @@ module Administration
               on(:invalid) { render :edit }
               on(:confirm_remove_dependent_reports) do |remove_reports|
                 report_names = remove_reports.
-                                map { |report| report.decorate.display_name }.
-                                join(', ')
+                               map { |report| report.decorate.display_name }.
+                               join(', ')
                 render :confirm_remove_dependent_reports, locals: { report_names: report_names }
               end
             end

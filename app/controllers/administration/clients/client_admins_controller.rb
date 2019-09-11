@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class ClientAdminsController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_client
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
+      before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
+      append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @_filter_form = policy_scope(resource_class)
-                           .includes(user: [:clients, :memberships])
-                           .where(role: Membership::CLIENT_ADMIN_ROLE)
-                           .join_user.search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        includes(user: %i[clients memberships]).
+                        where(role: Membership::CLIENT_ADMIN_ROLE).
+                        join_user.search(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 
@@ -41,7 +43,8 @@ module Administration
       end
 
       def create
-        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
+        Memberships::CreateAdminCommand.
+          call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
             self.resource = res
@@ -51,6 +54,7 @@ module Administration
 
       def assign_multiple
         return unless client.root?
+
         if client.update(client_admin_ids: User.client_admins.where(id: params[:client_admin_ids]).distinct.ids)
           render :create
         else
@@ -60,8 +64,8 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb t('administration.breadcrumbs.client_admins'), { action: :index }
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb t('administration.breadcrumbs.client_admins'), action: :index
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
@@ -70,7 +74,9 @@ module Administration
         respond_to do |format|
           if resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully', name: resource.user.decorate.display_name))
+              redirect_to({ action: :edit, id: resource },
+                          success: t('administration.memberships.update.successfully',
+                                     name: resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -139,7 +145,7 @@ module Administration
       end
 
       def set_resource_class
-        @_resource_class ||= ::Membership
+        @_resource_class ||= ::Membership # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

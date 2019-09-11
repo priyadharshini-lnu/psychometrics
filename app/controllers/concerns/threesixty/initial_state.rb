@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Threesixty::InitialState
   extend ActiveSupport::Concern
 
   included do
-    def self.initial_state_for actions
+    def self.initial_state_for(actions)
       before_action :set_init_state, only: Array.wrap(actions), if: -> { request.format.html? }
     end
   end
@@ -28,5 +30,4 @@ module Threesixty::InitialState
       as_json.
       deep_transform_keys! { |key| key.to_s.camelize(:lower) }
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Translations
     class AssessmentExport
@@ -5,7 +7,8 @@ module Exports
         @package = Axlsx::Package.new
         wb = @package.workbook
         wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
-          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
+          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).
+            map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
           data['question'].each do |question_id, props|
             translations = ::Translation.
                            for_assessment(assessment_id).

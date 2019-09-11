@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Archivable
   extend ActiveSupport::Concern
 
@@ -6,7 +8,7 @@ module Archivable
     respond_to do |format|
       format.html do
         redirect_back(
-            fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+          fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
         )
       end
       format.js

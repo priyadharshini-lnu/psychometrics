@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class LookupRelatedMembershipsQuery < Rectify::Command
     attr_reader :user, :project

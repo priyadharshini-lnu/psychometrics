@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelationshipWithUsageSerializer < ActiveModel::Serializer
   attributes :id, :type, :name, :assign_type, :usage
 

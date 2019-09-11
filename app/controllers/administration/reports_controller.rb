@@ -9,14 +9,15 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet toggle_archive]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
+                                          regenerate upload_data_sheet toggle_archive]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
 
     # GET /administration/resources
     def index
-      # TODO (atanych): do we really need distinct?
+      # TODO: (atanych): do we really need distinct?
       scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
@@ -32,7 +33,7 @@ module Administration
 
     def upload_data_sheet
       @form = ::Datasheets::DatasheetForm.from_params(params)
-      render json: @form.parsed_file.first.map { |k, v| {name: k, type: v} }
+      render json: @form.parsed_file.first.map { |k, v| { name: k, type: v } }
     end
 
     def show
@@ -48,7 +49,7 @@ module Administration
     def create
       @_resource = resource_class.new(resource_params)
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
-      # TODO (ivan) Move creating and updating to Command and Form
+      # TODO: (ivan) Move creating and updating to Command and Form
       resource.hogan_report_setting&.delete if resource.hogan_report_setting&.hogan_report_id.blank?
 
       respond_to do |format|
@@ -67,9 +68,13 @@ module Administration
                              where(assessment_id: assessment_ids).
                              pluck(:hogan_assessment_id).
                              uniq
-      @reports = hogan_assessment_ids ?
-                   Settings.providers.hogan.reports.select { |report| report[:assessment_ids].to_set == hogan_assessment_ids.to_set } :
+      @reports = if hogan_assessment_ids
+                   Settings.providers.hogan.reports.select do |report|
+                     report[:assessment_ids].to_set == hogan_assessment_ids.to_set
+                   end
+                 else
                    []
+                 end
       respond_to do |format|
         format.json
       end
@@ -159,16 +164,20 @@ module Administration
 
     # Set model
     def set_resource_class
-      @_resource_class ||= Report
+      @_resource_class ||= Report # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def resource_params
       report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
-                                                       :remove_icon, :default_language, report_family_ids: [], assessment_ids: [],
+                                                       :remove_icon, :default_language, report_family_ids: [],
+                                                       assessment_ids: [],
                                        hogan_report_setting_attributes: %i[id hogan_report_id _destroy])
-      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
+      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids
+      # are empty and causes errors
       # Does this need a better fix?
-      report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+      if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+        report_params = report_params.except(:assessment_ids)
+      end
       report_params
     end
 

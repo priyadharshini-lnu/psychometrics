@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryGirl.define do
   factory :assigns_report do
     assign
@@ -9,7 +11,7 @@ FactoryGirl.define do
       end
     end
     trait :with_pdf do
-       pdf { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/reports/test.pdf'), 'application/pdf') }
+      pdf { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/reports/test.pdf'), 'application/pdf') }
     end
   end
 end

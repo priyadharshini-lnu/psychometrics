@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assessments
@@ -24,12 +26,12 @@ class Assessment < ApplicationRecord
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
-    PSYCHOMETRIC = 'psychometric'.freeze,
-    ORGANISATIONAL = 'organisational'.freeze,
-    CASE_STUDY = 'case_study'.freeze,
-    THREESIXTY = 'threesixty'.freeze,
-    MINDMILL = 'mindmill'.freeze,
-    HOGAN = 'hogan'.freeze,
+    PSYCHOMETRIC = 'psychometric',
+    ORGANISATIONAL = 'organisational',
+    CASE_STUDY = 'case_study',
+    THREESIXTY = 'threesixty',
+    MINDMILL = 'mindmill',
+    HOGAN = 'hogan'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -37,7 +39,7 @@ class Assessment < ApplicationRecord
     case_study: CASE_STUDY,
     threesixty: THREESIXTY,
     mindmill: MINDMILL,
-    hogan: HOGAN,
+    hogan: HOGAN
   }.freeze
 
   # Assessments constant
@@ -48,7 +50,7 @@ class Assessment < ApplicationRecord
   }.freeze
 
   # STATUSES constant
-  STATUSES = %i(in_progress finished).freeze
+  STATUSES = %i[in_progress finished].freeze
 
   ### ASSOCIATIONS
   ##
@@ -98,7 +100,7 @@ class Assessment < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
 
-  # TODO:
+  # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
   # Creating scope :hogan. Overwriting existing method Assessment.hogan.
   #
@@ -151,15 +153,15 @@ class Assessment < ApplicationRecord
     end
 
     def options_for_select
-      all.map { |assessment| [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }] }
+      all.map do |assessment|
+        [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }]
+      end
     end
   end
 
   private
 
   def delete_hogan_assessment_setting
-    if hogan_assessment_setting && !hogan?
-      hogan_assessment_setting.destroy
-    end
+    hogan_assessment_setting.destroy if hogan_assessment_setting && !hogan?
   end
 end

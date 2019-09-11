@@ -43,7 +43,7 @@ describe Threesixty::Subjects::IsNominationRequirementComplete do
       :threesixty_participant,
       subject_id: threesixty_subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
-      relationship: manager_relationship,
+      relationship: manager_relationship
     )
 
     result = described_class.call!(threesixty_campaign, threesixty_subject.user)[threesixty_subject.user_id]

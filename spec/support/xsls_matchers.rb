@@ -1,9 +1,8 @@
-# encoding: UTF-8
+# frozen_string_literal: true
 
 require 'rspec/expectations'
 
 module XslsMatchers
-
   RSpec::Matchers.define :have_header_cells do |cell_values|
     match do |worksheet|
       worksheet.rows[0].cells.map(&:value) == cell_values

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Builders
   module Templates
     class QuestionBuilder
@@ -10,13 +12,11 @@ module Builders
 
       def save
         ActiveRecord::Base.transaction do
-          begin
-            _id = params.delete(:id)
-            @question.update(params)
-          rescue => e
-            Rails.logger.info(e)
-            return false
-          end
+          _id = params.delete(:id)
+          @question.update(params)
+        rescue StandardError => e
+          Rails.logger.info(e)
+          return false
         end
         true
       end

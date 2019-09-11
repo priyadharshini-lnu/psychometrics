@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assessments
@@ -21,7 +23,7 @@ FactoryGirl.define do
   factory :report do
     association :assessment, factory: :assessment
     sequence(:name) { |i| "report #{i}" }
-    extra { {icon_color: '#845EC2'} }
+    extra { { icon_color: '#845EC2' } }
     report_families { [association(:report_family)] }
     assessments { build_list(:assessment, Report::MAX_ASSESSMENT_COUNT - 1) }
 

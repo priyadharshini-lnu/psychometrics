@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Memberships
   class PrepareUserForm < Rectify::Form
     attribute :email, String

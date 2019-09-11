@@ -13,7 +13,7 @@ describe Threesixty::ParticipatorByCriteria::Filter do
         @threesixty_subjects << create(
           :threesixty_subject,
           campaign: threesixty_campaign.campaign,
-          user: create(:user, first_name: "James")
+          user: create(:user, first_name: 'James')
         )
       end
     end
@@ -51,7 +51,7 @@ describe Threesixty::ParticipatorByCriteria::Filter do
         @threesixty_evaluators << create(
           :threesixty_evaluator,
           campaign: threesixty_campaign.campaign,
-          user: create(:user, first_name: "James")
+          user: create(:user, first_name: 'James')
         )
       end
     end

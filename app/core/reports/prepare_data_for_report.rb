@@ -18,12 +18,13 @@ module Reports
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       piped_text_context = {
         subject: users_report&.user,
-        threesixty_campaign: users_report&.threesixty_campaign,
+        threesixty_campaign: users_report&.threesixty_campaign
       }
       broadcast :ok,
                 user: Reports::UserSerializer.new(users_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
-                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).to_json(include: '**'),
+                data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).
+                  to_json(include: '**'),
                 locales: translations.to_json,
                 available_translations: available_translations,
                 campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
@@ -39,6 +40,7 @@ module Reports
 
     def campaign_details
       return {} unless report.category_threesixty?
+
       Threesixty::CampaignDetailsSerializer.new(users_report.threesixty_campaign, users_report: users_report).to_h
     end
 

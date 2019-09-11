@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class ProjectAdminsController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
+      before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
+      append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @_filter_form = policy_scope(resource_class)
-                           .includes(user: [:clients, :memberships])
-                           .where(role: Membership::PROJECT_ADMIN_ROLE)
-                           .join_user.search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        includes(user: %i[clients memberships]).
+                        where(role: Membership::PROJECT_ADMIN_ROLE).
+                        join_user.search(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 
@@ -41,7 +43,8 @@ module Administration
       end
 
       def create
-        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
+        Memberships::CreateAdminCommand.
+          call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
           on(:ok) do |res|
             self.resource = res
@@ -51,7 +54,9 @@ module Administration
 
       def assign_multiple
         return unless client.project?
-        if client.update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
+
+        if client.
+           update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
           render :create
         else
           render :error, locals: { message: client.errors.full_messages.join('<br>') }
@@ -60,8 +65,8 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb t('administration.breadcrumbs.project_admins'), { action: :index }
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb t('administration.breadcrumbs.project_admins'), action: :index
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
@@ -70,7 +75,8 @@ module Administration
         respond_to do |format|
           if resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully', name: resource.user.decorate.display_name))
+              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully',
+                                                                      name: resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -129,10 +135,20 @@ module Administration
         client_root_breadcrumb
         unless client.retail?
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
-          add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
+          if client.has_children? || client.subtenancy?
+            add_breadcrumb(
+              client.project.decorate.display_name,
+              administration_client_project_campaigns_path(client.client, client.project)
+            )
+          end
+          if client.sub_campaign?
+            add_breadcrumb(
+              client.parent.decorate.display_name,
+              administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent)
+            )
+          end
         end
-        add_breadcrumb client.decorate.display_name, { action: :index } if client.end_level?
+        add_breadcrumb client.decorate.display_name, action: :index if client.end_level?
       end
 
       def create_resource_params
@@ -144,7 +160,7 @@ module Administration
       end
 
       def set_resource_class
-        @_resource_class ||= ::Membership
+        @_resource_class ||= ::Membership # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

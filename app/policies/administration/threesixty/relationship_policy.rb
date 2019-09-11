@@ -3,7 +3,6 @@
 module Administration
   module Threesixty
     class RelationshipPolicy < BasePolicy
-
       def fetch_with_usage?
         create?
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -65,7 +67,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
   config.action_cable.disable_request_forgery_protection = true
 
-  config.action_dispatch.default_headers.merge!({
+  config.action_dispatch.default_headers.merge!(
     'Access-Control-Allow-Origin' => '*'
-  })
+  )
 end

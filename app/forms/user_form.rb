@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # TODO: do we need it?
 class UserForm < BaseForm
   include UserValidations
@@ -40,13 +42,16 @@ class UserForm < BaseForm
   def persist!
     save_user! if @user.new_record?
     membership_attributes = { parent_id: parent_id, role: membership_role }
-    @user.memberships.create!(membership_attributes.merge({ client_id: client.id }))
-    @user.memberships.create_with(membership_attributes).find_or_create_by(client_id: client.parent_id) if client.subtenancy?
+    @user.memberships.create!(membership_attributes.merge(client_id: client.id))
+    if client.subtenancy?
+      @user.memberships.create_with(membership_attributes).
+        find_or_create_by(client_id: client.parent_id)
+    end
     self
   end
 
   def save_user!
-    @user.assign_attributes({ first_name: first_name, last_name: last_name, operator: operator })
+    @user.assign_attributes(first_name: first_name, last_name: last_name, operator: operator)
     @user.save!
   end
 end

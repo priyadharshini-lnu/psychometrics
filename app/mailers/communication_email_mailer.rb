@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'mustache'
 class CommunicationEmailMailer < ApplicationMailer
   def create(email_id)
@@ -25,8 +27,7 @@ class CommunicationEmailMailer < ApplicationMailer
     else
       token = create_raw_invitation_token
       options = { id: @recipient.user_id, invitation_token: token, domain: Settings.domain,
-                  subdomain: @project.subdomain
-                }
+                  subdomain: @project.subdomain }
       url = url_for([:accept, @recipient.user.role_scope, :invitation, options])
     end
     "<a href=#{url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
@@ -38,6 +39,8 @@ class CommunicationEmailMailer < ApplicationMailer
       @recipient.user.send(:generate_invitation_token!)
       @recipient.user.update_column(:invitation_sent_at, DateTime.current)
     end
-    Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(@recipient.user.encrypted_invitation_raw)
+    Rails.application.
+      message_verifier(Rails.application.secrets.secret_token_for_generate).
+      verify(@recipient.user.encrypted_invitation_raw)
   end
 end

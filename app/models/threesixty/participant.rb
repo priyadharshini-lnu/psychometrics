@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class Participant < ApplicationRecord
     belongs_to :subject, class_name: 'User'
@@ -24,7 +26,9 @@ module Threesixty
 
     scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :declined) }
     scope :actual_by_options, lambda { |options|
-      where('threesixty_participants.subject_id != threesixty_participants.evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
+      unless options.participants.dig('subject', 'can_evaluate_self')
+        where('threesixty_participants.subject_id != threesixty_participants.evaluator_id')
+      end
     }
   end
 end

@@ -27,7 +27,8 @@ describe Threesixty::Evaluators::CreateOneForm do
   end
 
   before do
-    create(:threesixty_participant, campaign: campaign, subject_id: create(:user, email: 'a@a.com'), evaluator_id: create(:user, email: 'b@b.com'))
+    create(:threesixty_participant, campaign: campaign, subject_id: create(:user, email: 'a@a.com'),
+           evaluator_id: create(:user, email: 'b@b.com'))
   end
 
   it 'existing subject+evaluator connection' do
@@ -39,7 +40,8 @@ describe Threesixty::Evaluators::CreateOneForm do
 
   before do
     create(:relationship, name: 'peer', type: :campaign, campaign: campaign)
-    create(:threesixty_subject, user: create(:user, email: 'aa@a.com', project_id: campaign.project_id), campaign: campaign)
+    create(:threesixty_subject, user: create(:user, email: 'aa@a.com', project_id: campaign.project_id),
+           campaign: campaign)
   end
 
   it 'valid' do

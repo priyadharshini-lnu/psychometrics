@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status
 
@@ -11,7 +13,7 @@ class UsersReportSerializer < ActiveModel::Serializer
     object.campaign.threesixty_campaign.id
   end
 
-  def is_self
+  def is_self # rubocop:disable Naming/PredicateName
     object.user_id == current_user.id
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Projects
@@ -6,9 +8,10 @@ module Administration
         before_action :ensure_project
 
         def index
-          @_filter_form = policy_scope(resource_class).campaigns_of(project.id).enabled.includes(:license_usages).search(params[:q])
+          @_filter_form = policy_scope(resource_class).campaigns_of(project.id).enabled.
+                          includes(:license_usages).search(params[:q])
           filter_form.archived_true ||= false
-          filter_form.disabled_true ||= false  
+          filter_form.disabled_true ||= false
           @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assigns
@@ -35,7 +37,7 @@ class AssignSerializer < ActiveModel::Serializer
     object.evaluator_id || object.membership.user_id
   end
 
-  # TODO (atanych): Do we still need this?
+  # TODO: (atanych): Do we still need this?
   def hris
     {}
   end
@@ -43,15 +45,15 @@ class AssignSerializer < ActiveModel::Serializer
   def relationship
     if object.assessment.threesixty?
       participant =
-      # For multi assigns we should pass participant map in order to avoid N+1 queries
-      if @instance_options[:participants_map]
-        @instance_options[:participants_map][object.evaluator_id]
-      else
-        Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
-      end
+        # For multi assigns we should pass participant map in order to avoid N+1 queries
+        if @instance_options[:participants_map]
+          @instance_options[:participants_map][object.evaluator_id]
+        else
+          Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
+        end
       participant&.relationship&.name
-    else
-      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
+    elsif @instance_options[:membership]
+      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship
     end
   end
 
@@ -81,17 +83,18 @@ class AssignSerializer < ActiveModel::Serializer
     object.norm_data
   end
 
-    # TODO (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
+  # TODO: (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
   def external_scoring
     return {} if object.assessment.psychometric?
     return object.external_results if object.assessment.mindmill?
+
     if object.assessment.hogan?
       assign_report = object.original_assign.assigns_reports.find { |r| r.hogan_score.present? }
       score = assign_report&.hogan_score&.dig('participant', 'assessment', 'score') || {}
       if score.present?
         return score.each_with_object({}) do |v, res|
-          res[normalize_hogan_type(v["type"])] = v["scales"]["scale"].each_with_object({}) do |factor, inner_res|
-            inner_res[factor["id"]] = factor["__content__"].to_f
+          res[normalize_hogan_type(v['type'])] = v['scales']['scale'].each_with_object({}) do |factor, inner_res|
+            inner_res[factor['id']] = factor['__content__'].to_f
           end
         end
       end
@@ -112,9 +115,10 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def normalize_hogan_type(type)
-    # TODO (shuja): Add subscale
+    # TODO: (shuja): Add subscale
     return 'RawScale' if type == 'RAW'
     return 'PercentileScale' if type == 'percentile'
+
     raise "Not supported hogan type #{type}"
   end
 end

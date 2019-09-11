@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: products
@@ -22,7 +24,7 @@ FactoryGirl.define do
     end
     trait :with_prices do
       after(:create) do |product, _evaluator|
-        %w(USD EUR).each do |currency|
+        %w[USD EUR].each do |currency|
           create :product_price, product: product, cost: 100, price_currency: currency
         end
       end

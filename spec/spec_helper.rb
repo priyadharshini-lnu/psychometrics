@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 require 'rspec/retry'
 require 'rails_helper'
@@ -6,10 +8,10 @@ require 'coveralls'
 Coveralls.wear!('rails')
 
 if ENV['CI_PROJECT_DIR']
-  dir = File.join(ENV['CI_PROJECT_DIR'], "coverage")
+  dir = File.join(ENV['CI_PROJECT_DIR'], 'coverage')
   SimpleCov.coverage_dir(dir)
 end
-SimpleCov.start 'rails'do
+SimpleCov.start 'rails' do
   add_filter 'vendor'
 end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

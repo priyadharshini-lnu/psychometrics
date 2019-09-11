@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class CommunicationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:destroy, :copy, :download_history, :toggle_status, :sidebar]
+    before_action :set_resource, only: %i[destroy copy download_history toggle_status sidebar]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     after_action :init_breadcrumbs
@@ -85,12 +87,12 @@ module Administration
     end
 
     def set_resource_class
-      @_resource_class ||= Communication
+      @_resource_class ||= Communication # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     def resource_params

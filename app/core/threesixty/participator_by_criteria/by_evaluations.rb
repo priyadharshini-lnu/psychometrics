@@ -14,12 +14,13 @@ module Threesixty
         completed = completed_evaluation_counts(criteria['exclude_self_evaluations'])[user.id]
 
         return criteria['value'] == COMPLETED unless total
-        return criteria['value'] == NOT_COMPLETED if !completed || total.total_evaluations_count != completed.completed_evaluations_count
+        if !completed || total.total_evaluations_count != completed.completed_evaluations_count
+          return criteria['value'] == NOT_COMPLETED
+        end
         return true if evaluations_need_approval.include?(user.id) && criteria['value'] == NEEDS_APPROVAL
 
         criteria['value'] == COMPLETED
       end
-
 
       def evaluations_need_approval
         @evaluations_need_approval ||= threesixty_campaign.

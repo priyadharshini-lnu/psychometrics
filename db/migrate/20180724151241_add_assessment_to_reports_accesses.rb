@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class AddAssessmentToReportsAccesses < ActiveRecord::Migration[5.1]
   def change
-    remove_index :reports_accesses, column: [:report_id, :membership_id], unique: true
+    remove_index :reports_accesses, column: %i[report_id membership_id], unique: true
     add_reference :reports_accesses, :assessment, foreign_key: { on_delete: :cascade }
-    add_index :reports_accesses, [:report_id, :membership_id, :assessment_id], unique: true,
+    add_index :reports_accesses, %i[report_id membership_id assessment_id], unique: true,
               name: :index_reports_accesses_on_report_id_membership_id_assessment_id
 
     reversible do |dir|

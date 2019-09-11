@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDatasheetRows < ActiveRecord::Migration[5.1]
   def change
     enable_extension('citext')

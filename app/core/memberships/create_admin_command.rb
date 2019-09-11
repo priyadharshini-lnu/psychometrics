@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Memberships
   class CreateAdminCommand < Rectify::Command
     attr_reader :membership, :role, :client, :creator

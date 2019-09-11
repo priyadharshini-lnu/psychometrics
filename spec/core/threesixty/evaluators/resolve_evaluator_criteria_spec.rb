@@ -6,16 +6,19 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
   let(:user) { create(:user, email: 'user@a.com') }
   let(:subject) { create(:user, email: 'subject@a.com') }
   let(:campaign) { create(:threesixty_campaign) }
-  let(:datasheet) { create(:datasheet, project_id: campaign.project.id, columns: {'Age' => 'Number', 'No.' => 'Number'}) }
+  let(:datasheet) do
+    create(:datasheet, project_id: campaign.project.id,
+                           columns: { 'Age' => 'Number', 'No.' => 'Number' })
+  end
 
   describe '.call check conditions' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 21, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 21, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
-        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
+        { 'field' => 'No.', 'value' => '1', 'comparator' => 'equal' },
+        { 'field' => 'Age', 'comparator' => 'is_same_as_subject' }
       ]
     end
 
@@ -26,12 +29,12 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check falsy condition' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 20, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
-        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
+        { 'field' => 'No.', 'value' => '1', 'comparator' => 'equal' },
+        { 'field' => 'Age', 'comparator' => 'is_same_as_subject' }
       ]
     end
 
@@ -42,11 +45,11 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check same as subject condition' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 21, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 21, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
+        { 'field' => 'Age', 'comparator' => 'is_same_as_subject' }
       ]
     end
 
@@ -55,14 +58,13 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
     end
   end
 
-
   describe '.call check same as subject falsy condition' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 20, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
+        { 'field' => 'Age', 'comparator' => 'is_same_as_subject' }
       ]
     end
 
@@ -73,11 +75,11 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check single condition' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 20, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
+        { 'field' => 'No.', 'value' => '1', 'comparator' => 'equal' }
       ]
     end
 
@@ -88,11 +90,11 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check falsy single condition' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 20, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
+        { 'field' => 'No.', 'value' => '2', 'comparator' => 'equal' }
       ]
     end
 
@@ -104,7 +106,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
   describe '.call check condition without datasheets' do
     before do
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
+        { 'field' => 'No.', 'value' => '2', 'comparator' => 'equal' }
       ]
     end
 
@@ -115,10 +117,10 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check condition without evaluator datasheets' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: { 'Age' => 20, 'No.' => 2 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
+        { 'field' => 'No.', 'value' => '2', 'comparator' => 'equal' }
       ]
     end
 
@@ -129,10 +131,10 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
   describe '.call check condition without subject datasheets' do
     before do
-      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 21, 'No.' => 1 })
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
+        { 'field' => 'No.', 'value' => '2', 'comparator' => 'equal' }
       ]
     end
 
@@ -140,5 +142,4 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       expect(described_class.call!(campaign, user, @criteria, subject)).to be false
     end
   end
-
 end

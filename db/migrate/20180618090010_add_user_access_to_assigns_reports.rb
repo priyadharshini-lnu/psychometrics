@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserAccessToAssignsReports < ActiveRecord::Migration[5.1]
   def change
     add_column :assigns_reports, :user_access, :boolean, default: true

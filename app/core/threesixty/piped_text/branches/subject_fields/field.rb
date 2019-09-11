@@ -18,7 +18,9 @@ module Threesixty
           end
 
           def relationship_name
-            participant = context[:threesixty_campaign].participants.where(subject: context[:subject], evaluator: context[:evaluator]).first
+            participant = context[:threesixty_campaign].participants.where(
+              subject: context[:subject], evaluator: context[:evaluator]
+            ).first
             participant&.relationship&.name
           end
 

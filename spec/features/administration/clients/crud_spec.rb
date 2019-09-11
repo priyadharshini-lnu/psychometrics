@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Clients
 
@@ -43,7 +45,10 @@ feature 'CRUD Client' do
     end
 
     context 'with manage privileges' do
-      before { admin.memberships.first.grants.update(data: admin.memberships.first.grants.data.merge!({ clients: ['manage'] })) }
+      before do
+        admin.memberships.first.grants.update(data: admin.memberships.first.grants.data.
+        merge!(clients: ['manage']))
+      end
 
       scenario 'I can create any client within tte' do
         new_project = create_project(tenancy,

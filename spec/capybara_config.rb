@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Capybara.default_max_wait_time = 5
 
 Capybara.register_driver :chrome do |app|
@@ -16,8 +18,8 @@ Capybara.register_driver :headless_chrome do |app|
   options.add_argument('--disable-popup-blocking')
   options.add_argument('--window-size=1366,768')
 
-  driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: options).tap do |driver|
-    driver.browser.download_path = DownloadHelpers::PATH.to_s
+  driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: options).tap do |d|
+    d.browser.download_path = DownloadHelpers::PATH.to_s
   end
 
   driver

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     module Questions
@@ -5,8 +7,9 @@ module Imports
         # Parse RESULT data for XLSX
         def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
+
           answers = []
-          if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
+          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             answers = []
             index = 0
             question.props['choices'].to_i.times do |choice|
@@ -24,7 +27,7 @@ module Imports
             # hash['1-100'] = 2
             # Where 1 - choice, 2 - scale, 100 - scoring value
             factors_scoring = question.detect_specified_scoring.
-                              inject({}) { |sum, s| sum["#{s['choice']}-#{s['value']}"] = s['scale']; sum }
+                              each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale']; }
             data.each_with_index do |scales, choice|
               scales.to_s.split(',').each do |scale|
                 answers << {

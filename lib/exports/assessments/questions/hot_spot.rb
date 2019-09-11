@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     module Questions
@@ -13,18 +15,18 @@ module Exports
           parsed_result = []
           question.props['regions'].size.times do |r|
             answer = (answers || []).detect { |a| a['region'] == r }
-            if question.props['interactivity'] == 'Liker'
-              parsed_result << case answer.try(:[], 'value')
-                               when nil
-                                 'Neutral'
-                               when true
-                                 'Like'
-                               else
-                                 'Dislike'
+            parsed_result << if question.props['interactivity'] == 'Liker'
+                               case answer.try(:[], 'value')
+                                 when nil
+                                   'Neutral'
+                                 when true
+                                   'Like'
+                                 else
+                                   'Dislike'
                                end
-            else
-              parsed_result << (answer.try(:[], 'value') ? 'On' : 'Off')
-            end
+                             else
+                               (answer.try(:[], 'value') ? 'On' : 'Off')
+                             end
           end
           required_size = header(question).size
           Utility::Array.ensure_size(parsed_result, required_size)

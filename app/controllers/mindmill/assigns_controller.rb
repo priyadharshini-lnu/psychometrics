@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 class Mindmill::AssignsController < ApplicationController
   before_action :set_assign
   append_before_action :pundit_authorize
   layout false
 
   def pass
-    redirect_back(fallback_location: root_path, success: t('mindmill.assigns.results.successfully')) && return if @assign.completed?
+    if @assign.completed?
+      redirect_back(fallback_location: root_path, success: t('mindmill.assigns.results.successfully')) && return
+    end
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.assign_user
     redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless mindmill.ssourl
@@ -31,7 +35,12 @@ class Mindmill::AssignsController < ApplicationController
     redirect_to(root_path, error: t('.not_completed')) && return unless mindmill.report && mindmill.scores
     report = "data:application/pdf;base64,#{mindmill.report}"
     normalised_scores = Imports::External::BaseExternalImport.build(:mindmill).process(mindmill.scores, @assign)
-    @assign.update(mindmill_report: report, external_results: normalised_scores, status: :completed, completed_at: Time.current)
+    @assign.update(
+      mindmill_report: report,
+      external_results: normalised_scores,
+      status: :completed,
+      completed_at: Time.current
+    )
     redirect_to(root_path, success: t('.successfully'))
   end
 

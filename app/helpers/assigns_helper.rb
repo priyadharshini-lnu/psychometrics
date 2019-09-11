@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AssignsHelper
   def show_single_assign?(assign)
     if assign.project_assign_id.present?

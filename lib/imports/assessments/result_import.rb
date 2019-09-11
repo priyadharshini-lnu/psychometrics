@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     class ResultImport < Imports::BaseImport
@@ -34,7 +36,8 @@ module Imports
         else
           imported_items.each_with_index do |item, index|
             item.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                       row: index + SKIP_ROWS, error: message))
             end
           end
         end
@@ -46,6 +49,7 @@ module Imports
       # Parse file
       # Return array of new Users
       #
+      # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
       def load_imported_items
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
@@ -60,7 +64,7 @@ module Imports
                     where.has { |q| q.block.assessment_id == assessment_id }.
                     ordering { [block.position.asc, position.asc] }.
                     group_by(&:id)
-
+        # rubocop:disable Metrics/BlockLength
         rows.each_with_index.map do |row, index|
           data = Hash[header.zip(row)]
           # Try to find assign by encoded id
@@ -73,10 +77,12 @@ module Imports
 
           # If Assign not found, going to create user
           unless assign
-            membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
-            membership = find_or_create_user(data, index) unless membership
+            membership = Membership.joins(:user).
+                         where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
+            membership ||= find_or_create_user(data, index)
             next unless membership
-            assign = membership.assigns.find_or_create_by({ assessment_id: assessment_id })
+
+            assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
           end
 
           status = if data['status'] == 'Completed'
@@ -86,12 +92,12 @@ module Imports
                    else
                      :in_progress
                    end
-          assign.assign_attributes({
-            started_at:  parse_date(data['started_at'], index),
+          assign.assign_attributes(
+            started_at: parse_date(data['started_at'], index),
             completed_at: parse_date(data['completed_at'], index),
             norm_data: parse_norm_data(data['norm_data'], assign.assessment_id),
             status: status
-            })
+          )
 
           parsed_questions = {}
           new_results = {}
@@ -99,6 +105,7 @@ module Imports
           # Parse answers
           data.each do |key, value|
             next unless key =~ /qid/
+
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
             parsed_questions[qid] ||= []
@@ -108,6 +115,7 @@ module Imports
           parsed_questions.each do |qid, values|
             question = questions[qid].try(:first)
             next unless question
+
             begin
               parser = "Imports::Assessments::Questions::#{question.type}".constantize
             rescue NameError => e
@@ -125,6 +133,7 @@ module Imports
           end
           assign
         end
+      # rubocop:enable Metrics/BlockLength
 
       # Pick up error when header has invalid format
       rescue Roo::HeaderRowNotFoundError
@@ -134,11 +143,12 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.original_filename)
-        when '.csv' then Roo::CSV.new(file.path)
-        when '.xlsx' then ::Roo::Excelx.new(file.path)
-        else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+          when '.csv' then Roo::CSV.new(file.path)
+          when '.xlsx' then ::Roo::Excelx.new(file.path)
+          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
         end
       end
+      # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
 
       private
 
@@ -146,7 +156,7 @@ module Imports
         last_name, first_name = data['name']&.split(', ')
         # TODO: Remove password and uncommit Invite
         user = User.
-               create_with({
+               create_with(
                  first_name: first_name,
                  last_name: last_name,
                  password: 'password',
@@ -154,10 +164,11 @@ module Imports
                  memberships_attributes: [{
                    client_id: client_id
                  }]
-               }).
-               find_or_create_by({ email: data['email'] })
+               ).
+               find_or_create_by(email: data['email'])
         if user.errors.any?
-          errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: user.errors.full_messages.first))
+          errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                   row: index + SKIP_ROWS, error: user.errors.full_messages.first))
           return
         end
         # user.invite!(importer, client_id) unless user.invited_to_sign_up?
@@ -166,10 +177,14 @@ module Imports
 
       def parse_norm_data(norm_data, assessment_id)
         return nil if norm_data.nil?
+
         norm_name, norm_type = norm_data.to_s.split(':')
         norm = Norm.
                joining { dimension }.
-               joining { dimension.assessments.alias('assessments').on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id)) }.
+               joining do
+          dimension.assessments.alias('assessments').
+            on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
+        end .
                where(name: norm_name).
                pluck(:id)
         { id: norm.try(:first), type: norm_type }
@@ -178,9 +193,11 @@ module Imports
       def parse_date(date, index)
         return nil unless date.present?
         return date if date.is_a?(Date) || date.is_a?(Time)
+
         DateTime.strptime(date.to_s, '%D %r')
-      rescue
-        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
+      rescue StandardError
+        errors.add(:base, I18n.t('administration.imports.errors.result.error',
+                                 row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
       end
     end
   end

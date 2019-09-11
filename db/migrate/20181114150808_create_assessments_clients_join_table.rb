@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateAssessmentsClientsJoinTable < ActiveRecord::Migration[5.1]
   def change
     create_table :assessments_clients do |t|
@@ -6,7 +8,7 @@ class CreateAssessmentsClientsJoinTable < ActiveRecord::Migration[5.1]
       t.integer :position
       t.timestamps
 
-      t.index [:client_id, :assessment_id], unique: true
+      t.index %i[client_id assessment_id], unique: true
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Translations
     class ReportsController < Administration::BaseController

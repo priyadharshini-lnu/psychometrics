@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: translations
@@ -18,7 +20,7 @@ class Translation < ApplicationRecord
   belongs_to :resource, polymorphic: true
 
   validates :locale, presence: true
-  validates :translateable_type, uniqueness: { scope: [:translateable_id, :locale, :resource_type, :resource_id] }
+  validates :translateable_type, uniqueness: { scope: %i[translateable_id locale resource_type resource_id] }
 
   scope :for_assessment, lambda { |assessment_id|
     where(resource_type: Assessment::TYPES[:common], resource_id: assessment_id)

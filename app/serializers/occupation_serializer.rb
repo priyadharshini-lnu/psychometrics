@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: occupations
@@ -34,12 +36,15 @@ class OccupationSerializer < ActiveModel::Serializer
   def icon
     object.icon.url
   end
+
   def alternative_icon
     object.alternative_icon.url
   end
+
   def indicative_roles_image
     object.indicative_roles_image.url
   end
+
   def key_career_tracks_image
     object.key_career_tracks_image.url
   end

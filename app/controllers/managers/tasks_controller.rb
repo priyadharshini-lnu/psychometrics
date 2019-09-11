@@ -1,24 +1,34 @@
+# frozen_string_literal: true
+
 module Managers
   class TasksController < BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :show, :change_status]
+    before_action :set_resource, only: %i[edit update destroy show change_status]
     before_action :set_assessment
-    append_before_action :set_managers, only: [:index, :edit, :new, :update, :create]
-    append_before_action :set_factors, only: [:edit, :new, :update, :create]
+    append_before_action :set_managers, only: %i[index edit new update create]
+    append_before_action :set_factors, only: %i[edit new update create]
     append_before_action :pundit_authorize
     helper_method :status_percent
 
     def index
       @filter_form = policy_scope(@resource_class).roots.includes(:factor, membership: [:user]).
-        where(assessment_id: @assessment.id, membership_id: @managers.pluck(:id), owner_id: @current_membership.id).
-        references(:membership).search(params[:q])
+                     where(
+                       assessment_id: @assessment.id,
+                       membership_id: @managers.pluck(:id),
+                       owner_id: @current_membership.id
+                     ).
+                     references(:membership).search(params[:q])
       @resources   = @filter_form.result
-      @tasks = Task.roots.joins(:membership).where(assessment_id: @assessment.id, membership_id: @managers.pluck(:id), owner_id: @current_membership.id).all
+      @tasks = Task.roots.joins(:membership).
+               where(
+                 assessment_id: @assessment.id,
+                 membership_id: @managers.pluck(:id),
+                 owner_id: @current_membership.id
+               ).all
       @tasks_by_status = Task.group_by_status(@tasks)
-      @managers_tasks_by_status = @managers.inject({}) do |hash, manager|
+      @managers_tasks_by_status = @managers.each_with_object({}) do |manager, hash|
         tasks = @tasks.select { |task| task.membership_id == manager.id }
         hash[manager.id] = Task.group_by_status(tasks)
-        hash
       end
       respond_to do |format|
         format.html
@@ -70,6 +80,7 @@ module Managers
 
     def status_percent(status)
       return 0 if @tasks.empty?
+
       (@tasks_by_status[status].try(:size) || 0) * 100 / @tasks.size
     end
 
@@ -77,7 +88,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Task
+      @resource_class ||= Task # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user
@@ -86,7 +97,8 @@ module Managers
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :priority, :membership_id, :status, :factor_id, :planned_completed_at, :parent_id)
+      params.require(:resource).permit(:name, :description, :priority, :membership_id,
+                                       :status, :factor_id, :planned_completed_at, :parent_id)
     end
 
     def set_resource
@@ -104,7 +116,7 @@ module Managers
     def set_managers
       resource_ids = [@current_membership.id]
       resource_ids << @current_membership.children.includes(:user).pluck(:id)
-      @managers   = Membership.includes(:user).where(id: resource_ids.flatten).all
+      @managers = Membership.includes(:user).where(id: resource_ids.flatten).all
     end
   end
 end

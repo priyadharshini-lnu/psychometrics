@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module Threesixty
   class EvaluatorsController < ApplicationController
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_subject
-    before_action :set_nomination, only: [:update_status, :update]
+    before_action :set_nomination, only: %i[update_status update]
 
     def create
       form = ::Threesixty::Participants::CreateForm.from_params(params).
-              with_context(subject: @subject, threesixty_campaign: @campaign)
+             with_context(subject: @subject, threesixty_campaign: @campaign)
 
       if form.valid?
         result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
@@ -76,6 +78,7 @@ module Threesixty
 
     def send_evaluator_invite_email(evaluator)
       return unless @campaign.option.messages['send_invite_to_new_evaluator']
+
       Threesixty::Emails::Send.call!(
         Threesixty::Emails::Name::EVALUATOR_INVITE,
         threesixty_campaign: @campaign,

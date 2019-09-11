@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class AssignPolicy < BasePolicy
   def pass?
     return false if @current_user.is_anonym?
+
     @record.membership_id == @current_membership.id
   end
 
@@ -14,6 +17,7 @@ class AssignPolicy < BasePolicy
 
   def index?
     return false if @current_user.is_anonym?
+
     true
   end
 

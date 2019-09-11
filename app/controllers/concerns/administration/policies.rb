@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Extend Pundit helper for use in administration namespace
 module Administration
   module Policies

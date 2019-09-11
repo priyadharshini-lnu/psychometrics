@@ -8,7 +8,6 @@ describe Threesixty::PipedText::Branches::SubjectSmartTextFields::FirstPersonPos
     let(:subject) { create(:user, first_name: 'Vasiliy', last_name: 'Pupkin', email: 'my@email.com', project: project) }
     let(:evaluator) { create(:user, project: project) }
 
-
     it do
       response = described_class.call!(%w[FirstPersonPossessive], {}, subject: subject, evaluator: evaluator)
       expect(response).to eq('Vasiliy Pupkin’s')

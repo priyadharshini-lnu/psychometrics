@@ -39,4 +39,3 @@ describe Threesixty::ParticipatorByCriteria::ByAtleastOneNonSelfEvaluation do
     expect(results).to match_array(threesixty_evaluators[0..1])
   end
 end
-

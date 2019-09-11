@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ecommerce
   class Cart
     attr_accessor :cart, :session
@@ -10,6 +12,7 @@ module Ecommerce
     # Add Item to cart
     def add(product_id, quantity = 1)
       return if quantity <= 0
+
       @cart[product_id.to_s] ||= { 'id' => product_id, 'quantity' => 0 }
       @cart[product_id.to_s]['quantity'] += quantity
       @engine[:cart] = @cart
@@ -18,6 +21,7 @@ module Ecommerce
     # Update quantity of specified item
     def update(product_id, quantity = 1)
       return remove(product_id) if quantity <= 0
+
       @cart[product_id.to_s] ||= { 'id' => product_id, 'quantity' => 0 }
       @cart[product_id.to_s]['quantity'] = quantity
       @engine[:cart] = @cart

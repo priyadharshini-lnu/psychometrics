@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :aliases do
   desc 'Generate aliases for existing factors.'
   task create_factors_aliases: :environment do

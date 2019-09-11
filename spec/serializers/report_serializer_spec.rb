@@ -33,7 +33,10 @@ describe ReportSerializer do
 
   describe '#data_sheet_columns' do
     describe 'common report' do
-      it { expect(described_class.new(common_report).data_sheet_columns).to eq [{ 'name' => 'field1', 'type' => 'HTML' }] }
+      it {
+        expect(described_class.new(common_report).data_sheet_columns).
+          to eq [{ 'name' => 'field1', 'type' => 'HTML' }]
+      }
     end
     describe 'threesixty report' do
       before do
@@ -50,7 +53,7 @@ describe ReportSerializer do
     end
   end
 
-  describe "#to_hash" do
+  describe '#to_hash' do
     before do
       create(:datasheet, columns: { 'field1' => 'Text', 'field2' => 'Number' }, project: campaign.project)
     end

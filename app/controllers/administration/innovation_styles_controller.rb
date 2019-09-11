@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Administration
   class InnovationStylesController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+    before_action :set_resource, only: %i[edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :set_dimension
     append_before_action :init_breadcrumbs
@@ -56,14 +58,14 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= InnovationStyle
+      @_resource_class ||= InnovationStyle # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     def set_dimension

@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        return unless datasheet_row = datasheet_rows[user.email]
+        return unless (datasheet_row = datasheet_rows[user.email])
 
         datasheet_row.data[criteria['sub_field']]&.downcase == criteria['value']&.downcase
       end

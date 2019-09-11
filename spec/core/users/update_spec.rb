@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Users::Update do
-
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client, id: 101) }
   let!(:user) { create(:user, project: project) }
@@ -15,7 +16,11 @@ describe Users::Update do
   end
 
   describe 'broadcast ok' do
-    let(:valid_form) { Api::V1::Users::UpdateForm.new(first_name: 'Tiago', last_name: "Santos", email: 'tiago@santos.com', password: "qweasd").with_context(project: project, user: user) }
+    let(:valid_form) do
+      Api::V1::Users::UpdateForm.
+        new(first_name: 'Tiago', last_name: 'Santos', email: 'tiago@santos.com', password: 'qweasd').
+        with_context(project: project, user: user)
+    end
     it do
       events = described_class.call(valid_form, project, user)
       user   = events[:ok]

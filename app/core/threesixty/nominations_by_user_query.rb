@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class NominationsByUserQuery < Rectify::Query
     private_attr_reader :campaign, :current_user, :option, :managed_subjects
@@ -16,7 +18,7 @@ module Threesixty
       scope
     end
 
-    def self_subject_scope scope
+    def self_subject_scope(scope)
       if subject_can_manage_evaluations?
         scope.where(user_id: current_user.id).includes(:user)
       else

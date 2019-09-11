@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class CommunicationPolicy < Administration::BasePolicy
     def index?
@@ -25,6 +27,7 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         return scope.none unless has_scope?
+
         @user.is?(:client_admin) ? client_admin_scope(scope) : project_admin_scope(scope)
       end
 

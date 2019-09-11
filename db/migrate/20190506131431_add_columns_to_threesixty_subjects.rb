@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddColumnsToThreesixtySubjects < ActiveRecord::Migration[5.1]
   def change
     add_column :threesixty_subjects, :report_release_status, :integer, default: 0

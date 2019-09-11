@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FileUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
@@ -18,23 +20,22 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def url(version = nil)
-    is_svg? ? super() : super(version)
+    svg? ? super() : super(version)
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png mp3 mp4 wma avi pdf svg)
+    %w[jpg jpeg gif png mp3 mp4 wma avi pdf svg]
   end
 
   protected
 
   def image?(new_file)
-    new_file.extension.downcase.in?(%w(jpg jpeg gif png))
+    new_file.extension.downcase.in?(%w[jpg jpeg gif png])
   end
 
-  def is_svg?
+  def svg?
     file && file.extension == 'svg'
   end
-
 end

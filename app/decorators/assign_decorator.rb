@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssignDecorator < BaseDecorator
   def initialize(object, options = {})
     object = object.project_assign || object
@@ -9,7 +11,10 @@ class AssignDecorator < BaseDecorator
   end
 
   def completed_at_with_desc
-    return I18n.t('assigns.decorator.completed', date: I18n.l(object.completed_at, format: :date)) if object.completed_at
+    if object.completed_at
+      return I18n.t('assigns.decorator.completed', date: I18n.l(object.completed_at, format: :date))
+    end
+
     I18n.t('assigns.decorator.not_completed')
   end
 
@@ -22,6 +27,6 @@ class AssignDecorator < BaseDecorator
   end
 
   def status
-    I18n.t("activerecord.attributes.assign.statuses.#{ object.status }")
+    I18n.t("activerecord.attributes.assign.statuses.#{object.status}")
   end
 end

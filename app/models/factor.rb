@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: factors
@@ -38,15 +40,15 @@ class Factor < ApplicationRecord
   mount_uploader :icon, ImageUploader
 
   # norm types constant
-  NORM_TYPES = %w(eti yti).freeze
+  NORM_TYPES = %w[eti yti].freeze
   # factor types constant
-  FACTOR_TYPES = %w(factors sub_factors).freeze
-
+  FACTOR_TYPES = %w[factors sub_factors].freeze
 
   scope :active, -> { where(disabled: false) }
   scope :with_factor_type, lambda { |type|
     type = type.to_s
     raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
+
     result = where(parent_id: nil) if type == 'factors'
     result = where.not(parent_id: nil) if type == 'sub_factors'
     result
@@ -67,18 +69,18 @@ class Factor < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+    direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
     case sort_key.to_s
-    when /^id_/
-      order("factors.id #{direction}")
-    when /^name_/
-      order("factors.name #{direction}")
-    when /^subfactors_count_/
-      order("factors.subfactors_count #{direction}")
-    when /^created_at_/
-      order("factors.created_at #{direction}")
-    when /^updated_at_/
-      order("factors.updated_at #{direction}")
+      when /^id_/
+        order("factors.id #{direction}")
+      when /^name_/
+        order("factors.name #{direction}")
+      when /^subfactors_count_/
+        order("factors.subfactors_count #{direction}")
+      when /^created_at_/
+        order("factors.created_at #{direction}")
+      when /^updated_at_/
+        order("factors.updated_at #{direction}")
     end
   }
 

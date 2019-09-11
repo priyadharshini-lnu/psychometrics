@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Exports::Reports::Pdf::BulkReportExport do
@@ -9,7 +11,7 @@ describe Exports::Reports::Pdf::BulkReportExport do
     let(:end_date) { double('end_date') }
     let(:scheme) { 'http' }
     let(:opts) { {} }
-    let(:params) {
+    let(:params) do
       {
         current_user: current_user,
         client: client,
@@ -19,7 +21,7 @@ describe Exports::Reports::Pdf::BulkReportExport do
         scheme: scheme,
         opts: opts
       }
-    }
+    end
 
     context 'project level' do
       let(:client) { double('client', project?: true, id: 1) }
@@ -44,13 +46,14 @@ describe Exports::Reports::Pdf::BulkReportExport do
             report: report,
             assign: assign,
             assigns_report: assigns_report,
-            user: user,
+            user: user
           }
         end
 
         it 'enqueues ExportJob' do
           allow(query).to receive(:call).with(any_args).and_return(items)
-          expect(BulkReport).to receive(:create).with(user: current_user, queue_size: items.size).and_return(bulk_report)
+          expect(BulkReport).to receive(:create).
+            with(user: current_user, queue_size: items.size).and_return(bulk_report)
 
           expect(Report).to receive(:find).with(item.id).and_return(report)
           expect(User).to receive(:find).with(item.user_id).and_return(user)

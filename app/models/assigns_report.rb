@@ -14,12 +14,12 @@
 
 class AssignsReport < ApplicationRecord
   LICENSES = {
-    Assessment::PSYCHOMETRIC    => Licenses::AssignReportPsychometrics,
-    Assessment::ORGANISATIONAL  => Licenses::AssignReportOrgSurvey,
-    Assessment::CASE_STUDY      => Licenses::AssignReportCaseStudy,
-    Assessment::THREESIXTY      => Licenses::CreateThreesixtySubject,
-    Assessment::MINDMILL        => Licenses::AssignReportMindmill,
-    Assessment::HOGAN           => Licenses::AssignReportHogan
+    Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,
+    Assessment::ORGANISATIONAL => Licenses::AssignReportOrgSurvey,
+    Assessment::CASE_STUDY => Licenses::AssignReportCaseStudy,
+    Assessment::THREESIXTY => Licenses::CreateThreesixtySubject,
+    Assessment::MINDMILL => Licenses::AssignReportMindmill,
+    Assessment::HOGAN => Licenses::AssignReportHogan
   }.freeze
 
   belongs_to :assign, inverse_of: :assigns_reports
@@ -35,9 +35,10 @@ class AssignsReport < ApplicationRecord
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
   mount_uploader :pdf, PdfUploader
 
-  # TODO (atanych): temp hack
+  # TODO: (atanych): temp hack
   def status
     return 'ready' if !generating? && pdf&.url
+
     'not_ready'
   end
 

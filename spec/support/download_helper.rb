@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module DownloadHelpers
   TIMEOUT = 1
   PATH = Pathname.new('/tmp/downloads')
 
-  extend self
+  module_function
 
   def downloads
     Dir[PATH.join('*')]

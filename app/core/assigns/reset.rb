@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Assigns
   class Reset < BaseCommand
     def initialize(assign)
@@ -19,7 +21,7 @@ module Assigns
     attr_reader :assign_with_result, :original_or_self
 
     def reset_assign
-      assign_with_result.update_attributes({
+      assign_with_result.update_attributes(
         results: {},
         scoring: {},
         embedded_data: {},
@@ -30,11 +32,11 @@ module Assigns
         norm_data: {},
         agile_scoring: {},
         occupations: []
-      })
+      )
     end
 
     def remove_reports
-      original_or_self.assigns_reports.update(remove_pdf: true,  generating: false)
+      original_or_self.assigns_reports.update(remove_pdf: true, generating: false)
     end
   end
 end

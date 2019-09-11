@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: product_reports
@@ -11,7 +13,7 @@
 
 FactoryGirl.define do
   factory :product_report do
-    product ""
-    report ""
+    product ''
+    report ''
   end
 end

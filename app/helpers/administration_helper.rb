@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdministrationHelper
   def flash_messages
     out         = []
@@ -49,19 +51,21 @@ module AdministrationHelper
     label = resource_class.human_attribute_name(name)
     # extract the sort direction from the param value.
     klass = 'sorting'
-    klass = filterrific.sorted_by.match?(/desc$/) ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by.match?(/#{name}/)
+    if filterrific.sorted_by.match?(/#{name}/)
+      klass = filterrific.sorted_by.match?(/desc$/) ? 'sorting_desc' : 'sorting_asc'
+    end
     content_tag :div, class: klass do
-      filterrific_sorting_link(filterrific, name, { ascending_indicator: '', descending_indicator: '', label: label })
+      filterrific_sorting_link(filterrific, name, ascending_indicator: '', descending_indicator: '', label: label)
     end
   end
 
   def link_to_sort(_resource_class, name, filter_form, tail = nil)
     unless tail
       case name
-      when :created_at, :updated_at
-        tail = Settings.timezone_tip
-      else
-        tail = ''
+        when :created_at, :updated_at
+          tail = Settings.timezone_tip
+        else
+          tail = ''
       end
     end
     sort_link(filter_form, name, t(".#{name}") + tail)
@@ -69,9 +73,11 @@ module AdministrationHelper
 
   def render_error_notification(resource)
     return unless resource.errors.any?
+
     content_tag :div, class: 'alert alert-danger' do
       concat content_tag 'strong', 'There are some problems:'
-      concat content_tag 'ul', resource.errors.full_messages.map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
+      concat content_tag 'ul', resource.errors.full_messages.
+        map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
     end
   end
 
@@ -80,9 +86,7 @@ module AdministrationHelper
   end
 
   def assessments_options_for_select(assessments, report = nil)
-    if report && !report.new_record?
-      assessments = Assessment.where(id: assessments.ids | report.assessments.ids)
-    end
+    assessments = Assessment.where(id: assessments.ids | report.assessments.ids) if report && !report.new_record?
     assessments.all.map do |a|
       disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
       data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric? }

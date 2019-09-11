@@ -64,7 +64,7 @@ module Administration
       end
 
       def set_resource_class
-        @_resource_class ||= ::ApiKey
+        @_resource_class ||= ::ApiKey # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_user

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hogan
   class LoadResults < BaseCommand
     def initialize(assign, report, membership, project)

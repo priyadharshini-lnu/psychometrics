@@ -13,22 +13,22 @@ module Threesixty
 
       def managers_evaluation_approval_pending
         @managers_evaluation_approval_pending ||= managers.
-          where(manager_evaluation_status: :waiting).
-          pluck(:evaluator_id)
+                                                  where(manager_evaluation_status: :waiting).
+                                                  pluck(:evaluator_id)
       end
 
       def manager_nomination_approval_pending
         @manager_nomination_approval_pending ||= managers.
-          where(manager_nomination_status: :waiting).
-          pluck(:evaluator_id)
+                                                 where(manager_nomination_status: :waiting).
+                                                 pluck(:evaluator_id)
       end
 
       def managers
         @managers ||= threesixty_campaign.
-          participants.
-          actual_by_options(threesixty_campaign.option).
-          joins(:relationship).
-          where(evaluator_id: user_ids, relationships: { name: 'Manager', type: :global })
+                      participants.
+                      actual_by_options(threesixty_campaign.option).
+                      joins(:relationship).
+                      where(evaluator_id: user_ids, relationships: { name: 'Manager', type: :global })
       end
     end
   end

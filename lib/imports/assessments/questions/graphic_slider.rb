@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     module Questions
@@ -8,6 +10,7 @@ module Imports
         #   [{"value": 5}]
         def self.build_answers(data, question, _use_scoring = false)
           return nil if data.compact.blank?
+
           {
             answers: [{
               value: data[0]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 include Features::Helpers::Reports
 
@@ -35,14 +37,14 @@ feature 'CRUD Report' do
     scenario 'there are not any assigns for this report' do
       find("#report_#{report.id} .edit").click
       find('.modal-header').click
-      expect(page.all('#resource_assessment_ids option:disabled', visible: false).size == 0 ).to be_truthy
+      expect(page.all('#resource_assessment_ids option:disabled', visible: false).empty?).to be_truthy
     end
 
     scenario 'there are assigns for this report' do
       create(:assigns_report, report: report, assign: assign)
       find("#report_#{report.id} .edit").click
       find('.modal-header').click
-      expect(page.all('#resource_assessment_ids option:disabled', visible: false).size > 0 ).to be_truthy
+      expect(!page.all('#resource_assessment_ids option:disabled', visible: false).empty?).to be_truthy
     end
 
     scenario 'Destroy Report' do

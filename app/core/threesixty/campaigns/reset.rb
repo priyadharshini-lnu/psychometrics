@@ -3,13 +3,13 @@
 module Threesixty
   module Campaigns
     class Reset < BaseCommand
-      ASSOCIATIONS_TO_REMOVE = %i(
+      ASSOCIATIONS_TO_REMOVE = %i[
         nomination_requirements
         participants
         campaigns_users
         subjects
         evaluators
-      )
+      ].freeze
 
       def initialize(threesixty_campaign)
         @threesixty_campaign = threesixty_campaign
