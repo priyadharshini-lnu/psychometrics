@@ -123,7 +123,7 @@ class User < ApplicationRecord
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
   has_many :campaigns_users
-  has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory'
+  has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
 
   accepts_nested_attributes_for :memberships
 
