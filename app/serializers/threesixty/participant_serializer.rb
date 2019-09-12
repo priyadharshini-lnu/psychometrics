@@ -22,6 +22,5 @@ module Threesixty
     def result
       (@instance_options[:user_result_map] || {})[[object.evaluator_id, object.subject_id]]
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class ResultSerializer < ActiveModel::Serializer
     attributes :id, :subject_id, :created_at, :completed_at, :hash

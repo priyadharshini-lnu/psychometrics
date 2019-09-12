@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { Icon, Popconfirm, Table } from 'antd'
+import { Icon, Table } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
 import { StatusSelect, RelationSelect } from '../List'
+import Confirmation from '../Confirmation'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 
@@ -108,16 +109,12 @@ export default function List ({
         render={({
           id, relationship, result, evaluator,
         }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
-          <Popconfirm
-            placement="topRight"
+          <Confirmation
             title={I18n.t('threesixty.confirm')}
-            icon={<Icon type="warning" theme="twoTone" style={{ color: '#f55' }} />}
             onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}
-            okText="Yes"
-            cancelText="No"
           >
             <Icon type="delete" />
-          </Popconfirm>
+          </Confirmation>
         )}
       />
     </Table>

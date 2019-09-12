@@ -1,9 +1,10 @@
 import React from 'react'
 import {
-  Icon, Select, Table, Popconfirm,
+  Icon, Select, Table,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
+import Confirmation from './Confirmation'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 const EVALUATOR_STATUSES = ['waiting', 'declined']
@@ -69,16 +70,12 @@ export default function List ({
       <Table.Column
         key="actions"
         render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
-          <Popconfirm
-            placement="topRight"
-            icon={<Icon type="warning" theme="twoTone" style={{ color: '#f55' }} />}
+          <Confirmation
             title={I18n.t('threesixty.confirm')}
             onConfirm={() => destroyParticipant(id)}
-            okText="Yes"
-            cancelText="No"
           >
             <Icon type="delete" />
-          </Popconfirm>
+          </Confirmation>
         )}
       />
     </Table>

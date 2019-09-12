@@ -198,7 +198,7 @@ Rails.application.routes.draw do
           resource :reports, only: [:show] do
             get :download, on: :member
           end
-          resources :evaluations, only: [:show, :update, :destroy] do
+          resources :evaluations, only: %i[show update destroy] do
             member do
               get :upload_media_url
               put :upload_callback

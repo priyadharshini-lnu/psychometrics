@@ -44,11 +44,11 @@ module Threesixty
     end
 
     def set_user_result
-      if current_user.superadmin?
-        @users_result = UsersResult.find_by!(id: params[:id])
-      else
-        @users_result = UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
-      end
+      @users_result = if current_user.superadmin?
+                        UsersResult.find_by!(id: params[:id])
+                      else
+                        UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
+                      end
     end
   end
 end

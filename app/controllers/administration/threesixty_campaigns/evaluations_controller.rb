@@ -24,7 +24,9 @@ module Administration
           threesixty_campaign: threesixty_campaign
         }
 
-        @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment, piped_text_context: piped_text_context).to_hash(include: '**')
+        @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment,
+                                                 piped_text_context: piped_text_context).
+                      to_hash(include: '**')
       end
 
       def update
@@ -42,14 +44,14 @@ module Administration
                                              subject_id: resource.user_id,
                                              evaluator_id: params[:id])
         users_result.destroy!
-        render json: {id: users_result.id}
+        render json: { id: users_result.id }
       end
 
       private
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Subject
+        @_resource_class ||= ::Threesixty::Subject # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource
@@ -57,7 +59,7 @@ module Administration
       end
 
       def pundit_authorize
-        authorize [:threesixty, :participant]
+        authorize %i[threesixty participant]
       end
 
       def init_breadcrumbs
@@ -65,14 +67,17 @@ module Administration
         project = resource.campaign.project
         label = t('administration.breadcrumbs.clients') if current_user.is?(:superadmin)
         label ||= t('administration.breadcrumbs.home')
-        add_breadcrumb label, [:administration, :root]
+        add_breadcrumb label, %i[administration root]
         add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
         add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
         add_breadcrumb(
           t('administration.clients.projects.threesixty_campaigns.index.title'),
           administration_client_project_threesixty_campaigns_path(client, project)
         )
-        add_breadcrumb resource.campaign.name, administration_client_project_threesixty_campaign_path(client, project, threesixty_campaign) if params[:action] == 'show'
+        if params[:action] == 'show'
+          add_breadcrumb resource.campaign.name,
+                         administration_client_project_threesixty_campaign_path(client, project, threesixty_campaign)
+        end
       end
     end
   end
