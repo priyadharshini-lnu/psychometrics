@@ -22,6 +22,7 @@ module Threesixty
       private
 
       def send_email(recipient)
+        preprocess_email_schedule(recipient)
         recipient_type = get_recipient_type
         context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
         context[recipient_type] = recipient if recipient_type
@@ -52,6 +53,13 @@ module Threesixty
         reminder_history.sent_count += 1
         reminder_history.last_sent_at = Time.now
         reminder_history.save!
+      end
+
+      def preprocess_email_schedule(user)
+        if Threesixty::Emails::Name.evaluator_email?(schedule_email.name) && schedule_email.meta['subject_ids'].blank?
+          schedule_email.update(meta:
+            { subject_ids: Threesixty::Evaluators::GetSubjectIdsWithoutEvaluation.call!(threesixty_campaign, user) })
+        end
       end
     end
   end

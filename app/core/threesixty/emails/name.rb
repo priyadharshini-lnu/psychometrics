@@ -14,6 +14,10 @@ module Threesixty
       SUBJECT_INVITE = 'subject_invite'
       SUBJECT_REMINDER = 'subject_reminder'
       CUSTOM_MESSAGE = 'custom_message'
+
+      def self.evaluator_email?(email_name)
+        [EVALUATOR_INVITE, EVALUATOR_REMINDER].include?(email_name)
+      end
     end
   end
 end

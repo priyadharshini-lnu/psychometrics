@@ -107,6 +107,8 @@ class Client < ApplicationRecord
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
+  before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
+
   validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|
     root.validates :number, :country, :year, presence: true
