@@ -69,13 +69,13 @@ module EndUser
     def assigned_reports
       filtered_reports = object.original_assigns_reports.map(&:report)
       reports = filter_reports_by_type(filtered_reports, object.norm_type)
-      reports = reports.select do |report|
-        next true unless report.multiple?
+      reports = reports.reject do |report|
+        next false unless report.multiple?
 
         any_not_completed_assessment = object.membership.assigns.where(assessment_id: report.assessments.pluck(:id)).
-          where.not(status: 'completed').exists?
+                                       where.not(status: 'completed').exists?
 
-        !any_not_completed_assessment
+        any_not_completed_assessment
       end
       reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
     end
