@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe BulkReport, type: :model do
@@ -24,9 +26,9 @@ describe BulkReport, type: :model do
 
   describe '#public_download_url' do
     it 'valid URI' do
-      expect {
+      expect do
         URI(report.public_download_url)
-      }.not_to raise_error
+      end.not_to raise_error
     end
   end
 
@@ -37,9 +39,9 @@ describe BulkReport, type: :model do
     end
 
     it 'valid URI' do
-      expect {
+      expect do
         URI(report.private_download_url)
-      }.not_to raise_error
+      end.not_to raise_error
     end
   end
 end

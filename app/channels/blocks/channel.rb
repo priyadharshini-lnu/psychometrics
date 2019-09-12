@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Blocks
   class Channel < ApplicationCable::Channel
     include Blocks::Actions::Block
@@ -8,10 +10,10 @@ module Blocks
 
     def subscribed
       block = Block.find(params['block_id'])
-      transmit({
-                   action: 'block_data',
-                   data:   BlockSerializer.new(block).to_hash(include: '**')
-               })
+      transmit(
+        action: 'block_data',
+        data: BlockSerializer.new(block).to_hash(include: '**')
+      )
     end
 
     def pundit_user

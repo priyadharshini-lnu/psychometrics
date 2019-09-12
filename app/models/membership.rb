@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: memberships
@@ -21,17 +23,17 @@
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
-      MEMBER_ROLE = 'member'.freeze,
-      MANAGER_ROLE = 'manager'.freeze,
-      PROJECT_ADMIN_ROLE = 'project_admin'.freeze,
-      CLIENT_ADMIN_ROLE = 'client_admin'.freeze
+    MEMBER_ROLE = 'member',
+    MANAGER_ROLE = 'manager',
+    PROJECT_ADMIN_ROLE = 'project_admin',
+    CLIENT_ADMIN_ROLE = 'client_admin'
   ].freeze
 
   SCOPES = {
-      PROJECT_ADMIN_ROLE => :administration,
-      CLIENT_ADMIN_ROLE => :administration,
-      MANAGER_ROLE => :user,
-      MEMBER_ROLE => :user
+    PROJECT_ADMIN_ROLE => :administration,
+    CLIENT_ADMIN_ROLE => :administration,
+    MANAGER_ROLE => :user,
+    MEMBER_ROLE => :user
   }.freeze
 
   include ::Facades::Administration::EmailDelivery
@@ -48,7 +50,8 @@ class Membership < ApplicationRecord
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
-  has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
+  has_many :communication_emails,
+           inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
   has_many :orders, inverse_of: :membership, class_name: 'Ecommerce::Order' # on delete cascade
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
@@ -61,10 +64,11 @@ class Membership < ApplicationRecord
   has_many :privacy_consents
 
   has_many :reports_accesses
-  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) }, through: :reports_accesses, source: :report
+  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) },
+           through: :reports_accesses, source: :report
 
   validates :client, :user, presence: true
-  validates :client_id, uniqueness: { scope: [:user_id, :role] }
+  validates :client_id, uniqueness: { scope: %i[user_id role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role, if: -> { client.present? }
   validate :client_admin_scope, if: -> { project_admin? }
@@ -80,16 +84,30 @@ class Membership < ApplicationRecord
   scope :assigned, -> { joins(:assigns) }
   scope :completed, -> { where(assigns_completed: true) }
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
-  scope :with_client, -> (client_id) { where(client_id: client_id) }
-  scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
-  scope :member_or_manager, -> { where(role: [:member, :manager]) }
+  scope :with_client, ->(client_id) { where(client_id: client_id) }
+  scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
+  scope :member_or_manager, -> { where(role: %i[member manager]) }
 
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
-    joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
-        where.has { |m| m.client_id.eq(client_id) }
+    joining do
+      assigns.on(assigns.membership_id.eq(id) &
+                   assigns.assessment_id.eq(assessment_id) &
+                   assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]]))
+    end .
+      where.has { |m| m.client_id.eq(client_id) }
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.disabled, user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
+    joining { user }.selecting do
+      [
+        'memberships.*',
+        user.disabled,
+        user.first_name,
+        user.last_name,
+        user.email,
+        user.role.as('user_role'),
+        user.is_anonym
+      ]
+    end
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
@@ -105,11 +123,8 @@ class Membership < ApplicationRecord
   }
   # Search users with specified Assign id (hashed)
   scope :assigns_hash_id_eq, lambda { |hash_id|
-    begin
-      decoded_id = Assign.decode_id(hash_id.to_s).first
-      joins(:assigns).where(assigns: { id: decoded_id })
-    rescue InputError
-    end
+    decoded_id = Assign.decode_id(hash_id.to_s).first
+    joins(:assigns).where(assigns: { id: decoded_id })
   }
 
   # Save HRIS data from form
@@ -117,6 +132,7 @@ class Membership < ApplicationRecord
     self.hris = {}
     data.values.each do |d|
       next if d['key'].blank?
+
       hris[d['key']] = d['value']
     end
   end
@@ -127,6 +143,7 @@ class Membership < ApplicationRecord
 
   def set_user_invited_for_current_project
     return if already_invited?
+
     update_columns(already_invited: true)
   end
 
@@ -134,14 +151,17 @@ class Membership < ApplicationRecord
   # TODO: remove it
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
+
     hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }
     hash.slice!(Report::ETI_TYPE, Report::YTI_TYPE)
     report_type_count = hash[report.type]
     return true if hash.empty?
     return false if report_type_count.nil?
+
     count_arr = hash.values
     count_arr.delete count
     return true if count_arr.empty? || count_arr.max < report_type_count
+
     false
   end
 
@@ -158,12 +178,13 @@ class Membership < ApplicationRecord
   end
 
   def accepted_privacy?
-    # TODO (atanych): this logic will be broken when we add new types of consents
+    # TODO: (atanych): this logic will be broken when we add new types of consents
     privacy_consents.take.present?
   end
 
   def has_grant?(scope, grant)
     return false unless grants
+
     grants.has_grant?(scope, grant)
   end
 
@@ -171,32 +192,35 @@ class Membership < ApplicationRecord
 
   def set_project_membership
     return if client.project? || project_membership.present?
+
     project_membership = client.project.memberships.where(user_id: user_id).take
     project_membership ||= Membership.create!(user_id: user_id, client_id: client.project.id)
     self.project_membership_id = project_membership.id
-  rescue => e
+  rescue StandardError => e
     errors.add(:base, e.message)
     raise ActiveRecord::RecordInvalid
   end
 
   def clear_project_membership
     return if project_membership.nil? || project_membership.clients_memberships.any?
+
     project_membership.destroy!
   end
-
 
   def create_invitation_emails
     invites = invitations_for_current_membership
     return if already_invited?
     return unless invites
+
     invites.each do |invite|
-      invite.emails.create(membership_id: self.id)
+      invite.emails.create(membership_id: id)
     end
   end
 
   def create_other_emails
     communications = Communication.other.where(end_level_id: client.path_ids)
-    communications = communications.send_now.or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
+    communications = communications.send_now.
+                     or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
     communications.find_each(batch_size: 100) do |communication|
       communication.emails.create(membership_id: id) if communication.selected_memberships_ids.include?(id)
     end
@@ -204,18 +228,17 @@ class Membership < ApplicationRecord
 
   def relevant_role
     valid = case role
-    when CLIENT_ADMIN_ROLE
-      client.tenancy?
-    when PROJECT_ADMIN_ROLE
-      client.project?
-    when MANAGER_ROLE, MEMBER_ROLE
-      client.end_level? || (project? && client.project?)
-    else
-      false
-    end
+              when CLIENT_ADMIN_ROLE
+                client.tenancy?
+              when PROJECT_ADMIN_ROLE
+                client.project?
+              when MANAGER_ROLE, MEMBER_ROLE
+                client.end_level? || (project? && client.project?)
+              else
+                false
+            end
     errors.add(:role, 'Invalid') unless valid
   end
-
 
   def invitations_for_current_membership
     Communication.invitation_for_end_level_id(client.path_ids).includes(:memberships).select do |communication|
@@ -223,19 +246,18 @@ class Membership < ApplicationRecord
     end
   end
 
-
-
   def client_admin_scope
     # user can be client admin only within one tenancy
     tte_id = user.project_admin_clients_tte_ids.sample
     return unless tte_id
+
     errors.add(:base, :admin_for_another_tte) if client.tte_id != tte_id
   end
 
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in, :user_type_eq, :assigns_hash_id_eq]
+      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq]
     end
   end
 end

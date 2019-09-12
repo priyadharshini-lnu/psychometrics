@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:edit, :update]
+  before_action :set_profile, only: %i[edit update]
   before_action :skip_policy_scope
 
   def update

@@ -47,6 +47,7 @@ module Threesixty
         @context = context || {}
       end
 
+      # rubocop:disable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
       def call
         result =
           body.gsub /{{(.*?)}}/ do
@@ -54,13 +55,16 @@ module Threesixty
             branch = lookup_branch(match)
             if valid_branch?(branch)
               path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
-              branch[:class_name].constantize.call!(path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context)
+              branch[:class_name].constantize.call!(
+                path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context
+              )
             else
               ''
             end
           end
         broadcast :ok, result
       end
+      # rubocop:enable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
 
       def lookup_branch(path)
         branch_key = path.scan(/^(\w+):/).first&.first

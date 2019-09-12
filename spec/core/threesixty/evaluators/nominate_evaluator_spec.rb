@@ -4,10 +4,10 @@ require 'rails_helper'
 
 describe Threesixty::Evaluators::NominateEvaluator do
   let(:campaign) { create(:threesixty_campaign) }
-  let!(:option) { create(:threesixty_option, threesixty_campaign: campaign)}
+  let!(:option) { create(:threesixty_option, threesixty_campaign: campaign) }
   let(:user) { create(:user, email: 'exists@a.com', project: campaign.project) }
   let(:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
-  let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }
+  let(:peer) { create(:relationship, name: 'Peer', type: :campaign) }
 
   describe '.call' do
     describe 'check without user' do
@@ -30,8 +30,10 @@ describe Threesixty::Evaluators::NominateEvaluator do
       it 'should create participants with unexisted and existed users' do
         expect(::Users::Regular.exists?(email: 'unexists@a.com')).to eq false
         expect(::Users::Regular.exists?(email: user.email)).to eq true
-        participant1 = described_class.call!(campaign, subject, { evaluator_email: 'unexists@a.com', relationship_id: peer.id })
-        participant2 = described_class.call!(campaign, subject, { evaluator_email: user.email, relationship_id: peer.id }, user)
+        participant1 = described_class.
+                       call!(campaign, subject, evaluator_email: 'unexists@a.com', relationship_id: peer.id)
+        participant2 = described_class.
+                       call!(campaign, subject, { evaluator_email: user.email, relationship_id: peer.id }, user)
 
         expect(subject.participants.count).to eq(2)
         expect(::Users::Regular.exists?(email: 'unexists@a.com')).to eq true

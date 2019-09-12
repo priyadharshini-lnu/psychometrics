@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class AssessmentsController < ApplicationController
     layout 'layouts/threesixty_campaign'

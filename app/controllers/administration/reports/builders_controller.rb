@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Reports
     class BuildersController < Administration::BaseController
@@ -22,7 +24,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize [:reports, :builder]
+        authorize %i[reports builder]
       end
     end
   end

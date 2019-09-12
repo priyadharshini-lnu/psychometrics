@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddThumbnailToReportsAndAssessments < ActiveRecord::Migration[5.1]
   def change
     add_column :reports, :extra, :jsonb, null: false, default: {}

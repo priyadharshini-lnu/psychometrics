@@ -28,7 +28,7 @@ module Threesixty
 
         other_participator = recipient_type == :subject ? :evaluator : :subject
 
-        if user_ids = schedule_email.meta["#{other_participator}_ids"].presence
+        if (user_ids = schedule_email.meta["#{other_participator}_ids"].presence)
           User.where(id: user_ids).each do |user|
             context[other_participator] = user
             Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later

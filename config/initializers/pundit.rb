@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Pundit
   def authorize(record, query = nil, extra_params = {})
     query ||= params[:action].to_s + '?'
@@ -6,9 +8,7 @@ module Pundit
 
     policy = policy(record, extra_params)
 
-    unless policy.public_send(query)
-      raise NotAuthorizedError, query: query, record: record, policy: policy
-    end
+    raise NotAuthorizedError, query: query, record: record, policy: policy unless policy.public_send(query)
 
     true
   end

@@ -26,7 +26,7 @@ describe Threesixty::EmailTemplates::Load do
           'subject' => 'Subject2',
           'schedulable' => false,
           'content' => 'Content2'
-        },
+        }
       ]
       allow(template_loader).to receive(:read_yaml).and_return(email_templates_attributes)
 

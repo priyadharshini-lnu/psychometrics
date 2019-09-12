@@ -108,8 +108,9 @@ module Administration
       @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :project_admins)
 
       respond_to do |format|
+        filename = "#{resource_class.model_name.plural}-#{Date.today}"
         format.csv do
-          headers['Content-Disposition'] = "attachment; filename=\"#{resource_class.model_name.plural}-#{Date.today}.csv\""
+          headers['Content-Disposition'] = "attachment; filename=\"#{filename}.csv\""
           headers['Content-Type'] ||= 'text/csv'
         end
       end
@@ -118,7 +119,7 @@ module Administration
     private
 
     def set_resource_class
-      @_resource_class ||= Client
+      @_resource_class ||= Client # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def init_breadcrumbs

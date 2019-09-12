@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ReportFamiliesController < Administration::BaseController
     prepend_before_action :set_resource_class
@@ -33,7 +35,7 @@ module Administration
     end
 
     def edit
-      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+      add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
     def update
@@ -59,14 +61,14 @@ module Administration
     private
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.reports"), [:administration, :reports]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t('administration.breadcrumbs.reports'), %i[administration reports]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     # Set model
     def set_resource_class
-      @_resource_class ||= ReportFamily
+      @_resource_class ||= ReportFamily # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def resource_params

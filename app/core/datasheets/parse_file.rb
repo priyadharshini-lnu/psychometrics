@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Datasheets
   class ParseFile < Rectify::Command
     def initialize(form, project)
@@ -7,6 +9,7 @@ module Datasheets
 
     def call
       return broadcast :invalid if form.invalid?
+
       transaction do
         create_and_update_datasheet
         parse_file
@@ -18,8 +21,6 @@ module Datasheets
 
     attr_reader :form, :project, :datasheet
 
-    #
-    #
     def create_and_update_datasheet
       @datasheet = project.datasheet.nil? ? project.build_datasheet : project.datasheet
       datasheet.attributes = { columns: form.parsed_file.first }

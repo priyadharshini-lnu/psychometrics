@@ -3,7 +3,6 @@
 module Threesixty
   module Evaluators
     class ResolveEvaluatorCriteria < BaseCommand
-
       def initialize(campaign, user, criteria, subject)
         @campaign = campaign
         @user = user
@@ -25,6 +24,7 @@ module Threesixty
           value = data_sheet[condition['field']].to_s.downcase
           next value == condition['value'] if condition['comparator'] == 'equal'
           next false unless subject_data_sheet
+
           subject_value = subject_data_sheet[condition['field']].to_s.downcase
           next value == subject_value if condition['comparator'] == 'is_same_as_subject'
         end
@@ -39,7 +39,6 @@ module Threesixty
       def get_data_sheet(user)
         campaign.datasheet&.rows&.find_by(email: user.email)
       end
-
     end
   end
 end

@@ -12,7 +12,7 @@ module Threesixty
       end
 
       def call
-        return unless reminder_rules = email_template.meta['reminder_rules'].presence
+        return unless (reminder_rules = email_template.meta['reminder_rules'].presence)
 
         times = 0
         reminder_rules.each do |rule|

@@ -1,5 +1,6 @@
-Rswag::Api.configure do |c|
+# frozen_string_literal: true
 
+Rswag::Api.configure do |c|
   # Specify a root folder where Swagger JSON files are located
   # This is used by the Swagger middleware to serve requests for API descriptions
   # NOTE: If you're using rswag-specs to generate Swagger, you'll need to ensure
@@ -10,7 +11,7 @@ Rswag::Api.configure do |c|
   # The function will have access to the rack env for the current request
   # For example, you could leverage this to dynamically assign the "host" property
   #
-  c.swagger_filter = lambda do |swagger, env|
-    swagger['host'] = "#{Settings.domain}#{':' + Settings.port.to_s if Settings.port }"
+  c.swagger_filter = lambda do |swagger, _env|
+    swagger['host'] = "#{Settings.domain}#{':' + Settings.port.to_s if Settings.port}"
   end
 end

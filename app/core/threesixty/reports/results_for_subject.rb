@@ -24,8 +24,11 @@ module Threesixty::Reports
         where(campaign_id: campaign.id, evaluator_id: participants.map(&:evaluator_id), subject_id: subject.user_id).
         includes(:evaluator, :assessment).
         map do |result|
-          participant = participants.find_by(evaluator_id: result.evaluator_id, subject_id: subject.user_id, campaign_id: campaign.id)
-          ::UsersResultSerializer.new(result, campaign: campaign, participant: participant, current_user: current_user).to_h
+        participant = participants.
+                      find_by(evaluator_id: result.evaluator_id, subject_id: subject.user_id, campaign_id: campaign.id)
+        ::UsersResultSerializer.
+          new(result, campaign: campaign, participant: participant, current_user: current_user).
+          to_h
       end
     end
   end

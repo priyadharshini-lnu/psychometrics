@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Example:
 #
@@ -22,10 +24,10 @@ module Assessments
 
     def subscribed
       assessment = Assessment.find(params['assessment_id'])
-      transmit({
+      transmit(
         action: 'assessment_data',
         data: Assessments::AssessmentSerializer.new(assessment).to_hash(include: '**')
-      })
+      )
     end
 
     def pundit_user

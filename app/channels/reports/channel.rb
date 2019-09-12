@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #
 # Example:
 #
@@ -18,10 +20,10 @@ module Reports
 
     def subscribed
       report = ::Report.includes(pages: [:modules]).find(params['report_id'])
-      transmit({
+      transmit(
         action: 'report_data',
         data: ReportSerializer.new(report).to_hash(include: '**')
-      })
+      )
     end
 
     def pundit_user

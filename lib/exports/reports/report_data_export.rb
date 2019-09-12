@@ -47,7 +47,7 @@ module Exports
               header_position = cells_range.last + 1
             end
 
-            # TODO (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
+            # TODO: (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
             current_level_assigns.group_by(&:membership_id).each do |_, assigns|
               results = ::Reports::BuildResults.call(report, assigns)[:ok].flatten
               sheet.add_row(results.map { |r| r[:value] })

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     module Questions
@@ -15,7 +17,7 @@ module Exports
           parsed_result = []
 
           factors_scoring = question.detect_specified_scoring.
-                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
 
           question.props['scalePoints'].to_i.times do |s|
             parsed_result << (answers || []).

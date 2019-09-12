@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Licenses
   class AssignReportOrgSurvey < AssignReportBase
-
     private
 
     def build_license

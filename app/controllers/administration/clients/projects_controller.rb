@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
@@ -6,11 +8,12 @@ module Administration
       before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
 
       def index
-        @_filter_form = policy_scope(resource_class)
-            .projects_of(client.id)
-            .includes(:project_admins, :assigned_memberships, :completed_memberships, :end_memberships, :license_usages)
-            .order('name asc')
-            .search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        projects_of(client.id).
+                        includes(:project_admins, :assigned_memberships, :completed_memberships, :end_memberships,
+                                 :license_usages).
+                        order('name asc').
+                        search(params[:q])
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])
 
@@ -56,7 +59,7 @@ module Administration
 
       def init_breadcrumbs
         client_root_breadcrumb
-        add_breadcrumb client.decorate.display_name, { action: :index }
+        add_breadcrumb client.decorate.display_name, action: :index
       end
 
       def resource_params

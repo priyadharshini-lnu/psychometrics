@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class CampaignPolicy < Administration::BasePolicy
     def index?
@@ -14,7 +16,8 @@ module Administration
 
     def manage_threesixty?
       return true if @user.is?(:superadmin)
-      return true if (@user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage))
+      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+
       false
     end
 
@@ -69,6 +72,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
+
         scope
       end
     end

@@ -18,7 +18,9 @@ class BulkReport < ApplicationRecord
   end
 
   def public_download_url
-    Rails.application.routes.url_helpers.download_administration_bulk_report_url(id, host: Settings.domain, port: Settings.port)
+    Rails.application.routes.url_helpers.download_administration_bulk_report_url(id,
+                                                                                 host: Settings.domain,
+                                                                                 port: Settings.port)
   end
 
   def private_download_url

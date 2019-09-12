@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Administration
   module Templates
     class BlocksController < Administration::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign, :preview]
+      before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar new_assign preview]
       before_action :skip_authorization, only: [:sidebar]
       before_action :init_breadcrumbs
       append_before_action :pundit_authorize, except: [:sidebar]
@@ -24,7 +26,7 @@ module Administration
 
       def create
         @_resource = resource_class.new(resource_params)
-        resource.assign_attributes({ view: :templates })
+        resource.assign_attributes(view: :templates)
 
         respond_to do |format|
           if resource.save
@@ -37,7 +39,7 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
@@ -69,7 +71,7 @@ module Administration
           if @cloned_resource.save
             format.js
           else
-            format.js { render :error, locals: { message: t('.error', { name: resource.decorate.display_name }) } }
+            format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }
           end
         end
       end
@@ -88,11 +90,10 @@ module Administration
         end
       end
 
-      def new_assign
-      end
+      def new_assign; end
 
       def preview
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
         @data = {
           blocks: [BlockSerializer.new(resource).to_hash(include: '**')]
         }.to_json
@@ -101,13 +102,13 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.question_center'), { action: :index }
+        add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+        add_breadcrumb I18n.t('administration.breadcrumbs.question_center'), action: :index
       end
 
       # Set model
       def set_resource_class
-        @_resource_class ||= Block
+        @_resource_class ||= Block # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def set_resource

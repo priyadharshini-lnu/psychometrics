@@ -3,8 +3,8 @@
 module Administration
   module Threesixty
     class ReportPolicy < BasePolicy
-      alias_method :download?, :show?
-      alias_method :export?, :show?
+      alias download? show?
+      alias export? show?
     end
   end
 end

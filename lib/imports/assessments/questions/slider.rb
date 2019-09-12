@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Assessments
     module Questions
@@ -11,8 +13,9 @@ module Imports
         #   }, ...]
         def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
+
           factors_scoring = question.detect_specified_scoring.
-                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           answers = []
           data.each_with_index do |value, index|
             answers << {

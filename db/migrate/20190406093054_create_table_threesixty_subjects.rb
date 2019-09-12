@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTableThreesixtySubjects < ActiveRecord::Migration[5.1]
   def change
     create_table :threesixty_subjects do |t|

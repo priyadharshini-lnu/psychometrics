@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ::UsersResults::UpdateUsersResult do
-  let(:users_result)  { double('users_result', subject: 'subject', evaluator: 'evaluator') }
-  let(:evaluator_user)  { double('user', id: 1) }
-  let(:threesixty_campaign)  { double('threesixty_campaign', id: 1) }
+  let(:users_result) { double('users_result', subject: 'subject', evaluator: 'evaluator') }
+  let(:evaluator_user) { double('user', id: 1) }
+  let(:threesixty_campaign) { double('threesixty_campaign', id: 1) }
 
   subject { described_class.call(form, users_result, threesixty_campaign) }
 
@@ -25,22 +27,22 @@ describe ::UsersResults::UpdateUsersResult do
     end
   end
 
-  it "calls method for sending required mails" do
-      form = double('form', 'invalid?': false)
-      threesixty_subject = double()
-      allow_any_instance_of(described_class).to receive(:update_users_result)
-      allow_any_instance_of(described_class).to receive(:generate_360_report)
-      allow(users_result).to receive(:'completed?').and_return(true)
-      allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
+  it 'calls method for sending required mails' do
+    form = double('form', 'invalid?': false)
+    threesixty_subject = double
+    allow_any_instance_of(described_class).to receive(:update_users_result)
+    allow_any_instance_of(described_class).to receive(:generate_360_report)
+    allow(users_result).to receive(:'completed?').and_return(true)
+    allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
 
-      expect(Threesixty::Emails::Send).to receive(:call!).
-        with('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
-      expect(Threesixty::Emails::Send).to receive(:call!).
-        with('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
-      expect(Threesixty::Emails::Send).to receive(:call!).
-        with('approve_report', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+    expect(Threesixty::Emails::Send).to receive(:call!).
+      with('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+    expect(Threesixty::Emails::Send).to receive(:call!).
+      with('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+    expect(Threesixty::Emails::Send).to receive(:call!).
+      with('approve_report', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
-      described_class.call(form, users_result, threesixty_campaign)
+    described_class.call(form, users_result, threesixty_campaign)
   end
 
   context '360 campaign' do
@@ -51,17 +53,21 @@ describe ::UsersResults::UpdateUsersResult do
     let(:assessment)      { threesixty_campaign.assessment }
     let(:report)          { threesixty_campaign.report }
     let(:subject_membership) { create(:membership, client: project) }
-    let(:subject_user)    { subject_membership.user }
+    let(:subject_user) { subject_membership.user }
     let(:evaluator_membership) { create(:membership, client: project) }
     let(:evaluator_user)  { evaluator_membership.user }
-    let!(:users_result)   { create(:users_result, assessment: assessment,
+    let!(:users_result)   do
+      create(:users_result, assessment: assessment,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
                                                   answers: {},
-                                                  step: 3) }
-    let(:users_report)    { create(:users_report, user: subject_user,
+                                                  step: 3)
+    end
+    let(:users_report) do
+      create(:users_report, user: subject_user,
                                                   campaign: campaign,
-                                                  report: report) }
+                                                  report: report)
+    end
     let(:form)            { double('form', 'invalid?': false, attributes: {}) }
 
     it { expect { subject }.to broadcast(:ok) }

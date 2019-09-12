@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Administration::HomeController < Administration::BaseController
   add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Users
@@ -21,7 +23,7 @@ module Administration
             subject: nil,
             membership: membership,
             report: resource,
-            locale: user_locale,
+            locale: user_locale
           }
 
           @data = ::Reports::PrepareDataForReport.call!(args)
@@ -32,7 +34,8 @@ module Administration
             end
             format.pdf do
               add_cookie_for_file_download
-              pdf_file = ::Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, lang: user_locale)
+              pdf_file = ::Exports::Reports::Pdf::ReportExport.
+                         export(@current_user, resource, user, client, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end
@@ -43,8 +46,19 @@ module Administration
         def init_breadcrumbs
           client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-          add_breadcrumb user.decorate.display_name, administration_client_user_assigns_path(client_id: client.id, user_id: user_membership_for_current_client.id || membership.id)
-          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
+          add_breadcrumb(
+            user.decorate.display_name,
+            administration_client_user_assigns_path(
+              client_id: client.id, user_id: user_membership_for_current_client.id || membership.id
+            )
+          )
+          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [
+            :administration,
+            client,
+            :user,
+            :assigns,
+            { user_id: membership.id }
+          ]
         end
 
         def set_resource_class
@@ -57,6 +71,7 @@ module Administration
 
         def pundit_authorize
           raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+
           super
         end
 

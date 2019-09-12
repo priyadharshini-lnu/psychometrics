@@ -11,9 +11,9 @@ module Threesixty
 
       def inform_subject_when_nomination_is_denied?
         option = context[:threesixty_campaign].option.participants
-        option.dig("subject", "can_nominate_evaluators") &&
-        option.dig("manager", "can_approve_nominations") &&
-        option.dig("manager", "email_subject_when_manager_declines_nomination")
+        option.dig('subject', 'can_nominate_evaluators') &&
+          option.dig('manager', 'can_approve_nominations') &&
+          option.dig('manager', 'email_subject_when_manager_declines_nomination')
       end
     end
   end

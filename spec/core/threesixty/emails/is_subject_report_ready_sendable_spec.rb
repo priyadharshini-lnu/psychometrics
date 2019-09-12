@@ -11,17 +11,16 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
   describe 'valid threesixty options for mail' do
     before do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "access" => {
-            "self_can_access" => true,
-          },
-          "availability" => { "email_subject_when_report_available" => true },
-          "approval" =>  {
-            "manager_approves_reports" => true
-          }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'access' => {
+                 'self_can_access' => true
+               },
+               'availability' => { 'email_subject_when_report_available' => true },
+               'approval' => {
+                 'manager_approves_reports' => true
+               }
+             })
     end
 
     it 'returns false if report is not available' do
@@ -37,51 +36,47 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end
-
   end
 
   describe 'invalid threesixty options for email' do
     before do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "approval" =>  {
-            "email_manager_when_report_ready_for_approval" => false
-            }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'approval' => {
+                 'email_manager_when_report_ready_for_approval' => false
+               }
+             })
     end
 
     it do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "access" => {
-            "self_can_access" => true,
-          },
-          "availability" => { "email_subject_when_report_available" => true },
-          "approval" =>  {
-            "manager_approves_reports" => false
-          }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'access' => {
+                 'self_can_access' => true
+               },
+               'availability' => { 'email_subject_when_report_available' => true },
+               'approval' => {
+                 'manager_approves_reports' => false
+               }
+             })
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "access" => {
-            "self_can_access" => false,
-          },
-          "availability" => { "email_subject_when_report_available" => true },
-          "approval" =>  {
-            "manager_approves_reports" => true
-          }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'access' => {
+                 'self_can_access' => false
+               },
+               'availability' => { 'email_subject_when_report_available' => true },
+               'approval' => {
+                 'manager_approves_reports' => true
+               }
+             })
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end

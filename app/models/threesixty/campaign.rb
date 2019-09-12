@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class Campaign < ApplicationRecord
     belongs_to :campaign, class_name: '::Campaign'
@@ -36,7 +38,7 @@ module Threesixty
     }.freeze
 
     def attribute_names
-      super + [:factors, :type]
+      super + %i[factors type]
     end
 
     def datasheet_column_names

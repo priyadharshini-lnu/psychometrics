@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FakeSelectInput < SimpleForm::Inputs::CollectionSelectInput
   # This method only create a basic input without reading any value from object
   def input(wrapper_options = nil)

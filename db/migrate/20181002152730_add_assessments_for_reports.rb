@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAssessmentsForReports < ActiveRecord::Migration[5.1]
   def change
     reversible do |dir|

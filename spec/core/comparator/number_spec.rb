@@ -5,13 +5,13 @@ require 'rails_helper'
 describe Comparator::Number do
   context 'equal comparator' do
     it do
-      result = described_class.call!(2, 2, "equal")
+      result = described_class.call!(2, 2, 'equal')
 
       expect(result).to eq(true)
     end
 
     it do
-      result = described_class.call!(2, 3, "equal")
+      result = described_class.call!(2, 3, 'equal')
 
       expect(result).to eq(false)
     end
@@ -19,13 +19,13 @@ describe Comparator::Number do
 
   context 'not_equal comparator' do
     it do
-      result = described_class.call!(2, 2, "not_equal")
+      result = described_class.call!(2, 2, 'not_equal')
 
       expect(result).to eq(false)
     end
 
     it do
-      result = described_class.call!(2, 3, "not_equal")
+      result = described_class.call!(2, 3, 'not_equal')
 
       expect(result).to eq(true)
     end
@@ -33,13 +33,13 @@ describe Comparator::Number do
 
   context 'less_than comparator' do
     it do
-      result = described_class.call!(2, 3, "less_than")
+      result = described_class.call!(2, 3, 'less_than')
 
       expect(result).to eq(true)
     end
 
     it do
-      result = described_class.call!(3, 2, "less_than")
+      result = described_class.call!(3, 2, 'less_than')
 
       expect(result).to eq(false)
     end
@@ -47,13 +47,13 @@ describe Comparator::Number do
 
   context 'more_than comparator' do
     it do
-      result = described_class.call!(2, 3, "more_than")
+      result = described_class.call!(2, 3, 'more_than')
 
       expect(result).to eq(false)
     end
 
     it do
-      result = described_class.call!(3, 2, "more_than")
+      result = described_class.call!(3, 2, 'more_than')
 
       expect(result).to eq(true)
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Services
   module Hogan
     class AssignAssessmentAndReports
@@ -43,6 +45,8 @@ module Services
 
       def add_participant_reports
         context.reports.each do |report|
+          next unless report.hogan?
+
           Services::Hogan::API::AddParticipantReport.call!(
             group: context.group,
             norm_id: report.hogan_report_setting.hogan_norm_id,
@@ -50,7 +54,7 @@ module Services
             assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
             report_id: report.hogan_report_setting.hogan_report_id,
             participant_id: context.membership.hogan_credential.participant_id
-          ) if report.hogan?
+          )
         end
       end
     end

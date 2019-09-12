@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 module Handlers
@@ -13,11 +15,11 @@ module Handlers
 
     class Handler
       def self.call(template)
-        %{
+        %(
           ::Handlers::CsvHandler::CsvGenerator.generate do |csv|
             #{template.source}
           end
-        }
+        )
       end
     end
   end

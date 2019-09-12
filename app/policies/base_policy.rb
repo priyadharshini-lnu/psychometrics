@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class BasePolicy
-  def initialize(context, record, extra = {})
+  def initialize(context, record, _extra = {})
     @current_user   = context[:current_user]
     @current_client = context[:current_client]
     @current_project = context[:current_project]

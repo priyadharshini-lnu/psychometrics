@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module Ecommerce
   class ProductsController < BaseController
-    before_action :fetch_product, only: [:add_to_cart, :remove_from_cart]
+    before_action :fetch_product, only: %i[add_to_cart remove_from_cart]
 
     def index
       @products = Product.

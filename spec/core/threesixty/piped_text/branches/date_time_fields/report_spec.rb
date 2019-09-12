@@ -4,8 +4,8 @@ require 'rails_helper'
 
 describe Threesixty::PipedText::Branches::DateTimeFields::Report do
   describe '.call' do
-      let(:threesixty_campaign) { create(:threesixty_campaign) }
-      let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
+    let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
 
     it 'returns self evaluation date' do
       completed_at = Time.now
@@ -20,7 +20,7 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
       response = described_class.call!(
         %w[Report SelfEvaluation],
         { 'f' => '%-d/%-m/%Y' },
-        { threesixty_campaign: threesixty_campaign, subject: subject.user }
+        threesixty_campaign: threesixty_campaign, subject: subject.user
       )
 
       expect(response).to eq(completed_at.strftime('%-d/%-m/%Y'))
@@ -47,7 +47,7 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
       response = described_class.call!(
         %w[Report LastEvaluation],
         { 'f' => '%-d/%-m/%Y' },
-        { threesixty_campaign: threesixty_campaign, subject: subject.user }
+        threesixty_campaign: threesixty_campaign, subject: subject.user
       )
 
       expect(response).to eq(last_completed_at.strftime('%-d/%-m/%Y'))

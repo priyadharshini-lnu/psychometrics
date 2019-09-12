@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Toggle Status in Dimension' do
-
   before(:each) { enter_as :superadmin }
 
   given!(:dimension) { create(:dimension, name: 'New Dim') }

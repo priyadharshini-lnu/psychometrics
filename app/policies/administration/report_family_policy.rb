@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ReportFamilyPolicy < ReportPolicy
     def create?
@@ -7,6 +9,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
+
         if @user.has_grant?(:reports, :view)
           scope.where(id: @user.ttes.joins(:available_reports).pluck('report_families.id'))
         else

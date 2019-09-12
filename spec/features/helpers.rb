@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './spec/features/helpers/assessments'
 require './spec/features/helpers/clients'
 require './spec/features/helpers/norms'

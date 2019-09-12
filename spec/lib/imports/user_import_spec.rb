@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Imports::UserImport do
@@ -16,7 +18,7 @@ RSpec.describe Imports::UserImport do
         Membership.human_attribute_name('last_name'),
         Membership.human_attribute_name('email'),
         Membership.human_attribute_name('password'),
-        Membership.human_attribute_name('created_at'),
+        Membership.human_attribute_name('created_at')
       ]
     ]
   end
@@ -71,23 +73,23 @@ RSpec.describe Imports::UserImport do
 
     context 'With existing user' do
       before(:each) do
-        existing_users.each {|user| body << user }
+        existing_users.each { |user| body << user }
         allow_any_instance_of(Imports::UserImport).to receive(:open_spreadsheet).and_return(open_spreadsheet)
       end
 
       it 'should add only new users' do
         import = Imports::UserImport.new(client_id: client.id, importer: super_admin, file: @file)
-        expect { import.process! }.to change { client.users.count }.by(body.size - existing_users.size)
+        expect { import.process! }.to(change { client.users.count }.by(body.size - existing_users.size))
       end
 
       it 'should update password for existing user without password' do
         import = Imports::UserImport.new(client_id: client.id, importer: super_admin, file: @file)
-        expect { import.process! }.to change { user_without_password.reload.encrypted_password }
+        expect { import.process! }.to(change { user_without_password.reload.encrypted_password })
       end
 
       it 'should not update password for existing user with password' do
         import = Imports::UserImport.new(client_id: client.id, importer: super_admin, file: @file)
-        expect { import.process! }.not_to change { user_with_password.reload.encrypted_password }
+        expect { import.process! }.not_to(change { user_with_password.reload.encrypted_password })
       end
 
       it 'should add existing user who try update existing password to existing_users_whose_password_not_changed' do

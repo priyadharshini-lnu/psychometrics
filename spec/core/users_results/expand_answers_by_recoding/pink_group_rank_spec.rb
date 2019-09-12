@@ -20,7 +20,7 @@ describe ::UsersResults::ExpandAnswersByRecoding do
   before do
     create(:assessment, id: 184)
     create(:question, id: 17_159, type: 'PickGroupRank')
-    # TODO (atanych): should be improved within https://gitlab.com/tte-lighthouse/psychometrics/issues/311
+    # TODO: (atanych): should be improved within https://gitlab.com/tte-lighthouse/psychometrics/issues/311
     create(:question_recoding, question_id: 17_159, assessment_id: 184, props: [
              { 'index' => 0, 'value' => 1 }, { 'index' => 1, 'value' => 2 }, { 'index' => 2, 'value' => 3 }
            ])

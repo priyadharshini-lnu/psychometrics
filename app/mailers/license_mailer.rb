@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LicenseMailer < ApplicationMailer
   def license_expire(user_id, client_id = nil)
     @resource = User.find(user_id)

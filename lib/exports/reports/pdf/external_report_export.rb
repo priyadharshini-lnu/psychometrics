@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Reports
     module Pdf
@@ -17,25 +19,25 @@ module Exports
 
           def output_dir(user, opts)
             output_dir = opts[:output_dir] || Rails.root.join('tmp', 'reports')
-            output_dir = File.join(output_dir, user.email)
+            File.join(output_dir, user.email)
           end
 
           def output_path(user, report, output_dir)
             filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-            output_path = File.join(output_dir, filename)
+            File.join(output_dir, filename)
           end
 
           def external_report(assign, assigns_report)
             mindmill_report = assign.mindmill_report.file
             hogan_report = assigns_report.external_report.file
-            external_report = mindmill_report || hogan_report
+            mindmill_report || hogan_report
           end
 
           def copy_external_report(external_report, output_path)
             if remote_file?(external_report.url)
               url = URI(external_report.url)
               url.scheme = 'http'
-              IO.copy_stream(open(url.to_s), output_path)
+              IO.copy_stream(open(url.to_s), output_path) # rubocop:disable Security/Open
             else
               FileUtils.cp(external_report.url, output_path)
             end

@@ -21,10 +21,10 @@ module Threesixty
 
       def inform_manager_about_subject_report_ready?
         option = context[:threesixty_campaign].option.reports
-        option.dig("access", "manager_can_access") &&
-        option.dig("availability", "email_manager_when_report_available") && (
-          option.dig("availability", "report_available_to_context[:subject]_on_criteria") ||
-          option.dig("approval", "administrator_approves_reports")
+        option.dig('access', 'manager_can_access') &&
+          option.dig('availability', 'email_manager_when_report_available') && (
+          option.dig('availability', 'report_available_to_context[:subject]_on_criteria') ||
+          option.dig('approval', 'administrator_approves_reports')
         )
       end
     end

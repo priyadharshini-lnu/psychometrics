@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module Copyable
   extend ActiveSupport::Concern
 
   def gen_uniq_name(attr = :name)
     return unless has_attribute?(attr)
+
     number = self[attr].scan(/\((\d+)\)$/).flatten.join('').to_i
     if number.zero?
       self[attr] = "#{name} (1)"

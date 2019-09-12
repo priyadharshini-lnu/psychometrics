@@ -14,12 +14,11 @@ describe Threesixty::Subjects::CreateAllForm do
     end
 
     it 'invalid email' do
-      form = described_class.new(subjects: [subject_attributes.merge({ email: '2222' })])
+      form = described_class.new(subjects: [subject_attributes.merge(email: '2222')])
       form.with_context(campaign: nil)
       form.validate
       expect(form.errors.messages[:subjects].first).to include('Email is invalid')
     end
-
 
     it 'subject already existed' do
       campaign = create(:campaign)
@@ -33,8 +32,8 @@ describe Threesixty::Subjects::CreateAllForm do
     end
 
     it 'validates each subject using single_subject_form class passed' do
-      form = described_class.new({ subjects: [subject_attributes.merge({ password: 'a' })] }).
-        with_context(campaign: nil, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
+      form = described_class.new(subjects: [subject_attributes.merge(password: 'a')]).
+             with_context(campaign: nil, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
       form.validate
 
       expect(form.errors.messages[:subjects].first).to include('Password is too short. Minimum 6 character required')

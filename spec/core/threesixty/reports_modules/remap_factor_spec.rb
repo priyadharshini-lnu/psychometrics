@@ -26,7 +26,7 @@ describe Threesixty::ReportsModules::RemapFactor do
     new_factor1 = create(:factor, name: 'new factor 2')
     report_module = create(:module, page: page, props: { source: {
       factors: [factor_source_props(old_factor), factor_source_props(old_factor1)]
-    }})
+    } })
     old_to_new_factor_mapping[old_factor1.id] = new_factor1
 
     described_class.call(report, old_to_new_factor_mapping)

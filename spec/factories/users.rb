@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -73,8 +75,7 @@ FactoryGirl.define do
     end
 
     trait :skip_validate do
-      to_create {|instance| instance.save(validate: false)}
+      to_create { |instance| instance.save(validate: false) }
     end
-
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: reports
@@ -12,9 +14,9 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category, :pages, :innovation_styles
+             :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
@@ -28,16 +30,17 @@ class ReportSerializer < ActiveModel::Serializer
   def factors
     object_assessment_ids = object.assessment_ids
     factors = Factor.
-              selecting {['factors.*',
-                  array(
-                    _(
-                      FactorsScoring.
-                        select(:question_id).
-                        where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_ids) }.
-                        where('json_array_length(props) > 0')
-                    )
-                  ).as('question_ids')
-      ]}.
+              selecting do
+      ['factors.*',
+       array(
+         _(
+           FactorsScoring.
+             select(:question_id).
+             where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_ids) }.
+             where('json_array_length(props) > 0')
+         )
+       ).as('question_ids')]
+    end.
               where(dimension_id: object.dimension_ids).
               order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
@@ -61,27 +64,65 @@ class ReportSerializer < ActiveModel::Serializer
 
   def innovation_styles
     innovation_styles = InnovationStyle.includes(:innovation_styles_factors).
-                             where(dimension_id: object.assessments.pluck(:dimension_id)).
-                             order(name: :asc)
+                        where(dimension_id: object.assessments.pluck(:dimension_id)).
+                        order(name: :asc)
     innovation_styles.group_by(&:dimension_id).transform_values do |group|
       group.map { |innovation_style| InnovationStyleSerializer.new(innovation_style) }
     end
   end
 
+  # Used for Piped Text
+  def result_completed_at
+    return if assigns.blank?
+
+    dates = assigns.map do |assign|
+      assign&.completed_at&.to_date
+    end.compact.sort
+
+    return '' if dates.empty?
+
+    if dates.first == dates.last
+      dates.first.strftime(I18n.t('time.formats.short_date'))
+    else
+      "#{dates.first.strftime(I18n.t('time.formats.short_date'))} - #{dates.last.strftime(I18n.t(
+                                                                                            'time.formats.short_date'
+                                                                                          ))}"
+    end
+  end
+
+  # Used for Piped Text
+  def norm_used
+    norm_data = assigns.pluck(:norm_data).compact
+    return if norm_data.blank?
+
+    norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
+    norms.map do |norm|
+      norm&.decorate&.display_name
+    end
+  end
+
+  # Used for Piped Text
+  def result_locale
+    assigns.map do |assign|
+      locale = assign.selected_locale || I18n.default_locale
+      I18n.t("languages.#{locale}")
+    end.uniq
+  end
+
   def assigns
     return [] unless @instance_options[:membership]
 
-    assigns = Assign.includes(:membership).joins(:membership).
-      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id, user_id: @instance_options[:membership].user_id })
-
-    assigns.group_by(&:assessment_id).transform_values do |group|
-      group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
-    end
+    @assigns ||= Assign.includes(:membership).joins(:membership).
+                 where(assessment_id: object.assessment_ids,
+                        memberships: {
+                          client_id: @instance_options[:membership].client_id,
+                          user_id: @instance_options[:membership].user_id
+                        })
   end
 
   def factor_norms
     norms = Norm.includes(:factors_norms).where(dimension_id: object.assessments.pluck(:dimension_id)).distinct
-    norms.each_with_object(Hash.new) do |norm, hash|
+    norms.each_with_object({}) do |norm, hash|
       hash[norm.id] = norm.factors_norms.group_by(&:type)
     end
   end
@@ -123,7 +164,7 @@ class ReportSerializer < ActiveModel::Serializer
       { id: 'Self', name: 'Self' },
       { id: 'Manager', name: 'Direct Manager' },
       { id: 'Peer', name: 'Peer' },
-      { id: 'DirectReport', name: 'Direct Report' },
+      { id: 'DirectReport', name: 'Direct Report' }
     ]
   end
 end

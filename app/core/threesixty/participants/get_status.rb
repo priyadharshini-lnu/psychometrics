@@ -29,7 +29,8 @@ module Threesixty
       end
 
       def valid_nomination_requirement?
-        subject && nomination_requirement && Threesixty::NominationRequirements::IsValid.call!(nomination_requirement, subject_evaluator_counters)
+        subject && nomination_requirement &&
+          Threesixty::NominationRequirements::IsValid.call!(nomination_requirement, subject_evaluator_counters)
       end
 
       def all_evaluations_completed?

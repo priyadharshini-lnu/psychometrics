@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AssignForm < Rectify::Form
   attribute :status, Integer
   attribute :results, Hash, default: nil

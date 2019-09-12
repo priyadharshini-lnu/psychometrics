@@ -1,6 +1,8 @@
+require: rubocop-performance
 AllCops:
   Exclude:
     - "vendor/**/*"
+    - "node_modules/**/*"
     - "db/schema.rb"
   UseCache: false
 
@@ -14,6 +16,25 @@ Layout/DotPosition:
 Metrics/BlockNesting:
   Enabled: false
 
+Metrics/ClassLength:
+  Max: 200
+
+Style/DoubleNegation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "lib/tasks/**/*"
+    - "config/environments/**/*"
+    - "config/routes.rb"
+    - "config/initializers/simple_form_bootstrap.rb"
+
+Style/MixinUsage:
+  Exclude:
+    - "spec/**/*"
+    - "bin/**/*"
+
 Layout/CaseIndentation:
   IndentOneStep: true
 
@@ -25,12 +46,35 @@ Style/Documentation:
 
 Metrics/AbcSize:
   Enabled: true
-  Max: 40
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
+  Max: 10
 
 Style/FormatString:
   Enabled: false
 
+Naming/AccessorMethodName:
+  Enabled: false
+
 Style/GuardClause:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - q
+    - e
+    - id
+    - io
+
+# using baby_squeel assumes multi blocks
+Style/MultilineBlockChain:
   Enabled: false
 
 Layout/IndentHash:
@@ -54,6 +98,10 @@ Naming/PredicateName:
 
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
+
+# That's dangerous to use nil comparison together with baby_squeel dsl
+Style/NilComparison:
+  Enabled: false
 
 Style/SingleLineBlockParams:
   Enabled: false

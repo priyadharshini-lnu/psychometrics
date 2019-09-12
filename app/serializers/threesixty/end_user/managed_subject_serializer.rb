@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty::EndUser
   class ManagedSubjectSerializer < ActiveModel::Serializer
     attributes :id, :campaign_id

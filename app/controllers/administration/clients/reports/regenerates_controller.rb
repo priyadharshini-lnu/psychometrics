@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     module Reports
@@ -10,7 +12,7 @@ module Administration
         def create
           @_resource = resource_class.from_params(params)
           ::Administration::RegenerateReports.call(resource, current_user, client) do
-            on(:invalid)  { render :new }
+            on(:invalid) { render :new }
           end
         end
 

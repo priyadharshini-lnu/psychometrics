@@ -18,7 +18,7 @@ describe Threesixty::InstructionTemplates::Load do
           'name' => 'evaluator_invite',
           'enabled' => false,
           'content' => 'Content2'
-        },
+        }
       ]
       allow(template_loader).to receive(:read_yaml).and_return(instruction_templates_attributes)
 

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module UserScopes
   extend ActiveSupport::Concern
-
+  # rubocop:disable Metrics/BlockLength
   included do
     scope :enabled, -> { where.not(disabled: true) }
     scope :identified, -> { where(is_anonym: false) }
@@ -9,7 +11,7 @@ module UserScopes
     # Sorting
     scope :sorted_by, lambda { |sort_key|
       # extract the sort direction from the param value.
-      direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
+      direction = /desc$/.match?(sort_key) ? 'desc' : 'asc'
       case sort_key.to_s
         when /^id_/
           order("users.id #{direction}")
@@ -44,27 +46,29 @@ module UserScopes
     scope :with_role, lambda { |role|
       if role == 'users'
         joins(:memberships).
-            where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role == 'administrators'
         joining { memberships.outer }.
-            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
+          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
 
     scope :hris_data_cont, lambda { |data|
       data = JSON.parse(data) if data.is_a?(String)
       return if data.blank?
+
       where('users.hris @> ?', data.to_json)
     }
 
     scope :role_scope_in, lambda { |role_scope|
       if role_scope == 'users'
         joins(:memberships).
-            where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role_scope == 'administration'
         joining { memberships.outer }.
-            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
+          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
   end
+  # rubocop:enable Metrics/BlockLength
 end

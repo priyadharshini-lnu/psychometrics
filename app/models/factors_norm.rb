@@ -104,9 +104,9 @@ class FactorsNorm < ApplicationRecord
         cell[params[:field_name]] = value
       else
         factors_norm.props << {
-          level:      params[:level],
+          level: params[:level],
           score_from: params[:field_name] == 'score_from' ? value : '',
-          score_to:   params[:field_name] == 'score_to' ? value : ''
+          score_to: params[:field_name] == 'score_to' ? value : ''
         }
       end
       factors_norm.save

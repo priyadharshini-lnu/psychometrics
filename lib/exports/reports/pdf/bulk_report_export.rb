@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module Exports
   module Reports
     module Pdf
       class BulkReportExport
         def self.export(params)
-          items = query(params[:client]).call(params[:client].id, params[:report_ids], params[:start_date], params[:end_date]).to_a
+          items = query(params[:client]).
+                  call(params[:client].id, params[:report_ids], params[:start_date], params[:end_date]).
+                  to_a
           if items.any?
             bulk_report = ::BulkReport.create(user: params[:current_user], queue_size: items.size)
 
@@ -13,7 +17,7 @@ module Exports
                 report: Report.find(item.id),
                 assign: Assign.find(item.assign_id),
                 assigns_report: AssignsReport.find(item.assigns_report_id),
-                user: User.find(item.user_id),
+                user: User.find(item.user_id)
               }
               ::BulkReports::ExportJob.perform_later(export_params)
             end
@@ -21,8 +25,6 @@ module Exports
 
           items.any?
         end
-
-        private
 
         def self.query(client)
           if client.project?

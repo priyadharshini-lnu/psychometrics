@@ -37,16 +37,16 @@ describe ::UsersResults::ExpandAnswersByRecoding do
 
   it 'existing recoding' do
     create(:question_recoding, question_id: 17_156, assessment_id: 184, props: [
-      { scale: 0, value: 1, choice: 0 },
-      { scale: 1, value: 2, choice: 0 },
-      { scale: 2, value: 3, choice: 0 },
-      { scale: 0, value: 1, choice: 1 },
-      { scale: 1, value: 2, choice: 1 },
-      { scale: 2, value: 3, choice: 1 },
-      { scale: 0, value: 1, choice: 2 },
-      { scale: 1, value: 2, choice: 2 },
-      { scale: 2, value: 3, choice: 2 }
-    ])
+             { scale: 0, value: 1, choice: 0 },
+             { scale: 1, value: 2, choice: 0 },
+             { scale: 2, value: 3, choice: 0 },
+             { scale: 0, value: 1, choice: 1 },
+             { scale: 1, value: 2, choice: 1 },
+             { scale: 2, value: 3, choice: 1 },
+             { scale: 0, value: 1, choice: 2 },
+             { scale: 1, value: 2, choice: 2 },
+             { scale: 2, value: 3, choice: 2 }
+           ])
     expect(described_class.call!(users_result)).to eq(
       '17156' => {
         'answers' => [

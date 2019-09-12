@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SetLocale
   extend ActiveSupport::Concern
 
@@ -17,7 +19,7 @@ module SetLocale
   end
 
   def user_locale_rtl?
-    user_locale == 'ar'
+    Settings.rtl_languages.include?(user_locale)
   end
 
   def selected_locale

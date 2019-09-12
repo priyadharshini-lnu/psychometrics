@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class BlockPolicy < Administration::BasePolicy
     def index?

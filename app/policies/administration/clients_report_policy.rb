@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ClientsReportPolicy < Administration::BasePolicy
     def create?

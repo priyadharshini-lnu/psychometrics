@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ::Queries::Users::MembersSubtreeByClient do
@@ -21,7 +23,6 @@ RSpec.describe ::Queries::Users::MembersSubtreeByClient do
   let!(:manager_membership2) { create(:manager_membership, client: sub_campaign2) }
   let!(:member_membership_from_other_client) { create(:membership) }
   let!(:other_client) { member_membership_from_other_client.client.client }
-
 
   context 'when call on sub_campaign level' do
     context 'when pass sub_campaign1' do
@@ -181,7 +182,6 @@ RSpec.describe ::Queries::Users::MembersSubtreeByClient do
       end
 
       it "eq all users form all different_client's projects" do
-
         expect(query.call(other_client).to_a).to match_array(member_membership_from_other_client.user)
       end
     end

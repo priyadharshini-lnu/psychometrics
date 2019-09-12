@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe ::Clients::Reports::AssignReport do
@@ -9,7 +11,11 @@ describe ::Clients::Reports::AssignReport do
   let(:assessment) { report.assessments.first }
   let(:report_family) { report.report_families.first }
   let(:clients_report) { create(:clients_report, report: report, report_family: report_family, client: campaign) }
-  let(:assessments_clients) { report.assessments.each { |assessment| create(:assessments_client, assessment: assessment, client: campaign) }}
+  let(:assessments_clients) do
+    report.assessments.each do |assessment|
+      create(:assessments_client, assessment: assessment, client: campaign)
+    end
+  end
   let(:adding_report_ids) { [] }
   let(:removing_report_ids) { [] }
   let(:form) do
@@ -61,11 +67,11 @@ describe ::Clients::Reports::AssignReport do
       end
 
       it 'ClientsReport' do
-        expect { subject }.not_to change { campaign.reports.count }
+        expect { subject }.not_to(change { campaign.reports.count })
       end
 
       it 'AssessmentsClient' do
-        expect { subject }.not_to change { campaign.assessments.count }
+        expect { subject }.not_to(change { campaign.assessments.count })
       end
     end
   end
@@ -104,7 +110,10 @@ describe ::Clients::Reports::AssignReport do
 
   context '#add_report_access_for_existing_users' do
     let(:assign) { create(:assign, membership: membership, assessment: assessment) }
-    let!(:assigns_report) { create(:assigns_report, :licensed, assign: assign, report: report, user_access: false) }
+    let!(:assigns_report) do
+      create(:assigns_report, :licensed,
+             assign: assign, report: report, user_access: false)
+    end
 
     it do
       form.attributes = { is_applying_to_existing_users: true,

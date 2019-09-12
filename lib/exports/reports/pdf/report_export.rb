@@ -37,8 +37,8 @@ module Exports
             auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
-          Rails.logger.info "$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})"
-          system("$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})")
+          Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
+          system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
 
           output
         end
@@ -49,7 +49,7 @@ module Exports
           dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
           dir = File.join(dir, user.email)
           filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.now.to_i}.pdf"
-          File.delete(filename) if File.exists?(filename)
+          File.delete(filename) if File.exist?(filename)
           FileUtils.mkdir_p(dir)
           @output = File.join(dir, filename)
         end
@@ -68,9 +68,12 @@ module Exports
             users_report_id: users_report ? users_report.id : nil
           }
 
-          @url = current_user.is?(:superadmin, :client_admin, :project_admin) ?
-            build_administration_url(params) :
-            build_user_url(params)
+          @url =
+            if current_user.is?(:superadmin, :client_admin, :project_admin)
+              build_administration_url(params)
+            else
+              build_user_url(params)
+            end
         end
 
         # Builds URL for Administration side

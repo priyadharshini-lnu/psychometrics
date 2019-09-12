@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Imports
   module Translations
     class AssessmentImport < Imports::BaseImport
@@ -30,7 +32,8 @@ module Imports
         else
           imported_items.each do |translation|
             translation.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: translation.translateable_id, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                       id: translation.translateable_id, error: message))
             end
           end
         end
@@ -54,6 +57,7 @@ module Imports
           data.each do |locale, translation|
             locale = locale.split(' / ').last
             next if locale == 'en' || translation.blank? # Default locale or not translated
+
             collect_translations[question_id][locale] ||= {}
             collect_translations[question_id][locale][key] = translation
           end
@@ -63,16 +67,17 @@ module Imports
         collect_translations.each do |question_id, locales|
           # If can't find question for specified assessment, then add error
           unless Question.ransack(block_assessment_id_eq: assessment_id, id_eq: question_id).result.exists?
-            errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: question_id, error: "Can't find Question")) && next
+            errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                     id: question_id, error: "Can't find Question")) && next
           end
           locales.each do |locale, props|
-            translation = Translation.find_or_initialize_by({
+            translation = Translation.find_or_initialize_by(
               translateable_id: question_id,
               translateable_type: 'Question',
               resource_id: assessment_id,
               resource_type: Assessment::TYPES[:common],
               locale: locale
-            })
+            )
             translation.props = props
             translations << translation
           end
@@ -87,9 +92,9 @@ module Imports
 
       def open_spreadsheet
         case File.extname(file.original_filename)
-        when '.csv' then Roo::CSV.new(file.path)
-        when '.xlsx' then ::Roo::Excelx.new(file.path)
-        else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+          when '.csv' then Roo::CSV.new(file.path)
+          when '.xlsx' then ::Roo::Excelx.new(file.path)
+          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
         end
       end
     end

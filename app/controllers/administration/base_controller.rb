@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class BaseController < ::BaseController
     include Administration::Policies

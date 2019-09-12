@@ -9,7 +9,8 @@ module Administration
 
       def participant_options
         render(json: threesixty_campaign.option.participants.tap do |data|
-          data[:relationships] = Relationships::ByCampaign.new(threesixty_campaign.campaign).map { |r| RelationshipSerializer.new(r).to_h }
+          data[:relationships] = Relationships::ByCampaign.
+            new(threesixty_campaign.campaign).map { |r| RelationshipSerializer.new(r).to_h }
         end)
       end
 
@@ -34,19 +35,18 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Threesixty::Option
+        @_resource_class ||= ::Threesixty::Option # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def form
         @form ||=
-          case
-          when params[:participants]
+          if params[:participants]
             ::Threesixty::Options::ParticipantOptionForm.
               from_params(params[:participants]).
               with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
-          when params[:reports]
+          elsif params[:reports]
             ::Threesixty::Options::ReportOptionForm.from_params(params[:reports])
-          when params[:messages]
+          elsif params[:messages]
             ::Threesixty::Options::MessageOptionForm.from_params(params[:messages])
           end
       end

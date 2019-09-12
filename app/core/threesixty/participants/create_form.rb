@@ -16,7 +16,7 @@ module Threesixty
       attr_reader :user
 
       def check_nomination_requirement
-        condition = nomination_requirement.conditions.find{ |c| c['relationship_id'] == relationship_id}
+        condition = nomination_requirement.conditions.find { |c| c['relationship_id'] == relationship_id }
         if condition && condition['value'] && condition['comparator'] != 'atleast' &&
            condition['value'].to_i == subject_evaluators_count_by_relationship
           errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
@@ -24,7 +24,7 @@ module Threesixty
       end
 
       def check_existing_participant
-        if subject && subject.participants.find_by(evaluator_id: user.id)
+        if subject&.participants&.find_by(evaluator_id: user.id)
           errors.add(:evaluator, I18n.t('evaluators.errors.exists'))
         end
       end
@@ -88,11 +88,12 @@ module Threesixty
       private
 
       def subject_evaluators_count_by_relationship
-        subject.evaluators.joins(:relationship).where(relationships: {id: relationship_id}).count
+        subject.evaluators.joins(:relationship).where(relationships: { id: relationship_id }).count
       end
 
       def nomination_requirement
-        @requirement ||= Threesixty::NominationRequirements::FindForUsers.call!(subject.user, threesixty_campaign)[subject.user_id]
+        @nomination_requirement ||= Threesixty::NominationRequirements::FindForUsers.
+                                    call!(subject.user, threesixty_campaign)[subject.user_id]
       end
 
       def has_nomination_requirement?
@@ -114,7 +115,6 @@ module Threesixty
       def datasheet_criteria
         options.participants.dig('subject', 'limit_nomination_by_subject_from_datasheet_criteria')
       end
-
     end
   end
 end

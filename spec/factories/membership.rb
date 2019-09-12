@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -47,7 +49,7 @@ FactoryGirl.define do
     factory :project_admin_membership do
       association :user, factory: :user
       association :grants, factory: :membership_grants, data: User::DEFAULT_PROJECT_ADMIN_GRANTS
-      client factory: [:project, :sub_campaign_level]
+      client factory: %i[project sub_campaign_level]
       role Membership::PROJECT_ADMIN_ROLE
     end
 

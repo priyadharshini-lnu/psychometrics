@@ -55,7 +55,7 @@ describe Reports::BuildResults do
       allow(Norm).to          receive(:find).and_return(norm)
       allow(FactorsNorm).to   receive(:find_by!).and_return(factors_norm)
       allow(factors_norm).to  receive(:detect_normed_result).and_return(3)
-      allow(aliases).to  receive(:find_by).and_return(nil)
+      allow(aliases).to receive(:find_by).and_return(nil)
     end
 
     context 'UserData' do
@@ -75,7 +75,10 @@ describe Reports::BuildResults do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
-      it { is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: external_results['ed.attempted'], config_data: data) }
+      it {
+        is_expected.to eq(key: 'ed.attempted', name: 'Attempted',
+                             value: external_results['ed.attempted'], config_data: data)
+      }
 
       context 'when data is not valid' do
         it do
@@ -134,7 +137,7 @@ describe Reports::BuildResults do
       context 'normal flow' do
         before(:each) do
           allow(data).to receive(:dig).with('formula', 'args').and_return([{ 'type' => 'normed_factor' }])
-          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return({ value: [1, 2, 3] })
+          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(value: [1, 2, 3])
         end
         it 'AVERAGE' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Exports
   module Assessments
     module Questions
@@ -10,10 +12,11 @@ module Exports
           # =>    example: [1,2,3,4]
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
-          if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
+          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             question.props['choices'].to_i.times do |choice|
               question.props['scalePoints'].to_i.times do |scale|
-                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'value')
+                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
+                                 try(:[], 'value')
               end
             end
           else
@@ -21,12 +24,13 @@ module Exports
             # hash['1-2'] = 100
             # Where 1 - choice, 2 - scale, 100 - scoring value
             factors_scoring = question.detect_specified_scoring.
-                              inject({}) { |sum, s| sum["#{s['choice']}-#{s['scale']}"] = s['value']; sum }
+                              each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value']; }
 
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
+                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.
+                               join(',')
             end
           end
           required_size = header(question).size
@@ -41,7 +45,7 @@ module Exports
           # =>    example: [QID_1_1, QID_2_1, QID_3_1]
           # ELSE: we collect results grouped by choiceID
           # =>    example: [QID_1, QID_2, QID_3]
-          if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
+          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             question.props['choices'].to_i.times do |c|
               question.props['scalePoints'].to_i.times do |s|
                 parsed_header << "QID#{question.id}_#{c + 1}_#{s + 1}"

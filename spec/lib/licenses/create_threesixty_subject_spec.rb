@@ -13,7 +13,11 @@ RSpec.describe Licenses::CreateThreesixtySubject do
       end
     end
     context 'are enough licences' do
-      let!(:license) { create(:license, type: :threesixty, client: campaign.client, start_date: 1.day.ago, end_date: 100.years.since) }
+      let!(:license) do
+        create(:license,
+               type: :threesixty,
+                     client: campaign.client, start_date: 1.day.ago, end_date: 100.years.since)
+      end
       it 'builds a license_usage' do
         described_class.use(user: user, campaign: campaign)
         usage = LicenseUsage.last
@@ -21,7 +25,10 @@ RSpec.describe Licenses::CreateThreesixtySubject do
         expect(usage.license_id).to eq(license.id)
         expect(usage.client_id).to eq(campaign.client.id)
         expect(usage.campaign_id).to eq(campaign.id)
-        expect(usage.extras).to eq('subject_name' => 'Vasily Pupkin', 'subject_email' => 'pup@gmail.com', 'campaign_name' => 'first')
+        expect(usage.extras).to eq(
+          'subject_name' => 'Vasily Pupkin',
+          'subject_email' => 'pup@gmail.com', 'campaign_name' => 'first'
+        )
       end
     end
   end

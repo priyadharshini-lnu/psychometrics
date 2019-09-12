@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe CreateApiKey do
-
   let!(:membership) { create(:client_admin_membership) }
   let(:user) { membership.user }
 

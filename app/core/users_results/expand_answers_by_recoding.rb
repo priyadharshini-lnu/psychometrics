@@ -13,10 +13,12 @@ module UsersResults
     def call
       result =
         users_result.answers.transform_values do |answer|
-          question_recoding = question_recoding_map[answer['question_id']] || lookup_default_recoding(answer['question_id'])
+          question_recoding = question_recoding_map[answer['question_id']] ||
+                              lookup_default_recoding(answer['question_id'])
           if question_recoding
             {
-              'answers' => lookup_type_class(question_recoding)&.call!(answer['answers'], question_recoding) || answer['answers'],
+              'answers' => lookup_type_class(question_recoding)&.
+                call!(answer['answers'], question_recoding) || answer['answers'],
               'question_id' => answer['question_id'],
               'not_applicable' => answer['not_applicable']
             }

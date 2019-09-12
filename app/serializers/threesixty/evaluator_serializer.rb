@@ -34,7 +34,7 @@ module Threesixty
       "#{counters[:completed_evaluators]} / #{counters[:total_evaluators]}"
     end
 
-    def is_subject
+    def is_subject # rubocop:disable Naming/PredicateName
       !!object.self_subject
     end
 

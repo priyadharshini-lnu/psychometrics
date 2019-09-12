@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty::EndUser
   class CampaignNomineeSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :campaign_id, :evaluators_count, :counters, :is_nomination_completed
@@ -11,11 +13,11 @@ module Threesixty::EndUser
       Threesixty::Participants::CalcCounters.call!([object.user_id], object.campaign.threesixty_campaign)
     end
 
-    def is_self
+    def is_self # rubocop:disable Naming/PredicateName
       object.user_id == instance_options[:current_user].id
     end
 
-    def is_nomination_completed
+    def is_nomination_completed # rubocop:disable Naming/PredicateName
       instance_options[:is_nomination_completed]
     end
   end

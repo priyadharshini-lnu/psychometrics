@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Operations on communications#index', js: true do
@@ -29,8 +31,7 @@ feature 'Operations on communications#index', js: true do
     end
 
     context 'Sorting by Communication subject' do
-
-      let!(:new_communication) { create(:communication, subject: 'AAAAAA', client_id: project.id ) }
+      let!(:new_communication) { create(:communication, subject: 'AAAAAA', client_id: project.id) }
 
       before do
         visit '/administration/communications'
@@ -44,14 +45,16 @@ feature 'Operations on communications#index', js: true do
       scenario 'Unsort by Communication subject' do
         find('a.sort_link.asc').click
         expect(page.all('tbody tr')[0].text).to include(
-          default_ordered_communications.first.subject)
+          default_ordered_communications.first.subject
+        )
       end
     end
 
     context 'Sorting by created_at' do
-
-      let!(:new_communication) { create(:communication,
-        created_at: Time.current - 100.minutes, client_id: project.id ) }
+      let!(:new_communication) do
+        create(:communication,
+               created_at: Time.current - 100.minutes, client_id: project.id)
+      end
 
       before do
         visit '/administration/communications'
@@ -60,19 +63,19 @@ feature 'Operations on communications#index', js: true do
 
       scenario 'Click to sort ascending for created_at' do
         expect(page.all('tbody tr')[0].text).
-        to include(new_communication.decorate.created_at)
+          to include(new_communication.decorate.created_at)
       end
 
       scenario 'Click to sort descending for created_at' do
         find('a.sort_link.asc').click
         expect(page.all('tbody tr')[0].text).
-        to include(default_ordered_communications.first.decorate.created_at)
+          to include(default_ordered_communications.first.decorate.created_at)
       end
     end
 
     scenario 'Search for subject' do
       text = Faker::Lorem.word
-      create(:communication, subject: text, client_id: project.id )
+      create(:communication, subject: text, client_id: project.id)
       visit '/administration/communications'
       within '.list-filter' do
         fill_in 'q_subject_or_body_cont', with: text
@@ -83,7 +86,7 @@ feature 'Operations on communications#index', js: true do
     end
 
     scenario 'Filter by type' do
-      create(:communication, kind: 'reminder', client_id: project.id )
+      create(:communication, kind: 'reminder', client_id: project.id)
       visit '/administration/communications'
       within '.list-filter' do
         find('button[data-id=q_kind_in]').click

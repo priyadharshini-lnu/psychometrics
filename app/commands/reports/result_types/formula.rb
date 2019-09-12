@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reports
   module ResultTypes
     class Formula < BaseType
@@ -27,9 +29,9 @@ module Reports
         return (results.inject(0.0, :+) / results.size.to_f).round(2) if formula_op == AVERAGE
         return results.min if formula_op == MIN
         return results.max if formula_op == MAX
+
         raise "Formula operation #{formula_op} is not supported"
       end
     end
-
   end
 end

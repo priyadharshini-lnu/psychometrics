@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 module Api
   class Mindmill
     COMPANY_ID = 70
     KEY = ENV['MINDMILL_KEY']
-    WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'.freeze
-    AVAILABLE_LANGUAGES = %w(en ar fr).freeze
+    WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'
+    AVAILABLE_LANGUAGES = %w[en ar fr].freeze
 
     attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign
     attr_accessor :report, :ssourl, :has_in_progress_assign, :scores
@@ -23,10 +25,10 @@ module Api
     # Return false If happens error
     def assign_user
       @ssourl = has_in_progress_assign ? new_assign_user : add_new_user
-    rescue Savon::SOAPFault => error
-      p error.http.code
+    rescue Savon::SOAPFault => e
+      p e.http.code
       p 'Error-' * 10
-      return false
+      false
     end
 
     # Return url Single Sign On into MindMill
@@ -49,6 +51,7 @@ module Api
       result = response.body[:add_new_user_response][:add_new_user_result]
       return result if result.start_with?('http')
       return request_ssourl if result == 'D'
+
       p 'add_new_user - ' * 5
       p 'Result doesn\'t contains url or D'
       false
@@ -62,6 +65,7 @@ module Api
       response = api.call(:request_ssourl, message: { strCompanyKey: KEY, strUsername: appid })
       result = response.body[:request_ssourl_response][:request_ssourl_result]
       return result if result.start_with?('http')
+
       p 'request_ssourl - ' * 5
       p 'Result doesn\'t contains url'
       false
@@ -76,7 +80,6 @@ module Api
       result == 'T'
     end
 
-    #
     def load_results
       # return false unless test_taken?
       response = api.call(:send_cognitive_report, message: { strCompanyKey: KEY, strUsername: appid })
@@ -86,7 +89,9 @@ module Api
     end
 
     def load_scores
-      response = api.call(:send_results2, message: { strCompanyKey: KEY, strUserName: appid, strOptions: "ALL", strReportLang: "EN" })
+      response = api.call(:send_results2, message: {
+        strCompanyKey: KEY, strUserName: appid, strOptions: 'ALL', strReportLang: 'EN'
+      })
       @scores = response.body[:send_results2_response][:send_results2_result]
     rescue Savon::Error => e
       Rails.logger.error(e.inspect)
@@ -95,7 +100,7 @@ module Api
     protected
 
     def str_applicant
-      %{
+      %(
         <applicant>
           <appid>#{appid}</appid>
           <firstname>#{current_membership.user.first_name}</firstname>
@@ -110,7 +115,7 @@ module Api
           <progtorun>#{assessment.mindmill_id}</progtorun>
           <companyid>#{COMPANY_ID}</companyid>
         </applicant>
-      }
+      )
     end
   end
 end

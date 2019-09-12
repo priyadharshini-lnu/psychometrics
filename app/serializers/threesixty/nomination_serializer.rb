@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class NominationSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :can_send_request_approval_email
@@ -13,7 +15,7 @@ module Threesixty
       object.user
     end
 
-    def is_self
+    def is_self # rubocop:disable Naming/PredicateName
       object.user_id == current_user.id
     end
 
@@ -30,7 +32,8 @@ module Threesixty
     end
 
     def requirements
-      Threesixty::NominationRequirements::FindForUsers.call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
+      Threesixty::NominationRequirements::FindForUsers.
+        call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
     end
 
     def instructions

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: occupations_factors
@@ -15,12 +17,12 @@
 class OccupationsFactor < ApplicationRecord
   # Roles constant
   CONDITION_MAP = {
-      equal_to: '==',
-      not_equal_to: '!=',
-      less_then: '<',
-      less_then_or_equal: '<=',
-      greater_then: '>',
-      greater_then_or_equal: '>='
+    equal_to: '==',
+    not_equal_to: '!=',
+    less_then: '<',
+    less_then_or_equal: '<=',
+    greater_then: '>',
+    greater_then_or_equal: '>='
   }.freeze
 
   belongs_to :factor

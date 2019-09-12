@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class BulkReportsController < Administration::BaseController
     prepend_before_action :set_resource_class
@@ -60,7 +62,7 @@ module Administration
     end
 
     def set_resource_class
-      @_resource_class ||= BulkReport
+      @_resource_class ||= BulkReport # rubocop:disable Naming/MemoizedInstanceVariableName
     end
   end
 end

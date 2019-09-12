@@ -11,6 +11,7 @@ module Administration
 
       def call
         return broadcast(:invalid, form) if form.invalid?
+
         transaction do
           clients.each do |client|
             create_membership_and_user(client)
@@ -48,7 +49,7 @@ module Administration
 
       def apply_assigned_assessments(client)
         client.assessment_ids.each do |assessment_id|
-          assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
+          membership.assigns.find_or_create_by(assessment_id: assessment_id)
         end
       end
 
@@ -66,7 +67,10 @@ module Administration
 
             # If is Hogan and membership already starts passing
             if assessment.hogan? && membership_with_result.hogan_credential
-              Hogan::AssignAndLoadResultsJob.perform_later(assign_with_result, assign.reports.to_a.select(&:hogan?), membership_with_result, client.project)
+              Hogan::AssignAndLoadResultsJob.
+                perform_later(
+                  assign_with_result, assign.reports.to_a.select(&:hogan?), membership_with_result, client.project
+                )
             end
 
             next if client_report.report.hogan?

@@ -16,7 +16,7 @@ module Administration
       private
 
       def set_resource_class
-        @_resource_class ||= LicenseUsage
+        @_resource_class ||= LicenseUsage # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       def init_breadcrumbs

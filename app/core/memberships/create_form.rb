@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Memberships
   class CreateForm < Rectify::Form
     attribute :first_name, String

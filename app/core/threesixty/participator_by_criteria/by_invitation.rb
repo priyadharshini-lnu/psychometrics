@@ -19,12 +19,12 @@ module Threesixty
 
       def email_history_map
         @email_history_map ||= Threesixty::ReminderHistory.
-          where(
-            threesixty_campaign: threesixty_campaign,
-            email_name: email_name,
-            user_id: participators.map(&:user_id)
-          ).
-          index_by(&:user_id)
+                               where(
+                                 threesixty_campaign: threesixty_campaign,
+                                 email_name: email_name,
+                                 user_id: participators.map(&:user_id)
+                               ).
+                               index_by(&:user_id)
       end
     end
   end

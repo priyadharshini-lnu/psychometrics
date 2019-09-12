@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Clients
   module Reports
     class AssignReportToMembership < BaseCommand
@@ -41,7 +43,9 @@ module Clients
 
             # If is Hogan and membership already starts passing
             if assessment.hogan? && membership_with_result.hogan_credential
-              Hogan::AssignAndLoadResultsJob.perform_later(assign_with_result, assign.reports.to_a.select(&:hogan?), membership_with_result, client.project)
+              Hogan::AssignAndLoadResultsJob.perform_later(
+                assign_with_result, assign.reports.to_a.select(&:hogan?), membership_with_result, client.project
+              )
             end
 
             next if report.hogan?

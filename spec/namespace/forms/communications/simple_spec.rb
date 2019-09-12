@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe ::Forms::Communications::Simple do
@@ -112,8 +114,8 @@ RSpec.describe ::Forms::Communications::Simple do
   describe 'prepopulate!' do
     let(:form_with_sub_campaign_id_end) do
       ::Forms::Communications::Simple.new(Communication.new(
-        client_id: 10, project_id: 15, campaign_id: 20, sub_campaign_id: 30
-      ))
+                                            client_id: 10, project_id: 15, campaign_id: 20, sub_campaign_id: 30
+                                          ))
     end
 
     context 'current_user is superadmin' do
@@ -135,25 +137,24 @@ RSpec.describe ::Forms::Communications::Simple do
     context 'current_user is project_admin' do
       let(:form_campaign_id_end) do
         ::Forms::Communications::Simple.new(Communication.new(
-          client_id: 10, project_id: 15, campaign_id: 20
-        ))
+                                              client_id: 10, project_id: 15, campaign_id: 20
+                                            ))
       end
       let(:form_project_id_end) do
         ::Forms::Communications::Simple.new(Communication.new(
-          client_id: 10, project_id: 15
-        ))
+                                              client_id: 10, project_id: 15
+                                            ))
       end
       let(:form_client_id_end) do
         ::Forms::Communications::Simple.new(Communication.new(
-          client_id: 10
-        ))
+                                              client_id: 10
+                                            ))
       end
 
       it 'assign owner_id from client_id' do
         form_with_sub_campaign_id_end.prepopulate!(current_user: project_admin)
         expect(form_with_sub_campaign_id_end.owner_id).to eq(form_with_sub_campaign_id_end.client_id)
       end
-
 
       it 'assign end_level_id from sub_campaign_id' do
         form_with_sub_campaign_id_end.prepopulate!(current_user: project_admin)

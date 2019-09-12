@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkReports
   class CompressJob < ApplicationJob
     queue_as :default
@@ -17,8 +19,8 @@ module BulkReports
     private
 
     def save_report_with_file(report, file)
-      File.open(file) do |file|
-        report.file = file
+      File.open(file) do |f|
+        report.file = f
         report.save!
       end
     end

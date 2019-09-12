@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApiKeyDecorator < BaseDecorator
   def display_name
     "#{object.user.decorate.display_name}'s API token"

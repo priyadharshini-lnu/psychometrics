@@ -33,7 +33,10 @@ module Threesixty
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_evaluations? && subject.report_approved?
 
-        return broadcast :ok, AVAILABLE if Threesixty::Reports::IsAvailable.call!(subject, option, subject_evaluator_counters) && !manager_can_approve_evaluations?
+        if Threesixty::Reports::IsAvailable.call!(subject, option, subject_evaluator_counters) &&
+           !manager_can_approve_evaluations?
+          return broadcast :ok, AVAILABLE
+        end
         return broadcast :ok, AVAILABLE if subject.report_approved?
         return broadcast :ok, AVAILABLE if subject.report_status_released?
 

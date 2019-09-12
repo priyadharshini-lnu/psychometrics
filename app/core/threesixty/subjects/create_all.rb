@@ -22,12 +22,14 @@ module Threesixty
             end
           end
 
-          broadcast :ok, subjects: result, existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed
+          broadcast :ok,
+                    subjects: result,
+                    existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed
         end
       end
 
       def fetch_or_create_subject_user(subject)
-        if user = project_users_indexed[subject[:email]]
+        if (user = project_users_indexed[subject[:email]])
           user.update!(subject.except(:password))
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           user
@@ -41,7 +43,7 @@ module Threesixty
       end
 
       def create_subject(user)
-        # TODO (atanych): I doubt that good way, but current licenses absolutely are not intended for threesixty
+        # TODO: (atanych): I doubt that good way, but current licenses absolutely are not intended for threesixty
         subject_exisits = threesixty_campaign.subjects.exists?(user: user)
         unless subject_exisits
           AssignsReport::LICENSES[Assessment::THREESIXTY].use(user: user, campaign: threesixty_campaign.campaign)

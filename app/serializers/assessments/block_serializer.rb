@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: blocks
@@ -18,7 +20,6 @@ module Assessments
   class BlockSerializer < ActiveModel::Serializer
     attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
 
-    #
     def questions
       object.questions_ams.map do |q|
         Assessments::QuestionSerializer.new(q)

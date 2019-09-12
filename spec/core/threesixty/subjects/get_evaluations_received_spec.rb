@@ -9,7 +9,8 @@ describe Threesixty::Subjects::GetEvaluationsReceived do
 
   it 'returns total evaluations completed by user' do
     2.times do
-      participant = create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject_id: threesixty_subjects[0].user_id)
+      participant = create(:threesixty_participant,
+                           campaign: threesixty_campaign.campaign, subject_id: threesixty_subjects[0].user_id)
       create(
         :users_result,
         campaign: threesixty_campaign.campaign,
@@ -18,7 +19,8 @@ describe Threesixty::Subjects::GetEvaluationsReceived do
         status: :completed
       )
     end
-    participant = create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject_id: threesixty_subjects[1].user_id)
+    participant = create(:threesixty_participant,
+                         campaign: threesixty_campaign.campaign, subject_id: threesixty_subjects[1].user_id)
     create(
       :users_result,
       campaign: threesixty_campaign.campaign,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: product_prices
@@ -11,7 +13,6 @@
 #
 
 class ProductPrice < ApplicationRecord
-  attr_accessor :cost
   belongs_to :product
   monetize :price_cents
 

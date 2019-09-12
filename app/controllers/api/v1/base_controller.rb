@@ -30,20 +30,21 @@ module Api
       def project
         @project ||=
           begin
-            if current_user.superadmin?
-              p = Client.projects.find_by(id: params[:project_id])
-              raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
+            p =
+              if current_user.superadmin?
+                Client.projects.find_by(id: params[:project_id])
+              else
+                memberships = current_user.memberships
+                project_ids = memberships.select(&:project_admin?).map(&:client_id)
+                client_ids  = memberships.select(&:client_admin?).map(&:client_id)
+                Client.projects.
+                  where.
+                  has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
+              end
 
-              p
-            else
-              memberships = current_user.memberships
-              project_ids = memberships.select(&:project_admin?).map(&:client_id)
-              client_ids  = memberships.select(&:client_admin?).map(&:client_id)
-              p           = Client.projects.where.has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
-              raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
+            raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
 
-              p
-            end
+            p
           end
       end
 

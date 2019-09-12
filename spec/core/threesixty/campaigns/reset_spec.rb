@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Threesixty::Campaigns::Reset do
@@ -5,7 +7,8 @@ describe Threesixty::Campaigns::Reset do
 
   describe '.call' do
     it 'deletes associated nomination_requirements' do
-      nomination_requirements = create_list(:threesixty_nomination_requirement, 2, threesixty_campaign_id: threesixty_campaign.id)
+      nomination_requirements = create_list(:threesixty_nomination_requirement, 2,
+                                            threesixty_campaign_id: threesixty_campaign.id)
       ::Threesixty::Campaigns::Reset.call!(threesixty_campaign)
 
       expect(::Threesixty::NominationRequirement.where(id: nomination_requirements.map(&:id))).to_not exist

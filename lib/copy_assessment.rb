@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CopyAssessment
   # Copy assessment with flow and norm_rules
   # To new block and question ids

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module ReportFamilies
     class ReportPolicy < Administration::ReportPolicy
@@ -8,6 +10,7 @@ module Administration
       class Scope < Scope
         def resolve
           return scope if @user.is?(:superadmin)
+
           scope.none
         end
       end

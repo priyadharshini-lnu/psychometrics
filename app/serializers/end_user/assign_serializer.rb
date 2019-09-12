@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EndUser
   class AssignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
@@ -5,7 +7,7 @@ module EndUser
                :assessment_name, :questions_count, :timing, :mindmill, :hogan
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
-    attribute :need_confirm, if: -> { !object.assessment.hogan? }
+    attribute :need_confirm
 
     def url
       pass_assign_path(object)
@@ -32,6 +34,7 @@ module EndUser
     def normalize_hogan_type(type)
       return 'Raw' if type == 'RAW'
       return 'Percentile' if type == 'percentile'
+
       raise "Not supported hogan type #{type}"
     end
 
@@ -64,7 +67,8 @@ module EndUser
     end
 
     def assigned_reports
-      filtered_reports = object.original_assigns_reports.select { |assign| reports_ids.include?(assign.report_id) }.map(&:report)
+      filtered_reports = object.original_assigns_reports.
+                         select { |assign| reports_ids.include?(assign.report_id) }.map(&:report)
       reports = filter_reports_by_type(filtered_reports, object.norm_type)
       reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
     end
@@ -81,8 +85,8 @@ module EndUser
 
     def filter_reports_by_type(reports, type)
       return reports unless type
+
       reports.select { |r| r.type == type.downcase || r.common? }
     end
-
   end
 end

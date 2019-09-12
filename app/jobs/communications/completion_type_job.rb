@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Communications
   class CompletionTypeJob < ApplicationJob
     queue_as :communication

@@ -50,8 +50,10 @@ module AssignsReports
     def global_level
       scope.
         joining { assign.project_assign }.
-        where.has { (assign.status == Assign.statuses[:completed]) |
-                    (assign.project_assign.status == Assign.statuses[:completed]) }
+        where.has do
+        (assign.status == Assign.statuses[:completed]) |
+          (assign.project_assign.status == Assign.statuses[:completed])
+      end
     end
   end
 end

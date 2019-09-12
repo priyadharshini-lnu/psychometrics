@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Assessments
     class BuildersController < Administration::BaseController
@@ -21,7 +23,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize [:assessments, :builder]
+        authorize %i[assessments builder]
       end
     end
   end

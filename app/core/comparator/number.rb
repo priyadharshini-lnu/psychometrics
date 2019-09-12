@@ -12,15 +12,15 @@ module Comparator
 
     def call
       result = case comparator
-      when 'equal'
-        lhs == rhs
-      when 'not_equal'
-        lhs != rhs
-      when 'less_than'
-        lhs < rhs
-      when 'more_than'
-        lhs > rhs
-      end
+                 when 'equal'
+                   lhs == rhs
+                 when 'not_equal'
+                   lhs != rhs
+                 when 'less_than'
+                   lhs < rhs
+                 when 'more_than'
+                   lhs > rhs
+               end
 
       broadcast :ok, result
     end

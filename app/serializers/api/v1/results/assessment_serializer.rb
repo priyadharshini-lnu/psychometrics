@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     module Results
@@ -16,10 +18,9 @@ module Api
 
           {
             normed_factors: normed_factors.map { |f| Api::V1::Results::NormedFactorSerializer.new(f).to_h },
-            ranked_occupations: ranked_occupations.map { |o| Api::V1::Results::RankedOccupationSerializer.new(o).to_h },
+            ranked_occupations: ranked_occupations.map { |o| Api::V1::Results::RankedOccupationSerializer.new(o).to_h }
           }
         end
-
       end
     end
   end

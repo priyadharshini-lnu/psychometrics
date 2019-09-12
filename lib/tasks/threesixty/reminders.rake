@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :reminders do
   desc 'Send email reminders'
 

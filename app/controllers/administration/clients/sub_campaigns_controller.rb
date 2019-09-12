@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class SubCampaignsController < Administration::ClientsController
@@ -23,7 +25,7 @@ module Administration
 
       def init_breadcrumbs
         client_root_breadcrumb
-        add_breadcrumb client.decorate.display_name, { action: :index }
+        add_breadcrumb client.decorate.display_name, action: :index
       end
     end
   end

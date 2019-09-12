@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Administration
   class BasePolicy
     attr_reader :user, :record
 
-    def initialize(user, record, extra = {})
+    def initialize(user, record, _extra = {})
       @user = user
       @record = [record].flatten.last
     end

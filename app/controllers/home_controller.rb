@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def survey_instructions
     render layout: 'users_new'
@@ -31,9 +33,9 @@ class HomeController < ApplicationController
     return redirect_to(root_path) if session[:sso].try(:[], 'return_url').nil?
 
     uri = URI.parse session[:sso]['return_url']
-    uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) unless uri.query.nil?
+    uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) if uri.query
     redirect_to uri.to_s
-  rescue URI::InvalidURIError => e
+  rescue URI::InvalidURIError
     redirect_to(root_path)
   end
 end

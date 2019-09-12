@@ -50,7 +50,7 @@ const ReportsMenu = reports => (
 
 const renderButtonContent = ({
   mindmill, mindmillUrl, url, status, assignedReports, needConfirm,
-}, setShowConfirm) => {
+}, setShowConfirm, loading, loadAssessment) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
@@ -59,7 +59,7 @@ const renderButtonContent = ({
     if (needConfirm) {
       setShowConfirm(true)
     } else {
-      location.href = href
+      loadAssessment(href)
     }
   }
 
@@ -70,7 +70,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS) {
     return (
       <LinkTag>
-        <ContinueIcon />
+        {loading ? <Icon type="loading" /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
       </LinkTag>
@@ -105,7 +105,7 @@ const renderButtonContent = ({
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
-      <Icon type="play-circle" />
+      {loading ? <Icon type="loading" /> : <Icon type="play-circle" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -114,59 +114,73 @@ const renderButtonContent = ({
 
 export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const loadAssessment = (href) => {
+    setLoading(true)
+    location.href = href
+  }
+
   const accept = () => {
+    setShowConfirm(false)
+    setLoading(true)
+
     acceptPolicy().then(() => {
-      location.href = assign.url
+      const { url, mindmill, mindmillUrl } = assign
+      let href = url
+
+      if (mindmill) { href = mindmillUrl }
+
+      loadAssessment(href)
     })
   }
+
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
-      <Link to={assign.status !== 'completed' ? assign.url : '#'}>
-        <Card
-          bodyStyle={{ padding: 0 }}
-          hoverable
-          cover={(
-            <div className="cover">
-              <div className="caption">
-                <div className="icon">
-                  <AssessmentIcon />
-                </div>
-                <div className="title">{I18n.t('threesixty.assessment')}</div>
+      <Card
+        bodyStyle={{ padding: 0 }}
+        hoverable
+        cover={(
+          <div className="cover">
+            <div className="caption">
+              <div className="icon">
+                <AssessmentIcon />
               </div>
-              {assign.mindmill && <img className="service" src={mindmill} alt="" />}
-              <div className="card-progress">
-                <Progress
-                  percent={assign.completionPercent || 0}
-                />
-              </div>
+              <div className="title">{I18n.t('threesixty.assessment')}</div>
             </div>
-          )}
-        >
-          <div className="card-body">
-            <div className="card-content">
-              <div className="card-title">
-                {assign.assessmentName}
-              </div>
-              <Row type="flex" className="info-line">
-                <Col className="info-block">
-                  <Icon type="clock-circle" />
-                  {' '}
-                  {assign.timing}
-                </Col>
-                <Col className="info-block">
-                  <Icon type="question-circle" />
-                  {' '}
-                  {assign.questionsCount}
-                </Col>
-              </Row>
-              <div className="divider" />
-              <div className="button">
-                {renderButtonContent(assign, setShowConfirm)}
-              </div>
+            {assign.mindmill && <img className="service" src={mindmill} alt="" />}
+            <div className="card-progress">
+              <Progress
+                percent={assign.completionPercent || 0}
+              />
             </div>
           </div>
-        </Card>
-      </Link>
+        )}
+      >
+        <div className="card-body">
+          <div className="card-content">
+            <div className="card-title">
+              {assign.assessmentName}
+            </div>
+            <Row type="flex" className="info-line">
+              <Col className="info-block">
+                <Icon type="clock-circle" />
+                {' '}
+                {assign.timing}
+              </Col>
+              <Col className="info-block">
+                <Icon type="question-circle" />
+                {' '}
+                {assign.questionsCount}
+              </Col>
+            </Row>
+            <div className="divider" />
+            <div className="button">
+              {renderButtonContent(assign, setShowConfirm, loading, loadAssessment)}
+            </div>
+          </div>
+        </div>
+      </Card>
       {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
     </Col>
   )

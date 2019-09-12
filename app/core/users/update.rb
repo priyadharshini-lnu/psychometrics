@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Users
   class Update < Rectify::Command
     attr_reader :form, :project, :user
@@ -10,6 +12,7 @@ module Users
 
     def call
       return broadcast :invalid, form if form.invalid?
+
       user.update!(form.attributes)
       broadcast :ok, user
     end

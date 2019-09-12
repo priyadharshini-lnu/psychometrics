@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   class SubjectSerializer < ActiveModel::Serializer
     attributes :id, :status, :report_status, :evaluators, :evaluations

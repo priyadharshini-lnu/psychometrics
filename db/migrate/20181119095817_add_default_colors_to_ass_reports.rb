@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDefaultColorsToAssReports < ActiveRecord::Migration[5.1]
   def change
     Report.find_each do |r|

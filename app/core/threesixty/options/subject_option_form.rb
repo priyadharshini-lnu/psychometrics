@@ -3,7 +3,7 @@
 module Threesixty
   module Options
     class SubjectOptionForm < Rectify::Form
-      ALL_BOOLEAN_FIELDS = %i(
+      ALL_BOOLEAN_FIELDS = %i[
         can_evaluate_self
         limit_self_evaluation_by_criteria
         can_nominate_evaluators
@@ -16,13 +16,13 @@ module Threesixty
         limit_relationship_that_subject_can_select
         can_view_completion_status_of_evaluation
         can_view_individual_evaluations
-      )
+      ].freeze
 
-      DATA_SHEET_CRITERIA_FIELD = %i(
+      DATA_SHEET_CRITERIA_FIELD = %i[
         self_evaluation_criteria
         limit_nomination_by_subject_to_anyone_criteria
         limit_nomination_by_subject_from_datasheet_criteria
-      )
+      ].freeze
 
       attribute :can_evaluate_self, Boolean, deafult: false
       attribute :limit_self_evaluation_by_criteria, Boolean, deafult: false
@@ -42,9 +42,10 @@ module Threesixty
       attribute :limit_nomination_by_subject_to_anyone_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_from_datasheet_criteria, Boolean, default: []
 
-      validates *ALL_BOOLEAN_FIELDS,
-        inclusion: { in: [ true, false ], message: "doesn't have a valid value" },
-        allow_nil: true
+      validates(*ALL_BOOLEAN_FIELDS,
+                inclusion: { in: [true, false], message: "doesn't have a valid value" },
+                allow_nil: true)
+
       validate :validate_data_stream_fields
 
       def validate_data_stream_fields

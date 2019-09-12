@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class StatisticsController < Administration::BaseController
@@ -10,15 +12,19 @@ module Administration
       def index
         @_filter_form = policy_scope(resource_class).search(params[:q])
         @_resources = filter_form.
-                     result.
-                     joining { |a| a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id)) }.
-                     joining { assessment }.
-                     selecting { ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
-                                  'COUNT(CASE WHEN assigns.status = 1 THEN 1 ELSE null END) AS in_progress_count',
-                                  'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
-                                  assessment.name,
-                                  assessment_id.as('id')] }.
-                     grouping { [assessment_id, assessment.name] }
+                      result.
+                      joining do |a|
+                        a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id))
+                      end .
+                      joining { assessment }.
+                      selecting do
+                        ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
+                         'COUNT(CASE WHEN assigns.status = 1 THEN 1 ELSE null END) AS in_progress_count',
+                         'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
+                         assessment.name,
+                         assessment_id.as('id')]
+                      end .
+                      grouping { [assessment_id, assessment.name] }
         respond_to do |format|
           format.html
           format.js { render :index, formats: [:js] }
@@ -30,14 +36,19 @@ module Administration
       def init_breadcrumbs
         client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        unless client.project_level?
+          add_breadcrumb(
+            client.project.decorate.display_name,
+            administration_client_project_campaigns_path(client.client, client.project)
+          )
+        end
         add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-        add_breadcrumb I18n.t('administration.breadcrumbs.statistics'), { action: :index }
+        add_breadcrumb I18n.t('administration.breadcrumbs.statistics'), action: :index
       end
 
       # Set model
       def set_resource_class
-        @_resource_class ||= Assign
+        @_resource_class ||= Assign # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
       # Authorisation user

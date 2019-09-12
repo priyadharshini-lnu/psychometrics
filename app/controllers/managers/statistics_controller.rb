@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class StatisticsController < BaseController
     prepend_before_action :set_resource_class
@@ -8,11 +10,13 @@ module Managers
       @resources = @filter_form.
                    result.
                    joining { assessment }.
-                   selecting { ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
-                                'COUNT(CASE WHEN assigns.status = 1 THEN 1 ELSE null END) AS in_progress_count',
-                                'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
-                                assessment.name,
-                                assessment_id.as('id')] }.
+                   selecting do
+                     ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
+                      'COUNT(CASE WHEN assigns.status = 1 THEN 1 ELSE null END) AS in_progress_count',
+                      'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
+                      assessment.name,
+                      assessment_id.as('id')]
+                   end .
                    grouping { [assessment_id, assessment.name] }
       respond_to do |format|
         format.html
@@ -24,7 +28,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Assign
+      @resource_class ||= Assign # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     # Authorisation user

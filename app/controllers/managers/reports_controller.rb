@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class ReportsController < BaseController
     prepend_before_action :set_resource_class
@@ -22,7 +24,8 @@ module Managers
         end
         format.pdf do
           add_cookie_for_file_download
-          pdf_file = ::Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_project, lang: user_locale)
+          pdf_file = ::Exports::Reports::Pdf::ReportExport.
+                     export(@current_user, @resource, @user, @current_project, lang: user_locale)
           send_file pdf_file, type: 'application/pdf'
         end
       end
@@ -32,7 +35,7 @@ module Managers
 
     # Set model
     def set_resource_class
-      @resource_class ||= Report
+      @resource_class ||= Report # rubocop:disable Naming/MemoizedInstanceVariableName
     end
 
     def set_resource
@@ -45,7 +48,12 @@ module Managers
     end
 
     def pundit_user
-      { current_membership: @current_membership, current_user: @current_user, current_client: @current_client, user_membership: @user_membership }
+      {
+        current_membership: @current_membership,
+        current_user: @current_user,
+        current_client: @current_client,
+        user_membership: @user_membership
+      }
     end
 
     # Authorisation user

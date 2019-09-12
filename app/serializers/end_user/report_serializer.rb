@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module EndUser
   class ReportSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
@@ -22,7 +24,7 @@ module EndUser
       object.hogan_report_setting
     end
 
-    def has_external_report
+    def has_external_report # rubocop:disable Naming/PredicateName
       !!assigns_report&.external_report
     end
 

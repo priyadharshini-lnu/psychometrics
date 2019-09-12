@@ -11,13 +11,12 @@ describe Threesixty::Emails::IsApproveReportSendable do
   describe 'valid threesixty options for mail' do
     before do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "approval" =>  {
-            "email_manager_when_report_ready_for_approval" => true, "manager_approves_reports" => true
-            }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'approval' => {
+                 'email_manager_when_report_ready_for_approval' => true, 'manager_approves_reports' => true
+               }
+             })
     end
 
     it 'returns false if report is already approved' do
@@ -37,19 +36,17 @@ describe Threesixty::Emails::IsApproveReportSendable do
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end
-
   end
 
   describe 'invalid threesixty options for email' do
     before do
       create(:threesixty_option,
-        threesixty_campaign: threesixty_campaign,
-        "reports" => {
-          "approval" =>  {
-            "email_manager_when_report_ready_for_approval" => false
-            }
-        }
-      )
+             threesixty_campaign: threesixty_campaign,
+             'reports' => {
+               'approval' => {
+                 'email_manager_when_report_ready_for_approval' => false
+               }
+             })
     end
 
     it 'returns false' do

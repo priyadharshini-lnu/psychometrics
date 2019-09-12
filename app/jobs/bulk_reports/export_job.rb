@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module BulkReports
   class ExportJob < ApplicationJob
     queue_as :default
@@ -43,8 +45,9 @@ module BulkReports
     def download_report(report_file)
       url = URI(report_file.url)
       url.scheme = 'http'
-      IO.copy_stream(open(url.to_s), output)
+      IO.copy_stream(open(url.to_s), output) # rubocop:disable Security/Open
     rescue OpenURI::HTTPError
+      Rails.logger.error "Unprocessable Entity #{report_file}"
     end
   end
 end

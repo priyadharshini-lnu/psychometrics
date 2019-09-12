@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Managers
   class NotificationPolicy < BasePolicy
     def index?
@@ -6,7 +8,8 @@ module Managers
 
     class Scope < Scope
       def resolve
-        assessments_ids = Assign.where(membership_id: @user[:current_membership].id, role: 'manager').pluck(:assessment_id)
+        assessments_ids = Assign.where(membership_id: @user[:current_membership].id, role: 'manager').
+                          pluck(:assessment_id)
         membership_ids = @user[:current_membership].children.pluck(:id) + [@user[:current_membership].id]
         scope.where(membership_id: membership_ids, assessment_id: assessments_ids)
       end

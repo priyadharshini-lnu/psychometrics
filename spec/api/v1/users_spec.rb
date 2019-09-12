@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 require 'swagger_helper'
 
@@ -10,7 +12,6 @@ describe 'Users' do
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   path '/projects/{project_id}/users/{user_id}/sso' do
-
     post 'Create authenticated SSO URL' do
       operationId 'GetUserSsoUrl'
       tags 'Users'
@@ -37,13 +38,13 @@ describe 'Users' do
       response '200', 'SSO URL Created' do
         schema '$ref' => '#/definitions/SsoUrl'
         examples 'application/json' => {
-          "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
-          "expires_at": "2014-01-01T23:28:56.782Z",
+          "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987',
+          "expires_at": '2014-01-01T23:28:56.782Z',
           "assessments": [
             {
-              "id": "3456",
-              "name": "Thriving Index Assessment",
-              "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875"
+              "id": '3456',
+              "name": 'Thriving Index Assessment',
+              "url": 'https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875'
             }
           ]
         }
@@ -64,7 +65,8 @@ describe 'Users' do
     post 'Create new user' do
       operationId 'CreateUser'
       tags 'Users'
-      description 'Creates a new user and adds to the campaigns specified along with the campaign\'s default assessments and reports.'
+      description 'Creates a new user and adds to the campaigns specified along with \\
+the campaign\'s default assessments and reports.'
       consumes 'application/json'
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
@@ -73,12 +75,12 @@ describe 'Users' do
       response '200', 'User created' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id":           14602,
-          "first_name":   "Kamaru",
-          "last_name":    "Usman",
-          "email":        "marti@gmail.com",
-          "created_at":   "2019-03-04T15:47:33.570+04:00",
-          "updated_at":   "2019-03-04T15:47:33.950+04:00",
+          "id": 14_602,
+          "first_name": 'Kamaru',
+          "last_name": 'Usman',
+          "email": 'marti@gmail.com',
+          "created_at": '2019-03-04T15:47:33.570+04:00',
+          "updated_at": '2019-03-04T15:47:33.950+04:00',
           "campaign_ids": [
             510
           ]
@@ -104,9 +106,9 @@ describe 'Users' do
       response '400', 'User with this email exists' do
         schema '$ref' => '#/definitions/ApiError'
         examples 'application/json' => {
-          "code" => 1006,
-          "message" => 'User with this email exists',
-          "more_info" => "Email address max@example.com is already taken"
+          'code' => 1006,
+          'message' => 'User with this email exists',
+          'more_info' => 'Email address max@example.com is already taken'
         }
 
         let(:first_name) { 'Max' }
@@ -119,11 +121,11 @@ describe 'Users' do
         before { create(:user, project: project, email: 'max@example.com') }
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1006,
-                                "message" => 'User with this email exists',
-                                "more_info" => "Email address max@example.com is already taken"
-                              })
+          expect(error).to eq(
+            'code' => 1006,
+                                'message' => 'User with this email exists',
+                                'more_info' => 'Email address max@example.com is already taken'
+          )
         end
       end
 
@@ -135,16 +137,16 @@ describe 'Users' do
         examples 'application/json' => {
           "code": 1005,
           "message": 'Resource not found',
-          "more_info": 'Project with id=111 is not found',
+          "more_info": 'Project with id=111 is not found'
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1005,
-                                "message" => 'Resource not found',
-                                "more_info" => 'Project with id=111 is not found',
-                              })
+          expect(error).to eq(
+            'code' => 1005,
+                                'message' => 'Resource not found',
+                                'more_info' => 'Project with id=111 is not found'
+          )
         end
       end
 
@@ -158,7 +160,8 @@ describe 'Users' do
         examples 'application/json' => {
           "code": 1003,
           "message": 'Not enough licenses',
-          "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report.",
+          "more_info": '<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough \\
+licenses for <b>Cognitive - Entry Level</b> report.'
         }
 
         let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
@@ -171,18 +174,18 @@ describe 'Users' do
         end
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq({
-                                "code" => 1003,
-                                "message" => 'Not enough licenses',
-                                "more_info" => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not enough licenses for <b>#{report.name}</b> report.",
-                              })
+          expect(error).to eq(
+            'code' => 1003,
+                                'message' => 'Not enough licenses',
+                                'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not \
+enough licenses for <b>#{report.name}</b> report."
+          )
         end
       end
     end
   end
 
   path '/projects/{project_id}/users/{user_id}' do
-
     put 'Updates user' do
       operationId 'UpdateUser'
       tags 'Users'
@@ -195,12 +198,12 @@ describe 'Users' do
       response '200', 'Update the user' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id":           14602,
-          "first_name":   "Kamaru",
-          "last_name":    "Usman",
-          "email":        "marti@gmail.com",
-          "created_at":   "2019-03-04T15:47:33.570+04:00",
-          "updated_at":   "2019-03-04T15:47:33.950+04:00",
+          "id": 14_602,
+          "first_name": 'Kamaru',
+          "last_name": 'Usman',
+          "email": 'marti@gmail.com',
+          "created_at": '2019-03-04T15:47:33.570+04:00',
+          "updated_at": '2019-03-04T15:47:33.950+04:00',
           "campaign_ids": [
             510
           ]
