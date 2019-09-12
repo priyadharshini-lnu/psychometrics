@@ -19,6 +19,7 @@ module Threesixty
                                            pluck(:subject_id)
 
         all_subjects = threesixty_campaign.participants.where(evaluator_id: user.id).
+                       where('subject_id != evaluator_id').
                        where.not(evaluator_nomination_status: :declined)
 
         if option.participants.dig('manager', 'can_approve_nominations')
