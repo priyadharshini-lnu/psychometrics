@@ -67,8 +67,8 @@ module Threesixty
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
 
         meta = {
-          subject_ids: context[:subject_ids] || [context[:subject]&.user_id],
-          evaluator_ids: [context[:evaluator]&.user_id]
+          subject_ids: Array.wrap(context[:subject_ids] || context[:subject]&.user_id),
+          evaluator_ids: Array.wrap(context[:evaluator]&.user_id)
         }
 
         email_schedule_attributes = email_template.
