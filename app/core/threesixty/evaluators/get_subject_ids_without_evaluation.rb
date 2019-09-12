@@ -18,7 +18,8 @@ module Threesixty
                                            actual_by_options(threesixty_campaign.option).
                                            pluck(:subject_id)
 
-        all_subjects = threesixty_campaign.participants.where(evaluator_id: user.id).where.not(evaluator_nomination_status: :declined)
+        all_subjects = threesixty_campaign.participants.where(evaluator_id: user.id).
+                       where.not(evaluator_nomination_status: :declined)
 
         if option.participants.dig('manager', 'can_approve_nominations')
           all_subjects = all_subjects.where(manager_nomination_status: :approved)
