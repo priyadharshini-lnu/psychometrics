@@ -6,6 +6,12 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
   let(:recipients) { create_list(:user, 2) }
   let(:message_delivery) { double(deliver_later: nil) }
 
+  before do
+    allow_any_instance_of(Threesixty::Campaign).to receive(:option).and_return(
+      Threesixty::Option.new
+    )
+  end
+
   it "doesn't send scheduled email if scheduled_date more then current time" do
     email_schedule = create(
       :threesixty_email_schedule,
