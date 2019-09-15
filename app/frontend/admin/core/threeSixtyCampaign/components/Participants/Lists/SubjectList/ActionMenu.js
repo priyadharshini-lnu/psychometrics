@@ -9,6 +9,7 @@ const ActionsMenu = ({
   remove,
   removeUser,
   downloadReport,
+  openModal,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -93,6 +94,14 @@ const ActionsMenu = ({
       })
   }
 
+  const openResultsModal = () => {
+    openModal('ParticipantModal', {
+      user,
+      activeKey: 'results',
+      onClose: () => {},
+    })
+  }
+
   return (
     <Menu>
       <Menu.Item key="0">
@@ -116,6 +125,16 @@ const ActionsMenu = ({
           tabIndex={-1}
         >
           Download Report
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="2.5">
+        <div
+          onClick={() => openResultsModal()}
+          role="button"
+          tabIndex={-1}
+        >
+          View Responses
         </div>
       </Menu.Item>
       <Menu.Divider />

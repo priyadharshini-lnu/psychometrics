@@ -105,6 +105,7 @@ export default function SubjectList ({
                     remove,
                     removeUser,
                     downloadReport,
+                    openModal,
                   })
                   }
                   trigger={['click']}

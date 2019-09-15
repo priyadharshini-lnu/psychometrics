@@ -21,7 +21,10 @@ module Administration
               campaignDetails: {
                 id: resource.id,
                 reportId: resource.report_id,
-                dimensionId: resource.assessment.dimension_id
+                dimensionId: resource.assessment.dimension_id,
+                options: {
+                  participants: resource.option.participants
+                }
               }
             }
           }

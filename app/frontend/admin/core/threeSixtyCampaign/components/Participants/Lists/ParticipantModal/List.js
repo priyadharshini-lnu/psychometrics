@@ -1,7 +1,10 @@
 import React from 'react'
-import { Icon, Select, Table } from 'antd'
+import {
+  Icon, Select, Table,
+} from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
+import Confirmation from './Confirmation'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 const EVALUATOR_STATUSES = ['waiting', 'declined']
@@ -18,9 +21,7 @@ export default function List ({
   const updateParticipant = (id, attrs) => update(campaignId, id, attrs)
 
   const destroyParticipant = (id) => {
-    /* eslint-disable */
-    if (confirm('Are you sure?')) remove(campaignId, id)
-    /* eslint-enable */
+    remove(campaignId, id)
   }
 
   return (
@@ -48,7 +49,7 @@ export default function List ({
             id={id}
             name="managerNominationStatus"
             onChange={updateParticipant}
-            managerNominationStatus={managerNominationStatus}
+            status={managerNominationStatus}
           />
         )}
       />
@@ -61,7 +62,7 @@ export default function List ({
             id={id}
             name="evaluatorNominationStatus"
             onChange={updateParticipant}
-            managerNominationStatus={evaluationStatus}
+            status={evaluationStatus}
           />
         ))
         }
@@ -69,15 +70,19 @@ export default function List ({
       <Table.Column
         key="actions"
         render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
-        <Icon type="delete" onClick={() => destroyParticipant(id)} />
-        )
-        }
+          <Confirmation
+            title={I18n.t('threesixty.confirm')}
+            onConfirm={() => destroyParticipant(id)}
+          >
+            <Icon type="delete" />
+          </Confirmation>
+        )}
       />
     </Table>
   )
 }
 
-const RelationSelect = ({
+export const RelationSelect = ({
   relationships, currentRelationship, onChange, id,
 }) => (
   <Select
@@ -94,13 +99,13 @@ const RelationSelect = ({
   </Select>
 )
 
-const StatusSelect = ({
-  availableStatuses, managerNominationStatus, onChange, id, name, disabled,
+export const StatusSelect = ({
+  availableStatuses, status, onChange, id, name, disabled,
 }) => (
   <Select
     disabled={disabled}
     style={{ width: '100%' }}
-    value={managerNominationStatus}
+    value={status}
     onChange={v => onChange(id, { [name]: v })}
   >
     {availableStatuses.map(status => (

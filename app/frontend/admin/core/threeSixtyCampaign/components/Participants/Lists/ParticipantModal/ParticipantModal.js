@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Modal, Button, Tabs, Row, Col, Avatar,
 } from 'antd'
@@ -7,6 +7,7 @@ import userPresenter from 'presenters/userPresenter'
 import styles from './styles.scss'
 import EvaluatorList from './EvaluatorList'
 import EvaluationList from './EvaluationList'
+import ResultList from './ResultList'
 
 export default function ParticipantModal ({
   closeModal,
@@ -14,11 +15,13 @@ export default function ParticipantModal ({
   onClose,
   fetchParticipants,
   fetchRelationships,
+  activeKey,
   match: {
     params: { campaignId },
   },
   match,
 }) {
+  const [currentKey, setCurrentKey] = useState(activeKey || '2')
   useEffect(() => {
     fetchParticipants(campaignId, user.id)
     fetchRelationships(campaignId)
@@ -41,7 +44,7 @@ export default function ParticipantModal ({
         </Button>,
       ]}
     >
-      <Tabs defaultActiveKey="2">
+      <Tabs defaultActiveKey="2" activeKey={currentKey} onChange={key => setCurrentKey(key)}>
         <Tabs.TabPane tab="Relationships" key="1">
           Relationships
         </Tabs.TabPane>
@@ -50,6 +53,9 @@ export default function ParticipantModal ({
         </Tabs.TabPane>
         <Tabs.TabPane tab="Evaluations" key="3">
           <EvaluationList match={match} />
+        </Tabs.TabPane>
+        <Tabs.TabPane tab="Results" key="results">
+          <ResultList match={match} />
         </Tabs.TabPane>
       </Tabs>
     </Modal>
