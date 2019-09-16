@@ -13,7 +13,7 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function Campaign ({
-  history, match, fetchCampaign, instructions, campaign, nominations,
+  history, match, fetchCampaign, instructions, campaign,
   evaluationsCounters, nominationsCounters, reportsCounters, totalProgress,
   loaded, resetCampaign,
 }) {
@@ -29,10 +29,10 @@ export default function Campaign ({
   const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
   const reportsPercent = (reportsCounters.completedReports / reportsCounters.totalReports) * 100
 
-  let welcomeMessage = _.find(instructions, { name: 'welcome_message' })
-  if (nominations === 0) {
-    welcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })
-  }
+  const subjectWelcomeMessage = _.find(instructions, { name: 'welcome_message' })
+  const evaluatorWelcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })
+  const welcomeMessage = campaign.isSubject ? subjectWelcomeMessage : evaluatorWelcomeMessage || subjectWelcomeMessage
+
   return (
     <Layout>
       <Content className="fluid-container">

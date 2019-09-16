@@ -2,6 +2,6 @@
 
 module Threesixty
   class InstructionTemplateSerializer < ActiveModel::Serializer
-    attributes :id, :name, :content
+    attributes :id, :name, :content, :enabled
   end
 end
