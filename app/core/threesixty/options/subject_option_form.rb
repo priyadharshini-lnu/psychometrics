@@ -14,8 +14,6 @@ module Threesixty
         limit_nomination_by_subject_from_datasheet
         cannot_remove_nomination_set_by_manager_and_admin
         limit_relationship_that_subject_can_select
-        can_view_completion_status_of_evaluation
-        can_view_individual_evaluations
       ].freeze
 
       DATA_SHEET_CRITERIA_FIELD = %i[
@@ -35,8 +33,6 @@ module Threesixty
       attribute :cannot_remove_nomination_set_by_manager_and_admin, Boolean, deafult: false
       attribute :limit_relationship_that_subject_can_select, Boolean, deafult: false
       attribute :can_select_relationships, Hash, deafult: {}
-      attribute :can_view_completion_status_of_evaluation, Boolean, deafult: false
-      attribute :can_view_individual_evaluations, Boolean, deafult: false
 
       attribute :self_evaluation_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_to_anyone_criteria, Array[Hash], default: []
