@@ -61,7 +61,7 @@ module Threesixty
       end
 
       def call
-        config = CONFIG.find { |c| c[:template_name] == type }
+        config = CONFIG.find { |c| c[:template_name] == type }.merge(context[:mail_config] || {})
         return unless config[:condition_class].nil? || config[:condition_class].call!(context)
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)

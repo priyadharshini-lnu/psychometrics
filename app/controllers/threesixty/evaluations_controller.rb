@@ -38,7 +38,17 @@ module Threesixty
         evaluator_id: current_user.id,
         id: params[:evaluation_id] || params[:id]
       )
-      @participant.update_attributes(evaluator_nomination_status: :declined)
+
+      @participant.update!(evaluator_nomination_status: :declined)
+
+      ::Threesixty::Emails::Send.call!(
+        ::Threesixty::Emails::Name::NOMINATION_DENIED,
+        threesixty_campaign: @campaign,
+        subject: @participant.threesixty_subject,
+        evaluator: @participant.threesixty_evaluator,
+        mail_config: { condition_class: Threesixty::Emails::IsDeclinedNominationSendable }
+      )
+
       render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end
 
