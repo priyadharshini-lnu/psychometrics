@@ -37,8 +37,7 @@ module EndUser
     end
 
     def generating
-      # assigns_report.generating?
-      [true, false].sample
+      assigns_report.generating?
     end
 
     def pdf_url

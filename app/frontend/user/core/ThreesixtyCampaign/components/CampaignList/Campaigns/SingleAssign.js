@@ -5,7 +5,7 @@ import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import style from './styles.scss'
+import './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import mindmill from './mindmill.png'
 import ContinueIcon from './ContinueIcon'
@@ -71,7 +71,7 @@ const renderButtonContent = ({
           trigger={['click']}
           overlay={() => ReportsMenu(assignedReports)}
         >
-          <div className={style.dropdown}>
+          <div className="dropdown">
             <Icon type="download" />
             {' '}
             {I18n.t('threesixty.download_report')}

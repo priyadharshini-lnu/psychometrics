@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react'
 import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu, Input,
 } from 'antd'
-import style from './styles.scss'
+import './styles.scss'
 import hogan from './hogan.png'
 import ContinueIcon from './ContinueIcon'
 import AssessmentIcon from './AssessmentIcon'
@@ -69,7 +69,7 @@ const renderButtonContent = ({
           trigger={['click']}
           overlay={() => ReportsMenu(assignedReports)}
         >
-          <div className={style.dropdown}>
+          <div className="dropdown">
             <Icon type="download" />
             {' '}
             {I18n.t('threesixty.download_reports')}
