@@ -51,7 +51,7 @@ module Threesixty
       status = Threesixty::Participants::GetReportStatus.call!(
         subject,
         @options,
-        subject_evaluator_counters.dig(subject.user_id, :completed) || {}
+        subject_evaluator_counters
       )
 
       AVAILABLE_STATUSES.include?(status)
