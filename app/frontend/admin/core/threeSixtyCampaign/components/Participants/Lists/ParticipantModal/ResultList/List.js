@@ -53,7 +53,7 @@ export default function List ({
       <Table.Column
         title="Evaluator"
         key="evaluatorName"
-        render={({ user }) => userPresenter.getFullNameWithEmail(user)}
+        render={({ evaluator }) => userPresenter.getFullNameWithEmail(evaluator)}
       />
       <Table.Column
         title="Relationship"
