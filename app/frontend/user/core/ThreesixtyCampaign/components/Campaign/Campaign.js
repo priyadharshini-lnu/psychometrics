@@ -65,7 +65,7 @@ export default function Campaign ({
                 </Col>
                 <Col xs={{ span: 32 }} lg={{ span: 8 }}>
                   <div className="progresses">
-                    {reportsCounters.totalNominations !== 0
+                    {nominationsCounters.totalNominations !== 0
                       && (
                       <div className="mini-progress">
                         <div className="letter-icon">N</div>
@@ -78,7 +78,7 @@ export default function Campaign ({
                         />
                       </div>
                       )}
-                    {reportsCounters.totalEvaluations !== 0
+                    {evaluationsCounters.totalEvaluations !== 0
                       && (
                       <div className="mini-progress">
                         <div className="letter-icon">E</div>
