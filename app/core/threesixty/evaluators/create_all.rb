@@ -16,8 +16,9 @@ module Threesixty
             create_campaigns_user(evaluator_user)
             threesixty_evaluator = create_evaluator(evaluator, evaluator_user)
             create_membership(evaluator_user)
-            create_participant(evaluator, evaluator_user)
+            participant = create_participant(evaluator, evaluator_user)
             send_evaluator_invite_email(threesixty_evaluator, evaluator[:subject])
+            participant
           end
         end
         broadcast :ok, result

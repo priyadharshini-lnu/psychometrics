@@ -6,6 +6,7 @@ describe Threesixty::Evaluators::CreateAll do
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
   let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+  let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
   let!(:subject_1) do
     user = create(:user, project: project, email: 'fedor@gmail.com')
     create(:campaigns_user, user: user, campaign: campaign)
