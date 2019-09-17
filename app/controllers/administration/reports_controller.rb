@@ -18,7 +18,16 @@ module Administration
     # GET /administration/resources
     def index
       # TODO: (atanych): do we really need distinct?
-      scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
+      scope = policy_scope(resource_class).
+              includes(
+                :assessments,
+                :report_families,
+                :hogan_report_setting,
+                :owner
+              ).
+              order(:name).
+              distinct
+
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])

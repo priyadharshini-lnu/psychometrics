@@ -7,7 +7,16 @@ module Administration
       before_action :ensure_client
 
       def index
-        @_filter_form = policy_scope(resource_class).sub_campaigns_of(client.id).search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        sub_campaigns_of(client.id).
+                        includes(
+                          :assessments_clients,
+                          :assessments,
+                          :creator,
+                          :modifier
+                        )
+                        .search(params[:q])
+
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])
 
