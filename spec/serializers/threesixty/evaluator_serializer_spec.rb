@@ -15,7 +15,8 @@ describe Threesixty::EvaluatorSerializer do
     end
     let!(:option) do
       create(:threesixty_option,
-             reports: { 'access' => { 'self_can_access' => true }, 'approval' => { 'manager_approves_reports' => true } })
+             reports: { 'access' => { 'self_can_access' => true },
+                        'approval' => { 'manager_approves_reports' => true } })
     end
     let!(:evaluator) do
       create(:threesixty_evaluator, user: create(:user),
