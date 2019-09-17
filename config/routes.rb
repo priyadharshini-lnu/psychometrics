@@ -227,6 +227,7 @@ Rails.application.routes.draw do
           end
         end
         resources :instruction_templates
+        resources :mail_histories
 
         resources :email_schedules do
           collection do

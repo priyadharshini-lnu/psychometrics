@@ -40,6 +40,7 @@ module Threesixty
         create_or_update_reminder_history(recipient)
       end
 
+      # TODO: Repace this with schedule_email.recipient_type
       def get_recipient_type
         config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == schedule_email[:name] }
         config&.dig(:recipient_type)
