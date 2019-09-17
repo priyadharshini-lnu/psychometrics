@@ -8,12 +8,10 @@ module Administration
       before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
 
       def index
-        @_filter_form = policy_scope(resource_class).
-                        projects_of(client.id).
-                        includes(:project_admins, :assigned_memberships, :completed_memberships, :end_memberships,
-                                 :license_usages).
-                        order('name asc').
-                        search(params[:q])
+        @_filter_form = policy_scope(resource_class)
+                        .projects_of(client.id)
+                        .order('name asc')
+                        .search(params[:q])
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])
 
