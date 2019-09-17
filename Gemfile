@@ -207,6 +207,7 @@ group :development do
   gem 'guard'
   gem 'i18n-tasks', '~> 0.9.25'
   gem 'meta_request'
+  gem 'bullet'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

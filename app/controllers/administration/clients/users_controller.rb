@@ -13,7 +13,7 @@ module Administration
 
       def index
         @_filter_form ||= policy_scope(resource_class).
-                          includes(user: %i[clients memberships]).
+                          includes(user: %i[memberships creator modifier]).
                           where.not(role: Membership::PROJECT_ADMIN_ROLE).
                           join_user.search(params[:q])
         filter_form.client_id_in = client.id
