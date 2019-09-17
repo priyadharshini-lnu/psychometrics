@@ -18,6 +18,7 @@ module Threesixty
           def self_evaluation_date
             threesixty_campaign.
               users_results.
+              completed.
               find_by(subject_id: subject.id, evaluator_id: subject.id)&.
               completed_at
           end
@@ -25,6 +26,7 @@ module Threesixty
           def last_evaluation_date
             threesixty_campaign.users_results.
               where(subject_id: subject.id).
+              completed.
               order(:completed_at).
               last&.
               completed_at

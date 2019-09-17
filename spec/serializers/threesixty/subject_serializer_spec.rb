@@ -9,8 +9,8 @@ describe Threesixty::SubjectSerializer do
     let(:campaign) { create(:campaign, project: project) }
     let(:option) do
       create(:threesixty_option,
-             participants: { 'manager' => { 'can_approves_evaluations' => true } },
-             reports: { 'access' => { 'self_can_access' => true } })
+             reports: { 'access' => { 'self_can_access' => true },
+                        'approval' => { 'manager_approves_reports' => true } })
     end
     let(:subject) do
       create(:threesixty_subject, user: user, campaign: campaign)
@@ -42,8 +42,8 @@ describe Threesixty::SubjectSerializer do
     let(:campaign) { create(:campaign, project: project) }
     let(:option) do
       create(:threesixty_option,
-             participants: { 'manager' => { 'can_approves_evaluations' => true } },
-             reports: { 'access' => { 'self_can_access' => true } })
+             reports: { 'access' => { 'self_can_access' => true },
+                        'approval' => { 'manager_approves_reports' => true } })
     end
     let(:subject) do
       create(:threesixty_subject, user: user, campaign: campaign, report_approval_status: 2)

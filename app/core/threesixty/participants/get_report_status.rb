@@ -31,10 +31,10 @@ module Threesixty
         return broadcast :ok, nil unless subject
         return broadcast :ok, NOT_AVAILABLE unless subject_cannot_access_report?
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
-        return broadcast :ok, APPROVED if manager_can_approve_evaluations? && subject.report_approved?
+        return broadcast :ok, APPROVED if manager_can_approve_report? && subject.report_approved?
 
         if Threesixty::Reports::IsAvailable.call!(subject, option, subject_evaluator_counters) &&
-           !manager_can_approve_evaluations?
+           !report_approval_required?
           return broadcast :ok, AVAILABLE
         end
         return broadcast :ok, AVAILABLE if subject.report_approved?
@@ -47,12 +47,20 @@ module Threesixty
 
       attr_reader :subject, :option, :subject_evaluator_counters
 
-      def manager_can_approve_evaluations?
-        !!option.participants.dig('manager', 'can_approves_evaluations')
-      end
-
       def subject_cannot_access_report?
         option.reports.dig('access', 'self_can_access')
+      end
+
+      def report_approval_required?
+        manager_can_approve_report? || admin_approves_report?
+      end
+
+      def manager_can_approve_report?
+        option.reports.dig('approval', 'manager_approves_reports')
+      end
+
+      def admin_approves_report?
+        option.reports.dig('approval', 'administrator_approves_reports')
       end
     end
   end
