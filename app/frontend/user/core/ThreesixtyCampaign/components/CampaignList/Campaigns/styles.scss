@@ -149,6 +149,10 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
           font-size: 20px;
         }
 
+        a[disabled] {
+          color: #646464;
+        }
+
         a {
           color: $main-dark;
           display: flex;
@@ -182,4 +186,13 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     }
   }
 
+  .ant-dropdown {
+    a[disabled] {
+      background-color: $normal-color;
+    }
+  }
+
+  .dropdown {
+    color: $main-dark;
+  }
 }

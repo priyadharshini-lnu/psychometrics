@@ -22,9 +22,8 @@ module Hogan
     def redirect
       @assign.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
 
-      @assign.original_or_self.reports.select(&:hogan?).each do |report|
-        Hogan::LoadResults.call!(@assign, report, @current_membership.membership_with_result, @current_project)
-      end
+      Hogan::LoadResultsJob.set(wait: 30.seconds).
+        perform_later(@assign, @current_membership.membership_with_result, @current_project)
 
       redirect_to root_path
     end

@@ -13,27 +13,14 @@ import AssessmentIcon from './AssessmentIcon'
 
 const IN_PROGRESS = 'in_progress'
 
-const openReport = (e, report) => {
-  e.stopPropagation()
-  window.open(report.mindmillReportUrl, 'windowMindmill', 'width=980,height=700')
-  return false
-}
+const DownloadLink = ({ report, text }) => {
+  const { mindmill, mindmillReportUrl, pdfUrl } = report
 
-const DownloadLink = ({ report, showName }) => {
-  if (report.mindmill) {
-    return (
-      <a href={`${report.mindmillReportUrl}`} onClick={e => openReport(e, report)}>
-        <Icon type="download" />
-        {' '}
-        {showName ? report.name : I18n.t('threesixty.download_report')}
-      </a>
-    )
-  }
   return (
-    <a href={`${report.pdfUrl}.pdf`} onClick={e => e.stopPropagation()} target="_blank">
+    <a href={mindmill ? mindmillReportUrl : pdfUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
       <Icon type="download" />
       {' '}
-      {showName ? report.name : I18n.t('threesixty.download_report') }
+      {text}
     </a>
   )
 }
@@ -42,7 +29,7 @@ const ReportsMenu = reports => (
   <Menu>
     {reports.map(report => (
       <Menu.Item key={report.id}>
-        <DownloadLink report={report} showName />
+        <DownloadLink report={report} text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name} />
       </Menu.Item>
     ))}
   </Menu>
@@ -84,7 +71,7 @@ const renderButtonContent = ({
           trigger={['click']}
           overlay={() => ReportsMenu(assignedReports)}
         >
-          <div>
+          <div className="dropdown">
             <Icon type="download" />
             {' '}
             {I18n.t('threesixty.download_report')}
@@ -93,7 +80,7 @@ const renderButtonContent = ({
       )
     } if (assignedReports.length === 1) {
       const report = assignedReports[0]
-      return <DownloadLink report={report} />
+      return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
     }
     return (
       <a>
