@@ -159,6 +159,9 @@ GEM
     breadcrumbs_on_rails (3.0.1)
     browser (2.4.0)
     builder (3.2.3)
+    bullet (6.0.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     byebug (9.0.5)
     callsite (0.0.11)
     capistrano (3.6.0)
@@ -785,6 +788,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.5.0)
+    uniform_notifier (1.12.1)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
     virtus (1.0.5)
@@ -845,6 +849,7 @@ DEPENDENCIES
   bootstrap-slider-rails
   breadcrumbs_on_rails (~> 3.0.1)
   browser
+  bullet
   bundler (>= 1.8.4)
   byebug
   capistrano (= 3.6.0)
