@@ -14,8 +14,8 @@ module Administration
                           :assessments,
                           :creator,
                           :modifier
-                        )
-                        .search(params[:q])
+                        ).
+                        search(params[:q])
 
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])
