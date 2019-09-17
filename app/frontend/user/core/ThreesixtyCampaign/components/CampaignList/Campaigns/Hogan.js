@@ -165,11 +165,6 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
                 {' '}
                 {assign.timing}
               </Col>
-              <Col className="info-block">
-                <Icon type="question-circle" />
-                {' '}
-                {assign.questionsCount}
-              </Col>
             </Row>
             <div className="divider" />
             <div className="button">
