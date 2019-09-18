@@ -316,13 +316,6 @@ Rails.application.routes.draw do
           get :sidebar
           patch :toggle_status
         end
-        ### SUB-FACTORS
-        resources :sub_factors do
-          member do
-            get :sidebar
-          end
-        end
-        ### END SUB-FACTORS
       end
       ### END FACTORS
       ### OCCUPATIONS

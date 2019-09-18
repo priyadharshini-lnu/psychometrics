@@ -17,4 +17,8 @@ $(function () {
   // Reinit all plugins
   $(document).trigger('initPlugins');
   $(document).trigger('initDatetimepicker');
+  // TODO (atanych): this is not flexible and scalable. We should come up with new idea
+  if (window.reactRails) {
+    window.reactRails.mountComponents('admin')
+  }
 });

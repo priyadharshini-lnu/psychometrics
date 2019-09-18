@@ -40,7 +40,8 @@ class AssessmentSerializer < ActiveModel::Serializer
   def factors
     return [] unless object.dimension
 
-    object.dimension.all_factors.map { |factor| Factors::WithoutSubFactorsSerializer.new(factor).to_hash }
+    object.dimension.all_factors.includes(:sub_factors).
+      map { |factor| Factors::WithSubFactorsSerializer.new(factor).to_hash }
   end
 
   def data_sheet_columns

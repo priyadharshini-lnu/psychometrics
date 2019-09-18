@@ -10,7 +10,10 @@ class Administration::FactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).search(params[:q])
+    @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).
+                    includes(:sub_factors).
+                    search(params[:q])
+
     @_resources   = filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
@@ -19,7 +22,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def new
-    @_resource = resource_class.new
+    @_resource = resource_class.new(dimension: @dimension)
   end
 
   def create
@@ -91,6 +94,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :description, :icon, :remove_icon, :dimension_id)
+    params.require(:resource).permit(:name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
+                                     factors_sub_factors_attributes: %i[id weight _destroy sub_factor_id])
   end
 end

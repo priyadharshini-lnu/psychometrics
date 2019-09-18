@@ -28,6 +28,10 @@ en:
         destroy: 'Delete Factor'
       form:
         no_icon: 'No Logo yet'
+        scoring_strategies:
+          questions: Questions
+          questions_of_other_factors: Questions of other Factors
+          weighted_sum_of_factors: Weighted Sum of Factors
       resource:
         tooltips:
           copy: 'Copy Factor'

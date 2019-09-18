@@ -1,3 +1,5 @@
+= javascript_pack_tag 'admin/miniApps'
+= stylesheet_pack_tag 'admin/miniApps'
 .row
   .col-md-12
     .panel.panel-default
@@ -13,6 +15,12 @@
                 url: {action: :index},
                 html: {id: 'filter', class: 'list-filter'},
                 builder: SimpleForm::FormBuilder) do |f|
+          = f.input :scoring_strategy_in,
+                  collection: Factor.scoring_strategies.map { |key, value| [t(".scoring_strategies.#{key}"), value] },
+                  input_html: { title: 'Strategy' },
+                  required: false,
+                  include_blank: t('administration.any'),
+                  label: false
           = f.input :name_cont,
                   label: false,
                   as: :string,

@@ -17,17 +17,26 @@
 module Factors
   class WithSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :description, :icon
+    attributes :id, :name, :parent_id, :question_ids, :description, :icon, :alias, :scoring_strategy
+    has_many :factors_sub_factors, serializer: FactorsSubFactorSerializer
 
     def icon
+      # binding.pry
       object.icon.url
     end
 
-    # @deprecated
-    def sub_factors
-      object.sub_factors.map do |sub_factors|
-        SubFactorSerializer.new(sub_factors)
+    def question_ids
+      # TODO: remove n+1 query, may be remove active serializer, use jbuilder
+      if @instance_options[:assessment_id]
+        object.question_ids # object.factors_scoring.where(assessment_id:
+        # @instance_options[:assessment_id]).where('json_array_length(props) > 0').pluck(:question_id)
+      else
+        []
       end
+    end
+
+    def alias
+      @instance_options[:alias]&.name
     end
   end
 end

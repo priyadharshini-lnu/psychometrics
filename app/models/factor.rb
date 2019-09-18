@@ -20,10 +20,11 @@ class Factor < ApplicationRecord
   include Copyable
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
-  belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
-  has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor', dependent: :destroy
+  has_many :factors_sub_factors
+  has_many :sub_factors, through: :factors_sub_factors
   has_many :factors_norms
   has_many :factors_scoring
+  has_many :questions, through: :factors_scoring
   has_many :occupations_factors, dependent: :destroy
   has_many :innovation_styles_factors, dependent: :destroy
   has_many :aliases, class_name: 'FactorsAlias', dependent: :destroy
@@ -37,7 +38,11 @@ class Factor < ApplicationRecord
   after_create :create_aliases
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
 
+  enum scoring_strategy: %i[questions questions_of_other_factors weighted_sum_of_factors]
+
   mount_uploader :icon, ImageUploader
+
+  accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
 
   # norm types constant
   NORM_TYPES = %w[eti yti].freeze
@@ -75,8 +80,6 @@ class Factor < ApplicationRecord
         order("factors.id #{direction}")
       when /^name_/
         order("factors.name #{direction}")
-      when /^subfactors_count_/
-        order("factors.subfactors_count #{direction}")
       when /^created_at_/
         order("factors.created_at #{direction}")
       when /^updated_at_/
@@ -97,7 +100,7 @@ class Factor < ApplicationRecord
   end
 
   def clone_and_save
-    @cloned_factor = deep_clone(include: [:sub_factors], except: [:subfactors_count])
+    @cloned_factor = deep_clone(include: [:factors_sub_factors])
     @cloned_factor.gen_uniq_name
     @cloned_factor.save ? @cloned_factor : nil
   end

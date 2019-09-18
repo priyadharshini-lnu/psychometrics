@@ -6,7 +6,6 @@ en:
       factor: &DEFAULT
         id: 'ID'
         name: 'Name'
-        subfactors_count: 'No. of Sub-Factors'
         questions_count: 'No. of Questions'
         created_at: 'Created Date'
         updated_at: 'Modified Date'
