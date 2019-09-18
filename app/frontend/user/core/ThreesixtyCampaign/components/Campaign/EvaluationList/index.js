@@ -54,19 +54,19 @@ function EvaluationList ({
   const EvaluationItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
-          {isEvaluationCompleted(item)
-            ? <Icon type="check-square" theme="filled" className="status-icon" />
-            : <div className="empty-square" />}
-          {' '}
-          <Link
+        {isEvaluationCompleted(item)
+          ? <Icon type="check-square" theme="filled" className="status-icon" />
+          : <div className="empty-square" />}
+        {' '}
+        <Link
           to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
           style={{ display: 'flex', flex: 1 }}
-          >
-            <Tooltip placement="topLeft" title={item.subject.email}>
-              <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
-            </Tooltip>
-          </Link>
-          {options.evaluator.canDeclineNomination && !item.isSelf && !isEvaluationCompleted(item)
+        >
+          <Tooltip placement="topLeft" title={item.subject.email}>
+            <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
+          </Tooltip>
+        </Link>
+        {options.evaluator.canDeclineNomination && !item.isSelf && !isEvaluationCompleted(item)
               && (
                 <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
                   <a className="ant-dropdown-link actions-btn" href="#" style={{ alignSelf: 'flex-end' }}>

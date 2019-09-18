@@ -12,7 +12,9 @@ export default function Footer ({ isFrame }) {
       <div className="fluid-container">
         <div className="footer-wrapper">
           <img src={lighthouseLogo} alt="Lighthouse" />
-          <a href="https://thetalententerprise.com/privacy-statement/" target="_blank"> Terms, Conditions and Privacy Statement</a>
+          <a href="https://thetalententerprise.com/privacy-statement/" target="_blank" rel="noopener noreferrer">
+            Terms, Conditions and Privacy Statement
+          </a>
           <img src={tteLogo} alt="The Talent Enterprise" />
         </div>
       </div>
