@@ -57,11 +57,6 @@ export default function Threesixty ({ campaign }) {
                   {' '}
                   {campaign.timing}
                 </Col>
-                <Col className="info-block">
-                  <Icon type="question-circle" />
-                  {' '}
-                  {campaign.questionsCount}
-                </Col>
               </Row>
               <div className="divider" />
               <div className="button">
