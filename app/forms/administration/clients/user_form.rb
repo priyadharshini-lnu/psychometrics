@@ -54,7 +54,11 @@ module Administration
       # Try to find existing user by email
       #
       def user_id
-        @user_id ||= User.find_by(email: email)&.id
+        @user_id ||= User.find_by(email: email, project: project)&.id
+      end
+
+      def project
+        context.client.project if [Membership::CLIENT_ADMIN_ROLE, Membership::PROJECT_ADMIN_ROLE].exclude?(role)
       end
 
       #   VALIDATIONS

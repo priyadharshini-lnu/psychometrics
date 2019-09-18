@@ -12,7 +12,7 @@ module Memberships
     def call
       return broadcast :invalid if form.invalid?
 
-      user = Users::Admin.find_or_create_by(email: form.email)
+      user = User.find_or_create_by(email: form.email, project_id: nil)
       membership = Membership.new(user: user)
       membership.build_grants(data: grants)
       broadcast :ok, membership
