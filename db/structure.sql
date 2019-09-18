@@ -249,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -2022,12 +2022,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -2274,6 +2274,39 @@ CREATE SEQUENCE public.threesixty_campaigns_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_campaigns_id_seq OWNED BY public.threesixty_campaigns.id;
+
+
+--
+-- Name: threesixty_email_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_email_histories (
+    id bigint NOT NULL,
+    subject_id bigint,
+    evaluator_id bigint,
+    recipient_type character varying,
+    threesixty_email_schedule_id bigint,
+    status integer
+);
+
+
+--
+-- Name: threesixty_email_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_email_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_email_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_email_histories_id_seq OWNED BY public.threesixty_email_histories.id;
 
 
 --
@@ -3230,6 +3263,13 @@ ALTER TABLE ONLY public.threesixty_campaigns ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: threesixty_email_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories ALTER COLUMN id SET DEFAULT nextval('public.threesixty_email_histories_id_seq'::regclass);
+
+
+--
 -- Name: threesixty_email_schedules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3824,6 +3864,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 
 --
+-- Name: threesixty_email_histories threesixty_email_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT threesixty_email_histories_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: threesixty_email_schedules threesixty_email_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3933,6 +3981,13 @@ ALTER TABLE ONLY public.users_reports
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_histories_email_schedule; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
 
 
 --
@@ -4783,6 +4838,20 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
+-- Name: index_threesixty_email_histories_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_histories_on_evaluator_id ON public.threesixty_email_histories USING btree (evaluator_id);
+
+
+--
+-- Name: index_threesixty_email_histories_on_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty_email_histories USING btree (subject_id);
+
+
+--
 -- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5275,6 +5344,14 @@ ALTER TABLE ONLY public.libraries
 
 
 --
+-- Name: threesixty_email_histories fk_rails_3cb35a810a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id);
+
+
+--
 -- Name: threesixty_instruction_templates fk_rails_3e304e0709; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5691,6 +5768,14 @@ ALTER TABLE ONLY public.users_reports
 
 
 --
+-- Name: threesixty_email_histories fk_rails_c9b5f538f9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id);
+
+
+--
 -- Name: media_responses fk_rails_cbc8996aca; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5728,6 +5813,14 @@ ALTER TABLE ONLY public.campaigns
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_cfede195a2 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_email_histories fk_rails_d00d71891f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id);
 
 
 --
@@ -6230,6 +6323,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190901150954'),
 ('20190902100425'),
 ('20190902100625'),
-('20190903131845');
+('20190903131845'),
+('20190907165800'),
+('20190917122130'),
+('20190917140510');
 
 

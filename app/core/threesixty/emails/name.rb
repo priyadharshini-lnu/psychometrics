@@ -18,6 +18,10 @@ module Threesixty
       def self.evaluator_email?(email_name)
         [EVALUATOR_INVITE, EVALUATOR_REMINDER].include?(email_name)
       end
+
+      def self.reminder_email?
+        [SUBJECT_REMINDER, EVALUATOR_REMINDER].include?(email_name)
+      end
     end
   end
 end

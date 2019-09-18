@@ -32,9 +32,11 @@ module Threesixty
         if (user_ids = schedule_email.meta["#{other_participator}_ids"].presence)
           User.where(id: user_ids).each do |user|
             context[other_participator] = user
+            create_email_history(context)
             Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
           end
         else
+          create_email_history(context)
           Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
         end
         create_or_update_reminder_history(recipient)
@@ -47,6 +49,8 @@ module Threesixty
       end
 
       def create_or_update_reminder_history(recipient)
+        return if Threesixty::Emails::Name.reminder_email?(schedule_email.name)
+
         reminder_history = threesixty_campaign.reminder_histories.find_or_create_by!(
           user_id: recipient.id,
           email_name: schedule_email.name
@@ -54,6 +58,15 @@ module Threesixty
         reminder_history.sent_count += 1
         reminder_history.last_sent_at = Time.now
         reminder_history.save!
+      end
+
+      def create_email_history(context)
+        threesixty_campaign.email_histories.create(
+          subject_id: context[:subject].id,
+          evaluator_id: context[:evaluator].id,
+          recipient_type: get_recipient_type,
+          email_schedule_id: schedule_email.id,
+        )
       end
 
       def preprocess_email_schedule(user)

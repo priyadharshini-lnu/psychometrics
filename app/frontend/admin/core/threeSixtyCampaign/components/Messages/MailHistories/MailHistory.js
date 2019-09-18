@@ -31,12 +31,13 @@ export default function InstructionList({
     {
       title: 'Subject',
       dataIndex: 'subject',
-      key: 'subject',
+      key: 'subjects',
     },
     {
       title: 'Date',
       dataIndex: 'scheduledDate',
       key: 'scheduledDate',
+      render: (date) => (moment(date).format('YYYY-MM-DD HH:mm:ss'))
     },
     {
       title: 'Emails Sent',
@@ -52,7 +53,7 @@ export default function InstructionList({
 
   return (
     <div className='mtl'>
-      <Table dataSource={list} columns={columns} />;
+      <Table rowKey={record => record.id} dataSource={list} columns={columns} />;
     </div>
   )
 }

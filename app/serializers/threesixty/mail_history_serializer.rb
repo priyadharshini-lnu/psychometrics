@@ -4,6 +4,8 @@ module Threesixty
   class MailHistorySerializer < ActiveModel::Serializer
     attributes :id, :status, :recipient, :subject, :scheduled_date, :emails_sent
 
+    has_many :histories, serializer: Threesixty::EmailHistorySerializer
+
     def status
       :success
     end
@@ -29,6 +31,10 @@ module Threesixty
 
     def recipient_ids
       Array.wrap(object.recipient_ids)
+    end
+
+    def histories
+      object.email_histories
     end
   end
 end
