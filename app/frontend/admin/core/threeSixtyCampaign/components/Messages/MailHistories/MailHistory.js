@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table
+  Row, Col, Table, Dropdown, Menu, Icon
 } from 'antd'
 import _ from 'lodash'
 import style from './style.scss'
@@ -47,7 +47,7 @@ export default function InstructionList({
     {
       title: 'Actions',
       key: 'actions',
-      render: (text, record) => (<div>Action</div>)
+      render: (_, record) => <ActionMenu unDelivered={!!record.delivered_at} campaignId={campaignId} emailSchedulId={record.id} />
     },
   ];
 
@@ -55,5 +55,30 @@ export default function InstructionList({
     <div className='mtl'>
       <Table rowKey={record => record.id} dataSource={list} columns={columns} />;
     </div>
+)
+}
+
+const ActionMenu = ({ unDelivered, campaignId, emailSchedulId }) => {
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <a
+          href={`/administration/threesixty_campaigns/${campaignId}/mail_histories/${emailSchedulId}/download.csv`}
+        >
+          Download Details
+        </a>
+      </Menu.Item>
+    </Menu>
+  )
+
+  return (
+    <Dropdown
+      overlay={menu}
+      trigger={['click']}
+    >
+      <a>
+        <Icon type="ellipsis" />
+      </a>
+    </Dropdown>
   )
 }

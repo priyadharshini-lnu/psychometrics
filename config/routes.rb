@@ -227,7 +227,9 @@ Rails.application.routes.draw do
           end
         end
         resources :instruction_templates
-        resources :mail_histories
+        resources :mail_histories do
+          get :download, constraints: { format: :csv }
+        end
 
         resources :email_schedules do
           collection do

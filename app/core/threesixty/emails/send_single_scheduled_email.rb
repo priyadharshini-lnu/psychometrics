@@ -65,7 +65,7 @@ module Threesixty
           subject_id: context[:subject].id,
           evaluator_id: context[:evaluator].id,
           recipient_type: get_recipient_type,
-          email_schedule_id: schedule_email.id,
+          email_schedule_id: schedule_email.id
         )
       end
 

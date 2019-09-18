@@ -8,6 +8,8 @@ class CreateThreesixtyEmailHistories < ActiveRecord::Migration[5.1]
       t.string :recipient_type
       t.references :threesixty_email_schedule, foreign_key: true, index: { name: :email_histories_email_schedule }
       t.integer :status
+
+      t.timestamps
     end
   end
 end
