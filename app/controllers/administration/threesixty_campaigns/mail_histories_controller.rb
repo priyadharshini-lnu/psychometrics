@@ -14,13 +14,21 @@ module Administration
       end
 
       def download
-        Threesixty::GenerateMailHistoryCsv.call!(resource)
+        file = ::Threesixty::GenerateMailHistoryCsv.call!(resource)
+
+        respond_to do |format|
+          format.csv { send_data file, filename: "mail_history_#{Time.now}.csv" }
+        end
       end
 
       private
 
       def set_resource_class
         @_resource_class ||= ::Threesixty::EmailSchedule # rubocop:disable Naming/MemoizedInstanceVariableName
+      end
+
+      def set_resource
+        @_resource = policy_scope(resource_class).find(params[:mail_history_id])
       end
     end
   end

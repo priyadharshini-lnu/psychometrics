@@ -2284,8 +2284,9 @@ CREATE TABLE public.threesixty_email_histories (
     id bigint NOT NULL,
     subject_id bigint,
     evaluator_id bigint,
-    recipient_type character varying,
+    threesixty_campaign_id bigint,
     threesixty_email_schedule_id bigint,
+    recipient_type character varying,
     status integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -3983,6 +3984,13 @@ ALTER TABLE ONLY public.users_reports
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_histories_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING btree (threesixty_campaign_id);
 
 
 --
@@ -5919,6 +5927,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT fk_rails_dc09b8ec60 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_email_histories fk_rails_dee061b324; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id);
 
 
 --
