@@ -13,10 +13,10 @@ module Administration
       @_filter_form = policy_scope(resource_class).
                       tenancies.
                       includes(
-                        :client_admin_memberships,
                         :account_manager,
                         :project_manager,
-                        :licenses
+                        client_admin_memberships: [:user],
+                        licenses: [:report_family]
                       ).
                       order(:name).
                       search(params[:q])
