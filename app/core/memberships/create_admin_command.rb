@@ -16,7 +16,7 @@ module Memberships
         m.role = role
         m.client = client
       end
-      admin = ::Users::Admin.find_by(email: membership.user&.email, project_id: nil)
+      admin = User.find_by(email: membership.user&.email, project_id: nil)
       if admin
         membership.user = admin
       else
