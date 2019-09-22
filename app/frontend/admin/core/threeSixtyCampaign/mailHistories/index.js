@@ -9,8 +9,18 @@ const defaultState = {
 }
 
 export const FETCH = 'threeSixty/mailHistories/FETCH'
+export const REMOVE = 'threeSixty/mailHistories/REMOVE'
 
 export const update = (id, key, value) => ({ type: UPDATE, payload: { id, key, value } })
+
+export const remove = (campaignId, emailScheduleId) => ({
+  type: REMOVE,
+  emailScheduleId,
+  request: {
+    method: 'delete',
+    url: `/administration/threesixty_campaigns/${campaignId}/mail_histories/${emailScheduleId}`,
+  },
+})
 
 export const fetch = (campaignId, page) => ({
   type: FETCH,
@@ -18,16 +28,19 @@ export const fetch = (campaignId, page) => ({
   request: {
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/mail_histories`,
-    body: { page }
+    body: { page },
   },
 })
 
 
 const HANDLERS = {
   [FETCH]: (state, { response: { mailHistories, total } }) => ({ ...state, list: mailHistories, total }),
+  [REMOVE]: (state, { requestAction: { emailScheduleId } }) => (
+    updateIn(state, 'list', emailSchedules => _.filter(emailSchedules, ({ id }) => id !== emailScheduleId))
+  ),
 }
 
-export default function reducer(state = defaultState, action) {
+export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }

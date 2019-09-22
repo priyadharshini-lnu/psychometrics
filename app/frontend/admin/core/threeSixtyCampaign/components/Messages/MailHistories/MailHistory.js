@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Dropdown, Menu, Icon, Tag
+  Row, Col, Table, Dropdown, Menu, Icon, Tag, message,
 } from 'antd'
 import _ from 'lodash'
 import style from './style.scss'
 import Pagination from '../../common/Pagination'
+import EmailScheduleModal from '../EmailList/EmailScheduleModal'
 
-export default function MailHistory({
+export default function MailHistory ({
   fetch,
   page,
+  openModal,
+  remove,
   mailHistories: { list, total },
+  match,
   match: {
     params: { campaignId },
   },
@@ -17,6 +21,8 @@ export default function MailHistory({
   useEffect(() => {
     fetch(campaignId, page)
   }, [page])
+
+  const unDelivered = ({ status }) => status === 'undelivered'
 
   const columns = [
     {
@@ -43,7 +49,12 @@ export default function MailHistory({
       title: 'Date',
       dataIndex: 'scheduledDate',
       key: 'scheduledDate',
-      render: (date) => (moment(date).format('YYYY-MM-DD HH:mm:ss'))
+      render: (date, record) => (
+        <>
+          {moment(date).format('YYYY-MM-DD HH:mm:ss')}
+          <div className={style.scheduledAt}>{unDelivered(record) && moment(date).fromNow()}</div>
+        </>
+      ),
     },
     {
       title: 'Emails Sent',
@@ -53,21 +64,31 @@ export default function MailHistory({
     {
       title: 'Actions',
       key: 'actions',
-      render: (_, record) => <ActionMenu unDelivered={!!record.delivered_at} campaignId={campaignId} emailSchedulId={record.id} />
+      render: (_, record) => <ActionMenu unDelivered={unDelivered(record)} campaignId={campaignId} emailSchedulId={record.id} openModal={openModal} remove={remove} />,
     },
-  ];
+  ]
 
   return (
-    <div className='mtl'>
+    <div className="mtl">
       <Table rowKey={record => record.id} dataSource={list} columns={columns} pagination={false} />
-      <Pagination total={total} onChange={(page) => fetch(campaignId, page)} path="/messages/mail_histories" />
+      <div className="pm">
+        <Pagination total={total} onChange={page => fetch(campaignId, page)} path="/messages/mail_histories" />
+      </div>
+      <EmailScheduleModal match={match} />
     </div>
-)
+  )
 }
 
-const ActionMenu = ({ unDelivered, campaignId, emailSchedulId }) => {
+const ActionMenu = ({
+  unDelivered, campaignId, emailSchedulId, openModal, remove,
+}) => {
+  const onRemove = () => {
+    remove(campaignId, emailSchedulId).then(() => message.info(I18n.t('threesixty.email_schedules.delete_successful')))
+  }
+
   const menu = (
     <Menu>
+      {!unDelivered && (
       <Menu.Item key="0">
         <a
           href={`/administration/threesixty_campaigns/${campaignId}/mail_histories/${emailSchedulId}/download.csv`}
@@ -75,6 +96,31 @@ const ActionMenu = ({ unDelivered, campaignId, emailSchedulId }) => {
           Download Details
         </a>
       </Menu.Item>
+      )}
+      {unDelivered && (
+        <Menu.Item key="1">
+          <div
+            className="pll prl"
+            onClick={() => { openModal('EmailScheduleModal', { selectedEmailScheduleId: emailSchedulId }) }}
+            role="button"
+            tabIndex={-1}
+          >
+            Edit
+          </div>
+        </Menu.Item>
+      )}
+      {unDelivered && (
+        <Menu.Item key="2">
+          <div
+            className="pll prl"
+            onClick={onRemove}
+            role="button"
+            tabIndex={-1}
+          >
+            Delete
+          </div>
+        </Menu.Item>
+      )}
     </Menu>
   )
 
@@ -82,6 +128,7 @@ const ActionMenu = ({ unDelivered, campaignId, emailSchedulId }) => {
     <Dropdown
       overlay={menu}
       trigger={['click']}
+      placement="bottomCenter"
     >
       <a>
         <Icon type="ellipsis" />

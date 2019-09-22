@@ -18,6 +18,16 @@ module Administration
         end
       end
 
+      def show
+        email_schedule = threesixty_campaign.email_schedules.find(params[:id])
+
+        recipients = ActiveModel::SerializableResource.
+                     new(email_schedule.recipients, each_serializer: UserSerializer).
+                     serializable_hash
+
+        render json: { email_schedule: email_schedule, recipients: recipients }
+      end
+
       def schedulable_templates
         email_schedules = threesixty_campaign.email_templates.where(schedulable: true).to_a
         email_schedules.prepend(

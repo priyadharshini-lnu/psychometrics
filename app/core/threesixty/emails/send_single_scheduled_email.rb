@@ -75,8 +75,8 @@ module Threesixty
         return {} if get_recipient_type == :subject
 
         relationship_id = threesixty_campaign.
-          participants.
-          find_by(subject_id: context[:subject]&.id, evaluator_id: context[:evaluator]&.id)&.
+                          participants.
+                          find_by(subject_id: context[:subject]&.id, evaluator_id: context[:evaluator]&.id)&.
           relationship_id
 
         { relationship_id: relationship_id }

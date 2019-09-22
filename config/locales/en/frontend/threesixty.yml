@@ -75,4 +75,6 @@ en:
     mail_history:
       statuses:
         success: 'Success'
-        not_delivered: 'Not delivered'
+        undelivered: 'Undelivered'
+    email_schedules:
+      delete_successful: Email schedule deleted successfully

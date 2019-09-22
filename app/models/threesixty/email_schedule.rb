@@ -9,4 +9,8 @@ class Threesixty::EmailSchedule < ApplicationRecord
     config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == name }
     config&.dig(:recipient_type)
   end
+
+  def recipients
+    User.where(id: recipient_ids)
+  end
 end

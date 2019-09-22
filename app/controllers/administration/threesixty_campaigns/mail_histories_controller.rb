@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class MailHistoriesController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[update download]
+      before_action :set_resource, only: %i[update destroy download]
       append_before_action :pundit_authorize
 
       def index
@@ -17,6 +17,12 @@ module Administration
         end
 
         render json: { mail_histories: mail_histories, total: total }
+      end
+
+      def destroy
+        resource.destroy!
+
+        render json: :ok
       end
 
       def download
@@ -34,7 +40,7 @@ module Administration
       end
 
       def set_resource
-        @_resource = policy_scope(resource_class).find(params[:mail_history_id])
+        @_resource = policy_scope(resource_class).find(params[:mail_history_id] || params[:id])
       end
     end
   end

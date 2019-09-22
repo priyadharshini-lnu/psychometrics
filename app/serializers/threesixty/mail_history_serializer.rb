@@ -8,7 +8,7 @@ module Threesixty
 
     # TODO: This will change
     def status
-      object.delivered_at? ? :success : :not_delivered
+      object.delivered_at? ? :success : :undelivered
     end
 
     def recipient
