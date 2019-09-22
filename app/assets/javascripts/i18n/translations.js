@@ -235,6 +235,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "not_delivered": "Not delivered",
+        "success": "Success"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -520,6 +526,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "not_delivered": "Not delivered",
+        "success": "Success"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -805,6 +817,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "not_delivered": "Not delivered",
+        "success": "Success"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",

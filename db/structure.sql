@@ -2288,6 +2288,7 @@ CREATE TABLE public.threesixty_email_histories (
     threesixty_email_schedule_id bigint,
     recipient_type character varying,
     status integer,
+    meta json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

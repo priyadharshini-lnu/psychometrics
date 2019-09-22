@@ -1,27 +1,33 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Dropdown, Menu, Icon
+  Row, Col, Table, Dropdown, Menu, Icon, Tag
 } from 'antd'
 import _ from 'lodash'
 import style from './style.scss'
+import Pagination from '../../common/Pagination'
 
-export default function InstructionList({
+export default function MailHistory({
   fetch,
-  history,
-  mailHistories: { list },
+  page,
+  mailHistories: { list, total },
   match: {
     params: { campaignId },
   },
 }) {
   useEffect(() => {
-    fetch(campaignId)
-  }, [])
+    fetch(campaignId, page)
+  }, [page])
 
   const columns = [
     {
       title: 'Status',
       dataIndex: 'status',
       key: 'status',
+      render: (text) => {
+        const color = text == 'success' ? 'green' : 'grey'
+
+        return <Tag color={color}>{I18n.t(`threesixty.mail_history.statuses.${text}`)}</Tag>
+      },
     },
     {
       title: 'Recipient',
@@ -53,7 +59,8 @@ export default function InstructionList({
 
   return (
     <div className='mtl'>
-      <Table rowKey={record => record.id} dataSource={list} columns={columns} />;
+      <Table rowKey={record => record.id} dataSource={list} columns={columns} pagination={false} />
+      <Pagination total={total} onChange={(page) => fetch(campaignId, page)} path="/messages/mail_histories" />
     </div>
 )
 }

@@ -9,8 +9,14 @@ module Administration
 
       def index
         skip_policy_scope
-        render json: threesixty_campaign.email_schedules.order(created_at: :desc),
-          each_serializer: ::Threesixty::MailHistorySerializer
+        mail_histories = threesixty_campaign.email_schedules.order(created_at: :desc)
+        total = mail_histories.count
+
+        mail_histories = mail_histories.page(params[:page]).map do |history|
+          ::Threesixty::MailHistorySerializer.new(history).to_h
+        end
+
+        render json: { mail_histories: mail_histories, total: total }
       end
 
       def download

@@ -6,8 +6,9 @@ module Threesixty
 
     has_many :histories, serializer: Threesixty::EmailHistorySerializer
 
+    # TODO: This will change
     def status
-      :success
+      object.delivered_at? ? :success : :not_delivered
     end
 
     def recipient

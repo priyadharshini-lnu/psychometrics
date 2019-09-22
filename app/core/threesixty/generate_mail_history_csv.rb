@@ -30,7 +30,6 @@ module Threesixty
     end
 
     def recipient_data(user, email_history)
-      user = email_history.subject
       [
         user.id,
         user.first_name,
@@ -78,7 +77,7 @@ module Threesixty
     end
 
     def relationship_hash
-      @relationship_hash ||= Relationships::ByCampaign.call!(threesixty_campaign).pluck(:id, :name).to_h
+      @relationship_hash ||= ::Relationships::ByCampaign.new(threesixty_campaign.campaign).query.pluck(:id, :name).to_h
     end
   end
 end

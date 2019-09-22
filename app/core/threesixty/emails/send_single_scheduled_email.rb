@@ -62,11 +62,24 @@ module Threesixty
 
       def create_email_history(context)
         threesixty_campaign.email_histories.create(
-          subject_id: context[:subject].id,
-          evaluator_id: context[:evaluator].id,
+          subject_id: context[:subject]&.id,
+          evaluator_id: context[:evaluator]&.id,
           recipient_type: get_recipient_type,
-          threesixty_email_schedule_id: schedule_email.id
+          threesixty_email_schedule_id: schedule_email.id,
+          status: :success,
+          meta: meta_data_for_email_history(context)
         )
+      end
+
+      def meta_data_for_email_history(context)
+        return {} if get_recipient_type == :subject
+
+        relationship_id = threesixty_campaign.
+          participants.
+          find_by(subject_id: context[:subject]&.id, evaluator_id: context[:evaluator]&.id)&.
+          relationship_id
+
+        { relationship_id: relationship_id }
       end
 
       def preprocess_email_schedule(user)
