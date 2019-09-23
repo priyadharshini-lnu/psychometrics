@@ -36,7 +36,10 @@ module Threesixty
     end
 
     def update_status
-      @campaign.participants.where(subject_id: @subject.user_id).update_all(manager_nomination_status: params[:status])
+      participants = @subject.participants.where(manager_nomination_status: :waiting)
+      participants.update_all(manager_nomination_status: params[:status])
+      participants.each { |participant| send_nomination_denied_email(participant) } if params[:status] == 'denied'
+
       render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
     end
 
@@ -48,6 +51,15 @@ module Threesixty
 
     def set_subject
       @subject = @campaign.subjects.find(params[:nomination_id] || params[:id])
+    end
+
+    def send_nomination_denied_email(participant)
+      ::Threesixty::Emails::Send.call!(
+        ::Threesixty::Emails::Name::NOMINATION_DENIED,
+        threesixty_campaign: @campaign,
+        subject: participant.threesixty_subject,
+        evaluator: participant.threesixty_evaluator
+      )
     end
   end
 end
