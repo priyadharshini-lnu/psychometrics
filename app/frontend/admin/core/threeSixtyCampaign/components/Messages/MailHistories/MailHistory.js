@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, Dropdown, Menu, Icon, Tag, message,
+  Table, Dropdown, Menu, Icon, Tag, message,
 } from 'antd'
-import _ from 'lodash'
 import style from './style.scss'
 import Pagination from '../../common/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
@@ -30,7 +29,7 @@ export default function MailHistory ({
       dataIndex: 'status',
       key: 'status',
       render: (text) => {
-        const color = text == 'success' ? 'green' : 'grey'
+        const color = text === 'success' ? 'green' : 'grey'
 
         return <Tag color={color}>{I18n.t(`threesixty.mail_history.statuses.${text}`)}</Tag>
       },
@@ -64,7 +63,15 @@ export default function MailHistory ({
     {
       title: 'Actions',
       key: 'actions',
-      render: (_, record) => <ActionMenu unDelivered={unDelivered(record)} campaignId={campaignId} emailSchedulId={record.id} openModal={openModal} remove={remove} />,
+      render: (_, record) => (
+        <ActionMenu
+          unDelivered={unDelivered(record)}
+          campaignId={campaignId}
+          emailSchedulId={record.id}
+          openModal={openModal}
+          remove={remove}
+        />
+      ),
     },
   ]
 

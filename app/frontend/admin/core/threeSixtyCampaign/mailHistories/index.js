@@ -11,8 +11,6 @@ const defaultState = {
 export const FETCH = 'threeSixty/mailHistories/FETCH'
 export const REMOVE = 'threeSixty/mailHistories/REMOVE'
 
-export const update = (id, key, value) => ({ type: UPDATE, payload: { id, key, value } })
-
 export const remove = (campaignId, emailScheduleId) => ({
   type: REMOVE,
   emailScheduleId,

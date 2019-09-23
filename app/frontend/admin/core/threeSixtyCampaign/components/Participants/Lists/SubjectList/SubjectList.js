@@ -118,7 +118,7 @@ export default function SubjectList ({
             />
           </Table>
           <div className="pm">
-            <Pagination total={total}  path="/participants/subjects" />
+            <Pagination total={total} path="/participants/subjects" />
           </div>
         </Col>
       </Row>
