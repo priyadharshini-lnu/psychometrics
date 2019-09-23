@@ -43,7 +43,7 @@ module Threesixty
       end
 
       def create_or_update_reminder_history(recipient)
-        return if Threesixty::Emails::Name.reminder_email?(schedule_email.name)
+        return unless Threesixty::Emails::Name.reminder_email?(schedule_email.name)
 
         reminder_history = threesixty_campaign.reminder_histories.find_or_create_by!(
           user_id: recipient.id,
