@@ -5228,6 +5228,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -10969,6 +10972,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -16706,6 +16712,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
