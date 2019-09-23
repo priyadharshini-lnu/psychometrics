@@ -81,7 +81,7 @@ export default function MailHistory ({
       <div className="pm">
         <Pagination total={total} onChange={page => fetch(campaignId, page)} path="/messages/mail_histories" />
       </div>
-      <EmailScheduleModal match={match} />
+      <EmailScheduleModal match={match} onSave={() => fetch(campaignId, page)} />
     </div>
   )
 }
@@ -98,7 +98,7 @@ const ActionMenu = ({
       {!unDelivered && (
       <Menu.Item key="0">
         <a
-          href={`/administration/threesixty_campaigns/${campaignId}/mail_histories/${emailSchedulId}/download.csv`}
+            href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
         >
           Download Details
         </a>

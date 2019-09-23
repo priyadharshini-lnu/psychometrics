@@ -3,10 +3,11 @@
 module Threesixty
   module Emails
     class SendSingleScheduledEmail < BaseCommand
-      private_attr_reader :schedule_email, :threesixty_campaign
+      private_attr_reader :schedule_email, :recipient_type, :threesixty_campaign
 
       def initialize(schedule_email)
         @schedule_email = schedule_email
+        @recipient_type = schedule_email.recipient_type
         @threesixty_campaign = schedule_email.threesixty_campaign
       end
 
@@ -23,7 +24,6 @@ module Threesixty
 
       def send_email(recipient)
         preprocess_email_schedule(recipient)
-        recipient_type = get_recipient_type
         context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
         context[recipient_type] = recipient if recipient_type
 
@@ -42,12 +42,6 @@ module Threesixty
         create_or_update_reminder_history(recipient)
       end
 
-      # TODO: Repace this with schedule_email.recipient_type
-      def get_recipient_type
-        config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == schedule_email[:name] }
-        config&.dig(:recipient_type)
-      end
-
       def create_or_update_reminder_history(recipient)
         return if Threesixty::Emails::Name.reminder_email?(schedule_email.name)
 
@@ -64,7 +58,7 @@ module Threesixty
         threesixty_campaign.email_histories.create(
           subject_id: context[:subject]&.id,
           evaluator_id: context[:evaluator]&.id,
-          recipient_type: get_recipient_type,
+          recipient_type: recipient_type,
           threesixty_email_schedule_id: schedule_email.id,
           status: :success,
           meta: meta_data_for_email_history(context)
@@ -72,7 +66,7 @@ module Threesixty
       end
 
       def meta_data_for_email_history(context)
-        return {} if get_recipient_type == :subject
+        return {} if recipient_type == :subject
 
         relationship_id = threesixty_campaign.
                           participants.

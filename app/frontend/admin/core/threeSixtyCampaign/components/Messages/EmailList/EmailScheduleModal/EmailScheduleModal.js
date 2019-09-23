@@ -18,23 +18,26 @@ export default function EmailScheduleModal ({
   emailSchedules: { list, selectedId, recipients },
   fetchSingle,
   fetchSchedulableTemplate,
-  save,
+  create,
+  update,
   updateField,
   changeSelected,
   closeModal,
   data,
+  onSave,
   match: {
     params: { campaignId },
   },
 }) {
   const [errors, setErrors] = useState(null)
   const emailSchedule = _.find(list, ({ id }) => id === selectedId)
+  const isEdit = !!data.selectedEmailScheduleId
 
   useEffect(() => {
-    if (data.selectedEmailTemplateId) {
-      fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
-    } else {
+    if (isEdit) {
       fetchSingle(campaignId, data.selectedEmailScheduleId)
+    } else {
+      fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
     }
   }, [])
 
@@ -43,11 +46,14 @@ export default function EmailScheduleModal ({
   }
 
   const handleSave = () => {
+    const save = isEdit ? update : create
+
     save(campaignId, emailSchedule, _.map(recipients, r => r.id))
       .then(() => {
         setErrors(null)
         closeModal()
         message.success('Email scheduled successfully', 5)
+        onSave && onSave()
       })
       .catch(setErrors)
   }

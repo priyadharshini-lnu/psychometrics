@@ -4,8 +4,20 @@ module Administration
   module ThreesixtyCampaigns
     class EmailSchedulesController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[send_test_email]
+      before_action :set_resource, only: %i[send_test_email destroy download update]
       append_before_action :pundit_authorize
+
+      def index
+        skip_policy_scope
+        mail_histories = threesixty_campaign.email_schedules.order(created_at: :desc)
+        total = mail_histories.count
+
+        mail_histories = mail_histories.page(params[:page]).map do |history|
+          ::Threesixty::MailHistorySerializer.new(history).to_h
+        end
+
+        render json: { mail_histories: mail_histories, total: total }
+      end
 
       def create
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
@@ -26,6 +38,31 @@ module Administration
                      serializable_hash
 
         render json: { email_schedule: email_schedule, recipients: recipients }
+      end
+
+      def update
+        form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
+        if form.valid?
+          resource.update!(form.attributes)
+          ::Threesixty::Emails::SendSingleScheduledEmail.call!(resource)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
+      def destroy
+        resource.destroy!
+
+        render json: :ok
+      end
+
+      def download
+        file = ::Threesixty::GenerateMailHistoryCsv.call!(resource)
+
+        respond_to do |format|
+          format.csv { send_data file, filename: "mail_history_#{Time.now}.csv" }
+        end
       end
 
       def schedulable_templates

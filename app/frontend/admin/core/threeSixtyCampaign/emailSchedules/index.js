@@ -12,12 +12,13 @@ export const get = state => _.get(state, ['threeSixtyCampaign', 'emailSchedules'
 
 export const FETCH_SCHEDULABLE_TEMPLATE = 'threeSixty/emailSchedules/FETCH_SCHEDULABLE_TEMPLATE'
 export const FETCH_SINGLE = 'threeSixty/emailSchedules/FETCH_SINGLE'
+export const UPDATE_FIELD = 'threeSixty/emailSchedules/UPDATE_FIELD'
 export const UPDATE = 'threeSixty/emailSchedules/UPDATE'
 export const CREATE = 'threeSixty/emailSchedules/CREATE'
 export const CHANGE_SELECTED = 'threeSixty/emailSchedules/CHANGE_SELECTED'
 export const FETCH_RECIPIENT_BY_CRITERIA = 'threeSixty/emailSchedules/FETCH_RECIPIENT_BY_CRITERIA'
 
-export const updateField = (key, value) => ({ type: UPDATE, payload: { key, value } })
+export const updateField = (key, value) => ({ type: UPDATE_FIELD, payload: { key, value } })
 export const changeSelected = id => ({ type: CHANGE_SELECTED, payload: { id } })
 
 export const fetchSingle = (campaignId, emailScheduleId) => ({
@@ -99,7 +100,7 @@ const HANDLERS = {
     }
   },
   [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
-  [UPDATE]: (state, { payload: { key, value } }) => updateIn(
+  [UPDATE_FIELD]: (state, { payload: { key, value } }) => updateIn(
     state,
     'list',
     list => _.map(list, (emailSchedule) => {

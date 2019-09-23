@@ -24,7 +24,7 @@ module Threesixty
     private
 
     def data(email_history)
-      return recipient_data(email_history.subject, email_history.status) if email_schedule.recipient_type == :subject
+      return recipient_data(email_history.subject, email_history) if email_schedule.recipient_type == :subject
 
       recipient_data(email_history.evaluator, email_history) + subject_data(email_history)
     end

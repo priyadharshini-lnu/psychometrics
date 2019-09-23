@@ -4,6 +4,7 @@ import {
   fetchSingle,
   fetchSchedulableTemplate,
   create,
+  update,
   updateField,
   changeSelected,
 } from 'admin/core/threeSixtyCampaign/emailSchedules'
@@ -22,7 +23,8 @@ export default connect(
   {
     fetchSingle,
     fetchSchedulableTemplate,
-    save: create,
+    create,
+    update,
     updateField,
     changeSelected,
     closeModal,
