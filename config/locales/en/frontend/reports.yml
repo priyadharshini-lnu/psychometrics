@@ -92,3 +92,6 @@ en:
         average: 'Average'
         item: 'Item'
         scoring_category: 'Scoring Category'
+      video_response:
+        no_results: 'No videos recorded'
+
