@@ -53,7 +53,7 @@ export default function EmailScheduleModal ({
         setErrors(null)
         closeModal()
         message.success('Email scheduled successfully', 5)
-        onSave && onSave()
+        if (onSave) { onSave() }
       })
       .catch(setErrors)
   }

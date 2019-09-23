@@ -98,7 +98,7 @@ const ActionMenu = ({
       {!unDelivered && (
       <Menu.Item key="0">
         <a
-            href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
+          href={`/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedulId}/download.csv`}
         >
           Download Details
         </a>
