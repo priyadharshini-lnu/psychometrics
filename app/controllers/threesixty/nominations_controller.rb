@@ -63,7 +63,7 @@ module Threesixty
         ::Threesixty::Emails::Name::NOMINATION_DENIED,
         threesixty_campaign: @campaign,
         subject: participant.threesixty_subject,
-        evaluator: participant.threesixty_evaluator,
+        evaluator: participant.threesixty_evaluator
       )
     end
   end
