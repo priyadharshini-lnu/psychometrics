@@ -13,7 +13,7 @@ module Administration
         def index
           @_filter_form = policy_scope(::Assign).
                           where(id: membership.assign_ids).
-                          includes(:assessment, :enabled_assigns_reports).
+                          includes(:assessment, :enabled_assigns_reports, :project_assign).
                           search(params[:q])
           @_resources = filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
@@ -109,7 +109,7 @@ module Administration
         end
 
         def set_membership
-          @_membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
+          @_membership = policy_scope(::Membership).join_user.includes(:client).find(params[:user_id])
           @_client = membership.client
         end
 

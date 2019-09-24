@@ -22,8 +22,7 @@ module Administration
               includes(
                 :assessments,
                 :report_families,
-                :hogan_report_setting,
-                :owner
+                :hogan_report_setting
               ).
               order(:name).
               distinct

@@ -10,6 +10,11 @@ module Administration
       def index
         @_filter_form = policy_scope(resource_class).
                         projects_of(client.id).
+                        includes(
+                          :creator,
+                          :modifier,
+                          :project_admin_memberships
+                        ).
                         order('name asc').
                         search(params[:q])
 
