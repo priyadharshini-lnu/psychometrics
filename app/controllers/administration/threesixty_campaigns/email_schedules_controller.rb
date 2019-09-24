@@ -11,9 +11,16 @@ module Administration
         skip_policy_scope
         email_schedules = threesixty_campaign.email_schedules.order(created_at: :desc)
         total = email_schedules.count
+        email_schedules = email_schedules.page(params[:page])
 
-        email_schedules = email_schedules.page(params[:page]).map do |history|
-          ::Threesixty::EmailScheduleSerializer.new(history).to_h
+        recipient_ids = email_schedules.
+                        select { |email_schedule| Array.wrap(email_schedule.recipient_ids).length == 1 }.
+                        map(&:recipient_ids).flatten
+
+        users_hash = User.where(id: recipient_ids).pluck(:id, :email).to_h
+
+        email_schedules = email_schedules.map do |history|
+          ::Threesixty::EmailScheduleSerializer.new(history, users_hash: users_hash).to_h
         end
 
         render json: { email_schedules: email_schedules, total: total }

@@ -14,7 +14,7 @@ module Threesixty
     def recipient
       recipient_criteria = object.recipient_criteria
 
-      return User.find_by(id: recipient_ids.first)&.email if recipient_ids.count == 1
+      return user_email(recipient_ids.first) if recipient_ids.count == 1
 
       subset_or_all = recipient_criteria.blank? ? 'All' : 'Subset of '
 
@@ -40,6 +40,10 @@ module Threesixty
 
     def recipient_type
       Threesixty::Emails::Name.recipient_type(object.name)
+    end
+
+    def user_email(id)
+      instance_options[:users_hash][id]
     end
   end
 end
