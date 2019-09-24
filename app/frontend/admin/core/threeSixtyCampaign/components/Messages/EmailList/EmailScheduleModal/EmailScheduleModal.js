@@ -48,7 +48,7 @@ export default function EmailScheduleModal ({
   const handleSave = () => {
     const save = isEdit ? update : create
 
-    save(campaignId, emailSchedule, _.map(recipients, r => r.id))
+    save(campaignId, emailSchedule, recipients.map(r => r.id))
       .then(() => {
         setErrors(null)
         closeModal()

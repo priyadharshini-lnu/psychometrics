@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class MailHistorySerializer < ActiveModel::Serializer
+  class EmailScheduleSerializer < ActiveModel::Serializer
     attributes :id, :status, :recipient, :subject, :scheduled_date, :emails_sent, :delivered_at
 
     has_many :histories, serializer: Threesixty::EmailHistorySerializer
@@ -18,7 +18,7 @@ module Threesixty
 
       subset_or_all = recipient_criteria.blank? ? 'All' : 'Subset of '
 
-      return "#{subset_or_all} #{object.recipient_type.to_s.pluralize.capitalize}" if recipient_criteria.blank?
+      "#{subset_or_all} #{recipient_type.to_s.pluralize.capitalize}"
     end
 
     # TODO: Change this when we do bounce email tracking
@@ -36,6 +36,10 @@ module Threesixty
 
     def recipient_ids
       Array.wrap(object.recipient_ids)
+    end
+
+    def recipient_type
+      Threesixty::Emails::Name.recipient_type(object.name)
     end
   end
 end

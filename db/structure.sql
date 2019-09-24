@@ -2286,8 +2286,7 @@ CREATE TABLE public.threesixty_email_histories (
     evaluator_id bigint,
     threesixty_campaign_id bigint,
     threesixty_email_schedule_id bigint,
-    recipient_type character varying,
-    status integer,
+    status smallint,
     meta json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -5359,7 +5358,7 @@ ALTER TABLE ONLY public.libraries
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id);
+    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id) ON DELETE CASCADE;
 
 
 --
@@ -5783,7 +5782,7 @@ ALTER TABLE ONLY public.users_reports
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -5831,7 +5830,7 @@ ALTER TABLE ONLY public.threesixty_campaigns
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id);
+    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -5935,7 +5934,7 @@ ALTER TABLE ONLY public.users_results
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id);
+    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE CASCADE;
 
 
 --

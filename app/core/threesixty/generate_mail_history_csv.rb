@@ -2,10 +2,11 @@
 
 module Threesixty
   class GenerateMailHistoryCsv < BaseCommand
-    private_attr_reader :email_schedule, :threesixty_campaign
+    private_attr_reader :email_schedule, :recipient_type, :threesixty_campaign
 
     def initialize(email_schedule)
       @email_schedule = email_schedule
+      @recipient_type = Threesixty::Emails::Name.recipient_type(email_schedule.name)
       @threesixty_campaign = @email_schedule.threesixty_campaign
     end
 
@@ -24,7 +25,7 @@ module Threesixty
     private
 
     def data(email_history)
-      return recipient_data(email_history.subject, email_history) if email_schedule.recipient_type == :subject
+      return recipient_data(email_history.subject, email_history) if recipient_type == :subject
 
       recipient_data(email_history.evaluator, email_history) + subject_data(email_history)
     end
@@ -51,7 +52,7 @@ module Threesixty
     end
 
     def headers
-      return recipient_headers if email_schedule.recipient_type == :subject
+      return recipient_headers if recipient_type == :subject
 
       recipient_headers + subject_headers
     end

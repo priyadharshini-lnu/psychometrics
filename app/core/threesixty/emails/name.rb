@@ -22,6 +22,11 @@ module Threesixty
       def self.reminder_email?(email_name)
         [SUBJECT_REMINDER, EVALUATOR_REMINDER].include?(email_name)
       end
+
+      def self.recipient_type(email_name)
+        config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == email_name }
+        config&.dig(:recipient_type)
+      end
     end
   end
 end

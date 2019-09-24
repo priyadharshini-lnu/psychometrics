@@ -7,7 +7,7 @@ module Threesixty
 
       def initialize(schedule_email)
         @schedule_email = schedule_email
-        @recipient_type = schedule_email.recipient_type
+        @recipient_type = Threesixty::Emails::Name.recipient_type(schedule_email.name)
         @threesixty_campaign = schedule_email.threesixty_campaign
       end
 
@@ -55,10 +55,9 @@ module Threesixty
       end
 
       def create_email_history(context)
-        threesixty_campaign.email_histories.create(
+        threesixty_campaign.email_histories.create!(
           subject_id: context[:subject]&.id,
           evaluator_id: context[:evaluator]&.id,
-          recipient_type: recipient_type,
           threesixty_email_schedule_id: schedule_email.id,
           status: :success,
           meta: meta_data_for_email_history(context)

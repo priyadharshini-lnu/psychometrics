@@ -16,7 +16,7 @@ export const remove = (campaignId, emailScheduleId) => ({
   emailScheduleId,
   request: {
     method: 'delete',
-    url: `/administration/threesixty_campaigns/${campaignId}/mail_histories/${emailScheduleId}`,
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailScheduleId}`,
   },
 })
 
@@ -25,14 +25,14 @@ export const fetch = (campaignId, page) => ({
   campaignId,
   request: {
     method: 'get',
-    url: `/administration/threesixty_campaigns/${campaignId}/mail_histories`,
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules`,
     body: { page },
   },
 })
 
 
 const HANDLERS = {
-  [FETCH]: (state, { response: { mailHistories, total } }) => ({ ...state, list: mailHistories, total }),
+  [FETCH]: (state, { response: { emailSchedules, total } }) => ({ ...state, list: emailSchedules, total }),
   [REMOVE]: (state, { requestAction: { emailScheduleId } }) => (
     updateIn(state, 'list', emailSchedules => _.filter(emailSchedules, ({ id }) => id !== emailScheduleId))
   ),

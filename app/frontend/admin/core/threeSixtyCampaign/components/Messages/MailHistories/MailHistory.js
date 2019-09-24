@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Table, Dropdown, Menu, Icon, Tag, message,
 } from 'antd'
+import { STATUSES } from 'constants/mailHistory'
 import style from './style.scss'
 import Pagination from '../../common/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
@@ -21,7 +22,7 @@ export default function MailHistory ({
     fetch(campaignId, page)
   }, [page])
 
-  const unDelivered = ({ status }) => status === 'undelivered'
+  const unDelivered = ({ status }) => status === STATUSES.UNDELIVERED
 
   const columns = [
     {
@@ -29,7 +30,7 @@ export default function MailHistory ({
       dataIndex: 'status',
       key: 'status',
       render: (text) => {
-        const color = text === 'success' ? 'green' : 'grey'
+        const color = text === STATUSES.SUCCESS ? 'green' : 'grey'
 
         return <Tag color={color}>{I18n.t(`threesixty.mail_history.statuses.${text}`)}</Tag>
       },

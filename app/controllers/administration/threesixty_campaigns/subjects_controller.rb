@@ -17,7 +17,7 @@ module Administration
                 ).
                 references(:user).
                 order(id: :desc)
-        subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]).per(3), threesixty_campaign)
+        subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]), threesixty_campaign)
         total = query.count
         render json: { subjects: subjects, total: total }
       end

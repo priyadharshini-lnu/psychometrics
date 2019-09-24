@@ -7,9 +7,4 @@ class Threesixty::EmailHistory < ApplicationRecord
   belongs_to :evaluator, class_name: 'User'
 
   enum status: { success: 0, bounce: 1 }
-
-  def recipient_type
-    config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == name }
-    config&.dig(:recipient_type)
-  end
 end
