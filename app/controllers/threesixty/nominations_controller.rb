@@ -37,8 +37,9 @@ module Threesixty
 
     def update_status
       participants = @subject.participants.where(manager_nomination_status: :waiting)
+      participant_list = participants.to_a
       participants.update_all(manager_nomination_status: params[:status])
-      participants.each { |participant| send_nomination_denied_email(participant) } if params[:status] == 'denied'
+      participant_list.each { |participant| send_nomination_denied_email(participant) } if params[:status] == 'denied'
 
       render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
     end
