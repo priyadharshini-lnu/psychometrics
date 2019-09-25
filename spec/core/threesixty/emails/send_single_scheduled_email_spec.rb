@@ -186,7 +186,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     relationship = create(:relationship, name: 'Manager', type: :global)
     create(
       :threesixty_participant,
-      campaign_id: email_schedule.threesixty_campaign_id,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
       evaluator_id: recipients[0].id,
       relationship_id: relationship.id
     )
