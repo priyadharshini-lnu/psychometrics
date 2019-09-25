@@ -45,6 +45,8 @@ gem 'devise',                     '~> 4.4.3'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'pundit',                     '~> 1.1.0'
+gem 'two_factor_authentication'
+
 ### Assets
 gem 'bh',                         '~> 1.3'
 gem 'bootstrap-sass',             '~> 3.3.6'
