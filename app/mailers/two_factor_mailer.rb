@@ -3,6 +3,7 @@ class TwoFactorMailer < ApplicationMailer
 
   def two_factor_code_email
     @user = params[:user]
+    @code = params[:code]
     mail(
       to: @user.email,
       subject: "#{t('two_factor.email.otp.subject')}"
