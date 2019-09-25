@@ -153,12 +153,13 @@ class User < ApplicationRecord
   # unless they have TOTP enabled.
   def send_two_factor_authentication_code(code)
     # TODO: Send code via Email.
+    TwoFactorMailer.with(user: self, code: code).two_factor_code_email.deliver_now
   end
 
   # By default, second factor authentication is required for each user.
   # Override here to change that.
   def need_two_factor_authentication?(request)
-    # TODO
+    true
   end
 
   # To set TOTP to disabled
