@@ -1,0 +1,7 @@
+h2 Hi, you received a code by email, please enter it below, thanks!
+
+= form_tag [resource_name, :two_factor_authentication], method: :put
+  = text_field_tag :code
+  = submit_tab "Log In!"
+
+= link_to "Sign Out", destroy_user_session_path, method: :delete

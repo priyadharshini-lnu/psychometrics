@@ -4,37 +4,44 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  first_name             :string
-#  last_name              :string
-#  disabled               :boolean          default(FALSE)
-#  role                   :string           default("Users::Regular")
-#  invitation_token       :string
-#  invitation_created_at  :datetime
-#  invitation_sent_at     :datetime
-#  invitation_accepted_at :datetime
-#  invitation_limit       :integer
-#  invited_by_type        :string
-#  invited_by_id          :integer
-#  invitations_count      :integer          default(0)
-#  authentication_token   :string(30)
-#  is_anonym              :boolean          default(FALSE)
-#  grants                 :jsonb
-#  created_by_id          :integer
-#  modified_by_id         :integer
-#  spoof_token            :string
+#  id                             :integer          not null, primary key
+#  email                          :string           default(""), not null
+#  encrypted_password             :string           default(""), not null
+#  reset_password_token           :string
+#  reset_password_sent_at         :datetime
+#  remember_created_at            :datetime
+#  sign_in_count                  :integer          default(0), not null
+#  current_sign_in_at             :datetime
+#  last_sign_in_at                :datetime
+#  current_sign_in_ip             :inet
+#  last_sign_in_ip                :inet
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  first_name                     :string
+#  last_name                      :string
+#  disabled                       :boolean          default(FALSE)
+#  role                           :string           default("Users::Regular")
+#  invitation_token               :string
+#  invitation_created_at          :datetime
+#  invitation_sent_at             :datetime
+#  invitation_accepted_at         :datetime
+#  invitation_limit               :integer
+#  invited_by_type                :string
+#  invited_by_id                  :integer
+#  invitations_count              :integer          default(0)
+#  authentication_token           :string(30)
+#  is_anonym                      :boolean          default(FALSE)
+#  grants                         :jsonb
+#  created_by_id                  :integer
+#  modified_by_id                 :integer
+#  spoof_token                    :string
+#  second_factor_attempts_count   :integer          default: 0
+#  encrypted_otp_secret_key       :string
+#  encrypted_otp_secret_key_iv    :string
+#  encrypted_otp_secret_key_salt  :string
+#  direct_otp                     :string
+#  direct_otp_sent_at             :datetime
+#  totp_timestamp                 :timestamp
 #
 
 class User < ApplicationRecord
@@ -89,7 +96,7 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   # Authentication
-  devise :invitable, :database_authenticatable, :registerable,
+  devise :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :timeoutable, request_keys: { subdomain: false }
 
@@ -139,6 +146,25 @@ class User < ApplicationRecord
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
+
+  has_one_time_password(encrypted: true)
+
+  # Overridden method to send direct OTP codes. This is automatically called when a user logs in
+  # unless they have TOTP enabled.
+  def send_two_factor_authentication_code(code)
+    # TODO: Send code via Email.
+  end
+
+  # By default, second factor authentication is required for each user.
+  # Override here to change that.
+  def need_two_factor_authentication?(request)
+    # TODO
+  end
+
+  # To set TOTP to disabled
+  def totp_enabled?
+    false
+  end
 
   # We won't set password, we will send inviting
   def password_required?

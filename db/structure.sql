@@ -135,7 +135,11 @@ CREATE TABLE public.assessments_clients (
     assessment_id bigint,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    enable_universal_links boolean DEFAULT false,
+    assessment_key character varying,
+    key_generated_at timestamp without time zone,
+    key_expires_at timestamp without time zone
 );
 
 
@@ -2737,7 +2741,14 @@ CREATE TABLE public.users (
     modified_by_id integer,
     spoof_token character varying,
     encrypted_invitation_raw character varying,
-    project_id integer
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone
 );
 
 
@@ -5063,6 +5074,13 @@ CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users
 
 
 --
+-- Name: index_users_on_encrypted_otp_secret_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_encrypted_otp_secret_key ON public.users USING btree (encrypted_otp_secret_key);
+
+
+--
 -- Name: index_users_on_grants; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6410,5 +6428,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190926112747'),
 ('20190930111830'),
 ('20190930140807');
-
-
+('20190915124839'),
+('20190916070023'),
+('20190916070101'),
+('20190925063942');
