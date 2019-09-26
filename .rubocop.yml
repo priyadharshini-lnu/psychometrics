@@ -17,7 +17,7 @@ Metrics/BlockNesting:
   Enabled: false
 
 Metrics/ClassLength:
-  Max: 200
+  Max: 250
 
 Style/DoubleNegation:
   Enabled: false

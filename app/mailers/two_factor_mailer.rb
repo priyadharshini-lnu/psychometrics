@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwoFactorMailer < ApplicationMailer
   default from: "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>"
 

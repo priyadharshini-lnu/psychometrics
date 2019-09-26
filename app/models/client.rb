@@ -30,7 +30,6 @@
 #  end_level          :boolean          default(FALSE)
 #
 
-# rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   include Copyable
   attr_writer :license_msg
@@ -297,4 +296,3 @@ class Client < ApplicationRecord
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
