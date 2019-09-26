@@ -64,7 +64,7 @@ module Threesixty
       end
 
       def nominator_is_manager?
-        Threesixty::Subjects::GetManagers.new(subject: subject).query.where(evaluator_id: nominator.id).exists?
+        Threesixty::Subjects::GetManagers.new(subject: subject).query.where(user_id: nominator.id).exists?
       end
     end
   end

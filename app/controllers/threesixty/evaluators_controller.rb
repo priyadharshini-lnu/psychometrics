@@ -13,11 +13,11 @@ module Threesixty
 
       if form.valid?
         result = ::Threesixty::Evaluators::NominateEvaluator.call!(
-          campaign: @campaign,
+          threesixty_campaign: @campaign,
           subject: @subject,
           params: params,
           nominator: current_user,
-          user: form.user
+          evaluator: form.user
         )
 
         is_approve_nomination_sendable = Threesixty::Emails::IsApproveNominationSendable.call!(
