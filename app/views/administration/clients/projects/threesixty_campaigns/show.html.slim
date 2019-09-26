@@ -3,5 +3,6 @@ div#three-sixty-container
 javascript:
   window.__INITIAL_STATE__ = JSON.parse('#{{json_escape(@init_state.to_json)}}')
 
+= javascript_pack_tag 'vendors'
 = javascript_pack_tag 'admin/threeSixtyCampaign'
 = stylesheet_pack_tag 'admin/threeSixtyCampaign'

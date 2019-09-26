@@ -1,4 +1,4 @@
-const { environment } = require('@rails/webpacker')
+const { environment, loaders } = require('@rails/webpacker')
 const { env } = require('process')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
@@ -25,6 +25,41 @@ const myCssLoaderOptions = {
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 
-
 environment.loaders.append('less', less)
+
+loaders.nodeModules.use[0].options.sourceMaps = true
+
+environment.config.merge({
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          chunks: 'initial',
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/]/,
+        },
+      },
+    },
+  },
+  resolve: {
+    symlinks: false,
+    alias: {
+      videojs: 'video.js',
+      'window.videojs': 'video.js',
+      RecordRTC: 'recordrtc',
+      'window.RecordRTC': 'recordrtc',
+    },
+  },
+  mode: __DEV__ ? 'development' : 'production',
+  devtool: 'source-map',
+  devServer: {
+    inline: false,
+    watchOptions: {
+      poll: 1000,
+      aggregateTimeout: 600,
+      ignored: [/node_modules\/(?!survey-ui)/],
+    },
+  },
+})
+
 module.exports = environment

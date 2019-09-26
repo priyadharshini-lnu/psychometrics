@@ -15,12 +15,12 @@ Rails.application.config.assets.precompile += %w[threesixty_dependencies.scss ap
 Rails.application.config.assets.precompile += %w[application_new.js threesixty.js]
 Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'
 Rails.application.config.assets.precompile << 'administration/*.mp3'
-Rails.application.config.assets.precompile += %w[psychometrics_vendor.js psychometrics_app.js psychometrics_preview.js
-                                                 psychometrics_qcenter.js psychometrics_bcenter.js]
-Rails.application.config.assets.precompile += %w[psychometrics_app.scss psychometrics_qcenter.scss
-                                                 psychometrics_bcenter.scss]
-Rails.application.config.assets.precompile += %w[psychometrics_vendor.css psychometrics_pass_assessment.css
-                                                 psychometrics_pass_assessment.js]
+# Rails.application.config.assets.precompile += %w[psychometrics_vendor.js psychometrics_app.js psychometrics_preview.js
+#                                                  psychometrics_qcenter.js psychometrics_bcenter.js]
+# Rails.application.config.assets.precompile += %w[psychometrics_app.scss psychometrics_qcenter.scss
+#                                                  psychometrics_bcenter.scss]
+# Rails.application.config.assets.precompile += %w[psychometrics_vendor.css psychometrics_pass_assessment.css
+#                                                  psychometrics_pass_assessment.js]
 Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.js psychometrics_reports_preview.js
                                                  psychometrics_reports_threesixty_report.js
                                                  psychometrics_reports_app.js]

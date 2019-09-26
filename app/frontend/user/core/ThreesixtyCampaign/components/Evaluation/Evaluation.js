@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
+import ReactDOM from 'react-dom'
 import {
   Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
 } from 'antd'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
+import PassAssessment from 'survey-ui/preview'
 import './styles.scss'
 
 const { Content } = Layout
@@ -26,11 +28,14 @@ export default function Evaluation ({
   match: { params },
   history,
 }) {
+  const assessmentRef = React.createRef()
+
   useEffect(() => {
     if (loaded && !error) {
-      window.renderPassAssessment('pass_assessment')
+      ReactDOM.render(<PassAssessment />, assessmentRef.current)
     }
   }, [loaded])
+
 
   const { edit, step, approveEvaluation } = qs.parse(location.search)
 
@@ -139,6 +144,7 @@ export default function Evaluation ({
             </Row>
             {!error && (
               <div
+                ref={assessmentRef}
                 id="pass_assessment"
                 data-type={asManager ? 'view_results' : 'pass_assessment'}
                 data-is-threesixty="true"
