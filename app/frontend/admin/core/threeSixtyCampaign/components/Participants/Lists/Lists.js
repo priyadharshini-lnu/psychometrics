@@ -3,6 +3,7 @@ import { Radio, Divider } from 'antd'
 import routeUtils from 'utils/routeUtils'
 import RouteList from 'components/RouteList'
 import _ from 'lodash'
+import CampaignNameConfirmationModal from 'admin/core/threeSixtyCampaign/components/common/CampaignNameConfirmationModal'
 import settings from '../../../settings'
 import SubjectList from './SubjectList'
 import EvaluatorList from './EvaluatorList'
@@ -32,6 +33,7 @@ const Lists = ({ history, routes, setSelectedTab }) => {
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
       <ParticipantModal />
       <ManageRelationshipsModal />
+      <CampaignNameConfirmationModal />
     </div>
   )
 }
