@@ -54,7 +54,7 @@ module Threesixty
         elsif can_nominate_anyone_from_datasheet?
           find_from_datasheet
         else
-          @user = ::Users::Regular.find_by(email: evaluator_email)
+          @user = ::Users::Regular.find_by(email: evaluator_email, project: threesixty_campaign.project)
           can_not_be_processed! unless @user
         end
       end
