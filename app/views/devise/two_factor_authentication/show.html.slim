@@ -1,7 +1,29 @@
-h2 = Hi, you received a code by email, please enter it below, thanks!
-
-= form_tag [resource_name, :two_factor_authentication], method: :put
-  = text_field_tag :code
-  = submit_tab "Log In!"
-
-= link_to "Sign Out", destroy_user_session_path, method: :delete
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+    .registrationForm
+      /! Nav tabs
+      ul.nav.nav-tabs.formTabs
+        li.active
+          = link_to 'One-Time Password', 'javascript:void(0)'
+      /! Tab panes
+      .tab-content
+        #login.tab-pane.fade.in.active role="tabpanel"
+          = form_tag [resource_name, :two_factor_authentication], method: :put
+            .tab-content
+            #login.tab-pane.fade.in.active role="tabpanel"
+              .loginFormContent
+                .otpGroup
+                  label for="code" = t('.code')
+                  .input-group
+                    = text_field_tag :code, nil, class: 'form-control input-lg'
+                span.clear &nbsp;
+                .signInButton
+                  .input-group.pull-left
+                    button.btn.btn-primary.signIn type="submit" value="Verify" = 'Verify'
+                  .forgotPassword.pull-right
+                    p
+                      = link_to 'Sign Out', destroy_user_session_path, method: :delete
+                .clearfix
+    .loginLinks
+      = render 'administration/administrator/shared/links'
+    .clearfix
