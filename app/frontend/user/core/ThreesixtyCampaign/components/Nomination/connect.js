@@ -13,13 +13,17 @@ import {
   updateNomination,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
-import { requirementsSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
+import {
+  requirementsSelector,
+  allowedRelationshipsForNewNominations,
+} from 'user/core/ThreesixtyCampaign/nomination/selectors'
 
 const mapStateToProps = state => ({
   nomination: state.threeSixtyCampaign.nomination,
   instructions: state.threeSixtyCampaign.nomination.instructions,
   requirements: requirementsSelector(state.threeSixtyCampaign),
   autocomplete: state.threeSixtyCampaign.temp.autocomplete,
+  allowedRelationshipsForNewNominations: allowedRelationshipsForNewNominations(state.threeSixtyCampaign),
 })
 
 const mapDispatchToProps = {

@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
+import { relationshipWithoutSelf } from 'utils/relationship'
 
 export const getConditions = state => state.nomination.requirements.conditions || []
 export const getEvaluators = state => state.nomination.evaluators
@@ -22,4 +23,18 @@ export const requirementsSelector = createSelector(
     })
     return groups
   },
+)
+
+
+export const allowedRelationshipsForNewNominations = createSelector(
+  getConditions, getEvaluators, getRelationships,
+  (conditions, evaluators, relationships) => relationshipWithoutSelf(relationships).filter((relationship) => {
+    const condition = _.find(conditions, { relationshipId: relationship.id })
+
+    if (!condition || !evaluators) { return true }
+
+    if (condition.comparator === 'atleast') { return true }
+
+    return condition.comparator !== 'atleast' && condition.value && evaluators.length >= +condition.value
+  }),
 )
