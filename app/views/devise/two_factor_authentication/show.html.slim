@@ -17,9 +17,13 @@
                 .input-group
                   = text_field_tag :code, nil, class: 'form-control input-lg'
               span.clear &nbsp;
-              .signInButton
+              div
                 .input-group.pull-left
                   button.btn.btn-primary.signIn type="submit" value="Verify" = 'Verify'
+                  = link_to resend_code_user_two_factor_authentication_path, class: 'mlm' do
+                    i.mrs.fa.fa-redo
+                    | Resent OTP
+                  end
                 .forgotPassword.pull-right
                   p
                     = link_to 'Sign Out', destroy_user_session_path, method: :delete
