@@ -159,7 +159,9 @@ class User < ApplicationRecord
   # By default, second factor authentication is required for each user.
   # Override here to change that.
   def need_two_factor_authentication?(request)
-    true
+    return true unless is?(:regular)
+
+    project ? project.second_factor_enabled? : false
   end
 
   # To set TOTP to disabled

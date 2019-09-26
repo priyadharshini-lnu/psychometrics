@@ -501,7 +501,8 @@ CREATE TABLE public.clients (
     ancestry_depth integer DEFAULT 0,
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
-    privacy_consent boolean
+    privacy_consent boolean,
+    second_factor_enabled boolean DEFAULT false
 );
 
 
@@ -6432,3 +6433,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190916070023'),
 ('20190916070101'),
 ('20190925063942');
+('20190917122130'),
+('20190926091345');

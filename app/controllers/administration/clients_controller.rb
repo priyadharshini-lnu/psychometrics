@@ -138,7 +138,7 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
-                                       :account_manager_id, :project_manager_id)
+                                       :account_manager_id, :project_manager_id, :second_factor_enabled)
     end
   end
 end
