@@ -12,7 +12,7 @@ const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    addNomination, searchEvaluators, updateForm,
+    addNomination, searchEvaluators, updateForm, allowedRelationshipsForNewNominations,
     showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
@@ -54,16 +54,7 @@ export default function NominationForm (props) {
       .then(() => message.info(I18n.t('threesixty.deny_all_successful')))
   }
 
-  const canAddEvaluators = (relationship) => {
-    const requirement = _.find(requirements, { title: relationship.name })
-    if (!requirement) { return true }
-
-    const { evaluators, condition } = requirement
-    if (evaluators && condition.comparator !== 'atleast' && condition.value && evaluators.length === +condition.value) {
-      return false
-    }
-    return true
-  }
+  const canAddEvaluators = relationship => _.includes(allowedRelationshipsForNewNominations, relationship)
 
   const hasEvaluations = _.some(requirements, req => req.evaluators && req.evaluators.length > 0)
 
