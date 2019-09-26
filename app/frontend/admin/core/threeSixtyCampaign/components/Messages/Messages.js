@@ -13,6 +13,7 @@ export default function Messages ({ history, routes }) {
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
         <Menu.Item key="/messages/email">Email Messages</Menu.Item>
         <Menu.Item key="/messages/instructions">Instruction Messages</Menu.Item>
+        <Menu.Item key="/messages/mail_histories">Mail History</Menu.Item>
         <Menu.Item key="/messages/options">Options</Menu.Item>
       </Menu>
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />

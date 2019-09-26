@@ -16,46 +16,57 @@ import RecipientListModal from './RecipientListModal'
 export default function EmailScheduleModal ({
   emailSchedules,
   emailSchedules: { list, selectedId, recipients },
+  fetchSingle,
   fetchSchedulableTemplate,
   create,
   update,
+  updateField,
   changeSelected,
   closeModal,
   data,
+  onSave,
   match: {
     params: { campaignId },
   },
 }) {
   const [errors, setErrors] = useState(null)
-  const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
+  const emailSchedule = _.find(list, ({ id }) => id === selectedId)
+  const isEdit = !!data.selectedEmailScheduleId
 
   useEffect(() => {
-    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
+    if (isEdit) {
+      fetchSingle(campaignId, data.selectedEmailScheduleId)
+    } else {
+      fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
+    }
   }, [])
 
-  if (!selectedEmailSchedule) {
+  if (!emailSchedule) {
     return null
   }
 
-  const handleCreate = () => {
-    create(campaignId, selectedEmailSchedule, _.map(recipients, r => r.id))
+  const handleSave = () => {
+    const save = isEdit ? update : create
+
+    save(campaignId, emailSchedule, recipients.map(r => r.id))
       .then(() => {
         setErrors(null)
         closeModal()
         message.success('Email scheduled successfully', 5)
+        if (onSave) { onSave() }
       })
       .catch(setErrors)
   }
 
   const handleInputChange = ({ target: { name, value } }) => {
-    update(name, value)
+    updateField(name, value)
   }
 
   const recipientType = () => {
-    if (_.includes([NAME.SUBJECT_INVITE, NAME.SUBJECT_REMINDER], selectedEmailSchedule.name)) {
+    if (_.includes([NAME.SUBJECT_INVITE, NAME.SUBJECT_REMINDER], emailSchedule.name)) {
       return 'Subject'
     }
-    if (_.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], selectedEmailSchedule.name)) {
+    if (_.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], emailSchedule.name)) {
       return 'Evaluator'
     }
 
@@ -79,7 +90,7 @@ export default function EmailScheduleModal ({
           key="submit"
           type="primary"
           disabled={_.isNull(recipientsCount) || recipientsCount === 0}
-          onClick={handleCreate}
+          onClick={handleSave}
         >
           <Icon type="check" />
           Schedule
@@ -90,20 +101,20 @@ export default function EmailScheduleModal ({
       <div className={style.content}>
         <ErrorAlertBox errors={errors} className="mbl" />
         <RecipientCriteriaList
-          emailName={selectedEmailSchedule.name}
-          recipientCriteria={selectedEmailSchedule.recipientCriteria}
+          emailName={emailSchedule.name}
+          recipientCriteria={emailSchedule.recipientCriteria}
           recipientType={recipientType()}
           recipientsCount={recipientsCount()}
         />
 
         <ScheduledDateField
-          scheduledDate={selectedEmailSchedule.scheduledDate}
-          updateScheduleDate={value => update('scheduledDate', value)}
+          scheduledDate={emailSchedule.scheduledDate}
+          updateScheduleDate={value => updateField('scheduledDate', value)}
         />
 
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
-          value={selectedEmailSchedule.from}
+          value={emailSchedule.from}
           className={cs(['mbm', style.smallWidthInput])}
           name="from"
           onChange={handleInputChange}
@@ -111,7 +122,7 @@ export default function EmailScheduleModal ({
 
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
-          value={selectedEmailSchedule.replyToEmail}
+          value={emailSchedule.replyToEmail}
           className={cs(['mbm', style.smallWidthInput])}
           name="replyToEmail"
           onChange={handleInputChange}
@@ -119,16 +130,16 @@ export default function EmailScheduleModal ({
 
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
-          value={selectedEmailSchedule.subject}
+          value={emailSchedule.subject}
           className="mbm"
           name="subject"
           onChange={handleInputChange}
         />
         <Editor
-          type={selectedEmailSchedule.name}
-          content={selectedEmailSchedule.content}
+          type={emailSchedule.name}
+          content={emailSchedule.content}
           handleContentChange={(value) => {
-            update('content', value)
+            updateField('content', value)
           }}
         />
         <RecipientListModal recipientType={recipientType()} recipients={recipients} />
