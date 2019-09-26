@@ -20,7 +20,9 @@ module Threesixty
           user: form.user
         )
 
-        is_approve_nomination_sendable = Threesixty::Emails::IsApproveNominationSendable.call!(threesixty_campaign: @campaign)
+        is_approve_nomination_sendable = Threesixty::Emails::IsApproveNominationSendable.call!(
+          threesixty_campaign: @campaign
+        )
 
         if !result.manager_nomination_approved? && is_approve_nomination_sendable
           Threesixty::Emails::Send.call!(
