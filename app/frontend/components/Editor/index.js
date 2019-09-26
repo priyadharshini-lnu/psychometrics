@@ -69,6 +69,7 @@ function Editor ({ content, handleContentChange, type }) {
     attribution: false,
     tableStyles: {
       'table-minimal-hr': 'Minimal',
+      'table-full-width': 'Full Width',
     },
     tableCellStyles: {
       'table-cell-header': 'Header',

@@ -155,11 +155,6 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
                 {' '}
                 {assign.timing}
               </Col>
-              <Col className="info-block">
-                <Icon type="question-circle" />
-                {' '}
-                {assign.questionsCount}
-              </Col>
             </Row>
             <div className="divider" />
             <div className="button">

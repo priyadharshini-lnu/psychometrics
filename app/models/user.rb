@@ -129,7 +129,7 @@ class User < ApplicationRecord
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
-  validates :email, uniqueness: { scope: %i[project_id role] }
+  validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email,
                           with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?

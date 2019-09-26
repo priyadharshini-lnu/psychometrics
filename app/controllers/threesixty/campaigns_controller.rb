@@ -49,7 +49,7 @@ module Threesixty
                              query.includes(:user)
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user, managed_subjects)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
-          reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects.query, current_user)
+          reports = ::Threesixty::UsersReportsQuery.new(@campaign, managed_subjects, current_user)
 
           managed_subjects = [] unless @campaign.option.participants.dig('manager', 'can_approves_evaluations')
 
