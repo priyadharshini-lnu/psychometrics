@@ -6,7 +6,7 @@ import {
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
-import PassAssessment from 'survey-ui/preview'
+import PassAssessment from 'survey-ui/assessment'
 import './styles.scss'
 
 const { Content } = Layout
@@ -30,11 +30,11 @@ export default function Evaluation ({
 }) {
   const assessmentRef = React.createRef()
 
-  useEffect(() => {
-    if (loaded && !error) {
-      ReactDOM.render(<PassAssessment />, assessmentRef.current)
-    }
-  }, [loaded])
+  // useEffect(() => {
+  //   if (loaded && !error) {
+  //     ReactDOM.render(<PassAssessment />, assessmentRef.current)
+  //   }
+  // }, [loaded])
 
 
   const { edit, step, approveEvaluation } = qs.parse(location.search)
@@ -120,7 +120,7 @@ export default function Evaluation ({
     clearEvaluation()
     history.push(`/campaigns/${params.campaignId}`)
   }
-
+  if (!loaded || error) { return null }
   return (
     <Layout>
       <Content className="fluid-container">
@@ -143,15 +143,15 @@ export default function Evaluation ({
               </Col>
             </Row>
             {!error && (
-              <div
+              <PassAssessment
                 ref={assessmentRef}
                 id="pass_assessment"
-                data-type={asManager ? 'view_results' : 'pass_assessment'}
-                data-is-threesixty="true"
-                data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-                data-data={JSON.stringify(assessment)}
-                data-result={JSON.stringify(results)}
-                data-dashboard-url={`/campaigns/${params.campaignId}`}
+                type={asManager ? 'view_results' : 'pass_assessment'}
+                isThreesixty="true"
+                resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                data={assessment}
+                result={results}
+                dashboardUrl={`/campaigns/${params.campaignId}`}
               />
             )}
           </div>
