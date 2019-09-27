@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import {
   Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
 } from 'antd'
@@ -120,7 +119,9 @@ export default function Evaluation ({
     clearEvaluation()
     history.push(`/campaigns/${params.campaignId}`)
   }
+
   if (!loaded || error) { return null }
+
   return (
     <Layout>
       <Content className="fluid-container">

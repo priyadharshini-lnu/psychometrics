@@ -10144,9 +10144,9 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#LH-190-survey-npm-module":
+"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#48ef1314c0a9c0b7bc7d9a600f331dc4599cc17d"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535"
   dependencies:
     action-cable-react "git+ssh://git@github.com:Fabel/action-cable-react.git"
     classnames "^2.2.6"
