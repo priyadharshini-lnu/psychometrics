@@ -4,9 +4,9 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
 
-const __DEV__ = env.RAILS_ENV === 'development'
-const __TEST__ = env.RAILS_ENV === 'test'
-const __PROD__ = env.RAILS_ENV === 'production'
+const __DEV__ = env.NODE_ENV === 'development'
+const __TEST__ = env.NODE_ENV === 'test'
+const __PROD__ = env.NODE_ENV === 'production'
 
 environment.plugins.insert(
   'DefinePlugin',
@@ -19,7 +19,7 @@ environment.plugins.insert(
 
 const myCssLoaderOptions = {
   modules: true,
-  localIdentName: env.RAILS_ENV === 'production' ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
+  localIdentName: env.NODE_ENV === 'production' ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
 }
 
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
