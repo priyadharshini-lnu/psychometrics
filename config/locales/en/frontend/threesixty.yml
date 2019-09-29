@@ -74,5 +74,6 @@ en:
                             Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"
     confirmation_required: Confirmation required
     confirmation_text_incorrect: Confirmation text is incorrect
+    confirmation_text_placeholder: Confirmation text here
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations

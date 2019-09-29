@@ -54,13 +54,13 @@ export default function AnswerableConfirmationModal ({
                 <b>{requiredAnswer}</b>
               </div>
             </>
-)}
+          )}
           type="warning"
         />
       </div>
       <Input
         className="mbm"
-        placeholder="Confirmation text here"
+        placeholder={I18n.t('threesixty.confirmation_text_placeholder')}
         onChange={(e) => {
           setAnswer(e.target.value)
         }}
