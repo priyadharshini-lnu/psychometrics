@@ -1,0 +1,9 @@
+en:
+  assessments:
+    categories:
+      case_study: Case Study
+      psychometric: Assessment
+      organisational: Survey
+      '360': 360 Campaign
+      mindmill: Mindmill
+      hogan: Hogan

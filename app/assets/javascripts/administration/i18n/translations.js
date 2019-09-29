@@ -180,12 +180,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -3951,6 +3951,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -5341,12 +5349,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -5632,6 +5640,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -5925,12 +5934,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -9696,6 +9705,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -11090,12 +11107,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -11381,6 +11398,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -11674,12 +11692,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -15445,6 +15463,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -16835,12 +16861,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -17126,6 +17152,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
