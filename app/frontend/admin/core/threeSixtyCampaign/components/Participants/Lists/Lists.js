@@ -3,6 +3,7 @@ import { Radio, Divider } from 'antd'
 import routeUtils from 'utils/routeUtils'
 import RouteList from 'components/RouteList'
 import _ from 'lodash'
+// eslint-disable-next-line max-len
 import CampaignNameConfirmationModal from 'admin/core/threeSixtyCampaign/components/common/CampaignNameConfirmationModal'
 import settings from '../../../settings'
 import SubjectList from './SubjectList'
