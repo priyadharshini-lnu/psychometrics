@@ -3,9 +3,10 @@
 class TwoFactorMailer < ApplicationMailer
   default from: "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>"
 
-  def two_factor_code_email
-    @user = params[:user]
-    @code = params[:code]
+  def two_factor_code_email(user, code)
+    @user = user
+    @code = code
+
     mail(
       to: @user.email,
       subject: I18n.t('two_factor.email.otp.subject'),

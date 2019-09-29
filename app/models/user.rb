@@ -152,8 +152,7 @@ class User < ApplicationRecord
   # Overridden method to send direct OTP codes. This is automatically called when a user logs in
   # unless they have TOTP enabled.
   def send_two_factor_authentication_code(code)
-    # TODO: Send code via Email.
-    TwoFactorMailer.with(user: self, code: code).two_factor_code_email.deliver_now
+    SendTwoFactorCodeJob.perform_later(self, code)
   end
 
   # By default, second factor authentication is required for each user.

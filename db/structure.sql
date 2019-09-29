@@ -4921,6 +4921,7 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
+<<<<<<< HEAD
 -- Name: index_threesixty_email_histories_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4935,6 +4936,8 @@ CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty
 
 
 --
+=======
+>>>>>>> two factor code mailer job and spec
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5229,6 +5232,7 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 
 
 --
+<<<<<<< HEAD
 -- Name: users_email_project_id_index; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5236,6 +5240,8 @@ CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (em
 
 
 --
+=======
+>>>>>>> two factor code mailer job and spec
 -- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
 --
 
