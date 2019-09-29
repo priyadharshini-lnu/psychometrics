@@ -3,13 +3,30 @@
 class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
-             :manager_evaluation_status, :campaign_id
+             :manager_evaluation_status, :campaign_id, :available_translations, :translations,
+             :selected_locale
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
+
+  def available_translations
+    ::Translation.available_translation_for_assessment(object.assessment_id)
+  end
+
+  def translations
+    ::Translation.to_hash_for_assessment(object.assessment_id, locale)
+  end
+
+  def selected_locale
+    {
+      code: locale,
+      name: I18n.t("languages.#{locale}"),
+      direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
+    }
+  end
 
   def campaign_id
     campaign.id
@@ -69,5 +86,9 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def current_user
     instance_options[:current_user]
+  end
+
+  def locale
+    instance_options[:locale] || I18n.default_locale
   end
 end

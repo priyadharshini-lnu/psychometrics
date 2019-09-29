@@ -5,7 +5,7 @@ import {
 import qs from 'query-string'
 import cs from 'classnames'
 import './styles.scss'
-import Language from './Language'
+import Language from '../common/Language'
 
 const { Content } = Layout
 

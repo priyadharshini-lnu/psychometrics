@@ -28,7 +28,8 @@ module Threesixty
 
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
-                 current_user: current_user, include: '**'
+                 current_user: current_user, locale: get_locale_for_assessment,
+                 include: '**'
         end
       end
     end
@@ -65,6 +66,14 @@ module Threesixty
 
     def set_evaluation
       @participant = @campaign.participants.find(params[:evaluation_id] || params[:id])
+    end
+
+    def get_locale_for_assessment
+      available_translations = ::Translation.available_translation_for_assessment(@users_result.assessment_id)
+      if params[:lang] && (available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
+        selected_locale = params[:lang]
+      end
+      selected_locale || user_locale
     end
   end
 end
