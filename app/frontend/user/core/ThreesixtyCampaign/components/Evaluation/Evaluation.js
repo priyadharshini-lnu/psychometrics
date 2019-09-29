@@ -6,6 +6,7 @@ import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
+import Language from '../common/Language'
 
 const { Content } = Layout
 
@@ -18,6 +19,9 @@ export default function Evaluation ({
       user,
       is_self: isSelf,
       as_manager: asManager,
+      selected_locale: selectedLanguage,
+      available_translations: availableTranslations,
+      translations,
       participant: {
         manager_evaluation_status: managerEvaluationStatus,
       },
@@ -32,10 +36,12 @@ export default function Evaluation ({
     }
   }, [loaded])
 
-  const { edit, step, approveEvaluation } = qs.parse(location.search)
+  const {
+    edit, step, approveEvaluation, lang,
+  } = qs.parse(location.search)
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step })
+    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step, lang })
   }, [])
 
   if (!loaded) { return null }
@@ -136,17 +142,30 @@ export default function Evaluation ({
               <Col>
                 <StatusDropdown />
               </Col>
+              {availableTranslations && availableTranslations.length > 0 && (
+                <Col>
+                  <div className="mlm">
+                    <Language
+                      selectedLanguage={selectedLanguage}
+                      availableTranslations={availableTranslations || []}
+                    />
+                  </div>
+                </Col>
+              )}
             </Row>
             {!error && (
-              <div
-                id="pass_assessment"
-                data-type={asManager ? 'view_results' : 'pass_assessment'}
-                data-is-threesixty="true"
-                data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-                data-data={JSON.stringify(assessment)}
-                data-result={JSON.stringify(results)}
-                data-dashboard-url={`/campaigns/${params.campaignId}`}
-              />
+              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                <div
+                  id="pass_assessment"
+                  data-type={asManager ? 'view_results' : 'pass_assessment'}
+                  data-is-threesixty="true"
+                  data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
+                  data-data={JSON.stringify(assessment)}
+                  data-result={JSON.stringify(results)}
+                  data-locales={JSON.stringify(translations)}
+                  data-dashboard-url={`/campaigns/${params.campaignId}`}
+                />
+              </div>
             )}
           </div>
         </PageHeader>
