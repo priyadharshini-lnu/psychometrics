@@ -1,5 +1,38 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -215,6 +248,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -293,6 +327,39 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -508,6 +575,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -586,6 +654,39 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -801,6 +902,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",

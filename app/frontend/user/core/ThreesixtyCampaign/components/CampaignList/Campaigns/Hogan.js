@@ -5,9 +5,7 @@ import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu, Input,
 } from 'antd'
 import './styles.scss'
-import hogan from './hogan.png'
 import ContinueIcon from './ContinueIcon'
-import AssessmentIcon from './AssessmentIcon'
 import PrivacyModal from './PrivacyModal'
 
 const IN_PROGRESS = 'in_progress'
@@ -134,11 +132,10 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
           <div className="cover">
             <div className="caption">
               <div className="icon">
-                <AssessmentIcon />
+                <span className="icon-hogan" />
               </div>
-              <div className="title">{I18n.t('threesixty.assessment')}</div>
+              <div className="title">{I18n.t('assessments.categories.hogan')}</div>
             </div>
-            <img className="service" src={hogan} alt="" />
             <div className="card-progress">
               <Progress
                 percent={assign.completionPercent || 0}

@@ -4,7 +4,7 @@ module EndUser
   class AssignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
-               :assessment_name, :questions_count, :timing, :mindmill, :hogan
+               :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
     attribute :need_confirm
@@ -82,6 +82,10 @@ module EndUser
 
     def need_confirm
       object.membership.client.privacy_consent && !object.membership.accepted_privacy?
+    end
+
+    def assessment_category
+      object.assessment.category
     end
 
     private
