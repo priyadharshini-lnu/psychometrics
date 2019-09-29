@@ -168,6 +168,10 @@ class User < ApplicationRecord
     false
   end
 
+  def reset_second_factor_attempts_counter!
+    update!(second_factor_attempts_count: 0)
+  end
+
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && create_by_invite
