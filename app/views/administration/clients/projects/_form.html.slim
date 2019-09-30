@@ -15,8 +15,9 @@
                 include_blank: false,
                 disabled: !f.object.new_record?
       - if f.object.project?
-        label = t('.data_privacy')
+        label = t('.other_settings')
         = f.input :privacy_consent
+        = f.input :second_factor_enabled, label: t('.2fa_enable')
       .clearfix
       -if policy(:client).design?
         .well
@@ -34,8 +35,6 @@
                   = f.input_field :background_color, class: 'form-control'
                   span.input-group-addon
                     i
-      = f.label t('administration.clients.edit.enable_2fa')
-      = f.input :second_factor_enabled
 
   .modal-footer
     .btn-group
