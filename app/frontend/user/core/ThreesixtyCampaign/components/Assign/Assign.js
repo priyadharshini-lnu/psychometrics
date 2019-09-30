@@ -73,6 +73,7 @@ export default function Assign ({
                 data-result={JSON.stringify(results)}
                 data-locales={JSON.stringify(translations)}
                 data-dashboard-url="/assessment_completed"
+                data-selected-locale={selectedLanguage && selectedLanguage.code}
               />
             )}
           </div>
