@@ -164,6 +164,7 @@ export default function Evaluation ({
                   data-result={JSON.stringify(results)}
                   data-locales={JSON.stringify(translations)}
                   data-dashboard-url={`/campaigns/${params.campaignId}`}
+                  data-selected-locale={selectedLanguage && selectedLanguage.code}
                 />
               </div>
             )}
