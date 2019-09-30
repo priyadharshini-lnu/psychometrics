@@ -8,7 +8,7 @@ import Editor from 'components/Editor'
 import cs from 'classnames'
 import { NAME } from 'constants/emailTemplate'
 import TitleBar from './TitleBar'
-import style from './style.scss'
+import styles from './styles.scss'
 import ScheduledDateField from './ScheduledDateField'
 import RecipientCriteriaList from './RecipientCriteriaList'
 import RecipientListModal from './RecipientListModal'
@@ -98,7 +98,7 @@ export default function EmailScheduleModal ({
       ]}
     >
       <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
-      <div className={style.content}>
+      <div className={styles.content}>
         <ErrorAlertBox errors={errors} className="mbl" />
         <RecipientCriteriaList
           emailName={emailSchedule.name}
@@ -115,7 +115,7 @@ export default function EmailScheduleModal ({
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
           value={emailSchedule.from}
-          className={cs(['mbm', style.smallWidthInput])}
+          className={cs(['mbm', styles.smallWidthInput])}
           name="from"
           onChange={handleInputChange}
         />
@@ -123,7 +123,7 @@ export default function EmailScheduleModal ({
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
           value={emailSchedule.replyToEmail}
-          className={cs(['mbm', style.smallWidthInput])}
+          className={cs(['mbm', styles.smallWidthInput])}
           name="replyToEmail"
           onChange={handleInputChange}
         />

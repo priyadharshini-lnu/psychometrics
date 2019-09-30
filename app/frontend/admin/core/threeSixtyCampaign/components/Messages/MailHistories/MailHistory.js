@@ -3,7 +3,7 @@ import {
   Table, Dropdown, Menu, Icon, Tag, message,
 } from 'antd'
 import { STATUSES } from 'constants/mailHistory'
-import style from './style.scss'
+import styles from './styles.scss'
 import Pagination from '../../common/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
 
@@ -52,7 +52,7 @@ export default function MailHistory ({
       render: (date, record) => (
         <>
           {moment(date).format('YYYY-MM-DD HH:mm:ss')}
-          <div className={style.scheduledAt}>{unDelivered(record) && moment(date).fromNow()}</div>
+          <div className={styles.scheduledAt}>{unDelivered(record) && moment(date).fromNow()}</div>
         </>
       ),
     },

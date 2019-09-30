@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import cs from 'classnames'
 import List from './Tabs'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function NominationRequirementModal ({
   closeModal,
@@ -38,7 +38,7 @@ export default function NominationRequirementModal ({
           key="add_requirement_set"
           type="primary"
           onClick={() => addNominationRequirement({ relationshipId: defaultSelectedRelationship })}
-          className={css.addButton}
+          className={styles.addButton}
         >
           <Icon type="plus" />
           Add Requirement set
@@ -53,7 +53,7 @@ export default function NominationRequirementModal ({
       ]}
     >
       <Row>
-        <Col span={24} className={cs([css.section, css.listSection])}>
+        <Col span={24} className={cs([styles.section, styles.listSection])}>
           <List />
         </Col>
       </Row>

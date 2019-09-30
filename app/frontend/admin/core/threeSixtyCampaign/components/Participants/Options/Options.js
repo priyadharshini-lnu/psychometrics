@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import css from './Options.scss'
+import styles from './Options.scss'
 import SubjectSection from './SubjectSection'
 import ManagerSection from './ManagerSection'
 import EvaluatorSection from './EvaluatorSection'
@@ -15,7 +15,7 @@ function Options ({
   }, [])
 
   return (
-    <div className={css.container}>
+    <div className={styles.container}>
       <EvaluatorSection />
 
       <ManagerSection />

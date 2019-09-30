@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from 'classnames'
 import { Select } from 'antd'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function Operator ({
   operator, update, moveConditionToNextLogicSet,
@@ -20,7 +20,7 @@ export default function Operator ({
       value={operator}
       size="small"
       dropdownMatchSelectWidth={false}
-      className={cs([css.inputElement, css.width80])}
+      className={cs([styles.inputElement, styles.width80])}
       onChange={handleOperatorChange}
     >
       <Select.Option key="and">And</Select.Option>
