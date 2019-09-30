@@ -22,6 +22,7 @@
           .add-icon-box
             = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
               span.fa.fa-plus
+    td = resource.second_factor_enabled?
     td = resource.parent.account_manager&.decorate&.display_name
     td
       = resource.decorate.client_project_admins

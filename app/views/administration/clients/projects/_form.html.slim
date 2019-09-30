@@ -34,6 +34,9 @@
                   = f.input_field :background_color, class: 'form-control'
                   span.input-group-addon
                     i
+      = f.label t('administration.clients.edit.enable_2fa')
+      = f.input :second_factor_enabled
+
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

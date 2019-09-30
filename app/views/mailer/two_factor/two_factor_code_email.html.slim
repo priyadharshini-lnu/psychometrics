@@ -1,16 +1,16 @@
-div Hello,
+p Dear #{@user.decorate.display_name},
 
 br
 
 div
-  strong = @code
+  span style="font-weight: bold;" = @code
   |
-    is your One-Time Password.
+    &nbsp; is your One-Time Password.
     It is valid for 20 minutes for logging on to your The Talent Enterprise account.
  
-div If you did not attempt the login that triggered this One Time Password please contact your administrator immediately.
+p If you did not attempt the login that triggered this One Time Password please contact your administrator immediately.
 
-div Your The Talent Enterprise account with the added protection of 2FA provides an additional layer of security to you.
+p Your The Talent Enterprise account with the added protection of 2FA provides an additional layer of security to you.
 
 br
 
