@@ -45,7 +45,7 @@ describe Threesixty::Emails::Send do
 
   it 'creates email_schedules record with multiple recipients when recipeint is manager' do
     create(:threesixty_email_template, threesixty_campaign: threesixty_campaign, name: 'manager_report_ready')
-    manager_relationship = create(:relationship, name: 'Manager')
+    manager_relationship = create(:relationship, name: 'Manager', type: :global)
     manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     manager_evaluators.each do |manager|
       create(
