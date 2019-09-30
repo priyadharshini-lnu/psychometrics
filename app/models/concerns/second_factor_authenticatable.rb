@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SecondFactorAuthenticatable
   extend ActiveSupport::Concern
 
@@ -11,6 +13,7 @@ module SecondFactorAuthenticatable
     # By default, second factor authentication is required for each user.
     # Override here to change that.
     def need_two_factor_authentication?(__request = nil)
+      return false unless Rails.env.production? # Disabled in development and test environments
       return true unless is?(:regular)
 
       project ? project.second_factor_enabled? : false
