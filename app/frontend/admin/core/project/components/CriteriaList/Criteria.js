@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input, Select, Icon } from 'antd'
-import css from './styles.scss'
+import styles from './styles.scss'
 
 
 export default function Criteria ({
@@ -13,7 +13,7 @@ export default function Criteria ({
       <Select
         {...valueAttr}
         size="small"
-        className={css.criteriaSelectList}
+        className={styles.criteriaSelectList}
         placeholder="Select a datasheet field"
         onChange={(value) => {
           updateCriteria('field', value)
@@ -32,7 +32,7 @@ export default function Criteria ({
       <Select
         value={comparator}
         size="small"
-        className={css.operatorSelectList}
+        className={styles.operatorSelectList}
         onChange={(value) => {
           updateCriteria('comparator', value)
         }}
@@ -43,7 +43,7 @@ export default function Criteria ({
       {comparator === 'equal' && (
         <Input
           value={value}
-          className={css.value}
+          className={styles.value}
           size="small"
           onChange={(e) => {
             updateCriteria('value', e.target.value)
@@ -51,8 +51,8 @@ export default function Criteria ({
         />
       )}
       <span>
-        <Icon type="minus-circle" onClick={removeCriteria} className={css.deleteIcon} />
-        <Icon type="plus-circle" onClick={addCriteria} className={css.addIcon} />
+        <Icon type="minus-circle" onClick={removeCriteria} className={styles.deleteIcon} />
+        <Icon type="plus-circle" onClick={addCriteria} className={styles.addIcon} />
       </span>
     </span>
   )

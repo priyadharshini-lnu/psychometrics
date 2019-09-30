@@ -3,13 +3,13 @@ import {
   Select,
 } from 'antd'
 import _ from 'lodash'
-import style from './style.scss'
+import styles from './styles.scss'
 
 export default function TitleBar ({ emailSchedules: { list, selectedId }, changeSelected }) {
   const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
 
   return (
-    <div className={style.container}>
+    <div className={styles.container}>
       <Message emailSchedules={list} changeSelected={changeSelected} selectedId={selectedId} />
       <div>
         {I18n.t(`administration.threesixty_campaigns.email_templates.${selectedEmailSchedule.name}.description`)}

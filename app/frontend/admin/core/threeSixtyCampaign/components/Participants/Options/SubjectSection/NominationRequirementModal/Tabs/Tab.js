@@ -4,7 +4,7 @@ import {
   Icon, Dropdown, Menu, Input,
 } from 'antd'
 import cs from 'classnames'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function Tab ({
   nominationRequirements: { selectedIndex, list },
@@ -82,7 +82,7 @@ export default function Tab ({
 
   return (
     <div>
-      <div className={css.name} role="button" tabIndex={-1} onClick={() => selected && setupForRenaming()}>
+      <div className={styles.name} role="button" tabIndex={-1} onClick={() => selected && setupForRenaming()}>
         <Input
           size="small"
           value={newName}
@@ -97,7 +97,7 @@ export default function Tab ({
           {list[index].name}
         </span>
       </div>
-      <div className={css.menu}>
+      <div className={styles.menu}>
         <Dropdown
           className="dropdown"
           overlay={menu(index)}

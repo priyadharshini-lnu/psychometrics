@@ -9,7 +9,7 @@ import cs from 'classnames'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
-import css from './style.scss'
+import styles from './styles.scss'
 import TemplateMenu from './TemplateMenu'
 import FooterBar from './FooterBar'
 import SentTestEmailModal from './SendTestEmailModal'
@@ -52,25 +52,25 @@ export default function Emails ({
   }
 
   return (
-    <Row className={css.container}>
+    <Row className={styles.container}>
       <Col xs={8} lg={7} xl={5}>
         <TemplateMenu emailTemplates={list} selectedId={selectedTemplate.id} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
         <TitleBar emailTemplate={selectedTemplate} openModal={openModal} />
-        <div className={css.content}>
+        <div className={styles.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
             value={selectedTemplate.from}
-            className={cs(['mbm', css.smallWidthInput])}
+            className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'from', e.target.value) }}
           />
 
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
             value={selectedTemplate.replyToEmail}
-            className={cs(['mbm', css.smallWidthInput])}
+            className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'replyToEmail', e.target.value) }}
           />
 
