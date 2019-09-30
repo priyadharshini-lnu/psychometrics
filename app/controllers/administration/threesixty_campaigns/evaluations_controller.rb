@@ -3,6 +3,8 @@
 module Administration
   module ThreesixtyCampaigns
     class EvaluationsController < Administration::ThreesixtyCampaigns::BaseController
+      include ::Threesixty::SetAssessmentLocale
+
       prepend_before_action :set_resource_class
       before_action :set_resource, only: %i[show update destroy]
       append_before_action :pundit_authorize
@@ -15,14 +17,12 @@ module Administration
         @participant = threesixty_campaign.participants.find_by!(subject_id: resource.user_id,
                                             evaluator_id: params[:id])
         @users_result.step = 0
+        set_locale_for_assessment(@users_result.assessment_id)
+        piped_text_context = get_piped_text_context
         @results = UsersResultSerializer.new(@users_result, participant: @participant, campaign: threesixty_campaign,
-                                             current_user: current_user, include: '**')
-
-        piped_text_context = {
-          evaluator: @users_result.evaluator,
-          subject: @users_result.subject,
-          threesixty_campaign: threesixty_campaign
-        }
+                                             current_user: current_user, locale: @selected_locale,
+                                             piped_text_context: piped_text_context).
+                   to_hash(include: '**')
 
         @assessment = ::AssessmentSerializer.new(threesixty_campaign.assessment,
                                                  piped_text_context: piped_text_context).
@@ -78,6 +78,14 @@ module Administration
           add_breadcrumb resource.campaign.name,
                          administration_client_project_threesixty_campaign_path(client, project, threesixty_campaign)
         end
+      end
+
+      def get_piped_text_context
+        {
+          evaluator: @users_result.evaluator,
+          subject: @users_result.subject,
+          threesixty_campaign: threesixty_campaign
+        }
       end
     end
   end

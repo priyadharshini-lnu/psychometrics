@@ -17,7 +17,16 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def translations
-    ::Translation.to_hash_for_assessment(object.assessment_id, locale)
+    translations = ::Translation.to_hash_for_assessment(object.assessment_id, locale)
+    return {} if translations.empty?
+
+    translations['question'] = translations['question'].each_with_object({}) do |(question_id, question_details), acc|
+      question_text = question_details['questionText']
+      question_text = Threesixty::PipedText::Perform.call!(question_text, instance_options[:piped_text_context])
+      acc[question_id] = question_details.merge('questionText' => question_text)
+    end
+
+    translations
   end
 
   def selected_locale
