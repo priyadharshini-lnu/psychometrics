@@ -115,7 +115,7 @@ export default function EmailScheduleModal ({
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
           value={emailSchedule.from}
-          className={cs(['mbm', style.smallWidthInput])}
+          className={cs(['mbm', styles.smallWidthInput])}
           name="from"
           onChange={handleInputChange}
         />
@@ -123,7 +123,7 @@ export default function EmailScheduleModal ({
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
           value={emailSchedule.replyToEmail}
-          className={cs(['mbm', style.smallWidthInput])}
+          className={cs(['mbm', styles.smallWidthInput])}
           name="replyToEmail"
           onChange={handleInputChange}
         />

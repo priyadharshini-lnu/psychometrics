@@ -66,7 +66,7 @@ export default function Criteria ({
             ),
           )}
         </Select>
-        <div className={cs(['mls', style.comparatorContainer])}>{renderComparator()}</div>
+        <div className={cs(['mls', styles.comparatorContainer])}>{renderComparator()}</div>
         <span>
           <Icon type="minus-circle" onClick={remove} className="mls" />
           <Icon type="plus-circle" onClick={add} className="mls" />
