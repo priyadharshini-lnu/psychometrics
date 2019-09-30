@@ -149,11 +149,7 @@ CREATE TABLE public.assessments_clients (
     assessment_id bigint,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    enable_universal_links boolean DEFAULT false,
-    assessment_key character varying,
-    key_generated_at timestamp without time zone,
-    key_expires_at timestamp without time zone
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -253,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb
+    subject_id bigint
 );
 
 
@@ -2067,12 +2063,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false
 );
 
@@ -6461,9 +6457,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190915124839'),
 ('20190916070023'),
 ('20190916070101'),
-('20190917122130'),
 ('20190926091345'),
-('20190917122130'),
 ('20190917140510'),
 ('20190925063942'),
 ('20190926112747');
