@@ -5,7 +5,6 @@
     .evaluation-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       width: 100%;
 
       .menu-icon {
@@ -17,4 +16,8 @@
       font-weight: 500;
     }
   }
+}
+.flex {
+  display: flex;
+  flex: 1;
 }

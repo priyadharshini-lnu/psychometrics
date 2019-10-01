@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch } from 'antd'
 import { CATEGORIES } from 'constants/emailTemplate'
-import css from './style.scss'
+import styles from './styles.scss'
 import ReminderRules from './ReminderRules'
 
 export default function FooterBar ({ emailTemplate, addReminderRule, removeAllReminderRules }) {
@@ -18,16 +18,16 @@ export default function FooterBar ({ emailTemplate, addReminderRule, removeAllRe
   }
 
   return (
-    <div className={css.container}>
-      <div className={css.titleContainer}>
-        <div className={css.title}>
+    <div className={styles.container}>
+      <div className={styles.titleContainer}>
+        <div className={styles.title}>
           {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_name`)}
         </div>
         <div>
           {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_description`)}
         </div>
       </div>
-      <div className={css.switchContainer}>
+      <div className={styles.switchContainer}>
         <Switch checked={reminderRulesExists} onChange={handleSwitchChange} />
       </div>
       <ReminderRules rules={emailTemplate.meta.reminderRules} selectedEmailTemplateId={emailTemplate.id} />

@@ -4,7 +4,7 @@ import _ from 'lodash'
 import cs from 'classnames'
 import { NAME } from 'constants/emailTemplate'
 import { TYPES } from 'constants/emailCriteria'
-import style from './style.scss'
+import styles from './styles.scss'
 import Comparators from './Comparators'
 
 const isEvaluatorEmail = name => _.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], name)
@@ -66,7 +66,7 @@ export default function Criteria ({
             ),
           )}
         </Select>
-        <div className={cs(['mls', style.comparatorContainer])}>{renderComparator()}</div>
+        <div className={cs(['mls', styles.comparatorContainer])}>{renderComparator()}</div>
         <span>
           <Icon type="minus-circle" onClick={remove} className="mls" />
           <Icon type="plus-circle" onClick={add} className="mls" />

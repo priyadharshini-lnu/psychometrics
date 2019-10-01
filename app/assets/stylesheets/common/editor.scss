@@ -1,14 +1,8 @@
-table.table-minimal-hr {
-    border: none;
-    th {
-
-    }
-}
 
 table.table-minimal-hr {
-	margin: 45px;
     border-collapse: collapse;
     border: none;
+    max-width: 100%;
     td.table-cell-header, th {
         font-weight: bold;
         color: #666;
@@ -19,8 +13,12 @@ table.table-minimal-hr {
     }
     td {
         padding: 8px;
+        border: 1px solid #eaeaea;
     }
     tr:hover td {
 	    color: #666;
     }
+}
+table.table-full-width {
+    width: 100%;
 }

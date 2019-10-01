@@ -159,6 +159,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -217,6 +220,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -235,6 +241,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -444,6 +456,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -502,6 +517,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -520,6 +538,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -729,6 +753,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -787,6 +814,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -805,6 +835,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",

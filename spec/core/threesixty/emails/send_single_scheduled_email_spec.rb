@@ -160,4 +160,41 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
 
     expect(email_schedule.delivered_at).to be_within(2).of(Time.now)
   end
+
+  it 'creates email history' do
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now
+    )
+
+    described_class.call!(email_schedule)
+
+    email_history = email_schedule.email_histories.first
+
+    expect(email_history).to_not eq(nil)
+  end
+
+  it 'sets relationship_id as meta data in reminder history' do
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now
+    )
+    relationship = create(:relationship, name: 'Manager', type: :global)
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      relationship_id: relationship.id
+    )
+
+    described_class.call!(email_schedule)
+
+    email_history = email_schedule.email_histories.first
+
+    expect(email_history.meta['relationship_id']).to eq(relationship.id)
+  end
 end

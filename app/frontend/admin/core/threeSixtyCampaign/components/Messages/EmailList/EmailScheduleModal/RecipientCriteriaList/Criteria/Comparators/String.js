@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Input } from 'antd'
 import { STRING_COMPARATOR } from 'constants/emailCriteria'
-import style from '../style.scss'
+import styles from '../styles.scss'
 
 export default function String ({ comparator, value, update }) {
   return (
@@ -15,7 +15,7 @@ export default function String ({ comparator, value, update }) {
         <Select.Option key={STRING_COMPARATOR.STARTS_WITH}>Starts With</Select.Option>
         <Select.Option key={STRING_COMPARATOR.EQUAL}>Is</Select.Option>
       </Select>
-      <Input className={style.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
+      <Input className={styles.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
     </div>
   )
 }

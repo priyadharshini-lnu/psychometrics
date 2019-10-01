@@ -41,7 +41,7 @@ module EndUser
     end
 
     def pdf_url
-      report_path(object)
+      assigns_report.pdf.url
     end
 
     private

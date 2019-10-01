@@ -72,3 +72,9 @@ en:
       reject: Reject
     mindmill_confirmation: "Starting this assessment you will lost results \"%{assessment}\".
                             Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"
+    mail_history:
+      statuses:
+        success: 'Success'
+        undelivered: 'Undelivered'
+    email_schedules:
+      delete_successful: Email schedule deleted successfully

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Menu, Button, Icon, Dropdown, Row, Col,
 } from 'antd'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function TitleBar ({ emailTemplate, openModal }) {
   const menu = (
@@ -17,10 +17,10 @@ export default function TitleBar ({ emailTemplate, openModal }) {
   )
 
   return (
-    <div className={css.container}>
-      <Row className={css.titleContainer}>
+    <div className={styles.container}>
+      <Row className={styles.titleContainer}>
         <Col md={14} lg={16} xl={18}>
-          <div className={css.title}>
+          <div className={styles.title}>
             {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`)}
           </div>
           <div>
@@ -29,11 +29,11 @@ export default function TitleBar ({ emailTemplate, openModal }) {
         </Col>
         <Col md={10} lg={8} xl={6}>
           {emailTemplate.schedulable && (
-            <div className={css.buttonContainer}>
+            <div className={styles.buttonContainer}>
               <Button
                 type="primary"
                 size="large"
-                className={css.button}
+                className={styles.button}
                 onClick={() => openModal('EmailScheduleModal', { selectedEmailTemplateId: emailTemplate.id })}
               >
                 <Icon type="schedule" />

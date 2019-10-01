@@ -233,6 +233,9 @@ Rails.application.routes.draw do
             get :schedulable_templates
             post :recipient_by_criteria
           end
+          member do
+            get :download, constraints: { format: :csv }
+          end
         end
 
         resources :managers

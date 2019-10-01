@@ -14,7 +14,7 @@ const { Column } = Table
 
 export default function RequirementTable (props) {
   const {
-    removeNomination, updateStatus,
+    removeNomination, updateStatus, allowedRelationshipsForNewNominations,
     match,
     nomination: { isSelf, options },
     canNominate,
@@ -139,9 +139,10 @@ export default function RequirementTable (props) {
     canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
   }
 
-  if (evaluators && condition.comparator !== 'atleast' && condition.value && evaluators.length === +condition.value) {
-    canAdd = false
-  }
+  const relationshipAllowed = _.find(allowedRelationshipsForNewNominations,
+    relationship => relationship.id === condition.relationshipId)
+
+  if (!relationshipAllowed) { canAdd = false }
 
   return (
     <div className="requirement">
