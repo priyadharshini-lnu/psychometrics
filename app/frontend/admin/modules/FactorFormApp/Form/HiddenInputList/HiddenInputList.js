@@ -6,7 +6,7 @@ const Input = ({ resourceName, name, value }) => <input type="hidden" name={`${r
 export default function HiddenInputList ({ resource, resourceName }) {
   return _.map(resource, (value, name) => {
     if (_.isArray(value)) {
-      return value.map((v, i) => <HiddenInputList key={i} resource={v} resourceName={`${resourceName}[${name}][]`} />)
+      return value.map((v, i) => <HiddenInputList key={i} resource={v} resourceName={`${resourceName}[${name}][${i}]`} />)
     }
     return <Input key={name} resourceName={resourceName} name={name} value={value || ''} />
   })

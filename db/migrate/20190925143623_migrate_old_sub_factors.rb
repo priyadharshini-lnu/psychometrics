@@ -7,5 +7,11 @@ class MigrateOldSubFactors < ActiveRecord::Migration[5.1]
         FactorsSubFactor.create!(factor_id: factor_id, sub_factor_id: sub_factor.id)
       end
     end
+    Factor.includes(:sub_factors).find_each do |f|
+      unless f.sub_factors.empty?
+        f.scoring_strategy = :sub_factor_questions
+        f.save!(validate: false)
+      end
+    end
   end
 end

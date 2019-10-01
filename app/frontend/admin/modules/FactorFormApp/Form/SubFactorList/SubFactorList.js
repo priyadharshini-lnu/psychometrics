@@ -45,18 +45,9 @@ export default function SubFactorList ({ factor, factors, onChange }) {
     const value = factor[FACTORS_SUB_FACTORS].filter(f => f.sub_factor_id !== subFactorId)
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
   }
+
   const onAdd = (subFactor) => {
-    let value
-    if (_.some(factor[FACTORS_SUB_FACTORS], f => f.sub_factor_id === subFactor.sub_factor_id)) {
-      value = factor[FACTORS_SUB_FACTORS].map((f) => {
-        if (f.sub_factor_id === subFactor.sub_factor_id) {
-          return { ...f, ...subFactor }
-        }
-        return f
-      })
-    } else {
-      value = [...factor[FACTORS_SUB_FACTORS], subFactor]
-    }
+    const value = [...factor[FACTORS_SUB_FACTORS], subFactor]
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
   }
 
