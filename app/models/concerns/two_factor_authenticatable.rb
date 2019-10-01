@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SecondFactorAuthenticatable
+module TwoFactorAuthenticatable
   extend ActiveSupport::Concern
 
   included do
@@ -10,13 +10,13 @@ module SecondFactorAuthenticatable
       SendTwoFactorCodeJob.perform_later(self, code)
     end
 
-    # By default, second factor authentication is required for each user.
+    # By default, two factor authentication is required for each user.
     # Override here to change that.
     def need_two_factor_authentication?(__request = nil)
-      return false unless Rails.env.production? # Disabled in development and test environments
+      return false if Rails.env.production? # Disabled in development and test environments
       return true unless is?(:regular)
 
-      project ? project.second_factor_enabled? : false
+      project ? project.two_factor_enabled? : false
     end
 
     # To set TOTP to disabled

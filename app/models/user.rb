@@ -47,7 +47,7 @@
 class User < ApplicationRecord
   include UserScopes
   include UserValidations
-  include SecondFactorAuthenticatable
+  include TwoFactorAuthenticatable
 
   # Roles constant
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'

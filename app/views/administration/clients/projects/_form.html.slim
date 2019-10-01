@@ -17,7 +17,7 @@
       - if f.object.project?
         label = t('.other_settings')
         = f.input :privacy_consent
-        = f.input :second_factor_enabled, label: t('.2fa_enable')
+        = f.input :two_factor_enabled, label: t('.2fa_enable')
       .clearfix
       -if policy(:client).design?
         .well
