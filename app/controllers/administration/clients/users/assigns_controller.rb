@@ -13,7 +13,12 @@ module Administration
         def index
           @_filter_form = policy_scope(::Assign).
                           where(id: membership.assign_ids).
-                          includes(:assessment, :enabled_assigns_reports, :project_assign).
+                          includes(
+                            :assessment,
+                            :enabled_assigns_reports,
+                            :project_assign,
+                            enabled_assigns_reports: %i[report assign]
+                          ).
                           search(params[:q])
           @_resources = filter_form.result.page(params[:page])
           @reports = policy_scope(Report).

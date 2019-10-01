@@ -249,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -1023,14 +1023,14 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 CREATE TABLE public.factors (
     id integer NOT NULL,
     name character varying,
-    subfactors_count integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     dimension_id integer,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
-    description text
+    description text,
+    scoring_strategy smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -1148,6 +1148,39 @@ CREATE SEQUENCE public.factors_scoring_id_seq
 --
 
 ALTER SEQUENCE public.factors_scoring_id_seq OWNED BY public.factors_scoring.id;
+
+
+--
+-- Name: factors_sub_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors_sub_factors (
+    id bigint NOT NULL,
+    sub_factor_id bigint,
+    factor_id bigint,
+    weight double precision DEFAULT 1.0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: factors_sub_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factors_sub_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factors_sub_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_factors.id;
 
 
 --
@@ -2022,12 +2055,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -3049,6 +3082,13 @@ ALTER TABLE ONLY public.factors_scoring ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: factors_sub_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval('public.factors_sub_factors_id_seq'::regclass);
+
+
+--
 -- Name: hogan_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3608,6 +3648,14 @@ ALTER TABLE ONLY public.factors
 
 ALTER TABLE ONLY public.factors_scoring
     ADD CONSTRAINT factors_scoring_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factors_sub_factors factors_sub_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
 
 
 --
@@ -4446,6 +4494,20 @@ CREATE UNIQUE INDEX index_factors_scoring_on_factor_question_assessment_id ON pu
 --
 
 CREATE INDEX index_factors_scoring_on_question_id ON public.factors_scoring USING btree (question_id);
+
+
+--
+-- Name: index_factors_sub_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factors USING btree (factor_id);
+
+
+--
+-- Name: index_factors_sub_factors_on_sub_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
 
 
 --
@@ -5585,6 +5647,14 @@ ALTER TABLE ONLY public.threesixty_participants
 
 
 --
+-- Name: factors_sub_factors fk_rails_8feda8b335; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT fk_rails_8feda8b335 FOREIGN KEY (sub_factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6065,6 +6135,14 @@ ALTER TABLE ONLY public.assigns
 
 
 --
+-- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT fk_rails_fe8dca5bf7 FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_fedc809cf8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6349,8 +6427,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100425'),
 ('20190902100625'),
 ('20190903131845'),
+('20190907165800'),
+('20190916212215'),
 ('20190917122130'),
 ('20190917140510'),
+('20190925142902'),
+('20190925143623'),
 ('20190926112747');
 
 
