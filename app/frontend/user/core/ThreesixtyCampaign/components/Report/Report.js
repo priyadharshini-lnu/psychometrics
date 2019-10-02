@@ -5,6 +5,7 @@ import {
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
+import ReportPreview from 'reports-ui/report'
 
 const { Title } = Typography
 const { Content } = Layout
@@ -19,11 +20,11 @@ export default function Report ({
     fetchReport(params.campaignId, params.id)
   }, [])
 
-  useEffect(() => {
-    if (loaded) {
-      window.initReport('threesixty-report')
-    }
-  }, [loaded])
+  // useEffect(() => {
+  //   if (loaded) {
+  //     window.initReport('threesixty-report')
+  //   }
+  // }, [loaded])
 
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
@@ -37,6 +38,8 @@ export default function Report ({
         }
       })
   }
+
+  if (!loaded) { return null }
 
   return (
     <Layout>
@@ -75,12 +78,12 @@ export default function Report ({
                 </Button>
               }
             </Row>
-            <div
+            <ReportPreview
               id="threesixty-report"
-              data-campaign={JSON.stringify(campaign)}
-              data-data={JSON.stringify(report)}
-              data-results={JSON.stringify(results)}
-              data-user={JSON.stringify(user)}
+              data={report}
+              results={results}
+              campaign={JSON.stringify(campaign)}
+              user={JSON.stringify(user)}
             />
           </div>
         </PageHeader>

@@ -73,6 +73,16 @@ module.exports = function (api) {
           async: false,
         },
       ],
+      [
+        require('babel-plugin-module-resolver').default,
+        {
+          root: ['./app/frontend'],
+          alias: {
+            ab: './node_modules/survey-ui/src',
+            rb: './node_modules/reports-ui/src',
+          },
+        },
+      ],
       isProductionEnv && [
         require('babel-plugin-transform-react-remove-prop-types').default,
         {
@@ -80,7 +90,7 @@ module.exports = function (api) {
         },
       ],
     ].filter(Boolean),
-    ignore: [/node_modules\/(?!survey-ui)/],
+    ignore: [/node_modules\/(?!survey-ui|reports-ui)/],
     sourceMaps: true,
     // test: ['app/frontend', 'node_modules/survey-ui'],
     // ignore: [/node_modules\/(?!survey-ui)/],
