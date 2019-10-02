@@ -3,6 +3,8 @@
 module Threesixty
   class EvaluationsController < ApplicationController
     include ::Threesixty::InitialState
+    include ::Threesixty::SetAssessmentLocale
+
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_evaluation, except: [:deny]
@@ -25,10 +27,12 @@ module Threesixty
           end
 
           @users_result.step = params[:step].to_i if params[:step]
-
+          set_locale_for_assessment(@users_result.assessment_id)
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
-                 current_user: current_user, include: '**'
+                 current_user: current_user, locale: @selected_locale,
+                 piped_text_context: get_piped_text_context,
+                 include: '**'
         end
       end
     end
@@ -65,6 +69,14 @@ module Threesixty
 
     def set_evaluation
       @participant = @campaign.participants.find(params[:evaluation_id] || params[:id])
+    end
+
+    def get_piped_text_context
+      {
+        evaluator: @users_result.evaluator,
+        subject: @users_result.subject,
+        threesixty_campaign: @campaign
+      }
     end
   end
 end

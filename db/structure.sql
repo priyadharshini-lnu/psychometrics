@@ -249,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -2022,12 +2022,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -6230,6 +6230,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190901150954'),
 ('20190902100425'),
 ('20190902100625'),
-('20190903131845');
+('20190903131845'),
+('20190917122130'),
+('20190930111830');
 
 

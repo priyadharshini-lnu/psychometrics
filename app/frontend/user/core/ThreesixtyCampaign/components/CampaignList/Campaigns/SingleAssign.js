@@ -7,11 +7,17 @@ import {
 import { Link } from 'react-router-dom'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
-import mindmill from './mindmill.png'
 import ContinueIcon from './ContinueIcon'
-import AssessmentIcon from './AssessmentIcon'
 
 const IN_PROGRESS = 'in_progress'
+const ASSESSMENT_CATEGORY_ICONS = {
+  psychometric: 'assessment',
+  360: '360',
+  hogan: 'hogan',
+  mindmill: 'mindmill',
+  case_study: 'case_study',
+  organisational: 'survey',
+}
 
 const DownloadLink = ({ report, text }) => {
   const { mindmill, mindmillReportUrl, pdfUrl } = report
@@ -121,7 +127,6 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
       loadAssessment(href)
     })
   }
-
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Card
@@ -131,11 +136,10 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
           <div className="cover">
             <div className="caption">
               <div className="icon">
-                <AssessmentIcon />
+                <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[assign.assessmentCategory]}`} />
               </div>
-              <div className="title">{I18n.t('threesixty.assessment')}</div>
+              <div className="title">{I18n.t(`assessments.categories.${assign.assessmentCategory}`)}</div>
             </div>
-            {assign.mindmill && <img className="service" src={mindmill} alt="" />}
             <div className="card-progress">
               <Progress
                 percent={assign.completionPercent || 0}

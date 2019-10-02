@@ -14,9 +14,9 @@ en:
         description: Description
         categories:
           case_study: Case Studies
-          psychometric: Psychometrics
-          organisational: Org Surveys
-          '360': 360 Feedback
+          psychometric: Assessment
+          organisational: Surveys
+          '360': 360 Campaign
           mindmill: Mindmill
           hogan: Hogan
         types:
