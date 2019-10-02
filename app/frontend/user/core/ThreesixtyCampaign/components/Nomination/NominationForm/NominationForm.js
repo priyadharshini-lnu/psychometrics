@@ -25,10 +25,9 @@ export default function NominationForm (props) {
   const handleAdd = () => {
     addNomination({
       campaignId, nominationId, ...form.attrs,
-    }).then((data) => {
-      const { evaluator } = data.response
-      if (!evaluator.firstName || !evaluator.lastName) {
-        setParticipant(data.response)
+    }).catch((error) => {
+      if (!error.evaluatorEmail && !error.relationshipId && (error.firstName || error.lastName)) {
+        setParticipant({ campaignId, nominationId, ...form.attrs })
         setShowPrompt(true)
       }
     })

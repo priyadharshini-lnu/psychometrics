@@ -26,7 +26,8 @@ module Threesixty
       end
 
       def create_evaluator_user
-        ::Users::Regular.create_with(first_name: '', last_name: '', create_by_invite: true).
+        ::Users::Regular.
+          create_with(first_name: params[:first_name], last_name: params[:last_name], create_by_invite: true).
           find_or_create_by!(email: params[:evaluator_email].downcase, project: project)
       end
 

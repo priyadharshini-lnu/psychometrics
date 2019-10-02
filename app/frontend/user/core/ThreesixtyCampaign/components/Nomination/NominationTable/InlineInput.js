@@ -17,12 +17,14 @@ export default function InlineInput ({
     if (email) {
       addNomination({
         campaignId, nominationId, email, relationshipId: relationship,
-      }).then((data) => {
-        const { evaluator } = data.response
-        if (!evaluator.firstName || !evaluator.lastName) {
-          setParticipant(data.response)
+      }).catch((error) => {
+        if (!error.evaluatorEmail && !error.relationshipId && (error.firstName || error.lastName)) {
+          setParticipant({
+            campaignId, nominationId, email, relationshipId: relationship,
+          })
           setShowPrompt(true)
         }
+      }).then(() => {
         setEmail(null)
         hideForm()
       })

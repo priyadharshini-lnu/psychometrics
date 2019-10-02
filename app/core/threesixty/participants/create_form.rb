@@ -5,11 +5,14 @@ module Threesixty
     class CreateForm < Rectify::Form
       attribute :evaluator_email, String
       attribute :relationship_id, Integer
+      attribute :first_name
+      attribute :last_name
 
       validates :relationship_id, :evaluator_email, presence: true
       validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
       validate :check_for_valid_user
+      validates :first_name, :last_name, presence: true, unless: -> { user.present? }
       validate :check_existing_participant, if: -> { user.present? }
       validate :check_nomination_requirement, if: -> { has_nomination_requirement? }
 
