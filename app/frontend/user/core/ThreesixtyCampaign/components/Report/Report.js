@@ -20,12 +20,6 @@ export default function Report ({
     fetchReport(params.campaignId, params.id)
   }, [])
 
-  // useEffect(() => {
-  //   if (loaded) {
-  //     window.initReport('threesixty-report')
-  //   }
-  // }, [loaded])
-
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
   }

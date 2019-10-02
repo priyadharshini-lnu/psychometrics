@@ -1,6 +1,3 @@
-= stylesheet_link_tag :psychometrics_reports_vendor
-= stylesheet_link_tag :psychometrics_reports_app
-
 #psychometrics_report_root[data-assessment-ids="#{resource.assessment_ids.to_json}"]
 = javascript_include_tag Ckeditor.cdn_url
 
@@ -8,11 +5,3 @@
 = stylesheet_pack_tag 'vendors'
 = javascript_pack_tag 'report/builder'
 = stylesheet_pack_tag 'report/builder'
-
-/ - if Settings.react_dev.reports
-/   / for debug
-/   = javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
-/   = javascript_include_tag 'http://localhost:3000/psychometrics_reports_app.js'
-/ - else
-/   = javascript_include_tag :psychometrics_reports_vendor
-/   = javascript_include_tag :psychometrics_reports_app

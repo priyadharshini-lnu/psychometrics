@@ -21,9 +21,7 @@ Rails.application.config.assets.precompile << 'administration/*.mp3'
 #                                                  psychometrics_bcenter.scss]
 # Rails.application.config.assets.precompile += %w[psychometrics_vendor.css psychometrics_pass_assessment.css
 #                                                  psychometrics_pass_assessment.js]
-Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.js psychometrics_reports_preview.js
-                                                 psychometrics_reports_app.js]
-Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.css psychometrics_reports_preview.css
-                                                 psychometrics_reports_app.scss]
-Rails.application.config.assets.precompile += %w[psychometrics_pdf_app.css]
-Rails.application.config.assets.precompile += %w[psychometrics_pdf_vendor.js psychometrics_pdf_app.js]
+# Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.js psychometrics_reports_preview.js
+#                                                  psychometrics_reports_app.js]
+# Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.css psychometrics_reports_preview.css
+#                                                  psychometrics_reports_app.scss]

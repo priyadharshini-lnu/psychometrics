@@ -1,6 +1,3 @@
-= stylesheet_link_tag :psychometrics_reports_vendor
-= stylesheet_link_tag :psychometrics_reports_preview
-
 #report_preview.html_preview[data-user="#{@data[:user]}"
   data-results="#{@data[:results]}"
   data-data="#{@data[:data]}"
@@ -11,13 +8,3 @@
 = stylesheet_pack_tag 'vendors'
 = stylesheet_pack_tag 'report/preview'
 = javascript_pack_tag 'report/preview'
-
-/ - if params[:export]
-/   = javascript_include_tag :psychometrics_pdf_vendor
-/   = javascript_include_tag :psychometrics_pdf_app
-/ - elsif Settings.react_dev.reports
-/   = javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
-/   = javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'
-/ - else
-/   = javascript_include_tag :psychometrics_reports_vendor
-/   = javascript_include_tag :psychometrics_reports_preview
