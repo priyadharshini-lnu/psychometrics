@@ -15,5 +15,9 @@ module Users
       uri.query = [uri.query, 'status=session_expired'].compact.join('&')
       redirect_to uri.to_s
     end
+
+    def after_sign_in_path_for(_)
+      '/'
+    end
   end
 end

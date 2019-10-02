@@ -4,7 +4,7 @@ import {
 } from 'antd'
 
 const menu = ({
-  projectId, campaignId, resetCampaign, resetAllNominations, openModal, dimensionId,
+  projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation, openModal, dimensionId,
 }) => (
   <Menu>
     <Menu.Item key="1">
@@ -27,13 +27,13 @@ const menu = ({
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="5">
-      <div onClick={() => resetCampaign(campaignId)} role="button" tabIndex={-1}>
+      <div onClick={() => resetCampaignWithConfirmation(campaignId)} role="button" tabIndex={-1}>
         Reset All Participants...
       </div>
     </Menu.Item>
     <Menu.Item key="6">
       <div
-        onClick={() => resetAllNominations(campaignId)}
+        onClick={() => resetAllNominationsWithConfirmation(campaignId)}
         role="button"
         tabIndex={-1}
       >
@@ -47,10 +47,29 @@ export default function ToolsDropdown ({
   resetCampaign, resetAllNominations, openModal, dimensionId,
   match: { params: { campaignId, projectId } },
 }) {
+  const resetCampaignWithConfirmation = (campaignId) => {
+    openModal('CampaignNameConfirmationModal', {
+      onConfirm: () => resetCampaign(campaignId),
+      confirmationMessage: I18n.t('threesixty.reset_campaign_confirmation'),
+    })
+  }
+
+  const resetAllNominationsWithConfirmation = (campaignId) => {
+    openModal('CampaignNameConfirmationModal', {
+      onConfirm: () => resetAllNominations(campaignId),
+      confirmationMessage: I18n.t('threesixty.reset_nomination_confirmation'),
+    })
+  }
+
   return (
     <Dropdown
       overlay={menu({
-        projectId, campaignId, resetCampaign, resetAllNominations, openModal, dimensionId,
+        projectId,
+        campaignId,
+        resetCampaignWithConfirmation,
+        resetAllNominationsWithConfirmation,
+        openModal,
+        dimensionId,
       })}
       className="mrm"
       trigger={['click']}
