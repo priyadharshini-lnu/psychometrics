@@ -9,6 +9,7 @@ module Threesixty
     initial_state_for [:show]
 
     def show
+      authorize @participant
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do

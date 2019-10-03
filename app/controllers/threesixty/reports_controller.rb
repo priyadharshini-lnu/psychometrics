@@ -17,6 +17,7 @@ module Threesixty
     end
 
     def show
+      authorize @users_report
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do
