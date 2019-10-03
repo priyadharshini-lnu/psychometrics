@@ -81,10 +81,10 @@ gem 'figaro',                     '~> 1.1.1'
 
 gem 'psychometrics-reports-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git',
-    ref: '5ed4ba2be56481d77eacd60a200ddcb056f6e476'
+    ref: '5b8a5a38931561cb41eb0da84cd741f565a76412'
 gem 'psychometrics-survey-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: 'b7a5c23c2f031ae8ab20600c5d906a13f1101902'
+    ref: 'd5ad2c88627297afec4d9219128e9db9ea58203a'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
