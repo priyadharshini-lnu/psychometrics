@@ -38,7 +38,7 @@ class Factor < ApplicationRecord
   after_create :create_aliases
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
 
-  enum scoring_strategy: %i[questions sub_factor_questions sub_factors_average]
+  enum scoring_strategy: { questions: 0, sub_factor_questions: 1, sub_factors_average: 2 }
 
   mount_uploader :icon, ImageUploader
 

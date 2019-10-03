@@ -1,30 +1,34 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Button, Col, Row, Select,
+  Col, Row, Select,
 } from 'antd'
 
 export default function Title ({ factors, factor, onAdd }) {
   const availableFactors = _.filter(factors, f => f.key !== factor.id)
   const [selectedFactor, setSelectedFactor] = useState()
 
-  const add = () => {
-    const subFactor = factors.find(f => f.key === selectedFactor)
-    onAdd({ sub_factor_id: selectedFactor, name: subFactor.value, weight: 1 })
-    setSelectedFactor(null)
+  const add = (factor) => {
+    const subFactor = factors.find(f => f.key === factor)
+    onAdd({ sub_factor_id: factor, name: subFactor.value, weight: 1 })
+    setSelectedFactor(factor)
   }
+
   return (
     <Row>
       <Col span={8}>
         <span>Sub Factors</span>
       </Col>
-      <Col span={8} offset={4}>
+      <Col span={7} offset={5}>
         <Select
-          style={{ width: 205 }}
+          showSearch
+          style={{ width: 224 }}
           className="mls"
           placeholder="Choose a sub factor"
           value={selectedFactor || ''}
-          onChange={val => setSelectedFactor(val)}
+          onChange={val => add(val)}
+          filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
         >
           {availableFactors.map(({ key, value }) => (
             <Select.Option
@@ -36,7 +40,6 @@ export default function Title ({ factors, factor, onAdd }) {
             </Select.Option>
           ))}
         </Select>
-        <Button shape="circle" icon="plus" className="mls" onClick={add} disabled={!selectedFactor} />
       </Col>
     </Row>
   )
