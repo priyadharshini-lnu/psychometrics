@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import _ from 'lodash'
 import {
   Input, Button, Form, AutoComplete,
 } from 'antd'
@@ -17,8 +18,9 @@ export default function InlineInput ({
     if (email) {
       addNomination({
         campaignId, nominationId, email, relationshipId: relationship,
-      }).catch((error) => {
-        if (!error.evaluatorEmail && !error.relationshipId && (error.firstName || error.lastName)) {
+      }).catch((errors) => {
+        const { firstName, lastName, ...rest } = errors
+        if (_.isEmpty(rest) && (firstName || lastName)) {
           setParticipant({
             campaignId, nominationId, email, relationshipId: relationship,
           })

@@ -25,8 +25,9 @@ export default function NominationForm (props) {
   const handleAdd = () => {
     addNomination({
       campaignId, nominationId, ...form.attrs,
-    }).catch((error) => {
-      if (!error.evaluatorEmail && !error.relationshipId && (error.firstName || error.lastName)) {
+    }).catch((errors) => {
+      const { firstName, lastName, ...rest } = errors
+      if (_.isEmpty(rest) && (firstName || lastName)) {
         setParticipant({ campaignId, nominationId, ...form.attrs })
         setShowPrompt(true)
       }
@@ -164,7 +165,9 @@ export default function NominationForm (props) {
       {_.some(form.errors) && (
         <Alert
           message={I18n.t('threesixty.validation_errors')}
-          description={_.map(form.errors, error => <div>{error.join(' ')}</div>)}
+          description={_.map(form.errors, (error, key) => (
+            !['firstName', 'lastName'].includes(key) && <div>{error.join(' ')}</div>
+          ))}
           type="error"
         />
       )}

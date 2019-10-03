@@ -33,6 +33,8 @@ export default function Nominations (props) {
       ...participant, ...values,
     }).then(() => {
       setShowPrompt(false)
+    }).catch(() => {
+      setShowPrompt(false)
     })
   }
 
