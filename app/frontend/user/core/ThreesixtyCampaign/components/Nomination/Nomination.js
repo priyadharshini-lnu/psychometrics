@@ -28,6 +28,16 @@ export default function Nominations (props) {
 
   const canNominate = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
 
+  const handleAddNomination = values => addNomination({
+    ...values,
+  }).catch((errors) => {
+    const { firstName, lastName, ...rest } = errors
+    if (_.isEmpty(rest) && (firstName || lastName)) {
+      setParticipant({ ...values })
+      setShowPrompt(true)
+    }
+  })
+
   const handleAdd = (values) => {
     addNomination({
       ...participant, ...values,
@@ -73,12 +83,13 @@ export default function Nominations (props) {
             {canNominate && (
             <NominationForm
               {...props}
+              handleAddNomination={handleAddNomination}
               setShowPrompt={setShowPrompt}
-              setParticipant={setParticipant}
             />
             )}
             <NominationTable
               {...props}
+              handleAddNomination={handleAddNomination}
               canNominate={canNominate}
               setShowPrompt={setShowPrompt}
               setParticipant={setParticipant}

@@ -1,31 +1,21 @@
 import React, { useState } from 'react'
-import _ from 'lodash'
 import {
   Input, Button, Form, AutoComplete,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 
 export default function InlineInput ({
-  relationship, addNomination, searchEvaluators, hideForm,
+  relationship, handleAddNomination, searchEvaluators, hideForm,
   autocomplete: { users },
   match: { params: { campaignId, id: nominationId } },
-  setShowPrompt, setParticipant,
 }) {
   const [email, setEmail] = useState(null)
   const [hasErrors, setHasErrors] = useState({ email: false })
 
   const handleAdd = () => {
     if (email) {
-      addNomination({
+      handleAddNomination({
         campaignId, nominationId, email, relationshipId: relationship,
-      }).catch((errors) => {
-        const { firstName, lastName, ...rest } = errors
-        if (_.isEmpty(rest) && (firstName || lastName)) {
-          setParticipant({
-            campaignId, nominationId, email, relationshipId: relationship,
-          })
-          setShowPrompt(true)
-        }
       }).then(() => {
         setEmail(null)
         hideForm()

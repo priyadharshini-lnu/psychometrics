@@ -12,25 +12,19 @@ const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    addNomination, searchEvaluators, updateForm, allowedRelationshipsForNewNominations,
+    handleAddNomination, searchEvaluators, updateForm, allowedRelationshipsForNewNominations,
     showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
       isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
-    setShowPrompt, setParticipant, requirements,
+    requirements,
   } = props
 
   const handleAdd = () => {
-    addNomination({
+    handleAddNomination({
       campaignId, nominationId, ...form.attrs,
-    }).catch((errors) => {
-      const { firstName, lastName, ...rest } = errors
-      if (_.isEmpty(rest) && (firstName || lastName)) {
-        setParticipant({ campaignId, nominationId, ...form.attrs })
-        setShowPrompt(true)
-      }
     })
   }
 
@@ -57,7 +51,9 @@ export default function NominationForm (props) {
   const canAddEvaluators = relationship => _.includes(allowedRelationshipsForNewNominations, relationship)
 
   const hasEvaluations = _.some(requirements, req => req.evaluators && req.evaluators.length > 0)
-
+  const errors = _.filter(form.errors, (error, key) => (
+    !['firstName', 'lastName'].includes(key) && error
+  ))
   return (
     <div className="nominations-form">
       <Title level={4}>
@@ -162,11 +158,11 @@ export default function NominationForm (props) {
           </Row>
         )}
       </div>
-      {_.some(form.errors) && (
+      {_.some(errors) && (
         <Alert
           message={I18n.t('threesixty.validation_errors')}
-          description={_.map(form.errors, (error, key) => (
-            !['firstName', 'lastName'].includes(key) && <div>{error.join(' ')}</div>
+          description={_.map(errors, error => (
+            <div>{error.join(' ')}</div>
           ))}
           type="error"
         />
