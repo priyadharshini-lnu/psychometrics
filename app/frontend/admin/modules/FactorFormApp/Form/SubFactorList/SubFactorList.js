@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import {
   Card, Button, Empty, Table, InputNumber,
 } from 'antd'

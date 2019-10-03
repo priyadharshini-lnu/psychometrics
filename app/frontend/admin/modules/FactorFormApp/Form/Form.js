@@ -4,10 +4,10 @@ import {
   Form as AntForm, Checkbox,
 } from 'antd'
 import BaseForm from 'admin/sharedComponents/Form'
-import { BASE_LAYOUT } from 'admin/sharedComponents/Form/layouts'
 import HiddenInputList from './HiddenInputList'
 import SubFactorList from './SubFactorList'
 import FIELDS from './fields'
+import styles from './styles.scss'
 
 export default function Form (props) {
   const { factor, errors, factors } = props
@@ -56,7 +56,7 @@ export default function Form (props) {
 
 // TODO (atanych): dont use this component in future. We should avoid ruby form and ruby modal and use react entirely
 const InputFile = ({ value, onChange }) => (
-  <AntForm.Item label="Icon" {...BASE_LAYOUT}>
+  <AntForm.Item label="Icon" className={styles.fileContainer}>
     <input name="resource[icon]" type="file" />
     {value && (
       <div className="mtm">

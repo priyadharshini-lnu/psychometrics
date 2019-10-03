@@ -2,6 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import { Form } from 'antd'
 import Fields from './Fields'
+import styles from './styles.scss'
 
 export default function Item ({
   field: {
@@ -16,7 +17,14 @@ export default function Item ({
 
   const Field = Fields[type]
   return (
-    <Form.Item {...layout} label={label} required={required} {...getProps(name)}>
+    <Form.Item
+      {...layout}
+      className={styles.container}
+      label={label}
+      required={required}
+      colon={false}
+      {...getProps(name)}
+    >
       <Field field={field} context={context} onChange={onChange} />
     </Form.Item>
   )
