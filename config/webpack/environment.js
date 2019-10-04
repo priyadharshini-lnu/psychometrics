@@ -36,7 +36,7 @@ environment.config.merge({
         vendors: {
           chunks: 'initial',
           name: 'vendors',
-          test: /[\\/]node_modules[\\/]/,
+          test: /node_modules\/(?!survey-ui|reports-ui)/,
         },
       },
     },
@@ -57,7 +57,7 @@ environment.config.merge({
     watchOptions: {
       poll: 1000,
       aggregateTimeout: 600,
-      ignored: [/node_modules\/(?!survey-ui)/],
+      ignored: [/node_modules\/(?!survey-ui|reports-ui)/],
     },
   },
 })

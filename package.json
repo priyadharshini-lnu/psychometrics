@@ -92,6 +92,7 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "survey-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535",
+    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#dc11b76bbdbb129d82490a05d17975733eb9a223",
     "use-debounce": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
