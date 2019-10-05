@@ -46,7 +46,7 @@ export default function SubFactorList ({ factor, factors, onChange }) {
   }
 
   const onAdd = (subFactor) => {
-    const value = [...factor[FACTORS_SUB_FACTORS], subFactor]
+    const value = [subFactor, ...factor[FACTORS_SUB_FACTORS]]
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
   }
 

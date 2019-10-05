@@ -30,8 +30,8 @@ en:
         no_icon: 'No Logo yet'
         scoring_strategies:
           questions: Questions
-          questions_of_other_factors: Questions of other Factors
-          weighted_sum_of_factors: Weighted Sum of Factors
+          sub_factor_questions: Questions of other Factors
+          sub_factors_average: Weighted Sum of Factors
       resource:
         tooltips:
           copy: 'Copy Factor'

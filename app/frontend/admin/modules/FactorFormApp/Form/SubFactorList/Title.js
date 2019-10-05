@@ -11,7 +11,7 @@ export default function Title ({ factors, factor, onAdd }) {
   const add = (factor) => {
     const subFactor = factors.find(f => f.key === factor)
     onAdd({ sub_factor_id: factor, name: subFactor.value, weight: 1 })
-    setSelectedFactor(factor)
+    setSelectedFactor(null)
   }
 
   return (
