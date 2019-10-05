@@ -3,7 +3,7 @@
 module Exports
   module Reports
     class ReportDataExport
-      attr_accessor :report, :client
+      attr_accessor :report, :client, :header_style, :sub_header_style, :content_style
 
       def initialize(report, client)
         @report = report
@@ -12,12 +12,9 @@ module Exports
 
       def to_xlsx
         Axlsx::Package.new do |package|
-          package.workbook.add_worksheet(name: 'ReportDataExport') do |sheet|
-            header_style = sheet.styles.add_style(
-              bg_color: 'FFFF0000',
-              alignment: { horizontal: :center, vertical: :center }
-            )
-
+          workbook = package.workbook
+          add_workbook_styles(workbook)
+          workbook.add_worksheet(name: 'ReportDataExport') do |sheet|
             # Draws two blank rows for header
             #
             sheet.add_row [], style: header_style
@@ -32,12 +29,12 @@ module Exports
               sub_headers_size = sub_headers.size - 1
 
               # Draws Header
-              sheet.rows.first.add_cell(section['label'])
+              sheet.rows.first.add_cell(section['label'], style: header_style)
               # Adds blank cell for then able to merge
               sub_headers_size.times { sheet.rows.first.add_cell('') }
               # Draws Sub Headers
               sub_headers.each do |sub_header|
-                sheet.rows.second.add_cell(sub_header)
+                sheet.rows.second.add_cell(sub_header, style: sub_header_style)
               end
 
               # Merge Header cells to one cell
@@ -50,7 +47,7 @@ module Exports
             # TODO: (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
             current_level_assigns.group_by(&:membership_id).each do |_, assigns|
               results = ::Reports::BuildResults.call(report, assigns)[:ok].flatten
-              sheet.add_row(results.map { |r| r[:value] })
+              sheet.add_row(results.map { |r| r[:value] }, style: content_style)
             end
           end
         end
@@ -65,6 +62,24 @@ module Exports
       end
 
       private
+
+      def add_workbook_styles(workbook)
+        @header_style = workbook.styles.add_style(
+          border: { style: :thin, color: '000000' },
+          bg_color: 'CFCECE',
+          alignment: { horizontal: :center, vertical: :center },
+          b: true
+        )
+        @sub_header_style = workbook.styles.add_style(
+          border: { style: :thin, color: '000000' },
+          bg_color: 'E7E6E5',
+          alignment: { horizontal: :center, vertical: :center },
+          b: true
+        )
+        @content_style = workbook.styles.add_style(
+          border: { style: :thin, color: '000000' }
+        )
+      end
 
       # Gets factor title
       #
@@ -81,7 +96,7 @@ module Exports
         sub_headers.map do |sub_header|
           label = sub_header['label']
           label ||= fetch_factor_label(sub_header['factorId']) if sub_header['factorId']
-
+          label ||= sub_header['key'].humanize if sub_header['key']
           label || ''
         end
       end

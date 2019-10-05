@@ -18,6 +18,12 @@ module Exports
             join(',')
         end
 
+        def self.result_label(answers, question)
+          answers = (answers || []).map { |answer| question.props.dig('choicesTexts', answer['index']) }.
+                    join(',')
+          [answers]
+        end
+
         def self.header(question)
           ["QID#{question.id}"]
         end
