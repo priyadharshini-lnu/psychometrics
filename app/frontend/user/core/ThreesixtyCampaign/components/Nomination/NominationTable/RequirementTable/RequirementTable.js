@@ -167,6 +167,7 @@ export default function RequirementTable (props) {
           render={renderRequirementCell}
         />
         <Column
+          width="20%"
           className="column-header"
           title={<div className="table-head-title">{I18n.t('threesixty.evaluation')}</div>}
           render={renderStatus}
