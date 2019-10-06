@@ -55,7 +55,7 @@ function EvaluationList ({
     <List.Item>
       <div className="evaluation-item list-item">
         {isEvaluationCompleted(item)
-          ? <Icon type="check-square" theme="filled" className="status-icon" />
+          ? <a><Icon type="check-square" theme="filled" className="status-icon" /></a>
           : <div className="empty-square" />}
         {' '}
         <Link

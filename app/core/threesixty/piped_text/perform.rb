@@ -49,6 +49,8 @@ module Threesixty
 
       # rubocop:disable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
       def call
+        return unless body.present?
+
         result =
           body.gsub /{{(.*?)}}/ do
             match = Regexp.last_match(1)

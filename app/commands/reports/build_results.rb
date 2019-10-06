@@ -8,7 +8,9 @@ module Reports
       external_result: 'Reports::ResultTypes::ExternalResults',
       normed_factor: 'Reports::ResultTypes::NormedFactor',
       formula: 'Reports::ResultTypes::Formula',
-      ranked_occupations: 'Reports::ResultTypes::RankedOccupations'
+      ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
+      survey_response: 'Reports::ResultTypes::SurveyResponse',
+      assign: 'Reports::ResultTypes::Assign'
     }.freeze
 
     def initialize(report, assigns)

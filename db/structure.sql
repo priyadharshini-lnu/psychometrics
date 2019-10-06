@@ -24,6 +24,20 @@ COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings
 
 
 --
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -135,11 +149,7 @@ CREATE TABLE public.assessments_clients (
     assessment_id bigint,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    enable_universal_links boolean DEFAULT false,
-    assessment_key character varying,
-    key_generated_at timestamp without time zone,
-    key_expires_at timestamp without time zone
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1013,14 +1023,14 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 CREATE TABLE public.factors (
     id integer NOT NULL,
     name character varying,
-    subfactors_count integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     dimension_id integer,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
-    description text
+    description text,
+    scoring_strategy smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -1138,6 +1148,39 @@ CREATE SEQUENCE public.factors_scoring_id_seq
 --
 
 ALTER SEQUENCE public.factors_scoring_id_seq OWNED BY public.factors_scoring.id;
+
+
+--
+-- Name: factors_sub_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors_sub_factors (
+    id bigint NOT NULL,
+    sub_factor_id bigint,
+    factor_id bigint,
+    weight double precision DEFAULT 1.0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: factors_sub_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factors_sub_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factors_sub_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_factors.id;
 
 
 --
@@ -1362,7 +1405,8 @@ CREATE TABLE public.license_usages (
     user_id bigint,
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    campaign_id bigint
+    campaign_id bigint,
+    registration_code_id bigint
 );
 
 
@@ -1919,6 +1963,45 @@ CREATE SEQUENCE public.questions_id_seq
 --
 
 ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
+
+
+--
+-- Name: registration_codes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.registration_codes (
+    id bigint NOT NULL,
+    name character varying,
+    code character varying,
+    total_count integer NOT NULL,
+    use_count integer DEFAULT 0,
+    client_id bigint,
+    project_id integer,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone,
+    disabled boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: registration_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.registration_codes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: registration_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.registration_codes_id_seq OWNED BY public.registration_codes.id;
 
 
 --
@@ -2670,7 +2753,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -2714,6 +2797,7 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
+    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -3038,6 +3122,13 @@ ALTER TABLE ONLY public.factors_scoring ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: factors_sub_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval('public.factors_sub_factors_id_seq'::regclass);
+
+
+--
 -- Name: hogan_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3189,6 +3280,13 @@ ALTER TABLE ONLY public.question_recoding ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.questions_id_seq'::regclass);
+
+
+--
+-- Name: registration_codes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes ALTER COLUMN id SET DEFAULT nextval('public.registration_codes_id_seq'::regclass);
 
 
 --
@@ -3600,6 +3698,14 @@ ALTER TABLE ONLY public.factors_scoring
 
 
 --
+-- Name: factors_sub_factors factors_sub_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: hogan_assessment_settings hogan_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3773,6 +3879,14 @@ ALTER TABLE ONLY public.question_recoding
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT questions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: registration_codes registration_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes
+    ADD CONSTRAINT registration_codes_pkey PRIMARY KEY (id);
 
 
 --
@@ -4438,6 +4552,20 @@ CREATE INDEX index_factors_scoring_on_question_id ON public.factors_scoring USIN
 
 
 --
+-- Name: index_factors_sub_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factors USING btree (factor_id);
+
+
+--
+-- Name: index_factors_sub_factors_on_sub_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
+
+
+--
 -- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4512,6 +4640,13 @@ CREATE INDEX index_license_usages_on_client_id ON public.license_usages USING bt
 --
 
 CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING btree (license_id);
+
+
+--
+-- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_registration_code_id ON public.license_usages USING btree (registration_code_id);
 
 
 --
@@ -4704,6 +4839,34 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
+-- Name: index_registration_codes_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_registration_codes_on_client_id ON public.registration_codes USING btree (client_id);
+
+
+--
+-- Name: index_registration_codes_on_client_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_registration_codes_on_client_id_and_code ON public.registration_codes USING btree (client_id, code);
+
+
+--
+-- Name: index_registration_codes_on_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_registration_codes_on_code ON public.registration_codes USING btree (code);
+
+
+--
+-- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
+
+
+--
 -- Name: index_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4848,6 +5011,13 @@ CREATE INDEX index_threesixty_email_histories_on_evaluator_id ON public.threesix
 --
 
 CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty_email_histories USING btree (subject_id);
+
+
+--
+-- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
 
 
 --
@@ -5135,6 +5305,13 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
 
 
 --
@@ -5560,6 +5737,14 @@ ALTER TABLE ONLY public.threesixty_participants
 
 
 --
+-- Name: factors_sub_factors fk_rails_8feda8b335; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT fk_rails_8feda8b335 FOREIGN KEY (sub_factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5752,11 +5937,27 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: registration_codes fk_rails_bc34ddc03d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes
+    ADD CONSTRAINT fk_rails_bc34ddc03d FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: license_usages fk_rails_c3b6c6c33d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_c3b6c6c33d FOREIGN KEY (registration_code_id) REFERENCES public.registration_codes(id);
 
 
 --
@@ -6037,6 +6238,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_f9a46f0162 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_sub_factors
+    ADD CONSTRAINT fk_rails_fe8dca5bf7 FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
 
 
 --
@@ -6324,11 +6533,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100425'),
 ('20190902100625'),
 ('20190903131845'),
-('20190915124839'),
-('20190916070023'),
-('20190916070101'),
+('20190907165800'),
+('20190916212215'),
+('20190917082805'),
 ('20190917122130'),
 ('20190917140510'),
-('20190926112747');
+('20190925142902'),
+('20190925143623'),
+('20190926112747'),
+('20190930111830'),
+('20190930140807');
 
 

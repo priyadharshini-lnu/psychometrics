@@ -169,6 +169,12 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       scheduled_date: Time.now
     )
 
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+    )
+
     described_class.call!(email_schedule)
 
     email_history = email_schedule.email_histories.first

@@ -23,15 +23,14 @@ module Threesixty
       private
 
       def send_email(recipient)
-        preprocess_email_schedule(recipient)
         context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
         context[recipient_type] = recipient if recipient_type
 
-        other_participator = recipient_type == :subject ? :evaluator : :subject
+        other_participator_type = recipient_type == :subject ? :evaluator : :subject
 
-        if (user_ids = schedule_email.meta["#{other_participator}_ids"].presence)
+        if (user_ids = get_other_participators(recipient, other_participator_type))
           User.where(id: user_ids).each do |user|
-            context[other_participator] = user
+            context[other_participator_type] = user
             create_email_history(context)
             Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
           end
@@ -75,10 +74,12 @@ module Threesixty
         { relationship_id: relationship_id }
       end
 
-      def preprocess_email_schedule(user)
+      def get_other_participators(user, other_participator_type)
+        other_participator_ids = schedule_email.meta["#{other_participator_type}_ids"].presence
+        return other_participator_ids if other_participator_ids
+
         if Threesixty::Emails::Name.evaluator_email?(schedule_email.name) && schedule_email.meta['subject_ids'].blank?
-          schedule_email.update(meta:
-            { subject_ids: Threesixty::Evaluators::GetSubjectIdsWithoutEvaluation.call!(threesixty_campaign, user) })
+          Threesixty::Evaluators::GetSubjectIdsWithoutEvaluation.call!(threesixty_campaign, user)
         end
       end
     end
