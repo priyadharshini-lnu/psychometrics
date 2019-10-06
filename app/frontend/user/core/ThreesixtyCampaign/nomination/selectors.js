@@ -32,7 +32,7 @@ export const allowedRelationshipsForNewNominations = createSelector(
     const condition = _.find(conditions, { relationshipId: relationship.id })
 
     if (!condition || !evaluators[relationship.name]
-        || condition.comparator === 'atleast' || _.empty(condition.value)) {
+        || condition.comparator === 'atleast' || _.isEmpty(condition.value)) {
       return true
     }
 
