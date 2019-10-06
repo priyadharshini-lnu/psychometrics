@@ -6,10 +6,8 @@ RSpec.describe SendTwoFactorCodeJob, type: :job do
   describe '#perform' do
     it 'calls on the TwoFactorMailer' do
       user = build(:user)
-      # allow(User).to receive(:find).and_return(user)
       allow(TwoFactorMailer).to receive_message_chain(:two_factor_code_email, :deliver_now)
 
-      puts "described_class: #{described_class}"
       described_class.new.perform(user, '123456')
 
       expect(TwoFactorMailer).to have_received(:two_factor_code_email)
