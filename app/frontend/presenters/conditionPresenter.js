@@ -9,7 +9,7 @@ const PREDICATES = {
 
 export default {
   getCondition ({ comparator, value }) {
-    if (_.isEmpty(value)) { return "" }
+    if (_.isEmpty(value)) { return '' }
     return `${PREDICATES[comparator]} ${value}`
   },
 
