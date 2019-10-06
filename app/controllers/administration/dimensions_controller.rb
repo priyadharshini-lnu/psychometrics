@@ -9,7 +9,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def index
     @_filter_form = policy_scope(resource_class).search(params[:q])
-    @_resources = filter_form.result.page(params[:page])
+    @_resources = filter_form.result.preload(:owner).page(params[:page])
 
     respond_to do |format|
       format.html
