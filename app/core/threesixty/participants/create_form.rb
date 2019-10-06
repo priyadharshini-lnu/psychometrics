@@ -20,10 +20,12 @@ module Threesixty
 
       def check_nomination_requirement
         condition = nomination_requirement.conditions.find { |c| c['relationship_id'] == relationship_id }
-        if condition && condition['value'] && condition['comparator'] != 'atleast' &&
-           condition['value'].to_i > subject_evaluators_count_by_relationship
-          errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
-        end
+
+        return if condition.blank? || condition['value'].blank?
+        return if condition['comparator'] == 'atleast'
+        return if subject_evaluators_count_by_relationship < condition['value'].to_i
+
+        errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
       end
 
       def check_existing_participant
