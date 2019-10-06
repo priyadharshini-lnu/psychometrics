@@ -6,10 +6,23 @@ import { setIn } from 'utils/immutable'
 import styles from './styles.scss'
 import Title from './Title'
 
-const getColumns = (onChange, onRemove) => [
+const getColumns = (onChange, onRemove, errors) => [
   {
     title: 'Name',
     dataIndex: 'name',
+    render: (text, record) => {
+      const error = errors.find(([id]) => id === record.sub_factor_id)
+      return (
+        <>
+          <div>{record.name}</div>
+          {error && (
+            <div className="has-error">
+              <span className="ant-form-explain">{error[1]}</span>
+            </div>
+          )}
+        </>
+      )
+    },
   },
   {
     title: 'Weight',
@@ -34,7 +47,9 @@ const getColumns = (onChange, onRemove) => [
 
 const FACTORS_SUB_FACTORS = 'factors_sub_factors'
 
-export default function SubFactorList ({ factor, factors, onChange }) {
+export default function SubFactorList ({
+  factor, factors, onChange, errors,
+}) {
   const onUpdate = (subFactor, index) => {
     const value = setIn(factor[FACTORS_SUB_FACTORS], [index], subFactor)
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
@@ -55,7 +70,7 @@ export default function SubFactorList ({ factor, factors, onChange }) {
     <Card className={styles.container} title={<Title factors={factors} factor={factor} onAdd={onAdd} />}>
       {factor[FACTORS_SUB_FACTORS].length ? (
         <Table
-          columns={getColumns(onUpdate, onRemove)}
+          columns={getColumns(onUpdate, onRemove, (errors && errors.factorsSubFactorsAttributes) || [])}
           dataSource={factor[FACTORS_SUB_FACTORS]}
           size="small"
           rowKey="sub_factor_id"

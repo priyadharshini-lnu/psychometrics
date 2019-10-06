@@ -105,6 +105,15 @@ class Factor < ApplicationRecord
     @cloned_factor.save ? @cloned_factor : nil
   end
 
+  def descendants
+    Factor.where(id: descendant_ids)
+  end
+
+  # TODO: (atanych): optimize that if we wanna add deep child level
+  def descendant_ids
+    (sub_factor_ids + sub_factors.map(&:descendant_ids)).flatten
+  end
+
   private
 
   def increment_factors

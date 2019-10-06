@@ -48,7 +48,7 @@ export default function Form (props) {
       />
       <BaseForm fields={FIELDS} errors={errors} context={props} onChange={onChange} resource={resource} />
       <InputFile onChange={onChange} value={resource.icon} />
-      <SubFactorList factors={factors} factor={resource} onChange={onChange} />
+      <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />
     </>
   )
 }
