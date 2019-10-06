@@ -31,10 +31,12 @@ export const allowedRelationshipsForNewNominations = createSelector(
   (conditions, evaluators, relationships) => relationshipWithoutSelf(relationships).filter((relationship) => {
     const condition = _.find(conditions, { relationshipId: relationship.id })
 
-    if (!condition || !evaluators) { return true }
+    if (!condition || !evaluators[relationship.name]) { return true }
 
     if (condition.comparator === 'atleast') { return true }
 
-    return condition.comparator !== 'atleast' && condition.value && evaluators.length >= +condition.value
+    const evaluatorsCount = evaluators[relationship.name].length
+
+    return condition.value && evaluatorsCount < +condition.value
   }),
 )
