@@ -37,7 +37,7 @@ describe Threesixty::Emails::Send do
     expect do
       Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_REPORT,
                                      threesixty_campaign: threesixty_campaign)
-    end.to_not change { Threesixty::EmailSchedule.count }
+    end.to_not change(Threesixty::EmailSchedule, :count)
   end
 
   it 'email_schedules record created by copying attributes from email template' do
