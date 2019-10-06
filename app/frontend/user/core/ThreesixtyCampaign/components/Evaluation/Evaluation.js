@@ -28,14 +28,6 @@ export default function Evaluation ({
   history,
 }) {
   const assessmentRef = React.createRef()
-
-  // useEffect(() => {
-  //   if (loaded && !error) {
-  //     ReactDOM.render(<PassAssessment />, assessmentRef.current)
-  //   }
-  // }, [loaded])
-
-
   const { edit, step, approveEvaluation } = qs.parse(location.search)
 
   useEffect(() => {
