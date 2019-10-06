@@ -40,11 +40,6 @@ module Threesixty
       end
     end
 
-    def update
-      @nomination.evaluator.update(first_name: params[:first_name], last_name: params[:last_name])
-      render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
-    end
-
     def update_status
       @nomination.update(manager_nomination_status: params[:status])
       if @nomination.manager_nomination_denied?

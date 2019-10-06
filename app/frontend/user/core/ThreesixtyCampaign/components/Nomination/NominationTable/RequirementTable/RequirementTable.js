@@ -15,7 +15,7 @@ const { Column } = Table
 export default function RequirementTable (props) {
   const {
     removeNomination, updateStatus, allowedRelationshipsForNewNominations,
-    match,
+    match, handleAddNomination,
     nomination: { isSelf, options },
     canNominate,
     requirement: { condition, title, evaluators },
@@ -55,6 +55,7 @@ export default function RequirementTable (props) {
         title={title}
         match={match}
         relationship={condition.relationshipId}
+        handleAddNomination={handleAddNomination}
         {...props}
         hideForm={() => { setShowForm(false) }}
       />,
