@@ -49,7 +49,7 @@ module Administration
     # Can export Report Data?
     #
     def export?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
 
     def left_menu?

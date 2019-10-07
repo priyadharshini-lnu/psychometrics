@@ -62,7 +62,6 @@ deploy_staging:
   environment:
     name: Heroku Staging
     url: https://staging.tte-lighthouse.com
-  when: manual
   only:
   - master
 
@@ -76,7 +75,6 @@ deploy_develop:
   environment:
     name: Heroku Develop
     url: https://.tte-lighthouse.com
-  when: manual
   only:
   - develop
 

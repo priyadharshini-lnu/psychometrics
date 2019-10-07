@@ -180,12 +180,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -3951,6 +3951,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -5341,12 +5349,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -5628,7 +5636,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -5677,6 +5689,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -5929,12 +5943,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -9700,6 +9714,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -11094,12 +11116,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -11381,7 +11403,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -11430,6 +11456,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -11682,12 +11710,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -15453,6 +15481,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -16843,12 +16879,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -17130,7 +17166,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -17179,6 +17219,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",

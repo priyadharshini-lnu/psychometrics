@@ -1,5 +1,38 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -211,7 +244,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -260,6 +297,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -297,6 +336,39 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -508,7 +580,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -557,6 +633,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -594,6 +672,39 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -805,7 +916,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -854,6 +969,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",

@@ -1,5 +1,9 @@
 :global {
   .rtl {
     direction: rtl;
+
+    input[type=radio] {
+      direction: ltr;
+    }
   }
 }

@@ -22,6 +22,10 @@ class AssignDecorator < BaseDecorator
     I18n.l(object.completed_at, format: :date) if object.completed_at
   end
 
+  def started_at
+    I18n.l(object.started_at, format: :date) if object.started_at
+  end
+
   def display_name
     'Assign'
   end

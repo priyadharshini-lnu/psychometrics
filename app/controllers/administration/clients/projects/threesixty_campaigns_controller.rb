@@ -20,6 +20,7 @@ module Administration
             threeSixtyCampaign: {
               campaignDetails: {
                 id: resource.id,
+                name: resource.name,
                 reportId: resource.report_id,
                 dimensionId: resource.assessment.dimension_id,
                 options: {

@@ -1,19 +1,22 @@
 import React from 'react'
 import { Dropdown, Menu, Icon } from 'antd'
+import qs from 'query-string'
 
-export default function Language ({ assignId, selectedLanguage, availableTranslations }) {
+export default function Language ({ selectedLanguage, availableTranslations }) {
+  const handleLanguageChange = ({ key }) => {
+    const query = qs.parse(location.search)
+    query.lang = key
+    window.location.search = qs.stringify(query)
+  }
+
   const LangMenu = () => (
-    <Menu>
+    <Menu onClick={handleLanguageChange}>
       <Menu.Item key="en">
-        <a href={`/assigns/${assignId}/pass?lang=en`}>
-          {I18n.t('languages.en')}
-        </a>
+        {I18n.t('languages.en')}
       </Menu.Item>
       {availableTranslations.map(lang => (
         <Menu.Item key={lang}>
-          <a href={`/assigns/${assignId}/pass?lang=${lang}`}>
-            {I18n.t(`languages.${lang}`)}
-          </a>
+          {I18n.t(`languages.${lang}`)}
         </Menu.Item>
       ))}
     </Menu>
