@@ -29,6 +29,10 @@ module Administration
         resource.parent = client
       end
 
+      def edit
+        @_resource.privacy_link.present? || @_resource.build_privacy_link
+      end
+
       def search_users
         users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
           ::Projects::SearchUserSerializer.new(user).to_h
@@ -66,7 +70,7 @@ module Administration
       def resource_params
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
-                                         :privacy_consent, privacy_link_attributes: %i[text link])
+                                         :privacy_consent, privacy_link_attributes: %i[id text link _destroy])
       end
     end
   end

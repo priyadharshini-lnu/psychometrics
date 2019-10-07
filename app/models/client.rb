@@ -107,7 +107,7 @@ class Client < ApplicationRecord
   has_one :privacy_link, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
-  accepts_nested_attributes_for :privacy_link
+  accepts_nested_attributes_for :privacy_link, allow_destroy: true
 
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
