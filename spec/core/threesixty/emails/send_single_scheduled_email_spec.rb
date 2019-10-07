@@ -172,7 +172,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
     create(
       :threesixty_participant,
       campaign_id: email_schedule.threesixty_campaign.campaign_id,
-      evaluator_id: recipients[0].id,
+      evaluator_id: recipients[0].id
     )
 
     described_class.call!(email_schedule)
