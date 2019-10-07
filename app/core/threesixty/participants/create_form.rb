@@ -9,7 +9,7 @@ module Threesixty
       attribute :last_name
 
       validates :relationship_id, :evaluator_email, presence: true
-      validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, format: { with: Devise.email_regexp }
 
       validate :check_for_valid_user
       validates :first_name, :last_name, presence: true, unless: -> { user.present? }

@@ -5,7 +5,7 @@ module Api
     module Users
       class UpdateForm < Rectify::Form
         attribute %i[first_name last_name email], String
-        validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
+        validates :email, format: { with: Devise.email_regexp }, allow_blank: true
         validate :uniq_email
 
         def uniq_email
