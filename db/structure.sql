@@ -1023,14 +1023,14 @@ ALTER SEQUENCE public.email_templates_id_seq OWNED BY public.email_templates.id;
 CREATE TABLE public.factors (
     id integer NOT NULL,
     name character varying,
+    subfactors_count integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     dimension_id integer,
     parent_id integer,
     disabled boolean DEFAULT false,
     icon character varying,
-    description text,
-    scoring_strategy smallint DEFAULT 0 NOT NULL
+    description text
 );
 
 
@@ -1148,39 +1148,6 @@ CREATE SEQUENCE public.factors_scoring_id_seq
 --
 
 ALTER SEQUENCE public.factors_scoring_id_seq OWNED BY public.factors_scoring.id;
-
-
---
--- Name: factors_sub_factors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.factors_sub_factors (
-    id bigint NOT NULL,
-    sub_factor_id bigint,
-    factor_id bigint,
-    weight double precision DEFAULT 1.0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: factors_sub_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.factors_sub_factors_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: factors_sub_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_factors.id;
 
 
 --
@@ -1405,8 +1372,7 @@ CREATE TABLE public.license_usages (
     user_id bigint,
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    campaign_id bigint,
-    registration_code_id bigint
+    campaign_id bigint
 );
 
 
@@ -1976,7 +1942,6 @@ CREATE TABLE public.registration_codes (
     total_count integer NOT NULL,
     use_count integer DEFAULT 0,
     client_id bigint,
-    project_id integer,
     start_date timestamp without time zone,
     end_date timestamp without time zone,
     disabled boolean DEFAULT true,
@@ -2753,7 +2718,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -3119,13 +3084,6 @@ ALTER TABLE ONLY public.factors_norms ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.factors_scoring ALTER COLUMN id SET DEFAULT nextval('public.factors_scoring_id_seq'::regclass);
-
-
---
--- Name: factors_sub_factors id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval('public.factors_sub_factors_id_seq'::regclass);
 
 
 --
@@ -3695,14 +3653,6 @@ ALTER TABLE ONLY public.factors
 
 ALTER TABLE ONLY public.factors_scoring
     ADD CONSTRAINT factors_scoring_pkey PRIMARY KEY (id);
-
-
---
--- Name: factors_sub_factors factors_sub_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors_sub_factors
-    ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
 
 
 --
@@ -4552,20 +4502,6 @@ CREATE INDEX index_factors_scoring_on_question_id ON public.factors_scoring USIN
 
 
 --
--- Name: index_factors_sub_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factors USING btree (factor_id);
-
-
---
--- Name: index_factors_sub_factors_on_sub_factor_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
-
-
---
 -- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4640,13 +4576,6 @@ CREATE INDEX index_license_usages_on_client_id ON public.license_usages USING bt
 --
 
 CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING btree (license_id);
-
-
---
--- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_license_usages_on_registration_code_id ON public.license_usages USING btree (registration_code_id);
 
 
 --
@@ -4846,24 +4775,10 @@ CREATE INDEX index_registration_codes_on_client_id ON public.registration_codes 
 
 
 --
--- Name: index_registration_codes_on_client_id_and_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_registration_codes_on_client_id_and_code ON public.registration_codes USING btree (client_id, code);
-
-
---
 -- Name: index_registration_codes_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_registration_codes_on_code ON public.registration_codes USING btree (code);
-
-
---
--- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
 
 
 --
@@ -5737,14 +5652,6 @@ ALTER TABLE ONLY public.threesixty_participants
 
 
 --
--- Name: factors_sub_factors fk_rails_8feda8b335; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors_sub_factors
-    ADD CONSTRAINT fk_rails_8feda8b335 FOREIGN KEY (sub_factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
-
-
---
 -- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5950,14 +5857,6 @@ ALTER TABLE ONLY public.registration_codes
 
 ALTER TABLE ONLY public.users_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
-
-
---
--- Name: license_usages fk_rails_c3b6c6c33d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_usages
-    ADD CONSTRAINT fk_rails_c3b6c6c33d FOREIGN KEY (registration_code_id) REFERENCES public.registration_codes(id);
 
 
 --
@@ -6238,14 +6137,6 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_f9a46f0162 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
-
-
---
--- Name: factors_sub_factors fk_rails_fe8dca5bf7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.factors_sub_factors
-    ADD CONSTRAINT fk_rails_fe8dca5bf7 FOREIGN KEY (factor_id) REFERENCES public.factors(id) ON DELETE CASCADE;
 
 
 --
@@ -6533,15 +6424,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100425'),
 ('20190902100625'),
 ('20190903131845'),
-('20190907165800'),
-('20190916212215'),
 ('20190917082805'),
 ('20190917122130'),
 ('20190917140510'),
-('20190925142902'),
-('20190925143623'),
 ('20190926112747'),
-('20190930111830'),
-('20190930140807');
+('20190930111830');
 
 
