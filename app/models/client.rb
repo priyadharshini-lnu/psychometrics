@@ -104,8 +104,10 @@ class Client < ApplicationRecord
            through: :projects, source: :users
 
   has_one :datasheet, foreign_key: :project_id, dependent: :destroy
+  has_one :privacy_link, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
+  accepts_nested_attributes_for :privacy_link
 
   before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 

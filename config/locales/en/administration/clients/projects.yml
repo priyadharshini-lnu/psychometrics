@@ -9,6 +9,8 @@ en:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
+          privacy_text: Privacy Text
+          privacy_link: Privacy Link
         list: &list
           name: Project name
           admin: Client Admin

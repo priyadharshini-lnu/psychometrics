@@ -14,6 +14,9 @@
                 collection: Client.applicable_levels.map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },
                 include_blank: false,
                 disabled: !f.object.new_record?
+      = f.simple_fields_for :privacy_link do |p|
+        = p.input :text, label: t('.privacy_text')
+        = p.input :link, as: :string, label: t('.privacy_link')
       - if f.object.project?
         label = t('.data_privacy')
         = f.input :privacy_consent

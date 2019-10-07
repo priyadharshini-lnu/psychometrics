@@ -25,6 +25,7 @@ module Administration
 
       def new
         @_resource = resource_class.new
+        @_resource.build_privacy_link
         resource.parent = client
       end
 
@@ -65,7 +66,7 @@ module Administration
       def resource_params
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
-                                         :privacy_consent)
+                                         :privacy_consent, privacy_link_attributes: %i[text link])
       end
     end
   end
