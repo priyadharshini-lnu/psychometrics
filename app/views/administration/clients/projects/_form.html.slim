@@ -19,9 +19,9 @@
         = f.input :privacy_consent
         = f.simple_fields_for :privacy_link do |p|
           .mbs
-            = p.check_box :_destroy, { checked: resource.privacy_link.persisted?, id: 'privacy_link_checkbox' }, 0, 1
+            = p.check_box :_destroy, { checked: @privacy_link_enabled, id: 'privacy_link_checkbox' }, 0, 1
             span.pas= t('.enable_privacy_links')
-          #privacy_link_details.mbm class="#{resource.privacy_link.persisted? ? '' : 'hidden'}"
+          #privacy_link_details.mbm class="#{@privacy_link_enabled ? '' : 'hidden'}"
             = p.input :text, label: t('.privacy_text')
             = p.input :link, as: :string, label: t('.privacy_link')
       .clearfix

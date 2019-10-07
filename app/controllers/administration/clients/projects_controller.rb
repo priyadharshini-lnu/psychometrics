@@ -6,6 +6,7 @@ module Administration
       include Administration::Clients
       before_action :ensure_client
       before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
+      before_action :set_privacy_link_enabled, only: %i[new edit create update]
 
       def index
         @_filter_form = policy_scope(resource_class).
@@ -71,6 +72,11 @@ module Administration
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, privacy_link_attributes: %i[id text link _destroy])
+      end
+
+      def set_privacy_link_enabled
+        @privacy_link_enabled = resource.privacy_link&.persisted? ||
+          params.dig(:resource, :privacy_link_attributes, :_destroy) == '0'
       end
     end
   end
