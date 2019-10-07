@@ -14,7 +14,9 @@ module Threesixty::InitialState
       threeSixtyCampaign: {
         temp: {
           project: {
-            logo: @current_project.logo.url
+            logo: @current_project.logo.url,
+            privacyText: @current_project.privacy_link&.text,
+            privacyPageLink: @current_project.privacy_link&.link,
           },
           currentUser: serialized_current_user
         }

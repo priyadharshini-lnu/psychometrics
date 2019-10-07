@@ -76,7 +76,7 @@ module Administration
 
       def set_privacy_link_enabled
         @privacy_link_enabled = resource.privacy_link&.persisted? ||
-          params.dig(:resource, :privacy_link_attributes, :_destroy) == '0'
+                                params.dig(:resource, :privacy_link_attributes, :_destroy) == '0'
       end
     end
   end
