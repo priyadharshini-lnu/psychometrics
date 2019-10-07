@@ -95,6 +95,12 @@
     "webpack-sources": "^1.3.0"
   },
   "devDependencies": {
+    "husky": "^3.0.8",
     "webpack-dev-server": "^3.2.1"
+  },
+  "husky": {
+      "hooks": {
+      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ && bundle exec rubocop"
+    }
   }
 }
