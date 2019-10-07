@@ -14,10 +14,10 @@ module TwoFactorAuthenticatable
     # Override here to change that.
     def need_two_factor_authentication?(__request = nil)
       if is?(:regular)
-        return project ? project.two_factor_enabled? : !! Settings.features.two_factor_enabled
+        return project ? project.two_factor_enabled? : !!Settings.features.two_factor_enabled
       end
 
-      !! Settings.features.two_factor_enabled
+      !!Settings.features.two_factor_enabled
     end
 
     # To set TOTP to disabled
