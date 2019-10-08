@@ -6,27 +6,28 @@ RSpec.describe PrivacyLink, type: :model do
   describe 'Validations' do
     it 'disallows empty text' do
       privacy_link = build(:privacy_link, text: '')
-      privacy_link.valid?
+      expect(privacy_link.valid?).to eq(false)
 
       expect(privacy_link.errors[:text]).to include("can't be blank")
     end
 
     it 'disallows empty link' do
       privacy_link = build(:privacy_link, link: '')
-      privacy_link.valid?
+      expect(privacy_link.valid?).to eq(false)
 
       expect(privacy_link.errors[:link]).to include("can't be blank")
     end
 
     it 'disallow url with different protocol apart from http/https' do
       privacy_link = build(:privacy_link, link: 'ftp://cc.com')
-      privacy_link.valid?
+      expect(privacy_link.valid?).to eq(false)
 
       expect(privacy_link.errors[:link]).to include('invalid url')
     end
 
     it 'disallows invalid url' do
       privacy_link = build(:privacy_link, link: 'invalid')
+      expect(privacy_link.valid?).to eq(false)
 
       expect(privacy_link.errors[:link]).to include('invalid url')
     end
