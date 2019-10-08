@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreatePrivacyLinks < ActiveRecord::Migration[5.1]
   def change
     create_table :privacy_links do |t|

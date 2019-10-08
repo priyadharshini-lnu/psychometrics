@@ -16,7 +16,7 @@ module Threesixty::InitialState
           project: {
             logo: @current_project.logo.url,
             privacyText: @current_project.privacy_link&.text,
-            privacyPageLink: @current_project.privacy_link&.link,
+            privacyPageLink: @current_project.privacy_link&.link
           },
           currentUser: serialized_current_user
         }
