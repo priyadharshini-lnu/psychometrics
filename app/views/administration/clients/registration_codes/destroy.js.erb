@@ -1,0 +1,4 @@
+$('#<%= dom_id(resource) %>').hide('slow')
+// Notify message
+noty({text: '<%= t("administration.clients.registration_codes.destroy.successfully",
+  name: resource.decorate.display_name) %>', type: 'success'});

@@ -24,20 +24,6 @@ COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings
 
 
 --
--- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
-
-
---
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
-
-
---
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -1372,7 +1358,8 @@ CREATE TABLE public.license_usages (
     user_id bigint,
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    campaign_id bigint
+    campaign_id bigint,
+    registration_code_id bigint
 );
 
 
@@ -1938,10 +1925,11 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 CREATE TABLE public.registration_codes (
     id bigint NOT NULL,
     name character varying,
-    code character varying,
+    code public.citext,
     total_count integer NOT NULL,
     use_count integer DEFAULT 0,
-    client_id bigint,
+    end_level_id integer,
+    project_id integer,
     start_date timestamp without time zone,
     end_date timestamp without time zone,
     disabled boolean DEFAULT true,
@@ -2762,7 +2750,6 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
-    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -4579,6 +4566,13 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_registration_code_id ON public.license_usages USING btree (registration_code_id);
+
+
+--
 -- Name: index_license_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4768,17 +4762,17 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
--- Name: index_registration_codes_on_client_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_registration_codes_on_client_id ON public.registration_codes USING btree (client_id);
+CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
 
 
 --
--- Name: index_registration_codes_on_code; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_registration_codes_on_code ON public.registration_codes USING btree (code);
+CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
 
 
 --
@@ -4926,13 +4920,6 @@ CREATE INDEX index_threesixty_email_histories_on_evaluator_id ON public.threesix
 --
 
 CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty_email_histories USING btree (subject_id);
-
-
---
--- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
 
 
 --
@@ -5220,13 +5207,6 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
-
-
---
--- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
 
 
 --
@@ -5844,19 +5824,19 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: registration_codes fk_rails_bc34ddc03d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.registration_codes
-    ADD CONSTRAINT fk_rails_bc34ddc03d FOREIGN KEY (client_id) REFERENCES public.clients(id);
-
-
---
 -- Name: users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: license_usages fk_rails_c3b6c6c33d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_c3b6c6c33d FOREIGN KEY (registration_code_id) REFERENCES public.registration_codes(id);
 
 
 --
@@ -6428,6 +6408,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190917122130'),
 ('20190917140510'),
 ('20190926112747'),
-('20190930111830');
+('20190930111830'),
+('20190930140807');
 
 

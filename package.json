@@ -99,7 +99,7 @@
     "webpack-dev-server": "^3.2.1"
   },
   "husky": {
-      "hooks": {
+    "hooks": {
       "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ && bundle exec rubocop"
     }
   }

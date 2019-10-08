@@ -5,5 +5,7 @@
   = active_link_to(t('administration.navigation.reports'), administration_client_reports_path(client), class: 'btn btn-default')
 - if policy(:assessment).client_index?
   = active_link_to(t('administration.navigation.assessments'), administration_client_assessments_path(client), class: 'btn btn-default')
+- if policy(:registration_code).index?
+  = active_link_to(t('administration.navigation.registration_codes'), administration_client_registration_codes_path(client), class: 'btn btn-default')
 /- if policy(:assign).statistics?
   = active_link_to(t('administration.navigation.statistics'), administration_client_statistics_path(client), class: 'btn btn-default')

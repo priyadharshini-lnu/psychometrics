@@ -3,7 +3,7 @@
 module Administration
   module Clients
     class CreateUser < Rectify::Command
-      def initialize(form, clients, current_user)
+      def initialize(form, clients, current_user = nil)
         @form = form
         @clients = clients
         @current_user = current_user
@@ -31,7 +31,7 @@ module Administration
       attr_reader :clients, :current_user, :membership_params, :form, :membership
 
       def create_membership_and_user(client)
-        @membership = client.memberships.new(form.membership_attributes)
+        @membership = client.memberships.new(form.try(:membership_attributes) || {})
         membership.user = User.find_or_initialize_by(email: form.email, project_id: client.project.id)
         if membership.user.new_record?
           membership.user.assign_attributes(form.user_attributes)

@@ -1,0 +1,12 @@
+$(function () {
+  $('#modal-container').find('.modal').modal('hide');
+  $('#modal-container').find('.modal').on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
+
+    // Reinit all plugins
+    $(document).trigger('initPlugins');
+
+    // Notify message
+    noty({text: '<%= t("administration.updated")%>', type: 'success'});
+  });
+});
