@@ -10,9 +10,13 @@
       /! Tab panes
       .tab-content
         #register.tab-pane.fade.in.active role="tabpanel"
-          = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
+          = simple_form_for(@form, as: resource_name, url: user_registration_path) do |f|
             div.clearfix
-              = f.error_notification
+              div class="alert alert-danger"
+                = t('simple_form.error_notification.default_message')
+                - if flash[:alert]
+                  ul
+                    li= flash[:alert]
             .loginFormContent
               .firstNameFormGroup
                 = f.label :first_name
@@ -39,6 +43,13 @@
                 .input-group
                   = f.input_field :password_confirmation, placeholder: true, class: 'form-control input-lg'
                 = f.error :password_confirmation
+              .registrationCodeFormGroup
+                = f.label :registration_code
+                .input-group
+                  = f.text_field :registration_code,
+                          placeholder: 'Enter the registration code', class: 'form-control input-lg',
+                          maxlength: 32, value: @form.context.code
+                = f.error :registration_code
               span.clear &nbsp;
               .signInButton
                 .input-group

@@ -56,6 +56,7 @@ en:
       norms_editor: Norm Editor
       assessments: Assessments
       projects: Projects
+      registration_codes: Registration Codes
       occupations: Occupations
       occupations_factors: Factors
       innovation_styles: Innvation Styles
@@ -71,7 +72,6 @@ en:
       communication_center: Communication Center
       statistics: Statistics
       products: Products
-      projects: Projects
       campaigns: Campaigns
       sub_campaigns: Sub Campaigns
       licenses: Licenses
