@@ -3,8 +3,9 @@ import { Layout } from 'antd'
 import './styles.scss'
 import lighthouseLogo from 'user/assets/lighthouseLogo.svg'
 import tteLogo from 'user/assets/tteLogo.svg'
+import _ from 'lodash'
 
-export default function Footer({ isFrame, privacyText, privacyPageLink }) {
+export default function Footer ({ isFrame, privacyText, privacyPageLink }) {
   if (isFrame) return isFrame
 
   return (
@@ -16,10 +17,12 @@ export default function Footer({ isFrame, privacyText, privacyPageLink }) {
             <a href="https://thetalententerprise.com/privacy-statement/" target="_blank" rel="noopener noreferrer">
               Terms, Conditions and Privacy Statement
             </a>
-            <br></br>
-            {!_.isNull(privacyText) && <a href={privacyPageLink} target="_blank" rel="noopener noreferrer">
+            <br />
+            {!_.isNull(privacyText) && (
+            <a href={privacyPageLink} target="_blank" rel="noopener noreferrer">
               {privacyText}
-            </a>}
+            </a>
+            )}
           </div>
           <img src={tteLogo} alt="The Talent Enterprise" />
         </div>
@@ -27,4 +30,3 @@ export default function Footer({ isFrame, privacyText, privacyPageLink }) {
     </Layout.Footer>
   )
 }
-
