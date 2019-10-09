@@ -3,14 +3,14 @@ import {
   Row, Col, Switch, Checkbox,
 } from 'antd'
 import cs from 'classnames'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function Expandable ({
   label, value, onOptionChanged, actionable, children, type,
 }) {
   const renderExpandableBlock = () => {
     if (!value || !children) return null
-    return <div className={cs({ [css.checkboxContainer]: type === 'checkbox' })}>{children}</div>
+    return <div className={cs({ [styles.checkboxContainer]: type === 'checkbox' })}>{children}</div>
   }
 
   const renderActionable = () => {

@@ -3,6 +3,8 @@ en:
     clients:
       projects:
         form:
+          2fa: 2 Factor Authentication
+          2fa_enable: Enable 2 Factor Authentication
           project_number: Project Number
           data_privacy: Data privacy
           applicable_levels:
@@ -12,6 +14,7 @@ en:
           privacy_text: Privacy text
           privacy_link: Privacy link
           enable_privacy_links: Enable privacy link
+          other_settings: Other Settings
         list: &list
           name: Project name
           admin: Client Admin
@@ -29,6 +32,7 @@ en:
           actual_usage: Actual Usage
           updated_at: Modified Date
           created_at: Created Date
+          2fa_enabled: 2FA Enabled
         export:
           <<: *list
         index:

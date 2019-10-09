@@ -13,7 +13,7 @@ module Administration
 
       def index
         @_filter_form ||= policy_scope(resource_class).
-                          includes(user: %i[clients memberships]).
+                          includes(user: %i[memberships creator modifier]).
                           where.not(role: Membership::PROJECT_ADMIN_ROLE).
                           join_user.search(params[:q])
         filter_form.client_id_in = client.id
@@ -106,7 +106,7 @@ module Administration
       end
 
       def export
-        @_resources = policy_scope(::Membership).join_user.where(client_id: client.id)
+        @_resources = policy_scope(::Membership).includes(:user).join_user.where(client_id: client.id)
 
         respond_to do |format|
           filename = "#{resource_class.model_name.plural}-#{Date.today}"

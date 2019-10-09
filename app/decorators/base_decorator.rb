@@ -53,6 +53,10 @@ class BaseDecorator < Draper::Decorator
     I18n.l object.updated_at, format: :short
   end
 
+  def formatted_date_time(column_name)
+    I18n.l object[column_name], format: :short
+  end
+
   def delete_confirmation
     {
       title: I18n.t("administration.#{i18n}.resource.confirmations.delete.title", name: display_name),

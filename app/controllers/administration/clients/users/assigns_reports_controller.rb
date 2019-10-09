@@ -13,7 +13,7 @@ module Administration
         def new
           @report_families = client.root.
                              report_families.
-                             includes(:reports).
+                             includes(:reports, :reportfamilies_reports).
                              where(reports: { disabled: false }).
                              references(:reports).
                              distinct
@@ -23,7 +23,7 @@ module Administration
         def create
           @report_families = client.root.
                              report_families.
-                             includes(:reports).
+                             includes(:reports, :reportfamilies_reports).
                              where(reports: { disabled: false }).
                              references(:reports).
                              distinct
@@ -76,7 +76,7 @@ module Administration
         end
 
         def set_membership
-          @_membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
+          @_membership = policy_scope(::Membership).join_user.includes(:client).find(params[:user_id])
           @_client = membership.client
         end
 

@@ -7,3 +7,5 @@ en:
       datetimepicker_without_time_server: '%d/%m/%Y'
       datetimepicker_without_time_client: 'DD/MM/YYYY'
       short_date: '%-d %b %Y'
+      datetimepicker_client_with_timezone: 'D MMM YYYY / H:mm Z'
+      datetimepicker_server_with_timezone: '%d %b %Y / %H:%M %:z'

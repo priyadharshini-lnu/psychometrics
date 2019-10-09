@@ -15,7 +15,7 @@
                 include_blank: false,
                 disabled: !f.object.new_record?
       - if f.object.project?
-        label = t('.data_privacy')
+        label = t('.other_settings')
         = f.input :privacy_consent
         = f.simple_fields_for :privacy_link do |p|
           .mbs
@@ -24,6 +24,7 @@
           #privacy_link_details.mbm class="#{@privacy_link_enabled ? '' : 'hidden'}"
             = p.input :text, label: t('.privacy_text')
             = p.input :link, as: :string, label: t('.privacy_link')
+        = f.input :two_factor_enabled, label: t('.2fa_enable')
       .clearfix
       -if policy(:client).design?
         .well
@@ -41,6 +42,7 @@
                   = f.input_field :background_color, class: 'form-control'
                   span.input-group-addon
                     i
+
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

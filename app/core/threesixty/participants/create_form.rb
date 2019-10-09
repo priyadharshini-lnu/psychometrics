@@ -5,11 +5,14 @@ module Threesixty
     class CreateForm < Rectify::Form
       attribute :evaluator_email, String
       attribute :relationship_id, Integer
+      attribute :first_name
+      attribute :last_name
 
       validates :relationship_id, :evaluator_email, presence: true
-      validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, format: { with: Devise.email_regexp }
 
       validate :check_for_valid_user
+      validates :first_name, :last_name, presence: true, unless: -> { user.present? }
       validate :check_existing_participant, if: -> { user.present? }
       validate :check_nomination_requirement, if: -> { has_nomination_requirement? }
 
@@ -17,10 +20,12 @@ module Threesixty
 
       def check_nomination_requirement
         condition = nomination_requirement.conditions.find { |c| c['relationship_id'] == relationship_id }
-        if condition && condition['value'] && condition['comparator'] != 'atleast' &&
-           condition['value'].to_i == subject_evaluators_count_by_relationship
-          errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
-        end
+
+        return if condition.blank? || condition['value'].blank?
+        return if condition['comparator'] == 'atleast'
+        return if subject_evaluators_count_by_relationship < condition['value'].to_i
+
+        errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
       end
 
       def check_existing_participant
@@ -54,7 +59,7 @@ module Threesixty
         elsif can_nominate_anyone_from_datasheet?
           find_from_datasheet
         else
-          @user = ::Users::Regular.find_by(email: evaluator_email)
+          @user = ::Users::Regular.find_by(email: evaluator_email, project: threesixty_campaign.project)
           can_not_be_processed! unless @user
         end
       end

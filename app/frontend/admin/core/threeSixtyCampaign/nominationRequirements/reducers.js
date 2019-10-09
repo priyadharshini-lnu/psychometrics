@@ -71,8 +71,8 @@ const HANDLERS = {
     const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1, id: null }
     return updateIn(state, 'list', nominationRequirements => nominationRequirements.concat(selectedNomination))
   },
-  [REMOVE]: (state, { payload: index }) => (
-    { ...state, selectedIndex: 0, list: _.filter(state.list, (_, i) => index !== i) }
+  [REMOVE]: (state, { payload: { index } }) => (
+    { ...state, selectedIndex: 0, list: state.list.filter((_, i) => index !== i) }
   ),
   [MOVE_UP]: (state, { payload: { index } }) => (
     { ...state, selectedIndex: state.selectedIndex - 1, list: moveUpRequirement(state.list, index) }

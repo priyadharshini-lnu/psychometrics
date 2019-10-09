@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Select, DatePicker } from 'antd'
 import { INVITATION_VALUES } from 'constants/emailCriteria'
-import style from './style.scss'
+import styles from './styles.scss'
 
 export default function Invitation ({
   value, update, merge, subField,
@@ -29,7 +29,7 @@ export default function Invitation ({
         format="MMMM Do YYYY, hh:mm a"
         value={date}
         onChange={date => update('value', date && date.format())}
-        className={style.datePicker}
+        className={styles.datePicker}
         placeholder="Scheduled date"
       />
       )}

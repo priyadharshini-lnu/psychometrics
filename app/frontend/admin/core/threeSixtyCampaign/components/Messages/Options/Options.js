@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
 import Option from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
-import css from './style.scss'
+import styles from './styles.scss'
 
 function Options ({
   options,
@@ -22,7 +22,7 @@ function Options ({
   })
 
   return (
-    <div className={css.container}>
+    <div className={styles.container}>
       <OptionSection>
         <Option
           label=" Allow subjects to send reminders to evaluators"

@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import cs from 'classnames'
 import { Select } from 'antd'
-import css from '../style.scss'
+import styles from '../styles.scss'
 import Condition from './Condition'
 
 export default function SubjectCondtions ({
@@ -19,7 +19,7 @@ export default function SubjectCondtions ({
       <div>
         Every subject will have these nomination requirements.
         <span
-          className={css.addSubjectConditionLink}
+          className={styles.addSubjectConditionLink}
           onClick={() => addNewLogicalSetCondition({ field: datasheetFields[0] })}
           role="button"
           tabIndex={0}
@@ -68,12 +68,12 @@ function Operator ({ operator, addNewLogicalSetCondition, update }) {
   }
 
   if (operator === 'if') {
-    return <div className={cs([css.operator, 'mbm'])}>If</div>
+    return <div className={cs([styles.operator, 'mbm'])}>If</div>
   }
   return (
     <Select
       value={operator}
-      className={cs([css.inputElement, css.operator, 'mbm', 'mtm'])}
+      className={cs([styles.inputElement, styles.operator, 'mbm', 'mtm'])}
       dropdownMatchSelectWidth={false}
       onChange={handleOperatorChange}
     >

@@ -10,17 +10,28 @@ const defaultState = {
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'emailSchedules'])
 
-export const FETCH = 'threeSixty/emailSchedules/FETCH'
+export const FETCH_SCHEDULABLE_TEMPLATE = 'threeSixty/emailSchedules/FETCH_SCHEDULABLE_TEMPLATE'
+export const FETCH_SINGLE = 'threeSixty/emailSchedules/FETCH_SINGLE'
+export const UPDATE_FIELD = 'threeSixty/emailSchedules/UPDATE_FIELD'
 export const UPDATE = 'threeSixty/emailSchedules/UPDATE'
 export const CREATE = 'threeSixty/emailSchedules/CREATE'
 export const CHANGE_SELECTED = 'threeSixty/emailSchedules/CHANGE_SELECTED'
 export const FETCH_RECIPIENT_BY_CRITERIA = 'threeSixty/emailSchedules/FETCH_RECIPIENT_BY_CRITERIA'
 
-export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
+export const updateField = (key, value) => ({ type: UPDATE_FIELD, payload: { key, value } })
 export const changeSelected = id => ({ type: CHANGE_SELECTED, payload: { id } })
 
+export const fetchSingle = (campaignId, emailScheduleId) => ({
+  type: FETCH_SINGLE,
+  campaignId,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailScheduleId}`,
+  },
+})
+
 export const fetchSchedulableTemplate = (campaignId, { selectedEmailTemplateId }) => ({
-  type: FETCH,
+  type: FETCH_SCHEDULABLE_TEMPLATE,
   campaignId,
   selectedEmailTemplateId,
   request: {
@@ -52,6 +63,15 @@ export const create = (campaignId, emailSchedule, recipientIds) => ({
   },
 })
 
+export const update = (campaignId, emailSchedule, recipientIds) => ({
+  type: UPDATE,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/${emailSchedule.id}`,
+    body: { ...emailSchedule, recipientIds },
+  },
+})
+
 function* genChangeSelectedId ({ requestAction: { selectedEmailTemplateId } }) {
   yield put(changeSelected(selectedEmailTemplateId))
 }
@@ -68,13 +88,19 @@ export function* genFecthRecipientsByCriteria (options = {}) {
 }
 
 const HANDLERS = {
-  [FETCH]: (state, { response }) => {
+  [FETCH_SCHEDULABLE_TEMPLATE]: (state, { response }) => {
     const scheduledDate = moment().format()
     const list = response.map(emailSchedule => ({ ...emailSchedule, scheduledDate }))
     return { ...state, list }
   },
+  [FETCH_SINGLE]: (state, { response }) => {
+    const { emailSchedule, recipients } = response
+    return {
+      ...state, list: [emailSchedule], selectedId: emailSchedule.id, recipients,
+    }
+  },
   [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
-  [UPDATE]: (state, { payload: { key, value } }) => updateIn(
+  [UPDATE_FIELD]: (state, { payload: { key, value } }) => updateIn(
     state,
     'list',
     list => _.map(list, (emailSchedule) => {
@@ -96,6 +122,6 @@ export default function reducer (state = defaultState, action) {
 }
 
 export const watchers = [
-  takeLatest(FETCH, genChangeSelectedId),
-  takeLatest([FETCH, CHANGE_SELECTED], genFecthRecipientsByCriteria),
+  takeLatest(FETCH_SCHEDULABLE_TEMPLATE, genChangeSelectedId),
+  takeLatest([FETCH_SCHEDULABLE_TEMPLATE, CHANGE_SELECTED], genFecthRecipientsByCriteria),
 ]

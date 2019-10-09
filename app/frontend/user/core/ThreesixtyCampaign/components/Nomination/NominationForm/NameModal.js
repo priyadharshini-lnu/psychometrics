@@ -4,12 +4,12 @@ import {
 } from 'antd'
 
 function NameModal ({
-  form, showPrompt, setShowPrompt, updateNomination, participant,
+  form, showPrompt, setShowPrompt, handleAdd, participant,
 }) {
   const submit = () => {
     form.validateFields((err, values) => {
       if (!err) {
-        updateNomination(participant.id, values)
+        handleAdd(values)
         form.resetFields()
       }
     })
@@ -23,7 +23,7 @@ function NameModal ({
         <div className="help-modal-header">
           {I18n.t('threesixty.set_name_for_evaluator')}
           {' '}
-          {participant && participant.evaluator.email}
+          {participant && participant.email}
         </div>
       )}
       visible={showPrompt}

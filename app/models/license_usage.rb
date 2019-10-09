@@ -11,11 +11,12 @@
 #
 
 class LicenseUsage < ApplicationRecord
-  belongs_to :license,        inverse_of: :license_usages
-  belongs_to :assigns_report, inverse_of: :license_usages
-  belongs_to :client,         inverse_of: :license_usages
-  belongs_to :campaign,       inverse_of: :license_usages
-  belongs_to :user,           inverse_of: :license_usages
+  belongs_to :license,           inverse_of: :license_usages
+  belongs_to :assigns_report,    inverse_of: :license_usages
+  belongs_to :client,            inverse_of: :license_usages
+  belongs_to :campaign,          inverse_of: :license_usages
+  belongs_to :user,              inverse_of: :license_usages
+  belongs_to :registration_code, inverse_of: :license_usages
 
   after_create :increase_license_used_number
 
