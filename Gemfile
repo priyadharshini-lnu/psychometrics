@@ -45,7 +45,7 @@ gem 'devise',                     '~> 4.4.3'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'pundit',                     '~> 1.1.0'
-gem 'two_factor_authentication'
+gem 'two_factor_authentication', '~> 2.2.0'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
