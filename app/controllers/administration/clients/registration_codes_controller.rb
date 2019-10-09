@@ -43,10 +43,9 @@ module Administration
         @form = Administration::Clients::RegistrationCodes::SaveForm.
                 from_params(params[:resource].merge(
                               end_level_id: resource.end_level_id,
-                              project_id: resource.project_id,
-                              use_count: resource.use_count
+                              project_id: resource.project_id
                             )).
-                with_context(id: resource.id)
+                with_context(registration_code: resource)
         if @form.valid?
           Administration::Clients::RegistrationCodes::Update.call!(@form, resource)
         else
