@@ -249,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb
+    subject_id bigint
 );
 
 
@@ -511,7 +511,8 @@ CREATE TABLE public.clients (
     ancestry_depth integer DEFAULT 0,
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
-    privacy_consent boolean
+    privacy_consent boolean,
+    two_factor_enabled boolean DEFAULT false
 );
 
 
@@ -1372,7 +1373,8 @@ CREATE TABLE public.license_usages (
     user_id bigint,
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    campaign_id bigint
+    campaign_id bigint,
+    registration_code_id bigint
 );
 
 
@@ -1755,6 +1757,7 @@ CREATE SEQUENCE public.privacy_links_id_seq
 
 ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
+
 --
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
@@ -1964,6 +1967,45 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 
 
 --
+-- Name: registration_codes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.registration_codes (
+    id bigint NOT NULL,
+    name character varying,
+    code public.citext,
+    total_count integer NOT NULL,
+    use_count integer DEFAULT 0,
+    end_level_id integer,
+    project_id integer,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone,
+    disabled boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: registration_codes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.registration_codes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: registration_codes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.registration_codes_id_seq OWNED BY public.registration_codes.id;
+
+
+--
 -- Name: relationships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2054,12 +2096,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false
 );
 
@@ -2306,6 +2348,42 @@ CREATE SEQUENCE public.threesixty_campaigns_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_campaigns_id_seq OWNED BY public.threesixty_campaigns.id;
+
+
+--
+-- Name: threesixty_email_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_email_histories (
+    id bigint NOT NULL,
+    subject_id bigint,
+    evaluator_id bigint,
+    threesixty_campaign_id bigint,
+    threesixty_email_schedule_id bigint,
+    status smallint,
+    meta json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_email_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_email_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_email_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_email_histories_id_seq OWNED BY public.threesixty_email_histories.id;
 
 
 --
@@ -2676,7 +2754,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -2707,7 +2785,14 @@ CREATE TABLE public.users (
     modified_by_id integer,
     spoof_token character varying,
     encrypted_invitation_raw character varying,
-    project_id integer
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone
 );
 
 
@@ -3206,6 +3291,13 @@ ALTER TABLE ONLY public.questions ALTER COLUMN id SET DEFAULT nextval('public.qu
 
 
 --
+-- Name: registration_codes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes ALTER COLUMN id SET DEFAULT nextval('public.registration_codes_id_seq'::regclass);
+
+
+--
 -- Name: relationships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3266,6 +3358,13 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 --
 
 ALTER TABLE ONLY public.threesixty_campaigns ALTER COLUMN id SET DEFAULT nextval('public.threesixty_campaigns_id_seq'::regclass);
+
+
+--
+-- Name: threesixty_email_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories ALTER COLUMN id SET DEFAULT nextval('public.threesixty_email_histories_id_seq'::regclass);
 
 
 --
@@ -3791,6 +3890,14 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: registration_codes registration_codes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes
+    ADD CONSTRAINT registration_codes_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: relationships relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3868,6 +3975,14 @@ ALTER TABLE ONLY public.tasks
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT threesixty_campaigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_email_histories threesixty_email_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT threesixty_email_histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -3980,6 +4095,20 @@ ALTER TABLE ONLY public.users_reports
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: email_histories_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: email_histories_email_schedule; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
 
 
 --
@@ -4508,6 +4637,13 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_registration_code_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_registration_code_id ON public.license_usages USING btree (registration_code_id);
+
+
+--
 -- Name: index_license_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4704,6 +4840,20 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
+-- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
+
+
+--
+-- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
+
+
+--
 -- Name: index_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4834,6 +4984,20 @@ CREATE INDEX index_threesixty_campaigns_on_campaign_id ON public.threesixty_camp
 --
 
 CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campaigns USING btree (report_id);
+
+
+--
+-- Name: index_threesixty_email_histories_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_histories_on_evaluator_id ON public.threesixty_email_histories USING btree (evaluator_id);
+
+
+--
+-- Name: index_threesixty_email_histories_on_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty_email_histories USING btree (subject_id);
 
 
 --
@@ -4981,6 +5145,13 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 --
 
 CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users USING btree (email, project_id, role);
+
+
+--
+-- Name: index_users_on_encrypted_otp_secret_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_encrypted_otp_secret_key ON public.users USING btree (encrypted_otp_secret_key);
 
 
 --
@@ -5135,6 +5306,13 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 --
 
 CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
+
+
+--
+-- Name: users_email_project_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (email, COALESCE(project_id, 0));
 
 
 --
@@ -5326,6 +5504,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 ALTER TABLE ONLY public.libraries
     ADD CONSTRAINT fk_rails_3c26848d46 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_email_histories fk_rails_3cb35a810a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id) ON DELETE CASCADE;
 
 
 --
@@ -5721,6 +5907,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links
+    ADD CONSTRAINT fk_rails_b70067b747 FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5742,6 +5936,22 @@ ALTER TABLE ONLY public.communications_users
 
 ALTER TABLE ONLY public.users_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: license_usages fk_rails_c3b6c6c33d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_c3b6c6c33d FOREIGN KEY (registration_code_id) REFERENCES public.registration_codes(id);
+
+
+--
+-- Name: threesixty_email_histories fk_rails_c9b5f538f9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -5782,6 +5992,14 @@ ALTER TABLE ONLY public.campaigns
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_cfede195a2 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_email_histories fk_rails_d00d71891f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -5878,6 +6096,14 @@ ALTER TABLE ONLY public.threesixty_subjects
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT fk_rails_dc09b8ec60 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_email_histories fk_rails_dee061b324; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_histories
+    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE CASCADE;
 
 
 --
@@ -6288,8 +6514,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190917082805'),
 ('20190917122130'),
 ('20190917140510'),
+('20190925063942'),
+('20190926091345'),
 ('20190926112747'),
 ('20190930111830'),
+('20190930140807'),
+('20191001075231'),
 ('20191007075951');
 
 

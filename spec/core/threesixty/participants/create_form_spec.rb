@@ -54,7 +54,12 @@ describe Threesixty::Participants::CreateForm do
   describe 'check with enabled anyone option' do
     before do
       campaign.option.participants = { 'subject': { 'can_nominate_anyone_not_in_assessment': true } }
-      @params = { evaluator_email: 'unexists@a.com', relationship_id: peer.id }
+      @params = {
+        evaluator_email: 'unexists@a.com',
+        relationship_id: peer.id,
+        first_name: 'first_name',
+        last_name: 'last_name'
+      }
     end
 
     it 'should be valid with valid params' do
@@ -118,7 +123,8 @@ describe Threesixty::Participants::CreateForm do
         'limit_nomination_by_subject_from_datasheet': false
       } }
       create(:datasheet_row, datasheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 21, 'No.' => 1 })
-      form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id).
+      form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
+                                         first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be true
       expect(form.user).to be nil
@@ -126,7 +132,8 @@ describe Threesixty::Participants::CreateForm do
 
     it 'should be valid with truly criteria' do
       create(:datasheet_row, datasheet: datasheet, email: 'unexists@a.com', data: { 'Age' => 55, 'No.' => 1 })
-      form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id).
+      form = described_class.from_params(evaluator_email: 'unexists@a.com', relationship_id: peer.id,
+                                         first_name: 'first_name', last_name: 'last_name').
              with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be true
       expect(form.user).to be nil

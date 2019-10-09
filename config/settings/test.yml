@@ -4,3 +4,5 @@ port: 31338
 protocol: 'http'
 assigns:
   mindmill_prefix: TTETEST
+features:
+  two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>

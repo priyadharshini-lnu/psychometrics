@@ -40,8 +40,6 @@
 
       .progress-column {
         flex: 1;
-        padding-right: 64px;
-        border-right: 1px solid $gray-color;
 
         @media(max-width: $screen-lg) {
           padding-right: 0;
@@ -54,15 +52,6 @@
       font-weight: bold;
       color: $dark-gray;
       margin-top: 8px;
-    }
-
-
-    .content.padding {
-      padding-left: 32px;
-
-      @media(max-width: $screen-lg) {
-        padding-left: 0;
-      }
     }
 
     .progresses {

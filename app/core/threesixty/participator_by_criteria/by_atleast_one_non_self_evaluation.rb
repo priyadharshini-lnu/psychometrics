@@ -17,6 +17,7 @@ module Threesixty
                        participants.
                        where(evaluator_id: user_ids).
                        where('subject_id != evaluator_id').
+                       where(evaluator_nomination_status: :waiting).
                        group(:evaluator_id).
                        select('evaluator_id, count(id) as count')
 

@@ -10,6 +10,10 @@ module Administration
       def recipient_by_criteria?
         update?
       end
+
+      def download?
+        update?
+      end
     end
   end
 end

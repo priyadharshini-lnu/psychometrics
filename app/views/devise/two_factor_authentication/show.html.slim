@@ -1,0 +1,33 @@
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+    .registrationForm
+      /! Nav tabs
+      ul.nav.nav-tabs.formTabs
+        li.active
+          = link_to 'One-Time Password', 'javascript:void(0)'
+      /! Tab panes
+      .tab-content
+        #login.tab-pane.fade.in.active role="tabpanel"
+          = form_tag [resource_name, :two_factor_authentication], method: :put
+            div.clearfix
+              == flash_messages
+            .loginFormContent
+              .otpGroup
+                label for="code" = t('.code')
+                .input-group
+                  = text_field_tag :code, nil, class: 'form-control input-lg'
+              span.clear &nbsp;
+              div
+                .input-group.pull-left
+                  button.btn.btn-primary.signIn type="submit" value="Verify" = 'Verify'
+                  = link_to resend_code_user_two_factor_authentication_path, class: 'mlm' do
+                    i.mrs.fa.fa-redo
+                    | Resend OTP
+                  end
+                .forgotPassword.pull-right
+                  p
+                    = link_to 'Sign Out', destroy_administration_session_path, method: :delete
+              .clearfix
+    .loginLinks
+      = render 'administration/administrator/shared/links'
+    .clearfix

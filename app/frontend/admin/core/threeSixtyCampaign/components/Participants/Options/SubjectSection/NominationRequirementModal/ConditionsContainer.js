@@ -1,20 +1,20 @@
 import React from 'react'
-import css from './style.scss'
+import styles from './styles.scss'
 import SubjectConditions from './SubjectConditions'
 import Conditions from './Conditions'
 
 export default function ConditionsContainer () {
   return (
-    <div className={css.tabsContent}>
+    <div className={styles.tabsContent}>
       <div>
-        <div className={css.conditionTitle}>Subject Conditions</div>
-        <div className={css.conditionsContainer}>
+        <div className={styles.conditionTitle}>Subject Conditions</div>
+        <div className={styles.conditionsContainer}>
           <SubjectConditions />
         </div>
       </div>
       <div>
-        <div className={css.conditionTitle}>Nomination Requirements</div>
-        <div className={css.conditionsContainer}>
+        <div className={styles.conditionTitle}>Nomination Requirements</div>
+        <div className={styles.conditionsContainer}>
           <Conditions />
         </div>
       </div>

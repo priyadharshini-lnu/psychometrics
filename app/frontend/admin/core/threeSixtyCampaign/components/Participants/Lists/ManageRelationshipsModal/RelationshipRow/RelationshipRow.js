@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Input, message } from 'antd'
 import { GLOBAL } from 'constants/relationship'
-import style from './style.scss'
+import styles from './styles.scss'
 
 export default function RelationshipRow ({
   relationship, create, campaignId, remove, update,
@@ -17,7 +17,7 @@ export default function RelationshipRow ({
       <td className="ps">
         <Input
           disabled={relationship.type === GLOBAL}
-          className={style.input}
+          className={styles.input}
           value={relationship.name}
           onChange={({ currentTarget }) => update(campaignId, relationship.id, { name: currentTarget.value })}
         />

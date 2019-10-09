@@ -2,7 +2,7 @@ import React from 'react'
 import { Dropdown, Icon, Table } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import ActionsMenu from '../ActionsMenu'
-import css from './EvaluatorTable.scss'
+import styles from './EvaluatorTable.scss'
 
 const { Column } = Table
 
@@ -67,7 +67,7 @@ export default function EvaluatorTable ({
             }
             trigger={['click']}
           >
-            <div className={css.actions}>
+            <div className={styles.actions}>
               <Icon type="ellipsis" />
             </div>
           </Dropdown>

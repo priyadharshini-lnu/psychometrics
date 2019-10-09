@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { Tabs } from 'antd'
-import css from './style.scss'
+import styles from './styles.scss'
 import Tab from './Tab'
 import ConditionsContainer from '../ConditionsContainer'
 
@@ -15,7 +15,7 @@ export default function List (props) {
     <Tabs
       defaultActiveKey="0"
       tabPosition="left"
-      className={css.tabs}
+      className={styles.tabs}
       onChange={key => props.changeSelectedIndex(parseInt(key, 10))}
     >
       {list.map((_, index) => (

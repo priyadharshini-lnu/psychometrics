@@ -30,6 +30,7 @@ const routes = [
       { path: '/messages/email/:id', component: Messages.EmailList },
       { path: '/messages/instructions', component: Messages.InstructionList },
       { path: '/messages/instructions/:id', component: Messages.InstructionList },
+      { path: '/messages/mail_histories', component: Messages.MailHistories },
     ],
   },
   {

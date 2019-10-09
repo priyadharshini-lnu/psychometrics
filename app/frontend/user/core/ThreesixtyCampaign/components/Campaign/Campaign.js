@@ -42,15 +42,15 @@ export default function Campaign ({
             onBack={() => history.push('/campaigns')}
             title={<div className="title-with-dash">{campaign.name}</div>}
           >
-            <div className="content padding">
+            <div>
               {welcomeMessage && (
                 <Row type="flex">
                   <div dangerouslySetInnerHTML={{ __html: welcomeMessage.content }} />
                 </Row>
               )}
 
-              <Row gutter={16} className="progress-wrapper">
-                <Col xs={{ span: 32 }} lg={{ span: 16 }}>
+              <Row className="progress-wrapper">
+                <Col>
                   <div className="progress-column">
                     <Progress
                       strokeColor="#00B4AA"
@@ -61,49 +61,6 @@ export default function Campaign ({
                       )}
                     />
                     <div className="progress-label">{I18n.t('threesixty.total_progress')}</div>
-                  </div>
-                </Col>
-                <Col xs={{ span: 32 }} lg={{ span: 8 }}>
-                  <div className="progresses">
-                    {nominationsCounters.totalNominations !== 0
-                      && (
-                      <div className="mini-progress">
-                        <div className="letter-icon">N</div>
-                        <Progress
-                          className="progress-line"
-                          percent={nominationsPercent}
-                          showInfo={false}
-                          strokeColor="#00B4AA"
-                          strokeWidth={2}
-                        />
-                      </div>
-                      )}
-                    {evaluationsCounters.totalEvaluations !== 0
-                      && (
-                      <div className="mini-progress">
-                        <div className="letter-icon">E</div>
-                        <Progress
-                          className="progress-line"
-                          percent={evaluationsPercent}
-                          showInfo={false}
-                          strokeColor="#00B4AA"
-                          strokeWidth={2}
-                        />
-                      </div>
-                      )}
-                    {reportsCounters.totalReports !== 0
-                      && (
-                      <div className="mini-progress">
-                        <div className="letter-icon">R</div>
-                        <Progress
-                          className="progress-line"
-                          percent={reportsPercent}
-                          showInfo={false}
-                          strokeColor="#00B4AA"
-                          strokeWidth={2}
-                        />
-                      </div>
-                      )}
                   </div>
                 </Col>
               </Row>

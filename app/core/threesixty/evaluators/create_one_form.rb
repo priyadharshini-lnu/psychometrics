@@ -9,7 +9,7 @@ module Threesixty
       attribute :relationship_name, String
       attribute :subject_email, String
 
-      validates :evaluator_email, :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, :subject_email, format: { with: Devise.email_regexp }
       validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
 
       validate :check_subject

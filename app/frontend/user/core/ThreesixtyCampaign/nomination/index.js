@@ -34,7 +34,7 @@ export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
 })
 
 export const addNomination = ({
-  campaignId, nominationId, relationshipId, email: evaluatorEmail,
+  campaignId, nominationId, relationshipId, email: evaluatorEmail, firstName, lastName,
 }) => ({
   type: ADD,
   request: {
@@ -43,19 +43,6 @@ export const addNomination = ({
     body: {
       relationshipId,
       evaluatorEmail,
-    },
-  },
-})
-
-
-export const updateNomination = ({
-  campaignId, nominationId, id, firstName, lastName,
-}) => ({
-  type: UPDATE,
-  request: {
-    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators/${id}`,
-    method: 'put',
-    body: {
       firstName,
       lastName,
     },

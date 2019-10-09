@@ -1,0 +1,5 @@
+en:
+  two_factor:
+    email:
+      otp:
+        subject: 'Your One-Time Password'

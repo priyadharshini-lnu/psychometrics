@@ -4,3 +4,5 @@ port: 80
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 assigns:
   mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %>
+features:
+  two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>

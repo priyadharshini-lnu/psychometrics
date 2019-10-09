@@ -25,6 +25,7 @@ module Threesixty
     enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
     scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :declined) }
+    scope :managers, -> { joins(:relationship).where(relationships: { name: 'Manager', type: :global }) }
     scope :actual_by_options, lambda { |options|
       unless options.participants.dig('subject', 'can_evaluate_self')
         where('threesixty_participants.subject_id != threesixty_participants.evaluator_id')
