@@ -22,6 +22,18 @@ RSpec.describe RegistrationCode, type: :model do
       expect { subject }.to broadcast(:ok)
       expect(subject[:ok].persisted?).to be_truthy
     end
+
+    it 'updates a registration code' do
+      new_form = Administration::Clients::RegistrationCodes::SaveForm.
+                 from_params(@form.attributes).
+                 with_context(registration_code: registration_code)
+      new_form.name = 'RC Update Success'
+      new_form.total_count = 2000
+      expect(new_form.valid?).to be_truthy
+      Administration::Clients::RegistrationCodes::Update.call(new_form, registration_code)
+      expect(registration_code.reload.name).to eql('RC Update Success')
+      expect(registration_code.reload.total_count).to eql(2000)
+    end
   end
 
   context 'Invalid because' do
