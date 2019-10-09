@@ -50,12 +50,12 @@ describe Exports::Reports::ReportDataExport do
     # subject { described_class.new(report, client) }
 
     before(:each) do
-      allow(Report).to        receive(:find).and_return(report)
-      allow(Client).to        receive(:find).and_return(client)
-      allow(Factor).to        receive(:find).and_return(factor)
-      allow(Norm).to          receive(:find).and_return(norm)
-      allow(FactorsNorm).to   receive(:find_by!).and_return(factors_norm)
-      allow(factors_norm).to  receive(:detect_normed_result).and_return(3)
+      allow(Report).to receive(:find).and_return(report)
+      allow(Client).to receive(:find).and_return(client)
+      allow(Factor).to receive(:find).and_return(factor)
+      allow(Norm).to receive(:find).and_return(norm)
+      allow(FactorsNorm).to receive(:find_by!).and_return(factors_norm)
+      allow(factors_norm).to receive(:detect_normed_result).and_return(3)
       allow(aliases).to receive(:find_by).and_return(nil)
     end
 
@@ -75,10 +75,16 @@ describe Exports::Reports::ReportDataExport do
         allow(report_data_export).to receive(:current_level_assigns).and_return([assign])
         sheet = report_data_export.to_xlsx.workbook.worksheets.first
 
-        expect(sheet).to have_cells(['User Details', '', 'Error Detection', '', 'Thriving Index', '']).in_row(0)
-        expect(sheet).to have_cells(['First Name', 'Last Name', 'Attempted', 'Correct', 'Test factor', 'Fit Score']).
-          in_row(1)
-        expect(sheet).to have_cells(['Jon', 'Snow', 1, 2, 3, 3.0]).in_row(2)
+        # Update to include MappedValue
+        expect(sheet).to have_cells(['User Details', '', 'Error Detection', '', 'Thriving Index', '', '']).in_row(0)
+        expect(sheet).to have_cells(['First Name',
+                                     'Last Name',
+                                     'Attempted',
+                                     'Correct',
+                                     'Test factor',
+                                     'Fit Score',
+                                     'Overall Aspiration Score']).in_row(1)
+        expect(sheet).to have_cells(['Jon', 'Snow', 1, 2, 3, 3.0, 3]).in_row(2)
       end
     end
   end

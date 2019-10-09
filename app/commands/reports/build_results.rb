@@ -10,7 +10,8 @@ module Reports
       formula: 'Reports::ResultTypes::Formula',
       ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
       survey_response: 'Reports::ResultTypes::SurveyResponse',
-      assign: 'Reports::ResultTypes::Assign'
+      assign: 'Reports::ResultTypes::Assign',
+      mapped_value: 'Reports::ResultTypes::MappedValue'
     }.freeze
 
     def initialize(report, assigns)
