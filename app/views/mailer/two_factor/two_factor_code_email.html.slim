@@ -1,16 +1,12 @@
 p Dear #{@user.decorate.display_name},
 
-br
 p
-  Please enter the below mentioned One time password (OTP) to log in to your Lighthouse account with The Talent Enterprise:
+  | Please enter the below mentioned One time password (OTP) to log in to your Lighthouse account with The Talent Enterprise:
 div
   span style="font-weight: bold;" = @code
-  |
-    &nbsp; is your One-Time Password.
-    This OTP is valid for 20 minutes.
+  br
+  This OTP is valid for 20 minutes.
 
 p You are receiving this email because you tried to log in to your Lighthouse account with The Talent Enterprise. Please do not disclose the above OTP to anyone.
-
-br
 
 p If you did not try to login, please login and update your password.
