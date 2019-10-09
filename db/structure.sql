@@ -249,10 +249,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint,
-    innovation_styles jsonb DEFAULT '[]'::jsonb
+    subject_id bigint
 );
 
 
@@ -1973,10 +1973,11 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 CREATE TABLE public.registration_codes (
     id bigint NOT NULL,
     name character varying,
-    code character varying,
+    code public.citext,
     total_count integer NOT NULL,
     use_count integer DEFAULT 0,
-    client_id bigint,
+    end_level_id integer,
+    project_id integer,
     start_date timestamp without time zone,
     end_date timestamp without time zone,
     disabled boolean DEFAULT true,
@@ -2095,12 +2096,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0,
     provider integer,
+    category integer DEFAULT 0,
     archived boolean DEFAULT false
 );
 
@@ -2753,7 +2754,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email character varying DEFAULT ''::character varying NOT NULL,
+    email public.citext DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -4839,17 +4840,17 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
--- Name: index_registration_codes_on_client_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_registration_codes_on_client_id ON public.registration_codes USING btree (client_id);
+CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
 
 
 --
--- Name: index_registration_codes_on_code; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_registration_codes_on_code ON public.registration_codes USING btree (code);
+CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
 
 
 --
@@ -5927,14 +5928,6 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_bc228f8bf6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
--- Name: registration_codes fk_rails_bc34ddc03d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.registration_codes
-    ADD CONSTRAINT fk_rails_bc34ddc03d FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
