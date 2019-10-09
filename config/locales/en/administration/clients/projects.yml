@@ -3,12 +3,15 @@ en:
     clients:
       projects:
         form:
+          2fa: 2 Factor Authentication
+          2fa_enable: Enable 2 Factor Authentication
           project_number: Project Number
           data_privacy: Data privacy
           applicable_levels:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
+          other_settings: Other Settings
         list: &list
           name: Project name
           admin: Client Admin
@@ -26,6 +29,7 @@ en:
           actual_usage: Actual Usage
           updated_at: Modified Date
           created_at: Created Date
+          2fa_enabled: 2FA Enabled
         export:
           <<: *list
         index:

@@ -57,6 +57,7 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
+    return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
@@ -70,6 +71,7 @@ class ApplicationController < ::BaseController
   def set_membership
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
+    return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
     @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
     current_user.current_membership = @current_membership

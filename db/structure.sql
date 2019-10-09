@@ -24,6 +24,20 @@ COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings
 
 
 --
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -497,7 +511,8 @@ CREATE TABLE public.clients (
     ancestry_depth integer DEFAULT 0,
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
-    privacy_consent boolean
+    privacy_consent boolean,
+    two_factor_enabled boolean DEFAULT false
 );
 
 
@@ -1711,6 +1726,39 @@ ALTER SEQUENCE public.privacy_consents_id_seq OWNED BY public.privacy_consents.i
 
 
 --
+-- Name: privacy_links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_links (
+    id bigint NOT NULL,
+    client_id bigint,
+    text character varying,
+    link text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: privacy_links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_links_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
+
+
+--
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2706,7 +2754,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -2737,7 +2785,14 @@ CREATE TABLE public.users (
     modified_by_id integer,
     spoof_token character varying,
     encrypted_invitation_raw character varying,
-    project_id integer
+    project_id integer,
+    second_factor_attempts_count integer DEFAULT 0,
+    encrypted_otp_secret_key character varying,
+    encrypted_otp_secret_key_iv character varying,
+    encrypted_otp_secret_key_salt character varying,
+    direct_otp character varying,
+    direct_otp_sent_at timestamp without time zone,
+    totp_timestamp timestamp without time zone
 );
 
 
@@ -2750,6 +2805,7 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
+    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -3183,6 +3239,13 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.privacy_consents ALTER COLUMN id SET DEFAULT nextval('public.privacy_consents_id_seq'::regclass);
+
+
+--
+-- Name: privacy_links id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('public.privacy_links_id_seq'::regclass);
 
 
 --
@@ -3768,6 +3831,14 @@ ALTER TABLE ONLY public.occupations
 
 ALTER TABLE ONLY public.privacy_consents
     ADD CONSTRAINT privacy_consents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_links privacy_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links
+    ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -4692,6 +4763,13 @@ CREATE INDEX index_privacy_consents_on_membership_id ON public.privacy_consents 
 
 
 --
+-- Name: index_privacy_links_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btree (client_id);
+
+
+--
 -- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4923,6 +5001,13 @@ CREATE INDEX index_threesixty_email_histories_on_subject_id ON public.threesixty
 
 
 --
+-- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
+
+
+--
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5060,6 +5145,13 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 --
 
 CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users USING btree (email, project_id, role);
+
+
+--
+-- Name: index_users_on_encrypted_otp_secret_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_encrypted_otp_secret_key ON public.users USING btree (encrypted_otp_secret_key);
 
 
 --
@@ -5207,6 +5299,13 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
 
 
 --
@@ -5808,6 +5907,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links
+    ADD CONSTRAINT fk_rails_b70067b747 FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6405,10 +6512,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100625'),
 ('20190903131845'),
 ('20190917082805'),
+('20190915124839'),
+('20190916070023'),
 ('20190917122130'),
+('20190930140807'),
+('20190916070101'),
 ('20190917140510'),
+('20190925063942'),
 ('20190926112747'),
+('20190926091345'),
+('20191001075231'),
 ('20190930111830'),
-('20190930140807');
-
-
+('20191007075951');

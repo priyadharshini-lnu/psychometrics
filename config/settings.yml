@@ -7,6 +7,8 @@ react_dev:
 hashids_length:
   anonym: 8
   assign_id: 6
+features:
+  two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
 languages:
   - es
   - fr
