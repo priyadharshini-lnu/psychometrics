@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe RegistrationCode, type: :model do
   let(:registration_code) { create(:registration_code) }
+  let(:client) { create(:project) }
 
   before do
     @form = Administration::Clients::RegistrationCodes::SaveForm.from_params(
@@ -11,6 +12,16 @@ RSpec.describe RegistrationCode, type: :model do
       'total_count' => '10', 'disabled' => 'true',
       'start_date' => '1 Oct 2019 / 11:33 +04:00', 'end_date' => '31 Oct 2019 / 11:33 +04:00'
     )
+  end
+
+  context 'Valid' do
+    subject { Administration::Clients::RegistrationCodes::Create.call(@form, client) }
+
+    it 'creates a new registration code' do
+      expect(@form.valid?).to be_truthy
+      expect { subject }.to broadcast(:ok)
+      expect(subject[:ok].persisted?).to be_truthy
+    end
   end
 
   context 'Invalid because' do
@@ -40,9 +51,8 @@ RSpec.describe RegistrationCode, type: :model do
     it 'needs a total_count greater than use_count' do
       new_form = Administration::Clients::RegistrationCodes::SaveForm.
                  from_params(@form.attributes).
-                 with_context(id: registration_code.id)
+                 with_context(registration_code: registration_code)
       new_form.total_count = 50
-      new_form.use_count = registration_code.use_count
       # Validation should run while updating record
       expect(new_form.valid?).to be_falsy
       expect(new_form.errors.messages[:total_count].present?).to be_truthy

@@ -5,6 +5,7 @@ en:
         name: Registration Codes
         invalid_code: Invalid registration code
         errors:
+          criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use. Try another one.
           invalid_end_date: has to be greater than the start date
           count_invalid: 'cannot be less than the used_count = %{use_count}'
