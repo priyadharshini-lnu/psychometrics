@@ -15,7 +15,7 @@ export default function Footer ({ isFrame, privacyText, privacyPageLink }) {
           <img src={lighthouseLogo} alt="Lighthouse" />
           <div className="text-align-c">
             <a href="https://thetalententerprise.com/privacy-statement/" target="_blank" rel="noopener noreferrer">
-              Terms, Conditions and Privacy Statement
+              {I18n.t('shared.tte_terms_and_condition')}
             </a>
             <br />
             {!_.isNull(privacyText) && (

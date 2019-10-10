@@ -1,6 +1,5 @@
 p.links
-  a href="http://www.thetalententerprise.com/lighthouse/termsandconditions/" target="_blank"  Terms, Conditions and Privacy Statement
+  a href="http://www.thetalententerprise.com/lighthouse/termsandconditions/" target="_blank"  #{I18n.t('shared.tte_terms_and_condition')}
   - if @current_project&.privacy_link
     br
-    a href="#{@current_project.privacy_link.link}" target="_blank" #{@current_project.privacy_link.text}
-
+    a href="#{@current_project.privacy_link.link}" target="_blank" class='inline-block mts' #{@current_project.privacy_link.text}
