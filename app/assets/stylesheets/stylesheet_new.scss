@@ -643,3 +643,22 @@ hr.modal {
 .word-break-all {
   word-break: break-all;
 }
+
+// TODO: Render react component ThreesixtyCampaign/components/Footer/Footer.js when react_rails gem is merged
+// And remove this duplicate style
+footer.lighthouse_footer {
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.10);
+  padding: 0;
+
+  .footer-wrapper {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      max-height: 50px;
+    }
+  }
+}
