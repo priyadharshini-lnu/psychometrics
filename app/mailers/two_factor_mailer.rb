@@ -9,7 +9,7 @@ class TwoFactorMailer < ApplicationMailer
 
     mail(
       to: @user.email,
-      subject: I18n.t('two_factor.email.otp.subject'),
+      subject: I18n.t('devise.two_factor_authentication.email.otp.subject'),
       template_path: '/mailer/two_factor'
     )
   end
