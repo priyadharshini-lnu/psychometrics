@@ -1726,6 +1726,39 @@ ALTER SEQUENCE public.privacy_consents_id_seq OWNED BY public.privacy_consents.i
 
 
 --
+-- Name: privacy_links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_links (
+    id bigint NOT NULL,
+    client_id bigint,
+    text character varying,
+    link text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: privacy_links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_links_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
+
+
+--
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3209,6 +3242,13 @@ ALTER TABLE ONLY public.privacy_consents ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
+-- Name: privacy_links id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('public.privacy_links_id_seq'::regclass);
+
+
+--
 -- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3791,6 +3831,14 @@ ALTER TABLE ONLY public.occupations
 
 ALTER TABLE ONLY public.privacy_consents
     ADD CONSTRAINT privacy_consents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_links privacy_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links
+    ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -4712,6 +4760,13 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 --
 
 CREATE INDEX index_privacy_consents_on_membership_id ON public.privacy_consents USING btree (membership_id);
+
+
+--
+-- Name: index_privacy_links_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btree (client_id);
 
 
 --
@@ -5852,6 +5907,14 @@ ALTER TABLE ONLY public.norms
 
 
 --
+-- Name: privacy_links fk_rails_b70067b747; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_links
+    ADD CONSTRAINT fk_rails_b70067b747 FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6456,6 +6519,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190926112747'),
 ('20190930111830'),
 ('20190930140807'),
-('20191001075231');
+('20191001075231'),
+('20191007075951');
 
 

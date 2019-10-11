@@ -1,10 +1,12 @@
-footer class="#{'loginFooter' if devise_controller?}"
-  .container-fluid
-    .row
-      .col-xs-12.col-sm-6
-        p.footerLinks
-          a href="http://www.thetalententerprise.com/lighthouse/termsandconditions/" target="_blank"  Terms, Conditions and Privacy Statement
-      .col-xs-12.col-sm-6.text-right
-        p.footerLogo
-          span.poweredBy Lighthouse Powered by
-          = image_tag 'the-talent-enterprise-logo-footer.png', alt: 'The Talent Enterprise logo'
+
+footer.lighthouse_footer
+  .fluid-container
+    .footer-wrapper
+      = image_tag('lighthouseLogo.png')
+      .text-align-c
+        a href="https://thetalententerprise.com/privacy-statement/" rel="noopener noreferrer" target="_blank"
+          | #{I18n.t('shared.tte_terms_and_condition')}
+        - if @current_project&.privacy_link
+          br
+          a href="#{@current_project.privacy_link.link}" target="_blank" class='inline-block mts' #{@current_project.privacy_link.text}
+      = image_tag('tteLogo.png')

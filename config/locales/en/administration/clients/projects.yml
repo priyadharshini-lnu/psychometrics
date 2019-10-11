@@ -11,6 +11,9 @@ en:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
+          privacy_text: Privacy text
+          privacy_link: Privacy link
+          enable_privacy_links: Enable privacy link
           other_settings: Other Settings
         list: &list
           name: Project name

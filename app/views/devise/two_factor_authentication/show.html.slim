@@ -13,7 +13,7 @@
               == flash_messages
             .loginFormContent
               .otpGroup
-                label for="code" = t('.code')
+                label for="code" = t('.otp')
                 .input-group
                   = text_field_tag :code, nil, class: 'form-control input-lg'
               span.clear &nbsp;
@@ -26,8 +26,8 @@
                   end
                 .forgotPassword.pull-right
                   p
-                    = link_to 'Sign Out', destroy_administration_session_path, method: :delete
+                    = link_to 'Sign Out',
+                      @current_project.nil? ? destroy_administration_session_path : destroy_user_session_path,
+                      method: :delete
               .clearfix
-    .loginLinks
-      = render 'administration/administrator/shared/links'
     .clearfix
