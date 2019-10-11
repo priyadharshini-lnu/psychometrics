@@ -10,7 +10,7 @@ RSpec.describe TwoFactorMailer, type: :mailer do
 
         mail = described_class.two_factor_code_email(user, '123456')
 
-        expect(mail.subject).to eq I18n.t('two_factor.email.otp.subject')
+        expect(mail.subject).to eq I18n.t('devise.two_factor_authentication.email.otp.subject')
       end
 
       it 'sends to the right email' do
