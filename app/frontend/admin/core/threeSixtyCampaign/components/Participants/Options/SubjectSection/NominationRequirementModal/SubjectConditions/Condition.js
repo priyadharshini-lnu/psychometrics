@@ -2,7 +2,7 @@ import React from 'react'
 import { Input, Select, Icon } from 'antd'
 import cs from 'classnames'
 import NestedOperator from 'admin/core/threeSixtyCampaign/components/common/NestedOperator'
-import css from '../style.scss'
+import styles from '../styles.scss'
 
 export default function Condition ({
   datasheetFields,
@@ -25,7 +25,7 @@ export default function Condition ({
       <Select
         value={field}
         size="small"
-        className={css.inputElement}
+        className={styles.inputElement}
         dropdownMatchSelectWidth={false}
         onChange={value => update('field', value)}
       >
@@ -37,7 +37,7 @@ export default function Condition ({
         value={comparator}
         size="small"
         dropdownMatchSelectWidth={false}
-        className={cs([css.inputElement, css.width80])}
+        className={cs([styles.inputElement, styles.width80])}
         onChange={value => update('comparator', value)}
       >
         <Select.Option key="equal">Is</Select.Option>
@@ -46,15 +46,15 @@ export default function Condition ({
       <Input
         value={value}
         size="small"
-        className={cs([css.inputElement, css.width80])}
+        className={cs([styles.inputElement, styles.width80])}
         onChange={(e) => {
           update('value', e.target.value)
         }}
       />
 
       <span>
-        <Icon type="minus-circle" className={css.deleteIcon} onClick={remove} />
-        <Icon type="plus-circle" className={css.addIcon} onClick={add} />
+        <Icon type="minus-circle" className={styles.deleteIcon} onClick={remove} />
+        <Icon type="plus-circle" className={styles.addIcon} onClick={add} />
       </span>
     </div>
   )

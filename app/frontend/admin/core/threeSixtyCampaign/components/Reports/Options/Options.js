@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import AccessSection from './AccessSection'
 import ApprovalSection from './ApprovalSection'
 import ReportAvailabilitySection from './ReportAvailabilitySection'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function Options ({
   fetchReportOptions,
@@ -15,7 +15,7 @@ export default function Options ({
   }, [])
 
   return (
-    <div className={css.container}>
+    <div className={styles.container}>
       <AccessSection />
       <ApprovalSection />
       <ReportAvailabilitySection />

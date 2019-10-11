@@ -21,6 +21,7 @@ en:
         header: 'New Client'
       edit:
         header: 'Edit Client'
+        enable_2fa: 'Enable Two Factor Authentication'
       licenses:
         update:
           successfully: Licenses successfully updated

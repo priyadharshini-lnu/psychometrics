@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select, Input } from 'antd'
-import style from '../../style.scss'
+import styles from '../../styles.scss'
 
 export default function DatasheetComparator ({
   datasheetFields, subField, value, update, merge,
@@ -21,7 +21,7 @@ export default function DatasheetComparator ({
           <Select.Option key={name}>{name}</Select.Option>
         ))}
       </Select>
-      <Input className={style.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
+      <Input className={styles.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
     </div>
   )
 }

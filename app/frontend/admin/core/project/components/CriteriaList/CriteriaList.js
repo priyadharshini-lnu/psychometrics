@@ -1,18 +1,18 @@
 import React from 'react'
 import _ from 'lodash'
 import Criteria from './Criteria'
-import css from './styles.scss'
+import styles from './styles.scss'
 
 export default function CriteriaList ({
   criteria, datasheetFields, addCriteria, removeCriteria, updateCriteria,
 }) {
   if (_.isEmpty(datasheetFields)) {
-    return <div className={css.datasheetNotAvailableMethod}>Datasheet not available for this project</div>
+    return <div className={styles.datasheetNotAvailableMethod}>Datasheet not available for this project</div>
   }
 
   if (_.isEmpty(criteria)) {
     return (
-      <div className={css.addLink} onClick={addCriteria} role="button" tabIndex={0}>
+      <div className={styles.addLink} onClick={addCriteria} role="button" tabIndex={0}>
         Click here to add criteria
       </div>
     )

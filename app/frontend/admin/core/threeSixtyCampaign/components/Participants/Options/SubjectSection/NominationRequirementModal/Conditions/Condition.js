@@ -1,7 +1,7 @@
 import React from 'react'
 import { Icon, Select, Input } from 'antd'
 import cs from 'classnames'
-import css from '../style.scss'
+import styles from '../styles.scss'
 
 export default function Condition ({
   relationships,
@@ -18,7 +18,7 @@ export default function Condition ({
       <Select
         value={comparator}
         size="small"
-        className={css.inputElement}
+        className={styles.inputElement}
         dropdownMatchSelectWidth={false}
         onChange={value => update('comparator', value)}
       >
@@ -30,7 +30,7 @@ export default function Condition ({
       <Input
         value={value}
         size="small"
-        className={cs([css.inputElement, css.width80])}
+        className={cs([styles.inputElement, styles.width80])}
         onChange={(e) => {
           update('value', e.target.value)
         }}
@@ -40,7 +40,7 @@ export default function Condition ({
         value={relationshipId}
         size="small"
         dropdownMatchSelectWidth={false}
-        className={css.inputElement}
+        className={styles.inputElement}
         onChange={value => update('relationshipId', value)}
       >
         {relationships.map(r => (<Select.Option key={r.id} value={r.id}>{r.name}</Select.Option>))}
@@ -50,9 +50,9 @@ export default function Condition ({
         <Icon
           type="minus-circle"
           onClick={handleRemove}
-          className={cs(css.deleteIcon, { [css.disabledIcon]: !canRemove })}
+          className={cs(styles.deleteIcon, { [styles.disabledIcon]: !canRemove })}
         />
-        <Icon type="plus-circle" className={css.addIcon} onClick={add} />
+        <Icon type="plus-circle" className={styles.addIcon} onClick={add} />
       </span>
     </div>
   )

@@ -22,11 +22,4 @@ html.body-full-height style=device_html_style
     .vertical-center
       .container
         = yield
-    footer.loginFooter
-      .container-fluid
-        .row
-          .col-xs-6.col-sm-3.text-left
-            = image_tag('lighthouseLogo.png', class: 'img-responsive center-block')
-          .col-sm-6
-          .col-xs-6.col-sm-3
-            = image_tag('tteLogo.png', class: 'img-responsive center-block')
+    = render '/layouts/footer'

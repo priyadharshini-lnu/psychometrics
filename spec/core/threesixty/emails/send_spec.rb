@@ -28,6 +28,18 @@ describe Threesixty::Emails::Send do
     end.to change { Threesixty::EmailSchedule.count }.by(1)
   end
 
+  it 'creates email_schedules record when condition_class evaluatues condition to be true' do
+    create(:threesixty_email_template, threesixty_campaign: threesixty_campaign,
+      name: Threesixty::Emails::Name::APPROVE_REPORT)
+    allow(Threesixty::Emails::IsApproveReportSendable).to receive(:call!).and_return(true)
+    allow_any_instance_of(Threesixty::Subjects::GetManagers).to receive(:query).and_return([])
+
+    expect do
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_REPORT,
+                                     threesixty_campaign: threesixty_campaign)
+    end.to_not change(Threesixty::EmailSchedule, :count)
+  end
+
   it 'email_schedules record created by copying attributes from email template' do
     create(:threesixty_email_template,
            threesixty_campaign: threesixty_campaign, name: 'subject_report_ready')
@@ -45,7 +57,7 @@ describe Threesixty::Emails::Send do
 
   it 'creates email_schedules record with multiple recipients when recipeint is manager' do
     create(:threesixty_email_template, threesixty_campaign: threesixty_campaign, name: 'manager_report_ready')
-    manager_relationship = create(:relationship, name: 'Manager')
+    manager_relationship = create(:relationship, name: 'Manager', type: :global)
     manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     manager_evaluators.each do |manager|
       create(

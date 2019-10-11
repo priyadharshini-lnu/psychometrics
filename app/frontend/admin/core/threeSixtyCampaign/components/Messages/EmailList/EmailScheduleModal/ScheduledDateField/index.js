@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Button, Icon, Input, Menu, Dropdown, DatePicker,
 } from 'antd'
-import style from './style.scss'
+import styles from './styles.scss'
 
 export default function ScheduledDateField ({ scheduledDate, updateScheduleDate }) {
   const handleScheduleDateChange = ({ key }) => {
@@ -46,11 +46,11 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
         format="MMMM Do YYYY, hh:mm a"
         value={date}
         onChange={date => updateScheduleDate(date && date.format())}
-        className={style.datePicker}
+        className={styles.datePicker}
         placeholder="Scheduled date"
       />
       <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
-        <Button className={style.scheduleDateDropdownButton}>
+        <Button className={styles.scheduleDateDropdownButton}>
           <Icon type="caret-down" />
         </Button>
       </Dropdown>
