@@ -9,7 +9,7 @@
       h3 = t('.reports')
       = f.association :reports, 
                       as: :grouped_select, group_method: :reports,
-                      collection: policy_scope(Assessment).all, 
+                      collection: policy_scope(Assessment).includes(:reports).all,
                       input_html: { data: { live_search: true }, multiple: true, class: 'select' }
       h3 = t('.prices')
       = f.simple_fields_for :prices do |p|

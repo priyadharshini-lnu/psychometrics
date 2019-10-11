@@ -6,7 +6,7 @@ describe Threesixty::Subjects::GetManagers do
   before do
     threesixty_campaign = create(:threesixty_campaign)
     @subject = create(:threesixty_subject, campaign_id: threesixty_campaign.campaign_id)
-    manager_relationship = create(:relationship, name: 'Manager')
+    manager_relationship = create(:relationship, name: 'Manager', type: :global)
     @manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     create(
       :threesixty_participant,

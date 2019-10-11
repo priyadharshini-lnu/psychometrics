@@ -19,20 +19,31 @@ export default function Nominations (props) {
   useEffect(() => {
     props.fetchNomination(props.match.params)
   }, [])
-  const { match: { params: { campaignId, id: nominationId } } } = props
 
   const [showPrompt, setShowPrompt] = useState(false)
   const [participant, setParticipant] = useState(null)
 
-  const { instructions, nomination: { isSelf, options: { participants: options } } } = props
+  const { addNomination, instructions, nomination: { isSelf, options: { participants: options } } } = props
   const instruction = _.find(instructions, { name: 'invite_evaluators' })
 
   const canNominate = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
 
-  const updateNomination = (id, values) => {
-    props.updateNomination({
-      campaignId, nominationId, id, ...values,
+  const handleAddNomination = values => addNomination({
+    ...values,
+  }).catch((errors) => {
+    const { firstName, lastName, ...rest } = errors
+    if (_.isEmpty(rest) && (firstName || lastName)) {
+      setParticipant({ ...values })
+      setShowPrompt(true)
+    }
+  })
+
+  const handleAdd = (values) => {
+    addNomination({
+      ...participant, ...values,
     }).then(() => {
+      setShowPrompt(false)
+    }).catch(() => {
       setShowPrompt(false)
     })
   }
@@ -72,12 +83,13 @@ export default function Nominations (props) {
             {canNominate && (
             <NominationForm
               {...props}
+              handleAddNomination={handleAddNomination}
               setShowPrompt={setShowPrompt}
-              setParticipant={setParticipant}
             />
             )}
             <NominationTable
               {...props}
+              handleAddNomination={handleAddNomination}
               canNominate={canNominate}
               setShowPrompt={setShowPrompt}
               setParticipant={setParticipant}
@@ -86,7 +98,7 @@ export default function Nominations (props) {
               participant={participant}
               showPrompt={showPrompt}
               setShowPrompt={setShowPrompt}
-              updateNomination={updateNomination}
+              handleAdd={handleAdd}
             />
           </div>
         </PageHeader>

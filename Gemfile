@@ -45,6 +45,8 @@ gem 'devise',                     '~> 4.4.3'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'pundit',                     '~> 1.1.0'
+gem 'two_factor_authentication', '~> 2.2.0'
+
 ### Assets
 gem 'bh',                         '~> 1.3'
 gem 'bootstrap-sass',             '~> 3.3.6'
@@ -84,7 +86,7 @@ gem 'psychometrics-reports-ui',
     ref: '063c71c22196f7683b7eea13066dc10de5f24ebf'
 gem 'psychometrics-survey-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: 'd5ad2c88627297afec4d9219128e9db9ea58203a'
+    ref: '668c34152daf837b4ec96ecbd8416d3f01270fb5'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
@@ -187,6 +189,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'debugger2'
   gem 'listen', '~> 3.0.5'

@@ -473,6 +473,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -758,6 +765,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -1353,6 +1361,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -1756,6 +1765,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -1774,12 +1784,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -1795,6 +1811,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -1959,6 +1976,51 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "Project %{name} was successfully updated."
+        }
+      },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
         }
       },
       "reports": {
@@ -3127,6 +3189,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -4392,6 +4455,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "sign_up": "Sign up"
       }
     },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
+    },
     "unlocks": {
       "new": {
         "resend_unlock_instructions": "Resend unlock instructions"
@@ -5254,6 +5324,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
   "simple_form": {
     "error_notification": {
       "default_message": "Please review the problems below:"
@@ -5649,6 +5722,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -5667,6 +5743,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -5703,7 +5785,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -5720,6 +5804,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -6227,6 +6318,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -6512,6 +6610,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -7107,6 +7206,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -7510,6 +7610,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -7528,12 +7629,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -7549,6 +7656,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -7713,6 +7821,51 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "Project %{name} was successfully updated."
+        }
+      },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
         }
       },
       "reports": {
@@ -8881,6 +9034,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -10146,6 +10300,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "sign_up": "سجّلْ"
       }
     },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
+    },
     "unlocks": {
       "new": {
         "resend_unlock_instructions": "أعدْ إرسال تعليمات فك الحظر"
@@ -11012,6 +11173,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
   "simple_form": {
     "error_notification": {
       "default_message": "Please review the problems below:"
@@ -11407,6 +11571,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -11425,6 +11592,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -11461,7 +11634,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -11478,6 +11653,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -11985,6 +12167,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -12270,6 +12459,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -12865,6 +13055,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -13268,6 +13459,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -13286,12 +13478,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -13307,6 +13505,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -13471,6 +13670,51 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "Project %{name} was successfully updated."
+        }
+      },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
         }
       },
       "reports": {
@@ -14639,6 +14883,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -15904,6 +16149,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "sign_up": "Sign up"
       }
     },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
+    },
     "unlocks": {
       "new": {
         "resend_unlock_instructions": "Resend unlock instructions"
@@ -16766,6 +17018,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
   "simple_form": {
     "error_notification": {
       "default_message": "Please review the problems below:"
@@ -17161,6 +17416,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -17179,6 +17437,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -17215,7 +17479,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -17232,6 +17498,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",

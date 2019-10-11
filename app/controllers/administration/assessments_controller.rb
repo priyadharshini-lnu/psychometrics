@@ -11,7 +11,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @_filter_form = policy_scope(resource_class).includes(:dimension).search(params[:q])
+    @_filter_form = policy_scope(resource_class).includes(:dimension, :owner).search(params[:q])
     filter_form.archived_true ||= false
     @_resources = filter_form.result.page(params[:page])
 

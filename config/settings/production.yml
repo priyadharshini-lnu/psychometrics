@@ -6,3 +6,5 @@ asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 assigns:
   mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %> # set 'TTEPROD' in production environment variables
+features:
+  two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>

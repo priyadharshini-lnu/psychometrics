@@ -1,0 +1,39 @@
+en:
+  administration:
+    clients:
+      registration_codes: &REGISTRATION_CODE
+        name: Registration Codes
+        invalid_code: Invalid registration code
+        errors:
+          criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
+          duplicate_code: is in use. Try another one.
+          invalid_end_date: has to be greater than the start date
+          count_invalid: 'cannot be less than the used_count = %{use_count}'
+          license_issue: 'Not enough licenses.'
+        edit:
+          header: Edit Registration code
+        new:
+          header: Add Registration code
+        create:
+          successfully: 'Registration code %{name} was successfully created.'
+        update:
+          successfully: 'Registration code %{name} was successfully updated.'
+        destroy:
+          successfully: 'Registration code %{name} was successfully deleted.'
+        form_fields:
+          code: e.g TTE-conf-2019
+        resource:
+          tooltips:
+            edit: Edit
+            delete: Delete
+          confirmations:
+            delete:
+              title:
+                Delete <strong>%{name}</strong> ?
+              body: >
+                <p>Are you sure you want to delete this Registration?</p>
+            toggle_status:
+              title:
+                <strong>%{status}</strong> %{name}?
+              body: >
+                <p>Are you sure you want to %{status} this Report?</p>

@@ -6,9 +6,12 @@ import styles from './styles.scss'
 import settings from '../../../settings.js'
 
 function Pagination ({
-  history, location, total, fetch, update, path,
+  history, total, path, onChange
 }) {
-  const onChange = page => routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}`)
+  const handleOnChange = page => {
+    onChange && onChange(page)
+    routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}`)
+  }
 
   return (
     <div className={styles.container}>
@@ -16,7 +19,7 @@ function Pagination ({
         current={routeUtils.getPage()}
         pageSize={settings.pageLimit}
         total={total}
-        onChange={onChange}
+        onChange={handleOnChange}
         hideOnSinglePage
       />
     </div>

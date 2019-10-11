@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { Select } from 'antd'
 import cs from 'classnames'
 import Criteria from './Criteria'
-import css from './style.scss'
+import styles from './styles.scss'
 
 export default function AvailabilityRequirement ({
   conditions,
@@ -18,7 +18,7 @@ export default function AvailabilityRequirement ({
   if (_.isEmpty(conditions)) {
     return (
       <div
-        className={css.addLink}
+        className={styles.addLink}
         onClick={() => addNewLogicalSetCondition({ relationship: defaultRelationshipId })}
         role="button"
         tabIndex={0}
@@ -70,12 +70,12 @@ function Operator ({ operator, addNewLogicalSetCondition, updateAvailiblityCondi
   }
 
   if (operator === 'if') {
-    return <div className={cs([css.operator, 'mbm'])}>If</div>
+    return <div className={cs([styles.operator, 'mbm'])}>If</div>
   }
   return (
     <Select
       value={operator}
-      className={cs([css.inputElement, css.operator, 'mbm', 'mtm'])}
+      className={cs([styles.inputElement, styles.operator, 'mbm', 'mtm'])}
       dropdownMatchSelectWidth={false}
       onChange={handleOperatorChange}
     >

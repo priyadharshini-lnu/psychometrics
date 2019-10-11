@@ -17,7 +17,7 @@ module Administration
       scope = policy_scope(resource_class).children_of(@folder) if @folder
       scope ||= policy_scope(resource_class).roots
 
-      @_filter_form = scope.search(params[:q])
+      @_filter_form = scope.includes(:owner).search(params[:q])
       filter_form.sorts = ['type asc', 'name asc'] if filter_form.sorts.empty?
       @_resources = filter_form.result.page(params[:page])
 

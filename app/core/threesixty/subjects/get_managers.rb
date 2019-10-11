@@ -15,7 +15,7 @@ module Threesixty
           where(
             campaign_id: subject.campaign_id,
             threesixty_participants: { subject_id: subject.user_id },
-            relationships: { name: 'Manager' }
+            relationships: { name: 'Manager', type: Relationship.types[:global] }
           )
       end
     end

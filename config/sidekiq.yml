@@ -10,3 +10,4 @@ production:
   - communication
   - reports
   - default
+  - two_factor_codes

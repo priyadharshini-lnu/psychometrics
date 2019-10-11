@@ -129,6 +129,9 @@ Rails.application.routes.draw do
         end
         resource :assign_reports, only: %i[new create edit update]
         resource :assign_assessments, only: %i[new create edit update]
+        resources :registration_codes do
+          patch :toggle_status, on: :member
+        end
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do
@@ -232,6 +235,9 @@ Rails.application.routes.draw do
           collection do
             get :schedulable_templates
             post :recipient_by_criteria
+          end
+          member do
+            get :download, constraints: { format: :csv }
           end
         end
 

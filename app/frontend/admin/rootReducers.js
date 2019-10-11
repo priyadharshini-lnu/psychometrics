@@ -17,6 +17,7 @@ import emailTemplates from './core/threeSixtyCampaign/emailTemplates'
 import emailSchedules from './core/threeSixtyCampaign/emailSchedules'
 import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates'
 import campaignDetails from './core/threeSixtyCampaign/campaignDetails'
+import mailHistories from './core/threeSixtyCampaign/mailHistories'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -33,6 +34,7 @@ export default combineReducers({
     emailTemplates,
     emailSchedules,
     instructionTemplates,
+    mailHistories,
   }),
   project: combineReducers({
     datasheetFields,

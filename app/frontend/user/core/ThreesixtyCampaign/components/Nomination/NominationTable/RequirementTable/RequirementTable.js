@@ -14,8 +14,8 @@ const { Column } = Table
 
 export default function RequirementTable (props) {
   const {
-    removeNomination, updateStatus,
-    match,
+    removeNomination, updateStatus, allowedRelationshipsForNewNominations,
+    match, handleAddNomination,
     nomination: { isSelf, options },
     canNominate,
     requirement: { condition, title, evaluators },
@@ -55,6 +55,7 @@ export default function RequirementTable (props) {
         title={title}
         match={match}
         relationship={condition.relationshipId}
+        handleAddNomination={handleAddNomination}
         {...props}
         hideForm={() => { setShowForm(false) }}
       />,
@@ -139,9 +140,10 @@ export default function RequirementTable (props) {
     canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
   }
 
-  if (evaluators && condition.comparator !== 'atleast' && condition.value && evaluators.length === +condition.value) {
-    canAdd = false
-  }
+  const relationshipAllowed = _.find(allowedRelationshipsForNewNominations,
+    relationship => relationship.id === condition.relationshipId)
+
+  if (!relationshipAllowed) { canAdd = false }
 
   return (
     <div className="requirement">
@@ -165,6 +167,7 @@ export default function RequirementTable (props) {
           render={renderRequirementCell}
         />
         <Column
+          width="20%"
           className="column-header"
           title={<div className="table-head-title">{I18n.t('threesixty.evaluation')}</div>}
           render={renderStatus}

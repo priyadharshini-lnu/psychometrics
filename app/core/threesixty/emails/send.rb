@@ -52,6 +52,10 @@ module Threesixty
         {
           template_name: Threesixty::Emails::Name::EVALUATOR_INVITE,
           recipient_type: :evaluator
+        },
+        {
+          template_name: Threesixty::Emails::Name::SUBJECT_INVITE,
+          recipient_type: :subject
         }
       ].freeze
 
@@ -70,11 +74,13 @@ module Threesixty
           subject_ids: Array.wrap(context[:subject_ids] || context[:subject]&.user_id),
           evaluator_ids: Array.wrap(context[:evaluator]&.user_id)
         }
+        recipient_ids = get_recipient_ids(config)
+        return if recipient_ids.blank?
 
         email_schedule_attributes = email_template.
                                     slice(:name, :subject, :from, :reply_to_email, :content, :threesixty_campaign_id).
                                     merge(
-                                      recipient_ids: get_recipient_ids(config),
+                                      recipient_ids: recipient_ids,
                                       meta: meta,
                                       scheduled_date: 10.seconds.from_now
                                     )

@@ -8,7 +8,7 @@ import routeUtils from 'utils/routeUtils'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
-import css from './style.scss'
+import styles from './styles.scss'
 import TemplateMenu from './TemplateMenu'
 
 export default function InstructionList ({
@@ -45,7 +45,7 @@ export default function InstructionList ({
   }
 
   return (
-    <Row className={css.container}>
+    <Row className={styles.container}>
       <Col xs={8} lg={7} xl={5}>
         <TemplateMenu history={history} instructionTemplates={list} selectedId={selectedId} />
       </Col>
@@ -54,7 +54,7 @@ export default function InstructionList ({
           instructionTemplate={selectedTemplate}
           toggleEnabled={() => { update(selectedTemplate.id, 'enabled', !selectedTemplate.enabled) }}
         />
-        <div className={css.content}>
+        <div className={styles.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Editor
             type={selectedTemplate.name}
