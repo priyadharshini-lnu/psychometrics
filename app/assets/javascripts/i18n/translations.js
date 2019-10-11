@@ -210,6 +210,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
   "subjects": {
     "statuses": {
       "completed": "Completed",
@@ -546,6 +549,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
   "subjects": {
     "statuses": {
       "completed": "Completed",
@@ -881,6 +887,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
     "statuses": {

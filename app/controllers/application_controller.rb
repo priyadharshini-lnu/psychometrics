@@ -57,11 +57,12 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
-    return if request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)
+    return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
+
     return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
 
     @current_client = @current_project.client

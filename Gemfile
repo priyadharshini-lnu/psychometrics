@@ -83,8 +83,7 @@ gem 'figaro',                     '~> 1.1.1'
 
 gem 'psychometrics-reports-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git',
-    ref: 'd695c2253d1f95c2317ba5a3316311ad24605329'
-
+    ref: '063c71c22196f7683b7eea13066dc10de5f24ebf'
 gem 'psychometrics-survey-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
     ref: '668c34152daf837b4ec96ecbd8416d3f01270fb5'

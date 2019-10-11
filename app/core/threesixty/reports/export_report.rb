@@ -77,6 +77,8 @@ module Threesixty
       def build_administration_url(params = {})
         params = params.merge(
           threesixty_campaign_id: threesixty_campaign.id,
+          domain: Settings.domain,
+          subdomain: Settings.subdomain,
           subject_id: subject.id
         )
 
