@@ -43,3 +43,35 @@ sections:
           - type: normed_factor
             assessmentId: 1
             factorId: 2
+  - type: mapped_value
+    label: Overall Aspiration Score
+    source:
+      type: formula
+      formula:
+        op: ADD
+        args:
+          - type: normed_factor
+            factorId: 1
+            assessmentId: 1
+          - type: normed_factor
+            factorId: 2
+            assessmentId: 1
+    rules:
+      - conditions:
+        - type: greater_than_or_equal
+          value: -5
+        - type: less_than
+          value: -3
+        result: 1
+      - conditions:
+        - type: greater_than_or_equal
+          value: -3
+        - type: less_than
+          value: -1
+        result: 2
+      - conditions:
+        - type: greater_than_or_equal
+          value: -1
+        - type: less_than_or_equal
+          value: 6
+        result: 3

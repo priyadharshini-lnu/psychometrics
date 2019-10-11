@@ -54,6 +54,7 @@ feature 'CRUD Assessment' do
 
     scenario 'Create Assessment' do
       create_assessment(name: 'My assessment', dimension_name: 'Agile')
+      wait_for_ajax
       expect(page).to have_content t('administration.assessments.create.successfully', name: 'My assessment')
       expect(page).to have_css('#assessments_list td a', text: 'My assessment')
     end
@@ -69,6 +70,7 @@ feature 'CRUD Assessment' do
           fill_in 'resource_name', with: 'My changed assessment'
           click_on t('administration.update')
         end
+        wait_for_ajax
         expect(page).to have_content t('administration.assessments.update.successfully', name: 'My changed assessment')
         expect(page).to have_css('#assessments_list td a', text: 'My changed assessment')
       end
@@ -100,6 +102,7 @@ feature 'CRUD Assessment' do
         data.merge!(assessments: %w[view manage], dimensions: ['view']))
 
       create_assessment(name: 'My assessment', dimension_name: dimension.name)
+      wait_for_ajax
       expect(page).to have_content t('administration.assessments.create.successfully', name: 'My assessment')
       expect(page).to have_css('#assessments_list td a', text: 'My assessment')
     end
