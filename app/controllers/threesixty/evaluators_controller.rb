@@ -8,6 +8,7 @@ module Threesixty
     before_action :set_nomination, only: %i[update_status update]
 
     def create
+      authorize @subject, nil, policy_class: ::Threesixty::NominationPolicy
       form = ::Threesixty::Participants::CreateForm.from_params(params).
              with_context(subject: @subject, threesixty_campaign: @campaign)
 
@@ -41,6 +42,7 @@ module Threesixty
     end
 
     def update_status
+      authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
       @nomination.update(manager_nomination_status: params[:status])
       if @nomination.manager_nomination_denied?
         Threesixty::Emails::Send.call!(
@@ -57,6 +59,7 @@ module Threesixty
 
     def destroy
       @nomination = @subject.participants.find_by(evaluator_id: params[:id])
+      authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
       @nomination.destroy
       @nomination.threesixty_subject.decrement!(:evaluators_count)
       @nomination.threesixty_evaluator.decrement!(:evaluations_count)

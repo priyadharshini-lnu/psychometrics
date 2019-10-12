@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-class Threesixty::ParticipantPolicy < BasePolicy
+class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
   def show?
-    return true if @current_user.id == @record.evaluator_id
-
-    Threesixty::Subjects::GetManagers.new(subject: @record.threesixty_subject).query.exists?(user_id: @current_user.id)
+    manage?
   end
 
   def edit?
@@ -13,9 +11,17 @@ class Threesixty::ParticipantPolicy < BasePolicy
     @record.evaluator_id == @current_user.id
   end
 
-  class Scope < Scope
-    def resolve
-      scope
-    end
+  def decline?
+    @current_user.id == @record.evaluator_id
+  end
+
+  def destroy?
+    manage?
+  end
+
+  private
+
+  def manage?
+    @current_user.id == @record.evaluator_id || manager?(@record.threesixty_subject)
   end
 end

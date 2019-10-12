@@ -39,6 +39,7 @@ module Threesixty
     end
 
     def decline
+      authorize @participant
       @participant = @campaign.participants.find_by!(
         evaluator_id: current_user.id,
         id: params[:evaluation_id] || params[:id]
@@ -58,6 +59,7 @@ module Threesixty
     end
 
     def update_status
+      authorize @participant
       @participant.update_attributes(manager_evaluation_status: params[:status])
       render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end

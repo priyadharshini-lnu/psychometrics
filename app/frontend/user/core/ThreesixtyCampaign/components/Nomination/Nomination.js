@@ -31,6 +31,7 @@ export default function Nominations (props) {
   const handleAddNomination = values => addNomination({
     ...values,
   }).catch((errors) => {
+    if (!errors) { return }
     const { firstName, lastName, ...rest } = errors
     if (_.isEmpty(rest) && (firstName || lastName)) {
       setParticipant({ ...values })
