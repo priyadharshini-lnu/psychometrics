@@ -648,6 +648,9 @@ Rails.application.routes.draw do
             post :duplicate, on: :member
           end
         end
+        resources :reports, only: [] do
+          get :dimensions, on: :member
+        end
       end
     end
   end

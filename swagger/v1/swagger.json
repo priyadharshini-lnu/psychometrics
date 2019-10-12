@@ -103,7 +103,7 @@
             },
             "examples": {
               "application/json": {
-                "code": 4000,
+                "code": 1005,
                 "message": "Resource not found",
                 "more_info": "User with id=111 is not found"
               }
@@ -187,7 +187,7 @@
             },
             "examples": {
               "application/json": {
-                "code": 4000,
+                "code": 1005,
                 "message": "Resource not found",
                 "more_info": "Campaign with id=111 is not found"
               }
@@ -200,7 +200,7 @@
       "post": {
         "summary": "Add user to campaigns",
         "operationId": "AddUserCampaigns",
-        "description": "Adds new campaigns to the user. Adding campaigns to user assigns the campaign's default assessments and reports.",
+        "description": "Adds new campaigns to the user. Adding campaigns to user assigns the campaign's default \\\nassessments and reports.",
         "tags": [
           "Campaigns"
         ],
@@ -316,7 +316,7 @@
       "get": {
         "summary": "Get user reports",
         "operationId": "GetUserReports",
-        "description": "All reports currently assigned to the user. Each report object also contains the required assessments and the user's completion status.",
+        "description": "All reports currently assigned to the user. Each report object also contains the required\\\n assessments and the user's completion status.",
         "tags": [
           "Reports"
         ],
@@ -481,14 +481,14 @@
             }
           },
           "403": {
-            "description": "Assessment is not passed",
+            "description": "Assessment not completed",
             "schema": {
               "$ref": "#/definitions/ReportResults"
             },
             "examples": {
               "application/json": {
                 "code": 1004,
-                "message": "Assessment is not passed",
+                "message": "Assessment not completed",
                 "more_info": "Assessments for report 111 are not passed"
               }
             }
@@ -500,7 +500,7 @@
       "get": {
         "summary": "Get user report PDF",
         "operationId": "GetUserReport",
-        "description": "Returns the user's report PDF url. This url is time-limited, check the expires_at attribute in the response.",
+        "description": "Returns the user's report PDF url. This url is time-limited,\\\n check the expires_at attribute in the response.",
         "tags": [
           "Reports"
         ],
@@ -550,6 +550,108 @@
         }
       }
     },
+    "/reports/{report_id}/dimensions": {
+      "get": {
+        "summary": "Get all report dimensions",
+        "operationId": "GetReportDimensions",
+        "description": "Returns all report dimensions. Use `since` param to get records that \\\n      have been updated or created after since. Use `include_factors` to include Factors.\\\n      Use `include_occupations` to include Occupations",
+        "tags": [
+          "Dimensions"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "name": "since",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "Returns results that have been updated after since."
+          },
+          {
+            "name": "include_occupations",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "true - returns occupations"
+          },
+          {
+            "name": "include_factors",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "true - returns factors"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get all report dimensions with factors since the updated_at",
+            "schema": {
+              "$ref": "#/definitions/Dimensions"
+            },
+            "examples": {
+              "application/json": {
+                "dimensions": [
+                  {
+                    "id": 12,
+                    "name": "Dimension name",
+                    "factors": [
+                      {
+                        "id": 123,
+                        "name": "Factor Name",
+                        "description": "Lorem ipsum dolor sit amet.",
+                        "updated_at": "2019-10-06T18:25:43.511Z"
+                      }
+                    ]
+                  }
+                ],
+                "server_time": "2019-10-06T18:25:43.511Z"
+              }
+            }
+          },
+          "404": {
+            "description": "Raise 404 Not Found if the report is not found",
+            "schema": {
+              "$ref": "#/definitions/Dimensions"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1005,
+                "message": "Resource not found",
+                "more_info": "Report with id 123 not found."
+              }
+            }
+          },
+          "412": {
+            "description": "Raise 412 Not Configured if the report doesn't have data configuration",
+            "schema": {
+              "$ref": "#/definitions/Dimensions"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1007,
+                "message": "Resource not configured.",
+                "more_info": "Report with id 12 doesn't have data configuration."
+              }
+            }
+          }
+        }
+      }
+    },
     "/projects/{project_id}/users/{user_id}/sso": {
       "post": {
         "summary": "Create authenticated SSO URL",
@@ -557,7 +659,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Creates an single sign on URL for the user. Response also contains assessment specific URLs. All these URLs will be invalid after the time in `expires_at`.\n\nAppend  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.\n\n### Example\n\n`https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`\n\nAfter completing the assessment, user will be redirected to \n\n`https://yourportal.com/tte-redirect?status=assessment_completed`\n\n**ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token\n",
+        "description": "Creates an single sign on URL for the user. Response also contains assessment specific URLs. All these URLs will be invalid after the time in `expires_at`.\n\nAppend  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.\n\n### Example\n\n`https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`\n\nAfter completing the assessment, user will be redirected to\n\n`https://yourportal.com/tte-redirect?status=assessment_completed`\n\n**ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token\n",
         "consumes": [
           "application/json"
         ],
@@ -612,7 +714,7 @@
         "tags": [
           "Users"
         ],
-        "description": "Creates a new user and adds to the campaigns specified along with the campaign's default assessments and reports.",
+        "description": "Creates a new user and adds to the campaigns specified along with \\\nthe campaign's default assessments and reports.",
         "consumes": [
           "application/json"
         ],
@@ -666,7 +768,7 @@
             },
             "examples": {
               "application/json": {
-                "code": 4003,
+                "code": 1006,
                 "message": "User with this email exists",
                 "more_info": "Email address max@example.com is already taken"
               }
@@ -679,7 +781,7 @@
             },
             "examples": {
               "application/json": {
-                "code": 4000,
+                "code": 1005,
                 "message": "Resource not found",
                 "more_info": "Project with id=111 is not found"
               }
@@ -694,7 +796,7 @@
               "application/json": {
                 "code": 1003,
                 "message": "Not enough licenses",
-                "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report."
+                "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough \\\nlicenses for <b>Cognitive - Entry Level</b> report."
               }
             }
           }
@@ -1082,6 +1184,74 @@
         },
         "url": {
           "type": "string"
+        }
+      }
+    },
+    "Occupation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "Factor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "Dimension": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "occupations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Occupation"
+          }
+        },
+        "factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Factor"
+          }
+        }
+      }
+    },
+    "Dimensions": {
+      "type": "object",
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Dimension"
+          }
         }
       }
     }
