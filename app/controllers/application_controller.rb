@@ -93,7 +93,10 @@ class ApplicationController < ::BaseController
   end
 
   def user_not_authorized
-    render plain: 'You does not have access to this page', status: 403
+    respond_to do |format|
+      format.html { render plain: 'You does not have access to this page', status: 403 }
+      format.json { render json: { error: ['You do not have permissions to this action'] }, status: 403 }
+    end
   end
 
   def set_locale
