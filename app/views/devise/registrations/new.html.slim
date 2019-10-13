@@ -11,45 +11,46 @@
       .tab-content
         #register.tab-pane.fade.in.active role="tabpanel"
           = simple_form_for(@form, as: resource_name, url: user_registration_path) do |f|
-            div.clearfix
-              div class="alert alert-danger"
-                = t('simple_form.error_notification.default_message')
-                - if flash[:alert]
-                  ul
-                    li= flash[:alert]
+            - if @form.errors.present?
+              div.clearfix
+                div class="alert alert-danger"
+                  = t('simple_form.error_notification.default_message')
+                  - if flash[:alert]
+                    ul
+                      li= flash[:alert]
             .loginFormContent
               .firstNameFormGroup
                 = f.label :first_name
                 .input-group
                   = f.input_field :first_name, placeholder: true, class: 'form-control input-lg'
-                = f.error :first_name
+                = f.error :first_name, class: 'red-warning-text'
               .lastNameFormGroup
                 = f.label :last_name
                 .input-group
                   = f.input_field :last_name, placeholder: true, class: 'form-control input-lg'
-                = f.error :last_name
+                = f.error :last_name, class: 'red-warning-text'
               .usernameFormGroup
                 = f.label :email
                 .input-group
                   = f.input_field :email, placeholder: true, class: 'form-control input-lg'
-                = f.error :email
+                = f.error :email, class: 'red-warning-text'
               .passwordFormGroup
                 = f.label :password
                 .input-group
                   = f.input_field :password, placeholder: true, class: 'form-control input-lg'
-                = f.error :password
+                = f.error :password, class: 'red-warning-text'
               .passwordFormGroup
                 = f.label :password_confirmation
                 .input-group
                   = f.input_field :password_confirmation, placeholder: true, class: 'form-control input-lg'
-                = f.error :password_confirmation
+                = f.error :password_confirmation, class: 'red-warning-text'
               .registrationCodeFormGroup
                 = f.label :registration_code
                 .input-group
                   = f.text_field :registration_code,
                           placeholder: 'Enter the registration code', class: 'form-control input-lg',
                           maxlength: 32, value: @form.context.code
-                = f.error :registration_code
+                = f.error :registration_code, class: 'red-warning-text'
               span.clear &nbsp;
               .signInButton
                 .input-group
