@@ -11,5 +11,7 @@
         #psychometrics_preview data-result="#{AssignSerializer.new(@assign).to_json}" data-type="pass_assessment" data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"  data-locales="#{@translations.to_json}"
         = javascript_pack_tag 'vendors'
         = stylesheet_pack_tag 'vendors'
+        = stylesheet_pack_tag 'survey'
+        = javascript_pack_tag 'survey'
         = stylesheet_pack_tag 'assessment/preview'
         = javascript_pack_tag 'assessment/preview'
