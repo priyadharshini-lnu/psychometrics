@@ -37,10 +37,11 @@ environment.loaders.append('less', less)
 loaders.nodeModules.use[0].options.sourceMaps = true
 
 const vendors = [
-  'react', 
-  'react-dom', 
-  'react-dnd', 
+  'react',
+  'react-dom',
+  'react-dnd',
   'redux',
+  'reselect',
   'react-dnd-html5-backend',
   'react-dnd-touch-backend',
   'react-froala-wysiwyg',
@@ -89,7 +90,7 @@ environment.config.merge({
           priority: 5,
           enforce: true,
         },
-        
+
       },
     },
   },
