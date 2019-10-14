@@ -9,6 +9,8 @@ tr id=dom_id(resource)
   td = resource.decorate.formatted_date_time(:end_date)
   td = resource.decorate.get_usage_stats
   td.actions-cell
+    button.btn.btn-default.btn-rounded.btn-xs.copy-coded-url data-toggle="tooltip" data-title="#{resource.decorate.url}"
+      span.fa.fa-copy
     = link_to edit_administration_client_registration_code_path(client_id: client.id, id: resource.id), remote: true,
         class: 'btn btn-default btn-rounded btn-sm edit', data: {toggle: 'tooltip', title: t('.tooltips.edit')} do
       span.fa.fa-pencil
