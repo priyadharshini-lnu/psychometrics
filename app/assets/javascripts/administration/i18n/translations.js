@@ -4456,10 +4456,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -5757,6 +5763,35 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
@@ -5804,13 +5839,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -10301,10 +10329,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -11606,6 +11640,35 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
@@ -11653,13 +11716,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -16150,10 +16206,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -17451,6 +17513,35 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
@@ -17498,13 +17589,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
