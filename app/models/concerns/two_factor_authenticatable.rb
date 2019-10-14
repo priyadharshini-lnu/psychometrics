@@ -26,5 +26,9 @@ module TwoFactorAuthenticatable
     def reset_second_factor_attempts_counter!
       update!(second_factor_attempts_count: 0)
     end
+
+    def invalidate_current_otp!
+      update!(direct_otp: random_base10(self.class.direct_otp_length))
+    end
   end
 end

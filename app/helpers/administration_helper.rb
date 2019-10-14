@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
 module AdministrationHelper
-  def flash_messages
+  def flash_messages(dismissable = true)
     out         = []
     flash_types = { 'success' => 'success', 'error' => 'danger', 'notice' => 'info' }
     flash.delete('timedout')
+    flash.delete('resent')
     flash.each do |key, value|
       class_flash = flash_types[key] || 'danger'
-      concat alert_panel(value, class_flash)
+      concat alert_panel(value, class_flash, dismissable)
     end
     out.join('').html_safe
   end
 
-  def alert_panel(message, type = 'warning')
+  def alert_panel(message, type = 'warning', dismissable = true)
     content_tag :div, class: "alert alert-#{type} alert-dismissible", role: 'alert' do
-      concat content_tag(:button, content_tag(:span, '&times;'.html_safe), class: 'close', data: { dismiss: 'alert' })
+      if dismissable
+        concat content_tag(:button, content_tag(:span, '&times;'.html_safe), class: 'close', data: { dismiss: 'alert' })
+      end
       concat h(message)
     end
   end
