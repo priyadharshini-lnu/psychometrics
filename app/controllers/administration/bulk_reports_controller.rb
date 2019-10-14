@@ -12,7 +12,7 @@ module Administration
     end
 
     def create
-      @_client = Client.find(report_params[:client_id])
+      @client = Client.find(report_params[:client_id])
       reports = query(export_params[:client]).call(export_params[:client].id, export_params[:report_ids],
                                                    export_params[:start_date], export_params[:end_date])
       if reports.any?
