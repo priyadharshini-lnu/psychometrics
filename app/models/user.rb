@@ -155,6 +155,11 @@ class User < ApplicationRecord
 
   has_one_time_password(encrypted: true)
 
+  # Overridden Devise class method
+  def self.send_reset_password_instructions(recoverable)
+    recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
+
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && create_by_invite
