@@ -12,7 +12,7 @@ module Administration
 
       def show
         @users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
-
+        set_available_translations(@users_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
           users_report: @users_report,
           locale: user_locale,
@@ -27,15 +27,17 @@ module Administration
 
       def download
         users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
-        options = { lang: params[:lang]}
+        options = { lang: params[:lang] }
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(
-              threesixty_campaign, current_user, resource, users_report, options)
+              threesixty_campaign, current_user, resource, users_report, options
+            )
             render json: { success: true }
           end
           format.pdf do
             add_cookie_for_file_download
+
             pdf_file = ::Threesixty::Reports::ExportReport.call!(
               current_user, threesixty_campaign, @_resource, users_report, options
             )
@@ -61,6 +63,10 @@ module Administration
 
       def add_cookie_for_file_download
         cookies[:fileDownload] = true
+      end
+
+      def set_available_translations(report)
+        @available_translations = Translation.available_translation_for_report(report.id, report.assessments.first)
       end
     end
   end

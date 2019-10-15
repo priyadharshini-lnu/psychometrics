@@ -5,7 +5,7 @@
     - else
       => t("languages.en")
     span.caret
-  ul.dropdown-menu aria-labelledby=""
+  ul.dropdown-menu.language-dropdown aria-labelledby=""
     = active_link_to t('languages.en'),
                      params.permit.to_h.merge(lang: 'en'),
                      wrap_tag: :li,
