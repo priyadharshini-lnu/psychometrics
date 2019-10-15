@@ -13,7 +13,9 @@ module Threesixty
 
         result =
           nomination_requirement.conditions.all? do |condition|
-            condition['value'].nil? || condition['value'].to_i <= (counters[condition['relationship_id']] || 0)
+            next true if condition['value'].nil? || condition['comparator'] == 'atmost'
+
+            condition['value'].to_i <= (counters[condition['relationship_id']] || 0)
           end
         broadcast :ok, result
       end
