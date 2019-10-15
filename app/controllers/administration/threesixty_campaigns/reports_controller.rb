@@ -11,10 +11,10 @@ module Administration
       append_before_action :pundit_authorize
 
       def show
-        users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
+        @users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
 
         @data = ::Reports::PrepareDataForReport.call!(
-          users_report: users_report,
+          users_report: @users_report,
           locale: user_locale,
           current_user: current_user
         )
@@ -27,9 +27,21 @@ module Administration
 
       def download
         users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
-        ::Threesixty::Reports::DownloadJob.perform_later(threesixty_campaign, current_user, resource, users_report)
-
-        render json: { success: true }
+        options = { lang: params[:lang]}
+        respond_to do |format|
+          format.json do
+            ::Threesixty::Reports::DownloadJob.perform_later(
+              threesixty_campaign, current_user, resource, users_report, options)
+            render json: { success: true }
+          end
+          format.pdf do
+            add_cookie_for_file_download
+            pdf_file = ::Threesixty::Reports::ExportReport.call!(
+              current_user, threesixty_campaign, @_resource, users_report, options
+            )
+            send_file pdf_file, type: 'application/pdf'
+          end
+        end
       end
 
       private
@@ -45,6 +57,10 @@ module Administration
 
       def pundit_authorize
         authorize %i[threesixty report]
+      end
+
+      def add_cookie_for_file_download
+        cookies[:fileDownload] = true
       end
     end
   end

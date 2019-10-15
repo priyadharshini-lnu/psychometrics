@@ -110,3 +110,5 @@ en:
         umark_evaluation_as_complete: 'Are you sure you want to unmark evaluation as done?'
         remove_subject: 'Are you sure you want to remove subject with email from campaign?'
       report_generation_message: 'Report is generating. We will let you know when the report is ready.'
+    export_pdf: Export PDF
+    report_generation_in_progress: 'Report is generating. We will let you know when the report is ready.'
