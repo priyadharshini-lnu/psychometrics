@@ -14,6 +14,19 @@ module Threesixty
       SUBJECT_INVITE = 'subject_invite'
       SUBJECT_REMINDER = 'subject_reminder'
       CUSTOM_MESSAGE = 'custom_message'
+
+      def self.evaluator_email?(email_name)
+        [EVALUATOR_INVITE, EVALUATOR_REMINDER].include?(email_name)
+      end
+
+      def self.reminder_email?(email_name)
+        [SUBJECT_REMINDER, EVALUATOR_REMINDER].include?(email_name)
+      end
+
+      def self.recipient_type(email_name)
+        config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == email_name }
+        config&.dig(:recipient_type)
+      end
     end
   end
 end

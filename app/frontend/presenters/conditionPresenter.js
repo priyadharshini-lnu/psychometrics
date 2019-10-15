@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const PREDICATES = {
   atleast: 'At least',
   exactly: 'Exactly',
@@ -7,6 +9,7 @@ const PREDICATES = {
 
 export default {
   getCondition ({ comparator, value }) {
+    if (_.isEmpty(value)) { return '' }
     return `${PREDICATES[comparator]} ${value}`
   },
 

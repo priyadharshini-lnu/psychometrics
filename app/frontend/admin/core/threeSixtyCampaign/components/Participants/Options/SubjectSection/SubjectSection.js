@@ -114,17 +114,6 @@ export default function SubjectSection ({
           </ExpandableOption>
         </ExpandableOption>
       </ExpandableOption>
-
-      <ExpandableOption
-        label="Subjects can view the completion status of evaluations"
-        {...parametersForSwitch('canViewCompletionStatusOfEvaluation')}
-      >
-        <ExpandableOption
-          label="Allow subjects to view the individual evaluations"
-          {...parametersForSwitch('canViewIndividualEvaluations')}
-          type="checkbox"
-        />
-      </ExpandableOption>
     </OptionSection>
   )
 }

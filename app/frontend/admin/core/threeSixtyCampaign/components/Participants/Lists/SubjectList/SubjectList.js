@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import routeUtils from 'utils/routeUtils'
-import css from './SubjectList.scss'
+import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
@@ -105,11 +105,12 @@ export default function SubjectList ({
                     remove,
                     removeUser,
                     downloadReport,
+                    openModal,
                   })
                   }
                   trigger={['click']}
                 >
-                  <div className={css.actions}>
+                  <div className={styles.actions}>
                     <Icon type="ellipsis" />
                   </div>
                 </Dropdown>
@@ -117,7 +118,7 @@ export default function SubjectList ({
             />
           </Table>
           <div className="pm">
-            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} path="/participants/subjects" />
+            <Pagination total={total} path="/participants/subjects" />
           </div>
         </Col>
       </Row>

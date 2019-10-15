@@ -66,11 +66,9 @@ export default function Report ({
               </Col>
             </Row>
             <Row>
-              {
-                <Button onClick={() => requestDownloadReport(params.campaignId, params.id)}>
-                  {I18n.t('threesixty.generate_report')}
-                </Button>
-              }
+              <Button onClick={() => requestDownloadReport(params.campaignId, params.id)}>
+                {I18n.t('threesixty.generate_report')}
+              </Button>
             </Row>
             <ReportPreview
               id="threesixty-report"

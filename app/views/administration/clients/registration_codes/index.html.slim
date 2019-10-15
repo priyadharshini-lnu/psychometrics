@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .page-title
+      h2.mrl = client.decorate.display_name
+      = render partial: 'administration/clients/top_nav'
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = 'Registration Codes'
+        .pull-right
+          = link_to(new_administration_client_registration_code_path(client_id: client.id), remote: true, class: 'btn btn-default')
+            span.fa.fa-plus
+            = 'Add'
+        = search_form_for(filter_form,
+                        url: { action: :index },
+                        html: { id: 'filter', class: 'list-filter' },
+                        builder: SimpleForm::FormBuilder) do |f|
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
+      .panel-body
+        #filter_results
+          = render partial: 'list'

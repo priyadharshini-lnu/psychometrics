@@ -45,6 +45,9 @@ describe Reports::BuildResults do
       }
     end
 
+    # Mapped Value
+    let(:mapped_value) { { 'value' => 3 } }
+
     # SUBJECT
     # subject { described_class.new(report, client) }
 
@@ -131,7 +134,7 @@ describe Reports::BuildResults do
       subject { Reports::ResultTypes::Formula.call(build_results_command, data) }
 
       it 'data is blank' do
-        is_expected.to eq(key: nil, name: nil, value: nil, config_data: data)
+        is_expected.to eq(key: 'formula', name: nil, value: nil, config_data: data)
       end
 
       context 'normal flow' do
@@ -139,26 +142,109 @@ describe Reports::BuildResults do
           allow(data).to receive(:dig).with('formula', 'args').and_return([{ 'type' => 'normed_factor' }])
           allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return(value: [1, 2, 3])
         end
+
         it 'AVERAGE' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
-          is_expected.to eq(key: nil, name: nil, value: 2.0, config_data: data)
+          is_expected.to eq(key: 'formula', name: nil, value: 2.0, config_data: data)
         end
 
         it 'MIN' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('MIN')
-          is_expected.to eq(key: nil, name: nil, value: 1, config_data: data)
+          is_expected.to eq(key: 'formula', name: nil, value: 1, config_data: data)
         end
 
         it 'MAX' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('MAX')
-          is_expected.to eq(key: nil, name: nil, value: 3, config_data: data)
+          is_expected.to eq(key: 'formula', name: nil, value: 3, config_data: data)
         end
 
-        it 'op is wrong' do
+        it 'ADD' do
+          allow(data).to receive(:dig).with('formula', 'op').and_return('ADD')
+          is_expected.to eq(key: 'formula', name: nil, value: 6, config_data: data)
+        end
+
+        it 'SUBTRACT' do
+          allow(data).to receive(:dig).with('formula', 'op').and_return('SUBTRACT')
+          is_expected.to eq(key: 'formula', name: nil, value: -4, config_data: data)
+        end
+
+        it 'MULTIPLY' do
+          allow(data).to receive(:dig).with('formula', 'op').and_return('MULTIPLY')
+          is_expected.to eq(key: 'formula', name: nil, value: 6, config_data: data)
+        end
+
+        it 'DIVIDE' do
+          allow(data).to receive(:dig).with('formula', 'op').and_return('DIVIDE')
+          is_expected.to eq(key: 'formula', name: nil, value: 0, config_data: data)
+        end
+
+        xit 'number of operands is wrong for ADD' do
+          allow(data).to receive(:dig).with('formula', 'op').and_return('ADD')
+          expect { is_expected }.to raise_error(RuntimeError)
+        end
+
+        xit 'op is wrong' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('wrong')
           expect { is_expected }.to raise_error(RuntimeError)
         end
       end
+    end
+
+    context 'Mapped Value' do
+      let(:data) do
+        {
+          'type' => 'mapped_value',
+          'label' => 'Overall Aspiration Score',
+          'source' => {
+            'type' => 'formula',
+            'formula' => {
+              'op' => 'ADD',
+              'args' => [{
+                'type' => 'normed_factor',
+                'factorId' => 1,
+                'assessmentId' => 1
+              }, {
+                'type' => 'normed_factor',
+                'factorId' => 2,
+                'assessmentId' => 1
+              }]
+            }
+          },
+          'rules' => [
+            {
+              'conditions' => [
+                { 'type' => 'greater_than_or_equal', 'value' => -6 },
+                { 'type' => 'less_than', 'value' => -2 }
+              ],
+              'result' => 1
+            },
+            {
+              'conditions' => [
+                { 'type' => 'greater_than_or_equal', 'value' => -2 },
+                { 'type' => 'less_than', 'value' => 2 }
+              ],
+              'result' => 2
+            },
+            {
+              'conditions' => [
+                { 'type' => 'greater_than_or_equal', 'value' => 2 },
+                { 'type' => 'less_than_or_equal', 'value' => 6 }
+              ],
+              'result' => 3
+            }
+          ]
+        }
+      end
+      subject { Reports::ResultTypes::MappedValue.call(build_results_command, data) }
+
+      it {
+        is_expected.to eq(
+          key: 'mapped_value',
+          name: 'Overall Aspiration Score',
+          value: mapped_value['value'],
+          config_data: data
+        )
+      }
     end
   end
 end

@@ -52,6 +52,10 @@ module Threesixty
         {
           template_name: Threesixty::Emails::Name::EVALUATOR_INVITE,
           recipient_type: :evaluator
+        },
+        {
+          template_name: Threesixty::Emails::Name::SUBJECT_INVITE,
+          recipient_type: :subject
         }
       ].freeze
 
@@ -61,20 +65,22 @@ module Threesixty
       end
 
       def call
-        config = CONFIG.find { |c| c[:template_name] == type }
+        config = CONFIG.find { |c| c[:template_name] == type }.merge(context[:mail_config] || {})
         return unless config[:condition_class].nil? || config[:condition_class].call!(context)
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
 
         meta = {
-          subject_ids: context[:subject_ids] || [context[:subject]&.user_id],
-          evaluator_ids: [context[:evaluator]&.user_id]
+          subject_ids: Array.wrap(context[:subject_ids] || context[:subject]&.user_id),
+          evaluator_ids: Array.wrap(context[:evaluator]&.user_id)
         }
+        recipient_ids = get_recipient_ids(config)
+        return if recipient_ids.blank?
 
         email_schedule_attributes = email_template.
                                     slice(:name, :subject, :from, :reply_to_email, :content, :threesixty_campaign_id).
                                     merge(
-                                      recipient_ids: get_recipient_ids(config),
+                                      recipient_ids: recipient_ids,
                                       meta: meta,
                                       scheduled_date: 10.seconds.from_now
                                     )

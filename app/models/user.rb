@@ -4,42 +4,50 @@
 #
 # Table name: users
 #
-#  id                     :integer          not null, primary key
-#  email                  :string           default(""), not null
-#  encrypted_password     :string           default(""), not null
-#  reset_password_token   :string
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#  sign_in_count          :integer          default(0), not null
-#  current_sign_in_at     :datetime
-#  last_sign_in_at        :datetime
-#  current_sign_in_ip     :inet
-#  last_sign_in_ip        :inet
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  first_name             :string
-#  last_name              :string
-#  disabled               :boolean          default(FALSE)
-#  role                   :string           default("Users::Regular")
-#  invitation_token       :string
-#  invitation_created_at  :datetime
-#  invitation_sent_at     :datetime
-#  invitation_accepted_at :datetime
-#  invitation_limit       :integer
-#  invited_by_type        :string
-#  invited_by_id          :integer
-#  invitations_count      :integer          default(0)
-#  authentication_token   :string(30)
-#  is_anonym              :boolean          default(FALSE)
-#  grants                 :jsonb
-#  created_by_id          :integer
-#  modified_by_id         :integer
-#  spoof_token            :string
+#  id                             :integer          not null, primary key
+#  email                          :string           default(""), not null
+#  encrypted_password             :string           default(""), not null
+#  reset_password_token           :string
+#  reset_password_sent_at         :datetime
+#  remember_created_at            :datetime
+#  sign_in_count                  :integer          default(0), not null
+#  current_sign_in_at             :datetime
+#  last_sign_in_at                :datetime
+#  current_sign_in_ip             :inet
+#  last_sign_in_ip                :inet
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#  first_name                     :string
+#  last_name                      :string
+#  disabled                       :boolean          default(FALSE)
+#  role                           :string           default("Users::Regular")
+#  invitation_token               :string
+#  invitation_created_at          :datetime
+#  invitation_sent_at             :datetime
+#  invitation_accepted_at         :datetime
+#  invitation_limit               :integer
+#  invited_by_type                :string
+#  invited_by_id                  :integer
+#  invitations_count              :integer          default(0)
+#  authentication_token           :string(30)
+#  is_anonym                      :boolean          default(FALSE)
+#  grants                         :jsonb
+#  created_by_id                  :integer
+#  modified_by_id                 :integer
+#  spoof_token                    :string
+#  second_factor_attempts_count   :integer          default: 0
+#  encrypted_otp_secret_key       :string
+#  encrypted_otp_secret_key_iv    :string
+#  encrypted_otp_secret_key_salt  :string
+#  direct_otp                     :string
+#  direct_otp_sent_at             :datetime
+#  totp_timestamp                 :timestamp
 #
 
 class User < ApplicationRecord
   include UserScopes
   include UserValidations
+  include TwoFactorAuthenticatable
 
   # Roles constant
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
@@ -89,7 +97,7 @@ class User < ApplicationRecord
   }.with_indifferent_access.freeze
 
   # Authentication
-  devise :invitable, :database_authenticatable, :registerable,
+  devise :two_factor_authenticatable, :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :timeoutable, request_keys: { subdomain: false }
 
@@ -123,13 +131,18 @@ class User < ApplicationRecord
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
   has_many :campaigns_users
-  has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory'
+  has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
+
+  has_many  :available_client_admin_reports,
+            through: :client_admin_clients,
+            source: :available_reports,
+            class_name: 'Report'
 
   accepts_nested_attributes_for :memberships
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
-  validates :email, uniqueness: { scope: %i[project_id role] }
+  validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email,
                           with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
@@ -139,6 +152,8 @@ class User < ApplicationRecord
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
+
+  has_one_time_password(encrypted: true)
 
   # We won't set password, we will send inviting
   def password_required?

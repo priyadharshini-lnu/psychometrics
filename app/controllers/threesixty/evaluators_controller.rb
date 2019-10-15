@@ -8,13 +8,24 @@ module Threesixty
     before_action :set_nomination, only: %i[update_status update]
 
     def create
+      authorize @subject, nil, policy_class: ::Threesixty::NominationPolicy
       form = ::Threesixty::Participants::CreateForm.from_params(params).
              with_context(subject: @subject, threesixty_campaign: @campaign)
 
       if form.valid?
-        result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
+        result = ::Threesixty::Evaluators::NominateEvaluator.call!(
+          threesixty_campaign: @campaign,
+          subject: @subject,
+          params: params,
+          nominator: current_user,
+          evaluator: form.user
+        )
 
-        if Threesixty::Emails::IsApproveNominationSendable.call!(threesixty_campaign: @campaign)
+        is_approve_nomination_sendable = Threesixty::Emails::IsApproveNominationSendable.call!(
+          threesixty_campaign: @campaign
+        )
+
+        if !result.manager_nomination_approved? && is_approve_nomination_sendable
           Threesixty::Emails::Send.call!(
             Threesixty::Emails::Name::APPROVE_NOMINATION,
             threesixty_campaign: @campaign,
@@ -30,12 +41,8 @@ module Threesixty
       end
     end
 
-    def update
-      @nomination.evaluator.update(first_name: params[:first_name], last_name: params[:last_name])
-      render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
-    end
-
     def update_status
+      authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
       @nomination.update(manager_nomination_status: params[:status])
       if @nomination.manager_nomination_denied?
         Threesixty::Emails::Send.call!(
@@ -52,6 +59,7 @@ module Threesixty
 
     def destroy
       @nomination = @subject.participants.find_by(evaluator_id: params[:id])
+      authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
       @nomination.destroy
       @nomination.threesixty_subject.decrement!(:evaluators_count)
       @nomination.threesixty_evaluator.decrement!(:evaluations_count)

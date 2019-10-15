@@ -99,13 +99,20 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
+  has_many :registration_codes, class_name: 'RegistrationCode', foreign_key: :end_level_id, inverse_of: :end_level
+  has_many :project_registration_codes, class_name: 'RegistrationCode', foreign_key: :project_id, inverse_of: :project
+
   # TODO: use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) },
            through: :projects, source: :users
 
   has_one :datasheet, foreign_key: :project_id, dependent: :destroy
+  has_one :privacy_link, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
+  accepts_nested_attributes_for :privacy_link, allow_destroy: true
+
+  before_validation -> { self.subdomain = subdomain.downcase }, if: :subdomain?
 
   validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|

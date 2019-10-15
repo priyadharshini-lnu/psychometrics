@@ -9,7 +9,7 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function CampaignList ({
-  campaigns, fetchCampaigns, downloadReport, history, loginHogan, acceptPolicy,
+  campaigns, fetchCampaigns, downloadReport, history, loginHogan, acceptPolicy, currentUser,
 }) {
   useEffect(() => {
     fetchCampaigns()
@@ -20,7 +20,6 @@ export default function CampaignList ({
       history.push(`/campaigns/${campaigns[0].id}`)
     }
   }, [campaigns])
-
   return (
     <Layout>
       <Content className="fluid-container">
@@ -30,7 +29,7 @@ export default function CampaignList ({
             backIcon={null}
             title={(
               <div className="title-with-dash">
-                Assessments
+                {I18n.t('threesixty.dashboard_title', { name: currentUser.firstName })}
               </div>
             )}
           >

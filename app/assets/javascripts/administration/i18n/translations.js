@@ -180,12 +180,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -282,6 +282,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "library": {
         "created_at": "Created Date",
@@ -466,6 +473,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -485,10 +499,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -631,6 +646,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -648,6 +664,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -732,6 +751,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -744,6 +765,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -1045,6 +1067,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -1062,6 +1085,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -1335,6 +1361,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -1738,6 +1765,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -1756,12 +1784,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -1777,6 +1811,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -1943,6 +1978,51 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Project %{name} was successfully updated."
         }
       },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
+        }
+      },
       "reports": {
         "copy": {
           "error": "Report #%{id} was not copied."
@@ -2039,6 +2119,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
@@ -2457,6 +2540,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -2682,6 +2768,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -2868,6 +2958,103 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -2988,6 +3175,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -3000,6 +3189,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -3455,6 +3645,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Report's options",
         "view": "View Report"
       },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
+      },
       "toggle_status": {
         "successfully": "Report was successfully updated."
       },
@@ -3821,6 +4014,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -4253,6 +4454,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "sign_in_with_provider": "Sign in with %{provider}",
         "sign_up": "Sign up"
       }
+    },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
     },
     "unlocks": {
       "new": {
@@ -5098,6 +5306,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -5112,6 +5323,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
     "error_notification": {
@@ -5208,12 +5422,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -5493,8 +5707,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -5503,6 +5722,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -5521,6 +5743,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -5529,11 +5757,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -5552,7 +5785,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -5569,6 +5804,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -5783,12 +6025,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -5885,6 +6127,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "library": {
         "created_at": "Created Date",
@@ -6069,6 +6318,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -6088,10 +6344,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -6234,6 +6491,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -6251,6 +6509,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -6335,6 +6596,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -6347,6 +6610,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -6648,6 +6912,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -6665,6 +6930,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -6938,6 +7206,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -7341,6 +7610,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -7359,12 +7629,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -7380,6 +7656,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -7546,6 +7823,51 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Project %{name} was successfully updated."
         }
       },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
+        }
+      },
       "reports": {
         "copy": {
           "error": "Report #%{id} was not copied."
@@ -7642,6 +7964,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
@@ -8060,6 +8385,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -8285,6 +8613,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -8471,6 +8803,103 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -8591,6 +9020,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -8603,6 +9034,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -9058,6 +9490,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Report's options",
         "view": "View Report"
       },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
+      },
       "toggle_status": {
         "successfully": "Report was successfully updated."
       },
@@ -9424,6 +9859,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -9856,6 +10299,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "sign_in_with_provider": "سجّلْ الدخول عن طريق %{provider}",
         "sign_up": "سجّلْ"
       }
+    },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
     },
     "unlocks": {
       "new": {
@@ -10705,6 +11155,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -10719,6 +11172,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
     "error_notification": {
@@ -10815,12 +11271,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -11100,8 +11556,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -11110,6 +11571,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -11128,6 +11592,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -11136,11 +11606,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -11159,7 +11634,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -11176,6 +11653,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -11390,12 +11874,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "created_at": "Created Date",
@@ -11492,6 +11976,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "library": {
         "created_at": "Created Date",
@@ -11676,6 +12167,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "license": {
           "overuse": "License %{name} ssis overused"
         },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
         "report": {
           "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
@@ -11695,10 +12193,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -11841,6 +12340,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "tooltips": {
+          "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
           "edit": "Edit Assessment"
@@ -11858,6 +12358,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
       },
       "toggle_status": {
         "successfully": "Assessment %{name} was Updated Successfully."
@@ -11942,6 +12445,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -11954,6 +12459,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -12255,6 +12761,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "raw_results": "Raw results",
           "scoring_results": "Scoring results",
           "tooltips": {
+            "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
@@ -12272,6 +12779,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Assessment %{name} was Updated Successfully."
@@ -12545,6 +13055,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
         "header": "Edit Client"
       },
       "export": {
@@ -12948,6 +13459,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Edit Project"
         },
         "export": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -12966,12 +13478,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "users_count": "Users Count"
         },
         "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
           "applicable_levels": {
             "campaign": "Campaign End Level",
             "project": "Project End Level",
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
           "project_number": "Project Number"
         },
         "header": {
@@ -12987,6 +13505,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
+          "2fa_enabled": "2FA Enabled",
           "actual_usage": "Actual Usage",
           "admin": "Client Admin",
           "applicable_level": "Applicable Level",
@@ -13153,6 +13672,51 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Project %{name} was successfully updated."
         }
       },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "invalid_code": "Invalid registration code",
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          }
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
+        }
+      },
       "reports": {
         "copy": {
           "error": "Report #%{id} was not copied."
@@ -13249,6 +13813,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
@@ -13667,6 +14234,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "Report's options",
             "view": "View Report"
           },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
           "toggle_status": {
             "successfully": "Report was successfully updated."
           },
@@ -13892,6 +14462,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
+        "form": {
+          "enable_innovation_styles": "Enable Innovation Styles",
+          "enable_occupations": "Enable Occupations"
+        },
         "tooltips": {
           "copy": "Copy Dimension",
           "delete": "Delete Dimension",
@@ -14078,6 +14652,103 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Import Users"
       }
     },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Innovation Style #%{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        }
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
     "libraries": {
       "create": {
         "successfully": "Item %{name} was successfully created."
@@ -14198,6 +14869,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
+      "innovation_styles": "Innvation Styles",
+      "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
       "norm": "Norm",
@@ -14210,6 +14883,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "projects": "Projects",
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
       "report_families": "Report Bundles",
       "reports": "Reports",
       "statistics": "Statistics",
@@ -14665,6 +15339,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Report's options",
         "view": "View Report"
       },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
+      },
       "toggle_status": {
         "successfully": "Report was successfully updated."
       },
@@ -15031,6 +15708,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -15463,6 +16148,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "sign_in_with_provider": "Sign in with %{provider}",
         "sign_up": "Sign up"
       }
+    },
+    "two_factor_authentication": {
+      "attempt_failed": "Attempt failed.",
+      "code_has_been_sent": "Your authentication code has been sent.",
+      "contact_administrator": "Please contact your system administrator.",
+      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "success": "Two factor authentication successful."
     },
     "unlocks": {
       "new": {
@@ -16308,6 +17000,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -16322,6 +17017,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
     "error_notification": {
@@ -16418,12 +17116,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment": {
         "active": "Active",
         "categories": {
-          "360": "360 Feedback",
+          "360": "360 Campaign",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
         },
         "category": "Category",
         "completed_at": "Completion Date",
@@ -16703,8 +17401,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -16713,6 +17416,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -16731,6 +17437,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -16739,11 +17451,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -16762,7 +17479,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "formats": {
       "date": "%d/%m/%y",
       "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
       "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
       "datetimepicker_without_time_client": "DD/MM/YYYY",
       "datetimepicker_without_time_server": "%d/%m/%Y",
       "default": "%a, %d %b %Y %H:%M:%S %z",
@@ -16779,6 +17498,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "two_factor": {
+    "email": {
+      "otp": {
+        "subject": "Your One-Time Password"
+      }
+    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",

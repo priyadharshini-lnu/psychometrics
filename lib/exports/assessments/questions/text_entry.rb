@@ -23,6 +23,10 @@ module Exports
           Utility::Array.ensure_size(answers, required_size)
         end
 
+        def self.result_label(answers, question)
+          result(answers, question, true)
+        end
+
         # Parse HEADER data for XLSX
         def self.header(question)
           parsed_header = []

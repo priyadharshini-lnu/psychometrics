@@ -12,7 +12,6 @@ module Threesixty
       respond_to do |format|
         format.html { render :show }
         format.json do
-          @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
           @single_assigns = policy_scope(Assign).
                             includes(:single_reports, original_assign: [:single_reports]).
                             joining { original_assign.outer.membership.outer.client.outer }.
@@ -31,7 +30,7 @@ module Threesixty
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
           json = @single_assigns.map do |assign|
-            ::EndUser::AssignSerializer.new(assign, reports_ids: @reports_ids).to_h
+            ::EndUser::AssignSerializer.new(assign).to_h
           end
           json.concat(threesixty_projects.map do |campaign|
                         Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
@@ -50,7 +49,7 @@ module Threesixty
                              query.includes(:user)
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user, managed_subjects)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
-          reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects.query, current_user)
+          reports = ::Threesixty::UsersReportsQuery.new(@campaign, managed_subjects, current_user)
 
           managed_subjects = [] unless @campaign.option.participants.dig('manager', 'can_approves_evaluations')
 

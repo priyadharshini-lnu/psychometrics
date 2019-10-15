@@ -20,15 +20,24 @@ module Administration
             threeSixtyCampaign: {
               campaignDetails: {
                 id: resource.id,
+                name: resource.name,
                 reportId: resource.report_id,
-                dimensionId: resource.assessment.dimension_id
+                dimensionId: resource.assessment.dimension_id,
+                options: {
+                  participants: resource.option.participants
+                }
               }
             }
           }
         end
 
         def index
-          @_filter_form = project.project_campaigns.search(params[:q])
+          @_filter_form = project.project_campaigns.
+                          includes(
+                            :threesixty_campaign,
+                            threesixty_campaign: %i[assessment report]
+                          ).
+                          search(params[:q])
           @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|

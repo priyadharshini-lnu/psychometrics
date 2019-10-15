@@ -14,9 +14,11 @@ module Threesixty
           ActiveRecord::Base.transaction do
             evaluator_user = fetch_or_create_evaluator_user(evaluator)
             create_campaigns_user(evaluator_user)
-            create_evaluator(evaluator, evaluator_user)
+            threesixty_evaluator = create_evaluator(evaluator, evaluator_user)
             create_membership(evaluator_user)
-            create_participant(evaluator, evaluator_user)
+            participant = create_participant(evaluator, evaluator_user)
+            send_evaluator_invite_email(threesixty_evaluator, evaluator[:subject])
+            participant
           end
         end
         broadcast :ok, result
@@ -53,6 +55,7 @@ module Threesixty
         # TODO: (atanych): any idea with counter cache? We need to count only active_participants (check scope :active)
         evaluator.increment!(:evaluations_count)
         evaluator_attrs[:subject].increment!(:evaluators_count)
+        evaluator
       end
 
       def create_participant(evaluator, evaluator_user)
@@ -72,6 +75,17 @@ module Threesixty
 
       def create_membership(user)
         threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
+      end
+
+      def send_evaluator_invite_email(evaluator, subject)
+        return unless threesixty_campaign.option.messages['send_invite_to_new_evaluator']
+
+        ::Threesixty::Emails::Send.call!(
+          ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+          threesixty_campaign: threesixty_campaign,
+          subject: subject,
+          evaluator: evaluator
+        )
       end
     end
   end

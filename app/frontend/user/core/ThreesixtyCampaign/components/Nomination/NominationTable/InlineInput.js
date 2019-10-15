@@ -5,24 +5,18 @@ import {
 import userPresenter from 'presenters/userPresenter'
 
 export default function InlineInput ({
-  relationship, addNomination, searchEvaluators, hideForm,
+  relationship, handleAddNomination, searchEvaluators, hideForm,
   autocomplete: { users },
   match: { params: { campaignId, id: nominationId } },
-  setShowPrompt, setParticipant,
 }) {
   const [email, setEmail] = useState(null)
   const [hasErrors, setHasErrors] = useState({ email: false })
 
   const handleAdd = () => {
     if (email) {
-      addNomination({
+      handleAddNomination({
         campaignId, nominationId, email, relationshipId: relationship,
-      }).then((data) => {
-        const { evaluator } = data.response
-        if (!evaluator.firstName || !evaluator.lastName) {
-          setParticipant(data.response)
-          setShowPrompt(true)
-        }
+      }).then(() => {
         setEmail(null)
         hideForm()
       })

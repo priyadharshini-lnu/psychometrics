@@ -5,7 +5,7 @@ import {
 import qs from 'query-string'
 import cs from 'classnames'
 import './styles.scss'
-import Language from './Language'
+import Language from '../common/Language'
 
 const { Content } = Layout
 
@@ -73,6 +73,7 @@ export default function Assign ({
                 data-result={JSON.stringify(results)}
                 data-locales={JSON.stringify(translations)}
                 data-dashboard-url="/assessment_completed"
+                data-selected-locale={selectedLanguage && selectedLanguage.code}
               />
             )}
           </div>

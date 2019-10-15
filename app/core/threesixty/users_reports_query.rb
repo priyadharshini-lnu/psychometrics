@@ -51,7 +51,7 @@ module Threesixty
       status = Threesixty::Participants::GetReportStatus.call!(
         subject,
         @options,
-        subject_evaluator_counters.dig(subject.user_id, :completed) || {}
+        subject_evaluator_counters
       )
 
       AVAILABLE_STATUSES.include?(status)
@@ -66,7 +66,8 @@ module Threesixty
     end
 
     def subject_evaluator_counters
-      user_ids = @subjects.pluck(:user_id).push(subject.user_id)
+      user_ids = @subjects.pluck(:user_id)
+      user_ids = user_ids.push(subject.user_id) if subject
 
       @subject_evaluator_counters ||= ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         user_ids,

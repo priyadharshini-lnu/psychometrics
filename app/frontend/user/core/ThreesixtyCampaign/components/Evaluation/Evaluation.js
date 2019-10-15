@@ -7,6 +7,7 @@ import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'survey-ui/assessment'
 import './styles.scss'
+import Language from '../common/Language'
 
 const { Content } = Layout
 
@@ -19,6 +20,9 @@ export default function Evaluation ({
       user,
       is_self: isSelf,
       as_manager: asManager,
+      selected_locale: selectedLanguage,
+      available_translations: availableTranslations,
+      translations,
       participant: {
         manager_evaluation_status: managerEvaluationStatus,
       },
@@ -28,10 +32,12 @@ export default function Evaluation ({
   history,
 }) {
   const assessmentRef = React.createRef()
-  const { edit, step, approveEvaluation } = qs.parse(location.search)
+  const {
+    edit, step, approveEvaluation, lang,
+  } = qs.parse(location.search)
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step })
+    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step, lang })
   }, [])
 
   if (!loaded) { return null }
@@ -134,18 +140,32 @@ export default function Evaluation ({
               <Col>
                 <StatusDropdown />
               </Col>
+              {availableTranslations && availableTranslations.length > 0 && (
+                <Col>
+                  <div className="mlm">
+                    <Language
+                      selectedLanguage={selectedLanguage}
+                      availableTranslations={availableTranslations || []}
+                    />
+                  </div>
+                </Col>
+              )}
             </Row>
             {!error && (
-              <PassAssessment
-                ref={assessmentRef}
-                id="pass_assessment"
-                type={asManager ? 'view_results' : 'pass_assessment'}
-                isThreesixty="true"
-                resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/campaigns/${params.campaignId}`}
-              />
+              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                <PassAssessment
+                  ref={assessmentRef}
+                  id="pass_assessment"
+                  type={asManager ? 'view_results' : 'pass_assessment'}
+                  isThreesixty="true"
+                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${params.campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                />
+              </div>
             )}
           </div>
         </PageHeader>

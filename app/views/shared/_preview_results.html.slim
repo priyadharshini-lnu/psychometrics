@@ -1,0 +1,14 @@
+#psychometrics_preview.html_preview[data-is-threesixty="true"
+  data-type="#{current_user.superadmin? ? 'pass_assessment' : 'view_results'}"
+  data-results-url="/administration/threesixty_campaigns/#{@threesixty_campaign.id}/subjects/#{@_resource.id}/evaluations/#{@participant.evaluator_id}"
+  data-data="#{@assessment.to_json}"
+  data-locales="#{@results[:translations].to_json}"
+  data-result="#{@results.to_json}"]
+
+
+- if Settings.react_dev.assessments
+  = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_preview.js'
+- else
+  = javascript_include_tag :psychometrics_vendor
+  = javascript_include_tag :psychometrics_preview

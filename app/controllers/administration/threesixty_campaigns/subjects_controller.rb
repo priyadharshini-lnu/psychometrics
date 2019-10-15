@@ -34,7 +34,7 @@ module Administration
         ::Threesixty::Emails::Send.call!(
           ::Threesixty::Emails::Name::SUBJECT_REPORT_READY,
           threesixty_campaign: threesixty_campaign,
-          subject: subject
+          subject: resource
         )
         render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end

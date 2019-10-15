@@ -28,7 +28,15 @@ module Administration
 
       def update
         resource.update!(resource_params)
-        render json: resource
+        send_nomination_denied_email(resource) if resource_params[:manager_nomination_status] == 'denied'
+        respond_to do |format|
+          format.html do
+            redirect_to administration_threesixty_campaign_subject_evaluation_path(threesixty_campaign,
+                                                                                   resource.threesixty_subject,
+                                                                                   resource.evaluator_id)
+          end
+          format.json { render json: resource }
+        end
       end
 
       def spoof
@@ -55,7 +63,8 @@ module Administration
       end
 
       def resource_params
-        params.require(:participant).permit(:relationship_id, :manager_nomination_status, :evaluator_nomination_status)
+        params.require(:participant).permit(:relationship_id, :manager_nomination_status,
+                                            :evaluator_nomination_status, :manager_evaluation_status)
       end
 
       private
@@ -63,6 +72,15 @@ module Administration
       # Set model
       def set_resource_class
         @_resource_class ||= ::Threesixty::Participant # rubocop:disable Naming/MemoizedInstanceVariableName
+      end
+
+      def send_nomination_denied_email(participant)
+        ::Threesixty::Emails::Send.call!(
+          ::Threesixty::Emails::Name::NOMINATION_DENIED,
+          threesixty_campaign: threesixty_campaign,
+          subject: participant.threesixty_subject,
+          evaluator: participant.threesixty_evaluator
+        )
       end
     end
   end

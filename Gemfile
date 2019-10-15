@@ -44,7 +44,9 @@ end
 gem 'devise',                     '~> 4.4.3'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
-gem 'pundit',                     '~> 1.1.0'
+gem 'pundit',                     '~> 2.1.0'
+gem 'two_factor_authentication',  '~> 2.2.0'
+
 ### Assets
 gem 'bh',                         '~> 1.3'
 gem 'bootstrap-sass',             '~> 3.3.6'
@@ -180,6 +182,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'debugger2'
   gem 'listen', '~> 3.0.5'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select, Input } from 'antd'
 import { NUMBER_COMPARATOR } from 'constants/emailCriteria'
-import style from '../style.scss'
+import styles from '../styles.scss'
 
 export default function Number ({
   comparator, value, update,
@@ -19,7 +19,7 @@ export default function Number ({
         <Select.Option key={NUMBER_COMPARATOR.GREATER_THAN}>Is Greater than</Select.Option>
         <Select.Option key={NUMBER_COMPARATOR.LESS_THAN}>Is Less than</Select.Option>
       </Select>
-      <Input className={style.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
+      <Input className={styles.smallInput} size="small" value={value} onChange={e => update('value', e.target.value)} />
     </div>
   )
 }

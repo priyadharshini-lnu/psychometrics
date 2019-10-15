@@ -1,5 +1,38 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -159,6 +192,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -173,6 +209,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
     "statuses": {
@@ -206,8 +245,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -216,6 +260,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -234,6 +281,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -242,11 +295,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -281,6 +339,39 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -440,6 +531,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -454,6 +548,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
     "statuses": {
@@ -487,8 +584,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -497,6 +599,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -515,6 +620,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -523,11 +634,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
@@ -562,6 +678,39 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "assessments": {
+    "categories": {
+      "360": "360 Campaign",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    }
+  },
   "languages": {
     "ar": "Arabic",
     "bg": "Bulgarian",
@@ -721,6 +870,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
       }
     },
     "show": {
@@ -735,6 +887,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "not_available": "Not available",
       "on_hold": "On hold"
     }
+  },
+  "shared": {
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
     "statuses": {
@@ -768,8 +923,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "begin": "Begin",
     "cancel": "Cancel",
     "completed": "Completed",
+    "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
     "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -778,6 +938,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
@@ -796,6 +959,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
     "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
@@ -804,11 +973,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "processing": "Processing",
+    "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
+    "self": "Self",
     "set_name_for_evaluator": "Set name for Evaluator",
     "setup_nominations": "Set up nominations",
     "subject": "Subject",

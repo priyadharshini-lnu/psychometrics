@@ -1,0 +1,35 @@
+.modal-body
+  = render_error_notification(f.object)
+  .form-inputs.clearfix
+    = f.input :name,
+            class: 'form-control',
+            include_blank: false
+    = f.input :code,
+            placeholder: t('.code'),
+            input_html: { minlength: 4, maxlength: 32 },
+            class: 'form-control',
+            include_blank: false
+    = f.input :total_count,
+            as: :integer,
+            placeholder: 'e.g 100',
+            class: 'form-control',
+            include_blank: false
+    = f.input :start_date, as: :datetimepicker,
+            client_format: :datetimepicker_client_with_timezone,
+            server_format: :datetimepicker_server_with_timezone,
+            input_html: { autocomplete: 'off' }
+    = f.input :end_date, as: :datetimepicker,
+            client_format: :datetimepicker_client_with_timezone,
+            server_format: :datetimepicker_server_with_timezone,
+            input_html: { autocomplete: 'off' }
+    = f.input :disabled,
+            as: :boolean,
+            label: 'Active',
+            checked_value: false,
+            unchecked_value: true
+.modal-footer
+  .btn-group
+    = button_tag t('administration.save'),
+            type: 'submit',
+            class: 'btn btn-default btn-info',
+            data: { loading_text: t('loading') }

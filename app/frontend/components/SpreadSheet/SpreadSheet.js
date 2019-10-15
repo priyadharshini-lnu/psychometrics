@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 import Row from './Row'
-import css from './styles.scss'
+import styles from './styles.scss'
 
 const MIN_ROW_SIZE = 3
 const SpreadSheet = ({
@@ -21,7 +21,7 @@ const SpreadSheet = ({
   const updateEntity = (path, value) => updateEntities(setIn(entities, path, value))
 
   return (
-    <table className={css.table}>
+    <table className={styles.table}>
       <thead>
         <tr>
           {fields.map(field => (

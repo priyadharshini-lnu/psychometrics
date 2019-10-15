@@ -25,7 +25,7 @@ module Administration
         )
         total = managers.count
 
-        managers = managers.map do |m|
+        paginated_managers = paginated_managers.map do |m|
           ::Threesixty::EvaluatorSerializer.new(
             m,
             option: option,
@@ -34,7 +34,7 @@ module Administration
             subject_evaluator_counters: subject_evaluator_counters
           ).to_h
         end
-        render json: { managers: managers, total: total }
+        render json: { managers: paginated_managers, total: total }
       end
 
       private

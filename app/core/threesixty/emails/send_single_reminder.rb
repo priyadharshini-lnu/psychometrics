@@ -70,21 +70,9 @@ module Threesixty
           Threesixty::Emails::Send.call!(
             email_name,
             threesixty_campaign: threesixty_campaign,
-            subject_ids: subject_with_incomplete_evaluation(user),
             recipient_ids: [user.id]
           )
         end
-      end
-
-      def subject_with_incomplete_evaluation(user)
-        evaluation_completed_for_subject = user.
-                                           evaluation_results.
-                                           completed.
-                                           actual_by_options(threesixty_campaign.option).
-                                           pluck(:subject_id)
-
-        all_subject_ids = threesixty_campaign.participants.where(evaluator_id: user.id).pluck(:subject_id)
-        all_subject_ids - evaluation_completed_for_subject
       end
     end
   end

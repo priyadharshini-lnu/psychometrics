@@ -7,7 +7,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 import { STATUSES } from 'constants/userResult'
 import connect from './connect'
-import './styles.scss'
+import styles from './styles.scss'
 
 const { Panel } = Collapse
 
@@ -54,31 +54,27 @@ function EvaluationList ({
   const EvaluationItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
-        <div>
-          <Link
-            to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
-            style={{ display: 'flex' }}
-          >
-            {isEvaluationCompleted(item)
-              ? <Icon type="check-square" theme="filled" className="status-icon" />
-              : <div className="empty-square" />}
-            {' '}
-
-            <Tooltip placement="topLeft" title={item.subject.email}>
-              {userPresenter.selfUserName(item, item.subject)}
-            </Tooltip>
-            {options.evaluator.canDeclineNomination && !item.isSelf && !isEvaluationCompleted(item)
-                && (
-                  <Dropdown overlay={() => menu(item)} trigger={['click']}>
-                    <a className="ant-dropdown-link actions-btn" href="#">
-                      <Icon type="down" className="menu-icon" />
-                    </a>
-                  </Dropdown>
-                )
-            }
-          </Link>
-        </div>
-
+        {isEvaluationCompleted(item)
+          ? <a><Icon type="check-square" theme="filled" className="status-icon" /></a>
+          : <div className="empty-square" />}
+        {' '}
+        <Link
+          to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
+          style={{ display: 'flex', flex: 1 }}
+        >
+          <Tooltip placement="topLeft" title={item.subject.email}>
+            <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
+          </Tooltip>
+        </Link>
+        {options.evaluator.canDeclineNomination && !item.isSelf && !isEvaluationCompleted(item)
+              && (
+                <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
+                  <a className="ant-dropdown-link actions-btn" href="#" style={{ alignSelf: 'flex-end' }}>
+                    <Icon type="down" className="menu-icon" />
+                  </a>
+                </Dropdown>
+              )
+          }
       </div>
     </List.Item>
   )
@@ -87,10 +83,10 @@ function EvaluationList ({
     <List.Item>
       <div className="evaluation-item list-item">
         <div>
-          <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']}>
+          <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
             <a className="ant-dropdown-link actions-btn" href="#">
               <Tooltip placement="topLeft" title={item.user.email}>
-                {userPresenter.selfUserName(item)}
+                <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
               </Tooltip>
               <Icon type="down" className="menu-icon" />
             </a>

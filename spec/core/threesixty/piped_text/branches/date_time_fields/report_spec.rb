@@ -14,7 +14,8 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
         subject_id: subject.user_id,
         evaluator_id: subject.user_id,
         completed_at: completed_at,
-        campaign: threesixty_campaign.campaign
+        campaign: threesixty_campaign.campaign,
+        status: :completed
       )
 
       response = described_class.call!(
@@ -34,14 +35,16 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
         subject_id: subject.user_id,
         evaluator_id: evaluators[0].user_id,
         completed_at: Time.now.advance(days: -1),
-        campaign: threesixty_campaign.campaign
+        campaign: threesixty_campaign.campaign,
+        status: :completed
       )
       create(
         :users_result,
         subject_id: subject.user_id,
         evaluator_id: evaluators[1].user_id,
         completed_at: last_completed_at,
-        campaign: threesixty_campaign.campaign
+        campaign: threesixty_campaign.campaign,
+        status: :completed
       )
 
       response = described_class.call!(

@@ -10,7 +10,17 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @_filter_form = policy_scope(resource_class).tenancies.includes(:project_admins).order(:name).search(params[:q])
+      @_filter_form = policy_scope(resource_class).
+                      tenancies.
+                      includes(
+                        :account_manager,
+                        :project_manager,
+                        client_admin_memberships: [:user],
+                        licenses: [:report_family]
+                      ).
+                      order(:name).
+                      search(params[:q])
+
       filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 

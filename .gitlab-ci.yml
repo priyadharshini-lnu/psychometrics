@@ -1,9 +1,10 @@
 stages:
-- test_and_deploy
+- test
+- deploy
 
 
 test:
-  stage: test_and_deploy
+  stage: test
   image: registry.gitlab.com/tte-lighthouse/psychometrics
   services:
   - postgres:latest
@@ -51,8 +52,8 @@ test:
     paths:
     - tmp/capybara
 
-deploy:
-  stage: test_and_deploy
+deploy_staging:
+  stage: deploy
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
@@ -61,12 +62,24 @@ deploy:
   environment:
     name: Heroku Staging
     url: https://staging.tte-lighthouse.com
-  when: manual
   only:
   - master
 
+deploy_develop:
+  stage: deploy
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=tte-lighthouse-develop --api-key=$HEROKU_STAGING_API_KEY
+  environment:
+    name: Heroku Develop
+    url: https://.tte-lighthouse.com
+  only:
+  - develop
+
 deploy_review:
-  stage: test_and_deploy
+  stage: deploy
   script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
@@ -75,6 +88,5 @@ deploy_review:
   environment:
     name: Heroku Review
     url: https://review.tte-lighthouse.com
-  when: manual
   only:
-  - develop
+  - review

@@ -1,15 +1,27 @@
 # frozen_string_literal: true
 
-class Threesixty::ParticipantPolicy < BasePolicy
+class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
+  def show?
+    manage?
+  end
+
   def edit?
     return false if @current_user.is_anonym?
 
     @record.evaluator_id == @current_user.id
   end
 
-  class Scope < Scope
-    def resolve
-      scope
-    end
+  def decline?
+    @current_user.id == @record.evaluator_id
+  end
+
+  def destroy?
+    manage?
+  end
+
+  private
+
+  def manage?
+    @current_user.id == @record.evaluator_id || manager?(@record.threesixty_subject)
   end
 end

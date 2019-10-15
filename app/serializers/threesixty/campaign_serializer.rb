@@ -5,7 +5,7 @@ module Threesixty
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
                :mindmill, :hogan, :instructions, :logo,
                :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
-               :managed_subjects
+               :managed_subjects, :is_subject
 
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :reports, serializer: UsersReportSerializer
@@ -46,7 +46,7 @@ module Threesixty
     end
 
     def instructions
-      object.instruction_templates.map do |instruction|
+      object.instruction_templates.enabled.map do |instruction|
         {
           name: instruction.name,
           content: Threesixty::PipedText::Perform.call!(instruction.content,
@@ -94,6 +94,10 @@ module Threesixty
               is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
           to_hash
       end
+    end
+
+    def is_subject # rubocop:disable Naming/PredicateName
+      object.subjects.exists?(user_id: instance_options[:current_user].id)
     end
 
     def nomination_users

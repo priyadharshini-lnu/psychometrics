@@ -35,7 +35,7 @@ module Hogan
         group: project.hogan_group_name,
         membership: membership,
         assessment: assign.assessment,
-        reports: assign.reports
+        reports: assign.original_or_self.reports
       }
       ::Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
     end
