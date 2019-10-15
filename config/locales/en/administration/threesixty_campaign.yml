@@ -52,6 +52,8 @@ en:
               disable: Disable Client
               enable: Enable Client
               create_admin: Create Client Admin
+              campaigns:
+                delete: Delete Campaign
             confirmations:
               disable:
                 title:
