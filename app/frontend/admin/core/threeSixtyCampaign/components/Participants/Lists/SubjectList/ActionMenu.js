@@ -17,7 +17,9 @@ const ActionsMenu = ({
   }
 
   const removeUserWithConfirmation = () => {
-    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) removeUser(campaignId, user.id)
+    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
+      removeUser(campaignId, user.id)
+    }
   }
 
   const approveReport = (subjectId) => {
@@ -78,14 +80,19 @@ const ActionsMenu = ({
 
   const removeSubject = (subjectId) => {
     // eslint-disable-next-line no-alert
-    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_subject'))) remove(campaignId, subjectId)
+    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_subject'))) {
+      remove(campaignId, subjectId)
+    }
   }
 
   const requestDownloadReport = (campaignId, subjectId) => {
     downloadReport(campaignId, subjectId)
       .then(({ response }) => {
         if (response.success) {
-          message.success(I18n.t('threesixty.participant_list.confirmation_messages.report_generation_message'), 3)
+          message.success(
+            I18n.t('threesixty.participant_list.confirmation_messages.report_generation_message'),
+            3,
+          )
         }
       })
   }
