@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
   Modal, Button, Icon, Divider, Form, Form as AntForm,
@@ -33,10 +33,16 @@ export default function CreateSubjectModal ({
   createAll,
   errors,
   subjects,
+  creationInProgress,
+  clearForm,
   match: {
     params: { projectId, clientId, campaignId },
   },
 }) {
+  useEffect(() => () => {
+    clearForm()
+  }, [])
+
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
   const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))
@@ -56,7 +62,7 @@ export default function CreateSubjectModal ({
         <Button key="back" onClick={closeModal}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
+        <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
           <Icon type="check" />
           Add
         </Button>,

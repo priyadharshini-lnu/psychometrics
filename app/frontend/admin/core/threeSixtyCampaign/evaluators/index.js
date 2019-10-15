@@ -24,6 +24,7 @@ export const createAllEvaluators = (campaignId, evaluators) => ({
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators/create_all`,
     body: { evaluators },
+    loader: true,
   },
 })
 
