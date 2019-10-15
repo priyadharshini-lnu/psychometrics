@@ -2,11 +2,6 @@
 
 module Threesixty
   class UsersReportsQuery < Rectify::Query
-    AVAILABLE_STATUSES = [
-      Threesixty::Participants::GetReportStatus::APPROVED,
-      Threesixty::Participants::GetReportStatus::AVAILABLE
-    ].freeze
-
     def initialize(campaign, managed_subjects, current_user)
       @campaign = campaign
       @options = campaign.option
@@ -48,13 +43,11 @@ module Threesixty
         @campaign
       ).dig(subject.user_id, :completed) || {}
 
-      status = Threesixty::Participants::GetReportStatus.call!(
+      Threesixty::Subjects::IsReportAvailable.call!(
         subject,
-        @options,
+        options,
         subject_evaluator_counters
       )
-
-      AVAILABLE_STATUSES.include?(status)
     end
 
     def subject_report_available_for_manager?(subject)

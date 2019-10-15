@@ -207,7 +207,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
@@ -546,7 +547,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
@@ -885,7 +887,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
