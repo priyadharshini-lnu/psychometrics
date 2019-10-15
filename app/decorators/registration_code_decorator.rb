@@ -6,8 +6,8 @@ class RegistrationCodeDecorator < BaseDecorator
   end
 
   def url
-    root_url = h.root_url(domain: Settings.domain, subdomain: object.project.subdomain)
-    "#{root_url}users/sign_up?code=#{object.code}"
+    h.new_user_registration_url(domain: Settings.domain,
+      subdomain: object.project.subdomain, code: object.code)
   end
 
   def i18n
