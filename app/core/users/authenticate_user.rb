@@ -61,6 +61,8 @@ module Users
 
       uri = URI.parse params[REDIRECT_KEY]
       uri.query = uri.query.gsub('ASSESSMENT_STATUS', 'invalid_token') if uri.query
+      uri.path = uri.path.gsub('ASSESSMENT_STATUS', 'invalid_token') if uri.path
+      uri.fragment = uri.fragment.gsub('ASSESSMENT_STATUS', 'invalid_token') if uri.fragment
       uri.to_s
     end
   end
