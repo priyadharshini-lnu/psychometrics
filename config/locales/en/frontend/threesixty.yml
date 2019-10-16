@@ -84,3 +84,29 @@ en:
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
     dashboard_title: Welcome %{name}
+    participant_list:
+      actions:
+        remove_campaign: 'Remove from campaign'
+        login: 'Login'
+        view_report: 'View Report'
+        download_report: 'Download Report'
+        view_responses: 'View Responses'
+        approve_report: 'Approve Report'
+        remove_report_approval: 'Remove report approval'
+        release_report: 'Release report'
+        mark_as_done: 'Mark as done'
+        hold_report: 'Hold report'
+        remove_report_hold_release_report: 'Remove Report Hold/Release'
+        unmark_as_done: 'Unmark as done'
+        remove_subject: 'Remove subject'
+      confirmation_messages:
+        remove_from_campaign: 'Are you sure you want to remove user from the campaign?'
+        approve_report: 'Are you sure you want to approve report?'
+        remove_report_approval: 'Are you sure you want to remove report approval?'
+        release_report: 'Are you sure you want to release report?'
+        hold_report: 'Are you sure you want to hold report?'
+        remove_release_hold: 'Are you sure you want to remove Release/Hold status?'
+        mark_evaluation_done: 'Are you sure you want to mark evaluation as done?'
+        umark_evaluation_as_complete: 'Are you sure you want to unmark evaluation as done?'
+        remove_subject: 'Are you sure you want to remove subject with email from campaign?'
+      report_generation_message: 'Report is generating. We will let you know when the report is ready.'

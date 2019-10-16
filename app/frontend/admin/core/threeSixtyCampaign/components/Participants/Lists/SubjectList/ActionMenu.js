@@ -16,80 +16,83 @@ const ActionsMenu = ({
     if (confirm(cofirmationMessage)) update(campaignId, subjectId, data)
   }
 
+  const removeUserWithConfirmation = () => {
+    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
+      removeUser(campaignId, user.id)
+    }
+  }
+
   const approveReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to approve report?'
     updateSubject(
       subjectId,
       { report_approval_status: 'approved' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.approve_report'),
     )
   }
 
   const removeReportApprove = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to remove report approval?'
     updateSubject(
       subjectId,
       { report_approval_status: 'waiting' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.remove_report_approval'),
     )
   }
 
   const releaseReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to release report?'
     updateSubject(
       subjectId,
       { report_release_status: 'released' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.release_report_confimation'),
     )
   }
 
   const holdReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to hold report?'
     updateSubject(
       subjectId,
       { report_release_status: 'on_hold' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.hold_report'),
     )
   }
 
   const removeReleasedHoldStatus = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to remove Release/Hold status?'
     updateSubject(
       subjectId,
       { report_release_status: 'waiting' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.remove_release_hold'),
     )
   }
 
   const markEvaluationAsComplete = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to mark evaluation as done?'
     updateSubject(
       subjectId,
       { evaluation_status: 'completed' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.mark_evaluation_done'),
     )
   }
 
   const unmarkEvaluationAsComplete = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to unmark evaluation as done?'
     updateSubject(
       subjectId,
       { evaluation_status: 'in_progress' },
-      confirmationMessage,
+      I18n.t('threesixty.participant_list.confirmation_messages.umark_evaluation_as_complete'),
     )
   }
 
   const removeSubject = (subjectId) => {
-    const cofirmationMessage = 'Are you sure you want to remove subject with email from campaign'
     // eslint-disable-next-line no-alert
-    if (confirm(cofirmationMessage)) remove(campaignId, subjectId)
+    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_subject'))) {
+      remove(campaignId, subjectId)
+    }
   }
 
   const requestDownloadReport = (campaignId, subjectId) => {
     downloadReport(campaignId, subjectId)
       .then(({ response }) => {
         if (response.success) {
-          message.success('Report is generating. We will let you know when the report is ready.', 3)
+          message.success(
+            I18n.t('threesixty.participant_list.confirmation_messages.report_generation_message'),
+            3,
+          )
         }
       })
   }
@@ -110,12 +113,12 @@ const ActionsMenu = ({
             user.id
           }/spoof`}
         >
-          Login
+          {I18n.t('threesixty.participant_list.actions.login')}
         </a>
       </Menu.Item>
       <Menu.Item key="1">
         <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
-          View Report
+          {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>
       </Menu.Item>
       <Menu.Item key="2">
@@ -124,7 +127,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Download Report
+          {I18n.t('threesixty.participant_list.actions.download_report')}
         </div>
       </Menu.Item>
       <Menu.Divider />
@@ -134,7 +137,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          View Responses
+          {I18n.t('threesixty.participant_list.actions.view_responses')}
         </div>
       </Menu.Item>
       <Menu.Divider />
@@ -144,7 +147,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Approve Report...
+          {I18n.t('threesixty.participant_list.actions.approve_report')}
         </div>
       </Menu.Item>
       <Menu.Item key="4">
@@ -153,7 +156,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Remove Report Approval...
+          {I18n.t('threesixty.participant_list.actions.remove_report_approval')}
         </div>
       </Menu.Item>
       <Menu.Divider />
@@ -163,12 +166,12 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Release Report..
+          {I18n.t('threesixty.participant_list.actions.release_report')}
         </div>
       </Menu.Item>
       <Menu.Item key="6">
         <div onClick={() => holdReport(subjectId)} role="button" tabIndex={-1}>
-          Hold Report...
+          {I18n.t('threesixty.participant_list.actions.hold_report')}
         </div>
       </Menu.Item>
       <Menu.Item key="7">
@@ -177,7 +180,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Remove Report Hold/Release..
+          {I18n.t('threesixty.participant_list.actions.remove_report_hold_release_report')}
         </div>
       </Menu.Item>
       <Menu.Divider />
@@ -187,7 +190,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Mark As Done...
+          {I18n.t('threesixty.participant_list.actions.mark_as_done')}
         </div>
       </Menu.Item>
       <Menu.Item key="9">
@@ -196,7 +199,7 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Unmark As Done...
+          {I18n.t('threesixty.participant_list.actions.unmark_as_done')}
         </div>
       </Menu.Item>
       <Menu.Divider />
@@ -206,16 +209,16 @@ const ActionsMenu = ({
           role="button"
           tabIndex={-1}
         >
-          Remove Subject...
+          {I18n.t('threesixty.participant_list.actions.remove_subject')}
         </div>
       </Menu.Item>
       <Menu.Item key="11">
         <div
-          onClick={() => removeUser(campaignId, user.id)}
+          onClick={removeUserWithConfirmation}
           role="button"
           tabIndex={-1}
         >
-          Remove from campaign...
+          {I18n.t('threesixty.participant_list.actions.remove_campaign')}
         </div>
       </Menu.Item>
     </Menu>
