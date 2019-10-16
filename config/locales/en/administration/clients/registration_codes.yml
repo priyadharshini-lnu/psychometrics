@@ -3,13 +3,15 @@ en:
     clients:
       registration_codes: &REGISTRATION_CODE
         name: Registration Codes
-        invalid_code: Invalid registration code
         errors:
+          review: Please review the problems.
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use. Try another one.
           invalid_end_date: has to be greater than the start date
           count_invalid: 'cannot be less than the used_count = %{use_count}'
-          license_issue: 'Not enough licenses.'
+          license_issue: Not enough licenses.
+          presence: '%{attribute} must be entered'
+          invalid_attribute: '%{attribute} is invalid'
         edit:
           header: Edit Registration code
         new:
@@ -23,6 +25,8 @@ en:
         form_fields:
           code: e.g TTE-conf-2019
         resource:
+          copy: Copy
+          url: URL
           tooltips:
             edit: Edit
             delete: Delete

@@ -16,7 +16,8 @@ module Users
       if @form.valid?
         Users::Register.call(@form, @current_project) do
           on(:error) do
-            flash[:alert] = I18n.t('administration.clients.registration_codes.errors.license_issue')
+            @form.errors[:base].clear
+            @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.license_issue')
             respond_with @form
           end
           on(:ok) do |resource|
@@ -26,6 +27,7 @@ module Users
           end
         end
       else
+        @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.review')
         respond_with @form
       end
     end
