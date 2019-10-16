@@ -82,25 +82,25 @@
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-froala-wysiwyg": "^3.0.2",
+    "react-froala-wysiwyg": "^3.0.6",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
+    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#e119571256c8c73be149839be15559145998529f",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "survey-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535",
-    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#ea2219ae83d9cf263ebe4f05332e343e0c7af60f",
+    "survey-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#05dcc0eb7b94a46b4ea5121766f616447ffddabf",
     "use-debounce": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
     "webpack-sources": "^1.3.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.8.1",
-    "husky": "^3.0.8"
+    "husky": "^3.0.8",
+    "webpack-dev-server": "^3.8.1"
   },
   "husky": {
     "hooks": {

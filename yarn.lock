@@ -1108,7 +1108,6 @@ acorn@^6.0.5, acorn@^6.0.7:
 
 "action-cable-react@git://github.com/Fabel/action-cable-react.git":
   version "0.1.1"
-  uid "8f6d3dffc9759d58de41ab7663d5aca2b6d11203"
   resolved "git://github.com/Fabel/action-cable-react.git#8f6d3dffc9759d58de41ab7663d5aca2b6d11203"
   dependencies:
     eventemitter3 "^1.1.1"
@@ -5067,9 +5066,9 @@ fresh@0.5.2, fresh@~0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
-froala-editor@3.0.5:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.0.5.tgz#abcfb93c1133de3870de727cc1d16fa194aeb8aa"
+froala-editor@3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.0.6.tgz#26c1c20acf2f7b3681699c8185a94e804a713dcc"
 
 from2@^2.1.0:
   version "2.3.0"
@@ -9046,7 +9045,6 @@ psl@^1.1.24:
 
 "psychometrics-conditions-ui@git+ssh://git@gitlab.com/tte-lighthouse/psychometrics-conditions-ui.git#update-components":
   version "1.0.0"
-  uid d486bc69dd3d9aea5815ead3f9872feef07ad0f7
   resolved "git+ssh://git@gitlab.com/tte-lighthouse/psychometrics-conditions-ui.git#d486bc69dd3d9aea5815ead3f9872feef07ad0f7"
   dependencies:
     babel-cli "^6.5.1"
@@ -9865,12 +9863,12 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-react-froala-wysiwyg@^3.0.2:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-3.0.5.tgz#564263dea7699ec62190806228e5f27a868acc24"
+react-froala-wysiwyg@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-3.0.6.tgz#e7bafc0a842d02f57fe434a85d07a02678fd9b7a"
   dependencies:
     create-react-class "^15.5.2"
-    froala-editor "3.0.5"
+    froala-editor "3.0.6"
 
 react-google-recaptcha@^2.0.0-rc.1:
   version "2.0.1"
@@ -10398,9 +10396,9 @@ replace-ext@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
-"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#ea2219ae83d9cf263ebe4f05332e343e0c7af60f":
+"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#e119571256c8c73be149839be15559145998529f":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#ea2219ae83d9cf263ebe4f05332e343e0c7af60f"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#e119571256c8c73be149839be15559145998529f"
   dependencies:
     action-cable-react "git://github.com/Fabel/action-cable-react.git"
     classnames "^2.2.6"
@@ -10426,7 +10424,7 @@ replace-ext@1.0.0:
     react-dnd "^9.4.0"
     react-dnd-html5-backend "^9.4.0"
     react-dnd-touch-backend "^9.4.0"
-    react-froala-wysiwyg "^3.0.2"
+    react-froala-wysiwyg "^3.0.6"
     react-markdown "^3.3.3"
     react-select "^3.0.8"
     react-slider "0.7.0"
@@ -11298,9 +11296,9 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535":
+"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#05dcc0eb7b94a46b4ea5121766f616447ffddabf":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#0df3b03c515c47605fa623ddf26e401cf3f8a535"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#05dcc0eb7b94a46b4ea5121766f616447ffddabf"
   dependencies:
     action-cable-react "git+ssh://git@github.com:Fabel/action-cable-react.git"
     classnames "^2.2.6"
@@ -11330,7 +11328,7 @@ supports-color@^6.1.0:
     react-dnd "^2.6.0"
     react-dnd-html5-backend "^2.1.2"
     react-dnd-touch-backend "^0.8.1"
-    react-froala-wysiwyg "^3.0.2"
+    react-froala-wysiwyg "^3.0.6"
     react-google-recaptcha "^2.0.0-rc.1"
     react-overlays "^0.8.3"
     react-select "^1.0.0-beta14"
