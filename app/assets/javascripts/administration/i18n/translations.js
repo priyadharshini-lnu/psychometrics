@@ -4456,10 +4456,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -5321,7 +5327,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
@@ -5804,13 +5811,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -10301,10 +10301,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -11170,7 +11176,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
@@ -11653,13 +11660,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -16150,10 +16150,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt_failed": "Attempt failed.",
-      "code_has_been_sent": "Your authentication code has been sent.",
+      "attempt": "Please enter the OTP, you have received at your registered email address.",
+      "attempt_failed": "Incorrect OTP. Please try again.",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
       "contact_administrator": "Please contact your system administrator.",
-      "max_login_attempts_reached": "Access completely denied as you have reached your attempts limit",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
       "success": "Two factor authentication successful."
     },
     "unlocks": {
@@ -17015,7 +17021,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
@@ -17498,13 +17505,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
-  },
-  "two_factor": {
-    "email": {
-      "otp": {
-        "subject": "Your One-Time Password"
-      }
-    }
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
