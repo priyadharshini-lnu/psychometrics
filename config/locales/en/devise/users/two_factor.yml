@@ -2,7 +2,7 @@ en:
   devise:
     two_factor_authentication:
       attempt: "Please enter the OTP, you have received at your registered email address."
-      success: "Two factor authentication successful."
+      success: "Login with Two Factor Authentication successful."
       attempt_failed: "Incorrect OTP. Please try again."
       max_login_attempts_reached: "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP."
       contact_administrator: "Please contact your system administrator."
