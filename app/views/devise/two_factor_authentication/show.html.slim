@@ -10,7 +10,7 @@
         #login.tab-pane.fade.in.active role="tabpanel"
           = form_tag [resource_name, :two_factor_authentication], method: :put
             div.clearfix
-              == flash_messages
+              == flash_messages(false)
             .loginFormContent
               .otpGroup
                 label for="code" = t('.otp')
