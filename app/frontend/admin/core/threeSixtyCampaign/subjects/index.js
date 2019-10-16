@@ -44,6 +44,7 @@ export const createAll = (campaignId, subjects) => ({
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/create_all`,
     body: { subjects },
+    loader: true,
   },
 })
 
