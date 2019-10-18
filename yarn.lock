@@ -10396,9 +10396,9 @@ replace-ext@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
-"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#e119571256c8c73be149839be15559145998529f":
+"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1633610dc39a1fdd55bea0a87da0d7bb83a31cb0":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#e119571256c8c73be149839be15559145998529f"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1633610dc39a1fdd55bea0a87da0d7bb83a31cb0"
   dependencies:
     action-cable-react "git://github.com/Fabel/action-cable-react.git"
     classnames "^2.2.6"
