@@ -1,5 +1,23 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -268,6 +286,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -329,6 +348,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
@@ -369,6 +389,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -637,6 +675,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -698,6 +737,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
@@ -738,6 +778,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -1006,6 +1064,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -1067,6 +1126,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",

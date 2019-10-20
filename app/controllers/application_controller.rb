@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ::BaseController
+  include AuthenticateAnonymousUser
+
   layout :layout_by_resource
 
   # Authentication user/manager
@@ -39,6 +41,8 @@ class ApplicationController < ::BaseController
   private
 
   def authenticate_user!
+    return if @anonymous_user
+
     Users::AuthenticateUser.call(params) do
       on(:ok) do |user, found_by|
         if found_by == :spoof
@@ -53,6 +57,7 @@ class ApplicationController < ::BaseController
   end
 
   # Detect Client by subdomain
+
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')

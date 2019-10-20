@@ -232,11 +232,6 @@ class User < ApplicationRecord
     role == 'Users::SuperAdmin'
   end
 
-  def cookie_params
-    params = %w[first_name last_name role email is_anonym]
-    as_json.slice(*params)
-  end
-
   private
 
   def generate_invitation_token
