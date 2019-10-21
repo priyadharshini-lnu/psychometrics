@@ -99,6 +99,7 @@ en:
         remove_report_hold_release_report: 'Remove Report Hold/Release'
         unmark_as_done: 'Unmark as done'
         remove_subject: 'Remove subject'
+        edit: 'Edit'
       confirmation_messages:
         remove_from_campaign: 'Are you sure you want to remove user from the campaign?'
         approve_report: 'Are you sure you want to approve report?'

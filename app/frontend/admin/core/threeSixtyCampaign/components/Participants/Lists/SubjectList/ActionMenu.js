@@ -105,6 +105,13 @@ const ActionsMenu = ({
     })
   }
 
+  const openUserEditModal = () => {
+    openModal('UserEditModal', {
+      user,
+      onClose: () => {},
+    })
+  }
+
   return (
     <Menu>
       <Menu.Item key="0">
@@ -116,6 +123,16 @@ const ActionsMenu = ({
           {I18n.t('threesixty.participant_list.actions.login')}
         </a>
       </Menu.Item>
+      <Menu.Item key="2">
+        <div
+          onClick={() => openUserEditModal(campaignId, subjectId)}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('threesixty.participant_list.actions.edit')}
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
       <Menu.Item key="1">
         <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}

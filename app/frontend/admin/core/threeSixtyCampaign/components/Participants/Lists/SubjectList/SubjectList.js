@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import routeUtils from 'utils/routeUtils'
+import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
@@ -124,6 +125,7 @@ export default function SubjectList ({
       </Row>
       <CreateSubjectModal match={match} />
       <SubjectImportModal match={match} />
+      <UserEditModal match={match} />
     </>
   )
 }
