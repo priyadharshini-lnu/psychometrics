@@ -3,7 +3,6 @@ import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
 import importReducer from './import'
-import userReducer from '../users'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -92,11 +91,6 @@ export default function reducer (state = defaultState, action) {
   let stateFromInnerReducer = updateIn(
     state, ['import'], state => importReducer(state, action),
   )
-
-  if (action.payload && action.payload.userId) {
-    const index = _.findIndex(state.list, ({ user: { id } }) => id === action.payload.userId)
-    stateFromInnerReducer = updateIn(stateFromInnerReducer, ['list', index, 'user'], user => userReducer(user, action))
-  }
 
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : stateFromInnerReducer

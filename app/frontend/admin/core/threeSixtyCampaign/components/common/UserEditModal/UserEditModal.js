@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import {
-  Modal, Button, Form, Input,
+  Modal, Button, Form, Input, Icon,
 } from 'antd'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
@@ -10,29 +10,40 @@ export default function UserEditModal ({
   update,
   save,
   user: {
-    id,
     email,
     firstName,
     lastName,
   },
   user,
+  onUserUpdate,
+  saveInProgress,
   match: {
     params: { campaignId },
   },
 }) {
   const [errors, setErrors] = useState(null)
+  console.log(saveInProgress)
 
   const handleOnCancel = () => {
     closeModal()
-    setErrors(null)
   }
 
   const handleInputChange = ({ target: { name, value } }) => {
-    update(id, name, value)
+    update(name, value)
   }
 
   const handleSave = () => {
-    save(campaignId, user)
+    save(campaignId, user).then(() => {
+      setErrors(null)
+      onUserUpdate()
+    }).catch(setErrors)
+  }
+
+  const saveButtonIcon = () => {
+    if (saveInProgress) {
+      return <Icon type="loading" />
+    }
+    return <Icon type="check" />
   }
 
   return (
@@ -49,7 +60,9 @@ export default function UserEditModal ({
           key="submit"
           type="primary"
           onClick={handleSave}
+          disabled={saveInProgress}
         >
+          {saveButtonIcon()}
           Save
         </Button>,
       ]}

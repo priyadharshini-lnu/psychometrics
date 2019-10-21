@@ -10,6 +10,8 @@ const ActionsMenu = ({
   removeUser,
   downloadReport,
   openModal,
+  editUser,
+  onUserUpdate,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -106,9 +108,9 @@ const ActionsMenu = ({
   }
 
   const openUserEditModal = () => {
+    editUser(user)
     openModal('UserEditModal', {
-      user,
-      onClose: () => {},
+      onUserUpdate,
     })
   }
 

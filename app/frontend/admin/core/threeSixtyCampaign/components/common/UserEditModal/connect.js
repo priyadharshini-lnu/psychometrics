@@ -8,13 +8,14 @@ import _ from 'lodash'
 export default connect(
   ({
     temp: {
-      modals: { current, data },
+      modals: { current },
       request: { loading, name: requestName },
     },
+    threeSixtyCampaign: { users: { userUnderEdit } },
   }) => ({
     current,
     saveInProgress: loading && requestName === SAVE,
-    user: _.get(data, ['UserEditModal', 'user']),
+    user: userUnderEdit,
   }),
   {
     closeModal,
