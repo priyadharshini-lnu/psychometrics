@@ -1,6 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
 import queryString from 'query-string'
-import settings from '../admin/core/threeSixtyCampaign/settings'
 
 const routeUtils = {
   getBasePath (prefix) {
@@ -17,9 +16,6 @@ const routeUtils = {
   getCurrentPage () {
     const getParams = queryString.parse(location.search)
     return parseInt(getParams.page, 10) || 1
-  },
-  getCurrentOffset () {
-    return (this.getCurrentPage() - 1) * settings.pageLimit
   },
   getPage () {
     return parseInt(queryString.parse(location.search).page, 10) || 1

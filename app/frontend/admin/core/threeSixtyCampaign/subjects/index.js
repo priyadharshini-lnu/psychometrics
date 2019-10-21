@@ -88,7 +88,7 @@ const HANDLERS = {
 }
 
 export default function reducer (state = defaultState, action) {
-  let stateFromInnerReducer = updateIn(
+  const stateFromInnerReducer = updateIn(
     state, ['import'], state => importReducer(state, action),
   )
 

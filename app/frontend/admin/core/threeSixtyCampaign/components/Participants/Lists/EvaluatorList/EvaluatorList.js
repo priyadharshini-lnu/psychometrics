@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import { Col, Icon, Row } from 'antd'
-import routeUtils from 'utils/routeUtils'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from './EvaluatorTable/EvaluatorTable'
 import CreateEvaluatorsDropdown from './CreateEvaluatorsDropdown'
@@ -22,8 +21,6 @@ export default function EvaluatorList ({
   },
   match,
 }) {
-  const offset = routeUtils.getCurrentOffset()
-
   useEffect(() => {
     fetchEvaluators(campaignId, page)
   }, [page])
@@ -49,7 +46,7 @@ export default function EvaluatorList ({
             campaignId={campaignId}
             openModal={openModal}
             evaluators={evaluators}
-            onCloseParticipantModal={() => fetchEvaluators(campaignId, offset)}
+            onCloseParticipantModal={() => fetchEvaluators(campaignId, page)}
             removeUser={removeUser}
           />
           <div className="pm">
