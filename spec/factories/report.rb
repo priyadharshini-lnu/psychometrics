@@ -21,14 +21,9 @@
 
 FactoryGirl.define do
   factory :report do
-    association :assessment, factory: :assessment
     sequence(:name) { |i| "report #{i}" }
     extra { { icon_color: '#845EC2' } }
     report_families { [association(:report_family)] }
     assessments { build_list(:assessment, 1) }
-
-    after(:build) do |report, _evaluator|
-      report.assessments << report.assessment unless report.assessments.include?(report.assessment)
-    end
   end
 end
