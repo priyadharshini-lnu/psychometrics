@@ -5,7 +5,7 @@ require 'rails_helper'
 describe ::Clients::Reports::AssignReport do
   let(:campaign) { create(:campaign_base) }
   let(:membership) { create(:membership, client: campaign) }
-  let(:reports) { create_list(:report, 2) }
+  let(:reports) { create_list(:report, 2, assessments: build_list(:assessment, 2)) }
   let(:report) { reports.first }
   let(:assessments) { report.assessments }
   let(:assessment) { report.assessments.first }
@@ -49,7 +49,7 @@ describe ::Clients::Reports::AssignReport do
       expect(campaign.clients_reports.first.user_access).to be_falsy
     end
     it 'creates AssessmentsClient' do
-      expect { subject }.to change { campaign.assessments.count }.by(10)
+      expect { subject }.to change { campaign.assessments.count }.by(2)
       expect(campaign.assessments.reload.ids).to include(*report.assessments.ids)
     end
     it 'adds user_access' do
