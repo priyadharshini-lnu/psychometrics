@@ -5,6 +5,30 @@ tr id=dom_id(resource)
     td = resource.decorate.clients_names
   td = resource.decorate.anonym_link_for(client)
   td.actions-cell
+    - if policy(resource).can_configure_universal_links?
+      .btn-group
+        button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
+          .i.fa.fa-link
+          =<> t('.configure')
+          span.caret
+        ul.dropdown-menu
+          - unless client.assessment_universal_links_enabled?(resource.id)
+            li
+              = link_to t('.activate_universal_links'),
+                administration_client_assessment_enable_universal_links_path(client, resource),
+                remote: true,
+                method: :put
+          - if client.assessment_universal_links_enabled?(resource.id)
+            li
+              = link_to t('.deactivate_universal_links'),
+                administration_client_assessment_disable_universal_links_path(client, resource),
+                remote: true,
+                method: :put
+            li
+              = link_to client.has_assessment_key?(resource) ? t('.regenerate_universal_link') : t('.generate_universal_link'),
+                administration_client_assessment_generate_universal_link_path(client, resource),
+                remote: true,
+                method: :post
     - if policy(:assessment).export_results? && !resource.hogan?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'

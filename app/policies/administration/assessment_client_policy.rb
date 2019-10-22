@@ -23,5 +23,9 @@ module Administration
     def import_results?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
+
+    def generate_universal_link?
+      @user.is?(:superadmin)
+    end
   end
 end
