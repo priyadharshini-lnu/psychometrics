@@ -35,7 +35,7 @@ export default function UserEditModal ({
 
   const handleSave = () => {
     save(campaignId, user).then(() => {
-      setErrors(null)
+      closeModal()
       onUserUpdate()
     }).catch(setErrors)
   }
@@ -71,7 +71,7 @@ export default function UserEditModal ({
       <ErrorAlertBox errors={errors} className="mtl mbl" />
       <Form className="editProfile">
         <Form.Item label="Email">
-          <Input value={email} disabled={!currentUser.isSuperAdmin} />
+          <Input value={email} name="email" disabled={!currentUser.isSuperAdmin} onChange={handleInputChange} />
         </Form.Item>
 
         <Form.Item label="First Name">

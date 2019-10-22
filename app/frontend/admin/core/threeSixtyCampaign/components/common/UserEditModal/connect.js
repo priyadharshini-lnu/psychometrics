@@ -3,11 +3,12 @@ import { closeModal } from 'admin/core/temp/modals'
 import {
   update, save, SAVE,
 } from 'admin/core/threeSixtyCampaign/users'
+import _ from 'lodash'
 
 export default connect(
   ({
     temp: {
-      modals: { current },
+      modals: { current, data },
       request: { loading, name: requestName },
       currentUser,
     },
@@ -17,6 +18,7 @@ export default connect(
     saveInProgress: loading && requestName === SAVE,
     user: userUnderEdit,
     currentUser,
+    onUserUpdate: _.get(data, ['UserEditModal', 'onUserUpdate']),
   }),
   {
     closeModal,

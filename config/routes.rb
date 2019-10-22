@@ -241,6 +241,8 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :users, only: [:update]
+
         resources :managers
         resources :relationships do
           collection do
