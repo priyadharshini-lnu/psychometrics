@@ -9,12 +9,14 @@ export default connect(
     temp: {
       modals: { current },
       request: { loading, name: requestName },
+      currentUser,
     },
     threeSixtyCampaign: { users: { userUnderEdit } },
   }) => ({
     current,
     saveInProgress: loading && requestName === SAVE,
     user: userUnderEdit,
+    currentUser,
   }),
   {
     closeModal,

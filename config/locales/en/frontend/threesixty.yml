@@ -32,6 +32,7 @@ en:
     nominate_evaluators: Nominate Evaluators to
     add: Add
     cancel: Cancel
+    save: Save
     back_to_tasks: Back to tasks
     select_relationnship: Select Relationship
     user_name_input_placeholder: type name or email...

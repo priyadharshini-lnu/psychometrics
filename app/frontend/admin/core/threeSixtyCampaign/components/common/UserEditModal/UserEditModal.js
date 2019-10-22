@@ -15,6 +15,7 @@ export default function UserEditModal ({
     lastName,
   },
   user,
+  currentUser,
   onUserUpdate,
   saveInProgress,
   match: {
@@ -54,7 +55,7 @@ export default function UserEditModal ({
       onCancel={handleOnCancel}
       footer={[
         <Button key="back" onClick={handleOnCancel}>
-          Cancel
+          {I18n.t('threesixty.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -63,14 +64,14 @@ export default function UserEditModal ({
           disabled={saveInProgress}
         >
           {saveButtonIcon()}
-          Save
+          {I18n.t('threesixty.save')}
         </Button>,
       ]}
     >
       <ErrorAlertBox errors={errors} className="mtl mbl" />
       <Form className="editProfile">
         <Form.Item label="Email">
-          <Input value={email} disabled />
+          <Input value={email} disabled={!currentUser.isSuperAdmin} />
         </Form.Item>
 
         <Form.Item label="First Name">
