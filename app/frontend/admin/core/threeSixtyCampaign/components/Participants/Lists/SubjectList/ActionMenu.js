@@ -127,7 +127,7 @@ const ActionsMenu = ({
       </Menu.Item>
       <Menu.Item key="2">
         <div
-          onClick={() => openUserEditModal(campaignId, subjectId)}
+          onClick={openUserEditModal}
           role="button"
           tabIndex={-1}
         >

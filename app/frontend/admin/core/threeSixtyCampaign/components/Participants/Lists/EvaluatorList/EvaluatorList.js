@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import { Col, Icon, Row } from 'antd'
+import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from './EvaluatorTable/EvaluatorTable'
 import CreateEvaluatorsDropdown from './CreateEvaluatorsDropdown'
@@ -14,6 +15,7 @@ export default function EvaluatorList ({
   evaluators,
   openModal,
   removeUser,
+  editUser,
   total,
   page,
   match: {
@@ -46,6 +48,7 @@ export default function EvaluatorList ({
             campaignId={campaignId}
             openModal={openModal}
             evaluators={evaluators}
+            editUser={editUser}
             onCloseParticipantModal={() => fetchEvaluators(campaignId, page)}
             removeUser={removeUser}
           />
@@ -56,6 +59,7 @@ export default function EvaluatorList ({
       </Row>
       <CreateEvaluatorModal match={match} />
       <EvaluatorImportModal match={match} />
+      <UserEditModal match={match} />
     </>
   )
 }

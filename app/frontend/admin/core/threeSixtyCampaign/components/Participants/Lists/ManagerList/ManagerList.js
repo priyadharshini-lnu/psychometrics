@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { Col, Icon, Row } from 'antd'
+import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
 import Pagination from '../../../common/Pagination'
@@ -10,11 +11,13 @@ export default function ManagerList ({
   fetchManagers,
   managers,
   openModal,
+  editUser,
   total,
   page,
   match: {
     params: { campaignId },
   },
+  match,
 }) {
   useEffect(() => {
     fetchManagers(campaignId, page)
@@ -40,6 +43,7 @@ export default function ManagerList ({
             campaignId={campaignId}
             openModal={openModal}
             evaluators={managers}
+            editUser={editUser}
             onCloseParticipantModal={() => fetchManagers(campaignId, page)}
           />
           <div className="pm">
@@ -47,6 +51,7 @@ export default function ManagerList ({
           </div>
         </Col>
       </Row>
+      <UserEditModal match={match} />
     </>
   )
 }
