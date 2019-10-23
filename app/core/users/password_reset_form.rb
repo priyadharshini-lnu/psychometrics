@@ -15,7 +15,7 @@ module Users
 
       @user = project ? project.users.find_by(email: email) : User.find_by(email: email, project: nil)
 
-      errors.add(:email, :wrong_email)
+      errors.add(:email, :wrong_email) unless @user
     end
   end
 end

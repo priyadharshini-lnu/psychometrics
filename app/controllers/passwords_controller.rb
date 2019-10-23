@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PasswordsController < Devise::PasswordsController
+  include PasswordReset
+
   layout 'devise'
 
   protected
