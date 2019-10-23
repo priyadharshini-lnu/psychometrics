@@ -15,3 +15,4 @@ Rails.application.config.assets.precompile += %w[threesixty_dependencies.scss ap
 Rails.application.config.assets.precompile += %w[application_new.js threesixty.js]
 Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'
 Rails.application.config.assets.precompile << 'administration/*.mp3'
+Rails.application.config.assets.precompile += %w[anonym/index.js anonym.scss]

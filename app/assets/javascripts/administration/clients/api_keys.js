@@ -1,12 +1,12 @@
 $(function () {
   $(document).on('click', '.show-token', function () {
     var $td = $(this).closest('td');
-    var $token = $td.find('.token > span');
+    var $token = $td.find('.token > span').text();
     $td.find('.token').removeClass('encrypted').find('> span').removeClass('hidden');
     $td.find('.hide-token').removeClass('hidden');
     $(this).addClass('hidden');
 
-    copyToClipboard($token);
+    Utils.copyToClipboard($token);
     noty({ text: 'Token is copied to clipboard successfully', type: 'success' });
   });
   $(document).on('click', '.hide-token', function () {
@@ -18,16 +18,8 @@ $(function () {
   });
 
   $(document).on('click', '.copy-key', function () {
-    var $key = $(this).closest('td').find('.key');
-    copyToClipboard($key);
+    var $key = $(this).closest('td').find('.key').text();
+    Utils.copyToClipboard($key);
     noty({ text: 'Key is copied to clipboard successfully', type: 'success' });
   })
-
-  function copyToClipboard(element) {
-    var $temp = $("<input>");
-    $("body").append($temp);
-    $temp.val($(element).text()).select();
-    document.execCommand("copy");
-    $temp.remove();
-  }
 });

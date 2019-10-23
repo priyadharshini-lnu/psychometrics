@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class ReportsController < BaseController
+    class ReportsController < Api::V1::BaseController
       def index
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids

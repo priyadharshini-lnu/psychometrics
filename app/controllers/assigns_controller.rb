@@ -23,7 +23,9 @@
 
 class AssignsController < ApplicationController
   include ::Threesixty::InitialState
+  include AuthenticateAnonymousUser
 
+  prepend_before_action :authenticate_anonymous_user!
   before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev
                                       upload_callback remove_media]
   append_before_action :pundit_authorize

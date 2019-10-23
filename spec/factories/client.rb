@@ -68,9 +68,14 @@ FactoryGirl.define do
     end
 
     trait :with_reports do
-      after(:create) do |client, _evaluator|
+      transient do
+        with_assessments nil
+      end
+
+      after(:create) do |client, evaluator|
+        assessments = evaluator.with_assessments || build_list(:assessment, 1)
         report_family = client.root.report_families.take
-        report = create(:report, report_families: [report_family])
+        report = create(:report, report_families: [report_family], assessments: assessments)
         create :clients_report, client: client, report: report, report_family: report_family
         client.assessment_ids = report.assessment_ids
       end

@@ -3,14 +3,12 @@
 #
 # Set to 'On hold' when Admin marks report as on hold from Subject listing page
 # Set to 'Approved' when 'Manager approves reports' is set and Manager have approved report for Subject
+#
 # Set to Available when following conditions are meet
-#
-#
 # If 'Manager approves reports' is not set and Report availability conditions are meet
 # Or if Admin approves the report (even if report availability conditions are not meet)
-# Or if Admin Releases the report (even if report availability conditions are not meet)
-#
 
+# Set to 'released' if Admin Releases the report
 module Threesixty
   module Participants
     class GetReportStatus < BaseCommand
@@ -20,6 +18,7 @@ module Threesixty
       APPROVED = 'approved'
       ON_HOLD = 'on_hold'
       NOT_AVAILABLE = 'not_available'
+      RELEASED = 'released'
 
       def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
@@ -30,6 +29,7 @@ module Threesixty
       def call
         return broadcast :ok, nil unless subject
         return broadcast :ok, NOT_AVAILABLE unless subject_cannot_access_report?
+        return broadcast :ok, RELEASED if subject.report_status_released?
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_report? && subject.report_approved?
 
@@ -38,7 +38,6 @@ module Threesixty
           return broadcast :ok, AVAILABLE
         end
         return broadcast :ok, AVAILABLE if subject.report_approved?
-        return broadcast :ok, AVAILABLE if subject.report_status_released?
 
         broadcast :ok, INCOMPLETE
       end

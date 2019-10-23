@@ -4,11 +4,16 @@
     .contentBox
       .contentTitleHeader
         i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
-        p.contentTitle.pull-left Questions
+        p.contentTitle.pull-left = @resource.decorate.name
         = render partial: 'application/lang', locals: { with_confirm: true, locales: @available_translations }
         .clearfix
       .questionContent
-        #psychometrics_preview data-result="#{AssignSerializer.new(@assign).to_json}" data-type="pass_assessment" data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"  data-locales="#{@translations.to_json}"
+        #psychometrics_preview[
+          data-is-anonymous-assessment="true"
+          data-result="#{AssignSerializer.new(@assign).to_json}"
+          data-type="pass_assessment"
+          data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"
+          data-locales="#{@translations.to_json}"]
         = javascript_pack_tag 'vendors'
         = stylesheet_pack_tag 'vendors'
         = stylesheet_pack_tag 'survey'

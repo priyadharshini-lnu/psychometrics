@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-  //Override the default confirm dialog by rails
+  // Override the default confirm dialog by rails
   $.rails.allowAction = function (link) {
     if (!link.attr('data-confirm')) {
       return true;
@@ -16,10 +16,11 @@ $(document).ready(function () {
     return link.trigger('click.rails');
   };
 
-  //Display the confirmation dialog
+  // Display the confirmation dialog
   $.rails.showConfirmDialog = function (link) {
     var data = link.data("confirm"),
         template = $('#mb-confirm-template').html();
+
     if (template) {
       var rendered = $(Mustache.render(template, data));
       $('#confirm-container').html(rendered.toggleClass('open'));

@@ -6,7 +6,7 @@
         th = link_to_sort resource_class, :created_at, filter_form
         - if client.tenancy?
           th = t('administration.tenancies')
-        th
+        th = t('.universal_link')
         th width='1%'
     tbody
       - if resources.present?

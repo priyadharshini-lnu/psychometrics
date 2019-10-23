@@ -71,6 +71,18 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
+    def can_configure_universal_links?
+      !@record.external? && @user.is?(:superadmin)
+    end
+
+    def enable_universal_links?
+      @user.is?(:superadmin)
+    end
+
+    def disable_universal_links?
+      @user.is?(:superadmin)
+    end
+
     # Can save Assessment (Blocks, Questions and etc.)
     # true if it's Common Assessment and user is Superadmin
     def save?
