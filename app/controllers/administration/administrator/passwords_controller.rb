@@ -5,8 +5,6 @@ module Administration
     class PasswordsController < Devise::PasswordsController
       helper_method :resource_name, :devise_mapping
 
-      before_action :determine_client, only: [:create]
-
       def resource_name
         :user
       end
@@ -22,7 +20,7 @@ module Administration
         if resource && successfully_sent?(resource)
           respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
         else
-          self.resource = resource_class.new
+          self.resource = resource_class.new(resource_params)
           set_flash_message! :alert, :wrong_email
           render :new
         end
@@ -40,14 +38,14 @@ module Administration
 
       private
 
-      def determine_client
-        subdomain = request.subdomain
-        subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
-        @client = Client.enabled.find_by(subdomain: subdomain)
+      def find_user_by(email)
+        project = GetProjectBySubdomain.call!(request.subdomain)
+
+        project ? project.users.find_by(email: email) : User.find_by(email: email, project: nil)
       end
 
-      def find_user_by(email)
-        @client ? @client.users.find_by(email: email) : User.find_by(email: email)
+      def resource_params
+        params.require(:user).permit(:email)
       end
     end
   end
