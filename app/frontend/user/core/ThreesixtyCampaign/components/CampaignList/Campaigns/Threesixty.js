@@ -25,7 +25,6 @@ export default function Threesixty ({ campaign }) {
                 <div className="icon">
                   <span className="icon-360" />
                 </div>
-                <div className="title">{I18n.t('assessments.categories.360')}</div>
               </div>
               {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
               {campaign.hogan && <img className="service" src={hogan} alt="" />}
