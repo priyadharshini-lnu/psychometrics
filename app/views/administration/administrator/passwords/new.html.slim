@@ -6,14 +6,12 @@
     /! Tab panes
     .content
       p.instructionalText = t('.description')
-      = simple_form_for(resource, as: resource_name, url: administration_password_path, html: { class: 'form-horizontal' }) do |f|
+      = simple_form_for(@form, as: resource_name, url: administration_password_path, wrapper: :vertical_form) do |f|
         div.clearfix
           == flash_messages
         .loginFormContent
-          .usernameFormGroup
-            label for="username" = t('.email_label')
-            .input-group
-              = f.input_field :email, required: true, placeholder: true, class: 'form-control', type: :email, validate: true
+          .usernameFormGroup.input-group
+            = f.input :email
           span.clear &nbsp;
           .resetPasswordButton
             .input-group.pull-left
