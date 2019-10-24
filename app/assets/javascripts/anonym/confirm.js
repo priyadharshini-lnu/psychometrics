@@ -5,16 +5,15 @@ $.rails.showConfirmDialog = function (data) {
   var rendered = $(Mustache.render(template, data));
   $('#confirm-container').html(rendered.toggleClass('open'));
   rendered.find('.mb-confirm-yes').on('click', function () {
-    let { hostname } = location
+    var hostname = location.hostname
 
-    Cookies.remove('tte-anonym-payload', { domain: `.${hostname}`, path: '/' })
+    Cookies.remove('tte-anonym-payload', { domain: '.' + hostname, path: '/' })
     location.reload(true)
   })
 }
 
 $(document).ready(function () {
-  let { hostname } = location
-  let c = Cookies.getJSON('tte-anonym-payload')
+  var c = Cookies.getJSON('tte-anonym-payload')
 
   if (c && c.assign.step > 0) {
     $.rails.showConfirmDialog({
