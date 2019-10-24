@@ -230,6 +230,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -619,6 +625,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -1008,6 +1020,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {

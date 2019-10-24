@@ -9,6 +9,7 @@ module PasswordReset
 
   def new
     @form = Users::PasswordResetForm.new
+    render 'shared/password_reset'
   end
 
   def create
@@ -18,7 +19,7 @@ module PasswordReset
       resource_class.send_reset_password_instructions(@form.user)
       respond_with({}, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
-      render :new
+      render 'shared/password_reset'
     end
   end
 

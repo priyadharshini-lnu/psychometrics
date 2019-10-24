@@ -1,0 +1,7 @@
+en:
+  shared:
+    password_reset:
+      title: 'Forgotten Password'
+      description: "Please enter your email address in the box below and click 'Reset Password'."
+      submit: 'Reset Password'
+      email_label: 'Email Address'
