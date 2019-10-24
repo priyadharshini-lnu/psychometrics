@@ -2863,7 +2863,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@2.x, classnames@^2.2.0, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.4, classnames@^2.2.5, classnames@^2.2.6, classnames@~2.2.6:
+classnames@2.x, classnames@^2.2.0, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, classnames@~2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -4069,27 +4069,6 @@ diffie-hellman@^5.0.0:
     bn.js "^4.1.0"
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
-
-disposables@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/disposables/-/disposables-1.0.2.tgz#36c6a674475f55a2d6913567a601444e487b4b6e"
-
-dnd-core@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-2.6.0.tgz#12bad66d58742c6e5f7cf2943fb6859440f809c4"
-  dependencies:
-    asap "^2.0.6"
-    invariant "^2.0.0"
-    lodash "^4.2.0"
-    redux "^3.7.1"
-
-dnd-core@^7.4.4:
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/dnd-core/-/dnd-core-7.7.0.tgz#3166aefc8c5b85ca4ade4ae836712a3108975fab"
-  dependencies:
-    asap "^2.0.6"
-    invariant "^2.2.4"
-    redux "^4.0.1"
 
 dnd-core@^9.4.0:
   version "9.4.0"
@@ -5481,7 +5460,7 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hoist-non-react-statics@^2.1.0, hoist-non-react-statics@^2.3.1:
+hoist-non-react-statics@^2.3.1:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
 
@@ -5851,7 +5830,7 @@ interpret@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
 
-invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.0.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
@@ -6593,10 +6572,6 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash-es@^4.2.1:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
-
 lodash._basetostring@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/lodash._basetostring/-/lodash._basetostring-3.0.1.tgz#d1861d877f824a52f669832dcaf3ee15566a07d5"
@@ -6817,7 +6792,7 @@ lodash@^4.0.0, lodash@^4.16.5, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4,
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
-lodash@^4.0.1, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.2.1:
+lodash@^4.0.1, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.3:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
@@ -9806,24 +9781,11 @@ react-contenteditable@^2.0.1:
     "@types/prop-types" "^15.5.4"
     fast-deep-equal "^2.0.1"
 
-react-dnd-html5-backend@^2.1.2:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-2.6.0.tgz#590cd1cca78441bb274edd571fef4c0b16ddcf8e"
-  dependencies:
-    lodash "^4.2.0"
-
 react-dnd-html5-backend@^9.4.0:
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/react-dnd-html5-backend/-/react-dnd-html5-backend-9.4.0.tgz#5b1d192f57d103298657cde1fe0eabdbf2726311"
   dependencies:
     dnd-core "^9.4.0"
-
-react-dnd-touch-backend@^0.8.1:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/react-dnd-touch-backend/-/react-dnd-touch-backend-0.8.3.tgz#85d961ec8578dc9efa5b78000ea904d37e01e60f"
-  dependencies:
-    dnd-core "^7.4.4"
-    invariant "^2.2.4"
 
 react-dnd-touch-backend@^9.4.0:
   version "9.4.0"
@@ -9832,17 +9794,6 @@ react-dnd-touch-backend@^9.4.0:
     "@types/invariant" "^2.2.30"
     dnd-core "^9.4.0"
     invariant "^2.2.4"
-
-react-dnd@^2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/react-dnd/-/react-dnd-2.6.0.tgz#7fa25676cf827d58a891293e3c1ab59da002545a"
-  dependencies:
-    disposables "^1.0.1"
-    dnd-core "^2.6.0"
-    hoist-non-react-statics "^2.1.0"
-    invariant "^2.1.0"
-    lodash "^4.2.0"
-    prop-types "^15.5.10"
 
 react-dnd@^9.4.0:
   version "9.4.0"
@@ -9876,12 +9827,6 @@ react-google-recaptcha@^2.0.0-rc.1:
   dependencies:
     prop-types "^15.5.0"
     react-async-script "^1.1.1"
-
-react-input-autosize@^2.1.2:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"
-  dependencies:
-    prop-types "^15.5.8"
 
 react-input-autosize@^2.2.2:
   version "2.2.2"
@@ -9980,14 +9925,6 @@ react-router@5.0.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-select@^1.0.0-beta14:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/react-select/-/react-select-1.3.0.tgz#1828ad5bf7f3e42a835c7e2d8cb13b5c20714876"
-  dependencies:
-    classnames "^2.2.4"
-    prop-types "^15.5.8"
-    react-input-autosize "^2.1.2"
-
 react-select@^3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-3.0.8.tgz#06ff764e29db843bcec439ef13e196865242e0c1"
@@ -10015,7 +9952,7 @@ react-slider@0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-slider/-/react-slider-0.7.0.tgz#12aed9adc1f43cee613d2d9f4ea6d5a2cd7f4424"
 
-"react-slider@git@gitlab.com:tte-lighthouse/react-slider.git":
+react-slider@^0.11.2:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/react-slider/-/react-slider-0.11.2.tgz#ae014e1454c3cdd5f28b5c2495b2a08abd9971e6"
 
@@ -10203,15 +10140,6 @@ redux-saga@^1.0.2:
     loose-envify "^1.4.0"
     symbol-observable "^1.2.0"
 
-redux@^3.7.1:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
-  dependencies:
-    lodash "^4.2.1"
-    lodash-es "^4.2.1"
-    loose-envify "^1.1.0"
-    symbol-observable "^1.0.3"
-
 redux@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/redux/-/redux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
@@ -10396,9 +10324,9 @@ replace-ext@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/replace-ext/-/replace-ext-1.0.0.tgz#de63128373fcbf7c3ccfa4de5a480c45a67958eb"
 
-"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1633610dc39a1fdd55bea0a87da0d7bb83a31cb0":
+"reports-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#a1c2fdb14971e90a359f5dc24de329d6de049b66":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1633610dc39a1fdd55bea0a87da0d7bb83a31cb0"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#a1c2fdb14971e90a359f5dc24de329d6de049b66"
   dependencies:
     action-cable-react "git://github.com/Fabel/action-cable-react.git"
     classnames "^2.2.6"
@@ -11296,28 +11224,19 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
-"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#47f599eaa7bf73b14d4ac4c36bc9c17e03f9e70d":
+"survey-ui@git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#d0d36f8ca770e61debd9546a77138fef1b904af2":
   version "0.0.1"
-  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#47f599eaa7bf73b14d4ac4c36bc9c17e03f9e70d"
+  resolved "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#d0d36f8ca770e61debd9546a77138fef1b904af2"
   dependencies:
     action-cable-react "git+ssh://git@github.com:Fabel/action-cable-react.git"
     classnames "^2.2.6"
-    css-loader "^0.23.0"
-    cssnano "^3.3.2"
-    debug "^2.2.0"
     fbemitter "^2.0.2"
-    file-loader "^0.9.0"
-    fs-extra "^0.30.0"
     history "^2.0.0"
-    imports-loader "^0.6.5"
-    ip "^1.1.2"
     jquery "^3.2.1"
-    json-loader "^0.5.4"
     moment "^2.24.0"
     normalize.css "^4.1.1"
     noty "^2.3.8"
     platform "^1.3.1"
-    postcss-loader "^0.9.0"
     prop-types "^15.7.2"
     psychometrics-conditions-ui "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-conditions-ui.git#update-components"
     psychometrics-library-ui "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-library-ui.git#update-components"
@@ -11325,19 +11244,17 @@ supports-color@^6.1.0:
     react-addons-update "^15.6.2"
     react-bootstrap "^0.32.4"
     react-contenteditable "^2.0.1"
-    react-dnd "^2.6.0"
-    react-dnd-html5-backend "^2.1.2"
-    react-dnd-touch-backend "^0.8.1"
+    react-dnd "^9.4.0"
+    react-dnd-html5-backend "^9.4.0"
+    react-dnd-touch-backend "^9.4.0"
     react-froala-wysiwyg "^3.0.6"
     react-google-recaptcha "^2.0.0-rc.1"
     react-overlays "^0.8.3"
-    react-select "^1.0.0-beta14"
-    react-slider "git@gitlab.com:tte-lighthouse/react-slider.git"
+    react-select "^3.0.8"
+    react-slider "^0.11.2"
     react-ui-tree "^4.0.0"
     recordrtc "^5.5.4"
-    rimraf "^2.5.1"
     videojs-record "^3.6.0"
-    yargs "^4.0.0"
 
 svgo@^0.7.0:
   version "0.7.2"
@@ -11370,7 +11287,7 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-symbol-observable@^1.0.3, symbol-observable@^1.2.0:
+symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
 
