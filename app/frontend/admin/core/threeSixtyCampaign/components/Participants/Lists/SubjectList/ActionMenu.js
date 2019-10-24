@@ -125,7 +125,7 @@ const ActionsMenu = ({
           {I18n.t('threesixty.participant_list.actions.login')}
         </a>
       </Menu.Item>
-      <Menu.Item key="2">
+      <Menu.Item key="1">
         <div
           onClick={openUserEditModal}
           role="button"
@@ -135,7 +135,7 @@ const ActionsMenu = ({
         </div>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="1">
+      <Menu.Item key="1.5">
         <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>

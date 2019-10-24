@@ -1,0 +1,15 @@
+en:
+  activemodel:
+    errors:
+      models:
+        admin_edit: &errors
+          attributes:
+            first_name:
+              blank: "First name can't be blank"
+            last_name:
+              blank: "Last name can't be blank"
+            email:
+              blank: "Email field can't be blank"
+              invalid: "Email is invalid"
+        super_admin_edit:
+          <<: *errors

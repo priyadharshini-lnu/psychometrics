@@ -260,6 +260,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -633,6 +634,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -1006,6 +1008,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"

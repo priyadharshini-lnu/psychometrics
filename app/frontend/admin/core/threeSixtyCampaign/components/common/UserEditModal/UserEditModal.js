@@ -23,7 +23,6 @@ export default function UserEditModal ({
   },
 }) {
   const [errors, setErrors] = useState(null)
-  console.log(saveInProgress)
 
   const handleOnCancel = () => {
     closeModal()
@@ -49,8 +48,8 @@ export default function UserEditModal ({
 
   return (
     <Modal
-      width={700}
-      title="Edit User"
+      width={650}
+      title={I18n.t('threesixty.edit_user')}
       visible
       onCancel={handleOnCancel}
       footer={[
@@ -69,7 +68,7 @@ export default function UserEditModal ({
       ]}
     >
       <ErrorAlertBox errors={errors} className="mtl mbl" />
-      <Form className="editProfile">
+      <Form>
         <Form.Item label="Email">
           <Input value={email} name="email" disabled={!currentUser.isSuperAdmin} onChange={handleInputChange} />
         </Form.Item>

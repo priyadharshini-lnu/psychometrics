@@ -114,3 +114,4 @@ en:
       report_generation_message: 'Report is generating. We will let you know when the report is ready.'
     export_pdf: Export PDF
     report_generation_in_progress: 'Report is generating. We will let you know when the report is ready.'
+    edit_user: Edit User
