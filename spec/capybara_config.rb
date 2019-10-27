@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Capybara.default_max_wait_time = 5
+Capybara.default_max_wait_time = 10
 
 Capybara.register_driver :chrome do |app|
   client = Selenium::WebDriver::Remote::Http::Default.new
