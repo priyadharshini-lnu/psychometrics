@@ -81,13 +81,6 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 1.2.1'
 gem 'figaro',                     '~> 1.1.1'
 
-gem 'psychometrics-reports-ui',
-    git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git',
-    ref: '671db0d2d0b3addba3e84c5b9c6634f316f71ab3'
-gem 'psychometrics-survey-ui',
-    git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: '41f107e47d73b0e13f3f9da1baa136f90e8c4df6'
-
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
 gem 'rubyXL',                     '~> 3.4.6'

@@ -1,10 +1,12 @@
-= stylesheet_link_tag :psychometrics_bcenter
+= stylesheet_pack_tag 'vendors'
+= stylesheet_pack_tag 'assessment/blockCenter'
 
 #psychometrics_block_center
 
-= javascript_include_tag Ckeditor.cdn_url
-= javascript_include_tag :psychometrics_vendor
-= javascript_include_tag :psychometrics_bcenter
+= javascript_pack_tag 'vendors'
+= stylesheet_pack_tag 'survey'
+= javascript_pack_tag 'survey'
+= javascript_pack_tag 'assessment/blockCenter'
 
 javascript:
   x_navigation_minimize('close');

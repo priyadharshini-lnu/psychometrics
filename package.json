@@ -22,6 +22,7 @@
   "dependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-destructuring": "^7.3.2",
@@ -30,6 +31,7 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.0",
     "@babel/runtime": "^7.3.4",
     "@rails/webpacker": "^4.0.2",
     "airbnb-style": "^2.0.0",
@@ -80,15 +82,17 @@
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-froala-wysiwyg": "^3.0.0-rc.2-2",
+    "react-froala-wysiwyg": "^3.0.6",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
+    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#032c646c8fae1172df7460803fb34f0f70adc1b3",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "survey-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git#d0d36f8ca770e61debd9546a77138fef1b904af2",
     "use-debounce": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
@@ -96,7 +100,7 @@
   },
   "devDependencies": {
     "husky": "^3.0.8",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.8.1"
   },
   "husky": {
     "hooks": {
