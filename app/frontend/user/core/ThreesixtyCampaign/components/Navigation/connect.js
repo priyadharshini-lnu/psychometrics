@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {
   logout,
   changeLocale,
-} from 'user/core/temp/currentUser'
+} from 'core/temp/currentUser'
 
 const mapStateToProps = state => ({
   logo: state.threeSixtyCampaign.temp.project.logo,

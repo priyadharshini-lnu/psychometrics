@@ -10,6 +10,8 @@ const ActionsMenu = ({
   removeUser,
   downloadReport,
   openModal,
+  editUser,
+  onUserUpdate,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -105,6 +107,13 @@ const ActionsMenu = ({
     })
   }
 
+  const openUserEditModal = () => {
+    editUser(user)
+    openModal('UserEditModal', {
+      onUserUpdate,
+    })
+  }
+
   return (
     <Menu>
       <Menu.Item key="0">
@@ -117,6 +126,16 @@ const ActionsMenu = ({
         </a>
       </Menu.Item>
       <Menu.Item key="1">
+        <div
+          onClick={openUserEditModal}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('threesixty.participant_list.actions.edit')}
+        </div>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="1.5">
         <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
           {I18n.t('threesixty.participant_list.actions.view_report')}
         </a>

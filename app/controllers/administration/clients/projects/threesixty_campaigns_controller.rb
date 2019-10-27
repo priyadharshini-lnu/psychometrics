@@ -27,6 +27,9 @@ module Administration
                   participants: resource.option.participants
                 }
               }
+            },
+            temp: {
+              currentUser: serialized_current_user
             }
           }
         end
@@ -112,6 +115,12 @@ module Administration
             administration_client_project_threesixty_campaigns_path(client, project)
           )
           add_breadcrumb resource.campaign.name, action: :show if params[:action] == 'show'
+        end
+
+        def serialized_current_user
+          ::Threesixty::CurrentUserSerializer.new(current_user).
+            as_json.
+            deep_transform_keys! { |key| key.to_s.camelize(:lower) }
         end
       end
     end

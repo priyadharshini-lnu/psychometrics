@@ -12,6 +12,7 @@ export default function EvaluatorTable ({
   onCloseParticipantModal,
   campaignId,
   removeUser,
+  editUser,
 }) {
   const openParticipantModal = (user) => {
     openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })
@@ -63,6 +64,9 @@ export default function EvaluatorTable ({
               user,
               campaignId,
               removeUser,
+              editUser,
+              openModal,
+              onUserUpdate: onCloseParticipantModal,
             })
             }
             trigger={['click']}
