@@ -32,6 +32,7 @@ en:
     nominate_evaluators: Nominate Evaluators to
     add: Add
     cancel: Cancel
+    save: Save
     back_to_tasks: Back to tasks
     select_relationnship: Select Relationship
     user_name_input_placeholder: type name or email...
@@ -99,6 +100,7 @@ en:
         remove_report_hold_release_report: 'Remove Report Hold/Release'
         unmark_as_done: 'Unmark as done'
         remove_subject: 'Remove subject'
+        edit: 'Edit'
       confirmation_messages:
         remove_from_campaign: 'Are you sure you want to remove user from the campaign?'
         approve_report: 'Are you sure you want to approve report?'
@@ -112,3 +114,4 @@ en:
       report_generation_message: 'Report is generating. We will let you know when the report is ready.'
     export_pdf: Export PDF
     report_generation_in_progress: 'Report is generating. We will let you know when the report is ready.'
+    edit_user: Edit User

@@ -5,6 +5,10 @@ import routeUtils from 'utils/routeUtils'
 import {
   fetchSubjects, update, remove, downloadReport,
 } from 'admin/core/threeSixtyCampaign/subjects'
+import {
+  edit as editUser,
+} from 'admin/core/threeSixtyCampaign/users'
+
 import { removeUser } from 'admin/core/threeSixtyCampaign/'
 
 export default connect(
@@ -20,5 +24,6 @@ export default connect(
     remove: (campaignId, subjectId) => dispatch(remove(campaignId, subjectId)),
     removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
     downloadReport: (campaignId, subjectId) => dispatch(downloadReport(campaignId, subjectId)),
+    editUser: user => dispatch(editUser(user)),
   }),
 )

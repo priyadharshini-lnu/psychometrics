@@ -140,6 +140,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "password_reset": {
+          "attributes": {
+            "email": {
+              "wrong_email": "We couldn't find any user with the email you provided."
+            }
+          }
+        },
         "profile": {
           "attributes": {
             "first_name": {
@@ -534,13 +541,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
-        },
-        "new": {
-          "back": "Return back",
-          "description": "Please enter your email address in the box below and click 'Reset Password'.",
-          "email_label": "Email Address",
-          "submit": "Reset Password",
-          "title": "Forgotten Password"
         }
       },
       "sessions": {
@@ -1921,11 +1921,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": {
-                  "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-                  "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                  "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-                },
+                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
                 "title": "Delete <strong>%{name}</strong> ?"
               },
               "disable": {
@@ -1948,6 +1944,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               }
             },
             "tooltips": {
+              "campaigns": {
+                "delete": "Delete Campaign"
+              },
               "copy": "Copy Client",
               "create_admin": "Create Client Admin",
               "delete": "Delete Client",
@@ -4408,13 +4407,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Create Password"
       },
       "new": {
-        "back": "Return back",
-        "description": "Please enter your email address in the box below and click 'Reset Password'.",
-        "email_label": "Email Address",
         "forgot_your_password": "Forgot your password?",
-        "send_me_reset_password_instructions": "Send me reset password instructions",
-        "submit": "Reset Password",
-        "title": "Forgotten Password"
+        "send_me_reset_password_instructions": "Send me reset password instructions"
       },
       "no_token": "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.",
       "send_instructions": "You will receive an email with instructions on how to reset your password in a few minutes.",
@@ -5354,6 +5348,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -5750,6 +5750,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -5791,6 +5792,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "actions": {
         "approve_report": "Approve Report",
         "download_report": "Download Report",
+        "edit": "Edit",
         "hold_report": "Hold report",
         "login": "Login",
         "mark_as_done": "Mark as done",
@@ -5824,6 +5826,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -6035,6 +6038,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "password_reset": {
+          "attributes": {
+            "email": {
+              "wrong_email": "We couldn't find any user with the email you provided."
             }
           }
         },
@@ -6432,13 +6442,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
-        },
-        "new": {
-          "back": "Return back",
-          "description": "Please enter your email address in the box below and click 'Reset Password'.",
-          "email_label": "Email Address",
-          "submit": "Reset Password",
-          "title": "Forgotten Password"
         }
       },
       "sessions": {
@@ -7819,11 +7822,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": {
-                  "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-                  "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                  "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-                },
+                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
                 "title": "Delete <strong>%{name}</strong> ?"
               },
               "disable": {
@@ -7846,6 +7845,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               }
             },
             "tooltips": {
+              "campaigns": {
+                "delete": "Delete Campaign"
+              },
               "copy": "Copy Client",
               "create_admin": "Create Client Admin",
               "delete": "Delete Client",
@@ -10306,13 +10308,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Create Password"
       },
       "new": {
-        "back": "Return back",
-        "description": "Please enter your email address in the box below and click 'Reset Password'.",
-        "email_label": "Email Address",
         "forgot_your_password": "هل نسيت كلمة المرور؟",
-        "send_me_reset_password_instructions": "أرسلْ لي تعليمات تصفير كلمة المرور",
-        "submit": "Reset Password",
-        "title": "Forgotten Password"
+        "send_me_reset_password_instructions": "أرسلْ لي تعليمات تصفير كلمة المرور"
       },
       "no_token": "لا يُمكن الدّخول إلى هذه الصفحة إلّا بإستخدام رسالة إعادة ضبط كلمة المرور. إن كان الوصول لهذه الصفحة عبر تلك الرسالة فالرجاء التأكد من فتح كامل الرابط بشكل صحيح.",
       "send_instructions": "ستصل خلال دقائق رسالة بريد إلكتروني تحوي التعليمات اللازمة لإعادة ضبط كلمة السر.",
@@ -11256,6 +11253,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -11652,6 +11655,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -11693,6 +11697,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "actions": {
         "approve_report": "Approve Report",
         "download_report": "Download Report",
+        "edit": "Edit",
         "hold_report": "Hold report",
         "login": "Login",
         "mark_as_done": "Mark as done",
@@ -11726,6 +11731,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -11937,6 +11943,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "password_reset": {
+          "attributes": {
+            "email": {
+              "wrong_email": "We couldn't find any user with the email you provided."
             }
           }
         },
@@ -12334,13 +12347,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
-        },
-        "new": {
-          "back": "Return back",
-          "description": "Please enter your email address in the box below and click 'Reset Password'.",
-          "email_label": "Email Address",
-          "submit": "Reset Password",
-          "title": "Forgotten Password"
         }
       },
       "sessions": {
@@ -13721,11 +13727,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": {
-                  "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-                  "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                  "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-                },
+                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
                 "title": "Delete <strong>%{name}</strong> ?"
               },
               "disable": {
@@ -13748,6 +13750,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               }
             },
             "tooltips": {
+              "campaigns": {
+                "delete": "Delete Campaign"
+              },
               "copy": "Copy Client",
               "create_admin": "Create Client Admin",
               "delete": "Delete Client",
@@ -16208,13 +16213,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Create Password"
       },
       "new": {
-        "back": "Return back",
-        "description": "Please enter your email address in the box below and click 'Reset Password'.",
-        "email_label": "Email Address",
         "forgot_your_password": "Forgot your password?",
-        "send_me_reset_password_instructions": "Send me reset password instructions",
-        "submit": "Reset Password",
-        "title": "Forgotten Password"
+        "send_me_reset_password_instructions": "Send me reset password instructions"
       },
       "no_token": "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.",
       "send_instructions": "You will receive an email with instructions on how to reset your password in a few minutes.",
@@ -17154,6 +17154,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -17550,6 +17556,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -17591,6 +17598,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "actions": {
         "approve_report": "Approve Report",
         "download_report": "Download Report",
+        "edit": "Edit",
         "hold_report": "Hold report",
         "login": "Login",
         "mark_as_done": "Mark as done",
@@ -17624,6 +17632,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",

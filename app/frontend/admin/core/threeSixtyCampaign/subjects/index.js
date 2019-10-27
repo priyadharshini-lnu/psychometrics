@@ -91,6 +91,7 @@ export default function reducer (state = defaultState, action) {
   const stateFromInnerReducer = updateIn(
     state, ['import'], state => importReducer(state, action),
   )
+
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : stateFromInnerReducer
 }

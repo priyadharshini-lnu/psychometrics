@@ -1,11 +1,20 @@
 import React from 'react'
 import { Menu } from 'antd'
 
-const ActionsMenu = ({ user, campaignId, removeUser }) => {
+const ActionsMenu = ({
+  user, campaignId, removeUser, openModal, onUserUpdate, editUser,
+}) => {
   const removeUserWithConfirmation = () => {
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
       removeUser(campaignId, user.id)
     }
+  }
+
+  const openUserEditModal = () => {
+    editUser(user)
+    openModal('UserEditModal', {
+      onUserUpdate,
+    })
   }
 
   return (
@@ -18,6 +27,15 @@ const ActionsMenu = ({ user, campaignId, removeUser }) => {
         >
           {I18n.t('threesixty.participant_list.actions.login')}
         </a>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <div
+          onClick={openUserEditModal}
+          role="button"
+          tabIndex={-1}
+        >
+          {I18n.t('threesixty.participant_list.actions.edit')}
+        </div>
       </Menu.Item>
       <Menu.Item key="11">
         <div
