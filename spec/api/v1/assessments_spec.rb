@@ -77,14 +77,15 @@ describe 'Assessments' do
 
         examples 'application/json' =>
         {
-          "code": 1000,
-          "message": 'Invalid authentication',
-          "more_info": nil
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': nil,
+          'meta': nil
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil)
+          expect(error).to eq('code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil, 'meta' => nil)
         end
       end
 
@@ -96,9 +97,10 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 1000,
-          "message": 'Invalid authentication',
-          "more_info": 'User for api token is disabled'
+          'code': 1000,
+          'message': 'Invalid authentication',
+          'more_info': 'User for api token is disabled',
+          'meta': nil
         }
 
         run_test! do |response|
@@ -106,7 +108,8 @@ describe 'Assessments' do
           expect(error).to eq(
             'code' => 1000,
             'message' => 'Invalid authentication',
-            'more_info' => 'User for api token is disabled'
+            'more_info' => 'User for api token is disabled',
+            'meta' => nil
           )
         end
       end
@@ -118,17 +121,19 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 1005,
-          "message": 'Resource not found',
-          "more_info": 'User with id=111 is not found'
+          'code': 1005,
+          'message': 'Resource not found',
+          'more_info': 'User with id=111 is not found',
+          'meta': nil
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1005,
-                                'message' => 'Resource not found',
-                                'more_info' => 'User with id=111 is not found'
+            'message' => 'Resource not found',
+            'more_info' => 'User with id=111 is not found',
+            'meta' => nil
           )
         end
       end

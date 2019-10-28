@@ -121,11 +121,19 @@ the campaign\'s default assessments and reports.'
         before { create(:user, project: project, email: 'max@example.com') }
         run_test! do |response|
           error = JSON.parse(response.body)
-          expect(error).to eq(
-            'code' => 1006,
-                                'message' => 'User with this email exists',
-                                'more_info' => 'Email address max@example.com is already taken'
-          )
+
+          expect(error).to have_key('code')
+          expect(error).to have_key('message')
+          expect(error).to have_key('more_info')
+          expect(error).to have_key('meta')
+
+          meta = error['meta']
+          expect(meta).to have_key('existing_user')
+          expect(meta['existing_user']).to have_key('id')
+          expect(meta['existing_user']).to have_key('first_name')
+          expect(meta['existing_user']).to have_key('last_name')
+          expect(meta['existing_user']).to have_key('email')
+          expect(meta['existing_user']).to have_key('created_at')
         end
       end
 
@@ -144,8 +152,9 @@ the campaign\'s default assessments and reports.'
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1005,
-                                'message' => 'Resource not found',
-                                'more_info' => 'Project with id=111 is not found'
+            'message' => 'Resource not found',
+            'more_info' => 'Project with id=111 is not found',
+            'meta' => nil
           )
         end
       end
@@ -176,9 +185,10 @@ licenses for <b>Cognitive - Entry Level</b> report.'
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1003,
-                                'message' => 'Not enough licenses',
-                                'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not \
-enough licenses for <b>#{report.name}</b> report."
+            'message' => 'Not enough licenses',
+            'more_info' => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not \
+enough licenses for <b>#{report.name}</b> report.",
+            'meta' => nil
           )
         end
       end

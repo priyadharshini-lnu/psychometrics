@@ -13,9 +13,13 @@ module Api
         validate :verify_campaign_ids
 
         def uniq_email
-          return unless ::Users::Regular.exists?(email: email, project_id: context.project.id)
+          user = ::Users::Regular.find_by(email: email, project_id: context.project.id)
+          return unless user
 
-          raise Errors::Api::EmailExistsError, "Email address #{email} is already taken"
+          raise Errors::Api::EmailExistsError.new(
+            "Email address #{email} is already taken",
+            { existing_user: user.as_json(only: ['id', 'first_name', 'last_name', 'email', 'created_at']) }
+          )
         end
 
         def verify_campaign_ids
