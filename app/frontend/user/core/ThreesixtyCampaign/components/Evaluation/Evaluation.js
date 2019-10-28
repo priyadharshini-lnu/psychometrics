@@ -5,7 +5,7 @@ import {
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
-import PassAssessment from 'survey-ui/assessment'
+import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
 

@@ -1,0 +1,62 @@
+.buttons {
+  &:hover {
+    .addBtn {
+      opacity: 1;
+      z-index: 9999;
+    }
+
+    .moveBtn {
+      opacity: 1;
+      z-index: 9999;
+    }
+  }
+}
+
+.addBtn {
+  opacity: 0;
+  min-width: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right {
+  transition: 0.3s;
+  right: -6px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  top: 0;
+  min-height: 80px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: -26px;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+  top: 0;
+  min-height: 80px;
+  align-items: center;
+}
+
+.moveBtn {
+  opacity: 0;
+  min-width: 26px;
+  width: 26px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.btnicon {
+  margin: 0 !important;
+}

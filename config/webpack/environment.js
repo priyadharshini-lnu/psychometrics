@@ -1,5 +1,6 @@
 const { environment, loaders } = require('@rails/webpacker')
 const { env } = require('process')
+const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
@@ -86,7 +87,7 @@ environment.config.merge({
         survey: {
           chunks: 'initial',
           name: 'survey',
-          test: /node_modules\/survey-ui/,
+          test: /libs\/survey/,
           priority: 5,
           enforce: true,
         },
@@ -102,6 +103,9 @@ environment.config.merge({
       WaveSurfer: 'wavesurfer.js',
       RecordRTC: 'recordrtc',
       'window.RecordRTC': 'recordrtc',
+      'psychometrics-conditions-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/conditions'),
+      'psychometrics-library-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/library'),
+      'survey-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/survey'),
     },
   },
   mode: __DEV__ ? 'development' : 'production',
@@ -111,7 +115,7 @@ environment.config.merge({
     watchOptions: {
       poll: 1000,
       aggregateTimeout: 600,
-      ignored: [/node_modules\/(?!survey-ui|reports-ui)/],
+      ignored: [/node_modules\/(?!reports-ui)/],
     },
   },
 })

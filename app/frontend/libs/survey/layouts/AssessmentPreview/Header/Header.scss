@@ -1,0 +1,49 @@
+.menu {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 0;
+  justify-content: flex-start;
+  box-shadow: 0 0 3px 3px rgba(0, 0, 0,0.3);
+}
+
+.preview {
+  margin-left: 40px;
+  padding: 20px;
+  border-right: 1px solid #aaa;
+  font-weight: bold;
+  font-size: 1.2em;
+  .icon {
+    text-align: center;
+    margin: 5px 0;
+    font-size: 2em;
+    display: block;
+  }
+}
+
+.options {
+  display: flex;
+  padding: 0 20px;
+  flex-direction: column;
+  label {
+    font-weight: normal;
+  }
+  input {
+    margin-right: 5px;
+  }
+}
+
+.restart{
+  margin: 0 20px;
+}
+
+.title{
+  margin: 0;
+}
+
+.flow {
+  margin: 0 15px;
+}

@@ -1,0 +1,88 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstColumn,
+.lastColumn,
+.item {
+  flex: 1;
+  padding: 4px 0;
+}
+
+.labelItems {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.column {
+  padding: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.notApplicable {
+  border-left: 1px solid #5e5e5e;
+  min-width: 80px;
+  max-width: 80px;
+
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  .firstColumn {
+    border-right: 1px solid #5e5e5e;
+
+  }
+
+  .choice {
+    padding: 0 4px;
+    flex: 2;
+    text-align: center;
+
+  }
+
+  .choiceHeader {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 4px;
+  }
+
+  .choiceNotApplicable {
+    display: flex;
+    justify-content: space-between;
+
+    .option {
+      min-width: 80px;
+      max-width: 80px;
+      border-left: 1px solid #5e5e5e;
+      padding: 4px 0;
+    }
+  }
+
+  .lastColumn {
+    border-left: 1px solid #5e5e5e;
+  }
+
+}
+
+.header {
+  margin-top: 5px;
+  border-bottom: 1px solid #5e5e5e;
+}
+
+.labels {
+  .firstColumn {
+    border-color: transparent;
+  }
+
+  .lastColumn {
+    border-color: transparent;
+  }
+}

@@ -1,0 +1,94 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstColumn {
+  min-width: 25%;
+  max-width: 25%;
+}
+
+.labelItem {
+  flex: 1;
+}
+
+.item {
+  padding: 4px;
+}
+
+.labelItems {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  .firstColumn {
+    border-right: 1px solid #5e5e5e;
+  }
+  .item {
+    padding: 6px 0;
+  }
+
+  span {
+    text-align: center;
+  }
+}
+
+.header {
+  margin-top: 5px;
+  border-bottom: 1px solid #5e5e5e;
+
+  .scalePoints {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%
+  }
+}
+
+.labels {
+  .firstColumn {
+    border-color: transparent;
+  }
+}
+
+.dropdown {
+  padding: 5px 0;
+
+  .firstColumn {
+    border-color: transparent;
+  }
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.input {
+  &.Short {
+    width: 30px;
+  }
+  &.Medium {
+    width: 50px;
+  }
+  &.Long {
+    width: 70px;
+  }
+}
+
+.controls {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  .select {
+    width: 50%;
+  }
+}
