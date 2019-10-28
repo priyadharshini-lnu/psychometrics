@@ -108,7 +108,16 @@ the campaign\'s default assessments and reports.'
         examples 'application/json' => {
           'code' => 1006,
           'message' => 'User with this email exists',
-          'more_info' => 'Email address max@example.com is already taken'
+          'more_info' => 'Email address max@example.com is already taken',
+          'meta' => {
+            'existing_user': {
+              "id": 12,
+              "first_name": "John",
+              "last_name": "Doe",
+              "email": "john_doe@tte.email",
+              "created_at": "2019-10-28T17:00:00.000+04:00"
+            }
+          }
         }
 
         let(:first_name) { 'Max' }
