@@ -100,22 +100,35 @@ describe 'Reports' do
 
       response '200', 'Get user report results' do
         schema '$ref' => '#/definitions/ReportResults'
-        examples 'application/json' => { 'user_data' => { 'first_name' => 'Spider', 'last_name' => 'Man' },
-                                         'assessments' =>
-                                          [{ 'id' => 17,
-                                             'name' => 'Thriving Index Assessment',
-                                             'results' =>
-                                              { 'normed_factors' => [
-                                                { 'key' => 549, 'name' => 'Accountability', 'value' => nil },
-                                                { 'key' => 554, 'name' => 'Efficacy', 'value' => nil }
-                                              ],
-                                                'ranked_occupations' => [
-                                                  { 'key' => 2, 'rank' => 1, 'name' => 'Occupation 2',
-                                                    'normed_factors' => [] }, {
-                                                      'key' => 1, 'rank' => 2, 'name' => 'Occupation 1',
-                                                      'normed_factors' => []
-                                                    }
-                                                ] } }] }
+        examples 'application/json' => {
+          'user_data' => { 'first_name' => 'Spider', 'last_name' => 'Man' },
+          'assessments' => [
+            {
+              'id' => 17,
+              'name' => 'Thriving Index Assessment',
+              'results' => {
+                'normed_factors' => [
+                  { 'key' => 549, 'name' => 'Accountability', 'value' => nil },
+                  { 'key' => 554, 'name' => 'Efficacy', 'value' => nil }
+                ],
+                'ranked_occupations' => [
+                  {
+                    'key' => 2,
+                    'rank' => 1,
+                    'name' => 'Occupation 2',
+                    'normed_factors' => []
+                  },
+                  {
+                    'key' => 1,
+                    'rank' => 2,
+                    'name' => 'Occupation 1',
+                    'normed_factors' => []
+                  }
+                ]
+              }
+            }
+          ]
+        }
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
@@ -133,7 +146,8 @@ describe 'Reports' do
         examples 'application/json' => {
           'code' => 1004,
           'message' => 'Assessment not completed',
-          'more_info' => 'Assessments for report 111 are not passed'
+          'more_info' => 'Assessments for report 111 are not passed',
+          'meta' => nil
         }
 
         let(:project_id) { project.id }
@@ -147,8 +161,9 @@ describe 'Reports' do
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1004,
-                                'message' => 'Assessment not completed',
-                                'more_info' => "Assessments for report #{report_id} are not passed"
+            'message' => 'Assessment not completed',
+            'more_info' => "Assessments for report #{report_id} are not passed",
+            'meta' => nil
           )
         end
       end
@@ -239,7 +254,8 @@ describe 'Reports' do
         examples 'application/json' => {
           'code' => 1005,
           'message' => 'Resource not found',
-          'more_info' => 'Report with id 123 not found.'
+          'more_info' => 'Report with id 123 not found.',
+          'meta' => nil
         }
 
         let(:report_id) { 123 }
@@ -249,7 +265,8 @@ describe 'Reports' do
           expect(result).to eq(
             'code' => 1005,
             'message' => 'Resource not found',
-            'more_info' => "Report with id #{report_id} not found."
+            'more_info' => "Report with id #{report_id} not found.",
+            'meta' => nil
           )
         end
       end
@@ -445,7 +462,8 @@ describe 'Reports' do
         examples 'application/json' => {
           'code' => 1007,
           'message' => 'Resource not configured.',
-          'more_info' => 'Report with id 12 doesn\'t have data configuration.'
+          'more_info' => 'Report with id 12 doesn\'t have data configuration.',
+          'meta' => nil
         }
 
         before do
@@ -460,7 +478,8 @@ describe 'Reports' do
           expect(result).to eq(
             'code' => 1007,
             'message' => 'Resource not configured.',
-            'more_info' => "Report with id #{report_id} doesn't have data configuration."
+            'more_info' => "Report with id #{report_id} doesn't have data configuration.",
+            'meta' => nil
           )
         end
       end

@@ -26,10 +26,10 @@ describe 'Campaigns' do
       response '200', 'Campaign duplicated' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
-          "id": 770,
-          "name": 'Duplicated Campaign Name',
-          "created_at": '2019-03-05T10:56:53.349+04:00',
-          "updated_at": '2019-03-05T10:56:53.349+04:00'
+          'id': 770,
+          'name': 'Duplicated Campaign Name',
+          'created_at': '2019-03-05T10:56:53.349+04:00',
+          'updated_at': '2019-03-05T10:56:53.349+04:00'
         }
 
         let(:campaign_id) { campaign.id }
@@ -49,7 +49,8 @@ describe 'Campaigns' do
         examples 'application/json' => {
           'code' => 1002,
           'message' => 'Validation error',
-          'more_info' => "Name can't be blank"
+          'more_info' => "Name can't be blank",
+          'meta' => nil
         }
 
         let(:campaign_id) { campaign.id }
@@ -59,8 +60,9 @@ describe 'Campaigns' do
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1002,
-                                'message' => 'Validation error',
-                                'more_info' => "Name can't be blank"
+            'message' => 'Validation error',
+            'more_info' => "Name can't be blank",
+            'meta' => nil
           )
         end
       end
@@ -72,17 +74,19 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 1005,
-          "message": 'Resource not found',
-          "more_info": 'Campaign with id=111 is not found'
+          'code': 1005,
+          'message': 'Resource not found',
+          'more_info': 'Campaign with id=111 is not found',
+          'meta': nil
         }
 
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq(
             'code' => 1005,
-                                'message' => 'Resource not found',
-                                'more_info' => 'Campaign with id=1111 is not found'
+            'message' => 'Resource not found',
+            'more_info' => 'Campaign with id=1111 is not found',
+            'meta' => nil
           )
         end
       end
@@ -103,13 +107,13 @@ assessments and reports.'
       response '200', '' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
-          "id": 14_602,
-          "first_name": 'Kamaru',
-          "last_name": 'Usman',
-          "email": 'marti@gmail.com',
-          "created_at": '2019-03-04T15:47:33.570+04:00',
-          "updated_at": '2019-03-04T15:47:33.950+04:00',
-          "campaign_ids": [
+          'id': 14_602,
+          'first_name': 'Kamaru',
+          'last_name': 'Usman',
+          'email': 'marti@gmail.com',
+          'created_at': '2019-03-04T15:47:33.570+04:00',
+          'updated_at': '2019-03-04T15:47:33.950+04:00',
+          'campaign_ids': [
             510
           ]
         }
@@ -145,10 +149,10 @@ assessments and reports.'
 
         examples 'application/json' => [
           {
-            "id": 367,
-            "name": 'Employee Engagement Survey',
-            "created_at": '2018-02-11T10:55:25.569+04:00',
-            "updated_at": '2018-02-11T10:55:25.569+04:00'
+            'id': 367,
+            'name': 'Employee Engagement Survey',
+            'created_at': '2018-02-11T10:55:25.569+04:00',
+            'updated_at': '2018-02-11T10:55:25.569+04:00'
           }
         ]
 
