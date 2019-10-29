@@ -23,6 +23,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -157,6 +171,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
@@ -5924,6 +5952,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -6058,6 +6100,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
@@ -11829,6 +11885,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -11963,6 +12033,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
