@@ -44,7 +44,7 @@ const ActionsMenu = ({
     updateSubject(
       subjectId,
       { report_release_status: 'released' },
-      I18n.t('threesixty.participant_list.confirmation_messages.release_report_confimation'),
+      I18n.t('threesixty.participant_list.confirmation_messages.release_report'),
     )
   }
 
@@ -92,7 +92,7 @@ const ActionsMenu = ({
       .then(({ response }) => {
         if (response.success) {
           message.success(
-            I18n.t('threesixty.participant_list.confirmation_messages.report_generation_message'),
+            I18n.t('threesixty.participant_list.report_generation_message'),
             3,
           )
         }
