@@ -15,8 +15,6 @@ test:
     - vendor/
     # - node_modules/
   before_script:
-  # install ssh-agent
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   # run ssh-agent
   - eval $(ssh-agent -s)
   # add ssh key stored in SSH_PRIVATE_KEY variable to the agent store
@@ -30,9 +28,6 @@ test:
   - export RAILS_ENV=test
   - export REDIS_HOST=redis
   - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
-  - sudo apt update && sudo apt install postgresql-client
-  - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
-  - sudo chmod 0655 /usr/local/bin/phantomjs
   - yarn install
   - export REDIS_URL=redis://redis:6379/1
   - echo "lvh.me 127.0.0.1" | sudo tee -a /etc/hosts
@@ -75,7 +70,7 @@ deploy_develop:
   - dpl --provider=heroku --app=tte-lighthouse-develop --api-key=$HEROKU_STAGING_API_KEY
   environment:
     name: Heroku Develop
-    url: https://.tte-lighthouse.com
+    url: https://develop.tte-lighthouse.com
   only:
   - develop
 
