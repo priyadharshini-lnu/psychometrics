@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
 * Custom events v2.0.0 (2016-09-19)
 *

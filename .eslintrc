@@ -50,6 +50,7 @@
   "globals": {
     "__DEV__": true,
     "__PROD__": true,
+    "_": true,
     "location": true,
     "I18n": true,
     "moment": true
