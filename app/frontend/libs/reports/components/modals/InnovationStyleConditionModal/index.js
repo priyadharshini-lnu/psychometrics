@@ -1,0 +1,3 @@
+import InnovationStyleConditionModal from './components/InnovationStyleConditionModal'
+
+export default InnovationStyleConditionModal

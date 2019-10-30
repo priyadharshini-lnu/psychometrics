@@ -79,7 +79,7 @@ module.exports = function (api) {
           root: ['./app/frontend'],
           alias: {
             ab: './node_modules/survey-ui/src',
-            rb: './node_modules/reports-ui/src',
+            rb: './app/frontend/libs/reports',
           },
         },
       ],

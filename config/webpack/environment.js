@@ -21,8 +21,8 @@ environment.plugins.insert(
   'ProvidePlugin',
   new webpack.ProvidePlugin({
     videojs: 'video.js/dist/video.cjs.js',
-    RecordRTC: 'recordrtc'
-  })
+    RecordRTC: 'recordrtc',
+  }),
 )
 
 const myCssLoaderOptions = {
@@ -55,8 +55,6 @@ const vendors = [
   'lodash',
   'antd',
   'redux-logger',
-  'psychometrics-conditions-ui',
-  'psychometrics-library-ui',
   'action-cable-react',
   'react-addons-update',
   'moment',
@@ -80,7 +78,7 @@ environment.config.merge({
         reports: {
           chunks: 'initial',
           name: 'reports',
-          test: /node_modules\/reports-ui/,
+          test: /libs\/reports/,
           priority: 5,
           enforce: true,
         },
@@ -106,6 +104,7 @@ environment.config.merge({
       'psychometrics-conditions-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/conditions'),
       'psychometrics-library-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/library'),
       'survey-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/survey'),
+      'reports-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/reports'),
     },
   },
   mode: __DEV__ ? 'development' : 'production',

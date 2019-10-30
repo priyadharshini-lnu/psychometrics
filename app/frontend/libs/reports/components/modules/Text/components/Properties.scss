@@ -1,0 +1,13 @@
+.alignedBlock { width: 23px; height: 22px; background-image: url('~libs/reports/static/widgets_icons.png'); background-repeat: no-repeat; background-position-y: -264px; margin-right: 2px; cursor: pointer; }
+.alignedBlock.active { background-position-y: -286px; cursor: default; }
+/**/
+.containersBox { display: flex; justify-content: space-between; }
+.horizontalContainer { display: flex; }
+.horizontalContainer .left { background-position-x: 0; }
+.horizontalContainer .center { background-position-x: -23px; }
+.horizontalContainer .right { background-position-x: -46px; }
+/**/
+.verticalContainer { display: flex; }
+.verticalContainer .flex-start { background-position-x: -69px; }
+.verticalContainer .center { background-position-x: -92px; }
+.verticalContainer .flex-end { background-position-x: -115px; }

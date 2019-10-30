@@ -113,7 +113,6 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
-    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1913fc405cedf058e3e1137702df0eafeb92254c",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
