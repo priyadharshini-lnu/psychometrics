@@ -5,6 +5,7 @@ import {
 import qs from 'query-string'
 import cs from 'classnames'
 import './styles.scss'
+import PassAssessment from 'survey-ui/assessment'
 import Language from '../common/Language'
 
 const { Content } = Layout
@@ -23,12 +24,6 @@ export default function Assign ({
   history,
   isFrame,
 }) {
-  useEffect(() => {
-    if (loaded && !error) {
-      window.renderPassAssessment('pass_assessment')
-    }
-  }, [loaded])
-
   useEffect(() => {
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
@@ -65,15 +60,15 @@ export default function Assign ({
             </Row>
           )}
           <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-            {!error && (
-              <div
+            {loaded && !error && (
+              <PassAssessment
                 id="pass_assessment"
-                data-type="pass_assessment"
-                data-data={JSON.stringify(assessment)}
-                data-result={JSON.stringify(results)}
-                data-locales={JSON.stringify(translations)}
-                data-dashboard-url="/assessment_completed"
-                data-selected-locale={selectedLanguage && selectedLanguage.code}
+                type="pass_assessment"
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl="/assessment_completed"
+                selectedLocale={selectedLanguage && selectedLanguage.code}
               />
             )}
           </div>

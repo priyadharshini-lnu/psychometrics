@@ -5,7 +5,11 @@ Rake::Task['assets:clean'].enhance do
     Rails.logger.info 'Deleting node_modules'
     exclude_folders = ['puppeteer']
     Dir['node_modules/**'].each do |f|
-      FileUtils.remove_dir(f, true) unless exclude_folders.include?(f.gsub('node_modules/', ''))
+      if exclude_folders.include?(f.gsub('node_modules/', ''))
+        system("cd #{f} && yarn install")
+      else
+        FileUtils.remove_dir(f, true)
+      end
     end
   end
 end
