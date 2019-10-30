@@ -53,13 +53,9 @@ class FactorsNorm < ApplicationRecord
     #
     #
     def structured_hash(scope)
-      factors     = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
-      parents_ids = factors.pluck(:parent_id).uniq.reject { |e| e.to_s.empty? }
-      parents     = []
-      parents = Factor.find(parents_ids).group_by(&:id) unless parents_ids.empty?
+      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
       factors.map do |factor|
         data                       = { id: factor.id, name: factor.name }
-        data[:parent]              = parents[factor.parent_id].try(:[], 0) if factor.parent_id
         data[:factors_norms_props] = factor['factors_norms_props'] || []
         data
       end
@@ -83,12 +79,9 @@ class FactorsNorm < ApplicationRecord
     def export_structured_hash(norm)
       FactorsNorm::NORM_TYPES.each_with_object(Hash.new({})) do |norm_type, sum|
         sum[norm_type] = {}
-        FactorsNorm::FACTOR_TYPES.each do |factor_type|
-          sql = Factor.where(dimension_id: norm.dimension_id).
-                with_norm_type(norm_type, norm.id).
-                with_factor_type(factor_type)
-          sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
-        end
+        sql = Factor.where(dimension_id: norm.dimension_id).
+              with_norm_type(norm_type, norm.id)
+        sum[norm_type]['factors'] = FactorsNorm.structured_hash(sql)
       end
     end
 

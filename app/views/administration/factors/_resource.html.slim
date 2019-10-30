@@ -4,7 +4,7 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
       = resource.decorate.status
   td.vertical_middle
     = image_tag resource.icon.url(:factors_icon), class: 'factors_icon' if resource.icon.url()
-  td.vertical_middle = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
+  td.vertical_middle = resource.name
   - questions_count = resource.questions_count_by_assessment
   - if questions_count
     td
@@ -13,7 +13,10 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
           = link_to "#{@map_assessments[ass_id].try(:[], 0).try(:name)} - [#{count}]", administration_assessment_path(ass_id, scoring: 1, factor_id: resource.id)
   - else
     td.vertical_middle
-  td.text-center.vertical_middle = resource.subfactors_count
+  td.text-center.vertical_middle = t(".scoring_strategies.#{resource.scoring_strategy}")
+  td.text-center.vertical_middle
+     - resource.sub_factors.each do |f|
+       div = f.name
   td.text-center.vertical_middle = resource.decorate.created_at
   td.text-center.vertical_middle = resource.decorate.updated_at
   td.actions-cell

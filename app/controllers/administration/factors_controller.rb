@@ -10,7 +10,10 @@ class Administration::FactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).search(params[:q])
+    @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).
+                    includes(:sub_factors).
+                    search(params[:q])
+
     @_resources   = filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
@@ -19,28 +22,33 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def new
-    @_resource = resource_class.new
+    @_resource = resource_class.new(dimension: @dimension)
+    @form = Factors::SaveForm.from_model(resource)
   end
 
   def create
     @_resource = @dimension.factors.new(resource_params)
-    respond_to do |format|
-      if resource.save
-        format.js
-      else
-        format.js { render :new }
-      end
+    @form = Factors::SaveForm.new(resource_params)
+    if @form.valid?
+      resource.save!
+    else
+      render :new
     end
+  end
+
+  def edit
+    @form = Factors::SaveForm.from_model(resource)
   end
 
   def update
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    respond_to do |format|
-      if resource.update(resource_params)
-        format.js
-      else
-        format.js { render :edit }
-      end
+    @form = Factors::SaveForm.new(resource_params)
+    resource.assign_attributes(resource_params)
+
+    if @form.valid?
+      resource.save!
+    else
+      render :edit
     end
   end
 
@@ -91,6 +99,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :description, :icon, :remove_icon, :dimension_id)
+    params.require(:resource).permit(:id, :name, :description, :icon, :remove_icon, :dimension_id, :scoring_strategy,
+                                     factors_sub_factors_attributes: %i[id weight _destroy sub_factor_id])
   end
 end

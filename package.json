@@ -9,6 +9,9 @@
   "scripts": {
     "export_pdf": "node ./lib/raster.js"
   },
+  "engines": {
+    "node": ">=10.0.0 <11.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/tte-lighthouse/psychometrics.git"
@@ -89,7 +92,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.11",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path-to-regexp": "0.1.7",
     "pluralize": "^8.0.0",
@@ -110,7 +113,7 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
-    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#032c646c8fae1172df7460803fb34f0f70adc1b3",
+    "reports-ui": "git+ssh://git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git#1913fc405cedf058e3e1137702df0eafeb92254c",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
