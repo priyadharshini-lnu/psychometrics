@@ -19,7 +19,6 @@ class Dimension < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :factors, -> { roots.order(id: :asc) }
   has_many :occupations
-  has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
   has_many :all_factors, class_name: 'Factor'
   has_many :assessments
   has_many :norms
@@ -55,8 +54,8 @@ class Dimension < ApplicationRecord
   }
 
   def clone_and_save
-    @cloned_dimension = deep_clone(include: [:occupations, { factors: :sub_factors }],
-                                   except: [:factors_count, { factors: [:subfactors_count] }])
+    @cloned_dimension = deep_clone(include: [:occupations, { factors: :factors_sub_factors }],
+                                   except: [:factors_count])
     @cloned_dimension.gen_uniq_name
     if @cloned_dimension.save
       # SubFactors have link to original dimension.

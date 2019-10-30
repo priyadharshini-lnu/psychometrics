@@ -6,7 +6,8 @@
         th width="70" = t 'administration.factors.index.icon'
         th = link_to_sort resource_class, :name, filter_form
         th = resource_class.human_attribute_name(:questions_count)
-        th.text-center width="150" = link_to_sort resource_class, :subfactors_count, filter_form
+        th.text-center width="100" = t 'administration.factors.index.scoring_strategy'
+        th.text-center width="150" = t 'administration.factors.index.sub_factors'
         th.text-center width='150' = link_to_sort resource_class, :created_at, filter_form
         th.text-center width='150' = link_to_sort resource_class, :updated_at, filter_form
         th.text-center width='1%' = t 'administration.actions'
@@ -15,5 +16,5 @@
         = render partial: 'resource', collection: resources
       - else
         tr.no_records
-          td align='center' colspan='8' = t('administration.no_data_found')
+          td align='center' colspan='9' = t('administration.no_data_found')
   = paginate resources, theme: 'twitter-bootstrap-3'

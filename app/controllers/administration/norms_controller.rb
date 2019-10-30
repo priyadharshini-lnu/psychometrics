@@ -93,7 +93,6 @@ class Administration::NormsController < Administration::BaseController
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
     @filter_data = NormEditorForm.new(editor_params)
     scope = Factor.where(dimension_id: resource.dimension_id).
-            with_factor_type(@filter_data.factor_type).
             with_norm_type(@filter_data.norm_type, resource.id)
     @_resources = FactorsNorm.structured_hash(scope)
     respond_to do |format|
