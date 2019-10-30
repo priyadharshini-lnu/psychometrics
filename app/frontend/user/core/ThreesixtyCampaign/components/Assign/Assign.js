@@ -5,7 +5,7 @@ import {
 import qs from 'query-string'
 import cs from 'classnames'
 import './styles.scss'
-import PassAssessment from 'survey-ui/assessment'
+import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 
 const { Content } = Layout
