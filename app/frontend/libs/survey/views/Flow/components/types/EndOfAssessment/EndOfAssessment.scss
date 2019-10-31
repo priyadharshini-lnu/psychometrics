@@ -1,0 +1,53 @@
+.block {
+  background-color: #8C0707;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 3px;
+
+}
+
+.icon {
+  color: #8C0707;
+}
+
+.iconContainer {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 4px;
+
+}
+
+.footerContainer {
+  font-size: 12px;
+  font-weight: normal;
+  display: inline-block;
+  margin-top: 10px;
+  .footer {
+    display: flex;
+    justify-content: flex-end;
+
+    a {
+      cursor: pointer;
+      margin: 0 10px;
+    }
+
+    .add {
+      color: #fff;
+    }
+    .move {
+      color: #fff;
+    }
+    .dup {
+      color: #fff;
+    }
+    .delete {
+      color: #fff;
+    }
+  }
+}
+

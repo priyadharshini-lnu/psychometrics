@@ -1,0 +1,84 @@
+.modal {
+  width: 95%;
+}
+
+.body{
+  min-height: 450px;
+  max-height: 450px;
+  overflow: scroll;
+  padding: 10px 80px 80px 10px;
+}
+
+.title{
+  font-size: 0.8em;
+}
+
+.row {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.newLine{
+  color: #188F00;
+
+  &:hover{
+    color: #157402;
+  }
+}
+
+.elementSelect{
+  background-color: #FFFFC7;
+  border: 1px solid #FFC75D;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  .label{
+    font-weight: bold;
+  }
+
+  .btns{
+    .btn{
+      margin: 0 5px 5px 0;
+    }
+  }
+
+}
+
+.element {
+  background-color: #f2f2f2;
+  border: 1px solid #cfcfcf;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 80%;
+  min-width: 700px;
+}
+
+.element + .row {
+  margin-left: 30px;
+}
+
+.EndOfAssessment {
+  background-color: #8C0707;
+  border: 1px solid transparent;
+}
+
+.Randomizer {
+  background-color: #F2E3F2;
+  border: 1px solid #D1C0D1;
+  color: #997D99;
+}
+
+.EmbeddedData {
+  background-color: #EDF2E3;
+  border: 1px solid #D1D9BD;
+  color: #809163;
+}
+
+.UniqueGenerator {
+  background-color: #e8edf6;
+  border: 1px solid #3D72D6;
+  color: #809163;
+}
+

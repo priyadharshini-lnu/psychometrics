@@ -1,0 +1,51 @@
+.icon {
+  color: #fff;
+}
+
+.iconContainer {
+  font-size: 16px;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #916391;
+  border-radius: 4px;
+}
+
+.title {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.body {
+  margin-left: 47px;
+  display: flex;
+  > div {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    cursor: pointer;
+    margin: 0 10px;
+  }
+
+  .add {
+    color: #188F00;
+  }
+  .move {
+
+  }
+  .dup {
+    color: #007AC0;
+  }
+  .delete {
+    color: #D43000;
+  }
+}

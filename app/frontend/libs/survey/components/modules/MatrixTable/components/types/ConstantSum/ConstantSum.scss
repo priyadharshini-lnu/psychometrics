@@ -1,0 +1,115 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstColumn {
+  min-width: 25%;
+  max-width: 25%;
+}
+
+.header {
+  .totalColumn {
+    font-weight: bold;
+  }
+}
+
+.totalColumn {
+  color: #000;
+  min-width: 15%;
+  margin-left: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.totalRow {
+  color: #000;
+  border-top: 1px solid #000;
+  .firstColumn {
+    padding-top: 5px;
+    font-weight: bold;
+  }
+  .inputs {
+    padding-top: 5px;
+  }
+}
+
+.labelItem {
+  flex: 1;
+}
+
+.item {
+  padding: 4px;
+}
+
+.labelItems {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+
+  .firstColumn {
+    border-right: 1px solid #5e5e5e;
+  }
+  .item {
+    padding: 6px 0;
+  }
+
+  span {
+    text-align: center;
+  }
+}
+
+.header {
+  margin-top: 5px;
+  border-bottom: 1px solid #5e5e5e;
+
+  .scalePoints {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%
+  }
+}
+
+.labels {
+  .firstColumn {
+    border-color: transparent;
+  }
+}
+
+.dropdown {
+  padding: 5px 0;
+
+  .firstColumn {
+    border-color: transparent;
+  }
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 30px;
+  margin: 0 3px;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  .select {
+    width: 50%;
+  }
+}
