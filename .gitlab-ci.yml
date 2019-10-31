@@ -35,6 +35,7 @@ test:
   - sudo chmod 0655 /usr/local/bin/phantomjs
   - yarn install
   - export REDIS_URL=redis://redis:6379/1
+  - echo "lvh.me 127.0.0.1" | sudo tee -a /etc/hosts
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
@@ -45,7 +46,7 @@ test:
   - bundle exec rubocop
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
-  - bundle exec rspec
+  - EAGER_LOAD=1 bundle exec rspec
   artifacts:
     when: on_failure
     expire_in: 1 week

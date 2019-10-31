@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class CampaignsController < BaseController
+    class CampaignsController < Api::V1::BaseController
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
         ::Campaigns::Duplicate.call(form, campaign) do

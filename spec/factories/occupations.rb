@@ -19,6 +19,7 @@
 FactoryGirl.define do
   factory :occupation do
     sequence(:name) { |i| "occupation #{i}" }
+    description 'Lorem ipsum dolor sit amet.'
     dimension
   end
 end

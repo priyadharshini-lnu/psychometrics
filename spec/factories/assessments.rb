@@ -28,7 +28,7 @@ FactoryGirl.define do
 
     trait :with_report do
       after(:create) do |assessment, _evaluator|
-        create :report, assessment: assessment
+        create :report, assessments: [assessment]
       end
     end
 

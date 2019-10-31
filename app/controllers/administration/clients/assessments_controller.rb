@@ -6,7 +6,11 @@ module Administration
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :pundit_authorize, except: [:export_normed_results]
+      before_action :pundit_authorize, except: %i[
+        export_normed_results
+        enable_universal_links
+        disable_universal_links
+      ]
       before_action :init_breadcrumbs
       skip_after_action :verify_policy_scoped, only: [:index]
 
@@ -36,6 +40,32 @@ module Administration
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'assessment_normed_data.xlsx' }
         end
+      end
+
+      def enable_universal_links
+        @assessment = client.assessments.find(params[:assessment_id])
+        authorize @assessment
+
+        Administration::Clients::Assessments::EnableUniversalLinks.call(client, @assessment)
+
+        render :update
+      end
+
+      def disable_universal_links
+        @assessment = client.assessments.find(params[:assessment_id])
+        authorize @assessment
+
+        Administration::Clients::Assessments::DisableUniversalLinks.call(client, @assessment)
+
+        render :update
+      end
+
+      def generate_universal_link
+        @assessment = client.assessments.find(params[:assessment_id])
+
+        Administration::Clients::Assessments::GenerateUniversalLink.call(client, @assessment)
+
+        render :update
       end
 
       def export_hogan_results

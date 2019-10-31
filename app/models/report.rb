@@ -56,6 +56,23 @@ class Report < ApplicationRecord
                                               before_remove: :remove_factor_aliases
   has_many :assessments_default_order, through: :assessments_reports, source: :assessment
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
+
+  scope :dimensions_with_occupations, -> { includes(dimensions: [:occupations]) } do
+    def with_occupations_since(timestamp)
+      where('occupations.updated_at >= ?', timestamp)
+    end
+  end
+
+  scope :dimensions_with_factors, -> { eager_load(dimensions: [:factors]) } do
+    def filter_by(factor_ids)
+      where('factors.id' => factor_ids)
+    end
+
+    def with_factors_since(timestamp)
+      where('factors.updated_at >= ?', timestamp)
+    end
+  end
+
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
   has_many :campaign_templates, dependent: :destroy
@@ -164,6 +181,24 @@ class Report < ApplicationRecord
 
   def hogan?
     hogan_report_setting.present?
+  end
+
+  def has_data_configuration_occupations?
+    return false if data_configuration.blank?
+
+    data_configuration.dig('sections').each do |section|
+      return true if section['data'].find { |d| d.dig('type') == 'ranked_occupations' }
+    end
+
+    false
+  end
+
+  def data_configuration_factor_ids
+    data_configuration['sections'].map do |section|
+      section['data'].map do |d|
+        d['factorId'] if d.dig('type') == 'normed_factor'
+      end
+    end.flatten.compact
   end
 
   private

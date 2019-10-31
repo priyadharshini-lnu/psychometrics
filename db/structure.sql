@@ -149,7 +149,11 @@ CREATE TABLE public.assessments_clients (
     assessment_id bigint,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    enable_universal_links boolean DEFAULT false,
+    assessment_key character varying,
+    key_generated_at timestamp without time zone,
+    key_expires_at timestamp without time zone
 );
 
 
@@ -6511,6 +6515,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100425'),
 ('20190902100625'),
 ('20190903131845'),
+('20190915124839'),
+('20190916070023'),
+('20190916070101'),
 ('20190917082805'),
 ('20190917122130'),
 ('20190917140510'),

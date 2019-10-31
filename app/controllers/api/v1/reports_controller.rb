@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class ReportsController < BaseController
+    class ReportsController < Api::V1::BaseController
       def index
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
@@ -39,6 +39,19 @@ module Api
         render json: { url: assigns_report.pdf&.url, status: assigns_report.status }
       end
 
+      def dimensions
+        report = current_user.available_client_admin_reports.eager_load(:dimensions).find_by(id: params[:id])
+        raise Errors::Api::ResourceNotFoundError, "Report with id #{params[:id]} not found." unless report
+        if report.data_configuration.blank?
+          raise Errors::Api::ResourceNotConfiguredError, no_config_message(params[:id])
+        end
+
+        render json: report,
+          include: '**',
+          serializer: Api::V1::ReportDimensionsSerializer,
+          **serialization_params.merge(report: report)
+      end
+
       def report
         @report ||=
           begin
@@ -48,6 +61,16 @@ module Api
             # TODO: (atanych): report should be directly checked with user membership
             r
           end
+      end
+
+      private
+
+      def serialization_params
+        params.permit(:include_factors, :include_occupations, :report, :since).to_h.symbolize_keys
+      end
+
+      def no_config_message(report_id)
+        "Report with id #{report_id} doesn't have data configuration."
       end
     end
   end

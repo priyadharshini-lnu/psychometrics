@@ -1,5 +1,23 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -207,10 +225,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -259,6 +284,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -267,6 +293,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -295,13 +322,45 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "edit": "Edit",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -339,6 +398,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -546,10 +623,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -598,6 +682,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -606,6 +691,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -634,13 +720,45 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "edit": "Edit",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",
@@ -678,6 +796,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
+        "title": "Retart Assessment?"
+      }
+    }
+  },
   "assessments": {
     "categories": {
       "360": "360 Campaign",
@@ -885,10 +1021,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "denied": "Denied",
       "incomplete": "Incomplete",
       "not_available": "Not available",
-      "on_hold": "On hold"
+      "on_hold": "On hold",
+      "released": "Released"
     }
   },
   "shared": {
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -937,6 +1080,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "deny_all_successful": "Denied all nominations",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
+    "edit_user": "Edit User",
     "email_approve_request": "Email Approval Request",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
@@ -945,6 +1089,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "generate_report": "Generate Report",
@@ -973,13 +1118,45 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominations": "Nominations",
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "edit": "Edit",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
     "processing": "Processing",
     "processing_report": "Processing Report",
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
     "select_relationnship": "Select Relationship",
     "select_relationship": "Select Relationship",
     "self": "Self",

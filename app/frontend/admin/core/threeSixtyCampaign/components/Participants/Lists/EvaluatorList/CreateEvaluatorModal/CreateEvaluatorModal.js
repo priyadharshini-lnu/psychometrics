@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import _ from 'lodash'
 import {
   Modal, Button, Icon, Divider,
@@ -43,10 +43,16 @@ export default function CreateEvaluatorModal ({
   errors,
   match,
   relationships,
+  creationInProgress,
+  clearForm,
   match: {
     params: { campaignId },
   },
 }) {
+  useEffect(() => () => {
+    clearForm()
+  }, [])
+
   const handleOk = () => {
     createAllEvaluators(
       campaignId,
@@ -78,7 +84,7 @@ export default function CreateEvaluatorModal ({
         <Button key="back" onClick={closeModal}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" onClick={handleOk}>
+        <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
           <Icon type="check" />
           Add
         </Button>,

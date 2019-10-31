@@ -4,7 +4,7 @@ import {
   Table, Dropdown, Icon, Row, Col,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import routeUtils from 'utils/routeUtils'
+import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
@@ -26,13 +26,12 @@ export default function SubjectList ({
   downloadReport,
   total,
   page,
+  editUser,
   match: {
     params: { campaignId },
   },
   match,
 }) {
-  const offset = routeUtils.getCurrentOffset()
-
   useEffect(() => {
     fetchSubjects(campaignId, page)
   }, [page])
@@ -41,9 +40,11 @@ export default function SubjectList ({
   const openParticipantModal = (user) => {
     openModal('ParticipantModal', {
       user,
-      onClose: () => fetchSubjects(campaignId, offset),
+      onClose: () => fetchSubjects(campaignId, page),
     })
   }
+
+  const onUserUpdate = () => fetchSubjects(campaignId, page)
 
   return (
     <>
@@ -106,6 +107,8 @@ export default function SubjectList ({
                     removeUser,
                     downloadReport,
                     openModal,
+                    editUser,
+                    onUserUpdate,
                   })
                   }
                   trigger={['click']}
@@ -124,6 +127,7 @@ export default function SubjectList ({
       </Row>
       <CreateSubjectModal match={match} />
       <SubjectImportModal match={match} />
+      <UserEditModal match={match} />
     </>
   )
 }

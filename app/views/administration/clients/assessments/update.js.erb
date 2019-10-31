@@ -1,0 +1,13 @@
+$(function () {
+  $('#<%= dom_id(@assessment) %>').hide('fast', function () {
+    var html = $('<%= j render(partial: "resource", locals: { resource: @assessment }) %>').hide()
+    $(this).replaceWithPush(html).addClass('active').show('slow')
+    $(document).trigger('initPlugins')
+  })
+
+  noty({
+    text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.update.successfully", name: resource.decorate.display_name) %>',
+    type: 'success'
+  })
+});
+

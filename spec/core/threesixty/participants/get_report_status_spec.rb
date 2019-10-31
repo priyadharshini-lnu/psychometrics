@@ -19,6 +19,12 @@ describe Threesixty::Participants::GetReportStatus do
     end
   end
 
+  it 'status is released when report is released by admin' do
+    subject = create(:threesixty_subject, report_release_status: :released)
+
+    expect(described_class.call!(subject, option, {})).to eq Threesixty::Participants::GetReportStatus::RELEASED
+  end
+
   it 'report not available' do
     subject = create(:threesixty_subject)
     option = create(:threesixty_option, participants: { 'access' => { 'self_can_access' => false } })

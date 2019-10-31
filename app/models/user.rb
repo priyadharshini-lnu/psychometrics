@@ -133,6 +133,11 @@ class User < ApplicationRecord
   has_many :campaigns_users
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
 
+  has_many  :available_client_admin_reports,
+            through: :client_admin_clients,
+            source: :available_reports,
+            class_name: 'Report'
+
   accepts_nested_attributes_for :memberships
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
@@ -149,6 +154,11 @@ class User < ApplicationRecord
   validate :validate_grants
 
   has_one_time_password(encrypted: true)
+
+  # Overridden Devise class method
+  def self.send_reset_password_instructions(recoverable)
+    recoverable.send_reset_password_instructions if recoverable.persisted?
+  end
 
   # We won't set password, we will send inviting
   def password_required?

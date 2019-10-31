@@ -44,6 +44,7 @@ export const createAll = (campaignId, subjects) => ({
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/create_all`,
     body: { subjects },
+    loader: true,
   },
 })
 
@@ -90,6 +91,7 @@ export default function reducer (state = defaultState, action) {
   const stateFromInnerReducer = updateIn(
     state, ['import'], state => importReducer(state, action),
   )
+
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : stateFromInnerReducer
 }

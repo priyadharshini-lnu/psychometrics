@@ -179,6 +179,9 @@ Rails.application.routes.draw do
           get :export_results
           get :export_normed_results
           get :export_hogan_results
+          put :enable_universal_links
+          put :disable_universal_links
+          post :generate_universal_link
         end
         resources :datasheet_rows, except: %i[show edit update]
       end
@@ -240,6 +243,8 @@ Rails.application.routes.draw do
             get :download, constraints: { format: :csv }
           end
         end
+
+        resources :users, only: [:update]
 
         resources :managers
         resources :relationships do
@@ -539,7 +544,8 @@ Rails.application.routes.draw do
     end
 
     namespace :anonym do
-      get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
+      get 'error', to: 'assessments#error'
+      get ':assessment_key/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
     resources :assigns, only: %i[index update] do
@@ -647,6 +653,9 @@ Rails.application.routes.draw do
           resources :campaigns, only: [] do
             post :duplicate, on: :member
           end
+        end
+        resources :reports, only: [] do
+          get :dimensions, on: :member
         end
       end
     end

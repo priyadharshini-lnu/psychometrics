@@ -8,12 +8,6 @@ en:
           submit: 'Login'
           password_placeholder: 'Enter your password'
       passwords:
-        new:
-          title: 'Forgotten Password'
-          back: 'Return back'
-          description: "Please enter your email address in the box below and click 'Reset Password'."
-          submit: 'Reset Password'
-          email_label: 'Email Address'
         edit:
           title: 'Change your password'
           description: 'To create a new password, please enter your new password in the boxes below.'

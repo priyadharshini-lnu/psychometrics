@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ::BaseController
+  include AuthenticateAnonymousUser
+
   layout :layout_by_resource
 
   # Authentication user/manager
@@ -39,6 +41,8 @@ class ApplicationController < ::BaseController
   private
 
   def authenticate_user!
+    return if @anonymous_user
+
     Users::AuthenticateUser.call(params) do
       on(:ok) do |user, found_by|
         if found_by == :spoof
@@ -53,14 +57,13 @@ class ApplicationController < ::BaseController
   end
 
   # Detect Client by subdomain
+
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
 
-    subdomain = request.subdomain
-    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
-    @current_project = Client.enabled.find_by(subdomain: subdomain)
+    @current_project = GetProjectBySubdomain.call!(request.subdomain)
     return if @current_project.nil? && request.controller_class.to_s == 'Devise::TwoFactorAuthenticationController'
 
     return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
@@ -93,7 +96,10 @@ class ApplicationController < ::BaseController
   end
 
   def user_not_authorized
-    render plain: 'You does not have access to this page', status: 403
+    respond_to do |format|
+      format.html { render plain: 'You does not have access to this page', status: 403 }
+      format.json { render json: { error: ['You do not have permissions to this action'] }, status: 403 }
+    end
   end
 
   def set_locale

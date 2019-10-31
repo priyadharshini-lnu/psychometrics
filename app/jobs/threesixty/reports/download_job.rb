@@ -5,11 +5,12 @@ module Threesixty
     class DownloadJob < ApplicationJob
       queue_as :reports
 
-      def perform(threesixty_campaign, current_user, subject, users_report)
+      def perform(threesixty_campaign, current_user, subject, users_report, options = {})
         @threesixty_campaign = threesixty_campaign
         @current_user = current_user
         @subject = subject
         @users_report = users_report
+        @options = options
 
         export_report
         save_to_s3
@@ -22,13 +23,13 @@ module Threesixty
 
       private
 
-      attr_reader :threesixty_campaign, :current_user, :subject, :users_report, :pdf_file, :s3_obj
+      attr_reader :threesixty_campaign, :current_user, :subject, :users_report, :pdf_file, :s3_obj, :options
 
       # Generates PDF file and placed it into TMP folder
       #
       def export_report
         @pdf_file = ::Threesixty::Reports::ExportReport.
-                    call!(current_user, threesixty_campaign, subject, users_report, {})
+                    call!(current_user, threesixty_campaign, subject, users_report, options)
       end
 
       # Uploads PDF file to AssignsReport

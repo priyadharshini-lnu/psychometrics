@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import currentUser from 'core/temp/currentUser'
 import subjects from './core/threeSixtyCampaign/subjects'
 import evaluators from './core/threeSixtyCampaign/evaluators'
 import managers from './core/threeSixtyCampaign/managers'
@@ -18,6 +19,7 @@ import emailSchedules from './core/threeSixtyCampaign/emailSchedules'
 import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates'
 import campaignDetails from './core/threeSixtyCampaign/campaignDetails'
 import mailHistories from './core/threeSixtyCampaign/mailHistories'
+import users from './core/threeSixtyCampaign/users'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -35,6 +37,7 @@ export default combineReducers({
     emailSchedules,
     instructionTemplates,
     mailHistories,
+    users,
   }),
   project: combineReducers({
     datasheetFields,
@@ -44,5 +47,6 @@ export default combineReducers({
     modals,
     autocomplete,
     request,
+    currentUser,
   }),
 })

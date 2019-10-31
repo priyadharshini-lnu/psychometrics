@@ -2,7 +2,7 @@
 
 module Api
   module V1
-    class UsersController < BaseController
+    class UsersController < Api::V1::BaseController
       def create
         form = Api::V1::Users::CreateForm.from_params(params).with_context(project: project)
         Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do

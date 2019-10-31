@@ -36,6 +36,7 @@ module Threesixty
     end
 
     def update_status
+      authorize @subject
       participants = @subject.participants.where(manager_nomination_status: :waiting)
       participant_list = participants.to_a
       participants.update_all(manager_nomination_status: params[:status])

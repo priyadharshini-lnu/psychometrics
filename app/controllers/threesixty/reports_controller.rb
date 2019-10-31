@@ -44,6 +44,7 @@ module Threesixty
     end
 
     def update_status
+      authorize @users_report
       subject = @users_report.threesixty_subject
       subject.update!(report_approval_status: params[:status])
       Threesixty::Emails::Send.
@@ -52,6 +53,7 @@ module Threesixty
     end
 
     def download
+      authorize @users_report
       subject = Threesixty::Subject.find_by!(campaign_id: @campaign.campaign_id, user_id: @users_report.user_id)
       ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @users_report)
       render json: { success: true }

@@ -44,8 +44,8 @@ end
 gem 'devise',                     '~> 4.4.3'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
-gem 'pundit',                     '~> 1.1.0'
-gem 'two_factor_authentication', '~> 2.2.0'
+gem 'pundit',                     '~> 2.1.0'
+gem 'two_factor_authentication',  '~> 2.2.0'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
@@ -83,10 +83,10 @@ gem 'figaro',                     '~> 1.1.1'
 
 gem 'psychometrics-reports-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git',
-    ref: '430eb951097d0259a5bc267d75517500f95f7da1'
+    ref: '671db0d2d0b3addba3e84c5b9c6634f316f71ab3'
 gem 'psychometrics-survey-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: '668c34152daf837b4ec96ecbd8416d3f01270fb5'
+    ref: '41f107e47d73b0e13f3f9da1baa136f90e8c4df6'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'

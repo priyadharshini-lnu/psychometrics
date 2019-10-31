@@ -5,13 +5,14 @@ require 'swagger_helper'
 
 describe 'Reports' do
   let!(:membership) { create(:client_admin_membership) }
-  let(:campaign) { create(:client_campaign, parent: project) }
-  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let!(:project) { create(:project, parent: membership.client) }
+  let(:campaign) { create(:client_campaign, parent: project) }
   let(:user) { create(:user, project: project) }
-  let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
+  let(:dimension) { create(:dimension, :with_multiple_occupations) }
+  let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment', dimension: dimension) }
   let(:report) { assessment.reports.first }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+
   let!(:assign) do
     user_membership = create(:membership, client: campaign, user: user)
     user_membership.client.assessments = [assessment]
@@ -21,6 +22,7 @@ describe 'Reports' do
     create(:assign, membership: user_membership, assessment: assessment, status: :completed)
   end
 
+  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   before do
     allow_any_instance_of(AssignsReport).to receive(:use_license) { 'nth' }
     create(:assigns_report, report: report, assign: assign)
@@ -180,6 +182,286 @@ describe 'Reports' do
           response = JSON.parse(response.body)
           expect(response).to have_key('url')
           expect(response).to have_key('status')
+        end
+      end
+    end
+  end
+
+  path '/reports/{report_id}/dimensions' do
+    before do
+      report.update(owner: membership.client)
+    end
+    let!(:license) { create(:license, client: membership.client, report_family: report.report_families.first) }
+
+    get 'Get all report dimensions' do
+      operationId 'GetReportDimensions'
+      description 'Returns all report dimensions. Use `since` param to get records that \\
+      have been updated or created after since. Use `include_factors` to include Factors.\\
+      Use `include_occupations` to include Occupations'
+      tags 'Dimensions'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :report_id, in: :path, type: :integer
+      parameter name: :since, in: :query, type: :string, required: false,
+        description: 'Returns results that have been updated after since.'
+      parameter name: :include_occupations, in: :query, type: :string, required: false,
+        description: 'true - returns occupations'
+      parameter name: :include_factors, in: :query, type: :string, required: false,
+        description: 'true - returns factors'
+
+      response '200', 'Get all report dimensions' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'dimensions': [
+            {
+              'id': 12,
+              'name': 'Dimension Name'
+            }
+          ],
+          'server_time': '2019-10-06T18:25:43.511Z'
+        }
+
+        let(:report_id) { report.id }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result).to have_key('server_time')
+          expect(result).to have_key('dimensions')
+
+          expect(result['dimensions']).to be_an_instance_of(Array)
+          expect(result['dimensions']).not_to be_empty
+        end
+      end
+
+      response '404', 'Raise 404 Not Found if the report is not found' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'code' => 1005,
+          'message' => 'Resource not found',
+          'more_info' => 'Report with id 123 not found.'
+        }
+
+        let(:report_id) { 123 }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+          expect(result).to eq(
+            'code' => 1005,
+            'message' => 'Resource not found',
+            'more_info' => "Report with id #{report_id} not found."
+          )
+        end
+      end
+
+      response '200', 'Get report dimensions with occupations' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'dimensions': [
+            {
+              'id': 12,
+              'name': 'Dimension name',
+              'occupations': [
+                {
+                  'id': 123,
+                  'name': 'Occupation Name',
+                  'description': 'Lorem ipsum dolor sit amet.',
+                  'updated_at': '2019-10-06T18:25:43.511Z'
+                }
+              ]
+            }
+          ],
+          'server_time': '2019-10-03T18:25:43.511Z'
+        }
+
+        let(:report_id) { report.id }
+        let(:include_occupations) { true }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result).to have_key('server_time')
+          expect(result).to have_key('dimensions')
+
+          expect(result['dimensions']).to be_an_instance_of(Array)
+          expect(result['dimensions']).not_to be_empty
+
+          interesting_dimension = result['dimensions'].find { |d| d['id'] == dimension.id }
+          expect(interesting_dimension).to have_key('occupations')
+          expect(interesting_dimension['occupations']).to be_an_instance_of(Array)
+          skip 'To be fixed with data configuration in report factory'
+          expect(interesting_dimension['occupations'].length).to eq(2)
+        end
+      end
+
+      response '200', 'Get report dimensions with occupations since updated_at' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'dimensions': [
+            {
+              'id': 12,
+              'name': 'Dimension name',
+              'occupations': [
+                {
+                  'id': 123,
+                  'name': 'Occupation Name',
+                  'description': 'Lorem ipsum dolor sit amet.',
+                  'updated_at': '2019-10-06T18:25:43.511Z'
+                }
+              ]
+            }
+          ],
+          'server_time': '2019-10-03T18:25:43.511Z'
+        }
+
+        before do
+          occupation = dimension.occupations.first
+          occupation.update(updated_at: Time.now + 10.minutes)
+        end
+
+        let(:report_id) { report.id }
+        let(:include_occupations) { true }
+        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result).to have_key('server_time')
+          expect(result).to have_key('dimensions')
+
+          expect(result['dimensions']).to be_an_instance_of(Array)
+          expect(result['dimensions']).not_to be_empty
+
+          interesting_dimension = result['dimensions'].find { |d| d['id'] == dimension.id }
+          expect(interesting_dimension).to have_key('occupations')
+          expect(interesting_dimension['occupations']).to be_an_instance_of(Array)
+          skip 'To be fixed with data configuration in report factory'
+          expect(interesting_dimension['occupations'].length).to eq(1)
+        end
+      end
+
+      before do
+        create(:factor, dimension: dimension)
+        create(:factor, dimension: dimension)
+
+        config = {
+          sections: [{
+            data: [
+              { type: 'normed_factor', factorId: dimension.factors.first.id, assessmentId: assessment.id },
+              { type: 'normed_factor', factorId: dimension.factors.last.id, assessmentId: assessment.id }
+            ]
+          }]
+        }
+        report.update(owner: project, data_configuration: config)
+      end
+
+      response '200', 'Get report dimensions with factors' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'dimensions': [
+            {
+              'id': 12,
+              'name': 'Dimension Name',
+              'factors': [
+                {
+                  'id': 123,
+                  'name': 'Factor Name',
+                  'description': 'Lorem ipsum dolor sit amet.',
+                  'updated_at': '2019-10-06T18:25:43.511Z'
+                }
+              ]
+            }
+          ],
+          'server_time': '2019-10-06T18:25:43.511Z'
+        }
+
+        let(:report_id) { report.id }
+        let(:include_factors) { true }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result).to have_key('server_time')
+          expect(result).to have_key('dimensions')
+
+          expect(result['dimensions']).to be_an_instance_of(Array)
+          expect(result['dimensions']).not_to be_empty
+
+          interesting_dimension = result['dimensions'].find { |d| d['id'] == dimension.id }
+          expect(interesting_dimension).to have_key('factors')
+          expect(interesting_dimension['factors']).to be_an_instance_of(Array)
+          expect(interesting_dimension['factors'].length).to eq(2)
+        end
+      end
+
+      response '200', 'Get all report dimensions with factors since the updated_at' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'dimensions': [
+            {
+              'id': 12,
+              'name': 'Dimension name',
+              'factors': [
+                {
+                  'id': 123,
+                  'name': 'Factor Name',
+                  'description': 'Lorem ipsum dolor sit amet.',
+                  'updated_at': '2019-10-06T18:25:43.511Z'
+                }
+              ]
+            }
+          ],
+          'server_time': '2019-10-06T18:25:43.511Z'
+        }
+
+        before do
+          factor = dimension.factors.first
+          factor.update(updated_at: Time.now + 10.minutes)
+        end
+
+        let(:report_id) { report.id }
+        let(:include_factors) { true }
+        let(:since) { (Time.now + 10.minutes).utc.iso8601 }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result).to have_key('server_time')
+          expect(result).to have_key('dimensions')
+
+          expect(result['dimensions']).to be_an_instance_of(Array)
+          expect(result['dimensions']).not_to be_empty
+
+          interesting_dimension = result['dimensions'].find { |d| d['id'] == dimension.id }
+          expect(interesting_dimension).to have_key('factors')
+          expect(interesting_dimension['factors']).to be_an_instance_of(Array)
+          skip 'To be fixed with data configuration in report factory'
+          expect(interesting_dimension['factors'].length).to eq(1)
+        end
+      end
+
+      response '412', 'Raise 412 Not Configured if the report doesn\'t have data configuration' do
+        schema '$ref' => '#/definitions/Dimensions'
+        examples 'application/json' => {
+          'code' => 1007,
+          'message' => 'Resource not configured.',
+          'more_info' => 'Report with id 12 doesn\'t have data configuration.'
+        }
+
+        before do
+          report.update(data_configuration: {})
+        end
+
+        let(:report_id) { report.id }
+        let(:include_factors) { true }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+          expect(result).to eq(
+            'code' => 1007,
+            'message' => 'Resource not configured.',
+            'more_info' => "Report with id #{report_id} doesn't have data configuration."
+          )
         end
       end
     end

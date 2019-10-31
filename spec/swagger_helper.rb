@@ -188,6 +188,48 @@ Single Sign-on is achieved via calling the sso endpoint and redirecting the user
             name: { type: 'string' },
             url: { type: 'string' }
           }
+        },
+        Occupation: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            name: { type: 'string' },
+            description: { type: 'string' },
+            updated_at: { type: 'string' }
+          }
+        },
+        Factor: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            name: { type: 'string' },
+            description: { type: 'string' },
+            updated_at: { type: 'string' }
+          }
+        },
+        Dimension: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer' },
+            name: { type: 'string' },
+            occupations: {
+              type: 'array',
+              items: { '$ref' => '#/definitions/Occupation' }
+            },
+            factors: {
+              type: 'array',
+              items: { '$ref' => '#/definitions/Factor' }
+            }
+          }
+        },
+        Dimensions: {
+          type: 'object',
+          properties: {
+            dimensions: {
+              type: 'array',
+              items: { '$ref' => '#/definitions/Dimension' }
+            }
+          }
         }
       }
     }

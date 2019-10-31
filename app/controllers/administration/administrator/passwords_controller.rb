@@ -3,6 +3,8 @@
 module Administration
   module Administrator
     class PasswordsController < Devise::PasswordsController
+      include PasswordReset
+
       helper_method :resource_name, :devise_mapping
 
       def resource_name
@@ -13,14 +15,10 @@ module Administration
         @devise_mapping ||= Devise.mappings[:user]
       end
 
-      protected
+      private
 
       def after_sending_reset_password_instructions_path_for(_resource_name)
-        if resource.is?(:superadmin, :client_admin, :project_admin)
-          administration_root_path
-        else
-          super
-        end
+        root_path
       end
     end
   end

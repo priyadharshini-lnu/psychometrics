@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
 import { closeModal } from 'admin/core/temp/modals'
-import { fillEvaluators, createAllEvaluators } from 'admin/core/threeSixtyCampaign/evaluators'
+import {
+  fillEvaluators,
+  createAllEvaluators, clearForm, CREATE_ALL_EVALUATORS,
+} from 'admin/core/threeSixtyCampaign/evaluators'
 
 export default connect(
   ({
@@ -13,6 +16,7 @@ export default connect(
     temp: {
       modals: { current },
       autocomplete: { subjects = [], evaluators = [] },
+      request: { loading, name: requestName },
     },
   }) => ({
     errors,
@@ -21,10 +25,12 @@ export default connect(
     autocompletedEvaluators: evaluators,
     evaluators: attrs,
     relationships,
+    creationInProgress: loading && requestName === CREATE_ALL_EVALUATORS,
   }),
   {
     closeModal,
     createAllEvaluators,
     fillEvaluators,
+    clearForm,
   },
 )

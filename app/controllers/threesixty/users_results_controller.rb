@@ -49,6 +49,7 @@ module Threesixty
                       else
                         UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
                       end
+      authorize [:threesixty, @users_result]
     end
   end
 end
