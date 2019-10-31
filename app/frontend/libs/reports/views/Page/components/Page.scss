@@ -1,0 +1,75 @@
+:global {
+  //@page {
+  //  size: A4;
+  //  margin: 0;
+  //}
+}
+
+.page {
+  position: relative;
+  margin: 0px 5px;
+}
+
+.pageContainer {
+  position: relative;
+  margin: 0 auto;
+  font-size: 13.8889px;
+  box-shadow: #666 0px 0px 0.2em;
+  background: white;
+  box-sizing: content-box;
+  &.selected {
+    box-shadow: #3C87C0 0px 0px 0.2em;
+  }
+}
+
+.pageContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 1.42857143;
+  color: #333;
+}
+
+.header {
+  height: 23px;
+  padding: 0 10px 0 10px;
+  line-height: 23px;
+  font-size: 11px;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  top: -28px;
+  justify-content: space-between;
+  a {
+    text-decoration: none;
+    color: #777;
+    font-size: 12px;
+  }
+  .controls {
+    :global {
+      .dropdown-menu {
+        z-index: 9999;
+        &:before, &:after {
+          left: inherit;
+          right: 5%;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  margin-top: 35px;
+  margin-bottom: 35px;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 14px;
+    &:hover {
+      text-decoration: underline;
+      color: #3C87C0;
+    }
+  }
+}

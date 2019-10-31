@@ -1,0 +1,105 @@
+.header {
+  width: 100%;
+  display: flex;
+  z-index: 2500;
+  height: 40px;
+  border-color: #bfbfbf;
+  background: #f0f0f0;
+  border-width: 1px 0;
+  border-style: solid;
+}
+
+.components {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.set {
+  margin: 6px 10px;
+  display: flex;
+
+  a {
+    position: relative;
+    cursor: pointer;
+    width: auto;
+    flex: 1;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+    line-height: 21px;
+    margin: 5px 15px;
+    text-decoration: none;
+
+    &:hover {
+      color: #000;
+    }
+  }
+
+  span {
+    font-size: 1.5em;
+    margin: 0 5px;
+
+    &.plus {
+      position: absolute;
+      top: -2px;
+      font-weight: bold;
+
+      left: -3px;
+      font-size: 10px;
+      background: #e0e0e0;
+      width: 7px;
+      height: 7px;
+      line-height: 0.75;
+      border-radius: 10px;
+    }
+  }
+}
+
+.saveButton {
+  margin-right: 10px;
+}
+
+.rightSet {
+  a {
+    flex: initial;
+  }
+}
+
+.back {
+  margin: 0 !important;
+  padding: 4px 15px 3px;
+}
+
+.linkExport {
+  color: #000 !important;
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+:global {
+
+  #froala-editor-toolbar {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-height: 38px;
+    background: inherit;
+    box-shadow: 0 1px 5px rgba(0,0,0, 0.15);
+    .fr-toolbar {
+      background: inherit;
+      border-radius: 0;
+      border: 0;
+    }
+    .fr-newline {
+      display: none;
+    }
+  }
+}

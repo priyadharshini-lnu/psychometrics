@@ -1,0 +1,21 @@
+.page{
+  position: relative;
+  page-break-before: always;
+  color: black;
+}
+
+.pageContainer{
+  font-size: 13.8889px;
+  background: white;
+  box-sizing: content-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.pageContent{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  line-height: 1.42857143;
+  color: #333;
+}

@@ -1,0 +1,44 @@
+import _ from 'lodash'
+import I18nStore from 'rb/store/I18nStore'
+
+export const Functions = {
+  Count (data, index) {
+    return _.filter(_.map(data, obj => obj[0]), { value: index }).length
+  },
+
+  Percentile (data, index) {
+    return _.filter(_.map(data, obj => obj[0]), { value: index }).length * 100 / data.length
+  },
+
+  Mean (data) {
+    const sum = _.reduce(_.map(data, obj => obj[0]), (n, result) => result.value + n, 0)
+    return sum / data.length
+  },
+}
+
+export default {
+  series (results, question, model, func = 'Count') {
+    const commonData = []
+    if (func === 'Mean') {
+      commonData.push({
+        name: I18nStore.tQuestion(question, 'questionText'),
+        y: (Functions[func] || Functions.Count)(results.questions[question.id]),
+        drilldown: question.props.questionText,
+      })
+    } else {
+      for (let i = question.props.min; i <= question.props.max; i += 1) {
+        const data = (Functions[func] || Functions.Count)(results.questions[question.id], i)
+        commonData.push({
+          name: i,
+          y: data,
+          drilldown: i,
+        })
+      }
+    }
+    return [{
+      colorByPoint: true,
+      data: commonData,
+    }]
+  },
+  functions: _.keys(Functions),
+}

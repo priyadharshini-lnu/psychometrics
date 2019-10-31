@@ -1,0 +1,54 @@
+.color {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.swatch {
+  width: 18px;
+  height: 18px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.colorSet {
+  display: flex;
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 2px;
+  width: 80%;
+}
+
+.field {
+  min-width: 125px;
+}
+
+.controls {
+  :global {
+    .fa {
+      display: block;
+      text-align: center;
+      width: 20px;
+      color: #000;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+}
+
+.popover {
+  position: absolute;
+  left: -207px;
+  z-index: 9000;
+  top: 70px;
+}
+.cover {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}

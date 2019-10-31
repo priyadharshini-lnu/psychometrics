@@ -1,0 +1,156 @@
+export default {
+  Text: {
+    sourceType: 'Text',
+    position: {
+      left: 100,
+      top: 100,
+      width: 650,
+      height: 200,
+    },
+    style: {
+      border: '1px solid',
+      borderColor: {
+        r: '170',
+        g: '170',
+        b: '170',
+        a: '1',
+      },
+      fontColor: {
+        r: '1',
+        g: '1',
+        b: '1',
+        a: '1',
+      },
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      fontSize: '100%',
+      fontFamily: 'Arial',
+      borderRadius: 0,
+      backgroundColor: {
+        r: '238',
+        g: '238',
+        b: '238',
+        a: '1',
+      },
+      verticalAlign: 'flex-start',
+      horizontalAlign: '',
+    },
+    zIndex: 3000,
+    text: 'Double Click to Edit Text...',
+  },
+
+  Image: {
+    position: {
+      left: 100,
+      top: 100,
+      width: 650,
+      height: 200,
+    },
+    url: '',
+    zIndex: 3000,
+    showOnAllPages: false,
+  },
+
+  Shape: {
+    shapeType: 'Shape',
+    position: {
+      left: 100,
+      top: 100,
+      width: 650,
+      height: 200,
+    },
+    style: {
+      border: '1px solid',
+      borderColor: {
+        r: '170',
+        g: '170',
+        b: '170',
+        a: '1',
+      },
+      borderRadius: 0,
+      shadow: 0,
+      offsetX: 0,
+      offsetY: 0,
+      backgroundColor: {
+        r: '238',
+        g: '238',
+        b: '238',
+        a: '1',
+      },
+    },
+    zIndex: 3000,
+    showOnAllPages: false,
+  },
+
+  Graph: {
+    colors: [
+      { id: 1, color: '#4572A7' },
+      { id: 2, color: '#AA4643' },
+      { id: 3, color: '#89A54E' },
+      { id: 4, color: '#71588F' },
+      { id: 5, color: '#4198AF' },
+      { id: 6, color: '#DB843D' },
+      { id: 7, color: '#93A9CF' },
+      { id: 8, color: '#D19392' },
+      { id: 9, color: '#B9CD96' },
+      { id: 10, color: '#A99BBD' },
+    ],
+    choicesTexts: {},
+    position: {
+      left: 100,
+      top: 100,
+      width: 650,
+      height: 250,
+    },
+    style: {
+      fontColor: '#000',
+      fontSize: '100%',
+      fontFamily: 'Arial',
+    },
+    source: null,
+    type: null,
+    zIndex: 3000,
+    showValues: true,
+    showOnAllPages: false,
+  },
+
+  Table: {
+    choicesTexts: {},
+    type: 'SimpleTable',
+    columnsCount: 2,
+    rowsCount: 2,
+    itemsPerPage: 10,
+    pageNumber: 1,
+    minPosition: 1,
+    maxPosition: 5,
+    leftPanelColor: '#000',
+    columnData: null,
+    rowData: null,
+    defaultCell: {
+      value: '',
+      styles: {
+
+      },
+    },
+    position: {
+      left: 100,
+      top: 100,
+      width: 650,
+      height: 200,
+    },
+    style: {
+      fontColor: {
+        r: '1',
+        g: '1',
+        b: '1',
+        a: '1',
+      },
+      backgroundColor: '#F2F1F1',
+      fontSize: '100%',
+      fontFamily: 'Arial',
+      width: '100%',
+    },
+    zIndex: 3000,
+    showOnAllPages: false,
+  },
+}
