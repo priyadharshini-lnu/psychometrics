@@ -23,7 +23,7 @@
   },
   "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
   "dependencies": {
-    "action-cable-react": "git+ssh://git@github.com:Fabel/action-cable-react.git",
+    "action-cable-react": "git+https://github.com/Fabel/action-cable-react.git",
     "fbemitter": "^2.0.2",
     "history": "^2.0.0",
     "jquery": "^3.2.1",
