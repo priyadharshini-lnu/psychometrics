@@ -21,6 +21,17 @@ html, body {
 
       margin-bottom: 30px;
     }
+    .logo-wrap {
+      padding: 10px 50px;
+      float: left;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      max-height: 100%;
+      max-width: 100%;
+    }
   }
 
   footer {
