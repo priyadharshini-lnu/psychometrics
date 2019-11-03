@@ -114,7 +114,6 @@ environment.config.merge({
     watchOptions: {
       poll: 1000,
       aggregateTimeout: 600,
-      ignored: [/node_modules\/(?!reports-ui)/],
     },
   },
 })
