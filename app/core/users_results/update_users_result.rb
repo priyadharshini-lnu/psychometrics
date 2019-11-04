@@ -13,12 +13,10 @@ module UsersResults
     def call
       return broadcast(:invalid) if form.invalid?
 
-      transaction do
-        update_users_result
-        if users_result.completed?
-          generate_360_report
-          send_necessary_emails
-        end
+      update_users_result
+      if users_result.completed?
+        generate_360_report
+        send_necessary_emails
       end
 
       broadcast(:ok)
@@ -32,8 +30,7 @@ module UsersResults
     #   and increases the step of users_result
     #
     def update_users_result
-      users_result.assign_attributes(form.attributes)
-      users_result.step = users_result.step.to_i + 1
+      users_result.update!(form.attributes)
 
       # Calculates scoring and sets time of completion
       if users_result.completed?

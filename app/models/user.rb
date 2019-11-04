@@ -237,6 +237,10 @@ class User < ApplicationRecord
     role == 'Users::SuperAdmin'
   end
 
+  def admin?
+    is?(:superadmin, :client_admin, :project_admin)
+  end
+
   private
 
   def generate_invitation_token
