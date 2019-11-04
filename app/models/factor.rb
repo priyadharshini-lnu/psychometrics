@@ -22,7 +22,7 @@ class Factor < ApplicationRecord
   belongs_to :dimension, touch: true
   has_many :factors_sub_factors
   has_many :sub_factors, through: :factors_sub_factors
-  has_many :factors_norms
+  has_many :factors_norms, dependent: :destroy
   has_many :factors_scoring
   has_many :questions, through: :factors_scoring
   has_many :occupations_factors, dependent: :destroy

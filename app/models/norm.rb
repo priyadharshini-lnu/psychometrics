@@ -17,6 +17,7 @@
 
 class Norm < ApplicationRecord
   include Copyable
+
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   has_many :factors_norms, dependent: :destroy
@@ -54,4 +55,10 @@ class Norm < ApplicationRecord
         order("norms.updated_at #{direction}")
     end
   }
+
+  def clone
+    @cloned_item = deep_clone include: [:factors_norms]
+    @cloned_item.gen_uniq_name
+    @cloned_item
+  end
 end
