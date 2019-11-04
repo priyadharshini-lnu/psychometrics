@@ -2,6 +2,7 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
     thead
       tr
+        th = link_to_sort resource_class, :id, filter_form
         th.text-center width='1%' = link_to_sort resource_class, :active, filter_form
         th = link_to_sort resource_class, :first_name, filter_form
         th = link_to_sort resource_class, :last_name, filter_form
@@ -19,5 +20,5 @@
         = render partial: 'resource', collection: resources
       - else
         tr.no_records
-          td align='center' colspan='9' = t('administration.no_data_found')
+          td align='center' colspan='13' = t('administration.no_data_found')
   = paginate resources, theme: 'twitter-bootstrap-3'

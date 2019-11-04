@@ -14,6 +14,8 @@
 #
 
 class InnovationStyle < ApplicationRecord
+  include RansackSearchableIdField
+
   has_many :innovation_styles_factors
   belongs_to :dimension
 
@@ -23,4 +25,6 @@ class InnovationStyle < ApplicationRecord
   validates :position, numericality: { only_integer: true }, allow_nil: true
 
   mount_uploader :icon, ImageUploader
+
+  ransack_searchable_id_field
 end

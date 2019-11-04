@@ -15,6 +15,7 @@
 
 class Dimension < ApplicationRecord
   include Copyable
+  include RansackSearchableIdField
 
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :factors, -> { roots.order(id: :asc) }
@@ -52,6 +53,8 @@ class Dimension < ApplicationRecord
         order("dimensions.updated_at #{direction}")
     end
   }
+
+  ransack_searchable_id_field
 
   def clone_and_save
     @cloned_dimension = deep_clone(include: [:occupations, { factors: :factors_sub_factors }],

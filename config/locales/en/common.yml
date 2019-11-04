@@ -23,6 +23,7 @@ en:
   'yes': 'Yes'
   'no': 'No'
   'clear_filter': 'Clear Filter'
+  id: Id
   next: Next
   loading: 'Processing...'
   languages:

@@ -17,6 +17,7 @@
 
 class Norm < ApplicationRecord
   include Copyable
+  include RansackSearchableIdField
 
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
@@ -55,6 +56,8 @@ class Norm < ApplicationRecord
         order("norms.updated_at #{direction}")
     end
   }
+
+  ransack_searchable_id_field
 
   def clone
     @cloned_item = deep_clone include: [:factors_norms]

@@ -49,6 +49,7 @@ class User < ApplicationRecord
   include UserRoles
   include UserValidations
   include TwoFactorAuthenticatable
+  include RansackSearchableIdField
 
   DEFAULT_ADMIN_GRANTS = {
     assessments: %w[view],
@@ -131,6 +132,7 @@ class User < ApplicationRecord
   validate :validate_grants
 
   has_one_time_password(encrypted: true)
+  ransack_searchable_id_field
 
   # Overridden Devise class method
   def self.send_reset_password_instructions(recoverable)

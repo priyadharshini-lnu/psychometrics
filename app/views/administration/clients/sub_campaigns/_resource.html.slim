@@ -1,4 +1,5 @@
 tr data-sidebar=url_for(sidebar_administration_client_sub_campaign_path(client, resource)) id=dom_id(resource)
+  td = resource.id
   td
     = link_to resource.name, administration_client_users_path(resource)
   td
