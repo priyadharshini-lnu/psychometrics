@@ -5,4 +5,5 @@ class AssignForm < Rectify::Form
   attribute :results, Hash, default: nil
   attribute :embedded_data, Hash, default: nil
   attribute :norm_data, Hash, default: nil
+  attribute :step, Integer, default: 0
 end

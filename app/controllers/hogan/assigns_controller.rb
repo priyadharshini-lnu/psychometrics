@@ -24,6 +24,7 @@ module Hogan
 
       Hogan::LoadResultsJob.set(wait: 30.seconds).
         perform_later(@assign, @current_membership.membership_with_result, @current_project)
+      Assigns::GenerateReport.call(@assign, current_user)
 
       redirect_to root_path
     end

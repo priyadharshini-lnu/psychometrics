@@ -1,9 +1,18 @@
 $(function () {
   $('#filter').trigger('reloadList');
   // Notify message
+  <% if @report_generatable %>
+    noty({
+      text: '<%= t(".successfully") %>',
+      type: 'success',
+      timeout: 9000,
+    });
+<% else %>
   noty({
-    text: '<%= t(".successfully") %>',
-    type: 'success',
-    timeout: 9000
+    text: '<%= t(".failure", assessment_names: @incomplete_assessment_names) %>',
+    type: 'error',
+    closeWith: ['click', 'button'],
+    timeout: false,
   });
+<% end %>
 });
