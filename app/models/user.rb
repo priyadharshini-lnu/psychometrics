@@ -46,30 +46,9 @@
 
 class User < ApplicationRecord
   include UserScopes
+  include UserRoles
   include UserValidations
   include TwoFactorAuthenticatable
-
-  # Roles constant
-  SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
-  REGULAR_ROLE = 'Users::Regular'
-  ADMIN_ROLE = 'Users::Admin'
-
-  USER_ROLES = {
-    superadmin: SUPER_ADMIN_ROLE,
-    regular: REGULAR_ROLE,
-    admin: ADMIN_ROLE
-  }.freeze
-
-  USER_ROLES_SCOPES = {
-    administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE],
-    user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
-  }.freeze
-
-  # Contain information about ability to manage list of roles
-  USER_ROLES_HIERARCHY = {
-    superadmin: USER_ROLES.values,
-    regular: Membership::MEMBERSHIP_ROLES
-  }.freeze
 
   DEFAULT_ADMIN_GRANTS = {
     assessments: %w[view],
@@ -140,7 +119,6 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :memberships
 
-  scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
   validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
@@ -150,7 +128,6 @@ class User < ApplicationRecord
   validates_presence_of     :password, if: :password_required?
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
-  validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
 
   has_one_time_password(encrypted: true)
@@ -172,34 +149,6 @@ class User < ApplicationRecord
     return 1.year if is?(:superadmin) || is_anonym?
 
     super
-  end
-
-  def is?(*roles)
-    roles.map!(&:to_sym)
-    arr = if current_membership
-            [current_membership.role.to_sym]
-          else
-            [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
-          end
-    (arr & roles).any?
-  end
-
-  # Return devise scope
-  # :administration, :user
-  def role_scope
-    USER_ROLES_SCOPES.each do |scope, roles|
-      break scope if is?(*roles)
-    end
-  end
-
-  # Return true if current user/admin has ability to manage passed user
-  def can_manage?(user)
-    user.role && can_manage.include?(user.role)
-  end
-
-  # Return list of roles, that can manage
-  def can_manage
-    (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
   end
 
   def ensure_authentication_token
@@ -227,18 +176,6 @@ class User < ApplicationRecord
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
     end
-  end
-
-  def has_grant?(scope, grant)
-    memberships.any? { |m| m.has_grant?(scope, grant) }
-  end
-
-  def superadmin?
-    role == 'Users::SuperAdmin'
-  end
-
-  def admin?
-    is?(:superadmin, :client_admin, :project_admin)
   end
 
   private
