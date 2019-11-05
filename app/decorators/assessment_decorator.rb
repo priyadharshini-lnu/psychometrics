@@ -52,8 +52,8 @@ class AssessmentDecorator < BaseDecorator
 
   def universal_link_regeneration_confirmation
     {
-      title: I18n.t("administration.clients.assessments.resource.confirmations.universal_links.regeneration.title"),
-      body: I18n.t("administration.clients.assessments.resource.confirmations.universal_links.regeneration.body")
+      title: I18n.t('administration.clients.assessments.resource.confirmations.universal_links.regeneration.title'),
+      body: I18n.t('administration.clients.assessments.resource.confirmations.universal_links.regeneration.body')
     }.to_json
   end
 
