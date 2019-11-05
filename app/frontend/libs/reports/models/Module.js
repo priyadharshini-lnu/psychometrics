@@ -17,7 +17,7 @@ export const DATA_SHEET = 'DataSheet'
 const Module = function (attrs = {}, store) {
   this.store = store
   this.id = attrs.id
-  this.assessment_id = (attrs.assessment_id || AppStore.assessments[0]) && AppStore.assessments[0].id
+  this.assessment_id = attrs.assessment_id || (AppStore.assessments[0] && AppStore.assessments[0].id)
   this.type = attrs.type
   this.props = _.cloneDeep(DefaultProps[this.type] || {})
   this.moduleConfig = ModuleConfigs[this.type] || {}
