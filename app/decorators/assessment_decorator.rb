@@ -33,7 +33,7 @@ class AssessmentDecorator < BaseDecorator
 
   def anonym_link_for(client)
     # Disallow universal links for Hogan and MM
-    return if object.external?
+    return 'N/A' if object.external?
 
     assessments_client = client.assessments_clients.find_by(assessment_id: object.id)
 

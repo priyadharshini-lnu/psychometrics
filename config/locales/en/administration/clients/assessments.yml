@@ -7,3 +7,7 @@ en:
           scoring_results: Scoring results
           raw_results: Raw results
           normed_results: Normed results
+          activate_universal_link: 'Activate Universal Link'
+          generate_universal_link: 'Generate Univeral Link'
+          deactivate_universal_link: 'Deactivate Univeral Link'
+          regenerate_universal_link: 'Regenerate Univeral Link'

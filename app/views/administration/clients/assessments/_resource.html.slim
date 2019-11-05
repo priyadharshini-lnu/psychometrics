@@ -14,13 +14,13 @@ tr id=dom_id(resource)
         ul.dropdown-menu
           - unless client.assessment_universal_links_enabled?(resource.id)
             li
-              = link_to t('.activate_universal_links'),
+              = link_to t('.activate_universal_link'),
                 administration_client_assessment_enable_universal_links_path(client, resource),
                 remote: true,
                 method: :put
           - if client.assessment_universal_links_enabled?(resource.id)
             li
-              = link_to t('.deactivate_universal_links'),
+              = link_to t('.deactivate_universal_link'),
                 administration_client_assessment_disable_universal_links_path(client, resource),
                 remote: true,
                 method: :put
