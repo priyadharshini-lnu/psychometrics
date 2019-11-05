@@ -50,6 +50,13 @@ class AssessmentDecorator < BaseDecorator
     h.link_to(url, url)
   end
 
+  def universal_link_regeneration_confirmation
+    {
+      title: I18n.t("administration.clients.assessments.resource.confirmations.universal_links.regeneration.title"),
+      body: I18n.t("administration.clients.assessments.resource.confirmations.universal_links.regeneration.body")
+    }.to_json
+  end
+
   def client_name
     if object.owner_id
       helpers.link_to(object.owner.name, h.administration_client_projects_path(object.owner_id))

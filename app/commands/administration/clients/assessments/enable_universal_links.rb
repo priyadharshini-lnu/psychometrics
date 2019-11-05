@@ -17,6 +17,10 @@ module Administration
           assessment_client = client.assessments_clients.find_by(assessment_id: assessment.id)
           assessment_client.toggle_universal_links!(true)
 
+          if !assessment_client.has_valid_universal_link?
+            GenerateUniversalLink.call(@client, @assessment)
+          end
+
           broadcast(:ok)
         end
       end

@@ -11,3 +11,9 @@ en:
           generate_universal_link: 'Generate Univeral Link'
           deactivate_universal_link: 'Deactivate Univeral Link'
           regenerate_universal_link: 'Regenerate Univeral Link'
+          confirmations:
+            universal_links:
+              regeneration:
+                title: 'Are you sure?'
+                body: 'Regenerating the Universal Link will cause the existing link to stop working.'
+
