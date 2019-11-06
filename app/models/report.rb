@@ -138,7 +138,7 @@ class Report < ApplicationRecord
   # Copy report with nested resources
   def clone
     @cloned_item = deep_clone(
-      include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting, :translations]
+      include: [:assessments, { pages: :modules }, :hogan_report_setting, :translations]
     )
     @cloned_item.gen_uniq_name
     @cloned_item
