@@ -119,7 +119,7 @@ class Assessment < ApplicationRecord
 
   # Copy report with nested resources
   def clone
-    @cloned_item = deep_clone include: [:translations]
+    @cloned_item = deep_clone include: [:translations, { questions: :question_recodings }]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
