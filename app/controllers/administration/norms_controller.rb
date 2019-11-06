@@ -8,7 +8,10 @@ class Administration::NormsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @_filter_form = policy_scope(resource_class).includes(:updater, :dimension).search(params[:q])
+    search_term = params[:q].nil? ? nil : params[:q]['id_or_name']
+    @_filter_form = policy_scope(resource_class).
+                    includes(:updater, :dimension).
+                    ransack(eq_id_or_cont_name: search_term)
     @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|

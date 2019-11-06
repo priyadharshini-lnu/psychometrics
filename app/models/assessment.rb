@@ -23,7 +23,7 @@
 
 class Assessment < ApplicationRecord
   include Copyable
-  include RansackSearchableIdField
+  include RansackSearchableFields
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
@@ -116,8 +116,6 @@ class Assessment < ApplicationRecord
   scope :with_category, lambda { |category|
     where(category: category)
   }
-
-  ransack_searchable_id_field
 
   def set_default_color
     self.icon_color = Settings.default_colors.sample

@@ -18,7 +18,7 @@
 
 class Factor < ApplicationRecord
   include Copyable
-  include RansackSearchableIdField
+  include RansackSearchableFields
 
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
@@ -93,8 +93,6 @@ class Factor < ApplicationRecord
   scope :with_dimension, lambda { |dimension_id|
     where(dimension_id: dimension_id)
   }
-
-  ransack_searchable_id_field
 
   #
   # Returns hash: ass_name

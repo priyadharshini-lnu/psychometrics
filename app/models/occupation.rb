@@ -24,7 +24,7 @@
 #
 
 class Occupation < ApplicationRecord
-  include RansackSearchableIdField
+  include RansackSearchableFields
 
   has_many :occupations_factors
   belongs_to :dimension
@@ -36,6 +36,4 @@ class Occupation < ApplicationRecord
   mount_uploader :icon, ImageUploader
   mount_uploader :indicative_roles_image, ImageUploader
   mount_uploader :key_career_tracks_image, ImageUploader
-
-  ransack_searchable_id_field
 end

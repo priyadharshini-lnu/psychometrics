@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
-  include RansackSearchableIdField
+  include RansackSearchableFields
 
   self.inheritance_column = :_type_disabled
 
@@ -23,6 +23,4 @@ class Campaign < ApplicationRecord
   THREESIXTY = :threesixty
 
   enum type: %i[common threesixty]
-
-  ransack_searchable_id_field
 end

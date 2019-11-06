@@ -33,7 +33,7 @@
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   include Copyable
-  include RansackSearchableIdField
+  include RansackSearchableFields
   attr_writer :license_msg
 
   HIERARCHY_LEVEL = {
@@ -172,8 +172,6 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
-
-  ransack_searchable_id_field
 
   def assign_by_membership_and_assessment(membership_id, assessment_id)
     memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)
