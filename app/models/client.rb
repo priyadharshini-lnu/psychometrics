@@ -247,15 +247,6 @@ class Client < ApplicationRecord
     nil
   end
 
-  def clone
-    deep_clone include: [:reports] do |original, copy|
-      copy.name += ' (copy)'
-      if original.subdomain.present?
-        copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
-      end
-    end
-  end
-
   def set_hogan_group_name
     self.hogan_group_name = generate_hogan_group_name
   end

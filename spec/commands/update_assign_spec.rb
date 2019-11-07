@@ -44,9 +44,8 @@ describe UpdateAssign do
       after { described_class.call(form, assign, current_user) }
       subject { assign }
 
-      it { is_expected.to receive(:assign_attributes).with(form.attributes) }
-      it { is_expected.to receive(:'step=').with(4) }
-      it { is_expected.to receive(:save!) }
+      it { is_expected.to receive(:update!).with(form.attributes).and_return(true) }
+      it { is_expected.to receive(:save!).at_least(:once) }
 
       context 'assign is completed' do
         before do
@@ -59,7 +58,7 @@ describe UpdateAssign do
     end
 
     context '#generate_report' do
-      before { allow(assign).to receive(:'completed?').and_return(true) }
+      let!(:assign) { create(:assign, assessment: assessment, membership: membership, step: 3, status: :completed) }
       subject { described_class.call(form, assign, current_user) }
 
       context 'report is enabled' do
