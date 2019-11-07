@@ -137,7 +137,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --cache && bundle exec rubocop"
     }
   }
 }
