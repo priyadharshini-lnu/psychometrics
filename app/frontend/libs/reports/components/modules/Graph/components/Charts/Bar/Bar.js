@@ -79,8 +79,8 @@ class Bar extends Component {
     let legendHorizontalPosition = 'Middle'
     if (model.props.legendPosition) {
       [legendVerticalPosition, legendHorizontalPosition] = model.props.legendPosition.split(' ')
-      if (legendHorizontalPosition === 'Middle') { legendHorizontalPosition = 'Center' }
     }
+    if (legendHorizontalPosition === 'Middle') { legendHorizontalPosition = 'Center' }
     this.chart = Highcharts.chart(
       this.container,
       _.merge(

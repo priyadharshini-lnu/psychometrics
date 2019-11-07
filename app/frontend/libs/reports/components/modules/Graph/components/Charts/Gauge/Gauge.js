@@ -10,7 +10,6 @@ import ChartOptions from './ChartOptions'
 import Series from './Series'
 import { getCorrectResults } from '../ResultManager'
 
-
 class Gauge extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -47,8 +46,7 @@ class Gauge extends Component {
     const series = data.series(getCorrectResults(model), factor, model)
     const { props } = model
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-
-    Highcharts.chart(this.container, Highcharts.merge(ChartOptions(), {
+    Highcharts.chart(this[`container${factor.id || factor}`], Highcharts.merge(ChartOptions(), {
       plotOptions: {
         series: {
           colors: [props.speedometerMainColor],
@@ -117,7 +115,12 @@ class Gauge extends Component {
       <div className={styles.gauge}>
         {['Factor', 'ExternalFactor', 'DataSheet'].includes(sourceType) && sourceModel
           && _.map(sourceModel, (factor, i) => (
-            <div style={cssStyles} key={i} className={styles.chartContainer} ref={(ref) => { this.container = ref }} />
+            <div
+              style={cssStyles}
+              key={i}
+              className={styles.chartContainer}
+              ref={(ref) => { this[`container${factor.id || factor}`] = ref }}
+            />
           ))}
       </div>
     )
