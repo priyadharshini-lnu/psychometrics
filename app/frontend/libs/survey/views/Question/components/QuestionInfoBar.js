@@ -5,13 +5,12 @@ import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import RandomizationStore from 'store/RandomizationStore'
 import DefaultValueStore from 'store/DefaultValueStore'
-import DisplayLogicStore from 'store/DisplayLogicStore'
 import styles from './Question.scss'
 
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
+    blockStore: PropTypes.object.isRequired,
   }
 
   addNote = () => {
@@ -35,8 +34,8 @@ class Question extends Component {
   }
 
   saveAsTemplate = () => {
-    const { model, store } = this.props
-    store.dispatcher.saveAsTemplate(model)
+    const { model, blockStore } = this.props
+    blockStore.dispatcher.saveAsTemplate(model)
   }
 
   defaultValue = () => {
@@ -45,13 +44,13 @@ class Question extends Component {
   }
 
   displayLogic = () => {
-    const { model } = this.props
-    DisplayLogicStore.open(model)
+    const { model, openDisplayLogic } = this.props
+    openDisplayLogic(model)
   }
 
   changeName = (value) => {
-    const { model, store } = this.props
-    store.dispatcher.rename(model, value)
+    const { model, blockStore } = this.props
+    blockStore.dispatcher.rename(model, value)
     model.rename(value)
     model.name = value
     this.forceUpdate()

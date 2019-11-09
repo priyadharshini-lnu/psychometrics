@@ -30,7 +30,7 @@ export class QuestionList extends Component {
           if (question.type === 'PageBreak') {
             return <PageBreak store={store} model={question} key={i} />
           }
-          return <Question store={store} model={question} key={i} />
+          return <Question blockStore={store} model={question} key={i} />
         })}
       </div>
     )

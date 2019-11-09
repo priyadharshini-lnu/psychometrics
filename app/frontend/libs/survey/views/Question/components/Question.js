@@ -15,7 +15,7 @@ import buttons from './Buttons.scss'
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
+    blockStore: PropTypes.object.isRequired,
   }
 
   state = {
@@ -36,10 +36,10 @@ class Question extends Component {
   }
 
   remove = () => {
-    const { model, store } = this.props
+    const { model, blockStore } = this.props
     this.setState({ fadeout: true, showDeleteConfirmation: false })
     setTimeout(() => {
-      store.dispatcher.clickRemove(model)
+      blockStore.dispatcher.clickRemove(model)
       PropertyPanelDispatcher.unselect()
       if (this.mounted) {
         this.setState({ fadeout: false })

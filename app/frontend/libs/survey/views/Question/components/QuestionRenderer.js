@@ -6,7 +6,7 @@ import styles from './Question.scss'
 class QuestionRenderer extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
+    blockStore: PropTypes.object.isRequired,
   }
 
   renderModule () {

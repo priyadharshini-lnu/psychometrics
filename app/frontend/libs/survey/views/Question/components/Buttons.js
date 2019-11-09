@@ -6,29 +6,29 @@ import styles from './Buttons.scss'
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
+    blockStore: PropTypes.object.isRequired,
     up: PropTypes.string,
     remove: PropTypes.func,
   }
 
   moveDown = () => {
-    const { store, model } = this.props
-    store.dispatcher.moveDown(model)
+    const { blockStore, model } = this.props
+    blockStore.dispatcher.moveDown(model)
   }
 
   moveUp = () => {
-    const { store, model } = this.props
-    store.dispatcher.moveUp(model)
+    const { blockStore, model } = this.props
+    blockStore.dispatcher.moveUp(model)
   }
 
   insertBottom = () => {
-    const { store, model } = this.props
-    store.dispatcher.insertAfter(model)
+    const { blockStore, model } = this.props
+    blockStore.dispatcher.insertAfter(model)
   }
 
   insertTop = () => {
-    const { store, model } = this.props
-    store.dispatcher.insertBefore(model)
+    const { blockStore, model } = this.props
+    blockStore.dispatcher.insertBefore(model)
   }
 
   render () {
