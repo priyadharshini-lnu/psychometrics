@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import 'styles/core.scss'
 import Home from 'views/Home'
 import Trash from 'views/Trash'
@@ -21,6 +22,7 @@ import Library from 'psychometrics-library-ui'
 import PipedTextModal from 'components/PipedTextModal'
 import Scoring from '../layouts/Scoring'
 import Dashboard from '../layouts/Dashboard'
+import store from '../rstore'
 
 class AppContainer extends Component {
   undoListener = null
@@ -55,23 +57,25 @@ class AppContainer extends Component {
 
   renderAssessment () {
     return (
-      <Dashboard>
-        <Home />
-        <PropertyPanel />
-        <Trash />
-        <Preview />
-        <RichEditor />
-        <Randomization />
-        <CustomValidation />
-        <DefaultValue />
-        <DisplayLogic />
-        <CreateByTemplate />
-        <Flow />
-        <MappingNorms />
-        <EndOfAssessmentModal />
-        <Library />
-        <PipedTextModal />
-      </Dashboard>
+      <Provider store={store}>
+        <Dashboard>
+          <Home />
+          <PropertyPanel />
+          <Trash />
+          <Preview />
+          <RichEditor />
+          <Randomization />
+          <CustomValidation />
+          <DefaultValue />
+          <DisplayLogic />
+          <CreateByTemplate />
+          <Flow />
+          <MappingNorms />
+          <EndOfAssessmentModal />
+          <Library />
+          <PipedTextModal />
+        </Dashboard>
+      </Provider>
     )
   }
 
