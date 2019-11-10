@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 
-import { LibraryStore } from 'psychometrics-library-ui'
+import { LibraryStore } from 'libs/library'
 import Socket from 'cable'
 import LibraryTransport from 'cable/LibraryChannel'
 
