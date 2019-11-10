@@ -930,7 +930,7 @@ providers:
               type: PercentileSubscale
       - id: HBRIV1
         name: HBRI
-        form_id: 1
+        form_id: 2
         factors:
           -
             - id: '01'
