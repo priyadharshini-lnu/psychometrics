@@ -33,7 +33,7 @@ class AssessmentDecorator < BaseDecorator
 
   def anonym_link_for(client)
     # Disallow universal links for Hogan and MM
-    return if object.external?
+    return 'N/A' if object.external?
 
     assessments_client = client.assessments_clients.find_by(assessment_id: object.id)
 
@@ -48,6 +48,13 @@ class AssessmentDecorator < BaseDecorator
     url = h.anonym_assessment_pass_url(options)
 
     h.link_to(url, url)
+  end
+
+  def universal_link_regeneration_confirmation
+    {
+      title: I18n.t('administration.clients.assessments.resource.confirmations.universal_links.regeneration.title'),
+      body: I18n.t('administration.clients.assessments.resource.confirmations.universal_links.regeneration.body')
+    }.to_json
   end
 
   def client_name
