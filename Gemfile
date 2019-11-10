@@ -113,7 +113,7 @@ gem 'sentry-raven', '~> 2.9.0'
 gem 'baby_squeel', '~> 1.3.1'
 
 # Cloning ActiveRecord object
-gem 'deep_cloneable', '~> 2.2.1'
+gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
 gem 'carrierwave', '~> 1.2.2'
