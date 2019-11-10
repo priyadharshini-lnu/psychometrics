@@ -78,8 +78,7 @@ describe ::UsersResults::UpdateUsersResult do
       subject { users_result }
 
       it { is_expected.to receive(:assign_attributes).with(form.attributes) }
-      it { is_expected.to receive(:'step=').with(4) }
-      it { is_expected.to receive(:save!) }
+      it { is_expected.to receive(:save!).at_least(:once) }
 
       context 'users_result is completed' do
         before do
