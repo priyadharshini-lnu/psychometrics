@@ -4,6 +4,6 @@ import { open } from 'libs/survey/core/modals'
 export default connect(
   () => ({}),
   {
-    openDisplayLogic: question => open('displayLogic', question),
+    openDisplayLogic: data => open('displayLogic', data),
   },
 )

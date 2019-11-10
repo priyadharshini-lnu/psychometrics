@@ -5,6 +5,7 @@ import PreviewStore from 'store/PreviewStore'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
+import LogicElement from 'models/logic/LogicElement'
 import styles from './PropertyPanel.scss'
 
 class PropertyPanel extends Component {
@@ -40,7 +41,7 @@ class PropertyPanel extends Component {
 
   displayLogic = () => {
     const { openDisplayLogic } = this.props
-    openDisplayLogic(store.question)
+    openDisplayLogic({ question: store.question, logicElement: store.question.displayLogic || new LogicElement() })
   }
 
   addSkipLogic = () => {

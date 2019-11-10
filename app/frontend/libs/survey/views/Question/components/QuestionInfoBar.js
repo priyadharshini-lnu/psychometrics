@@ -5,6 +5,7 @@ import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import RandomizationStore from 'store/RandomizationStore'
 import DefaultValueStore from 'store/DefaultValueStore'
+import LogicElement from 'models/logic/LogicElement'
 import styles from './Question.scss'
 
 class Question extends Component {
@@ -45,7 +46,10 @@ class Question extends Component {
 
   displayLogic = () => {
     const { model, openDisplayLogic } = this.props
-    openDisplayLogic(model)
+    openDisplayLogic({
+      question: model,
+      logicElement: model.displayLogic || new LogicElement(),
+    })
   }
 
   changeName = (value) => {

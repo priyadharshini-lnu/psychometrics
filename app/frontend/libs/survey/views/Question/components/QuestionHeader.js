@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import LogicElementPreview from 'components/LogicElement/Preview'
+import LogicElement from 'models/logic/LogicElement'
 import styles from './Question.scss'
 
 class QuestionHeader extends Component {
@@ -35,7 +36,11 @@ class QuestionHeader extends Component {
             bsSize="small"
             title="Options"
           >
-            <MenuItem onSelect={() => openDisplayLogic(model)}>
+            <MenuItem onSelect={() => openDisplayLogic({
+              question: model,
+              logicElement: model.displayLogic || new LogicElement(),
+            })}
+            >
               <span className={`${styles.menuicon}`} />
               Edit
             </MenuItem>
