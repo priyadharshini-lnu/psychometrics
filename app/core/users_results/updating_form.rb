@@ -6,5 +6,6 @@ module UsersResults
     attribute :embedded_data, Hash, default: nil
     attribute :norm_id, Integer, default: nil
     attribute :answers, Hash, default: nil
+    attribute :step, Integer, default: 0
   end
 end
