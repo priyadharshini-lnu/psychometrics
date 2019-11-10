@@ -1,5 +1,5 @@
 import { setIn } from 'utils/immutable'
-import { combineHandlers } from 'utils/reduxUtils'
+import { createReducer } from 'utils/reduxUtils'
 
 const OPEN = 'survey/modals/OPEN'
 const CLOSE = 'survey/modals/CLOSE'
@@ -10,7 +10,7 @@ export const close = name => ({ type: CLOSE, name })
 export const defaultState = {
   displayLogic: {
     show: false,
-    question: null,
+    data: null,
   },
 }
 
@@ -23,4 +23,4 @@ const HANDLERS = {
   ),
 }
 
-export default combineHandlers(HANDLERS, defaultStatus)
+export default createReducer(HANDLERS, defaultState)

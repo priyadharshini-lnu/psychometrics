@@ -20,8 +20,10 @@ export default class DisplayLogic extends Component {
   }
 
   render () {
-    const { question, logicElement, close } = this.props
-    if (!question) { return null }
+    const {
+      show, question, logicElement, close,
+    } = this.props
+    if (!show) { return null }
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>
