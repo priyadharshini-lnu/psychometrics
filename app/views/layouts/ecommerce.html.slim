@@ -9,7 +9,8 @@ html
     = jquery_include_tag :google
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = render '//layouts/custom_styles'
+    = render 'layouts/custom_styles'
+    = render 'layouts/favicons'
   body data-locale="#{I18n.locale}"
     #page-content-wrapper
       .page-content.inset
