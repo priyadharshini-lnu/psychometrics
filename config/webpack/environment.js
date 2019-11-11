@@ -58,6 +58,8 @@ const vendors = [
   'action-cable-react',
   'react-addons-update',
   'moment',
+  'libs/conditions',
+  'libs/library',
 ]
 
 environment.config.merge({
@@ -101,8 +103,6 @@ environment.config.merge({
       WaveSurfer: 'wavesurfer.js',
       RecordRTC: 'recordrtc',
       'window.RecordRTC': 'recordrtc',
-      'psychometrics-conditions-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/conditions'),
-      'psychometrics-library-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/library'),
       'survey-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/survey'),
       'reports-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/reports'),
     },

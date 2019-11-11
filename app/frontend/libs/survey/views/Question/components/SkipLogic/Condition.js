@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import AppStore from 'store/AppStore'
 import BlockList from 'store/BlockList'
-import QuestionCondition from 'psychometrics-conditions-ui'
+import QuestionCondition from 'libs/conditions'
 import styles from './SkipLogic.scss'
 
 const DESTINATIONS = {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import store from 'store/CustomValidationStore'
-import QuestionCondition from 'psychometrics-conditions-ui'
+import QuestionCondition from 'libs/conditions'
 import AppStore from 'store/AppStore'
 import styles from './CustomValidation.scss'
 
