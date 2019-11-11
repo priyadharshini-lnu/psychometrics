@@ -9,7 +9,7 @@ html
     = jquery_include_tag :google
     = stylesheet_link_tag 'iframe', media: 'all'
     = javascript_include_tag 'application_new'
-    = render '//layouts/favicons'
+    = render 'layouts/favicons'
   body#user data-locale="#{selected_locale}" class=('mobile-device' if browser.device.mobile?)
     #modal-container
     .banner

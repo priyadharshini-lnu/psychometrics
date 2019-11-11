@@ -21,7 +21,7 @@ html
     = stylesheet_pack_tag 'reports'
     = javascript_pack_tag 'reports'
     = javascript_pack_tag 'vendors'
-    = render '//layouts/favicons'
+    = render 'layouts/favicons'
 
 
   body class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
