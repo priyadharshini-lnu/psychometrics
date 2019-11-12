@@ -4057,8 +4057,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -9986,8 +9986,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -15919,8 +15919,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },

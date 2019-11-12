@@ -4,6 +4,8 @@ timezone_tip: ' (GST)'
 react_dev:
   reports: false
   assessments: false
+privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
+terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
 hashids_length:
   anonym: 8
   assign_id: 6
@@ -928,7 +930,7 @@ providers:
               type: PercentileSubscale
       - id: HBRIV1
         name: HBRI
-        form_id: 1
+        form_id: 2
         factors:
           -
             - id: '01'
