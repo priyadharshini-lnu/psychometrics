@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
-import store from 'store/RandomizationStore'
 import styles from './Randomization.scss'
 
 const {
@@ -12,22 +11,13 @@ const {
 export class Randomization extends Component {
   state = {}
 
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.handleStoreChange())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
-  handleStoreChange = () => {
-    if (store.model) {
+  componentDidUpdate = (prevProps) => {
+    const { model } = this.props
+    if (model && prevProps.model !== model) {
       this.setState({
-        type: store.model.props.randomization.type,
-        questions: store.model.props.randomization.questions || '',
+        type: model.props.randomization.type,
+        questions: model.props.randomization.questions || '',
       })
-    } else {
-      this.forceUpdate()
     }
   }
 
@@ -40,27 +30,26 @@ export class Randomization extends Component {
   }
 
   save = () => {
+    const { model, close } = this.props
     const { type, questions } = this.state
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
     } else {
-      store.save(this.state)
+      model.props.randomization = this.state
+      model.update()
+      close()
     }
   }
 
-  close = () => {
-    store.close()
-  }
-
   render () {
-    const { model } = store
+    const { show, close, entityName } = this.props
+    if (!show) { return null }
     const { type, questions } = this.state
-    if (!model) { return null }
     return (
       <Modal show keyboard={false}>
         <Header>
           <Title>
-            {_.capitalize(store.entityName)}
+            {_.capitalize(entityName)}
             {' '}
             Randomization
           </Title>
@@ -85,7 +74,7 @@ export class Randomization extends Component {
             />
             {' '}
             Randomize the order of all
-            {store.entityName}
+            {entityName}
             s
           </label>
           <label className={styles.inputLabel}>
@@ -105,13 +94,13 @@ export class Randomization extends Component {
             />
             of total
             {' '}
-            {store.entityName}
+            {entityName}
             s
           </label>
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

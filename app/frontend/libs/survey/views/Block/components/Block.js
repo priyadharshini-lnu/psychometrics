@@ -7,7 +7,6 @@ import { DropdownButton, MenuItem } from 'react-bootstrap'
 import Prompt from 'components/Prompt'
 import QuestionList from 'views/QuestionList'
 import PropertyPanelStore from 'store/PropertyPanelStore'
-import RandomizationStore from 'store/RandomizationStore'
 import BlockList from 'store/BlockList'
 import Confirmation from 'components/Confirmation'
 import Footer from './BlockFooter'
@@ -23,14 +22,6 @@ class Block extends Component {
     opened: true,
     showPrompt: false,
     showDeleteConfirmation: false,
-  }
-
-  componentDidMount () {
-    this.popupListener = RandomizationStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
   }
 
   expand = () => {
@@ -66,8 +57,8 @@ class Block extends Component {
   }
 
   questionRandomization = () => {
-    const { model } = this.props
-    RandomizationStore.open(model, 'question')
+    const { model, openRandomization } = this.props
+    openRandomization({ model, entityName: 'question' })
   }
 
   confirm = (name) => {

@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import RandomizationStore from 'store/RandomizationStore'
 import LogicElement from 'models/logic/LogicElement'
 import styles from './Question.scss'
 
@@ -29,8 +28,8 @@ class Question extends Component {
   }
 
   randomization = () => {
-    const { model } = this.props
-    RandomizationStore.open(model, 'choice')
+    const { model, openRandomization } = this.props
+    openRandomization({ model, entityName: 'choice' })
   }
 
   saveAsTemplate = () => {

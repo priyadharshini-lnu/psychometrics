@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PropertyPanelStore from 'store/PropertyPanelStore'
-import RandomizationStore from 'store/RandomizationStore'
 import PropertyPanelDispatcher from 'dispatchers/PropertyPanelDispatcher'
 import Confirmation from 'components/Confirmation'
 import styles from './Question.scss'
@@ -25,13 +24,11 @@ class Question extends Component {
 
   componentDidMount () {
     this.propPanelListener = PropertyPanelStore.addListener('change', () => this.forceUpdate())
-    this.popupListener = RandomizationStore.addListener('change', () => this.forceUpdate())
     this.mounted = true
   }
 
   componentWillUnmount () {
     this.propPanelListener.remove()
-    this.popupListener.remove()
     this.mounted = false
   }
 

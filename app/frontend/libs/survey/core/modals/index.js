@@ -14,8 +14,12 @@ export const defaultState = {
   },
   defaultValue: {
     show: false,
-    data: null
-  }
+    data: null,
+  },
+  randomization: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {
