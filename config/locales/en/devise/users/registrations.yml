@@ -6,3 +6,4 @@ en:
           sign_in: 'Sign In'
           register: 'Register'
         submit: 'Register'
+        terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service</a> and <a href="%{privacy_url}">Privacy Policy</a>

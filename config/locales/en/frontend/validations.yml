@@ -4,7 +4,7 @@ en:
     issue: 'Issue'
     min_length: 'Your response must be at least %{min} characters.'
     character_range: 'Your response must be at least %{min} and no more than %{max} characters.'
-    date: 'Your response must be a valid date (dd/mm/yyyy)'
+    date: 'Your response must be a valid date (mm/dd/yyyy)'
     text: 'Your response must not contain a numbers'
     number: 'Your response must be a number'
     email: 'Your response must be a valid email'
