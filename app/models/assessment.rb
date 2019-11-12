@@ -117,9 +117,9 @@ class Assessment < ApplicationRecord
     where(category: category)
   }
 
-  # Copy report with nested resources
+  # Copy assessment with nested resources
   def clone
-    @cloned_item = deep_clone include: [:translations, { questions: :question_recodings }]
+    @cloned_item = deep_clone include: [:hogan_assessment_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
