@@ -14,7 +14,10 @@
 
 module Reports
   class Filter < ApplicationRecord
+    include Copyable
+
     belongs_to :report
+    has_many :translations, as: :translateable, dependent: :destroy
 
     validates :report, presence: true
 
