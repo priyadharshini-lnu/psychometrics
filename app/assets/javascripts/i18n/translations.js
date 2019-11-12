@@ -379,7 +379,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
@@ -777,7 +777,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
-    "date": "(dd/mm/yyyy) يجب أن يتم إدخال تاريخ صحيح",
+    "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "issue": " الخطأ",
@@ -1175,7 +1175,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",

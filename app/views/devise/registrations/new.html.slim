@@ -26,8 +26,11 @@
               .registrationCodeFormGroup.input-group
                 = f.input :registration_code, as: :string,
                      placeholder: 'Enter the registration code', maxlength: 32, input_html: { value: @form.context.code }
-              span.clear &nbsp;
               .signInButton
                 .input-group
-                  button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
+                  .col-xs-12
+                    button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
+              .col-xs-12
+                p = raw t('.terms_notice', terms_url: Settings.terms_url, privacy_url: Settings.privacy_url)
+              .clearfix
     .clearfix
