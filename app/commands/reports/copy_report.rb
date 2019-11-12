@@ -2,7 +2,6 @@
 
 module Reports
   class CopyReport < Rectify::Command
-
     def initialize(report_id)
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
     end
@@ -43,10 +42,9 @@ module Reports
     end
 
     def copy_filters
-      report.filters.each do |filter|
+      report.filters.map do |filter|
         new_filter = filter.clone(false)
         new_filter.report_id = new_report.id
-
         new_filter.translations = copy_translations(filter, new_filter)
 
         new_filter
@@ -58,18 +56,22 @@ module Reports
     end
 
     def copy_translations(translateable, translated)
-      translations = Translation.
-        for_report(report.id).
-        where(translateable_type: translateable.model_name.name, translateable_id: translateable.id)
+      translations = Translation.for_report(report.id).where(
+        translateable_type: translateable.model_name.name,
+        translateable_id: translateable.id
+      )
 
-        translations.map do |translation|
-          new_translation = translation.clone(false)
-          translation.translateable_id = translated.id
-          translation.resource_id = new_report.id
-        end
+      translations.map do |translation|
+        new_translation = translation.clone(false)
+        translation.translateable_id = translated.id
+        translation.resource_id = new_report.id
+
+        new_translation
+      end
     end
 
     def copy_occupations
       # TODO
     end
+  end
 end
