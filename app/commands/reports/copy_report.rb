@@ -13,6 +13,7 @@ module Reports
 
         new_report.pages << copy_pages
         new_report.filters << copy_filters
+        copy_occupations
       end
     end
 
@@ -71,7 +72,16 @@ module Reports
     end
 
     def copy_occupations
-      # TODO
+      translations = Translation.for_report(report.id).where(
+        translateable_type: 'Occupation'
+      )
+
+      translations.each do |translation|
+        new_translation = translation.clone(false)
+        new_translation.resource_id = new_report.id
+
+        new_translation.save
+      end
     end
   end
 end
