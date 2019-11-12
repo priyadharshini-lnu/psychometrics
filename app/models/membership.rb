@@ -212,9 +212,7 @@ class Membership < ApplicationRecord
     return if already_invited?
     return unless invites
 
-    invites.each do |invite|
-      invite.emails.create(membership_id: id)
-    end
+    invites.last&.emails&.create(membership_id: id)
   end
 
   def create_other_emails

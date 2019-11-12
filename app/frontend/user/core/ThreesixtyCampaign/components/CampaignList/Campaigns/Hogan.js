@@ -134,7 +134,6 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
               <div className="icon">
                 <span className="icon-hogan" />
               </div>
-              <div className="title">{I18n.t('assessments.categories.hogan')}</div>
             </div>
             <div className="card-progress">
               <Progress
