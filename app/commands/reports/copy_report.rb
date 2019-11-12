@@ -53,7 +53,16 @@ module Reports
     end
 
     def copy_factors
-      # TODO
+      translations = Translation.for_report(report.id).where(
+        translateable_type: 'Factor'
+      )
+
+      translations.each do |translation|
+        new_translation = translation.clone(false)
+        new_translation.resource_id = new_report.id
+
+        new_translation.save!
+      end
     end
 
     def copy_translations(translateable, translated)
@@ -80,7 +89,7 @@ module Reports
         new_translation = translation.clone(false)
         new_translation.resource_id = new_report.id
 
-        new_translation.save
+        new_translation.save!
       end
     end
   end
