@@ -18,6 +18,8 @@
 
 class Factor < ApplicationRecord
   include Copyable
+  include RansackSearchableFields
+
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
   has_many :factors_sub_factors

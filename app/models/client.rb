@@ -33,6 +33,7 @@
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   include Copyable
+  include RansackSearchableFields
   attr_writer :license_msg
 
   HIERARCHY_LEVEL = {

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Campaign < ApplicationRecord
+  include RansackSearchableFields
+
   self.inheritance_column = :_type_disabled
 
   belongs_to :project, class_name: 'Client'

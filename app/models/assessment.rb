@@ -23,6 +23,7 @@
 
 class Assessment < ApplicationRecord
   include Copyable
+  include RansackSearchableFields
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [

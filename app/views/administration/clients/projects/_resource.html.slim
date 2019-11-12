@@ -1,5 +1,6 @@
 - if current_user.is?(:superadmin) || current_user.is?(:client_admin) || resource.project_admin_ids.include?(current_user.id)
   tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
+    td = resource.id
     td.nowrap
       - if resource.project_level?
         = link_to resource.decorate.display_name, administration_client_users_path(resource)

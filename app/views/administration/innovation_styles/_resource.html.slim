@@ -1,4 +1,5 @@
 tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=dom_id(resource)
+  td = resource.id
   td = link_to resource.name, [:administration, @dimension, resource, :factors]
   td = resource.position
   td = resource.decorate.created_at

@@ -13,7 +13,7 @@
                 url: {action: :index},
                 html: { id: 'filter', class: 'list-filter' },
                 builder: SimpleForm::FormBuilder) do |f|
-          = f.input :name_cont,
+          = f.input :id_or_name,
                   label: false,
                   as: :string,
                   required: false,
