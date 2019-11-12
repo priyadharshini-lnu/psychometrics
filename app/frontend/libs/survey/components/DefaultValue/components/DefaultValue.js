@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Previews } from 'components/modules'
-import store from 'store/DefaultValueStore'
 import { Modal } from 'react-bootstrap'
 import styles from './DefaultValue.scss'
 
@@ -10,40 +9,28 @@ const { Footer } = Modal
 const { Title } = Modal
 
 export default class extends Component {
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  close = () => {
-    store.model = null
-    this.forceUpdate()
-  }
-
   clear = () => {
-    store.model.resetDefaultValues()
+    const { model } = this.props
+    model.resetDefaultValues()
     this.forceUpdate()
   }
 
   save = () => {
-    store.model.props.defaultValues = store.model.result.answers
-    store.model.updateDefaultProps()
-    store.model = null
-    this.forceUpdate()
+    const { model, close } = this.props
+    model.props.defaultValues = model.result.answers
+    model.updateDefaultProps()
+    close()
   }
 
   renderModulePreview () {
-    const { model } = store
+    const { model } = this.props
     const View = Previews[`${model.type}Preview`]
     return <View model={model} />
   }
 
   render () {
-    const { model } = store
-    if (!model) { return null }
+    const { show, close } = this.props
+    if (!show) { return null }
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>
@@ -55,7 +42,7 @@ export default class extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.clear}>Clear</button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Close</button>
+          <button className="btn btn-danger" onClick={close}>Close</button>
         </Footer>
       </Modal>
     )

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import RandomizationStore from 'store/RandomizationStore'
-import DefaultValueStore from 'store/DefaultValueStore'
 import LogicElement from 'models/logic/LogicElement'
 import styles from './Question.scss'
 
@@ -40,8 +39,8 @@ class Question extends Component {
   }
 
   defaultValue = () => {
-    const { model } = this.props
-    DefaultValueStore.open(model)
+    const { model, openDefaultValue } = this.props
+    openDefaultValue({ model })
   }
 
   displayLogic = () => {

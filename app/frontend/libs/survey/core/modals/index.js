@@ -12,6 +12,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  defaultValue: {
+    show: false,
+    data: null
+  }
 }
 
 const HANDLERS = {

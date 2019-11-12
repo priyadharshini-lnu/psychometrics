@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { open, close } from 'libs/survey/core/modals'
 
 export default connect(
-  state => console.log(state) || ({
+  state => ({
     show: state.survey.modals.displayLogic.show,
     ...state.survey.modals.displayLogic.data,
   }),

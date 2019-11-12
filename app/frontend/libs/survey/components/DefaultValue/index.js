@@ -1,3 +1,4 @@
 import DefaultValue from './components/DefaultValue'
+import connect from './connect'
 
-export default DefaultValue
+export default connect(DefaultValue)
