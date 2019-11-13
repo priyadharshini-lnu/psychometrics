@@ -11,18 +11,20 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
-      langPartial, result,
+      langPartial, result, selectedLocale, isAnonymousAssessment,
     } = this.props
 
     this.langPartial = langPartial
-    I18nStore.setLocale(document.body.dataset.locale)
+    I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
     if (locales) {
       I18nStore.locales = locales
     }
     const dbResult = result || null
     store.isThreesixty = isThreesixty === 'true'
+    store.isAnonymousAssessment = isAnonymousAssessment === 'true'
     store.resultsUrl = resultsUrl
     store.init(data, type, dbResult, dashboardUrl)
+    this.forceUpdate()
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
