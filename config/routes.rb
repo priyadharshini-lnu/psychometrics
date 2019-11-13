@@ -619,6 +619,7 @@ Rails.application.routes.draw do
 
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
+    get 'identify', to: 'home#identify'
     get 'assessment_completed', to: 'home#assessment_completed'
     root to: 'threesixty/campaigns#index'
   end
