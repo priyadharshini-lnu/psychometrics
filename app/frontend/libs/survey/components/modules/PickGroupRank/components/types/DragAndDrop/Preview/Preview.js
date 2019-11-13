@@ -24,7 +24,7 @@ const PickGroupPreview = ({ model, readOnly }) => {
               key={-1}
               id={-1}
               cards={groupedAnswers[-1] || []}
-              text="Items"
+              text={I18nStore.t('assessments.pickgrouprank.items')}
               stacked={model.props.stackItems}
             />
           </div>
