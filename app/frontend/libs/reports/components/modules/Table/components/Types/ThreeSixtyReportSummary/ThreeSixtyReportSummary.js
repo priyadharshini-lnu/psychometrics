@@ -34,7 +34,7 @@ export default class ThreeSixtyReportSummary extends Component {
         <tbody>
           <tr>
             <td className={styles.label} colSpan={2}>
-              Report Summary
+              {I18nStore.t('reports.modules.three_sixty_report_summary.title')}
             </td>
           </tr>
           {/* <tr>

@@ -1,4 +1,4 @@
-en:
+ar:
   reports:
     modules:
       common:
@@ -47,12 +47,12 @@ en:
         no_positive_gaps: 'There are no Positive Gaps'
       single_value:
         factor_name: "Scoring Category"
-        question_name: "Questions"
+        question_name: الأسئلة
       single_value_cluster:
-        questions: "Questions"
-        developmental_rating: "Developmental Rating"
-        competency: "Competency"
-        description: "Description"
+        questions: الأسئلة
+        developmental_rating: التصنيف التطويري
+        competency: كفاءة
+        description: وصف
       three_sixty_default:
         statistic: 'Statistic'
         value: 'Value'
@@ -67,13 +67,13 @@ en:
           totalResponses: Total Responses
           items: Items
       three_sixty_report_summary:
-        title: Report Summary
+        title: ملخص تقرير
         subject: 'Subject'
-        number_of_evaluators_invited: 'Number of evaluators invited'
+        number_of_evaluators_invited: مدعو التقييم
         number_of_evaluators_responded: 'Number of evaluators responded'
-        number_of_evaluators_received: 'Number of evaluations received'
+        number_of_evaluators_received: تم تلقي التقييمات
         total_evaluations: 'Total evaluations for this assessment'
-        number_by_filter_evaluations_received: "Number of %{filter} evaluations received"
+        number_by_filter_evaluations_received:  عدد تقييم (%{filter}) المدير المباشر
       highest_lowest:
         highest_scores: 'Highest Scores'
         rank: 'Rank'
