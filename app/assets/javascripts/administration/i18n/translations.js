@@ -23,6 +23,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -157,6 +171,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
@@ -4051,6 +4079,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -4434,7 +4465,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "Welcome! You have signed up successfully.",
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
@@ -5870,7 +5902,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
@@ -5924,6 +5956,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -6058,6 +6104,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
@@ -9952,6 +10012,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "العبارات"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -10335,7 +10398,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "تمّ التسجيل في الموقع بنجاح، أهلاً وسهلاً!",
       "signed_up_but_inactive": "تمّ التسجيل في الموقع بنجاح، ولكن لا يُمكن تسجيل الدخول قبل تفعيل الحساب.",
@@ -11775,7 +11839,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
-    "date": "(dd/mm/yyyy) يجب أن يتم إدخال تاريخ صحيح",
+    "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "issue": " الخطأ",
@@ -11829,6 +11893,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "errors": {
       "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            }
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -11963,6 +12041,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "password": {
               "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
             }
           }
         },
@@ -15857,6 +15949,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -16240,7 +16335,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "Welcome! You have signed up successfully.",
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
@@ -17676,7 +17772,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
