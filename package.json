@@ -23,8 +23,31 @@
   },
   "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
   "dependencies": {
+    "action-cable-react": "git+https://github.com/Fabel/action-cable-react.git",
+    "fbemitter": "^2.0.2",
+    "history": "^2.0.0",
+    "jquery": "^3.2.1",
+    "moment": "^2.24.0",
+    "normalize.css": "^4.1.1",
+    "noty": "^2.3.8",
+    "platform": "^1.3.1",
+    "raphael": "^2.2.1",
+    "react-addons-update": "^15.6.2",
+    "react-bootstrap": "^0.32.4",
+    "react-contenteditable": "^2.0.1",
+    "react-dnd": "^9.4.0",
+    "react-dnd-html5-backend": "^9.4.0",
+    "react-dnd-touch-backend": "^9.4.0",
+    "react-google-recaptcha": "^2.0.0-rc.1",
+    "react-overlays": "^0.8.3",
+    "react-select": "^3.0.8",
+    "react-slider": "^0.11.2",
+    "react-ui-tree": "^4.0.0",
+    "recordrtc": "^5.5.4",
+    "videojs-record": "^3.6.0",
     "@babel/core": "^7.3.4",
     "@babel/plugin-proposal-class-properties": "^7.3.4",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-destructuring": "^7.3.2",
@@ -33,6 +56,7 @@
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.6.0",
     "@babel/runtime": "^7.3.4",
     "@rails/webpacker": "^4.0.2",
     "airbnb-style": "^2.0.0",
@@ -68,7 +92,7 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.11",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path-to-regexp": "0.1.7",
     "pluralize": "^8.0.0",
@@ -83,7 +107,7 @@
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-froala-wysiwyg": "^3.0.0-rc.2-2",
+    "react-froala-wysiwyg": "^3.0.6",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
@@ -95,15 +119,25 @@
     "use-debounce": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
-    "webpack-sources": "^1.3.0"
+    "webpack-sources": "^1.3.0",
+    "d3": "4.4.0",
+    "highcharts": "^4.2.7",
+    "highcharts-3d": "0.1.2",
+    "highcharts-custom-events": "^2.0.0",
+    "interact.js": "1.2.8",
+    "js-yaml": "^3.12.0",
+    "react-color": "^2.17.3",
+    "react-markdown": "^3.3.3",
+    "react-tagcloud": "^1.4.1",
+    "remarkable": "^1.7.1"
   },
   "devDependencies": {
     "husky": "^3.0.8",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.8.1"
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --cache && bundle exec rubocop"
     }
   }
 }

@@ -1,0 +1,13 @@
+.progress {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  &:hover {
+    .progressBar {
+      background-color: #0065d5;
+    }
+  }
+  .progressBar {
+    background-color: #666666;
+  }
+}

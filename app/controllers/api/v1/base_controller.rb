@@ -57,7 +57,7 @@ module Api
       end
 
       def render_error(e)
-        render json: { code: e.code, message: e.message, more_info: e.more_info }, status: e.status
+        render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 
       # Fetches API key

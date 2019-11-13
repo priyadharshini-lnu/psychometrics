@@ -2,6 +2,7 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
     thead
       tr
+        th width='300' = link_to_sort resource_class, :id, filter_form
         th width='300' = link_to_sort resource_class, :name, filter_form
         th.text-center width='100' = link_to_sort resource_class, :condition, filter_form
         th.text-center width='100' = link_to_sort resource_class, :position, filter_form

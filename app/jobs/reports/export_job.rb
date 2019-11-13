@@ -30,11 +30,14 @@ module Reports
     # Uploads PDF file to AssignsReport
     #
     def save_to_assign_report
-      File.open(pdf_file) do |file|
+      file = File.open(pdf_file)
+      AssignsReports::GetAllWithSameReportQuery.new(assigns_report).query.each do |assigns_report|
         assigns_report.generating = false
         assigns_report.pdf = file
         assigns_report.save
       end
+      file.close
+      notify_user if current_user.admin?
     end
 
     # Removes TMP folder
@@ -42,6 +45,16 @@ module Reports
     def remove_tmp_file
       dirname = File.dirname(pdf_file)
       FileUtils.remove_dir(dirname, true)
+    end
+
+    def notify_user
+      ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
+                                   type: 'success',
+                                   message: I18n.t('jobs.reports_export.download.message'),
+                                   description: I18n.t('jobs.reports_export.download.description',
+                                                       report_name: report.name,
+                                                       user_name: user.decorate.display_name,
+                                                       url: assigns_report.reload.pdf.url)
     end
   end
 end

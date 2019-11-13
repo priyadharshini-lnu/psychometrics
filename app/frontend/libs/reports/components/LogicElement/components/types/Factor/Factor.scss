@@ -1,0 +1,33 @@
+.filter {
+  margin-left: 10px;
+  max-width: 200px;
+  flex: 1;
+}
+
+.factor {
+  display: flex;
+  flex: 5;
+}
+
+.container {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+}
+
+.factorBlock {
+  display: flex;
+}
+
+.keyword {
+  display: inline-block;
+  text-align: center;
+  width: 15px;
+  margin: 0 15px;
+}
+
+.factorSelect {
+  margin: 0 5px;
+  flex: 1;
+  max-width: 200px;
+}

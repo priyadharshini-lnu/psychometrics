@@ -1,0 +1,3 @@
+import ConditionalFactorOccupationTextModal from './components/ConditionalFactorOccupationTextModal'
+
+export default ConditionalFactorOccupationTextModal

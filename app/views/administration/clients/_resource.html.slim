@@ -1,6 +1,7 @@
 - rowspan = resource.licenses.size + 1
 tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   tr.core class=('full' if rowspan > 1)
+    td.nowrap rowspan=rowspan = resource.id
     td.nowrap rowspan=rowspan
       - if resource.retail?
         = link_to resource.name, administration_client_users_path(resource)

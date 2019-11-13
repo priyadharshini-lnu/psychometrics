@@ -1,6 +1,7 @@
 en:
   administration:
     base:
+      id: id
       top_sidebar:
         search: Search...
         sign_out_message:

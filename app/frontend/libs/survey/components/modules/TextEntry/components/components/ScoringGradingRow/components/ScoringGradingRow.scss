@@ -1,0 +1,28 @@
+.ceil {
+  padding: 10px;
+  border-radius: 3px;
+  width: 300px;
+  cursor: pointer;
+}
+.ceilFill {
+  color: #333333;
+  border: 1px solid #DDD;
+}
+
+.ceilEmpty {
+  color: #bcbcbc;
+  border: 1px solid #DDD;
+}
+
+.scoringRow {
+  display: flex;
+  margin: 5px 0;
+}
+
+.scoringButton {
+  font-size: 20px;
+  margin: 0 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}

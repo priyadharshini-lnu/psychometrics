@@ -1,0 +1,25 @@
+.table {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  td {
+    border: 1px solid #c9c9c9;
+    padding-left: 5px;
+  }
+}
+
+.label {
+  min-width: 50px;
+  text-align: center;
+  font-weight: bold;
+  background: #ebebeb;
+}
+
+.tdLabel {
+  width: 80%;
+}
+
+.tdValue {
+  text-align: center;
+}

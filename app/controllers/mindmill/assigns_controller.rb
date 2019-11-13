@@ -41,6 +41,7 @@ class Mindmill::AssignsController < ApplicationController
       status: :completed,
       completed_at: Time.current
     )
+    Assigns::GenerateReport.call(@assign, current_user)
     redirect_to(root_path, success: t('.successfully'))
   end
 

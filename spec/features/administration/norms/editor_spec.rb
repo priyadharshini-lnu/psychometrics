@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 include Features::Helpers::Clients
+include Features::Helpers::Norms
 
 feature 'Norm Editor' do
   given!(:norm) { create(:norm, name: 'Some Norm') }

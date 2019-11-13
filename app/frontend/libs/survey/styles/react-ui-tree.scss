@@ -1,0 +1,35 @@
+
+.m-tree {
+  margin-left: -30px;
+  overflow: inherit !important;
+}
+
+.m-node {
+  &.placeholder {
+    border: 1px dashed #1385e5;
+  }
+
+  .inner {
+    color: #9DA5B4;
+    font-size: 12px;
+    padding-left: 0 !important;
+    cursor: inherit !important;
+  }
+
+  .node {
+    display: inline-block;
+    width: 100%;
+
+    &.is-active {
+      background-color: #31363F;
+    }
+  }
+}
+
+.m-draggable {
+  z-index: 10000;
+}
+
+.moveHandle {
+  cursor: move !important;
+}

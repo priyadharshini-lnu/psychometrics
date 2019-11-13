@@ -1,0 +1,55 @@
+.skipLogicList {
+  background: #8d8d8d;
+  padding: 10px 150px 10px 10px;
+}
+.condition {
+  display: flex;
+  color: white;
+  margin: 20px 20px 20px 0;
+  align-items: center;
+  flex: 1;
+  > .txt {
+    color: #fff;
+    display: flex;
+    flex: 2;
+  }
+}
+
+.keyword {
+  display: inline-block;
+  text-align: center;
+  margin: 0 15px;
+  color: #ccc;
+}
+
+.predicates{
+  display: flex;
+  flex: 1.5;
+  &> * {
+    flex: 1;
+    margin: 0 5px;
+  }
+}
+
+.destination {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  &> * {
+    flex: 1;
+    margin: 0 5px;
+  }
+}
+
+.answers{
+  display: flex;
+  flex: 1;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.control {
+  position: absolute;
+  right: 70px;
+}

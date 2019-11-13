@@ -2,6 +2,7 @@
   table.table.table-bordered.table-actions.selectable.list.tenancies id="#{resource_class.model_name.plural}_list"
     thead
       tr
+        th = link_to_sort resource_class, :id, filter_form
         th = link_to_sort resource_class, :name, filter_form
         - if policy(:client).view_additional_fields?
           th = link_to_sort resource_class, :type, filter_form

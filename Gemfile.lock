@@ -17,24 +17,6 @@ GIT
     db-clone (2.2.0)
       cli-ui (~> 1.2.1)
 
-GIT
-  remote: https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git
-  revision: 7196e1e809aef9ee96fd6a76e93851831f007159
-  ref: 7196e1e809aef9ee96fd6a76e93851831f007159
-  specs:
-    psychometrics-reports-ui (0.0.1)
-      railties (~> 5.0)
-      thor (>= 0.14, < 2.0)
-
-GIT
-  remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 41f107e47d73b0e13f3f9da1baa136f90e8c4df6
-  ref: 41f107e47d73b0e13f3f9da1baa136f90e8c4df6
-  specs:
-    psychometrics-survey-ui (0.0.1)
-      railties (~> 5.0)
-      thor (>= 0.14, < 2.0)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -99,8 +81,6 @@ GEM
     akami (1.3.1)
       gyoku (>= 0.4.0)
       nokogiri
-    amoeba (3.0.0)
-      activerecord (>= 3.2.6)
     ancestry (3.0.0)
       activerecord (>= 3.2.0)
     annotate (2.7.4)
@@ -136,6 +116,10 @@ GEM
     axlsx_rails (0.4.0)
       axlsx (>= 2.0.1)
       rails (>= 3.1)
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     baby_squeel (1.3.1)
       activerecord (>= 4.2.0)
       join_dependency (~> 0.1.2)
@@ -261,8 +245,8 @@ GEM
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
-    deep_cloneable (2.2.1)
-      activerecord (>= 3.1.0, < 5.2.0)
+    deep_cloneable (2.4.0)
+      activerecord (>= 3.1.0, < 6)
     deep_merge (1.1.1)
     derailed_benchmarks (1.3.5)
       benchmark-ips (~> 2)
@@ -600,6 +584,13 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    react-rails (1.10.0)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     rectify (0.13.0)
       activemodel (>= 4.1.0)
       activerecord (>= 4.1.0)
@@ -842,7 +833,6 @@ DEPENDENCIES
   activemodel-serializers-xml
   activerecord-import (~> 1.0.2)
   acts_as_list (~> 0.8.1)
-  amoeba (~> 3.0.0)
   ancestry
   annotate (~> 2.7.0)
   attr_encrypted (~> 3.1.0)
@@ -884,7 +874,7 @@ DEPENDENCIES
   date_validator (~> 0.9.0)
   db-clone!
   debugger2
-  deep_cloneable (~> 2.2.1)
+  deep_cloneable (~> 2.4.0)
   derailed_benchmarks
   devise (~> 4.4.3)
   devise-i18n (~> 1.1.0)
@@ -922,8 +912,6 @@ DEPENDENCIES
   possessive (~> 1.0.1)
   pry-byebug
   pry-rails
-  psychometrics-reports-ui!
-  psychometrics-survey-ui!
   puma (~> 4.0.1)
   pundit (~> 2.1.0)
   rack-timeout (~> 0.4.2)
@@ -952,6 +940,7 @@ DEPENDENCIES
   rails-controller-testing (~> 1.0.4)
   rails_autoscale_agent (~> 0.6.3)
   ransack (~> 1.8.2)
+  react-rails (~> 1.10.0)
   rectify (~> 0.13.0)
   redis
   redis-rails (~> 5.0.2)

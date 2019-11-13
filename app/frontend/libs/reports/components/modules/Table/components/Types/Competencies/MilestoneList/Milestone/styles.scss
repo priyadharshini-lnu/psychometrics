@@ -1,0 +1,22 @@
+.container {
+  border: 1px solid #bfbfbf;
+  padding: 3px;
+  margin: 3px 0;
+  .nameContainer {
+    display: flex;
+    .remove {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .name {
+      flex: 1;
+    }
+  }
+  .limitContainer {
+    display: flex;
+    input {
+      width: 50%;
+    }
+  }
+}

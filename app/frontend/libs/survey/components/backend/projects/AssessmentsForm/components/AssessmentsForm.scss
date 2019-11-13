@@ -1,0 +1,30 @@
+.AssessmentContainer {
+  display: flex;
+  margin: 10px 0;
+}
+
+.Add {
+  text-align: right;
+}
+
+.Selects {
+  flex: 25;
+}
+
+.Remove {
+  flex: 1;
+  padding-top: 33px;
+  text-align: center;
+}
+
+.Select {
+  margin-left: 0px !important;
+}
+
+.AssessmentSelect {
+  margin-top: 10px;
+}
+
+.ReportSelect {
+  margin-top: 10px;
+}

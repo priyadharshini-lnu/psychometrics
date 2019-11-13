@@ -1,0 +1,105 @@
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.firstColumn{
+  min-width: 30%;
+  max-width: 30%;
+}
+
+.labelItem, .scalePointItem{
+  flex: 1;
+}
+
+.scalePointItem{
+  font-size: 80%;
+}
+
+.item {
+  padding: 8px 0;
+}
+
+.labelItems{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #e8e8e8;
+
+  .firstColumn{
+    border-right: 1px solid #e8e8e8;
+  }
+
+  span{
+    text-align: center;
+  }
+}
+
+.header {
+  margin-top: 5px;
+  border-bottom: 1px solid #00b4a9;
+  border-top: 1px solid #00b4a9;
+
+  .scalePoints{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin: 4px;
+  }
+}
+
+
+.labels{
+  .firstColumn{
+    border-color: transparent;
+  }
+}
+
+.dropdown{
+  padding: 5px 0;
+
+  .firstColumn{
+    border-color: transparent;
+  }
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%
+}
+
+.input {
+
+}
+.controls{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  .select{
+    width: 50%;
+  }
+}
+
+:global(.rtl) {
+  .firstColumn{
+    border-right: 0;
+    border-left: 1px solid #e8e8e8;
+  }
+  .item {
+    padding-left: 8px;
+  }
+}
+:global(.ltr) {
+  .item {
+    padding-right: 8px;
+  }  
+}

@@ -1,0 +1,49 @@
+.base {
+  position: absolute;
+  z-index: 3000;
+  cursor: pointer;
+  overflow: visible;
+
+  :global .overflows {
+    display: none;
+  }
+
+  &.selected {
+    :global .overflows {
+      display: initial;
+    }
+  }
+}
+
+.base:hover {
+  box-shadow: #C7D4ED 0 0 0.2em;
+}
+
+.base .frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.base.selected {
+  overflow: visible;
+  cursor: auto;
+  box-shadow: #639CD3 0 0 0.2em;
+}
+
+.base.selected:hover {
+  box-shadow: #639CD3 0 0 0.2em;
+
+}
+
+.base.selected .frame {
+  cursor: grab;
+}
+
+.base .mover {
+  position: absolute;
+  left: -35px;
+  top: -35px;
+  font-size: 18px;
+  cursor: move;
+}
