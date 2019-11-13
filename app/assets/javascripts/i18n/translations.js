@@ -35,6 +35,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -433,6 +436,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "العبارات"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -830,6 +836,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "pickgrouprank": {
+      "items": "Items"
     },
     "resource": {
       "assigned": "Assigned %{date}",
