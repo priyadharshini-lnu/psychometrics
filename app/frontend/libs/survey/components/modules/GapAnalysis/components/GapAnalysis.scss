@@ -1,0 +1,152 @@
+.table{
+  td{
+    padding: 4px;
+  }
+}
+
+.tableHead{
+  .firstColumn {
+    border-bottom: 1px solid #aaa;
+    border-right: 1px solid #aaa;
+  }
+}
+
+.tellUsLabels{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tellUs {
+  min-width: 140px;
+  border-bottom: 1px solid #aaa;
+}
+
+.whylabel{
+  flex: 1;
+  padding: 4px;
+  min-width: 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  span {
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+
+.tellUsInputs{
+  border-right: 1px solid #aaa;
+  background: #E1E6EF;
+
+  &.last{
+    border-bottom: 1px solid #aaa;
+  }
+}
+
+.header{
+  span {
+    font-weight: bold;
+  }
+}
+
+.tellUsLabel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+.smileColumn {
+  min-width: 54px;
+  text-align: center;
+  border-bottom: 1px solid #aaa;
+}
+
+.smileColumn3 {
+  background: #E1E6EF;
+  border-left: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  border-bottom: 0;
+}
+
+.smileColumn4 {
+  background: #E1E6EF;
+  border-top: 1px solid #aaa;
+  border-right: 1px solid #aaa;
+  border-bottom: 0;
+}
+
+.inputColumn {
+  min-width: 54px;
+  text-align: center;
+}
+
+.inputColumn3 {
+  background: #E1E6EF;
+  border-bottom: 0;
+  border-left: 1px solid #aaa;;
+}
+
+.inputColumn4 {
+  background: #E1E6EF;
+  border-bottom: 0;
+}
+
+.last {
+  .inputColumn {
+    border-bottom: 1px solid #aaa;
+  }
+}
+
+.controlsRow {
+  height: 40px;
+  background: #D1DCED;
+  border-bottom: 1px solid #BAC8DE;
+  border-top: 1px solid #BAC8DE;
+}
+
+.answersRow{
+  background: #D1DCED;
+  border-bottom: 1px solid #aaa;
+}
+
+.mainRow {
+  &:last-child{
+    border-bottom: 1px solid #aaa;
+  }
+  td {
+    padding: 4px 8px;
+  }
+}
+
+.firstColumn{
+  border-left: 0;
+  min-width: 240px;
+  max-width: 240px;
+  border-right: 1px solid #aaa;
+}
+
+.questionText {
+  margin-top: 10px;
+}
+
+.questionTextPreview {
+  margin-bottom: 10px;
+}
+
+.preview{
+  td, th, tr{
+    border: 0 !important;
+  }
+
+  .smileColumn3, .smileColumn4, .inputColumn3, .inputColumn4, .tellUsInputs{
+    background: rgba(0,0,0,.05);
+  }
+
+}

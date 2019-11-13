@@ -1,0 +1,40 @@
+.container {
+  position: absolute;
+  display: inline-block;
+  align-items: center;
+  .value {
+    position: absolute;
+    top: -9px;
+    font-size: 8px;
+    text-align: center;
+    width: 100%;
+    text-shadow: 0px 0px 2px white;
+    color: black;
+  }
+}
+.filters {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.filter {
+  border-bottom: 0.5px solid #e5e6e7ba;
+  flex: 1;
+  position: relative;
+  background-repeat: repeat-x;
+  background-position: center;
+  &:last-child {
+    border-bottom: none;
+  }
+  &.noLines {
+    border-bottom: none;
+  }
+}
+.td {
+  position: relative;
+}

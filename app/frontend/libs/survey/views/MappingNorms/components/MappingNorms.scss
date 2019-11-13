@@ -1,0 +1,27 @@
+.modal {
+  width: 95%;
+}
+
+.body {
+  min-height: 450px;
+  max-height: 450px;
+  overflow: scroll;
+  padding: 10px 80px 80px 10px;
+}
+
+.title {
+  font-size: 0.8em;
+}
+
+.row {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.addRuleButton {
+  color: #188F00;
+
+  &:hover {
+    color: #157402;
+  }
+}

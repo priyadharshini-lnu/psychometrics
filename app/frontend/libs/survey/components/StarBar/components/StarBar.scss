@@ -1,0 +1,22 @@
+.root {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: #ffd43e;
+  cursor: pointer;
+  .placeholderContainer {
+    .placeholder {
+      padding: 0 2px;
+    }
+  }
+  .starsContainer {
+    position: absolute;
+    left: 0;
+    overflow-x: hidden;
+    white-space: nowrap;
+    .star {
+      padding: 0 2px;
+    }
+  }
+}

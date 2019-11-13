@@ -13,12 +13,10 @@ module UsersResults
     def call
       return broadcast(:invalid) if form.invalid?
 
-      transaction do
-        update_users_result
-        if users_result.completed?
-          generate_360_report
-          send_necessary_emails
-        end
+      update_users_result
+      if users_result.completed?
+        generate_360_report
+        send_necessary_emails
       end
 
       broadcast(:ok)

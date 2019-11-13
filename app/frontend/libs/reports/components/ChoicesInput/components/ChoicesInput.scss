@@ -1,0 +1,20 @@
+.choices{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  .input{
+    width: 30px;
+    text-align: center;
+  }
+}
+
+.choicesBtn {
+  cursor: pointer;
+  color: #737373;
+  margin: 5px;
+}
+
+.choicesIcon {
+  color: #737373;
+  font-size: 16px;
+}

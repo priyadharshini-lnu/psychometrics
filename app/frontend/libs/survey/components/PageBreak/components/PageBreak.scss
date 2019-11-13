@@ -1,0 +1,49 @@
+.pagebreak{
+  z-index: 200;
+  height: 40px;
+  margin: 2px -2px;
+  padding: 0 4px;
+  background: #f5f5f5 url(/assets/administration/bg.png) left top repeat;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  position: relative;
+  opacity: 0.5;
+  transition: 0.3s;
+
+  &:hover{
+    .addBtn{
+      opacity: 1;
+      z-index: 9999;
+    }
+
+    .moveBtn{
+      opacity: 1;
+      z-index: 9999;
+    }
+  }
+}
+
+.line{
+  text-align: center;
+  height: 0px;
+  margin: 19px;
+  border-top: 2px dashed #CCC;
+  border-bottom: 1px dashed #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.caption {
+  color: #666;
+  font-weight: bold;
+  padding: 0 5px;
+  background: rgba(#f5f5f5, 0.85);
+}
+
+.moveUp{
+  top: -50%;
+}

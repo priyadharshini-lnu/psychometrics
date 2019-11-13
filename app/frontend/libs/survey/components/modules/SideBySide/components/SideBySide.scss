@@ -1,0 +1,203 @@
+.table{
+  td{
+    padding: 4px;
+  }
+}
+
+.tableHead{
+}
+
+.column{
+  min-width: 200px;
+  border-left: 1px solid #aaa;
+}
+
+.header {
+  border-bottom: 1px solid #aaa;
+}
+
+.group{
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlsRow {
+  height: 40px;
+  background: #D1DCED;
+  border-bottom: 1px solid #BAC8DE;
+  border-top: 1px solid #BAC8DE;
+}
+
+.answersRow{
+  background: #D1DCED;
+  border-bottom: 1px solid #aaa;
+}
+
+.mainRow {
+  &:first-child{
+    border-top: 1px solid #aaa;
+  }
+  td {
+    padding: 4px 8px;
+  }
+}
+
+.header{
+  border-top: 0;
+  visibility: hidden;
+}
+
+.answers {
+  display: flex;
+  min-height: 20px;
+  justify-content: space-around;
+  align-items: center;
+  background: #D1DCED;
+  .answer {
+    min-width: 41px;
+    padding: 4px;
+    flex: 1;
+    text-align: center;
+    font-weight: normal;
+  }
+}
+
+.menuicon {
+  display: inline-block;
+  width: 14px;
+  margin-right: 5px;
+}
+
+.inputs {
+  display: flex;
+  min-height: 20px;
+  justify-content: space-around;
+  align-items: center;
+
+  &.dropdowns {
+    flex-direction: column;
+  }
+
+  .select{
+    width: 90%;
+  }
+
+  .input {
+    min-width: 41px;
+    padding: 4px;
+    flex: 1;
+    text-align: center;
+  }
+
+  input[type="text"] {
+    &.Short {
+      width: 80px;
+    }
+
+    &.Medium {
+      width: 120px;
+    }
+
+    &.Long {
+      width: 200px;
+    }
+  }
+  textarea {
+    resize: none;
+    width: 350px;
+    height: 50px;
+  }
+}
+
+.firstColumn{
+  border-left: 0;
+  max-width: 200px;
+}
+
+.controls{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    width: 80%;
+  }
+}
+
+.listItem {
+  padding: 4px 0;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-start;
+}
+
+.questionText {
+  margin-top: 10px;
+}
+
+.questionTextPreview {
+  margin-bottom: 10px;
+}
+
+.preview{
+  td{
+    padding: 8px;
+  }
+
+  .answersRow {
+    background: #fff;
+    border-bottom: 0;
+  }
+  .header{
+    border-bottom: 0;
+  }
+
+  .answers{
+    background: #fff;
+  }
+  .answer {
+    font-weight: normal;
+  }
+}
+.scoringRow {
+  display: flex;
+  margin: 5px 0;
+}
+.scoringLeftBorder {
+  border-left: 1px solid #aaa;
+}
+.scoringBottomBorder {
+  border-bottom: 1px solid #aaa;
+}
+.scoringFirstCeil {
+  max-width: 400px;
+  padding: 5px;
+}
+.scoringScaleRow {
+  border-bottom: 1px solid #aaa;
+}
+.scoringTable {
+  td {
+    padding: 5px;
+    text-align: center;
+    vertical-align: middle;
+    input {
+      margin: 0;
+    }
+  }
+}
+
+.scoringCell {
+  padding: 10px;
+}
+
+:global(.rtl) {
+  .column{
+    border-left: 0;
+    border-right: 1px solid #aaa;
+  }
+  .firstColumn{
+    border-right: 0;
+  }  
+}

@@ -10,7 +10,7 @@
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
-          = f.input :name_cont,
+          = f.input :id_or_name,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
@@ -21,7 +21,7 @@
               - [['Active', false], ['Archived', true]].each do |item|
                 label class="btn btn-default #{'active' if f.object.disabled_true == item.last}"
                   = f.input_field :disabled_true, type: :radio, checked: f.object.disabled_true == item.last, value: item.last
-                  = item.first                                
+                  = item.first
       .panel-body
         #filter_results
           = render partial: 'list'

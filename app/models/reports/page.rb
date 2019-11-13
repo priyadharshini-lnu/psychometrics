@@ -21,12 +21,6 @@ module Reports
     default_scope { order(:position) }
     validates :report, presence: true
 
-    amoeba do
-      enable
-      append name: 'Copy of '
-      include_association :modules
-    end
-
     acts_as_list scope: :report_id
 
     def self.table_name_prefix

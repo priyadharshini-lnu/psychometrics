@@ -1,0 +1,38 @@
+.mainContainer {
+  padding: 15px 15px 25px 22px;
+  position: relative;
+}
+
+.overlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.icon {
+  font-size: 8em;
+}
+
+.loading{
+  color: #fff;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 9999;
+  background: rgba(149, 183, 93, 0.9)
+}
+
+.loadingLabel{
+  font-size: 3em;
+}

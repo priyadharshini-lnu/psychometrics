@@ -1,0 +1,55 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+.horizontalTable {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  input {
+    width: 90px;
+    margin: 0 0 0 5px;
+  }
+}
+
+.firstColumn {
+  width: 85%;
+  display: flex;
+  align-items: center;
+}
+
+.lastColumn {
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  input {
+    width: 90px;
+    margin: 0 0 0 5px;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: flex-start;
+  padding: 5px;
+}
+.totalRow {
+  .firstColumn {
+    padding-top: 5px;
+    border-top: 1px solid #000;
+  }
+  .lastColumn {
+    padding-top: 5px;
+    border-top: 1px solid #000;
+  }
+}
+.horizontalContainer {
+  display: flex;
+  > div {
+  margin: 2px;
+  }
+
+}
+

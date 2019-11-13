@@ -5,6 +5,7 @@ import {
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
+import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
 
@@ -30,12 +31,7 @@ export default function Evaluation ({
   match: { params },
   history,
 }) {
-  useEffect(() => {
-    if (loaded && !error) {
-      window.renderPassAssessment('pass_assessment')
-    }
-  }, [loaded])
-
+  const assessmentRef = React.createRef()
   const {
     edit, step, approveEvaluation, lang,
   } = qs.parse(location.search)
@@ -122,6 +118,8 @@ export default function Evaluation ({
     history.push(`/campaigns/${params.campaignId}`)
   }
 
+  if (!loaded || error) { return null }
+
   return (
     <Layout>
       <Content className="fluid-container">
@@ -155,16 +153,17 @@ export default function Evaluation ({
             </Row>
             {!error && (
               <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-                <div
+                <PassAssessment
+                  ref={assessmentRef}
                   id="pass_assessment"
-                  data-type={asManager ? 'view_results' : 'pass_assessment'}
-                  data-is-threesixty="true"
-                  data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-                  data-data={JSON.stringify(assessment)}
-                  data-result={JSON.stringify(results)}
-                  data-locales={JSON.stringify(translations)}
-                  data-dashboard-url={`/campaigns/${params.campaignId}`}
-                  data-selected-locale={selectedLanguage && selectedLanguage.code}
+                  type={asManager ? 'view_results' : 'pass_assessment'}
+                  isThreesixty="true"
+                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${params.campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
                 />
               </div>
             )}

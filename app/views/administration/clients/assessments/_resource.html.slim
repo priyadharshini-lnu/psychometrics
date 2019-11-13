@@ -14,18 +14,26 @@ tr id=dom_id(resource)
         ul.dropdown-menu
           - unless client.assessment_universal_links_enabled?(resource.id)
             li
-              = link_to t('.activate_universal_links'),
+              = link_to t('.activate_universal_link'),
                 administration_client_assessment_enable_universal_links_path(client, resource),
                 remote: true,
                 method: :put
           - if client.assessment_universal_links_enabled?(resource.id)
             li
-              = link_to t('.deactivate_universal_links'),
+              = link_to t('.deactivate_universal_link'),
                 administration_client_assessment_disable_universal_links_path(client, resource),
                 remote: true,
                 method: :put
+          - if client.has_assessment_key?(resource)
             li
-              = link_to client.has_assessment_key?(resource) ? t('.regenerate_universal_link') : t('.generate_universal_link'),
+              = link_to t('.regenerate_universal_link'),
+                administration_client_assessment_generate_universal_link_path(client, resource),
+                remote: true,
+                method: :post,
+                data: { confirm: resource.decorate.universal_link_regeneration_confirmation }
+          - if client.assessment_universal_links_enabled?(resource) && !client.has_assessment_key?(resource)
+            li
+              = link_to t('.generate_universal_link'),
                 administration_client_assessment_generate_universal_link_path(client, resource),
                 remote: true,
                 method: :post

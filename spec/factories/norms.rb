@@ -14,10 +14,9 @@ FactoryGirl.define do
     after(:create) do |norm, evaluator|
       if evaluator.with_factors_norm
         evaluator.factors_norm_count.times do
-          factor = create(:factor, :with_subfactor, dimension: norm.dimension)
+          factor = create(:factor, dimension: norm.dimension)
           FactorsNorm::NORM_TYPES.each do |type|
             create(:factors_norm, type: type, norm: norm, factor: factor)
-            create(:factors_norm, type: type, norm: norm, factor: factor.sub_factors.first)
           end
         end
       end

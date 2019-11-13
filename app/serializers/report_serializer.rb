@@ -42,11 +42,12 @@ class ReportSerializer < ActiveModel::Serializer
        ).as('question_ids')]
     end.
               where(dimension_id: object.dimension_ids).
+              includes(:sub_factors).
               order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
     factors.group_by(&:dimension_id).transform_values do |group|
       group.map do |obj|
-        ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
+        ::Factors::WithSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
                                                         report_id: object.id,
                                                         alias: aliases[obj.id]&.first)
       end

@@ -1,0 +1,20 @@
+.menu {
+  width: 100%;
+  border-bottom: 1px solid #444;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  float: none !important;
+}
+
+.title{
+  margin: 0;
+}
+
+.flow {
+  margin: 0 15px;
+}

@@ -1,0 +1,11 @@
+.graph {
+  height: 100%;
+  width: 100%;
+  :global {
+    .highcharts-xaxis-labels {
+      text {
+        cursor: pointer !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.graphicPanel {
+  float: inherit;
+  display: inline-block;
+}
+
+.buttons {
+  button {
+    margin-right: 5px;
+  }
+}
+
+.graphicWrap {
+  position: relative;
+
+  svg {
+    z-index: 1;
+  }
+
+  .graphic {
+    position: absolute;
+    z-index: 0;
+    top: 15px;
+    left: 15px;
+  }
+}
+

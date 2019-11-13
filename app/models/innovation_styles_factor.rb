@@ -15,6 +15,8 @@
 #
 
 class InnovationStylesFactor < ApplicationRecord
+  include RansackSearchableFields
+
   # Roles constant
   CONDITION_MAP = {
     equal_to: '==',

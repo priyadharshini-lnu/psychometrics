@@ -13,7 +13,7 @@ describe Reports::ExportJob do
   let(:project)        { create(:project) }
   let(:pdf_file)       { Rails.root.join('tmp/test.pdf') }
   let(:dirname)        { Rails.root.join('tmp') }
-  let(:file)           { double('file') }
+  let(:file)           { double('file', close: nil) }
 
   before do
     allow(AssignsReport).to receive(:find).with(assigns_report.id).and_return(assigns_report)
@@ -33,8 +33,9 @@ describe Reports::ExportJob do
   it '#save_to_assign_report' do
     allow_any_instance_of(described_class).to receive(:remove_tmp_file)
     allow(Exports::Reports::Pdf::ReportExport).to receive(:export).and_return(pdf_file)
+    allow_any_instance_of(AssignsReports::GetAllWithSameReportQuery).to receive(:query).and_return([assigns_report])
 
-    expect(File).to receive(:open).with(pdf_file).and_yield(file)
+    expect(File).to receive(:open).with(pdf_file).and_return(file)
     expect(assigns_report).to receive(:generating=).with(false)
     expect(assigns_report).to receive(:pdf=).with(file)
     expect(assigns_report).to receive(:save)

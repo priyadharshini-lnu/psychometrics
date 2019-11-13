@@ -35,7 +35,6 @@ module Imports
         @current_sheet = sheet
         import_by_sheet_name(@current_sheet.sheet_name, @current_sheet[0].try(:[], 0).try(:value))
         import_factors
-        import_sub_factors
       end
 
       def import_by_sheet_name(sheet_name, dimension_name)
@@ -75,40 +74,6 @@ module Imports
           end
           factor ||= @dimension.factors.create!(name: factor_name)
           import_factor_norms(factor, i, factor_start_ceil + 1)
-        end
-      end
-
-      def import_sub_factors
-        factor_start_ceil = XLS_CONFIG[:factor_start_ceil] - 1
-        factor_start_row  = nil
-        (@cursor_y...@current_sheet.count).each do |i|
-          if @current_sheet.try(:[], i).try(:[], 0).try(:value)
-            factor_start_row = i
-            break
-          end
-        end
-        (factor_start_row + 1...@current_sheet.count).each do |i|
-          @cursor_x       = 0
-          @cursor_y       = i
-          factor_name     = @current_sheet.try(:[], i).try(:[], 0).try(:value)
-          sub_factor_name = @current_sheet.try(:[], i).try(:[], 1).try(:value)
-          break unless factor_name
-
-          factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
-          unless factor
-            raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factor_is_not_described',
-                                              coords: human_coordinates,
-                                              factor: factor_name)
-          end
-          sub_factor = Factor.where(dimension_id: @dimension.id, name: sub_factor_name, parent_id: factor.id).first
-          if !sub_factor && !@new_dimension
-            raise Errors::ImportError, I18n.t('administration.imports.errors.norm.sub_factors_mismatch',
-                                              coords:    human_coordinates,
-                                              dimension: @dimension.name,
-                                              factor:    factor_name)
-          end
-          sub_factor ||= @dimension.sub_factors.create!(name: sub_factor_name, parent_id: factor.id)
-          import_factor_norms(sub_factor, i, factor_start_ceil + 1)
         end
       end
 

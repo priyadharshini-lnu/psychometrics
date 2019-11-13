@@ -1,0 +1,137 @@
+.mainrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .questionText {
+    display: flex;
+    align-items: center;
+    > div {
+      margin: auto 0;
+      min-width: 500px;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    &.horizontal {
+      flex-direction: column;
+    }
+  }
+
+  &.below {
+    flex-direction: column-reverse;
+  }
+
+  &.left {
+    flex-direction: row;
+  }
+
+  &.right {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    .questionText {
+      min-width: 500px;
+    }
+  }
+}
+
+.graphic_slider { display: inline-block; background-repeat: no-repeat; overflow: hidden; text-indent: -9999px; text-align: left; width: 260px; height: 250px;}
+
+
+@for $i from 0 through 13 {
+  .scale0-#{$i} {
+    background-position: (-5px + ($i * -260px)) -5px;
+  }
+}
+
+@for $i from 1 through 13 {
+  .scale1-#{$i} {
+    background-position: (-5px + (($i - 1) * -260px)) -5px;
+  }
+}
+.vertical-slider-1-container {
+  display: flex;
+  flex-direction: column;
+
+  .label {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .vertical-slider-2-container {
+    display: flex;
+    flex: 1;
+  }
+}
+.horizontal-slider-1-container {
+  width: 260px;
+  display: flex;
+
+  .label {
+    text-align: center;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .horizontal-slider-2-container {
+    display: flex;
+    flex: 1;
+  }
+}
+
+.slider {
+  .bar {
+    margin: 3px 0px;
+    background: #666;
+    border: 1px solid #666;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+  }
+  .handler {
+    line-height: 48px;
+    font-size: 0.9em;
+    text-align: center;
+    color: white;
+    background: #FFF;
+    border: 2px solid #1b1e24;
+    -moz-border-radius: 20%;
+    -webkit-border-radius: 20%;
+    border-radius: 20%;
+  }
+
+  &.vertical-slider{
+    width: 40px;
+    flex: 1;
+
+    .bar {
+      width: 16px;
+    }
+    .handler {
+      cursor: row-resize;
+      left: -7px;
+      width: 30px;
+      height: 15px;
+    }
+  }
+
+  &.horizontal-slider{
+    height: 40px;
+    flex: 1;
+
+    .bar {
+      height: 16px;
+    }
+    .handler {
+      cursor: col-resize;
+      top: -4px;
+      width: 15px;
+      height: 30px;
+    }
+  }
+}
+.label {
+  text-align: center;
+}
