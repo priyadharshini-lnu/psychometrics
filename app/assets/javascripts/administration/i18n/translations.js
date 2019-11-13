@@ -312,7 +312,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -732,6 +731,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -1080,6 +1080,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -1088,11 +1089,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -2419,6 +2429,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -2838,7 +2849,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -4079,6 +4095,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -4462,7 +4481,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "Welcome! You have signed up successfully.",
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
@@ -4873,6 +4893,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -4886,6 +4907,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -5572,7 +5599,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {
@@ -5898,7 +5924,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
@@ -6241,7 +6267,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -6661,6 +6686,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -7009,6 +7035,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -7017,11 +7044,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -8348,6 +8384,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -8767,7 +8804,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -10008,6 +10050,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "العبارات"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -10391,7 +10436,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "تمّ التسجيل في الموقع بنجاح، أهلاً وسهلاً!",
       "signed_up_but_inactive": "تمّ التسجيل في الموقع بنجاح، ولكن لا يُمكن تسجيل الدخول قبل تفعيل الحساب.",
@@ -10806,6 +10852,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -10819,6 +10866,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -11505,7 +11558,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {
@@ -11831,7 +11883,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
-    "date": "(dd/mm/yyyy) يجب أن يتم إدخال تاريخ صحيح",
+    "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "issue": " الخطأ",
@@ -12174,7 +12226,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -12594,6 +12645,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -12942,6 +12994,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -12950,11 +13003,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -14281,6 +14343,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -14700,7 +14763,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -15941,6 +16009,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -16324,7 +16395,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
-        }
+        },
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
       "signed_up": "Welcome! You have signed up successfully.",
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
@@ -16735,6 +16807,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -16748,6 +16821,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -17434,7 +17513,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {
@@ -17760,7 +17838,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
