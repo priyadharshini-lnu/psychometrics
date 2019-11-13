@@ -7,13 +7,18 @@ module Reports
     end
 
     def call
-      new_report = Report.transaction do
-        new_report = @report.clone
-        new_report.save
+      begin
+        new_report = Report.transaction do
+          new_report = @report.clone
+          new_report.save
 
-        new_report.pages << copy_pages
-        new_report.filters << copy_filters
-        copy_occupations
+          new_report.pages << copy_pages
+          new_report.filters << copy_filters
+          copy_occupations
+        end
+        broadcast :ok, new_report
+      rescue ActiveRecord::Rollback
+        return broadcast(:error)
       end
     end
 
