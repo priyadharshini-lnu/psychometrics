@@ -128,9 +128,11 @@ module Administration
     end
 
     def copy
-      @cloned_resource = resource.clone
+      event = ::Reports::CopyReport.call(resource.id)
+
       respond_to do |format|
-        if @cloned_resource.save
+        if event[:ok]
+          @cloned_resource = event[:ok]
           format.js
         else
           format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }
