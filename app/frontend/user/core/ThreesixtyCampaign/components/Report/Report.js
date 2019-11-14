@@ -74,11 +74,13 @@ export default function Report ({
               </Button>
             </Row>
             <div
+              className={report.default_language && report.default_language.direction}
               id="threesixty-report"
               data-campaign={JSON.stringify(campaign)}
               data-data={JSON.stringify(report)}
               data-results={JSON.stringify(results)}
               data-user={JSON.stringify(user)}
+              data-selected-locale={report.default_language && report.default_language.code}
             />
           </div>
         </PageHeader>
