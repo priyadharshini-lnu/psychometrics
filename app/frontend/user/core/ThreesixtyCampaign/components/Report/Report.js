@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Layout, Typography, Button, Row, Col, PageHeader, Icon, message,
 } from 'antd'
+import cs from 'classnames'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -79,7 +80,7 @@ export default function Report ({
               </Button>
             </Row>
             <div
-              className={default_language.direction}
+              className={cs('html_preview', default_language.direction)}
               id="threesixty-report"
               data-campaign={JSON.stringify(campaign)}
               data-data={JSON.stringify(report)}
