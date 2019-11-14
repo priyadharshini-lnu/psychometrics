@@ -55,7 +55,8 @@ module Threesixty
     def download
       authorize @users_report
       subject = Threesixty::Subject.find_by!(campaign_id: @campaign.campaign_id, user_id: @users_report.user_id)
-      ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @users_report)
+      ::Threesixty::Reports::DownloadJob.perform_later(@campaign, current_user, subject, @users_report,
+                                                       lang: params[:lang])
       render json: { success: true }
     end
 
