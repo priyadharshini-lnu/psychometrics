@@ -2,19 +2,23 @@ import React, { useEffect } from 'react'
 import {
   Layout, Typography, Button, Row, Col, PageHeader, Icon, message,
 } from 'antd'
+import cs from 'classnames'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
+import _ from 'lodash'
 
 const { Title } = Typography
 const { Content } = Layout
 
+/* eslint-disable camelcase */
 export default function Report ({
   report: {
-    loaded, report, results, user, campaign, approvalStatus, isSelf,
+    loaded, report: { default_language, locales }, report, results, user, campaign, approvalStatus, isSelf,
   }, match: { params }, fetchReport, updateStatus, downloadReport,
   options: { approval: { managerApprovesReports } }, history,
 }) {
+/* eslint-enable camelcase */
   useEffect(() => {
     fetchReport(params.campaignId, params.id)
   }, [])
@@ -25,12 +29,14 @@ export default function Report ({
     }
   }, [loaded])
 
+  if (_.isEmpty(report)) { return null }
+
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
   }
 
   const requestDownloadReport = (campaignId, usersReportId) => {
-    downloadReport(campaignId, usersReportId)
+    downloadReport(campaignId, usersReportId, default_language.code)
       .then(({ response }) => {
         if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)
@@ -74,11 +80,14 @@ export default function Report ({
               </Button>
             </Row>
             <div
+              className={cs('html_preview', default_language.direction)}
               id="threesixty-report"
               data-campaign={JSON.stringify(campaign)}
               data-data={JSON.stringify(report)}
               data-results={JSON.stringify(results)}
               data-user={JSON.stringify(user)}
+              data-locales={JSON.stringify(locales)}
+              data-selected-locale={default_language.code}
             />
           </div>
         </PageHeader>
