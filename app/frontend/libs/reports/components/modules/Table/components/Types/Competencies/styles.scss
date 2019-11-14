@@ -54,6 +54,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin: 10px;
 }
 .legendItem {
   display: flex;
@@ -63,4 +64,17 @@
 .legendItemName {
   font-size: 80%;
   font-weight: bold;
+}
+
+
+body:not([data-locale="ar"]) {
+  .legendItemName {
+    margin: 0 5px 0 15px;
+  }
+}
+
+body[data-locale="ar"] {
+  .legendItemName {
+    margin: 0 15px 0 5px;
+  }
 }
