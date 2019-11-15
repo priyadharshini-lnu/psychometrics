@@ -1,5 +1,5 @@
 import FroalaEditor from 'froala-editor'
-import store from 'store/PipedTextModalStore'
+import store from 'rstore'
 
 FroalaEditor.DefineIcon('pipedText', { NAME: '{x}', template: 'text' })
 
@@ -9,6 +9,7 @@ FroalaEditor.RegisterCommand('pipedText', {
   undo: true,
   refreshAfterCallback: true,
   callback () {
-    store.open(this)
+    this.selection.save()
+    store.dispatch({ type: 'survey/modals/OPEN', name: 'pipedText', data: { editorRef: this } })
   },
 })

@@ -24,6 +24,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  pipedText: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {
