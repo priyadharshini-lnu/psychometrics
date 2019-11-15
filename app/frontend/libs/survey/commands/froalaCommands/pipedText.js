@@ -10,6 +10,7 @@ FroalaEditor.RegisterCommand('pipedText', {
   refreshAfterCallback: true,
   callback () {
     this.selection.save()
+    this.toJSON = () => '' // hack for redux logger to avoid looping
     store.dispatch({ type: 'survey/modals/OPEN', name: 'pipedText', data: { editorRef: this } })
   },
 })

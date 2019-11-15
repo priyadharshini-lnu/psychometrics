@@ -36,7 +36,6 @@ _.extend(AppStore.prototype, {
     TrashStore.list = []
     BlockList.load(data.blocks)
     this.assessment = new Assessment(data)
-    this.name = data.name
     this.disabled = false
     FactorList.load(data.factors)
     this.loaded = true

@@ -28,6 +28,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  richEditor: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {
