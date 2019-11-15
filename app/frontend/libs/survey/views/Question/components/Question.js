@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
-import PropertyPanelDispatcher from 'dispatchers/PropertyPanelDispatcher'
 import Confirmation from 'components/Confirmation'
 import styles from './Question.scss'
 import Footer from './QuestionFooter'
@@ -23,21 +21,19 @@ class Question extends Component {
   }
 
   componentDidMount () {
-    this.propPanelListener = PropertyPanelStore.addListener('change', () => this.update())
     this.mounted = true
   }
 
   componentWillUnmount () {
-    this.propPanelListener.remove()
     this.mounted = false
   }
 
   remove = () => {
-    const { model, blockStore } = this.props
+    const { model, blockStore, unselect } = this.props
     this.setState({ fadeout: true, showDeleteConfirmation: false })
     setTimeout(() => {
       blockStore.dispatcher.clickRemove(model)
-      PropertyPanelDispatcher.unselect()
+      unselect()
       if (this.mounted) {
         this.setState({ fadeout: false })
       }

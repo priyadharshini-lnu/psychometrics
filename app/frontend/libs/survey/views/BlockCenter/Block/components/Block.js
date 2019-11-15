@@ -5,7 +5,6 @@ import BlockDispatcher from 'dispatchers/BlockDispatcher'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from 'views/BlockCenter/QuestionList'
 import PropertyPanelStore from 'store/PropertyPanelStore'
-import RandomizationStore from 'store/RandomizationStore'
 import Footer from './BlockFooter'
 import styles from './Block.scss'
 
@@ -17,14 +16,6 @@ class Block extends Component {
 
   state = {
     opened: true,
-  }
-
-  componentDidMount () {
-    this.popupListener = RandomizationStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
   }
 
   expand = () => {
@@ -40,8 +31,8 @@ class Block extends Component {
   }
 
   questionRandomization = () => {
-    const { model } = this.props
-    RandomizationStore.open(model, 'question')
+    const { model, openRandomization } = this.props
+    openRandomization({ model, entityName: 'question' })
   }
 
   renderOptions () {

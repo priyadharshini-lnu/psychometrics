@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import QuestionList from 'views/Preview/QuestionList'
 import store from 'store/AssessmentPreviewStore'
 import I18nStore from 'store/I18nStore'
-import ScrollDispatcher from 'dispatchers/ScrollDispatcher'
+import Utils from 'utils/Utils'
 import cs from 'classnames'
 import Footer from './PageFooter'
 import styles from './Page.scss'
@@ -17,7 +17,7 @@ class Page extends Component {
   addLtrStyleIfNeed = phrase => (phrase.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? { direction: 'ltr' } : {})
 
   scroll = (hash) => {
-    ScrollDispatcher.scroll(hash)
+    Utils.scroll(hash)
   }
 
   renderErrors (page) {
