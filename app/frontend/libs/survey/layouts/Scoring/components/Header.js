@@ -7,9 +7,10 @@ import FactorsMenu from './FactorsMenu'
 import styles from './Scoring.scss'
 
 export default class Header extends Component {
-  closeScoring () {
+  closeScoring = () => {
     AppStore.scoring = false
-    AppStore.update()
+    const { history, match: { params: { id } } } = this.props
+    history.push(`/administration/assessments/${id}`)
   }
 
   save () {

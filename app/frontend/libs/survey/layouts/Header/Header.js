@@ -27,7 +27,9 @@ export class Header extends Component {
   }
 
   showScoring = () => {
+    const { history, match: { params: { id } } } = this.props
     AppStore.openScoring()
+    history.push(`/administration/assessments/${id}/scoring`)
   }
 
   openSearchPopup = () => {
@@ -63,12 +65,12 @@ export class Header extends Component {
   }
 
   render () {
+    const { name } = this.props
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
           <h3 className="panel-title">
-            Assessment
-            {AppStore.name}
+            {name}
           </h3>
         </div>
         <ul className="panel-controls">

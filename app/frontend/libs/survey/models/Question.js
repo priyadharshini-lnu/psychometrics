@@ -9,6 +9,7 @@ import ModuleConfigs from 'constants/ModuleConfigs'
 import AppStore from 'store/AppStore'
 import Socket from 'cable'
 import Action from 'undo'
+import rstore from 'rstore'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -288,6 +289,7 @@ _.extend(Question.prototype, {
     this.resetDefaultValues()
     this.sync()
     this.store.update()
+    rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' }) // NOTE: @fedor hack to update ui remove it later
   },
 
   updateDefaultProps () {

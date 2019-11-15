@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AppStore from 'store/AppStore'
 import ScoringList from 'views/ScoringList'
 import { SCORING } from 'constants/scoring'
+import Socket from 'cable'
 import styles from './Scoring.scss'
 import Header from './Header'
 
@@ -11,6 +12,7 @@ export default class Scoring extends Component {
   }
 
   componentDidMount () {
+    Socket.setProvider('Assessment')
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
@@ -31,12 +33,13 @@ export default class Scoring extends Component {
 
   render () {
     const { type } = this.state
+    const { loaded } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
-          <Header updateType={this.updateType} type={type} />
+          <Header updateType={this.updateType} type={type} {...this.props} />
           <div className={`panel-body ${styles.mainContainer}`}>
-            {!AppStore.loaded && this.loading()}
+            {!loaded && this.loading()}
             <ScoringList type={type} />
           </div>
         </div>

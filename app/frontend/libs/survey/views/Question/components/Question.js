@@ -23,7 +23,7 @@ class Question extends Component {
   }
 
   componentDidMount () {
-    this.propPanelListener = PropertyPanelStore.addListener('change', () => this.forceUpdate())
+    this.propPanelListener = PropertyPanelStore.addListener('change', () => this.update())
     this.mounted = true
   }
 
@@ -45,13 +45,16 @@ class Question extends Component {
   }
 
   update = () => {
-    this.forceUpdate()
+    const { model, selectedModel } = this.props
+    if (selectedModel === model) {
+      this.forceUpdate()
+    }
   }
 
   select = () => {
-    const { model } = this.props
+    const { model, select } = this.props
     const { offsetTop } = this.question
-    PropertyPanelDispatcher.select(model, offsetTop)
+    select(model, offsetTop)
     this.forceUpdate()
   }
 
@@ -64,9 +67,9 @@ class Question extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, selectedModel } = this.props
     const { fadeout, showDeleteConfirmation } = this.state
-    const selected = PropertyPanelStore.question === model
+    const selected = selectedModel === model
     const style = {
       opacity: fadeout ? 0 : 1,
       cursor: selected ? 'default' : 'pointer',

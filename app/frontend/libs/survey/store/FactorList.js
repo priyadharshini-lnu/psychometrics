@@ -20,6 +20,7 @@ _.extend(FactorList.prototype, {
     if (this.currentFactor) {
       this.reloadScoring()
     }
+    this.setFirstFactor()
     this.emit('change')
   },
 

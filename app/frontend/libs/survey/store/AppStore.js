@@ -90,7 +90,6 @@ _.extend(AppStore.prototype, {
         return
       }
     }
-    FactorList.setFirstFactor()
     this.update()
   },
 

@@ -13,46 +13,43 @@ class PropertyPanel extends Component {
     restricted: PropTypes.bool,
   }
 
-  storeListener = null
-
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   addNote = () => {
-    store.question.addNote()
+    const { question } = this.props
+    question.addNote()
   }
 
   addPageBreak = () => {
-    store.question.addPageBreak()
+    const { question } = this.props
+    question.addPageBreak()
   }
 
   preview = () => {
-    PreviewStore.preview(store.question)
+    const { question } = this.props
+    PreviewStore.preview(question)
   }
 
   copyQuestion = () => {
-    store.question.clone()
+    const { question } = this.props
+    question.clone()
   }
 
   displayLogic = () => {
-    const { openDisplayLogic } = this.props
-    openDisplayLogic({ question: store.question, logicElement: store.question.displayLogic || new LogicElement() })
+    const { question, openDisplayLogic } = this.props
+    openDisplayLogic({ question, logicElement: question.displayLogic || new LogicElement() })
   }
 
   addSkipLogic = () => {
-    store.question.addSkipLogic()
+    const { question } = this.props
+    question.addSkipLogic()
   }
 
   changeType = (type, props = {}) => {
-    if (store.question.type === type && props === {}) { return }
-    Action('QuestionChangeType', store.question, { oldType: store.question.type, newType: type })
-    store.question.changeType(type, props)
+    const { question } = this.props
+    if (question.type === type && props === {}) { return }
+    Action('QuestionChangeType', question, { oldType: question.type, newType: type })
+    question.changeType(type, props)
     store.update()
+    this.forceUpdate()
   }
 
   renderDefaultAction () {
@@ -119,19 +116,19 @@ class PropertyPanel extends Component {
   }
 
   render () {
-    const model = store.question
+    const { question, offset } = this.props
     const style = {
-      top: store.offset,
-      visibility: store.question ? 'visible' : 'hidden',
+      top: offset,
+      visibility: question ? 'visible' : 'hidden',
     }
-    if (!model) { return null }
+    if (!question) { return null }
     return (
       <div className={styles.main} style={style}>
-        {this.renderQuestiontypeBtn(model)}
+        {this.renderQuestiontypeBtn(question)}
         <hr className={styles.divider} />
-        {this.renderCustomProperties(model)}
+        {this.renderCustomProperties(question)}
         <hr className={styles.divider} />
-        {this.renderDefaultAction(model)}
+        {this.renderDefaultAction(question)}
       </div>
     )
   }
