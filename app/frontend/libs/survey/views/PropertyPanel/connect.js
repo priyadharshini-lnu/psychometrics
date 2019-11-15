@@ -5,5 +5,6 @@ export default connect(
   ({ survey: { builder: { assessment: { timestemp, propPanel } } } }) => ({ ...propPanel, timestemp }),
   {
     openDisplayLogic: data => open('displayLogic', data),
+    openPreview: data => open('preview', data),
   },
 )

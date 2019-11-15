@@ -20,6 +20,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  preview: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {

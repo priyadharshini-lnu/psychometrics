@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import store from 'store/PropertyPanelStore'
-import PreviewStore from 'store/PreviewStore'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
@@ -24,8 +23,9 @@ class PropertyPanel extends Component {
   }
 
   preview = () => {
-    const { question } = this.props
-    PreviewStore.preview(question)
+    const { question, openPreview } = this.props
+    question.resetResult()
+    openPreview({ question })
   }
 
   copyQuestion = () => {
