@@ -10,6 +10,7 @@ html
 
     = stylesheet_link_tag    'administration', media: 'all'
     = javascript_include_tag 'administration'
+    = render 'layouts/favicons'
 
   body#administration data-locale="#{params[:lang] || I18n.locale}"
     .page-container

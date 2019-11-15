@@ -1,6 +1,6 @@
 import React from 'react'
 import store from 'store/AppStore'
-import QuestionCondition from 'psychometrics-conditions-ui'
+import QuestionCondition from 'libs/conditions'
 
 const Question = ({ condition }) => (
   <QuestionCondition

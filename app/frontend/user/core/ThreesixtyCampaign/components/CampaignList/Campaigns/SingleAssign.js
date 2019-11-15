@@ -138,7 +138,6 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
               <div className="icon">
                 <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[assign.assessmentCategory]}`} />
               </div>
-              <div className="title">{I18n.t(`assessments.categories.${assign.assessmentCategory}`)}</div>
             </div>
             <div className="card-progress">
               <Progress

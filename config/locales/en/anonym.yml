@@ -10,6 +10,5 @@ en:
       not_active: 'is no longer active'
     notifications:
       restart:
-        title: 'Retart Assessment?'
-        copy: 'You had already started this survey. You can restart taking this assessment from the beginning or
-          choose to continue from where you left off. Do you want to restart?'
+        title: 'Continue?'
+        copy: 'You had already started this survey. You can choose to Continue or Restart.'

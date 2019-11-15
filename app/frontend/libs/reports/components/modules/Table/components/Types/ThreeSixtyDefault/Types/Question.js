@@ -22,7 +22,9 @@ const Question = ({ model }) => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <td className={styles.question}>{Utils.stripHTML(_.get(question, 'props.questionText'))}</td>
+            <td className={styles.question}>
+              {Utils.stripHTML(I18nStore.tQuestion(question, 'questionText'))}
+            </td>
           </tr>
         </thead>
         {model.props.filter.map(filterId => (

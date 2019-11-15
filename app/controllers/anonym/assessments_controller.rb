@@ -40,6 +40,7 @@ module Anonym
 
     def set_client
       @client = Client.enabled.find @assessments_client.client_id
+      @current_client = @client.parent
     end
 
     def set_assessment

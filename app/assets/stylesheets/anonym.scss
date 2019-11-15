@@ -21,6 +21,17 @@ html, body {
 
       margin-bottom: 30px;
     }
+    .logo-wrap {
+      padding: 10px 50px;
+      float: left;
+      height: 80px;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      max-height: 100%;
+      max-width: 100%;
+    }
   }
 
   footer {
@@ -39,7 +50,9 @@ html, body {
   border: none;
   border-radius: 0;
   margin: 0;
-
+  .fe-ass-page-container-pass_assessment {
+    width: 100%;
+  }
   .contentTitleHeader {
     background-color: #FFF;
     border-radius: 0;
@@ -64,7 +77,7 @@ html, body {
   }
 
   .questionContent {
-    padding: 0 75px;
+    padding: 0;
   }
 
   .dropdown {

@@ -13,8 +13,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -34,6 +34,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "pickgrouprank": {
+      "items": "Items"
     },
     "resource": {
       "assigned": "Assigned %{date}",
@@ -209,6 +212,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "Report Summary",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -379,7 +383,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
@@ -411,8 +415,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -432,6 +436,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "pickgrouprank": {
+      "items": "العبارات"
     },
     "resource": {
       "assigned": "Assigned %{date}",
@@ -573,13 +580,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "single_value": {
         "factor_name": "Scoring Category",
-        "question_name": "Questions"
+        "question_name": "الأسئلة"
       },
       "single_value_cluster": {
-        "competency": "Competency",
-        "description": "Description",
-        "developmental_rating": "Developmental Rating",
-        "questions": "Questions"
+        "competency": "كفاءة",
+        "description": "وصف",
+        "developmental_rating": "التصنيف التطويري",
+        "questions": "الأسئلة"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -602,11 +609,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
-        "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
+        "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
+        "number_of_evaluators_invited": "مدعو التقييم",
+        "number_of_evaluators_received": "تم تلقي التقييمات",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "ملخص تقرير",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -777,7 +785,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
-    "date": "(dd/mm/yyyy) يجب أن يتم إدخال تاريخ صحيح",
+    "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "issue": " الخطأ",
@@ -809,8 +817,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -830,6 +838,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "pickgrouprank": {
+      "items": "Items"
     },
     "resource": {
       "assigned": "Assigned %{date}",
@@ -1005,6 +1016,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "Report Summary",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -1175,7 +1187,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",

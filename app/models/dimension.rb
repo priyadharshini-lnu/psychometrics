@@ -15,6 +15,7 @@
 
 class Dimension < ApplicationRecord
   include Copyable
+  include RansackSearchableFields
 
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :factors, -> { roots.order(id: :asc) }

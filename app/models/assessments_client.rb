@@ -22,6 +22,10 @@ class AssessmentsClient < ApplicationRecord
     Time.now > key_expires_at
   end
 
+  def has_valid_universal_link?
+    !assessment_key.blank? && !expired?
+  end
+
   private
 
   def generate_random_key(length = 16, with_padding = false)

@@ -6,7 +6,7 @@ import HotSpotStore from 'store/HotSpotStore'
 
 import Validations from 'components/Validations'
 
-import { LibraryStore } from 'psychometrics-library-ui'
+import { LibraryStore } from 'libs/library'
 import Socket from 'cable'
 import LibraryTransport from 'cable/LibraryChannel'
 

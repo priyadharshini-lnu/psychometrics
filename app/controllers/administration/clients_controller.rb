@@ -10,6 +10,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
+      search_term = params[:q].nil? ? nil : params[:q]['id_or_name']
       @_filter_form = policy_scope(resource_class).
                       tenancies.
                       includes(
@@ -19,7 +20,7 @@ module Administration
                         licenses: [:report_family]
                       ).
                       order(:name).
-                      search(params[:q])
+                      ransack(eq_id_or_cont_name: search_term)
 
       filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])

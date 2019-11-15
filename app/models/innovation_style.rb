@@ -14,6 +14,8 @@
 #
 
 class InnovationStyle < ApplicationRecord
+  include RansackSearchableFields
+
   has_many :innovation_styles_factors
   belongs_to :dimension
 

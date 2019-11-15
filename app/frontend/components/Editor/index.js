@@ -83,7 +83,7 @@ function Editor ({ content, handleContentChange, type }) {
 
   return (
     <div>
-      <FroalaEditor ref={ref} tag="textarea" config={config} model={content} onModelChange={handleContentChange} />
+      <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )
 }
