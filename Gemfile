@@ -86,7 +86,7 @@ gem 'psychometrics-reports-ui',
     ref: '5e640ecb1f905df5ee000aaa019d0edc84b1cff4'
 gem 'psychometrics-survey-ui',
     git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: '579d31d3db1b15fdd325af769494eaefd699af49'
+    ref: '1c6bbff0b32660ef6480def5ac11fe6a44fe0466'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
