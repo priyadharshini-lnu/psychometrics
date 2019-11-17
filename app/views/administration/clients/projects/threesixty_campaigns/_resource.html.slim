@@ -6,5 +6,14 @@ tr id=dom_id(resource)
     = link_to resource.threesixty_campaign.report.decorate.name, administration_report_path(resource.threesixty_campaign.report_id)
   td.text-center = resource.created_at
   td.actions-cell
+    .btn-group
+      button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
+        i.fa.fa-download
+        =<> t('.export_results')
+        span.caret
+      ul.dropdown-menu
+        li
+          = link_to t('.raw_results'), export_results_administration_client_project_threesixty_campaign_path(client, project, resource.threesixty_campaign, format: 'xlsx')
+
     = link_to administration_client_project_threesixty_campaign_path(client, project, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.threesixty_campaign.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.campaigns.delete') }
       span.fa.fa-times
