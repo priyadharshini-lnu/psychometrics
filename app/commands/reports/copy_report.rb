@@ -15,7 +15,7 @@ module Reports
 
         report.pages.each do |page|
           new_page = page.clone(false)
-          new_page.report_id = report.id
+          new_page.report_id = new_report.id
 
           page.modules.each do |mod|
             new_module = mod.clone(false)
