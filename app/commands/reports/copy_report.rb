@@ -45,26 +45,12 @@ module Reports
             new_filter.translations << new_translation
           end
 
+          # new_filter.translations = copy_translations(filter, new_filter, new_report)
+
           new_report.filters << new_filter
         end
 
-        factor_translations = Translation.for_report(report.id).where(translateable_type: 'Factor')
-        factor_translations.each do |translation|
-          new_translation = translation.clone(false)
-          new_translation.resource_id = new_report.id
-
-          new_translation.save!
-        end
-
-        occupation_translations = Translation.for_report(report.id).where(
-          translateable_type: 'Occupation'
-        )
-        occupation_translations.each do |translation|
-          new_translation = translation.clone(false)
-          new_translation.resource_id = new_report.id
-
-          new_translation.save!
-        end
+        ['Factor', 'Occupation'].map { |type| copy_translations(type, new_report) }
 
         new_report
       end
@@ -78,5 +64,15 @@ module Reports
     private
 
     attr_reader :report
+
+    def copy_translations(of_type, resource)
+      translations = Translation.for_report(report.id).where(translateable_type: of_type)
+      translations.each do |translation|
+        copy = translation.clone(false)
+        copy.resource_id = resource.id
+
+        copy.save!
+      end
+    end
   end
 end
