@@ -38,7 +38,7 @@ module Reports
           new_filter = filter.clone(false)
           new_filter.report_id = new_report.id
 
-          new_filter.translations.each do |translation|
+          filter.translations.each do |translation|
             new_translation = translation.clone(false)
             new_translation.resource_id = new_report.id
 
