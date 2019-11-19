@@ -19,7 +19,8 @@ export class Header extends Component {
   }
 
   openFlow = () => {
-    FlowStore.open()
+    const { openFlow } = this.props
+    openFlow()
   }
 
   createBlock = () => {

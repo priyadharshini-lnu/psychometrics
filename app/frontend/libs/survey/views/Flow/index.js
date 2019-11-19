@@ -1,3 +1,4 @@
 import Flow from './components/Flow'
+import connect from './connect'
 
-export default Flow
+export default connect(Flow)

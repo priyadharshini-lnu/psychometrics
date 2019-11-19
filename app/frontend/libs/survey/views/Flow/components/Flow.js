@@ -25,8 +25,8 @@ export class Flow extends Component {
   }
 
   cancel = () => {
-    store.close()
-    this.forceUpdate()
+    const { close } = this.props
+    close()
   }
 
   addNew = () => {
@@ -63,14 +63,14 @@ export class Flow extends Component {
   }
 
   render () {
-    const tree = store.getTree()
-    if (!store.show) { return null }
+    const { show, tree, name } = this.props
+    if (!show) { return null }
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>
           <Title>
-Assessment Flow
-            <span className={styles.title}>{store.assessment.name}</span>
+            Assessment Flow
+            <span className={styles.title}>{name}</span>
           </Title>
         </Header>
         <Body bsClass={styles.body}>

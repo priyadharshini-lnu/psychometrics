@@ -32,6 +32,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  flow: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {
