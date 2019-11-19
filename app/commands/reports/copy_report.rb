@@ -6,9 +6,7 @@ module Reports
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
     end
 
-    # rubocop:disable Metrics/AbcSize
     def call
-      # rubocop:disable Metrics/BlockLength
       new_report = ActiveRecord::Base.transaction do
         new_report = report.clone
         new_report.save!
@@ -22,8 +20,7 @@ module Reports
             new_module.page_id = new_page.id
 
             mod.translations.each do |translation|
-              new_translation = translation.clone(false)
-              new_translation.resource_id = new_report.id
+              new_translation = make_copy(translation, new_report)
 
               new_module.translations << new_translation
             end
@@ -39,40 +36,40 @@ module Reports
           new_filter.report_id = new_report.id
 
           filter.translations.each do |translation|
-            new_translation = translation.clone(false)
-            new_translation.resource_id = new_report.id
+            new_translation = make_copy(translation, new_report)
 
             new_filter.translations << new_translation
           end
 
-          # new_filter.translations = copy_translations(filter, new_filter, new_report)
-
           new_report.filters << new_filter
         end
 
-        ['Factor', 'Occupation'].map { |type| copy_translations(type, new_report) }
+        %w[Factor Occupation].map { |type| copy_translations(type, report, new_report) }
 
         new_report
       end
-      # rubocop:enable Metrics/BlockLength
       broadcast :ok, new_report
     rescue ActiveRecord::RecordInvalid
       broadcast(:error)
     end
-    # rubocop:enable Metrics/AbcSize
 
     private
 
     attr_reader :report
 
-    def copy_translations(of_type, resource)
-      translations = Translation.for_report(report.id).where(translateable_type: of_type)
+    def copy_translations(type, of_resource, into_resource)
+      translations = Translation.for_report(of_resource.id).where(translateable_type: type)
       translations.each do |translation|
-        copy = translation.clone(false)
-        copy.resource_id = resource.id
+        copy = make_copy(translation, into_resource)
 
         copy.save!
       end
+    end
+
+    def make_copy(object, resource)
+      copy = object.clone(false)
+      copy.resource_id = resource.id
+      copy
     end
   end
 end
