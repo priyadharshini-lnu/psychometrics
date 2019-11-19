@@ -12,12 +12,10 @@ module Reports
         new_report.save!
 
         report.pages.each do |page|
-          new_page = page.clone(false)
-          new_page.report_id = new_report.id
+          new_page = make_copy(page, new_report, 'report_id')
 
           page.modules.each do |mod|
-            new_module = mod.clone(false)
-            new_module.page_id = new_page.id
+            new_module = make_copy(mod, new_page, 'page_id')
 
             mod.translations.each do |translation|
               new_translation = make_copy(translation, new_report)
@@ -32,8 +30,7 @@ module Reports
         end
 
         report.filters.each do |filter|
-          new_filter = filter.clone(false)
-          new_filter.report_id = new_report.id
+          new_filter = make_copy(filter, new_report)
 
           filter.translations.each do |translation|
             new_translation = make_copy(translation, new_report)
@@ -66,9 +63,9 @@ module Reports
       end
     end
 
-    def make_copy(object, resource)
+    def make_copy(object, resource, resource_key = 'resource_id')
       copy = object.clone(false)
-      copy.resource_id = resource.id
+      copy[resource_key] = resource.id
       copy
     end
   end
