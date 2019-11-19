@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/FlowStore'
 import styles from './Flow.scss'
 import Views from './types'
 import ButtonNew from './ButtonNew'
@@ -10,29 +9,24 @@ import Settings from './Settings'
 export class FlowElement extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    onUpdateStore: PropTypes.func.isRequired,
   }
 
   addNew = () => {
-    const { model, onUpdateStore } = this.props
-    model.newElement()
+    const { model, addNew } = this.props
     if (model.type === 'Randomizer' && model.props.number + 1 === model.elements.length) {
       model.props.number += 1
     }
-    this.forceUpdate()
-    onUpdateStore()
+    addNew(model)
   }
 
   addBelow = () => {
-    const { model, onUpdateStore } = this.props
-    store.addElementBelow(model)
-    onUpdateStore()
+    const { model, addElementBelow } = this.props
+    addElementBelow(model)
   }
 
   duplicate = () => {
-    const { model, onUpdateStore } = this.props
-    store.duplicateElement(model)
-    onUpdateStore()
+    const { model, duplicateElement } = this.props
+    duplicateElement(model)
   }
 
   update = () => {
@@ -42,11 +36,8 @@ export class FlowElement extends Component {
   canAddMore = type => Settings[type].children
 
   remove = () => {
-    const { model, onUpdateStore } = this.props
-    model.remove()
-    store.update()
-    this.hideConfirm()
-    onUpdateStore()
+    const { model, removeElement } = this.props
+    removeElement(model)
   }
 
   selectType = (type) => {

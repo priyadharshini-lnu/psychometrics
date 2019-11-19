@@ -5239,9 +5239,10 @@ js-tokens@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
-js-tree@^2.0.1:
+js-tree@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/js-tree/-/js-tree-2.0.2.tgz#25cd00c55a236bd3e02578b25d1c6721803c4085"
+  integrity sha512-+pqyPOy8vZXW5v+M16rpSFsUO7rtxxnDAKn70DtSkDYhlMUs7QHhprcq/b4FBCbZMeyFv2Pfg8NWgIle9qLMbw==
 
 js-yaml@^3.12.0, js-yaml@^3.12.2, js-yaml@^3.9.0:
   version "3.12.2"
@@ -8231,14 +8232,6 @@ react-transition-group@^2.0.0, react-transition-group@^2.2.0, react-transition-g
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
-
-react-ui-tree@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/react-ui-tree/-/react-ui-tree-4.0.0.tgz#99e36a68e274409485614ab1f31f52fdf884907e"
-  dependencies:
-    classnames "^2.2.5"
-    js-tree "^2.0.1"
-    prop-types "^15.5.10"
 
 react@^16.8.6:
   version "16.8.6"

@@ -5,7 +5,6 @@ const loadChildren = elements => _.map(elements, element => ({
 }))
 
 export const getTree = ({ survey: { builder: { flow } } }) => {
-  console.log(flow)
   const { elements } = flow
   const children = (flow === null) ? [] : loadChildren(elements)
   return {

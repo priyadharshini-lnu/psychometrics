@@ -1,44 +1,39 @@
 import React, { Component } from 'react'
-import store from 'store/FlowStore'
 import { Modal } from 'react-bootstrap'
-import Tree from 'react-ui-tree'
+import Tree from 'libs/react-tree'
+import AppStore from 'store/AppStore'
 import styles from './Flow.scss'
 import ButtonNew from './ButtonNew'
 import FlowElement from './FlowElement'
-import 'react-ui-tree/dist/react-ui-tree.css'
+import 'libs/react-tree/react-ui-tree.scss'
 
 const {
   Header, Body, Footer, Title,
 } = Modal
 
 export class Flow extends Component {
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   save = () => {
-    store.save()
+    const { flow, close } = this.props
+    AppStore.assessment.flow = flow
+    close()
   }
 
   cancel = () => {
-    const { close } = this.props
+    const { reset, close, assessment } = this.props
+    reset(assessment.flow)
     close()
   }
 
   addNew = () => {
-    store.flow.newElement()
-    this.updateTree()
+    const { addNew, flow } = this.props
+    addNew(flow)
   }
 
   // Update state of component Tree
   // For re-render of tree dom
   updateTree = () => {
     // Build new tree
-    const tree = store.getTree()
+    const { tree } = this.props
     // Build new state for Tree component
     const newTreeState = this.tree.init({ tree, renderNode: this.renderElement, onChange: this.handleChange })
     // Set new state
@@ -47,10 +42,19 @@ export class Flow extends Component {
   }
 
   renderElement = (element, i) => {
+    const {
+      addElementBelow, duplicateElement, removeElement, addNew,
+    } = this.props
     if (element.module === null) return null
     return (
-      <div key={i} className={styles.node}>
-        <FlowElement model={element.module} onUpdateStore={this.updateTree} />
+      <div key={i} className={styles.node} draggable={false}>
+        <FlowElement
+          model={element.module}
+          addElementBelow={addElementBelow}
+          duplicateElement={duplicateElement}
+          removeElement={removeElement}
+          addNew={addNew}
+        />
       </div>
     )
   }
@@ -58,19 +62,19 @@ export class Flow extends Component {
   // Happens when tree was reorder
   // Update store flow
   handleChange = (tree) => {
-    store.updateFlowElements(tree)
-    this.forceUpdate()
+    const { updateTree } = this.props
+    updateTree(tree)
   }
 
   render () {
-    const { show, tree, name } = this.props
+    const { show, tree, assessment } = this.props
     if (!show) { return null }
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>
           <Title>
             Assessment Flow
-            <span className={styles.title}>{name}</span>
+            <span className={styles.title}>{assessment.name}</span>
           </Title>
         </Header>
         <Body bsClass={styles.body}>
