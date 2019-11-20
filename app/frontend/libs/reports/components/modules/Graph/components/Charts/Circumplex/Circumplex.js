@@ -89,7 +89,9 @@ class Circumplex extends Component {
       this.svg = null
     }
     const minSide = model.getMinSide()
-    this.svg = d3.select(`#circumplex-container-${model.id}`).append('svg')
+    this.svg = d3
+      .select(`#circumplex-container-${model.id}`)
+      .append('svg')
       .attr('width', minSide)
       .attr('height', minSide)
     this.svgWrapper = this.svg.append('g').attr('class', 'wrapper')
@@ -101,9 +103,7 @@ class Circumplex extends Component {
 
   render () {
     const { model } = this.props
-    return (
-      <div className={styles.container} id={`circumplex-container-${model.id}`} />
-    )
+    return <div className={styles.container} id={`circumplex-container-${model.id}`} />
   }
 }
 
