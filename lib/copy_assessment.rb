@@ -28,8 +28,7 @@ class CopyAssessment
         # Loop questions to save for the new block
         block.questions.each do |question|
           new_question = make_copy(question, new_assessment)
-          new_question.block_id = new_block.id
-          new_question.save!
+          new_block.questions << new_question
 
           # Replace original Question Id to New Question Id
           flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
