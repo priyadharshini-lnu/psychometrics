@@ -263,7 +263,7 @@ class Client < ApplicationRecord
   private
 
   def generate_hogan_group_name
-    "#{client.name} - #{project.subdomain}"
+    "#{client.name.gsub(/[^0-9A-Za-z\s]/, '')} - #{project.subdomain}"
   end
 
   def generate_subdomain
