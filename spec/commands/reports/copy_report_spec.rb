@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 describe Reports::CopyReport do
-
   context '.call' do
     let(:report) { double('report', data_configuration: data_configuration, id: 1) }
     let(:norm)             { double('norm', id: 1) }
