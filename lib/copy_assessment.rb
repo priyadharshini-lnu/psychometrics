@@ -38,11 +38,7 @@ class CopyAssessment
             copy_association(name, question, new_question, new_assessment)
           end
 
-          question.translations.each do |translation|
-            new_translation = make_copy(translation, new_assessment, 'resource_id')
-            new_translation.translateable_id = new_question.id
-            new_question.translations << new_translation
-          end
+          copy_translations(question, new_question, new_assessment)
         end
       end
       new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
@@ -57,12 +53,20 @@ class CopyAssessment
     copy
   end
 
-  def self.copy_association(name, of_question, into_question, assessment)
-    of_question[name].to_a.each do |item|
+  def self.copy_association(name, old_question, new_question, assessment)
+    old_question[name].to_a.each do |item|
       new_item = make_copy(item, assessment)
-      new_item.question_id = into_question.id
+      new_item.question_id = new_question.id
 
       new_item.save!
+    end
+  end
+
+  def self.copy_translations(old_question, new_question, assessment)
+    old_question.translations.each do |translation|
+      new_translation = make_copy(translation, assessment, 'resource_id')
+      new_translation.translateable_id = new_question.id
+      new_question.translations << new_translation
     end
   end
 end
