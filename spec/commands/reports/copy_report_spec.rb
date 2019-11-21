@@ -25,6 +25,14 @@ describe Reports::CopyReport do
       report
     end
 
+    before do
+      occupation = create(:occupation)
+      create(:translation, translateable: occupation, resource: report)
+
+      factor = create(:factor)
+      create(:translation, translateable: factor, resource: report)
+    end
+
     context 'Success' do
       subject { described_class.call(report.id) }
 
@@ -72,6 +80,26 @@ describe Reports::CopyReport do
 
         expect(report.filters.first.translations.length).to eq(1)
         expect(copy.filters.first.translations.length).to eq(1)
+      end
+
+      it 'copies factor translations' do
+        copy = subject[:ok]
+        translations = Translation.for_report(copy.id).where(translateable_type: 'Factor')
+
+        expect(translations.length).to eq(1)
+      end
+
+      it 'copies occupation translations' do
+        copy = subject[:ok]
+        translations = Translation.for_report(copy.id).where(translateable_type: 'Occupation')
+
+        expect(translations.length).to eq(1)
+      end
+
+      it 'copied report is linked to all assessments of the original report' do
+        copy = subject[:ok]
+
+        expect(copy.assessments.length).to eq(report.assessments.length)
       end
     end
   end
