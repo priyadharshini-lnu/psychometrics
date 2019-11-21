@@ -10,10 +10,8 @@ class UpdateAssign < Rectify::Command
   def call
     return broadcast(:invalid) if form.invalid?
 
-    transaction do
-      update_assign
-      generate_report if assign.completed?
-    end
+    update_assign
+    generate_report if assign.completed?
 
     broadcast(:ok)
   end
