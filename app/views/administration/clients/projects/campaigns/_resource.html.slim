@@ -2,11 +2,12 @@ tbody id=dom_id(resource)
   - if resource.project.sub_campaign_level?
     tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
       - rowspan = resource.children.enabled.count + 2
+      td.nowrap rowspan=rowspan = resource.id
       td rowspan=rowspan
         = link_to resource.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client, project, resource)
       - if current_user.is?(:superadmin)
         td rowspan=rowspan = resource.decorate.actual_usage
-    = render partial: 'administration/clients/projects/campaigns/sub_campaigns/resource', collection: resource.children.enabled, as: :resource, locals: {campaign: resource}
+    = render partial: 'administration/clients/projects/campaigns/sub_campaigns/resource', collection: resource.children.enabled, as: :resource, locals: { campaign: resource, show_id: false }
     tr
       td.text-center colspan='5'
         - unless resource.archived?

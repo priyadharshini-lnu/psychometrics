@@ -66,7 +66,7 @@ gem 'kaminari',                   '~> 0.17.0'
 gem 'breadcrumbs_on_rails',       '~> 3.0.1'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack', '~> 1.8.2'
+gem 'ransack', '~> 1.8.10'
 gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
