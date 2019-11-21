@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import cs from 'classnames'
-import I18nStore from 'store/I18nStore'
+import I18nStore from 'rb/store/I18nStore'
 import styles from './styles.scss'
 import FilterAvatar from '../../FilterAvatar'
 
@@ -17,7 +17,7 @@ export default function MilestoneTd ({
   const keyedResults = _.keyBy(filteredResults, 'id')
   const positionByValue = value => (parseFloat(value) - parseFloat(min)) * 100 / (parseFloat(max) - parseFloat(min))
   const locale = I18nStore.locale || 'en'
-  const direction = locale === 'en' ? 'left' : 'right'
+  const direction = locale === 'ar' ? 'right' : 'left'
   return (
     <td className={styles.td}>
       <div className={styles.filters}>

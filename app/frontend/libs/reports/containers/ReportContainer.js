@@ -8,6 +8,10 @@ import 'rb/styles/core.scss'
 
 
 class ReportContainer extends Component {
+  state = {
+    selectedLocale: null,
+  }
+
   componentDidMount () {
     const {
       data, results, locales, user, campaign, selectedLocale,
@@ -16,14 +20,14 @@ class ReportContainer extends Component {
       I18nStore.setLocale(_.get(selectedLocale, 'code', document.body.dataset.locale))
       I18nStore.locales = locales
     }
-    this.direction = _.get(selectedLocale, 'direction', 'ltr')
     store.init(data, results, user, campaign)
+    this.setState({ selectedLocale })
   }
 
   render () {
     return (
       <div className="row">
-        <Preview localeDirection={this.direction} />
+        <Preview localeDirection={_.get(this.state, 'selectedLocale.direction', 'ltr')} />
       </div>
     )
   }
