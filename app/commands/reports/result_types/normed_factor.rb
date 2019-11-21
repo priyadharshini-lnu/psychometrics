@@ -46,7 +46,7 @@ module Reports
       def decorate(factor, factor_alias, result = nil)
         {
           key: data['factorId'],
-          name: factor_alias&.name || factor&.name,
+          name: data['label'] || factor_alias&.name || factor&.name,
           config_data: data,
           value: result
         }
