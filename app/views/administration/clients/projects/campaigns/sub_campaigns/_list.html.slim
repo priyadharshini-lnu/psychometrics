@@ -2,6 +2,7 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
     thead
       tr
+        th = link_to_sort resource_class, :id, filter_form
         th = t('.header.name')
         th = t('.assessments')
         th = t('.reports')
@@ -11,7 +12,7 @@
         th width='1%' = t('administration.actions')
     tbody
       - if resources.present?
-        = render partial: 'resource', collection: resources
+        = render partial: 'resource', collection: resources, locals: { show_id: true }
       - else
         tr.no_records
           td align='center' colspan='9' = t('administration.no_data_found')

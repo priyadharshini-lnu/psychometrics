@@ -9,11 +9,11 @@ class Administration::FactorsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    search_term = params[:q].nil? ? nil : params[:q]['id_or_name']
+    @filter_term = params.dig(:q, :filterable_fields)
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).
                     includes(:sub_factors).
-                    ransack(eq_id_or_cont_name: search_term)
+                    ransack(params[:q])
 
     @_resources   = filter_form.result.page(params[:page])
     respond_to do |format|

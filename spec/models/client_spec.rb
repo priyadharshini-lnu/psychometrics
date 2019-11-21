@@ -26,8 +26,8 @@ describe Client, type: :model do
                               number: 101, country: 'UAE', year: '2019',
                                account_manager_id: user_one.id, project_manager_id: user_two.id)
       name = Client.all.sample.name
-      specific_client = Client.ransack(eq_id_or_cont_name: name).result
-      all_clients = Client.ransack(eq_id_or_cont_name: 'Client').result
+      specific_client = Client.ransack(filterable_fields: name).result
+      all_clients = Client.ransack(filterable_fields: 'Client').result
       expect(specific_client.length).to eq(1)
       expect(all_clients.length).to eq(10)
     end
@@ -37,7 +37,7 @@ describe Client, type: :model do
                               number: 101, country: 'UAE', year: '2019',
                                account_manager_id: user_one.id, project_manager_id: user_two.id)
       id = Client.all.sample.id
-      specific_client = Client.ransack(eq_id_or_cont_name: id).result
+      specific_client = Client.ransack(filterable_fields: id).result
       expect(specific_client.length).to be >= 1
     end
 
@@ -46,15 +46,15 @@ describe Client, type: :model do
                               number: 101, country: 'UAE', year: '2019',
                                account_manager_id: user_one.id, project_manager_id: user_two.id)
       id = nil
-      client = Client.ransack(eq_id_or_cont_name: id).result
+      client = Client.ransack(filterable_fields: id).result
       expect(client.length).to eq(Client.all.count)
 
       name = ''
-      client = Client.ransack(eq_id_or_cont_name: name).result
+      client = Client.ransack(filterable_fields: name).result
       expect(client.length).to eq(Client.all.count)
 
       random_string = 'this possibly cant be a client name'
-      client = Client.ransack(eq_id_or_cont_name: random_string).result
+      client = Client.ransack(filterable_fields: random_string).result
       expect(client.length).to eq(0)
     end
   end

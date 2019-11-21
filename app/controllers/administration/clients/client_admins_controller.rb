@@ -12,10 +12,11 @@ module Administration
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
+        @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         includes(user: %i[clients memberships]).
                         where(role: Membership::CLIENT_ADMIN_ROLE).
-                        join_user.search(params[:q])
+                        join_user.ransack(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 
