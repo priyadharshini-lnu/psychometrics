@@ -54,7 +54,7 @@ class CopyAssessment
   end
 
   def self.copy_association(name, old_question, new_question, assessment)
-    old_question[name].to_a.each do |item|
+    old_question.send(name).each do |item|
       new_item = make_copy(item, assessment)
       new_item.question_id = new_question.id
 

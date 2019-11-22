@@ -20,5 +20,6 @@
 FactoryGirl.define do
   factory :block do
     sequence(:name) { |i| "block #{i}" }
+    assessment
   end
 end
