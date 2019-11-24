@@ -47,8 +47,18 @@ class ApplicationController < ::BaseController
       on(:ok) do |user, found_by|
         if found_by == :spoof
           request.env['warden'].request.env['devise.skip_trackable'] = 1
-          session[:spoofed] = true if found_by == :spoof
+          session[:spoofed] = true
         end
+        if found_by == :sso
+          session[:sso] = {
+            'assign_id' => params[:assign_id],
+            'display' => params[:display],
+            'return_url' => params[:return_url]
+          }
+        end
+        session.delete(:sso) unless found_by == :sso
+        session.delete(:spoofed) unless found_by == :spoofed
+
         sign_in(user)
       end
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }

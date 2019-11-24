@@ -4,9 +4,10 @@
       /sub campaign applicable level header
       - if project.sub_campaign_level?
         tr
-          th.text-center colspan='2' = t('.header.campaigns')
-          th.text-center colspan='6' = t('.header.sub_campaigns')
+          th.text-center colspan='3' = t('.header.campaigns')
+          th.text-center colspan='7' = t('.header.sub_campaigns')
         tr
+          th = link_to_sort resource_class, :id, filter_form
           th = t('.header.name')
           - if current_user.is?(:superadmin)
             th = t('.header.actual_usage')

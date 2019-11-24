@@ -24,11 +24,11 @@ class FactorArc {
       .attr('class', 'factor-container')
       .attr('d', this.arc)
       .style('stroke', '#000')
-      .attr('id', (d, i) => `factor-container-${i}`)
+      .attr('id', (d, i) => `factor-container-${i}-${this.model.id}`)
       .style('stroke-width', 0)
       .attr('fill', '#fff')
       .each((d, i) => {
-        const element = document.getElementById(`factor-container-${i}`)
+        const element = document.getElementById(`factor-container-${i}-${this.model.id}`)
         const firstArcSection = /(^.+?)L/
         const arcs = firstArcSection.exec(d3.select(element).attr('d'))
         if (!arcs || !arcs.length) return null
@@ -48,7 +48,7 @@ class FactorArc {
         this.svgContainer
           .append('path')
           .attr('class', 'hiddenDonutArcs')
-          .attr('id', `factor-hidden-container-${i}`)
+          .attr('id', `factor-hidden-container-${i}-${this.model.id}`)
           .attr('d', newArc)
           .style('fill', 'none')
       })
@@ -77,7 +77,7 @@ class FactorArc {
       .style('text-anchor', 'middle')
       .style('font-size', `${parseInt(this.model.props.style.fontSize, 10) * FACTOR_FONT_SIZE_RATE}%`)
       .style('font-family', this.model.props.style.fontFamily)
-      .attr('xlink:href', (d, i) => `#factor-hidden-container-${i}`)
+      .attr('xlink:href', (d, i) => `#factor-hidden-container-${i}-${this.model.id}`)
       .text(d => d.data.name)
     return this
   }

@@ -1,17 +1,14 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:identify]
+
   def survey_instructions
     render layout: 'users_new'
   end
 
   # TODO: needs some refactoring
   def sso
-    session[:sso] = {
-      'assign_id' => params[:assign_id],
-      'display' => params[:display],
-      'return_url' => params[:return_url]
-    }
     if params[:assign_id]
       assign = @current_membership.assigns.find_by(id: params[:assign_id])
       redirect_to_return_url('assessment_invalid') && return unless assign
@@ -25,6 +22,14 @@ class HomeController < ApplicationController
 
   def assessment_completed
     redirect_to_return_url('assessment_completed')
+  end
+
+  # To be used by the integrators when using SSO url in an iframe
+  # as a workaround to Safari's cookie restrictions in iframe
+  def identify
+    cookies.permanent[:ident_session] = 1
+    redirect_url = params.fetch(:redirect_url) { root_path }
+    redirect_to(redirect_url)
   end
 
   private

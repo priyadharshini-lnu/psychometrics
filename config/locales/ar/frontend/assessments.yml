@@ -1,4 +1,4 @@
-en:
+ar:
   assessments:
     categories:
       case_study: Case Study
@@ -8,4 +8,4 @@ en:
       mindmill: Mindmill
       hogan: Hogan
     pickgrouprank:
-      items: Items
+      items: 'العبارات'
