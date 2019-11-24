@@ -13,7 +13,8 @@ module Administration
       end
 
       def update
-        form = ::Threesixty::EmailTemplateForm.from_params(params[:email_template])
+        form = ::Threesixty::EmailTemplateForm.from_params(params[:email_template]).
+               with_context(email_template: resource)
         if form.valid?
           resource.update!(form.attributes)
           render json: :ok

@@ -82,6 +82,8 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 1.2.1'
 gem 'figaro',                     '~> 1.1.1'
 
+gem 'premailer-rails', '~> 1.10.3'
+
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
 gem 'rubyXL',                     '~> 3.4.6'

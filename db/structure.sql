@@ -2400,7 +2400,9 @@ CREATE TABLE public.threesixty_email_histories (
     status smallint,
     meta json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false,
+    auto_triggered boolean DEFAULT true
 );
 
 
@@ -2441,7 +2443,9 @@ CREATE TABLE public.threesixty_email_schedules (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     recipient_ids jsonb DEFAULT '[]'::jsonb,
-    meta jsonb DEFAULT '{}'::jsonb
+    meta jsonb DEFAULT '{}'::jsonb,
+    consolidated boolean DEFAULT false NOT NULL,
+    auto_triggered boolean DEFAULT true
 );
 
 
@@ -2480,7 +2484,8 @@ CREATE TABLE public.threesixty_email_templates (
     schedulable boolean DEFAULT true,
     meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false NOT NULL
 );
 
 
@@ -6611,6 +6616,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191007075951'),
 ('20191028205331'),
 ('20191030081833'),
-('20191110113047');
-
-
+('20191110113047'),
+('20191029104332'),
+('20191111083124'),
+('20191111104014');

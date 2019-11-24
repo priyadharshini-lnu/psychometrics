@@ -2,11 +2,12 @@ import React, { useEffect } from 'react'
 import {
   Modal, Button, List, Card,
 } from 'antd'
+import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 import FIELDS from './fields'
 import types from './types'
 
 export default function PipedTextModal ({
-  closeModal, datasheetFields, data: { editorRef, type },
+  closeModal, datasheetFields, data: { editorRef, type, details },
 }) {
   useEffect(() => editorRef.selection.save(), [])
 
@@ -20,7 +21,12 @@ export default function PipedTextModal ({
     editorRef.html.insert(value)
   }
 
-  const getFields = () => FIELDS.filter(field => field.supportedTypes.includes(type))
+  const getFields = () => FIELDS.filter((field) => {
+    const fieldIsSupported = field.supportedTypes.includes(type)
+    if (!CONSOLIDATED_EMAIL_NAMES.includes(type) || !fieldIsSupported) { return fieldIsSupported }
+
+    return details.consolidation ? !field.hideOnconsolidation : !field.hideOnUnconsolidation
+  })
 
   return (
     <Modal
