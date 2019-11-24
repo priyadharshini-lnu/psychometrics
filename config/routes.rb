@@ -162,6 +162,7 @@ Rails.application.routes.draw do
 
               collection do
                 get :assessments
+                get :campaign_templates
                 get :factors
               end
             end

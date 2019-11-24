@@ -4,12 +4,13 @@
     .form-inputs.clearfix
       = f.input :name
       = f.input :type, as: :select, collection: ::Threesixty::Campaign::TYPES.map{|k,v| [v, k]}, include_blank: false
+      #campaign_template_fields.form-group
+
       = f.fields_for :threesixty_campaign do |ff|
         #assessment_field.form-group
           = ff.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
         #factors_field.form-group
           = ff.input :factors, as: :select, collection: [], input_html: { multiple: true }
-
 
   .modal-footer
     .btn-group
@@ -18,20 +19,33 @@
 
 javascript:
   $(function () {
+    var campaignTemplateAndAssessmentIds = #{@campaign_template_and_assessment_ids.to_json.html_safe}
+
     function changeType(){
       var type = $(this).find('option:selected').attr('value')
-      if (type === 'empty') {
-        $('#assessment_field').css('display', 'none')
-        $('#factors_field').css('display', 'none')
-      } else {
+      $('#assessment_field, #factors_field, #campaign_template_fields').css('display', 'none')
+      $('#assessment_field select, #campaign_template_fields select').attr('disabled', 'disabled')
+
+      if  (type == 'previous_360') {
         fetchAssessments(type)
         $('#assessment_field').css('display', 'block')
-        $('#factors_field').css('display', 'none')
+        $('#assessment_field select').removeAttr('disabled')
+      } else if (type == 'standard_360') {
+        $('#campaign_template_fields select').removeAttr('disabled')
+        $('#campaign_template_fields').css('display', 'block')
+        fetchCampaignTemplates(type)
       }
     }
 
     $('#threesixty_campaign #resource_type').change(changeType)
     changeType.call($('#threesixty_campaign #resource_type'))
+
+    $('#threesixty_campaign').on('#campaign_template_id', 'change', function() {
+      var campaignTemplateId = $(this).find('option:selected').attr('value')
+      var assessmentId = campaignTemplateAndAssessmentIds[campaignTemplateId]
+
+      fetchFactors(assessmentId)
+    })
 
     function assessmentHandler () {
       $('#threesixty_campaign #resource_threesixty_campaign_assessment_id').change(function(){
@@ -51,6 +65,12 @@ javascript:
           assessmentHandler()
         }
       });
+    }
+
+    function fetchCampaignTemplates (type) {
+      var url = $('#threesixty_campaign').attr('action') + '/campaign_templates'
+
+      $.getScript(url)
     }
 
     function fetchFactors (assessment) {
