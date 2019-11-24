@@ -14,6 +14,10 @@ module Administration::Threesixty
       super_admins_or_admins?
     end
 
+    def campaign_templates?
+      super_admins_or_admins?
+    end
+
     def factors?
       super_admins_or_admins?
     end

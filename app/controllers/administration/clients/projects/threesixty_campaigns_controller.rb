@@ -51,20 +51,25 @@ module Administration
         end
 
         def new
+          @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
           @_resource = Campaign.new
         end
 
         def create
-          @_resource = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
+          @_resource = ::Threesixty::Campaigns::Create.call!(
+            project,
+            campaign_params,
+            threesixty_campaign_params,
+            campaign_template_id: params[:campaign_template_id]
+          )
         end
 
         def assessments
-          type = params[:type]
-          @assessments = if type == ::Threesixty::Campaign::STANDARD_360
-                           CampaignTemplate.includes(:assessment).map(&:assessment)
-                         else
-                           project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
-                         end
+          @assessments = project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
+        end
+
+        def campaign_templates
+          @campaign_templates = CampaignTemplate.all
         end
 
         def factors

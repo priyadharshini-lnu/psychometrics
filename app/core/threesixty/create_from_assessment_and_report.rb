@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class CreateFromAssessment < Rectify::Command
-    attr_reader :campaign
+  class CreateFromAssessmentAndReport < Rectify::Command
+    private_attr_reader :campaign, :report
 
-    def initialize(campaign)
+    def initialize(campaign, report)
       @campaign = campaign
+      @report = report.clone
     end
 
     def call
@@ -50,11 +51,10 @@ module Threesixty
       @assessment.factors_scoring.where(factor_id: factors_to_delete).destroy_all
     end
 
-    def copy_report(assessment)
-      @report = assessment.reports.first.clone
-      @report.owner_id = @campaign.campaign.project_id
-      @report.category = :threesixty
-      @report.save!
+    def copy_report
+      report.owner_id = @campaign.campaign.project_id
+      report.category = :threesixty
+      report.save!
     end
   end
 end
