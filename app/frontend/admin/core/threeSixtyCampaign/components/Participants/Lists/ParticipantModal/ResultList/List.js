@@ -107,8 +107,8 @@ export default function List ({
       <Table.Column
         key="actions"
         render={({
-          id, relationship, result, evaluator,
-        }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
+          id, result, evaluator,
+        }) => (
           <Confirmation
             title={I18n.t('threesixty.confirm')}
             onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}

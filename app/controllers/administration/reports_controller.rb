@@ -18,6 +18,7 @@ module Administration
     # GET /administration/resources
     def index
       # TODO: (atanych): do we really need distinct?
+      @filter_term = params.dig(:q, :filterable_fields)
       scope = policy_scope(resource_class).
               includes(
                 :assessments,
@@ -29,7 +30,7 @@ module Administration
 
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
-      @_filter_form = scope.search(params[:q])
+      @_filter_form = scope.ransack(params[:q])
       filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 

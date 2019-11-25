@@ -35,6 +35,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -209,6 +212,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "Report Summary",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -433,6 +437,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "العبارات"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -573,13 +580,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "single_value": {
         "factor_name": "Scoring Category",
-        "question_name": "Questions"
+        "question_name": "الأسئلة"
       },
       "single_value_cluster": {
-        "competency": "Competency",
-        "description": "Description",
-        "developmental_rating": "Developmental Rating",
-        "questions": "Questions"
+        "competency": "كفاءة",
+        "description": "وصف",
+        "developmental_rating": "التصنيف التطويري",
+        "questions": "الأسئلة"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -602,11 +609,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
-        "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
+        "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
+        "number_of_evaluators_invited": "مدعو التقييم",
+        "number_of_evaluators_received": "تم تلقي التقييمات",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "ملخص تقرير",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -831,6 +839,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "pickgrouprank": {
+      "items": "Items"
+    },
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -1005,6 +1016,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
+        "title": "Report Summary",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {

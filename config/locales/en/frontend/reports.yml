@@ -67,6 +67,7 @@ en:
           totalResponses: Total Responses
           items: Items
       three_sixty_report_summary:
+        title: Report Summary
         subject: 'Subject'
         number_of_evaluators_invited: 'Number of evaluators invited'
         number_of_evaluators_responded: 'Number of evaluators responded'

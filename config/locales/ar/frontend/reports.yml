@@ -1,0 +1,98 @@
+ar:
+  reports:
+    modules:
+      common:
+        rare: 'Rare'
+        less_typical: 'Less Typical'
+        moderate: 'Moderate'
+        more_typical: 'More Typical'
+        almost_always: 'Almost Always'
+      potential_career_full:
+        detailed_career_guide: 'Detailed Career Guide'
+        education_level: 'Education Level'
+        potential_roles: 'Potential Roles'
+        potential_areas_of_study: 'Potential Areas of Study'
+        high_school_entry_roles: 'High School Entry Roles'
+        diploma_qualification: 'Diploma Qualification'
+        bachelors_or_masters_qualification: 'Bachelors or Masters Qualification'
+        key_career_tracks_within: 'Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.'
+        work_environment: 'Work Environment'
+        your_suitability: Your Suitability
+        career_sub_tracks: Career Sub-tracks
+        career_strengths_and_results: Career Strengths and Your Results
+        strength_low: Developmental Strength
+        strength_moderate: Potential Strength
+        strength_high: Signature Strength
+      potential_career_short:
+        key: 'key'
+        your_scores: 'Your Scores'
+        strengths: 'strengths'
+        for_this: 'for this'
+        career: 'career'
+      strength_clusters:
+        possible_roles: Possible Roles
+        work_environments: Expected Work Environments
+        index_sub_factors_considered: Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment
+      cpi_occupations:
+        occupations: 'Occupations'
+        your_potential_suitability: 'Your Potential Suitability'
+      gap_assessment:
+        positive_gap: 'Positive Gaps'
+        rank: 'Rank'
+        item: 'Item'
+        gap: 'Gap'
+        negative_gap: 'Negative Gaps'
+        scoring_category: 'Scoring Category'
+        no_negative_gaps: 'There are no Negative Gaps'
+        no_positive_gaps: 'There are no Positive Gaps'
+      single_value:
+        factor_name: "Scoring Category"
+        question_name: الأسئلة
+      single_value_cluster:
+        questions: الأسئلة
+        developmental_rating: التصنيف التطويري
+        competency: كفاءة
+        description: وصف
+      three_sixty_default:
+        statistic: 'Statistic'
+        value: 'Value'
+        factor:
+          min: Min Value
+          max: Max Value
+          sum: Sum
+          mean: Mean
+          weightedMean: Weighted Mean
+          variance: Variance
+          standardDeviation: Standard Deviation
+          totalResponses: Total Responses
+          items: Items
+      three_sixty_report_summary:
+        title: ملخص تقرير
+        subject: 'Subject'
+        number_of_evaluators_invited: مدعو التقييم
+        number_of_evaluators_responded: 'Number of evaluators responded'
+        number_of_evaluators_received: تم تلقي التقييمات
+        total_evaluations: 'Total evaluations for this assessment'
+        number_by_filter_evaluations_received:  عدد تقييم (%{filter}) المدير المباشر
+      highest_lowest:
+        highest_scores: 'Highest Scores'
+        rank: 'Rank'
+        item: 'Item'
+        first_name: 'First Name'
+        last_name: 'Last Name'
+        email: 'Email'
+        score: 'Score'
+        lowest_scores: 'Lowest Scores'
+        mean_score: 'Mean Score'
+        sub_competenties: 'Sub-Competencies'
+        top_5: 'TOP 5'
+        bottom_5: 'BOTTOM 5'
+        lowest_scores: 'Lowest scores'
+        category: 'Category'
+        result: 'Result'
+        average: 'Average'
+        item: 'Item'
+        scoring_category: 'Scoring Category'
+      video_response:
+        no_results: 'No videos recorded'
+

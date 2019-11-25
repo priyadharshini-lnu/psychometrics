@@ -9,6 +9,7 @@ module Administration
       before_action :set_privacy_link_enabled, only: %i[new edit create update]
 
       def index
+        @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         projects_of(client.id).
                         includes(
@@ -17,7 +18,7 @@ module Administration
                           :project_admin_memberships
                         ).
                         order('name asc').
-                        search(params[:q])
+                        ransack(params[:q])
 
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])

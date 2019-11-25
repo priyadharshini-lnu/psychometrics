@@ -9,3 +9,6 @@ en:
             reply_to_email:
               blank: "Reply to email field can't be blank"
               invalid: 'Reply to email is invalid'
+            content:
+              invalid_consolidated_pipetext: 'These pipetext are invalid for consolidate messages %{invalid_pipetexts}'
+              invalid_unconsolidated_pipetext: 'These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}'

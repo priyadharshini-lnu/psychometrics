@@ -23,22 +23,34 @@ module Threesixty
       private
 
       def send_email(recipient)
-        context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
-        context[recipient_type] = recipient if recipient_type
-
-        other_participator_type = recipient_type == :subject ? :evaluator : :subject
+        context = build_context(recipient)
 
         if (user_ids = get_other_participators(recipient, other_participator_type))
-          User.where(id: user_ids).each do |user|
-            context[other_participator_type] = user
-            create_email_history(context)
+          if schedule_email.consolidatable?
+            context[:"#{other_participator_type}_ids"] = user_ids
             Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
+          else
+            User.where(id: user_ids).each do |user|
+              context[other_participator_type] = user
+              Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
+            end
           end
+          create_email_histories(user_ids, context)
         else
           create_email_history(context)
           Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later
         end
         create_or_update_reminder_history(recipient)
+      end
+
+      def build_context(recipient)
+        context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
+        context[recipient_type] = recipient if recipient_type
+        context
+      end
+
+      def other_participator_type
+        recipient_type == :subject ? :evaluator : :subject
       end
 
       def create_or_update_reminder_history(recipient)
@@ -53,11 +65,19 @@ module Threesixty
         reminder_history.save!
       end
 
+      def create_email_histories(user_ids, context)
+        User.where(id: user_ids).each do |user|
+          context[other_participator_type] = user
+          create_email_history(context)
+        end
+      end
+
       def create_email_history(context)
         threesixty_campaign.email_histories.create!(
           subject_id: context[:subject]&.id,
           evaluator_id: context[:evaluator]&.id,
           threesixty_email_schedule_id: schedule_email.id,
+          consolidated: schedule_email.consolidatable?,
           status: :success,
           meta: meta_data_for_email_history(context)
         )

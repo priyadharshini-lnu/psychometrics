@@ -9,10 +9,11 @@ module Administration
           before_action :ensure_campaign
 
           def index
+            @filter_term = params.dig(:q, :filterable_fields)
             @_filter_form = policy_scope(resource_class).
                             sub_campaigns_of(campaign.id).
                             includes(:assessments_clients, :assessments).
-                            search(params[:q])
+                            ransack(params[:q])
 
             filter_form.archived_true ||= false
             filter_form.disabled_true ||= false
