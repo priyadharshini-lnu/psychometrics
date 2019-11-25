@@ -117,6 +117,13 @@ class Assessment < ApplicationRecord
     where(category: category)
   }
 
+  # Copy assessment with nested resources
+  def clone
+    @cloned_item = deep_clone include: [:hogan_assessment_setting]
+    @cloned_item.gen_uniq_name
+    @cloned_item
+  end
+
   def set_default_color
     self.icon_color = Settings.default_colors.sample
   end
