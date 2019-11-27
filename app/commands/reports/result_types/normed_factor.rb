@@ -18,7 +18,7 @@ module Reports
         norm_data = assign.norm_data
 
         # Skip if the assign has no norm data
-        return decorate(factor, factor_alias) unless norm_data&.dig('id') || norm_data&.dig('type')
+        return decorate(factor, factor_alias) if norm_data&.dig('id').blank? || norm_data&.dig('type').blank?
 
         # Fetches Norm
         # Fetches FactorsNorm by Norm ID and Type
