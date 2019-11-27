@@ -16,7 +16,7 @@ gem 'rails',                      '~> 5.1.6'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'uglifier',                   '>= 1.3.0'
 
-source 'https://rails-assets.org' do
+source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
