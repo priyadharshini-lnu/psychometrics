@@ -23,10 +23,6 @@ export class RichEditor extends Component {
     }
   }
 
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   onChange = (value) => {
     this.setState({ value })
   }

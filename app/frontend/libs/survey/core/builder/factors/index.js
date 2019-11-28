@@ -1,5 +1,10 @@
 import { createReducer } from 'utils/reduxUtils'
-import HANDLERS from './handlers'
+import { setIn } from 'utils/immutable'
+import { INIT } from './actions'
+
+const HANDLERS = {
+  [INIT]: (state, { data }) => setIn(state, ['factors'], data.factors),
+}
 
 export const defaultState = {
   current: null,

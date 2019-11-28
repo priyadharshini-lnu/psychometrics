@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import api from 'middleware/api'
 import createSagaMiddleware from 'redux-saga'
+import socket from '../middleware/Socket'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
 
@@ -20,7 +21,7 @@ if (__DEV__) {
 const store = createStore(
   rootReducers,
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(api, sagaMiddleware, logger)),
+  composeEnhancers(applyMiddleware(api, socket, sagaMiddleware, logger)),
 )
 
 sagaMiddleware.run(rootSagas)

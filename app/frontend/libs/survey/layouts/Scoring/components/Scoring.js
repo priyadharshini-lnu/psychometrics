@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import AppStore from 'store/AppStore'
 import ScoringList from 'views/ScoringList'
 import { SCORING } from 'constants/scoring'
-import Socket from 'cable'
 import styles from './Scoring.scss'
 import Header from './Header'
 
@@ -12,7 +11,12 @@ export default class Scoring extends Component {
   }
 
   componentDidMount () {
-    Socket.setProvider('Assessment')
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/assessments\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Assessments::Channel', { assessment_id: id })
+    }
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 

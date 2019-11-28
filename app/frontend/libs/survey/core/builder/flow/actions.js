@@ -1,9 +1,13 @@
 import FlowElement from 'models/FlowElement'
 import Flow from 'models/Flow'
 
-import {
-  ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET,
-} from './types'
+export const INIT = 'survey/assessment/INIT'
+export const ADD_ELEMENT = 'survey/flow/ADD_ELEMENT'
+export const ADD_NEW_ELEMENT = 'survey/flow/ADD_NEW_ELEMENT'
+export const DUPLICATE_ELEMENT = 'survey/flow/DUPLICATE_ELEMENT'
+export const UPDATE_TREE = 'survey/flow/UPDATE_TREE'
+export const REMOVE_ELEMENT = 'survey/flow/REMOVE_ELEMENT'
+export const RESET = 'survey/flow/RESET'
 
 const loadElements = children => _.map(children, item => ({
   type: item.module.type,

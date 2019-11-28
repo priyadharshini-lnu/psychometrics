@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Socket from 'cable'
 import AppStore from 'store/AppStore'
 import Home from 'views/Home'
 import Trash from 'views/Trash'
@@ -28,7 +27,12 @@ export class Dashboard extends Component {
   }
 
   componentDidMount () {
-    Socket.setProvider('Assessment')
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/assessments\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Assessments::Channel', { assessment_id: id })
+    }
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
