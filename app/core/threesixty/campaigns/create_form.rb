@@ -10,21 +10,8 @@ module Threesixty
       attribute :factors, Array
 
       validates :name, :type, presence: true
-
-      validate :check_presence_of_campaign_template_id
-      validate :check_presence_of_assessment_id
-
-      def check_presence_of_campaign_template_id
-        return unless type == Threesixty::Campaign::STANDARD_360
-
-        errors.add(:campaign_template_id, :blank)
-      end
-
-      def check_presence_of_assessment_id
-        return unless type == Threesixty::Campaign::PREVIOUS_360
-
-        errors.add(:assessment_id, :blank)
-      end
+      validates :campaign_template_id, presence: true, if: -> { type == Threesixty::Campaign::STANDARD_360 }
+      validates :assessment_id, presence: true, if: -> { type == Threesixty::Campaign::PREVIOUS_360 }
     end
   end
 end

@@ -11,15 +11,17 @@ module Threesixty
       end
 
       def call
-        if assessment
-          ::Threesixty::Campaign::CreateFromAssessmentAndReport.call(assessment, report, form)
-        else
-          ::Threesixty::Campaign::CreateEmptyCampaign.call!(form)
-        end
+        threesixty_campaign = if assessment
+                                ::Threesixty::Campaigns::CreateFromAssessmentAndReport.call!(
+                                  assessment, report, form, project
+                                )
+                              else
+                                ::Threesixty::Campaigns::CreateEmptyCampaign.call!(form, project)
+                              end
 
         load_templates(threesixty_campaign)
 
-        broadcast :ok, campaign
+        broadcast :ok, threesixty_campaign
       end
 
       private

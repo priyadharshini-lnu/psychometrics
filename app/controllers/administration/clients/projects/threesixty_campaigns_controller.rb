@@ -10,7 +10,7 @@ module Administration
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
         before_action :init_breadcrumbs
         before_action :set_campaign_template_and_assessments, only: %i[new create]
-        wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
+        wrap_parameters :threesixty_campaign
 
         def show
           @init_state = {
@@ -59,12 +59,7 @@ module Administration
         def create
           @form = ::Threesixty::Campaigns::CreateForm.from_params(params[:resource])
           if @form.valid?
-            ::Threesixty::Campaigns::Create.call!(
-              project,
-              campaign_params,
-              threesixty_campaign_params,
-              campaign_template_id: params[:campaign_template_id]
-            )
+            @_resource = ::Threesixty::Campaigns::Create.call!(project, @form)
           else
             render 'new'
           end
