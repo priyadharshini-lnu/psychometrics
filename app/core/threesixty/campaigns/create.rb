@@ -3,42 +3,39 @@
 module Threesixty
   module Campaigns
     class Create < BaseCommand
-      private_attr_reader :project, :campaign_params, :options, :campaign_template
-      private_att_accessor :threesixty_campaign_params
+      private_attr_reader :project, :form
 
-      def initialize(project, campaign_params, threesixty_campaign_params, options)
+      def initialize(project, form)
         @project = project
-        @campaign_params = campaign_params
-        @threesixty_campaign_params = threesixty_campaign_params
-        @options = options
-        @campaign_template = CampaignTemplate.find(options[:campaign_template_id]) if options[:campaign_template_id]
+        @form = form
       end
 
       def call
-        threesixty_campaign = build_threesixty_campaign
-
-        if threesixty_campaign.assessment.present?
-          ::Threesixty::CreateFromAssessment.call(threesixty_campaign, report_id: campaign_template.report_id)
+        if assessment
+          ::Threesixty::Campaign::CreateFromAssessmentAndReport.call(assessment, report, form)
         else
-          ::Threesixty::CreateEmptyCampaign.call(threesixty_campaign)
+          ::Threesixty::Campaign::CreateEmptyCampaign.call!(form)
         end
-        campaign.save!
+
         load_templates(threesixty_campaign)
+
         broadcast :ok, campaign
       end
 
       private
 
-      def build_threesixty_campaign
-        campaign = project.project_campaigns.build(campaign_params)
-        campaign.type = ::Campaign::THREESIXTY
-        if campaign_template
-          threesixty_campaign_params = threesixty_campaign_params.merge(assessment_id: campaign_template.assessment_id)
-        end
-        threesixty_campaign = campaign.build_threesixty_campaign(threesixty_campaign_params)
-        threesixty_campaign.build_option(participants: Threesixty::Option::DEFAULT_PARTICIPANTS,
-                                         reports: Threesixty::Option::DEFAULT_REPORTS)
-        threesixty_campaign
+      def assessment
+        return campaign_template.assessment if form.type == Threesixty::Campaign::STANDARD_360
+        return Assessment.find(form.assessment_id) if form.type == Threesixty::Campaign::PREVIOUS_360
+      end
+
+      def report
+        return campaign_template.report if form.type == Threesixty::Campaign::STANDARD_360
+        return assessment.reports.first if form.type == Threesixty::Campaign::PREVIOUS_360
+      end
+
+      def campaign_template
+        @campaign_template ||= CampaignTemplate.find(form.campaign_template_id)
       end
 
       def load_templates(threesixty_campaign)

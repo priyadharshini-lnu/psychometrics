@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class CreateFromAssessmentAndReport < Rectify::Command
+  class CreateFromAssessmentAndReport < BaseCommand
     private_attr_reader :source_assessment, :source_report, :new_assessment, :new_report, :form
 
     def initialize(source_assessment, source_report, form)
@@ -10,7 +10,7 @@ module Threesixty
       @new_report = CopyAssessment.call!(source_assessment.id)
       @new_assessment = CopyAssessment.process!(source_assessment.id)
       @form = form
-      @campaign = Threesixty::Campaign.Build.call!(@form)
+      @campaign = Threesixty::Campaign.Build(@form)
     end
 
     def call

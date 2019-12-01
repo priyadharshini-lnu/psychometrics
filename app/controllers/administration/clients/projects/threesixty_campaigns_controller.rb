@@ -9,6 +9,7 @@ module Administration
         prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
         before_action :init_breadcrumbs
+        before_action :set_campaign_template_and_assessments, only: %i[new create]
         wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
 
         def show
@@ -52,24 +53,21 @@ module Administration
 
         def new
           @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
-          @_resource = Campaign.new
+          @form = ::Threesixty::Campaigns::CreateForm.new
         end
 
         def create
-          @_resource = ::Threesixty::Campaigns::Create.call!(
-            project,
-            campaign_params,
-            threesixty_campaign_params,
-            campaign_template_id: params[:campaign_template_id]
-          )
-        end
-
-        def assessments
-          @assessments = project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
-        end
-
-        def campaign_templates
-          @campaign_templates = CampaignTemplate.all
+          @form = ::Threesixty::Campaigns::CreateForm.from_params(params[:resource])
+          if @form.valid?
+            ::Threesixty::Campaigns::Create.call!(
+              project,
+              campaign_params,
+              threesixty_campaign_params,
+              campaign_template_id: params[:campaign_template_id]
+            )
+          else
+            render 'new'
+          end
         end
 
         def factors
@@ -127,6 +125,11 @@ module Administration
           ::Threesixty::CurrentUserSerializer.new(current_user).
             as_json.
             deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+        end
+
+        def set_campaign_template_and_assessments
+          @assessments = project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
+          @campaign_templates = CampaignTemplate.all
         end
       end
     end
