@@ -3,17 +3,18 @@
 module Threesixty
   module Campaigns
     class Build < BaseCommand
-      private_attr_reader :form
+      private_attr_reader :form, :project
 
-      def initialize(form)
+      def initialize(form, project)
         @form = form
+        @project = project
       end
 
       def call
-        campaign = form.project.project_campaigns.build(name: form.name)
+        campaign = project.project_campaigns.build(name: form.name)
         campaign.type = ::Campaign::THREESIXTY
 
-        threesixty_campaign = campaign.build_threesixty_campaign(form.attributes.slice(:factors, :assessment_id))
+        threesixty_campaign = campaign.build_threesixty_campaign
         threesixty_campaign.build_option(participants: Threesixty::Option::DEFAULT_PARTICIPANTS,
                                          reports: Threesixty::Option::DEFAULT_REPORTS)
 
