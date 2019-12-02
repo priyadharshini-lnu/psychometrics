@@ -11,7 +11,7 @@ module Threesixty
       end
 
       def call
-        result = evaluators.map do |evaluator|
+        participants = evaluators.map do |evaluator|
           ActiveRecord::Base.transaction do
             evaluator_user = fetch_or_create_evaluator_user(evaluator)
             create_campaigns_user(evaluator_user)
@@ -23,7 +23,7 @@ module Threesixty
           end
         end
         broadcast :ok,
-                  evaluator: result,
+                  participants: participants,
                   existing_evaluators_whose_password_not_changed: @existing_evaluators_whose_password_not_changed
       end
 
