@@ -36,11 +36,6 @@ class CopyAssessment
           display_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
           skip_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
 
-          puts "***** DISPLAY_LOGIC *****"
-          puts "#{display_logic}"
-          puts "***** SKIP_LOGIC *****"
-          puts "#{skip_logic}"
-
           new_question.update_attributes(display_logic: JSON.parse(display_logic), skip_logic: JSON.parse(skip_logic))
 
           # Replace original Question Id to New Question Id
