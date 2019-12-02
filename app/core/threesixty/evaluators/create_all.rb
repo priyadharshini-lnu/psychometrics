@@ -7,6 +7,7 @@ module Threesixty
         @evaluators = evaluators
         @threesixty_campaign = threesixty_campaign
         @project = threesixty_campaign.campaign.project
+        @existing_evaluators_whose_password_not_changed = []
       end
 
       def call
@@ -21,7 +22,9 @@ module Threesixty
             participant
           end
         end
-        broadcast :ok, result
+        broadcast :ok,
+                  evaluator: result,
+                  existing_evaluators_whose_password_not_changed: @existing_evaluators_whose_password_not_changed
       end
 
       def fetch_or_create_evaluator_user(evaluator)
@@ -29,13 +32,15 @@ module Threesixty
         user ||= ::Users::Regular.find_by(email: evaluator[:evaluator_email], project: project)
 
         if user
+          @existing_evaluators_whose_password_not_changed << user if evaluator[:evaluator_password].present?
           user.update!(first_name: evaluator[:evaluator_first_name], last_name: evaluator[:evaluator_last_name])
         else
           user = ::Users::Regular.create!(
             email: evaluator[:evaluator_email],
+            password: evaluator[:evaluator_password],
             first_name: evaluator[:evaluator_first_name],
             last_name: evaluator[:evaluator_last_name],
-            create_by_invite: true,
+            create_by_invite: evaluator[:evaluator_password].blank?,
             project: project
           )
         end
