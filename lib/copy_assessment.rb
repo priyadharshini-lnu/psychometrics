@@ -30,6 +30,19 @@ class CopyAssessment
           new_question = make_copy(question, new_assessment)
           new_block.questions << new_question
 
+          display_logic = (question.display_logic || {}).to_json
+          skip_logic = (question.skip_logic || {}).to_json
+
+          display_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
+          skip_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
+
+          puts "***** DISPLAY_LOGIC *****"
+          puts "#{display_logic}"
+          puts "***** SKIP_LOGIC *****"
+          puts "#{skip_logic}"
+
+          new_question.update_attributes(display_logic: JSON.parse(display_logic), skip_logic: JSON.parse(skip_logic))
+
           # Replace original Question Id to New Question Id
           flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
           norm_rules.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
