@@ -52,7 +52,8 @@ describe Threesixty::Evaluators::CreateOneForm do
     form = described_class.new(evaluator_password: 'week').with_context(campaign: campaign)
     form.validate
 
-    expect(form.errors.messages[:evaluator_password]).to include('is too short (minimum is 6 characters)')
+    expect(form.errors.messages[:evaluator_password]).
+      to include('Evaluator password is too short (minimum is 6 characters)')
   end
 
   it 'password can be blank' do
