@@ -19,3 +19,5 @@ en:
              blank: "Evaluator first name can't be blank"
             evaluator_last_name:
              blank: "Evaluator last name can't be blank"
+            evaluator_password:
+              too_short: 'Evaluator password is too short (minimum is %{count} characters)'
