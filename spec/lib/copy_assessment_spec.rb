@@ -16,6 +16,22 @@ describe CopyAssessment do
 
       create(:factors_scoring, factor: factor, question: question, assessment: assessment)
       create(:question_recoding, question: question, assessment: assessment)
+
+      display_logic = [
+        { 'conditionType': 'Question', 'type': 'bool', 'subject': question.id, 'answer': 0,'predicate': 'Selected' }
+      ]
+      skip_logic = [
+        {
+          'subject': question.id,
+          'prefix': 'And',
+          'answer': 0,
+          'predicate': 'NotSelected',
+          'type': 'bool',
+          'destination': 'EndOfBlock'
+        }
+      ]
+
+      question.update_attributes(display_logic: display_logic, skip_logic: skip_logic)
     end
 
     let(:copy) { described_class.process!(assessment.id) }
@@ -33,6 +49,22 @@ describe CopyAssessment do
 
     it 'copies all questions of each block' do
       expect(copy.blocks.first.questions.length).to eq(assessment.blocks.first.questions.length)
+    end
+
+    it 'replaces question_id in display_logic' do
+      copied_question_id = copy.blocks.first.questions.first.id
+      display_logic = (copy.blocks.first.questions.first.display_logic || {}).to_json
+      pattern = /\"subject\":#{copied_question_id}/
+
+      expect(display_logic.match(pattern)).not_to be_nil
+    end
+
+    it 'replaces question_id in skip_logic' do
+      copied_question_id = copy.blocks.first.questions.first.id
+      skip_logic = (copy.blocks.first.questions.first.skip_logic || {}).to_json
+      pattern = /\"subject\":#{copied_question_id}/
+
+      expect(skip_logic.match(pattern)).not_to be_nil
     end
 
     it 'copies translations of questions' do
