@@ -44,7 +44,8 @@ export class EndPage extends Component {
   }
 
   render () {
-    let message = 'We thank you for your time spent taking this survey.\nYour response has been recorded.'
+    let message = `You have now completed the survey and your response has been recorded.
+      Thank you for taking the time to share your feedback.`
     const { page: { flowElement } } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
