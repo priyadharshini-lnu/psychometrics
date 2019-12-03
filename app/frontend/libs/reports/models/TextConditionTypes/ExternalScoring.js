@@ -1,4 +1,4 @@
-import Factors from 'commands/Factors'
+import Factors from 'rb/commands/Factors'
 import _ from 'lodash'
 import BaseType from './BaseType'
 
