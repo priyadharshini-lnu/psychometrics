@@ -84,6 +84,7 @@
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "normalize.css": "^4.1.1",
+    "normalizr": "^3.4.1",
     "noty": "^2.3.8",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path-to-regexp": "0.1.7",

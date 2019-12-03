@@ -72,8 +72,8 @@ class Question extends Component {
   }
 
   renderAddToTemplate () {
-    const { model } = this.props
-    if (!model.templateId && !model.block.templateId) {
+    const { model, block } = this.props
+    if (!model.templateId && !block.templateId) {
       return (
         <MenuItem onSelect={this.saveAsTemplate}>
           <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />

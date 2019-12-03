@@ -3,7 +3,7 @@ import { setIn } from 'utils/immutable'
 import { INIT } from './actions'
 
 const HANDLERS = {
-  [INIT]: (state, { data }) => setIn(state, ['factors'], data.factors),
+  [INIT]: (state, { data }) => setIn(state, ['factors'], data.entities.factors),
 }
 
 export const defaultState = {

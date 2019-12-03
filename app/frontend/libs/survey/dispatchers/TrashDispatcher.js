@@ -7,10 +7,6 @@ dispatcher.push = function (type, model) {
   store.add(type, model)
 }
 
-dispatcher.empty = function () {
-  store.empty()
-}
-
 dispatcher.remove = function (type, model) {
   store.remove(type, model)
 }

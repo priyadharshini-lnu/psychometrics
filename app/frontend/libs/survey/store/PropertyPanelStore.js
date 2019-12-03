@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import store from '../rstore'
+import store from './index'
 
 const PropertyPanel = function () {}
 

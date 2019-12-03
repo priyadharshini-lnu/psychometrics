@@ -45,7 +45,7 @@ class Trash extends Component {
 
   onConfirm = () => {
     this.setState({ showConfirmation: false })
-    TrashDispatcher.empty()
+    emptyTrash()
   }
 
   onCancel = () => {
@@ -67,6 +67,7 @@ class Trash extends Component {
   }
 
   render () {
+    const { trash, emptyTrash } = this.props
     const { showDeleteConfirmation, showConfirmation } = this.state
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
@@ -84,7 +85,7 @@ class Trash extends Component {
         </div>
         <div className={[trashStyles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <ul className="list-group border-bottom">
-            {store.list.map(this.renderItem)}
+            {trash.map(this.renderItem)}
           </ul>
         </div>
         <Confirmation show={showDeleteConfirmation} onConfirm={this.onDeleteConfirm} onCancel={this.onCancel}>

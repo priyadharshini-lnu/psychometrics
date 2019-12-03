@@ -1,40 +1,17 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import Question from 'views/Question'
 import PageBreak from 'components/PageBreak'
 import styles from './QuestionList.scss'
 
-export class QuestionList extends Component {
-  static propTypes = {
-    block: PropTypes.object.isRequired,
-  }
-
-  storeListener = null
-
-  componentDidMount () {
-    const { block } = this.props
-    this.storeListener = block.questions.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  render () {
-    const { block } = this.props
-    const store = block.questions
-    const { list } = store
-    return (
-      <div className={styles.main}>
-        {list.map((question, i) => {
-          if (question.type === 'PageBreak') {
-            return <PageBreak store={store} model={question} key={i} />
-          }
-          return <Question blockStore={store} model={question} key={i} />
-        })}
-      </div>
-    )
-  }
+export default function QuestionList ({ block, questions }) {
+  return (
+    <div className={styles.main}>
+      {questions.map((question, i) => {
+        if (question.type === 'PageBreak') {
+          return <PageBreak store={{}} model={question} key={i} />
+        }
+        return <Question model={question} block={block} key={question.id} />
+      })}
+    </div>
+  )
 }
-
-export default QuestionList

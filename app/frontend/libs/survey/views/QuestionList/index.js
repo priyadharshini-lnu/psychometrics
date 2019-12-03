@@ -1,5 +1,6 @@
 import QuestionList from './components/QuestionList'
 import styles from './components/QuestionList.scss'
+import connect from './connect'
 
 export { styles }
-export default QuestionList
+export default connect(QuestionList)

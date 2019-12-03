@@ -9,7 +9,7 @@ import ModuleConfigs from 'constants/ModuleConfigs'
 import AppStore from 'store/AppStore'
 import Socket from 'cable'
 import Action from 'undo'
-import rstore from 'rstore'
+import rstore from 'store'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -18,11 +18,17 @@ import LogicElement from './logic/LogicElement'
 
 let count = 1
 
-const Question = function (attrs = {}, store) {
-  this.id = attrs.id
-  this.store = store
-  this.block = store.block || {}
+const Question = function (attrs = {}) {
+  if (attrs.id) {
+    this.id = attrs.id
+    this.isNew = false
+  } else {
+    this.id = Date.now() + count
+    this.isNew = true
+  }
+
   this.position = attrs.position
+  this.deleted = attrs.deleted || false
   this.name = attrs.name || `Q${count}`
   this.templateId = attrs.template_id
   this.saveAsTemplate = false
@@ -56,8 +62,8 @@ _.extend(Question.prototype, {
 
   toJSON () {
     return {
-      id: this.id,
-      block_id: this.block.id,
+      id: this.isNew ? undefined : this.id,
+      block_id: this.block_id,
       name: this.name,
       position: this.position,
       type: this.type,
@@ -287,8 +293,8 @@ _.extend(Question.prototype, {
   update () {
     this.shuffleChoices()
     this.resetDefaultValues()
-    this.sync()
-    this.store.update()
+    // this.sync()
+    // this.store.update()
     rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' }) // NOTE: @fedor hack to update ui remove it later
   },
 

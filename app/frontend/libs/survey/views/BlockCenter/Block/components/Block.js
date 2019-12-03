@@ -70,7 +70,7 @@ class Block extends Component {
   }
 
   render () {
-    const { model, last } = this.props
+    const { model, last, createBlock } = this.props
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -88,7 +88,7 @@ class Block extends Component {
         </div>
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
-          <Footer model={model} onMinimize={this.expand} last={last} />
+          <Footer createBlock={createBlock} model={model} onMinimize={this.expand} last={last} />
         </div>
       </div>
     )

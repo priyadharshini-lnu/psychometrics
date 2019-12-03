@@ -17,7 +17,7 @@ const Block = function (attrs = {}) {
   } else {
     this.props = attrs.props
   }
-  this.questions = new QuestionList(this, attrs.questions || [])
+  this.questions = attrs.questions || []
   count += 1
 }
 
@@ -33,6 +33,7 @@ _.extend(Block.prototype, {
       template_id: this.templateId,
       save_as_template: this.saveAsTemplate,
       deleted_at: this.deletedAt,
+      questions: this.questions,
     }
   },
 

@@ -7,7 +7,6 @@ import SkipLogic from './SkipLogic'
 class QuestionFooter extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
   }
 
   renderSkipLogic () {

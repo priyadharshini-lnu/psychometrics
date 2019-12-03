@@ -12,7 +12,7 @@ import homeStyles from 'views/Home/components/HomeView.scss'
 import blockStyles from 'views/BlockList/components/BlockListView.scss'
 import Randomization from 'components/Randomization'
 import { Provider } from 'react-redux'
-import store from '../rstore'
+import store from '../store'
 
 class AppContainer extends Component {
   undoListener= null

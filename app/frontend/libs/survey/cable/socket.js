@@ -7,7 +7,7 @@ export default class Socket {
         opts.onConnect()
       },
       disconnected () {
-
+        opts.onDisconnect()
       },
       received (data) {
         opts.onReceived(data)

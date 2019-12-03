@@ -7,10 +7,6 @@ import TrashDispatcher from './TrashDispatcher'
 const dispatcher = new EventEmitter()
 
 _.extend(dispatcher, {
-  create (data) {
-    store.create(data)
-  },
-
   destroy (model) {
     store.destroy(model)
   },

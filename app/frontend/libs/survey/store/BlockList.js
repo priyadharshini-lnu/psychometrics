@@ -12,20 +12,20 @@ const BlockList = function () {
 BlockList.prototype = new EventEmitter()
 
 _.extend(BlockList.prototype, {
-  load (data) {
-    this.list = []
-    _.each(data, (block) => {
-      if (!block.deleted) {
-        this.list.push(new Block(block))
-      } else {
-        TrashStore.add('Block', new Block(block))
-      }
-    })
-    if (!this.list.length) {
-      this.createDefault()
-    }
-    this.emit('change')
-  },
+  // load (data) {
+  //   this.list = []
+  //   _.each(data, (block) => {
+  //     if (!block.deleted) {
+  //       this.list.push(new Block(block))
+  //     } else {
+  //       TrashStore.add('Block', new Block(block))
+  //     }
+  //   })
+  //   if (!this.list.length) {
+  //     this.createDefault()
+  //   }
+  //   this.emit('change')
+  // },
 
   createDefault () {
     const block = new Block({ name: 'Default Block', position: 0 })
@@ -33,13 +33,13 @@ _.extend(BlockList.prototype, {
     this.emit('change')
   },
 
-  create (data = {}) {
-    const block = new Block(data)
-    Action('BlockCreate', this, block)
-    this.moveAllAndPush(block.position - 1, block)
-    this.emit('change')
-    return block
-  },
+  // create (data = {}) {
+  //   const block = new Block(data)
+  //   Action('BlockCreate', this, block)
+  //   this.moveAllAndPush(block.position - 1, block)
+  //   this.emit('change')
+  //   return block
+  // },
 
   restore (block) {
     const last = _.last(this.list)

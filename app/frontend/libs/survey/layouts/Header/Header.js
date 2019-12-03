@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
 import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
 import CreateByTemplateStore from 'store/CreateByTemplateStore'
@@ -23,12 +22,12 @@ export class Header extends Component {
   }
 
   createBlock = () => {
-    BlockListDispatcher.create()
+    const { createBlock } = this.props
+    createBlock()
   }
 
   showScoring = () => {
     const { history, match: { params: { id } } } = this.props
-    AppStore.openScoring()
     history.push(`/administration/assessments/${id}/scoring`)
   }
 
@@ -41,7 +40,17 @@ export class Header extends Component {
   }
 
   export = () => {
-    this.data.value = JSON.stringify(AppStore.exportAssessment())
+    const { blocks } = this.props
+    const result = {
+      question: {},
+      flow: {},
+    }
+    _.each(blocks, (block) => {
+      _.each(block.questions.list, (question) => {
+        result.question[question.id] = question.exportLocales()
+      })
+    })
+    this.data.value = JSON.stringify(result)
     this.form.submit()
   }
 
@@ -51,7 +60,8 @@ export class Header extends Component {
   }
 
   save = () => {
-    AppStore.save()
+    const { builder } = this.props
+    AppStore.save(builder)
   }
 
   toggleEnableBack = () => {
@@ -65,12 +75,12 @@ export class Header extends Component {
   }
 
   render () {
-    const { name } = this.props
+    const { assessment } = this.props
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
           <h3 className="panel-title">
-            {name}
+            {assessment.name}
           </h3>
         </div>
         <ul className="panel-controls">

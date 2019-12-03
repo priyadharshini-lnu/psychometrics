@@ -10,6 +10,8 @@ import TrashStore from 'store/TrashStore'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import Scoring from 'models/Scoring'
 import BlockList from './BlockList'
+import {blocks, schema} from './schema'
+import {denormalize} from 'normalizr'
 
 const { $ } = window
 
@@ -34,9 +36,8 @@ _.extend(AppStore.prototype, {
     if (this.loaded) { return }
     // Clear trash
     TrashStore.list = []
-    BlockList.load(data.blocks)
+    // BlockList.load(data.blocks)
     this.assessment = new Assessment(data)
-    this.disabled = false
     FactorList.load(data.factors)
     this.loaded = true
     this.questionRecodingList = data.question_recoding.map(q => new Scoring(q))
@@ -44,11 +45,6 @@ _.extend(AppStore.prototype, {
     this.fetchQuestions()
     this.dataSheetColumns = data.data_sheet_columns || []
     this.relationships = data.relationships || []
-    const urlParams = Utils.getJsonFromUrl()
-    // can open scoring with specify factor
-    if (urlParams.scoring && urlParams.factor_id) {
-      this.openScoring(parseInt(urlParams.factor_id, 10))
-    }
   },
 
   addQuestionRecoding (attrs = {}) {
@@ -65,31 +61,8 @@ _.extend(AppStore.prototype, {
     }, {})
   },
 
-  disable () {
-    this.disabled = true
-    this.emit('change')
-  },
-
-  enable () {
-    this.disabled = false
-    this.emit('change')
-  },
-
   update () {
     this.emit('change')
-  },
-
-  openScoring (factorId) {
-    this.scoring = true
-    if (factorId) {
-      const factor = _.find(FactorList.list, { id: factorId })
-      if (factor) {
-        FactorList.changeFactor(factor)
-        this.update()
-        return
-      }
-    }
-    this.update()
   },
 
   initQCenter (question) {
@@ -108,19 +81,6 @@ _.extend(AppStore.prototype, {
     }
   },
 
-  exportAssessment () {
-    const result = {
-      question: {},
-      flow: {},
-    }
-    _.each(BlockList.list, (block) => {
-      _.each(block.questions.list, (question) => {
-        result.question[question.id] = question.exportLocales()
-      })
-    })
-    return result
-  },
-
   // Serialize Assessment
   // assessment: {
   //   - Assessment Attributes (props, flow, norm)
@@ -137,16 +97,16 @@ _.extend(AppStore.prototype, {
   //     }
   //   ]
   // }
-  serializeAssessment () {
-    const assessment = this.assessment.toJSON()
+  serializeAssessment (assessmentData) {
+    const assessment = Assessment.prototype.toJSON.call(assessmentData.assessment)
     assessment.blocks = []
 
     // Serialize blocks and questions
-    _.each(BlockList.list, (blockModel) => {
-      const block = blockModel.toJSON()
+    _.each(denormalize(assessmentData.assessment.blocks, [blocks], assessmentData), (blockModel) => {
+      const block = BlockModel.prototype.toJSON.call(blockModel)
       block.questions = []
-      _.each(blockModel.questions.list, (questionModel) => {
-        const question = questionModel.toJSON()
+      _.each(blockModel.questions, (questionModel) => {
+        const question = QuestionModel.prototype.toJSON.call({block_id: block.id, ...questionModel})
         block.questions.push(question)
       })
       assessment.blocks.push(block)
@@ -155,14 +115,14 @@ _.extend(AppStore.prototype, {
   },
 
   // Save Assessment
-  save () {
+  save (assessment) {
     const builder = {
-      assessment: this.serializeAssessment(),
+      assessment: this.serializeAssessment(assessment),
       trash: [],
     }
 
     // Serialize trash
-    _.each(TrashStore.list, (item) => {
+    _.each(assessment.trash, (item) => {
       const deletedItem = { model: item.model.toJSON(), type: item.type, permanent_remove: item.permanentRemove }
       builder.trash.push(deletedItem)
     })

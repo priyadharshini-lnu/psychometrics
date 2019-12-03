@@ -169,7 +169,7 @@ class Block extends Component {
   }
 
   render () {
-    const { model, last } = this.props
+    const { model, last, createBlock, addQuestion } = this.props
     const { opened, showPrompt, showDeleteConfirmation } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -188,7 +188,7 @@ class Block extends Component {
         {model.isTemplate() && this.renderTemplateWarning()}
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
-          <Footer model={model} onMinimize={this.expand} last={last} />
+          <Footer createBlock={createBlock} addQuestion={addQuestion} model={model} onMinimize={this.expand} last={last} />
         </div>
         <Prompt
           title={`Copy Block - ${model.name}`}

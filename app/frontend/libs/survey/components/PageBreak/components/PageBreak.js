@@ -7,7 +7,6 @@ import styles from './PageBreak.scss'
 class PageBreak extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
   }
 
   state = {
@@ -15,10 +14,11 @@ class PageBreak extends Component {
   }
 
   remove = () => {
-    const { store, model } = this.props
+    const { model, removeQuestion } = this.props
     this.setState({ fadeout: true })
     setTimeout(() => {
-      store.dispatcher.permanentRemove(model)
+      // store.dispatcher.permanentRemove(model)
+      removeQuestion(model)
       if (this.isMounted()) {
         this.setState({ fadeout: false })
       }

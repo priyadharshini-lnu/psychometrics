@@ -7,7 +7,7 @@ import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 import PropertyPanelStore from 'store/PropertyPanelStore'
 import AppStore from 'store/AppStore'
 import I18nStore from 'store/I18nStore'
-import store from '../rstore'
+import store from '../store'
 import routes from './routes'
 
 class AppContainer extends Component {

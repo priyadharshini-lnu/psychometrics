@@ -1,11 +1,15 @@
 import { connect } from 'react-redux'
 import { open } from 'libs/survey/core/modals'
+import { createBlock } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
   state => ({
-    name: state.survey.builder.assessment.name,
+    assessment: state.survey.builder.assessment,
+    builder: state.survey.builder,
+    blocks: state.survey.builder.assessment.blocks,
   }),
   {
     openFlow: data => open('flow', data),
+    createBlock,
   },
 )

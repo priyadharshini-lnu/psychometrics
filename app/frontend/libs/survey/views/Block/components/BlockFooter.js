@@ -21,18 +21,18 @@ class BlockFooter extends Component {
   }
 
   addBlock = () => {
-    const { model } = this.props
-    BlockListDispatcher.create({ position: model.position + 1 })
+    const { model, createBlock } = this.props
+    createBlock({ position: model.position + 1 })
   }
 
   createDefault = () => {
-    const { model } = this.props
-    model.addQuestion()
+    const { addQuestion, model } = this.props
+    addQuestion(model)
   }
 
   changeType = (type) => {
-    const { model } = this.props
-    model.addQuestion({ type })
+    const { addQuestion, model } = this.props
+    addQuestion(model, { type })
   }
 
   openSearchQuestionPopup = () => {

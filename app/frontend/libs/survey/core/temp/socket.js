@@ -3,6 +3,8 @@ import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
+import { ENABLE, DISABLE } from 'core/builder/assessment/actions'
+import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import Socket from '../../cable/socket'
 
 export const SUBSCRIBE_SOCKET = 'survey/temp/socket/SUBSCRIBE_SOCKET'
@@ -16,15 +18,14 @@ export const subscribeSocket = (channel, data) => ({
   type: SUBSCRIBE_SOCKET, channel, data,
 })
 
-export const UnsubscribeSocket = () => ({
-  type: UNSUBSCRIBE_SOCKET,
-})
+export const UnsubscribeSocket = () => ({ type: UNSUBSCRIBE_SOCKET })
 
-export const subscribed = () => ({
-  type: SUBSCRIBED_SOCKET,
-})
+export const subscribed = () => ({ type: SUBSCRIBED_SOCKET })
 
-export const defaultState = {
+export const enableApp = () => ({ type: ENABLE })
+export const disableApp = () => ({ type: DISABLE })
+
+const defaultState = {
   initialized: null,
 }
 
@@ -43,6 +44,9 @@ const createSocketChannel = (channel, data) => eventChannel((emit) => {
     onReceived: (data) => {
       emit({ type: 'message', data })
     },
+    onDisconnect: () => {
+      emit({ type: 'disconnect', data })
+    },
   })
   return () => {
     socket.remove()
@@ -58,6 +62,11 @@ function* genSubsribeSocket ({ channel, data }) {
     const payload = yield take(socketChannel)
     if (payload.type === 'connected') {
       yield put(subscribed())
+      yield put(enableApp())
+    }
+    if (payload.type === 'disconnect') {
+      yield put(disableApp())
+      NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
     }
     if (payload.type === 'message') {
       yield put(socketMessage(payload.data))

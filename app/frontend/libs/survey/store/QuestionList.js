@@ -22,27 +22,27 @@ QuestionList.prototype = new EventEmitter()
 
 _.extend(QuestionList.prototype, {
 
-  load (questions) {
-    this.list = []
-    _.each(questions, (question) => {
-      if (!question.deleted) {
-        this.list.push(new Question(question, this))
-      } else if (!this.block.deleted) {
-        TrashStore.add('Question', new Question(question, this))
-      }
-    })
-    this.emit('change')
-  },
+  // load (questions) {
+  //   this.list = []
+  //   _.each(questions, (question) => {
+  //     if (!question.deleted) {
+  //       this.list.push(new Question(question, this))
+  //     } else if (!this.block.deleted) {
+  //       TrashStore.add('Question', new Question(question, this))
+  //     }
+  //   })
+  //   this.emit('change')
+  // },
 
-  create (data = {}) {
-    const last = (_.last(this.list) || {}).position
-    const question = new Question(data, this)
+  // create (data = {}) {
+  //   const last = (_.last(this.list) || {}).position
+  //   const question = new Question(data, this)
 
-    question.position = (typeof last !== 'undefined') ? last + 1 : 1
-    this.list.push(question)
-    Action('QuestionCreate', this, question)
-    this.emit('change')
-  },
+  //   question.position = (typeof last !== 'undefined') ? last + 1 : 1
+  //   this.list.push(question)
+  //   Action('QuestionCreate', this, question)
+  //   this.emit('change')
+  // },
 
   createPageBreak (data = {}) {
     const newData = { ...data }
@@ -64,12 +64,12 @@ _.extend(QuestionList.prototype, {
     return question
   },
 
-  destroy (model) {
-    const question = _.find(this.list, model)
-    _.remove(this.list, question)
-    // TrashStore.add('Question', question)
-    this.emit('change')
-  },
+  // destroy (model) {
+  //   const question = _.find(this.list, model)
+  //   _.remove(this.list, question)
+  //   // TrashStore.add('Question', question)
+  //   this.emit('change')
+  // },
 
   moveDown (model) {
     const index = _.findIndex(this.list, model)
@@ -132,23 +132,23 @@ _.extend(QuestionList.prototype, {
     this.sort()
   },
 
-  insertAfter (model) {
-    const index = _.findIndex(this.list, model)
-    const position = this.list[index].position + 1
-    const question = new Question({ position }, this)
+  // insertAfter (model) {
+  //   const index = _.findIndex(this.list, model)
+  //   const position = this.list[index].position + 1
+  //   const question = new Question({ position }, this)
 
-    this.moveAllAndPush(index + 1, question)
-    Action('QuestionCreate', this, question)
-  },
+  //   this.moveAllAndPush(index + 1, question)
+  //   Action('QuestionCreate', this, question)
+  // },
 
-  insertBefore (model) {
-    const index = _.findIndex(this.list, model)
-    const { position } = this.list[index]
-    const question = new Question({ position }, this)
+  // insertBefore (model) {
+  //   const index = _.findIndex(this.list, model)
+  //   const { position } = this.list[index]
+  //   const question = new Question({ position }, this)
 
-    this.moveAllAndPush(index, question)
-    Action('QuestionCreate', this, question)
-  },
+  //   this.moveAllAndPush(index, question)
+  //   Action('QuestionCreate', this, question)
+  // },
 
   sort () {
     this.list = _.sortBy(this.list, ['position'])
