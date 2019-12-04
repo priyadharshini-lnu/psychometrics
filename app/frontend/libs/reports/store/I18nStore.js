@@ -58,6 +58,7 @@ const EXTERNAL_CATEGORIES = ['hogan', 'mindmill']
 // }
 const I18nStore = function () {
   this.locales = null
+  this.locale = null
 }
 
 I18nStore.prototype = new EventEmitter()
@@ -70,6 +71,7 @@ _.extend(I18nStore.prototype, {
   setLocale (locale) {
     if (locale) {
       I18n.locale = locale
+      this.locale = locale
     }
   },
 
