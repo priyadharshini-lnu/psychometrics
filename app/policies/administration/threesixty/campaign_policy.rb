@@ -33,5 +33,9 @@ module Administration::Threesixty
     def remove_user?
       super_admins_or_admins?
     end
+
+    def export_results?
+      super_admins_or_admins?
+    end
   end
 end

@@ -13,7 +13,7 @@ module Hogan
 
       transaction do
         start_assign
-        build_hogan_credential unless membership.hogan_credential
+        build_hogan_credential
       end
 
       broadcast(:ok)
