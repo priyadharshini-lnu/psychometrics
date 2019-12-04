@@ -65,7 +65,12 @@ module Administration
         #
         def regenerate
           resource.update_column(:generating, true)
-          ::Reports::ExportJob.perform_later(resource, current_user)
+          if resource.report.hogan?
+            Hogan::LoadResultsJob.
+              perform_later(resource.assign, membership.membership_with_result, membership.project)
+          else
+            ::Reports::ExportJob.perform_later(resource, current_user)
+          end
           render :regenerate, format: [:js]
         end
 
