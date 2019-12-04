@@ -6,7 +6,7 @@ import Values from './Values'
 const Custom = function (condition) {
   this.condition = condition
   this.subject = condition.subject
-  this.question = _.find(store.questions, { id: this.subject })
+  this.question = _.find(store.allQuestions, { id: this.subject })
   this.prefix = condition.prefix
   this.answer = condition.answer
   this.predicate = condition.predicate
