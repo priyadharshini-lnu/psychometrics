@@ -7,7 +7,7 @@ module Administration
         include Administration::Clients
         before_action :ensure_project
         prepend_before_action :set_resource_class
-        before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
+        before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
         before_action :init_breadcrumbs
         wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
 
@@ -82,6 +82,13 @@ module Administration
           @_resource = campaign
           respond_to do |format|
             format.js
+          end
+        end
+
+        def export_results
+          results = ::Exports::Assessments::ThreesixtyAssessmentResultsExport.call!(resource.assessment)
+          respond_to do |format|
+            format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
           end
         end
 
