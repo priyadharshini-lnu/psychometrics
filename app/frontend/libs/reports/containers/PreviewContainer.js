@@ -9,9 +9,11 @@ import 'rb/styles/core.scss'
 class PreviewContainer extends Component {
   componentDidMount () {
     const parent = ReactDOM.findDOMNode(this).parentNode
-    const { data, results, locales } = parent.dataset
+    const {
+      data, results, locales, selectedLocale,
+    } = parent.dataset
     if (locales) {
-      I18nStore.setLocale(document.body.dataset.locale)
+      I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
       I18nStore.locales = JSON.parse(locales)
     }
     const { user, campaign } = parent.dataset

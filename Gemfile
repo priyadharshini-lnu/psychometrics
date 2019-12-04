@@ -14,9 +14,9 @@ gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 4.0.1'
 gem 'rails',                      '~> 5.1.6'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'uglifier',                   '>= 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 
-source 'https://rails-assets.org' do
+source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
@@ -81,6 +81,8 @@ gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
 gem 'config',                     '~> 1.2.1'
 gem 'figaro',                     '~> 1.1.1'
+
+gem 'premailer-rails', '~> 1.10.3'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'

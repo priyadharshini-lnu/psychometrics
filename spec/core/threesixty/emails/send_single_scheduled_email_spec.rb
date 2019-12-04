@@ -203,4 +203,142 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
 
     expect(email_history.meta['relationship_id']).to eq(relationship.id)
   end
+
+  it 'sends single email to evaluator if evaluator emails are consolidate' do
+    subjects = create_list(:user, 2)
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now,
+      consolidated: true,
+      meta: { subject_ids: subjects.map(&:id) }
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[0].id
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[1].id
+    )
+
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
+      once.with(email_schedule,
+                hash_including(subject_ids: subjects.map(&:id))).and_return(message_delivery)
+
+    described_class.call!(email_schedule)
+  end
+
+  it 'sends multiple email to evaluator if evaluator emails are not consolidate' do
+    subjects = create_list(:user, 2)
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now,
+      consolidated: false,
+      meta: { subject_ids: subjects.map(&:id) }
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[0].id
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[1].id
+    )
+
+    expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).twice.and_return(message_delivery)
+
+    described_class.call!(email_schedule)
+  end
+
+  it 'creates multiple email history record for consolidated emails' do
+    subjects = create_list(:user, 2)
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now,
+      consolidated: true,
+      meta: { subject_ids: subjects.map(&:id) }
+    )
+    manager_relationship = create(:relationship, name: 'Manager', type: :global)
+    peer_relationship = create(:relationship, name: 'Peer', type: :global)
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[0].id,
+      relationship_id: manager_relationship.id
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id,
+      subject_id: subjects[1].id,
+      relationship_id: peer_relationship.id
+    )
+
+    described_class.call!(email_schedule)
+
+    email_histories = email_schedule.email_histories
+
+    expect(email_histories.length).to eq(2)
+    expect(email_histories[0].subject_id).to eq(subjects[0].id)
+    expect(email_histories[1].subject_id).to eq(subjects[1].id)
+    expect(email_histories[0].meta['relationship_id']).to eq(manager_relationship.id)
+    expect(email_histories[1].meta['relationship_id']).to eq(peer_relationship.id)
+  end
+
+  it 'sets condolidated as true in created email history if emails are consolidated' do
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now,
+      consolidated: true
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id
+    )
+
+    described_class.call!(email_schedule)
+
+    email_history = email_schedule.email_histories.first
+
+    expect(email_history.consolidated).to eq(true)
+  end
+
+  it 'sets consolidated as false in created email history if emails are not consolidatable' do
+    email_schedule = create(
+      :threesixty_email_schedule,
+      name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
+      recipient_ids: [recipients[0].id],
+      scheduled_date: Time.now,
+      consolidated: false
+    )
+    create(
+      :threesixty_participant,
+      campaign_id: email_schedule.threesixty_campaign.campaign_id,
+      evaluator_id: recipients[0].id
+    )
+
+    described_class.call!(email_schedule)
+
+    email_history = email_schedule.email_histories.first
+
+    expect(email_history.consolidated).to eq(false)
+  end
 end

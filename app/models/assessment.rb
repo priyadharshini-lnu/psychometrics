@@ -58,6 +58,9 @@ class Assessment < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
 
+  has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
+  has_one :campaign, through: :threesixty_campaign
+
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :norms, through: :dimension
@@ -116,6 +119,13 @@ class Assessment < ApplicationRecord
   scope :with_category, lambda { |category|
     where(category: category)
   }
+
+  # Copy assessment with nested resources
+  def clone
+    @cloned_item = deep_clone include: [:hogan_assessment_setting]
+    @cloned_item.gen_uniq_name
+    @cloned_item
+  end
 
   def set_default_color
     self.icon_color = Settings.default_colors.sample

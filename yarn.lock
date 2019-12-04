@@ -8762,6 +8762,11 @@ schema-utils@^1.0.0:
     ajv-errors "^1.0.0"
     ajv-keywords "^3.1.0"
 
+scroll-js@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/scroll-js/-/scroll-js-3.1.0.tgz#c88e616fbf5994db6b4e2b0be39bbf1fff15c11a"
+  integrity sha512-a7luDtNNjMUvb+4r/+tp/Q+QH7PQR23n+59wukbwnACkieyN1EZjT2/8xMlXKpJHeVbKcSHPiDH2B/74mEcNMg==
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"

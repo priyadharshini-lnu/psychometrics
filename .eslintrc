@@ -53,6 +53,7 @@
     "_": true,
     "location": true,
     "I18n": true,
+    "Utils": true,
     "moment": true
   },
   "settings": {

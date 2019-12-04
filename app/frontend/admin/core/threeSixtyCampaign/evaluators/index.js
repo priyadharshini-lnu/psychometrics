@@ -84,5 +84,4 @@ export const watchers = [
   takeLatest(CREATE_ALL_EVALUATORS, genClearForm),
   takeLatest(CREATE_ALL_EVALUATORS, genCloseModal),
   takeLatest(IMPORT, genFetchEvaluators),
-  takeLatest(IMPORT, genCloseModal),
 ]

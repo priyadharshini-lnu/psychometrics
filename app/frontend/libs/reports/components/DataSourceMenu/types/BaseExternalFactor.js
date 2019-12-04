@@ -6,7 +6,7 @@ import { getValue } from 'rb/presenters/ReactSelectPresenter'
 class BaseExternalFactor extends Component {
   getOptions = () => {
     const { assessment, sourceType } = this.props
-    assessment.factors.filter(f => f.type === sourceType)
+    return assessment.factors.filter(f => f.type === sourceType)
   }
 
   onChange = (data) => {

@@ -16,6 +16,8 @@
 #
 
 class Translation < ApplicationRecord
+  include Copyable
+
   belongs_to :translateable, polymorphic: true
   belongs_to :resource, polymorphic: true
 

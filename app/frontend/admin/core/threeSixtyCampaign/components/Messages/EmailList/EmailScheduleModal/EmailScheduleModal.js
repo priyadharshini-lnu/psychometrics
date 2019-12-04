@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input, message,
+  Modal, Button, Icon, Input, message, Switch,
 } from 'antd'
+import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import Editor from 'components/Editor'
 import cs from 'classnames'
-import { NAME } from 'constants/emailTemplate'
 import TitleBar from './TitleBar'
 import styles from './styles.scss'
 import ScheduledDateField from './ScheduledDateField'
@@ -74,6 +74,7 @@ export default function EmailScheduleModal ({
   }
 
   const recipientsCount = () => (recipients ? recipients.length : null)
+  const updateConsolidationField = value => updateField('consolidated', value)
 
   return (
     <Modal
@@ -99,14 +100,19 @@ export default function EmailScheduleModal ({
     >
       <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
       <div className={styles.content}>
-        <ErrorAlertBox errors={errors} className="mbl" />
+        <ErrorAlertBox
+          errors={errors}
+          scrollToError
+          scrollView={document.getElementsByClassName('ant-modal-wrap')[0]}
+          className="mbl"
+        />
         <RecipientCriteriaList
           emailName={emailSchedule.name}
           recipientCriteria={emailSchedule.recipientCriteria}
           recipientType={recipientType()}
           recipientsCount={recipientsCount()}
         />
-
+        <ConsolidatedSwitch emailTemplate={emailSchedule} update={updateConsolidationField} />
         <ScheduledDateField
           scheduledDate={emailSchedule.scheduledDate}
           updateScheduleDate={value => updateField('scheduledDate', value)}
@@ -138,6 +144,7 @@ export default function EmailScheduleModal ({
         <Editor
           type={emailSchedule.name}
           content={emailSchedule.content}
+          details={{ consolidation: emailSchedule.consolidated }}
           handleContentChange={(value) => {
             updateField('content', value)
           }}
@@ -145,5 +152,23 @@ export default function EmailScheduleModal ({
         <RecipientListModal recipientType={recipientType()} recipients={recipients} />
       </div>
     </Modal>
+  )
+}
+
+
+function ConsolidatedSwitch ({ emailTemplate, update }) {
+  if (!_.includes(CONSOLIDATED_EMAIL_NAMES, emailTemplate.name)) {
+    return null
+  }
+
+  return (
+    <div className="mbm">
+      <Switch
+        checked={emailTemplate.consolidated}
+        onChange={update}
+      />
+      {'  '}
+      <span>Consolidated</span>
+    </div>
   )
 }
