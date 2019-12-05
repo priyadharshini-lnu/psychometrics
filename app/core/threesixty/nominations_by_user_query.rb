@@ -19,11 +19,7 @@ module Threesixty
     end
 
     def self_subject_scope(scope)
-      if subject_can_manage_evaluations?
-        scope.where(user_id: current_user.id).includes(:user)
-      else
-        scope.where('1=0').includes(:user)
-      end
+      scope.where(user_id: current_user.id).includes(:user)
     end
 
     private
