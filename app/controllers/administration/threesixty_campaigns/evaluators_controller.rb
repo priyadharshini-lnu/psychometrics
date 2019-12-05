@@ -75,8 +75,8 @@ module Administration
         form = ::Threesixty::Evaluators::CreateAllForm.from_params(evaluators).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
-          render json: :ok
+          result = ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
+          render json: result.slice(:existing_evaluators_whose_password_not_changed)
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
