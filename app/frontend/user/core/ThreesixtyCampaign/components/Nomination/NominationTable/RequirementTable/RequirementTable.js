@@ -183,7 +183,7 @@ export default function RequirementTable (props) {
           width="5%"
           className="column-header"
           render={(value) => {
-            if (!value.evaluator) { return { props: { colSpan: 0 } } }
+            if (!value.evaluator || !canNominate) { return { props: { colSpan: 0 } } }
             return (
               <Popconfirm
                 title={I18n.t('threesixty.confirmation_for_nomination_removal')}

@@ -45,9 +45,6 @@ function NominationList ({
 
   const [selfNominations, notSelfNominations] = _.partition(nominations, { isSelf: true })
 
-  const viewableNominations = !options.manager.canViewNominations
-    || options.manager.canApproveNominations ? [] : notSelfNominations
-
   const getNominationsForSetup = () => {
     if (options.subject.canNominateEvaluators && options.manager.canChooseEvaluators) {
       return nominations
@@ -65,6 +62,13 @@ function NominationList ({
   }
 
   const nominationsForSetup = getNominationsForSetup()
+  const nominationsForSetupIds = nominationsForSetup.map(({ id }) => id)
+
+  let viewableNominations = !options.manager.canViewNominations
+    || options.manager.canApproveNominations ? selfNominations : nominations
+
+  viewableNominations = _.filter(viewableNominations,
+    nomination => !_.includes(nominationsForSetupIds, nomination.id))
 
 
   const approvableNominations = options.manager.canApproveNominations ? notSelfNominations : []
