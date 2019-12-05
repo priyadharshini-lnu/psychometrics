@@ -33,7 +33,7 @@ describe Threesixty::Evaluators::CreateAll do
     ]
   end
 
-  subject { described_class.call!(params, threesixty_campaign) }
+  subject { described_class.call!(params, threesixty_campaign)[:participants] }
 
   it '.call' do
     participants = subject
@@ -106,5 +106,49 @@ describe Threesixty::Evaluators::CreateAll do
 
     expect(user.first_name).to eq('John')
     expect(user.last_name).to eq('Smith')
+  end
+
+  it 'creates evaluator with password' do
+    params = [{
+      evaluator_email: 'dev.atanov@gmail.com',
+      relationship_name: 'peer', subject: subject_1,
+      evaluator_password: 'password@123',
+      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+    }]
+
+    participants = described_class.call!(params, threesixty_campaign)[:participants]
+    expect(participants.first.evaluator.create_by_invite).to eq(false)
+    expect(participants.first.evaluator.valid_password?('password@123')).to eq(true)
+  end
+
+  it 'creates evaluator without password' do
+    params = [{
+      evaluator_email: 'dev.atanov@gmail.com',
+      relationship_name: 'peer', subject: subject_1,
+      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+    }]
+
+    participants = described_class.call!(params, threesixty_campaign)[:participants]
+
+    expect(participants.first.evaluator.create_by_invite).to eq(true)
+    expect(participants.first.evaluator.encrypted_password).to be_blank
+  end
+
+  it "doesn't update password of existing user" do
+    user = create(:user, project: threesixty_campaign.project,
+        email: 'daniel@cc.com', first_name: 'Daniel', last_name: 'Col', password: 'old_password')
+    create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
+    params = [{
+      evaluator_email: 'daniel@cc.com',
+      relationship_name: 'peer', subject: subject_1,
+      evaluator_password: 'new_password',
+      relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com'
+    }]
+
+    result = described_class.call!(params, threesixty_campaign)
+    participants = result[:participants]
+
+    expect(participants.first.evaluator.valid_password?('old_password')).to eq(true)
+    expect(result[:existing_evaluators_whose_password_not_changed]).to include(user)
   end
 end

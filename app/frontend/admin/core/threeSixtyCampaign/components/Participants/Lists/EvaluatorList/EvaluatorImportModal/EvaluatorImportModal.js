@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import {
   Modal, Button, Icon, message,
 } from 'antd'
+import UserList from 'admin/core/threeSixtyCampaign/components/UserList/UserList'
+import cs from 'classnames'
+import _ from 'lodash'
 import FileImport from './FileImport'
 
 export default function EvaluatorImportModal ({
@@ -14,6 +17,7 @@ export default function EvaluatorImportModal ({
 }) {
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState(null)
+  const [evaluatorsWhosePasswordNotChanged, setEvaluatorsWhosePasswordNotChanged] = useState(null)
 
   const importButtonIcon = () => {
     if (importInProgress) {
@@ -27,12 +31,30 @@ export default function EvaluatorImportModal ({
     closeModal()
   }
 
+  const showFileImport = () => _.isEmpty(evaluatorsWhosePasswordNotChanged)
+
+  const modalBody = () => {
+    if (showFileImport()) {
+      return <FileImport setFile={setFile} errors={errors} campaignId={campaignId} />
+    }
+    return <UserList dataSource={evaluatorsWhosePasswordNotChanged} />
+  }
+
+  const modalTitle = () => (
+    showFileImport() ? 'Import Evaluators' : 'The list of users whose passwords were not changed'
+  )
+
   const handleFileImport = () => {
     const data = new FormData()
     data.append('file', file)
     importFile(campaignId, data)
-      .then(() => {
-        message.success('Evalutors imported successfully', 5)
+      .then(({ response: { existingEvaluatorsWhosePasswordNotChanged } }) => {
+        if (_.isEmpty(existingEvaluatorsWhosePasswordNotChanged)) {
+          message.success('Evalutors imported successfully', 5)
+          closeModal()
+        } else {
+          setEvaluatorsWhosePasswordNotChanged(existingEvaluatorsWhosePasswordNotChanged)
+        }
       })
       .catch(setErrors)
   }
@@ -40,7 +62,7 @@ export default function EvaluatorImportModal ({
   return (
     <Modal
       width={700}
-      title="Import Evaluators"
+      title={modalTitle()}
       visible
       onCancel={handleOnCancel}
       footer={[
@@ -50,6 +72,7 @@ export default function EvaluatorImportModal ({
         <Button
           key="submit"
           type="primary"
+          className={cs({ hidden: !showFileImport() })}
           disabled={importInProgress || !file}
           onClick={handleFileImport}
         >
@@ -58,7 +81,7 @@ export default function EvaluatorImportModal ({
         </Button>,
       ]}
     >
-      <FileImport setFile={setFile} errors={errors} campaignId={campaignId} />
+      {modalBody()}
     </Modal>
   )
 }
