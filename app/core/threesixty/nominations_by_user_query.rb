@@ -19,13 +19,18 @@ module Threesixty
     end
 
     def self_subject_scope(scope)
-      scope.where(user_id: current_user.id).includes(:user)
+      if subject_can_view_evaluators?
+        scope.where(user_id: current_user.id).includes(:user)
+      else
+        scope.where('1=0').includes(:user)
+      end
     end
 
     private
 
-    def subject_can_manage_evaluations?
-      option.participants.dig('subject', 'can_nominate_evaluators')
+    def subject_can_view_evaluators?
+      option.participants.dig('subject', 'can_nominate_evaluators') ||
+        option.participants.dig('subject', 'can_view_evaluators')
     end
 
     def manager_can_manage_evaluations?
