@@ -51,6 +51,10 @@ export default function SubjectSection ({
       </ExpandableOption>
 
       <ExpandableOption
+        label="Subject can view Evaluators"
+        {...parametersForSwitch('canViewEvaluators')}
+      />
+      <ExpandableOption
         label="Subject nominates Evaluators"
         {...parametersForSwitch('canNominateEvaluators')}
         actionable={
