@@ -327,6 +327,12 @@ providers:
         language_id: en
         assessment_ids:
           - HBRIV1
+      - id: EcHBRIV1H
+        name: HBRI
+        norm_id: GlobalTimed
+        language_id: en
+        assessment_ids:
+          - HBRIV1
     assessments:
       - id: HPI
         name: HPI
