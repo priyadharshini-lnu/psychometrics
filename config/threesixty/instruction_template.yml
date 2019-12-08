@@ -17,3 +17,25 @@
 - name: 'evaluate_others'
   enabled: true
   content: '<p>Evaluate Others</p>'
+
+- name: 'nomination_help'
+  enabled: true
+  content:
+    <h2>Nominations</h2>
+    <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p>
+    <h3>SET UP NOMINATIONS</h3>
+    <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol>
+      <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li>
+      <li><p>If your Manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li>
+      <li><p>Review the Approval and Evaluation status of your nominations.</p></li>
+      <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li>
+    </ol>
+    <p>If you are a Manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p>
+    <h3>APPROVE NOMINATIONS</h3>
+    <p>If you are a Manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p>
+    <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​
+    <ol>
+      <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li>
+      <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li>
+      <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li>
+    </ol>
