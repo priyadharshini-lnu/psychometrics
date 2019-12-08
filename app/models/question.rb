@@ -93,6 +93,16 @@ class Question < ApplicationRecord
     order("questions.#{column} #{direction}") if column.in?(%w[id name created_at updated_at])
   }
 
+  def update_display_logic!
+    logic = display_logic.to_json.gsub(/\"subject\":\d+/, "\"subject\":#{id}")
+    update(display_logic: JSON.parse(logic)) unless logic.start_with?('null')
+  end
+
+  def update_skip_logic!
+    logic = skip_logic.to_json.gsub(/\"subject\":\d+/, "\"subject\":#{id}")
+    update(skip_logic: JSON.parse(logic)) unless logic.start_with?('null')
+  end
+
   # Using for deep clone in Assessment model
   def set_assessment_id
     self.assessment_id = block.try(:assessment_id)

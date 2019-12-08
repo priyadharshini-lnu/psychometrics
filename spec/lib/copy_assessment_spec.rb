@@ -6,23 +6,23 @@ describe CopyAssessment do
   describe '.process!' do
     let(:assessment) { create(:assessment) }
     let(:block) { create(:block, assessment: assessment) }
-    let(:question) { create(:question, block: block) }
     let(:factor) { create(:factor) }
 
     let(:copied_assessment) { double(:assessment) }
 
     before do
-      create(:translation, translateable: question, resource: assessment)
+      questions = create_list(:question, 3, block: block)
+      create(:translation, translateable: questions.first, resource: assessment)
 
-      create(:factors_scoring, factor: factor, question: question, assessment: assessment)
-      create(:question_recoding, question: question, assessment: assessment)
+      create(:factors_scoring, factor: factor, question: questions.first, assessment: assessment)
+      create(:question_recoding, question: questions.first, assessment: assessment)
 
       display_logic = [
-        { 'conditionType': 'Question', 'type': 'bool', 'subject': question.id, 'answer': 0, 'predicate': 'Selected' }
+        { 'conditionType': 'Question', 'type': 'bool', 'subject': questions.first.id, 'answer': 0, 'predicate': 'Selected' }
       ]
       skip_logic = [
         {
-          'subject': question.id,
+          'subject': questions.last.id,
           'prefix': 'And',
           'answer': 0,
           'predicate': 'NotSelected',
@@ -31,7 +31,8 @@ describe CopyAssessment do
         }
       ]
 
-      question.update_attributes(display_logic: display_logic, skip_logic: skip_logic)
+      questions.first.update_attributes(display_logic: display_logic)
+      questions.last.update_attributes(skip_logic: skip_logic)
     end
 
     let(:copy) { described_class.process!(assessment.id) }
@@ -53,18 +54,34 @@ describe CopyAssessment do
 
     it 'replaces question_id in display_logic' do
       copied_question_id = copy.blocks.first.questions.first.id
-      display_logic = (copy.blocks.first.questions.first.display_logic || {}).to_json
+      display_logic = copy.blocks.first.questions.first.display_logic.to_json
       pattern = /\"subject\":#{copied_question_id}/
 
       expect(display_logic.match(pattern)).not_to be_nil
     end
 
+    it "doesn't copy empty display_logic" do
+      og_display_logic = assessment.blocks.first.questions.last.display_logic
+      expect(og_display_logic).to be_nil
+
+      co_display_logic = copy.blocks.first.questions.last.display_logic
+      expect(co_display_logic).to be_nil
+    end
+
     it 'replaces question_id in skip_logic' do
-      copied_question_id = copy.blocks.first.questions.first.id
-      skip_logic = (copy.blocks.first.questions.first.skip_logic || {}).to_json
+      copied_question_id = copy.blocks.first.questions.last.id
+      skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
       pattern = /\"subject\":#{copied_question_id}/
 
       expect(skip_logic.match(pattern)).not_to be_nil
+    end
+
+    it "doesn't copy empty skip_logic" do
+      og_skip_logic = assessment.blocks.first.questions.first.skip_logic
+      expect(og_skip_logic).to be_nil
+
+      co_skip_logic = copy.blocks.first.questions.first.skip_logic
+      expect(co_skip_logic).to be_nil
     end
 
     it 'copies translations of questions' do

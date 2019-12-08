@@ -27,26 +27,21 @@ class CopyAssessment
 
         # Loop questions to save for the new block
         block.questions.each do |question|
-          new_question = make_copy(question, new_assessment)
-          new_block.questions << new_question
+          new_q = make_copy(question, new_assessment)
+          new_block.questions << new_q
 
-          display_logic = (question.display_logic || {}).to_json
-          skip_logic = (question.skip_logic || {}).to_json
-
-          display_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
-          skip_logic.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
-
-          new_question.update_attributes(display_logic: JSON.parse(display_logic), skip_logic: JSON.parse(skip_logic))
+          new_q.update_display_logic!
+          new_q.update_skip_logic!
 
           # Replace original Question Id to New Question Id
-          flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
-          norm_rules.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_question.id}")
+          flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_q.id}")
+          norm_rules.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_q.id}")
 
           %w[factors_scorings question_recodings].map do |name|
-            copy_association(name, question, new_question, new_assessment)
+            copy_association(name, question, new_q, new_assessment)
           end
 
-          copy_translations(question, new_question, new_assessment)
+          copy_translations(question, new_q, new_assessment)
         end
       end
       new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
