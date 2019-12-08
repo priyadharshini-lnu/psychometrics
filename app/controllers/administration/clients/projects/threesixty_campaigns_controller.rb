@@ -68,7 +68,7 @@ module Administration
         def factors
           @factors = if params[:assessment_id].present?
                        assessment = Assessment.find(params[:assessment_id])
-                       assessment.dimension.factors
+                       assessment.dimension.all_factors
                      else
                        []
                      end
