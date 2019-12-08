@@ -18,7 +18,13 @@ describe CopyAssessment do
       create(:question_recoding, question: questions.first, assessment: assessment)
 
       display_logic = [
-        { 'conditionType': 'Question', 'type': 'bool', 'subject': questions.first.id, 'answer': 0, 'predicate': 'Selected' }
+        {
+          'conditionType': 'Question',
+          'type': 'bool',
+          'subject': questions.first.id,
+          'answer': 0,
+          'predicate': 'Selected'
+        }
       ]
       skip_logic = [
         {
