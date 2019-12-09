@@ -61,6 +61,7 @@ module Administration
           if @form.valid?
             @_resource = ::Threesixty::Campaigns::Create.call!(project, @form)
           else
+            @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
             render 'new'
           end
         end
