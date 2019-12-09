@@ -1,11 +1,11 @@
 import { createReducer } from 'utils/reduxUtils'
 import { setIn } from 'utils/immutable'
-import { denormalize } from 'normalizr'
-import schema from 'store/schema'
+
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
-  ENABLE, DISABLE, EMPTY_TRASH,
+  ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
 } from './actions'
+import { CREATE } from './block/actions'
 import { blocksWithoutDeleted } from './selectors'
 
 export const defaultState = {
@@ -37,11 +37,42 @@ const HANDLERS = {
       loaded: true,
     })
   },
-  [SELECT_QUESTION]: (state, { question, offset }) => setIn(state, ['propPanel'], { question, offset }),
+  [CREATE]: (state, { block }) => {
+    const newState = _.cloneDeep(state)
+    if (block.position) {
+      newState.blocks.splice(block.position, 0, block.id)
+    } else {
+      newState.blocks = newState.blocks.concat(block.id)
+    }
+    return newState
+  },
+  [SELECT_QUESTION]: (state, { question, offset }) => setIn(state, ['propPanel'], { question: question.id, offset }),
   [UNSELECT_QUESTION]: state => setIn(state, ['propPanel'], { question: null, offset: null }),
   [ENABLE]: state => ({ ...state, disabled: false }),
   [DISABLE]: state => ({ ...state, disabled: true }),
   [EMPTY_TRASH]: state => ({ ...state, trash: _.clone(state.trash).map((t) => { t.permanentRemove = true }) }),
+  [MOVE_BLOCK_DOWN]: (state, { block }) => {
+    const newState = _.cloneDeep(state)
+    const index = _.findIndex(state.blocks, id => id === block.id)
+
+    if (index < state.blocks.length - 1) {
+      _.pull(newState.blocks, block.id)
+      newState.blocks.splice(index + 1, 0, block.id)
+      return newState
+    }
+    return state
+  },
+  [MOVE_BLOCK_UP]: (state, { block }) => {
+    const newState = _.cloneDeep(state)
+    const index = _.findIndex(state.blocks, id => id === block.id)
+
+    if (index > 0) {
+      _.pull(newState.blocks, block.id)
+      newState.blocks.splice(index - 1, 0, block.id)
+      return newState
+    }
+    return state
+  },
   [FAKE_UPDATE]: state => ({ ...state, timestemp: new Date() }),
 }
 

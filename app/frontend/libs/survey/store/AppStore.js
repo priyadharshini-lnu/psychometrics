@@ -5,14 +5,13 @@ import QuestionListDispatcher from 'dispatchers/QuestionListDispatcher'
 import FactorList from 'store/FactorList'
 import QuestionModel from 'models/Question'
 import BlockModel from 'models/Block'
-import Utils from 'utils/Utils'
 import TrashStore from 'store/TrashStore'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import Scoring from 'models/Scoring'
+import { denormalize } from 'normalizr'
+import QuestionSerializer from 'models/QuestionSerializer'
 import BlockList from './BlockList'
-import {blocks, schema} from './schema'
-import {denormalize} from 'normalizr'
-
+import { blocks } from './schema'
 const { $ } = window
 
 const AppStore = function () {
@@ -106,7 +105,7 @@ _.extend(AppStore.prototype, {
       const block = BlockModel.prototype.toJSON.call(blockModel)
       block.questions = []
       _.each(blockModel.questions, (questionModel) => {
-        const question = QuestionModel.prototype.toJSON.call({block_id: block.id, ...questionModel})
+        const question = QuestionModel.prototype.toJSON.call({ ...QuestionSerializer.wrap(questionModel), block_id: block.id })
         block.questions.push(question)
       })
       assessment.blocks.push(block)
@@ -115,15 +114,26 @@ _.extend(AppStore.prototype, {
   },
 
   // Save Assessment
-  save (assessment) {
+  save (assessment, trash) {
     const builder = {
       assessment: this.serializeAssessment(assessment),
       trash: [],
     }
 
     // Serialize trash
-    _.each(assessment.trash, (item) => {
-      const deletedItem = { model: item.model.toJSON(), type: item.type, permanent_remove: item.permanentRemove }
+    _.each(trash, (item) => {
+      if (item.isNew) { return }
+      const deletedItem = item.type === 'block'
+        ? ({
+          model: BlockModel.prototype.toJSON.call(item.model),
+          type: item.type,
+          permanent_remove: item.permanentRemove,
+        })
+        : ({
+          model: QuestionModel.prototype.toJSON.call(item.model),
+          type: item.type,
+          permanent_remove: item.permanentRemove,
+        })
       builder.trash.push(deletedItem)
     })
 

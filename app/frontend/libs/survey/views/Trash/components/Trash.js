@@ -44,6 +44,7 @@ class Trash extends Component {
   }
 
   onConfirm = () => {
+    const { emptyTrash } = this.props
     this.setState({ showConfirmation: false })
     emptyTrash()
   }
@@ -67,7 +68,7 @@ class Trash extends Component {
   }
 
   render () {
-    const { trash, emptyTrash } = this.props
+    const { trash } = this.props
     const { showDeleteConfirmation, showConfirmation } = this.state
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`

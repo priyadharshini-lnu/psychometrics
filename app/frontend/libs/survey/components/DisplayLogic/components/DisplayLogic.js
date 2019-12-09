@@ -9,9 +9,10 @@ const {
 
 export default class DisplayLogic extends Component {
   save = () => {
-    const { question, logicElement, close } = this.props
-    question.displayLogic = logicElement
-    question.update()
+    const {
+      saveDisplayLogic, question, logicElement, close,
+    } = this.props
+    saveDisplayLogic(question, logicElement)
     close()
   }
 

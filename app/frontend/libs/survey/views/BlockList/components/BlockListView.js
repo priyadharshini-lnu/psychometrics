@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import store from 'store/BlockList'
 import Block from 'views/Block'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
+import FlipMove from 'react-flip-move'
 import styles from './BlockListView.scss'
 
 export class BlockListView extends Component {
@@ -32,7 +33,9 @@ export class BlockListView extends Component {
 
     return (
       <div className={styles.main}>
-        {blocks.map((block, i) => <Block model={block} key={i} last={i === (blocks.length - 1)} />)}
+        <FlipMove>
+          {blocks.map((block, i) => <Block model={block} key={block.id} last={i === (blocks.length - 1)} />)}
+        </FlipMove>
       </div>
     )
   }

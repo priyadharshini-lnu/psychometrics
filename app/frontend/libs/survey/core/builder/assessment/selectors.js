@@ -4,6 +4,7 @@ import { denormalize } from 'normalizr'
 
 export const blocksSelector = (state, ids) => denormalize(ids, [block], state)
 export const questionsSelector = (state, ids) => denormalize(ids, [question], state)
+export const selectBlock = (state, id) => state.blocks[id]
 
 export const blocksWithoutDeleted = createSelector(
   blocksSelector,
@@ -15,9 +16,19 @@ export const questionsWithoutDeleted = createSelector(
   questions => _.filter(questions, { deleted: false }),
 )
 
+export const allQuestions = createSelector(
+  state => state.questions,
+  (questions) => {
+    const withoutDeleted = _.filter(questions, { deleted: false })
+    return _.zipObject(_.map(withoutDeleted, 'id'), withoutDeleted)
+  },
+)
+
 export const trashItems = ({ survey: { builder } }) => {
   let items = []
-  items = items.concat(_.filter(builder.blocks, { deleted: true }).map(model => ({ type: 'block', model })))
-  items = items.concat(_.filter(builder.questions, { deleted: true }).map(model => ({ type: 'question', model })))
+  items = items.concat(_.filter(builder.blocks, { deleted: true }).map(model => ({ type: 'Block', model })))
+  items = items.concat(_.filter(builder.questions, { deleted: true }).map(model => ({ type: 'Question', model })))
   return items
 }
+
+export const selectedQuestion = (state, id) => state.questions[id]

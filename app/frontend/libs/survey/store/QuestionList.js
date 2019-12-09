@@ -3,11 +3,9 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Question from 'models/Question'
 import QuestionListDispatcher from 'dispatchers/QuestionListDispatcher'
-import TrashStore from 'store/TrashStore'
 import Socket from 'cable'
 import Action from 'undo'
 import PropertyPanelStore from './PropertyPanelStore'
-import BlockList from './BlockList'
 
 const QuestionList = function (block, questions) {
   this.block = block
@@ -21,28 +19,6 @@ const QuestionList = function (block, questions) {
 QuestionList.prototype = new EventEmitter()
 
 _.extend(QuestionList.prototype, {
-
-  // load (questions) {
-  //   this.list = []
-  //   _.each(questions, (question) => {
-  //     if (!question.deleted) {
-  //       this.list.push(new Question(question, this))
-  //     } else if (!this.block.deleted) {
-  //       TrashStore.add('Question', new Question(question, this))
-  //     }
-  //   })
-  //   this.emit('change')
-  // },
-
-  // create (data = {}) {
-  //   const last = (_.last(this.list) || {}).position
-  //   const question = new Question(data, this)
-
-  //   question.position = (typeof last !== 'undefined') ? last + 1 : 1
-  //   this.list.push(question)
-  //   Action('QuestionCreate', this, question)
-  //   this.emit('change')
-  // },
 
   createPageBreak (data = {}) {
     const newData = { ...data }
@@ -64,62 +40,6 @@ _.extend(QuestionList.prototype, {
     return question
   },
 
-  // destroy (model) {
-  //   const question = _.find(this.list, model)
-  //   _.remove(this.list, question)
-  //   // TrashStore.add('Question', question)
-  //   this.emit('change')
-  // },
-
-  moveDown (model) {
-    const index = _.findIndex(this.list, model)
-    if (index !== this.list.length - 1) {
-      const upPos = this.list[index].position
-      const downPos = this.list[index + 1].position
-      this.list[index].moveDown(downPos)
-      this.list[index + 1].position = upPos
-      this.sort()
-      return true
-    }
-
-    const blockIndex = _.findIndex(BlockList.list, this.block)
-    const newBlock = BlockList.list[blockIndex + 1]
-    const newPosition = 1
-    if (newBlock) {
-      this.reattachToBlock(newBlock, model, newPosition)
-      return true
-    }
-    return false
-  },
-
-  moveUp (model) {
-    const index = _.findIndex(this.list, model)
-    if (index !== 0) {
-      const downPos = this.list[index].position
-      const upPos = this.list[index - 1].position
-      this.list[index].moveUp(upPos)
-      this.list[index - 1].position = downPos
-      this.sort()
-      return true
-    }
-    const blockIndex = _.findIndex(BlockList.list, this.block)
-    const newBlock = BlockList.list[blockIndex - 1]
-    if (newBlock) {
-      const newPosition = newBlock.questions.list.length ? _.maxBy(newBlock.questions.list, 'position') + 1 : 0
-      this.reattachToBlock(newBlock, model, newPosition)
-      return true
-    }
-    return false
-  },
-
-  reattachToBlock (block, question, position) {
-    question.position = position
-    question.block = block
-    block.questions.moveAllAndPush(position - 1, question)
-    this.destroy(question)
-    this.sort()
-  },
-
   insertPageBreak (model) {
     const position = _.findIndex(this.list, model)
     const newPageBreak = new Question({ name: 'PB', type: 'PageBreak', position }, this)
@@ -131,24 +51,6 @@ _.extend(QuestionList.prototype, {
     this.list.push(obj)
     this.sort()
   },
-
-  // insertAfter (model) {
-  //   const index = _.findIndex(this.list, model)
-  //   const position = this.list[index].position + 1
-  //   const question = new Question({ position }, this)
-
-  //   this.moveAllAndPush(index + 1, question)
-  //   Action('QuestionCreate', this, question)
-  // },
-
-  // insertBefore (model) {
-  //   const index = _.findIndex(this.list, model)
-  //   const { position } = this.list[index]
-  //   const question = new Question({ position }, this)
-
-  //   this.moveAllAndPush(index, question)
-  //   Action('QuestionCreate', this, question)
-  // },
 
   sort () {
     this.list = _.sortBy(this.list, ['position'])

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
 import Menu from 'components/ModulesMenu'
 import CreateByTemplateStore from 'store/CreateByTemplateStore'
+import Block from 'models/Block'
 import styles from './Block.scss'
 
 class BlockFooter extends Component {
@@ -22,7 +22,7 @@ class BlockFooter extends Component {
 
   addBlock = () => {
     const { model, createBlock } = this.props
-    createBlock({ position: model.position + 1 })
+    createBlock(new Block({ position: model.position }))
   }
 
   createDefault = () => {

@@ -16,11 +16,6 @@ _.extend(dispatcher, {
     Action('BlockRemove', this, model)
   },
 
-  remove (model) {
-    store.destroy(model)
-    TrashDispatcher.push('Block', model)
-  },
-
   restore (model) {
     const block = TrashDispatcher.restore('Block', model)
     block.cancelPermanentRemove()

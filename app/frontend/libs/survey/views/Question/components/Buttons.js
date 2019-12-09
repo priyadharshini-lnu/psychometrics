@@ -10,28 +10,32 @@ class Question extends Component {
     remove: PropTypes.func,
   }
 
-  moveDown = () => {
+  moveDown = (e) => {
     const {
       moveQuestionDown, block, blocksOrder, model,
     } = this.props
+    e.stopPropagation()
     moveQuestionDown(model, block, blocksOrder)
   }
 
-  moveUp = () => {
+  moveUp = (e) => {
     const {
       moveQuestionUp, block, blocksOrder, model,
     } = this.props
+    e.stopPropagation()
     moveQuestionUp(model, block, blocksOrder)
   }
 
-  insertBottom = () => {
-    const { insertAfter, model } = this.props
-    insertAfter(model)
+  insertBottom = (e) => {
+    const { insertAfterQuestion, model, block } = this.props
+    e.stopPropagation()
+    insertAfterQuestion(block, model)
   }
 
-  insertTop = () => {
-    const { insertBefore, model } = this.props
-    insertBefore(model)
+  insertTop = (e) => {
+    const { insertBeforeQuestion, model, block } = this.props
+    e.stopPropagation()
+    insertBeforeQuestion(block, model)
   }
 
   render () {

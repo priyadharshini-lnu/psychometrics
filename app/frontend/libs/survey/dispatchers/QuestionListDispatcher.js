@@ -56,14 +56,6 @@ _.extend(Dispatcher.prototype, {
     this.store.copy(model)
   },
 
-  insertAfter (model) {
-    this.store.insertAfter(model)
-  },
-
-  insertBefore (model) {
-    this.store.insertBefore(model)
-  },
-
   saveAsTemplate (model) {
     this.store.saveAsTemplate(model)
   },

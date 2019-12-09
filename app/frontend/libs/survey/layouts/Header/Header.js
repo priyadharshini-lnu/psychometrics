@@ -5,6 +5,7 @@ import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
 import CreateByTemplateStore from 'store/CreateByTemplateStore'
 import MappingNormsStore from 'store/MappingNormsStore'
+import Block from 'models/Block'
 import styles from './Header.scss'
 
 export class Header extends Component {
@@ -23,7 +24,7 @@ export class Header extends Component {
 
   createBlock = () => {
     const { createBlock } = this.props
-    createBlock()
+    createBlock(new Block())
   }
 
   showScoring = () => {
@@ -60,8 +61,8 @@ export class Header extends Component {
   }
 
   save = () => {
-    const { builder } = this.props
-    AppStore.save(builder)
+    const { builder, trash } = this.props
+    AppStore.save(builder, trash)
   }
 
   toggleEnableBack = () => {

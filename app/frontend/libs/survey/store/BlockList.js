@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Block from 'models/Block'
 import Socket from 'cable'
-import TrashStore from 'store/TrashStore'
 import Action from 'undo'
 
 const BlockList = function () {
@@ -12,34 +11,11 @@ const BlockList = function () {
 BlockList.prototype = new EventEmitter()
 
 _.extend(BlockList.prototype, {
-  // load (data) {
-  //   this.list = []
-  //   _.each(data, (block) => {
-  //     if (!block.deleted) {
-  //       this.list.push(new Block(block))
-  //     } else {
-  //       TrashStore.add('Block', new Block(block))
-  //     }
-  //   })
-  //   if (!this.list.length) {
-  //     this.createDefault()
-  //   }
-  //   this.emit('change')
-  // },
-
   createDefault () {
     const block = new Block({ name: 'Default Block', position: 0 })
     this.list.push(block)
     this.emit('change')
   },
-
-  // create (data = {}) {
-  //   const block = new Block(data)
-  //   Action('BlockCreate', this, block)
-  //   this.moveAllAndPush(block.position - 1, block)
-  //   this.emit('change')
-  //   return block
-  // },
 
   restore (block) {
     const last = _.last(this.list)

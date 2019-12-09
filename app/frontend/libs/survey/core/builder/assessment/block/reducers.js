@@ -1,23 +1,16 @@
-import { updateIn, setIn } from 'utils/immutable'
+import { setIn } from 'utils/immutable'
 import Block from 'models/Block'
 import { createReducer } from 'utils/reduxUtils'
 import _ from 'lodash'
 import { INIT } from '../actions'
 import {
   CREATE, ADD_QUESTION, REMOVE_QUESTION, MOVE_QUESTION_UP,
-  MOVE_QUESTION_DOWN,
+  MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
+  UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION
 } from './actions'
-import { questionsWithoutDeleted } from '../selectors'
-
-const updatePosition = (blocks) => {
-  _.sortBy(blocks, ['position'])
-  _.each(blocks, (block, position) => {
-    block.position = position + 1
-  })
-}
+import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
 
 const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions).map(q => q.id)
-
 const createDefault = () => new Block({ name: 'Default Block', position: 0 })
 
 const HANDLERS = {
@@ -31,21 +24,32 @@ const HANDLERS = {
     }
     return [createDefault()]
   },
-  [CREATE]: (state, { data }) => {
-    const { blocks } = state
-    const newBlocks = _.clone(blocks)
-    if (data) {
-      _.each(_.slice(newBlocks, data.position - 1), (b) => { b.position += 1 })
-      newBlocks.splice(data.position - 1, 0, new Block(data))
-    } else {
-      newBlocks.push(new Block({ position: newBlocks.length }))
-    }
-    return { ...state, blocks: newBlocks }
+  [CREATE]: (state, { block }) => {
+    const newBlocks = _.clone(state)
+    newBlocks[block.id] = block
+    return newBlocks
+  },
+  [REMOVE]: (state, { block }) => {
+    const newBlocks = _.clone(state)
+    const newBlock = _.clone(block)
+    newBlock.deleted = true
+    newBlocks[block.id] = newBlock
+    return newBlocks
   },
   [ADD_QUESTION]: (state, { block, question }) => {
     const newBlock = _.clone(state[block.id])
     newBlock.questions.push(question.id)
+    return setIn(state, [block.id], newBlock)
+  },
+  [INSERT_BEFORE_QUESTION]: (state, { block, position, question }) => {
+    const newBlock = _.clone(state[block.id])
 
+    newBlock.questions.splice(position - 1, 0, question.id)
+    return setIn(state, [block.id], newBlock)
+  },
+  [INSERT_AFTER_QUESTION]: (state, { block, position, question }) => {
+    const newBlock = _.clone(state[block.id])
+    newBlock.questions.splice(position, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
   [REMOVE_QUESTION]: (state, { block, question }) => {
@@ -97,6 +101,36 @@ const HANDLERS = {
     }
     return state
   },
+  [UPDATE_POSITIONS]: (state, { ids }) => {
+    const blocks = _.cloneDeep(state)
+    const list = blocksWithoutDeleted({ blocks }, ids)
+    let pos = 1
+    _.each(list, (b) => {
+      b.position = pos
+      blocks[b.id] = b
+      pos += 1
+    })
+    return blocks
+  },
+  [ADD_PAGE_BREAK]: (state, { question, pb }) => {
+    const blocks = _.clone(state)
+    const block = _.find(blocks, block => _.includes(block.questions, question.id))
+    const index = _.findIndex(block.questions, id => id === question.id)
+    const newBlock = _.clone(block)
+    newBlock.questions.splice(index + 1, 0, pb.id)
+    blocks[block.id] = newBlock
+    return blocks
+  },
+  [UPDATE_BLOCK_PROPS]: (state, { block, props }) => setIn(state, [block.id, 'props'], { ...block.props, ...props }),
+  [COPY_QUESTION]: (state, { question, newQuestion }) => {
+    const blocks = _.clone(state)
+    const block = _.find(blocks, block => _.includes(block.questions, question.id))
+    const index = _.findIndex(block.questions, id => id === question.id)
+    const newBlock = _.clone(block)
+    newBlock.questions.splice(index + 1, 0, newQuestion.id)
+    blocks[block.id] = newBlock
+    return blocks
+  }
 }
 
 export default createReducer(HANDLERS, [])

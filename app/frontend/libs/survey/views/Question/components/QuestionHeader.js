@@ -8,13 +8,11 @@ import styles from './Question.scss'
 class QuestionHeader extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
   }
 
   removeDisplayLogic = () => {
     const { model } = this.props
     model.clearDisplayLogic()
-    model.update()
   }
 
   unlinkTemplate = () => {
@@ -22,9 +20,13 @@ class QuestionHeader extends Component {
     blockStore.dispatcher.unlinkTemplate(model)
   }
 
+  isTemplate (model) {
+    return model.templateId || model.saveAsTemplate
+  }
+
   renderDisplayLogic () {
     const { model, openDisplayLogic } = this.props
-    const logicElement = model.displayLogic
+    const logicElement = model.display_logic
     return (
       <div className={styles.displayLogic}>
         <div className={styles.displayHeader}>
@@ -71,10 +73,11 @@ class QuestionHeader extends Component {
 
   render () {
     const { model } = this.props
+
     return (
       <div className={styles.header}>
-        {model.isTemplate() && !model.block.isTemplate() && this.renderTemplateWarning()}
-        {model.displayLogic && this.renderDisplayLogic()}
+        {this.isTemplate(model) && !model.block.isTemplate() && this.renderTemplateWarning()}
+        {model.display_logic && this.renderDisplayLogic()}
       </div>
     )
   }

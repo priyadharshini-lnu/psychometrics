@@ -5,7 +5,6 @@ import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
-import ModuleConfigs from 'constants/ModuleConfigs'
 import AppStore from 'store/AppStore'
 import Socket from 'cable'
 import Action from 'undo'
@@ -38,7 +37,6 @@ const Question = function (attrs = {}) {
   this.showComments = this.comments.length > 0
   this.props = _.cloneDeep(DefaultProps[this.type] || {})
   this.props.randomization = { type: 'No' }
-  this.moduleConfig = ModuleConfigs[this.type] || {}
   this.requiredValidation = attrs.required_validation || { enabled: false, type: 'Force' }
   this.validation = attrs.validation || { type: 'None', args: {} }
   this.displayLogic = attrs.display_logic ? new LogicElement(attrs.display_logic) : null
@@ -98,14 +96,6 @@ _.extend(Question.prototype, {
 
   rename (name) {
     this.name = name
-  },
-
-  moveDown (position = this.position + 1) {
-    this.position = position
-  },
-
-  moveUp (position = this.position - 1) {
-    this.position = position
   },
 
   restore () {
@@ -218,7 +208,6 @@ _.extend(Question.prototype, {
 
   changeType (type, props) {
     const newProps = _.cloneDeep(DefaultProps[type])
-    this.moduleConfig = ModuleConfigs[type]
 
     Object.assign(newProps, props, {
       questionText: this.props.questionText,
@@ -230,7 +219,6 @@ _.extend(Question.prototype, {
     this.type = type
     this.requiredValidation = { enabled: false, type: 'Force' }
     this.validation = { type: 'None', args: {} }
-    this.update()
   },
 
   changeProps (newProps, undo) {
@@ -292,15 +280,17 @@ _.extend(Question.prototype, {
 
   update () {
     this.shuffleChoices()
-    this.resetDefaultValues()
+    // this.resetDefaultValues()  why it was reseting?
     // this.sync()
     // this.store.update()
-    rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' }) // NOTE: @fedor hack to update ui remove it later
+
+    // NOTE: @fedor the next dispatches it's a hack to update ui. should be removed later
+    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    // rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' })
   },
 
   updateDefaultProps () {
-    this.sync()
-    this.store.update()
+    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   sync () {
@@ -339,6 +329,7 @@ _.extend(Question.prototype, {
 
   clearDisplayLogic () {
     this.displayLogic = null
+    this.update()
   },
 
   addSkipLogic () {

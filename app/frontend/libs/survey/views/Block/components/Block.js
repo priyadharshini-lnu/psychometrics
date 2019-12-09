@@ -6,7 +6,6 @@ import BlockDispatcher from 'dispatchers/BlockDispatcher'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import Prompt from 'components/Prompt'
 import QuestionList from 'views/QuestionList'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import BlockList from 'store/BlockList'
 import Confirmation from 'components/Confirmation'
 import Footer from './BlockFooter'
@@ -26,7 +25,8 @@ class Block extends Component {
 
   expand = () => {
     const { opened } = this.state
-    PropertyPanelStore.question = null
+    const { unselectQuestion } = this.props
+    unselectQuestion()
     this.setState({ opened: !opened })
   }
 
@@ -37,19 +37,19 @@ class Block extends Component {
   }
 
   remove = () => {
-    const { model } = this.props
-    BlockListDispatcher.clickRemove(model)
+    const { removeBlock, model } = this.props
+    removeBlock(model)
     this.setState({ showDeleteConfirmation: false })
   }
 
   moveDown = () => {
-    const { model } = this.props
-    BlockListDispatcher.moveDown(model)
+    const { model, moveBlockDown } = this.props
+    moveBlockDown(model)
   }
 
   moveUp = () => {
-    const { model } = this.props
-    BlockListDispatcher.moveUp(model)
+    const { model, moveBlockUp } = this.props
+    moveBlockUp(model)
   }
 
   copy = () => {
@@ -58,7 +58,7 @@ class Block extends Component {
 
   questionRandomization = () => {
     const { model, openRandomization } = this.props
-    openRandomization({ model, entityName: 'question' })
+    openRandomization({ id: model.id, entityName: 'question' })
   }
 
   confirm = (name) => {
@@ -169,7 +169,9 @@ class Block extends Component {
   }
 
   render () {
-    const { model, last, createBlock, addQuestion } = this.props
+    const {
+      model, last, createBlock, addQuestion,
+    } = this.props
     const { opened, showPrompt, showDeleteConfirmation } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -188,7 +190,13 @@ class Block extends Component {
         {model.isTemplate() && this.renderTemplateWarning()}
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
-          <Footer createBlock={createBlock} addQuestion={addQuestion} model={model} onMinimize={this.expand} last={last} />
+          <Footer
+            createBlock={createBlock}
+            addQuestion={addQuestion}
+            model={model}
+            onMinimize={this.expand}
+            last={last}
+          />
         </div>
         <Prompt
           title={`Copy Block - ${model.name}`}

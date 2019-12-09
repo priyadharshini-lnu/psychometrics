@@ -1,5 +1,3 @@
-import {denormalize} from 'normalizr'
-import {factor} from 'store/schema'
+export const selectFactors = () => {
 
-export selectFactors = (state, ids) => {
 }

@@ -15,28 +15,15 @@ class Question extends Component {
   }
 
   state = {
-    fadeout: false,
     showDeleteConfirmation: false,
   }
 
-  componentDidMount () {
-    this.mounted = true
-  }
-
-  componentWillUnmount () {
-    this.mounted = false
-  }
-
   remove = () => {
-    const { block, model, unselect, removeQuestion } = this.props
-    this.setState({ fadeout: true, showDeleteConfirmation: false })
-    setTimeout(() => {
-      removeQuestion(block, model)
-      unselect()
-      if (this.mounted) {
-        this.setState({ fadeout: false })
-      }
-    }, 400)
+    const {
+      block, model, removeQuestion,
+    } = this.props
+    this.setState({ showDeleteConfirmation: false })
+    removeQuestion(block, model)
   }
 
   update = () => {
@@ -63,10 +50,9 @@ class Question extends Component {
 
   render () {
     const { model, selectedModel } = this.props
-    const { fadeout, showDeleteConfirmation } = this.state
-    const selected = selectedModel === model
+    const { showDeleteConfirmation } = this.state
+    const selected = selectedModel === model.id
     const style = {
-      opacity: fadeout ? 0 : 1,
       cursor: selected ? 'default' : 'pointer',
     }
     return (

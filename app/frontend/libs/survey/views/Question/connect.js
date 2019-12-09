@@ -1,15 +1,18 @@
 import { connect } from 'react-redux'
-import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
 import { open } from 'libs/survey/core/modals'
+import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
+import { moduleConfig } from 'libs/survey/core/builder/assessment/question/selectors'
+import { addSkipLogic, renameQuestion } from 'libs/survey/core/builder/assessment/question/actions'
 import {
-  insertAfter, insertBefore,
-} from 'libs/survey/core/builder/assessment/question/actions'
-import { removeQuestion, moveQuestionUp, moveQuestionDown } from 'libs/survey/core/builder/assessment/block/actions'
+  removeQuestion, moveQuestionUp, moveQuestionDown,
+  insertBeforeQuestion, insertAfterQuestion,
+} from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
-  ({ survey: { builder: { assessment, assessment: { timestemp, propPanel } } } }) => ({
+  ({ survey: { builder, builder: { assessment, assessment: { timestemp, propPanel } } } }, props) => ({
     selectedModel: propPanel.question,
     blocksOrder: assessment.blocks,
+    moduleConfig: moduleConfig(builder, props.model.id),
     timestemp, // NOTE: @fedor used to fake update
   }),
   {
@@ -19,9 +22,11 @@ export default connect(
     openDefaultValue: data => open('defaultValue', data),
     openRandomization: data => open('randomization', data),
     removeQuestion,
-    insertAfter,
-    insertBefore,
+    insertAfterQuestion,
+    insertBeforeQuestion,
     moveQuestionUp,
     moveQuestionDown,
+    addSkipLogic,
+    renameQuestion,
   },
 )
