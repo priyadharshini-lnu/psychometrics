@@ -20,6 +20,7 @@
 # already_invited        :boolean          default(FALSE)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -272,3 +273,4 @@ class Membership < ApplicationRecord
     end
   end
 end
+# rubocop:enable Metrics/ClassLength
