@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import UserList from 'admin/core/threeSixtyCampaign/components/UserList/UserList'
 import cs from 'classnames'
+import _ from 'lodash'
 import FileImport from './FileImport'
 
 export default function EvaluatorImportModal ({

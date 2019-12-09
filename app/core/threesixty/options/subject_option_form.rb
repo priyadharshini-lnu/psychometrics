@@ -7,6 +7,7 @@ module Threesixty
         can_evaluate_self
         limit_self_evaluation_by_criteria
         can_nominate_evaluators
+        can_view_evaluators
         can_nominate_anyone_not_in_assessment
         can_nominate_anyone_in_assessment
         limit_nomination_by_subject_to_anyone_in_assessment
@@ -25,6 +26,7 @@ module Threesixty
       attribute :can_evaluate_self, Boolean, deafult: false
       attribute :limit_self_evaluation_by_criteria, Boolean, deafult: false
       attribute :can_nominate_evaluators, Boolean, deafult: false
+      attribute :can_view_evaluators, Boolean, deafult: false
       attribute :can_nominate_anyone_not_in_assessment, Boolean, deafult: false
       attribute :can_nominate_anyone_in_assessment, Boolean, deafult: false
       attribute :limit_nomination_by_subject_to_anyone_in_assessment, Boolean, deafult: false

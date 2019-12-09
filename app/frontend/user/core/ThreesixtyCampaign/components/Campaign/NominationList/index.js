@@ -39,14 +39,11 @@ const CollapseItem = ({ title, list }) => (
 
 
 function NominationList ({
-  nominations, options, percent, nominationsCounters,
+  nominations, options, percent, nominationsCounters, instructions,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
   const [selfNominations, notSelfNominations] = _.partition(nominations, { isSelf: true })
-
-  const viewableNominations = !options.manager.canViewNominations
-    || options.manager.canApproveNominations ? [] : notSelfNominations
 
   const getNominationsForSetup = () => {
     if (options.subject.canNominateEvaluators && options.manager.canChooseEvaluators) {
@@ -65,9 +62,18 @@ function NominationList ({
   }
 
   const nominationsForSetup = getNominationsForSetup()
+  const nominationsForSetupIds = nominationsForSetup.map(({ id }) => id)
+
+  let viewableNominations = !options.manager.canViewNominations
+    || options.manager.canApproveNominations ? selfNominations : nominations
+
+  viewableNominations = _.filter(viewableNominations,
+    nomination => !_.includes(nominationsForSetupIds, nomination.id))
 
 
   const approvableNominations = options.manager.canApproveNominations ? notSelfNominations : []
+
+  const nominationHelp = _.find(instructions, { name: 'nomination_help' })
 
   return (
     <List
@@ -94,9 +100,11 @@ of
               </div>
             </div>
           </div>
+          {nominationHelp && (
           <div className="help">
             <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
+          )}
         </div>
       )}
       bordered
@@ -113,6 +121,7 @@ of
           list={approvableNominations}
         />
         )}
+      {nominationHelp && (
       <Modal
         title={(
           <div className="help-modal-header">
@@ -124,8 +133,9 @@ of
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.nomination') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: nominationHelp.content }} />
       </Modal>
+      )}
     </List>
   )
 }
