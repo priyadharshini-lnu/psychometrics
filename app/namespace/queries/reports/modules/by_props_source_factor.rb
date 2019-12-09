@@ -7,7 +7,7 @@ module Queries
         SQL = <<-SQL.squish
           SELECT *
           FROM reports_modules, json_array_elements(reports_modules.props -> 'source' -> 'factors') factors
-          WHERE factors ->> 'id' = ?
+          WHERE factors ->> 'id' = ? and json_typeof(reports_modules.props -> 'source' -> 'factors')='array'
         SQL
 
         def initialize(relation = ::Reports::Module.all)
