@@ -94,8 +94,8 @@ _.extend(AppStore.prototype, {
   //     }
   //   ]
   // }
-  serializeAssessment (assessmentData) {
-    const assessment = Assessment.prototype.toJSON.call(assessmentData.assessment)
+  serializeAssessment (assessmentData, flow) {
+    const assessment = Assessment.prototype.toJSON.call({ ...assessmentData.assessment, flow })
     assessment.blocks = []
 
     // Serialize blocks and questions
@@ -115,9 +115,9 @@ _.extend(AppStore.prototype, {
   },
 
   // Save Assessment
-  save (assessment, trash) {
+  save (assessment, trash, flow) {
     const builder = {
-      assessment: this.serializeAssessment(assessment),
+      assessment: this.serializeAssessment(assessment, flow),
       trash: [],
     }
 

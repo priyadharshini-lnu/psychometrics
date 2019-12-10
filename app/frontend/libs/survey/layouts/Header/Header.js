@@ -61,8 +61,8 @@ export class Header extends Component {
   }
 
   save = () => {
-    const { builder, trash } = this.props
-    AppStore.save(builder, trash)
+    const { builder, flow, trash } = this.props
+    AppStore.save(builder, trash, flow)
   }
 
   toggleEnableBack = () => {

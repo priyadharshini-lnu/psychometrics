@@ -8,6 +8,7 @@ export default connect(
     assessment: state.survey.builder.assessment,
     builder: state.survey.builder,
     blocks: state.survey.builder.assessment.blocks,
+    flow: state.survey.builder.flow,
     trash: trashItems(state),
   }),
   {

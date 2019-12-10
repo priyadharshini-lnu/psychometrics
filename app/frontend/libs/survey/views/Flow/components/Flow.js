@@ -42,18 +42,12 @@ export class Flow extends Component {
   }
 
   renderElement = (element, i) => {
-    const {
-      addElementBelow, duplicateElement, removeElement, addNew,
-    } = this.props
     if (element.module === null) return null
     return (
       <div key={i} className={styles.node} draggable={false}>
         <FlowElement
           model={element.module}
-          addElementBelow={addElementBelow}
-          duplicateElement={duplicateElement}
-          removeElement={removeElement}
-          addNew={addNew}
+          {...this.props}
         />
       </div>
     )
