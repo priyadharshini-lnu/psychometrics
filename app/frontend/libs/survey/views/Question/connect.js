@@ -2,10 +2,13 @@ import { connect } from 'react-redux'
 import { open } from 'libs/survey/core/modals'
 import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
 import { moduleConfig } from 'libs/survey/core/builder/assessment/question/selectors'
-import { addSkipLogic, renameQuestion } from 'libs/survey/core/builder/assessment/question/actions'
+import {
+  addSkipLogic, renameQuestion, saveAsTemplate, unlinkTemplate,
+} from 'libs/survey/core/builder/assessment/question/actions'
 import {
   removeQuestion, moveQuestionUp, moveQuestionDown,
   insertBeforeQuestion, insertAfterQuestion,
+
 } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
@@ -28,5 +31,7 @@ export default connect(
     moveQuestionDown,
     addSkipLogic,
     renameQuestion,
+    saveAsTemplate,
+    unlinkTemplate,
   },
 )

@@ -32,8 +32,8 @@ class Question extends Component {
   }
 
   saveAsTemplate = () => {
-    const { model, blockStore } = this.props
-    blockStore.dispatcher.saveAsTemplate(model)
+    const { saveAsTemplate, model } = this.props
+    saveAsTemplate(model)
   }
 
   defaultValue = () => {

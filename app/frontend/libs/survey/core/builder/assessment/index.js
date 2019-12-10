@@ -1,11 +1,12 @@
 import { createReducer } from 'utils/reduxUtils'
 import { setIn } from 'utils/immutable'
-
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
 } from './actions'
-import { CREATE } from './block/actions'
+import {
+  CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
+} from './block/actions'
 import { blocksWithoutDeleted } from './selectors'
 
 export const defaultState = {
@@ -44,6 +45,21 @@ const HANDLERS = {
     } else {
       newState.blocks = newState.blocks.concat(block.id)
     }
+    return newState
+  },
+  [REMOVE]: (state, { block }) => {
+    const blocks = _.clone(state.blocks)
+    _.pull(blocks, block.id)
+    return setIn(state, ['blocks'], blocks)
+  },
+  [CLONE_BLOCK]: (state, { block }) => {
+    const newState = _.cloneDeep(state)
+    newState.blocks.splice(block.position, 0, block.id)
+    return newState
+  },
+  [RESTORE_BLOCK]: (state, { block }) => {
+    const newState = _.cloneDeep(state)
+    newState.blocks.splice(block.position - 1, 0, block.id)
     return newState
   },
   [SELECT_QUESTION]: (state, { question, offset }) => setIn(state, ['propPanel'], { question: question.id, offset }),

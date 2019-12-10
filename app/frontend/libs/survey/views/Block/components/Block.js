@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
-import BlockDispatcher from 'dispatchers/BlockDispatcher'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import Prompt from 'components/Prompt'
 import QuestionList from 'views/QuestionList'
 import BlockList from 'store/BlockList'
 import Confirmation from 'components/Confirmation'
+import BlockModel from 'models/Block'
 import Footer from './BlockFooter'
 import styles from './Block.scss'
 
@@ -31,9 +30,8 @@ class Block extends Component {
   }
 
   changeName = (value) => {
-    const { model } = this.props
-    BlockDispatcher.rename(model, value)
-    this.forceUpdate()
+    const { renameBlock, model } = this.props
+    renameBlock(model, value)
   }
 
   remove = () => {
@@ -62,9 +60,10 @@ class Block extends Component {
   }
 
   confirm = (name) => {
-    const { model } = this.props
+    const { cloneBlock, model } = this.props
     this.setState({ showPrompt: false })
-    BlockListDispatcher.clone(model, name)
+    const newBlock = new BlockModel(_.extend({}, model, { id: null, name }))
+    cloneBlock(newBlock)
   }
 
   cancel = () => {
@@ -72,13 +71,13 @@ class Block extends Component {
   }
 
   saveAsTemplate = () => {
-    const { model } = this.props
-    BlockList.saveAsTemplate(model)
+    const { saveAsTemplate, model } = this.props
+    saveAsTemplate(model)
   }
 
   unlinkTemplate = () => {
-    const { model } = this.props
-    BlockList.unlinkTemplate(model)
+    const { unlinkTemplate, model } = this.props
+    unlinkTemplate(model)
   }
 
   onCancelConfirm = () => {
@@ -88,6 +87,8 @@ class Block extends Component {
   openConfirmation = () => {
     this.setState({ showDeleteConfirmation: true })
   }
+
+  isTemplate = model => model.templateId || model.saveAsTemplate
 
   renderAddToTemplate () {
     const { model } = this.props
@@ -187,7 +188,7 @@ class Block extends Component {
           </div>
 
         </div>
-        {model.isTemplate() && this.renderTemplateWarning()}
+        {this.isTemplate(model) && this.renderTemplateWarning()}
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
           <Footer

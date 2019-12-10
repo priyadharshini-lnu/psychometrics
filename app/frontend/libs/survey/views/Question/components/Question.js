@@ -77,7 +77,7 @@ class Question extends Component {
           <p>Are you sure you want to remove? (with template)</p>
         </Confirmation>
         )}
-        <Buttons {...this.props} remove={model.templateId ? this.openConfirmation : this.remove} />
+        <Buttons {...this.props} selected={selected} remove={model.templateId ? this.openConfirmation : this.remove} />
       </div>
     )
   }

@@ -43,14 +43,14 @@ export class QuestionSerializer {
       return null
     }
     const question = _.extend({}, Question.prototype)
-
     question.id = attrs.id
+    question.blockId = attrs.block_id
     question.isNew = attrs.isNew
     question.position = attrs.position
     question.deleted = attrs.deleted || false
     question.name = attrs.name
     question.templateId = attrs.template_id
-    question.saveAsTemplate = false
+    question.saveAsTemplate = attrs.save_as_template || false
     question.type = attrs.type || 'MultipleChoice'
     question.comments = []
     question.showComments = question.comments.length > 0
@@ -79,7 +79,7 @@ export class QuestionSerializer {
   static toJSON (question) {
     return {
       id: question.id,
-      block_id: question.block_id,
+      block_id: question.blockId,
       name: question.name,
       position: question.position,
       type: question.type,

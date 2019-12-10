@@ -16,12 +16,12 @@ class QuestionHeader extends Component {
   }
 
   unlinkTemplate = () => {
-    const { model, blockStore } = this.props
-    blockStore.dispatcher.unlinkTemplate(model)
+    const { unlinkTemplate, model } = this.props
+    unlinkTemplate(model)
   }
 
   isTemplate (model) {
-    return model.templateId || model.saveAsTemplate
+    return model.template_id || model.save_as_template
   }
 
   renderDisplayLogic () {
@@ -72,11 +72,11 @@ class QuestionHeader extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, block } = this.props
 
     return (
       <div className={styles.header}>
-        {this.isTemplate(model) && !model.block.isTemplate() && this.renderTemplateWarning()}
+        {this.isTemplate(model) && !this.isTemplate(block) && this.renderTemplateWarning()}
         {model.display_logic && this.renderDisplayLogic()}
       </div>
     )

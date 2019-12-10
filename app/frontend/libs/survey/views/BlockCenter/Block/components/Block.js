@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
-import BlockDispatcher from 'dispatchers/BlockDispatcher'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from 'views/BlockCenter/QuestionList'
 import PropertyPanelStore from 'store/PropertyPanelStore'
@@ -26,7 +25,7 @@ class Block extends Component {
 
   changeName = (value) => {
     const { model } = this.props
-    BlockDispatcher.rename(model, value)
+    // BlockDispatcher.rename(model, value)
     this.forceUpdate()
   }
 

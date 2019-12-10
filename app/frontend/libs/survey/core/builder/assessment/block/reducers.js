@@ -1,20 +1,20 @@
 import { setIn } from 'utils/immutable'
-import Block from 'models/Block'
 import { createReducer } from 'utils/reduxUtils'
 import _ from 'lodash'
-import { INIT } from '../actions'
+import { INIT, EMPTY_TRASH } from '../actions'
 import {
   CREATE, ADD_QUESTION, REMOVE_QUESTION, MOVE_QUESTION_UP,
   MOVE_QUESTION_DOWN, INSERT_BEFORE_QUESTION, INSERT_AFTER_QUESTION,
-  UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION
+  UPDATE_POSITIONS, REMOVE, ADD_PAGE_BREAK, UPDATE_BLOCK_PROPS, COPY_QUESTION,
+  CLONE_BLOCK, UPDATE_QUESTION_IDS, RENAME_BLOCK, PERMANENT_REMOVE, RESTORE_BLOCK,
+  RESTORE_QUESTION, SAVE_AS_TEMPLATE, UNLINK_TEMPLATE,
 } from './actions'
 import { questionsWithoutDeleted, blocksWithoutDeleted } from '../selectors'
 
 const filterDeletedQuestions = (block, entities) => questionsWithoutDeleted(entities, block.questions).map(q => q.id)
-const createDefault = () => new Block({ name: 'Default Block', position: 0 })
 
 const HANDLERS = {
-  [INIT]: (_store, { data }) => {
+  [INIT]: (store, { data }) => {
     if (_.size(data.entities.blocks) > 0) {
       const blocks = _.each(data.entities.blocks, (block) => {
         block.questions = filterDeletedQuestions(block, data.entities)
@@ -22,20 +22,10 @@ const HANDLERS = {
 
       return blocks
     }
-    return [createDefault()]
+    return store
   },
-  [CREATE]: (state, { block }) => {
-    const newBlocks = _.clone(state)
-    newBlocks[block.id] = block
-    return newBlocks
-  },
-  [REMOVE]: (state, { block }) => {
-    const newBlocks = _.clone(state)
-    const newBlock = _.clone(block)
-    newBlock.deleted = true
-    newBlocks[block.id] = newBlock
-    return newBlocks
-  },
+  [CREATE]: (state, { block }) => setIn(state, [block.id], block),
+  [REMOVE]: (state, { block }) => setIn(state, [block.id, 'deleted'], true),
   [ADD_QUESTION]: (state, { block, question }) => {
     const newBlock = _.clone(state[block.id])
     newBlock.questions.push(question.id)
@@ -43,7 +33,6 @@ const HANDLERS = {
   },
   [INSERT_BEFORE_QUESTION]: (state, { block, position, question }) => {
     const newBlock = _.clone(state[block.id])
-
     newBlock.questions.splice(position - 1, 0, question.id)
     return setIn(state, [block.id], newBlock)
   },
@@ -130,7 +119,28 @@ const HANDLERS = {
     newBlock.questions.splice(index + 1, 0, newQuestion.id)
     blocks[block.id] = newBlock
     return blocks
-  }
+  },
+  [CLONE_BLOCK]: (state, { block }) => setIn(state, [block.id], block),
+  [UPDATE_QUESTION_IDS]: (state, { block, ids }) => setIn(state, [block.id, 'questions'], ids),
+  [RENAME_BLOCK]: (state, { block, name }) => setIn(state, [block.id, 'name'], name),
+  [PERMANENT_REMOVE]: (state, { block }) => setIn(state, [block.id, 'permanentRemove'], true),
+  [RESTORE_BLOCK]: (state, { block }) => setIn(
+    state, [block.id], Object.assign({}, block, { deleted: false, deletedAt: null }),
+  ),
+  [RESTORE_QUESTION]: (state, { question }) => {
+    const block = _.cloneDeep(state[question.block_id])
+    block.questions.splice(question.position - 1, 0, question.id)
+    return setIn(state, [block.id], block)
+  },
+  [EMPTY_TRASH]: (state) => {
+    const blocks = _.cloneDeep(state)
+    _.each(blocks, (b) => { if (b.deleted) b.permanentRemove = true })
+    return blocks
+  },
+  [SAVE_AS_TEMPLATE]: (state, { block }) => setIn(state, [block.id, 'save_as_template'], true),
+  [UNLINK_TEMPLATE]: (state, { block }) => setIn(
+    state, [block.id], Object.assign({}, state[block.id], { save_as_template: false, template_id: null }),
+  ),
 }
 
-export default createReducer(HANDLERS, [])
+export default createReducer(HANDLERS, {})

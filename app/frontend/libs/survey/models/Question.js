@@ -25,7 +25,7 @@ const Question = function (attrs = {}) {
     this.id = Date.now() + count
     this.isNew = true
   }
-
+  this.blockId = attrs.block_id
   this.position = attrs.position
   this.deleted = attrs.deleted || false
   this.name = attrs.name || `Q${count}`
@@ -61,7 +61,7 @@ _.extend(Question.prototype, {
   toJSON () {
     return {
       id: this.isNew ? undefined : this.id,
-      block_id: this.block_id,
+      block_id: this.blockId,
       name: this.name,
       position: this.position,
       type: this.type,
@@ -98,10 +98,6 @@ _.extend(Question.prototype, {
     this.name = name
   },
 
-  restore () {
-    this.store.dispatcher.clickRestore(this)
-  },
-
   addComment (data) {
     const comment = new Comment(data)
     Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
@@ -130,10 +126,6 @@ _.extend(Question.prototype, {
 
   clone () {
     this.store.clone(_.cloneDeep(this))
-  },
-
-  addPageBreak () {
-    this.store.insertPageBreak(this)
   },
 
   addNote () {

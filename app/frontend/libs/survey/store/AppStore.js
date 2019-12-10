@@ -1,17 +1,17 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Assessment from 'models/Assessment'
-import QuestionListDispatcher from 'dispatchers/QuestionListDispatcher'
 import FactorList from 'store/FactorList'
 import QuestionModel from 'models/Question'
 import BlockModel from 'models/Block'
-import TrashStore from 'store/TrashStore'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import Scoring from 'models/Scoring'
 import { denormalize } from 'normalizr'
 import QuestionSerializer from 'models/QuestionSerializer'
+import BlockSerializer from 'models/BlockSerializer'
 import BlockList from './BlockList'
 import { blocks } from './schema'
+
 const { $ } = window
 
 const AppStore = function () {
@@ -25,7 +25,6 @@ const AppStore = function () {
   this.question = null
   // use for block center
   this.block = null
-  this.dispatcher = new QuestionListDispatcher(this)
 }
 
 AppStore.prototype = new EventEmitter()
@@ -34,7 +33,6 @@ _.extend(AppStore.prototype, {
   init (data) {
     if (this.loaded) { return }
     // Clear trash
-    TrashStore.list = []
     // BlockList.load(data.blocks)
     this.assessment = new Assessment(data)
     FactorList.load(data.factors)
@@ -102,10 +100,13 @@ _.extend(AppStore.prototype, {
 
     // Serialize blocks and questions
     _.each(denormalize(assessmentData.assessment.blocks, [blocks], assessmentData), (blockModel) => {
-      const block = BlockModel.prototype.toJSON.call(blockModel)
+      const block = BlockModel.prototype.toJSON.call(BlockSerializer.wrap(blockModel))
       block.questions = []
       _.each(blockModel.questions, (questionModel) => {
-        const question = QuestionModel.prototype.toJSON.call({ ...QuestionSerializer.wrap(questionModel), block_id: block.id })
+        const question = QuestionModel.prototype.toJSON.call({
+          ...QuestionSerializer.wrap(questionModel),
+          block_id: block.id,
+        })
         block.questions.push(question)
       })
       assessment.blocks.push(block)
@@ -122,17 +123,17 @@ _.extend(AppStore.prototype, {
 
     // Serialize trash
     _.each(trash, (item) => {
-      if (item.isNew) { return }
+      if (item.model.isNew) { return }
       const deletedItem = item.type === 'block'
         ? ({
           model: BlockModel.prototype.toJSON.call(item.model),
           type: item.type,
-          permanent_remove: item.permanentRemove,
+          permanent_remove: item.model.permanentRemove,
         })
         : ({
           model: QuestionModel.prototype.toJSON.call(item.model),
           type: item.type,
-          permanent_remove: item.permanentRemove,
+          permanent_remove: item.model.permanentRemove,
         })
       builder.trash.push(deletedItem)
     })

@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
 
 let count = 1
 
@@ -40,36 +39,6 @@ _.extend(Block.prototype, {
       deleted_at: this.deletedAt,
       questions: this.questions,
     }
-  },
-
-  isTemplate () {
-    return this.templateId || this.saveAsTemplate
-  },
-
-  rename (name) {
-    this.name = name
-  },
-
-  // TODO: Check and remove if not used
-  moveDown () {
-    this.position += 1
-  },
-
-  // TODO: Check and remove if not used
-  moveUp () {
-    this.position -= 1
-  },
-
-  restore () {
-    BlockListDispatcher.clickRestore(this)
-  },
-
-  update () {
-    this.sync()
-  },
-
-  // TODO: Check and remove if not used
-  sync () {
   },
 
   createQuestionByTemplate (templateId) {
