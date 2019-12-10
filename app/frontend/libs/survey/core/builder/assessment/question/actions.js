@@ -10,6 +10,7 @@ export const RENAME_QUESTION = 'builder/assessment/question/RENAME_QUESTION'
 export const PERMANENT_REMOVE = 'builder/assessment/question/PERMANENT_REMOVE'
 export const SAVE_AS_TEMPLATE = 'builder/assessment/question/SAVE_AS_TEMPLATE'
 export const UNLINK_TEMPLATE = 'builder/assessment/question/UNLINK_TEMPLATE'
+export const CHANGE_VALIDATION = 'builder/assessment/question/CHANGE_VALIDATION'
 
 export const updateQuestion = question => ({
   type: UPDATE_QUESTION, question,
@@ -57,4 +58,8 @@ export const saveAsTemplate = question => ({
 
 export const unlinkTemplate = question => ({
   type: UNLINK_TEMPLATE, question,
+})
+
+export const changeValidation = (question, data) => ({
+  type: CHANGE_VALIDATION, question, data,
 })

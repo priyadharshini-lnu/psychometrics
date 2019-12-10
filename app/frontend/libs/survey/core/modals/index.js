@@ -36,6 +36,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  customValidation: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {

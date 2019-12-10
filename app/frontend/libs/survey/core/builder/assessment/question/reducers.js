@@ -5,7 +5,7 @@ import QuestionSerializer from 'models/QuestionSerializer'
 import {
   ADD_QUESTION, ADD_QUESTIONS, CHANGE_TYPE, UPDATE_POSITIONS, UPDATE_QUESTION,
   ADD_SKIP_LOGIC, REMOVE_SKIP_LOGIC, SAVE_DISPLAY_LOGIC, RENAME_QUESTION, PERMANENT_REMOVE,
-  SAVE_AS_TEMPLATE, UNLINK_TEMPLATE,
+  SAVE_AS_TEMPLATE, UNLINK_TEMPLATE, CHANGE_VALIDATION,
 } from './actions'
 import {
   REMOVE_QUESTION, ADD_PAGE_BREAK, RESTORE_QUESTION,
@@ -71,6 +71,9 @@ const HANDLERS = {
   [SAVE_AS_TEMPLATE]: (state, { question }) => setIn(state, [question.id, 'save_as_template'], true),
   [UNLINK_TEMPLATE]: (state, { question }) => setIn(
     state, [question.id], Object.assign({}, question, { save_as_template: false, template_id: null }),
+  ),
+  [CHANGE_VALIDATION]: (state, { question, data }) => setIn(
+    state, [question.id, 'validation'], { ...data },
   ),
 }
 

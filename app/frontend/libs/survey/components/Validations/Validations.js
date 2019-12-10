@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'store/CustomValidationStore'
 import Utils from 'utils'
+import Condition from 'models/QuestionCondition'
 import CustomValidations from './CustomValidations'
 import VALIDATIONS from './types'
 
@@ -26,15 +26,18 @@ const CustomField = ({ model, update }) => {
   return <Validation model={model} changeValidationArg={changeValidationArg} />
 }
 
-export default function Validations ({ model, update }) {
+export default function Validations ({
+  model, update, changeValidation, openCustomValidation,
+}) {
   const changeValidationType = (e) => {
     const type = e.currentTarget.value
     if (type === 'Custom') {
-      store.open(model, () => {
-        update()
-      })
+      if (model.validation.type !== 'Custom') {
+        changeValidation(model, { type: 'Custom', args: { conditions: [new Condition({ subject: model.id })] } })
+      }
+      openCustomValidation({ questionId: model.id })
     } else {
-      model.changeValidation({ type, args: {} })
+      changeValidation(model, { type, args: {} })
       update()
     }
   }
