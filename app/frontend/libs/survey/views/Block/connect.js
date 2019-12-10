@@ -10,6 +10,7 @@ export default connect(
   () => ({}),
   {
     openRandomization: data => open('randomization', data),
+    openCreateByTemplate: data => open('createByTemplate', data),
     unselectQuestion,
     createBlock,
     removeBlock,

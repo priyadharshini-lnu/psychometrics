@@ -24,9 +24,8 @@ class Block extends Component {
   }
 
   changeName = (value) => {
-    const { model } = this.props
-    // BlockDispatcher.rename(model, value)
-    this.forceUpdate()
+    const { renameBlock, model } = this.props
+    renameBlock(model, value)
   }
 
   questionRandomization = () => {

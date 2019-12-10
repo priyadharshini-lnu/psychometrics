@@ -13,6 +13,7 @@ export default connect(
   }),
   {
     openFlow: data => open('flow', data),
+    openCreateByTemplate: data => open('createByTemplate', data),
     createBlock,
   },
 )

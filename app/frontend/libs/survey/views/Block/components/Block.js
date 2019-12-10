@@ -4,7 +4,6 @@ import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import Prompt from 'components/Prompt'
 import QuestionList from 'views/QuestionList'
-import BlockList from 'store/BlockList'
 import Confirmation from 'components/Confirmation'
 import BlockModel from 'models/Block'
 import Footer from './BlockFooter'
@@ -170,9 +169,7 @@ class Block extends Component {
   }
 
   render () {
-    const {
-      model, last, createBlock, addQuestion,
-    } = this.props
+    const { model } = this.props
     const { opened, showPrompt, showDeleteConfirmation } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -191,13 +188,7 @@ class Block extends Component {
         {this.isTemplate(model) && this.renderTemplateWarning()}
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
-          <Footer
-            createBlock={createBlock}
-            addQuestion={addQuestion}
-            model={model}
-            onMinimize={this.expand}
-            last={last}
-          />
+          <Footer {...this.props} onMinimize={this.expand} />
         </div>
         <Prompt
           title={`Copy Block - ${model.name}`}

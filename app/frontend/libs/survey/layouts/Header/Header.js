@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
-import CreateByTemplateStore from 'store/CreateByTemplateStore'
 import MappingNormsStore from 'store/MappingNormsStore'
 import Block from 'models/Block'
 import styles from './Header.scss'
@@ -33,7 +32,8 @@ export class Header extends Component {
   }
 
   openSearchPopup = () => {
-    CreateByTemplateStore.openBlockPopup(null, 'Block')
+    const { openCreateByTemplate } = this.props
+    openCreateByTemplate({ entityName: 'Block' })
   }
 
   showMappingNorms = () => {

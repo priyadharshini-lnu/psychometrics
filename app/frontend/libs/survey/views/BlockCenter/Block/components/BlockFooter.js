@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Menu from 'components/ModulesMenu'
-import CreateByTemplateStore from 'store/CreateByTemplateStore'
+// import CreateByTemplateStore from 'store/CreateByTemplateStore'
 import styles from './Block.scss'
 
 class BlockFooter extends Component {
@@ -34,8 +34,8 @@ class BlockFooter extends Component {
   }
 
   openSearch = () => {
-    const { model } = this.props
-    CreateByTemplateStore.open(model, 'Question')
+    const { openCreateByTemplate, model } = this.props
+    openCreateByTemplate({ blockId: model.id, entityName: 'Question' })
   }
 
   render () {

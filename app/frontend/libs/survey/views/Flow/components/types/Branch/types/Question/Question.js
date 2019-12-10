@@ -15,7 +15,6 @@ export class Question extends Component {
 
   render () {
     const { questions, condition } = this.props
-    console.log(questions)
     return (
       <QuestionCondition
         questions={questions}

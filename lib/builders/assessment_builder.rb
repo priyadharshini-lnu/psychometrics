@@ -55,8 +55,7 @@ module Builders
           end
         end
       rescue StandardError => e
-        # Rails.logger.info(e)
-        Rails.logger.log(e)
+        Rails.logger.info(e)
         return false
       end
       true

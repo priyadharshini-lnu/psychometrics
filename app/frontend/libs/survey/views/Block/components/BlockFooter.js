@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Menu from 'components/ModulesMenu'
-import CreateByTemplateStore from 'store/CreateByTemplateStore'
 import Block from 'models/Block'
 import styles from './Block.scss'
 
@@ -36,13 +35,13 @@ class BlockFooter extends Component {
   }
 
   openSearchQuestionPopup = () => {
-    const { model } = this.props
-    CreateByTemplateStore.openQuestionPopup(model, 'Question')
+    const { openCreateByTemplate, model } = this.props
+    openCreateByTemplate({ blockId: model.id, entityName: 'Question' })
   }
 
   openSearchBlockPopup = () => {
-    const { model } = this.props
-    CreateByTemplateStore.openBlockPopup(model.position, 'Block')
+    const { openCreateByTemplate, model } = this.props
+    openCreateByTemplate({ position: model.position, entityName: 'Block' })
   }
 
   renderCopyQuestion () {

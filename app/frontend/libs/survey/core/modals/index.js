@@ -40,6 +40,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  createByTemplate: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {

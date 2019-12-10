@@ -7,7 +7,7 @@ import schema from '../store/schema'
 import { INIT } from '../core/builder/assessment/actions'
 import NotificationDispatcher from '../dispatchers/NotificationDispatcher'
 
-const RequestsPool = {}
+export const RequestsPool = {}
 
 const Socket = ({ dispatch }) => next => (action) => {
   if (action.type !== SOCKET_MESSAGE) { return next(action) }
@@ -29,13 +29,11 @@ const Socket = ({ dispatch }) => next => (action) => {
     AppStore.initBCenter(data.data)
   } else if (data.action === 'assessment_factors') {
     AppStore.initScoring(data.data)
-  } else {
-    console.warn('Unhandled socket message', action)
-  }
-
-  if (RequestsPool[data.request_id]) {
+  } else if (RequestsPool[data.request_id]) {
     RequestsPool[data.request_id](data.data)
     delete RequestsPool[data.request_id]
+  } else {
+    console.warn('Unhandled socket message', action)
   }
 }
 
