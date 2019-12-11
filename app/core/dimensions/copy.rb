@@ -14,7 +14,7 @@ module Dimensions
 
     def call
       source_dimension.all_factors.where(id: factors_to_copy).each do |factor|
-        factor_maping = Factors::Copy.call!(factor, old_to_new_factor_mapping[factor.id])
+        factor_maping = Factors::Copy.call!(factor, old_to_new_factor_mapping)
         old_to_new_factor_mapping.merge!(factor_maping)
       end
 
