@@ -4,40 +4,45 @@ require 'rails_helper'
 
 describe Threesixty::Campaigns::Create do
   let(:project) { create(:project) }
-  let(:campaign_params) { { name: 'New campaign' } }
-  let(:threesixty_campaign_params) { { factors: [] } }
+  let(:form) { Threesixty::Campaigns::CreateForm.new(name: 'New campaign') }
 
   describe '.call' do
-    it 'creates a Campaign record' do
-      campaign = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
+    it 'creates a Threesixty::Campaign record' do
+      threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
 
-      expect(campaign).to be_an_instance_of(Campaign)
-      expect(campaign).to be_persisted
-      expect(campaign.name).to eq(campaign_params[:name])
+      expect(threesixty_campaign).to be_an_instance_of(Threesixty::Campaign)
+      expect(threesixty_campaign).to be_persisted
+      expect(threesixty_campaign.name).to eq(form.name)
     end
 
-    it 'creates a Threesixty::Campaign record' do
-      campaign = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
+    it 'creates a Campaign record' do
+      threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
 
-      expect(campaign.threesixty_campaign).to be_persisted
+      expect(threesixty_campaign.campaign).to be_persisted
     end
 
     it 'creates a Threesixty::Option record for a Threesixty::Campaign' do
-      campaign = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
+      threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
 
-      expect(campaign.threesixty_campaign.option).to be_persisted
+      expect(threesixty_campaign.option).to be_persisted
     end
 
     it 'calls CreateEmptyCampaign when assessments are not passed' do
-      expect(::Threesixty::CreateEmptyCampaign).to receive(:call)
+      threesixty_campaign = create(:threesixty_campaign)
+      expect(::Threesixty::Campaigns::CreateEmptyCampaign).to receive(:call!).
+        and_return(threesixty_campaign)
 
-      ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
+      ::Threesixty::Campaigns::Create.call!(project, form)
     end
 
-    it 'calls CreateFromAssessment when assessments are passed' do
-      expect(::Threesixty::CreateFromAssessment).to receive(:call)
+    it 'calls CreateFromAssessmentAndReport when assessments are passed' do
+      threesixty_campaign = create(:threesixty_campaign)
+      expect(::Threesixty::Campaigns::CreateFromAssessmentAndReport).to receive(:call!).
+        and_return(threesixty_campaign)
+      form.assessment_id = create(:assessment).id
+      form.type = Threesixty::Campaign::PREVIOUS_360
 
-      ::Threesixty::Campaigns::Create.call!(project, campaign_params, assessment_id: create(:assessment).id)
+      ::Threesixty::Campaigns::Create.call!(project, form)
     end
   end
 end
