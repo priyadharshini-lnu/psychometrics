@@ -1,15 +1,12 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Assessment from 'models/Assessment'
-import FactorList from 'store/FactorList'
 import QuestionModel from 'models/Question'
 import BlockModel from 'models/Block'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
-import Scoring from 'models/Scoring'
 import { denormalize } from 'normalizr'
 import QuestionSerializer from 'models/QuestionSerializer'
 import BlockSerializer from 'models/BlockSerializer'
-import BlockList from './BlockList'
 import { blocks } from './schema'
 
 const { $ } = window
@@ -18,7 +15,6 @@ const AppStore = function () {
   this.loaded = false
   this.disabled = false
   this.assessment = null
-  this.scoring = false
   // question list
   this.questions = {}
   // use for question center
@@ -33,29 +29,11 @@ _.extend(AppStore.prototype, {
   init (data) {
     if (this.loaded) { return }
     // Clear trash
-    // BlockList.load(data.blocks)
     this.assessment = new Assessment(data)
-    FactorList.load(data.factors)
     this.loaded = true
-    this.questionRecodingList = data.question_recoding.map(q => new Scoring(q))
     this.emit('change')
-    this.fetchQuestions()
     this.dataSheetColumns = data.data_sheet_columns || []
     this.relationships = data.relationships || []
-  },
-
-  addQuestionRecoding (attrs = {}) {
-    const scoring = new Scoring(attrs)
-    this.questionRecodingList.push(scoring)
-    return scoring
-  },
-
-  fetchQuestions () {
-    this.questions = _.flatten(BlockList.list.map(block => block.questions.list))
-    this.questions = _.reduce(this.questions, (obj, q) => {
-      obj[q.id] = q
-      return obj
-    }, {})
   },
 
   update () {
@@ -152,40 +130,6 @@ _.extend(AppStore.prototype, {
         this.loaded = false
         this.init(data.data)
         NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
-      },
-    })
-  },
-
-  // Save Scoring
-  // scoring: [
-  //   {
-  //     - Scoring Attributes
-  //   }
-  // ]
-  saveScoring () {
-    const scoring = []
-    _.each(FactorList.list, (factorModel) => {
-      _.each(factorModel.scoring.list, (scoringModel) => {
-        scoring.push(scoringModel.toJSON())
-      })
-    })
-
-    this.loaded = false
-    this.update()
-
-    $.ajax({
-      method: 'PUT',
-      url: `/administration/assessments/${this.assessment.id}/scoring`,
-      dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({ scoring, question_recoding: this.questionRecodingList }),
-      error: (jqXHR, textStatus, errorThrown) => {
-        console.info(jqXHR, textStatus, errorThrown)
-        NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
-      },
-      success: (data) => {
-        this.init(data.data)
-        NotificationDispatcher.notify({ message: 'Scoring successfully saved' })
       },
     })
   },

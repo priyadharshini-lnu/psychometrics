@@ -5,7 +5,6 @@ import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
-import AppStore from 'store/AppStore'
 import Socket from 'cable'
 import Action from 'undo'
 import rstore from 'store'
@@ -321,15 +320,6 @@ _.extend(Question.prototype, {
 
   clearDisplayLogic () {
     this.displayLogic = null
-    this.update()
-  },
-
-  addSkipLogic () {
-    AppStore.fetchQuestions()
-    const model = new Condition({ prefix: 'And', subject: this.id, editMode: true })
-    _.forEach(this.skipLogic, (condition) => { condition.editMode = false })
-    this.skipLogic.push(model)
-    this.store.update()
     this.update()
   },
 }, TranslateManager)

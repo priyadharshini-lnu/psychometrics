@@ -1,34 +1,37 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import AppStore from 'store/AppStore'
-import FactorList from 'store/FactorList'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import styles from './Scoring.scss'
 
 export class FactorsMenu extends Component {
-  closeScoring = () => {
-    AppStore.scoring = false
-    AppStore.update()
-  }
-
   selectFactor = (factor) => {
-    FactorList.changeFactor(factor)
-    this.forceUpdate()
+    const { selectFactor } = this.props
+    selectFactor(factor.id)
   }
 
-  renderFactorBlock = factor => _.flatten([
-    <MenuItem key={factor.id} onSelect={() => this.selectFactor(factor)}>{factor.getName()}</MenuItem>,
-    factor.subFactors.list.map(subFactor => (
+  renderFactorBlock = factor => _.compact(_.flatten([
+    <MenuItem key={factor.id} onSelect={() => this.selectFactor(factor)}>{factor.name}</MenuItem>,
+    factor.sub_factors && factor.sub_factors.list.map(subFactor => (
       <MenuItem
         key={subFactor.id}
         onSelect={() => this.selectFactor(subFactor)}
       >
-        {subFactor.getName()}
+        {subFactor.name}
       </MenuItem>
     )),
-  ])
+  ]))
+
+  currentFactorName () {
+    const { selectedFactor } = this.props
+    if (selectedFactor) {
+      return selectedFactor.name
+    }
+    return 'Choose Factor'
+  }
 
   render () {
+    const { factors } = this.props
+
     return (
       <DropdownButton
         className={styles.dropdown}
@@ -36,12 +39,12 @@ export class FactorsMenu extends Component {
         title={(
           <span>
             <span className="icon fa fa-gear" />
-            {FactorList.getCurrentFactorName()}
+            {this.currentFactorName()}
           </span>
-)}
+        )}
         id="main_menu"
       >
-        {FactorList.list.map(factor => this.renderFactorBlock(factor))}
+        {factors.map(factor => this.renderFactorBlock(factor))}
       </DropdownButton>
     )
   }

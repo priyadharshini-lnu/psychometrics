@@ -1,10 +1,12 @@
-import { block, question } from 'store/schema'
+import { block, blocks, question } from 'store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
 
 export const blocksSelector = (state, ids) => denormalize(ids, [block], state)
 export const questionsSelector = (state, ids) => denormalize(ids, [question], state)
 export const selectBlock = (state, id) => state.blocks[id]
+
+export const blocksWithQuestions = (state, ids) => denormalize(ids, [blocks], state)
 
 export const blocksWithoutDeleted = createSelector(
   blocksSelector,

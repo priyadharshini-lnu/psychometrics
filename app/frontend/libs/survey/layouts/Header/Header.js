@@ -5,6 +5,7 @@ import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
 import MappingNormsStore from 'store/MappingNormsStore'
 import Block from 'models/Block'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Header.scss'
 
 export class Header extends Component {
@@ -41,14 +42,14 @@ export class Header extends Component {
   }
 
   export = () => {
-    const { blocks } = this.props
+    const { blocksWithQuestions } = this.props
     const result = {
       question: {},
       flow: {},
     }
-    _.each(blocks, (block) => {
-      _.each(block.questions.list, (question) => {
-        result.question[question.id] = question.exportLocales()
+    _.each(blocksWithQuestions, (block) => {
+      _.each(block.questions, (question) => {
+        result.question[question.id] = QuestionSerializer.wrap(question).exportLocales()
       })
     })
     this.data.value = JSON.stringify(result)
@@ -56,7 +57,8 @@ export class Header extends Component {
   }
 
   openPreview = () => {
-    this.previewData.value = JSON.stringify(AppStore.serializeAssessment())
+    const { builder, flow } = this.props
+    this.previewData.value = JSON.stringify(AppStore.serializeAssessment(builder, flow))
     this.previewForm.submit()
   }
 

@@ -40,10 +40,6 @@ _.extend(Block.prototype, {
       questions: this.questions,
     }
   },
-
-  createQuestionByTemplate (templateId) {
-    this.questions.createByTemplate(templateId)
-  },
 })
 
 export default Block
