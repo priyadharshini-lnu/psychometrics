@@ -7,6 +7,8 @@ module Administration
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
       before_action :pundit_authorize, except: %i[
+        export_results
+        export_hogan_results
         export_normed_results
         enable_universal_links
         disable_universal_links
@@ -26,6 +28,7 @@ module Administration
 
       def export_results
         @assessment = Assessment.find(params[:assessment_id])
+        authorize @assessment
         results = ::Exports::Assessments::AssessmentResultsExport.call!(@assessment, client.id, export_results_params)
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
@@ -70,6 +73,7 @@ module Administration
 
       def export_hogan_results
         @assessment = Assessment.find(params[:assessment_id])
+        authorize @assessment
         results = ::Exports::Assessments::HoganResultsExport.new(client.id, @assessment.id, params[:report_id])
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'hogan_assessment_results.xlsx' }
