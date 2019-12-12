@@ -22,12 +22,14 @@ javascript:
 
     function changeType(){
       var type = $(this).find('option:selected').attr('value')
-      $('#assessment_field, #factors_field, #campaign_template_fields').css('display', 'none')
+      $('#assessment_field, #campaign_template_fields').css('display', 'none')
 
       if  (type == 'previous_360') {
-        $('#assessment_field').css('display', 'block')
+        $('#assessment_field, #factors_field').css('display', 'block')
       } else if (type == 'standard_360') {
-        $('#campaign_template_fields').css('display', 'block')
+        $('#campaign_template_fields, #factors_field').css('display', 'block')
+      } else {
+        $('#factors_field').css('display', 'none')
       }
     }
 
