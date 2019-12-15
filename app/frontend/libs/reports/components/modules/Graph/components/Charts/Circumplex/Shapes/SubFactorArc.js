@@ -24,7 +24,7 @@ class SubFactorArc extends BaseArc {
     })
     return _.map(dataset, (d) => {
       d.value = 1
-      d.name = this.getShortFactorName(d.name)
+      d.name = d.code || this.getShortFactorName(d.name)
       return d
     })
   }

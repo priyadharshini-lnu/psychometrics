@@ -17,7 +17,7 @@
 module Factors
   class WithSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :parent_id, :question_ids, :description, :icon, :alias, :scoring_strategy
+    attributes :id, :name, :code, :parent_id, :question_ids, :description, :icon, :alias, :scoring_strategy
     has_many :factors_sub_factors, serializer: FactorsSubFactorSerializer
 
     def icon
