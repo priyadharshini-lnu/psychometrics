@@ -77,6 +77,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "evaluator_last_name": {
               "blank": "Evaluator last name can't be blank"
             },
+            "evaluator_password": {
+              "too_short": "Evaluator password is too short (minimum is %{count} characters)"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -433,6 +436,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "updated_at": "Modified Date",
         "updated_by": "Edited by"
+      },
+      "threesixty": {
+        "users_result": {
+          "statuses": {
+            "completed": "Completed",
+            "in_progress": "Resume",
+            "not_started": "New"
+          }
+        }
       },
       "user": {
         "active": "Active",
@@ -3930,6 +3942,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed to subjects when they begin nominating evaluators",
           "name": "Invite Evaluators"
         },
+        "nomination_help": {
+          "description": "Help text displayed on nomination card on user's dashboard",
+          "name": "Nomination Help"
+        },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
@@ -5822,7 +5838,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
       "main": "<h2>Help</h2> <p>need content for help modal</p>",
-      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your Manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a Manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a Manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
       "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or Manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a Manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and Manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
     },
     "language": "Language",
@@ -6032,6 +6047,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "evaluator_last_name": {
               "blank": "Evaluator last name can't be blank"
+            },
+            "evaluator_password": {
+              "too_short": "Evaluator password is too short (minimum is %{count} characters)"
             },
             "first_name": {
               "blank": "First name can't be blank"
@@ -6389,6 +6407,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "updated_at": "Modified Date",
         "updated_by": "Edited by"
+      },
+      "threesixty": {
+        "users_result": {
+          "statuses": {
+            "completed": "Completed",
+            "in_progress": "Resume",
+            "not_started": "New"
+          }
+        }
       },
       "user": {
         "active": "Active",
@@ -9886,6 +9913,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed to subjects when they begin nominating evaluators",
           "name": "Invite Evaluators"
         },
+        "nomination_help": {
+          "description": "Help text displayed on nomination card on user's dashboard",
+          "name": "Nomination Help"
+        },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
@@ -11993,6 +12024,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "evaluator_last_name": {
               "blank": "Evaluator last name can't be blank"
             },
+            "evaluator_password": {
+              "too_short": "Evaluator password is too short (minimum is %{count} characters)"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -12349,6 +12383,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "updated_at": "Modified Date",
         "updated_by": "Edited by"
+      },
+      "threesixty": {
+        "users_result": {
+          "statuses": {
+            "completed": "Completed",
+            "in_progress": "Resume",
+            "not_started": "New"
+          }
+        }
       },
       "user": {
         "active": "Active",
@@ -15846,6 +15889,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed to subjects when they begin nominating evaluators",
           "name": "Invite Evaluators"
         },
+        "nomination_help": {
+          "description": "Help text displayed on nomination card on user's dashboard",
+          "name": "Nomination Help"
+        },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
@@ -17738,7 +17785,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
       "main": "<h2>Help</h2> <p>need content for help modal</p>",
-      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your Manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a Manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a Manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
       "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or Manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a Manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and Manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
     },
     "language": "Language",

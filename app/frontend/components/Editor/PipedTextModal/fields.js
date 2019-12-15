@@ -141,7 +141,7 @@ const FIELDS = [
       {
         name: 'Subject Relationship Table',
         type: 'link',
-        value: '{{sc://SubjectRelationshipTable}}',
+        value: '{{st://SubjectRelationshipTable}}',
       },
     ],
   },
