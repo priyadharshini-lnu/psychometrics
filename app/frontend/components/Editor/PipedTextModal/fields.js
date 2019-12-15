@@ -1,3 +1,5 @@
+import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
+
 const FIELDS = [
   {
     branch: 'Recipient',
@@ -83,6 +85,7 @@ const FIELDS = [
   },
   {
     branch: 'Subject',
+    hideOnconsolidation: true,
     supportedTypes: [
       'evaluator_invite',
       'evaluator_reminder',
@@ -131,7 +134,20 @@ const FIELDS = [
     ],
   },
   {
+    branch: 'Subject Consolidation',
+    hideOnUnconsolidation: true,
+    supportedTypes: CONSOLIDATED_EMAIL_NAMES,
+    fields: [
+      {
+        name: 'Subject Relationship Table',
+        type: 'link',
+        value: '{{st://SubjectRelationshipTable}}',
+      },
+    ],
+  },
+  {
     branch: 'Dashboard',
+    consolidation: true,
     supportedTypes: [
       'subject_invite',
       'evaluator_invite',

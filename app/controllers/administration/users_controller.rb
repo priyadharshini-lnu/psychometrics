@@ -8,9 +8,11 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
   # GET /administration/resources
   def index
-    @_filter_form = policy_scope(resource_class).search(params[:q])
-    @_resources = filter_form.result.preload(:modifier, :creator, :project_admin_clients).page(params[:page])
-
+    @filter_term = params.dig(:q, :filterable_fields)
+    @_filter_form = policy_scope(resource_class).
+                    includes(:modifier, :creator, :project_admin_clients).
+                    ransack(params[:q])
+    @_resources = filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render :index, formats: [:js] }

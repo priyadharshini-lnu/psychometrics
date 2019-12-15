@@ -10,7 +10,10 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @_filter_form = policy_scope(resource_class).where(dimension_id: @dimension.id).search(params[:q])
+      @filter_term = params.dig(:q, :filterable_fields)
+      @_filter_form = policy_scope(resource_class).
+                      where(dimension_id: @dimension.id).
+                      ransack(params[:q])
       @_resources   = filter_form.result.page(params[:page])
 
       respond_to do |format|

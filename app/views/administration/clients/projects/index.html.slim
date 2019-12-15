@@ -21,12 +21,12 @@
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
-          = f.input :name_cont,
+          = f.input :filterable_fields,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
-                    input_html: { class: 'has_clear periodically-observed' }
+                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
           .form-group.form-group-long
             .btn-group data-toggle="buttons"
               - [['Active', false], ['Archived', true]].each do |item|

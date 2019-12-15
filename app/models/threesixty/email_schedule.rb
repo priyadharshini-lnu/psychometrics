@@ -8,4 +8,8 @@ class Threesixty::EmailSchedule < ApplicationRecord
   def recipients
     User.where(id: recipient_ids)
   end
+
+  def consolidatable?
+    Threesixty::Emails::Name.consolidatable_email?(name) && consolidated?
+  end
 end

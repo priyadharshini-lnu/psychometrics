@@ -1,0 +1,30 @@
+.container {
+  display: block;
+  border-radius: 100%;
+  position: relative;
+}
+circle {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+  stroke: #666;
+}
+.bar {
+  stroke: #FF9F1E;
+}
+
+.textContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: #F1F1F1;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-weight: bold;
+}

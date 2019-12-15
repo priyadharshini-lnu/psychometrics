@@ -10,6 +10,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
+      @filter_term = params.dig(:q, :filterable_fields)
       @_filter_form = policy_scope(resource_class).
                       tenancies.
                       includes(
@@ -19,7 +20,7 @@ module Administration
                         licenses: [:report_family]
                       ).
                       order(:name).
-                      search(params[:q])
+                      ransack(params[:q])
 
       filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
@@ -102,15 +103,9 @@ module Administration
     end
 
     def copy
-      @cloned_resource = resource.clone
-      respond_to do |format|
-        if @cloned_resource.save
-          format.js
-        else
-          format.js do
-            render(:error, locals: { message: t('.error', name: resource.decorate.display_name) })
-          end
-        end
+      ::Clients::CopyClient.call(resource) do
+        on(:invalid) { render(:error, locals: { message: t('.error', name: resource.decorate.display_name) }) }
+        on(:ok) { |cloned_resource| render :copy, locals: { cloned_resource: cloned_resource } }
       end
     end
 

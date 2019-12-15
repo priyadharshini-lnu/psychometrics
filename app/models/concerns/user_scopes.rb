@@ -69,6 +69,12 @@ module UserScopes
           where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
+
+    scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
+
+    scope :eq_id, ->(id) { where(id: id) }
+    scope :filterable_fields, ->(query) { eq_id(query).or(search_query(query)) }
   end
+
   # rubocop:enable Metrics/BlockLength
 end

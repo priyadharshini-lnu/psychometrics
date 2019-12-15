@@ -1,0 +1,82 @@
+@import '~styles/theme';
+
+.list {
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.listItem {
+  padding: 4px 0;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-start;
+}
+
+.input {
+  margin: 3px 7px !important;
+  width: 12px;
+}
+
+.label {
+  font-weight: normal;
+  width: 100%;
+}
+
+.ltr_direction {
+  direction: ltr;
+}
+
+.liButton {
+  background-color: #f1f1f1;
+  margin: 5px;
+  border-radius: 4px;
+  padding: 0;
+  align-items: center;
+  input {
+    display: none;
+  }
+}
+
+.buttonActive {
+  background-color: $primary-color;
+  color: #fff;
+  label {
+    color: #fff;
+  }
+}
+
+.left_float{
+  float: left;
+}
+
+.labelButton {
+  cursor: pointer;
+  padding: 15px;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  span {
+    text-align: left;
+  }
+}
+
+.Horizontal {
+  span {
+    text-align: center;
+  }
+}
+
+.questionText {
+  margin-top: 10px;
+}
+
+.questionTextPreview {
+  margin-bottom: 10px;
+  overflow-x: hidden;
+}
+
+.scoringRow {
+  display: flex;
+  margin: 5px 0;
+}

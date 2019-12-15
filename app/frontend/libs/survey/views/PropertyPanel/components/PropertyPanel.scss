@@ -1,0 +1,81 @@
+.main {
+  position: absolute;
+  right: 15px;
+  width: 190px;
+  border: 1px solid #CCC;
+  background: #F2F2F2;
+  z-index: 999;
+  box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.2);
+  transition: top .3s, height .3s;
+  top: 0;
+  min-height: 350px;
+  visibility: hidden;
+}
+
+.divider {
+  clear: both;
+  width: 100%;
+  border-top-color: #CCC;
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
+  border-right: none;
+  margin: 6px 0;
+}
+
+.fieldset{
+  margin: 10px;
+  position: relative;
+}
+
+.menuitem{
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 5px;
+  color: rgb(61, 61, 61);
+}
+.label{
+  margin: 0;
+  font-size: 11px;
+  color: #737373;
+
+}
+.inputLabel{
+  display: block !important;
+  font-weight: normal;
+  color: #000;
+  font-size: 12px;
+}
+.menuButton {
+  margin: 5px 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .icon{
+    color: #fff;
+  }
+}
+
+.button {
+  margin: 5px 0;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .icon{
+    color: #fff;
+  }
+}
+.totalInput {
+  padding-left: 3px;
+}

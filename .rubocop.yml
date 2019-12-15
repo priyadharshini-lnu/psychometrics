@@ -4,7 +4,7 @@ AllCops:
     - "vendor/**/*"
     - "node_modules/**/*"
     - "db/schema.rb"
-  UseCache: false
+  UseCache: true
 
 Layout/AlignHash:
   EnforcedLastArgumentHashStyle: ignore_implicit
@@ -85,6 +85,7 @@ Style/LambdaCall:
 
 Metrics/LineLength:
   Max: 120
+  IgnoreCopDirectives: true
 
 Style/NonNilCheck:
   IncludeSemanticChanges: true

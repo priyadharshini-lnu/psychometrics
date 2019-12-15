@@ -8,7 +8,10 @@ class Administration::NormsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @_filter_form = policy_scope(resource_class).includes(:updater, :dimension).search(params[:q])
+    @filter_term = params.dig(:q, :filterable_fields)
+    @_filter_form = policy_scope(resource_class).
+                    includes(:updater, :dimension).
+                    ransack(params[:q])
     @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|
@@ -93,7 +96,6 @@ class Administration::NormsController < Administration::BaseController
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
     @filter_data = NormEditorForm.new(editor_params)
     scope = Factor.where(dimension_id: resource.dimension_id).
-            with_factor_type(@filter_data.factor_type).
             with_norm_type(@filter_data.norm_type, resource.id)
     @_resources = FactorsNorm.structured_hash(scope)
     respond_to do |format|

@@ -24,6 +24,8 @@
 #
 
 class Occupation < ApplicationRecord
+  include RansackSearchableFields
+
   has_many :occupations_factors
   belongs_to :dimension
 

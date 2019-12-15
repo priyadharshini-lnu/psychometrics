@@ -66,7 +66,8 @@ gem 'kaminari',                   '~> 0.17.0'
 gem 'breadcrumbs_on_rails',       '~> 3.0.1'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack', '~> 1.8.2'
+gem 'ransack', '~> 1.8.10'
+gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
 
@@ -81,12 +82,7 @@ gem 'draper',                     '~> 3.0.0'
 gem 'config',                     '~> 1.2.1'
 gem 'figaro',                     '~> 1.1.1'
 
-gem 'psychometrics-reports-ui',
-    git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git',
-    ref: '6a7461b082c40af13f4313cdf45488d25db7027d'
-gem 'psychometrics-survey-ui',
-    git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git',
-    ref: '0704140227361fa5c897ecd7d61394adbcc50de9'
+gem 'premailer-rails', '~> 1.10.3'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'
@@ -119,8 +115,7 @@ gem 'sentry-raven', '~> 2.9.0'
 gem 'baby_squeel', '~> 1.3.1'
 
 # Cloning ActiveRecord object
-gem 'amoeba', '~> 3.0.0'
-gem 'deep_cloneable', '~> 2.2.1'
+gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
 gem 'carrierwave', '~> 1.2.2'

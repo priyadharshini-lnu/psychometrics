@@ -24,12 +24,12 @@
                     input_html: { data: { live_search: true }, multiple: true, title: 'Client Tenancy' },
                     required: false,
                     label: false
-          = f.input :first_name_or_last_name_or_email_cont,
+          = f.input :filterable_fields,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
-                    input_html: { class: 'has_clear periodically-observed' }
+                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
           = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
         #filter_results

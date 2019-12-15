@@ -2,47 +2,42 @@ import React, { useEffect } from 'react'
 import {
   Layout, Typography, Button, Row, Col, PageHeader, Icon, message,
 } from 'antd'
-import cs from 'classnames'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
-import _ from 'lodash'
+import ReportPreview from 'libs/reports/report'
 
 const { Title } = Typography
 const { Content } = Layout
 
-/* eslint-disable camelcase */
 export default function Report ({
   report: {
-    loaded, report: { default_language, locales }, report, results, user, campaign, approvalStatus, isSelf,
+    loaded,
+    report: {
+      default_language: defaultLanguage,
+      locales,
+    }, report, results, user, campaign, approvalStatus, isSelf,
   }, match: { params }, fetchReport, updateStatus, downloadReport,
   options: { approval: { managerApprovesReports } }, history,
 }) {
-/* eslint-enable camelcase */
   useEffect(() => {
     fetchReport(params.campaignId, params.id)
   }, [])
-
-  useEffect(() => {
-    if (loaded) {
-      window.initReport('threesixty-report')
-    }
-  }, [loaded])
-
-  if (_.isEmpty(report)) { return null }
 
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
   }
 
   const requestDownloadReport = (campaignId, usersReportId) => {
-    downloadReport(campaignId, usersReportId, default_language.code)
+    downloadReport(campaignId, usersReportId, defaultLanguage.code)
       .then(({ response }) => {
         if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)
         }
       })
   }
+
+  if (!loaded) { return null }
 
   return (
     <Layout>
@@ -79,15 +74,14 @@ export default function Report ({
                 {I18n.t('threesixty.generate_report')}
               </Button>
             </Row>
-            <div
-              className={cs('html_preview', default_language.direction)}
+            <ReportPreview
               id="threesixty-report"
-              data-campaign={JSON.stringify(campaign)}
-              data-data={JSON.stringify(report)}
-              data-results={JSON.stringify(results)}
-              data-user={JSON.stringify(user)}
-              data-locales={JSON.stringify(locales)}
-              data-selected-locale={default_language.code}
+              data={report}
+              results={results}
+              campaign={JSON.stringify(campaign)}
+              user={JSON.stringify(user)}
+              locales={JSON.stringify(locales)}
+              selectedLocale={defaultLanguage}
             />
           </div>
         </PageHeader>

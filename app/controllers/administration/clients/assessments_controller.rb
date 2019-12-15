@@ -17,7 +17,8 @@ module Administration
       skip_after_action :verify_policy_scoped, only: [:index]
 
       def index
-        @_filter_form = client.assessments.search(params[:q])
+        @filter_term = params.dig(:q, :filterable_fields)
+        @_filter_form = client.assessments.ransack(params[:q])
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|

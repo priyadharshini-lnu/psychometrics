@@ -1,0 +1,30 @@
+.displayLogic {
+  padding: 10px;
+  background-color: #6898bb;
+  flex: 1;
+  color: #fff;
+  margin: -1px;
+  .displayHeader {
+    justify-content: space-between;
+    display: flex;
+    .title {
+      color: #fff;
+      font-size: 14px;
+    }
+    .options {}
+  }
+  .preview {
+    display: flex;
+    flex-direction: column;
+  }
+  :global {
+    .dropdown-menu {
+      z-index: 9999;
+      &:before,
+      &:after {
+        left: inherit;
+        right: 5%;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  padding: 4px 0;
+  font-weight: normal;
+  display: flex;
+  align-items: flex-start;
+}
+
+.input {
+  margin: 3px 7px !important;
+  width: 12px;
+}
+
+.label {
+  font-weight: normal;
+}
+
+.questionText {
+  margin-top: 10px;
+}
+
+.questionTextPreview {
+  margin-bottom: 10px;
+}
+.scoringRow {
+  display: flex;
+  margin: 5px 0;
+}
+

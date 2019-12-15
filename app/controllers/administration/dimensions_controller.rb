@@ -8,7 +8,9 @@ class Administration::DimensionsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @_filter_form = policy_scope(resource_class).search(params[:q])
+    @filter_term = params.dig(:q, :filterable_fields)
+    @_filter_form = policy_scope(resource_class).
+                    ransack(params[:q])
     @_resources = filter_form.result.preload(:owner).page(params[:page])
 
     respond_to do |format|

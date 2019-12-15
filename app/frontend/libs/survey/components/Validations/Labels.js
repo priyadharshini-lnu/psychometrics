@@ -1,0 +1,16 @@
+export default {
+  Least: 'At Least',
+  LeastHotSpot: 'At Least',
+  Range: 'Answers Range',
+  RangeHotSpot: 'Answers Range',
+  MinLength: 'Minimum Length',
+  MaxLength: 'Maximum Length',
+  CharacterRange: 'Character Range',
+  ContentValidation: 'Content Validation',
+  MustRankAll: 'Must Rank All',
+  MustTotal: 'Must Total',
+  MustRankBetween: 'Must Rank Between',
+  MustSelect: 'Must Select',
+  EachGroupContains: 'Each Group Contains',
+  Content: 'Content Validation',
+}

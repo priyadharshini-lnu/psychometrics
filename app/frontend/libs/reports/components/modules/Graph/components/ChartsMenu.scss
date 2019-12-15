@@ -1,0 +1,429 @@
+
+.menu {
+  margin: 0;
+  z-index: 9999;
+  left: -460px;
+  width: 473px;
+  height: auto;
+  top: 20px;
+
+  border-radius: 3px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.5);
+  //overflow-y: auto;
+  &::before {
+    border-color: rgba(229, 229, 229, 0);
+    border-bottom-color: #E5E5E5;
+    border-width: 0;
+    margin-left: 0;
+  }
+
+  &::after {
+    border: 0
+  }
+}
+
+.innerMenu {
+}
+
+.chartIcon {
+  height: 110px;
+  width: 110px;
+  margin: 0 2px;
+  float: left;
+  &:hover {
+    color: #fff;
+    background: #3C72D6;
+  }
+
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+  color: #909090;
+}
+
+.icon {
+  display: inline-block;
+  height: 110px;
+  width: 110px;
+  background: transparent url('~libs/reports/static/icons.png') no-repeat;
+  margin: 0;
+  background-size: 100% 100%;
+}
+
+.Bar {
+  background-image: url('~libs/reports/static/chart_icons/VerticalBar.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/VerticalBar.png');
+  }
+}
+
+.Bar3D {
+  background-image: url('~libs/reports/static/chart_icons/VerticalBar3D.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/VerticalBar3D.png');
+  }
+}
+.Pie {
+  background-image: url('~libs/reports/static/chart_icons/PieChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/PieChart.png');
+  }
+}
+
+.Pie3D {
+  background-image: url('~libs/reports/static/chart_icons/PieChart3D.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/PieChart3D.png');
+  }
+}
+
+.HorizontalBar {
+  background-image: url('~libs/reports/static/chart_icons/HorizontalBar.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/HorizontalBar.png');
+  }
+}
+
+.HorizontalBar3D {
+  background-image: url('~libs/reports/static/chart_icons/HorizontalBar3D.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/HorizontalBar3D.png');
+  }
+}
+
+.Line {
+  background-image: url('~libs/reports/static/chart_icons/LineChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/LineChart.png');
+  }
+}
+
+.Point {
+  background-image: url('~libs/reports/static/chart_icons/ScatterChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/ScatterChart.png');
+  }
+}
+
+.TagCloud {
+  background-image: url('~libs/reports/static/chart_icons/TagCloud.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/TagCloud.png');
+  }
+}
+
+.SpeedometerA {
+  background-image: url('~libs/reports/static/chart_icons/SpeedometerStyle1.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/SpeedometerStyle1.png');
+  }
+}
+.CustomPie {
+  background-image: url('~libs/reports/static/chart_icons/CustomPieChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/CustomPieChart.png');
+  }
+}
+.RadarA {
+  background-image: url('~libs/reports/static/chart_icons/RadarAlt.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/RadarAlt.png');
+  }
+}
+.Doughnut {
+  background-image: url('~libs/reports/static/chart_icons/DoughnutChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/DoughnutChart.png');
+  }
+}
+.Doughnut3D {
+  background-image: url('~libs/reports/static/chart_icons/DoughnutChart3D.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/DoughnutChart3D.png');
+  }
+}
+.HorizontalStackedBar {
+  background-image: url('~libs/reports/static/chart_icons/StackedHorizontalBarChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/StackedHorizontalBarChart.png');
+  }
+}
+.VerticalStackedBar {
+  background-image: url('~libs/reports/static/chart_icons/StackedVerticalBarChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/StackedVerticalBarChart.png');
+  }
+}
+.Engagometer {
+  background-image: url('~libs/reports/static/chart_icons/Engage-O-Meter.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/Engage-O-Meter.png');
+  }
+}
+
+.Circumplex {
+  background-image: url('~libs/reports/static/chart_icons/CircumplexChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/CircumplexChart.png');
+  }
+}
+
+.Consultant {
+  background-image: url('~libs/reports/static/chart_icons/ConsultantsChart.png');
+  &:hover {
+    background-image: url('~libs/reports/static/chart_icons_alt/ConsultantsChart.png');
+  }
+}
+
+.StackedHorizontalBar3D {
+  background-position: -132px -260px;
+
+  &:hover {
+    background-position: -196px -260px;
+  }
+}
+
+.Area {
+  background-position: -2px -515px;
+
+  &:hover {
+    background-position: -68px -515px;
+  }
+}
+
+.Area3D {
+  background-position: -132px -515px;
+
+  &:hover {
+    background-position: -196px -515px;
+  }
+}
+
+.Radar {
+  background-position: -261px -196px;
+
+  &:hover {
+    background-position: -325px -196px;
+  }
+}
+
+.AreaRadar {
+  background-position: -392px -196px;
+
+  &:hover {
+    background-position: -456px -196px;
+  }
+}
+
+.StackedPercentBar {
+  background-position: -2px -130px;
+
+  &:hover {
+    background-position: -68px -130px;
+  }
+}
+
+.StackedPercentBar3D {
+  background-position: -136px -130px;
+
+  &:hover {
+    background-position: -200px -130px;
+  }
+}
+
+.StackedPercentHorizontalBar {
+  background-position: -2px -324px;
+
+  &:hover {
+    background-position: -68px -324px;
+  }
+}
+
+.StackedPercentHorizontalBar3D {
+  background-position: -136px -324px;
+
+  &:hover {
+    background-position: -200px -324px;
+  }
+}
+
+.StackedArea {
+  background-position: -2px -447px;
+
+  &:hover {
+    background-position: -68px -447px;
+  }
+}
+
+.StackedArea3D {
+  background-position: -132px -447px;
+
+  &:hover {
+    background-position: -196px -447px;
+  }
+}
+
+.CompositeBar {
+  background-position: -130px -647px;
+
+  &:hover {
+    background-position: -196px -647px;
+  }
+}
+
+
+.Spline {
+  background-position: -389px -68px;
+
+  &:hover {
+    background-position: -453px -68px;
+  }
+}
+
+.PlotedSpline {
+  background-position: -260px -68px;
+
+  &:hover {
+    background-position: -323px -68px;
+  }
+}
+
+.Plot {
+  background-position: -260px -130px;
+
+  &:hover {
+    background-position: -323px -130px;
+  }
+}
+
+.RegressionPlot {
+  background-position: -389px -130px;
+
+  &:hover {
+    background-position: -453px -130px;
+  }
+}
+
+.Gauge {
+  background-position: -260px -260px;
+
+  &:hover {
+    background-position: -323px -260px;
+  }
+}
+
+.MultiGauge {
+  background-position: -389px -260px;
+
+  &:hover {
+    background-position: -453px -260px;
+  }
+}
+
+.HalfGauge {
+  background-position: -260px -320px;
+
+  &:hover {
+    background-position: -323px -320px;
+  }
+}
+
+.HalfMultiGauge {
+  background-position: -389px -320px;
+
+  &:hover {
+    background-position: -453px -320px;
+  }
+}
+
+.CompositeRadar {
+  background-position: -2px -710px;
+
+  &:hover {
+    background-position: -2px -710px;
+  }
+}
+
+.PerceptionMap {
+  background-position: -2px -647px;
+
+  &:hover {
+    background-position: -68px -647px;
+  }
+}
+
+.StackedPercentArea {
+  background-position: -2px -579px;
+
+  &:hover {
+    background-position: -68px -579px;
+  }
+}
+
+.StackedPercentArea3D {
+  background-position: -132px -579px;
+
+  &:hover {
+    background-position: -196px -579px;
+  }
+}
+
+.StackedBar {
+  background-position: -2px -68px;
+
+  &:hover {
+    background-position: -68px -68px;
+  }
+}
+
+.StackedBar3D {
+  background-position: -132px -68px;
+
+  &:hover {
+    background-position: -196px -68px;
+  }
+}
+
+
+.left {
+  width: 148px;
+  text-align: right;
+  padding: 15px 5px;
+  background: #F2F2F2;
+  color: #4D4D4D;
+}
+
+.right {
+  flex: 1;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.moduleset {
+  display: flex;
+  flex-direction: 'row';
+}
+
+.lastmodule {
+  border-bottom: 0;
+}
+
+.button {
+  width: 47%;
+  margin: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #4D4D4D;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+    background: #367ED6;
+  }
+
+}

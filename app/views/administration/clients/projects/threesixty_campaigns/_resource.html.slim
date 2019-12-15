@@ -1,10 +1,11 @@
 tr id=dom_id(resource)
+  td = resource.id
   td = link_to resource.name, administration_client_project_threesixty_campaign_path(client, project, resource.threesixty_campaign)
   td
     = link_to resource.threesixty_campaign.assessment.decorate.name, administration_assessment_path(resource.threesixty_campaign.assessment_id)
   td
     = link_to resource.threesixty_campaign.report.decorate.name, administration_report_path(resource.threesixty_campaign.report_id)
-  td.text-center = resource.created_at
+  td.text-center = resource.decorate.formatted_date_time(:created_at)
   td.actions-cell
     .btn-group
       button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'

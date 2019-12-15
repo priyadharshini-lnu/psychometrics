@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Input, Row, Col, Button, Empty, Icon, message,
+  Input, Row, Col, Button, Empty, Icon, message, Switch,
 } from 'antd'
 import _ from 'lodash'
+import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 import routeUtils from 'utils/routeUtils'
 import cs from 'classnames'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
@@ -59,7 +60,8 @@ export default function Emails ({
       <Col xs={16} lg={17} xl={19}>
         <TitleBar emailTemplate={selectedTemplate} openModal={openModal} />
         <div className={styles.content}>
-          <ErrorAlertBox errors={errors} className="mtl mbl" />
+          <ErrorAlertBox errors={errors} scrollToError className="mtl mbl" />
+          <ConsolidatedSwitch selectedTemplate={selectedTemplate} update={update} />
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
             value={selectedTemplate.from}
@@ -83,6 +85,7 @@ export default function Emails ({
           <Editor
             type={selectedTemplate.name}
             content={selectedTemplate.content}
+            details={{ consolidation: selectedTemplate.consolidated }}
             handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
           />
         </div>
@@ -102,5 +105,22 @@ export default function Emails ({
       <SentTestEmailModal match={match} />
       <EmailScheduleModal match={match} />
     </Row>
+  )
+}
+
+function ConsolidatedSwitch ({ selectedTemplate, update }) {
+  if (!_.includes(CONSOLIDATED_EMAIL_NAMES, selectedTemplate.name)) {
+    return null
+  }
+
+  return (
+    <div className="mbm">
+      <Switch
+        checked={selectedTemplate.consolidated}
+        onChange={(checked) => { update(selectedTemplate.id, 'consolidated', checked) }}
+      />
+      {'  '}
+      <span>Consolidated</span>
+    </div>
   )
 }

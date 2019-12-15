@@ -78,13 +78,6 @@ module Administration
         @user.is?(:superadmin)
     end
 
-    # Can copy Assessment (Blocks, Questions and etc.)
-    # true if it's Common Assessment
-    def copy?
-      @record.common? &&
-        super
-    end
-
     # Can archive/unarchive Assessment
     def toggle_archive?
       @user.is?(:superadmin)

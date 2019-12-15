@@ -1,0 +1,17 @@
+.modal {
+  width: 75%;
+  .fileContainer {
+    button {
+      margin-top: 10px;
+    }
+    input {
+      padding: 0;
+    }
+  }
+  .columnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+}

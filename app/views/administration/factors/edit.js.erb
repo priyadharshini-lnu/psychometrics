@@ -1,0 +1,22 @@
+$(function () {
+  var $modalContainer = $('#modal-container');
+
+  <% if (@form&.errors || []).empty? %>
+    if ($modalContainer.html().length)
+      return;
+
+    $modalContainer.html('<%= j render(partial: 'modal', locals: { header: t("administration.#{i18n || resource_class.model_name.plural}.edit.header") }) %>');
+    var $modalBox = $modalContainer.find(".modal");
+
+    $modalBox.modal('show');
+    $modalBox.on('hidden.bs.modal', function (e) {
+      $(this).remove();
+    });
+  <% else %>
+    $modalContainer.find("form").replaceWithPush('<%= j render(partial: 'form') %>');
+  <% end %>
+
+// Reinit all plugins
+  $(document).trigger('initPlugins');
+  window.reactRails.mountComponents('admin')
+});

@@ -8,7 +8,9 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @_filter_form = client.clients_reports.includes(report: :assessments).search(params[:q])
+        @filter_term = params.dig(:q, :report_filterable_fields)
+        @_filter_form = client.clients_reports.includes(report: :assessments).
+                        ransack(params[:q])
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|

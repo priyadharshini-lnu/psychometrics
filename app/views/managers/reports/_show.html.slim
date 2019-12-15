@@ -1,11 +1,12 @@
-= stylesheet_link_tag :psychometrics_reports_vendor
 = stylesheet_link_tag :administration
-= stylesheet_link_tag :psychometrics_reports_preview
 
 #report_preview.html_preview[data-user="#{Reports::UserSerializer.new(@user_membership, assign: @assign).to_json}"
                              data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @user_membership)}).to_json}"
                              data-data="#{ReportSerializer.new(@resource, membership: @user_membership).to_json(include: '**')}"
                              data-locales=@translations.to_json]
 
-= javascript_include_tag :psychometrics_reports_vendor
-= javascript_include_tag :psychometrics_reports_preview
+= javascript_pack_tag 'vendors'
+= stylesheet_pack_tag 'vendors'
+= stylesheet_pack_tag 'reports'
+= javascript_pack_tag 'reports'
+= javascript_pack_tag 'report/preview'

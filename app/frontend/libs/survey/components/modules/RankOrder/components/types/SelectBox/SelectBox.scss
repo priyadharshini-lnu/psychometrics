@@ -1,0 +1,47 @@
+@import '~styles/theme';
+
+.container {
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+}
+
+.select {
+  flex: 1
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+
+  .btn {
+    width: 30px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      margin: 0;
+    }
+  }
+}
+
+.preview {
+  .select {
+    border-color: $primary-color;
+  }
+
+  .panel {
+    .btn {
+      width: 34px;
+      background: $primary-color;
+      border-color: $primary-color;
+      color: #fff;
+      border-radius: 4px;
+      padding: 8px;
+      margin: 2px;
+    }
+  }
+}

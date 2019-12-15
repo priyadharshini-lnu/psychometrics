@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Factor, type: :model do
   let(:dimension) { create(:dimension) }
-  let!(:factor) { create(:factor, :with_subfactor, dimension: dimension) }
+  let!(:factor) { create(:factor, sub_factors: [create(:factor)], dimension: dimension) }
 
   context '#clone_and_save' do
     it 'should be copy all relative sub-factors' do

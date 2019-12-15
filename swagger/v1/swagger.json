@@ -92,7 +92,8 @@
               "application/json": {
                 "code": 1000,
                 "message": "Invalid authentication",
-                "more_info": "User for api token is disabled"
+                "more_info": "User for api token is disabled",
+                "meta": null
               }
             }
           },
@@ -105,7 +106,8 @@
               "application/json": {
                 "code": 1005,
                 "message": "Resource not found",
-                "more_info": "User with id=111 is not found"
+                "more_info": "User with id=111 is not found",
+                "meta": null
               }
             }
           }
@@ -176,7 +178,8 @@
               "application/json": {
                 "code": 1002,
                 "message": "Validation error",
-                "more_info": "Name can't be blank"
+                "more_info": "Name can't be blank",
+                "meta": null
               }
             }
           },
@@ -189,7 +192,8 @@
               "application/json": {
                 "code": 1005,
                 "message": "Resource not found",
-                "more_info": "Campaign with id=111 is not found"
+                "more_info": "Campaign with id=111 is not found",
+                "meta": null
               }
             }
           }
@@ -489,7 +493,8 @@
               "application/json": {
                 "code": 1004,
                 "message": "Assessment not completed",
-                "more_info": "Assessments for report 111 are not passed"
+                "more_info": "Assessments for report 111 are not passed",
+                "meta": null
               }
             }
           }
@@ -632,7 +637,8 @@
               "application/json": {
                 "code": 1005,
                 "message": "Resource not found",
-                "more_info": "Report with id 123 not found."
+                "more_info": "Report with id 123 not found.",
+                "meta": null
               }
             }
           },
@@ -645,7 +651,8 @@
               "application/json": {
                 "code": 1007,
                 "message": "Resource not configured.",
-                "more_info": "Report with id 12 doesn't have data configuration."
+                "more_info": "Report with id 12 doesn't have data configuration.",
+                "meta": null
               }
             }
           }
@@ -770,7 +777,16 @@
               "application/json": {
                 "code": 1006,
                 "message": "User with this email exists",
-                "more_info": "Email address max@example.com is already taken"
+                "more_info": "Email address max@example.com is already taken",
+                "meta": {
+                  "existing_user": {
+                    "id": 12,
+                    "first_name": "John",
+                    "last_name": "Doe",
+                    "email": "john_doe@tte.email",
+                    "created_at": "2019-10-28T17:00:00.000+04:00"
+                  }
+                }
               }
             }
           },

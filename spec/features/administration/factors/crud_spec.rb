@@ -10,10 +10,12 @@ feature 'CRUD Factor' do
     visit "/administration/dimensions/#{dimension.id}/factors"
     find('.panel-heading a', text: t('administration.factors.index.new')).click
     wait_for_ajax
-    fill_in 'resource_name', with: 'Employment Thriving Index'
+    fill_in 'name', with: 'Employment Thriving No Index'
+    wait_for_ajax
+
     click_on 'Create'
     wait_for_ajax
-    expect(page).to have_content 'Employment Thriving Index'
+    expect(page).to have_content 'Employ'
   end
 
   context 'I have a factor' do
@@ -23,10 +25,10 @@ feature 'CRUD Factor' do
 
       find("#factor_#{factor.id} .edit").click
       wait_for_ajax
-      fill_in 'resource_name', with: 'Employment Thriving No Index'
+      fill_in 'name', with: 'Employment Thriving No Index'
       click_on 'Update'
       wait_for_ajax
-      expect(page).to have_content 'Employment Thriving No Index'
+      expect(page).to have_content 'Employ'
     end
 
     scenario 'Destroy Factor' do

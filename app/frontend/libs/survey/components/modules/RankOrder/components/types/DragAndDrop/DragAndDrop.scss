@@ -1,0 +1,59 @@
+@import '~styles/theme';
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 4px;
+  background-color: white;
+
+  .number {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 4px 8px;
+    background-color: #666;
+  }
+
+  &:nth-last-child(2) {
+    border-bottom: 0;
+  }
+}
+
+.icon {
+  font-size: 1.5em;
+  color: #ccc;
+}
+
+.preview {
+  position: relative;
+  user-select: none;
+  max-width: 700px;
+
+  .item {
+    display: flex;
+    justify-content: flex-start;
+    padding: 10px 4px;
+    cursor: move;
+
+    .number {
+      border-radius: 40px;
+      background: $primary-color;
+      padding: 0 10px;
+      margin: 0 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .text {
+      font-size: 14px;
+      color: #000;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, .05);
+    }
+  }
+
+}

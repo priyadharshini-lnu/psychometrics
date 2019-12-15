@@ -1,0 +1,80 @@
+.table {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 90%;
+
+  table {
+    width: 100%;
+    height: 50%;
+    td {
+      border: 0.5px solid #e2e2e2;
+      &.factorcell {
+        background-color: #ECECEC;
+      }
+    }
+    thead {
+      color: white;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.label {
+  min-width: 50px;
+  text-align: center;
+  font-weight: bold;
+  background: #ebebeb;
+  font-size: 90%;
+  line-height: 250%;
+}
+
+.factor {
+  font-weight: bold;
+  background-color: white;
+  padding: 6px 0px;
+  font-size: 90%;
+  img {
+    max-width: 24px;
+    height: auto;
+  }
+  > *:first-child {
+    margin: 0 12px;
+  }
+}
+
+.description {
+  font-size: 80%;
+  margin: 4px 12px;
+  color: black;
+}
+
+.legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+}
+.legendItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.legendItemName {
+  font-size: 80%;
+  font-weight: bold;
+}
+
+
+body:not([data-locale="ar"]) {
+  .legendItemName {
+    margin: 0 5px 0 15px;
+  }
+}
+
+body[data-locale="ar"] {
+  .legendItemName {
+    margin: 0 15px 0 5px;
+  }
+}

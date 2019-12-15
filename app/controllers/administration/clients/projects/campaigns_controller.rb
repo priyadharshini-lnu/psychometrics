@@ -8,12 +8,11 @@ module Administration
         before_action :ensure_project
 
         def index
+          @filter_term = params.dig(:q, :filterable_fields)
           @_filter_form = policy_scope(resource_class).
                           campaigns_of(project.id).
-                          enabled.
-                          search(params[:q])
+                          ransack(params[:q])
 
-          filter_form.archived_true ||= false
           filter_form.disabled_true ||= false
           @_resources = filter_form.result.page(params[:page])
 

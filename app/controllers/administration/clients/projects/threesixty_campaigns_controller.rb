@@ -35,12 +35,13 @@ module Administration
         end
 
         def index
+          @filter_term = params.dig(:q, :filterable_fields)
           @_filter_form = project.project_campaigns.
                           includes(
                             :threesixty_campaign,
                             threesixty_campaign: %i[assessment report]
                           ).
-                          search(params[:q])
+                          ransack(params[:q])
           @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|

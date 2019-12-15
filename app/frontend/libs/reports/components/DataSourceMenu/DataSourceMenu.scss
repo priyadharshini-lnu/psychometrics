@@ -1,0 +1,65 @@
+.menu{
+  margin: 0;
+  z-index: 9999;
+  left: -180px;
+  width: 200px;
+  height: auto;
+  top: 120px;
+
+  border-radius: 3px;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+  &::before{
+    border-color: rgba(229,229,229,0);
+    border-bottom-color: #E5E5E5;
+    border-width: 0;
+    margin-left: 0;
+  }
+
+  &::after{
+    border: 0
+  }
+
+  .item {
+    position: relative;
+    padding: 5px;
+    margin: 5px 0;
+    color: #656d78;
+    &:hover {
+      background-color: #007AC0;
+      color: #fff;
+      .submenu {
+        display: block;
+      }
+    }
+  }
+}
+
+.submenu {
+  color: #656d78;
+  display: none;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  left: -200px;
+  top: 0;
+  margin: 0;
+  &::before{
+    border-color: rgba(229,229,229,0);
+    border-bottom-color: #E5E5E5;
+    border-width: 0;
+    margin-left: 0;
+  }
+
+  &::after{
+    border: 0
+  }
+
+  :global {
+    .form-control{
+      margin: 5px;
+      width: 190px;
+    }
+  }
+}

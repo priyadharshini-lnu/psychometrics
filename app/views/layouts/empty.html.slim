@@ -8,5 +8,6 @@ html.body-full-height
     = jquery_include_tag :google
     = stylesheet_link_tag :administration
     = javascript_include_tag 'administration'
+    = render 'layouts/favicons'
   body data-locale="#{user_locale}" class="#{user_locale_rtl? ? 'rtl' : 'ltr'}"
     = yield

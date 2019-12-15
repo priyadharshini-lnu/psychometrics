@@ -16,16 +16,12 @@
 
 module Reports
   class Page < ApplicationRecord
+    include Copyable
+
     belongs_to :report, touch: true
     has_many :modules, class_name: 'Reports::Module', dependent: :destroy
     default_scope { order(:position) }
     validates :report, presence: true
-
-    amoeba do
-      enable
-      append name: 'Copy of '
-      include_association :modules
-    end
 
     acts_as_list scope: :report_id
 

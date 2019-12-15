@@ -1,0 +1,98 @@
+.recorder {
+  :global {
+    .video-js .vjs-control-bar {
+      bottom: 3%;
+      left: 20%;
+      right: 20%;
+      height: 4em;
+      width: initial;
+      justify-content: center;
+      background-color: initial;
+      .vjs-control {
+        transition: all .3s ease-in-out;
+        &.vjs-button {
+          &.vjs-record-button {
+            color: red;
+            border: 3px solid rgb(100, 104, 107);
+            border-radius: 50%;
+            &:before {
+              font-size: 2.8em;
+              line-height: 1em;
+              transition: all .2s ease-in-out;
+            }
+            &:hover {
+              &:before {
+                font-size: 3.4em;
+                line-height: 1em;
+              }
+            }
+          }
+          .vjs-icon-placeholder:before {
+            font-size: 3.4em;
+            line-height: 1.3em;
+          }
+        }
+      }
+      .vjs-time-control {
+        font-size: 1.4em;
+        padding: 0 0.5em;
+        &.vjs-time-divider {
+          padding: 0;
+          min-width: auto;
+        }
+      }
+    }
+  }
+  &.recorded.saving.saved {
+    :global {
+      .video-js .vjs-control-bar {
+        .vjs-control {
+          &.vjs-button {
+            &.vjs-record-button {
+              width: 0;
+              height: 0;
+              visibility: hidden;
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.ready {
+    :global {
+      .video-js .vjs-control-bar {
+        .vjs-time-control {
+          width: 0;
+          height: 0;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+}
+
+.controls {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.btn {
+  padding: 4px 8px;
+  margin: 0 4px;
+  border-radius: 2px;
+  &.stop, &.delete {
+    background-color: red;
+    color: white;
+  }
+  &.saved {
+    background-color: #95B75D;
+    color: white;
+  }
+}
+
+.progress {
+  .progressBar {
+    height: 6px;
+  }
+}

@@ -315,7 +315,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -744,6 +743,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -1092,6 +1092,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -1100,11 +1101,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -2431,6 +2441,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -2850,7 +2861,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -4073,8 +4089,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -4893,6 +4909,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -4906,6 +4923,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -5593,7 +5616,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {
@@ -6264,7 +6286,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -6693,6 +6714,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -7041,6 +7063,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -7049,11 +7072,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -8380,6 +8412,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -8799,7 +8832,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -10022,8 +10060,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -10846,6 +10884,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -10859,6 +10898,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -11546,7 +11591,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {
@@ -12218,7 +12262,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "hogan_report_setting": {
@@ -12647,6 +12690,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "back": "Back",
     "base": {
+      "id": "id",
       "top_sidebar": {
         "search": "Search...",
         "sign_out_message": {
@@ -12995,6 +13039,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "New assessment"
         },
         "resource": {
+          "activate_universal_link": "Activate Universal Link",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -13003,11 +13048,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
             }
           },
+          "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "generate_universal_link": "Generate Univeral Link",
           "normed_results": "Normed results",
           "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Univeral Link",
           "scoring_results": "Scoring results",
           "tooltips": {
             "archive": "Archive Assessment",
@@ -14334,6 +14388,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Add Reports"
           },
           "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
             "successfully": "Successfully sent to regenerate"
           },
           "update": {
@@ -14753,7 +14808,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Factor Name"
       },
       "form": {
-        "no_icon": "No Logo yet"
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        }
       },
       "index": {
         "icon": "Icon",
@@ -15976,8 +16036,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "notifications": {
       "restart": {
-        "copy": "You had already started this survey. You can restart taking this assessment from the beginning or choose to continue from where you left off. Do you want to restart?",
-        "title": "Retart Assessment?"
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
       }
     }
   },
@@ -16796,6 +16856,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "none": "No key usages found."
     }
   },
+  "id": "Id",
   "invites": {
     "create": {
       "successfully": "Your invitations was successfully sent"
@@ -16809,6 +16870,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
     "threesixty": {
       "reports": {
         "download": {
@@ -17496,7 +17563,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "name": "Name",
         "parent_id": "Parent",
         "questions_count": "No. of Questions",
-        "subfactors_count": "No. of Sub-Factors",
         "updated_at": "Modified Date"
       },
       "library": {

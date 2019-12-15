@@ -33,6 +33,7 @@
 # rubocop:disable Metrics/ClassLength
 class Client < ApplicationRecord
   include Copyable
+  include RansackSearchableFields
   attr_writer :license_msg
 
   HIERARCHY_LEVEL = {
@@ -247,15 +248,6 @@ class Client < ApplicationRecord
     nil
   end
 
-  def clone
-    deep_clone include: [:reports] do |original, copy|
-      copy.name += ' (copy)'
-      if original.subdomain.present?
-        copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
-      end
-    end
-  end
-
   def set_hogan_group_name
     self.hogan_group_name = generate_hogan_group_name
   end
@@ -271,7 +263,7 @@ class Client < ApplicationRecord
   private
 
   def generate_hogan_group_name
-    "#{client.name} - #{project.subdomain}"
+    "#{client.name.gsub(/[^0-9A-Za-z\s]/, '')} - #{project.subdomain}"
   end
 
   def generate_subdomain

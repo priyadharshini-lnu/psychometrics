@@ -1,0 +1,14 @@
+:global {
+  @import 'base';
+  @import '~normalize.css/normalize';
+
+  body, html{
+    width: 100%;
+  }
+  input {
+    padding: 0 3px;
+  }
+  .displayFlex {
+    display: flex;
+  }
+}

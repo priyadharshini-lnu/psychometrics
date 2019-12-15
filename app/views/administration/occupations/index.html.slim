@@ -13,12 +13,12 @@
                 url: {action: :index},
                 html: { id: 'filter', class: 'list-filter' },
                 builder: SimpleForm::FormBuilder) do |f|
-          = f.input :name_cont,
+          = f.input :filterable_fields,
                   label: false,
                   as: :string,
                   required: false,
                   placeholder: t('administration.search'),
-                  input_html: {class: 'has_clear periodically-observed'}
+                  input_html: { class: 'has_clear periodically-observed', value: @filter_term }
       .panel-body
         #filter_results
           = render partial: 'list'
