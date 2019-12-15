@@ -11,7 +11,7 @@ class Administration::FactorsController < Administration::BaseController
   def index
     @filter_term = params.dig(:q, :filterable_fields)
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @_filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).
+    @_filter_form = policy_scope(resource_class).with_dimension(@dimension.id).
                     includes(:sub_factors).
                     ransack(params[:q])
 
