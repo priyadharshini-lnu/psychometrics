@@ -23,6 +23,19 @@ en:
         accept: Accept invitation
         accept_until: This invitation will be due in %{due_date}.
         ignore: If you don't want to accept the invitation, please ignore this email.<br />\nYour account won't be created until you access the link above and set your password.
+      admin_invitation_instructions:
+        subject: Invitation to Lighthouse
+        body: |
+          Hello %{name},
+          You have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.
+
+          %{accept} Or you can safely ignore this email.
+
+          Please do not share your access credentials with anyone.
+
+          Regards,
+          Lighthouse Team
+        accept: Click here to accept the invitation.
   time:
     formats:
       devise:
