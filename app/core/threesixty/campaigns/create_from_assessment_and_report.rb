@@ -9,7 +9,7 @@ module Threesixty
       def initialize(source_assessment, source_report, form, project)
         @source_assessment = source_assessment
         @source_report = source_report
-        @new_report = ::Reports::CopyReport.call(source_report.id)[:ok]
+        @new_report = ::Reports::CopyReport.call!(source_report.id)
         @new_assessment = CopyAssessment.process!(source_assessment.id)
         @form = form
         @project = project
