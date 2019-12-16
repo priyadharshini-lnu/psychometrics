@@ -33,7 +33,7 @@ const buildOptions = ({ options: options = {} }) => ({
 })
 
 const apiMiddleware = () => next => (action) => {
-  if (!action.request) return next(action)
+  if (!action || !action.request) return next(action)
 
   const {
     request,

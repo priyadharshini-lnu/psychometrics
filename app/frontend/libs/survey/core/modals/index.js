@@ -44,6 +44,10 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  mapNorms: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {

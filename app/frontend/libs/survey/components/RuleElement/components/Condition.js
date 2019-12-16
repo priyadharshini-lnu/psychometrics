@@ -37,10 +37,10 @@ export class Condition extends Component {
   }
 
   renderConditionType () {
-    const { condition } = this.props
+    const { condition, questions } = this.props
     const type = condition.conditionType
     const View = Types[type]
-    return <View model={condition} />
+    return <View questions={questions} model={condition} />
   }
 
   renderLogicType () {

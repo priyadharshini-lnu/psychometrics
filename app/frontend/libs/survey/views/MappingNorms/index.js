@@ -1,3 +1,4 @@
 import MappingNorms from './components/MappingNorms'
+import connect from './connect'
 
-export default MappingNorms
+export default connect(MappingNorms)

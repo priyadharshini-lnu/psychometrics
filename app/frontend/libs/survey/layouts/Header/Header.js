@@ -3,9 +3,9 @@ import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
-import MappingNormsStore from 'store/MappingNormsStore'
 import Block from 'models/Block'
 import QuestionSerializer from 'models/QuestionSerializer'
+import { perform } from 'libs/survey/core/temp/socket'
 import styles from './Header.scss'
 
 export class Header extends Component {
@@ -38,7 +38,10 @@ export class Header extends Component {
   }
 
   showMappingNorms = () => {
-    MappingNormsStore.openPopup()
+    const { openMapNorms } = this.props
+    perform('assessment_norms', { without_notification: true }, (data) => {
+      openMapNorms({ data })
+    })
   }
 
   export = () => {

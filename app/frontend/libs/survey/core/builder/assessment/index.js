@@ -1,8 +1,9 @@
 import { createReducer } from 'utils/reduxUtils'
-import { setIn } from 'utils/immutable'
+import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
+  ADD_NORM_RULE, REMOVE_NORM_RULE,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -18,6 +19,7 @@ export const defaultState = {
   category: '',
   flow: null,
   relationships: [],
+  norm_rules: [],
   factors: [],
   propPanel: {
     question: null,
@@ -89,7 +91,14 @@ const HANDLERS = {
     }
     return state
   },
+  [ADD_NORM_RULE]: (state, { rule }) => (updateIn(state, ['norm_rules'], list => list.concat(rule))),
+  [REMOVE_NORM_RULE]: (state, { rule }) => {
+    const rules = _.clone(state.norm_rules)
+    _.remove(rules, rule)
+    return setIn(state, ['norm_rules'], rules)
+  },
   [FAKE_UPDATE]: state => ({ ...state, timestemp: new Date() }),
+
 }
 
 export default createReducer(HANDLERS, defaultState)

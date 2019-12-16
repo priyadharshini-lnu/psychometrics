@@ -14,6 +14,7 @@ export default connect(
   }),
   {
     openFlow: data => open('flow', data),
+    openMapNorms: data => open('mapNorms', data),
     openCreateByTemplate: data => open('createByTemplate', data),
     createBlock,
   },
