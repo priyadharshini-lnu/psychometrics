@@ -25,10 +25,10 @@ module Memberships
           u.created_by_id = creator.id
           u.modified_by_id = creator.id
           u.role = 'Users::Admin'
-          u.invite!(creator, client.id)
         end
       end
-      if membership.save
+      if membership.save!
+        membership.user.invite!(creator, client.id)
         broadcast :ok, membership
       else
         broadcast :invalid
