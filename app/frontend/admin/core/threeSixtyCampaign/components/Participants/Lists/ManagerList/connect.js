@@ -11,7 +11,9 @@ export default connect(
     threeSixtyCampaign: {
       managers: { list, total },
     },
-  }) => ({ managers: list, total, page: routeUtils.getPage() }),
+  }) => ({
+    managers: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+  }),
   dispatch => ({
     fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
