@@ -75,7 +75,11 @@ _.extend(FlowProcessor.prototype, {
       }
     })
     this.pages.push(new Page({ end: true }, null, this.store.results))
-    _.times(this.store.dbResult.step, () => this.nextPage(false, true))
+    _.each(_.range(this.store.dbResult.step), () => {
+      if (this.nextPage(false, true) === false || this.step >= this.store.dbResult.step) {
+        return false
+      }
+    })
     if (!this.testDisplayLogic(this.currentPage())) {
       this.currentPage().skip = true
       this.nextPage(false, true)
@@ -223,7 +227,7 @@ _.extend(FlowProcessor.prototype, {
       page.validate()
       if (page.errors.length) {
         this.update()
-        return
+        return false
       }
       if (this.processSkipLogic(page)) {
         if (sync) {
