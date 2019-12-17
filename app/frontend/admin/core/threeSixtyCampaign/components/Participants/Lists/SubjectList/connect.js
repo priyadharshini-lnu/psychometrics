@@ -16,7 +16,9 @@ export default connect(
     threeSixtyCampaign: {
       subjects: { list, total },
     },
-  }) => ({ subjects: list, total, page: routeUtils.getPage() }),
+  }) => ({
+    subjects: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+  }),
   dispatch => ({
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
