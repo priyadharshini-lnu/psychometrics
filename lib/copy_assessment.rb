@@ -4,6 +4,9 @@
 # alone with blocks, questions, question_recodings, factor_scorings
 # and translations
 class CopyAssessment
+  # Question Mapping
+  @mapping = {}
+
   def self.process!(assessment_id)
     assessment = Assessment.includes(blocks: {
       questions: %i[factors_scorings question_recodings translations]
@@ -30,8 +33,7 @@ class CopyAssessment
           new_q = make_copy(question, new_assessment)
           new_block.questions << new_q
 
-          new_q.update_display_logic!
-          new_q.update_skip_logic!
+          @mapping[question.id] = new_q.id
 
           # Replace original Question Id to New Question Id
           flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_q.id}")
@@ -44,6 +46,13 @@ class CopyAssessment
           copy_translations(question, new_q, new_assessment)
         end
       end
+
+      puts "Question Mapping: #{@mapping}"
+
+      # We can't combine this in the same iteration since the the question that the
+      # display_logic and skip_logic pointing to couldn't have been copied yet.
+      update_configurations!(new_assessment)
+
       new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
       new_assessment
     end
@@ -70,6 +79,27 @@ class CopyAssessment
       new_translation = make_copy(translation, assessment, 'resource_id')
       new_translation.translateable_id = new_question.id
       new_question.translations << new_translation
+    end
+  end
+
+  def self.update_configurations!(assessment)
+    assessment.blocks.each do |block|
+      block.questions.each do |question|
+        %w[display_logic skip_logic].map { |column| update_logic!(question, column) }
+      end
+    end
+  end
+
+  def self.update_logic!(question, column)
+    unless question[column].blank?
+      logic = question[column].to_json
+      subjects = logic.scan(/\"subject\":(\d+)/).flatten
+
+      subjects.each do |subject|
+        logic.gsub!(/\"subject\":#{subject}/, "\"subject\":#{@mapping[subject.to_i]}")
+      end
+
+      question.update_attribute(column, JSON.parse(logic))
     end
   end
 end

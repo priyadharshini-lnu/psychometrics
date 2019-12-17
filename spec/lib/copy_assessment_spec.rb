@@ -21,14 +21,14 @@ describe CopyAssessment do
         {
           'conditionType': 'Question',
           'type': 'bool',
-          'subject': questions.first.id,
+          'subject': questions[1].id,
           'answer': 0,
           'predicate': 'Selected'
         }
       ]
       skip_logic = [
         {
-          'subject': questions.last.id,
+          'subject': questions.first.id,
           'prefix': 'And',
           'answer': 0,
           'predicate': 'NotSelected',
@@ -59,11 +59,11 @@ describe CopyAssessment do
     end
 
     it 'replaces question_id in display_logic' do
-      copied_question_id = copy.blocks.first.questions.first.id
-      display_logic = copy.blocks.first.questions.first.display_logic.to_json
-      pattern = /\"subject\":#{copied_question_id}/
+      question_id = assessment.blocks.first.questions.first.id
+      copied_display_logic = copy.blocks.first.questions.first.display_logic.to_json
+      pattern = /\"subject\":#{question_id}/
 
-      expect(display_logic.match(pattern)).not_to be_nil
+      expect(copied_display_logic.match(pattern)).to be_nil
     end
 
     it "doesn't copy empty display_logic" do
@@ -75,11 +75,11 @@ describe CopyAssessment do
     end
 
     it 'replaces question_id in skip_logic' do
-      copied_question_id = copy.blocks.first.questions.last.id
-      skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
-      pattern = /\"subject\":#{copied_question_id}/
+      question_id = assessment.blocks.first.questions.last.id
+      copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
+      pattern = /\"subject\":#{question_id}/
 
-      expect(skip_logic.match(pattern)).not_to be_nil
+      expect(copied_skip_logic.match(pattern)).to be_nil
     end
 
     it "doesn't copy empty skip_logic" do
