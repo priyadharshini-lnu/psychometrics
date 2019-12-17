@@ -19,6 +19,7 @@ export default class extends Component {
     return (
       <div>
         <textarea
+          autoComplete="off"
           disabled={readOnly}
           onChange={this.changeAnswer}
           value={value}
