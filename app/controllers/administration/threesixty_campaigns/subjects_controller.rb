@@ -31,11 +31,14 @@ module Administration
 
       def update
         resource.update!(resource_params)
-        ::Threesixty::Emails::Send.call!(
-          ::Threesixty::Emails::Name::SUBJECT_REPORT_READY,
-          threesixty_campaign: threesixty_campaign,
-          subject: resource
-        )
+        if resource_params[:report_release_status] == 'released' ||
+           resource_params[:report_approval_status] == 'approved'
+          ::Threesixty::Emails::Send.call!(
+            ::Threesixty::Emails::Name::SUBJECT_REPORT_READY,
+            threesixty_campaign: threesixty_campaign,
+            subject: resource
+          )
+        end
         render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end
 
