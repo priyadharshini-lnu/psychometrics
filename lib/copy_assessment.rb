@@ -4,10 +4,12 @@
 # alone with blocks, questions, question_recodings, factor_scorings
 # and translations
 class CopyAssessment
-  # Question Mapping
-  @mapping = {}
+  def initialize
+    # Question Mapping
+    @mapping = {}
+  end
 
-  def self.process!(assessment_id)
+  def process!(assessment_id)
     assessment = Assessment.includes(blocks: {
       questions: %i[factors_scorings question_recodings translations]
     }).find(assessment_id)
@@ -35,10 +37,6 @@ class CopyAssessment
 
           @mapping[question.id] = new_q.id
 
-          # Replace original Question Id to New Question Id
-          flow.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_q.id}")
-          norm_rules.gsub!(/\"subject\":#{question.id}/, "\"subject\":#{new_q.id}")
-
           %w[factors_scorings question_recodings].map do |name|
             copy_association(name, question, new_q, new_assessment)
           end
@@ -47,11 +45,12 @@ class CopyAssessment
         end
       end
 
-      puts "Question Mapping: #{@mapping}"
-
       # We can't combine this in the same iteration since the the question that the
       # display_logic and skip_logic pointing to couldn't have been copied yet.
       update_configurations!(new_assessment)
+
+      # Replace original Question Id to New Question Id
+      update_flow_and_norm_rules!(new_assessment, flow, norm_rules)
 
       new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
       new_assessment
@@ -59,13 +58,13 @@ class CopyAssessment
     new_assessment
   end
 
-  def self.make_copy(object, resource, resource_key = 'assessment_id')
+  def make_copy(object, resource, resource_key = 'assessment_id')
     copy = object.clone(false)
     copy[resource_key] = resource.id
     copy
   end
 
-  def self.copy_association(name, old_question, new_question, assessment)
+  def copy_association(name, old_question, new_question, assessment)
     old_question.send(name).each do |item|
       new_item = make_copy(item, assessment)
       new_item.question_id = new_question.id
@@ -74,7 +73,7 @@ class CopyAssessment
     end
   end
 
-  def self.copy_translations(old_question, new_question, assessment)
+  def copy_translations(old_question, new_question, assessment)
     old_question.translations.each do |translation|
       new_translation = make_copy(translation, assessment, 'resource_id')
       new_translation.translateable_id = new_question.id
@@ -82,15 +81,20 @@ class CopyAssessment
     end
   end
 
-  def self.update_configurations!(assessment)
-    assessment.blocks.each do |block|
-      block.questions.each do |question|
-        %w[display_logic skip_logic].map { |column| update_logic!(question, column) }
-      end
+  def update_flow_and_norm_rules!(assessment, flow, norm_rules)
+    assessment.questions.map(&:id).each do |q_id|
+      flow.gsub!(/\"subject\":#{q_id}/, "\"subject\":#{@mapping[q_id]}")
+      norm_rules.gsub!(/\"subject\":#{q_id}/, "\"subject\":#{@mapping[q_id]}")
     end
   end
 
-  def self.update_logic!(question, column)
+  def update_configurations!(assessment)
+    assessment.questions.each do |question|
+      %w[display_logic skip_logic].each { |column| update_logic!(question, column) }
+    end
+  end
+
+  def update_logic!(question, column)
     unless question[column].blank?
       logic = question[column].to_json
       subjects = logic.scan(/\"subject\":(\d+)/).flatten

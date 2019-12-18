@@ -41,7 +41,7 @@ describe CopyAssessment do
       questions.last.update_attributes(skip_logic: skip_logic)
     end
 
-    let(:copy) { described_class.process!(assessment.id) }
+    let(:copy) { described_class.new.process!(assessment.id) }
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)

@@ -12,7 +12,7 @@ module Threesixty
       source_assessment = Assessment.find(@campaign.assessment_id)
 
       copy_report(source_assessment)
-      @assessment = CopyAssessment.process!(source_assessment.id)
+      @assessment = CopyAssessment.new.process!(source_assessment.id)
 
       copy_dimension
       copy_factors_and_map_scoring(source_assessment.dimension)
