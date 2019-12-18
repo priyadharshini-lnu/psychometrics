@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe CopyAssessment do
+describe Assessments::CopyAssessment do
   describe '.process!' do
     let(:assessment) { create(:assessment) }
     let(:block) { create(:block, assessment: assessment) }
@@ -16,6 +16,13 @@ describe CopyAssessment do
 
       create(:factors_scoring, factor: factor, question: questions.first, assessment: assessment)
       create(:question_recoding, question: questions.first, assessment: assessment)
+
+      flow = {
+        'elements': [
+          { 'type': 'Block', 'elements': [], 'path': [0], 'props': { 'current': block.id.to_s } }
+        ]
+      }
+      assessment.update_attribute(:flow, flow)
 
       display_logic = [
         {
@@ -41,7 +48,7 @@ describe CopyAssessment do
       questions.last.update_attributes(skip_logic: skip_logic)
     end
 
-    let(:copy) { described_class.new.process!(assessment.id) }
+    let(:copy) { described_class.call(assessment.id)[:ok] }
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)
@@ -52,6 +59,11 @@ describe CopyAssessment do
 
     it 'copies all blocks' do
       expect(copy.blocks.length).to eq(assessment.blocks.length)
+    end
+
+    it 'replaces block_id in flow' do
+      pattern = /\"current\":\"#{copy.blocks.first.id}\"/
+      expect(copy.flow.to_json.match(pattern)).not_to be_nil
     end
 
     it 'copies all questions of each block' do
