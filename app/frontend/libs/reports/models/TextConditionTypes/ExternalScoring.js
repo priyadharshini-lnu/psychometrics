@@ -21,25 +21,29 @@ class ExternalScoring extends BaseType {
       props: { subject },
     } = this.condition
 
-    const value = Factors.LookupValue.call(this.getResults().externalScoring, type, subject)
-    if (_.isNil(value)) return false
+    const value = Factors.LookupValue.getValueOrNaN(this.getResults().externalScoring, type, subject)
+    if (_.isNil(value) || _.isNil(NaN)) return false
     return this.compare(value)
   }
 
-  compare (value) {
+  compare (aggregatedData) {
+    const value = parseFloat(this.condition.props.value)
+
+    if (isNaN(value) || isNaN(aggregatedData)) { return false }
+
     switch (this.condition.props.predicate) {
       case 'EqualTo':
-        return value === this.condition.props.value
+        return parseFloat(aggregatedData) === value
       case 'NotEqualTo':
-        return value !== this.condition.props.value
+        return parseFloat(aggregatedData) !== value
       case 'GreaterThen':
-        return parseFloat(value) > parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) > value
       case 'GreaterThenOrEqual':
-        return parseFloat(value) >= parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) >= value
       case 'LessThen':
-        return parseFloat(value) < parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) < value
       case 'LessThenOrEqual':
-        return parseFloat(value) <= parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) <= value
       default:
         throw new Error(`unknown predicate: ${this.condition.props.predicate}`)
     }

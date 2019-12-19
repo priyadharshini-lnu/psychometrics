@@ -156,6 +156,10 @@ Rails.application.routes.draw do
               end
             end
             resources :threesixty_campaigns, concerns: :client_editable do
+              member do
+                get :export_results
+              end
+
               collection do
                 get :assessments
                 get :factors

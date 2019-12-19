@@ -6,11 +6,13 @@ module Threesixty
       attribute :evaluator_first_name, String
       attribute :evaluator_last_name, String
       attribute :evaluator_email, String
+      attribute :evaluator_password, String
       attribute :relationship_name, String
       attribute :subject_email, String
 
       validates :evaluator_email, :subject_email, format: { with: Devise.email_regexp }
       validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
+      validates :evaluator_password, length: { within: Devise.password_length }, allow_blank: true
 
       validate :check_subject
       validate :check_existing_relationship

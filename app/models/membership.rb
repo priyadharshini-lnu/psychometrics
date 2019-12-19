@@ -20,6 +20,7 @@
 # already_invited        :boolean          default(FALSE)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -178,6 +179,10 @@ class Membership < ApplicationRecord
     project_membership_id.nil?
   end
 
+  def project
+    membership_with_result.client
+  end
+
   def already_invited?
     project_membership&.already_invited || already_invited
   end
@@ -268,3 +273,4 @@ class Membership < ApplicationRecord
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

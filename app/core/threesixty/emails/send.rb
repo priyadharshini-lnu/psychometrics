@@ -83,10 +83,10 @@ module Threesixty
                                     merge(
                                       recipient_ids: recipient_ids,
                                       meta: meta,
-                                      scheduled_date: 10.seconds.from_now
+                                      scheduled_date: context[:scheduled_date] || 10.seconds.from_now
                                     )
 
-        Threesixty::EmailSchedule.create!(email_schedule_attributes)
+        broadcast :ok, Threesixty::EmailSchedule.create!(email_schedule_attributes)
       end
 
       def get_recipient_ids(config)

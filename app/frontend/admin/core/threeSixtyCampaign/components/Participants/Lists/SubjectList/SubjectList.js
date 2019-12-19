@@ -26,6 +26,7 @@ export default function SubjectList ({
   downloadReport,
   total,
   page,
+  searchTerm,
   editUser,
   match: {
     params: { campaignId },
@@ -33,14 +34,14 @@ export default function SubjectList ({
   match,
 }) {
   useEffect(() => {
-    fetchSubjects(campaignId, page)
-  }, [page])
+    fetchSubjects(campaignId, page, searchTerm)
+  }, [page, searchTerm])
   const curriedFetchSubjects = _.curry(fetchSubjects)
 
   const openParticipantModal = (user) => {
     openModal('ParticipantModal', {
       user,
-      onClose: () => fetchSubjects(campaignId, page),
+      onClose: () => fetchSubjects(campaignId, page, searchTerm),
     })
   }
 
@@ -55,7 +56,11 @@ export default function SubjectList ({
         </Col>
         <Col>
           <div className="float-r">
-            <SearchInput onChange={curriedFetchSubjects(campaignId)} path="/participants/subjects" />
+            <SearchInput
+              onChange={curriedFetchSubjects(campaignId)}
+              path="/participants/subjects"
+              searchTerm={searchTerm}
+            />
             <ToolsDropdown />
             <CreateSubjectsDropdown />
           </div>

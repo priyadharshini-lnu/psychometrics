@@ -5,15 +5,17 @@ import routeUtils from 'utils/routeUtils'
 import styles from './styles.scss'
 import settings from '../../../../settings'
 
-export default function Search ({ onChange: onChangeCallback, path, history }) {
+export default function Search ({
+  onChange: onChangeCallback, path, history, searchTerm,
+}) {
   const page = 1
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState(searchTerm)
 
   const [debouncedCallback] = useDebouncedCallback(name => onChangeCallback(page, name), 700)
 
   const onChange = ({ currentTarget }) => {
     setValue(currentTarget.value)
-    routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}`)
+    routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}&search=${currentTarget.value}`)
     debouncedCallback(currentTarget.value)
   }
 

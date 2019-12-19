@@ -23,20 +23,18 @@ _.extend(NormResolver.prototype, {
   resolveCondition (rule) {
     const results = _.map(rule.conditions, condition => this.processCondition(condition))
     let res = null
-    let prev = null
-    _.each(results, (result) => {
-      if (prev) {
+    _.each(results, (result, i) => {
+      if (i > 0) {
         if (result.prefix === 'And') {
-          res = res.value && result.value
+          res = res && result.value
         }
 
         if (result.prefix === 'Or') {
-          res = res.value || result.value
+          res = res || result.value
         }
       } else {
         res = result.value
       }
-      prev = result
     })
 
     if (res) {

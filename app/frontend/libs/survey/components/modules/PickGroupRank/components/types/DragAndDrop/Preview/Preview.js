@@ -8,9 +8,14 @@ const PickGroupPreview = ({ model, readOnly }) => {
   const columns = model.props.columns ? styles.columns : ''
 
   const groupedAnswers = _.groupBy(model.result.answers, 'scale')
-  if (_.values(groupedAnswers).length === 0) {
-    groupedAnswers[-1] = _.times(model.props.choices, (i, index) => ({ choice: i, value: index }))
-  }
+  const groupedValues = _.flatten(_.values(groupedAnswers))
+  const selectedChoices = _.map(groupedValues, ({ choice }) => choice)
+
+  let notSelectedChoices = _.times(model.props.choices, (i, index) => {
+    if (_.includes(selectedChoices, i)) { return null }
+    return { choice: i, value: index }
+  })
+  notSelectedChoices = _.compact(notSelectedChoices)
 
   return (
     <div className={`${styles.table} ${styles.preview}`}>
@@ -23,7 +28,7 @@ const PickGroupPreview = ({ model, readOnly }) => {
               questionId={model.id}
               key={-1}
               id={-1}
-              cards={groupedAnswers[-1] || []}
+              cards={notSelectedChoices || []}
               text={I18nStore.t('assessments.pickgrouprank.items')}
               stacked={model.props.stackItems}
             />

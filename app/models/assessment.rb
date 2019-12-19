@@ -58,6 +58,9 @@ class Assessment < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client'
 
+  has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
+  has_one :campaign, through: :threesixty_campaign
+
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :norms, through: :dimension

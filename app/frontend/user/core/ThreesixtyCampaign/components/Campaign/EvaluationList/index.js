@@ -14,9 +14,11 @@ const { Panel } = Collapse
 
 function EvaluationList ({
   evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
+  instructions,
 }) {
   const [showHelp, setShowHelp] = useState(false)
   const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
+  const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
 
   const menu = item => (
     <Menu>
@@ -145,9 +147,11 @@ of
               </div>
             </div>
           </div>
+          {evaluationHelp && (
           <div className="help">
             <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
+          )}
         </div>
       )}
       bordered
@@ -167,6 +171,7 @@ of
           list={managedSubjects}
         />
         )}
+      {evaluationHelp && (
       <Modal
         title={(
           <div className="help-modal-header">
@@ -178,8 +183,9 @@ of
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.evaluation') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: evaluationHelp.content }} />
       </Modal>
+      )}
     </List>
   )
 }
