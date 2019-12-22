@@ -39,8 +39,6 @@ class PropertyFilter extends Component {
     const showDesc = store.model.isMultiFiltering()
       && _.indexOf(SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING, store.model.getSourceType()) !== -1
     const SELECT_OPTIONS = _.map(AppStore.report.filters, filter => ({ label: filter.name, value: filter.id }))
-    console.log(SELECT_OPTIONS, store.model.props.filter)
-    console.log(getValue(SELECT_OPTIONS, store.model.props.filter))
     return (
       <div>
         <div>Filter</div>

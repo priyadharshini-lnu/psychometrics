@@ -8,10 +8,12 @@ class BaseType {
   }
 
   isFilled () {
+    // eslint-disable-next-line no-console
     console.error('should be implemented')
   }
 
   isValid () {
+    // eslint-disable-next-line no-console
     console.error('should be implemented')
   }
 

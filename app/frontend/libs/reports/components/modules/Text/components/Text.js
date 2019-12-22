@@ -168,6 +168,7 @@ class Text extends Component {
         const QuestionTypeModel = ResponseTextByQuestionType[question.type]
         const particularResult = _.get(ResultStore, ['results', model.assessment_id, 'questions', question.id, 0])
         if (!QuestionTypeModel) {
+          // eslint-disable-next-line no-console
           console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
           return null
         }

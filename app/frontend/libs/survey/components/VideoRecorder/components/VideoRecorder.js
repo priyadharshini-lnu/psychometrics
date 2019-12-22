@@ -200,9 +200,11 @@ class VideoRecorder extends Component {
       })
 
       this.player.on('error', (element, error) => {
+        // eslint-disable-next-line no-console
         console.warn(error)
       })
       this.player.on('deviceError', () => {
+        // eslint-disable-next-line no-console
         console.error('device error:', this.player.deviceErrorCode)
       })
     })

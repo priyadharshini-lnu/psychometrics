@@ -142,9 +142,7 @@ class Foundation extends Component {
     this.forceUpdate()
   }
 
-  keydown (e) {
-    console.log(e.keyCode)
-  }
+  keydown () {}
 
   render () {
     const {
