@@ -45,13 +45,13 @@ describe Assessments::CopyAssessment do
       ]
       destination_skip_logic = [
         {
-          'subject' => questions.last.id,
-          'prefix'=>'And',
-          'answer'=>'5',
-          'predicate'=>'Selected',
-          'type'=>'bool',
-          'destination'=>'SpecificBlock',
-          'destinationBlock'=>"#{block.id}"
+          'subject': questions.last.id,
+          'prefix': 'And',
+          'answer': '5',
+          'predicate': 'Selected',
+          'type': 'bool',
+          'destination': 'SpecificBlock',
+          'destinationBlock': "#{block.id}"
         }
       ]
 
