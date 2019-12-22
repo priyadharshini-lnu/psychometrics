@@ -19,7 +19,7 @@ describe Assessments::CopyAssessment do
 
       flow = {
         'elements': [
-          { 'type': 'Block', 'elements': [], 'path': [0], 'props': { 'current': block.id.to_s } }
+          { 'type': 'Block', 'elements': [], 'path': [0], 'props': { 'current': block.id } }
         ]
       }
       assessment.update_attribute(:flow, flow)
@@ -51,7 +51,7 @@ describe Assessments::CopyAssessment do
           'predicate': 'Selected',
           'type': 'bool',
           'destination': 'SpecificBlock',
-          'destinationBlock': "#{block.id}"
+          'destinationBlock': block.id
         }
       ]
 
@@ -73,7 +73,7 @@ describe Assessments::CopyAssessment do
     end
 
     it 'replaces block_id in flow' do
-      pattern = /\"current\":\"#{copy.blocks.first.id}\"/
+      pattern = /\"current\":\"?#{copy.blocks.first.id}\"?/
       expect(copy.flow.to_json.match(pattern)).not_to be_nil
     end
 
@@ -98,11 +98,15 @@ describe Assessments::CopyAssessment do
     end
 
     it 'replaces question_id in skip_logic' do
-      question_id = assessment.blocks.first.questions.last.id
-      copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
-      pattern = /\"subject\":#{question_id}/
+      old_question_id = assessment.questions.first.id
+      new_question_id = copy.questions.first.id
+      copied_skip_logic = copy.questions.first.skip_logic.to_json
 
-      expect(copied_skip_logic.match(pattern)).to be_nil
+      old_question_id_pattern = /\"subject\":#{old_question_id}/
+      new_question_id_pattern = /\"subject\":#{new_question_id}/
+
+      expect(copied_skip_logic.match(old_question_id_pattern)).to be_nil
+      expect(copied_skip_logic.match(new_question_id_pattern)).not_to be_nil
     end
 
     it 'replaces block_id in skip_logic' do
@@ -110,18 +114,18 @@ describe Assessments::CopyAssessment do
       new_block_id = copy.blocks.first.id
       copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
 
-      old_block_id_pattern = /\"destinationBlock\":\"#{old_block_id}\"/
-      new_block_id_pattern = /\"destinationBlock\":\"#{new_block_id}\"/
+      old_block_id_pattern = /\"destinationBlock\":\"?#{old_block_id}\"?/
+      new_block_id_pattern = /\"destinationBlock\":\"?#{new_block_id}\"?/
 
       expect(copied_skip_logic.match(old_block_id_pattern)).to be_nil
       expect(copied_skip_logic.match(new_block_id_pattern)).not_to be_nil
     end
 
     it "doesn't copy empty skip_logic" do
-      og_skip_logic = assessment.blocks.first.questions.first.skip_logic
+      og_skip_logic = assessment.questions[1].skip_logic
       expect(og_skip_logic).to be_nil
 
-      co_skip_logic = copy.blocks.first.questions.first.skip_logic
+      co_skip_logic = copy.questions[1].skip_logic
       expect(co_skip_logic).to be_nil
     end
 

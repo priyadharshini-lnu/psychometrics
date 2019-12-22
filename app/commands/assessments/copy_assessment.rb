@@ -99,13 +99,13 @@ module Assessments
 
           next if json.blank? || json.starts_with?('null')
 
-          question_ids = json.scan(/\"subject\":(\d+)/).flatten
+          question_ids = json.scan(/\"subject\":\"?(\d+)\"?/).flatten
           question_ids.each { |question_id| json = update_id_in_json_config(json, question_id) }
 
           if column == 'skip_logic'
-            block_ids = json.scan(/\"destinationBlock\":\"(\d+)\"/).flatten
+            block_ids = json.scan(/\"destinationBlock\":\"?(\d+)\"?/).flatten
             block_ids.each do |id|
-              json = update_id_in_json_config(json, id.to_i, 'destinationBlock', 'blocks')
+              json = update_id_in_json_config(json, id, 'destinationBlock', 'blocks')
             end
           end
           question.update_attribute(column, JSON.parse(json))
@@ -115,7 +115,7 @@ module Assessments
 
     def update_id_in_json_config(json, value, key = 'subject', obj_group = 'questions')
       container = instance_variable_get("@#{obj_group}_mapping")
-      json.gsub(/\"#{key}\":\"#{value}\"/, "\"#{key}\":\"#{container[value]}\"")
+      json.gsub(/\"#{key}\":\"?#{value}\"?/, "\"#{key}\":#{container[value.to_i]}")
     end
   end
 end
