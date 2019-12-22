@@ -7,7 +7,8 @@ module Assessments
         questions: %i[factors_scorings question_recodings translations]
       }).find(assessment_id)
 
-      @mapping = {}
+      @blocks_mapping = {}
+      @questions_mapping = {}
     end
 
     def call
@@ -24,15 +25,17 @@ module Assessments
           new_block = make_copy(block, new_assessment)
           new_block.save!
 
+          @blocks_mapping[block.id] = new_block.id
+
           # Replace original Block Id to New Block Id
-          flow.gsub!(/\"current\":\"#{block.id}\"/, "\"current\":\"#{new_block.id}\"")
+          flow = update_id_in_json_config(flow, block.id, 'current', 'blocks')
 
           # Loop questions to save for the new block
           block.questions.each do |question|
             new_question = make_copy(question, new_assessment)
             new_block.questions << new_question
 
-            @mapping[question.id] = new_question.id
+            @questions_mapping[question.id] = new_question.id
 
             %w[factors_scorings question_recodings].map do |name|
               copy_association(name, question, new_question, new_assessment)
@@ -44,10 +47,15 @@ module Assessments
 
         # We can't combine this in the same iteration since the the question that the
         # display_logic and skip_logic pointing to couldn't have been copied yet.
-        update_configurations!(new_assessment)
+        update_json_configurations!(new_assessment)
 
         # Replace original Question Id to New Question Id
-        flow, norm_rules = update_flow_and_norm_rules(new_assessment, flow, norm_rules)
+        # flow, norm_rules = update_flow_and_norm_rules(new_assessment, flow, norm_rules)
+        question_ids = new_assessment.questions.map(&:id)
+        question_ids.each do |question_id|
+          flow = update_id_in_json_config(flow, question_id)
+          norm_rules = update_id_in_json_config(norm_rules, question_id)
+        end
         new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
 
         new_assessment
@@ -84,32 +92,30 @@ module Assessments
       end
     end
 
-    def update_flow_and_norm_rules(assessment, flow, norm_rules)
-      assessment.questions.map(&:id).each do |q_id|
-        flow.gsub!(/\"subject\":#{q_id}/, "\"subject\":#{@mapping[q_id]}")
-        norm_rules.gsub!(/\"subject\":#{q_id}/, "\"subject\":#{@mapping[q_id]}")
-      end
-
-      [flow, norm_rules]
-    end
-
-    def update_configurations!(assessment)
+    def update_json_configurations!(assessment)
       assessment.questions.each do |question|
-        %w[display_logic skip_logic].each { |column| update_logic!(question, column) }
+        %w[display_logic skip_logic].each do |column|
+          json = question[column].to_json
+
+          next if json.blank? || json.starts_with?('null')
+
+          question_ids = json.scan(/\"subject\":(\d+)/).flatten
+          question_ids.each { |question_id| json = update_id_in_json_config(json, question_id) }
+
+          if column == 'skip_logic'
+            block_ids = json.scan(/\"destinationBlock\":\"(\d+)\"/).flatten
+            block_ids.each do |id|
+              json = update_id_in_json_config(json, id.to_i, 'destinationBlock', 'blocks')
+            end
+          end
+          question.update_attribute(column, JSON.parse(json))
+        end
       end
     end
 
-    def update_logic!(question, column)
-      unless question[column].blank?
-        logic = question[column].to_json
-        subjects = logic.scan(/\"subject\":(\d+)/).flatten
-
-        subjects.each do |subject|
-          logic.gsub!(/\"subject\":#{subject}/, "\"subject\":#{@mapping[subject.to_i]}")
-        end
-
-        question.update_attribute(column, JSON.parse(logic))
-      end
+    def update_id_in_json_config(json, value, key = 'subject', obj_group = 'questions')
+      container = instance_variable_get("@#{obj_group}_mapping")
+      json.gsub(/\"#{key}\":\"#{value}\"/, "\"#{key}\":\"#{container[value]}\"")
     end
   end
 end

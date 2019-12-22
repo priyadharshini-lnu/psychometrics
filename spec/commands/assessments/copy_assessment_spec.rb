@@ -33,7 +33,7 @@ describe Assessments::CopyAssessment do
           'predicate': 'Selected'
         }
       ]
-      skip_logic = [
+      end_of_block_skip_logic = [
         {
           'subject': questions.first.id,
           'prefix': 'And',
@@ -43,9 +43,20 @@ describe Assessments::CopyAssessment do
           'destination': 'EndOfBlock'
         }
       ]
+      destination_skip_logic = [
+        {
+          'subject' => questions.last.id,
+          'prefix'=>'And',
+          'answer'=>'5',
+          'predicate'=>'Selected',
+          'type'=>'bool',
+          'destination'=>'SpecificBlock',
+          'destinationBlock'=>"#{block.id}"
+        }
+      ]
 
-      questions.first.update_attributes(display_logic: display_logic)
-      questions.last.update_attributes(skip_logic: skip_logic)
+      questions.first.update_attributes(display_logic: display_logic, skip_logic: end_of_block_skip_logic)
+      questions.last.update_attributes(skip_logic: destination_skip_logic)
     end
 
     let(:copy) { described_class.call(assessment.id)[:ok] }
@@ -92,6 +103,18 @@ describe Assessments::CopyAssessment do
       pattern = /\"subject\":#{question_id}/
 
       expect(copied_skip_logic.match(pattern)).to be_nil
+    end
+
+    it 'replaces block_id in skip_logic' do
+      old_block_id = assessment.blocks.first.id
+      new_block_id = copy.blocks.first.id
+      copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
+
+      old_block_id_pattern = /\"destinationBlock\":\"#{old_block_id}\"/
+      new_block_id_pattern = /\"destinationBlock\":\"#{new_block_id}\"/
+
+      expect(copied_skip_logic.match(old_block_id_pattern)).to be_nil
+      expect(copied_skip_logic.match(new_block_id_pattern)).not_to be_nil
     end
 
     it "doesn't copy empty skip_logic" do
