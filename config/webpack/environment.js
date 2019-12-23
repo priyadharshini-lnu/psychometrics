@@ -4,6 +4,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
+const tsLoader = require('./loaders/ts-loader')
 
 const __DEV__ = env.NODE_ENV === 'development'
 const __TEST__ = env.NODE_ENV === 'test'
@@ -35,6 +36,7 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 
 environment.loaders.append('less', less)
+environment.loaders.append('typescript', tsLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 

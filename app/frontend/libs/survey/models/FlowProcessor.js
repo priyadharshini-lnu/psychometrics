@@ -8,6 +8,7 @@ import NormResolver from 'models/NormResolver'
 import Flow from 'models/Flow'
 import CountQuestionSize from 'commands/flow/CountQuestionSize'
 import LocalStorage from '../utils/LocalStorage'
+import FlowTS from './FlowProcesor/Flow'
 
 const { $ } = window
 
