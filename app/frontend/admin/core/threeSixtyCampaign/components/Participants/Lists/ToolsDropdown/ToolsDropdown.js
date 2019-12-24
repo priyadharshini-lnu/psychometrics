@@ -48,9 +48,8 @@ export default function ToolsDropdown ({
   match: { params: { campaignId, projectId } },
 }) {
   const resetCampaignWithConfirmation = (campaignId) => {
-    openModal('CampaignNameConfirmationModal', {
-      onConfirm: () => resetCampaign(campaignId),
-      confirmationMessage: I18n.t('threesixty.reset_campaign_confirmation'),
+    openModal('ResetCampaignModal', {
+      onConfirm: removeLicenceUsage => resetCampaign(campaignId, removeLicenceUsage),
     })
   }
 

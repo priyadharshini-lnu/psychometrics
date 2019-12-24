@@ -20,6 +20,7 @@ module Threesixty
     has_many :users_results, through: :campaign
     has_many :reminder_histories, foreign_key: :threesixty_campaign_id
     has_many :email_histories, foreign_key: :threesixty_campaign_id
+    has_many :license_usages, through: :campaign
 
     enum type: %i[empty standard_360 previous_360]
 

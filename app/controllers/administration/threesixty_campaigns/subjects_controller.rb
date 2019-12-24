@@ -43,7 +43,13 @@ module Administration
       end
 
       def destroy
-        ::Threesixty::Subjects::Remove.call!(resource, threesixty_campaign)
+        remove_license_usage = current_user.is?(:superadmin) ? params['remove_licence_usage'] : nil
+        ::Threesixty::Subjects::Remove.call!(
+          threesixty_campaign: threesixty_campaign,
+          updater_id: current_user.id,
+          subject: resource,
+          remove_license_usage: remove_license_usage
+        )
         render json: :ok
       end
 

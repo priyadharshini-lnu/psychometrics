@@ -64,7 +64,7 @@ class Properties extends Component {
     return (
       <div>
         <div className={styles.title}>Table Options</div>
-        {<AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />}
+        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
         <hr className={styles.divider} />
         <span className={styles.label}>Table Type</span>
         <div className={styles.dropdownWrapper}>
