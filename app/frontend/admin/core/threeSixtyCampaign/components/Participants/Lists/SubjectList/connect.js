@@ -23,7 +23,7 @@ export default connect(
     fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
     update: (campaignId, subjectId, data) => dispatch(update(campaignId, subjectId, data)),
-    remove: (campaignId, subjectId) => dispatch(remove(campaignId, subjectId)),
+    remove: (campaignId, subjectId, removeLicenceUsage) => dispatch(remove(campaignId, subjectId, removeLicenceUsage)),
     removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
     downloadReport: (campaignId, subjectId) => dispatch(downloadReport(campaignId, subjectId)),
     editUser: user => dispatch(editUser(user)),

@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
+import ResetSubjectModal from 'admin/core/threeSixtyCampaign/components/common/ResetSubjectModal'
 import styles from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
@@ -68,7 +69,12 @@ export default function SubjectList ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={subjects} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={subjects}
+            pagination={false}
+          >
             <Column
               title="Name"
               key="fullName"
@@ -87,16 +93,29 @@ export default function SubjectList ({
               key="user_email"
               render={({ user }) => user.email}
             />
-            <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
-            <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
+            <Column
+              title="Evaluations Received"
+              dataIndex="evaluators"
+              key="received_evaluations"
+            />
+            <Column
+              title="Evaluations Completed"
+              dataIndex="evaluations"
+              key="completed_evaluations"
+            />
 
             <Column
               title="Report Status"
               key="report_status"
-              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)}
+              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)
+              }
             />
 
-            <Column title="Status" key="status" render={({ status }) => I18n.t(`subjects.statuses.${status}`)} />
+            <Column
+              title="Status"
+              key="status"
+              render={({ status }) => I18n.t(`subjects.statuses.${status}`)}
+            />
 
             <Column
               key="action"
@@ -133,6 +152,7 @@ export default function SubjectList ({
       <CreateSubjectModal match={match} />
       <SubjectImportModal match={match} />
       <UserEditModal match={match} />
+      <ResetSubjectModal />
     </>
   )
 }

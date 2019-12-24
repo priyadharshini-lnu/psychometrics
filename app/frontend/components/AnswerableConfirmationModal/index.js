@@ -10,6 +10,7 @@ export default function AnswerableConfirmationModal ({
   onConfirm,
   onWrongAnswer,
   onCancel,
+  children,
 }) {
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState(null)
@@ -65,6 +66,7 @@ export default function AnswerableConfirmationModal ({
           setAnswer(e.target.value)
         }}
       />
+      {children}
     </Modal>
   )
 }

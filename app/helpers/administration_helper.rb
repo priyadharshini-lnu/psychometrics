@@ -100,4 +100,13 @@ module AdministrationHelper
   def reports_for_assessment(assessment)
     client.reports.joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment.id }).distinct
   end
+
+  def labels_based_on(status)
+    status_active = status == LicenseUsage.statuses[:active]
+    {
+      activated_at: status_active ? 'Activated at' : 'Deactivated at',
+      activated_by: status_active ? 'Activated by' : 'Deactivated by',
+      action: status_active ? 'Deactivate' : 'Activate'
+    }
+  end
 end
