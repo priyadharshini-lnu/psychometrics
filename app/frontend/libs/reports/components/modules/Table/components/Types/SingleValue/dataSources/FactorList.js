@@ -6,14 +6,15 @@ import { getValue } from 'rb/presenters/ReactSelectPresenter'
 
 export default function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
+  const options = AppStore.factors[assessment.dimensionId] || []
   return (
     <div className="mtm">
       Factor
       <Select
-        value={getValue(AppStore.factors[assessment.dimensionId] || [], store.model.props.factorIds)}
-        options={AppStore.factors[assessment.dimensionId] || []}
+        value={getValue(options, store.model.props.factorIds.map(id => ({ id })))}
+        options={options}
         getOptionValue={opt => opt.id}
-        getOptionLabel={opt => opt.name}
+        getOptionLabel={opt => (_.find(options, opt) || {}).name}
         autoFocus={false}
         isClearable={false}
         isMulti
