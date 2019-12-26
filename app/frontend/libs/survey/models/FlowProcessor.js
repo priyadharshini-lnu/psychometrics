@@ -14,6 +14,7 @@ const { $ } = window
 
 const FlowProcessor = function (store) {
   this.store = store
+  console.log(new FlowTS({}))
   this.fetchQuestions()
   this.flow = store.assessment.flow && store.assessment.flow.elements.length > 0
   this.current = 0

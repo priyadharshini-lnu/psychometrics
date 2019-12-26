@@ -1,7 +1,11 @@
-import {Block} from './branches/Block'
+import Block from './branches/Block'
 
-export default class Flow {
-  constructor (params) {
+interface FlowInterface {
+  block: Block,
+}
+export default class Flow implements FlowInterface {
+  block: Block
 
+  constructor (params: object) {
   }
 }
