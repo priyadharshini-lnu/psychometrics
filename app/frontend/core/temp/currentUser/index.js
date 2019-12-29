@@ -6,7 +6,7 @@ const LOGOUT = 'temp/users/LOGOUT'
 const SYNC = 'threeSixty/user/SYNC'
 const SET_USER = 'threeSixty/user/SET_USER'
 
-export const get = state => _.get(state, ['temp', 'currentUser'])
+export const get = state => _.get(state, ['threeSixtyCampaign', 'temp', 'currentUser'])
 
 export const defaultState = null
 
