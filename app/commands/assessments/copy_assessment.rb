@@ -51,10 +51,9 @@ module Assessments
 
         # Replace original Question Id to New Question Id
         # flow, norm_rules = update_flow_and_norm_rules(new_assessment, flow, norm_rules)
-        question_ids = new_assessment.questions.map(&:id)
-        question_ids.each do |question_id|
-          flow = update_id_in_json_config(flow, question_id)
-          norm_rules = update_id_in_json_config(norm_rules, question_id)
+        new_assessment.questions.each do |question|
+          flow = update_id_in_json_config(flow, question.id)
+          norm_rules = update_id_in_json_config(norm_rules, question.id)
         end
         new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
 
