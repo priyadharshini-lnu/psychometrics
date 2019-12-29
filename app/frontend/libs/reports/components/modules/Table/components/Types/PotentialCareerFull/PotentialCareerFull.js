@@ -193,6 +193,7 @@ class PotentialCareerFull extends Component {
     try {
       this.keyCareerTracks = yaml.safeLoad(I18nStore.tOccupation(this.occupationData, 'keyCareerTracks'))
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e)
     }
     this.factors = this.occupationData.factors.filter(x => x.position).sort((a, b) => a.position - b.position).slice(0, 5)

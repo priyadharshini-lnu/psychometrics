@@ -19,6 +19,7 @@ const ActionsMenu = ({
   }
 
   const removeUserWithConfirmation = () => {
+    // eslint-disable-next-line no-alert
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
       removeUser(campaignId, user.id)
     }
