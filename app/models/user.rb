@@ -212,6 +212,10 @@ class User < ApplicationRecord
     errors.add(:grants, :invalid) unless valid
   end
 
+  def block_from_invitation?
+    false
+  end
+
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
