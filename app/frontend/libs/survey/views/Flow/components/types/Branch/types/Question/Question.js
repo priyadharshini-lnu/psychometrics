@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'store/AppStore'
 import QuestionCondition from 'libs/conditions'
 
 export class Question extends Component {
@@ -15,10 +14,10 @@ export class Question extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { questions, condition } = this.props
     return (
       <QuestionCondition
-        questions={AppStore.questions}
+        questions={questions}
         onChange={this.changeQuestionCondition}
         condition={condition}
       />

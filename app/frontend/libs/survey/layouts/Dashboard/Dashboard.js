@@ -81,15 +81,14 @@ Attention!
 
 
   render () {
-    const { loaded } = this.props
+    const { loaded, disabled } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
           <Header {...this.props} />
           <div className={`panel-body ${styles.mainContainer}`}>
             {!loaded && this.loading()}
-            {AppStore.disabled && this
-              .overlay()}
+            {disabled && this.overlay()}
             <Home />
             <PropertyPanel />
             <Trash />

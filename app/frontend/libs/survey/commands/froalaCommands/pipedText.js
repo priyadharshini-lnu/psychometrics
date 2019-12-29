@@ -1,5 +1,5 @@
 import FroalaEditor from 'froala-editor'
-import store from 'rstore'
+import store from 'store'
 
 FroalaEditor.DefineIcon('pipedText', { NAME: '{x}', template: 'text' })
 

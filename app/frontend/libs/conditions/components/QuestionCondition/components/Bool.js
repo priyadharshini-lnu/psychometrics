@@ -11,7 +11,7 @@ const PREDICATE = {
 }
 
 export class Bool extends React.Component {
-  propTypes = {
+  static propTypes = {
     condition: PropTypes.object.isRequired,
     onChange: PropTypes.func,
     preview: PropTypes.bool,
@@ -39,7 +39,7 @@ export class Bool extends React.Component {
   render () {
     const { preview } = this.props
     return (
-      <div className={!preview && styles.predicates}>
+      <div className={!preview ? styles.predicates : undefined}>
         {this.renderSelect()}
         <div className={styles.empty} />
       </div>

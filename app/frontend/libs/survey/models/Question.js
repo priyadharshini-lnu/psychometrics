@@ -5,11 +5,9 @@ import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
-import ModuleConfigs from 'constants/ModuleConfigs'
-import AppStore from 'store/AppStore'
 import Socket from 'cable'
 import Action from 'undo'
-import rstore from 'rstore'
+import rstore from 'store'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -18,11 +16,17 @@ import LogicElement from './logic/LogicElement'
 
 let count = 1
 
-const Question = function (attrs = {}, store) {
-  this.id = attrs.id
-  this.store = store
-  this.block = store.block || {}
+const Question = function (attrs = {}) {
+  if (attrs.id) {
+    this.id = attrs.id
+    this.isNew = false
+  } else {
+    this.id = Date.now() + count
+    this.isNew = true
+  }
+  this.blockId = attrs.block_id
   this.position = attrs.position
+  this.deleted = attrs.deleted || false
   this.name = attrs.name || `Q${count}`
   this.templateId = attrs.template_id
   this.saveAsTemplate = false
@@ -32,7 +36,6 @@ const Question = function (attrs = {}, store) {
   this.showComments = this.comments.length > 0
   this.props = _.cloneDeep(DefaultProps[this.type] || {})
   this.props.randomization = { type: 'No' }
-  this.moduleConfig = ModuleConfigs[this.type] || {}
   this.requiredValidation = attrs.required_validation || { enabled: false, type: 'Force' }
   this.validation = attrs.validation || { type: 'None', args: {} }
   this.displayLogic = attrs.display_logic ? new LogicElement(attrs.display_logic) : null
@@ -56,8 +59,8 @@ _.extend(Question.prototype, {
 
   toJSON () {
     return {
-      id: this.id,
-      block_id: this.block.id,
+      id: this.isNew ? undefined : this.id,
+      block_id: this.blockId,
       name: this.name,
       position: this.position,
       type: this.type,
@@ -94,18 +97,6 @@ _.extend(Question.prototype, {
     this.name = name
   },
 
-  moveDown (position = this.position + 1) {
-    this.position = position
-  },
-
-  moveUp (position = this.position - 1) {
-    this.position = position
-  },
-
-  restore () {
-    this.store.dispatcher.clickRestore(this)
-  },
-
   addComment (data) {
     const comment = new Comment(data)
     Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
@@ -134,10 +125,6 @@ _.extend(Question.prototype, {
 
   clone () {
     this.store.clone(_.cloneDeep(this))
-  },
-
-  addPageBreak () {
-    this.store.insertPageBreak(this)
   },
 
   addNote () {
@@ -212,7 +199,6 @@ _.extend(Question.prototype, {
 
   changeType (type, props) {
     const newProps = _.cloneDeep(DefaultProps[type])
-    this.moduleConfig = ModuleConfigs[type]
 
     Object.assign(newProps, props, {
       questionText: this.props.questionText,
@@ -224,7 +210,6 @@ _.extend(Question.prototype, {
     this.type = type
     this.requiredValidation = { enabled: false, type: 'Force' }
     this.validation = { type: 'None', args: {} }
-    this.update()
   },
 
   changeProps (newProps, undo) {
@@ -286,15 +271,17 @@ _.extend(Question.prototype, {
 
   update () {
     this.shuffleChoices()
-    this.resetDefaultValues()
-    this.sync()
-    this.store.update()
-    rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' }) // NOTE: @fedor hack to update ui remove it later
+    // this.resetDefaultValues()  why it was reseting?
+    // this.sync()
+    // this.store.update()
+
+    // NOTE: @fedor the next dispatches it's a hack to update ui. should be removed later
+    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    // rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' })
   },
 
   updateDefaultProps () {
-    this.sync()
-    this.store.update()
+    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   sync () {
@@ -333,14 +320,6 @@ _.extend(Question.prototype, {
 
   clearDisplayLogic () {
     this.displayLogic = null
-  },
-
-  addSkipLogic () {
-    AppStore.fetchQuestions()
-    const model = new Condition({ prefix: 'And', subject: this.id, editMode: true })
-    _.forEach(this.skipLogic, (condition) => { condition.editMode = false })
-    this.skipLogic.push(model)
-    this.store.update()
     this.update()
   },
 }, TranslateManager)

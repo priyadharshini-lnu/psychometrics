@@ -1,7 +1,7 @@
 import { EventEmitter } from 'fbemitter'
 import AppStore from 'store/AppStore'
 import RequestsPool from 'cable/RequestsPool'
-import store from 'rstore'
+import store from 'store'
 import NotificationDispatcher from './NotificationDispatcher'
 
 const dispatcher = new EventEmitter()
@@ -30,12 +30,10 @@ dispatcher.message = function (data) {
 
 dispatcher.connect = function () {
   dispatcher.emit('connected')
-  AppStore.enable()
 }
 
 dispatcher.disconnect = function () {
   dispatcher.emit('disconnected')
-  AppStore.disable()
   NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
 }
 

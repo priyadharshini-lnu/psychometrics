@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import Socket from 'cable'
 import { Modal } from 'react-bootstrap'
-import store from 'store/CreateByTemplateStore'
 import Async from 'react-select/async'
+import { perform } from 'libs/survey/core/temp/socket'
+import Block from 'models/Block'
+import Question from 'models/Question'
 
 const {
   Header, Body, Footer, Title,
@@ -11,51 +12,89 @@ const {
 
 
 export class CreateByTemplate extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  state = {
+    template: null,
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
+  createQuestion = () => {
+    const { addQuestion, block } = this.props
+    const { template } = this.state
+
+    if (template) {
+      perform('question_create_by_template', {
+        block_id: block.id,
+        template_id: template.value,
+      }, (templateData) => {
+        addQuestion(block, templateData)
+      })
+      this.close()
+    }
   }
 
-  save = () => {
-    const method = `create${store.entityName}`
-    store[method]()
+  createBlock = () => {
+    const {
+      createBlock, createQuestions, position,
+    } = this.props
+    const { template } = this.state
+    if (template) {
+      perform('block_create_by_template', {
+        template_id: template.value,
+        position_before: position,
+      }, (templateData) => {
+        const block = new Block(Object.assign(templateData, { position }))
+        const questions = block.questions.map(q => new Question(q))
+        block.questions = _.map(questions, 'id')
+        createBlock(block)
+        createQuestions(questions)
+        this.close()
+      })
+    }
   }
 
   close = () => {
-    store.close()
+    const { close } = this.props
+    this.setState({ template: null })
+    close()
+  }
+
+  save = () => {
+    const { entityName } = this.props
+    const method = `create${entityName}`
+    this[method]()
   }
 
   loadOptions = (input, callback) => {
-    Socket.socket().perform(`${store.entityName.toLowerCase()}_filter`,
+    const { entityName } = this.props
+    perform(`${entityName.toLowerCase()}_filter`,
       { q: input, without_notification: true }, (data) => {
-        callback(null, { options: data })
+        callback(data)
       })
   }
 
-  changeSelectValue = (value) => {
-    store.setTemplate(value)
-    this.forceUpdate()
+  changeSelectValue = (template) => {
+    this.setState({ template })
   }
 
   render () {
-    const { entityName } = store
-    if (!entityName) { return null }
+    const { show, entityName } = this.props
+    if (!show) { return null }
+    const { template } = this.state
     return (
       <Modal show keyboard={false}>
         <Header>
           <Title>
-Copy
-            {_.capitalize(store.entityName)}
+            Copy
             {' '}
-From Template
+            {_.capitalize(entityName)}
+            {' '}
+            From Template
           </Title>
         </Header>
         <Body>
           <Async
-            value={store.template}
+            cacheOptions
+            value={template}
+            defaultOptions
             loadOptions={this.loadOptions}
             onChange={this.changeSelectValue}
             backspaceRemoves={false}

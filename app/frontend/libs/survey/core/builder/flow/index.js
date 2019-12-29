@@ -1,6 +1,7 @@
 import { createReducer } from 'utils/reduxUtils'
 import { getIn, setIn, updateIn } from 'utils/immutable'
-
+import schema from 'store/schema'
+import { denormalize } from 'normalizr'
 import {
   INIT, ADD_ELEMENT, DUPLICATE_ELEMENT, ADD_NEW_ELEMENT, UPDATE_TREE, REMOVE_ELEMENT, RESET,
 } from './actions'
@@ -12,7 +13,7 @@ const lookUpPath = (element) => {
 }
 
 const HANDLERS = {
-  [INIT]: (_, { data }) => data.flow,
+  [INIT]: (_, { data }) => denormalize(data.result, schema, data.entities).flow,
   [RESET]: (_, { flow }) => flow,
   [UPDATE_TREE]: (_, { flow }) => flow,
   [ADD_NEW_ELEMENT]: (state, { element }) => {

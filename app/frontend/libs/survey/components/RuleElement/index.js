@@ -1,3 +1,4 @@
 import RuleElement from './components/RuleElement'
+import connect from './connect'
 
-export default RuleElement
+export default connect(RuleElement)

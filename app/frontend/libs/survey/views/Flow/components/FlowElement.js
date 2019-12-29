@@ -56,7 +56,13 @@ export class FlowElement extends Component {
     return (
       <div>
         <div className={`${styles.element} ${styles[model.type]}`}>
-          <View model={model} onRemove={this.remove} onAddBelow={this.addBelow} onDuplicate={this.duplicate} />
+          <View
+            {...this.props}
+            model={model}
+            onRemove={this.remove}
+            onAddBelow={this.addBelow}
+            onDuplicate={this.duplicate}
+          />
         </div>
         <div className={styles.row}>
           {this.canAddMore(model.type) && (

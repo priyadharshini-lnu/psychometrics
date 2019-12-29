@@ -12,16 +12,21 @@ let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
+const middleware = [api, socket, sagaMiddleware]
+
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
     composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  }
+  if (!__DISABLE_LOGGER_) {
+    middleware.push(logger)
   }
 }
 
 const store = createStore(
   rootReducers,
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(api, socket, sagaMiddleware, logger)),
+  composeEnhancers(applyMiddleware(...middleware)),
 )
 
 sagaMiddleware.run(rootSagas)

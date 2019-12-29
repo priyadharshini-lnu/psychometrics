@@ -12,32 +12,18 @@ import buttons from './Buttons.scss'
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
   }
 
   state = {
-    fadeout: false,
     showDeleteConfirmation: false,
   }
 
-  componentDidMount () {
-    this.mounted = true
-  }
-
-  componentWillUnmount () {
-    this.mounted = false
-  }
-
   remove = () => {
-    const { model, blockStore, unselect } = this.props
-    this.setState({ fadeout: true, showDeleteConfirmation: false })
-    setTimeout(() => {
-      blockStore.dispatcher.clickRemove(model)
-      unselect()
-      if (this.mounted) {
-        this.setState({ fadeout: false })
-      }
-    }, 400)
+    const {
+      block, model, removeQuestion,
+    } = this.props
+    this.setState({ showDeleteConfirmation: false })
+    removeQuestion(block, model)
   }
 
   update = () => {
@@ -64,10 +50,9 @@ class Question extends Component {
 
   render () {
     const { model, selectedModel } = this.props
-    const { fadeout, showDeleteConfirmation } = this.state
-    const selected = selectedModel === model
+    const { showDeleteConfirmation } = this.state
+    const selected = selectedModel === model.id
     const style = {
-      opacity: fadeout ? 0 : 1,
       cursor: selected ? 'default' : 'pointer',
     }
     return (
@@ -92,7 +77,7 @@ class Question extends Component {
           <p>Are you sure you want to remove? (with template)</p>
         </Confirmation>
         )}
-        <Buttons {...this.props} remove={model.templateId ? this.openConfirmation : this.remove} />
+        <Buttons {...this.props} selected={selected} remove={model.templateId ? this.openConfirmation : this.remove} />
       </div>
     )
   }

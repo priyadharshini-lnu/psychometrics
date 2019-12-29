@@ -5,6 +5,8 @@ import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
 import LogicElement from 'models/logic/LogicElement'
+import Question from 'models/Question'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './PropertyPanel.scss'
 
 class PropertyPanel extends Component {
@@ -18,19 +20,20 @@ class PropertyPanel extends Component {
   }
 
   addPageBreak = () => {
-    const { question } = this.props
-    question.addPageBreak()
+    const { question, addPageBreak } = this.props
+    addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))
   }
 
   preview = () => {
     const { question, openPreview } = this.props
-    question.resetResult()
     openPreview({ question })
   }
 
   copyQuestion = () => {
-    const { question } = this.props
-    question.clone()
+    const { copyQuestion, question } = this.props
+    const newQuestionParams = _.extend({}, _.cloneDeep(question), { id: null })
+    const newQuestion = new Question(newQuestionParams)
+    copyQuestion(question, newQuestion)
   }
 
   displayLogic = () => {
@@ -39,15 +42,15 @@ class PropertyPanel extends Component {
   }
 
   addSkipLogic = () => {
-    const { question } = this.props
-    question.addSkipLogic()
+    const { question, addSkipLogic } = this.props
+    addSkipLogic(question)
   }
 
   changeType = (type, props = {}) => {
-    const { question } = this.props
+    const { question, changeType } = this.props
     if (question.type === type && props === {}) { return }
     Action('QuestionChangeType', question, { oldType: question.type, newType: type })
-    question.changeType(type, props)
+    changeType(question, type, props)
     store.update()
     this.forceUpdate()
   }
@@ -121,14 +124,16 @@ class PropertyPanel extends Component {
       top: offset,
       visibility: question ? 'visible' : 'hidden',
     }
+
     if (!question) { return null }
+    const q = QuestionSerializer.wrap(question)
     return (
       <div className={styles.main} style={style}>
-        {this.renderQuestiontypeBtn(question)}
+        {this.renderQuestiontypeBtn(q)}
         <hr className={styles.divider} />
-        {this.renderCustomProperties(question)}
+        {this.renderCustomProperties(q)}
         <hr className={styles.divider} />
-        {this.renderDefaultAction(question)}
+        {this.renderDefaultAction(q)}
       </div>
     )
   }

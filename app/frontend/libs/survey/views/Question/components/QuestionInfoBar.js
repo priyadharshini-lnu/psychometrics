@@ -9,7 +9,6 @@ import styles from './Question.scss'
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
   }
 
   addNote = () => {
@@ -18,8 +17,8 @@ class Question extends Component {
   }
 
   addSkipLogic = () => {
-    const { model } = this.props
-    model.addSkipLogic()
+    const { addSkipLogic, model } = this.props
+    addSkipLogic(model)
   }
 
   invokeAdvanced = (element) => {
@@ -29,12 +28,12 @@ class Question extends Component {
 
   randomization = () => {
     const { model, openRandomization } = this.props
-    openRandomization({ model, entityName: 'choice' })
+    openRandomization({ id: model.id, entityName: 'choice' })
   }
 
   saveAsTemplate = () => {
-    const { model, blockStore } = this.props
-    blockStore.dispatcher.saveAsTemplate(model)
+    const { saveAsTemplate, model } = this.props
+    saveAsTemplate(model)
   }
 
   defaultValue = () => {
@@ -46,21 +45,27 @@ class Question extends Component {
     const { model, openDisplayLogic } = this.props
     openDisplayLogic({
       question: model,
-      logicElement: model.displayLogic || new LogicElement(),
+      logicElement: model.display_logic || new LogicElement(),
     })
   }
 
   changeName = (value) => {
-    const { model, blockStore } = this.props
-    blockStore.dispatcher.rename(model, value)
-    model.rename(value)
-    model.name = value
-    this.forceUpdate()
+    const { renameQuestion, model } = this.props
+    renameQuestion(model, value)
+  }
+
+  hasDefaultValues (model) {
+    if (model.props.defaultValues.length > 0) {
+      return model.type !== 'TextEntry' || _.some(
+        model.props.defaultValues, object => object.value,
+      )
+    }
+    return false
   }
 
   renderRandomMenuItem () {
-    const { model } = this.props
-    if (model.moduleConfig.randomization) {
+    const { moduleConfig } = this.props
+    if (moduleConfig.randomization) {
       return (
         <MenuItem onSelect={this.randomization}>
           <span className={`icon fa fa-random ${styles.menuicon}`} />
@@ -72,8 +77,8 @@ class Question extends Component {
   }
 
   renderAddToTemplate () {
-    const { model } = this.props
-    if (!model.templateId && !model.block.templateId) {
+    const { model, block } = this.props
+    if (!model.templateId && !block.templateId) {
       return (
         <MenuItem onSelect={this.saveAsTemplate}>
           <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />
@@ -85,8 +90,8 @@ class Question extends Component {
   }
 
   renderDefaultValueMenuItem () {
-    const { model } = this.props
-    if (model.moduleConfig.defaultValue) {
+    const { moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
       return (
         <MenuItem onSelect={this.defaultValue}>
           <span className={`icon fa fa-dot-circle-o ${styles.menuicon}`} />
@@ -126,8 +131,8 @@ class Question extends Component {
   }
 
   renderRandomLabel () {
-    const { model } = this.props
-    if (model.moduleConfig.randomization) {
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.randomization) {
       return model.props.randomization.type !== 'No' && (
         <div title="This question has randomization" className={styles.randomized}>
           <span className="fa fa-random" />
@@ -138,9 +143,9 @@ class Question extends Component {
   }
 
   renderDefaultValue () {
-    const { model } = this.props
-    if (model.moduleConfig.defaultValue) {
-      return model.hasDefaultValues() && (
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
+      return this.hasDefaultValues(model) && (
         <div title="This question has default choices" className={styles.randomized}>
           <span className="fa fa-dot-circle-o" />
         </div>

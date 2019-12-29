@@ -1,42 +1,45 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from './Buttons.scss'
 
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
     up: PropTypes.string,
     remove: PropTypes.func,
   }
 
   moveDown = () => {
-    const { blockStore, model } = this.props
-    blockStore.dispatcher.moveDown(model)
+    const {
+      moveQuestionDown, block, blocksOrder, model,
+    } = this.props
+    moveQuestionDown(model, block, blocksOrder)
   }
 
   moveUp = () => {
-    const { blockStore, model } = this.props
-    blockStore.dispatcher.moveUp(model)
+    const {
+      moveQuestionUp, block, blocksOrder, model,
+    } = this.props
+    moveQuestionUp(model, block, blocksOrder)
   }
 
   insertBottom = () => {
-    const { blockStore, model } = this.props
-    blockStore.dispatcher.insertAfter(model)
+    const { insertAfterQuestion, model, block } = this.props
+    insertAfterQuestion(block, model)
   }
 
   insertTop = () => {
-    const { blockStore, model } = this.props
-    blockStore.dispatcher.insertBefore(model)
+    const { insertBeforeQuestion, model, block } = this.props
+    insertBeforeQuestion(block, model)
   }
 
   render () {
-    const { model, up, remove } = this.props
-    const selected = PropertyPanelStore.question === model
+    const {
+      selected, up, remove,
+    } = this.props
 
     return (
-      <div>
+      <div onClick={e => e.stopPropagation()}>
         <div className={`${styles.left} ${up || ''}`}>
           <a onClick={this.moveUp} className={`btn btn-primary ${styles.moveBtn} ${styles.up}`}>
             <span className={`fa fa-arrow-up ${styles.btnicon}`} />

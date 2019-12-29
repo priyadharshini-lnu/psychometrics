@@ -1,13 +1,17 @@
 import { connect } from 'react-redux'
-import { open, close } from 'libs/survey/core/modals'
+import { close } from 'libs/survey/core/modals'
+import { selectQuestion } from 'core/builder/assessment/question/selectors'
+import QuestionSerializer from 'models/QuestionSerializer'
 
 export default connect(
-  state => ({
-    show: state.survey.modals.defaultValue.show,
-    ...state.survey.modals.defaultValue.data,
+  ({ survey: { modals, builder } }) => ({
+    show: modals.defaultValue.show,
+    ...modals.defaultValue.data,
+    question: QuestionSerializer.wrap(modals.defaultValue.data
+      ? selectQuestion(builder, modals.defaultValue.data.model.id)
+      : null),
   }),
   {
-    open: question => open('defaultValue', question),
     close: () => close('defaultValue'),
   },
 )

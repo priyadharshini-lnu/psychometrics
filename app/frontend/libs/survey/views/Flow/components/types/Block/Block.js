@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import BlockList from 'store/BlockList'
 import styles from './Block.scss'
 import Controls from '../../Controls'
 
@@ -28,7 +27,7 @@ class Block extends Component {
   }
 
   renderSelect () {
-    const { model } = this.props
+    const { blocks, model } = this.props
     return (
       <div className={`${styles.content} ${styles.selectContent}`}>
         <span className={styles.bold}>Show Block:</span>
@@ -38,13 +37,14 @@ class Block extends Component {
           className={`form-control ${styles.select}`}
         >
           <option>Select a block...</option>
-          {_.map(BlockList.list, block => <option key={block.id} value={block.id}>{block.name}</option>)}
+          {_.map(blocks, block => <option key={block.id} value={block.id}>{block.name}</option>)}
         </select>
       </div>
     )
   }
 
   renderBlock (block) {
+    const { questions } = this.props
     const { showQuestions } = this.state
     return (
       <div className={styles.content}>
@@ -55,20 +55,22 @@ class Block extends Component {
           </span>
           <a className={styles.questionsCount} onClick={this.toggleQuestions}>
             (
-            {block.questions.list.length}
+            {block.questions.length}
             {' '}
             Questions)
           </a>
         </div>
         {showQuestions && (
         <div className={styles.questions}>
-          {_.map(block.questions.list, (question, i) => (
-            <div key={i} className={styles.question}>
-              <span className={`${styles.icon} fa fa-${question.moduleConfig.icon}`} />
-              <span className={styles.bold}>{question.name}</span>
-              <span>{question.props.questionText}</span>
-            </div>
-          ))}
+          {_.map(block.questions, (id) => {
+            const question = _.find(questions, { id })
+            return (
+              <div key={id} className={styles.question}>
+                <span className={styles.bold}>{question.name}</span>
+                <span>{question.props.questionText}</span>
+              </div>
+            )
+          })}
         </div>
         )}
       </div>
@@ -77,9 +79,9 @@ class Block extends Component {
 
   render () {
     const {
-      model, onRemove, onAddBelow, onDuplicate, onMove,
+      model, onRemove, onAddBelow, onDuplicate, onMove, blocks,
     } = this.props
-    const current = _.find(BlockList.list, { id: +model.props.current })
+    const current = _.find(blocks, { id: +model.props.current })
     return (
       <div>
         <div className={styles.row}>

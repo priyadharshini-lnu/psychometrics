@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
-import BlockDispatcher from 'dispatchers/BlockDispatcher'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionList from 'views/BlockCenter/QuestionList'
 import PropertyPanelStore from 'store/PropertyPanelStore'
@@ -25,9 +24,8 @@ class Block extends Component {
   }
 
   changeName = (value) => {
-    const { model } = this.props
-    BlockDispatcher.rename(model, value)
-    this.forceUpdate()
+    const { renameBlock, model } = this.props
+    renameBlock(model, value)
   }
 
   questionRandomization = () => {
@@ -70,7 +68,7 @@ class Block extends Component {
   }
 
   render () {
-    const { model, last } = this.props
+    const { model, last, createBlock } = this.props
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -88,7 +86,7 @@ class Block extends Component {
         </div>
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
-          <Footer model={model} onMinimize={this.expand} last={last} />
+          <Footer createBlock={createBlock} model={model} onMinimize={this.expand} last={last} />
         </div>
       </div>
     )

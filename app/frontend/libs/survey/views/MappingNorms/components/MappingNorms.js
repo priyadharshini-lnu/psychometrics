@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import store from 'store/MappingNormsStore'
 import RuleElement from 'components/RuleElement'
 import { Modal } from 'react-bootstrap'
+import Rule from 'models/Rule'
 import styles from './MappingNorms.scss'
 
 const {
@@ -10,42 +10,33 @@ const {
 } = Modal
 
 export class MappingNorms extends Component {
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   save = () => {
-    store.save()
-  }
-
-  cancel = () => {
-    store.close()
-    this.forceUpdate()
+    const { close } = this.props
+    close()
   }
 
   addRule = () => {
-    store.addRule()
-    this.forceUpdate()
+    const { addNormRule } = this.props
+    addNormRule(new Rule({ conditions: [{ conditionType: 'Hris' }] }))
   }
 
   renderRules () {
-    return _.map(store.assessment.norm_rules, (rule, index) => (
+    const { norms } = this.props
+
+    return _.map(norms, (rule, index) => (
       <RuleElement key={index} model={rule} />
     ))
   }
 
   render () {
-    if (!store.show) { return null }
+    const { assessment, show, close } = this.props
+    if (!show) { return null }
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>
           <Title>
-            {store.assessment.name}
-: Mapping Norms
+            {assessment.name}
+            : Mapping Norms
           </Title>
         </Header>
         <Body bsClass={styles.body}>
@@ -57,7 +48,7 @@ export class MappingNorms extends Component {
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.cancel}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

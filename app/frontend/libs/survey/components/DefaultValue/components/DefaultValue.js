@@ -10,22 +10,22 @@ const { Title } = Modal
 
 export default class extends Component {
   clear = () => {
-    const { model } = this.props
-    model.resetDefaultValues()
+    const { question } = this.props
+    question.resetDefaultValues()
     this.forceUpdate()
   }
 
   save = () => {
-    const { model, close } = this.props
-    model.props.defaultValues = model.result.answers
-    model.updateDefaultProps()
+    const { question, close } = this.props
+    question.props.defaultValues = question.result.answers
+    question.updateDefaultProps()
     close()
   }
 
   renderModulePreview () {
-    const { model } = this.props
-    const View = Previews[`${model.type}Preview`]
-    return <View model={model} />
+    const { question } = this.props
+    const View = Previews[`${question.type}Preview`]
+    return <View model={question} />
   }
 
   render () {

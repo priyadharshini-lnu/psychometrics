@@ -30,13 +30,19 @@ export class Randomization extends Component {
   }
 
   save = () => {
-    const { model, close } = this.props
+    const {
+      entityName, model, close, updateBlockProps,
+    } = this.props
     const { type, questions } = this.state
     if (type === 'Some' && !questions) {
       NotificationDispatcher.notify({ level: 'error', message: 'You must enter a value' })
     } else {
-      model.props.randomization = this.state
-      model.update()
+      if (entityName === 'choice') {
+        model.props.randomization = this.state
+        model.update()
+      } else {
+        updateBlockProps(model, { randomization: this.state })
+      }
       close()
     }
   }

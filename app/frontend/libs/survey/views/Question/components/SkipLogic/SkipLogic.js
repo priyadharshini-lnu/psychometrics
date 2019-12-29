@@ -9,16 +9,15 @@ class SkipLogicList extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  removeCondition = (index) => {
-    const { model } = this.props
-    model.skipLogic.splice(index, 1)
-    model.update()
-    this.forceUpdate()
+  removeCondition = (condition) => {
+    const { model, removeSkipLogic } = this.props
+    removeSkipLogic(model, condition)
   }
 
   render () {
-    const { model: { skipLogic }, model } = this.props
-
+    const {
+      model: { skip_logic: skipLogic }, model, blocks,
+    } = this.props
     if (skipLogic.length === 0) {
       return (<div />)
     }
@@ -27,6 +26,7 @@ class SkipLogicList extends Component {
       <div className={styles.skipLogicList}>
         {_.map(skipLogic, (condition, id) => (
           <Condition
+            blocks={blocks}
             question={model}
             key={id}
             condition={condition}

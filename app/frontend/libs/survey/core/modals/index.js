@@ -36,6 +36,18 @@ export const defaultState = {
     show: false,
     data: null,
   },
+  customValidation: {
+    show: false,
+    data: null,
+  },
+  createByTemplate: {
+    show: false,
+    data: null,
+  },
+  mapNorms: {
+    show: false,
+    data: null,
+  },
 }
 
 const HANDLERS = {

@@ -1,3 +1,4 @@
 import PageBreak from './components/PageBreak'
+import connect from './connect'
 
-export default PageBreak
+export default connect(PageBreak)
