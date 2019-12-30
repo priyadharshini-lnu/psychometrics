@@ -110,21 +110,23 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def norm_used
-    norm_data = assigns.pluck(:norm_data).compact
-    return if norm_data.blank?
+    norms = Norm.where(id: assigns.map { |assign| assign.norm_data&.dig('id') }.compact).index_by(&:id)
 
-    norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
-    norms.map do |norm|
-      norm&.decorate&.display_name
+    assigns.each_with_object({}) do |assign, acc|
+      norm_id = assign.norm_data&.dig('id')
+      next unless norm_id
+
+      acc[assign.assessment_id] = norms[norm_id.to_i]&.decorate&.display_name
     end
   end
 
   # Used for Piped Text
   def result_locale
-    assigns.map do |assign|
+    assigns.each_with_object({}) do |assign, acc|
       locale = assign.selected_locale || I18n.default_locale
-      I18n.t("languages.#{locale}")
-    end.uniq
+
+      acc[assign.assessment_id] = I18n.t("languages.#{locale}")
+    end
   end
 
   def assigns

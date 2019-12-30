@@ -152,8 +152,8 @@ class Text extends Component {
           first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
           last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),
           completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
-          norm_used: _.get(AppStore, 'report.norm_used', '{{norm_used}}'),
-          locale_name: _.get(AppStore, 'report.result_locale', '{{locale_name}}'),
+          norm_used: _.get(AppStore, ['report', 'norm_used', model.assessment_id], '{{norm_used}}'),
+          locale_name: _.get(AppStore, ['report', 'result_locale', model.assessment_id], '{{locale_name}}'),
         })
         return (
           <div
