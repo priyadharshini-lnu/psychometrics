@@ -23,6 +23,10 @@ tr id=dom_id(resource)
                           toggle: 'tooltip',
                           title: t('.tooltips.reset') })
           span.fa.fa-trash-o
+      - if assessment.hogan?
+        div
+          - participant_id = membership.membership_with_result&.hogan_credential&.participant_id
+          = participant_id ? "(Hogan ID: #{participant_id})" : "(Hogan id not created yet)"
   td = assessment.try(:name)
   td = assessment.try(:decorate).try(:category)
   td = resource.decorate.status
