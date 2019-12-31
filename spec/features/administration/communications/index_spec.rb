@@ -92,6 +92,7 @@ feature 'Operations on communications#index', js: true do
         find('button[data-id=q_kind_in]').click
         find('.q_kind_in ul > li:nth-child(2) a').click
       end
+      sleep 0.8
       wait_for_ajax
       expect(page.all('tbody tr').size).to eq(1)
     end
