@@ -80,7 +80,7 @@ module AdministrationHelper
     content_tag :div, class: 'alert alert-danger' do
       concat content_tag 'strong', 'There are some problems:'
       concat content_tag 'ul', resource.errors.full_messages.
-        map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
+        map { |msg| content_tag('li', raw(msg)) }.join.html_safe, class: 'list-unstyled'
     end
   end
 
