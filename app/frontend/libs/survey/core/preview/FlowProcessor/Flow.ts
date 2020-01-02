@@ -1,4 +1,4 @@
-import Block from './branches/Block'
+import Block from './types/Block'
 
 interface FlowInterface {
   block: Block,

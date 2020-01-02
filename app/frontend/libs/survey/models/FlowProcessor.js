@@ -8,13 +8,11 @@ import NormResolver from 'models/NormResolver'
 import Flow from 'models/Flow'
 import CountQuestionSize from 'commands/flow/CountQuestionSize'
 import LocalStorage from '../utils/LocalStorage'
-import FlowTS from './FlowProcesor/Flow'
 
 const { $ } = window
 
 const FlowProcessor = function (store) {
   this.store = store
-  console.log(new FlowTS({}))
   this.fetchQuestions()
   this.flow = store.assessment.flow && store.assessment.flow.elements.length > 0
   this.current = 0

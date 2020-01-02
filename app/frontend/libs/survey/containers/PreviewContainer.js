@@ -1,5 +1,6 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
@@ -7,6 +8,7 @@ import store from 'store/AssessmentPreviewStore'
 import AppStore from 'store/AppStore'
 import I18nStore from 'store/I18nStore'
 import styles from 'layouts/Dashboard/Dashboard.scss'
+import rstore from '../store'
 
 class PreviewContainer extends Component {
   componentDidMount () {
@@ -57,11 +59,13 @@ class PreviewContainer extends Component {
 
   render () {
     return (
-      <div className="row">
-        {store.type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        {AppStore.disabled && this.overlay()}
-        <AssessmentPreview />
-      </div>
+      <Provider store={rstore}>
+        <div className="row">
+          {store.type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          {AppStore.disabled && this.overlay()}
+          <AssessmentPreview />
+        </div>
+      </Provider>
     )
   }
 }

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import modals from './modals'
 import builder from './builder'
 import temp from './temp'
+import preview from './preview'
 
 export default combineReducers({
   survey: combineReducers({
@@ -9,4 +10,5 @@ export default combineReducers({
     builder: combineReducers(builder),
     temp: combineReducers(temp),
   }),
+  preview,
 })
