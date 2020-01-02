@@ -6,11 +6,11 @@ import { addPageBreak, copyQuestion } from 'libs/survey/core/builder/assessment/
 
 export default connect(
   (state) => {
-    const { survey: { builder: { assessment: { timestemp, propPanel } } } } = state
+    const { survey: { builder: { assessment: { timestamp, propPanel } } } } = state
     return ({
       question: selectedQuestion(state.survey.builder, propPanel.question),
       offset: propPanel.offset,
-      timestemp,
+      timestamp,
     })
   },
   {

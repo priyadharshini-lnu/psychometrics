@@ -3,9 +3,9 @@ import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/asses
 import { open } from 'libs/survey/core/modals'
 
 export default connect(
-  ({ survey: { builder: { assessment: { timestemp, propPanel } } } }) => ({
+  ({ survey: { builder: { assessment: { timestamp, propPanel } } } }) => ({
     selectedModel: propPanel.question,
-    timestemp, // NOTE: @fedor used to fake update
+    timestamp, // NOTE: @fedor used to fake update
   }),
   {
     select: selectQuestion,

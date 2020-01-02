@@ -12,11 +12,11 @@ import {
 } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
-  ({ survey: { builder, builder: { assessment, assessment: { timestemp, propPanel } } } }, props) => ({
+  ({ survey: { builder, builder: { assessment, assessment: { timestamp, propPanel } } } }, props) => ({
     selectedModel: propPanel.question,
     blocksOrder: assessment.blocks,
     moduleConfig: moduleConfig(builder, props.model.id),
-    timestemp, // NOTE: @fedor used to fake update
+    timestamp, // NOTE: @fedor used to fake update
   }),
   {
     select: selectQuestion,

@@ -22,6 +22,7 @@ class SkipLogicList extends Component {
       return (<div />)
     }
 
+
     return (
       <div className={styles.skipLogicList}>
         {_.map(skipLogic, (condition, id) => (

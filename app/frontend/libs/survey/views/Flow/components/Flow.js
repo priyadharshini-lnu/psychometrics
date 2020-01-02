@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import Tree from 'libs/react-tree'
+import Tree from 'libs/ReactTree'
 import AppStore from 'store/AppStore'
 import styles from './Flow.scss'
 import ButtonNew from './ButtonNew'
 import FlowElement from './FlowElement'
-import 'libs/react-tree/react-ui-tree.scss'
+import 'libs/ReactTree/ReactUiTree.scss'
 
 const {
   Header, Body, Footer, Title,

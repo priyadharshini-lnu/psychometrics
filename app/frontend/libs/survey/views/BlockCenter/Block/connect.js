@@ -4,9 +4,9 @@ import { open } from 'libs/survey/core/modals'
 import { createBlock, renameBlock } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
-  ({ survey: { builder: { assessment: { timestemp, propPanel } } } }) => ({
+  ({ survey: { builder: { assessment: { timestamp, propPanel } } } }) => ({
     selectedModel: propPanel.question,
-    timestemp, // NOTE: @fedor used to fake update
+    timestamp, // NOTE: @fedor used to fake update
   }),
   {
     select: selectQuestion,

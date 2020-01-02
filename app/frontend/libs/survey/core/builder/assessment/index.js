@@ -97,7 +97,7 @@ const HANDLERS = {
     _.remove(rules, rule)
     return setIn(state, ['norm_rules'], rules)
   },
-  [FAKE_UPDATE]: state => ({ ...state, timestemp: new Date() }),
+  [FAKE_UPDATE]: state => ({ ...state, timestamp: new Date() }),
 
 }
 
