@@ -1,3 +1,4 @@
 import Page from './components/Page'
+import connect from './connect'
 
-export default Page
+export default connect(Page)

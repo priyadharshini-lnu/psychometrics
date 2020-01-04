@@ -4,7 +4,7 @@ import FlowProcessor from 'models/FlowProcessor'
 import Result from 'models/Preview/Result'
 import Question from 'models/Preview/Question'
 import LocalStorage from 'utils/LocalStorage'
-import rstore from './'
+import rstore from '.'
 
 // TODO (atanych): Replace current RandOrder with new one to lookup question was answered or not.
 // TODO (atanych): After it we might remove RankOrder from list below
@@ -55,7 +55,7 @@ _.extend(AssessmentPreviewStore.prototype, {
     }
 
     // init data before flow initializing
-    rstore.dispatch({type: 'flow_processor/INIT', data, results: this.results })
+    rstore.dispatch({ type: 'flow_processor/INIT', data, results: this.results })
     this.flow = new FlowProcessor(this)
   },
 

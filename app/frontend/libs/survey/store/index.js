@@ -3,6 +3,7 @@ import logger from 'redux-logger'
 import api from 'middleware/api'
 import createSagaMiddleware from 'redux-saga'
 import socket from '../middleware/Socket'
+import flow from '../core/preview/FlowProcessor/middleware'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
 
@@ -12,7 +13,7 @@ let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
-const middleware = [api, socket, sagaMiddleware]
+const middleware = [api, socket, sagaMiddleware, flow]
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {

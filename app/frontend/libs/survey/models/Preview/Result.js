@@ -5,6 +5,7 @@ import Validations from 'models/Validations'
 import I18nStore from 'store/I18nStore'
 import PreviewStore from 'store/AssessmentPreviewStore'
 import LocalStorage from 'utils/LocalStorage'
+import rstore from 'store'
 import Results from './Results'
 
 const Result = function (question, answers = null, notApplicable = null) {
@@ -108,6 +109,7 @@ _.extend(Result.prototype, {
     LocalStorage.setIn(key, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
+    rstore.dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
     PreviewStore.update()
   },
 

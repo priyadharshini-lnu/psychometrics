@@ -64,7 +64,8 @@ class Page extends Component {
   }
 
   render () {
-    const { page } = this.props
+    const { page, questions } = this.props
+    if (!page) { return }
     return (
       <div className={`${styles.block} fe-ass-page-container-${store.type}`}>
         <div className={styles.logo}>
@@ -74,7 +75,7 @@ class Page extends Component {
         {store.readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         {store.type !== 'preview_block' && store.assessment.enable_progress && this.renderProgressBar()}
         {!store.ignoreValidation && page.errors.length > 0 && this.renderErrors(page)}
-        <QuestionList page={page} />
+        <QuestionList page={page} questions={questions} />
         {store.type !== 'preview_block' && <Footer page={page} />}
       </div>
     )

@@ -7,22 +7,34 @@
       "es6",
       "dom"
     ],
-    "module":"es6",
+    "module":"commonjs",
     "moduleResolution":"node",
     "sourceMap":true,
     "target":"es5",
     "jsx":"react",
     "allowJs": true,
     "allowSyntheticDefaultImports":true,
+    "esModuleInterop": true ,
     "noImplicitAny":false,
     "noImplicitThis":true,
     "noImplicitReturns":true,
-    "strictNullChecks":true
+    "strictNullChecks":true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "app/frontend/*",
+        "app/frontend/libs/survey*"
+      ]
+    }
   },
   "exclude": [
     "**/*.spec.ts",
     "node_modules",
     "public"
+  ],
+  "include": [
+    "app/frontend",
+    "app/frontend/libs/survey",
   ],
   "compileOnSave":false
 }
