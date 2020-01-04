@@ -53,7 +53,7 @@ test('simple block with question with skip_logic two pages', () => {
 });
 
 
-test('simple two block', () => {
+test('simple two blocks', () => {
   const blocks = [{
     id: 1,
     questions: [question(1), question(2), question(3)]

@@ -28,7 +28,7 @@ export const pageQuestions = createSelector(
 export const questionErrors = createSelector(
   selectQuestion,
   errors,
-  (question, errors) => errors[question.id] || []
+  (question, errors) => (errors && errors[question.id]) || []
 )
 
 

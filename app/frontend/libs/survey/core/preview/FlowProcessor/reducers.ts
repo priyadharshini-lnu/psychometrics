@@ -1,9 +1,10 @@
 import { createReducer } from 'utils/reduxUtils'
 import { initPages } from './helpers'
-import { assessment } from 'store/schema'
+import { assessment } from '../../../store/schema'
 import { normalize } from 'normalizr'
 import {INIT, NEXT_PAGE, ANSWER} from './actions'
 import { getIn, setIn, updateIn } from 'utils/immutable'
+import ValidationProcessor from './ValidationProcessor'
 
 const defaultState = {
   elements: [],
@@ -15,7 +16,7 @@ const defaultState = {
   results: {},
   currentBlock: null,
   currentPage: 0,
-  errors: {}, //{[question_id]: [errors]}
+  errors: null, //{[question_id]: [errors]}
   end: false,
 }
 

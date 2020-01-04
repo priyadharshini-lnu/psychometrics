@@ -1,11 +1,9 @@
-import AppStore from 'store/AppStore'
-import { normalize } from 'normalizr'
 import { NEXT_PAGE } from './actions'
 
 const FlowMiddleware = ({ state, dispatch }) => next => (action) => {
   if (action.type !== NEXT_PAGE) { return next(action) }
 
-  // run validation processor and dispatch show page and question errors
+  // run validation processor and dispatch show errors
 
   // save current page and results in pages
 

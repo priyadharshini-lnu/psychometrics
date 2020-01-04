@@ -1,7 +1,6 @@
 
 
-export default function DisplayLogicProcessor (page, questions) {
-  const errors = []
+export default function DisplayLogicProcessor (questions, results, logic) {
 
-  return errors
+  return false
 }

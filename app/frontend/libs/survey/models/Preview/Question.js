@@ -6,7 +6,7 @@ import Condition from '../QuestionCondition'
 import Result from './Result'
 import TranslateManager from '../mixins/TranslateManager'
 
-const Question = function (attrs = {}, store, results = {}) {
+export const Question = function (attrs = {}, store, results = {}) {
   this.id = attrs.id
   this.store = store
   this.position = attrs.position

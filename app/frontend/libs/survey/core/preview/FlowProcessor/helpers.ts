@@ -1,24 +1,5 @@
 import _ from 'lodash'
-import React from 'react'
-import { block } from '../../../store/schema'
-
-interface Question {
-  id: number,
-  deleted?: boolean,
-  type?: string,
-  display_logic?: object,
-  skip_logic?: object[],
-}
-
-interface Block {
-  id: number,
-  deleted?: boolean,
-  questions: Question[]
-}
-
-interface BlocksInterface {
-  blocks: Block[]
-}
+import { BlocksInterface } from './interfaces'
 
 export const initPages = (data: BlocksInterface) => {
   const { blocks } = data
