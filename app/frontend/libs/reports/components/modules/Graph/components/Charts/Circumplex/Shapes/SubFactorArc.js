@@ -36,7 +36,7 @@ class SubFactorArc extends BaseArc {
         return `translate(${this.getTextTranslate(data, i)})rotate(${this.textAngle(data, i)})`
       })
       .attr('text-anchor', 'middle')
-      .style('fill', d => d.data.color)
+      .style('fill', '#6C6C6C')
       .style('font-size', this.model.props.style.fontSize)
       .style('font-family', this.model.props.style.fontFamily)
       .text(d => d.data.name)
