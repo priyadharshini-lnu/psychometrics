@@ -20,19 +20,20 @@ class Page extends Component {
     Utils.scroll(hash)
   }
 
-  renderErrors (page) {
+  renderErrors () {
+    const { errors } = this.props
     const styleForTitle = this.addLtrStyleIfNeed(I18nStore.t('validations.title'))
     const styleForIssue = this.addLtrStyleIfNeed(I18nStore.t('validations.issue'))
     return (
       <div className={styles.errors}>
         <h1 style={styleForTitle}>{I18nStore.t('validations.title')}</h1>
         <ul style={styleForTitle}>
-          {page.errors.map(({ question, errors }, i) => (
-            <li key={i} style={styleForIssue}>
-              <a onClick={this.scroll.bind(this, `question_${question.id}`)}>
+          {_.map(errors, (errors, id) => (
+            <li key={id} style={styleForIssue}>
+              <a onClick={this.scroll.bind(this, `question_${id}`)}>
                 {I18nStore.t('validations.issue')}
                 {' '}
-                {i + 1}
+                {id + 1}
               </a>
               <ul>
                 {_.map(errors, (error, j) => (
@@ -64,7 +65,9 @@ class Page extends Component {
   }
 
   render () {
-    const { page, questions } = this.props
+    const {
+      page, questions, errors, nextPage,
+    } = this.props
     if (!page) { return }
     return (
       <div className={`${styles.block} fe-ass-page-container-${store.type}`}>
@@ -74,9 +77,9 @@ class Page extends Component {
 
         {store.readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         {store.type !== 'preview_block' && store.assessment.enable_progress && this.renderProgressBar()}
-        {!store.ignoreValidation && page.errors.length > 0 && this.renderErrors(page)}
+        {!store.ignoreValidation && errors && this.renderErrors(page)}
         <QuestionList page={page} questions={questions} />
-        {store.type !== 'preview_block' && <Footer page={page} />}
+        {store.type !== 'preview_block' && <Footer page={page} nextPage={nextPage} />}
       </div>
     )
   }

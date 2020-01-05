@@ -14,7 +14,9 @@ class PageFooter extends Component {
   }
 
   next = () => {
-    store.nextPage()
+    const { nextPage } = this.props
+    nextPage()
+    // store.nextPage()
   }
 
   render () {

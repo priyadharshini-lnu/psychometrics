@@ -31,6 +31,8 @@ export const questionErrors = createSelector(
   (question, errors) => (errors && errors[question.id]) || []
 )
 
+export const pageErrors = state => state.errors
+
 
 export const questionResults = createSelector(
   selectQuestion,
