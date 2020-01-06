@@ -28,7 +28,7 @@ module Assessments
           @blocks_mapping[block.id] = new_block.id
 
           # Replace original Block Id to New Block Id
-          flow = update_id_in_json_config(flow, block.id, 'current', 'blocks')
+          flow = update_id_in_json_config(flow, block.id, @blocks_mapping, 'current')
 
           # Loop questions to save for the new block
           block.questions.each do |question|
@@ -52,8 +52,8 @@ module Assessments
         # Replace original Question Id to New Question Id
         # flow, norm_rules = update_flow_and_norm_rules(new_assessment, flow, norm_rules)
         new_assessment.questions.each do |question|
-          flow = update_id_in_json_config(flow, question.id)
-          norm_rules = update_id_in_json_config(norm_rules, question.id)
+          flow = update_id_in_json_config(flow, question.id, @questions_mapping)
+          norm_rules = update_id_in_json_config(norm_rules, question.id, @questions_mapping)
         end
         new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
 
@@ -99,12 +99,12 @@ module Assessments
           next if json.blank? || json.starts_with?('null')
 
           question_ids = json.scan(/\"subject\":\"?(\d+)\"?/).flatten
-          question_ids.each { |question_id| json = update_id_in_json_config(json, question_id) }
+          question_ids.each { |question_id| json = update_id_in_json_config(json, question_id, @questions_mapping) }
 
           if column == 'skip_logic'
             block_ids = json.scan(/\"destinationBlock\":\"?(\d+)\"?/).flatten
             block_ids.each do |id|
-              json = update_id_in_json_config(json, id, 'destinationBlock', 'blocks')
+              json = update_id_in_json_config(json, id, @blocks_mapping, 'destinationBlock')
             end
           end
           question.update_attribute(column, JSON.parse(json))
@@ -112,9 +112,8 @@ module Assessments
       end
     end
 
-    def update_id_in_json_config(json, value, key = 'subject', obj_group = 'questions')
-      container = instance_variable_get("@#{obj_group}_mapping")
-      json.gsub(/\"#{key}\":\"?#{value}\"?/, "\"#{key}\":#{container[value.to_i]}")
+    def update_id_in_json_config(json, value, mapping, key = 'subject')
+      json.gsub(/\"#{key}\":\"?#{value}\"?/, "\"#{key}\":#{mapping[value.to_i]}")
     end
   end
 end
