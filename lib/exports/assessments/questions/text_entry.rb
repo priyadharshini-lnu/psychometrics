@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class TextEntry
+      class TextEntry < Base
         # FROM:
         #   [{
         #     "index": 0,
@@ -38,6 +38,22 @@ module Exports
             parsed_header << "QID#{question.id}"
           end
           parsed_header
+        end
+
+        def self.headers_by_choices(question)
+          question_id_header = []
+          question_choices_header = []
+
+          if %w[Form].include?(question.props['type'])
+            question.props['choices'].to_i.times do |c|
+              question_id_header << "QID#{question.id}_#{c + 1}"
+              question_choices_header << question.props.dig('choicesTexts', c)
+            end
+          else
+            question_id_header << "QID#{question.id}"
+          end
+
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
 
         def self.single_answer?(answers)

@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class MetaInfo
+      class MetaInfo < Base
         FIELDS = %w[browser version os screen java flash userAgent].freeze
 
         # Parse RESULT data for XLSX
@@ -12,7 +12,7 @@ module Exports
         end
 
         # Parse HEADER data for XLSX
-        def self.header(question)
+        def self.question_id_header(question)
           parsed_header = []
           FIELDS.map { |field| parsed_header << "QID#{question.id}_#{field}" }
           parsed_header

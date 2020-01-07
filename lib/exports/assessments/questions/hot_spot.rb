@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class HotSpot
+      class HotSpot < Base
         # FROM:
         #   [{
         #     "value": true/false/null,
@@ -32,13 +32,14 @@ module Exports
           Utility::Array.ensure_size(parsed_result, required_size)
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          question.props['regions'].size.times do |r|
-            parsed_header << "QID#{question.id}_#{r + 1}"
+        def self.headers_by_choices(question)
+          question_id_header = []
+          question_choices_header = []
+          question.props['regions'].to_i.times do |r|
+            question_id_header << "QID#{question.id}_#{r + 1}"
+            question_choices_header << question.props.dig('regionsNames', c)
           end
-          parsed_header
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

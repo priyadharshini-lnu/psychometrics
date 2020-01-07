@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class GapAnalysis
+      class GapAnalysis < Base
         # FROM:
         # {
         #   "scale": 0,
@@ -23,12 +23,15 @@ module Exports
           Utility::Array.ensure_size(answers, required_size)
         end
 
-        def self.header(question)
-          parsed_header = []
+        def self.headers_by_choices(question)
+          question_id_header = []
+          question_choices_header = []
           question.props['choices'].to_i.times do |c|
-            parsed_header << ["QID#{question.id}_#{c + 1}", "QID#{question.id}_#{c + 1}_WHY"]
+            question_id_header << ["QID#{question.id}_#{c + 1}", "QID#{question.id}_#{c + 1}_WHY"]
+            question_choices_header << [question.props.dig('choicesTexts', c),
+                                        "#{question.props.dig('choicesTexts', c)} | Why?"]
           end
-          parsed_header.flatten
+          { question_id_header: question_id_header.flatten, question_choice_header: question_choices_header.flatten }
         end
       end
     end

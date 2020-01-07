@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class PickGroupRank
+      class PickGroupRank < Base
         # FROM:
         #   [{
         #     "scale": 0,  - Group ID
@@ -38,18 +38,24 @@ module Exports
           Utility::Array.ensure_size(parsed_result, required_size)
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
+        def self.headers_by_choices(question)
+          question_id_header = []
+          question_choices_header = []
+
           question.props['scalePoints'].to_i.times do |s|
-            parsed_header << "QID#{question.id}_#{s + 1}_GROUP"
+            question_id_header << "QID#{question.id}_#{s + 1}_GROUP"
+            question_id_header << question.props.dig('scalePointsTexts', s)
           end
+
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
               parsed_header << "QID#{question.id}_#{s + 1}_#{c + 1}_RANK"
+              question_id_header << "#{question.props.dig('scalePointsTexts', c)} |
+                #{question.props.dig('choicesTexts', c)}"
             end
           end
-          parsed_header
+
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

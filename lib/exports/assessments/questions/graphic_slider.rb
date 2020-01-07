@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class GraphicSlider
+      class GraphicSlider < Base
         # FROM:
         #   [{"value": 5}]
         # TO:
@@ -14,7 +14,7 @@ module Exports
           Utility::Array.ensure_size(answers, required_size)
         end
 
-        def self.header(question)
+        def self.question_id_header(question)
           ["QID#{question.id}"]
         end
       end
