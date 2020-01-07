@@ -34,6 +34,7 @@ module Users
       attributes = form.attributes.except(:registration_code)
       attributes[:project_id] = project.id
       attributes[:terms] = true
+      attributes[:create_by_invite] = true
       User.create(attributes)
     end
 

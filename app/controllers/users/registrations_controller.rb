@@ -20,10 +20,9 @@ module Users
             @form.errors[:base] << I18n.t('administration.clients.registration_codes.errors.license_issue')
             respond_with @form
           end
-          on(:ok) do |resource|
-            set_flash_message! :notice, :signed_up
-            sign_up(resource_name, resource)
-            respond_with resource, location: after_sign_up_path_for(resource)
+          on(:ok) do |_resource|
+            flash[:notice] = t('devise.registrations.success')
+            redirect_to new_user_session_path
           end
         end
       else
