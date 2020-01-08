@@ -96,8 +96,10 @@ export default function Factor ({ model, filters }) {
               <tr key={id}>
                 <td className={styles.factorcell}>
                   <div className={styles.factor} style={{ color: mainHeaderColor }}>
-                    {factor.icon && <img src={factor.icon} />}
-                    <span>{I18nStore.tFactor(factor, 'name')}</span>
+                    <div className="display-flex">
+                      {factor.icon && <div><img src={factor.icon} /></div>}
+                      <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>
+                    </div>
                   </div>
                   <div className={styles.description} style={descStyle}>{I18nStore.tFactor(factor, 'description')}</div>
                 </td>
