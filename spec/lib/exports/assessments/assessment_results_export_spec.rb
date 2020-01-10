@@ -72,7 +72,7 @@ describe Exports::Assessments::AssessmentResultsExport do
 
       xlsx = Roo::Spreadsheet.open(file_name)
 
-      expect(xlsx.sheet(0).last_row).to eq(5)
+      expect(xlsx.sheet(0).last_row).to eq(6)
     end
 
     it 'each assign row in xlsx have result details along with answer to the question' do
@@ -86,7 +86,7 @@ describe Exports::Assessments::AssessmentResultsExport do
       xlsx.serialize(file_name)
 
       xlsx = Roo::Spreadsheet.open(file_name)
-      actual_result_row = xlsx.sheet(0).row(4)
+      actual_result_row = xlsx.sheet(0).row(5)
       user_name = "#{assign.membership.user.first_name}, #{assign.membership.user.last_name}"
       expected_result_row = [
         assign.encode_id,
