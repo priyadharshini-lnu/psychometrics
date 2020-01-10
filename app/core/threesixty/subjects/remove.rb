@@ -9,9 +9,9 @@ module Threesixty
       end
 
       def call
-        subject.users_reports.where(campaign_id: campaign.id).map(&:destroy!)
-        subject.evaluated_results.map(&:destroy!)
-        subject.participants.where(campaign_id: campaign.id).destroy_all
+        subject.users_reports.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.evaluated_results.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.participants.where(campaign_id: campaign.id).each(&:destroy!)
         subject.destroy!
       end
 
