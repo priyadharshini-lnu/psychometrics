@@ -14,6 +14,8 @@ export const allPages = (state) => state.allPages
 export const currentPage = (state) => state.currentPage
 
 
+export const currentBlockPagesSelector = state =>  state.allPages[state.currentBlock]
+
 export const currentPageSelector = state => {
   const pages = state.allPages[state.currentBlock]
   return pages[state.currentPage]

@@ -21,7 +21,7 @@ export const initPages = (data: BlocksInterface) => {
         if (questions.length > 0) {
           allPages[b.id].push({questions, errors: [], blockId: b.id})
         }
-        allPages[b.id].push({questions: [q.id], errors: [], blockId: b.id})
+        allPages[b.id].push({questions: [q.id], errors: [], blockId: b.id, displayLogic: q.display_logic})
         questions = []
       } else if (q.skip_logic && q.skip_logic.length) {
         questions.push(q.id)

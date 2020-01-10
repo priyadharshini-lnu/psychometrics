@@ -24,24 +24,28 @@ class Page extends Component {
     const { errors } = this.props
     const styleForTitle = this.addLtrStyleIfNeed(I18nStore.t('validations.title'))
     const styleForIssue = this.addLtrStyleIfNeed(I18nStore.t('validations.issue'))
+    let i = 0
     return (
       <div className={styles.errors}>
         <h1 style={styleForTitle}>{I18nStore.t('validations.title')}</h1>
         <ul style={styleForTitle}>
-          {_.map(errors, (errors, id) => (
-            <li key={id} style={styleForIssue}>
-              <a onClick={this.scroll.bind(this, `question_${id}`)}>
-                {I18nStore.t('validations.issue')}
-                {' '}
-                {id + 1}
-              </a>
-              <ul>
-                {_.map(errors, (error, j) => (
-                  <li style={this.addLtrStyleIfNeed(error.message)} key={j}>{error.message}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
+          {_.map(errors, (errors, id) => {
+            i += 1
+            return (
+              <li key={id} style={styleForIssue}>
+                <a onClick={this.scroll.bind(this, `question_${id}`)}>
+                  {I18nStore.t('validations.issue')}
+                  {' '}
+                  {i}
+                </a>
+                <ul>
+                  {_.map(errors, (error, j) => (
+                    <li style={this.addLtrStyleIfNeed(error.message)} key={j}>{error.message}</li>
+                  ))}
+                </ul>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )

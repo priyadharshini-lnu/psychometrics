@@ -4,8 +4,10 @@ import Validations from 'models/Validations'
 import Resolvers from './resolvers'
 
 export default class LogicResolver {
-  constructor (logic) {
+  constructor (logic, questions, results) {
     this.logic = logic
+    this.questions = questions || store.questions
+    this.results = results
   }
 
   resolve () {
@@ -50,7 +52,7 @@ export default class LogicResolver {
 
   resolveConditionByType (condition) {
     const Resolver = Resolvers[condition.conditionType]
-    return new Resolver(condition).resolve()
+    return new Resolver(condition).resolve(this.results)
   }
 
   checkResults (results) {
@@ -71,7 +73,6 @@ export default class LogicResolver {
       }
       prev = result
     })
-    console.log(res)
     return res
   }
 
