@@ -3,7 +3,7 @@
 module Imports
   module Assessments
     class ResultImport < Imports::BaseImport
-      SUPPORT_ROWS = 2
+      SUPPORT_ROWS = 3
       SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel
       # Authorisation flow
       #
