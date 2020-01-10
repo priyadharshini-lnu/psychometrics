@@ -35,7 +35,6 @@ class Question extends Component {
         name="form-field-name"
         value={getValue(this.getOptions(), _.result(model, 'props.source.id', 'Choose question'))}
         options={this.getOptions()}
-        getOptionValue={opt => opt.id}
         clearable={false}
         autoFocus={false}
         isMulti={model.isQuestionMultiFiltering()}
