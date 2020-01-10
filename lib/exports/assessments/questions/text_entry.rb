@@ -26,7 +26,7 @@ module Exports
           result(answers, question, true)
         end
 
-        def self.headers_by_choices(question)
+        def self.question_id_and_choice_headers(question)
           question_id_header = []
           question_choices_header = []
 

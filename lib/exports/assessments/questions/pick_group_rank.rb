@@ -37,7 +37,7 @@ module Exports
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        def self.headers_by_choices(question)
+        def self.question_id_and_choice_headers(question)
           question_id_header = []
           question_choices_header = []
 
