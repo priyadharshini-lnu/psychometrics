@@ -7,6 +7,7 @@ const LocalStorage = {
         return null
       }
       return data.value
+      // eslint-disable-next-line no-console
     } catch (e) { console.warn(e) }
     return null
   },

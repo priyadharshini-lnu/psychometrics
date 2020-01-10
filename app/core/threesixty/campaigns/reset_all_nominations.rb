@@ -13,6 +13,7 @@ module Threesixty
           participant.threesixty_evaluator.decrement!(:evaluations_count)
           participant.destroy!
         end
+        threesixty_campaign.campaign.users_results.destroy_all
       end
 
       private

@@ -5,7 +5,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   before_action :pundit_authorize
 
   def reset
-    ::Threesixty::Campaigns::Reset.call(resource)
+    remove_license_usage = current_user.is?(:superadmin) ? params['remove_licence_usage'] : nil
+    ::Threesixty::Campaigns::Reset.call(
+      threesixty_campaign: resource,
+      updater_id: current_user.id,
+      remove_license_usage: remove_license_usage
+    )
     render json: :ok
   end
 

@@ -1411,7 +1411,10 @@ CREATE TABLE public.license_usages (
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     campaign_id bigint,
-    registration_code_id bigint
+    registration_code_id bigint,
+    status_updated_by_id integer,
+    status_updated_at timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -6613,11 +6616,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930140807'),
 ('20191001075231'),
 ('20191007075951'),
+('20191016134103'),
 ('20191028205331'),
 ('20191029104332'),
 ('20191030081833'),
 ('20191110113047'),
 ('20191111083124'),
-('20191111104014');
+('20191111104014'),
+('20191218192252');
 
 

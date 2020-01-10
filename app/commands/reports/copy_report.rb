@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Reports
-  class CopyReport < Rectify::Command
+  class CopyReport < BaseCommand
     def initialize(report_id)
       @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
     end

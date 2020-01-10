@@ -20,6 +20,7 @@ _.extend(Dispatcher.prototype, {
   pastePage (page) {
     if (this.pageBuffer) {
       if (page.modules.list.length > 0) {
+        // eslint-disable-next-line no-alert
         if (!confirm('Are u sure? This action will replace modules on page.')) {
           return
         }
@@ -29,6 +30,7 @@ _.extend(Dispatcher.prototype, {
         page.modules.clone(module, false)
       })
     } else {
+      // eslint-disable-next-line no-alert
       alert('Nothing to paste')
     }
   },

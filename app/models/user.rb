@@ -119,7 +119,6 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :memberships
 
-  before_save :ensure_authentication_token
   validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email,
@@ -129,6 +128,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validate :validate_grants
+
+  before_save :ensure_authentication_token
+  before_save { self.email = email.downcase }
 
   has_one_time_password(encrypted: true)
 
@@ -210,6 +212,10 @@ class User < ApplicationRecord
       end
     end
     errors.add(:grants, :invalid) unless valid
+  end
+
+  def block_from_invitation?
+    false
   end
 
   class << self

@@ -1,3 +1,4 @@
+- labels = labels_based_on(filter_form.status_eq)
 .table-responsive
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
     thead
@@ -7,10 +8,13 @@
         th = t('.subject_name')
         th = t('.subject_email')
         th = t('.created_at')
+        th = labels[:activated_at]
+        th = labels[:activated_by]
+        th = t('.actions')
     tbody
-      - if resources.present?
-        = render partial: 'resource', collection: resources
+      - unless resources.blank?
+        = render partial: 'resource', collection: resources, locals: { action_label: labels[:action] }
       - else
         tr.no_records
-          td align='center' colspan='9' = t('administration.no_data_found')
+          td align='center' colspan='8' = t('administration.no_data_found')
   = paginate resources, theme: 'twitter-bootstrap-3'
