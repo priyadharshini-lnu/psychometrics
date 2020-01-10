@@ -28,16 +28,15 @@ module Exports
                                (answer.try(:[], 'value') ? 'On' : 'Off')
                              end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
         def self.headers_by_choices(question)
           question_id_header = []
           question_choices_header = []
-          question.props['regions'].to_i.times do |r|
-            question_id_header << "QID#{question.id}_#{r + 1}"
-            question_choices_header << question.props.dig('regionsNames', c)
+          question.props['regions'].length.times do |i|
+            question_id_header << "QID#{question.id}_#{i + 1}"
+            question_choices_header << question.props.dig('regionsNames', i)
           end
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end

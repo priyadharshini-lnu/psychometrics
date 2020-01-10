@@ -34,8 +34,7 @@ module Exports
                                join(', ')
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
         def self.headers_by_choices(question)
@@ -44,13 +43,13 @@ module Exports
 
           question.props['scalePoints'].to_i.times do |s|
             question_id_header << "QID#{question.id}_#{s + 1}_GROUP"
-            question_id_header << question.props.dig('scalePointsTexts', s)
+            question_choices_header << question.props.dig('scalePointsTexts', s)
           end
 
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
-              parsed_header << "QID#{question.id}_#{s + 1}_#{c + 1}_RANK"
-              question_id_header << "#{question.props.dig('scalePointsTexts', c)} |
+              question_id_header << "QID#{question.id}_#{s + 1}_#{c + 1}_RANK"
+              question_choices_header << "#{question.props.dig('scalePointsTexts', c)} |
                 #{question.props.dig('choicesTexts', c)}"
             end
           end

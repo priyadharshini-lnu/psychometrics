@@ -45,26 +45,7 @@ module Exports
                                end
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
-        end
-
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          question.props['scalePoints'].to_i.times do |scale|
-            question.props['choices'].to_i.times do |choice|
-              column_data = question.props['columnsData'][scale]
-              if column_data['type'] == 'Text'
-                column_data['answers'].to_i.times do |column|
-                  parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
-                end
-              else
-                parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"
-              end
-            end
-          end
-          parsed_header
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
         def self.headers_by_choices(question)
@@ -75,15 +56,17 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               column_data = question.props.dig('columnsData', scale)
               choice_text = question.props.dig('choicesTexts', choice)
-              scale_text = question.props.dig('scaleTexts', scale)
+              scale_text = column_data['text']
+              # byebug
               if column_data['type'] == 'Text'
                 column_data['answers'].to_i.times do |column|
-                  column_text = column_data.dig('answersTexts', column)
+                  column_text = column_data['answersTexts']
                   question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
                   question_choices_header << "#{scale_text} | #{choice_text} | #{column_text}"
                 end
               else
                 question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"
+                question_choices_header << "#{scale_text} | #{choice_text}"
               end
             end
           end

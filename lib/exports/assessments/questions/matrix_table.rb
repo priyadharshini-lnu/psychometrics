@@ -33,30 +33,7 @@ module Exports
                                join(',')
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
-        end
-
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          # IF: answer can contain any data (string, number and etc.)
-          # THEN: we collect header for each choiceID and scaleID
-          # =>    example: [QID_1_1, QID_2_1, QID_3_1]
-          # ELSE: we collect results grouped by choiceID
-          # =>    example: [QID_1, QID_2, QID_3]
-          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
-            question.props['choices'].to_i.times do |c|
-              question.props['scalePoints'].to_i.times do |s|
-                parsed_header << "QID#{question.id}_#{c + 1}_#{s + 1}"
-              end
-            end
-          else
-            question.props['choices'].to_i.times do |c|
-              parsed_header << "QID#{question.id}_#{c + 1}"
-            end
-          end
-          parsed_header
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
         def self.headers_by_choices(question)

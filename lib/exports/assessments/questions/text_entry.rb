@@ -19,25 +19,11 @@ module Exports
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           answers = (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.result_label(answers, question)
           result(answers, question, true)
-        end
-
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          if %w[Form].include?(question.props['type'])
-            question.props['choices'].to_i.times do |c|
-              parsed_header << "QID#{question.id}_#{c + 1}"
-            end
-          else
-            parsed_header << "QID#{question.id}"
-          end
-          parsed_header
         end
 
         def self.headers_by_choices(question)
@@ -51,6 +37,7 @@ module Exports
             end
           else
             question_id_header << "QID#{question.id}"
+            question_choices_header << ''
           end
 
           { question_id_header: question_id_header, question_choice_header: question_choices_header }

@@ -12,15 +12,14 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(answers, _question, _scoring = false)
+        def self.result(answers, question, _scoring = false)
           answers = (answers || []).map do |answer|
             [
               (answer['scale'] + 1),
               answer['values'].map { |v| v + 1 }.join(',')
             ]
           end.flatten
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.headers_by_choices(question)

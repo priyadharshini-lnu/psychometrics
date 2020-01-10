@@ -16,8 +16,7 @@ module Exports
           answers = (answers || []).sort_by { |a| a['index'] }.map do |a|
             a['value'].is_a?(Numeric) ? a['value'] + increase : ''
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.headers_by_choices(question)

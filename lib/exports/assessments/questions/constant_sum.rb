@@ -13,8 +13,7 @@ module Exports
         #   [12, ...]
         def self.result(answers, question, _scoring = false)
           answers = (answers || []).map { |a| a['value'] }
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.headers_by_choices(question)

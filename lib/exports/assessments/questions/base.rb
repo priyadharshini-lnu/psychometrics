@@ -12,13 +12,17 @@ module Exports
           all_headers.merge!(question_name_header: question_name_header, question_text_header: question_text_header)
         end
 
-        def self.headers_by_choices
+        def self.headers_by_choices(question)
           if respond_to?(:question_id_header)
-            question_id_header = self.question_id_header
+            question_id_header = self.question_id_header(question)
             { question_id_header: question_id_header, question_choice_header: ([''] * question_id_header.length) }
           else
             raise NoMethodError
           end
+        end
+
+        def self.question_header_size(question)
+          headers_by_choices(question)[:question_id_header].size
         end
       end
     end

@@ -8,10 +8,9 @@ module Exports
         #   [{"value": 5}]
         # TO:
         #   [5]
-        def self.result(answers, _question, _scoring = false)
+        def self.result(answers, question, _scoring = false)
           answers = (answers || []).map { |answer| answer['value'] }
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.question_id_header(question)
