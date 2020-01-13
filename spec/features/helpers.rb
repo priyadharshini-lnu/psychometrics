@@ -51,5 +51,9 @@ module Features
     def current_membership
       @current_membership
     end
+
+    def import_countries
+      Rake::Task['geo:import'].invoke
+    end
   end
 end
