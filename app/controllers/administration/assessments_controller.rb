@@ -93,9 +93,11 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = CopyAssessment.process!(resource.id)
+    event = ::Assessments::CopyAssessment.call(resource.id)
+
     respond_to do |format|
-      if @cloned_resource.persisted?
+      if event[:ok]
+        @cloned_resource = event[:ok]
         format.js
       else
         format.js do

@@ -10,7 +10,10 @@ module Threesixty
         @source_assessment = source_assessment
         @source_report = source_report
         @new_report = ::Reports::CopyReport.call!(source_report.id)
-        @new_assessment = CopyAssessment.process!(source_assessment.id)
+
+        event = ::Assessments::CopyAssessment.call(source_assessment.id)
+        @new_assessment = event[:ok] || raise('CopyAssessment failed!')
+
         @form = form
         @project = project
         @threesixty_campaign = Threesixty::Campaigns::Build.call!(form, project)
