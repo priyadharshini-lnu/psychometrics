@@ -12,7 +12,7 @@ test('simple block with one page', () => {
     questions: [question(1), question(2)]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1,2], blockId: 1, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1,2], blockId: 1}]});
 });
 
 test('simple block with page_break', () => {
@@ -21,7 +21,7 @@ test('simple block with page_break', () => {
     questions: [question(1), question(2, {type: 'PageBreak'}), question(3)]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1, errors: []}, {questions: [3], blockId: 1, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1}, {questions: [3], blockId: 1}]});
 });
 
 test('simple block with question with display_logic', () => {
@@ -30,7 +30,7 @@ test('simple block with question with display_logic', () => {
     questions: [question(1), question(2, {display_logic: {}})]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1, errors: []}, {questions: [2], blockId: 1, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1, displayLogic:{}}, {questions: [2], blockId: 1}]});
 });
 
 
@@ -40,7 +40,7 @@ test('simple block with question with skip_logic one page', () => {
     questions: [question(1), question(2, {skip_logic: []})]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1}]});
 });
 
 test('simple block with question with skip_logic two pages', () => {
@@ -49,7 +49,7 @@ test('simple block with question with skip_logic two pages', () => {
     questions: [question(1), question(2, {skip_logic: [1]}), question(3)]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1, errors: []}, {questions: [3], blockId: 1, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1, skipLogic: [1]}, {questions: [3], blockId: 1}]});
 });
 
 
@@ -63,7 +63,7 @@ test('simple two blocks', () => {
     questions: [question(4), question(5)]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2,3], blockId: 1, errors: []}], 2: [{questions: [4,5], blockId: 2, errors: []}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2,3], blockId: 1}], 2: [{questions: [4,5], blockId: 2}]});
 });
 
 

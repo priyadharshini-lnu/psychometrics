@@ -14,28 +14,36 @@ export const initPages = (data: BlocksInterface) => {
       if (q.deleted) { return }
       if (q.type === 'PageBreak') {
         if (questions.length) {
-          allPages[b.id].push({questions, errors: [], blockId: b.id})
+          allPages[b.id].push({questions, blockId: b.id})
         }
         questions = []
-      } else if (q.display_logic) {
+        return
+      }
+
+      if (q.display_logic) {
         if (questions.length > 0) {
-          allPages[b.id].push({questions, errors: [], blockId: b.id})
+          allPages[b.id].push({questions, blockId: b.id, displayLogic: q.display_logic})
         }
-        allPages[b.id].push({questions: [q.id], errors: [], blockId: b.id, displayLogic: q.display_logic})
-        questions = []
-      } else if (q.skip_logic && q.skip_logic.length) {
-        questions.push(q.id)
+        questions = [q.id]
+      }
+
+      if (q.skip_logic && q.skip_logic.length) {
+        if (!_.includes(questions, q.id)) {
+          questions.push(q.id)
+        }
         const attrs = {
-          questions, block: b, skipLogic: q.skip_logic, displayLogic: q.display_logic,
+          questions, blockId: b.id, skipLogic: q.skip_logic,
         }
-        allPages[b.id].push({questions, errors: [], blockId: b.id})
+        allPages[b.id].push(attrs)
         questions = []
-      } else {
+        return
+      }
+      if (!_.includes(questions, q.id)) {
         questions.push(q.id)
       }
     })
     if (questions.length) {
-      allPages[b.id].push({questions, errors: [], blockId: b.id})
+      allPages[b.id].push({questions, blockId: b.id})
     }
   })
   return allPages

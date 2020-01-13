@@ -1,4 +1,4 @@
-import { block, blocks, question } from 'store/schema'
+import { block, blocks, question } from '../../../store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
 
