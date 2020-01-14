@@ -6,7 +6,6 @@ import { allQuestions } from 'core/builder/assessment/selectors'
 
 export default connect(
   ({ survey: { modals, builder } }) => ({
-    show: modals.customValidation.show,
     ...modals.customValidation.data,
     questions: allQuestions(builder),
     question: QuestionSerializer.wrap(modals.customValidation.data

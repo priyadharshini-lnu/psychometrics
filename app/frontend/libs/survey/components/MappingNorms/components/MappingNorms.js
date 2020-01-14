@@ -29,8 +29,7 @@ export class MappingNorms extends Component {
   }
 
   render () {
-    const { assessment, show, close } = this.props
-    if (!show) { return null }
+    const { assessment, close } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>

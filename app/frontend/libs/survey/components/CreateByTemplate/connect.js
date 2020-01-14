@@ -6,7 +6,6 @@ import { selectBlock } from 'libs/survey/core/builder/assessment/selectors'
 
 export default connect(
   ({ survey: { modals, builder } }) => ({
-    show: modals.createByTemplate.show,
     ...modals.createByTemplate.data,
     block: modals.createByTemplate.data ? selectBlock(builder, modals.createByTemplate.data.blockId) : null,
   }),

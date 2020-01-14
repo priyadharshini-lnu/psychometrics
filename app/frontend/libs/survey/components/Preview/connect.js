@@ -5,7 +5,6 @@ import QuestionSerializer from 'models/QuestionSerializer'
 
 export default connect(
   ({ survey: { modals, builder } }) => ({
-    show: modals.preview.show,
     ...modals.preview.data,
     question: QuestionSerializer.wrap(modals.preview.data
       ? selectQuestion(builder, modals.preview.data.question.id)

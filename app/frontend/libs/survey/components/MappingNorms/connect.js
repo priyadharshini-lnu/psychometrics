@@ -8,7 +8,6 @@ export default connect(
     const { survey: { builder: { assessment } } } = state
     return ({
       assessment,
-      show: state.survey.modals.mapNorms.show,
       norms: assessment.norm_rules,
       questions: allQuestions(state.survey.builder),
     })

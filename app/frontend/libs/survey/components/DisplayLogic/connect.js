@@ -4,7 +4,6 @@ import { saveDisplayLogic } from 'libs/survey/core/builder/assessment/question/a
 
 export default connect(
   state => ({
-    show: state.survey.modals.displayLogic.show,
     ...state.survey.modals.displayLogic.data,
   }),
   {

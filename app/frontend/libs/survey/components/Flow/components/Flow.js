@@ -61,8 +61,7 @@ export class Flow extends Component {
   }
 
   render () {
-    const { show, tree, assessment } = this.props
-    if (!show) { return null }
+    const { tree, assessment } = this.props
     return (
       <Modal show bsSize="lg" keyboard={false} dialogClassName={styles.modal}>
         <Header>

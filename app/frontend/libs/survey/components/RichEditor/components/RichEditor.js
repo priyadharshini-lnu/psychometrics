@@ -35,9 +35,8 @@ export class RichEditor extends Component {
   }
 
   render () {
-    const { show, close } = this.props
+    const { close } = this.props
     const { value } = this.state
-    if (!show) { return null }
 
     return (
       <Modal show bsSize="lg" enforceFocus={false}>

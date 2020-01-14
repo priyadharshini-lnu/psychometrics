@@ -48,8 +48,7 @@ export class Randomization extends Component {
   }
 
   render () {
-    const { show, close, entityName } = this.props
-    if (!show) { return null }
+    const { close, entityName } = this.props
     const { type, questions } = this.state
     return (
       <Modal show keyboard={false}>

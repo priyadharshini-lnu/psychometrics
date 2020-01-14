@@ -14,7 +14,6 @@ const getModel = (state, data) => {
 
 export default connect(
   ({ survey: { modals, builder } }) => ({
-    show: modals.randomization.show,
     ...modals.randomization.data,
     model: modals.randomization.data && getModel(builder, modals.randomization.data),
   }),

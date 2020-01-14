@@ -29,8 +29,7 @@ export default class extends Component {
   }
 
   render () {
-    const { show, close } = this.props
-    if (!show) { return null }
+    const { close } = this.props
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>

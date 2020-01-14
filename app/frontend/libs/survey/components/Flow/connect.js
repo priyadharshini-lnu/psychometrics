@@ -8,7 +8,6 @@ import { allQuestions, blocksWithoutDeleted } from 'libs/survey/core/builder/ass
 
 export default connect(
   state => ({
-    show: state.survey.modals.flow.show,
     ...state.survey.modals.flow.data,
     tree: getTree(state),
     assessment: state.survey.builder.assessment,
