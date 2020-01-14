@@ -37,7 +37,8 @@ export default function Factor ({ model, filters }) {
 
       if (!scoring) return { ...filter, value: 0 }
 
-      const value = _.round(_.meanBy(scoring.results, res => res.getValue()), 2)
+      const nonZeroResults = _.filter(scoring.results, res => res.getValue())
+      const value = _.round(_.meanBy(nonZeroResults, res => res.getValue()), 2)
       return { ...filter, value }
     })
 
