@@ -5,9 +5,9 @@ import Home from 'views/Home'
 import Trash from 'views/Trash'
 import PropertyPanel from 'views/PropertyPanel'
 import Library from 'libs/library'
+import Modals from 'components/Modals'
 import Header from '../Header'
 import styles from './Dashboard.scss'
-import Modals from 'components/Modals'
 
 import '../../styles/core.scss'
 
