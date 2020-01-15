@@ -130,7 +130,7 @@ class CommentsList extends Component {
       <div>
         {this.list(comments)}
 
-        <div className={`messages ${styles.messagesForm}`}>
+        <div className={`${styles.messages} ${styles.messagesForm}`}>
           {this.form()}
         </div>
       </div>

@@ -5,14 +5,13 @@ import _ from 'lodash'
 import DefaultProps from 'constants/DefaultProps'
 import ModuleConfigs from 'constants/ModuleConfigs'
 import Condition from './QuestionCondition'
-import Comment from './Comment'
 import Result from './Preview/Result'
 import LogicElement from './logic/LogicElement'
 import Question from './Question'
 
 const loadComments = (question, comments) => {
   _.each(comments, (comment) => {
-    question.comments.push(new Comment(comment))
+    question.comments.push(comment)
   })
 }
 
@@ -93,6 +92,7 @@ export class QuestionSerializer {
       deleted_at: question.deletedAt,
       deleted: question.deleted,
       isNew: question.isNew,
+      comments: question.comments,
     }
   }
 
