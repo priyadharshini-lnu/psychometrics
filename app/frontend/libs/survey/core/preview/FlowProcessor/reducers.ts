@@ -23,7 +23,13 @@ const HANDLERS = {
   [INIT]: (state, {data}) => {
     console.log(data)
     const normalizedData = normalize({blocks: data.blocks}, assessment)
-    const normalizedTree = normalizeTree(data.flow.elements)
+
+    let elements = data.flow.elements
+    if (elements.length === 0) {
+      elements = initLinearElements(normalizedData.entities.blocks)
+    }
+
+    const normalizedTree = normalizeTree(elements)
 
     // init block elements for linear flow  [{block}...]
     // add saga to run first element processor

@@ -1,4 +1,4 @@
-import {initPages, initLinearElements} from 'libs/survey/core/preview/FlowProcessor/helpers'
+import {initPages, initLinearElements, normalizeTree} from 'libs/survey/core/preview/FlowProcessor/helpers'
 
 const question = (id, data = {}) => ({id, ...data})
 
@@ -84,3 +84,77 @@ test('linear block elements', () => {
 
   expect(initLinearElements(blocks)).toStrictEqual([{type: 'Block', props: {current: 1}, elements: []}, {type: 'Block', props: {current: 2}, elements: []}]);
 });
+
+
+test('normalize empty tree to empty list', () => {
+  const tree = []
+
+  expect(normalizeTree(tree)).toStrictEqual({});
+})
+
+test('normalize tree with one child', () => {
+  const tree = [{
+    type: "Branch",
+    elements: []
+  }]
+
+  expect(normalizeTree(tree)).toStrictEqual({ '0': { "type": "Branch" }});
+})
+
+
+test('normalize tree with two level child', () => {
+  const tree = [{
+    type: "Branch",
+    elements: [
+      { "type": "Block", "elements": [], "props": { "current": "1810" } }
+    ]
+  }]
+
+  expect(normalizeTree(tree)).toStrictEqual({
+    '0': { "type": "Branch" },
+    '0/0': { "type": "Block", "props": { "current": "1810" } },
+  });
+})
+
+
+test('normalize tree with two roots', () => {
+  const tree = [
+    { "type": "Block", "elements": [], "props": { "current": "1" } },
+    { "type": "Block", "elements": [], "props": { "current": "2" } }
+  ]
+
+  expect(normalizeTree(tree)).toStrictEqual({
+    '0': { "type": "Block", "props": { "current": "1" } },
+    '1': { "type": "Block", "props": { "current": "2" } },
+  });
+})
+
+
+test('normalize tree with many roots and children', () => {
+  const tree = [
+    {
+      type: 'Branch', elements: [
+        { "type": "Block", "elements": [], "props": { "current": "1" } },
+        { "type": "Block", "elements": [], "props": { "current": "2" } }
+      ]
+    },
+    {
+      type: 'Branch', elements: [
+        { "type": "Block", "elements": [], "props": { "current": "3" } },
+        { type: 'Branch', elements: [
+          { "type": "Block", "elements": [], "props": { "current": "4" } }
+        ]}
+      ]
+    }
+  ]
+
+  expect(normalizeTree(tree)).toStrictEqual({
+    '0': { "type": "Branch" },
+    '0/0': { "type": "Block", "props": { "current": "1" } },
+    '0/1': { "type": "Block", "props": { "current": "2" } },
+    '1': { "type": "Branch" },
+    '1/0': { "type": "Block", "props": { "current": "3" } },
+    '1/1': { "type": "Branch" },
+    '1/1/0': { "type": "Block", "props": { "current": "4" } },
+  });
+})

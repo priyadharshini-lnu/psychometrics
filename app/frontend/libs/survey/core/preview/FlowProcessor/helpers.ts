@@ -53,6 +53,23 @@ export const initLinearElements = (blocks) => {
   return _.map(blocks, (b) => ({type: 'Block', props: {current: b.id}, elements: []}))
 }
 
-export const normalizeTree = (tree) => {
+/*
+  Normalize flow tree to list
+  input [{element: {children: [{...element}]}}]
+  result {'0': element, '0/0': element}
+*/
 
+export const normalizeTree = (roots) => {
+  const list = {}
+
+  const eachChild = (child, path) => {
+    if (child.elements && child.elements.length) {
+      _.each(child.elements, (child, i) => eachChild(child, `${path}/${i}`))
+    }
+    const item = { ...child }
+    delete item.elements
+    list[path] = item
+  }
+  _.each(roots, (child, i) => eachChild(child, `${i}`))
+  return list
 }
