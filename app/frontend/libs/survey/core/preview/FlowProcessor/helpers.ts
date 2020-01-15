@@ -52,3 +52,7 @@ export const initPages = (data: BlocksInterface) => {
 export const initLinearElements = (blocks) => {
   return _.map(blocks, (b) => ({type: 'Block', props: {current: b.id}, elements: []}))
 }
+
+export const normalizeTree = (tree) => {
+
+}

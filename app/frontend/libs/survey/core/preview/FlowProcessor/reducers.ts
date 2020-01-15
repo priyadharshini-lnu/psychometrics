@@ -1,5 +1,5 @@
 import { createReducer } from 'utils/reduxUtils'
-import { initPages } from './helpers'
+import { initPages, initLinearElements, normalizeTree } from './helpers'
 import { assessment } from '../../../store/schema'
 import { normalize } from 'normalizr'
 import {INIT, NEXT_PAGE, ANSWER, SHOW_ERRORS, EMPTY_ERRORS} from './actions'
@@ -23,6 +23,7 @@ const HANDLERS = {
   [INIT]: (state, {data}) => {
     console.log(data)
     const normalizedData = normalize({blocks: data.blocks}, assessment)
+    const normalizedTree = normalizeTree(data.flow.elements)
 
     // init block elements for linear flow  [{block}...]
     // add saga to run first element processor
@@ -31,6 +32,7 @@ const HANDLERS = {
     return {
       ...state,
       allPages: initPages(data),
+      normalizedTree,
       elements: data.flow.elements,
       linear: data.flow.elements.length === 0,
       blocks: normalizedData.entities.blocks,

@@ -3,16 +3,17 @@ import store from 'store/AssessmentPreviewStore'
 import Selectors from './Selectors'
 import Values from './Values'
 
-const Custom = function (condition) {
+const Custom = function (condition, questions = {}, results = {}) {
   this.condition = condition
   this.subject = condition.subject
-  this.question = _.find(store.questions, { id: this.subject })
+  this.question = _.find(questions || store.questions, { id: this.subject })
   this.prefix = condition.prefix
   this.answer = condition.answer
   this.predicate = condition.predicate
   this.type = condition.type
   this.value = condition.value
   this.result = null
+  this.results = results || store.results
 }
 
 _.extend(Custom.prototype, {
@@ -35,7 +36,8 @@ _.extend(Custom.prototype, {
 
   validate () {
     if (!this.question || !this.predicate) { return { prefix: 'Or', value: false } }
-    this.result = store.results[this.question.id]
+    this.result = this.results[this.question.id]
+
     return { prefix: this.prefix, value: this[this.predicate]() }
   },
 

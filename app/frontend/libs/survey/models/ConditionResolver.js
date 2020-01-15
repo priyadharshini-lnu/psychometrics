@@ -3,8 +3,10 @@ import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
 import store from 'store/AssessmentPreviewStore'
 
-const ConditionResolver = function (conditions) {
+const ConditionResolver = function (conditions, questions, results) {
   this.conditions = conditions
+  this.questions = questions || store.questions
+  this.results = results
 }
 
 ConditionResolver.prototype = new EventEmitter()
@@ -19,7 +21,7 @@ _.extend(ConditionResolver.prototype, {
   isFilled () {
     return _.every(this.conditions, (condition) => {
       if (condition.conditionType === 'Question') {
-        const question = _.find(store.questions, { id: condition.subject })
+        const question = _.find(this.questions, { id: condition.subject })
         return question && question.result && !question.result.isEmpty()
       }
 
@@ -78,7 +80,7 @@ _.extend(ConditionResolver.prototype, {
   },
 
   processQuestionValidation (condition) {
-    const validation = new Validations.Custom(condition)
+    const validation = new Validations.Custom(condition, this.questions, this.results)
     return validation.validate()
   },
 

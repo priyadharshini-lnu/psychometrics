@@ -20,7 +20,7 @@ export default class QuestionResolver extends BaseResolver {
 
   resolve (resulsts = store.results) {
     if (!this.question || !this.predicate) { return false }
-    this.result = store.results[this.question.id]
+    this.result = resulsts[this.question.id]
 
     return this[this.predicate]()
   }
