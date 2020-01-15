@@ -18,10 +18,10 @@ class QuestionFooter extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model: { showComments, comments } } = this.props
     return (
       <div className={styles.footer}>
-        {model.showComments && <CommentsList {...this.props} />}
+        {(showComments || comments.length > 0) && <CommentsList {...this.props} />}
         {this.renderSkipLogic()}
       </div>
     )

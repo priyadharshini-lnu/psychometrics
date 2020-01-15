@@ -15,8 +15,8 @@ class PropertyPanel extends Component {
   }
 
   addNote = () => {
-    const { question } = this.props
-    question.addNote()
+    const { question, addNote } = this.props
+    addNote(question)
   }
 
   addPageBreak = () => {

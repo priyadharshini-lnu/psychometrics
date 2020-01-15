@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { open } from 'libs/survey/core/modals'
 import { selectedQuestion } from 'core/builder/assessment/selectors'
-import { changeType, addSkipLogic } from 'libs/survey/core/builder/assessment/question/actions'
+import { changeType, addSkipLogic, addNote } from 'libs/survey/core/builder/assessment/question/actions'
 import { addPageBreak, copyQuestion } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
@@ -20,5 +20,6 @@ export default connect(
     addPageBreak,
     addSkipLogic,
     copyQuestion,
+    addNote,
   },
 )

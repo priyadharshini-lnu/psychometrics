@@ -53,7 +53,7 @@ export class QuestionSerializer {
     question.saveAsTemplate = attrs.save_as_template || false
     question.type = attrs.type || 'MultipleChoice'
     question.comments = []
-    question.showComments = question.comments.length > 0
+    question.showComments = attrs.showComments || question.comments.length > 0
     question.props = _.cloneDeep(DefaultProps[question.type] || {})
     question.props.randomization = { type: 'No' }
     question.moduleConfig = ModuleConfigs[question.type] || {}

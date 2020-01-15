@@ -12,8 +12,8 @@ class Question extends Component {
   }
 
   addNote = () => {
-    const { model } = this.props
-    model.addNote()
+    const { model, addNote } = this.props
+    addNote(model)
   }
 
   addSkipLogic = () => {
