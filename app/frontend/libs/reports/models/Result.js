@@ -88,7 +88,6 @@ _.extend(Result.prototype, {
     this.usersScoring = {}
     this.rawResults = results
     this.normData = _.get(this.rawResults, '[0].norm_data')
-
     _.each(this.rawResults, (object, index) => {
       _.each(filters, (filter) => {
         if (filter.correctByFilter(object)) this.resultsByFilter[filter.id].rawResults.push(object)
@@ -379,7 +378,6 @@ _.extend(Result.prototype, {
         })
         data.scoring[factorId].results = subFactorResults
       }
-
       _.each(scoringResults.results, (obj) => {
         if (!this.questionScoring[factorId][obj.question_id]) {
           this.questionScoring[factorId][obj.question_id] = []
@@ -458,8 +456,12 @@ _.extend(Result.prototype, {
           return res.value
         })
         const average = scoringResults.results.length ? commonResult / scoringResults.results.length : 0
-        const scoring = new Scoring({ value: average })
-        this.scoring[factorId].results.push(scoring)
+        if (average) {
+          const scoring = new Scoring({ value: average })
+          this.scoring[factorId].results.push(scoring)
+        } else {
+          this.scoring[factorId].results.push(null)
+        }
       } else {
         this.scoring[factorId].results.push(new Scoring({ value: 0 }))
       }
@@ -468,7 +470,6 @@ _.extend(Result.prototype, {
     _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
       // merge factor scoring with sub-factors
       const sc = this.scoring[factorId]
-
       if (factor.scoring_strategy === SCORING_STRATEGY_SUB_FACTOR_QUESTIONS) {
         let commonValue = 0
         let totalWeight = 0
@@ -483,6 +484,7 @@ _.extend(Result.prototype, {
       }
 
       _.each(sc.results, (scoring) => {
+        if (!scoring) { return }
         const average = _.round(scoring.value, 2)
         if (data.norm_data && data.norm_data.id && data.norm_data.type && norms[data.norm_data.id]) {
           const norma = norms[data.norm_data.id][data.norm_data.type.toLowerCase()]
@@ -506,6 +508,7 @@ _.extend(Result.prototype, {
 
     _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
       const sc = this.scoring[factorId]
+      if (!sc.results[index]) { return }
       const { value } = sc.results[index]
       const { norm } = sc.results[index]
       _.each(filters, (filter) => {
