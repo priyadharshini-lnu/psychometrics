@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class Slider
+      class Slider < Base
         # FROM:
         #   [{
         #     "index": 0,
@@ -22,13 +22,14 @@ module Exports
           Utility::Array.ensure_size(answers, required_size)
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
           question.props['choices'].to_i.times do |c|
-            parsed_header << "QID#{question.id}_#{c + 1}"
+            question_id_header << "QID#{question.id}_#{c + 1}"
+            question_choices_header << question.props.dig('choicesTexts', c)
           end
-          parsed_header
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

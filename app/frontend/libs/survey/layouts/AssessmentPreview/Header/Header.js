@@ -40,6 +40,7 @@ export class Header extends Component {
         <div className={styles.restart}>
           <button className="btn btn-success" onClick={this.restart}>Click Here to Start Over</button>
         </div>
+        {/* eslint-disable-next-line react/no-danger */}
         <div dangerouslySetInnerHTML={{ __html: langs }} />
       </div>
     )

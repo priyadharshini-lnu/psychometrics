@@ -25,10 +25,11 @@ export const updateStatus = (campaignId, id, status) => ({
   },
 })
 
-export const downloadReport = (campaignId, id) => ({
+export const downloadReport = (campaignId, id, lang) => ({
   type: DOWNLOAD_REPORT,
   request: {
     url: `/campaigns/${campaignId}/reports/${id}/download`,
+    body: { lang },
   },
 })
 

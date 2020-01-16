@@ -1,6 +1,7 @@
 
 export default class Scoring {
   constructor ({ value, norm }) {
+    this.actualValue = value
     this.value = value || 0
     this.norm = norm
   }
@@ -11,5 +12,11 @@ export default class Scoring {
     if (!_.isArray(this.value)) return this.value || 0
 
     return _.mean(this.value)
+  }
+
+  getValueOrNaN () {
+    if (!this.actualValue) { return NaN }
+
+    return this.getValue()
   }
 }

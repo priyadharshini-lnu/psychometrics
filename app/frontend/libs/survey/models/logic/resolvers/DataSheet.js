@@ -10,7 +10,8 @@ export default class DataSheetResolver extends BaseResolver {
 
   resolve () {
     if (this[this.condition.predicate]) {
-      return this[this.condition.predicate](this.datasheet[this.condition.answer], +this.condition.value)
+      const subject = this.datasheet[this.condition.answer || this.condition.subject]
+      return this[this.condition.predicate](subject, this.condition.value)
     }
     return true
   }

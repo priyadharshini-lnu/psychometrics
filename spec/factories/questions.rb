@@ -40,5 +40,9 @@ FactoryGirl.define do
       }
     }'
     block
+
+    after(:create) do |question, _evaluator|
+      question.block.update_column(:assessment_id, question.assessment_id)
+    end
   end
 end

@@ -20,6 +20,7 @@
 # already_invited        :boolean          default(FALSE)
 #
 
+# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -87,6 +88,15 @@ class Membership < ApplicationRecord
   scope :with_client, ->(client_id) { where(client_id: client_id) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :member_or_manager, -> { where(role: %i[member manager]) }
+  scope :filterable_fields, lambda { |query|
+    if (query !~ /\D/) && query.present?
+      joins(:user).where('users.id = ? OR users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
+                         query, "%#{query}%", "%#{query}%", "%#{query}%")
+    else
+      joins(:user).where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
+                         "%#{query}%", "%#{query}%", "%#{query}%")
+    end
+  }
 
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining do
@@ -167,6 +177,10 @@ class Membership < ApplicationRecord
 
   def project?
     project_membership_id.nil?
+  end
+
+  def project
+    membership_with_result.client
   end
 
   def already_invited?
@@ -255,7 +269,8 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq]
+      %i[hris_data_cont role_scope_in user_type_eq assigns_hash_id_eq filterable_fields]
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

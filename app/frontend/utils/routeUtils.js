@@ -20,6 +20,9 @@ const routeUtils = {
   getPage () {
     return parseInt(queryString.parse(location.search).page, 10) || 1
   },
+  getSearchTerm () {
+    return queryString.parse(location.search).search || null
+  },
 }
 
 export default routeUtils

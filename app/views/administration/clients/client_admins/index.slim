@@ -10,12 +10,12 @@
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
-          = f.input :user_first_name_or_user_last_name_or_user_email_cont,
+          = f.input :filterable_fields,
                     label: false,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
-                    input_html: { class: 'has_clear periodically-observed' }
+                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
           = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
         #filter_results

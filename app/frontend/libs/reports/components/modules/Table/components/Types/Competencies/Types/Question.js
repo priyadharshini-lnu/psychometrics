@@ -55,17 +55,18 @@ export default function Question ({ filters, model }) {
       id,
     }))
   }
+
   const {
     milestones, mainHeaderColor, secondHeaderColor, showValues,
   } = model.props
   if (!filters.length) return null
 
   const question = findQuestion()
+
+  if (!question) return null
+
   const questionChoices = findQuestionChoices()
 
-  if (!question) {
-    return null
-  }
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
   const rowHeight = showValues ? LARGE_FILTER_ROW_HEIGHT : SMALL_FILTER_ROW_HEIGHT
   const descStyle = { minHeight: `${rowHeight * filters.length}px` }

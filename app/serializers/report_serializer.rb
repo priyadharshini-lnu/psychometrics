@@ -16,7 +16,8 @@
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale
+             :category, :pages, :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language,
+             :locales
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
@@ -25,6 +26,22 @@ class ReportSerializer < ActiveModel::Serializer
     object.pages.map do |page|
       Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context])
     end
+  end
+
+  def default_language
+    {
+      code: locale,
+      name: I18n.t("languages.#{locale}"),
+      direction: Settings.rtl_languages.include?(locale) ? 'rtl' : 'ltr'
+    }
+  end
+
+  def locales
+    Translation.to_hash_for_report(object.id, object.assessment_ids, locale)
+  end
+
+  def locale
+    object.default_language || I18n.default_locale
   end
 
   def factors
@@ -93,21 +110,23 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def norm_used
-    norm_data = assigns.pluck(:norm_data).compact
-    return if norm_data.blank?
+    norms = Norm.where(id: assigns.map { |assign| assign.norm_data&.dig('id') }.compact).index_by(&:id)
 
-    norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
-    norms.map do |norm|
-      norm&.decorate&.display_name
+    assigns.each_with_object({}) do |assign, acc|
+      norm_id = assign.norm_data&.dig('id')
+      next unless norm_id
+
+      acc[assign.assessment_id] = norms[norm_id.to_i]&.decorate&.display_name
     end
   end
 
   # Used for Piped Text
   def result_locale
-    assigns.map do |assign|
+    assigns.each_with_object({}) do |assign, acc|
       locale = assign.selected_locale || I18n.default_locale
-      I18n.t("languages.#{locale}")
-    end.uniq
+
+      acc[assign.assessment_id] = I18n.t("languages.#{locale}")
+    end
   end
 
   def assigns

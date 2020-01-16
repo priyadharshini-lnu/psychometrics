@@ -253,10 +253,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -1035,7 +1035,8 @@ CREATE TABLE public.factors (
     disabled boolean DEFAULT false,
     icon character varying,
     description text,
-    scoring_strategy smallint DEFAULT 0 NOT NULL
+    scoring_strategy smallint DEFAULT 0 NOT NULL,
+    subfactors_count integer DEFAULT 0
 );
 
 
@@ -1411,7 +1412,10 @@ CREATE TABLE public.license_usages (
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     campaign_id bigint,
-    registration_code_id bigint
+    registration_code_id bigint,
+    status_updated_by_id integer,
+    status_updated_at timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -2133,12 +2137,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -2188,7 +2192,8 @@ CREATE TABLE public.reports_filters (
     conditions json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer
+    assessment_id integer,
+    min_required_responses integer DEFAULT 0
 );
 
 
@@ -2397,10 +2402,12 @@ CREATE TABLE public.threesixty_email_histories (
     evaluator_id bigint,
     threesixty_campaign_id bigint,
     threesixty_email_schedule_id bigint,
-    status smallint,
+    recipient_type character varying,
+    status integer,
     meta json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false
 );
 
 
@@ -2441,7 +2448,9 @@ CREATE TABLE public.threesixty_email_schedules (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     recipient_ids jsonb DEFAULT '[]'::jsonb,
-    meta jsonb DEFAULT '{}'::jsonb
+    meta jsonb DEFAULT '{}'::jsonb,
+    consolidated boolean DEFAULT false NOT NULL,
+    auto_triggered boolean DEFAULT true
 );
 
 
@@ -2480,7 +2489,8 @@ CREATE TABLE public.threesixty_email_templates (
     schedulable boolean DEFAULT true,
     meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false NOT NULL
 );
 
 
@@ -5577,7 +5587,7 @@ ALTER TABLE ONLY public.libraries
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id);
 
 
 --
@@ -6025,7 +6035,7 @@ ALTER TABLE ONLY public.license_usages
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id);
 
 
 --
@@ -6073,7 +6083,7 @@ ALTER TABLE ONLY public.threesixty_campaigns
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id);
 
 
 --
@@ -6177,7 +6187,7 @@ ALTER TABLE ONLY public.users_results
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id);
 
 
 --
@@ -6609,8 +6619,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930140807'),
 ('20191001075231'),
 ('20191007075951'),
+('20191016134103'),
 ('20191028205331'),
+('20191029104332'),
 ('20191030081833'),
-('20191110113047');
+('20191110113047'),
+('20191111083124'),
+('20191111104014'),
+('20191218192252'),
+('20191225145152');
 
 

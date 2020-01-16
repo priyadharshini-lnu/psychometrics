@@ -7,7 +7,7 @@ module Threesixty
     has_one :subject, serializer: UserSerializer
     has_one :evaluator, serializer: UserSerializer
     has_one :relationship, serializer: RelationshipSerializer
-    has_one :result, serializer: ResultSerializer, if: -> { result && result.completed? }
+    has_one :result, serializer: ResultSerializer
 
     def evaluation_status
       return :completed if result&.completed?

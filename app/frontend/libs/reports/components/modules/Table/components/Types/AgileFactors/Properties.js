@@ -33,7 +33,7 @@ class Properties extends Component {
     const { model } = this.props
     const assessmentId = model.assessment_id
     const ids = _.result(store.model, 'props.source.id', [])
-    const questions = ids.map(id => AssessmentStore.questions[assessmentId][id])
+    const questions = _.compact(ids.map(id => AssessmentStore.questions[assessmentId][id]))
 
     return _.max(questions.map(q => q.props.scalePoints))
   }

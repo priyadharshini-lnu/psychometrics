@@ -12,7 +12,11 @@ const { Content } = Layout
 
 export default function Report ({
   report: {
-    loaded, report, results, user, campaign, approvalStatus, isSelf,
+    loaded,
+    report: {
+      default_language: defaultLanguage,
+      locales,
+    }, report, results, user, campaign, approvalStatus, isSelf,
   }, match: { params }, fetchReport, updateStatus, downloadReport,
   options: { approval: { managerApprovesReports } }, history,
 }) {
@@ -25,7 +29,7 @@ export default function Report ({
   }
 
   const requestDownloadReport = (campaignId, usersReportId) => {
-    downloadReport(campaignId, usersReportId)
+    downloadReport(campaignId, usersReportId, defaultLanguage.code)
       .then(({ response }) => {
         if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)
@@ -76,6 +80,8 @@ export default function Report ({
               results={results}
               campaign={JSON.stringify(campaign)}
               user={JSON.stringify(user)}
+              locales={JSON.stringify(locales)}
+              selectedLocale={defaultLanguage}
             />
           </div>
         </PageHeader>

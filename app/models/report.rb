@@ -134,11 +134,26 @@ class Report < ApplicationRecord
   scope :not_external, -> { where(provider: :internal) }
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
+  scope :filterable_fields, lambda { |search_term|
+    if (search_term !~ /\D/) && search_term.present?
+      where('reports.id= ? OR reports.name ILIKE ? ', search_term, "%#{search_term}%")
+    else
+      where("reports.name ILIKE '%#{search_term}%'")
+    end
+  }
+
+  class << self
+    # White list scopes for Ransack
+    def ransackable_scopes(_auth_object = nil)
+      %i[filterable_fields]
+    end
+  end
 
   # Copy report with nested resources
-  #
   def clone
-    @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting]
+    @cloned_item = deep_clone(
+      include: %i[assessments hogan_report_setting]
+    )
     @cloned_item.gen_uniq_name
     @cloned_item
   end

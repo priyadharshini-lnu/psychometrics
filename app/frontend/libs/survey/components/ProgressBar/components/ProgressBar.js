@@ -12,7 +12,8 @@ class ProgressBar extends Component {
 
   setValue = (e) => {
     const { minValue, maxValue, onClick } = this.props
-    const percent = e.nativeEvent.offsetX * 100 / e.currentTarget.clientWidth
+    let percent = e.nativeEvent.offsetX * 100 / e.currentTarget.clientWidth
+    percent = percent > 100 ? 100 : percent
     const value = minValue + percent * (maxValue - minValue) / 100
     onClick && onClick(value)
   }

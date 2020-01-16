@@ -85,6 +85,7 @@ Style/LambdaCall:
 
 Metrics/LineLength:
   Max: 120
+  IgnoreCopDirectives: true
 
 Style/NonNilCheck:
   IncludeSemanticChanges: true

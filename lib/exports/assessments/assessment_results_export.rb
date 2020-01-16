@@ -2,10 +2,12 @@
 
 module Exports
   module Assessments
-    class AssessmentResultsExport
+    class AssessmentResultsExport < BaseAssessmentResultsExport
       QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
                      RankOrder SideBySide Slider TextEntry Timing].freeze
+
+      private_attr_accessor :assessment
 
       def initialize(assessment, client_id, options = {})
         @assessment = assessment
@@ -14,79 +16,37 @@ module Exports
         @external = !!options[:external]
       end
 
-      def to_xlsx
-        if @external
-          Exports::External::BaseExternalExport.build(Assessment::TYPES.key(@assessment.type)).
-            to_xlsx(current_level_assigns)
-        else
-          to_xlsx_common
-        end
+      def call
+        xlsx = if @external
+                 Exports::External::BaseExternalExport.build(Assessment::TYPES.key(@assessment.type)).
+                   to_xlsx(results)
+               else
+                 get_xlsx_export_result
+               end
+
+        broadcast :ok, xlsx
       end
 
-      # TODO: (atanych): should be refactored
-      # rubocop:disable Metrics/BlockLength, Metrics/AbcSize
-      def to_xlsx_common
-        Axlsx::Package.new do |package|
-          package.workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
-            questions = Question.
-                        joining { block }.
-                        not_deleted.
-                        includes(:factors_scorings).
-                        selecting { [id, name, type, props] }.
-                        where.has { |q| q.block.assessment_id == @assessment.id }.
-                        ordering { [block.position.asc, position.asc] }
-            ## header
-            header = {
-              header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
-              header2: ['', '', '', '', '', '', ''],
-              header3: ['', '', '', '', '', '', '']
-            }
-            questions.each do |question|
-              next unless QUESTIONS.include?(question.type)
+      private
 
-              parser = "Exports::Assessments::Questions::#{question.type}".constantize
-              question_header = parser.header(question)
-              header[:header] << question_header
-              header[:header2] << Array.new(question_header.size) { |_i| question.name }
-              header[:header3] << Array.new(question_header.size) do |_i|
-                ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])
-              end
-            end
-            sheet.add_row header[:header].flatten
-            sheet.add_row header[:header2].flatten
-            sheet.add_row header[:header3].flatten
-            current_level_assigns.
-              find_each(batch_size: 100) do |assign|
-              # Collect parsed answers
-              user_results = []
-              if assign.results
-                questions.each do |question|
-                  answers = assign.results[question.id.to_s].try(:[], 'answers')
-                  next unless QUESTIONS.include?(question.type)
-
-                  parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                  user_results << parser.result(answers, question, @scoring)
-                end
-              end
-
-              norm_data = export_norm(assign.norm_data)
-              user_results_flattened = user_results.map { |a| a == [] ? '' : a }.flatten
-
-              sheet.add_row [assign.encode_id,
-                             assign.user_name,
-                             assign.user_email,
-                             assign.started_at.try(:strftime, '%D %r'),
-                             assign.completed_at.try(:strftime, '%D %r'),
-                             norm_data,
-                             I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
-                             *user_results_flattened]
-            end
-          end
-        end
+      def get_result_details_header
+        ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status']
       end
-      # rubocop:enable Metrics/BlockLength, Metrics/AbcSize
 
-      def current_level_assigns
+      def result_details_row_values(assign)
+        norm_data = export_norm(assign.norm_data)
+        [
+          assign.encode_id,
+          assign.user_name,
+          assign.user_email,
+          assign.started_at.try(:strftime, '%D %r'),
+          assign.completed_at.try(:strftime, '%D %r'),
+          norm_data,
+          I18n.t("activerecord.attributes.assign.statuses.#{assign.status}")
+        ]
+      end
+
+      def results
         client = Client.find(@client_id)
         if client.project?
           project_level_assigns
@@ -94,8 +54,6 @@ module Exports
           subproject_level_assigns
         end
       end
-
-      private
 
       def project_level_assigns
         Queries::Assigns::ProjectLevel::ByClientAndAssessment.call(@client_id, @assessment.id).

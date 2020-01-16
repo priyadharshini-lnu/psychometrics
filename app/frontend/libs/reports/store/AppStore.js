@@ -176,6 +176,7 @@ _.extend(AppStore.prototype, {
       contentType: 'application/json',
       data: JSON.stringify({ builder }),
       error: (jqXHR, textStatus, errorThrown) => {
+        // eslint-disable-next-line no-console
         console.info(jqXHR, textStatus, errorThrown)
         NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
       },

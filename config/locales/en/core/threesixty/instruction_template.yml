@@ -17,4 +17,13 @@ en:
         evaluate_others:
           name: 'Evaluate Others'
           description: 'This message will be displayed when participants are evaluating others from inside the portal'
+        nomination_help:
+          name: 'Nomination Help'
+          description: "Help text displayed on nomination card on user's dashboard"
+        evaluation_help:
+          name: 'Evaluation Help'
+          description: "Help text displayed on evaluation card on user's dashboard"
+        report_help:
+          name: 'Reports Help'
+          description: "Help text displayed on report card on user's dashboard"
 

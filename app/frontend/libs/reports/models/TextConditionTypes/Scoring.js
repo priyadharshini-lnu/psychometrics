@@ -26,32 +26,39 @@ class Scoring extends BaseType {
   }
 
   aggregate (results) {
+    let min; let max
     switch (this.condition.props.operation) {
       case 'Mean':
-        return _.round(_.meanBy(results, e => e.getValue()))
+        return _.round(_.meanBy(results, e => e.getValueOrNaN()))
       case 'Max':
-        return _.maxBy(results, e => e.getValue()).getValue()
+        max = _.maxBy(results, e => e.getValueOrNaN())
+        return max && max.getValueOrNaN()
       case 'Min':
-        return _.minBy(results, e => e.getValue()).getValue()
+        min = _.minBy(results, e => e.getValueOrNaN())
+        return min && min.getValueOrNaN()
       default:
         throw new Error(`unknown operation: ${this.condition.props.operation}`)
     }
   }
 
   compare (aggregatedData) {
+    const value = parseFloat(this.condition.props.value)
+
+    if (isNaN(value) || isNaN(aggregatedData)) { return false }
+
     switch (this.condition.props.predicate) {
       case 'EqualTo':
-        return aggregatedData === this.condition.props.value
+        return aggregatedData === value
       case 'NotEqualTo':
-        return aggregatedData !== this.condition.props.value
+        return aggregatedData !== value
       case 'GreaterThen':
-        return parseFloat(aggregatedData) > parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) > value
       case 'GreaterThenOrEqual':
-        return parseFloat(aggregatedData) >= parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) >= value
       case 'LessThen':
-        return parseFloat(aggregatedData) < parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) < value
       case 'LessThenOrEqual':
-        return parseFloat(aggregatedData) <= parseFloat(this.condition.props.value)
+        return parseFloat(aggregatedData) <= value
       default:
         throw new Error(`unknown predicate: ${this.condition.props.predicate}`)
     }

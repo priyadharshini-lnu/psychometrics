@@ -126,6 +126,7 @@
     "remarkable": "^1.7.1",
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
+    "scroll-js": "^3.1.0",
     "style-loader": "^0.23.1",
     "use-debounce": "^3.0.0",
     "videojs-record": "^3.6.0",
@@ -139,7 +140,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --cache && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
     }
   }
 }

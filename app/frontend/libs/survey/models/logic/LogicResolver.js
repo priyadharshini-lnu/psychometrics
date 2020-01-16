@@ -71,7 +71,6 @@ export default class LogicResolver {
       }
       prev = result
     })
-    console.log(res)
     return res
   }
 

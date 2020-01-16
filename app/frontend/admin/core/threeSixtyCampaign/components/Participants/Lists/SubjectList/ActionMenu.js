@@ -19,6 +19,7 @@ const ActionsMenu = ({
   }
 
   const removeUserWithConfirmation = () => {
+    // eslint-disable-next-line no-alert
     if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_from_campaign'))) {
       removeUser(campaignId, user.id)
     }
@@ -81,10 +82,9 @@ const ActionsMenu = ({
   }
 
   const removeSubject = (subjectId) => {
-    // eslint-disable-next-line no-alert
-    if (confirm(I18n.t('threesixty.participant_list.confirmation_messages.remove_subject'))) {
-      remove(campaignId, subjectId)
-    }
+    openModal('ResetSubjectModal', {
+      onConfirm: removeLicenceUsage => remove(campaignId, subjectId, removeLicenceUsage),
+    })
   }
 
   const requestDownloadReport = (campaignId, subjectId) => {

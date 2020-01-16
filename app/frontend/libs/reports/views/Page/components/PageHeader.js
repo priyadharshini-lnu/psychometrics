@@ -28,23 +28,21 @@ export default class PageHeader extends Component {
         <div>
           <a><LabelEditor value={model.name || 'Page'} onChange={this.changeName} width={120} /></a>
         </div>
-        {
-          <div className={styles.controls}>
-            <DropdownButton
-              id={`display_options_${model.id}`}
-              className={styles.options}
-              bsStyle="default"
-              pullRight
-              bsSize="small"
-              title={<span className="icon fa fa-gear" />}
-            >
-              <MenuItem onSelect={this.addDisplayLogic}>
-                <span className={`icon fa fa-eye ${styles.icon}`} />
+        <div className={styles.controls}>
+          <DropdownButton
+            id={`display_options_${model.id}`}
+            className={styles.options}
+            bsStyle="default"
+            pullRight
+            bsSize="small"
+            title={<span className="icon fa fa-gear" />}
+          >
+            <MenuItem onSelect={this.addDisplayLogic}>
+              <span className={`icon fa fa-eye ${styles.icon}`} />
                 Add Display Logic...
-              </MenuItem>
-            </DropdownButton>
-          </div>
-        }
+            </MenuItem>
+          </DropdownButton>
+        </div>
       </div>
     )
   }

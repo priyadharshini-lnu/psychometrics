@@ -3,6 +3,7 @@
 module Reports
   module ResultTypes
     class NormedFactor < BaseType
+      # rubocop:disable Metrics/AbcSize
       def call
         assign = context.find_assign_by(data['assessmentId'])
         # Skip if can't find factor
@@ -14,8 +15,10 @@ module Reports
 
         return decorate(factor, factor_alias) unless assign&.assessment_id == data['assessmentId']
 
+        norm_data = assign.norm_data
+
         # Skip if the assign has no norm data
-        return decorate(factor, factor_alias) unless assign.norm_data
+        return decorate(factor, factor_alias) if norm_data&.dig('id').blank? || norm_data&.dig('type').blank?
 
         # Fetches Norm
         # Fetches FactorsNorm by Norm ID and Type
@@ -42,11 +45,12 @@ module Reports
         Rails.logger.warn e.message
         decorate(factor, factor_alias)
       end
+      # rubocop:enable Metrics/AbcSize
 
       def decorate(factor, factor_alias, result = nil)
         {
           key: data['factorId'],
-          name: factor_alias&.name || factor&.name,
+          name: data['label'] || factor_alias&.name || factor&.name,
           config_data: data,
           value: result
         }

@@ -35,7 +35,7 @@ module Administration
                                                                                    resource.threesixty_subject,
                                                                                    resource.evaluator_id)
           end
-          format.json { render json: resource }
+          format.json { render json: resource, serializer: ::Threesixty::ParticipantSerializer }
         end
       end
 

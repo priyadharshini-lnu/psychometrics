@@ -24,11 +24,11 @@ class FactorArc {
       .attr('class', 'factor-container')
       .attr('d', this.arc)
       .style('stroke', '#000')
-      .attr('id', (d, i) => `factor-container-${i}`)
+      .attr('id', (d, i) => `factor-container-${i}-${this.model.id}`)
       .style('stroke-width', 0)
-      .attr('fill', '#fff')
+      .attr('fill', '#393939')
       .each((d, i) => {
-        const element = document.getElementById(`factor-container-${i}`)
+        const element = document.getElementById(`factor-container-${i}-${this.model.id}`)
         const firstArcSection = /(^.+?)L/
         const arcs = firstArcSection.exec(d3.select(element).attr('d'))
         if (!arcs || !arcs.length) return null
@@ -48,7 +48,7 @@ class FactorArc {
         this.svgContainer
           .append('path')
           .attr('class', 'hiddenDonutArcs')
-          .attr('id', `factor-hidden-container-${i}`)
+          .attr('id', `factor-hidden-container-${i}-${this.model.id}`)
           .attr('d', newArc)
           .style('fill', 'none')
       })
@@ -71,13 +71,13 @@ class FactorArc {
       .append('text')
       .attr('class', 'factor-text')
       .attr('dy', (d, i) => this.getTextDy(d, i))
-      .style('fill', d => d.data.color)
+      .style('fill', '#fff')
       .append('textPath')
       .attr('startOffset', '50%')
       .style('text-anchor', 'middle')
       .style('font-size', `${parseInt(this.model.props.style.fontSize, 10) * FACTOR_FONT_SIZE_RATE}%`)
       .style('font-family', this.model.props.style.fontFamily)
-      .attr('xlink:href', (d, i) => `#factor-hidden-container-${i}`)
+      .attr('xlink:href', (d, i) => `#factor-hidden-container-${i}-${this.model.id}`)
       .text(d => d.data.name)
     return this
   }
@@ -97,9 +97,9 @@ class FactorArc {
     const angle = ((d.startAngle + d.endAngle) * 90) / Math.PI
     // i'm sorry for magic numbers, but it is necessary
     if (angle > 90 && angle < 270) {
-      return -9 - (11 * (factorWidth - 25)) / 25
+      return -7 - (11 * (factorWidth - 25)) / 25
     }
-    return 17 + (11 * (factorWidth - 25)) / 25
+    return 19 + (11 * (factorWidth - 25)) / 25
   }
 }
 

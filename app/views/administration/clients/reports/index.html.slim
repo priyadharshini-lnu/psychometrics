@@ -36,12 +36,12 @@
                     input_html: { data: { live_search: true }, multiple: true, title: 'Assessment' },
                     required: false,
                     label: false
-          = f.input :report_name_cont,
+          = f.input :report_filterable_fields,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
-                    input_html: { class: 'has_clear periodically-observed' }
+                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
           = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
         #filterrific_results

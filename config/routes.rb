@@ -156,8 +156,11 @@ Rails.application.routes.draw do
               end
             end
             resources :threesixty_campaigns, concerns: :client_editable do
+              member do
+                get :export_results
+              end
+
               collection do
-                get :assessments
                 get :factors
               end
             end
@@ -171,7 +174,11 @@ Rails.application.routes.draw do
         resources :sub_campaigns, concerns: :client_editable, only: %i[index edit update destroy]
 
         resources :licenses, only: %i[index show new create edit update] do
-          resources :license_usages, only: [:index]
+          resources :license_usages, only: [:index] do
+            member do
+              patch :toggle_activation_status
+            end
+          end
           patch :toggle_status, on: :member
           get :overview, on: :collection
         end
