@@ -19,7 +19,8 @@ class BaseExternalFactor extends Component {
     const { model, singleChoice } = this.props
     const options = this.getOptions()
     const values = _.result(model, 'props.source.factors') || []
-    const value = singleChoice ? values[0] : values.map(f => ({ id: f }))
+    const value = singleChoice ? { id: values[0] } : values.map(f => ({ id: f }))
+
     return (
       <Select
         name="form-field-name"
