@@ -6,6 +6,7 @@ import FilterCondition from './FilterCondition'
 const Filter = function (attrs = {}) {
   this.id = attrs.id
   this.name = attrs.name
+  this.minRequiredResponses = attrs.min_required_responses || 0
   this.assessmentId = attrs.assessment_id
   this.conditions = []
   if (attrs.conditions) {
@@ -22,6 +23,7 @@ _.extend(Filter.prototype, {
     return {
       id: this.id,
       name: this.name,
+      min_required_responses: this.minRequiredResponses,
       conditions: this.conditions,
       assessment_id: this.assessmentId,
     }

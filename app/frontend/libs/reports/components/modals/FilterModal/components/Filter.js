@@ -10,9 +10,9 @@ export class Filter extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  changeName = (e) => {
+  change = ({ currentTarget }) => {
     const { model } = this.props
-    model.name = e.currentTarget.value
+    model[currentTarget.name] = currentTarget.value
     this.forceUpdate()
   }
 
@@ -41,12 +41,19 @@ export class Filter extends Component {
     const { model } = this.props
     return (
       <select
-        value={model.assessmentId}
+        value={model.assessmentId || ''}
         className={`form-control ${styles.assessmentSelect}`}
         onChange={this.changeAssessment}
       >
-        <option />
-        {AppStore.assessments.map(assessment => <option value={assessment.id}>{assessment.name}</option>)}
+        <option value="">No Assessment</option>
+        {AppStore.assessments.map(assessment => (
+          <option
+            key={assessment.id}
+            value={assessment.id}
+          >
+            {assessment.name}
+          </option>
+        ))}
       </select>
     )
   }
@@ -55,19 +62,42 @@ export class Filter extends Component {
     const { model } = this.props
     return (
       <div className={styles.filterContainer}>
-        <div>
-          Filter name:
-          <input
-            className="form-control"
-            value={model.name || ''}
-            onChange={this.changeName}
-            style={{ width: '150px', marginLeft: '10px', display: 'inline-block' }}
-          />
-        </div>
-        <div style={{ marginTop: '10px' }}>
-          Assessment:
-          {this.renderAssessmentSelect()}
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td className="ptm">Filter name:</td>
+              <td className="ptm">
+                <input
+                  className="form-control"
+                  name="name"
+                  value={model.name || ''}
+                  onChange={this.change}
+                  style={{ width: '150px', marginLeft: '10px', display: 'inline-block' }}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td className="ptm">Assessment:</td>
+              <td className="ptm">
+                {this.renderAssessmentSelect()}
+              </td>
+            </tr>
+            <tr>
+              <td className="ptm">Min Required Responses:</td>
+              <td className="ptm">
+                <input
+                  type="number"
+                  step="1"
+                  className="form-control"
+                  name="minRequiredResponses"
+                  value={model.minRequiredResponses}
+                  onChange={this.change}
+                  style={{ width: '150px', marginLeft: '10px', display: 'inline-block' }}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         {this.renderConditions()}
         <div className={styles.footer}>
           <a onClick={this.remove} className={styles.delete}>Delete Filter</a>
