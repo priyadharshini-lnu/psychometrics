@@ -14,11 +14,22 @@ export const allPages = (state) => state.allPages
 export const currentPage = (state) => state.currentPage
 
 
-export const currentBlockPagesSelector = state =>  state.allPages[state.currentBlock]
+export const currentBlockPagesSelector = state => state.allPages[state.currentBlock]
+
+export const currentElementSelector = (state) => {
+  return state.normalizedTree[state.currentElement]
+}
 
 export const currentPageSelector = state => {
-  const pages = state.allPages[state.currentBlock]
+  const block = currentElementSelector(state).props.current
+  const pages = state.allPages[block]
   return pages[state.currentPage]
+}
+
+export const nextPageSelector = state => {
+  const block = currentElementSelector(state).props.current
+  const pages = state.allPages[block]
+  return pages[state.currentPage + 1]
 }
 
 export const pageQuestions = createSelector(
