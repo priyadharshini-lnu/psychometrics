@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { open } from 'libs/survey/core/modals'
+import { openModal } from 'admin/core/temp/modals'
 import { createBlock } from 'libs/survey/core/builder/assessment/block/actions'
 import { trashItems, blocksWithQuestions } from 'core/builder/assessment/selectors'
 
@@ -13,9 +13,9 @@ export default connect(
     trash: trashItems(state),
   }),
   {
-    openFlow: data => open('flow', data),
-    openMapNorms: data => open('mapNorms', data),
-    openCreateByTemplate: data => open('createByTemplate', data),
+    openFlow: data => openModal('flow', data),
+    openMapNorms: data => openModal('mapNorms', data),
+    openCreateByTemplate: data => openModal('createByTemplate', data),
     createBlock,
   },
 )

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal, getData } from 'admin/core/temp/modals'
 import { getTree } from 'libs/survey/core/builder/flow/selectors'
 import {
   addElementBelow, duplicateElement, addNew, updateTree, removeElement, reset,
@@ -8,7 +8,7 @@ import { allQuestions, blocksWithoutDeleted } from 'libs/survey/core/builder/ass
 
 export default connect(
   state => ({
-    ...state.survey.modals.flow.data,
+    ...getData(state.survey).flow,
     tree: getTree(state),
     assessment: state.survey.builder.assessment,
     flow: state.survey.builder.flow,
@@ -16,7 +16,7 @@ export default connect(
     blocks: blocksWithoutDeleted(state.survey.builder, state.survey.builder.assessment.blocks),
   }),
   {
-    close: () => close('flow'),
+    close: () => closeModal('flow'),
     addElementBelow,
     duplicateElement,
     addNew,

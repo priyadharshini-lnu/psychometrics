@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { open } from 'libs/survey/core/modals'
+import { openModal } from 'admin/core/temp/modals'
 import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
 import { moduleConfig } from 'libs/survey/core/builder/assessment/question/selectors'
 import {
@@ -21,9 +21,9 @@ export default connect(
   {
     select: selectQuestion,
     unselect: unselectQuestion,
-    openDisplayLogic: data => open('displayLogic', data),
-    openDefaultValue: data => open('defaultValue', data),
-    openRandomization: data => open('randomization', data),
+    openDisplayLogic: data => openModal('displayLogic', data),
+    openDefaultValue: data => openModal('defaultValue', data),
+    openRandomization: data => openModal('randomization', data),
     removeQuestion,
     insertAfterQuestion,
     insertBeforeQuestion,

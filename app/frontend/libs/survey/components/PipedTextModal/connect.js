@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal, getData } from 'admin/core/temp/modals'
 
 export default connect(
-  state => ({
-    ...state.survey.modals.pipedText.data,
+  ({ survey }) => ({
+    ...getData(survey).pipedText,
   }),
   {
-    close: () => close('pipedText'),
+    close: () => closeModal('pipedText'),
   },
 )

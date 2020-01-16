@@ -26,12 +26,11 @@ const MODALS = {
 
 export default function Modals ({ current }) {
   if (!_.size(current)) return null
-
   return (
     <>
-      {_.map(current, (modal, key) => {
-        const ModalComponent = MODALS[key]
-        return <ModalComponent key={key} {...modal} />
+      {_.map(current, (modal) => {
+        const ModalComponent = MODALS[modal]
+        return <ModalComponent key={modal} />
       })}
     </>
   )

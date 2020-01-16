@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal } from 'admin/core/temp/modals'
 import { allQuestions } from 'core/builder/assessment/selectors'
 import { addNormRule, removeNormRule } from 'libs/survey/core/builder/assessment/actions'
 
@@ -13,7 +13,7 @@ export default connect(
     })
   },
   {
-    close: () => close('mapNorms'),
+    close: () => closeModal('mapNorms'),
     addNormRule,
     removeNormRule,
   },

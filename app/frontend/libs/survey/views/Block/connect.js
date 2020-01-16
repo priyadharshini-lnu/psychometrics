@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { open } from 'libs/survey/core/modals'
+import { openModal } from 'admin/core/temp/modals'
 import {
   createBlock, removeBlock, addQuestion, cloneBlock, renameBlock,
   saveAsTemplate, unlinkTemplate,
@@ -9,8 +9,8 @@ import { unselectQuestion, moveBlockDown, moveBlockUp } from 'libs/survey/core/b
 export default connect(
   () => ({}),
   {
-    openRandomization: data => open('randomization', data),
-    openCreateByTemplate: data => open('createByTemplate', data),
+    openRandomization: data => openModal('randomization', data),
+    openCreateByTemplate: data => openModal('createByTemplate', data),
     unselectQuestion,
     createBlock,
     removeBlock,

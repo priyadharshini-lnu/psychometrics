@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { currentModalsSelector } from 'core/modals/selectors'
+import { getCurrent } from 'admin/core/temp/modals'
 
 export default connect(
-  ({ survey: { modals } }) => ({
-    current: currentModalsSelector(modals),
+  ({ survey }) => ({
+    current: getCurrent(survey),
   }),
   {},
 )

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal, getData } from 'admin/core/temp/modals'
 import { selectQuestion } from 'core/builder/assessment/question/selectors'
 import { selectBlock } from 'core/builder/assessment/selectors'
 import { updateBlockProps } from 'core/builder/assessment/block/actions'
@@ -13,12 +13,12 @@ const getModel = (state, data) => {
 }
 
 export default connect(
-  ({ survey: { modals, builder } }) => ({
-    ...modals.randomization.data,
-    model: modals.randomization.data && getModel(builder, modals.randomization.data),
+  ({ survey, survey: { builder } }) => ({
+    ...getData(survey).randomization,
+    model: getData(survey).randomization && getModel(builder, getData(survey).randomization),
   }),
   {
-    close: () => close('randomization'),
+    close: () => closeModal('randomization'),
     updateBlockProps,
   },
 )
