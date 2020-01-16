@@ -63,7 +63,6 @@ const createSocketChannel = (channel, data) => eventChannel((emit) => {
       emit({ type: 'disconnect', data })
     },
   })
-  console.log(socket)
   return () => {
     socket.remove()
   }
