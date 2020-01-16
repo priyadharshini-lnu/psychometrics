@@ -104,6 +104,7 @@ _.extend(Result.prototype, {
         this.individualAgileScoring = object.agile_scoring
       }
     })
+    this.cleanupNullScorings()
     this.calcScoringByQuestions()
     this.calcOccupationsStars()
     this.sortOccupations()
@@ -516,6 +517,13 @@ _.extend(Result.prototype, {
           this.resultsByFilter[filter.id].scoring[factorId].results.push(new Scoring({ value, norm }))
         }
       })
+    })
+  },
+
+  cleanupNullScorings () {
+    _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
+      const sc = this.scoring[factorId]
+      _.remove(sc.results, r => r === null)
     })
   },
 
