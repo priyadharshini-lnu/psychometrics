@@ -15,10 +15,10 @@ export class AssessmentPreview extends Component {
   }
 
   render () {
-    const page = store.currentPage()
-    if (!page) { return null }
+    const { end, initialized } = this.props
+    if (!initialized) { return null }
     return (
-      page.end ? <EndPage page={page} /> : <Page page={page} />
+      end ? <EndPage /> : <Page />
     )
   }
 }

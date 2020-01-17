@@ -1,6 +1,7 @@
 import { block, blocks, question } from '../../../store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
+import { nextElementId, nextParentElementId } from './helpers'
 
 export const blockSelector = (state, ids) => denormalize(ids, [block], state)
 export const questionsSelector = (state, ids) => denormalize(ids, [question], state)
@@ -30,6 +31,20 @@ export const nextPageSelector = state => {
   const block = currentElementSelector(state).props.current
   const pages = state.allPages[block]
   return pages[state.currentPage + 1]
+}
+
+export const nextElementIdSelector = state => {
+  let id:string | null = nextElementId(state.currentElement)
+  if (state.normalizedTree[id]) {
+    return id
+  }
+
+  while(id = nextParentElementId(id)) {
+    if (state.normalizedTree[id]) {
+      return id
+    }
+  }
+  return null
 }
 
 export const pageQuestions = createSelector(

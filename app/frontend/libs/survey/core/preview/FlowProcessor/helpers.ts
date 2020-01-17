@@ -73,3 +73,19 @@ export const normalizeTree = (roots) => {
   _.each(roots, (child, i) => eachChild(child, `${i}`))
   return list
 }
+
+export const nextElementId = (id:string):string => {
+  const path:string[] = id.split('/')
+  path[path.length - 1] = (+ path[path.length - 1] + 1).toString()
+  return path.join('/')
+}
+
+export const nextParentElementId = (id:string):string | null => {
+  const path:string[] = id.split('/')
+  path.pop()
+  if(path.length) {
+    path[path.length - 1] = (+ path[path.length - 1] + 1).toString()
+    return path.join('/')
+  }
+  return null
+}

@@ -1,4 +1,4 @@
-import {initPages, initLinearElements, normalizeTree} from 'libs/survey/core/preview/FlowProcessor/helpers'
+import {initPages, initLinearElements, normalizeTree, nextElementId, nextParentElementId} from 'libs/survey/core/preview/FlowProcessor/helpers'
 
 const question = (id, data = {}) => ({id, ...data})
 
@@ -157,4 +157,22 @@ test('normalize tree with many roots and children', () => {
     '1/1': { "type": "Branch" },
     '1/1/0': { "type": "Block", "props": { "current": "4" } },
   });
+})
+
+
+test('next element should retorn valid id', () => {
+  expect(nextElementId('0/0/0')).toStrictEqual('0/0/1');
+  expect(nextElementId('0/0/1')).toStrictEqual('0/0/2');
+  expect(nextElementId('0/1')).toStrictEqual('0/2');
+  expect(nextElementId('1')).toStrictEqual('2');
+  expect(nextElementId('0/1/1')).toStrictEqual('0/1/2');
+})
+
+
+test('next parent element should retorn valid id', () => {
+  expect(nextParentElementId('0/0/0')).toStrictEqual('0/1');
+  expect(nextParentElementId('0/0/1')).toStrictEqual('0/1');
+  expect(nextParentElementId('0/1')).toStrictEqual('1');
+  expect(nextParentElementId('1')).toStrictEqual(null);
+  expect(nextParentElementId('0/1/1')).toStrictEqual('0/2');
 })

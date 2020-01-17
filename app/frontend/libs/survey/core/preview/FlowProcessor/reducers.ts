@@ -4,7 +4,7 @@ import { assessment } from '../../../store/schema'
 import { normalize } from 'normalizr'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
-  CHANGE_ELEMENT,
+  CHANGE_ELEMENT, SHOW_END,
 } from './actions'
 import { getIn, setIn, updateIn } from 'utils/immutable'
 
@@ -54,8 +54,9 @@ const HANDLERS = {
   [ANSWER]: (state, {result}) => setIn(state, ['results', result.question_id], result),
   [SHOW_ERRORS]: (state, {errors}) => setIn(state, ['errors'], errors),
   [EMPTY_ERRORS]: (state) => setIn(state, ['errors'], null),
-  [CHANGE_ELEMENT]: (state, { id }) => setIn(state, ['currentElement'], id),
+  [CHANGE_ELEMENT]: (state, { id }) => ({...state, currentPage: 0, currentElement: id}),
   [SHOW_PAGE]: (state, {page}) => setIn(state, ['currentPage'], page),
+  [SHOW_END]: (state, {page}) => ({...state, end: true}),
 }
 
 export default createReducer(HANDLERS, defaultState)

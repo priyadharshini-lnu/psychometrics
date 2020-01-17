@@ -1,6 +1,10 @@
 import _ from 'lodash'
-import { NEXT_PAGE, showErrors, emptyErrors } from './actions'
-import {currentPage, pageQuestions} from './selectors'
+import {
+  NEXT_PAGE, showErrors, emptyErrors, showPage, changeElement, showEnd,
+} from './actions'
+import {
+  currentPage, pageQuestions, nextPageSelector, nextElementIdSelector,
+} from './selectors'
 import ValidationProcessor from './ValidationProcessor'
 
 const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
@@ -17,6 +21,21 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     return
   } else {
     dispatch(emptyErrors())
+  }
+
+  // show next page
+  const page = nextPageSelector(preview)
+
+  if (page) {
+    dispatch(showPage(preview.currentPage + 1))
+  } else {
+    const element = nextElementIdSelector(preview)
+
+    if (element) {
+      dispatch(changeElement(element))
+    } else {
+      dispatch(showEnd())
+    }
   }
 
   // save current page (questions ids ???) to handle clearing results on back btn
