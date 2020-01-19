@@ -108,6 +108,28 @@ export class Properties extends Component {
             {' '}
             Password
           </label>
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'DateEntry'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="DateEntry"
+            />
+            {' '}
+            Date
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'DateTimeEntry'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="DateTimeEntry"
+            />
+            {' '}
+            Date & Time
+          </label>
         </div>
         <hr className={styles.divider} />
         {!restricted && (

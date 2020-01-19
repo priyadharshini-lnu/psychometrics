@@ -1,11 +1,15 @@
-import SingleLinePreview from './types/SingleLinePreview'
-import MultiLinePreview from './types/MultiLinePreview'
-import FormPreview from './types/FormPreview'
+import SingleLine from './types/SingleLinePreview'
+import MultiLine from './types/MultiLinePreview'
+import Form from './types/FormPreview'
+import DateEntry from './types/DateEntryPreview'
+import DateTimeEntry from './types/DateTimeEntryPreview'
 
 export default {
-  SingleLine: SingleLinePreview,
-  MultiLine: MultiLinePreview,
-  Form: FormPreview,
-  Password: SingleLinePreview,
-  EssayTextBox: MultiLinePreview,
+  SingleLine,
+  MultiLine,
+  Form,
+  Password: SingleLine,
+  EssayTextBox: MultiLine,
+  DateEntry,
+  DateTimeEntry,
 }
