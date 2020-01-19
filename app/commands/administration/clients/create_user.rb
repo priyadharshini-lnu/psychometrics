@@ -82,7 +82,7 @@ module Administration
       end
 
       def membership_attributes_for_registration
-        user_through_registration? ? { through_registration_code: true } : {}
+        user_through_registration? ? { through_registration: true } : {}
       end
 
       def user_through_registration?

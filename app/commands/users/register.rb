@@ -35,7 +35,7 @@ module Users
       attributes[:project_id] = project.id
       attributes[:terms] = true
       attributes[:create_by_invite] = true
-      User.create(attributes)
+      User.create!(attributes)
     end
 
     def increment_registration_code_usage(registration_code)

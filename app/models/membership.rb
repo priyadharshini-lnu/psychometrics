@@ -137,7 +137,7 @@ class Membership < ApplicationRecord
     joins(:assigns).where(assigns: { id: decoded_id })
   }
 
-  attr_accessor :through_registration_code
+  attr_accessor :through_registration
 
   # Save HRIS data from form
   def hris_data=(data)
@@ -229,8 +229,8 @@ class Membership < ApplicationRecord
 
     if invites.present?
       invites.last&.emails&.create(membership_id: id)
-    elsif through_registration_code
-      raw_token = get_raw_invitation_token
+    elsif through_registration
+      raw_token = Users::FindOrCreateInvitationToken.call!(user)
       InvitationMailer.invite(user_id, client_id, raw_token).deliver_later
     end
   end
@@ -270,15 +270,6 @@ class Membership < ApplicationRecord
     return unless tte_id
 
     errors.add(:base, :admin_for_another_tte) if client.tte_id != tte_id
-  end
-
-  def get_raw_invitation_token
-    user.skip_invitation = true
-    user.send(:generate_invitation_token!)
-    user.update_column(:invitation_sent_at, ::DateTime.current)
-    Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(
-      user.encrypted_invitation_raw
-    )
   end
 
   class << self
