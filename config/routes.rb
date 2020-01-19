@@ -161,7 +161,6 @@ Rails.application.routes.draw do
               end
 
               collection do
-                get :assessments
                 get :factors
               end
             end

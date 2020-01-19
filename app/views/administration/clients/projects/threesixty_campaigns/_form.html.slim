@@ -1,15 +1,15 @@
-= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true, html: { id: 'threesixty_campaign' }) do |f|
+= simple_form_for(@form, as: :resource, url: { action: :create }, remote: true, html: { id: 'threesixty_campaign' }) do |f|
   .modal-body
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
       = f.input :type, as: :select, collection: ::Threesixty::Campaign::TYPES.map{|k,v| [v, k]}, include_blank: false
-      = f.fields_for :threesixty_campaign do |ff|
-        #assessment_field.form-group
-          = ff.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
-        #factors_field.form-group
-          = ff.input :factors, as: :select, collection: [], input_html: { multiple: true }
-
+      #campaign_template_fields.form-group
+         = f.input :campaign_template_id, as: :select, collection: @campaign_templates.map { |a| [a.name, a.id] }
+      #assessment_field.form-group
+        = f.input :assessment_id, as: :select, collection: @assessments.map { |a| [a.decorate.name, a.id] }
+      #factors_field.form-group
+        = f.input :factors, as: :select, collection: [], input_html: { multiple: true }
 
   .modal-footer
     .btn-group
@@ -18,14 +18,17 @@
 
 javascript:
   $(function () {
+    var campaignTemplateAndAssessmentIds = #{@campaign_template_and_assessment_ids.to_json.html_safe}
+
     function changeType(){
       var type = $(this).find('option:selected').attr('value')
-      if (type === 'empty') {
-        $('#assessment_field').css('display', 'none')
-        $('#factors_field').css('display', 'none')
+      $('#assessment_field, #campaign_template_fields').css('display', 'none')
+
+      if  (type == 'previous_360') {
+        $('#assessment_field, #factors_field').css('display', 'block')
+      } else if (type == 'standard_360') {
+        $('#campaign_template_fields, #factors_field').css('display', 'block')
       } else {
-        fetchAssessments(type)
-        $('#assessment_field').css('display', 'block')
         $('#factors_field').css('display', 'none')
       }
     }
@@ -33,38 +36,20 @@ javascript:
     $('#threesixty_campaign #resource_type').change(changeType)
     changeType.call($('#threesixty_campaign #resource_type'))
 
-    function assessmentHandler () {
-      $('#threesixty_campaign #resource_threesixty_campaign_assessment_id').change(function(){
-        var assessment = $(this).find('option:selected').attr('value')
-        fetchFactors(assessment)
-      })
-    }
+    $('#threesixty_campaign #resource_campaign_template_id').change(function() {
+      var campaignTemplateId = $(this).find('option:selected').attr('value')
+      var assessmentId = campaignTemplateAndAssessmentIds[campaignTemplateId]
 
-    function fetchAssessments (type) {
-      var url = $('#threesixty_campaign').attr('action') + '/assessments?type=' + type
+      fetchFactors(assessmentId)
+    })
 
-      $.ajax({
-        url: url,
-        type: 'GET',
-        dataType: 'script',
-        success: function () {
-          assessmentHandler()
-        }
-      });
-    }
+    $('#threesixty_campaign #resource_assessment_id').change(function(){
+      var assessment = $(this).find('option:selected').attr('value')
+      fetchFactors(assessment)
+    })
 
     function fetchFactors (assessment) {
       var url = $('#threesixty_campaign').attr('action') + '/factors?assessment_id=' + assessment
-
-      $.ajax({
-        url: url,
-        type: 'GET',
-        dataType: 'script',
-        success: function () {
-          $('#factors_field').css('display', 'block')
-        }
-      });
+      $.getScript(url, function() { $('#factors_field').css('display', 'block') })
     }
-
-    assessmentHandler()
   })
