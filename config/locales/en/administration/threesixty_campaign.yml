@@ -17,6 +17,12 @@ en:
             admin: Client Admin
             client_admins: Client Admins
             report_bundle: Report Bundle
+            id: 'Id'
+            name: 'Name'
+            assessment: 'Assement'
+            report: 'Report'
+            status: 'Status'
+            created_at: 'Created At'
           export:
             <<: *list
           new:

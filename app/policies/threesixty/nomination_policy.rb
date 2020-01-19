@@ -2,18 +2,22 @@
 
 class Threesixty::NominationPolicy < Threesixty::BasePolicy
   def create?
+    return false if @record.campaign.closed?
     return true if subject_can_manage_nominations? && @current_user.id == @record.user_id
 
     manager_can_manage_nominations? && manager?(@record)
   end
 
   def destroy?
+    return false if @record.campaign.closed?
     return true if subject_can_manage_nominations? && @current_user.id == @record.subject_id
 
     manager_can_manage_nominations? && manager?(@record.threesixty_subject)
   end
 
   def update_status?
+    return false if @record.campaign.closed?
+
     manager_can_approve_nominations? && manager?(@record.threesixty_subject)
   end
 

@@ -37,5 +37,13 @@ module Administration::Threesixty
     def export_results?
       super_admins_or_admins?
     end
+
+    def edit?
+      super_admins_or_admins?
+    end
+
+    def update?
+      super_admins_or_admins?
+    end
   end
 end

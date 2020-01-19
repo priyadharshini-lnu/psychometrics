@@ -6,12 +6,14 @@ class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
   end
 
   def edit?
-    return false if @current_user.is_anonym?
+    return false if @current_user.is_anonym? || @record.campaign.closed?
 
     @record.evaluator_id == @current_user.id
   end
 
   def decline?
+    return false if @record.campaign.closed?
+
     @current_user.id == @record.evaluator_id
   end
 
@@ -22,6 +24,8 @@ class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
   private
 
   def manage?
+    return false if @record.campaign.closed?
+
     @current_user.id == @record.evaluator_id || manager?(@record.threesixty_subject)
   end
 end
