@@ -167,7 +167,7 @@ class User < ApplicationRecord
     end
 
     # Customizing default mail of devise_inviteable
-    # Couse it's gem not support to chagen invite link
+    # Couse it's gem not support to change invite link
     #   Where we need to set subdomain of Client
     #   Where client was invited
     self.skip_invitation = true
