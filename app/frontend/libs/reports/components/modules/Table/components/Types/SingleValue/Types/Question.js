@@ -22,10 +22,11 @@ export default function Question ({ model, filters }) {
 
   const getResults = () => {
     const question = findQuestion()
-    const questionChoices = findQuestionChoices()
     if (!question) {
       return []
     }
+
+    const questionChoices = findQuestionChoices()
 
     if (!ResultStore.realResults) {
       return questionChoices.map(({ name }, index) => {

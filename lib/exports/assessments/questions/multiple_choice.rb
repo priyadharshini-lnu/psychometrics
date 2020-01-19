@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class MultipleChoice
+      class MultipleChoice < Base
         # FROM:
         #   [{
         #     "index": 0,
@@ -24,7 +24,7 @@ module Exports
           [answers]
         end
 
-        def self.header(question)
+        def self.question_id_header(question)
           ["QID#{question.id}"]
         end
       end

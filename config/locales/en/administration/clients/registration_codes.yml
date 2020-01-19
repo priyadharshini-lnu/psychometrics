@@ -12,6 +12,7 @@ en:
           license_issue: Not enough licenses.
           presence: '%{attribute} must be entered'
           invalid_attribute: '%{attribute} is invalid'
+          in_use: '%{attribute} is already in use'
         edit:
           header: Edit Registration code
         new:

@@ -15,6 +15,10 @@ class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
     @current_user.id == @record.evaluator_id
   end
 
+  def update_status?
+    manager?(@record.threesixty_subject)
+  end
+
   def destroy?
     manage?
   end

@@ -31,11 +31,13 @@ export class Preview extends Component {
 
   // TODO: Implement when will be ready flow
   enableSubmit = () => {
+    // eslint-disable-next-line no-console
     console.info('Now Submit button is enable')
   }
 
   // TODO: Implement when will be ready flow
   autoAdvance = () => {
+    // eslint-disable-next-line no-console
     console.info('Auto Advance')
   }
 

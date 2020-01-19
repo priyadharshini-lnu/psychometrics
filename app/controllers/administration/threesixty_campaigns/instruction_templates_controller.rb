@@ -9,7 +9,7 @@ module Administration
 
       def index
         skip_policy_scope
-        render json: threesixty_campaign.instruction_templates
+        render json: threesixty_campaign.instruction_templates.order(:created_at)
       end
 
       def update

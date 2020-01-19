@@ -18,7 +18,6 @@ module Anonym
 
     def pass
       redirect_to(action: 'error', reason: 'archived') && return if @resource.archived?
-      redirect_to(action: 'error', reason: 'expired') && return if @assessments_client.expired?
       redirect_to(action: 'error', reason: 'not_active') && return unless @assessments_client.enable_universal_links?
 
       @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)

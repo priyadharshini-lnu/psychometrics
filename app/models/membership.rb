@@ -137,6 +137,8 @@ class Membership < ApplicationRecord
     joins(:assigns).where(assigns: { id: decoded_id })
   }
 
+  attr_accessor :through_registration
+
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}
@@ -224,9 +226,13 @@ class Membership < ApplicationRecord
   def create_invitation_emails
     invites = invitations_for_current_membership
     return if already_invited?
-    return unless invites
 
-    invites.last&.emails&.create(membership_id: id)
+    if invites.present?
+      invites.last&.emails&.create(membership_id: id)
+    elsif through_registration
+      raw_token = Users::FindOrCreateInvitationToken.call!(user)
+      InvitationMailer.invite(user_id, client_id, raw_token).deliver_later
+    end
   end
 
   def create_other_emails

@@ -19,10 +19,6 @@
                 = f.input :last_name
               .usernameFormGroup.input-group
                 = f.input :email
-              .passwordFormGroup.input-group
-                = f.input :password
-              .passwordFormGroup.input-group
-                = f.input :password_confirmation
               .registrationCodeFormGroup.input-group
                 = f.input :registration_code, as: :string,
                      placeholder: 'Enter the registration code', maxlength: 32, input_html: { value: @form.context.code }

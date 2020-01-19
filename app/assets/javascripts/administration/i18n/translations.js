@@ -122,6 +122,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "email_template": {
           "attributes": {
+            "content": {
+              "invalid_consolidated_pipetext": "These pipetext are invalid for consolidate messages %{invalid_pipetexts}",
+              "invalid_unconsolidated_pipetext": "These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}"
+            },
             "from": {
               "blank": "From field can't be blank"
             },
@@ -791,7 +795,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -1432,11 +1436,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -2041,6 +2056,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -3234,7 +3250,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -3934,6 +3950,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
+        "evaluation_help": {
+          "description": "Help text displayed on evaluation card on user's dashboard",
+          "name": "Evaluation Help"
+        },
         "evaluator_welcome": {
           "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
           "name": "Evaluator welcome"
@@ -3945,6 +3965,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "nomination_help": {
           "description": "Help text displayed on nomination card on user's dashboard",
           "name": "Nomination Help"
+        },
+        "report_help": {
+          "description": "Help text displayed on report card on user's dashboard",
+          "name": "Reports Help"
         },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
@@ -4504,6 +4528,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
       "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
       "updated": "Your account has been updated successfully."
     },
@@ -5148,8 +5173,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
+  "nominations": {
+    "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
+  },
   "number": {
     "currency": {
       "format": {
@@ -5836,9 +5865,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
-      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
-      "main": "<h2>Help</h2> <p>need content for help modal</p>",
-      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or Manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a Manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and Manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+      "main": "<h2>Help</h2> <p>need content for help modal</p>"
     },
     "language": "Language",
     "last_name": "Last Name",
@@ -6093,6 +6120,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "email_template": {
           "attributes": {
+            "content": {
+              "invalid_consolidated_pipetext": "These pipetext are invalid for consolidate messages %{invalid_pipetexts}",
+              "invalid_unconsolidated_pipetext": "These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}"
+            },
             "from": {
               "blank": "From field can't be blank"
             },
@@ -6762,7 +6793,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -7403,11 +7434,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -8012,6 +8054,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -9205,7 +9248,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -9905,6 +9948,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
+        "evaluation_help": {
+          "description": "Help text displayed on evaluation card on user's dashboard",
+          "name": "Evaluation Help"
+        },
         "evaluator_welcome": {
           "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
           "name": "Evaluator welcome"
@@ -9916,6 +9963,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "nomination_help": {
           "description": "Help text displayed on nomination card on user's dashboard",
           "name": "Nomination Help"
+        },
+        "report_help": {
+          "description": "Help text displayed on report card on user's dashboard",
+          "name": "Reports Help"
         },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
@@ -10475,6 +10526,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "signed_up_but_inactive": "تمّ التسجيل في الموقع بنجاح، ولكن لا يُمكن تسجيل الدخول قبل تفعيل الحساب.",
       "signed_up_but_locked": "تمّ التسجيل في الموقع بنجاح، ولكن لا يمكن تسجيل الدخول ﻷن الحساب مُعلّق.",
       "signed_up_but_unconfirmed": "تمّ إرسال رسالة تحوي على رابط تأكيد الحساب باستخدام البريد الإلكتروني، يُرجى فتح الرابط لتفعيل الحساب.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "تُم تعديل الحساب بنجاح، يرجى تأكيد البريد الإلكتروني. الرجاء الذهاب الى البريد الإلكتروني والضغط على الرابط الموجود للانتهاء من عمليّة التاكيد.",
       "updated": "تمّ تعديل الحساب بنجاح."
     },
@@ -11123,8 +11175,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
+  "nominations": {
+    "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
+  },
   "number": {
     "currency": {
       "format": {
@@ -12069,6 +12125,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "email_template": {
           "attributes": {
+            "content": {
+              "invalid_consolidated_pipetext": "These pipetext are invalid for consolidate messages %{invalid_pipetexts}",
+              "invalid_unconsolidated_pipetext": "These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}"
+            },
             "from": {
               "blank": "From field can't be blank"
             },
@@ -12738,7 +12798,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -13379,11 +13439,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -13988,6 +14059,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -15181,7 +15253,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimensions": "Dimensions",
       "factors": "Factors",
       "home": "Dashboard",
-      "innovation_styles": "Innvation Styles",
+      "innovation_styles": "Innovation Styles",
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
@@ -15881,6 +15953,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
+        "evaluation_help": {
+          "description": "Help text displayed on evaluation card on user's dashboard",
+          "name": "Evaluation Help"
+        },
         "evaluator_welcome": {
           "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
           "name": "Evaluator welcome"
@@ -15892,6 +15968,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "nomination_help": {
           "description": "Help text displayed on nomination card on user's dashboard",
           "name": "Nomination Help"
+        },
+        "report_help": {
+          "description": "Help text displayed on report card on user's dashboard",
+          "name": "Reports Help"
         },
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
@@ -16451,6 +16531,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
       "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
       "updated": "Your account has been updated successfully."
     },
@@ -17095,8 +17176,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
+  "nominations": {
+    "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
+  },
   "number": {
     "currency": {
       "format": {
@@ -17783,9 +17868,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
-      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
-      "main": "<h2>Help</h2> <p>need content for help modal</p>",
-      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or Manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a Manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and Manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+      "main": "<h2>Help</h2> <p>need content for help modal</p>"
     },
     "language": "Language",
     "last_name": "Last Name",

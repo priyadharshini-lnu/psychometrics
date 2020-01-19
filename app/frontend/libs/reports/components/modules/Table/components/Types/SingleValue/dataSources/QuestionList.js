@@ -34,7 +34,7 @@ export default function QuestionList ({ model, onChange }) {
       <div className="mtm">
         Question
         <Select
-          value={getValue(questions, store.model.props.questionId)}
+          value={questions.find(q => q.id === store.model.props.questionId)}
           options={questions}
           getOptionValue={opt => opt.id}
           getOptionLabel={opt => opt.name}

@@ -23,8 +23,8 @@ describe Threesixty::Participants::CalcCounters do
              campaign: campaign, evaluator_id: subject_1.user_id, manager_nomination_status: :waiting)
       create(:threesixty_participant,
              campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :waiting)
-      create(:users_result, subject_id: subject_1.user_id, status: :completed)
-      create(:users_result, subject_id: subject_1.user_id, status: :completed)
+      create(:users_result, campaign: campaign, subject_id: subject_1.user_id, status: :completed)
+      create(:users_result, campaign: campaign, subject_id: subject_1.user_id, status: :completed)
     end
     let(:subject) { create(:threesixty_subject, report_approval_status: :denied) }
 

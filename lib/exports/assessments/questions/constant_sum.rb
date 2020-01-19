@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class ConstantSum
+      class ConstantSum < Base
         # FROM:
         #   [{
         #     "index": 0,
@@ -11,19 +11,19 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(answers, _question, _scoring = false)
+        def self.result(answers, question, _scoring = false)
           answers = (answers || []).map { |a| a['value'] }
-          required_size = header(question).size
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
           question.props['choices'].to_i.times do |c|
-            parsed_header << "QID#{question.id}_#{c + 1}"
+            question_id_header << "QID#{question.id}_#{c + 1}"
+            question_choices_header << question.props.dig('choicesTexts', c)
           end
-          parsed_header
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

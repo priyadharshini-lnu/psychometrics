@@ -9,11 +9,12 @@ const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
 const REMOVE_USER = 'threeSixty/REMOVE_USER'
 
-export const reset = campaignId => ({
+export const reset = (campaignId, removeLicenceUsage) => ({
   type: RESET,
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/reset`,
+    body: { removeLicenceUsage },
   },
 })
 

@@ -31,7 +31,7 @@ module Administration
       attr_reader :clients, :current_user, :membership_params, :form, :membership
 
       def create_membership_and_user(client)
-        @membership = client.memberships.new(form.try(:membership_attributes) || {})
+        @membership = client.memberships.new(form.try(:membership_attributes) || membership_attributes_for_registration)
         membership.user = User.find_or_initialize_by(email: form.email, project_id: client.project.id)
         if membership.user.new_record?
           membership.user.assign_attributes(form.user_attributes)
@@ -79,6 +79,14 @@ module Administration
             ::Reports::ExportJob.perform_later(assigns_report, membership.user) if assign_with_result.completed?
           end
         end
+      end
+
+      def membership_attributes_for_registration
+        user_through_registration? ? { through_registration: true } : {}
+      end
+
+      def user_through_registration?
+        current_user.nil?
       end
     end
   end

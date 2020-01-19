@@ -23,7 +23,9 @@ class Factor < ApplicationRecord
   # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension, touch: true
   has_many :factors_sub_factors
+  has_many :parent_factor_sub_factors, foreign_key: :sub_factor_id, class_name: 'FactorsSubFactor'
   has_many :sub_factors, through: :factors_sub_factors
+  has_many :parent_factors, through: :parent_factor_sub_factors, source: :factor
   has_many :factors_norms, dependent: :destroy
   has_many :factors_scoring
   has_many :questions, through: :factors_scoring
@@ -115,6 +117,14 @@ class Factor < ApplicationRecord
   # TODO: (atanych): optimize that if we wanna add deep child level
   def descendant_ids
     (sub_factor_ids + sub_factors.map(&:descendant_ids)).flatten
+  end
+
+  def ancestors
+    Factor.where(id: ancestor_ids)
+  end
+
+  def ancestor_ids
+    (parent_factor_ids + parent_factors.map(&:ancestor_ids)).flatten
   end
 
   private
