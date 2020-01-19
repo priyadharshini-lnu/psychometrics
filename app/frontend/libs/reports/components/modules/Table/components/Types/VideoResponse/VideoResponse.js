@@ -72,7 +72,6 @@ export default class VideoResponse extends Component {
   }
 
   renderNoResults () {
-    console.log('renderNoResults')
     return (
       <div className={styles.noResults}>
         <span className={cs('glyphicon glyphicon-play-circle', styles.icon)} aria-hidden="true" />

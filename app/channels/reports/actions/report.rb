@@ -19,15 +19,17 @@ module Reports
         # clear unused filters
         report.filters.where(id: removed_ids).delete_all
         data['filters'].each do |filter|
+          filter_attrs = {
+            conditions: filter['conditions'],
+            min_required_responses: filter['min_required_responses'],
+            name: filter['name'],
+            assessment_id: filter['assessment_id']
+          }
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(
-              conditions: filter['conditions'],
-              name: filter['name'], assessment_id: filter['assessment_id']
-            )
+            db_filter.update_attributes(filter_attrs)
           else
-            report.filters.
-              create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
+            report.filters.create(filter_attrs)
           end
         end
         # clear unused filter from all modules

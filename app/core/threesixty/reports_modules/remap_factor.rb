@@ -22,6 +22,8 @@ module Threesixty
           m.props['source']['factors'] = m.props['source']['factors'].map do |factor|
             old_factor_id = factor['id']
             new_factor =  old_to_new_factor_mapping[old_factor_id]
+            next factor unless new_factor
+
             {
               id: new_factor.id,
               value: new_factor.id,

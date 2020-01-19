@@ -12,7 +12,9 @@ export default connect(
     threeSixtyCampaign: {
       evaluators: { list, total },
     },
-  }) => ({ evaluators: list, total, page: routeUtils.getPage() }),
+  }) => ({
+    evaluators: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+  }),
   dispatch => ({
     fetchEvaluators: (campaignId, page, query) => dispatch(fetchEvaluators(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),

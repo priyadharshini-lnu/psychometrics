@@ -39,8 +39,10 @@ const CollapseItem = ({ title, list }) => (
 function ReportList ({
   approvalReports, subjectReport, percent, reportsCounters,
   options: { approval: { managerApprovesReports } },
+  instructions,
 }) {
   const [showHelp, setShowHelp] = useState(false)
+  const reportHelp = _.find(instructions, { name: 'report_help' })
 
   return (
     <List
@@ -67,9 +69,11 @@ function ReportList ({
               </div>
             </div>
           </div>
+          {reportHelp && (
           <div className="help">
             <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
+          )}
         </div>
       )}
       bordered
@@ -93,6 +97,7 @@ function ReportList ({
           list={approvalReports}
         />
         )}
+      {reportHelp && (
       <Modal
         title={(
           <div className="help-modal-header">
@@ -104,8 +109,9 @@ function ReportList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.report') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: reportHelp.content }} />
       </Modal>
+      )}
     </List>
   )
 }

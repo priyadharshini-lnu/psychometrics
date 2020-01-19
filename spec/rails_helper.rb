@@ -51,7 +51,7 @@ RSpec.configure do |config|
   config.after(:each) { Timecop.return }
 
   config.before(:suite) do
-    DatabaseCleaner.strategy = :deletion
+    DatabaseCleaner.strategy = :deletion, { except: %w[data_geos] }
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.clean
   end

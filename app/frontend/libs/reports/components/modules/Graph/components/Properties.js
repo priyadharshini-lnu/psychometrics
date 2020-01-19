@@ -50,6 +50,7 @@ class Properties extends Component {
   }
 
   reset () {
+    // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
       store.model.reset()
       this.forceUpdate()

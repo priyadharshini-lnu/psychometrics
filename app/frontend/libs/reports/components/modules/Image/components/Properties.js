@@ -80,7 +80,7 @@ class Properties extends Component {
     return (
       <div>
         <div className={styles.title}>Image Options</div>
-        {<AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />}
+        <AssessmentProperties assessmentId={model.assessment_id} changeAssessment={this.changeAssessment} />
         <hr className={styles.divider} />
         <div className="margin-top-10 margin-bottom-10">
           <Select

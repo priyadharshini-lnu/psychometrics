@@ -9,10 +9,12 @@ feature 'CRUD Client' do
 
   context 'As Superadmin' do
     given(:superadmin) { create(:superadmin) }
-    before { login_as superadmin }
+    before do
+      login_as superadmin
+      import_countries
+    end
 
     scenario 'I can create any client' do
-      import_countries
       tenancy = create_tenancy(name: 'TTE',
                                number: 1,
                                country: ::Datas::Geo.take.country_name,
@@ -24,7 +26,8 @@ feature 'CRUD Client' do
                                name: 'Project',
                                subdomain: 'project',
                                number: 2,
-                               applicable_level: 'Sub-Campaign')
+                               applicable_level: 'Sub-Campaign',
+                               privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
 
       campaign = create_campaign(tenancy, project, name: 'Campaign')
       create_sub_campaign(tenancy, project, campaign, name: 'SubCampaign')
@@ -56,7 +59,8 @@ feature 'CRUD Client' do
                                      subdomain: 'new_project',
                                      number: 2,
                                      applicable_level: 'Sub-Campaign',
-                                     reports: [report.name])
+                                     reports: [report.name],
+                                     privacy: { text: 'Privacy link', link: 'http://privacy.cc.com' })
 
         campaign = create_campaign(tenancy, new_project, name: 'Campaign')
         create_sub_campaign(tenancy, new_project, campaign, name: 'SubCampaign')

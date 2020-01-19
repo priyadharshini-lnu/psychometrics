@@ -5,21 +5,25 @@ module Users
     attribute :email, String
     attribute :first_name, String
     attribute :last_name, String
-    attribute :password, String
-    attribute :password_confirmation, String
     attribute :registration_code, String
 
-    validates :email, :first_name, :last_name, :password,
-              :password_confirmation, :registration_code,
+    validates :email, :first_name, :last_name, :registration_code,
               presence: { message: I18n.t('administration.clients.registration_codes.errors.presence') }
     validates :first_name, :last_name, :email, length: { maximum: 100 }
-    validates_confirmation_of :password
     validates :email, format: { with: Devise.email_regexp,
                                 message: I18n.t('administration.clients.registration_codes.errors.invalid_attribute') }
-
+    validate :validate_email_uniqueness
     validate :validate_registration_code
 
     private
+
+    def validate_email_uniqueness
+      if User.exists?(email: email, project_id: context.project.id)
+        errors.add(:email,
+                   I18n.t('administration.clients.registration_codes.errors.in_use',
+                          attribute: 'Email'))
+      end
+    end
 
     def validate_registration_code
       registration_code_record = Administration::Clients::RegistrationCodes::VerificationQuery.

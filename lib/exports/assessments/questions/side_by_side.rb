@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class SideBySide
+      class SideBySide < Base
         # FROM:
         #   [{
         #     "scale": 0,
@@ -45,26 +45,33 @@ module Exports
                                end
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
+
           question.props['scalePoints'].to_i.times do |scale|
             question.props['choices'].to_i.times do |choice|
-              column_data = question.props['columnsData'][scale]
+              column_data = question.props.dig('columnsData', scale)
+              choice_text = question.props.dig('choicesTexts', choice)
+              scale_text = column_data['text']
+              # byebug
               if column_data['type'] == 'Text'
                 column_data['answers'].to_i.times do |column|
-                  parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
+                  column_text = column_data['answersTexts']
+                  question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
+                  question_choices_header << "#{scale_text} | #{choice_text} | #{column_text}"
                 end
               else
-                parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"
+                question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"
+                question_choices_header << "#{scale_text} | #{choice_text}"
               end
             end
           end
-          parsed_header
+
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end
