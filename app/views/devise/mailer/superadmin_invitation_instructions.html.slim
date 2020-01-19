@@ -1,5 +1,4 @@
-- options = { id: @resource, invitation_token: @token, domain: Settings.domain }
-
-p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
-p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
-p = link_to t("devise.mailer.invitation_instructions.accept"), url_for([:accept, @resource.role_scope, :invitation, options]), target: :blank
+- options = { id: @resource, invitation_token: @token, domain: Settings.domain, protocol: Settings.protocol, subdomain: Settings.subdomain }
+- accept_url = url_for([:accept, @resource.role_scope, :invitation, options])
+- accept_link = link_to t("devise.mailer.admin_invitation_instructions.accept"), accept_url, target: :blank
+p = simple_format(t("devise.mailer.admin_invitation_instructions.body", name: @resource.decorate.display_name, accept: accept_link))

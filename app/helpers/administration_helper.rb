@@ -97,8 +97,10 @@ module AdministrationHelper
     end
   end
 
-  def reports_for_assessment(assessment)
-    client.reports.joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment.id }).distinct
+  def hogan_reports_for_assessment(assessment)
+    client.reports.joins(assessments_reports: :report).
+      where(assessments_reports: { assessment_id: assessment.id, reports: { provider: Report::PROVIDERS[:hogan] } }).
+      distinct
   end
 
   def labels_based_on(status)

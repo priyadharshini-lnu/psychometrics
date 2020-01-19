@@ -93,7 +93,8 @@ class AssignSerializer < ActiveModel::Serializer
       score = assign_report&.hogan_score&.dig('participant', 'assessment', 'score') || {}
       if score.present?
         return score.each_with_object({}) do |v, res|
-          res[normalize_hogan_type(v['type'])] = v['scales']['scale'].each_with_object({}) do |factor, inner_res|
+          scales = Array.wrap(v['scales']['scale'])
+          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
             inner_res[factor['id']] = factor['__content__'].to_f
           end
         end
