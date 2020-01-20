@@ -1,0 +1,13 @@
+$(function () {
+  var $modalPartial = $("<%= j render 'select_raw_export_type' %>"),
+      $modalContainer = $('#modal-container');
+
+  $modalContainer.html($modalPartial);
+  $modalBox = $modalContainer.find('.modal');
+  $modalBox.modal('show');
+  $modalBox.on('hidden.bs.modal', function (e) {
+    $(this).remove();
+  });
+
+  $('#export_type_select_form').on('submit', function() { $modalBox.modal('hide') })
+});

@@ -11,11 +11,16 @@ module Exports
         #   }, ...]
         # TO:
         #   [1]
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          (answers || []).map { |answer| scoring && factors_scoring[answer['index']] || (answer['index'] + 1) }.
-            join(',')
+          (answers || []).map do |answer|
+            next factors_scoring[answer['index']] if scoring
+
+            next answer['index'] + 1 unless export_with_labels
+
+            question.props.dig('choicesTexts', answer['index'])
+          end.join(',')
         end
 
         def self.result_label(answers, question)

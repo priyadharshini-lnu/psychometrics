@@ -17,7 +17,7 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           parsed_result = []
           # Create hash for scoring
           # hash['1-2-3'] = 100
@@ -38,10 +38,14 @@ module Exports
                                  values.map { |value| value['value'] }
                                else
                                  values.map do |value|
-                                   scoring &&
-                                     factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] ||
-                                     value['index'].to_i + 1
-                                 end .join(', ')
+                                   next factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] if scoring
+
+                                   next value['index'].to_i + 1 unless export_with_labels
+
+                                   answer = column_data.dig('answersTexts', value['index'])
+
+                                   answer.presence || "Answer #{value['index'].to_i + 1}"
+                                 end.join(', ')
                                end
             end
           end
@@ -57,12 +61,10 @@ module Exports
               column_data = question.props.dig('columnsData', scale)
               choice_text = question.props.dig('choicesTexts', choice)
               scale_text = column_data['text']
-              # byebug
               if column_data['type'] == 'Text'
                 column_data['answers'].to_i.times do |column|
-                  column_text = column_data['answersTexts']
                   question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
-                  question_choices_header << "#{scale_text} | #{choice_text} | #{column_text}"
+                  question_choices_header << "#{scale_text} | #{choice_text} | #{column + 1}"
                 end
               else
                 question_id_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"

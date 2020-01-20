@@ -183,6 +183,7 @@ Rails.application.routes.draw do
           get :overview, on: :collection
         end
         resources :assessments, only: %i[index destroy] do
+          get :select_raw_export_type
           get :export_results
           get :export_normed_results
           get :export_hogan_results

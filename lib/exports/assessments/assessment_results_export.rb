@@ -14,6 +14,7 @@ module Exports
         @client_id = client_id
         @scoring = !!options[:scoring]
         @external = !!options[:external]
+        @export_with_labels = options[:export_with_labels] == 'true'
       end
 
       def call
