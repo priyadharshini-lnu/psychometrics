@@ -521,7 +521,7 @@ _.extend(FlowProcessor.prototype, {
     this.end = true
     this.setNextPage()
     this.update()
-    LocalStorage.remove([location.pathname])
+    LocalStorage.remove([this.store.resultLocalStorageKey])
   },
 
   processEmbeddedData (element) {
