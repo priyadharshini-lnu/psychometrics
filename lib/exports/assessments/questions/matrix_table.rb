@@ -5,7 +5,7 @@ module Exports
     module Questions
       class MatrixTable < Base
         # Parse RESULT data for XLSX
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           parsed_result = []
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
@@ -29,8 +29,13 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.
-                               join(',')
+                               map do |a|
+                                 next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
+
+                                 next a['scale'] + 1 unless export_with_labels
+
+                                 question.props.dig('scalePointsTexts', a['scale'])
+                               end.join(',')
             end
           end
           Utility::Array.ensure_size(parsed_result, question_header_size(question))

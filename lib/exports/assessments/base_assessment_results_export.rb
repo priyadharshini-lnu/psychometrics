@@ -27,7 +27,7 @@ module Exports
                   next unless QUESTIONS.include?(question.type)
 
                   parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                  user_results << parser.result(answers, question, @scoring)
+                  user_results << parser.result(answers, question, @scoring, @export_with_labels)
                 end
               end
 
