@@ -48,7 +48,7 @@ tr id=dom_id(resource)
           li
             = link_to t('.scoring_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', scoring: true)
           li
-            = link_to t('.raw_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx')
+            = link_to t('.raw_results'), administration_client_assessment_select_raw_export_type_path(client, resource), remote: true
           - unless resource.common?
             li
               = link_to t('.external_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', external: true)

@@ -12,7 +12,7 @@ module Exports
         # TO:
         #   ['Value']
 
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, _export_with_labels = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
           remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
