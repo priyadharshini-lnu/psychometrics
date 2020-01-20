@@ -24,6 +24,7 @@ export default class extends Component {
     return (
       <div>
         <input
+          autoComplete="off"
           disabled={readOnly}
           onChange={this.changeAnswer}
           value={value}

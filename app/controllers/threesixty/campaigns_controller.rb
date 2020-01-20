@@ -29,7 +29,7 @@ module Threesixty
           campaigns = ::Campaign.where(id: subject_campaigns | evaluator_campaigns)
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
-          json = @single_assigns.map do |assign|
+          json = @single_assigns.uniq.map do |assign|
             ::EndUser::AssignSerializer.new(assign).to_h
           end
           json.concat(threesixty_projects.map do |campaign|

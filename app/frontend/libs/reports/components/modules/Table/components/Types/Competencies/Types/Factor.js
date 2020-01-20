@@ -37,7 +37,8 @@ export default function Factor ({ model, filters }) {
 
       if (!scoring) return { ...filter, value: 0 }
 
-      const value = _.round(_.meanBy(scoring.results, res => res.getValue()), 2)
+      const nonZeroResults = _.filter(scoring.results, res => res.getValue())
+      const value = _.round(_.meanBy(nonZeroResults, res => res.getValue()), 2)
       return { ...filter, value }
     })
 
@@ -96,8 +97,10 @@ export default function Factor ({ model, filters }) {
               <tr key={id}>
                 <td className={styles.factorcell}>
                   <div className={styles.factor} style={{ color: mainHeaderColor }}>
-                    {factor.icon && <img src={factor.icon} />}
-                    <span>{I18nStore.tFactor(factor, 'name')}</span>
+                    <div className="display-flex">
+                      {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
+                      <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>
+                    </div>
                   </div>
                   <div className={styles.description} style={descStyle}>{I18nStore.tFactor(factor, 'description')}</div>
                 </td>

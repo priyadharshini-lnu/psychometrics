@@ -16,24 +16,17 @@ describe Threesixty::Campaigns::RemoveUser do
   end
 
   it 'deletes evaluation_results' do
-    users_result = create(:users_result, subject_id: user.id)
+    users_result = create(:users_result, subject_id: user.id, campaign_id: campaign.id)
     Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
 
     expect(UsersResult.find_by(id: users_result.id)).to be_nil
   end
 
   it 'deletes evaluated_results' do
-    users_result = create(:users_result, evaluator_id: user.id)
+    users_result = create(:users_result, evaluator_id: user.id, campaign_id: campaign.id)
     Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
 
     expect(UsersResult.find_by(id: users_result.id)).to be_nil
-  end
-
-  it 'deletes users_assessments' do
-    users_assessment = create(:users_assessment, user_id: user.id)
-    Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
-
-    expect(UsersAssessment.find_by(id: users_assessment.id)).to be_nil
   end
 
   it 'deletes campaign_user' do
