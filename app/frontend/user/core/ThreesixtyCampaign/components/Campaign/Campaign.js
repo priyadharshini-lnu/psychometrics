@@ -2,9 +2,10 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, PageHeader, Progress,
+  Layout, Row, Col, PageHeader, Progress, Alert,
 } from 'antd'
 import _ from 'lodash'
+import { STATUSES } from 'constants/userResult'
 import Nominations from './NominationList'
 import Evaluations from './EvaluationList'
 import Reports from './ReportList'
@@ -32,6 +33,7 @@ export default function Campaign ({
   const subjectWelcomeMessage = _.find(instructions, { name: 'welcome_message' })
   const evaluatorWelcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })
   const welcomeMessage = campaign.isSubject ? subjectWelcomeMessage : evaluatorWelcomeMessage || subjectWelcomeMessage
+  const camapaignClosed = campaign.status === STATUSES.CLOSED
 
   return (
     <Layout>
@@ -42,6 +44,11 @@ export default function Campaign ({
             onBack={() => history.push('/campaigns')}
             title={<div className="title-with-dash">{campaign.name}</div>}
           >
+            {camapaignClosed && (
+            <div className="mbm font-bold">
+              <Alert message={I18n.t('threesixty.closed_campaign_message')} type="info" showIcon />
+            </div>
+            )}
             <div>
               {welcomeMessage && (
                 <Row type="flex">
@@ -66,13 +73,13 @@ export default function Campaign ({
               </Row>
             </div>
             <Row type="flex" gutter={16} className="task_cards">
-              {nominationsCounters.totalNominations !== 0
+              {nominationsCounters.totalNominations !== 0 && !camapaignClosed
                 && (
                 <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                   <Nominations percent={nominationsPercent} />
                 </Col>
                 )}
-              {evaluationsCounters.totalEvaluations !== 0
+              {evaluationsCounters.totalEvaluations !== 0 && !camapaignClosed
                 && (
                 <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                   <Evaluations history={history} percent={evaluationsPercent} />

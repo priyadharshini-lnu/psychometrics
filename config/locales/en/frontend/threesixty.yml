@@ -115,3 +115,4 @@ en:
     export_pdf: Export PDF
     report_generation_in_progress: 'Report is generating. We will let you know when the report is ready.'
     edit_user: Edit User
+    closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.

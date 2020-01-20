@@ -23,4 +23,5 @@ class Campaign < ApplicationRecord
   THREESIXTY = :threesixty
 
   enum type: %i[common threesixty]
+  enum status: { active: 0, closed: 1 }
 end
