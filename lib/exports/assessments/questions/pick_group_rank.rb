@@ -13,7 +13,7 @@ module Exports
         # TO:
         #      G1         G2      Groups items rank
         #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           parsed_result = []
 
           factors_scoring = question.detect_specified_scoring.
@@ -23,8 +23,13 @@ module Exports
             parsed_result << (answers || []).
                              select { |answer| answer['scale'] == s }.
                              sort_by { |answer| answer['value'] }.
-                             map { |answer| scoring && factors_scoring[answer['choice']] || (answer['choice'] + 1) }.
-                             join(', ')
+                             map do |answer|
+                               next factors_scoring[answer['choice']] if scoring
+
+                               next answer['choice'] + 1 unless export_with_labels
+
+                               question.props.dig('choicesTexts', answer['choice'])
+                             end.join(', ')
           end
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|

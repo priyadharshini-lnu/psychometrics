@@ -12,7 +12,7 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(answers, question, _scoring = false)
+        def self.result(answers, question, _scoring = false, _export_with_labels = false)
           answers = (answers || []).map do |answer|
             [
               (answer['scale'] + 1),
