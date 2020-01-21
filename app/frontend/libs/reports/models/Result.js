@@ -477,8 +477,11 @@ _.extend(Result.prototype, {
         _.each(factor.factors_sub_factors, (factorSubFactor) => {
           const subFactor = AppStore.mapFactors[this.dimensionId][factorSubFactor.sub_factor_id]
           if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && this.scoring[subFactor.id]) {
-            commonValue += this.scoring[subFactor.id].results[index].value * factorSubFactor.weight
-            totalWeight += factorSubFactor.weight
+            const result = this.scoring[subFactor.id].results[index]
+            if (result) {
+              commonValue += result.value * factorSubFactor.weight
+              totalWeight += factorSubFactor.weight
+            }
           }
         })
         sc.results[index].value = commonValue / totalWeight
