@@ -23,12 +23,14 @@ class PreviewContainer extends Component {
     store.isThreesixty = isThreesixty === 'true'
     store.isAnonymousAssessment = isAnonymousAssessment === 'true'
     store.resultsUrl = resultsUrl
+    store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
     store.init(data, type, dbResult, dashboardUrl)
     this.forceUpdate()
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
+    store.reset()
     this.appListener.remove()
   }
 

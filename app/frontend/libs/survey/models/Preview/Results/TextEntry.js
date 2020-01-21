@@ -38,8 +38,16 @@ _.extend(TextEntry.prototype, {
     })
   },
 
-  SingleLine (index) {
-    this.result.answers = [{ value: index }]
+  SingleLine (value) {
+    this.result.answers = [{ value }]
+  },
+
+  DateEntry (value) {
+    this.result.answers = [{ value }]
+  },
+
+  DateTimeEntry (value) {
+    this.result.answers = [{ value }]
   },
 
   MultiLine (index) {
