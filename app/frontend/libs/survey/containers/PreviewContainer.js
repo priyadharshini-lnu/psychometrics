@@ -25,6 +25,7 @@ class PreviewContainer extends Component {
     const dbResult = parent.dataset.result || null
     store.isThreesixty = isThreesixty === 'true'
     store.resultsUrl = resultsUrl
+    store.resultLocalStorageKey = [location.pathname]
     store.isAnonymousAssessment = isAnonymousAssessment === 'true'
     store.init(JSON.parse(data), type, JSON.parse(dbResult), dashboardUrl)
     this.forceUpdate()
