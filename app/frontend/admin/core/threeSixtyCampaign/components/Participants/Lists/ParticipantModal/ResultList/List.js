@@ -93,16 +93,18 @@ export default function List ({
       <Table.Column
         title="End Time"
         key="endTime"
-        render={({ result: { completedAt } }) => (
-          moment(completedAt).format('YYYY-MM-DD HH:mm:ss')
-        )}
+        render={({ result: { completedAt } }) => {
+          if (completedAt) { return moment(completedAt).format('YYYY-MM-DD HH:mm:ss') }
+        }}
       />
       <Table.Column
         title="Duration"
         key="duration"
-        render={({ result: { createdAt, completedAt } }) => (
-          moment.utc(moment(completedAt).diff(moment(createdAt))).format('HH[h] mm[m] ss[s]')
-        )}
+        render={({ result: { createdAt, completedAt } }) => {
+          if (completedAt) {
+            return moment.utc(moment(completedAt).diff(moment(createdAt))).format('HH[h] mm[m] ss[s]')
+          }
+        }}
       />
       <Table.Column
         key="actions"
