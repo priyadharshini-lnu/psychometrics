@@ -107,7 +107,9 @@ module Imports
 
         assign_password(user, attributes, memberships_attributes)
 
-        user.assign_attributes(attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true))
+        user.assign_attributes(
+          attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true, created_by_id: importer.id)
+        )
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
