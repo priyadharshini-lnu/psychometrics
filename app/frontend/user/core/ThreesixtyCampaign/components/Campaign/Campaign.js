@@ -5,7 +5,7 @@ import {
   Layout, Row, Col, PageHeader, Progress, Alert,
 } from 'antd'
 import _ from 'lodash'
-import { STATUSES } from 'constants/userResult'
+import { STATUSES } from 'constants/campaign'
 import Nominations from './NominationList'
 import Evaluations from './EvaluationList'
 import Reports from './ReportList'
