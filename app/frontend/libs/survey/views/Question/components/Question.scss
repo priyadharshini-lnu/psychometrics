@@ -6,8 +6,7 @@
   display: flex;
   min-height: 175px;
   position: relative;
-  opacity: 0;
-  transition: 0.3s;
+
   input[type='radio']:after {
     width: 20px;
     height: 20px;
@@ -20,7 +19,7 @@
     display: inline-block;
     visibility: visible;
   }
-  
+
   input[type='radio']:checked:after {
     width: 20px;
     height: 20px;
@@ -37,6 +36,7 @@
 }
 
 .selected {
+  transition: 0.4s;
   margin-right: -20px;
   .content{
     background: #f0f0f0;

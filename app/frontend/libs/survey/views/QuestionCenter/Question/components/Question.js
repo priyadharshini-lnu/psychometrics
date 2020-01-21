@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
-import RandomizationStore from 'store/RandomizationStore'
-import PropertyPanelDispatcher from 'dispatchers/PropertyPanelDispatcher'
 import styles from './Question.scss'
 import Footer from './QuestionFooter'
 import Header from './QuestionHeader'
@@ -15,20 +12,13 @@ const HEADER_PADDING = 30
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
   }
 
   state = {
     fadeout: false,
   }
 
-  componentDidMount () {
-    this.propPanelListener = PropertyPanelStore.addListener('change', () => this.forceUpdate())
-    this.popupListener = RandomizationStore.addListener('change', () => this.forceUpdate())
-  }
-
   componentWillUnmount () {
-    this.propPanelListener.remove()
     this.popupListener.remove()
   }
 
@@ -37,21 +27,21 @@ class Question extends Component {
   }
 
   select = () => {
-    const { model } = this.props
+    const { model, select } = this.props
     let offsetTop = this.question.getBoundingClientRect().top
     if (document.body.scrollTop < HEADER_HIEGHT + HEADER_PADDING) {
       offsetTop = HEADER_PADDING
     } else {
       offsetTop = document.body.scrollTop - HEADER_HIEGHT
     }
-    PropertyPanelDispatcher.select(model, offsetTop)
+    select(model, offsetTop)
     this.forceUpdate()
   }
 
   render () {
-    const { model } = this.props
+    const { model, selectedModel } = this.props
     const { fadeout } = this.state
-    const selected = PropertyPanelStore.question === model
+    const selected = selectedModel === model
     const style = {
       opacity: fadeout ? 0 : 1,
       cursor: selected ? 'default' : 'pointer',

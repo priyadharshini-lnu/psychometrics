@@ -1,3 +1,4 @@
 import TextEditor from './components/TextEditor'
+import connect from './connect'
 
-export default TextEditor
+export default connect(TextEditor)

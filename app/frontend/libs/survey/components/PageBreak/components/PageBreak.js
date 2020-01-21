@@ -7,29 +7,16 @@ import styles from './PageBreak.scss'
 class PageBreak extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
-  }
-
-  state = {
-    fadeout: false,
   }
 
   remove = () => {
-    const { store, model } = this.props
-    this.setState({ fadeout: true })
-    setTimeout(() => {
-      store.dispatcher.permanentRemove(model)
-      if (this.isMounted()) {
-        this.setState({ fadeout: false })
-      }
-    }, 400)
+    const { model, block, removeQuestion } = this.props
+    removeQuestion(block, model)
   }
 
   render () {
-    const { fadeout } = this.state
-    const style = { opacity: fadeout ? 0 : 1 }
     return (
-      <div className={`${styles.pagebreak} ${buttons.buttons}`} style={style}>
+      <div className={`${styles.pagebreak} ${buttons.buttons}`}>
         <div className={styles.line}>
           <span className={styles.caption}>Page Break</span>
         </div>

@@ -33,12 +33,12 @@ const buildOptions = ({ options: options = {} }) => ({
 })
 
 const apiMiddleware = () => next => (action) => {
-  if (!action.request) return next(action)
+  if (!action || !action.request) return next(action)
 
   const {
     request,
     request: {
-      method: method = 'get', body = {}, loader, camelize = true,
+      method: method = 'get', body = {}, loader, camelize = true, decamelize = true,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
@@ -54,7 +54,7 @@ const apiMiddleware = () => next => (action) => {
     .request({
       method,
       url: buildUrl(request),
-      data: body instanceof FormData ? body : humps.decamelizeKeys(body),
+      data: (body instanceof FormData || !decamelize) ? body : humps.decamelizeKeys(body),
       ...buildOptions(request),
       responseType: 'json',
       withCredentials: true,

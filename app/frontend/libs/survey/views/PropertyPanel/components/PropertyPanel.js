@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import store from 'store/PropertyPanelStore'
-import PreviewStore from 'store/PreviewStore'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
-import DisplayLogicStore from 'store/DisplayLogicStore'
+import LogicElement from 'models/logic/LogicElement'
+import Question from 'models/Question'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './PropertyPanel.scss'
 
 class PropertyPanel extends Component {
@@ -13,45 +14,45 @@ class PropertyPanel extends Component {
     restricted: PropTypes.bool,
   }
 
-  storeListener = null
-
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   addNote = () => {
-    store.question.addNote()
+    const { question, addNote } = this.props
+    addNote(question)
   }
 
   addPageBreak = () => {
-    store.question.addPageBreak()
+    const { question, addPageBreak } = this.props
+    addPageBreak(question, new Question({ name: 'PB', type: 'PageBreak' }))
   }
 
   preview = () => {
-    PreviewStore.preview(store.question)
+    const { question, openPreview } = this.props
+    openPreview({ question })
   }
 
   copyQuestion = () => {
-    store.question.clone()
+    const { copyQuestion, question } = this.props
+    const newQuestionParams = _.extend({}, _.cloneDeep(question), { id: null })
+    const newQuestion = new Question(newQuestionParams)
+    copyQuestion(question, newQuestion)
   }
 
   displayLogic = () => {
-    DisplayLogicStore.open(store.question)
+    const { question, openDisplayLogic } = this.props
+    openDisplayLogic({ question, logicElement: question.displayLogic || new LogicElement() })
   }
 
   addSkipLogic = () => {
-    store.question.addSkipLogic()
+    const { question, addSkipLogic } = this.props
+    addSkipLogic(question)
   }
 
   changeType = (type, props = {}) => {
-    if (store.question.type === type && props === {}) { return }
-    Action('QuestionChangeType', store.question, { oldType: store.question.type, newType: type })
-    store.question.changeType(type, props)
+    const { question, changeType } = this.props
+    if (question.type === type && props === {}) { return }
+    Action('QuestionChangeType', question, { oldType: question.type, newType: type })
+    changeType(question, type, props)
     store.update()
+    this.forceUpdate()
   }
 
   renderDefaultAction () {
@@ -118,19 +119,21 @@ class PropertyPanel extends Component {
   }
 
   render () {
-    const model = store.question
+    const { question, offset } = this.props
     const style = {
-      top: store.offset,
-      visibility: store.question ? 'visible' : 'hidden',
+      top: offset,
+      visibility: question ? 'visible' : 'hidden',
     }
-    if (!model) { return null }
+
+    if (!question) { return null }
+    const q = QuestionSerializer.wrap(question)
     return (
       <div className={styles.main} style={style}>
-        {this.renderQuestiontypeBtn(model)}
+        {this.renderQuestiontypeBtn(q)}
         <hr className={styles.divider} />
-        {this.renderCustomProperties(model)}
+        {this.renderCustomProperties(q)}
         <hr className={styles.divider} />
-        {this.renderDefaultAction(model)}
+        {this.renderDefaultAction(q)}
       </div>
     )
   }

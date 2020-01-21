@@ -1,3 +1,4 @@
 import Randomization from './components/Randomization'
+import connect from './connect'
 
-export default Randomization
+export default connect(Randomization)

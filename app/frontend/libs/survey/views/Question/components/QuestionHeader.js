@@ -1,42 +1,33 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import DisplayLogicStore from 'store/DisplayLogicStore'
 import LogicElementPreview from 'components/LogicElement/Preview'
+import LogicElement from 'models/logic/LogicElement'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
 
 class QuestionHeader extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
-  }
-
-  componentDidMount () {
-    this.storeListener = DisplayLogicStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  openDisplayLogic = () => {
-    const { model } = this.props
-    DisplayLogicStore.open(model)
   }
 
   removeDisplayLogic = () => {
     const { model } = this.props
-    DisplayLogicStore.remove(model)
+    QuestionSerializer.wrap(model).clearDisplayLogic()
   }
 
   unlinkTemplate = () => {
-    const { model, store } = this.props
-    store.dispatcher.unlinkTemplate(model)
+    const { unlinkTemplate, model } = this.props
+    unlinkTemplate(model)
+  }
+
+  isTemplate (model) {
+    return model.template_id || model.save_as_template
   }
 
   renderDisplayLogic () {
-    const { model } = this.props
-    const logicElement = model.displayLogic
+    const { model, openDisplayLogic } = this.props
+    const logicElement = model.display_logic
     return (
       <div className={styles.displayLogic}>
         <div className={styles.displayHeader}>
@@ -48,7 +39,11 @@ class QuestionHeader extends Component {
             bsSize="small"
             title="Options"
           >
-            <MenuItem onSelect={this.openDisplayLogic}>
+            <MenuItem onSelect={() => openDisplayLogic({
+              question: model,
+              logicElement: model.displayLogic || new LogicElement(),
+            })}
+            >
               <span className={`${styles.menuicon}`} />
               Edit
             </MenuItem>
@@ -78,11 +73,11 @@ class QuestionHeader extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, block } = this.props
     return (
       <div className={styles.header}>
-        {model.isTemplate() && !model.block.isTemplate() && this.renderTemplateWarning()}
-        {model.displayLogic && this.renderDisplayLogic()}
+        {this.isTemplate(model) && !this.isTemplate(block) && this.renderTemplateWarning()}
+        {model.display_logic && this.renderDisplayLogic()}
       </div>
     )
   }

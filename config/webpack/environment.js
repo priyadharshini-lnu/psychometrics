@@ -15,6 +15,7 @@ environment.plugins.insert(
     __DEV__,
     __TEST__,
     __PROD__,
+    __DISABLE_LOGGER_: env.DISABLE_LOGGER || false,
   })),
 )
 environment.plugins.insert(

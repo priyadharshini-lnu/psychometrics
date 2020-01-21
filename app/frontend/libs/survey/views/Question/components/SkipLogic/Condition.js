@@ -2,9 +2,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import AppStore from 'store/AppStore'
-import BlockList from 'store/BlockList'
 import QuestionCondition from 'libs/conditions'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './SkipLogic.scss'
 
 const DESTINATIONS = {
@@ -18,7 +17,6 @@ export class Condition extends Component {
     question: PropTypes.object.isRequired,
     condition: PropTypes.object.isRequired,
     onRemove: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
   }
 
   changeDestination = (e) => {
@@ -31,25 +29,23 @@ export class Condition extends Component {
   edit = () => {
     const { condition } = this.props
     condition.editMode = true
-    AppStore.fetchQuestions()
     this.forceUpdate()
   }
 
   save = () => {
     const { condition, question } = this.props
     condition.editMode = false
-    question.update()
-    this.forceUpdate()
+    QuestionSerializer.wrap(question).update()
   }
 
   remove = () => {
-    const { onRemove, index } = this.props
-    onRemove(index)
+    const { onRemove, condition } = this.props
+    onRemove(condition)
   }
 
   changeQuestionCondition = (cond) => {
     const { condition } = this.props
-    condition.setData(cond)
+    Object.assign(condition, cond)
     this.forceUpdate()
   }
 
@@ -60,12 +56,12 @@ export class Condition extends Component {
   }
 
   renderCondition () {
-    const { condition } = this.props
+    const { condition, question } = this.props
     return (
       <QuestionCondition
         preview={!condition.editMode}
         restricted
-        questions={AppStore.questions}
+        questions={{ [question.id]: question }}
         onChange={this.changeQuestionCondition}
         condition={condition}
       />
@@ -73,7 +69,7 @@ export class Condition extends Component {
   }
 
   renderDestination () {
-    const { condition } = this.props
+    const { condition, blocks } = this.props
     if (!condition.type) {
       return (<div className={styles.destination} />)
     }
@@ -88,7 +84,7 @@ export class Condition extends Component {
         </div>
       )
     }
-    const block = _.find(BlockList.list, { id: +condition.destinationBlock })
+    const block = _.find(blocks, { id: +condition.destinationBlock })
     return (
       <div className={styles.txt}>
         <span className={styles.keyword}>Then Skip To</span>
@@ -100,7 +96,7 @@ export class Condition extends Component {
   }
 
   renderControl () {
-    const { condition } = this.props
+    const { condition, index } = this.props
     if (condition.editMode) {
       return (
         <div className={styles.control}>
@@ -115,7 +111,7 @@ export class Condition extends Component {
           className={styles.dropdown}
           bsStyle="default"
           title="Options"
-          id={`block_menu_${condition.id}`}
+          id={`block_menu_${index}`}
         >
           <MenuItem onSelect={this.edit}>
             <span className={styles.menuicon} />
@@ -131,11 +127,10 @@ export class Condition extends Component {
   }
 
   renderBlockSelect () {
-    const { condition } = this.props
+    const { condition, blocks } = this.props
     if (condition.destination !== 'SpecificBlock') { return null }
 
     if (condition.editMode) {
-      const blocks = _.filter(BlockList.list, ({ id }) => id)
       return (
         <div className={styles.destinationSelect}>
           <select className="form-control" onChange={this.changeDestinationBlock} value={condition.destinationBlock}>

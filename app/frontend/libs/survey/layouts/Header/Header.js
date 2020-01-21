@@ -1,12 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
 import AppStore from 'store/AppStore'
 import ActionsHistory from 'components/ActionsHistory'
-import FlowStore from 'store/FlowStore'
-import CreateByTemplateStore from 'store/CreateByTemplateStore'
-import MappingNormsStore from 'store/MappingNormsStore'
+import Block from 'models/Block'
+import QuestionSerializer from 'models/QuestionSerializer'
+import { perform } from 'libs/survey/core/temp/socket'
 import styles from './Header.scss'
 
 export class Header extends Component {
@@ -19,37 +18,56 @@ export class Header extends Component {
   }
 
   openFlow = () => {
-    FlowStore.open()
+    const { openFlow } = this.props
+    openFlow()
   }
 
   createBlock = () => {
-    BlockListDispatcher.create()
+    const { createBlock } = this.props
+    createBlock(new Block())
   }
 
   showScoring = () => {
-    AppStore.openScoring()
+    const { history, match: { params: { id } } } = this.props
+    history.push(`/administration/assessments/${id}/scoring`)
   }
 
   openSearchPopup = () => {
-    CreateByTemplateStore.openBlockPopup(null, 'Block')
+    const { openCreateByTemplate } = this.props
+    openCreateByTemplate({ entityName: 'Block' })
   }
 
   showMappingNorms = () => {
-    MappingNormsStore.openPopup()
+    const { openMapNorms } = this.props
+    perform('assessment_norms', { without_notification: true }, (data) => {
+      openMapNorms({ data })
+    })
   }
 
   export = () => {
-    this.data.value = JSON.stringify(AppStore.exportAssessment())
+    const { blocksWithQuestions } = this.props
+    const result = {
+      question: {},
+      flow: {},
+    }
+    _.each(blocksWithQuestions, (block) => {
+      _.each(block.questions, (question) => {
+        result.question[question.id] = QuestionSerializer.wrap(question).exportLocales()
+      })
+    })
+    this.data.value = JSON.stringify(result)
     this.form.submit()
   }
 
   openPreview = () => {
-    this.previewData.value = JSON.stringify(AppStore.serializeAssessment())
+    const { builder, flow } = this.props
+    this.previewData.value = JSON.stringify(AppStore.serializeAssessment(builder, flow))
     this.previewForm.submit()
   }
 
   save = () => {
-    AppStore.save()
+    const { builder, flow, trash } = this.props
+    AppStore.save(builder, trash, flow)
   }
 
   toggleEnableBack = () => {
@@ -63,12 +81,12 @@ export class Header extends Component {
   }
 
   render () {
+    const { assessment } = this.props
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
           <h3 className="panel-title">
-            Assessment
-            {AppStore.name}
+            {assessment.name}
           </h3>
         </div>
         <ul className="panel-controls">

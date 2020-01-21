@@ -1,29 +1,28 @@
 import React, { Component } from 'react'
-import store from 'store/FactorList'
-import blockListStore from 'store/BlockList'
+import QuestionSerializer from 'models/QuestionSerializer'
 import Scoring from 'views/Scoring'
 import styles from './ScoringList.scss'
 
 export class ScoringList extends Component {
-  storeListener = null
-
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   renderScoring () {
-    const { type } = this.props
+    const {
+      blocks, type, scorings, recoding,
+    } = this.props
     return (
       <div className={styles.main}>
-        {blockListStore.list.map((block, i) => (
+        {blocks.map((block, i) => (
           <div className={`panel panel-default ${styles.blockContainer}`} key={i}>
             <div className="panel-heading">{block.name}</div>
             <div className="panel-body">
-              {block.questions.list.map((question, j) => <Scoring type={type} key={j} model={question} />)}
+              {block.questions.map((question, j) => (
+                <Scoring
+                  type={type}
+                  key={j}
+                  model={QuestionSerializer.wrap(question)}
+                  scorings={scorings}
+                  recoding={recoding}
+                />
+              ))}
             </div>
           </div>
         ))}
@@ -38,7 +37,8 @@ export class ScoringList extends Component {
   }
 
   render () {
-    return (store.currentFactor ? this.renderScoring() : this.renderError())
+    const { selectedFactor } = this.props
+    return (selectedFactor ? this.renderScoring() : this.renderError())
   }
 }
 

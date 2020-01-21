@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Previews } from 'components/modules'
-import store from 'store/DefaultValueStore'
 import { Modal } from 'react-bootstrap'
 import styles from './DefaultValue.scss'
 
@@ -10,40 +9,27 @@ const { Footer } = Modal
 const { Title } = Modal
 
 export default class extends Component {
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  close = () => {
-    store.model = null
-    this.forceUpdate()
-  }
-
   clear = () => {
-    store.model.resetDefaultValues()
+    const { question } = this.props
+    question.resetDefaultValues()
     this.forceUpdate()
   }
 
   save = () => {
-    store.model.props.defaultValues = store.model.result.answers
-    store.model.updateDefaultProps()
-    store.model = null
-    this.forceUpdate()
+    const { question, close } = this.props
+    question.props.defaultValues = question.result.answers
+    question.updateDefaultProps()
+    close()
   }
 
   renderModulePreview () {
-    const { model } = store
-    const View = Previews[`${model.type}Preview`]
-    return <View model={model} />
+    const { question } = this.props
+    const View = Previews[`${question.type}Preview`]
+    return <View model={question} />
   }
 
   render () {
-    const { model } = store
-    if (!model) { return null }
+    const { close } = this.props
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>
@@ -55,7 +41,7 @@ export default class extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.clear}>Clear</button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Close</button>
+          <button className="btn btn-danger" onClick={close}>Close</button>
         </Footer>
       </Modal>
     )

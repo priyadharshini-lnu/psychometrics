@@ -1,3 +1,4 @@
 import CustomValidation from './components/CustomValidation'
+import connect from './connect'
 
-export default CustomValidation
+export default connect(CustomValidation)

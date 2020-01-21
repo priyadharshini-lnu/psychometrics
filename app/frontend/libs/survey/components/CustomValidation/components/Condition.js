@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/CustomValidationStore'
 import QuestionCondition from 'libs/conditions'
-import AppStore from 'store/AppStore'
 import styles from './CustomValidation.scss'
 
 export class Condition extends Component {
@@ -25,8 +23,8 @@ export class Condition extends Component {
   }
 
   remove = () => {
-    const { onRemove, condition } = this.props
-    if (store.model.validation.args.conditions.length > 1) {
+    const { onRemove, condition, question } = this.props
+    if (question.validation.args.conditions.length > 1) {
       onRemove(condition)
     }
   }
@@ -38,8 +36,8 @@ export class Condition extends Component {
   }
 
   renderLogicType () {
-    const { condition } = this.props
-    const first = condition === store.model.validation.args.conditions[0]
+    const { condition, question } = this.props
+    const first = condition === question.validation.args.conditions[0]
     if (first) {
       return (
         <span className={styles.keyword}>if</span>
@@ -55,12 +53,12 @@ export class Condition extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { condition, questions } = this.props
     return (
       <div className={styles.condition}>
         {this.renderLogicType()}
         <QuestionCondition
-          questions={AppStore.questions}
+          questions={questions}
           onChange={this.changeQuestionCondition}
           condition={condition}
         />

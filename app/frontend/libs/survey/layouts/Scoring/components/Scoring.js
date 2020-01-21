@@ -11,6 +11,12 @@ export default class Scoring extends Component {
   }
 
   componentDidMount () {
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/assessments\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Assessments::Channel', { assessment_id: id })
+    }
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
@@ -31,12 +37,13 @@ export default class Scoring extends Component {
 
   render () {
     const { type } = this.state
+    const { loaded } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
-          <Header updateType={this.updateType} type={type} />
+          <Header updateType={this.updateType} type={type} {...this.props} />
           <div className={`panel-body ${styles.mainContainer}`}>
-            {!AppStore.loaded && this.loading()}
+            {!loaded && this.loading()}
             <ScoringList type={type} />
           </div>
         </div>

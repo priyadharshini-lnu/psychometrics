@@ -1,3 +1,4 @@
 import Trash from './components/Trash'
+import connect from './connect'
 
-export default Trash
+export default connect(Trash)

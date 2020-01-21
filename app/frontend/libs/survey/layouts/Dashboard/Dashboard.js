@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Socket from 'cable'
 import AppStore from 'store/AppStore'
+import Home from 'views/Home'
+import Trash from 'views/Trash'
+import PropertyPanel from 'views/PropertyPanel'
+import Library from 'libs/library'
+import Modals from 'components/Modals'
 import Header from '../Header'
 import styles from './Dashboard.scss'
+
 import '../../styles/core.scss'
 
 export class Dashboard extends Component {
@@ -12,7 +17,12 @@ export class Dashboard extends Component {
   }
 
   componentDidMount () {
-    Socket.setProvider('Assessment')
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/assessments\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Assessments::Channel', { assessment_id: id })
+    }
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
@@ -61,16 +71,19 @@ Attention!
 
 
   render () {
-    const { children } = this.props
+    const { loaded, disabled } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
-          <Header />
+          <Header {...this.props} />
           <div className={`panel-body ${styles.mainContainer}`}>
-            {!AppStore.loaded && this.loading()}
-            {AppStore.disabled && this
-              .overlay()}
-            {children}
+            {!loaded && this.loading()}
+            {disabled && this.overlay()}
+            <Home />
+            <PropertyPanel />
+            <Trash />
+            <Modals />
+            <Library />
           </div>
         </div>
         <div className="clearfix" />

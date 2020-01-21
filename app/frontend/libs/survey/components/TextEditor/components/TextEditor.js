@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import RichEditorStore from 'store/RichEditorStore'
 import ContentEditable from 'react-contenteditable'
 import styles from './TextEditor.scss'
 
@@ -9,7 +8,6 @@ export class TextEditor extends Component {
   hover = false
 
   static propTypes = {
-    model: PropTypes.object.isRequired,
     value: PropTypes.string.isRequired,
     styles: PropTypes.string,
     onChange: PropTypes.func.isRequired,
@@ -95,10 +93,10 @@ export class TextEditor extends Component {
   }
 
   openRichEditor = () => {
-    const { model } = this.props
+    const { openRichEditor } = this.props
     const { value } = this.state
     this.setState({ edit: false })
-    RichEditorStore.open(model, value, this.onRichChange)
+    openRichEditor({ value, onSave: this.onRichChange })
   }
 
   changeText = (e) => {

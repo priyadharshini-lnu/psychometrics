@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Raphael from 'raphael'
-import HotSpotStore from 'store/HotSpotStore'
 import TextEditor from 'components/TextEditor'
 import ShapeEditor from './ShapeEditor/ShapeEditor'
 import styles from './HotSpot.scss'
@@ -59,7 +58,8 @@ export class HotSpot extends Component {
   }
 
   selectShape = (shapeIndex) => {
-    HotSpotStore.select(shapeIndex)
+    const { select } = this.props
+    select(shapeIndex)
     this.setState({ selectedShape: true })
   }
 
@@ -114,9 +114,8 @@ export class HotSpot extends Component {
   }
 
   removeShape = () => {
-    const { model } = this.props
+    const { model, shapeIndex } = this.props
     const { shapeEditor } = this.state
-    const { shapeIndex } = HotSpotStore
     const { regionsNames } = model.props
     regionsNames.splice(shapeIndex, 1)
     model.changeProps({ regionsNames })
