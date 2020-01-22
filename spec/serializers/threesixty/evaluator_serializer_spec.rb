@@ -18,7 +18,7 @@ describe Threesixty::EvaluatorSerializer do
                         'approval' => { 'manager_approves_reports' => true } })
     end
     let!(:evaluator) do
-      create(:threesixty_evaluator, user: create(:user), campaign: campaign, evaluations_count: 5)
+      create(:threesixty_evaluator, user: create(:user), campaign: campaign)
     end
     let(:counters) do
       {

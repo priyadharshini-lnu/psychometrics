@@ -8,7 +8,8 @@ module Threesixty
       end
 
       def call
-        threesixty_campaign.participants.joins(:relationship).merge(Relationship.not_self).destroy_all
+        slef_relationship_id = Relationship.self_relationship.id
+        threesixty_campaign.participants.where.not(relationship_id: slef_relationship_id).destroy_all
         threesixty_campaign.campaign.users_results.destroy_all
       end
 

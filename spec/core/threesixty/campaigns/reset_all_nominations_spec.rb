@@ -9,6 +9,8 @@ describe Threesixty::Campaigns::ResetAllNominations do
   let(:evaluator2) { create(:threesixty_evaluator, campaign: threesixty_campaign.campaign) }
 
   before do
+    create(:relationship, type: :global, name: 'Self')
+
     @participants = [
       create_participant(
         subject.user,
@@ -32,6 +34,6 @@ describe Threesixty::Campaigns::ResetAllNominations do
   end
 
   def create_participant(subject, evaluator, campaign)
-    create(:threesixty_participant, subject: subject, evaluator: evaluator, campaign: campaign)
+    create(:threesixty_participant, :with_relationship, subject: subject, evaluator: evaluator, campaign: campaign)
   end
 end

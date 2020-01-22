@@ -7,9 +7,6 @@ class Relationship < ApplicationRecord
   enum type: { global: 0, campaign: 1 }
   enum assign_type: { manual: 0, automatic: 1 }
 
-  scope :global, -> { where(type: :global) }
-  scope :not_self, -> { global.where.not(name: 'Self') }
-
   def self.self_relationship
     Relationship.find_by(name: 'Self', type: :global)
   end
