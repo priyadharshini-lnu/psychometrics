@@ -7,6 +7,7 @@ module UserScopes
     scope :enabled, -> { where.not(disabled: true) }
     scope :identified, -> { where(is_anonym: false) }
     scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
+    scope :enabled_super_admins, -> { superadmins.where(disabled: false) }
     scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
     # Sorting
     scope :sorted_by, lambda { |sort_key|
