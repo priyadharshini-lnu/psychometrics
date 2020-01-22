@@ -13,13 +13,13 @@
           = simple_form_for(@form, as: resource_name, url: user_registration_path, wrapper: :registration_form) do |f|
             = f.error_notification message: f.object.errors[:base].to_sentence
             .loginFormContent
-              .firstNameFormGroup.input-group
+              .firstNameFormGroup
                 = f.input :first_name
-              .lastNameFormGroup.input-group
+              .lastNameFormGroup
                 = f.input :last_name
-              .usernameFormGroup.input-group
+              .usernameFormGroup
                 = f.input :email
-              .registrationCodeFormGroup.input-group
+              .registrationCodeFormGroup
                 = f.input :registration_code, as: :string,
                      placeholder: 'Enter the registration code', maxlength: 32, input_html: { value: @form.context.code }
               .signInButton
