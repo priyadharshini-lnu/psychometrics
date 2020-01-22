@@ -42,8 +42,6 @@ describe Threesixty::Evaluators::CreateAll do
       to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
     expect(participants.map { |s| s.subject.email }).to match_array(%w[ivan@gmail.com fedor@gmail.com])
     expect(participants.map { |s| s.relationship.name }).to match_array(%w[peer peer])
-    expect(Threesixty::Evaluator.find_by(user_id: participants.first.evaluator_id).evaluations_count).to eq 2
-    expect(Threesixty::Subject.find_by(user_id: participants.first.subject_id).evaluators_count).to eq 1
   end
 
   it 'creates membership for evaluator' do

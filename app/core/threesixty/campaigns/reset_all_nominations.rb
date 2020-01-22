@@ -8,11 +8,7 @@ module Threesixty
       end
 
       def call
-        threesixty_campaign.participants.find_each do |participant|
-          participant.threesixty_subject.decrement!(:evaluators_count)
-          participant.threesixty_evaluator.decrement!(:evaluations_count)
-          participant.destroy!
-        end
+        threesixty_campaign.participants.joins(:relationship).merge(Relationship.not_self).destroy_all
         threesixty_campaign.campaign.users_results.destroy_all
       end
 
