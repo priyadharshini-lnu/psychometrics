@@ -26,7 +26,9 @@ _.extend(Dispatcher.prototype, {
       }
       page.modules.empty()
       _.each(this.pageBuffer.modules.list, (module) => {
-        page.modules.clone(module, false)
+        if (!module.props.showOnAllPages) {
+          page.modules.clone(module, false)
+        }
       })
     } else {
       alert('Nothing to paste')
