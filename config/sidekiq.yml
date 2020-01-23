@@ -6,8 +6,8 @@ staging:
 production:
   :concurrency: 2
 :queues:
+  - two_factor_codes
   - mailers
   - communication
   - reports
   - default
-  - two_factor_codes
