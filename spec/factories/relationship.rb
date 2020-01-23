@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :relationship do
     name { 'Manager' }
+    type { :global }
   end
 end

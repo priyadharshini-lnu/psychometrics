@@ -61,8 +61,6 @@ module Threesixty
       @nomination = @subject.participants.find_by(evaluator_id: params[:id])
       authorize @nomination, nil, policy_class: ::Threesixty::NominationPolicy
       @nomination.destroy
-      @nomination.threesixty_subject.decrement!(:evaluators_count)
-      @nomination.threesixty_evaluator.decrement!(:evaluations_count)
       render json: nil
     end
 
