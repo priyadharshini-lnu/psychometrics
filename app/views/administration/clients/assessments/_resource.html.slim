@@ -50,7 +50,7 @@ tr id=dom_id(resource)
               = link_to t('.scoring_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', scoring: true)
           - if policy(resource).export_raw_results?
             li
-              = link_to t('.raw_results'), administration_client_assessment_select_raw_export_type_path(client, resource, format: 'xlsx')
+              = link_to t('.raw_results'), administration_client_assessment_select_raw_export_type_path(client, resource), remote: true
           - if policy(resource).export_normed_results?
             li
               = link_to t('.normed_results'), administration_client_assessment_export_normed_results_path(client, resource, format: 'xlsx')
