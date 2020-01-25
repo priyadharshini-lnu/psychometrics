@@ -11,10 +11,10 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    search_term = params[:q].nil? ? nil : params[:q]['id_or_name']
+    @filter_term = params.dig(:q, :filterable_fields)
     @_filter_form = policy_scope(resource_class).
                     includes(:dimension, :owner).
-                    ransack(eq_id_or_cont_name: search_term)
+                    ransack(params[:q])
     filter_form.archived_true ||= false
     @_resources = filter_form.result.page(params[:page])
 
@@ -93,9 +93,11 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = CopyAssessment.process!(resource.id)
+    event = ::Assessments::CopyAssessment.call(resource.id)
+
     respond_to do |format|
-      if @cloned_resource.persisted?
+      if event[:ok]
+        @cloned_resource = event[:ok]
         format.js
       else
         format.js do

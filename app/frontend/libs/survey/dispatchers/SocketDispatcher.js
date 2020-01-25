@@ -9,7 +9,6 @@ const dispatcher = new EventEmitter()
 dispatcher.message = function (data) {
   if (data.action === 'assessment_data') {
     AppStore.init(data.data)
-    console.log(data)
     store.dispatch({ type: 'survey/assessment/INIT', data: data.data })
   }
   if (data.action === 'question_data') {

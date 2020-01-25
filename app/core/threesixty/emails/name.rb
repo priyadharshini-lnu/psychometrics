@@ -14,9 +14,15 @@ module Threesixty
       SUBJECT_INVITE = 'subject_invite'
       SUBJECT_REMINDER = 'subject_reminder'
       CUSTOM_MESSAGE = 'custom_message'
+      EVALUATOR_EMAILS = [EVALUATOR_INVITE, EVALUATOR_REMINDER].freeze
+      CONSOLIDATED_EMAILS = EVALUATOR_EMAILS
 
       def self.evaluator_email?(email_name)
-        [EVALUATOR_INVITE, EVALUATOR_REMINDER].include?(email_name)
+        EVALUATOR_EMAILS.include?(email_name)
+      end
+
+      def self.consolidatable_email?(email_name)
+        evaluator_email?(email_name)
       end
 
       def self.reminder_email?(email_name)

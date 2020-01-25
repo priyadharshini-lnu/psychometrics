@@ -21,7 +21,6 @@ const Socket = ({ dispatch }) => next => (action) => {
   if (data.action === 'assessment_data') {
     AppStore.init(data.data)
     const normalizedData = normalize(data.data, schema)
-    console.log(normalizedData)
     dispatch({ type: INIT, data: normalizedData })
   } else if (data.action === 'question_data') {
     AppStore.initQCenter(data.data)
@@ -33,6 +32,7 @@ const Socket = ({ dispatch }) => next => (action) => {
     RequestsPool[data.request_id](data.data)
     delete RequestsPool[data.request_id]
   } else {
+    // eslint-disable-next-line no-console
     console.warn('Unhandled socket message', action)
   }
 }

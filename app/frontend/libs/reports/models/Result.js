@@ -71,17 +71,7 @@ _.extend(Result.prototype, {
   init (results, user, filters) {
     filters.push(new Filter(INDIVIDUAL_FILTER))
     _.each(filters, (filter) => {
-      this.resultsByFilter[filter.id] = {
-        questions: {},
-        embeddedData: {},
-        scoring: {},
-        questionScoring: {},
-        usersScoring: {},
-        externalScoring: {},
-        dataSheet: {},
-        groupedDataSheet: [],
-        rawResults: [],
-      }
+      this.initResultsByFilter(filter.id)
     })
     this.user = user
     this.questionScoring = {}
@@ -109,6 +99,29 @@ _.extend(Result.prototype, {
     this.calcOccupationsStars()
     this.sortOccupations()
     this.calcInnovationStylesScore()
+    this.tweakResultsByFilterOptions(filters)
+  },
+
+  tweakResultsByFilterOptions (filters) {
+    filters.forEach((filter) => {
+      if (this.resultsByFilter[filter.id].rawResults.length < filter.minRequiredResponses) {
+        this.initResultsByFilter(filter.id)
+      }
+    })
+  },
+
+  initResultsByFilter (filterId) {
+    this.resultsByFilter[filterId] = {
+      questions: {},
+      embeddedData: {},
+      scoring: {},
+      questionScoring: {},
+      usersScoring: {},
+      externalScoring: {},
+      dataSheet: {},
+      groupedDataSheet: [],
+      rawResults: [],
+    }
   },
 
   // we need sort occupations after calc occupations starts

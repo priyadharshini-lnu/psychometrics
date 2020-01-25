@@ -43,7 +43,7 @@ module Threesixty
       def completed_evaluators
         @completed_evaluators =
           UsersResult.select('count(id) as cache_counter, subject_id').actual_by_options(option).
-          where(subject_id: user_ids, status: :completed).
+          where(subject_id: user_ids, status: :completed, campaign: threesixty_campaign.campaign).
           group(:subject_id).
           index_by(&:subject_id)
       end

@@ -130,6 +130,7 @@
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "seedrandom": "^3.0.5",
+    "scroll-js": "^3.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",
@@ -148,7 +149,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --cache && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
     }
   }
 }

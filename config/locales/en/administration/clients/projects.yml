@@ -71,7 +71,7 @@ en:
           copy: Copy Project
           design: Edit Design
           view_licenses: View Licenses
-          admins: Admin Users
+          admins: Project Admins
         new:
           header: 'New Project'
         edit:

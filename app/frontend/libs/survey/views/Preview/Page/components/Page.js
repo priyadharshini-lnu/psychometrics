@@ -55,13 +55,15 @@ class Page extends Component {
     const progress = store.flow.getProgress()
     if (progress || progress === 0) {
       return (
-        <div className={cs('progress', styles.progress)}>
-          <div
-            className={cs('progress-bar', styles.progressBar)}
-            style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
-          >
-            <span>{`${_.round(progress)}%`}</span>
+        <div className={styles.progressBarContainer}>
+          <div className={cs('progress', styles.progress)}>
+            <div
+              className={cs('progress-bar', styles.progressBar)}
+              style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
+            />
+
           </div>
+          <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
         </div>
       )
     }

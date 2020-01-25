@@ -1,12 +1,11 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal, getData } from 'admin/core/temp/modals'
 
 export default connect(
-  state => ({
-    show: state.survey.modals.richEditor.show,
-    ...state.survey.modals.richEditor.data,
+  ({ survey }) => ({
+    ...getData(survey).richEditor,
   }),
   {
-    close: () => close('richEditor'),
+    close: () => closeModal('richEditor'),
   },
 )

@@ -430,7 +430,8 @@ CREATE TABLE public.campaigns (
     name character varying,
     type integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    status integer DEFAULT 0
 );
 
 
@@ -1035,7 +1036,8 @@ CREATE TABLE public.factors (
     disabled boolean DEFAULT false,
     icon character varying,
     description text,
-    scoring_strategy smallint DEFAULT 0 NOT NULL
+    scoring_strategy smallint DEFAULT 0 NOT NULL,
+    code character varying
 );
 
 
@@ -1411,7 +1413,10 @@ CREATE TABLE public.license_usages (
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     campaign_id bigint,
-    registration_code_id bigint
+    registration_code_id bigint,
+    status_updated_by_id integer,
+    status_updated_at timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -2188,7 +2193,8 @@ CREATE TABLE public.reports_filters (
     conditions json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer
+    assessment_id integer,
+    min_required_responses integer DEFAULT 0
 );
 
 
@@ -2400,7 +2406,8 @@ CREATE TABLE public.threesixty_email_histories (
     status smallint,
     meta json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false
 );
 
 
@@ -2441,7 +2448,9 @@ CREATE TABLE public.threesixty_email_schedules (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     recipient_ids jsonb DEFAULT '[]'::jsonb,
-    meta jsonb DEFAULT '{}'::jsonb
+    meta jsonb DEFAULT '{}'::jsonb,
+    consolidated boolean DEFAULT false NOT NULL,
+    auto_triggered boolean DEFAULT true
 );
 
 
@@ -2480,7 +2489,8 @@ CREATE TABLE public.threesixty_email_templates (
     schedulable boolean DEFAULT true,
     meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    consolidated boolean DEFAULT false NOT NULL
 );
 
 
@@ -2511,8 +2521,6 @@ CREATE TABLE public.threesixty_evaluators (
     id bigint NOT NULL,
     campaign_id bigint,
     user_id bigint,
-    evaluations_count integer DEFAULT 0,
-    completed_evaluations_count integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     approved_evaluations_count integer DEFAULT 0
@@ -2723,8 +2731,6 @@ CREATE TABLE public.threesixty_subjects (
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
     report_approval_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
     evaluation_status integer DEFAULT 0
 );
@@ -6609,8 +6615,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930140807'),
 ('20191001075231'),
 ('20191007075951'),
+('20191016134103'),
 ('20191028205331'),
+('20191029104332'),
 ('20191030081833'),
-('20191110113047');
+('20191110113047'),
+('20191111083124'),
+('20191111104014'),
+('20191211142942'),
+('20191218192252'),
+('20191225145152'),
+('20200119071623'),
+('20200122113926');
 
 

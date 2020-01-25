@@ -3,16 +3,16 @@
 module Exports
   module Assessments
     module Questions
-      class Timing
+      class Timing < Base
         FIELDS = %w[firstClick lastClick pageSubmit clickCount].freeze
 
         # Parse RESULT data for XLSX
-        def self.result(answers, _question, _scoring = false)
+        def self.result(answers, _question, _scoring = false, _export_with_labels = false)
           FIELDS.map { |field| answers.try(:[], field) unless answers.blank? }
         end
 
         # Parse HEADER data for XLSX
-        def self.header(question)
+        def self.question_id_header(question)
           FIELDS.map { |field| "QID#{question.id}_#{field}" }
         end
       end

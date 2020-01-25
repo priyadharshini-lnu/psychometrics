@@ -1,9 +1,9 @@
 import { connect } from 'react-redux'
-import { open } from 'libs/survey/core/modals'
+import { openModal } from 'admin/core/temp/modals'
 
 export default connect(
   () => ({}),
   {
-    openRichEditor: data => open('richEditor', data),
+    openRichEditor: data => openModal('richEditor', data),
   },
 )

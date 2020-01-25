@@ -3,9 +3,9 @@
 module Exports
   module Assessments
     module Questions
-      class MatrixTable
+      class MatrixTable < Base
         # Parse RESULT data for XLSX
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           parsed_result = []
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
@@ -29,34 +29,36 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.
-                               join(',')
+                               map do |a|
+                                 next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
+
+                                 next a['scale'] + 1 unless export_with_labels
+
+                                 question.props.dig('scalePointsTexts', a['scale'])
+                               end.join(',')
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          # IF: answer can contain any data (string, number and etc.)
-          # THEN: we collect header for each choiceID and scaleID
-          # =>    example: [QID_1_1, QID_2_1, QID_3_1]
-          # ELSE: we collect results grouped by choiceID
-          # =>    example: [QID_1, QID_2, QID_3]
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
           if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             question.props['choices'].to_i.times do |c|
               question.props['scalePoints'].to_i.times do |s|
-                parsed_header << "QID#{question.id}_#{c + 1}_#{s + 1}"
+                question_id_header << "QID#{question.id}_#{c + 1}_#{s + 1}"
+                question_choices_header << "#{question.props.dig('choicesTexts', c)} |
+                  #{question.props.dig('scalePointsTexts', c)}"
               end
             end
           else
             question.props['choices'].to_i.times do |c|
-              parsed_header << "QID#{question.id}_#{c + 1}"
+              question_id_header << "QID#{question.id}_#{c + 1}"
+              question_choices_header << question.props.dig('choicesTexts', c)
             end
           end
-          parsed_header
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

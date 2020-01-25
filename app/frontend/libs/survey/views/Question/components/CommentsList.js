@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { perform } from 'libs/survey/core/temp/socket'
 import styles from './Question.scss'
 
 class CommentsList extends Component {
@@ -18,18 +19,25 @@ class CommentsList extends Component {
   }
 
   addComment = () => {
-    const { model } = this.props
+    const { model, addComment } = this.props
     const { value } = this.state
+
     if (value.trim()) {
-      model.addComment({ text: value })
-      this.setState({ edit: false, value: '' })
+      const comment = { text: value }
+      perform('comment_create', { question_id: model.id, ...comment }, (data) => {
+        Object.assign(comment, { id: data.id, name: data.author, date: data.created_at })
+
+        addComment(model, comment)
+        this.setState({ edit: false, value: '' })
+      })
     }
   }
 
   removeComment = (comment) => {
-    const { model } = this.props
-    model.removeComment(comment)
-    this.forceUpdate()
+    const { model, removeComment } = this.props
+    perform('comment_destroy', { id: comment.id }, () => {
+      removeComment(model, comment)
+    })
   }
 
   onChange = (e) => {
@@ -47,20 +55,24 @@ class CommentsList extends Component {
     }
   }
 
-  comment = (comment, i) => (
-    <div className={`item item-visible ${styles.item}`} key={i}>
-      <div className={`text ${styles.itemText}`}>
-        <div className="heading">
-          <a className={styles.remove} onClick={this.removeComment.bind(this, comment)}>
-            <span className="fa fa-remove" />
-          </a>
-          <a>{comment.name}</a>
-          <span className="date">{`${comment.date.getHours()}:${comment.date.getMinutes()}`}</span>
+  comment = (comment, i) => {
+    const date = new Date(comment.date)
+
+    return (
+      <div className={`item item-visible ${styles.item}`} key={i}>
+        <div className={`text ${styles.itemText}`}>
+          <div className="heading">
+            <a className={styles.remove} onClick={this.removeComment.bind(this, comment)}>
+              <span className="fa fa-remove" />
+            </a>
+            <a>{comment.name}</a>
+            <span className="date">{`${date.getHours()}:${date.getMinutes()}`}</span>
+          </div>
+          <span>{comment.text}</span>
         </div>
-        <span>{comment.text}</span>
       </div>
-    </div>
-  )
+    )
+  }
 
   form () {
     const { edit } = this.state
@@ -118,7 +130,7 @@ class CommentsList extends Component {
       <div>
         {this.list(comments)}
 
-        <div className={`messages ${styles.messagesForm}`}>
+        <div className={`${styles.messages} ${styles.messagesForm}`}>
           {this.form()}
         </div>
       </div>

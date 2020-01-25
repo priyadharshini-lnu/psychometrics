@@ -20,8 +20,7 @@ module Threesixty
     has_many :users_results, through: :campaign
     has_many :reminder_histories, foreign_key: :threesixty_campaign_id
     has_many :email_histories, foreign_key: :threesixty_campaign_id
-
-    attr_accessor :factors, :type
+    has_many :license_usages, through: :campaign
 
     enum type: %i[empty standard_360 previous_360]
 
@@ -37,10 +36,6 @@ module Threesixty
       STANDARD_360 => 'Standard 360',
       PREVIOUS_360 => 'Previous 360'
     }.freeze
-
-    def attribute_names
-      super + %i[factors type]
-    end
 
     def datasheet_column_names
       datasheet&.column_names || []

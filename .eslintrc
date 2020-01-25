@@ -45,7 +45,8 @@
     "react/forbid-prop-types": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "react/no-multi-comp": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "func-names": 0
   },
   "globals": {
     "__DEV__": true,
@@ -54,6 +55,7 @@
     "_": true,
     "location": true,
     "I18n": true,
+    "Utils": true,
     "moment": true
   },
   "settings": {

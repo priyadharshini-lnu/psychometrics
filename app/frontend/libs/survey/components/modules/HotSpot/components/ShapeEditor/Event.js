@@ -40,6 +40,7 @@ const event = {
     const route = routeToEventName(scope)
     try {
       return this.listeners[route].remove()
+      // eslint-disable-next-line no-console
     } catch (e) { console.warn(e) }
   },
 

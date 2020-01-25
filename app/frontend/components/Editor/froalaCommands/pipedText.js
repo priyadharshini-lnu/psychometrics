@@ -9,6 +9,10 @@ FroalaEditor.RegisterCommand('pipedText', {
   undo: true,
   refreshAfterCallback: true,
   callback () {
-    store.dispatch(openModal('PipedTextModal', { type: this.opts.saveParams.type, editorRef: this }))
+    store.dispatch(openModal('PipedTextModal', {
+      type: this.opts.saveParams.type,
+      details: this.opts.saveParams.details,
+      editorRef: this,
+    }))
   },
 })

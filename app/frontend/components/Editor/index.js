@@ -11,7 +11,9 @@ import 'froala-editor/js/plugins.pkgd.min'
 import './froalaCommands'
 import FroalaEditor from 'react-froala-wysiwyg'
 
-function Editor ({ content, handleContentChange, type }) {
+function Editor ({
+  content, handleContentChange, type, details,
+}) {
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
@@ -62,7 +64,7 @@ function Editor ({ content, handleContentChange, type }) {
       'html',
       'fullscreen',
     ],
-    saveParams: { type },
+    saveParams: { type, details },
     heightMin: 250,
     heightMax: 500,
     key: '7MD3aC3A2C4B4D4A2xROKLJKYHROLDXDRE1b1YYGRi1Bd1C4F4B3H3G3A15A13A12C4C4==',
@@ -78,8 +80,8 @@ function Editor ({ content, handleContentChange, type }) {
   const ref = React.createRef()
 
   useEffect(() => {
-    ref.current.editor.opts.saveParams = { type }
-  }, [type])
+    ref.current.editor.opts.saveParams = { type, details }
+  }, [type, details])
 
   return (
     <div>

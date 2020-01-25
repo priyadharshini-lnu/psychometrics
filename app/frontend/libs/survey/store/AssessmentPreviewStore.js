@@ -34,8 +34,10 @@ _.extend(AssessmentPreviewStore.prototype, {
     this.allQuestions = _(this.assessment.blocks).map(b => b.questions).flatten().map(q => new Question(q))
       .value()
     this.dbResult = dbResult || {}
-    const key = [location.pathname]
-    this.dbResult.results = { ...(this.dbResult.results || {}), ...(LocalStorage.getIn(key) || {}) }
+    this.dbResult.results = {
+      ...(this.dbResult.results || {}),
+      ...(LocalStorage.getIn(this.resultLocalStorageKey) || {}),
+    }
     const byQuestionId = r => _.find(this.allQuestions, { id: r.question_id })
     const newResult = r => new Result(byQuestionId(r), r.answers, r.not_applicable)
     this.results = _(this.dbResult.results).pickBy(byQuestionId).mapValues(newResult).value()

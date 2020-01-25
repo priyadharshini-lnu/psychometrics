@@ -7,9 +7,10 @@ module Administration
         include Administration::Clients
         before_action :ensure_project
         prepend_before_action :set_resource_class
-        before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
+        before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive export_results]
         before_action :init_breadcrumbs
-        wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
+        before_action :set_campaign_template_and_assessments, only: %i[new create]
+        wrap_parameters :threesixty_campaign
 
         def show
           @init_state = {
@@ -35,12 +36,13 @@ module Administration
         end
 
         def index
+          @filter_term = params.dig(:q, :filterable_fields)
           @_filter_form = project.project_campaigns.
                           includes(
                             :threesixty_campaign,
                             threesixty_campaign: %i[assessment report]
                           ).
-                          search(params[:q])
+                          ransack(params[:q])
           @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|
@@ -50,26 +52,24 @@ module Administration
         end
 
         def new
-          @_resource = Campaign.new
+          @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
+          @form = ::Threesixty::Campaigns::CreateForm.new
         end
 
         def create
-          @_resource = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
-        end
-
-        def assessments
-          type = params[:type]
-          @assessments = if type == ::Threesixty::Campaign::STANDARD_360
-                           CampaignTemplate.includes(:assessment).map(&:assessment)
-                         else
-                           project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
-                         end
+          @form = ::Threesixty::Campaigns::CreateForm.from_params(params[:resource])
+          if @form.valid?
+            @_resource = ::Threesixty::Campaigns::Create.call!(project, @form)
+          else
+            @campaign_template_and_assessment_ids = CampaignTemplate.pluck(:id, :assessment_id).to_h
+            render 'new'
+          end
         end
 
         def factors
           @factors = if params[:assessment_id].present?
                        assessment = Assessment.find(params[:assessment_id])
-                       assessment.dimension.factors
+                       assessment.dimension.all_factors
                      else
                        []
                      end
@@ -81,6 +81,13 @@ module Administration
           @_resource = campaign
           respond_to do |format|
             format.js
+          end
+        end
+
+        def export_results
+          results = ::Exports::Assessments::ThreesixtyAssessmentResultsExport.call!(resource.assessment)
+          respond_to do |format|
+            format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
           end
         end
 
@@ -121,6 +128,11 @@ module Administration
           ::Threesixty::CurrentUserSerializer.new(current_user).
             as_json.
             deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+        end
+
+        def set_campaign_template_and_assessments
+          @assessments = project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
+          @campaign_templates = CampaignTemplate.all
         end
       end
     end

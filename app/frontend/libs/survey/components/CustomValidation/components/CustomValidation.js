@@ -57,8 +57,6 @@ export class CustomValidation extends Component {
   }
 
   render () {
-    const { show } = this.props
-    if (!show) { return null }
     return (
       <Modal show bsSize="lg" keyboard={false}>
         <Header>

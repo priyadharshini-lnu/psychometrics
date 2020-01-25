@@ -29,7 +29,7 @@ module Threesixty
       end
 
       def fetch_or_create_subject_user(subject)
-        if (user = project_users_indexed[subject[:email]])
+        if (user = project_users_indexed[subject[:email].downcase])
           user.update!(subject.except(:password))
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           user
@@ -65,7 +65,7 @@ module Threesixty
       def project_users_indexed
         @project_users_indexed ||= User.
                                    where(project_id: project.id, email: subjects.map { |s| s[:email] }).
-                                   index_by(&:email)
+                                   index_by { |user| user.email.downcase }
       end
 
       def create_users_report(user)

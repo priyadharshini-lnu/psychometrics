@@ -10,6 +10,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :export)
     end
 
+    def select_raw_export_type?
+      export_results?
+    end
+
     # Don't allow to export Normed Results if Assessment is mindmill
     #
     def export_normed_results?

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import QuestionCondition from 'libs/conditions'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './SkipLogic.scss'
 
 const DESTINATIONS = {
@@ -19,22 +20,22 @@ export class Condition extends Component {
   }
 
   changeDestination = (e) => {
-    const { question, condition } = this.props
+    const { condition } = this.props
     condition.destination = e.currentTarget.value
-    question.update()
+    this.forceUpdate()
   }
 
 
   edit = () => {
-    const { question, condition } = this.props
+    const { condition } = this.props
     condition.editMode = true
-    question.update()
+    this.forceUpdate()
   }
 
   save = () => {
     const { condition, question } = this.props
     condition.editMode = false
-    question.update()
+    QuestionSerializer.wrap(question).update()
   }
 
   remove = () => {
@@ -43,15 +44,15 @@ export class Condition extends Component {
   }
 
   changeQuestionCondition = (cond) => {
-    const { question, condition } = this.props
-    condition.setData(cond)
-    question.update()
+    const { condition } = this.props
+    Object.assign(condition, cond)
+    this.forceUpdate()
   }
 
   changeDestinationBlock = (e) => {
-    const { question, condition } = this.props
+    const { condition } = this.props
     condition.destinationBlock = e.currentTarget.value
-    question.update()
+    this.forceUpdate()
   }
 
   renderCondition () {

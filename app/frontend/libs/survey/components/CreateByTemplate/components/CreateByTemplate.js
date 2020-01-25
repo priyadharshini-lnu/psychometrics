@@ -76,8 +76,7 @@ export class CreateByTemplate extends Component {
   }
 
   render () {
-    const { show, entityName } = this.props
-    if (!show) { return null }
+    const { entityName } = this.props
     const { template } = this.state
     return (
       <Modal show keyboard={false}>

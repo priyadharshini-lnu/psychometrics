@@ -14,13 +14,14 @@ export default function ManagerList ({
   editUser,
   total,
   page,
+  searchTerm,
   match: {
     params: { campaignId },
   },
   match,
 }) {
   useEffect(() => {
-    fetchManagers(campaignId, page)
+    fetchManagers(campaignId, page, searchTerm)
   }, [page])
 
   const curriedFetchManagers = _.curry(fetchManagers)
@@ -33,7 +34,11 @@ export default function ManagerList ({
           <span className="mlm">{`${total} Managers`}</span>
         </Col>
         <Col span={6} offset={14} className="text-align-r">
-          <SearchInput onChange={curriedFetchManagers(campaignId)} path="/participants/managers" />
+          <SearchInput
+            onChange={curriedFetchManagers(campaignId)}
+            path="/participants/managers"
+            searchTerm={searchTerm}
+          />
           <ToolsDropdown />
         </Col>
       </Row>
@@ -44,7 +49,7 @@ export default function ManagerList ({
             openModal={openModal}
             evaluators={managers}
             editUser={editUser}
-            onCloseParticipantModal={() => fetchManagers(campaignId, page)}
+            onCloseParticipantModal={() => fetchManagers(campaignId, page, searchTerm)}
           />
           <div className="pm">
             <Pagination total={total} fetch={curriedFetchManagers(campaignId)} path="/participants/managers" />

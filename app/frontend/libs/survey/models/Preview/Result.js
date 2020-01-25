@@ -104,9 +104,7 @@ _.extend(Result.prototype, {
       [current.question.id]: current.toJSON(),
     }), {})
 
-    const key = [location.pathname]
-
-    LocalStorage.setIn(key, pageResults)
+    LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
     rstore.dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })

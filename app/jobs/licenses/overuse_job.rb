@@ -10,7 +10,7 @@ module Licenses
       client.memberships.project_admin_role.each do |membership|
         LicenseMailer.license_overuse(membership.user_id).deliver_later
       end
-      User.where(role: User::SUPER_ADMIN_ROLE).find_each do |superadmin|
+      User.enabled_super_admins.find_each do |superadmin|
         LicenseMailer.license_overuse(superadmin.id, client.id).deliver_later
       end
     end

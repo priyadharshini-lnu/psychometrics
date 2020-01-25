@@ -13,8 +13,7 @@ class AssessmentsClient < ApplicationRecord
   def generate_universal_link!(options = {})
     update!(
       assessment_key: generate_random_key(*options.values),
-      key_generated_at: Time.now,
-      key_expires_at: 2.months.from_now
+      key_generated_at: Time.now
     )
   end
 

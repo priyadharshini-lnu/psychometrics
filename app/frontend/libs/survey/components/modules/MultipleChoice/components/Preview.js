@@ -17,6 +17,7 @@ export class Preview extends Component {
   }
 
   renderContainer (html, classWithLtr) {
+    // eslint-disable-next-line react/no-danger
     return (<div className={classWithLtr} dangerouslySetInnerHTML={{ __html: html }} />)
   }
 

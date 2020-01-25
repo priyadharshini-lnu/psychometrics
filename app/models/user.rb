@@ -119,7 +119,6 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :memberships
 
-  before_save :ensure_authentication_token
   validates :email, uniqueness: { scope: %i[project_id] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email,
@@ -129,6 +128,9 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validate :validate_grants
+
+  before_save :ensure_authentication_token
+  before_save { self.email = email.downcase }
 
   has_one_time_password(encrypted: true)
 
@@ -165,7 +167,7 @@ class User < ApplicationRecord
     end
 
     # Customizing default mail of devise_inviteable
-    # Couse it's gem not support to chagen invite link
+    # Couse it's gem not support to change invite link
     #   Where we need to set subdomain of Client
     #   Where client was invited
     self.skip_invitation = true
@@ -212,10 +214,14 @@ class User < ApplicationRecord
     errors.add(:grants, :invalid) unless valid
   end
 
+  def block_from_invitation?
+    false
+  end
+
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      %i[hris_data_cont role_scope_in]
+      %i[hris_data_cont role_scope_in filterable_fields]
     end
 
     # Available role for the filter form

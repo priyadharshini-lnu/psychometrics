@@ -19,8 +19,7 @@ export class PipedTextModal extends Component {
   }
 
   render () {
-    const { show, close } = this.props
-    if (!show) { return null }
+    const { close } = this.props
     const datasheetFields = AppStore.dataSheetColumns
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>

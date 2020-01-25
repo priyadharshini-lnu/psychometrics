@@ -16,12 +16,12 @@
                   required: false,
                   include_blank: t('administration.any'),
                   label: false
-          = f.input :name_cont,
+          = f.input :filterable_fields,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
-                    input_html: { class: 'has_clear periodically-observed' }
+                    input_html: { class: 'has_clear periodically-observed', value: @filter_term }
       .panel-body
         #filterrific_results
           = render partial: 'list'

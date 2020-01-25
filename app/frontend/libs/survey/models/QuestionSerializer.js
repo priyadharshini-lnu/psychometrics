@@ -5,14 +5,13 @@ import _ from 'lodash'
 import DefaultProps from 'constants/DefaultProps'
 import ModuleConfigs from 'constants/ModuleConfigs'
 import Condition from './QuestionCondition'
-import Comment from './Comment'
 import Result from './Preview/Result'
 import LogicElement from './logic/LogicElement'
 import Question from './Question'
 
 const loadComments = (question, comments) => {
   _.each(comments, (comment) => {
-    question.comments.push(new Comment(comment))
+    question.comments.push(comment)
   })
 }
 
@@ -53,7 +52,7 @@ export class QuestionSerializer {
     question.saveAsTemplate = attrs.save_as_template || false
     question.type = attrs.type || 'MultipleChoice'
     question.comments = []
-    question.showComments = question.comments.length > 0
+    question.showComments = attrs.showComments || question.comments.length > 0
     question.props = _.cloneDeep(DefaultProps[question.type] || {})
     question.props.randomization = { type: 'No' }
     question.moduleConfig = ModuleConfigs[question.type] || {}
@@ -95,6 +94,7 @@ export class QuestionSerializer {
       deleted_at: question.deletedAt,
       deleted: question.deleted,
       isNew: question.isNew,
+      comments: question.comments,
     }
   }
 

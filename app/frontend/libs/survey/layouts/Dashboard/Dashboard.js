@@ -4,18 +4,8 @@ import AppStore from 'store/AppStore'
 import Home from 'views/Home'
 import Trash from 'views/Trash'
 import PropertyPanel from 'views/PropertyPanel'
-import Preview from 'components/Preview'
-import RichEditor from 'components/RichEditor'
-import Randomization from 'components/Randomization'
-import DefaultValue from 'components/DefaultValue'
-import DisplayLogic from 'components/DisplayLogic'
-import CustomValidation from 'components/CustomValidation'
-import CreateByTemplate from 'components/CreateByTemplate'
-import EndOfAssessmentModal from 'components/EndOfAssessmentModal'
-import Flow from 'views/Flow'
-import MappingNorms from 'views/MappingNorms'
 import Library from 'libs/library'
-import PipedTextModal from 'components/PipedTextModal'
+import Modals from 'components/Modals'
 import Header from '../Header'
 import styles from './Dashboard.scss'
 
@@ -92,18 +82,8 @@ Attention!
             <Home />
             <PropertyPanel />
             <Trash />
-            <Preview />
-            <RichEditor />
-            <Randomization />
-            <CustomValidation />
-            <DefaultValue />
-            <DisplayLogic />
-            <CreateByTemplate />
-            <Flow />
-            <MappingNorms />
-            <EndOfAssessmentModal />
+            <Modals />
             <Library />
-            <PipedTextModal />
           </div>
         </div>
         <div className="clearfix" />

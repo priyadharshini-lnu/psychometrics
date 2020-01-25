@@ -16,4 +16,8 @@ en:
               regeneration:
                 title: 'Are you sure?'
                 body: 'Regenerating the Universal Link will cause the existing link to stop working.'
+        select_raw_export_type:
+          select_type: Select Export Type
+          export_without_labels: Export raw result without labels
+          export_with_labels: Export raw result with labels
 

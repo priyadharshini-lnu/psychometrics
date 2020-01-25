@@ -18,13 +18,14 @@ export default function EvaluatorList ({
   editUser,
   total,
   page,
+  searchTerm,
   match: {
     params: { campaignId },
   },
   match,
 }) {
   useEffect(() => {
-    fetchEvaluators(campaignId, page)
+    fetchEvaluators(campaignId, page, searchTerm)
   }, [page])
 
   const curriedFetchEvaluators = _.curry(fetchEvaluators)
@@ -37,7 +38,11 @@ export default function EvaluatorList ({
           <span className="mlm">{`${total} Evaluators`}</span>
         </Col>
         <div className="float-r">
-          <SearchInput onChange={curriedFetchEvaluators(campaignId)} path="/participants/evaluators" />
+          <SearchInput
+            onChange={curriedFetchEvaluators(campaignId)}
+            path="/participants/evaluators"
+            searchTerm={searchTerm}
+          />
           <ToolsDropdown />
           <CreateEvaluatorsDropdown />
         </div>
@@ -49,7 +54,7 @@ export default function EvaluatorList ({
             openModal={openModal}
             evaluators={evaluators}
             editUser={editUser}
-            onCloseParticipantModal={() => fetchEvaluators(campaignId, page)}
+            onCloseParticipantModal={() => fetchEvaluators(campaignId, page, searchTerm)}
             removeUser={removeUser}
           />
           <div className="pm">

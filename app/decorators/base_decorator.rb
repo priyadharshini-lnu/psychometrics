@@ -54,7 +54,7 @@ class BaseDecorator < Draper::Decorator
   end
 
   def formatted_date_time(column_name)
-    I18n.l object[column_name], format: :short
+    object[column_name].nil? ? I18n.t('.na') : (I18n.l object[column_name], format: :short)
   end
 
   def delete_confirmation

@@ -14,9 +14,9 @@ gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 4.0.1'
 gem 'rails',                      '~> 5.1.6'
 gem 'sassc-rails', '~> 2.1.2'
-gem 'uglifier',                   '>= 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 
-source 'https://rails-assets.org' do
+source 'https://rails-assets.org/' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
@@ -66,7 +66,7 @@ gem 'kaminari',                   '~> 0.17.0'
 gem 'breadcrumbs_on_rails',       '~> 3.0.1'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack', '~> 1.8.2'
+gem 'ransack', '~> 1.8.10'
 gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
@@ -81,6 +81,8 @@ gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
 gem 'config',                     '~> 1.2.1'
 gem 'figaro',                     '~> 1.1.1'
+
+gem 'premailer-rails', '~> 1.10.3'
 
 ### XLS import
 gem 'file_validators',            '~> 2.3.0'

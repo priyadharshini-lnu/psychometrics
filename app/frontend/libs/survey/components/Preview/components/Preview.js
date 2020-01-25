@@ -22,8 +22,6 @@ export default class Preview extends Component {
   }
 
   render () {
-    const { show } = this.props
-    if (!show) { return null }
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>

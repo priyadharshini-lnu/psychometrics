@@ -64,12 +64,13 @@ export const downloadReport = (campaignId, subjectId) => ({
   },
 })
 
-export const remove = (campaignId, subjectId) => ({
+export const remove = (campaignId, subjectId, removeLicenceUsage) => ({
   type: REMOVE,
   id: subjectId,
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
+    body: { removeLicenceUsage },
   },
 })
 

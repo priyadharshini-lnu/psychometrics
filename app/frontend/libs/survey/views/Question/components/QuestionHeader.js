@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import LogicElementPreview from 'components/LogicElement/Preview'
 import LogicElement from 'models/logic/LogicElement'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
 
 class QuestionHeader extends Component {
@@ -12,7 +13,7 @@ class QuestionHeader extends Component {
 
   removeDisplayLogic = () => {
     const { model } = this.props
-    model.clearDisplayLogic()
+    QuestionSerializer.wrap(model).clearDisplayLogic()
   }
 
   unlinkTemplate = () => {
@@ -73,7 +74,6 @@ class QuestionHeader extends Component {
 
   render () {
     const { model, block } = this.props
-
     return (
       <div className={styles.header}>
         {this.isTemplate(model) && !this.isTemplate(block) && this.renderTemplateWarning()}

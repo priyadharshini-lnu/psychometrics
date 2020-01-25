@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class PickGroupRank
+      class PickGroupRank < Base
         # FROM:
         #   [{
         #     "scale": 0,  - Group ID
@@ -13,7 +13,7 @@ module Exports
         # TO:
         #      G1         G2      Groups items rank
         #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
-        def self.result(answers, question, scoring = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false)
           parsed_result = []
 
           factors_scoring = question.detect_specified_scoring.
@@ -23,8 +23,13 @@ module Exports
             parsed_result << (answers || []).
                              select { |answer| answer['scale'] == s }.
                              sort_by { |answer| answer['value'] }.
-                             map { |answer| scoring && factors_scoring[answer['choice']] || (answer['choice'] + 1) }.
-                             join(', ')
+                             map do |answer|
+                               next factors_scoring[answer['choice']] if scoring
+
+                               next answer['choice'] + 1 unless export_with_labels
+
+                               question.props.dig('choicesTexts', answer['choice'])
+                             end.join(', ')
           end
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
@@ -34,22 +39,27 @@ module Exports
                                join(', ')
             end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
+
           question.props['scalePoints'].to_i.times do |s|
-            parsed_header << "QID#{question.id}_#{s + 1}_GROUP"
+            question_id_header << "QID#{question.id}_#{s + 1}_GROUP"
+            question_choices_header << question.props.dig('scalePointsTexts', s)
           end
+
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
-              parsed_header << "QID#{question.id}_#{s + 1}_#{c + 1}_RANK"
+              question_id_header << "QID#{question.id}_#{s + 1}_#{c + 1}_RANK"
+              question_choices_header << "#{question.props.dig('scalePointsTexts', c)} |
+                #{question.props.dig('choicesTexts', c)}"
             end
           end
-          parsed_header
+
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

@@ -23,6 +23,12 @@ module Threesixty
           required_context: %i[subject threesixty_campaign]
         },
         {
+          key: 'st',
+          name: 'subject_table',
+          class_name: 'Threesixty::PipedText::Branches::SubjectTableBranch',
+          required_context: %i[subject_ids evaluator threesixty_campaign]
+        },
+        {
           key: 'dash',
           name: 'dashboard',
           class_name: 'Threesixty::PipedText::Branches::Dashboard',

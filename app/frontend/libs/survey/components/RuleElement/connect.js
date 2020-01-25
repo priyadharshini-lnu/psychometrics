@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { close } from 'libs/survey/core/modals'
+import { closeModal, getData } from 'admin/core/temp/modals'
 import { allQuestions } from 'core/builder/assessment/selectors'
 import { removeNormRule } from 'libs/survey/core/builder/assessment/actions'
 
@@ -8,13 +8,12 @@ export default connect(
     const { survey: { builder: { assessment } } } = state
     return ({
       assessment,
-      show: state.survey.modals.mapNorms.show,
-      norms: state.survey.modals.mapNorms.data && state.survey.modals.mapNorms.data.data,
+      norms: getData(state.survey).mapNorms && getData(state.survey).mapNorms.data,
       questions: allQuestions(state.survey.builder),
     })
   },
   {
-    close: () => close('mapNorms'),
+    close: () => closeModal('mapNorms'),
     removeNormRule,
   },
 )
