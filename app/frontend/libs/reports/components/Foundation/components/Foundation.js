@@ -131,15 +131,22 @@ class Foundation extends Component {
     if (preview) { return }
     e.stopPropagation()
     const shadow = !module.onPage(page) && module.props.showOnAllPages
+
+    const selectModule = () => {
+      store.unselectAll()
+      store.selected.push(module)
+      RichEditorStore.close()
+      panelStore.select('Module', module)
+      this.forceUpdate()
+    }
+
     if (shadow) {
-      ScrollDispatcher.scroll(module.store.page.id, `Module_${module.id}`)
+      ScrollDispatcher.scroll(module.store.page.id, `Module_${module.id}`, () => {
+        selectModule()
+      })
       return
     }
-    store.unselectAll()
-    store.selected.push(module)
-    RichEditorStore.close()
-    panelStore.select('Module', module)
-    this.forceUpdate()
+    selectModule()
   }
 
   keydown () {}

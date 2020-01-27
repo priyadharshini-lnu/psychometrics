@@ -5,7 +5,7 @@ module Threesixty
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
                :mindmill, :hogan, :instructions, :logo,
                :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
-               :managed_subjects, :is_subject
+               :managed_subjects, :is_subject, :status
 
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :reports, serializer: UsersReportSerializer
@@ -94,6 +94,10 @@ module Threesixty
               is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
           to_hash
       end
+    end
+
+    def status
+      object.campaign.status
     end
 
     def is_subject # rubocop:disable Naming/PredicateName

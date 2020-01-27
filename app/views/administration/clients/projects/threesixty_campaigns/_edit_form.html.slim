@@ -1,0 +1,10 @@
+ = simple_form_for(@form || @threesixty_campaign.campaign, as: :resource, url: { action: :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :name
+      = f.input :status, as: :select, collection: Campaign.statuses.map {|name, _| [name.capitalize, name] }, include_blank: false
+  .modal-footer
+      .btn-group
+        = f.button :submit, t('administration.update'), class: 'btn-info'
+        a.btn.btn-default data-dismiss='modal' = t 'administration.close'
