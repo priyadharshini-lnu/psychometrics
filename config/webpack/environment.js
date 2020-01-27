@@ -4,7 +4,10 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
+const ENABLE_ANALYZER = env.ENABLE_ANALYZER || false
+const DEVTOOL = env.DEVTOOL || false
 const __DEV__ = env.NODE_ENV === 'development'
 const __TEST__ = env.NODE_ENV === 'test'
 const __PROD__ = env.NODE_ENV === 'production'
@@ -25,6 +28,13 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
+
+if (ENABLE_ANALYZER) {
+  environment.plugins.insert(
+    'BundleAnalyzerPlugin',
+    new BundleAnalyzerPlugin(),
+  )
+}
 
 const myCssLoaderOptions = {
   modules: true,
@@ -47,6 +57,7 @@ const vendors = [
   'react-dnd-html5-backend',
   'react-dnd-touch-backend',
   'react-froala-wysiwyg',
+  'froala-editor',
   'classnames',
   'prop-types',
   'react-bootstrap',
@@ -55,12 +66,14 @@ const vendors = [
   'axios',
   'lodash',
   'antd',
+  '@ant-design',
   'redux-logger',
   'action-cable-react',
   'react-addons-update',
   'moment',
   'libs/conditions',
   'libs/library',
+  'video.js',
 ]
 
 environment.config.merge({
@@ -71,6 +84,9 @@ environment.config.merge({
           chunks: 'initial',
           name: 'vendors',
           test (mod) {
+            if (mod.resource && mod.resource.includes('ant.less')) {
+              return true
+            }
             if (vendors.some(str => mod.context && mod.context.includes(str))) {
               return true
             }
@@ -109,9 +125,8 @@ environment.config.merge({
     },
   },
   mode: __DEV__ ? 'development' : 'production',
-  devtool: 'source-map',
+  devtool: DEVTOOL ? 'cheap-module-eval-source-map' : false,
   devServer: {
-    inline: false,
     watchOptions: {
       poll: 1000,
       aggregateTimeout: 600,
