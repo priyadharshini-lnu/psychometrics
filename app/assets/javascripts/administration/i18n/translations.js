@@ -1958,8 +1958,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "export": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "index": {
             "export": "Export",
@@ -1977,8 +1983,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "list": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -4442,6 +4454,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "updated_not_active": "Your password was set successfully."
     },
     "mailer": {
+      "admin_invitation_instructions": {
+        "accept": "Click here to accept the invitation.",
+        "body": "Hello %{name},\nYou have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.\n\n%{accept} Or you can safely ignore this email.\n\nPlease do not share your access credentials with anyone.\n\nRegards,\nLighthouse Team\n",
+        "subject": "Invitation to Lighthouse"
+      },
       "confirmation_instructions": {
         "action": "Confirm my account",
         "greeting": "Welcome %{recipient}!",
@@ -5835,6 +5852,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -7956,8 +7974,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "export": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "index": {
             "export": "Export",
@@ -7975,8 +7999,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "list": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -10440,6 +10470,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "updated_not_active": "Your password was set successfully."
     },
     "mailer": {
+      "admin_invitation_instructions": {
+        "accept": "Click here to accept the invitation.",
+        "body": "Hello %{name},\nYou have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.\n\n%{accept} Or you can safely ignore this email.\n\nPlease do not share your access credentials with anyone.\n\nRegards,\nLighthouse Team\n",
+        "subject": "Invitation to Lighthouse"
+      },
       "confirmation_instructions": {
         "action": "أكّد حسابي",
         "greeting": "مرحبا %{recipient}",
@@ -11837,6 +11872,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -13961,8 +13997,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "export": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "index": {
             "export": "Export",
@@ -13980,8 +14022,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "list": {
             "admin": "Client Admin",
+            "assessment": "Assement",
             "client_admins": "Client Admins",
-            "report_bundle": "Report Bundle"
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -16445,6 +16493,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "updated_not_active": "Your password was set successfully."
     },
     "mailer": {
+      "admin_invitation_instructions": {
+        "accept": "Click here to accept the invitation.",
+        "body": "Hello %{name},\nYou have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.\n\n%{accept} Or you can safely ignore this email.\n\nPlease do not share your access credentials with anyone.\n\nRegards,\nLighthouse Team\n",
+        "subject": "Invitation to Lighthouse"
+      },
       "confirmation_instructions": {
         "action": "Confirm my account",
         "greeting": "Welcome %{recipient}!",
@@ -17838,6 +17891,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",

@@ -66,6 +66,16 @@ module Administration
           end
         end
 
+        def update
+          @form = ::Threesixty::Campaigns::UpdateForm.from_params(params[:resource])
+          if @form.valid?
+            @_resource = threesixty_campaign.campaign
+            threesixty_campaign.campaign.update(@form.attributes)
+          else
+            render 'edit'
+          end
+        end
+
         def factors
           @factors = if params[:assessment_id].present?
                        assessment = Assessment.find(params[:assessment_id])

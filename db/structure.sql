@@ -430,7 +430,8 @@ CREATE TABLE public.campaigns (
     name character varying,
     type integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    status integer DEFAULT 0
 );
 
 
@@ -6627,6 +6628,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191111104014'),
 ('20191211142942'),
 ('20191218192252'),
-('20191225145152');
+('20191225145152'),
+('20200119071623');
 
 
