@@ -2,9 +2,9 @@
 :concurrency: 5
 # :pidfile: ./tmp/pids/sidekiq.pid
 staging:
-  :concurrency: 2
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>
 production:
-  :concurrency: 2
+  :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>
 :queues:
   - two_factor_codes
   - mailers
