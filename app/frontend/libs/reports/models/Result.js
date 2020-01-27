@@ -471,6 +471,7 @@ _.extend(Result.prototype, {
     _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
       // merge factor scoring with sub-factors
       const sc = this.scoring[factorId]
+      if (!sc.results[index]) { return }
       if (factor.scoring_strategy === SCORING_STRATEGY_SUB_FACTOR_QUESTIONS) {
         let commonValue = 0
         let totalWeight = 0
