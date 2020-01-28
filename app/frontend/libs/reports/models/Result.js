@@ -32,7 +32,7 @@ const INDIVIDUAL_FILTER = {
 
 const SCORING_STRATEGY_QUESTIONS = 'questions'
 const SCORING_STRATEGY_SUB_FACTOR_QUESTIONS = 'sub_factor_questions'
-// const SCORING_STRATEGY_FACTOR_AVERAGE = 'sub_factors_average'
+const SCORING_STRATEGY_FACTOR_AVERAGE = 'sub_factors_average'
 /**
  * Results store
  */
@@ -479,8 +479,24 @@ _.extend(Result.prototype, {
           const subFactor = AppStore.mapFactors[this.dimensionId][factorSubFactor.sub_factor_id]
           if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && data.scoring[subFactor.id]) {
             const scores = _.map(data.scoring[subFactor.id].results, r => r.value)
-            totalWeight += factorSubFactor.weight
-            commonValue += _.sum(scores) * factorSubFactor.weight
+            totalWeight += scores.length
+            commonValue += _.sum(scores)
+          }
+        })
+        sc.results[index].value = commonValue / totalWeight
+      }
+
+      if (factor.scoring_strategy === SCORING_STRATEGY_FACTOR_AVERAGE) {
+        let commonValue = 0
+        let totalWeight = 0
+        _.each(factor.factors_sub_factors, (factorSubFactor) => {
+          const subFactor = AppStore.mapFactors[this.dimensionId][factorSubFactor.sub_factor_id]
+          if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && this.scoring[subFactor.id]) {
+            const result = this.scoring[subFactor.id].results[index]
+            if (result) {
+              commonValue += result.value * factorSubFactor.weight
+              totalWeight += factorSubFactor.weight
+            }
           }
         })
         sc.results[index].value = commonValue / totalWeight
