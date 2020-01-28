@@ -41,7 +41,7 @@ en:
       edit:
         header: 'Assessment Settings'
       destroy:
-        successfully: 'Assessment %{name} was Destroyed Successfully.'
+        successfully: 'Assessment %{name} was Deleted Successfully.'
       copy:
         successfully: 'Assessment %{name} was Copied Successfully.'
         error: 'Assessment #%{name} was not copied.'
@@ -71,6 +71,9 @@ en:
           edit: Edit Assessment
           delete: Delete Assessment
           archive: Archive Assessment
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

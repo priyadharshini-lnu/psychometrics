@@ -39,9 +39,12 @@ en:
         enable_innovation_styles: 'Enable Innovation Styles'
       resource:
         tooltips:
-          copy: 'Copy Dimension'
-          edit: 'Edit Dimension Name'
-          delete: 'Delete Dimension'
+          copy: Copy Dimension
+          edit: Edit Dimension Name
+          delete: Delete Dimension
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
