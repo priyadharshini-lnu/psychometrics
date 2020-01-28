@@ -480,7 +480,7 @@ _.extend(Result.prototype, {
           if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && data.scoring[subFactor.id]) {
             const scores = _.map(data.scoring[subFactor.id].results, r => r.value)
             totalWeight += scores.length
-            commonValue += _.sum(scores)
+            commonValue += _.sum(scores) * factorSubFactor.weight
           }
         })
         sc.results[index].value = commonValue / totalWeight
