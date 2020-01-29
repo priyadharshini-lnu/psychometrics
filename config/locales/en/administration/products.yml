@@ -5,6 +5,8 @@ en:
         title: Products list
         new: Add
       list:
+        active: Active
+        name: Name
         updated_at: Modified Date
         created_at: Created Date
       new:

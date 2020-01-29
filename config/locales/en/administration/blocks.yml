@@ -7,6 +7,10 @@ en:
         header: 'Edit Block'
       destroy:
         successfully: 'Block %{name} was successfully deleted.'
+      copy:
+        successfully: 'Block %{name} was successfully copied.'
+      create:
+        successfully: 'Block %{name} was successfully created.'
       resource:
         confirmations:
           delete:

@@ -11,12 +11,20 @@ en:
             psychometric: 'Psychometrics'
             organisational: 'Org Surveys'
             '360': '360 Feedback'
+            mindmill: Mindmill
+            hogan: Hogan
+            threesixty: Threesixty
             all: 'All Categories'
         owner: Owner
         new: Add
       list:
-        updated_at: Modified Date
-        created_at: Created Date
+        id: Id
+        active: Active
+        name: Name
+        dimension_id: Dimension Id
+        type: Type
+        updated_at: Modified date
+        created_at: Created date
       assigns:
         form:
           empty_client_ids: Select clients to continue
@@ -25,6 +33,9 @@ en:
           hint: 'For Example: 30 minutes to complete'
         categories:
           <<: *categories
+        statuses:
+          in_progress: In progress
+          finished: Finished
       new:
         header: 'New assessment'
       edit:
