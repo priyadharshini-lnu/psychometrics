@@ -28,7 +28,7 @@
                     input_html: { data: { live_search: true }, multiple: true, title: t('administration.communications.index.type') },
                     required: false,
                     label: false
-          = link_to "Clear Filter", request.path, class: "btn btn-default"
+          = link_to t('shared.filters.clear'), request.path, class: "btn btn-default"
       .panel-body
         #filter_results
           = render partial: 'list'

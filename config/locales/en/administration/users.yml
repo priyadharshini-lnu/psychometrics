@@ -2,6 +2,12 @@ en:
   administration:
     users: &USERS
       list:
+        id: Id
+        active: Active
+        first_name: First name
+        last_name: Last name
+        email: Email
+        role: Role
         updated_at: Modified Date
         created_at: Created Date
       new:
@@ -26,6 +32,7 @@ en:
         export_completion_status: Completion Status
         title: Users
         breadcrumb: Users
+        client_tenancy: 'Client tenancy'
         filterrific:
           with_role:
             all: All

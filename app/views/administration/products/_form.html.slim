@@ -20,7 +20,7 @@
         = f.simple_fields_for :images do |image|
           = render 'image_fields', f: image
         .links
-          = link_to_add_association t('.add_image'), f, :images        
+          = link_to_add_association t('.add_image'), f, :images
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

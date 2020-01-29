@@ -7,14 +7,17 @@ en:
         archived: Archived
         active: Active
       index:
-        title: Campaign Templates
+        title: Campaign templates
         new: Add
         export: Export
       url: Url
       list: &list
-        admin: Client Admin
-        client_admins: Client Admins
-        report_bundle: Report Bundle
+        admin: Client admin
+        client_admins: Client admins
+        report_bundle: Report bundle
+        name: Name
+        created_at: Created date
+        updated_at: Updated date
       export:
         <<: *list
       new:
