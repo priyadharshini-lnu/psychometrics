@@ -33,14 +33,14 @@ export default function ManagerList ({
           <Icon type="user" />
           <span className="mlm">{`${total} Managers`}</span>
         </Col>
-        <Col span={6} offset={14} className="text-align-r">
+        <div className="float-r">
           <SearchInput
             onChange={curriedFetchManagers(campaignId)}
             path="/participants/managers"
             searchTerm={searchTerm}
           />
           <ToolsDropdown />
-        </Col>
+        </div>
       </Row>
       <Row>
         <Col span={24}>
