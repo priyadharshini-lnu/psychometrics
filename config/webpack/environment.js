@@ -4,9 +4,9 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+// uncomment it in order to use bundle analyzer
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-const ENABLE_ANALYZER = env.ENABLE_ANALYZER || false
 const DEVTOOL = env.DEVTOOL || false
 const __DEV__ = env.NODE_ENV === 'development'
 const __TEST__ = env.NODE_ENV === 'test'
@@ -29,12 +29,11 @@ environment.plugins.insert(
   }),
 )
 
-if (ENABLE_ANALYZER) {
-  environment.plugins.insert(
-    'BundleAnalyzerPlugin',
-    new BundleAnalyzerPlugin(),
-  )
-}
+//   uncomment it in order to use bundle analyzer
+//   environment.plugins.insert(
+//     'BundleAnalyzerPlugin',
+//     new BundleAnalyzerPlugin(),
+//   )
 
 const myCssLoaderOptions = {
   modules: true,
