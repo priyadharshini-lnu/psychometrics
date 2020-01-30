@@ -50,6 +50,9 @@ en:
           questions: Questions
           sub_factor_questions: Questions of other factors
           sub_factors_average: Weighted sum of factors
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

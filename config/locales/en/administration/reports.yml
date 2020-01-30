@@ -68,6 +68,9 @@ en:
           copy: 'Copy Report'
           edit: 'Edit Report'
           delete: 'Delete Report'
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

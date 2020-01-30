@@ -81,6 +81,9 @@ en:
           delete: 'Delete Communication'
           view: 'View Communication'
           download: 'Download Communication History'
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

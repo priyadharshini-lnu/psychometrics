@@ -37,6 +37,9 @@ en:
             copy: Copy Question
             edit: Edit Question
             delete: Delete Question
+          in_progress:
+            copying: Copying
+            deleting: Deleting
         new_assign:
           header: Assign Question to Assessments
       blocks:
@@ -74,5 +77,8 @@ en:
             copy: Copy Block
             edit: Edit Block
             delete: Delete Block
+          in_progress:
+            copying: Copying
+            deleting: Deleting
         new_assign:
           header: Assign Block to Assessments

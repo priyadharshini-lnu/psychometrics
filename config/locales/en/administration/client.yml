@@ -76,6 +76,9 @@ en:
           disable: Disable Client
           enable: Enable Client
           create_admin: Create Client Admin
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           disable:
             title:

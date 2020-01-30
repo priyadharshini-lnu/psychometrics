@@ -42,6 +42,9 @@ en:
           copy: Copy Product
           edit: Edit Product
           delete: Delete Product
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           delete:
             title:

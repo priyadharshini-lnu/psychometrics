@@ -25,8 +25,8 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
     - if policy(resource).copy?
-      = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+      = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') })
         span.fa.fa-copy
     - if policy(resource).destroy?
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting') })
         span.fa.fa-times

@@ -56,6 +56,9 @@ en:
           copy: 'Copy Norm'
           edit: 'Rename Norm'
           delete: 'Delete Norm'
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
