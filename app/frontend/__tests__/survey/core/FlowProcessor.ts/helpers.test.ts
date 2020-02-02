@@ -34,6 +34,17 @@ test('simple block with question with display_logic', () => {
 });
 
 
+test('simple block with question with display_logic and a question after', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2, { display_logic: {} }), question(3)]
+  }]
+
+  expect(initPages({ blocks })).toStrictEqual({
+    1: [{ questions: [1], blockId: 1, displayLogic: {} }, { questions: [2, 3], blockId: 1 }]
+  });
+});
+
 test('simple block with question with skip_logic one page', () => {
   const blocks = [{
     id: 1,

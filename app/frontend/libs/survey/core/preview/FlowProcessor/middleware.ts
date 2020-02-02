@@ -32,6 +32,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     const element = nextElementIdSelector(preview)
 
     if (element) {
+      // init elements processor
+      // loop to find block element
+      // changeElement to block
+
       dispatch(changeElement(element))
     } else {
       dispatch(showEnd())
