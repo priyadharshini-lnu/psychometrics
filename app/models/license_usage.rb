@@ -11,14 +11,22 @@
 #
 
 class LicenseUsage < ApplicationRecord
+  include RansackSearchableJsonField
+
   belongs_to :license,           inverse_of: :license_usages
   belongs_to :assigns_report,    inverse_of: :license_usages
   belongs_to :client,            inverse_of: :license_usages
   belongs_to :campaign,          inverse_of: :license_usages
   belongs_to :user,              inverse_of: :license_usages
   belongs_to :registration_code, inverse_of: :license_usages
+  belongs_to :status_updated_by, class_name: 'User', foreign_key: :status_updated_by_id
+
+  enum status: { active: 0, inactive: 1 }
 
   after_create :increase_license_used_number
+
+  ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras
+  ransack_alias :subject, :subject_name_or_subject_email_or_campaign_name
 
   def increase_license_used_number
     license.increment!(:used_number)

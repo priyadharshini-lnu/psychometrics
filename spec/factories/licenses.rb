@@ -6,5 +6,10 @@ FactoryGirl.define do
     report_family
     start_date { Date.today }
     end_date { Date.today + 10.days }
+
+    factory :threesixty_license do
+      used_number 10
+      type 'threesixty'
+    end
   end
 end

@@ -37,7 +37,7 @@ test:
   # - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.yml.sample  config/application.yml
   - yarn install
-  - node_modules/eslint/bin/eslint.js app/frontend/
+  - node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0
   - bundle exec rubocop
   - bundle exec rake db:create
   - bundle exec rake db:structure:load

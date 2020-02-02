@@ -149,9 +149,7 @@ class Foundation extends Component {
     selectModule()
   }
 
-  keydown (e) {
-    console.log(e.keyCode)
-  }
+  keydown () {}
 
   render () {
     const {

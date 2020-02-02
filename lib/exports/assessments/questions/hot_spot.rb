@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     module Questions
-      class HotSpot
+      class HotSpot < Base
         # FROM:
         #   [{
         #     "value": true/false/null,
@@ -11,7 +11,7 @@ module Exports
         #   }]
         # TO
         #   ['Like or On/Dislike/Neutral or OFF']
-        def self.result(answers, question, _scoring = false)
+        def self.result(answers, question, _scoring = false, _export_with_labels = false)
           parsed_result = []
           question.props['regions'].size.times do |r|
             answer = (answers || []).detect { |a| a['region'] == r }
@@ -28,17 +28,17 @@ module Exports
                                (answer.try(:[], 'value') ? 'On' : 'Off')
                              end
           end
-          required_size = header(question).size
-          Utility::Array.ensure_size(parsed_result, required_size)
+          Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        # Parse HEADER data for XLSX
-        def self.header(question)
-          parsed_header = []
-          question.props['regions'].size.times do |r|
-            parsed_header << "QID#{question.id}_#{r + 1}"
+        def self.question_id_and_choice_headers(question)
+          question_id_header = []
+          question_choices_header = []
+          question.props['regions'].length.times do |i|
+            question_id_header << "QID#{question.id}_#{i + 1}"
+            question_choices_header << question.props.dig('regionsNames', i)
           end
-          parsed_header
+          { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
     end

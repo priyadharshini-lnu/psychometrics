@@ -16,7 +16,7 @@
                 disabled: !f.object.new_record?
       - if f.object.project?
         label = t('.other_settings')
-        = f.input :privacy_consent
+        = f.input :privacy_consent, input_html: { checked: true }
         = f.simple_fields_for :privacy_link do |p|
           .mbs
             = p.check_box :_destroy, { checked: @privacy_link_enabled, id: 'privacy_link_checkbox' }, 0, 1

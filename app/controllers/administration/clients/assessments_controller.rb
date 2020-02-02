@@ -13,6 +13,7 @@ module Administration
         enable_universal_links
         disable_universal_links
       ]
+      before_action :set_resource, only: %i[select_raw_export_type]
       before_action :init_breadcrumbs
       skip_after_action :verify_policy_scoped, only: [:index]
 
@@ -125,13 +126,17 @@ module Administration
         @_resource_class ||= Assessment # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
+      def set_resource
+        @_resource = Assessment.find(params[:assessment_id])
+      end
+
       # Authorisation user
       def pundit_authorize
         authorize :assessment_client
       end
 
       def export_results_params
-        params.permit(:external, :scoring)
+        params.permit(:external, :scoring, :export_with_labels)
       end
     end
   end

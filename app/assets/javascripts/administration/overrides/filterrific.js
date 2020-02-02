@@ -1,5 +1,5 @@
 // Define function to submit Filterrific filter form
-window.Filterrific.submitFilterForm = function(){
+window.Filterrific.submitFilterForm = _.debounce(function() {
   var form = $(this).is('form') ? $(this) : $(this).parents('form'),
       url = form.attr('action'),
       panel = $(this).parents('.panel');
@@ -18,7 +18,7 @@ window.Filterrific.submitFilterForm = function(){
   }).done(function( msg ) {
     panel_refresh(panel);
   });
-};
+}, 400);
 
 window.Filterrific.initListener = function(){
   // Add change event handler to all Filterrific filter inputs.

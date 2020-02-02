@@ -38,6 +38,7 @@ export class MetaInfoPreview extends Component {
         } catch (e) {
           return '6.0.0'
         }
+        // eslint-disable-next-line no-console
       } catch (e) { console.warn(e) }
       return new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
         .GetVariable('$version').replace(/\D+/g, '.').match(/^\.?(.+)\.?$/)[1]
@@ -50,6 +51,7 @@ export class MetaInfoPreview extends Component {
             .replace(/\D+/g, '.')
             .match(/^\.?(.+)\.?$/)[1]
         }
+        // eslint-disable-next-line no-console
       } catch (e) { console.warn(e) }
     }
     return '0.0.0'

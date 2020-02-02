@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import 'styles/ant.less'
 import 'styles/core.scss'
 import Home from 'views/Home'
 import Trash from 'views/Trash'

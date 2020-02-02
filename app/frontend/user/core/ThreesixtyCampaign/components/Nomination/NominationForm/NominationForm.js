@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import {
   Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
@@ -22,6 +22,8 @@ export default function NominationForm (props) {
     requirements,
   } = props
 
+  const [requestApprovalButtonDisabled, setRequestApprovalButtonDisabled] = useState(false)
+
   const handleAdd = () => {
     handleAddNomination({
       campaignId, nominationId, ...form.attrs,
@@ -29,8 +31,10 @@ export default function NominationForm (props) {
   }
 
   const handleRequestApproval = () => {
+    setRequestApprovalButtonDisabled(true)
     requestApproval(campaignId, nominationId)
       .then(() => message.info(I18n.t('threesixty.approving_mail_sent')))
+      .catch(errors => message.error(errors, 15))
   }
 
   const handleSendEvaluatorReminder = () => {
@@ -54,6 +58,7 @@ export default function NominationForm (props) {
   const errors = _.filter(form.errors, (error, key) => (
     !['firstName', 'lastName'].includes(key) && error
   ))
+
   return (
     <div className="nominations-form">
       <Title level={4}>
@@ -126,7 +131,7 @@ export default function NominationForm (props) {
           <Row type="flex" justify="end" gutter={8}>
             {isSelf && canSendRequestApprovalEmail && (
             <Col>
-              <Button type="link" onClick={handleRequestApproval}>
+              <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
                 <Icon type="team" />
                 {I18n.t('threesixty.email_approve_request')}
               </Button>

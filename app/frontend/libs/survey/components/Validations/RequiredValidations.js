@@ -20,7 +20,7 @@ export default function RequiredValidations ({ model, update }) {
       <div className={styles.label}>Validation Options</div>
       <label className={styles.inputLabel}>
         <input type="checkbox" checked={requiredValidation} onChange={toggleRequired} />
-        {' Enable'}
+         Enable
       </label>
       <label className={styles.inputLabel}>
         <input

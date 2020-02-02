@@ -3,14 +3,14 @@
 module Features
   module Helpers
     module Clients
-      def import_countries
-        Rake::Task['geo:import'].invoke
+      def initiate_action(selector, text)
+        find(selector, text: t(text)).click
+        find('.modal-header').click
       end
 
       def create_tenancy(opts = {})
         visit administration_clients_path
-        find('.panel-heading a', text: t('administration.clients.index.new')).click
-        find('.modal-header').click
+        initiate_action('.panel-heading a', 'administration.clients.index.new')
         sleep 1
         within '#new_resource' do
           fill_in 'resource_name', with: opts[:name]
@@ -36,8 +36,7 @@ module Features
 
       def create_project(tenancy, opts = {})
         visit administration_client_projects_path(tenancy)
-        find('.panel-heading a', text: t('administration.clients.projects.index.new')).click
-        find('.modal-header').click
+        initiate_action('.panel-heading a', 'administration.clients.projects.index.new')
         sleep 1
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]
@@ -62,8 +61,7 @@ module Features
 
       def create_campaign(tenancy, project, opts = {})
         visit administration_client_project_campaigns_path(tenancy, project)
-        find('.panel-heading a', text: t('administration.clients.projects.campaigns.index.new')).click
-        find('.modal-header').click
+        initiate_action('.panel-heading a', 'administration.clients.projects.campaigns.index.new')
         sleep 1
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]
@@ -85,8 +83,7 @@ module Features
 
       def create_sub_campaign(tenancy, project, campaign, opts = {})
         visit administration_client_project_campaigns_path(tenancy, project)
-        find("#client_#{campaign.id} a", text: t('administration.clients.campaigns.resource.sub_campaign.create')).click
-        find('.modal-header').click
+        initiate_action("#client_#{campaign.id} a", 'administration.clients.campaigns.resource.sub_campaign.create')
         sleep 1
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]

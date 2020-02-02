@@ -80,7 +80,7 @@ module AdministrationHelper
     content_tag :div, class: 'alert alert-danger' do
       concat content_tag 'strong', 'There are some problems:'
       concat content_tag 'ul', resource.errors.full_messages.
-        map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
+        map { |msg| content_tag('li', raw(msg)) }.join.html_safe, class: 'list-unstyled'
     end
   end
 
@@ -101,5 +101,14 @@ module AdministrationHelper
     client.reports.joins(assessments_reports: :report).
       where(assessments_reports: { assessment_id: assessment.id, reports: { provider: Report::PROVIDERS[:hogan] } }).
       distinct
+  end
+
+  def labels_based_on(status)
+    status_active = status == LicenseUsage.statuses[:active]
+    {
+      activated_at: status_active ? 'Activated at' : 'Deactivated at',
+      activated_by: status_active ? 'Activated by' : 'Deactivated by',
+      action: status_active ? 'Deactivate' : 'Activate'
+    }
   end
 end

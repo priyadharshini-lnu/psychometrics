@@ -1413,7 +1413,10 @@ CREATE TABLE public.license_usages (
     extras jsonb DEFAULT '{}'::jsonb NOT NULL,
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
     campaign_id bigint,
-    registration_code_id bigint
+    registration_code_id bigint,
+    status_updated_by_id integer,
+    status_updated_at timestamp without time zone,
+    status integer DEFAULT 0
 );
 
 
@@ -2190,7 +2193,8 @@ CREATE TABLE public.reports_filters (
     conditions json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    assessment_id integer
+    assessment_id integer,
+    min_required_responses integer DEFAULT 0
 );
 
 
@@ -6615,6 +6619,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190930140807'),
 ('20191001075231'),
 ('20191007075951'),
+('20191016134103'),
 ('20191028205331'),
 ('20191029104332'),
 ('20191030081833'),
@@ -6622,6 +6627,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191111083124'),
 ('20191111104014'),
 ('20191211142942'),
+('20191218192252'),
+('20191225145152'),
 ('20200119071623');
 
 

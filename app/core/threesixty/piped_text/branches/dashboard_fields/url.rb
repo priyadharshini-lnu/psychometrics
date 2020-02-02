@@ -37,14 +37,7 @@ module Threesixty
           private
 
           def create_raw_invitation_token
-            if context[:recipient].encrypted_invitation_raw.nil?
-              context[:recipient].skip_invitation = true
-              context[:recipient].send(:generate_invitation_token!)
-              context[:recipient].update_column(:invitation_sent_at, ::DateTime.current)
-            end
-            Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).verify(
-              context[:recipient].encrypted_invitation_raw
-            )
+            Users::FindOrCreateInvitationToken.call!(context[:recipient])
           end
         end
       end

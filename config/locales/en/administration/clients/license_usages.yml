@@ -9,4 +9,12 @@ en:
           campaign_name: Campaign Name
           subject_name: Subject Name
           subject_email: Subject Email
-          created_at: Date
+          created_at: Created at
+          activated_at: Activated at
+          activated_by: Activated by
+          actions: Actions
+        toggle_status:
+          successfully: The license was %{status} successfully
+        resource:
+          tooltips:
+            deactivate: Deactivate license

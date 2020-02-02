@@ -27,7 +27,7 @@ module Exports
                   next unless QUESTIONS.include?(question.type)
 
                   parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                  user_results << parser.result(answers, question, @scoring)
+                  user_results << parser.result(answers, question, @scoring, @export_with_labels)
                 end
               end
 
@@ -53,20 +53,21 @@ module Exports
 
       def get_all_headers(questions, result_details_header)
         question_name_header = [''] * result_details_header.count
-        question_text_header = [''] * result_details_header.count
+        question_text_header = question_name_header.clone
+        question_choice_header = question_name_header.clone
+
         questions.each do |question|
           next unless QUESTIONS.include?(question.type)
 
           parser = "Exports::Assessments::Questions::#{question.type}".constantize
-          question_header = parser.header(question)
-          result_details_header << question_header
+          headers = parser.headers(question)
 
-          question_name_header << Array.new(question_header.size) { |_i| question.name }
-          question_text_header << Array.new(question_header.size) do |_i|
-            ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])
-          end
+          result_details_header << headers[:question_id_header]
+          question_name_header.concat(headers[:question_name_header])
+          question_text_header.concat(headers[:question_text_header])
+          question_choice_header.concat(headers[:question_choice_header])
         end
-        [result_details_header, question_name_header, question_text_header]
+        [result_details_header, question_name_header, question_text_header, question_choice_header]
       end
     end
   end
