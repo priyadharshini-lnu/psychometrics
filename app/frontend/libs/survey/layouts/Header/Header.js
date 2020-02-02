@@ -193,7 +193,7 @@ export class Header extends Component {
             </form>
           </li>
           <li>
-            <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
+            <button onClick={this.save} disabled={AppStore.saving} className={`btn btn-success ${styles.saveButton}`}>
               <i className="fa fa-save" />
               Save
             </button>
