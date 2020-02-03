@@ -51,7 +51,7 @@ export default function EmailScheduleModal ({
     save(campaignId, emailSchedule, recipients.map(r => r.id))
       .then(() => {
         setErrors(null)
-        closeModal()
+        closeModal('EmailScheduleModal')
         message.success('Email scheduled successfully', 5)
         if (onSave) { onSave() }
       })

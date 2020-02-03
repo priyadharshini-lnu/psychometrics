@@ -2,7 +2,7 @@
 
 class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
   def show?
-    manage?
+    manage? && !@record.threesixty_subject.evaluation_status_completed?
   end
 
   def edit?
