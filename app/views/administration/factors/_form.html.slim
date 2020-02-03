@@ -3,7 +3,7 @@
     = f.error_notification
 
     = react_component("FactorFormApp",
-            { scoring_strategies: Factor.scoring_strategies.map { |key, value| { key: key, value: t(".scoring_strategies.#{key}") } }, factor: FactorSerializer.new(resource), errors: @form&.errors&.messages, factors: resource.dimension&.factors.map { |factor| { key: factor.id, value: factor.name } } },
+            { scoring_strategies: Factor.scoring_strategies.map { |key, value| { key: key, value: t(".scoring_strategies.#{key}") } }, factor: FactorSerializer.new(resource), errors: @form&.errors&.messages, factors: resource.dimension&.all_factors.map { |factor| { key: factor.id, value: factor.name } } },
             camelize_props: true)
 
   .modal-footer

@@ -121,6 +121,11 @@ _.extend(AppStore.prototype, {
     return !!_.find(this.mainFactors, factors => _.find(factors, f => f.id === factorId))
   },
 
+  getSubFactors (factorId) {
+    const factor = _.find(this.flatFactors, { id: factorId })
+    return _.map(factor.factors_sub_factors, f => _.find(this.flatFactors, { id: f.sub_factor_id }))
+  },
+
   disable () {
     this.disabled = true
     this.emit('change')

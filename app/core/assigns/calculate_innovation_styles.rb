@@ -31,7 +31,7 @@ module Assigns
         # Calculates ratio of valid factors
         valid_factors_weight_sum = valid_factors.map { |f| f[:weight] }.reduce(&:+) || 0
         total_factors_weight_sum = innovation_style.innovation_styles_factors.map { |f| f[:weight] }.reduce(&:+)
-        value = valid_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) * 100 : 0
+        value = total_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) * 100 : 0
 
         mem << {
           id: innovation_style.id,

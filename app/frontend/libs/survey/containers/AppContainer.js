@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import 'styles/ant.less'
 import 'styles/core.scss'
 import { BrowserRouter as Router } from 'react-router-dom'
 import RouteList from 'components/RouteList'
