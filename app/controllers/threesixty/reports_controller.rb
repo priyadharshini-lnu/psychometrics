@@ -18,6 +18,7 @@ module Threesixty
 
     def show
       authorize @users_report
+      @users_report.threesixty_subject.evaluation_status_completed!
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do

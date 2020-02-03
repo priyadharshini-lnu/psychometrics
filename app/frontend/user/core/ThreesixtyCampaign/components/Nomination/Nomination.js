@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
 import {
-  Layout, Typography, PageHeader, Icon,
+  Layout, Typography, PageHeader, Icon, Alert,
 } from 'antd'
 import _ from 'lodash'
 
@@ -23,10 +23,13 @@ export default function Nominations (props) {
   const [showPrompt, setShowPrompt] = useState(false)
   const [participant, setParticipant] = useState(null)
 
-  const { addNomination, instructions, nomination: { isSelf, options: { participants: options } } } = props
+  const {
+    addNomination, instructions, nomination:
+    { isSelf, options: { participants: options }, evalautionCompletedForSubject },
+  } = props
   const instruction = _.find(instructions, { name: 'invite_evaluators' })
-
-  const canNominate = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+  const hasNominationPermission = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+  const canNominate = hasNominationPermission && !evalautionCompletedForSubject
 
   const handleAddNomination = values => addNomination({
     ...values,
@@ -64,6 +67,14 @@ export default function Nominations (props) {
           onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
         >
           <div className="nominations-container">
+            {hasNominationPermission && evalautionCompletedForSubject && (
+            <Alert
+              message={I18n.t('threesixty.evaluation_closed_nomination_message')}
+              className="mbm"
+              type="info"
+              showIcon
+            />
+            )}
             {instruction ? (
               <div className="content padding">
                 <div dangerouslySetInnerHTML={{ __html: instruction.content }} />

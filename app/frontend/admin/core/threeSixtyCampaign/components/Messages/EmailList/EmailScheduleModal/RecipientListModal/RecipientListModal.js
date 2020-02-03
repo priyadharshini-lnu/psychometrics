@@ -10,7 +10,7 @@ export default function RecipientListModal ({ recipientType, recipients, closeMo
       width={800}
       title={pluralize.plural(recipientType)}
       visible
-      onCancel={closeModal}
+      onCancel={() => closeModal('RecipientListModal')}
       bodyStyle={{ padding: '0px' }}
       footer={[
         <Button key="back" onClick={() => closeModal('RecipientListModal')}>

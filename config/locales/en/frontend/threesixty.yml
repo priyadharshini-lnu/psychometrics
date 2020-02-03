@@ -54,6 +54,7 @@ en:
     confirmation_for_nomination_removal: Are you sure you want to remove the nomination
     evaluate: Evaluate
     yourself: Yourself
+    you: You
     generate_report: 'Generate Report'
     download_report: Download Report
     download_reports: Download Reports
@@ -115,3 +116,7 @@ en:
     export_pdf: Export PDF
     report_generation_in_progress: 'Report is generating. We will let you know when the report is ready.'
     edit_user: Edit User
+    close_evaluation_modal:
+      title: Are you sure you want to view the report?
+      message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
+    evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject

@@ -1127,6 +1127,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "edit": "Edit Assessment"
           }
         },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
+        },
         "sidebar": {
           "assign": "Assign Assessment",
           "builder": "Questions Builder",
@@ -1436,11 +1441,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -1900,7 +1916,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -2045,6 +2061,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -4516,6 +4533,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
       "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
       "updated": "Your account has been updated successfully."
     },
@@ -5160,6 +5178,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
   "nominations": {
@@ -5821,6 +5840,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -5843,6 +5866,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -5924,6 +5948,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {
@@ -7111,6 +7136,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "edit": "Edit Assessment"
           }
         },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
+        },
         "sidebar": {
           "assign": "Assign Assessment",
           "builder": "Questions Builder",
@@ -7420,11 +7450,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -7884,7 +7925,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -8029,6 +8070,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -10500,6 +10542,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "signed_up_but_inactive": "تمّ التسجيل في الموقع بنجاح، ولكن لا يُمكن تسجيل الدخول قبل تفعيل الحساب.",
       "signed_up_but_locked": "تمّ التسجيل في الموقع بنجاح، ولكن لا يمكن تسجيل الدخول ﻷن الحساب مُعلّق.",
       "signed_up_but_unconfirmed": "تمّ إرسال رسالة تحوي على رابط تأكيد الحساب باستخدام البريد الإلكتروني، يُرجى فتح الرابط لتفعيل الحساب.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "تُم تعديل الحساب بنجاح، يرجى تأكيد البريد الإلكتروني. الرجاء الذهاب الى البريد الإلكتروني والضغط على الرابط الموجود للانتهاء من عمليّة التاكيد.",
       "updated": "تمّ تعديل الحساب بنجاح."
     },
@@ -11148,6 +11191,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
   "nominations": {
@@ -11809,6 +11853,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -11831,6 +11879,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -11915,6 +11964,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {
@@ -13102,6 +13152,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "edit": "Edit Assessment"
           }
         },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
+        },
         "sidebar": {
           "assign": "Assign Assessment",
           "builder": "Questions Builder",
@@ -13411,11 +13466,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Usage Details"
         },
         "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
           "campaign_name": "Campaign Name",
-          "created_at": "Date",
+          "created_at": "Created at",
           "id": "Usage ID",
           "subject_email": "Subject Email",
           "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
         }
       },
       "licenses": {
@@ -13875,7 +13941,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -14020,6 +14086,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "count_invalid": "cannot be less than the used_count = %{use_count}",
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
           "invalid_attribute": "%{attribute} is invalid",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
@@ -16491,6 +16558,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
       "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
       "updated": "Your account has been updated successfully."
     },
@@ -17135,6 +17203,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "my": "My",
   "myself": "Myself",
+  "na": "NA",
   "next": "Next",
   "no": "No",
   "nominations": {
@@ -17796,6 +17865,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -17818,6 +17891,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -17899,6 +17973,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {

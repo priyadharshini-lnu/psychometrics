@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Threesixty::Emails::SendSingleScheduledEmail do
   let(:recipients) { create_list(:user, 2) }
+  let(:user) { create(:user) }
   let(:message_delivery) { double(deliver_later: nil) }
 
   before do
@@ -82,7 +83,7 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       name: Threesixty::Emails::Name::SUBJECT_REMINDER,
       recipient_ids: [recipients[0].id],
       scheduled_date: Time.now,
-      meta: { evaluator_ids: evaluators.map(&:id) }
+      meta: { evaluator_ids: evaluators.map(&:id), subject_ids: 1 }
     )
 
     expect(Threesixty::ScheduleEmailMailer).to receive(:send_email).
@@ -113,7 +114,8 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now
+      scheduled_date: Time.now,
+      meta: { 'subject_ids' => user.id }
     )
 
     described_class.call!(email_schedule)
@@ -130,7 +132,8 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now
+      scheduled_date: Time.now,
+      meta: { 'subject_ids' => user.id }
     )
 
     reminder_history = recipients[0].reminder_histories.create(
@@ -166,7 +169,8 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       :threesixty_email_schedule,
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
-      scheduled_date: Time.now
+      scheduled_date: Time.now,
+      meta: { 'subject_ids' => user.id }
     )
 
     create(
@@ -189,11 +193,13 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       recipient_ids: [recipients[0].id],
       scheduled_date: Time.now
     )
+    threesixty_subject = create(:threesixty_subject, campaign_id: email_schedule.threesixty_campaign.campaign_id)
     relationship = create(:relationship, name: 'Manager', type: :global)
     create(
       :threesixty_participant,
       campaign_id: email_schedule.threesixty_campaign.campaign_id,
       evaluator_id: recipients[0].id,
+      subject_id: threesixty_subject.user_id,
       relationship_id: relationship.id
     )
 
@@ -306,7 +312,8 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
       scheduled_date: Time.now,
-      consolidated: true
+      consolidated: true,
+      meta: { 'subject_ids' => user.id }
     )
     create(
       :threesixty_participant,
@@ -327,7 +334,8 @@ describe Threesixty::Emails::SendSingleScheduledEmail do
       name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
       recipient_ids: [recipients[0].id],
       scheduled_date: Time.now,
-      consolidated: false
+      consolidated: false,
+      meta: { 'subject_ids' => user.id }
     )
     create(
       :threesixty_participant,

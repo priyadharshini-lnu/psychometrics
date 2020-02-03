@@ -25,8 +25,11 @@ module Threesixty
         if option.participants.dig('manager', 'can_approve_nominations')
           all_subjects = all_subjects.where(manager_nomination_status: :approved)
         end
+        user_ids = all_subjects.pluck(:subject_id)
+        all_subject_ids = threesixty_campaign.subjects.where(user_id: user_ids).
+                          where.not(evaluation_status: :completed).pluck(:user_id)
 
-        broadcast :ok, all_subjects.pluck(:subject_id) - evaluation_completed_for_subject
+        broadcast :ok, all_subject_ids - evaluation_completed_for_subject
       end
     end
   end
