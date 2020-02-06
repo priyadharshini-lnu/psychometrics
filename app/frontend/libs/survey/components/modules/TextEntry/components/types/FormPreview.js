@@ -27,6 +27,7 @@ export default class extends Component {
                 || moduleConfig.defaultChoiceText(i + 1)}
             </span>
             <input
+              autoComplete="off"
               disabled={readOnly}
               className={`form-control ${styles.formInput}`}
               onChange={this.changeAnswer.bind(this, i)}

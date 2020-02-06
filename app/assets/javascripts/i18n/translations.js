@@ -234,6 +234,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -277,6 +280,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
       "title": "Are you sure you want to view the report?"
     },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -639,6 +643,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -682,6 +689,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
       "title": "Are you sure you want to view the report?"
     },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -1047,6 +1055,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1090,6 +1101,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
       "title": "Are you sure you want to view the report?"
     },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",

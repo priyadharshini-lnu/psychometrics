@@ -14,9 +14,10 @@ module Threesixty
       end
 
       def call
-        subject.users_reports.where(campaign_id: campaign.id).map(&:destroy!)
-        subject.evaluated_results.map(&:destroy!)
-        subject.participants.where(campaign_id: campaign.id).destroy_all
+        subject.users_reports.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.evaluated_results.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.participants.where(campaign_id: campaign.id).each(&:destroy!)
+
         if remove_license_usage
           ::Threesixty::LicenseUsages::Deactivate.call!(
             threesixty_campaign: threesixty_campaign,
@@ -24,6 +25,7 @@ module Threesixty
             user_ids_for_deactivation: subject.user_id
           )
         end
+
         subject.destroy!
       end
     end

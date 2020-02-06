@@ -5,6 +5,7 @@ tr id=dom_id(resource)
     = link_to resource.threesixty_campaign.assessment.decorate.name, administration_assessment_path(resource.threesixty_campaign.assessment_id)
   td
     = link_to resource.threesixty_campaign.report.decorate.name, administration_report_path(resource.threesixty_campaign.report_id)
+  td.text-center = resource.decorate.status
   td.text-center = resource.decorate.formatted_date_time(:created_at)
   td.actions-cell
     .btn-group
@@ -15,6 +16,8 @@ tr id=dom_id(resource)
       ul.dropdown-menu
         li
           = link_to t('.raw_results'), export_results_administration_client_project_threesixty_campaign_path(client, project, resource.threesixty_campaign, format: 'xlsx')
-
+    - if policy(resource).edit?
+      = link_to({ action: :edit, id: resource.threesixty_campaign }, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }, remote: true)
+        i.fa.fa-pencil
     = link_to administration_client_project_threesixty_campaign_path(client, project, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.threesixty_campaign.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.campaigns.delete') }
       span.fa.fa-times

@@ -17,7 +17,7 @@ const LookupValue = {
   },
   getValueOrNaN (externalScoring, sourceType, factor, type) {
     const value = this.actualValue(externalScoring, sourceType, factor)
-    if (!value) { return NaN }
+    if (_.isNil(value)) { return NaN }
 
     return this.call(externalScoring, sourceType, factor, type)
   },

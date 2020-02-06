@@ -120,3 +120,4 @@ en:
       title: Are you sure you want to view the report?
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
+    closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.

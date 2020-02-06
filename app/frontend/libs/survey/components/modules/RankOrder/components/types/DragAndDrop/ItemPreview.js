@@ -29,8 +29,8 @@ function getParentOffsets (node) {
   const rect = parent.getBoundingClientRect()
   const nodeRect = node.getBoundingClientRect()
   return {
-    x: rect.left,
-    y: rect.top + rect.height - nodeRect.height,
+    x: Math.round(rect.left),
+    y: Math.round(rect.top + rect.height - nodeRect.height),
   }
 }
 
@@ -71,7 +71,11 @@ class ItemPreview extends Component {
   }
 
   updateParentOffset () {
-    this.setState({ parentOffset: getParentOffsets(ReactDOM.findDOMNode(this)) })
+    const { parentOffset } = this.state
+    const newOffset = getParentOffsets(ReactDOM.findDOMNode(this))
+    if (!_.isEqual(parentOffset, newOffset)) {
+      this.setState({ parentOffset: newOffset })
+    }
   }
 
   render () {

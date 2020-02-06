@@ -17,7 +17,7 @@ describe Threesixty::Subjects::Remove do
   end
 
   it 'delete evaluation_results' do
-    users_result = create(:users_result, subject_id: subject.user_id)
+    users_result = create(:users_result, subject_id: subject.user_id, campaign_id: campaign.id)
     Threesixty::Subjects::Remove.call!(threesixty_campaign: threesixty_campaign, subject: subject)
 
     expect(UsersResult.find_by(id: users_result.id)).to be_nil

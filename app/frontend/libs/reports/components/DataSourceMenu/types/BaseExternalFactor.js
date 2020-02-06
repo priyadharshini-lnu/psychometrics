@@ -11,25 +11,23 @@ class BaseExternalFactor extends Component {
 
   onChange = (data) => {
     const { model, onSelect, singleChoice } = this.props
-    model.props.source.factors = singleChoice ? [data.id] : data.map(f => f.id)
+    model.props.source.factors = singleChoice ? data && [data.id] : data && data.map(f => f.id)
     onSelect()
   }
 
-  getValue () {
-    const { model, singleChoice } = this.props
-    const factors = _.result(model, 'props.source.factors', 'Choose factor')
-    return singleChoice ? factors[0] || '' : factors
-  }
-
   render () {
-    const { singleChoice } = this.props
+    const { model, singleChoice } = this.props
+    const options = this.getOptions()
+    const values = _.result(model, 'props.source.factors') || []
+    const value = singleChoice ? { id: values[0] } : values.map(f => ({ id: f }))
+
     return (
       <Select
         name="form-field-name"
-        value={getValue(this.getOptions(), this.getValue())}
-        options={this.getOptions()}
+        value={getValue(this.getOptions(), value)}
+        options={options}
         getOptionValue={opt => opt.id}
-        getOptionLabel={opt => opt.name}
+        getOptionLabel={opt => (_.find(options, opt) || {}).name}
         isClearable={false}
         autoFocus={false}
         isMulti={!singleChoice}

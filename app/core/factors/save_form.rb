@@ -4,6 +4,7 @@ module Factors
   class SaveForm < Rectify::Form
     attribute :id, Integer
     attribute :name, String
+    attribute :code, String
     attribute :description, String
     attribute :scoring_strategy, String
     attribute :factors_sub_factors_attributes, Object
@@ -12,6 +13,7 @@ module Factors
 
     validates :name, presence: true
     validates :name, length: { maximum: 100 }, allow_blank: true
+    validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
     validate :avoid_cyclic_references
 
     def avoid_cyclic_references

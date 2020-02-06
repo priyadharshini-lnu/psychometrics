@@ -35,6 +35,7 @@ class Factor < ApplicationRecord
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
+  validates :code, length: { minimum: 3, maximum: 4 }, allow_blank: true
 
   before_create :increment_factors
   before_destroy :decrement_factors
@@ -42,7 +43,7 @@ class Factor < ApplicationRecord
   after_create :create_aliases
   after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
 
-  enum scoring_strategy: { questions: 0, sub_factor_questions: 1, sub_factors_average: 2 }
+  enum scoring_strategy: { questions: 0, sub_factor_questions: 1, sub_factors_average: 2 }, _suffix: :strategy
 
   mount_uploader :icon, ImageUploader
 
