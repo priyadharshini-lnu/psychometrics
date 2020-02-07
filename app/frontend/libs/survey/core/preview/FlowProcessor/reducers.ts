@@ -4,16 +4,18 @@ import { assessment } from '../../../store/schema'
 import { normalize } from 'normalizr'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
-  CHANGE_ELEMENT, SHOW_END,
+  CHANGE_ELEMENT, SHOW_END, SET_EMBEDED_DATA, HIDE_QUESTION,
 } from './actions'
 import { getIn, setIn, updateIn } from 'utils/immutable'
 
 const defaultState = {
   initialized: false,
+  type: 'preview',
   elements: [],
   blocks: {},
   questions: {},
   questionsQueue: [],
+  embeddedData: {},
   pages: [],  // {questions: [1,2,3], elementRef}
   allPages: {}, // {[block_id]: [{ ...page }, {end}]}
   results: {},
@@ -24,7 +26,6 @@ const defaultState = {
 
 const HANDLERS = {
   [INIT]: (state, {data}) => {
-    console.log(data)
     const normalizedData = normalize({blocks: data.blocks}, assessment)
 
     let elements = data.flow.elements
@@ -37,10 +38,8 @@ const HANDLERS = {
     // init block elements for linear flow  [{block}...]
     // add saga to run first element processor
 
-    console.log(normalizedData)
-
     return {
-      ...state,
+      ...defaultState,
       allPages: initPages(data),
       normalizedTree,
       elements: data.flow.elements,
@@ -56,7 +55,9 @@ const HANDLERS = {
   [EMPTY_ERRORS]: (state) => setIn(state, ['errors'], null),
   [CHANGE_ELEMENT]: (state, { id }) => ({...state, currentPage: 0, currentElement: id}),
   [SHOW_PAGE]: (state, {page}) => setIn(state, ['currentPage'], page),
-  [SHOW_END]: (state, {page}) => ({...state, end: true}),
+  [SHOW_END]: (state) => ({...state, end: true}),
+  [SET_EMBEDED_DATA]: (state, {data}) => setIn(state, 'embeddedData', Object.assign({}, state.embeddedData, data)),
+  [HIDE_QUESTION]: (state, {id}) => setIn(state, ['questions', id, 'hidden'], true),
 }
 
 export default createReducer(HANDLERS, defaultState)

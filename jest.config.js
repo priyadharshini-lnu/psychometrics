@@ -5,8 +5,7 @@ module.exports = {
   ],
   testEnvironment: 'jsdom',
   testMatch: [
-    '**/__tests__/**/*.+(ts|tsx)',
-    '**/?(*.)+(spec|test).+(ts|tsx|js)',
+    '**/__tests__/**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
   transform: {
     '^.+\\.js?$': 'babel-jest',

@@ -61,7 +61,6 @@ class Page extends Component {
               className={cs('progress-bar', styles.progressBar)}
               style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
             />
-
           </div>
           <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
         </div>

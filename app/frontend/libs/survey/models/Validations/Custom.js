@@ -37,7 +37,6 @@ _.extend(Custom.prototype, {
   validate () {
     if (!this.question || !this.predicate) { return { prefix: 'Or', value: false } }
     this.result = this.results[this.question.id]
-
     return { prefix: this.prefix, value: this[this.predicate]() }
   },
 

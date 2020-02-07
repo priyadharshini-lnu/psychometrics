@@ -46,11 +46,11 @@ _.extend(ConditionResolver.prototype, {
     _.each(results, (result) => {
       if (prev) {
         if (result.prefix === 'And') {
-          res = res.value && result.value
+          res = res && result.value
         }
 
         if (result.prefix === 'Or') {
-          res = res.value || result.value
+          res = res || result.value
         }
       } else {
         res = result.value

@@ -30,7 +30,7 @@ test('simple block with question with display_logic', () => {
     questions: [question(1), question(2, {display_logic: {}})]
   }]
 
-  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1, displayLogic:{}}, {questions: [2], blockId: 1}]});
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1], blockId: 1}, {questions: [2], blockId: 1}]});
 });
 
 
@@ -41,7 +41,7 @@ test('simple block with question with display_logic and a question after', () =>
   }]
 
   expect(initPages({ blocks })).toStrictEqual({
-    1: [{ questions: [1], blockId: 1, displayLogic: {} }, { questions: [2, 3], blockId: 1 }]
+    1: [{ questions: [1], blockId: 1 }, { questions: [2, 3], blockId: 1 }]
   });
 });
 
@@ -52,6 +52,16 @@ test('simple block with question with skip_logic one page', () => {
   }]
 
   expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1}]});
+});
+
+
+test('simple block with question with skip_logic and display logic', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2, {skip_logic: []}), question(3, {display_logic: {test: 1}})]
+  }]
+
+  expect(initPages({blocks})).toStrictEqual({1: [{questions: [1, 2], blockId: 1}, {questions: [3],  blockId: 1}]});
 });
 
 test('simple block with question with skip_logic two pages', () => {

@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { block, blocks, question } from '../../../store/schema'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
@@ -13,12 +14,18 @@ export const results = (state) => state.results
 
 export const allPages = (state) => state.allPages
 export const currentPage = (state) => state.currentPage
-
+export const elementSelector = (state, id) => state.normalizedTree[id]
 
 export const currentBlockPagesSelector = state => state.allPages[state.currentBlock]
 
 export const currentElementSelector = (state) => {
   return state.normalizedTree[state.currentElement]
+}
+
+export const selectElementIdByBlockId = (state, blockId) => {
+  return _.findKey(state.normalizedTree, (el) => {
+    return el.props && el.props.current === `${blockId}`
+  })
 }
 
 export const currentPageSelector = state => {
@@ -33,8 +40,8 @@ export const nextPageSelector = state => {
   return pages[state.currentPage + 1]
 }
 
-export const nextElementIdSelector = state => {
-  let id:string | null = nextElementId(state.currentElement)
+export const nextElementIdSelector = (state, element:string | null = null) => {
+  let id:string | null = nextElementId(element || state.currentElement)
   if (state.normalizedTree[id]) {
     return id
   }
@@ -47,11 +54,22 @@ export const nextElementIdSelector = state => {
   return null
 }
 
+export const childOrNextElementIdSelector = (state, element:string | null = null) => {
+  let id = `${element || state.currentElement}/0`
+  if (state.normalizedTree[id]) {
+    return id
+  } else {
+    return nextElementIdSelector(state, id)
+  }
+}
+
 export const pageQuestions = createSelector(
   state => state,
   currentPageSelector,
   (state, page) => questionsSelector(state, page.questions)
 )
+
+export const pageQuestionsWithoutHidden = createSelector(pageQuestions, (questions) => questions.filter((q) => !q.hidden))
 
 export const questionErrors = createSelector(
   selectQuestion,
@@ -61,6 +79,8 @@ export const questionErrors = createSelector(
 
 export const pageErrors = state => state.errors
 
+export const skipLogicSelector = createSelector(currentPageSelector, (page) => page.skipLogic)
+export const displayLogicSelector = createSelector(pageQuestions, (questions) => questions[0] && questions[0].display_logic)
 
 export const questionResults = createSelector(
   selectQuestion,

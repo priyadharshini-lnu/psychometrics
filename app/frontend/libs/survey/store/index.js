@@ -13,7 +13,12 @@ let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
-const middleware = [api, socket, sagaMiddleware, flow]
+
+let middleware = [api, socket, sagaMiddleware, flow]
+
+if (__TEST__) {
+  middleware = []
+}
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
@@ -30,6 +35,8 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middleware)),
 )
 
-sagaMiddleware.run(rootSagas)
+if (!__TEST__) {
+  sagaMiddleware.run(rootSagas)
+}
 
 export default store

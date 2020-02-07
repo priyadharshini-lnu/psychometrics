@@ -53,7 +53,7 @@ test('first page should have skip logic', () => {
 
 
 
-test('first page should have skip logic', () => {
+test('skip logic should return false for empty results', () => {
   const blocks = [{
     id: 1,
     questions: [question(1, {...multipleChoice,  skip_logic: [skipLogic]}), question(2, {...multipleChoice}), question(3, multipleChoice)]

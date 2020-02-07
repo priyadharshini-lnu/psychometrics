@@ -9,7 +9,6 @@ export const initPages = (data: BlocksInterface) => {
     if (b.deleted) { return }
     let questions: number[] = []
     allPages[b.id] = allPages[b.id] || []
-
     _.each(b.questions, (q) => {
       if (q.deleted) { return }
       if (q.type === 'PageBreak') {
@@ -22,7 +21,7 @@ export const initPages = (data: BlocksInterface) => {
 
       if (q.display_logic) {
         if (questions.length > 0) {
-          allPages[b.id].push({questions, blockId: b.id, displayLogic: q.display_logic})
+          allPages[b.id].push({questions, blockId: b.id})
         }
         questions = [q.id]
       }
@@ -34,6 +33,7 @@ export const initPages = (data: BlocksInterface) => {
         const attrs = {
           questions, blockId: b.id, skipLogic: q.skip_logic,
         }
+
         allPages[b.id].push(attrs)
         questions = []
         return
@@ -43,7 +43,11 @@ export const initPages = (data: BlocksInterface) => {
       }
     })
     if (questions.length) {
-      allPages[b.id].push({questions, blockId: b.id})
+      const attrs = {
+        questions, blockId: b.id
+      }
+
+      allPages[b.id].push(attrs)
     }
   })
   return allPages
