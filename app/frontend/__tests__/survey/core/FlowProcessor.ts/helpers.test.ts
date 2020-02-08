@@ -103,7 +103,7 @@ test('linear block elements', () => {
     questions: [question(4), question(5)]
   }]
 
-  expect(initLinearElements(blocks)).toStrictEqual([{type: 'Block', props: {current: 1}, elements: []}, {type: 'Block', props: {current: 2}, elements: []}]);
+  expect(initLinearElements(blocks)).toStrictEqual([{type: 'Block', props: {current: '1'}, elements: []}, {type: 'Block', props: {current: '2'}, elements: []}]);
 });
 
 

@@ -5,11 +5,11 @@ import Selectors from '../../Validations/Selectors'
 import Values from '../../Validations/Values'
 
 export default class QuestionResolver extends BaseResolver {
-  constructor (condition) {
+  constructor (condition, questions) {
     super()
     this.condition = condition
     this.subject = condition.subject
-    this.question = _.find(store.allQuestions, { id: this.subject })
+    this.question = _.find(questions || store.allQuestions, { id: this.subject })
     this.prefix = condition.prefix
     this.answer = condition.answer
     this.predicate = condition.predicate

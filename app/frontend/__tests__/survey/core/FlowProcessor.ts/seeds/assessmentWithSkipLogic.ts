@@ -2,20 +2,7 @@ const assessmentWithEmbededData = {
   id: 1,
   name: 'test-assessment',
   flow: {
-    elements: [
-      {
-        type: 'Block',
-        elements: [],
-        path: [0],
-        props: {current: '1'},
-      },
-      {
-        type: 'Block',
-        elements: [],
-        path: [3,1],
-        props: { current: '2' },
-      },
-    ],
+    elements: [],
   },
   norm_rules: [],
   enable_back: false,
@@ -73,7 +60,14 @@ const assessmentWithEmbededData = {
           },
           display_logic: null,
           skip_logic: [
-
+            {
+              subject:1,
+              prefix:"And",
+              answer:"0",
+              predicate:"Selected",
+              type:"bool",
+              destination:"EndOfBlock",
+            }
           ],
           template_id: null,
           save_as_template: false,
@@ -110,23 +104,7 @@ const assessmentWithEmbededData = {
             enabled: false,
             type: 'Force',
           },
-          display_logic: {
-            conditions: [
-              {
-                prefix: 'And',
-                conditions: [
-                  {
-                    conditionType: 'Question',
-                    type: 'bool',
-                    subject: 1,
-                    prefix: 'And',
-                    answer: '0',
-                    predicate: 'Selected',
-                  },
-                ],
-              },
-            ],
-          },
+          display_logic: null,
           skip_logic: [
 
           ],
@@ -186,6 +164,64 @@ const assessmentWithEmbededData = {
       questions: [
         {
           id: 4,
+          block_id: 2,
+          name: 'Q2',
+          position: 1,
+          type: 'MultipleChoice',
+          props: {
+            choices: 3,
+            choicesTexts: [
+              'Click to write Choice 1',
+              'Click to write Choice 2',
+              'Click to write Choice 3',
+            ],
+            questionText: 'Click to write the question text',
+            type: 'SingleAnswer',
+            position: 'Vertical',
+            defaultValues: [
+
+            ],
+            notApplicable: false,
+            notApplicableLabel: 'Not Applicable',
+            randomization: {
+              type: 'No',
+            },
+          },
+          validation: {
+            type: 'None',
+            args: {},
+          },
+          required_validation: {
+            enabled: false,
+            type: 'Force',
+          },
+          display_logic: null,
+          skip_logic: [
+
+          ],
+          template_id: null,
+          save_as_template: false,
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Block3',
+      position: 3,
+      props: {
+        randomization: {
+          type: 'No',
+        },
+        buttons: {
+          prev_button: 'Previous',
+          next_button: 'Next',
+        },
+      },
+      template_id: null,
+      save_as_template: false,
+      questions: [
+        {
+          id: 5,
           block_id: 2,
           name: 'Q2',
           position: 1,

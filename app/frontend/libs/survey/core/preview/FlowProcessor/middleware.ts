@@ -38,7 +38,22 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       if (!DisplayLogicProcessor(displayLogic, preview.questions, preview.results)) {
         const questions = pageQuestions(preview)
         dispatch(hideQuestion(questions[0].id))
+        if (questions.length === 1) {
+          nextPage()
+        }
       }
+    }
+  }
+
+  const nextPage = () => {
+    const { preview } = getState()
+    const page = nextPageSelector(preview)
+
+    if (page) {
+      dispatch(showPage(preview.currentPage + 1))
+      processDisplayLogic()
+    } else {
+      processNextElement()
     }
   }
 
@@ -89,14 +104,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   // for example {type: SHOW_BLOCK, blockId, page: 0}
   // dispatch CHANGE_ELEMENT
 
-  const page = nextPageSelector(preview)
-
-  if (page) {
-    dispatch(showPage(preview.currentPage + 1))
-    processDisplayLogic()
-  } else {
-    processNextElement()
-  }
+  nextPage()
 }
 
 export default FlowMiddleware
