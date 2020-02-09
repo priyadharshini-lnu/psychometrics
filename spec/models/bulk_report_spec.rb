@@ -12,9 +12,9 @@ describe BulkReport, type: :model do
     end
   end
 
-  describe '#output_file' do
+  describe '#output_dir' do
     it 'not empty' do
-      expect(report.output_file).not_to be_empty
+      expect(report.output_dir).not_to be_empty
     end
   end
 
@@ -24,10 +24,11 @@ describe BulkReport, type: :model do
     end
   end
 
-  describe '#public_download_url' do
+  describe '#public_download_urls' do
     it 'valid URI' do
       expect do
-        URI(report.public_download_url)
+        puts "urls: #{report.public_download_urls}"
+        URI(report.public_download_urls.first)
       end.not_to raise_error
     end
   end
@@ -35,12 +36,12 @@ describe BulkReport, type: :model do
   describe '#private_download_url' do
     before do
       file = double('file', url: '/foo/bar')
-      allow(report).to receive(:file).and_return(file)
+      allow(report).to receive(:files).and_return([file])
     end
 
     it 'valid URI' do
       expect do
-        URI(report.private_download_url)
+        URI(report.private_download_url(0))
       end.not_to raise_error
     end
   end

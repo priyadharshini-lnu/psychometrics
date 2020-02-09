@@ -1,8 +1,9 @@
 p="Dear #{@user.first_name},"
 p="Your request to export bulk reports has been completed successfully. Please download the exported zip file before #{@report.expiration_date.strftime('%d %b %Y %H:%M')}. After this date, this zip file will be deleted automatically."
 
-p
-  = link_to(nil, @report.public_download_url)
+ul
+  - @report.public_download_urls.each do |url|
+    li = link_to(nil, url)
 
 p Regards,
 p Lighthouse Team

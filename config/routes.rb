@@ -442,7 +442,7 @@ Rails.application.routes.draw do
     end
 
     resources :bulk_reports, only: %i[new create] do
-      get :download, on: :member
+      get 'download(/:index)', to: 'bulk_reports#download', on: :member, as: :download
     end
 
     resources :libraries

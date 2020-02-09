@@ -96,6 +96,9 @@ gem 'jquery-fileupload-rails', '~> 0.4.6'
 gem 'redis'
 gem 'redis-rails', '~> 5.0.2'
 
+# A workaround for `roo` since it requires an old version of rubyzip
+gem 'rubyzip', '~> 1.2'
+
 ### dependencies for XLS export (via templates)
 gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'

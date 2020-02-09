@@ -362,9 +362,9 @@ ALTER SEQUENCE public.blocks_id_seq OWNED BY public.blocks.id;
 CREATE TABLE public.bulk_reports (
     id bigint NOT NULL,
     user_id bigint,
-    file character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -6625,5 +6625,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20191211142942'),
 ('20191218192252'),
 ('20191225145152'),
+('20200119071623'),
 ('20200122113926'),
-('20200119071623');
+('20200127101833');
+
+

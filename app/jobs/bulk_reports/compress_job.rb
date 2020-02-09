@@ -5,24 +5,38 @@ module BulkReports
     queue_as :default
 
     def perform(report)
-      Dir.mktmpdir do |dir|
-        input_dir = report.input_dir
-        output_file = File.join(dir, report.output_file)
+      # Start with cleaning up
+      FileUtils.rm_rf(report.output_dir) if File.exist?(report.output_dir)
 
-        Sidekiq.logger.info("ZipFileGenerator.new(#{input_dir}, #{output_file})")
-        ZipFileGenerator.new(input_dir, output_file).write
+      # Create a fresh directory for output
+      FileUtils.mkdir_p(report.output_dir)
 
-        save_report_with_file(report, output_file)
-      end
+      options = [
+        report.input_dir,
+        report.output_dir,
+        size_limit: Settings.bulk_reports.size_limit, base_file_name: 'bulk-report'
+      ]
+      Sidekiq.logger.info("Compressor.new(#{options})")
+      Compressor.new(*options).process
+
+      add_files_to_bulk_report(report)
+      # Delete the output_dir created here
+      clean(report)
     end
 
     private
 
-    def save_report_with_file(report, file)
-      File.open(file) do |f|
-        report.file = f
-        report.save!
+    def clean(report)
+      FileUtils.rm_rf(report.output_dir) if File.exist?(report.output_dir)
+    end
+
+    def add_files_to_bulk_report(report)
+      files = Dir.children(report.output_dir).map do |filename|
+        Pathname.new(File.join(report.output_dir, filename)).open
       end
+
+      report.files = files
+      report.save!
     end
   end
 end

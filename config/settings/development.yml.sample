@@ -7,3 +7,5 @@ assigns:
 react_dev:
   reports: false # set true if you are running npm server
   assessments: false # set true if you are running npm server
+bulk_reports:
+  size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
