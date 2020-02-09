@@ -1,4 +1,3 @@
-
 export interface Question {
   id: number,
   deleted?: boolean,
@@ -11,6 +10,7 @@ export interface Block {
   id: number,
   deleted?: boolean,
   questions: Question[]
+  props?: { randomization? }
 }
 
 export interface BlocksInterface {

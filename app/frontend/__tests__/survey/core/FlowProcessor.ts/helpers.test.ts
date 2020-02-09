@@ -1,4 +1,9 @@
-import {initPages, initLinearElements, normalizeTree, nextElementId, nextParentElementId} from 'libs/survey/core/preview/FlowProcessor/helpers'
+import {
+  initPages, initLinearElements, normalizeTree, nextElementId, nextParentElementId,
+  randomSequesnce, randomInt, shuffle, randomizeBlockQuestions
+} from 'libs/survey/core/preview/FlowProcessor/helpers'
+import _ from 'lodash'
+import seedrandom from 'seedrandom'
 
 const question = (id, data = {}) => ({id, ...data})
 
@@ -196,4 +201,62 @@ test('next parent element should retorn valid id', () => {
   expect(nextParentElementId('0/1')).toStrictEqual('1');
   expect(nextParentElementId('1')).toStrictEqual(null);
   expect(nextParentElementId('0/1/1')).toStrictEqual('0/2');
+})
+
+test('randomizeBlockQuestions should return valid resuls', () => {
+  const pages = [
+    {questions: [1,2,3]},
+    {questions: [4,5]}
+  ]
+
+  expect(randomizeBlockQuestions(undefined, pages, 'test')).toStrictEqual(pages)
+  expect(randomizeBlockQuestions({type: 'No'}, pages, 'test')).toStrictEqual(pages)
+  expect(randomizeBlockQuestions({type: 'All'}, pages, 'test')).toStrictEqual([{questions: [5, 3, 1]}, {questions: [4, 2]}])
+  expect(randomizeBlockQuestions({type: 'Some', questions: 2}, pages, 'test')).toStrictEqual([{questions: [5, 3]}])
+  expect(randomizeBlockQuestions({type: 'Some', questions: 4}, pages, 'test')).toStrictEqual([{questions: [5, 3, 1]}, {questions: [4]}])
+})
+
+describe('seedrandom', () => {
+  test('random returns the same numbers for seed', () => {
+    Math.random = seedrandom('test')
+    let x = Math.random()
+    Math.random = seedrandom('test')
+    let y = Math.random()
+    expect(x).toBe(y)
+  })
+
+  test('shuffe with the same seed should return the same result', () => {
+    const arr = [1,2,3,4,5]
+
+    const arr1 = shuffle(arr, seedrandom('test'))
+    const arr2 = shuffle(arr, seedrandom('test'))
+    expect(arr1).toStrictEqual(arr2)
+  })
+
+  test('shuffe with a different seed the same seed should return the same result', () => {
+    const arr = [1,2,3,4,5]
+
+    const arr1 = shuffle(arr, seedrandom('test'))
+    const arr2 = shuffle(arr, seedrandom('test'))
+    expect(arr1).toStrictEqual(arr2)
+  })
+
+
+  test('randomSequesnce should return the same values for same seed', () => {
+    let rnd = seedrandom('test')
+    const arr = randomSequesnce(5, rnd)
+    rnd = seedrandom('test')
+    const arr2 = randomSequesnce(5, rnd)
+    expect(arr).toStrictEqual(arr2)
+  })
+
+
+  test('randomInt should return the same values for same seed', () => {
+    let rnd = seedrandom('test')
+    const x = randomInt(1, 10, rnd)
+    rnd = seedrandom('test')
+    const y = randomInt(1, 10, rnd)
+    expect(x).toBe(y)
+  })
+
 })
