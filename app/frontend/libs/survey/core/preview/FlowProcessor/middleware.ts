@@ -16,21 +16,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   if (action.type !== NEXT_PAGE) { return next(action) }
   const { preview } = getState()
 
-  const questions = pageQuestionsWithoutHidden(preview)
-  const errors = ValidationProcessor(questions, preview.results)
-
-  if (_.size(errors) > 0) {
-    dispatch(showErrors(errors))
-    return
-  } else {
-    dispatch(emptyErrors())
-  }
-
-  // save results to backend
-  if (preview.type === 'pass_assessment') {
-    dispatch(saveResults(preview))
-  }
-
   const processDisplayLogic = () => {
     const { preview } = getState()
     const displayLogic = displayLogicSelector(preview)
@@ -65,6 +50,31 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     } else {
       dispatch(showEnd())
     }
+  }
+
+  if (preview.currentElement === null) {
+    processNextElement()
+    return
+  }
+
+  if (action.testDisplayLogic) {
+    processDisplayLogic()
+    return
+  }
+
+  const questions = pageQuestionsWithoutHidden(preview)
+  const errors = ValidationProcessor(questions, preview.results)
+
+  if (_.size(errors) > 0) {
+    dispatch(showErrors(errors))
+    return
+  } else {
+    dispatch(emptyErrors())
+  }
+
+  // save results to backend
+  if (preview.type === 'pass_assessment') {
+    dispatch(saveResults(preview))
   }
 
   const skipLogic = skipLogicSelector(preview)

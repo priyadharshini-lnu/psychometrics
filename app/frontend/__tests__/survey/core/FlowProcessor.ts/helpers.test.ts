@@ -156,6 +156,41 @@ test('normalize tree with two roots', () => {
 })
 
 
+test('normalize tree with random block', () => {
+  const tree = [
+    { "type": "Randomizer", "elements": [
+      { "type": "Block", "elements": [], "props": { "current": "1" } },
+      { "type": "Block", "elements": [], "props": { "current": "2" } }
+    ], "props": { "number": 1 } },
+  ]
+
+  expect(normalizeTree(tree, 'test')).toStrictEqual({
+    '0': { "type": "Randomizer", "props": { "number": 1 } },
+    '0/0': { "type": "Block", "props": { "current": "2" } },
+  });
+  expect(normalizeTree(tree, 'testt')).toStrictEqual({  //seed to geberate different result
+    '0': { "type": "Randomizer", "props": { "number": 1 } },
+    '0/0': { "type": "Block", "props": { "current": "1" } },
+  });
+})
+
+
+test('normalize tree with random block two elements', () => {
+  const tree = [
+    { "type": "Randomizer", "elements": [
+      { "type": "Block", "elements": [], "props": { "current": "1" } },
+      { "type": "Block", "elements": [], "props": { "current": "2" } }
+    ], "props": { "number": 2 } },
+  ]
+
+  expect(normalizeTree(tree, 'test')).toStrictEqual({
+    '0': { "type": "Randomizer", "props": { "number": 2 } },
+    '0/0': { "type": "Block", "props": { "current": "2" } },
+    '0/1': { "type": "Block", "props": { "current": "1" } },
+  });
+})
+
+
 test('normalize tree with many roots and children', () => {
   const tree = [
     {

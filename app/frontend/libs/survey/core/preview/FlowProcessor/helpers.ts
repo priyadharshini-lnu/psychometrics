@@ -96,22 +96,27 @@ export const initLinearElements = (blocks) => {
   result {'0': element, '0/0': element ...}
 */
 
-export const normalizeTree = (roots) => {
+export const normalizeTree = (roots, seed = '') => {
   const list = {}
 
-  const eachChild = (child, path) => {
+  const eachChild = (child, path, randomize:any = null) => {
     if (child.elements && child.elements.length) {
-      _.each(child.elements, (child, i) => eachChild(child, `${path}/${i}`))
+      let elements = child.elements
+      if (randomize) {
+        elements = _.take(shuffle(elements, seedrandom(seed)), randomize.count)
+      }
+      _.each(elements, (child, i) => eachChild(child, `${path}/${i}`, child.type === 'Randomizer' ? {count: child.props.number} : null))
     }
     const item = { ...child }
     delete item.elements
     list[path] = item
   }
-  _.each(roots, (child, i) => eachChild(child, `${i}`))
+  _.each(roots, (child, i) => eachChild(child, `${i}`, child.type === 'Randomizer' ? {count: child.props.number} : null))
   return list
 }
 
 export const nextElementId = (id:string):string => {
+  if (!id) { return '0' }
   const path:string[] = id.split('/')
   path[path.length - 1] = (+ path[path.length - 1] + 1).toString()
   return path.join('/')

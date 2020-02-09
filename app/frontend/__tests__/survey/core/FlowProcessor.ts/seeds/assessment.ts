@@ -35,7 +35,7 @@ const assessmentWithEmbededData = {
         ],
         path: [3],
         props: {
-          number: 1,
+          number: 2,
         },
       },
     ],

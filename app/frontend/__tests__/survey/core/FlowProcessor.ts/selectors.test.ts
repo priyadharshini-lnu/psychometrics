@@ -20,6 +20,7 @@ const state = {
 
 
 test('next element id should return valid result', () => {
+  expect(nextElementIdSelector({...state, currentElement: null})).toStrictEqual('0')
   expect(nextElementIdSelector({...state, currentElement: '0'})).toStrictEqual('1')
   expect(nextElementIdSelector({...state, currentElement: '0/0'})).toStrictEqual('0/1')
   expect(nextElementIdSelector({...state, currentElement: '0/1'})).toStrictEqual('1')

@@ -6,26 +6,29 @@ import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDED_DATA, HIDE_QUESTION,
 } from './actions'
-import { getIn, setIn, updateIn } from 'utils/immutable'
+import { setIn } from 'utils/immutable'
 
 const defaultState = {
   initialized: false,
   type: 'preview',
+  enableBack: false,
+  enableProgress: false,
   elements: [],
   blocks: {},
   questions: {},
   questionsQueue: [],
   embeddedData: {},
   pages: [],  // {questions: [1,2,3], elementRef}
-  allPages: {}, // {[block_id]: [{ ...page }, {end}]}
+  allPages: {},
   results: {},
+  currentElement: null,
   currentPage: 0,
-  errors: null, //{[question_id]: [errors]}
+  errors: null,
   end: false,
 }
 
 const HANDLERS = {
-  [INIT]: (state, {data}) => {
+  [INIT]: (state, {data, result}) => {
     const normalizedData = normalize({blocks: data.blocks}, assessment)
 
     let elements = data.flow.elements
@@ -35,19 +38,23 @@ const HANDLERS = {
 
     const normalizedTree = normalizeTree(elements)
 
-    // init block elements for linear flow  [{block}...]
-    // add saga to run first element processor
+    // saga triggers next_page to process element '0'
 
     return {
       ...defaultState,
+      enableBack: data.enable_back,
+      enableProgress: data.enable_progress,
       allPages: initPages(data),
       normalizedTree,
       elements: data.flow.elements,
       linear: data.flow.elements.length === 0,
       blocks: normalizedData.entities.blocks,
       questions: normalizedData.entities.questions,
-      currentElement: '0',
+      currentElement: result.currentElement || null,
+      currentPage: result.currentPage || 0,
+      randomseed: result.id || '', // use assign or user id
       initialized: true,
+      results: result.results || {},
     }
   },
   [ANSWER]: (state, {result}) => setIn(state, ['results', result.question_id], result),

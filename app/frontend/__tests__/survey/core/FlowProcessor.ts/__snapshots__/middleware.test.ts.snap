@@ -68,7 +68,7 @@ Object {
         "template_id": null,
       },
     },
-    "currentElement": "0",
+    "currentElement": null,
     "currentPage": 0,
     "elements": Array [
       Object {
@@ -125,12 +125,14 @@ Object {
           3,
         ],
         "props": Object {
-          "number": 1,
+          "number": 2,
         },
         "type": "Randomizer",
       },
     ],
     "embeddedData": Object {},
+    "enableBack": false,
+    "enableProgress": true,
     "end": false,
     "errors": null,
     "initialized": true,
@@ -164,7 +166,7 @@ Object {
           3,
         ],
         "props": Object {
-          "number": 1,
+          "number": 2,
         },
         "type": "Randomizer",
       },
@@ -312,6 +314,73 @@ Object {
         },
       },
     },
+    "questionsQueue": Array [],
+    "randomseed": "",
+    "results": Object {},
+    "type": "preview",
+  },
+  "survey": Object {
+    "builder": Object {
+      "assessment": Object {
+        "blocks": Array [],
+        "category": "",
+        "disabled": false,
+        "factors": Array [],
+        "flow": null,
+        "id": null,
+        "loaded": false,
+        "name": "",
+        "norm_rules": Array [],
+        "propPanel": Object {
+          "offset": null,
+          "question": null,
+        },
+        "relationships": Array [],
+        "trash": Array [],
+      },
+      "blocks": Object {},
+      "factors": Object {
+        "current": null,
+        "factors": Object {},
+        "recoding": Array [],
+      },
+      "flow": Object {
+        "elements": Array [],
+      },
+      "questions": Object {},
+    },
+    "temp": Object {
+      "hotSpot": Object {
+        "shapeIndex": null,
+      },
+      "modals": Object {
+        "current": Array [],
+        "data": Object {},
+      },
+      "socket": Object {
+        "initialized": null,
+      },
+    },
+  },
+}
+`;
+
+exports[`initializing base assessment middleware should call next if is not NEXT_PAGE: default_store 1`] = `
+Object {
+  "preview": Object {
+    "allPages": Object {},
+    "blocks": Object {},
+    "currentElement": null,
+    "currentPage": 0,
+    "elements": Array [],
+    "embeddedData": Object {},
+    "enableBack": false,
+    "enableProgress": false,
+    "end": false,
+    "errors": null,
+    "initialized": false,
+    "pages": Array [],
+    "questions": Object {},
     "questionsQueue": Array [],
     "results": Object {},
     "type": "preview",

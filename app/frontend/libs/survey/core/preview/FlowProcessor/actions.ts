@@ -11,7 +11,7 @@ export const SAVE_RESULTS = 'flow_processor/SAVE_RESULTS'
 export const SET_EMBEDED_DATA = 'flow_processor/SET_EMBEDED_DATA'
 export const HIDE_QUESTION = 'flow_processor/HIDE_QUESTION'
 
-export const nextPage = () => ({ type: NEXT_PAGE })
+export const nextPage = (params?) => ({ type: NEXT_PAGE, ...params })
 
 export const showErrors = (errors) => ({ type: SHOW_ERRORS, errors })
 
