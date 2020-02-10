@@ -11,7 +11,7 @@ const NumericFormat = ({ model, changeValidationArg }) => (
       data-arg="maximum"
       value={model.validation.args.maximum || ''}
     />
-    <div className={styles.label}>Maximum</div>
+    <div className={styles.label}>Minimum</div>
     <input
       type="text"
       onChange={changeValidationArg}

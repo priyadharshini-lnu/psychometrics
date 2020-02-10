@@ -51,7 +51,7 @@ export const saveScoring = (assessmentId, factors, recoding) => {
 
 const HANDLERS = {
   [assessmentActions.INIT]: (state, { data }) => {
-    const { factors, assessment } = data.entities
+    const { factors = {}, assessment } = data.entities
     const recoding = assessment[data.result].question_recoding.map(q => new Scoring(q))
     return { ...state, factors, recoding }
   },
@@ -77,6 +77,7 @@ export default createReducer(HANDLERS, defaultState)
 
 function* genEnsureSelectedFactor () {
   const { survey: { builder: { factors } } } = yield select()
+  if (_.isEmpty(factors.factors)) { return }
   yield put(selectFactor(factors.factors[_.first(_.keys(factors.factors))].id))
 }
 
