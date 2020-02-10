@@ -1,3 +1,4 @@
+import _ from 'lodash'
 
 export default class Scoring {
   constructor ({ value, norm }) {

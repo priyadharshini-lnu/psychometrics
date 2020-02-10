@@ -52,7 +52,7 @@ describe UpdateAssign do
           allow(assign).to receive(:'completed?').and_return(true)
         end
 
-        it { is_expected.to receive(:calculate_scoring) }
+        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(assign, assign.norm_data) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }
       end
     end

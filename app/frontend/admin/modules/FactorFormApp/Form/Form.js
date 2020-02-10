@@ -48,7 +48,8 @@ export default function Form (props) {
       />
       <BaseForm fields={FIELDS} errors={errors} context={props} onChange={onChange} resource={resource} />
       <InputFile onChange={onChange} value={resource.icon} />
-      <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />
+      {resource.scoring_strategy !== 'questions'
+      && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>
   )
 }

@@ -28,7 +28,7 @@ class UpdateAssign < Rectify::Command
 
     # Calculates scoring and sets time of completion
     if assign.completed?
-      assign.calculate_scoring
+      assign.scoring = ::UsersResults::CalculateScoring.call!(assign, assign.norm_data)
       assign.occupations = Assigns::CalculateOccupations.call!(assign)
       assign.innovation_styles = Assigns::CalculateInnovationStyles.call!(assign)
       assign.completed_at = Time.now

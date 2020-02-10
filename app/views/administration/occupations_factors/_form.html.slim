@@ -6,7 +6,7 @@
 
     .form-inputs.clearfix
       = f.association :factor,
-                      collection: Factor.no_roots.where(dimension_id: @dimension.id).order(:name),
+                      collection: Factor.where(dimension_id: @dimension.id).order(:name),
                       include_blank: true,
                       input_html: { data: { live_search: true } }
       = f.input :predicate,

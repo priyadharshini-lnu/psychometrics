@@ -114,7 +114,13 @@ class FactorsNorm < ApplicationRecord
     # Calculates avg of value with 2 numbers after comma
     avg_scoring = (sum_scoring / scoring.size.to_f).round(2)
 
-    prop = (props || []).detect { |n| n['score_from'].to_f <= avg_scoring && n['score_to'].to_f >= avg_scoring }
+    calc_norm_level(avg_scoring)
+  end
+
+  def calc_norm_level(score)
+    return nil unless score
+
+    prop = (props || []).detect { |n| n['score_from'].to_f <= score && n['score_to'].to_f >= score }
 
     # Converts level to index
     normed_result = LEVELS.index(prop&.dig('level'))

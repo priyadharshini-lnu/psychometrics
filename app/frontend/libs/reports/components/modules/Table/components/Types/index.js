@@ -21,16 +21,12 @@ import HighestLowestScore from './HighestLowestScore/HighestLowestScore'
 import HighestLowestScoreProps from './HighestLowestScore/Properties'
 import HighestLowestQuestion from './HighestLowestQuestion/HighestLowestQuestion'
 import HighestLowestQuestionProps from './HighestLowestQuestion/Properties'
-import HighestLowestSubject from './HighestLowestSubject/HighestLowestSubject'
-import HighestLowestSubjectProps from './HighestLowestSubject/Properties'
 import GapAssessment from './GapAssessment/GapAssessment'
 import GapAssessmentProps from './GapAssessment/Properties'
 import GapAssessmentScoring from './GapAssessmentScoring/GapAssessmentScoring'
 import GapAssessmentScoringProps from './GapAssessmentScoring/Properties'
 import SingleValueScoring from './SingleValueScoring/SingleValueScoring'
 import SingleValueScoringProps from './SingleValueScoring/Properties'
-import AgileFactors from './AgileFactors/AgileFactors'
-import AgileFactorsProps from './AgileFactors/Properties'
 import CPITopFactors from './CPITopFactors/CPITopFactors'
 import CPITopFactorsProps from './CPITopFactors/Properties'
 import CPIOccupations from './CPIOccupations/CPIOccupations'
@@ -59,11 +55,9 @@ export default {
   FactorQuestionsScore,
   HighestLowestScore,
   HighestLowestQuestion,
-  HighestLowestSubject,
   GapAssessment,
   GapAssessmentScoring,
   SingleValueScoring,
-  AgileFactors,
   CPITopFactors,
   CPIOccupations,
   PotentialCareerShort,
@@ -86,10 +80,8 @@ export const PropTypes = {
   FactorQuestionsScore: FactorQuestionsScoreProps,
   HighestLowestScore: HighestLowestScoreProps,
   HighestLowestQuestion: HighestLowestQuestionProps,
-  HighestLowestSubject: HighestLowestSubjectProps,
   SingleValueScoring: SingleValueScoringProps,
   GapAssessmentScoring: GapAssessmentScoringProps,
-  AgileFactors: AgileFactorsProps,
   CPITopFactors: CPITopFactorsProps,
   CPIOccupations: CPIOccupationsProps,
   PotentialCareerShort: PotentialCareerShortProps,
