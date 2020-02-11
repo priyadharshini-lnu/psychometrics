@@ -289,6 +289,12 @@ providers:
         language_id: en
         assessment_ids:
           - HPI
+      - id: EcHPIINSRV2
+        name: HPI Insight Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
       - id: EcHPIHDSMVPIFR
         name: Flash Report
         norm_id: Global
@@ -309,8 +315,20 @@ providers:
         language_id: en
         assessment_ids:
           - HDS
+      - id: EcHDSINSRV2
+        name: HDS Insight Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HDS
       - id: EcMVPIDML
         name: MVPI Data Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - MVPI
+      - id: EcMVPIINSRV2
+        name: MVPI Insight Report
         norm_id: Global
         language_id: en
         assessment_ids:
