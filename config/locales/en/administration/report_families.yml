@@ -51,6 +51,10 @@ en:
           add: Add new Report
           tooltips:
             create: Create
+        list:
+          name: Name
+          created_at: Created date
+          updated_at: Updated date
         resource:
           tooltips:
             delete: Delete Report from Bundle

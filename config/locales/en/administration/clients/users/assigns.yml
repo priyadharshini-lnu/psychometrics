@@ -48,6 +48,12 @@ en:
                   Reset <strong>Result</strong> ?
                 body:
                   <p>Are you sure you want to reset result?</p>
+              assessment:
+                detach:
+                  title:
+                    Detach assessment <strong>%{name}</strong> ?
+                  body:
+                    "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>"
               assigns_report:
                 delete:
                   title:

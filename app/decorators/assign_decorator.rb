@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 class AssignDecorator < BaseDecorator
+  private_attr_reader :original_assign
+
   def initialize(object, options = {})
+    @original_assign = object
     object = object.project_assign || object
     super
   end
@@ -32,5 +35,20 @@ class AssignDecorator < BaseDecorator
 
   def status
     I18n.t("activerecord.attributes.assign.statuses.#{object.status}")
+  end
+
+  def delete_confirmation
+    name = original_assign.assessment.try(:name)
+    items = original_assign.reports.map { |report| "<li>#{report.name}</li>" }.join('')
+    message_body = unless items.blank?
+                     I18n.t(
+                       "administration.clients.users.#{i18n}.resource.confirms.assessment.detach.body", items: items
+                     )
+                   end
+
+    {
+      title: I18n.t("administration.clients.users.#{i18n}.resource.confirms.assessment.detach.title", name: name),
+      body: message_body
+    }.to_json
   end
 end
