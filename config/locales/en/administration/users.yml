@@ -117,3 +117,6 @@ en:
         form_admin:
           create_admin: Create Admin
           choose_admin: Choose Admin
+        assigns:
+          destroy:
+            successfully: "%{name} was successfully detached"
