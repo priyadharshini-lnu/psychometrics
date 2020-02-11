@@ -352,7 +352,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -764,7 +764,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -1173,7 +1173,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",

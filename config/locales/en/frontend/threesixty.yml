@@ -109,7 +109,7 @@ en:
         release_report: 'Are you sure you want to release report?'
         hold_report: 'Are you sure you want to hold report?'
         remove_release_hold: 'Are you sure you want to remove Release/Hold status?'
-        mark_evaluation_done: 'Are you sure you want to mark evaluation as done?'
+        mark_evaluation_done: 'Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.'
         umark_evaluation_as_complete: 'Are you sure you want to unmark evaluation as done?'
         remove_subject: 'Are you sure you want to remove subject with email from campaign?'
       report_generation_message: 'Report is generating. We will let you know when the report is ready.'
@@ -121,3 +121,4 @@ en:
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.
+
