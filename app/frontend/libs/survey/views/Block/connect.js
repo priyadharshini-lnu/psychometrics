@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
 import {
   createBlock, removeBlock, addQuestion, cloneBlock, renameBlock,
-  saveAsTemplate, unlinkTemplate,
+  saveAsTemplate, unlinkTemplate, updateBlockProps,
 } from 'libs/survey/core/builder/assessment/block/actions'
 import { unselectQuestion, moveBlockDown, moveBlockUp } from 'libs/survey/core/builder/assessment/actions'
 
@@ -21,5 +21,6 @@ export default connect(
     renameBlock,
     saveAsTemplate,
     unlinkTemplate,
+    updateBlockProps,
   },
 )

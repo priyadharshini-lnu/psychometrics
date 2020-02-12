@@ -2,7 +2,7 @@
 
 import FroalaEditor from 'froala-editor'
 
-function changeDirection (dir, align) {
+function changeDirection (className) {
   // Wrap block tags.
   this.selection.save()
   this.html.wrap(true, true, true, true)
@@ -18,9 +18,8 @@ function changeDirection (dir, align) {
     const element = elements[i]
     if (element !== this.el) {
       this.$(element)
-        .css('direction', dir)
-        .css('text-align', align)
-        .removeClass('fr-temp-div')
+        .removeClass('fr-temp-div ltr rtl')
+        .addClass(className)
     }
   }
 
@@ -38,7 +37,7 @@ FroalaEditor.RegisterCommand('rightToLeft', {
   undo: true,
   refreshAfterCallback: true,
   callback () {
-    changeDirection.apply(this, ['rtl', 'right'])
+    changeDirection.apply(this, ['rtl'])
   },
 })
 
@@ -49,6 +48,6 @@ FroalaEditor.RegisterCommand('leftToRight', {
   undo: true,
   refreshAfterCallback: true,
   callback () {
-    changeDirection.apply(this, ['ltr', 'left'])
+    changeDirection.apply(this, ['ltr'])
   },
 })

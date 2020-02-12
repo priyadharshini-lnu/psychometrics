@@ -6,12 +6,33 @@ import store from 'store/AssessmentPreviewStore'
 import I18nStore from 'store/I18nStore'
 import Utils from 'utils/Utils'
 import cs from 'classnames'
+import StaticContent from 'views/Preview/StaticContent'
+import { LEFT, RIGHT } from 'views/Block/components/StaticContent/settings'
 import Footer from './PageFooter'
 import styles from './Page.scss'
 
 class Page extends Component {
   static propTypes = {
     page: PropTypes.object.isRequired,
+  }
+
+  getBlockClasses () {
+    const { page: { block: { props: { staticContent } } } } = this.props
+
+    if (!staticContent) return
+    const { layout } = staticContent
+    return cs({ [styles.blockWithSideStaticContent]: (layout === LEFT || layout === RIGHT) })
+  }
+
+  getQuestionContainerClasses () {
+    const { page: { block: { props: { staticContent } } } } = this.props
+
+    if (!staticContent) return
+    const { layout } = staticContent
+    return cs({
+      [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
+      [styles.leftStaticContent]: (layout === LEFT),
+    })
   }
 
   addLtrStyleIfNeed = phrase => (phrase.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? { direction: 'ltr' } : {})
@@ -74,16 +95,22 @@ class Page extends Component {
       type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage,
     } = this.props
     if (!page) { return }
+    const { block: { props: { staticContent } }, block } = page
     return (
-      <div className={`${styles.block} fe-ass-page-container-${type}`}>
+      <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${store.type}`)}>
         <div className={styles.logo}>
           {/* <img src={Logo} /> */}
         </div>
 
         {store.readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
-        {!store.ignoreValidation && errors && this.renderErrors(page)}
-        <QuestionList page={page} questions={questions} />
+        <div className={this.getQuestionContainerClasses()}>
+          {staticContent && <StaticContent staticContent={staticContent} block={block} />}
+          <div>
+            {!store.ignoreValidation && errors && this.renderErrors(page)}
+            <QuestionList page={page} questions={questions} />
+          </div>
+        </div>
         {type !== 'preview_block' && (
           <Footer hasBack={enableBack} hasPrevPage={hasPrevPage} page={page} prevPage={prevPage} nextPage={nextPage} />
         )}
