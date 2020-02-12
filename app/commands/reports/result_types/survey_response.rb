@@ -7,7 +7,7 @@ module Reports
         assign = context.find_assign_by(data['assessmentId'])
         question = Question.find_by!(id: data['questionId'], assessment_id: data['assessmentId'])
         parser = "Exports::Assessments::Questions::#{question.type}".constantize
-        header = parser.header(question)
+        header = parser.headers(question)[:question_id_header]
         # Question types which return multiple headers/values not supported at this time
         return decorate(question) if assign&.results.blank? || header.length != 1
 
