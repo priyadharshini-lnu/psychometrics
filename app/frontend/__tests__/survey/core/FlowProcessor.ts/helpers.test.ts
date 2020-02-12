@@ -168,7 +168,7 @@ test('normalize tree with random block', () => {
     '0': { "type": "Randomizer", "props": { "number": 1 } },
     '0/0': { "type": "Block", "props": { "current": "2" } },
   });
-  expect(normalizeTree(tree, 'testt')).toStrictEqual({  //seed to geberate different result
+  expect(normalizeTree(tree, 'testt')).toStrictEqual({  //seed to generate different result
     '0': { "type": "Randomizer", "props": { "number": 1 } },
     '0/0': { "type": "Block", "props": { "current": "1" } },
   });
@@ -221,7 +221,7 @@ test('normalize tree with many roots and children', () => {
 })
 
 
-test('next element should retorn valid id', () => {
+test('next element should return valid id', () => {
   expect(nextElementId('0/0/0')).toStrictEqual('0/0/1');
   expect(nextElementId('0/0/1')).toStrictEqual('0/0/2');
   expect(nextElementId('0/1')).toStrictEqual('0/2');
@@ -230,7 +230,7 @@ test('next element should retorn valid id', () => {
 })
 
 
-test('next parent element should retorn valid id', () => {
+test('next parent element should return valid id', () => {
   expect(nextParentElementId('0/0/0')).toStrictEqual('0/1');
   expect(nextParentElementId('0/0/1')).toStrictEqual('0/1');
   expect(nextParentElementId('0/1')).toStrictEqual('1');
