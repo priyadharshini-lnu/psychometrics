@@ -4,7 +4,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["airbnb"],
+  "extends": ["airbnb", "plugin:@typescript-eslint/recommended"],
   "parserOptions": {
     "ecmaVersion": 8,
     "ecmaFeatures": {
@@ -13,8 +13,14 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["babel", "react", "import"],
+  "plugins": ["babel", "react", "import", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/max-len": [2, 120, 2],
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-this-alias": 0,
     "semi": [2, "never"],
     "max-len": [2, 120, 2],
     "no-debugger": "off",
