@@ -18,9 +18,9 @@ export default function SkipLogicProcessor (logic, questions, results) {
     if (resolver.resolve()) {
       switch (conditions[i][0].destination) {
         case END_OF_BLOCK:
-          return {type: END_OF_BLOCK}
+          return { type: END_OF_BLOCK }
         case END_OF_ASSESSMENT:
-          return {type: END_OF_ASSESSMENT}
+          return { type: END_OF_ASSESSMENT }
         case SPECIFIC_BLOCK: {
           const blockId = +conditions[i][0].destinationBlock
           if (!blockId) { return false }

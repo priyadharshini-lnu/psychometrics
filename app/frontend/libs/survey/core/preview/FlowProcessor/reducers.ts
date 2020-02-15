@@ -1,12 +1,12 @@
 import { createReducer } from 'utils/reduxUtils'
+import { normalize } from 'normalizr'
+import { setIn } from 'utils/immutable'
 import { initPages, initLinearElements, normalizeTree } from './helpers'
 import { assessment } from '../../../store/schema'
-import { normalize } from 'normalizr'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDED_DATA, HIDE_QUESTION,
 } from './actions'
-import { setIn } from 'utils/immutable'
 
 const defaultState = {
   initialized: false,
@@ -18,7 +18,7 @@ const defaultState = {
   questions: {},
   questionsQueue: [],
   embeddedData: {},
-  pages: [],  // {questions: [1,2,3], elementRef}
+  pages: [], // {questions: [1,2,3], elementRef}
   allPages: {},
   results: {},
   currentElement: null,
@@ -28,10 +28,10 @@ const defaultState = {
 }
 
 const HANDLERS = {
-  [INIT]: (state, {data, result}) => {
-    const normalizedData = normalize({blocks: data.blocks}, assessment)
+  [INIT]: (state, { data, result }) => {
+    const normalizedData = normalize({ blocks: data.blocks }, assessment)
 
-    let elements = data.flow.elements
+    let { elements } = data.flow
     if (elements.length === 0) {
       elements = initLinearElements(normalizedData.entities.blocks)
     }
@@ -57,14 +57,14 @@ const HANDLERS = {
       results: result.results || {},
     }
   },
-  [ANSWER]: (state, {result}) => setIn(state, ['results', result.question_id], result),
-  [SHOW_ERRORS]: (state, {errors}) => setIn(state, ['errors'], errors),
-  [EMPTY_ERRORS]: (state) => setIn(state, ['errors'], null),
-  [CHANGE_ELEMENT]: (state, { id }) => ({...state, currentPage: 0, currentElement: id}),
-  [SHOW_PAGE]: (state, {page}) => setIn(state, ['currentPage'], page),
-  [SHOW_END]: (state) => ({...state, end: true}),
-  [SET_EMBEDED_DATA]: (state, {data}) => setIn(state, 'embeddedData', Object.assign({}, state.embeddedData, data)),
-  [HIDE_QUESTION]: (state, {id}) => setIn(state, ['questions', id, 'hidden'], true),
+  [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
+  [SHOW_ERRORS]: (state, { errors }) => setIn(state, ['errors'], errors),
+  [EMPTY_ERRORS]: state => setIn(state, ['errors'], null),
+  [CHANGE_ELEMENT]: (state, { id }) => ({ ...state, currentPage: 0, currentElement: id }),
+  [SHOW_PAGE]: (state, { page }) => setIn(state, ['currentPage'], page),
+  [SHOW_END]: state => ({ ...state, end: true }),
+  [SET_EMBEDED_DATA]: (state, { data }) => setIn(state, 'embeddedData', Object.assign({}, state.embeddedData, data)),
+  [HIDE_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], true),
 }
 
 export default createReducer(HANDLERS, defaultState)

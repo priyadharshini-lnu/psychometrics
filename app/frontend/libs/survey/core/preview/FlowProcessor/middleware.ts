@@ -8,7 +8,7 @@ import {
 } from './selectors'
 import ValidationProcessor from './ValidationProcessor'
 import ElementProcessor from './ElementProcessor'
-import SkipLogicProcessor, {END_OF_ASSESSMENT, END_OF_BLOCK, SPECIFIC_BLOCK} from './SkipLogicProcessor'
+import SkipLogicProcessor, { END_OF_ASSESSMENT, END_OF_BLOCK, SPECIFIC_BLOCK } from './SkipLogicProcessor'
 import DisplayLogicProcessor from './DisplayLogicProcessor'
 
 
@@ -68,9 +68,9 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   if (_.size(errors) > 0) {
     dispatch(showErrors(errors))
     return
-  } else {
-    dispatch(emptyErrors())
   }
+
+  dispatch(emptyErrors())
 
   // save results to backend
   if (preview.type === 'pass_assessment') {

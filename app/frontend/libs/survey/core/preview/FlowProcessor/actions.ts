@@ -11,21 +11,21 @@ export const SAVE_RESULTS = 'flow_processor/SAVE_RESULTS'
 export const SET_EMBEDED_DATA = 'flow_processor/SET_EMBEDED_DATA'
 export const HIDE_QUESTION = 'flow_processor/HIDE_QUESTION'
 
-export const nextPage = (params?) => ({ type: NEXT_PAGE, ...params })
+export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
-export const showErrors = (errors) => ({ type: SHOW_ERRORS, errors })
+export const showErrors = errors => ({ type: SHOW_ERRORS, errors })
 
 export const emptyErrors = () => ({ type: EMPTY_ERRORS })
 
-export const showPage = (page) => ({ type: SHOW_PAGE, page })
+export const showPage = page => ({ type: SHOW_PAGE, page })
 
 export const showEnd = () => ({ type: SHOW_END })
 
 export const changeElement = (id: string) => ({ type: CHANGE_ELEMENT, id })
 
-export const hideQuestion = (id) => ({ type: HIDE_QUESTION, id })
+export const hideQuestion = id => ({ type: HIDE_QUESTION, id })
 
-export const setEmbededData = (data) => ({ type: SET_EMBEDED_DATA, data })
+export const setEmbededData = data => ({ type: SET_EMBEDED_DATA, data })
 
 export const saveResults = (preview) => {
   const data = {
@@ -51,6 +51,6 @@ export const saveResults = (preview) => {
       method: 'PUT',
       body: JSON.stringify(data),
       decamelize: false,
-    }
+    },
   }
 }

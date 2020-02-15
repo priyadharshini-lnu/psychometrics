@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "es6": true
@@ -15,7 +15,6 @@
   },
   "plugins": ["babel", "react", "import", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/max-len": [2, 120, 2],
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-empty-function": 0,
