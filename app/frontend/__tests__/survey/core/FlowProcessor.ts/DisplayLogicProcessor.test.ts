@@ -1,21 +1,22 @@
 import DisplayLogicProcessor from 'libs/survey/core/preview/FlowProcessor/DisplayLogicProcessor'
-import {initPages} from 'libs/survey/core/preview/FlowProcessor/helpers'
+import { initPages } from 'libs/survey/core/preview/FlowProcessor/helpers'
 import DefaultProps from 'libs/survey/constants/DefaultProps'
-const question = (id, data = {}) => ({id, ...data})
+
+const question = (id, data = {}) => ({ id, ...data })
 
 const multipleChoice = {
   type: 'MultipleChoice',
-  required_validation: {enabled: true, type: 'Force'},
+  required_validation: { enabled: true, type: 'Force' },
   validation: { type: 'None', args: {} },
   choicesIds: [0, 1, 2],
   props: {
-    ...DefaultProps.MultipleChoice
-  }
+    ...DefaultProps.MultipleChoice,
+  },
 }
 
 test('empty display logic should return true', () => {
-  expect(DisplayLogicProcessor({}, {}, {})).toBe(false);
-});
+  expect(DisplayLogicProcessor({}, {}, {})).toBe(false)
+})
 
 
 const displayLogic = {
@@ -37,27 +38,27 @@ const displayLogic = {
 }
 
 const results = {
-  1: {answers: [{index: 0, value: true}]},
-  2: {answers: [{index: 1, value: true}]},
+  1: { answers: [{ index: 0, value: true }] },
+  2: { answers: [{ index: 1, value: true }] },
 }
 
 test('display logic should return false for empty results', () => {
   const questions = {
-    1: question(1, {...multipleChoice}),
-    2: question(2, {...multipleChoice}),
-    3: question(3, {...multipleChoice})
+    1: question(1, { ...multipleChoice }),
+    2: question(2, { ...multipleChoice }),
+    3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor(displayLogic, questions, {})).toBe(false);
-});
+  expect(DisplayLogicProcessor(displayLogic, questions, {})).toBe(false)
+})
 
 
 test('display logic should return true for valid results', () => {
   const questions = {
-    1: question(1, {...multipleChoice}),
-    2: question(2, {...multipleChoice}),
-    3: question(3, {...multipleChoice})
+    1: question(1, { ...multipleChoice }),
+    2: question(2, { ...multipleChoice }),
+    3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor(displayLogic, questions, results)).toBe(true);
-});
+  expect(DisplayLogicProcessor(displayLogic, questions, results)).toBe(true)
+})

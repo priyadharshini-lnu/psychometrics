@@ -1,0 +1,13 @@
+
+export const INIT = 'flow_processor/INIT'
+export const NEXT_PAGE = 'flow_processor/NEXT_PAGE'
+export const PREV_PAGE = 'flow_processor/PREV_PAGE'
+export const ANSWER = 'flow_processor/ANSWER'
+export const SHOW_PAGE = 'flow_processor/SHOW_PAGE'
+export const SHOW_END = 'flow_processor/SHOW_END'
+export const CHANGE_ELEMENT = 'flow_processor/CHANGE_ELEMENT'
+export const SHOW_ERRORS = 'flow_processor/SHOW_ERRORS'
+export const EMPTY_ERRORS = 'flow_processor/EMPTY_ERRORS'
+export const SAVE_RESULTS = 'flow_processor/SAVE_RESULTS'
+export const SET_EMBEDDED_DATA = 'flow_processor/SET_EMBEDDED_DATA'
+export const HIDE_QUESTION = 'flow_processor/HIDE_QUESTION'

@@ -1,7 +1,6 @@
 import { EventEmitter } from 'fbemitter'
 import AppStore from 'store/AppStore'
 import RequestsPool from 'cable/RequestsPool'
-import store from 'store'
 import NotificationDispatcher from './NotificationDispatcher'
 
 const dispatcher = new EventEmitter()
@@ -9,7 +8,7 @@ const dispatcher = new EventEmitter()
 dispatcher.message = function (data) {
   if (data.action === 'assessment_data') {
     AppStore.init(data.data)
-    store.dispatch({ type: 'survey/assessment/INIT', data: data.data })
+    AppStore.rstore.dispatch({ type: 'survey/assessment/INIT', data: data.data })
   }
   if (data.action === 'question_data') {
     AppStore.initQCenter(data.data)

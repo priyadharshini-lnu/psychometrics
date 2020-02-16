@@ -8,6 +8,7 @@
   },
   "scripts": {
     "export_pdf": "node ./lib/raster.js",
+    "lint":  "eslint --ext .js,.ts app/frontend/ --max-warnings=0 --cache",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -151,7 +152,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js --ext .js,.ts app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
     }
   }
 }

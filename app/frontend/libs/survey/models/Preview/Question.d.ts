@@ -1,5 +1,5 @@
 declare class Question {
-  constructor(q, s,r)
+  constructor(q, s, r)
 }
 
 export = Question

@@ -20,7 +20,9 @@ export const currentBlockPagesSelector = state => state.allPages[state.currentBl
 
 export const currentElementSelector = state => state.normalizedTree[state.currentElement]
 
-export const selectElementIdByBlockId = (state, blockId) => _.findKey(state.normalizedTree, el => el.props && el.props.current === `${blockId}`)
+export const selectElementIdByBlockId = (state, blockId) => _.findKey(
+  state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
+)
 
 export const currentPageSelector = (state) => {
   const block = currentElementSelector(state).props.current
@@ -40,6 +42,7 @@ export const nextElementIdSelector = (state, element: string | null = null) => {
     return id
   }
 
+  // eslint-disable-next-line no-cond-assign
   while (id = nextParentElementId(id)) {
     if (state.normalizedTree[id]) {
       return id
@@ -73,7 +76,10 @@ export const questionErrors = createSelector(
 export const pageErrors = state => state.errors
 
 export const skipLogicSelector = createSelector(currentPageSelector, page => page.skipLogic)
-export const displayLogicSelector = createSelector(pageQuestions, questions => questions[0] && questions[0].display_logic)
+export const displayLogicSelector = createSelector(
+  pageQuestions,
+  questions => questions[0] && questions[0].display_logic,
+)
 
 export const questionResults = createSelector(
   selectQuestion,

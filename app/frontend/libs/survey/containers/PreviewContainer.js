@@ -7,6 +7,7 @@ import Header from 'layouts/AssessmentPreview/Header'
 import store from 'store/AssessmentPreviewStore'
 import AppStore from 'store/AppStore'
 import I18nStore from 'store/I18nStore'
+import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import rstore from '../store'
 
@@ -29,7 +30,7 @@ class PreviewContainer extends Component {
     store.resultsUrl = resultsUrl
     store.resultLocalStorageKey = [location.pathname]
     store.isAnonymousAssessment = isAnonymousAssessment === 'true'
-    store.init(JSON.parse(data), type, JSON.parse(dbResult), dashboardUrl)
+    store.init(JSON.parse(data), type, JSON.parse(dbResult), dashboardUrl, rstore)
     this.forceUpdate()
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }

@@ -61,13 +61,13 @@ const assessmentWithEmbededData = {
           display_logic: null,
           skip_logic: [
             {
-              subject:1,
-              prefix:"And",
-              answer:"0",
-              predicate:"Selected",
-              type:"bool",
-              destination:"EndOfBlock",
-            }
+              subject: 1,
+              prefix: 'And',
+              answer: '0',
+              predicate: 'Selected',
+              type: 'bool',
+              destination: 'EndOfBlock',
+            },
           ],
           template_id: null,
           save_as_template: false,

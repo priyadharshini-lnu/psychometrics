@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import Validations from 'models/Validations'
 
-const NormResolver = function (rules, result) {
+const NormResolver = function (rules, hris, questions = null, results = null) {
+  this.questions = questions
+  this.results = results
   this.rules = rules
-  this.hris = result.hris || {}
+  this.hris = hris || {}
   this.type = null
   this.id = null
 }
@@ -60,7 +62,7 @@ _.extend(NormResolver.prototype, {
   },
 
   processQuestionCondition (condition) {
-    const validation = new Validations.Custom(condition)
+    const validation = new Validations.Custom(condition, this.questions, this.results)
     return validation.validate()
   },
 

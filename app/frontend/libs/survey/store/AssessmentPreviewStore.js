@@ -2,9 +2,8 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import FlowProcessor from 'models/FlowProcessor'
 import Result from 'models/Preview/Result'
-import Question from 'models/Preview/Question'
+// import Question from 'models/Preview/Question'
 import LocalStorage from 'utils/LocalStorage'
-import rstore from '.'
 
 // TODO (atanych): Replace current RandOrder with new one to lookup question was answered or not.
 // TODO (atanych): After it we might remove RankOrder from list below
@@ -29,10 +28,10 @@ const AssessmentPreviewStore = function () {
 AssessmentPreviewStore.prototype = new EventEmitter()
 
 _.extend(AssessmentPreviewStore.prototype, {
-  init (data, type = 'preview_assessment', dbResult = {}, dashboardUrl = '/') {
+  init (data, type = 'preview_assessment', dbResult = {}, dashboardUrl = '/', rstore) {
     this.assessment = data
-    this.allQuestions = _(this.assessment.blocks).map(b => b.questions).flatten().map(q => new Question(q))
-      .value()
+    // this.allQuestions = _(this.assessment.blocks).map(b => b.questions).flatten().map(q => new Question(q))
+    // .value()
     this.dbResult = dbResult || {}
     this.dbResult.results = {
       ...(this.dbResult.results || {}),
@@ -57,7 +56,10 @@ _.extend(AssessmentPreviewStore.prototype, {
     }
 
     // init data before flow initializing
-    rstore.dispatch({ type: 'flow_processor/INIT', data, result: this.dbResult })
+    rstore.dispatch({
+      type: 'flow_processor/INIT', data: { ...data, type, isThreesixty: this.isThreesixty }, result: this.dbResult,
+    })
+    this.rstore = rstore
     this.flow = new FlowProcessor(this)
   },
 

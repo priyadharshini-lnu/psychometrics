@@ -1,7 +1,8 @@
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
-import { INIT, nextPage } from './actions'
+import { nextPage } from './actions'
+import { INIT } from './consts'
 
 function* genInitPageProcessing () {
   const state = yield select()

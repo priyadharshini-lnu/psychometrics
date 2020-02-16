@@ -4,51 +4,51 @@ import DefaultProps from 'libs/survey/constants/DefaultProps'
 const multipleChoice = {
   id: 1,
   type: 'MultipleChoice',
-  required_validation: {enabled: true, type: 'Force'},
+  required_validation: { enabled: true, type: 'Force' },
   validation: { type: 'None', args: {} },
   choicesIds: [0, 1, 2],
   props: {
-    ...DefaultProps.MultipleChoice
-  }
+    ...DefaultProps.MultipleChoice,
+  },
 }
 
 const textEntry = {
   id: 2,
   type: 'TextEntry',
-  required_validation: {enabled: false},
-  validation: { type: 'MinLength', args: {minLength: 5} },
+  required_validation: { enabled: false },
+  validation: { type: 'MinLength', args: { minLength: 5 } },
   props: {
-    ...DefaultProps.TextEntry
-  }
+    ...DefaultProps.TextEntry,
+  },
 }
 
 test('empty validations should return empty array', () => {
-  expect(ValidationProcessor([], {})).toStrictEqual({});
-});
+  expect(ValidationProcessor([], {})).toStrictEqual({})
+})
 
 test('required validation should return an error', () => {
   expect(ValidationProcessor([multipleChoice], {})).toStrictEqual({
-    1: [{message: 'validations.please_answer_question', type: 'forceRequired'}],
-  });
-});
+    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+  })
+})
 
 test('required validation should return an error', () => {
-  expect(ValidationProcessor([multipleChoice, textEntry], {2: {answers: [{value: 'test'}]}})).toStrictEqual({
-    1: [{message: 'validations.please_answer_question', type: 'forceRequired'}],
-    2: [{message: 'validations.min_length', type: 'MinLength'}]
-  });
-});
+  expect(ValidationProcessor([multipleChoice, textEntry], { 2: { answers: [{ value: 'test' }] } })).toStrictEqual({
+    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+    2: [{ message: 'validations.min_length', type: 'MinLength' }],
+  })
+})
 
 test('required return an error only required validation', () => {
-  expect(ValidationProcessor([multipleChoice, textEntry], {2: {answers: [{value: 'test test'}]}})).toStrictEqual({
-    1: [{message: 'validations.please_answer_question', type: 'forceRequired'}],
-  });
-});
+  expect(ValidationProcessor([multipleChoice, textEntry], { 2: { answers: [{ value: 'test test' }] } })).toStrictEqual({
+    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+  })
+})
 
 test('required return empty errors for valid results', () => {
   const results = {
-    1: {answers: [{index: 0, value: true}]},
-    2: {answers: [{value: 'test test'}]}
+    1: { answers: [{ index: 0, value: true }] },
+    2: { answers: [{ value: 'test test' }] },
   }
-  expect(ValidationProcessor([multipleChoice, textEntry], results)).toStrictEqual({});
-});
+  expect(ValidationProcessor([multipleChoice, textEntry], results)).toStrictEqual({})
+})

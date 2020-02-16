@@ -2,7 +2,8 @@
 /* eslint-disable prefer-rest-params */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import rstore from 'store'
+import store from 'store/AppStore'
+
 import ScoringModules from './ScoringModules'
 
 const Scoring = function (attrs = {}, factorId) {
@@ -32,9 +33,9 @@ _.extend(Scoring.prototype, {
 
   update () {
     if (this.type === 'recoding') {
-      rstore.dispatch({ type: 'builder/factors/UPDATE_RECODING', model: this })
+      store.rstore.dispatch({ type: 'builder/factors/UPDATE_RECODING', model: this })
     } else {
-      rstore.dispatch({ type: 'builder/factors/UPDATE_SCORING', model: this })
+      store.rstore.dispatch({ type: 'builder/factors/UPDATE_SCORING', model: this })
     }
   },
 

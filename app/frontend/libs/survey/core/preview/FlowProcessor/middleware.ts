@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
-  NEXT_PAGE, showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion,
+  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion,
 } from './actions'
+import { NEXT_PAGE } from './consts'
 import {
   pageQuestions, pageQuestionsWithoutHidden, nextPageSelector, nextElementIdSelector,
   skipLogicSelector, displayLogicSelector, selectElementIdByBlockId,
@@ -79,11 +81,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   const skipLogic = skipLogicSelector(preview)
 
-  // process skip logic
-  // run skip logic processor and dispatch skipping to logic(end of block, specific block, end of assessment)
-  // dispatch CHANGE_ELEMENT
-  // NOTE: skip to specific block works only for linear flow
-
   if (skipLogic) {
     const skipResult = SkipLogicProcessor(skipLogic, preview.questions, preview.results)
     if (skipResult) {
@@ -103,16 +100,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       }
     }
   }
-
-  // get displayLogic to use bellow
-
-  // show next page
-  // check if there is one more page and dispatch increment current page
-  // dispatch SHOW_PAGE
-  // else
-  // run next flow element processor (should return action type and payload)
-  // for example {type: SHOW_BLOCK, blockId, page: 0}
-  // dispatch CHANGE_ELEMENT
 
   nextPage()
 }

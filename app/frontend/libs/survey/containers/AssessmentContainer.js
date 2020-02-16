@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
 import store from 'store/AssessmentPreviewStore'
-import AppStore from 'store/AppStore'
+// import AppStore from 'store/AppStore'
 import I18nStore from 'store/I18nStore'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 
@@ -11,7 +11,7 @@ class PreviewContainer extends Component {
   componentDidMount () {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
-      langPartial, result, selectedLocale, isAnonymousAssessment,
+      langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
     } = this.props
 
     this.langPartial = langPartial
@@ -24,9 +24,9 @@ class PreviewContainer extends Component {
     store.isAnonymousAssessment = isAnonymousAssessment === 'true'
     store.resultsUrl = resultsUrl
     store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
-    store.init(data, type, dbResult, dashboardUrl)
+    store.init(data, type, dbResult, dashboardUrl, rstore)
     this.forceUpdate()
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
+    // this.appListener = AppStore.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
@@ -58,7 +58,7 @@ class PreviewContainer extends Component {
     return (
       <div className="row">
         {store.type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        {AppStore.disabled && this.overlay()}
+        {/* {AppStore.disabled && this.overlay()} */}
         <AssessmentPreview />
       </div>
     )

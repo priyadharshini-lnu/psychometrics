@@ -7,14 +7,14 @@ const assessmentWithEmbededData = {
         type: 'Block',
         elements: [],
         path: [0],
-        props: {current: '2'},
+        props: { current: '2' },
       },
       {
         type: 'EmbeddedData',
         elements: [],
         path: [1],
         props: {
-          storage: [{key: 'test', value: '1'}],
+          storage: [{ key: 'test', value: '1' }],
         },
       },
       {
@@ -23,13 +23,13 @@ const assessmentWithEmbededData = {
           {
             type: 'Block',
             elements: [],
-            path: [3,0],
+            path: [3, 0],
             props: { current: '1' },
           },
           {
             type: 'Block',
             elements: [],
-            path: [3,1],
+            path: [3, 1],
             props: { current: '2' },
           },
         ],

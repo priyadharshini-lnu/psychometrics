@@ -70,6 +70,7 @@ Object {
     },
     "currentElement": null,
     "currentPage": 0,
+    "dbResult": Object {},
     "elements": Array [
       Object {
         "elements": Array [],
@@ -135,8 +136,11 @@ Object {
     "enableProgress": true,
     "end": false,
     "errors": null,
+    "hrisData": Object {},
     "initialized": true,
+    "isThreesixty": undefined,
     "linear": false,
+    "normRules": Array [],
     "normalizedTree": Object {
       "0": Object {
         "path": Array [
@@ -314,10 +318,9 @@ Object {
         },
       },
     },
-    "questionsQueue": Array [],
     "randomseed": "",
     "results": Object {},
-    "type": "preview",
+    "type": undefined,
   },
   "survey": Object {
     "builder": Object {
@@ -379,9 +382,9 @@ Object {
     "end": false,
     "errors": null,
     "initialized": false,
+    "normalizedTree": Object {},
     "pages": Array [],
     "questions": Object {},
-    "questionsQueue": Array [],
     "results": Object {},
     "type": "preview",
   },

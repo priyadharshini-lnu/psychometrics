@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
-import { BlocksInterface } from './interfaces'
 import seedrandom from 'seedrandom'
+import { BlocksInterface } from './interfaces'
 
-export const initPages = (data: BlocksInterface, seed:string = '') => {
+export const initPages = (data: BlocksInterface, seed = '') => {
   const { blocks } = data
   const allPages = {}
 
@@ -14,7 +16,7 @@ export const initPages = (data: BlocksInterface, seed:string = '') => {
       if (q.deleted) { return }
       if (q.type === 'PageBreak') {
         if (questions.length) {
-          allPages[b.id].push({questions, blockId: b.id})
+          allPages[b.id].push({ questions, blockId: b.id })
         }
         questions = []
         return
@@ -22,7 +24,7 @@ export const initPages = (data: BlocksInterface, seed:string = '') => {
 
       if (q.display_logic) {
         if (questions.length > 0) {
-          allPages[b.id].push({questions, blockId: b.id})
+          allPages[b.id].push({ questions, blockId: b.id })
         }
         questions = [q.id]
       }
@@ -45,7 +47,7 @@ export const initPages = (data: BlocksInterface, seed:string = '') => {
     })
     if (questions.length) {
       const attrs = {
-        questions, blockId: b.id
+        questions, blockId: b.id,
       }
 
       allPages[b.id].push(attrs)
@@ -57,7 +59,11 @@ export const initPages = (data: BlocksInterface, seed:string = '') => {
   return allPages
 }
 
-export const randomizeBlockQuestions = (randomization:{type:string, questions?:number} | undefined, pages, seed = '') => {
+export const randomizeBlockQuestions = (
+  randomization: {type: string; questions?: number} | undefined,
+  pages,
+  seed = '',
+) => {
   if (!randomization) { return pages }
 
   const randomize = (unordered) => {
@@ -69,8 +75,8 @@ export const randomizeBlockQuestions = (randomization:{type:string, questions?:n
     return newPages
   }
 
-  switch(randomization.type) {
-    case 'All':{
+  switch (randomization.type) {
+    case 'All': {
       const questions = _.flatten(pages.map(p => p.questions))
       return randomize(shuffle(questions, seedrandom(seed)))
     }
@@ -78,7 +84,7 @@ export const randomizeBlockQuestions = (randomization:{type:string, questions?:n
       const questions = _.flatten(pages.map(p => p.questions))
       const unordered = _.take(shuffle(questions, seedrandom(seed)), randomization.questions)
       const newPages = randomize(unordered)
-      _.remove(newPages, (p:{questions}) => !p.questions.length)
+      _.remove(newPages, (p: {questions}) => !p.questions.length)
       return newPages
     }
     default:
@@ -86,9 +92,9 @@ export const randomizeBlockQuestions = (randomization:{type:string, questions?:n
   }
 }
 
-export const initLinearElements = (blocks) => {
-  return _.map(blocks, (b) => ({type: 'Block', props: {current: `${b.id}`}, elements: []}))
-}
+export const initLinearElements = blocks => _.map(blocks, b => ({
+  type: 'Block', props: { current: `${b.id}` }, elements: [],
+}))
 
 /*
   Normalize flow tree to list
@@ -99,34 +105,38 @@ export const initLinearElements = (blocks) => {
 export const normalizeTree = (roots, seed = '') => {
   const list = {}
 
-  const eachChild = (child, path, randomize:any = null) => {
+  const eachChild = (child, path, randomize: any = null) => {
     if (child.elements && child.elements.length) {
-      let elements = child.elements
+      let { elements } = child
       if (randomize) {
         elements = _.take(shuffle(elements, seedrandom(seed)), randomize.count)
       }
-      _.each(elements, (child, i) => eachChild(child, `${path}/${i}`, child.type === 'Randomizer' ? {count: child.props.number} : null))
+      _.each(elements, (child, i) => eachChild(
+        child, `${path}/${i}`, child.type === 'Randomizer' ? { count: child.props.number } : null,
+      ))
     }
     const item = { ...child }
     delete item.elements
     list[path] = item
   }
-  _.each(roots, (child, i) => eachChild(child, `${i}`, child.type === 'Randomizer' ? {count: child.props.number} : null))
+  _.each(roots, (child, i) => eachChild(
+    child, `${i}`, child.type === 'Randomizer' ? { count: child.props.number } : null,
+  ))
   return list
 }
 
-export const nextElementId = (id:string):string => {
+export const nextElementId = (id: string): string => {
   if (!id) { return '0' }
-  const path:string[] = id.split('/')
-  path[path.length - 1] = (+ path[path.length - 1] + 1).toString()
+  const path: string[] = id.split('/')
+  path[path.length - 1] = (+path[path.length - 1] + 1).toString()
   return path.join('/')
 }
 
-export const nextParentElementId = (id:string):string | null => {
-  const path:string[] = id.split('/')
+export const nextParentElementId = (id: string): string | null => {
+  const path: string[] = id.split('/')
   path.pop()
-  if(path.length) {
-    path[path.length - 1] = (+ path[path.length - 1] + 1).toString()
+  if (path.length) {
+    path[path.length - 1] = (+path[path.length - 1] + 1).toString()
     return path.join('/')
   }
   return null
@@ -142,6 +152,7 @@ export const shuffle = (array, rnd) => {
   let index = -1
   const lastIndex = length - 1
   const result = _.clone(array)
+  // eslint-disable-next-line no-plusplus
   while (++index < length) {
     const rand = index + Math.floor(rnd() * (lastIndex - index + 1))
     const value = result[rand]
@@ -151,10 +162,6 @@ export const shuffle = (array, rnd) => {
   return result
 }
 
-export const randomSequesnce = (count, rnd) => {
-  return _.times(count, () => rnd())
-}
+export const randomSequesnce = (count, rnd) => _.times(count, () => rnd())
 
-export const randomInt = (a:number, b:number, rnd) => {
-  return Math.round(a + rnd()*(b - a))
-}
+export const randomInt = (a: number, b: number, rnd) => Math.round(a + rnd() * (b - a))

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import currentUser from 'core/temp/currentUser'
+import preview from 'libs/survey/core/preview'
 import campaign from './core/ThreesixtyCampaign/campaign'
 import campaigns from './core/ThreesixtyCampaign/campaigns'
 import nomination from './core/ThreesixtyCampaign/nomination'
@@ -25,4 +26,5 @@ export default combineReducers({
     }),
   }),
   extras,
+  preview,
 })

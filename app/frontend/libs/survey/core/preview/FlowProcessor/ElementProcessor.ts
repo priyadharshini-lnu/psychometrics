@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-continue */
 import _ from 'lodash'
 import { nextElementIdSelector, elementSelector } from './selectors'
 import BranchProcessor from './types/Branch'
@@ -5,7 +7,7 @@ import { setEmbededData } from './actions'
 
 const BLOCK = 'Block'
 const BRANCH = 'Branch'
-const EMBEDED_DATA = 'EmbeddedData'
+const EMBEDDED_DATA = 'EmbeddedData'
 const END = 'EndOfAssessment'
 const RANDOMIZATION = 'Randomizer'
 
@@ -49,8 +51,11 @@ export default function ElementProcessor (
       continue
     }
 
-    if (element.type === EMBEDED_DATA) {
-      const data = _.reduce(element.props.storage, (obj, s: {key: string; value: string}) => { obj[s.key] = s.value; return obj }, {})
+    if (element.type === EMBEDDED_DATA) {
+      const data = _.reduce(element.props.storage, (obj, s: {key: string; value: string}) => {
+        obj[s.key] = s.value
+        return obj
+      }, {})
       dispatch(setEmbededData(data))
       id = nextElementIdSelector(store, id)
       continue
