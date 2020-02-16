@@ -45,7 +45,7 @@ const HANDLERS = {
       isThreesixty: data.isThreesixty,
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
-      enableProgress: data.enable_progress,
+      enableProgress: false, // disabled for refactoring data.enable_progress,
       allPages: initPages(data),
       normalizedTree,
       normRules: data.norm_rules,

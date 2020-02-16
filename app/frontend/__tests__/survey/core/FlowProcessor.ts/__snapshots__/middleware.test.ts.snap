@@ -133,7 +133,7 @@ Object {
     ],
     "embeddedData": Object {},
     "enableBack": false,
-    "enableProgress": true,
+    "enableProgress": false,
     "end": false,
     "errors": null,
     "hrisData": Object {},
@@ -320,6 +320,7 @@ Object {
     },
     "randomseed": "",
     "results": Object {},
+    "resultsUrl": undefined,
     "type": undefined,
   },
   "survey": Object {
