@@ -4,10 +4,11 @@ import Assessment from 'models/Assessment'
 import QuestionModel from 'models/Question'
 import BlockModel from 'models/Block'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
-import { denormalize } from 'normalizr'
+import { normalize, denormalize } from 'normalizr'
 import QuestionSerializer from 'models/QuestionSerializer'
 import BlockSerializer from 'models/BlockSerializer'
-import { blocks } from './schema'
+import schema, { blocks } from './schema'
+import store from './index'
 
 const { $ } = window
 
@@ -94,6 +95,8 @@ _.extend(AppStore.prototype, {
 
   // Save Assessment
   save (assessment, trash, flow) {
+    this.saving = true // TODO: move to redux after refactor saving process
+    this.update()
     const builder = {
       assessment: this.serializeAssessment(assessment, flow),
       trash: [],
@@ -125,11 +128,16 @@ _.extend(AppStore.prototype, {
       error: (jqXHR, textStatus, errorThrown) => {
         // eslint-disable-next-line no-console
         console.info(jqXHR, textStatus, errorThrown)
+        this.saving = false
+        this.update()
         NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
       },
       success: (data) => {
         this.loaded = false
-        this.init(data.data)
+        this.saving = false
+        this.update()
+        const normalizedData = normalize(data.data, schema)
+        store.dispatch({ type: 'survey/assessment/INIT', data: normalizedData })
         NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
       },
     })

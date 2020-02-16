@@ -1,6 +1,9 @@
 en:
   administration:
     clients:
+      threesixty_campaigns:
+        update:
+          successfully: "Campaign '%{name}' was successfully updated."
       projects:
         threesixty_campaigns:
           base:
@@ -17,6 +20,12 @@ en:
             admin: Client Admin
             client_admins: Client Admins
             report_bundle: Report Bundle
+            id: 'Id'
+            name: 'Name'
+            assessment: 'Assement'
+            report: 'Report'
+            status: 'Status'
+            created_at: 'Created At'
           export:
             <<: *list
           new:

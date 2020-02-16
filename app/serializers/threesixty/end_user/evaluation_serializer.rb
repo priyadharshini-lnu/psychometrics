@@ -2,7 +2,8 @@
 
 module Threesixty::EndUser
   class EvaluationSerializer < ActiveModel::Serializer
-    attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status
+    attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :status,
+               :subject_evaluation_closed
 
     has_one :user, serializer: UserSerializer
     has_one :subject, serializer: UserSerializer
@@ -13,6 +14,10 @@ module Threesixty::EndUser
 
     def status
       object.result&.status
+    end
+
+    def subject_evaluation_closed
+      object.threesixty_subject.evaluation_status_completed?
     end
 
     def user

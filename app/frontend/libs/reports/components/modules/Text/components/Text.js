@@ -37,7 +37,7 @@ class Text extends Component {
   edit = false
 
   componentDidMount () {
-    RichEditorStore.addListener('close', () => {
+    this.listener = RichEditorStore.addListener('close', () => {
       this.closeEditor()
     })
   }
@@ -55,6 +55,10 @@ class Text extends Component {
         this.edit = false
       }
     }
+  }
+
+  componentWillUnmount () {
+    this.listener.remove()
   }
 
   onChange = (value) => {
@@ -83,10 +87,12 @@ class Text extends Component {
   }
 
   closeEditor =() => {
-    const { module } = this.props
-    module.update()
-    this.edit = false
-    this.forceUpdate()
+    if (this.edit) {
+      const { module } = this.props
+      module.update()
+      this.edit = false
+      this.forceUpdate()
+    }
   }
 
   lookupResultTextValue (model) {

@@ -16,27 +16,18 @@ module Exports
           package.workbook.add_worksheet(name: 'AssessmentNormedResults') do |sheet|
             ## header
             header = {
-              header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
-              header2: ['', '', '', '', '', '', '']
+              header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status']
             }
-            factors = assessment.dimension.factors.active.includes(:sub_factors)
+            factors = assessment.dimension.all_factors.active.includes(:sub_factors).index_by(&:id)
             factor_ids = {}
             normed_results = {}
 
             # Builds header and creates hash of Factor IDs
             #
-            factors.find_each do |factor|
+            factors.each do |factor_id, factor|
               header[:header] << factor.name
-              header[:header2] << ''
-              normed_results[factor.id.to_s] = nil
-              # Creates an Factor reference with SubFactors
-              factor_ids[factor.id] = factor.sub_factor_ids
-
-              factor.sub_factors.each do |sub_factor|
-                header[:header] << ''
-                header[:header2] << sub_factor.name
-                normed_results[sub_factor.id.to_s] = nil
-              end
+              normed_results[factor_id] = nil
+              factor_ids[factor_id] = factor.sub_factor_ids
             end
 
             # Fetchs FactorsNorm and groups by Norm ID, Type and Factor ID
@@ -48,7 +39,6 @@ module Exports
             # Draws headers
             #
             sheet.add_row header[:header].flatten
-            sheet.add_row header[:header2].flatten
 
             # Draws results
             #
@@ -59,17 +49,18 @@ module Exports
               # Iterates Factor IDs for calculate normed result
               #
               normed_results.keys.each do |factor_id|
-                # Gets results by Factor ID
-                scoring = assign.scoring&.dig(factor_id, 'results')
+                factor = factors[factor_id]
+                scoring = assign.scoring&.dig(factor_id.to_s, 'results')
                 normed_results[factor_id] = ''
 
                 # Gets sub_factor results
-                if scoring.blank? && !factor_ids[factor_id.to_i].blank?
-                  scoring = factor_ids[factor_id.to_i].
-                            each_with_object([]) do |sub_factor_id, res|
-                    res << assign.scoring&.dig(sub_factor_id.to_s, 'results')
-                  end .
-                            flatten.compact
+                if factor.sub_factor_questions_strategy?
+                  scoring = if factor_ids[factor_id].present?
+                              factor_ids[factor_id].
+                                each_with_object([]) do |sub_factor_id, res|
+                                res << assign.scoring&.dig(sub_factor_id.to_s, 'results')
+                              end.flatten.compact
+                            end
                 end
 
                 # Skip if there is no scoring or norm

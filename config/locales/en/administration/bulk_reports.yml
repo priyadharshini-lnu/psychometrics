@@ -10,3 +10,6 @@ en:
         removed: 'Sorry, the file has been removed from the system after one week of storage'
       mailer:
         subject: 'Download bulk reports'
+      form:
+        start_date: Start date
+        end_date: End date

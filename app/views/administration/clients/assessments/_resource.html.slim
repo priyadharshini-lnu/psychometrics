@@ -38,24 +38,33 @@ tr id=dom_id(resource)
                 administration_client_assessment_generate_universal_link_path(client, resource),
                 remote: true,
                 method: :post
-    - if policy(:assessment).export_results? && !resource.hogan?
+    - if policy(resource).export_results?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-download
           =<> t('.export_results')
           span.caret
         ul.dropdown-menu
-          li
-            = link_to t('.scoring_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', scoring: true)
-          li
-            = link_to t('.raw_results'), administration_client_assessment_select_raw_export_type_path(client, resource), remote: true
-          - unless resource.common?
+          - if policy(resource).export_scoring_results?
             li
-              = link_to t('.external_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', external: true)
+              = link_to t('.scoring_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', scoring: true)
+          - if policy(resource).export_raw_results?
+            li
+              = link_to t('.raw_results'), administration_client_assessment_select_raw_export_type_path(client, resource), remote: true
           - if policy(resource).export_normed_results?
             li
               = link_to t('.normed_results'), administration_client_assessment_export_normed_results_path(client, resource, format: 'xlsx')
-    - if policy(:assessment).import_results? && !resource.hogan?
+          - if policy(resource).export_mindmill_results?
+            li
+              = link_to t('.mindmill_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', external: true)
+          - if policy(resource).export_hogan_results?
+            - hogan_reports_for_assessment(resource).each do |report|
+              li
+                = link_to report.name,
+                          administration_client_assessment_export_hogan_results_path(client, resource, format: 'xlsx',
+                                                                                    report_id: report.id)
+
+    - if policy(:assessment).import_results? && resource.common?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-upload
@@ -70,15 +79,3 @@ tr id=dom_id(resource)
             = link_to t('.raw_results'),
                       new_administration_imports_results_path(client_id: client.id, assessment_id: resource.id),
                       remote: true
-    - if policy(:assessment).export_hogan_results? && resource.hogan?
-      .btn-group
-        button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
-          i.fa.fa-download
-          =<> t('.export_results')
-          span.caret
-        ul.dropdown-menu
-          - reports_for_assessment(resource).each do |report|
-            li
-              = link_to report.name,
-                        administration_client_assessment_export_hogan_results_path(client, resource, format: 'xlsx',
-                                                                                   report_id: report.id)

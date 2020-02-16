@@ -65,6 +65,14 @@ class Radar extends Component {
           plotOptions: {
             series: {
               animation,
+              dataLabels: {
+                enabled: !!model.props.showValues,
+                // eslint-disable-next-line object-shorthand
+                formatter: function () {
+                  return _.round(this.point.y, 2)
+                },
+                allowOverlap: true,
+              },
             },
             line: {
               animation,

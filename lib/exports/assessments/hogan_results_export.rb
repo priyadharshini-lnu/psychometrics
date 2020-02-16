@@ -82,7 +82,7 @@ module Exports
 
         return [] if data.nil?
 
-        data.map { |i| i[data_type] }
+        Array.wrap(data).map { |i| i[data_type] }
       end
 
       def default_content(assigns_report)

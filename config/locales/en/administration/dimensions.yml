@@ -8,8 +8,12 @@ en:
         owner: Owner
         new: Add
       list:
+        id: Id
+        active: Active
+        name: Name
+        factors_count: Factors count
         updated_at: Modified Date
-        created_at: Created Date
+        created_at: Created date
       new:
         header: 'New Dimension'
       edit:
@@ -30,14 +34,17 @@ en:
         assign: 'Assign Dimension'
         destroy: 'Delete Dimension'
         view: 'View Dimension'
+      form:
+        enable_occupations: 'Enable Occupations'
+        enable_innovation_styles: 'Enable Innovation Styles'
       resource:
         tooltips:
-          copy: 'Copy Dimension'
-          edit: 'Edit Dimension Name'
-          delete: 'Delete Dimension'
-        form:
-          enable_occupations: 'Enable Occupations'
-          enable_innovation_styles: 'Enable Innovation Styles'
+          copy: Copy Dimension
+          edit: Edit Dimension Name
+          delete: Delete Dimension
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

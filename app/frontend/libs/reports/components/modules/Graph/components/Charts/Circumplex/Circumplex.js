@@ -38,25 +38,13 @@ class Circumplex extends Component {
     const { model } = this.props
     const sourceType = model.getSourceType()
     const sourceModel = model.getSourceModel()
-    const mapSubFactors = {}
-    const assessmentId = model.assessment_id
-    const assessment = _.find(AppStore.assessments, { id: assessmentId })
-    const dimensionId = assessment && assessment.dimensionId
-    _.each(AppStore.factors[dimensionId], (factor) => {
-      if (factor.parent_id) {
-        if (!mapSubFactors[factor.parent_id]) {
-          mapSubFactors[factor.parent_id] = []
-        }
-        mapSubFactors[factor.parent_id].push(factor)
-      }
-    })
 
     const data = Series[sourceType]
     if (!data) { return null }
     const colors = _.map(model.props.colors, 'color')
     const seriesData = []
     _.each(sourceModel, (factor, i) => {
-      const subFactorsByFactor = mapSubFactors[factor.id]
+      const subFactorsByFactor = AppStore.getSubFactors(factor.id)
       const color = colors[i % colors.length]
       const result = {
         id: factor.id,
@@ -69,6 +57,7 @@ class Circumplex extends Component {
           parent_id: factor.id,
           color,
           name: I18nStore.tFactorName(subFactor),
+          code: subFactor.code,
           scoring: parseInt(data.series(getCorrectResults(model), subFactor), 10),
         }))
         seriesData.push(result)

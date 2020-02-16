@@ -16,22 +16,24 @@ en:
           enable_privacy_links: Enable privacy link
           other_settings: Other Settings
         list: &list
+          id: Id
+          number: Number
           name: Project name
-          admin: Client Admin
-          project_admin: Project Admins
-          tte_admin: TTE Project Manager
+          admin: Client admin
+          project_admin: Project admins
+          tte_admin: TTE project manager
           assessments: Assessments
           reports: Reports
           tests_allocated: Tests Allocated
           archive_status: Status
-          assigned_user: Assigned Users
+          assigned_user: Assigned users
           completed_user: Completed users
-          applicable_level: Applicable Level
-          users_count: Users Count
+          applicable_level: Applicable level
+          users_count: Users count
           url: URL
-          actual_usage: Actual Usage
-          updated_at: Modified Date
-          created_at: Created Date
+          actual_usage: Actual usage
+          updated_at: Modified date
+          created_at: Created date
           2fa_enabled: 2FA Enabled
         export:
           <<: *list
@@ -89,3 +91,14 @@ en:
           successfully: 'Project %{name} was successfully updated.'
         archive:
           successfully: Project %{name} was successfully archived.
+        threesixty_campaigns:
+          list:
+            id: Id
+            name: Name
+            assessment: Assessment
+            report: Report
+            created_at: Created date
+            updated_at: Updated date
+          resource:
+            export_results: Export results
+            raw_results: Raw results

@@ -1,0 +1,17 @@
+$(function () {
+  var $modalContainer = $('#modal-container');
+  <% if @form.nil? || @form.errors.empty? %>
+    if ($modalContainer.html().length)
+      return;
+
+    $modalContainer.html('<%= j render(partial: "modal", locals: {  form: "edit_form", header: t(".header") }) %>');
+    var $modalBox = $modalContainer.find(".modal");
+
+    $modalBox.modal('show');
+    $modalBox.on('hidden.bs.modal', function (e) {
+      $(this).remove();
+    });
+  <% else %>
+    $modalContainer.find("form").replaceWithPush('<%= j render(partial: "edit_form") %>');
+  <% end %>
+});

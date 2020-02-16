@@ -234,6 +234,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -273,6 +276,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -295,6 +303,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -343,7 +352,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -376,6 +385,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "validations": {
@@ -633,6 +643,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -672,6 +685,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -694,6 +712,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -745,7 +764,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -778,6 +797,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "validations": {
@@ -1035,6 +1055,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1074,6 +1097,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
@@ -1096,6 +1124,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -1144,7 +1173,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -1177,6 +1206,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "validations": {

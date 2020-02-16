@@ -8,8 +8,9 @@ en:
         tooltips:
           create: Create
       list:
-        updated_at: Modified Date
-        created_at: Created Date
+        name: Name
+        updated_at: Modified date
+        created_at: Created date
       new:
         header: 'New Report Bundle'
       edit:
@@ -50,6 +51,10 @@ en:
           add: Add new Report
           tooltips:
             create: Create
+        list:
+          name: Name
+          created_at: Created date
+          updated_at: Updated date
         resource:
           tooltips:
             delete: Delete Report from Bundle

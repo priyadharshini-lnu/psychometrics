@@ -37,6 +37,10 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
+      propPanel: {
+        question: null,
+        offset: null,
+      },
       loaded: true,
     })
   },

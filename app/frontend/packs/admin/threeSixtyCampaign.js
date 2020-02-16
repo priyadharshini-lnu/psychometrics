@@ -5,3 +5,9 @@ import 'admin/styles/ant.less'
 import 'admin/assets/scss/common.scss'
 
 ReactDOM.render(<ThreeSixtyApp />, document.getElementById('three-sixty-container'))
+
+if (__DEV__) {
+  if (module.hot) {
+    module.hot.accept()
+  }
+}

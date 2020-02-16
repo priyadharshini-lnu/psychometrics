@@ -8,6 +8,7 @@ export class BlockSerializer {
     const block = {}
     block.id = attrs.id
     block.name = attrs.name
+    block.isNew = attrs.isNew
     block.position = attrs.position
     block.deleted = attrs.deleted || false
     block.saveAsTemplate = attrs.save_as_template || false

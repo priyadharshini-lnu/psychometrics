@@ -38,6 +38,12 @@ const FIELDS = [
     required: true,
   },
   {
+    label: 'Code',
+    name: 'code',
+    type: 'Input',
+    required: false,
+  },
+  {
     label: 'Description',
     name: 'description',
     type: 'TextArea',

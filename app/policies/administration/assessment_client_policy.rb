@@ -2,6 +2,8 @@
 
 module Administration
   class AssessmentClientPolicy < Administration::BasePolicy
+    include ::Administration::Common::AssessmentExportPolicy
+
     def index?
       @user.is?(:superadmin, :client_admin, :project_admin)
     end

@@ -53,6 +53,11 @@ function EvaluationList ({
     </Menu>
   )
 
+  const showDeclineEvaluationDropdown = item => (
+    options.evaluator.canDeclineNomination && !item.subjectEvaluationClosed && !item.isSelf
+      && !isEvaluationCompleted(item)
+  )
+
   const EvaluationItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
@@ -63,20 +68,28 @@ function EvaluationList ({
         <Link
           to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
           style={{ display: 'flex', flex: 1 }}
+          disabled={item.subjectEvaluationClosed}
         >
           <Tooltip placement="topLeft" title={item.subject.email}>
             <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
           </Tooltip>
         </Link>
-        {options.evaluator.canDeclineNomination && !item.isSelf && !isEvaluationCompleted(item)
-              && (
-                <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
-                  <a className="ant-dropdown-link actions-btn" href="#" style={{ alignSelf: 'flex-end' }}>
-                    <Icon type="down" className="menu-icon" />
-                  </a>
-                </Dropdown>
-              )
-          }
+
+        {item.subjectEvaluationClosed && (
+        <Tooltip placement="top" title="Evaluation is closed for this subject">
+          <Icon type="info-circle" />
+        </Tooltip>
+        )}
+
+        {showDeclineEvaluationDropdown(item)
+          && (
+            <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
+              <a className="ant-dropdown-link actions-btn" href="#" style={{ alignSelf: 'flex-end' }}>
+                <Icon type="down" className="menu-icon" />
+              </a>
+            </Dropdown>
+          )
+        }
       </div>
     </List.Item>
   )

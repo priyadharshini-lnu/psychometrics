@@ -32,7 +32,7 @@ const INDIVIDUAL_FILTER = {
 
 const SCORING_STRATEGY_QUESTIONS = 'questions'
 const SCORING_STRATEGY_SUB_FACTOR_QUESTIONS = 'sub_factor_questions'
-// const SCORING_STRATEGY_FACTOR_AVERAGE = 'sub_factors_average'
+const SCORING_STRATEGY_FACTOR_AVERAGE = 'sub_factors_average'
 /**
  * Results store
  */
@@ -78,7 +78,6 @@ _.extend(Result.prototype, {
     this.usersScoring = {}
     this.rawResults = results
     this.normData = _.get(this.rawResults, '[0].norm_data')
-
     _.each(this.rawResults, (object, index) => {
       _.each(filters, (filter) => {
         if (filter.correctByFilter(object)) this.resultsByFilter[filter.id].rawResults.push(object)
@@ -95,6 +94,7 @@ _.extend(Result.prototype, {
         this.individualAgileScoring = object.agile_scoring
       }
     })
+    this.cleanupNullScorings()
     this.calcScoringByQuestions()
     this.calcOccupationsStars()
     this.sortOccupations()
@@ -392,7 +392,6 @@ _.extend(Result.prototype, {
         })
         data.scoring[factorId].results = subFactorResults
       }
-
       _.each(scoringResults.results, (obj) => {
         if (!this.questionScoring[factorId][obj.question_id]) {
           this.questionScoring[factorId][obj.question_id] = []
@@ -471,8 +470,12 @@ _.extend(Result.prototype, {
           return res.value
         })
         const average = scoringResults.results.length ? commonResult / scoringResults.results.length : 0
-        const scoring = new Scoring({ value: average })
-        this.scoring[factorId].results.push(scoring)
+        if (average) {
+          const scoring = new Scoring({ value: average })
+          this.scoring[factorId].results.push(scoring)
+        } else {
+          this.scoring[factorId].results.push(null)
+        }
       } else {
         this.scoring[factorId].results.push(new Scoring({ value: 0 }))
       }
@@ -481,21 +484,39 @@ _.extend(Result.prototype, {
     _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
       // merge factor scoring with sub-factors
       const sc = this.scoring[factorId]
-
+      if (!sc.results[index]) { return }
       if (factor.scoring_strategy === SCORING_STRATEGY_SUB_FACTOR_QUESTIONS) {
         let commonValue = 0
         let totalWeight = 0
         _.each(factor.factors_sub_factors, (factorSubFactor) => {
           const subFactor = AppStore.mapFactors[this.dimensionId][factorSubFactor.sub_factor_id]
+          if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && data.scoring[subFactor.id]) {
+            const scores = _.map(data.scoring[subFactor.id].results, r => r.value)
+            totalWeight += scores.length
+            commonValue += _.sum(scores)
+          }
+        })
+        sc.results[index].value = commonValue / totalWeight
+      }
+
+      if (factor.scoring_strategy === SCORING_STRATEGY_FACTOR_AVERAGE) {
+        let commonValue = 0
+        let totalWeight = 0
+        _.each(factor.factors_sub_factors, (factorSubFactor) => {
+          const subFactor = AppStore.mapFactors[this.dimensionId][factorSubFactor.sub_factor_id]
           if (subFactor && subFactor.scoring_strategy === SCORING_STRATEGY_QUESTIONS && this.scoring[subFactor.id]) {
-            commonValue += this.scoring[subFactor.id].results[index].getValue() * factorSubFactor.weight
-            totalWeight += factorSubFactor.weight
+            const result = this.scoring[subFactor.id].results[index]
+            if (result) {
+              commonValue += result.value * factorSubFactor.weight
+              totalWeight += factorSubFactor.weight
+            }
           }
         })
         sc.results[index].value = commonValue / totalWeight
       }
 
       _.each(sc.results, (scoring) => {
+        if (!scoring) { return }
         const average = _.round(scoring.value, 2)
         if (data.norm_data && data.norm_data.id && data.norm_data.type && norms[data.norm_data.id]) {
           const norma = norms[data.norm_data.id][data.norm_data.type.toLowerCase()]
@@ -519,6 +540,7 @@ _.extend(Result.prototype, {
 
     _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
       const sc = this.scoring[factorId]
+      if (!sc.results[index]) { return }
       const { value } = sc.results[index]
       const { norm } = sc.results[index]
       _.each(filters, (filter) => {
@@ -526,6 +548,13 @@ _.extend(Result.prototype, {
           this.resultsByFilter[filter.id].scoring[factorId].results.push(new Scoring({ value, norm }))
         }
       })
+    })
+  },
+
+  cleanupNullScorings () {
+    _.each(AppStore.mapFactors[this.dimensionId], (factor, factorId) => {
+      const sc = this.scoring[factorId]
+      _.remove(sc.results, r => r === null)
     })
   },
 

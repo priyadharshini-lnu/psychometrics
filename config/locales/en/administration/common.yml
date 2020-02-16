@@ -81,3 +81,6 @@ en:
       <<: *NAVIGATION
     tte: TTE
     tenancies: Tenancies
+    imports_assessments_result_imports:
+      new:
+        header: New

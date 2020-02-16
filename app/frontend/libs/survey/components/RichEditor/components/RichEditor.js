@@ -15,12 +15,9 @@ export class RichEditor extends Component {
     value: '',
   }
 
-  componentDidUpdate (prevProps) {
-    const { show, value } = this.props
-    if (value && show !== prevProps.show) {
-      // eslint-disable-next-line react/no-did-update-set-state
-      this.setState({ value })
-    }
+  componentDidMount () {
+    const { value } = this.props
+    this.setState({ value })
   }
 
   onChange = (value) => {
@@ -37,7 +34,6 @@ export class RichEditor extends Component {
   render () {
     const { close } = this.props
     const { value } = this.state
-
     return (
       <Modal show bsSize="lg" enforceFocus={false}>
         <Header>

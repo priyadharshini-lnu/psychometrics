@@ -11,8 +11,11 @@ en:
           tooltips:
             create: Create
         list:
-          updated_at: Modified Date
-          created_at: Created Date
+          active: Active
+          name: Name
+          linked_assessments: Linked assessments
+          updated_at: Modified date
+          created_at: Created date
         new:
           header: New Question
         edit:
@@ -34,19 +37,25 @@ en:
             copy: Copy Question
             edit: Edit Question
             delete: Delete Question
+          in_progress:
+            copying: Copying
+            deleting: Deleting
         new_assign:
           header: Assign Question to Assessments
       blocks:
         index:
           new: Add
           title: Blocks
-          templates: &templates
+          templates:
             <<: *templates
           tooltips:
             create: Create
         list:
-          updated_at: Modified Date
-          created_at: Created Date
+          active: Active
+          name: Name
+          linked_assessments: Linked assessments
+          updated_at: Modified date
+          created_at: Created date
         new:
           header: New Block
         edit:
@@ -54,7 +63,7 @@ en:
         destroy:
           successfully: Block %{name} was successfully deleted.
         copy:
-          error: Block #%{name} was not copied.
+          error: Block \#%{name} was not copied.
         sidebar:
           title: Block's options
           disable: Disable
@@ -68,5 +77,8 @@ en:
             copy: Copy Block
             edit: Edit Block
             delete: Delete Block
+          in_progress:
+            copying: Copying
+            deleting: Deleting
         new_assign:
           header: Assign Block to Assessments
