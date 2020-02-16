@@ -8,6 +8,7 @@ import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
+import store from '../../../../store'
 
 const { Content } = Layout
 
@@ -164,6 +165,7 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
                 />
               </div>
             )}
