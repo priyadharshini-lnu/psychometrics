@@ -20,6 +20,7 @@
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-this-alias": 0,
+    "@typescript-eslint/no-unused-vars": 0,
     "semi": [2, "never"],
     "max-len": [2, 120, 2],
     "no-debugger": "off",
