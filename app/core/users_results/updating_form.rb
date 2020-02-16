@@ -7,5 +7,7 @@ module UsersResults
     attribute :norm_id, Integer, default: nil
     attribute :answers, Hash, default: nil
     attribute :step, Integer, default: 0
+    attribute :current_element, String, default: 0
+    attribute :current_page, Integer, default: 0
   end
 end
