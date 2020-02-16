@@ -43,6 +43,7 @@ const HANDLERS = {
       ...defaultState,
       type: data.type,
       isThreesixty: data.isThreesixty,
+      resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
       allPages: initPages(data),

@@ -57,7 +57,11 @@ _.extend(AssessmentPreviewStore.prototype, {
 
     // init data before flow initializing
     rstore.dispatch({
-      type: 'flow_processor/INIT', data: { ...data, type, isThreesixty: this.isThreesixty }, result: this.dbResult,
+      type: 'flow_processor/INIT',
+      data: {
+        ...data, type, isThreesixty: this.isThreesixty, resultsUrl: this.resultsUrl,
+      },
+      result: this.dbResult,
     })
     this.rstore = rstore
     this.flow = new FlowProcessor(this)
