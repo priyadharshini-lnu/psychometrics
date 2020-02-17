@@ -7,7 +7,7 @@ test:
   stage: test
   image: registry.gitlab.com/tte-lighthouse/psychometrics
   services:
-  - postgres:11@sha256:85d79cba2d4942dad7c99f84ec389a5b9cc84fb07a3dcd3aff0fb06948cdc03b
+  - postgres:latest
   - redis:latest
   cache:
     key: psychometrics-cache-key
