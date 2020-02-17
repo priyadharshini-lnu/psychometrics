@@ -84,11 +84,15 @@ export default function Question ({ filters, model }) {
             <td
               rowSpan={2}
               className={cs(styles.label, styles.competencyLabel)}
-              style={{ background: mainHeaderColor }}
+              style={{ color: mainHeaderColor }}
             >
               {I18nStore.t('reports.modules.single_value_cluster.questions')}
             </td>
-            <td colSpan={milestones.length} className={styles.label} style={{ background: mainHeaderColor }}>
+            <td
+              colSpan={milestones.length}
+              className={cs(styles.label, styles.questionLabel)}
+              style={{ color: mainHeaderColor }}
+            >
               {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
             </td>
           </tr>
@@ -96,8 +100,8 @@ export default function Question ({ filters, model }) {
             {milestones.map(m => (
               <td
                 key={m.id}
-                className={styles.label}
-                style={{ background: secondHeaderColor }}
+                className={cs(styles.label, styles.milestoneLabel)}
+                style={{ borderBottomColor: m.color, color: secondHeaderColor }}
                 width={`${milestoneColumnWidth}%`}
               >
                 {m.name}

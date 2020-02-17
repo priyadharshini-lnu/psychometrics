@@ -68,12 +68,16 @@ export default function Factor ({ model, filters }) {
             <td
               rowSpan={2}
               className={cs(styles.label, styles.competencyLabel)}
-              style={{ background: mainHeaderColor }}
               width={`${DESC_COLUMN_WIDTH}%`}
+              style={{ color: mainHeaderColor }}
             >
               {I18nStore.t('reports.modules.single_value_cluster.competency')}
             </td>
-            <td colSpan={milestones.length} className={styles.label} style={{ background: mainHeaderColor }}>
+            <td
+              colSpan={milestones.length}
+              className={cs(styles.label, styles.factorLabel)}
+              style={{ color: mainHeaderColor }}
+            >
               {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
             </td>
           </tr>
@@ -81,8 +85,8 @@ export default function Factor ({ model, filters }) {
             {milestones.map(m => (
               <td
                 key={m.id}
-                className={styles.label}
-                style={{ background: secondHeaderColor }}
+                className={cs(styles.label, styles.milestoneLabel)}
+                style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
                 width={`${milestoneColumnWidth}%`}
               >
                 {m.name}
@@ -96,7 +100,7 @@ export default function Factor ({ model, filters }) {
             return (
               <tr key={id}>
                 <td className={styles.factorcell}>
-                  <div className={styles.factor} style={{ color: mainHeaderColor }}>
+                  <div className={styles.factor} style={{ color: secondHeaderColor }}>
                     <div className="display-flex">
                       {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
                       <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>

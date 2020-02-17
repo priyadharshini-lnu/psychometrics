@@ -16,6 +16,7 @@ export default function MilestoneTd ({
 
   const keyedResults = _.keyBy(filteredResults, 'id')
   const positionByValue = value => (parseFloat(value) - parseFloat(min)) * 100 / (parseFloat(max) - parseFloat(min))
+  const reverseLabel = value => parseFloat(value) > ((parseFloat(max) + parseFloat(min)) / 2)
   const locale = I18nStore.locale || 'en'
   const direction = locale === 'ar' ? 'right' : 'left'
   return (
@@ -33,6 +34,7 @@ export default function MilestoneTd ({
                   filter={keyedResults[filter.id]}
                   model={model}
                   style={{ [direction]: `${position}%`, transform: `translateX(${translateX}%)` }}
+                  reversed={reverseLabel(result.value)}
                 />
               )}
             </div>
@@ -44,14 +46,22 @@ export default function MilestoneTd ({
   )
 }
 
-function FilterComponent ({ filter, model, style }) {
+function FilterComponent ({
+  filter,
+  model,
+  style,
+  reversed,
+}) {
   const { showLabels, showValues } = model.props
   const fontSize = showLabels || showValues ? 10 : 8
+  const classes = [styles.container, reversed ? styles.reversed : '', showValues ? styles.outline : '']
+
   style.bottom = `${-fontSize}px`
+
   return (
-    <div className={styles.container} style={style}>
+    <div className={cs(classes)} style={style}>
       <FilterAvatar filter={filter} fontSize={fontSize} showLabel={showLabels} />
-      {showValues && <div className={styles.value}>{filter.value}</div>}
+      {showValues && <div className={styles.value} style={{ fontSize: `${fontSize}px` }}>{filter.value}</div>}
     </div>
   )
 }
