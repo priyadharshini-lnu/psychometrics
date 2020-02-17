@@ -3,7 +3,7 @@
 import _ from 'lodash'
 import { nextElementIdSelector, elementSelector } from './selectors'
 import BranchProcessor from './types/Branch'
-import { setEmbededData } from './actions'
+import { setEmbeddedData } from './actions'
 
 const BLOCK = 'Block'
 const BRANCH = 'Branch'
@@ -56,7 +56,7 @@ export default function ElementProcessor (
         obj[s.key] = s.value
         return obj
       }, {})
-      dispatch(setEmbededData(data))
+      dispatch(setEmbeddedData(data))
       id = nextElementIdSelector(store, id)
       continue
     }

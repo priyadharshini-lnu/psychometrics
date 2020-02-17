@@ -196,6 +196,7 @@ Object {
       },
     },
     "pages": Array [],
+    "prevPages": Array [],
     "questions": Object {
       "1": Object {
         "block_id": 1,
@@ -385,6 +386,7 @@ Object {
     "initialized": false,
     "normalizedTree": Object {},
     "pages": Array [],
+    "prevPages": Array [],
     "questions": Object {},
     "results": Object {},
     "type": "preview",

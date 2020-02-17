@@ -4,10 +4,17 @@ import {
   NEXT_PAGE, PREV_PAGE, ANSWER,
   SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
-  SET_EMBEDDED_DATA, HIDE_QUESTION,
+  SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
+  REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
+
+export const prevPage = (params = {}) => ({ type: PREV_PAGE, ...params })
+
+export const addPrevPage = page => ({ type: ADD_PREV_PAGE, page })
+
+export const removePrevPage = () => ({ type: REMOVE_PREV_PAGE })
 
 export const showErrors = errors => ({ type: SHOW_ERRORS, errors })
 
@@ -17,11 +24,14 @@ export const showPage = page => ({ type: SHOW_PAGE, page })
 
 export const showEnd = () => ({ type: SHOW_END })
 
-export const changeElement = (id: string) => ({ type: CHANGE_ELEMENT, id })
+export const changeElement = (id: string, page?: number) => ({ type: CHANGE_ELEMENT, id, page })
 
 export const hideQuestion = id => ({ type: HIDE_QUESTION, id })
+export const showQuestion = id => ({ type: SHOW_QUESTION, id })
 
-export const setEmbededData = data => ({ type: SET_EMBEDDED_DATA, data })
+export const setEmbeddedData = data => ({ type: SET_EMBEDDED_DATA, data })
+
+export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
 
 export const saveResults = (preview) => {
   const data = {

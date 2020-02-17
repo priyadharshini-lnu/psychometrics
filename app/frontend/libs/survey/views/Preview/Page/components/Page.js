@@ -71,7 +71,7 @@ class Page extends Component {
 
   render () {
     const {
-      type, page, questions, errors, nextPage, enableProgress,
+      type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage,
     } = this.props
     if (!page) { return }
     return (
@@ -84,7 +84,9 @@ class Page extends Component {
         {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
         {!store.ignoreValidation && errors && this.renderErrors(page)}
         <QuestionList page={page} questions={questions} />
-        {type !== 'preview_block' && <Footer page={page} nextPage={nextPage} />}
+        {type !== 'preview_block' && (
+          <Footer hasBack={enableBack} hasPrevPage={hasPrevPage} page={page} prevPage={prevPage} nextPage={nextPage} />
+        )}
       </div>
     )
   }

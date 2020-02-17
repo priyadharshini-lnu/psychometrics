@@ -7,7 +7,7 @@ export const END_OF_BLOCK = 'EndOfBlock'
 export const SPECIFIC_BLOCK = 'SpecificBlock'
 
 export default function SkipLogicProcessor (logic, questions, results) {
-  const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]))
+  const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
   const conditions = _.map(logic, (cond) => {
     cond.conditionType = 'Question'
     return [cond]

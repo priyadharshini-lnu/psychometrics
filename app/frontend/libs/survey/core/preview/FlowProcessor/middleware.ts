@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
-  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion,
+  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion, showQuestion, addPrevPage,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
@@ -22,12 +22,14 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     const { preview } = getState()
     const displayLogic = displayLogicSelector(preview)
     if (displayLogic) {
+      const questions = pageQuestions(preview)
       if (!DisplayLogicProcessor(displayLogic, preview.questions, preview.results)) {
-        const questions = pageQuestions(preview)
         dispatch(hideQuestion(questions[0].id))
         if (questions.length === 1) {
           nextPage()
         }
+      } else if (questions[0].hidden) {
+        dispatch(showQuestion(questions[0].id))
       }
     }
   }
@@ -77,6 +79,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   // save results to backend
   if (preview.type === 'pass_assessment') {
     dispatch(saveResults(preview))
+  }
+
+  if (preview.currentElement) {
+    dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage }))
   }
 
   const skipLogic = skipLogicSelector(preview)

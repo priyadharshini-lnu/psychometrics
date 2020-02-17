@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { normalize } from 'normalizr'
 import { setIn } from 'utils/immutable'
@@ -6,6 +7,7 @@ import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
+  ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
 } from './consts'
 
 const defaultState = {
@@ -21,6 +23,7 @@ const defaultState = {
   normalizedTree: {},
   allPages: {}, // {[blockId]: [{questions: [1,2,3], blockId}]}
   results: {},
+  prevPages: [], // [{element, page}, {element, page} ...]
   currentElement: null,
   currentPage: 0,
   errors: null,
@@ -65,11 +68,21 @@ const HANDLERS = {
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
   [SHOW_ERRORS]: (state, { errors }) => setIn(state, ['errors'], errors),
   [EMPTY_ERRORS]: state => setIn(state, ['errors'], null),
-  [CHANGE_ELEMENT]: (state, { id }) => ({ ...state, currentPage: 0, currentElement: id }),
-  [SHOW_PAGE]: (state, { page }) => setIn(state, ['currentPage'], page),
+  [CHANGE_ELEMENT]: (state, { id, page }) => ({ ...state, currentPage: page || 0, currentElement: id }),
+  [SHOW_PAGE]: (state, { page }) => ({ ...state, currentPage: page }),
+  [ADD_PREV_PAGE]: (state, { page }) => ({ ...state, prevPages: [...state.prevPages, page] }),
+  [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: state => ({ ...state, end: true }),
   [SET_EMBEDDED_DATA]: (state, { data }) => setIn(state, 'embeddedData', Object.assign({}, state.embeddedData, data)),
   [HIDE_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], true),
+  [SHOW_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], false),
+  [SET_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
+    const results = ids.reduce((results, id) => ({ ...results, [id]: { ...state.results[id], dirty: true } }), {})
+    return {
+      ...state,
+      results: { ...state.results, ...results },
+    }
+  },
 }
 
 export default createReducer(HANDLERS, defaultState)
