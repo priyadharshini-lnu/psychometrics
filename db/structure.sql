@@ -244,8 +244,7 @@ CREATE TABLE public.assigns (
     evaluator_id bigint,
     subject_id bigint,
     current_element character varying,
-    current_page character varying,
-    "integer" character varying,
+    current_page integer,
     seedrandom character varying
 );
 
@@ -2938,8 +2937,7 @@ CREATE TABLE public.users_results (
     norm_id bigint,
     campaign_id bigint,
     current_element character varying,
-    current_page character varying,
-    "integer" character varying,
+    current_page integer,
     seedrandom character varying
 );
 
