@@ -11,6 +11,7 @@ import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
+  SET_NOT_DIRTY_RESULTS,
 } from './consts'
 
 const defaultState: DefaultState = {
@@ -80,7 +81,20 @@ const HANDLERS = {
   [HIDE_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], true),
   [SHOW_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], false),
   [SET_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
-    const results = ids.reduce((results, id) => ({ ...results, [id]: { ...state.results[id], dirty: true } }), {})
+    const results = ids.reduce((results, id) => {
+      if (!state.results[id]) { return results }
+      return setIn(state.results, [id, 'dirty'], true)
+    }, {})
+    return {
+      ...state,
+      results: { ...state.results, ...results },
+    }
+  },
+  [SET_NOT_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
+    const results = ids.reduce((results, id) => {
+      if (!state.results[id]) { return results }
+      return ({ ...results, [id]: _.omit(state.results[id], 'dirty') })
+    }, {})
     return {
       ...state,
       results: { ...state.results, ...results },

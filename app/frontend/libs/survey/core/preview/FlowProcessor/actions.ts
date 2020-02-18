@@ -7,6 +7,7 @@ import {
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
+  SET_NOT_DIRTY_RESULTS,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
@@ -33,6 +34,7 @@ export const showQuestion = id => ({ type: SHOW_QUESTION, id })
 export const setEmbeddedData = data => ({ type: SET_EMBEDDED_DATA, data })
 
 export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
+export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })
 
 export const saveResults = (preview) => {
   const data = {

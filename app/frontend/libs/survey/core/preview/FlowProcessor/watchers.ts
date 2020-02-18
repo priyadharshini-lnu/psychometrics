@@ -3,9 +3,9 @@ import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
 import {
-  nextPage, setDirtyResults, changeElement, removePrevPage, saveResults,
+  nextPage, setDirtyResults, changeElement, removePrevPage, saveResults, setNotDirtyResults,
 } from './actions'
-import { getPrevPage, pageQuestions } from './selectors'
+import { getPrevPage, pageQuestions, pageQuestionsWithoutHidden } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END,
 } from './consts'
@@ -30,6 +30,12 @@ function* genPrevPage () {
   // update localStorage ???
 }
 
+function* genUpdateResultsAsNotDirty () {
+  const state = yield select()
+  const questions = pageQuestionsWithoutHidden(state.preview)
+  yield put(setNotDirtyResults(_.map(questions, 'id')))
+}
+
 function* getSaveResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
@@ -41,5 +47,6 @@ export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery(SHOW_PAGE, getSaveResults),
+  takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),
   takeEvery(SHOW_END, getSaveResults),
 ]
