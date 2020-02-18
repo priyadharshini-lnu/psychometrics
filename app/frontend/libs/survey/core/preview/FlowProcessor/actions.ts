@@ -1,4 +1,5 @@
 
+import _ from 'lodash'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE, ANSWER,
@@ -36,7 +37,9 @@ export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questi
 export const saveResults = (preview) => {
   const data = {
     resource: {
-      [preview.isThreesixty ? 'answers' : 'results']: preview.results,
+      [preview.isThreesixty ? 'answers' : 'results']: _.omitBy(preview.results, 'dirty'),
+      current_element: preview.currentElement,
+      current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
       status: preview.end ? 'completed' : 'in_progress',
     },

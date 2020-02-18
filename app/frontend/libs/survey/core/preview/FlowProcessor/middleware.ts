@@ -79,11 +79,6 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   dispatch(emptyErrors())
 
-  // save results to backend
-  if (preview.type === 'pass_assessment') {
-    dispatch(saveResults(preview))
-  }
-
   if (preview.currentElement) {
     dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage }))
   }

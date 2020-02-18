@@ -41,7 +41,6 @@ const HANDLERS = {
     if (elements.length === 0) {
       elements = InitLinearElements.run(normalizedData.entities.blocks)
     }
-
     const normalizedTree = NormalizeTree.run(elements)
 
     // saga triggers next_page to process element '0'
@@ -61,12 +60,12 @@ const HANDLERS = {
       linear: data.flow.elements.length === 0,
       blocks: normalizedData.entities.blocks,
       questions: normalizedData.entities.questions,
-      currentElement: result.currentElement || null,
-      currentPage: result.currentPage || 0,
+      currentElement: result.current_element || null,
+      currentPage: result.current_page || 0,
       randomseed: result.id || '', // use assign or user id
       initialized: true,
       dbResult: result,
-      results: result.results || {},
+      results: result.results || result.answers || {},
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),

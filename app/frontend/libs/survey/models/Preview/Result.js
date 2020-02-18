@@ -97,13 +97,12 @@ _.extend(Result.prototype, {
 
   answer (...args) {
     this.moduleResult.answer.apply(this.moduleResult, args)
-    if (!PreviewStore.flow) { return }
-    const pageResults = PreviewStore.flow.currentPage().results().reduce((res, current) => ({
-      ...res,
-      [current.question.id]: current.toJSON(),
-    }), {})
+    // const pageResults = PreviewStore.flow.currentPage().results().reduce((res, current) => ({
+    //   ...res,
+    //   [current.question.id]: current.toJSON(),
+    // }), {})
 
-    LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
+    // LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
     PreviewStore.rstore.dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })

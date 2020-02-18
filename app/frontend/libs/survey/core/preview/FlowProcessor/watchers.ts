@@ -6,11 +6,13 @@ import {
   nextPage, setDirtyResults, changeElement, removePrevPage, saveResults,
 } from './actions'
 import { getPrevPage, pageQuestions } from './selectors'
-import { INIT, PREV_PAGE, SHOW_END } from './consts'
+import {
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END,
+} from './consts'
 
 function* genInitPageProcessing () {
   const state = yield select()
-  if (!state.currentElement) {
+  if (!state.preview.currentElement) {
     yield put(nextPage())
   } else {
     yield put(nextPage({ testDisplayLogic: true }))
@@ -30,11 +32,14 @@ function* genPrevPage () {
 
 function* getSaveResults () {
   const state = yield select()
-  yield put(saveResults(state.preview))
+  if (state.preview.type === 'pass_assessment') {
+    yield put(saveResults(state.preview))
+  }
 }
 
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
+  takeEvery(SHOW_PAGE, getSaveResults),
   takeEvery(SHOW_END, getSaveResults),
 ]
