@@ -1,12 +1,12 @@
 import _ from 'lodash'
 import {
-  select, takeEvery, put,
+  select, takeEvery, put, takeLatest,
 } from 'redux-saga/effects'
 import {
-  nextPage, setDirtyResults, changeElement, removePrevPage, showQuestion,
+  nextPage, setDirtyResults, changeElement, removePrevPage, showQuestion, saveResults,
 } from './actions'
 import { getPrevPage, pageQuestions } from './selectors'
-import { INIT, PREV_PAGE } from './consts'
+import { INIT, PREV_PAGE, SHOW_END } from './consts'
 
 function* genInitPageProcessing () {
   const state = yield select()
@@ -28,7 +28,14 @@ function* genPrevPage () {
   // update localStorage ???
 }
 
+function* getSaveResults () {
+  const state = yield select()
+  console.log(state.preview.end)
+  yield put(saveResults(state.preview))
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
+  takeEvery(SHOW_END, getSaveResults),
 ]

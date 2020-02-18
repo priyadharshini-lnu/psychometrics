@@ -31,7 +31,7 @@ class PreviewContainer extends Component {
 
   componentWillUnmount () {
     store.reset()
-    this.appListener.remove()
+    // this.appListener.remove()
   }
 
   overlay () {
