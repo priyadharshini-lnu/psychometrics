@@ -1,5 +1,4 @@
-import DisplayLogicProcessor from 'libs/survey/core/preview/FlowProcessor/DisplayLogicProcessor'
-import { initPages } from 'libs/survey/core/preview/FlowProcessor/helpers'
+import DisplayLogicProcessor from 'libs/survey/core/preview/FlowProcessor/commands/DisplayLogicProcessor'
 import DefaultProps from 'libs/survey/constants/DefaultProps'
 
 const question = (id, data = {}) => ({ id, ...data })
@@ -15,7 +14,7 @@ const multipleChoice = {
 }
 
 test('empty display logic should return true', () => {
-  expect(DisplayLogicProcessor({}, {}, {})).toBe(false)
+  expect(DisplayLogicProcessor.run({}, {}, {})).toBe(false)
 })
 
 
@@ -49,7 +48,7 @@ test('display logic should return false for empty results', () => {
     3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor(displayLogic, questions, {})).toBe(false)
+  expect(DisplayLogicProcessor.run(displayLogic, questions, {})).toBe(false)
 })
 
 
@@ -60,5 +59,5 @@ test('display logic should return true for valid results', () => {
     3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor(displayLogic, questions, results)).toBe(true)
+  expect(DisplayLogicProcessor.run(displayLogic, questions, results)).toBe(true)
 })

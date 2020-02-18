@@ -1,5 +1,5 @@
-import SkipLogicProcessor from 'libs/survey/core/preview/FlowProcessor/SkipLogicProcessor'
-import { initPages } from 'libs/survey/core/preview/FlowProcessor/helpers'
+import SkipLogicProcessor from 'libs/survey/core/preview/FlowProcessor/commands/SkipLogicProcessor'
+import InitPages from 'libs/survey/core/preview/FlowProcessor/commands/InitPages'
 import DefaultProps from 'libs/survey/constants/DefaultProps'
 
 const question = (id, data = {}) => ({ id, ...data })
@@ -24,7 +24,7 @@ const textEntry = {
 }
 
 test('empty skip logic should return false', () => {
-  expect(SkipLogicProcessor([], {}, {})).toStrictEqual(false)
+  expect(SkipLogicProcessor.run([], {}, {})).toStrictEqual(false)
 })
 
 const skipLogic = {
@@ -47,7 +47,7 @@ test('first page should have skip logic', () => {
     questions: [question(1, { ...multipleChoice, skip_logic: [skipLogic] }), question(2, { ...multipleChoice }), question(3, multipleChoice)],
   }]
 
-  const pages = initPages({ blocks })
+  const pages = InitPages.run({ blocks })
 
   expect(pages[1][0].skipLogic).toStrictEqual([skipLogic])
 })
@@ -60,9 +60,9 @@ test('skip logic should return false for empty results', () => {
   }]
   const questions = blocks[0].questions.reduce((acc, q) => acc[q.id] = q)
 
-  const pages = initPages({ blocks })
+  const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor(pages[1][0].skipLogic, questions, {})).toStrictEqual(false)
+  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, {})).toStrictEqual(false)
 })
 
 test('valid skip logic should return type of skipping', () => {
@@ -71,9 +71,9 @@ test('valid skip logic should return type of skipping', () => {
     questions: [question(1, { ...multipleChoice, skip_logic: [skipLogic] }), question(2, { ...multipleChoice }), question(3, multipleChoice)],
   }]
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
-  const pages = initPages({ blocks })
+  const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'EndOfBlock' })
+  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'EndOfBlock' })
 })
 
 
@@ -93,9 +93,9 @@ test('skip to specific block should return type of skipping and block id', () =>
     questions: [question(1, { ...multipleChoice, skip_logic: [skipToSpecificBlock] }), question(2, { ...multipleChoice }), question(3, multipleChoice)],
   }]
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
-  const pages = initPages({ blocks })
+  const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'SpecificBlock', blockId: 2 })
+  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual({ type: 'SpecificBlock', blockId: 2 })
 })
 
 
@@ -105,7 +105,7 @@ test('skip to specific block should return false if block is not specified', () 
     questions: [question(1, { ...multipleChoice, skip_logic: [{ ...skipToSpecificBlock, destinationBlock: null }] }), question(2, { ...multipleChoice }), question(3, multipleChoice)],
   }]
   const questions = blocks[0].questions.reduce((acc, q) => { acc[q.id] = q; return acc }, {})
-  const pages = initPages({ blocks })
+  const pages = InitPages.run({ blocks })
 
-  expect(SkipLogicProcessor(pages[1][0].skipLogic, questions, results)).toStrictEqual(false)
+  expect(SkipLogicProcessor.run(pages[1][0].skipLogic, questions, results)).toStrictEqual(false)
 })

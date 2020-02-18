@@ -1,5 +1,5 @@
 
-import NormResolver from './NormResolver'
+import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE, ANSWER,
   SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
@@ -43,7 +43,7 @@ export const saveResults = (preview) => {
   }
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
   if (preview.end) {
-    const normData = NormResolver(preview.normRules, preview.hrisData, preview.questions, preview.results)
+    const normData = NormResolver.run(preview.normRules, preview.hrisData, preview.questions, preview.results)
     if (preview.isThreesixty) {
       Object.assign(data.resource, { norm_id: normData.id })
     } else {

@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import {
-  select, takeEvery, put, takeLatest,
+  select, takeEvery, put,
 } from 'redux-saga/effects'
 import {
-  nextPage, setDirtyResults, changeElement, removePrevPage, showQuestion, saveResults,
+  nextPage, setDirtyResults, changeElement, removePrevPage, saveResults,
 } from './actions'
 import { getPrevPage, pageQuestions } from './selectors'
 import { INIT, PREV_PAGE, SHOW_END } from './consts'
@@ -30,7 +30,6 @@ function* genPrevPage () {
 
 function* getSaveResults () {
   const state = yield select()
-  console.log(state.preview.end)
   yield put(saveResults(state.preview))
 }
 

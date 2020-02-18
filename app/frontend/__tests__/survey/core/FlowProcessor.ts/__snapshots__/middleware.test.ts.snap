@@ -195,7 +195,6 @@ Object {
         "type": "Block",
       },
     },
-    "pages": Array [],
     "prevPages": Array [],
     "questions": Object {
       "1": Object {
@@ -384,8 +383,9 @@ Object {
     "end": false,
     "errors": null,
     "initialized": false,
+    "isThreesixty": false,
+    "linear": false,
     "normalizedTree": Object {},
-    "pages": Array [],
     "prevPages": Array [],
     "questions": Object {},
     "results": Object {},

@@ -1,4 +1,4 @@
-import ValidationProcessor from 'libs/survey/core/preview/FlowProcessor/ValidationProcessor'
+import ValidationProcessor from 'libs/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
 import DefaultProps from 'libs/survey/constants/DefaultProps'
 
 const multipleChoice = {
@@ -23,24 +23,24 @@ const textEntry = {
 }
 
 test('empty validations should return empty array', () => {
-  expect(ValidationProcessor([], {})).toStrictEqual({})
+  expect(ValidationProcessor.run([], {})).toStrictEqual({})
 })
 
 test('required validation should return an error', () => {
-  expect(ValidationProcessor([multipleChoice], {})).toStrictEqual({
+  expect(ValidationProcessor.run([multipleChoice], {})).toStrictEqual({
     1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
   })
 })
 
 test('required validation should return an error', () => {
-  expect(ValidationProcessor([multipleChoice, textEntry], { 2: { answers: [{ value: 'test' }] } })).toStrictEqual({
+  expect(ValidationProcessor.run([multipleChoice, textEntry], { 2: { answers: [{ value: 'test' }] } })).toStrictEqual({
     1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
     2: [{ message: 'validations.min_length', type: 'MinLength' }],
   })
 })
 
 test('required return an error only required validation', () => {
-  expect(ValidationProcessor([multipleChoice, textEntry], { 2: { answers: [{ value: 'test test' }] } })).toStrictEqual({
+  expect(ValidationProcessor.run([multipleChoice, textEntry], { 2: { answers: [{ value: 'test test' }] } })).toStrictEqual({
     1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
   })
 })
@@ -50,5 +50,5 @@ test('required return empty errors for valid results', () => {
     1: { answers: [{ index: 0, value: true }] },
     2: { answers: [{ value: 'test test' }] },
   }
-  expect(ValidationProcessor([multipleChoice, textEntry], results)).toStrictEqual({})
+  expect(ValidationProcessor.run([multipleChoice, textEntry], results)).toStrictEqual({})
 })

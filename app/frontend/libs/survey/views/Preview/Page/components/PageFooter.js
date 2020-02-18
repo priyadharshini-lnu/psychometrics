@@ -22,7 +22,6 @@ class PageFooter extends Component {
 
   render () {
     const { page, hasBack, hasPrevPage } = this.props
-    console.log(hasPrevPage)
     return (
       <div className={styles.footer}>
         {hasBack && hasPrevPage && (

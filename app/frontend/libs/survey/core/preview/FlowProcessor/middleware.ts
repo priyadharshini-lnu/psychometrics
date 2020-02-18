@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
-  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion, showQuestion, addPrevPage,
+  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion, showQuestion,
+  addPrevPage, setEmbeddedData,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
-  pageQuestions, pageQuestionsWithoutHidden, nextPageSelector, nextElementIdSelector,
-  skipLogicSelector, displayLogicSelector, selectElementIdByBlockId,
+  pageQuestions, pageQuestionsWithoutHidden, getNextPage, getNextElementId,
+  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId,
 } from './selectors'
-import ValidationProcessor from './ValidationProcessor'
-import ElementProcessor from './ElementProcessor'
-import SkipLogicProcessor, { END_OF_ASSESSMENT, END_OF_BLOCK, SPECIFIC_BLOCK } from './SkipLogicProcessor'
-import DisplayLogicProcessor from './DisplayLogicProcessor'
-
+import ValidationProcessor from './commands/ValidationProcessor'
+import ElementProcessor from './commands/ElementProcessor'
+import SkipLogicProcessor, { END_OF_ASSESSMENT, END_OF_BLOCK, SPECIFIC_BLOCK } from './commands/SkipLogicProcessor'
+import DisplayLogicProcessor from './commands/DisplayLogicProcessor'
 
 const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   if (action.type !== NEXT_PAGE) { return next(action) }
@@ -20,10 +20,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   const processDisplayLogic = () => {
     const { preview } = getState()
-    const displayLogic = displayLogicSelector(preview)
+    const displayLogic = getDisplayLogicSelector(preview)
     if (displayLogic) {
       const questions = pageQuestions(preview)
-      if (!DisplayLogicProcessor(displayLogic, preview.questions, preview.results)) {
+      if (!DisplayLogicProcessor.run(displayLogic, preview.questions, preview.results)) {
         dispatch(hideQuestion(questions[0].id))
         if (questions.length === 1) {
           nextPage()
@@ -36,7 +36,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
 
   const nextPage = () => {
     const { preview } = getState()
-    const page = nextPageSelector(preview)
+    const page = getNextPage(preview)
 
     if (page) {
       dispatch(showPage(preview.currentPage + 1))
@@ -47,9 +47,12 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const processNextElement = () => {
-    const result = ElementProcessor(preview, nextElementIdSelector(preview), dispatch)
-    if (result) {
-      dispatch(changeElement(result.element))
+    const { element, embeddedData } = ElementProcessor.run(preview, getNextElementId(preview))
+    if (_.size(embeddedData) > 0) {
+      dispatch(setEmbeddedData(embeddedData))
+    }
+    if (element) {
+      dispatch(changeElement(element))
       processDisplayLogic()
     } else {
       dispatch(showEnd())
@@ -67,7 +70,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const questions = pageQuestionsWithoutHidden(preview)
-  const errors = ValidationProcessor(questions, preview.results)
+  const errors = ValidationProcessor.run(questions, preview.results)
 
   if (_.size(errors) > 0) {
     dispatch(showErrors(errors))
@@ -85,10 +88,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage }))
   }
 
-  const skipLogic = skipLogicSelector(preview)
+  const skipLogic = getSkipLogicSelector(preview)
 
   if (skipLogic) {
-    const skipResult = SkipLogicProcessor(skipLogic, preview.questions, preview.results)
+    const skipResult = SkipLogicProcessor.run(skipLogic, preview.questions, preview.results)
     if (skipResult) {
       if (skipResult.type === END_OF_ASSESSMENT) {
         dispatch(showEnd())
@@ -99,7 +102,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
         return
       }
       if (skipResult.type === SPECIFIC_BLOCK && preview.linear) {
-        const element = selectElementIdByBlockId(preview, skipResult.blockId)
+        const element = getElementIdByBlockId(preview, skipResult.blockId)
         dispatch(changeElement(element))
         processDisplayLogic()
         return

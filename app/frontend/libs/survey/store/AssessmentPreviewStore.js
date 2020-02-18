@@ -4,7 +4,7 @@ import FlowProcessor from 'models/FlowProcessor'
 import Result from 'models/Preview/Result'
 // import Question from 'models/Preview/Question'
 import LocalStorage from 'utils/LocalStorage'
-
+import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
 // TODO (atanych): Replace current RandOrder with new one to lookup question was answered or not.
 // TODO (atanych): After it we might remove RankOrder from list below
 export const NOT_ANSWERED_QUESTIONS = ['StaticContent', 'MetaInfo', 'Timing', 'RankOrder', 'PageBreak']
@@ -57,7 +57,7 @@ _.extend(AssessmentPreviewStore.prototype, {
 
     // init data before flow initializing
     rstore.dispatch({
-      type: 'flow_processor/INIT',
+      type: INIT,
       data: {
         ...data, type, isThreesixty: this.isThreesixty, resultsUrl: this.resultsUrl,
       },

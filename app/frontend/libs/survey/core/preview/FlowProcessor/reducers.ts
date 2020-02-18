@@ -2,7 +2,10 @@ import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { normalize } from 'normalizr'
 import { setIn } from 'utils/immutable'
-import { initPages, initLinearElements, normalizeTree } from './helpers'
+import InitPages from './commands/InitPages'
+import NormalizeTree from './commands/NormalizeTree'
+import InitLinearElements from './commands/InitLinearElements'
+import { DefaultState } from './interfaces'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
@@ -10,16 +13,17 @@ import {
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
 } from './consts'
 
-const defaultState = {
+const defaultState: DefaultState = {
   initialized: false,
+  isThreesixty: false,
   type: 'preview',
   enableBack: false,
   enableProgress: false,
+  linear: false,
   elements: [],
   blocks: {},
   questions: {},
   embeddedData: {},
-  pages: [],
   normalizedTree: {},
   allPages: {}, // {[blockId]: [{questions: [1,2,3], blockId}]}
   results: {},
@@ -35,10 +39,10 @@ const HANDLERS = {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
     let { elements } = data.flow
     if (elements.length === 0) {
-      elements = initLinearElements(normalizedData.entities.blocks)
+      elements = InitLinearElements.run(normalizedData.entities.blocks)
     }
 
-    const normalizedTree = normalizeTree(elements)
+    const normalizedTree = NormalizeTree.run(elements)
 
     // saga triggers next_page to process element '0'
 
@@ -49,7 +53,7 @@ const HANDLERS = {
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: false, // disabled for refactoring data.enable_progress,
-      allPages: initPages(data),
+      allPages: InitPages.run(data),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -73,7 +77,7 @@ const HANDLERS = {
   [ADD_PREV_PAGE]: (state, { page }) => ({ ...state, prevPages: [...state.prevPages, page] }),
   [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: state => ({ ...state, end: true }),
-  [SET_EMBEDDED_DATA]: (state, { data }) => setIn(state, 'embeddedData', Object.assign({}, state.embeddedData, data)),
+  [SET_EMBEDDED_DATA]: (state, { data }) => setIn(state, 'embeddedData', { ...state.embeddedData, ...data }),
   [HIDE_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], true),
   [SHOW_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], false),
   [SET_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
