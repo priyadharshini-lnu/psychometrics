@@ -37,6 +37,8 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
+      // fix wrong norms initializing app/models/assessments/common.rb:23
+      norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules,
       propPanel: {
         question: null,
         offset: null,
