@@ -1,9 +1,10 @@
 import _ from 'lodash'
 import Result from 'libs/survey/models/Preview/Result'
 import { setIn } from 'utils/immutable'
+import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 const ValidationProcessor = {
-  run (questions, results) {
+  run (questions: QuestionsInterface, results: ResultsInterface) {
     return _.reduce(questions, (errors, question) => {
       const result = results[question.id] || {}
 

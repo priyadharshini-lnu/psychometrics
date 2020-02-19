@@ -50,9 +50,9 @@ export const saveResults = (preview) => {
   if (preview.end) {
     const normData = NormResolver.run(preview.normRules, preview.hrisData, preview.questions, preview.results)
     if (preview.isThreesixty) {
-      Object.assign(data.resource, { norm_id: normData.id })
+      data.resource = { ...data.resource, norm_id: normData.id }
     } else {
-      Object.assign(data.resource, { norm_data: normData })
+      data.resource = { ...data.resource, norm_data: normData }
     }
   }
   return {

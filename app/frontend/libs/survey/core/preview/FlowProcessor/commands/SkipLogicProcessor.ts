@@ -1,18 +1,16 @@
 import _ from 'lodash'
 import ConditionResolver from 'libs/survey/models/ConditionResolver'
 import QuestionSerializer from 'libs/survey/models/QuestionSerializer'
+import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 export const END_OF_ASSESSMENT = 'EndOfAssessment'
 export const END_OF_BLOCK = 'EndOfBlock'
 export const SPECIFIC_BLOCK = 'SpecificBlock'
 
 const SkipLogicProcessor = {
-  run (logic, questions, results) {
+  run (logic, questions: QuestionsInterface, results: ResultsInterface) {
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
-    const conditions = _.map(logic, (cond) => {
-      cond.conditionType = 'Question'
-      return [cond]
-    })
+    const conditions = _.map(logic, cond => [{ ...cond, conditionType: 'Question' }])
 
     for (let i = 0; i < conditions.length; i += 1) {
       const resolver = new ConditionResolver(conditions[i], qwraps, results)

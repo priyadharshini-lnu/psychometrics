@@ -1,4 +1,4 @@
-const NextElementId = {
+const GetNextElementId = {
   run (id: string): string {
     if (!id) { return '0' }
     const path: string[] = id.split('/')
@@ -7,4 +7,4 @@ const NextElementId = {
   },
 }
 
-export default NextElementId
+export default GetNextElementId

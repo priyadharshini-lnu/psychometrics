@@ -1,4 +1,4 @@
-const NextParentElementId = {
+const GetNextParentElementId = {
   run (id: string): string | null {
     const path: string[] = id.split('/')
     path.pop()
@@ -9,4 +9,4 @@ const NextParentElementId = {
     return null
   },
 }
-export default NextParentElementId
+export default GetNextParentElementId

@@ -1,13 +1,14 @@
 import _ from 'lodash'
 import shuffle from 'utils/shuffle'
 import seedrandom from 'seedrandom'
+import { QuestionsInterface, PageInterface } from '../interfaces'
 
 const RandomizeBlockQuestions = {
   run (
     randomization: {type: string; questions?: number} | undefined,
-    pages,
+    pages: PageInterface[],
     seed = '',
-  ) {
+  ): PageInterface[] {
     if (!randomization) { return pages }
 
     const randomize = unordered => pages.reduce((res, page) => {
@@ -16,6 +17,7 @@ const RandomizeBlockQuestions = {
       unordered = _.drop(unordered, page.questions.length)
       return [...res, p]
     }, [])
+
     const questionIds = _.flatten(pages.map(p => p.questions))
     const shuffledQuestionIds = shuffle(questionIds, seedrandom(seed))
 

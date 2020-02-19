@@ -2,8 +2,8 @@ import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
 import { question } from '../../../store/schema'
-import NextElementId from './commands/NextElementId'
-import NextParentElementId from './commands/NextParentElementId'
+import GetNextElementId from './commands/GetNextElementId'
+import GetNextParentElementId from './commands/GetNextParentElementId'
 import { ElementInterface } from './interfaces'
 
 export const getQuestions = (state, ids) => denormalize(ids, [question], state)
@@ -34,13 +34,13 @@ export const getNextPage = (state) => {
 }
 
 export const getNextElementId = (state, element: string | null = null) => {
-  let id: string | null = NextElementId.run(element || state.currentElement)
+  let id: string | null = GetNextElementId.run(element || state.currentElement)
   if (state.normalizedTree[id]) {
     return id
   }
 
   // eslint-disable-next-line no-cond-assign
-  while (id = NextParentElementId.run(id)) {
+  while (id = GetNextParentElementId.run(id)) {
     if (state.normalizedTree[id]) {
       return id
     }

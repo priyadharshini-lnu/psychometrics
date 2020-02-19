@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-continue */
 import _ from 'lodash'
+import { setIn, merge } from 'utils/immutable'
 import { getNextElementId, getElement } from '../selectors'
 import BranchProcessor from './BranchProcessor'
 import { ElementInterface } from '../interfaces'
@@ -12,7 +13,7 @@ const END = 'EndOfAssessment'
 const RANDOMIZATION = 'Randomizer'
 
 interface BlockResult {
-  element?: string;
+  element?: string | null;
   embeddedData: {};
 }
 
@@ -24,46 +25,45 @@ const ElementProcessor = {
   run (
     store, current: string | null,
   ): BlockResult {
-    let element: ElementInterface | null
-    let id = current
-    let embeddedData = { }
+    let element: ElementInterface
+    let result = { element: current, embeddedData: {} }
     // eslint-disable-next-line no-cond-assign
-    while (element = getElement(store, id)) {
+    while (element = getElement(store, result.element)) {
       if (!element) { break }
 
       switch (element.type) {
         case BRANCH:
           if (BranchProcessor.run(store, element)) {
-            id = `${id}/0`
-            const { element, embeddedData: ed } = ElementProcessor.run(store, id)
-            embeddedData = { ...embeddedData, ...ed }
+            result = setIn(result, 'element', `${result.element}/0`)
+            const { element, embeddedData } = ElementProcessor.run(store, result.element)
+            result = merge(result, { element, embeddedData: { ...result.embeddedData, ...embeddedData } })
             if (element) {
-              return { element, embeddedData }
+              return result
             }
           }
           break
         case RANDOMIZATION:
-          id = `${id}/0`
+          result = setIn(result, 'element', `${result.element}/0`)
           continue
         case EMBEDDED_DATA:
-          embeddedData = _.reduce(
+          result = setIn(result, 'embeddedData', _.reduce(
             element.props.storage, (obj, s: {key; value}) => ({ ...obj, [s.key]: s.value }),
-            embeddedData,
-          )
+            result.embeddedData,
+          ))
           break
         case END:
-          return { embeddedData }
+          return { embeddedData: result.embeddedData }
         case BLOCK:
-          if (id) {
-            return { element: id, embeddedData }
+          if (result.element) {
+            return result
           }
           break
         default:
       }
 
-      id = getNextElementId(store, id)
+      result = setIn(result, 'element', getNextElementId(store, result.element))
     }
-    return { embeddedData }
+    return { embeddedData: result.embeddedData }
   },
 }
 

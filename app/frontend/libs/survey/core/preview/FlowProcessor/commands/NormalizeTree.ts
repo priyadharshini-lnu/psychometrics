@@ -8,21 +8,21 @@ import { NormalizedTree } from '../interfaces'
   result {'0': element, '0/0': element ...}
 */
 
+const RANDOMIZER = 'Randomizer'
+
 const NormalizeTree = {
   run (roots, seed = ''): NormalizedTree {
-    const isRandomizer = ({ type, props }) => (type === 'Randomizer' ? { count: props.number } : null)
-
-    const eachChild = (list, child, path: string, randomize: {count: number} | null = null) => {
-      if (child?.elements?.length) {
+    const eachChild = (list, child, path: string) => {
+      if (child.elements?.length) {
         let { elements } = child
-        if (randomize) {
-          elements = _.take(shuffle(elements, seedrandom(seed)), randomize.count)
+        if (child.type === RANDOMIZER) {
+          elements = _.take(shuffle(elements, seedrandom(seed)), child.props.number)
         }
-        list = _.reduce(elements, (list, child, i) => eachChild(list, child, `${path}/${i}`, isRandomizer(child)), list)
+        list = _.reduce(elements, (list, child, i) => eachChild(list, child, `${path}/${i}`), list)
       }
       return { ...list, [path]: _.omit(child, ['elements']) }
     }
-    return _.reduce(roots, (list, child, i) => eachChild(list, child, `${i}`, isRandomizer(child)), {})
+    return _.reduce(roots, (list, child, i) => eachChild(list, child, `${i}`), {})
   },
 }
 export default NormalizeTree
