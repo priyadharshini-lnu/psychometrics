@@ -54,26 +54,7 @@ module Anonym
     end
 
     def create_anonym_user
-      # Generate uniq anonym user email
-      uniq_anonym_email = loop do
-        email = "anonym#{Time.now.to_i}#{rand(10_000)}@example.com"
-        break email unless User.exists?(email: email)
-      end
-
-      # Build anonym user with membership
-      User.create(
-        role: User::REGULAR_ROLE,
-        first_name: 'Anonymous',
-        last_name: 'User',
-        email: uniq_anonym_email,
-        is_anonym: true,
-        password: uniq_anonym_email,
-        password_confirmation: uniq_anonym_email,
-        project: @client.project,
-        memberships_attributes: [{
-          client_id: @client.id
-        }]
-      )
+      Users::CreateAnonym.call!(@client)
     end
 
     def set_anonym_cookie(user)

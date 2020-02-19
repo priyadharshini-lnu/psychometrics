@@ -76,7 +76,7 @@ module Administration
       def resource_params
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
-                                         :privacy_consent, :two_factor_enabled,
+                                         :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                                          privacy_link_attributes: %i[id text link _destroy])
       end
 

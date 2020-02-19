@@ -33,5 +33,9 @@ export default function ErrorAlertBox ({
 }
 
 function ErrorMessage ({ errors }) {
-  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
+  return (
+    <div>
+      {_.values(errors).map(error => error.map((e, i) => <div style={{ whiteSpace: 'normal' }} key={i}>{e}</div>))}
+    </div>
+  )
 }

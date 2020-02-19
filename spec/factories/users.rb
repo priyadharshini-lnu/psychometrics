@@ -36,7 +36,7 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user+#{n}@example.com" }
-    password 'password'
+    password 'Pass123$'
     role User::REGULAR_ROLE
     first_name 'test'
     last_name 'test'

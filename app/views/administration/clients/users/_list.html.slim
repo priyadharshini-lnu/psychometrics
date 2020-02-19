@@ -20,5 +20,5 @@
         = render partial: 'resource', collection: resources
       - else
         tr.no_records
-          td align='center' colspan='10' = t('administration.no_data_found')
+          td align='center' colspan='11' = t('administration.no_data_found')
   = paginate resources, theme: 'twitter-bootstrap-3'

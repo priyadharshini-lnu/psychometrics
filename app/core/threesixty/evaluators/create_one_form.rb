@@ -13,6 +13,7 @@ module Threesixty
       validates :evaluator_email, :subject_email, format: { with: Devise.email_regexp }
       validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
       validates :evaluator_password, length: { within: Devise.password_length }, allow_blank: true
+      validates :evaluator_password, allow_blank: true, strong_password: true, if: :enable_strong_password?
 
       validate :check_subject
       validate :check_existing_relationship
@@ -51,6 +52,10 @@ module Threesixty
       def evaluator_user
         @evaluator_user ||= context.campaign.evaluators.includes(:user).
                             where(users: { email: evaluator_email }).first&.user
+      end
+
+      def enable_strong_password?
+        context.campaign.project.try(:strong_password_enabled)
       end
     end
   end
