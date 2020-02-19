@@ -51,7 +51,7 @@ en:
       toggle_status:
         successfully: User %{name} was successfully updated.
       reset_password:
-        successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
+        successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
       spoof:
         successfully: You was successfully login as %{name}
       sidebar:
@@ -98,6 +98,9 @@ en:
               Delete <strong>%{name}</strong> ?
             body: >
               <p>Are you sure you want to delete this User?</p>
+      password:
+        guidelines:
+          error: "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
     clients:
       project_admins:
         <<: *USERS
