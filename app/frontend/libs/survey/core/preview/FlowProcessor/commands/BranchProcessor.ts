@@ -4,7 +4,7 @@ import QuestionSerializer from 'libs/survey/models/QuestionSerializer'
 import { ElementInterface, QuestionsInterface, ResultsInterface } from '../interfaces'
 
 const BranchProcessor = {
-  run ({ questions, results }, element: ElementInterface) {
+  run ({ questions, results }: { questions: QuestionsInterface; results: ResultsInterface}, element: ElementInterface) {
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
     const resolver = new ConditionResolver(element.props.conditions, qwraps, results)
     return !!resolver.resolve()

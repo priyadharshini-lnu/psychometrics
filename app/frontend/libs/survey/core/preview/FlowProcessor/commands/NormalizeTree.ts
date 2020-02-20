@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
 import shuffle from 'utils/shuffle'
 import seedrandom from 'seedrandom'
@@ -11,7 +12,7 @@ import { NormalizedTree } from '../interfaces'
 const RANDOMIZER = 'Randomizer'
 
 const NormalizeTree = {
-  run (roots, seed = ''): NormalizedTree {
+  run (roots: any, seed = ''): NormalizedTree {
     const eachChild = (list, child, path: string) => {
       if (child.elements?.length) {
         let { elements } = child

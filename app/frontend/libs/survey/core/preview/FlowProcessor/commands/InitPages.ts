@@ -13,14 +13,14 @@ const InitPages = {
         if (q.deleted) { return }
         if (q.type === 'PageBreak') {
           if (questions.length) {
-            pages[b.id] = pages[b.id].concat([{ questions, blockId: b.id }])
+            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
           }
           return []
         }
 
         if (q.display_logic) {
           if (questions.length > 0) {
-            pages[b.id] = pages[b.id].concat([{ questions, blockId: b.id }])
+            pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
           }
           questions = [q.id]
         }
@@ -33,7 +33,7 @@ const InitPages = {
             questions, blockId: b.id, skipLogic: q.skip_logic,
           }
 
-          pages[b.id] = pages[b.id].concat([attrs])
+          pages[b.id] = [...pages[b.id], attrs]
           return []
         }
         if (!_.includes(questions, q.id)) {
@@ -47,7 +47,7 @@ const InitPages = {
           questions, blockId: b.id,
         }
 
-        pages[b.id] = pages[b.id].concat(attrs)
+        pages[b.id] = [...pages[b.id], attrs]
       }
       if (b.props && b.props.randomization) {
         pages[b.id] = RandomizeBlockQuestions.run(b.props.randomization, pages[b.id], seed)
