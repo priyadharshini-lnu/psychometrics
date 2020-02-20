@@ -6,7 +6,7 @@ import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
 import {
-  Question, ElementInterface, PageInterface, ResultsInterface,
+  Question, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
 } from './interfaces'
 
 export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
@@ -18,7 +18,7 @@ export const getResults = (state): ResultsInterface => state.results
 export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
-export const getCurrentElement = (state): ElementInterface => state.normalizedTree[state.currentElement]
+export const getCurrentElement = (state): BlockElementInterface => state.normalizedTree[state.currentElement]
 
 export const getElementIdByBlockId = (state, blockId): string => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,

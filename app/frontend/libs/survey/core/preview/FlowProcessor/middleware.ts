@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
@@ -48,7 +47,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const processNextElement = () => {
-    const { element, embeddedData } = ElementProcessor.run({ store: preview, current: getNextElementId(preview) })
+    const { element, embeddedData } = ElementProcessor.run(preview, getNextElementId(preview))
     if (_.size(embeddedData) > 0) {
       dispatch(setEmbeddedData(embeddedData))
     }

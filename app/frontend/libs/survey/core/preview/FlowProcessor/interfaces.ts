@@ -7,6 +7,7 @@ export interface Question {
   skip_logic?: object[]
   required_validation?: object
   props?: any
+  hidden?: boolean
 }
 
 export interface Block {
@@ -24,10 +25,17 @@ export interface PageInterface {
   blockId: number
   skipLogic?: {}
 }
+export interface BlockElementInterface {
+  type: string
+  props: {
+    current: string
+  }
+  elements: any[]
+}
+
 export interface ElementInterface {
   type: string
   props: {
-    current?: string
     storage?: {}
     conditions?: []
   }
