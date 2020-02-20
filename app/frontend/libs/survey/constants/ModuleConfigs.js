@@ -177,6 +177,14 @@ const ModuleConfigs = {
     icon: 'video-camera',
     randomization: false,
   },
+
+  FileUpload: {
+    moduleName: 'File Upload',
+    icon: 'fa-file',
+    randomization: false,
+    defaultMaxFileSize: 1,
+    defaultAllowedFileTypes: ['pdf'],
+  },
 }
 
 export default ModuleConfigs

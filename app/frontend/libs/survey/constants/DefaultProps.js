@@ -191,6 +191,11 @@ const DefaultProps = {
     duration: 10,
   },
 
+  FileUpload: {
+    questionText: 'Click to write the question text',
+    maxFileSize: 1,
+    allowedFileTypes: ['pdf'],
+  },
 }
 
 export default DefaultProps

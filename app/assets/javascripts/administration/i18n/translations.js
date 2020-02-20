@@ -6379,6 +6379,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",
@@ -12793,6 +12798,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
     "least_hotspot": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -19200,6 +19210,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",

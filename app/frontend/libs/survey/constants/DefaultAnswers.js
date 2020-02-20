@@ -148,6 +148,9 @@ const DefaultAnswers = {
     questionText: 'Click to write the question text',
   },
 
+  FileUpload: {
+    questionText: 'Please upload a file',
+  },
 }
 
 export default DefaultAnswers

@@ -77,20 +77,25 @@ class AssignsController < ApplicationController
 
     media = MediaResponse.find(params[:media_id])
     media.update_attributes(asset: params[:asset])
-    render json: media
+    render json: media.as_json.merge(filename: media.filename)
   end
 
   def upload_callback
     media = MediaResponse.find(params[:media_id])
-    media.update_attributes(asset_key: params[:asset_key])
-    media.reload # get data after fetching from s3
-    render json: media
+    media.asset_key = params[:asset_key]
+    if media.save
+      render json: media.reload.as_json.merge(filename: media.filename)
+    else
+      error_message = media.errors.messages.values.join(',')
+      media.destroy
+      render json: { error_message: error_message }, status: :unprocessable_entity
+    end
   end
 
   def remove_media
     media = MediaResponse.find_by!(id: params[:media_id], assign_id: @assign.id)
     media.destroy
-    if @assign.results[media.question_id.to_s]
+    if @assign.results&.dig(media.question_id.to_s)
       @assign.results[media.question_id.to_s]['answers'] = []
       @assign.save
     end

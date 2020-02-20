@@ -99,6 +99,10 @@ export class ModulesMenu extends Component {
               <span className={`fa fa-video-camera ${styles.icon}`} />
               Video Response
             </a>
+            <a onClick={this.click} type="FileUpload" className={`col-sm-6 ${styles.button}`}>
+              <span className={`fa fa-file ${styles.icon}`} />
+              File Upload
+            </a>
           </div>
         </div>
         <div className={styles.moduleset}>

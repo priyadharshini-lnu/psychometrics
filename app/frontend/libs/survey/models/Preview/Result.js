@@ -33,6 +33,8 @@ _.extend(Result.prototype, {
       if (!this.moduleResult.requiredValidation()) {
         if (this.moduleResult.videoResponse) {
           errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_record_and_save_video_first') })
+        } else if (this.moduleResult.fileUpload) {
+          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.file_upload.required') })
         } else {
           errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_answer_question') })
         }
@@ -40,10 +42,7 @@ _.extend(Result.prototype, {
     }
 
     const res = this.processValidation()
-
-    if (res) {
-      errors.push(res)
-    }
+    if (res) { errors.push(res) }
 
     return errors
   },
