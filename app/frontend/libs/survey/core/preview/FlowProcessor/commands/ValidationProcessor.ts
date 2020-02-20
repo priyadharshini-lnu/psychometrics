@@ -4,7 +4,7 @@ import { setIn } from 'utils/immutable'
 import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 const ValidationProcessor = {
-  run (questions: QuestionsInterface, results: ResultsInterface) {
+  run (questions: QuestionsInterface, results: ResultsInterface): {[questionId: number]: []} {
     return _.reduce(questions, (errors, question) => {
       const result = results[question.id] || {}
 

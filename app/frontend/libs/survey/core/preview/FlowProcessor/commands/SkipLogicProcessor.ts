@@ -7,8 +7,13 @@ export const END_OF_ASSESSMENT = 'EndOfAssessment'
 export const END_OF_BLOCK = 'EndOfBlock'
 export const SPECIFIC_BLOCK = 'SpecificBlock'
 
+interface SkipLogicResult {
+  type: string
+  blockId?: number
+}
+
 const SkipLogicProcessor = {
-  run (logic, questions: QuestionsInterface, results: ResultsInterface) {
+  run (logic, questions: QuestionsInterface, results: ResultsInterface): SkipLogicResult | false {
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
     const conditions = _.map(logic, cond => [{ ...cond, conditionType: 'Question' }])
 

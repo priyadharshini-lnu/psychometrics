@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 import _ from 'lodash'
 import NormResolver from './commands/NormResolver'
@@ -28,10 +30,10 @@ export const showEnd = () => ({ type: SHOW_END })
 
 export const changeElement = (id: string, page?: number) => ({ type: CHANGE_ELEMENT, id, page })
 
-export const hideQuestion = id => ({ type: HIDE_QUESTION, id })
-export const showQuestion = id => ({ type: SHOW_QUESTION, id })
+export const hideQuestion = (id: number) => ({ type: HIDE_QUESTION, id })
+export const showQuestion = (id: number) => ({ type: SHOW_QUESTION, id })
 
-export const setEmbeddedData = data => ({ type: SET_EMBEDDED_DATA, data })
+export const setEmbeddedData = (data: object) => ({ type: SET_EMBEDDED_DATA, data })
 
 export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
 export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })

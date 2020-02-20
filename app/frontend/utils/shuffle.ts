@@ -3,7 +3,7 @@ import _ from 'lodash'
 // override lodash shuffle to use seedrandom instead Math.random
 // https://github.com/lodash/lodash/blob/master/shuffle.js
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const shuffle = (array: any[], rnd = Math.random) => {
+export const shuffle = (array: any[], rnd = Math.random): any[] => {
   const length = array == null ? 0 : array.length
   if (!length) {
     return []

@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import shuffle from 'utils/shuffle'
 import seedrandom from 'seedrandom'
-import { NormalizedTree } from '../interfaces'
+import { NormalizedTree, ElementInterface } from '../interfaces'
 /*
   Normalize flow tree to list
   input [{element: {children: [{...element}]}}]
@@ -13,7 +13,7 @@ const RANDOMIZER = 'Randomizer'
 
 const NormalizeTree = {
   run (roots: any, seed = ''): NormalizedTree {
-    const eachChild = (list, child, path: string) => {
+    const eachChild = (list, child, path: string): {[key: string]: ElementInterface} => {
       if (child.elements?.length) {
         let { elements } = child
         if (child.type === RANDOMIZER) {

@@ -11,7 +11,7 @@ const RandomizeBlockQuestions = {
   ): PageInterface[] {
     if (!randomization) { return pages }
 
-    const randomize = unordered => pages.reduce((res, page) => {
+    const randomize = (unordered): PageInterface[] => pages.reduce((res, page) => {
       if (!unordered.length) return res
       const p = { ...page, questions: _.take(unordered, page.questions.length) }
       unordered = _.drop(unordered, page.questions.length)

@@ -1,39 +1,42 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
 import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
-import { ElementInterface } from './interfaces'
+import {
+  Question, ElementInterface, PageInterface, ResultsInterface,
+} from './interfaces'
 
-export const getQuestions = (state, ids) => denormalize(ids, [question], state)
+export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
 
-export const getQuestion = (state, id) => state.questions[id]
-export const getErrors = state => state.errors
-export const getResults = state => state.results
+export const getQuestion = (state, id): Question => state.questions[id]
+export const getErrors = (state): {[qId: number]: []} => state.errors
+export const getResults = (state): ResultsInterface => state.results
 
-export const currentPage = state => state.currentPage
+export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
-export const getCurrentElement = state => state.normalizedTree[state.currentElement]
+export const getCurrentElement = (state): ElementInterface => state.normalizedTree[state.currentElement]
 
-export const getElementIdByBlockId = (state, blockId) => _.findKey(
+export const getElementIdByBlockId = (state, blockId): string => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
 )
 
-export const getCurrentPage = (state) => {
+export const getCurrentPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
   const pages = state.allPages[block]
   return pages[state.currentPage]
 }
 
-export const getNextPage = (state) => {
+export const getNextPage = (state): PageInterface => {
   const block = getCurrentElement(state).props.current
   const pages = state.allPages[block]
   return pages[state.currentPage + 1]
 }
 
-export const getNextElementId = (state, element: string | null = null) => {
+export const getNextElementId = (state, element: string | null = null): string | null => {
   let id: string | null = GetNextElementId.run(element || state.currentElement)
   if (state.normalizedTree[id]) {
     return id
@@ -48,7 +51,7 @@ export const getNextElementId = (state, element: string | null = null) => {
   return null
 }
 
-export const getChildOrNextElementId = (state, element: string | null = null) => {
+export const getChildOrNextElementId = (state, element: string | null = null): string |null => {
   const id = `${element || state.currentElement}/0`
   if (state.normalizedTree[id]) {
     return id
@@ -70,7 +73,7 @@ export const getQuestionErrors = createSelector(
   (question, errors) => (errors && errors[question.id]) || [],
 )
 
-export const pageErrors = state => state.errors
+export const pageErrors = (state): {[qId: number]: []} => state.errors
 
 export const getSkipLogicSelector = createSelector(getCurrentPage, page => page.skipLogic)
 export const getDisplayLogicSelector = createSelector(

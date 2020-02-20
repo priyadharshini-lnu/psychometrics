@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { normalize } from 'normalizr'
