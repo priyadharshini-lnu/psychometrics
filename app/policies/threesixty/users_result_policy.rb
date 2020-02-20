@@ -9,4 +9,12 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
   def superadmin?
     @current_user.superadmin?
   end
+
+  def upload_media_url?
+    update?
+  end
+
+  def remove_media?
+    update?
+  end
 end

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import 'styles/ant.less'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
 import store from 'store/AssessmentPreviewStore'

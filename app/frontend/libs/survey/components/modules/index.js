@@ -14,6 +14,7 @@ import Captcha, { CaptchaProperties } from './Captcha'
 import HotSpot, { HotSpotProperties } from './HotSpot'
 import GraphicSlider, { GraphicSliderProperties } from './GraphicSlider'
 import VideoResponse, { VideoResponseProperties } from './VideoResponse'
+import FileUpload, { FileUploadProperties } from './FileUpload'
 import Previews from './Previews'
 
 const Modules = {
@@ -33,6 +34,7 @@ const Modules = {
   HotSpot,
   GraphicSlider,
   VideoResponse,
+  FileUpload,
 }
 
 const Scorings = {
@@ -60,6 +62,7 @@ const Properties = {
   HotSpotProperties,
   GraphicSliderProperties,
   VideoResponseProperties,
+  FileUploadProperties,
 }
 export {
   Modules, Previews, Properties, Scorings,

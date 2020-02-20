@@ -3,9 +3,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import I18nStore from 'store/I18nStore'
-import VideoRecorder from 'components/VideoRecorder'
+import FileUploadBlock from 'components/FileUpload'
 import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
-import MultiLinePreview from './MultiLinePreview'
 
 export class Preview extends Component {
   static propTypes = {
@@ -14,36 +13,25 @@ export class Preview extends Component {
 
   successUpload = (data) => {
     const { model } = this.props
-    model.result.answer(data.asset.url, data.id, data.name)
+    model.result.answer(data.asset.url, data.id, data.filename)
   }
 
-  deleteMedia = () => {
+  removeFile = () => {
     const { model } = this.props
     model.result.answer()
   }
 
-  renderAnswersType () {
+  renderFileUploadBlock () {
     const { model } = this.props
-    return <MultiLinePreview model={model} />
-  }
-
-  renderVideoRecorder () {
-    const { model } = this.props
-    const { result } = model
     const preview = AssessmentPreviewStore.type === 'preview_assessment'
-    return (
-      <div className="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-        <VideoRecorder
-          key={model.id}
-          model={model}
-          preview={preview}
-          maxDuration={model.props.duration}
-          result={result}
-          onSuccessUpload={this.successUpload}
-          onDeleteMedia={this.deleteMedia}
-        />
 
-      </div>
+    return (
+      <FileUploadBlock
+        model={model}
+        fakeUpload={preview}
+        onSuccessUpload={this.successUpload}
+        onRemoveFile={this.removeFile}
+      />
     )
   }
 
@@ -56,8 +44,7 @@ export class Preview extends Component {
           className={textEntryStyles.questionTextPreview}
           dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
         />
-        {/* {this.renderAnswersType()} */}
-        {this.renderVideoRecorder()}
+        {this.renderFileUploadBlock()}
       </div>
     )
   }
