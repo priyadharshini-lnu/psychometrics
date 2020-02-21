@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
-import 'styles/ant.less'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
 import store from 'store/AssessmentPreviewStore'
