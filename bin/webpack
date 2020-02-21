@@ -16,5 +16,6 @@ require 'webpacker/webpack_runner'
 
 APP_ROOT = File.expand_path('..', __dir__)
 Dir.chdir(APP_ROOT) do
+  `export NODE_OPTIONS="--max-old-space-size=4096"`
   Webpacker::WebpackRunner.run(ARGV)
 end

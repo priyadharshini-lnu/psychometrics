@@ -8,7 +8,6 @@ import { normalize, denormalize } from 'normalizr'
 import QuestionSerializer from 'models/QuestionSerializer'
 import BlockSerializer from 'models/BlockSerializer'
 import schema, { blocks } from './schema'
-import store from './index'
 
 const { $ } = window
 
@@ -22,6 +21,7 @@ const AppStore = function () {
   this.question = null
   // use for block center
   this.block = null
+  this.rstore = null
 }
 
 AppStore.prototype = new EventEmitter()
@@ -137,7 +137,7 @@ _.extend(AppStore.prototype, {
         this.saving = false
         this.update()
         const normalizedData = normalize(data.data, schema)
-        store.dispatch({ type: 'survey/assessment/INIT', data: normalizedData })
+        this.rstore.dispatch({ type: 'survey/assessment/INIT', data: normalizedData })
         NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
       },
     })

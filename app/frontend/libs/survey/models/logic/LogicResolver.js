@@ -4,11 +4,14 @@ import Validations from 'models/Validations'
 import Resolvers from './resolvers'
 
 export default class LogicResolver {
-  constructor (logic) {
+  constructor (logic, questions, results) {
     this.logic = logic
+    this.questions = questions || store.questions
+    this.results = results
   }
 
   resolve () {
+    if (!this.logic || !this.logic.conditions) { return false }
     const results = this.resolveTopConditions(this.logic.conditions)
     if (results.length > 1) {
       return this.checkResults(results)
@@ -50,7 +53,7 @@ export default class LogicResolver {
 
   resolveConditionByType (condition) {
     const Resolver = Resolvers[condition.conditionType]
-    return new Resolver(condition).resolve()
+    return new Resolver(condition, this.questions).resolve(this.results)
   }
 
   checkResults (results) {
@@ -77,7 +80,7 @@ export default class LogicResolver {
   isFilled () {
     return _.every(this.conditions, (condition) => {
       if (condition.conditionType === 'Question') {
-        const question = _.find(store.questions, { id: condition.subject })
+        const question = _.find(this.questions, { id: condition.subject })
         return question && question.result && !question.result.isEmpty()
       }
 

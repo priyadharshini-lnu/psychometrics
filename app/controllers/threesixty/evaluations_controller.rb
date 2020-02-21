@@ -24,7 +24,8 @@ module Threesixty
 
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
-            @users_result.step = 0
+            @users_result.current_element = nil
+            @users_result.current_page = 0
           end
 
           @users_result.step = params[:step].to_i if params[:step]

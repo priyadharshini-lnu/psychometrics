@@ -6,7 +6,7 @@ import styles from './EndPage.scss'
 
 export class EndPage extends Component {
   static propTypes = {
-    page: PropTypes.object.isRequired,
+    flowElement: PropTypes.object,
   }
 
   changeHidden = (e) => {
@@ -29,7 +29,7 @@ export class EndPage extends Component {
   }
 
   renderUniqueId () {
-    const { page: { flowElement } } = this.props
+    const { flowElement } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.showUniqueId) {
         return (
@@ -46,7 +46,7 @@ export class EndPage extends Component {
   render () {
     let message = `You have now completed the survey and your response has been recorded.
       Thank you for taking the time to share your feedback.`
-    const { page: { flowElement } } = this.props
+    const { flowElement } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
         // eslint-disable-next-line prefer-destructuring

@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import FlowProcessor from 'models/FlowProcessor'
 import Result from 'models/Preview/Result'
-import Question from 'models/Preview/Question'
+// import Question from 'models/Preview/Question'
 import LocalStorage from 'utils/LocalStorage'
-
+import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
 // TODO (atanych): Replace current RandOrder with new one to lookup question was answered or not.
 // TODO (atanych): After it we might remove RankOrder from list below
 export const NOT_ANSWERED_QUESTIONS = ['StaticContent', 'MetaInfo', 'Timing', 'RankOrder', 'PageBreak']
@@ -28,15 +27,15 @@ const AssessmentPreviewStore = function () {
 AssessmentPreviewStore.prototype = new EventEmitter()
 
 _.extend(AssessmentPreviewStore.prototype, {
-  init (data, type = 'preview_assessment', dbResult = {}, dashboardUrl = '/') {
+  init (data, type = 'preview_assessment', dbResult = {}, dashboardUrl = '/', rstore) {
     this.assessment = data
-    this.allQuestions = _(this.assessment.blocks).map(b => b.questions).flatten().map(q => new Question(q))
-      .value()
+    // this.allQuestions = _(this.assessment.blocks).map(b => b.questions).flatten().map(q => new Question(q))
+    // .value()
     this.dbResult = dbResult || {}
-    this.dbResult.results = {
-      ...(this.dbResult.results || {}),
-      ...(LocalStorage.getIn(this.resultLocalStorageKey) || {}),
-    }
+    // this.dbResult.results = {
+    //   ...(this.dbResult.results || {}),
+    //   ...(LocalStorage.getIn(this.resultLocalStorageKey) || {}),
+    // }
     const byQuestionId = r => _.find(this.allQuestions, { id: r.question_id })
     const newResult = r => new Result(byQuestionId(r), r.answers, r.not_applicable)
     this.results = _(this.dbResult.results).pickBy(byQuestionId).mapValues(newResult).value()
@@ -56,7 +55,14 @@ _.extend(AssessmentPreviewStore.prototype, {
     }
 
     // init data before flow initializing
-    this.flow = new FlowProcessor(this)
+    rstore.dispatch({
+      type: INIT,
+      data: {
+        ...data, type, isThreesixty: this.isThreesixty, resultsUrl: this.resultsUrl,
+      },
+      result: this.dbResult,
+    })
+    this.rstore = rstore
   },
 
   restart () {

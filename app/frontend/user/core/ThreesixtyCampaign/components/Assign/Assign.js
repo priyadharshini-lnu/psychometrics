@@ -7,6 +7,7 @@ import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
+import store from '../../../../store'
 
 const { Content } = Layout
 
@@ -69,6 +70,7 @@ export default function Assign ({
                 locales={translations}
                 dashboardUrl="/assessment_completed"
                 selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
               />
             )}
           </div>

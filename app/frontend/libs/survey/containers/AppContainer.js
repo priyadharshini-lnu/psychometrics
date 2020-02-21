@@ -19,6 +19,7 @@ class AppContainer extends Component {
   storeListener = null
 
   componentDidMount () {
+    AppStore.rstore = store
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
     this.redoListener = UndoRedoDispatcher.addListener('redo', this.update)
     this.storeListener = AppStore.addListener('change', () => this.forceUpdate())

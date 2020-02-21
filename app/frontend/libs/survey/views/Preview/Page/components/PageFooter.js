@@ -10,23 +10,25 @@ class PageFooter extends Component {
   }
 
   prev = () => {
-    store.prevPage()
+    const { prevPage } = this.props
+    prevPage()
   }
 
   next = () => {
-    store.nextPage()
+    const { nextPage } = this.props
+    nextPage()
+    // store.nextPage()
   }
 
   render () {
-    const { page } = this.props
+    const { page, hasBack, hasPrevPage } = this.props
     return (
       <div className={styles.footer}>
-        {store.assessment.enable_back && store.canBack()
-          && (
-            <a className={cs('btn btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
-              {page.prevBtn || 'Back'}
-            </a>
-          )}
+        {hasBack && hasPrevPage && (
+          <a className={cs('btn btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
+            {page.prevBtn || 'Back'}
+          </a>
+        )}
         <a className={cs('btn btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
           {page.nextBtn || 'Next'}
         </a>

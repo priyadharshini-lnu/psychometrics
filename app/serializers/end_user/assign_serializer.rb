@@ -4,7 +4,8 @@ module EndUser
   class AssignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
-               :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category
+               :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
+               :current_element, :current_page, :seedrandom
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
     attribute :need_confirm

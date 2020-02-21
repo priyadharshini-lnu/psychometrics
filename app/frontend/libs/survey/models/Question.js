@@ -7,7 +7,7 @@ import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
 import Socket from 'cable'
 import Action from 'undo'
-import rstore from 'store'
+import store from 'store/AppStore'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -276,12 +276,12 @@ _.extend(Question.prototype, {
     // this.store.update()
 
     // NOTE: @fedor the next dispatches it's a hack to update ui. should be removed later
-    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    store.rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
     // rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' })
   },
 
   updateDefaultProps () {
-    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    store.rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   sync () {

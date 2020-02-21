@@ -20,27 +20,32 @@ class Page extends Component {
     Utils.scroll(hash)
   }
 
-  renderErrors (page) {
+  renderErrors () {
+    const { errors } = this.props
     const styleForTitle = this.addLtrStyleIfNeed(I18nStore.t('validations.title'))
     const styleForIssue = this.addLtrStyleIfNeed(I18nStore.t('validations.issue'))
+    let i = 0
     return (
       <div className={styles.errors}>
         <h1 style={styleForTitle}>{I18nStore.t('validations.title')}</h1>
         <ul style={styleForTitle}>
-          {page.errors.map(({ question, errors }, i) => (
-            <li key={i} style={styleForIssue}>
-              <a onClick={this.scroll.bind(this, `question_${question.id}`)}>
-                {I18nStore.t('validations.issue')}
-                {' '}
-                {i + 1}
-              </a>
-              <ul>
-                {_.map(errors, (error, j) => (
-                  <li style={this.addLtrStyleIfNeed(error.message)} key={j}>{error.message}</li>
-                ))}
-              </ul>
-            </li>
-          ))}
+          {_.map(errors, (errors, id) => {
+            i += 1
+            return (
+              <li key={id} style={styleForIssue}>
+                <a onClick={this.scroll.bind(this, `question_${id}`)}>
+                  {I18nStore.t('validations.issue')}
+                  {' '}
+                  {i}
+                </a>
+                <ul>
+                  {_.map(errors, (error, j) => (
+                    <li style={this.addLtrStyleIfNeed(error.message)} key={j}>{error.message}</li>
+                  ))}
+                </ul>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
@@ -56,7 +61,6 @@ class Page extends Component {
               className={cs('progress-bar', styles.progressBar)}
               style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
             />
-
           </div>
           <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
         </div>
@@ -66,18 +70,23 @@ class Page extends Component {
   }
 
   render () {
-    const { page } = this.props
+    const {
+      type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage,
+    } = this.props
+    if (!page) { return }
     return (
-      <div className={`${styles.block} fe-ass-page-container-${store.type}`}>
+      <div className={`${styles.block} fe-ass-page-container-${type}`}>
         <div className={styles.logo}>
           {/* <img src={Logo} /> */}
         </div>
 
         {store.readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
-        {store.type !== 'preview_block' && store.assessment.enable_progress && this.renderProgressBar()}
-        {!store.ignoreValidation && page.errors.length > 0 && this.renderErrors(page)}
-        <QuestionList page={page} />
-        {store.type !== 'preview_block' && <Footer page={page} />}
+        {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
+        {!store.ignoreValidation && errors && this.renderErrors(page)}
+        <QuestionList page={page} questions={questions} />
+        {type !== 'preview_block' && (
+          <Footer hasBack={enableBack} hasPrevPage={hasPrevPage} page={page} prevPage={prevPage} nextPage={nextPage} />
+        )}
       </div>
     )
   }

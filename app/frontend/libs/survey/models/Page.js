@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Question from 'models/Preview/Question'
 import { NOT_ANSWERED_QUESTIONS } from 'store/AssessmentPreviewStore'
-import ValidationProcessor from './ValidationProcessor'
 
 // eslint-disable-next-line func-names
 const Page = function (attrs = {}, flowElement = null, results) {
@@ -20,7 +19,6 @@ const Page = function (attrs = {}, flowElement = null, results) {
     }
     return new Question(question, this, questionResults)
   })
-  this.validations = new ValidationProcessor(this)
   this.skipLogic = attrs.skipLogic
   this.displayLogic = attrs.displayLogic
   this.errors = []
