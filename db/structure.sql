@@ -506,7 +506,8 @@ CREATE TABLE public.clients (
     end_level boolean DEFAULT false,
     hogan_group_name character varying,
     privacy_consent boolean,
-    two_factor_enabled boolean DEFAULT false
+    two_factor_enabled boolean DEFAULT false,
+    strong_password_enabled boolean DEFAULT false
 );
 
 
@@ -6620,5 +6621,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200119071623'),
 ('20200122113926'),
 ('20200127101833'),
+('20200204141530'),
 ('20200216190418'),
 ('20200216190542');
