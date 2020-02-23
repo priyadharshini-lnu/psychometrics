@@ -58,7 +58,7 @@ module Threesixty
         return unless body.present?
 
         result =
-          body.gsub /{{(.*?)}}/ do
+          body.to_s.gsub /{{(.*?)}}/ do
             match = Regexp.last_match(1)
             branch = lookup_branch(match)
             if valid_branch?(branch)

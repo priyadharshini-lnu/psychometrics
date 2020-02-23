@@ -14,7 +14,7 @@ export interface Block {
   id: number;
   deleted?: boolean
   questions: Question[]
-  props?: { randomization? }
+  props?: { randomization?, staticContent? }
 }
 
 export interface BlocksInterface {

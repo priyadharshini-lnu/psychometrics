@@ -17,7 +17,7 @@ class Page extends Component {
   }
 
   getBlockClasses () {
-    const { page: { block: { props: { staticContent } } } } = this.props
+    const { block: { props: { staticContent } } } = this.props
 
     if (!staticContent) return
     const { layout } = staticContent
@@ -25,7 +25,7 @@ class Page extends Component {
   }
 
   getQuestionContainerClasses () {
-    const { page: { block: { props: { staticContent } } } } = this.props
+    const { block: { props: { staticContent } } } = this.props
 
     if (!staticContent) return
     const { layout } = staticContent
@@ -92,10 +92,10 @@ class Page extends Component {
 
   render () {
     const {
-      type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage,
+      type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage, block,
     } = this.props
     if (!page) { return }
-    const { block: { props: { staticContent } }, block } = page
+    const { props: { staticContent } } = block
     return (
       <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${store.type}`)}>
         <div className={styles.logo}>

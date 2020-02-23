@@ -55,6 +55,11 @@ _.extend(I18nStore.prototype, {
     }
   },
 
+  tBlock (block, key, path) {
+    const propsPath = path || [key]
+    return _.get(this.locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
+  },
+
   tQuestion (question, field, extraData) {
     question.isNeedToAddLtrManually = false
     question.isAnyArabicTranslateExist = true
