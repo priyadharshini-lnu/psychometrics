@@ -1,0 +1,185 @@
+import _ from 'lodash'
+import AppStore from '../store/AppStore'
+import Filter from './Filter'
+
+import {
+  RawResult,
+  ResultsByFilter,
+  QuestionScoringObject,
+  EmbeddedData,
+  UsersScoring,
+  ResultScoring,
+  ScoringByQuestion,
+  TopFactor,
+  AverageFactor,
+  OccupationFactor,
+  QuestionScoringWithoutFactorsObject,
+} from './Results/interfaces'
+
+import {
+  GetAverageFactorScore,
+  GetOccupationByRank,
+  GetQuestionScoringWithoutFactors,
+  GetTopFactors,
+  SetDataSheet,
+  SetEmbeddedData,
+  SetExternalScoring,
+  SetGroupedDataSheet,
+  SetQuestions,
+  SetScoring,
+  SetScoringByQuestion,
+  SetUsersScoring,
+} from './Results'
+
+// Attention!!!! it is hack. Used for individual response
+// Individual values stored in this.resultsByFilter['individual']
+const INDIVIDUAL_FILTER = {
+  id: 'individual',
+  name: 'individual',
+  conditions: [{ type: 'RelationShip', props: { predicate: 'Is', value: 'Self' } }],
+}
+
+export default class Result {
+  // name: string
+  user: object
+
+  rawResults: RawResult[]
+
+  dimensionId: number
+
+  assessmentId: number
+
+  resultsByFilter: ResultsByFilter
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  externalScoring: any
+
+  dataSheet: object
+
+  questions: QuestionScoringObject
+
+  embeddedData: EmbeddedData
+
+  usersScoring: UsersScoring
+
+  scoring: ResultScoring
+
+  questionScoring: ScoringByQuestion
+
+  groupedDataSheet: object[]
+
+  constructor (assessmentId: number) {
+    this.assessmentId = assessmentId
+    this.dimensionId = _.find(AppStore.assessments, { id: this.assessmentId })?.dimensionId
+    this.resultsByFilter = {}
+  }
+
+  // toJSON = () => ({ name: this.name, filters: this.filters })
+
+  init = (results: RawResult[], user: object, filters: Filter[] | null): Result => {
+    filters = this.addIndividualFilter(filters)
+    _.each(filters, (filter: Filter) => {
+      this.initResultsByFilter(results, filter)
+    })
+    this.user = user
+    this.rawResults = results
+
+    this.scoring = SetScoring.run(this.rawResults, this.dimensionId)
+    this.questionScoring = SetScoringByQuestion.run(this.rawResults, this.dimensionId)
+    this.embeddedData = SetEmbeddedData.run(this.rawResults)
+    this.questions = SetQuestions.run(this.rawResults)
+    this.usersScoring = SetUsersScoring.run(this.rawResults)
+    this.externalScoring = SetExternalScoring.run(this.rawResults)
+    this.dataSheet = SetDataSheet.run(this.rawResults)
+    this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
+
+    if (_.isEmpty(filters)) return this
+
+    // TODO (atanych): remove. Already is created the corresponding task
+    this.calcOccupationsStars()
+    this.sortOccupations()
+    this.calcInnovationStylesScore()
+    return this
+  }
+
+  addIndividualFilter = (filters: Filter[] | null): Filter[] => filters?.concat(new Filter(INDIVIDUAL_FILTER)) || []
+
+  initResultsByFilter = (results: RawResult[], filter: Filter): void => {
+    let rawResults = results.filter(data => filter.correctByFilter(data))
+    if (rawResults.length < filter.minRequiredResponses) {
+      rawResults = []
+    }
+    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(rawResults, this.user, null)
+  }
+
+  sortOccupations = (): void => {
+    AppStore.sortedOccupations[this.dimensionId] = _.orderBy(
+      AppStore.occupations[this.dimensionId], ['result'], ['desc'],
+    )
+  }
+
+  // TODO (atanych): remove. Already is created the corresponding task
+  calcOccupationsStars = (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    _.each(AppStore.occupations[this.dimensionId], (oc: any) => {
+      oc.stars = oc.getStars(this.resultsByFilter.individual.scoring)
+    })
+  }
+
+  // TODO (atanych): remove. Already is created the corresponding task
+  calcInnovationStylesScore = (): void => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    _.each(AppStore.innovationStyles[this.dimensionId], (is: any) => {
+      is.calculateScore(this.resultsByFilter.individual.scoring)
+    })
+  }
+
+  // eslint-disable-next-line arrow-body-style
+  getTopFactors = (from: number, to: number, factorIds: number[], subfactors = true): TopFactor[] => {
+    return GetTopFactors.run(from, to, factorIds, subfactors, this.resultsByFilter, this.dimensionId)
+  }
+
+  getBranchData = (filterId: string | null, branchName: string): ResultScoring => {
+    if (_.isNull(filterId)) return this[branchName] || {}
+    if (filterId && this.resultsByFilter[filterId]) return this.resultsByFilter[filterId][branchName] || {}
+    return {}
+  }
+
+  // eslint-disable-next-line arrow-body-style
+  getAverageFactorScore = (filterId: string): AverageFactor[] => {
+    return GetAverageFactorScore.run(this.getBranchData(filterId, 'scoring'), this.dimensionId)
+  }
+
+
+  getTopSubFactors = (from: number, to: number, factorId: number): TopFactor[] => {
+    const subFactorIds = _.get(AppStore.mapSubfactorIdsByFactor, [this.dimensionId, factorId], [])
+    return GetTopFactors.run(from, to, subFactorIds, true, this.resultsByFilter, this.dimensionId)
+  }
+
+  getTopFactorByRank = (rank: number): TopFactor => {
+    const factorIds = AppStore.subfactors[this.dimensionId].map(f => f.id)
+    return GetTopFactors.run(rank, rank, factorIds, true, this.resultsByFilter, this.dimensionId)[0]
+  }
+
+  // eslint-disable-next-line arrow-body-style
+  getOccupationByRank = (rank: number): OccupationFactor[] | null => {
+    return GetOccupationByRank.run(rank, this.resultsByFilter, this.dimensionId)
+  }
+
+  getOccupations = (): object => AppStore.occupations[this.dimensionId]
+
+  getInnovationStyles = (): object[] => AppStore.innovationStyles[this.dimensionId]
+
+  getByFilter = (filterId: string): Result => {
+    if (this.resultsByFilter[filterId]) {
+      return this.resultsByFilter[filterId]
+    }
+    // if filter is not found, return all responses
+    return this
+  }
+
+  questionScoringWithoutFactors = (filterId: string): QuestionScoringWithoutFactorsObject => {
+    const questionScoring = this.getBranchData(filterId, 'questionScoring')
+    return GetQuestionScoringWithoutFactors.run(this.assessmentId, questionScoring, this.dimensionId)
+  }
+}

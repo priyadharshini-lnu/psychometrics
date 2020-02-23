@@ -1,0 +1,18 @@
+import _ from 'lodash'
+import { QuestionScoringObject, RawResult } from './interfaces'
+import { QuestionsResult } from './interfaces/RawResult'
+
+export default {
+  run: (rawResults: RawResult[]): QuestionScoringObject => _.reduce(
+    rawResults,
+    (result: QuestionScoringObject, data: RawResult) => _.reduce(data.results, (
+      result: QuestionScoringObject,
+      questionsResults: QuestionsResult,
+      questionId: string,
+    ) => {
+      const questionsData = result[questionId] || []
+      return { ...result, [questionId]: [...questionsData, questionsResults.answers] }
+    }, result),
+    {},
+  ),
+}

@@ -16,6 +16,7 @@ module.exports = {
     'node_modules',
     'app/frontend',
     'app/frontend/libs/survey',
+    'app/frontend/libs/reports',
   ],
   globals: {
     window: {},

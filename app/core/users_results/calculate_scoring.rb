@@ -24,8 +24,9 @@
 
 module UsersResults
   class CalculateScoring < BaseCommand
-    def initialize(users_result)
+    def initialize(users_result, norm_data)
       @users_result = users_result
+      @norm_data = norm_data
       @scoring = {}
     end
 
@@ -42,7 +43,8 @@ module UsersResults
         scoring_array.each do |question_scoring|
           question = questions_map[question_scoring.question_id].try(:first)
           scoring_class = "::Scoring::#{question.try(:type)}"
-          result = users_result.answers[question.try(:id).try(:to_s)]
+
+          result = answers[question.try(:id).try(:to_s)]
           if result && question && !question_scoring.props.empty?
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
@@ -50,11 +52,15 @@ module UsersResults
         end
       end
 
-      broadcast :ok, scoring
+      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm_data)
+    end
+
+    def answers
+      users_result.respond_to?(:answers) ? users_result.answers : users_result.results
     end
 
     private
 
-    attr_reader :users_result, :scoring
+    attr_reader :users_result, :scoring, :norm_data
   end
 end

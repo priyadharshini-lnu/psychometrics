@@ -107,9 +107,6 @@ class Properties extends Component {
             <div className={styles.item} type="FactorQuestionsScore" onClick={this.changeType}>
               Factor - Questions Mean Score
             </div>
-            <div className={styles.item} type="AgileFactors" onClick={this.changeType}>
-              Agile Factors
-            </div>
             <div className={styles.item} type="CPITopFactors" onClick={this.changeType}>
               Career - Top Factors
             </div>

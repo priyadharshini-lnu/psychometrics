@@ -1,0 +1,471 @@
+{
+  "id": 17,
+  "status": "completed",
+  "external_scoring": "Some External Data (2)",
+  "norm_data": {"id": "109", "type": "ETI", "name": null},
+  "step": 2,
+  "answers": {
+    "17377": {
+      "answers": [
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 0,
+          "recode_value": 2
+        },
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 1,
+          "recode_value": 2
+        },
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 2,
+          "recode_value": 2
+        }
+      ],
+      "question_id": 17377
+    },
+    "17379": {
+      "answers": [
+        {
+          "index": 2,
+          "value": true,
+          "recode_value": 3
+        }
+      ],
+      "question_id": 17379
+    },
+    "17382": {
+      "answers": [
+        {
+          "value": "",
+          "recode_value": null
+        },
+        {
+          "value": "",
+          "recode_value": null
+        },
+        {
+          "value": "",
+          "recode_value": null
+        }
+      ],
+      "question_id": 17382
+    }
+  },
+  "results": {
+    "17377": {
+      "answers": [
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 0,
+          "recode_value": 2
+        },
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 1,
+          "recode_value": 2
+        },
+        {
+          "scale": 1,
+          "value": true,
+          "choice": 2,
+          "recode_value": 2
+        }
+      ],
+      "question_id": 17377
+    },
+    "17379": {
+      "answers": [
+        {
+          "index": 2,
+          "value": true,
+          "recode_value": 3
+        }
+      ],
+      "question_id": 17379
+    },
+    "17382": {
+      "answers": [
+        {
+          "value": "",
+          "recode_value": null
+        },
+        {
+          "value": "",
+          "recode_value": null
+        },
+        {
+          "value": "",
+          "recode_value": null
+        }
+      ],
+      "question_id": 17382
+    }
+  },
+  "scoring": {
+    "2335": {
+      "score": 4,
+      "norm_score": 4,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2336": {
+      "score": 4,
+      "norm_score": 3,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2337": {
+      "score": 4,
+      "norm_score": 2,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2338": {
+      "score": 4,
+      "norm_score": 5,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2339": {
+      "score": 4,
+      "norm_score": 3,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2340": {
+      "score": 4,
+      "norm_score": 3,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2379": {
+      "score": 4,
+      "norm_score": 1,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17418
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17379
+        }
+      ]
+    },
+    "2343": {
+      "score": 4,
+      "norm_score": 4,
+      "results": [
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17379
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17419
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17420
+        },
+        {
+          "value": [
+            4,
+            4,
+            4
+          ],
+          "question_id": 17421
+        }
+      ]
+    },
+    "2380": {
+      "score": 5,
+      "norm_score": null,
+      "results": [
+        {
+          "value": [
+            5,
+            5,
+            5
+          ],
+          "question_id": 17380
+        },
+        {
+          "value": 5,
+          "question_id": 17381
+        }
+      ]
+    }
+  },
+  "user_id": 14749,
+  "assessment_id": 190,
+  "data_sheet": {},
+  "relationship": "Manager",
+  "norm_id": null,
+  "embedded_data": {
+    "a": 2,
+    "b": 2
+  },
+  "is_self": false,
+  "as_manager": true,
+  "manager_evaluation_status": "waiting",
+  "campaign_id": 10018,
+  "available_translations": [],
+  "translations": {},
+  "selected_locale": {
+    "code": "en",
+    "name": "English",
+    "direction": "ltr"
+  },
+  "user": {
+    "id": 14749,
+    "first_name": "e2",
+    "last_name": "e2",
+    "email": "e2@gmail.com"
+  },
+  "subject": {
+    "id": 14747,
+    "first_name": "s2",
+    "last_name": "s2",
+    "email": "s2@gmail.com"
+  },
+  "participant": {
+    "evaluator_nomination_status": "completed",
+    "manager_evaluation_status": "waiting"
+  }
+}
