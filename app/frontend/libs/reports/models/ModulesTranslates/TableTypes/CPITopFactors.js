@@ -6,9 +6,11 @@ class Module extends BaseTableTranslate {
 
   exportLocales () {
     const result = {
-      strengths: 'Strengths',
-      blindspots: 'Blindspots',
-      workstyles: 'Workstyles',
+      score: 'Score',
+      strength: 'Strength',
+      rankOrder: 'Rank',
+      description: 'Description',
+      strengthsBlindspots: 'Strengths & Blindspots',
     }
     if (this.module.props.textConditions) {
       _.each(this.module.props.textConditions, (condition, i) => {
