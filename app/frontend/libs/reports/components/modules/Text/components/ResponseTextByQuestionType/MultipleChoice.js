@@ -16,7 +16,11 @@ export default class MultipleChoice extends Component {
     const { result, question } = this.props
     // TODO (atanych): implement convenient engine to preset default values for preview
     if (!result) { return DEFAULT_VALUES }
-    return result.filter(r => r.value !== undefined).map(r => question.props.choicesTexts[r.index])
+    let results = result.filter(r => r.value !== undefined)
+    if (question.type === 'RankOrder') {
+      results = _.sortBy(results, r => parseInt(r.value, 10))
+    }
+    return results.map(r => question.props.choicesTexts[r.index])
   }
 
   render () {
