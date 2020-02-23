@@ -69,6 +69,18 @@ class Properties extends Component {
     this.forceUpdate()
   }
 
+  setProp = (propName, e) => {
+    store.model.props[propName] = e.currentTarget.checked
+    store.model.update()
+    this.forceUpdate()
+  }
+
+  changeStyle = (propName, e) => {
+    store.model.props[propName] = e.currentTarget.value
+    store.model.update()
+    this.forceUpdate()
+  }
+
   renderTopFactors () {
     return (
       <div>
@@ -113,6 +125,48 @@ class Properties extends Component {
     )
   }
 
+  renderStyleSelect () {
+    const layouts = [
+      { value: 'default', label: 'Default' },
+      { value: 'comfortable', label: 'Comfortable' },
+      { value: 'compact', label: 'Compact' },
+    ]
+
+    return (
+      <select onChange={e => this.changeStyle('tableStyle', e)} value={store.model.props.tableStyle || 'default'}>
+        {layouts.map((layout, i) => (
+          <option value={layout.value} key={i}>
+            {layout.label}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
+  renderTableOptions () {
+    const options = [
+      { label: 'Show Header', prop: 'showHeader', default: false },
+      { label: 'Show RankOrder', prop: 'showRankOrder', default: false },
+      { label: 'Show Score', prop: 'showScore', default: false },
+      { label: 'Show Description', prop: 'showDescription', default: false },
+      { label: 'Show Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
+    ]
+
+    return (
+      options.map((option, i) => (
+        <label className={styles.inputLabel} key={i}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={_.get(store.model.props, option.prop, option.default)}
+            onChange={e => this.setProp(option.prop, e)}
+          />
+          {option.label}
+        </label>
+      ))
+    )
+  }
+
   render () {
     const { model } = store
     return (
@@ -138,6 +192,14 @@ class Properties extends Component {
               Reverse order
             </label>
           </div>
+        </div>
+        <hr className={styles.divider} />
+        <div className="margin-top-10">
+          {this.renderTableOptions()}
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.selectContainer}>
+          {this.renderStyleSelect()}
         </div>
         <hr className={styles.divider} />
         <div>Font</div>
