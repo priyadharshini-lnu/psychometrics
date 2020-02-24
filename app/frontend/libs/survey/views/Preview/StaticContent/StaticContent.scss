@@ -3,7 +3,7 @@
 .container {
   height: fit-content;
   min-height: 200px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   margin-top: 20px;
 }
@@ -26,6 +26,7 @@
 .content {
   height: 100%;
   overflow: auto;
+  padding: 5px;
   &::-webkit-scrollbar {
     width: 15px;
   }
@@ -42,6 +43,7 @@
     height: 15px;
     border-radius: 50%;
   }
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
 }
 
 :global(.rtl) {
