@@ -78,6 +78,7 @@ const vendors = [
 ]
 
 environment.config.merge({
+  stats: 'errors-only',
   optimization: {
     splitChunks: {
       cacheGroups: {
