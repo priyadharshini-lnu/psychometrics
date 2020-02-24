@@ -61,6 +61,7 @@ const onUploadDone = (media, data, context) => {
       method: 'PUT',
       url: urls.callbackUrl,
       data: { media_id: mediaId, asset_key: assetKey },
+      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
     }).done((data) => {
       dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
       onSuccessUpload(data)

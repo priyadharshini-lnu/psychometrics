@@ -7,7 +7,7 @@ import { Select } from 'antd'
 
 const { Option } = Select
 
-const ALLOWED_FILE_TYPES = ['csv', 'doc', 'docx', 'jpg', 'png', 'pdf', 'ppt', 'txt', 'xlx', 'xlsx']
+const ALLOWED_FILE_TYPES = ['csv', 'doc', 'docx', 'jpg', 'png', 'pdf', 'ppt', 'txt', 'xls', 'xlsx']
 export class Properties extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,

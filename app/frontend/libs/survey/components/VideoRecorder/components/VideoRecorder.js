@@ -118,6 +118,7 @@ class VideoRecorder extends Component {
         method: 'PUT',
         url: `${AssessmentPreviewStore.mediaUrl}/upload_callback`,
         data: { media_id: mediaId, asset_key: assetKey },
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       }).done((data) => {
         onSuccessUpload(data)
       })
