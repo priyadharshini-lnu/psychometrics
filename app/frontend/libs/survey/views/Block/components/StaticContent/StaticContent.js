@@ -1,11 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Editor from 'components/Editor'
 import styles from './StaticContent.scss'
 import PropertyPanel from './PropertyPanel'
+import GetBackgroundStyles from './getBackgroundStyles'
 
 export default function StaticContent (props) {
-  const { model, model: { props: { staticContent } }, updateBlockProps } = props
+  const {
+    model,
+    model: {
+      props: {
+        staticContent,
+        staticContent: {
+          backgroundColor,
+          backgroundImage,
+          backgroundImageOptions,
+        },
+      },
+    }, updateBlockProps,
+  } = props
+
   const [opened, setOpened] = useState(true)
+  const editorRef = useRef(null)
+
+  useEffect(() => {
+    const editorView = getEditorView()
+    if (editorView) {
+      setEditorStyles(editorView)
+    } else {
+      setTimeout(() => setEditorStyles(), 250)
+    }
+  }, [backgroundColor, backgroundImage, backgroundImageOptions])
+
+  const setEditorStyles = (editorView) => {
+    editorView = editorView || getEditorView()
+    if (editorView) {
+      const styles = GetBackgroundStyles.run(staticContent)
+
+      editorView.style.backgroundColor = styles.backgroundColor
+      editorView.style.backgroundImage = styles.backgroundImage
+      editorView.style.backgroundSize = styles.backgroundSize
+      editorView.style.backgroundRepeat = styles.backgroundRepeat
+    }
+  }
+
+  const getEditorView = () => editorRef.current.getElementsByClassName('fr-view')[0]
 
   const handleContentChange = (value) => {
     updateBlockProps(model, { staticContent: { ...staticContent, value } })
@@ -21,7 +59,7 @@ export default function StaticContent (props) {
         </div>
       </div>
       {opened && (
-      <div className={styles.editorContainer}>
+      <div ref={editorRef} className={styles.editorContainer}>
         <Editor
           content={model.props.staticContent.value}
           handleContentChange={handleContentChange}
