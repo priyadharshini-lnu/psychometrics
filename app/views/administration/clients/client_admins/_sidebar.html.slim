@@ -3,7 +3,7 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
   - if policy(resource).edit?
     li = link_to(resource.decorate.toggle_status_text, { action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
   - if policy(resource).reset_password?
-    li = link_to t('.reset_password'), { action: :reset_password, id: resource }, data: { confirm: resource.decorate.change_password_confirmation }
+    li = link_to t('.reset_password'), { action: :reset_password, id: resource }, method: :get, data: { confirm: resource.decorate.change_password_confirmation }
   - if policy(resource).spoof?
     li = link_to t('.login_as_user'), { action: :spoof, id: resource }, target: :_blank
   - if policy(resource).overview_assigns?
