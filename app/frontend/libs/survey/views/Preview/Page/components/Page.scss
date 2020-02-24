@@ -1,4 +1,5 @@
 @import '../../../../styles/theme';
+@import 'user/styles/variables';
 
 .block {
   width: 80%;
@@ -203,6 +204,28 @@
     box-shadow: initial;
     span {
       display: none;
+    }
+  }
+}
+.blockWithSideStaticContent {
+  width: 100%;
+  max-width: none
+}
+.sideStaticContent {
+  display: flex;
+  position: relative;
+  &>* {
+    width: 50%;
+  }
+}
+.leftStaticContent {
+  flex-direction: row-reverse;
+}
+@media(max-width: $screen-md) {
+  .sideStaticContent {
+    display: block;
+    &>* {
+      width: 100%;
     }
   }
 }

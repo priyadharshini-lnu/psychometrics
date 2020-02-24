@@ -6,12 +6,16 @@ import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
 import {
-  Question, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
+  Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
 } from './interfaces'
 
 export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
 
 export const getQuestion = (state, id): Question => state.questions[id]
+export const getCurrentBlock = (state): Block => {
+  const { blockId } = getCurrentPage(state)
+  return state.blocks[blockId]
+}
 export const getErrors = (state): {[qId: number]: []} => state.errors
 export const getResults = (state): ResultsInterface => state.results
 

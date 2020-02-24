@@ -47,10 +47,14 @@ export class Header extends Component {
   export = () => {
     const { blocksWithQuestions } = this.props
     const result = {
+      block: {},
       question: {},
       flow: {},
     }
     _.each(blocksWithQuestions, (block) => {
+      result.block[block.id] = {
+        staticContent: _.get(block, ['props', 'staticContent', 'value']),
+      }
       _.each(block.questions, (question) => {
         result.question[question.id] = QuestionSerializer.wrap(question).exportLocales()
       })

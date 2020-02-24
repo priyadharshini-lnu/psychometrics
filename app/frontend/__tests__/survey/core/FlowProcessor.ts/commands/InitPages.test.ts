@@ -7,6 +7,14 @@ test('empty blocks', () => {
   expect(InitPages.run({ blocks: [] })).toStrictEqual({})
 })
 
+test('deleted question', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1, { deleted: true })],
+  }]
+  expect(InitPages.run({ blocks })).toStrictEqual({1: []})
+})
+
 test('simple block with one page', () => {
   const blocks = [{
     id: 1,
