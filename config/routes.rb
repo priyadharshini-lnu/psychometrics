@@ -131,6 +131,7 @@ Rails.application.routes.draw do
         resource :assign_assessments, only: %i[new create edit update]
         resources :registration_codes do
           patch :toggle_status, on: :member
+          get :download_qrcode, on: :member
         end
         resources :statistics, only: [:index]
 
@@ -189,6 +190,7 @@ Rails.application.routes.draw do
           get :export_hogan_results
           put :enable_universal_links
           put :disable_universal_links
+          get :download_qrcode
           post :generate_universal_link
         end
         resources :datasheet_rows, except: %i[show edit update]

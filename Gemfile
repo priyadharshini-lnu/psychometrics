@@ -225,3 +225,6 @@ group :test do
   gem 'webdrivers'
   gem 'wisper-rspec', '~> 1.1.0', require: false
 end
+
+# for creating and rendering QR codes into various formats
+gem 'rqrcode'
