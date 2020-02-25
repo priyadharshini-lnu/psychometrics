@@ -13,7 +13,7 @@ module Administration
         enable_universal_links
         disable_universal_links
       ]
-      before_action :set_resource, only: %i[select_raw_export_type]
+      before_action :set_resource, only: %i[select_raw_export_type download_qrcode]
       before_action :init_breadcrumbs
       skip_after_action :verify_policy_scoped, only: [:index]
 
@@ -95,6 +95,16 @@ module Administration
         end
       end
 
+      def download_qrcode
+        universal_link = @_resource.decorate.anonym_link_for(client)
+        type = params[:type].downcase
+        file = QrCode::Create.call!(universal_link, type)
+        respond_to do |format|
+          format.svg { send_data file.read, filename: format(@_resource.name, type) }
+          format.png { send_data file.read, filename: format(@_resource.name, type) }
+        end
+      end
+
       def i18n
         'clients.assessments'
       end
@@ -137,6 +147,11 @@ module Administration
 
       def export_results_params
         params.permit(:external, :scoring, :export_with_labels)
+      end
+
+      def format(name, type)
+        file_name = name.downcase.split(/\s|-|_/).reject(&:blank?).join('_')
+        "qr_code_#{file_name}.#{type}"
       end
     end
   end

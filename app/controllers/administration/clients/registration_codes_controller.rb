@@ -6,7 +6,7 @@ module Administration
       include Administration::Clients
 
       before_action :ensure_not_root
-      before_action :set_resource, only: %i[edit update destroy toggle_status]
+      before_action :set_resource, only: %i[edit update destroy toggle_status download_qrcode]
       prepend_before_action :set_resource_class
       append_before_action :init_breadcrumbs
       append_before_action :pundit_authorize
@@ -61,6 +61,16 @@ module Administration
         resource.toggle!(:disabled)
       end
 
+      def download_qrcode
+        encoded_url = resource.decorate.url
+        type = params[:type].downcase
+        file = QrCode::Create.call!(encoded_url, type)
+        respond_to do |format|
+          format.svg { send_data file.read, filename: format(resource.end_level.name, type) }
+          format.png { send_data file.read, filename: format(resource.end_level.name, type) }
+        end
+      end
+
       private
 
       # Set model class
@@ -89,6 +99,11 @@ module Administration
         end
         add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
         add_breadcrumb I18n.t('administration.clients.registration_codes.name'), action: :index
+      end
+
+      def format(name, type)
+        file_name = name.downcase.split(/\s|-|_/).reject(&:blank?).join('_')
+        "qr_code_#{file_name}.#{type}"
       end
     end
   end
