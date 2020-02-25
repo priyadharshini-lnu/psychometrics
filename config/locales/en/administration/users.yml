@@ -100,7 +100,7 @@ en:
               <p>Are you sure you want to delete this User?</p>
       password:
         guidelines:
-          error: "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          error: "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
     clients:
       project_admins:
         <<: *USERS
