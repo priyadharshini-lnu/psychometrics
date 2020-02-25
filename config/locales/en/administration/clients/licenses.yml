@@ -22,21 +22,24 @@ en:
           license_number: License Number
           license_overuse_number: Over Use Allowance
         show: &DEFAULT
-          header: '%{client_name} - Licenses Usage'
-          license_type: License Type
-          used_license_number: Used Licenses
-          used_license_overuse_number: 'Over Use Allowance'
-          start_date: Start Date
-          end_date: End Date
+          header: '%{client_name} - Licenses usage'
+          license_type: License type
+          used_license_number: Used licenses
+          used_license_overuse_number: Over Use Allowance
+          start_date: Start date
+          end_date: End date
           usage_percent: '% of Usage'
           used_out_of: '%{used_number} out of %{number}'
-          report_family: Report Bundle
-          date_expire: 'Date Of Expiry: %{date}'
+          report_family: Report bundle
+          date_expire: 'Date Of expiry: %{date}'
           license_has_expired: License package has expired
         overview:
           <<: *DEFAULT
+          name: Name
         list:
           <<: *DEFAULT
+          active: Active
+          type: Type
         resource:
           tooltips:
             edit: Edit License

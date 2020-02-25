@@ -12,7 +12,7 @@
         th = t('.delivery_rule')
         th = link_to_sort resource_class, :created_at, filter_form
         th = link_to_sort resource_class, :creator_first_name, filter_form
-        th = t('.list.actions')
+        th = t('.actions')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources

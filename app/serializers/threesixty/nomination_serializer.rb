@@ -2,7 +2,7 @@
 
 module Threesixty
   class NominationSerializer < ActiveModel::Serializer
-    attributes :id, :is_self, :can_send_request_approval_email
+    attributes :id, :is_self, :can_send_request_approval_email, :evalaution_completed_for_subject
 
     has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
     has_many :relationships, serializer: RelationshipSerializer
@@ -13,6 +13,10 @@ module Threesixty
 
     def subject
       object.user
+    end
+
+    def evalaution_completed_for_subject
+      object.evaluation_status_completed?
     end
 
     def is_self # rubocop:disable Naming/PredicateName

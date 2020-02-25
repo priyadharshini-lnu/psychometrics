@@ -9,6 +9,10 @@ test:
   services:
   - postgres:latest
   - redis:latest
+  variables:
+    POSTGRES_DB: ci_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
   cache:
     key: psychometrics-cache-key
     paths:

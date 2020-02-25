@@ -1,3 +1,4 @@
 import Block from './components/Block'
+import connect from './connect'
 
-export default Block
+export default connect(Block)

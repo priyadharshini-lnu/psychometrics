@@ -12,11 +12,25 @@ en:
         export: Export
       url: Url
       list: &list
+        id: Id
+        name: Name
+        type: Type
+        number: Number
+        location: Location
+        year: Year
+        used_license_number: Used license number
+        used_license_overuse_number: License overuse number
+        usage_percent: Usage %
+        start_date: Start date
+        end_date: End date
+        account_manager_id: Account manager
+        project_manager_id: Project manager
         admin: Client Admin
-        client_admins: Client Admins
-        report_bundle: Report Bundle
+        client_admins: Client admins
+        report_bundle: Report bundle
       export:
         <<: *list
+        project_admin: Project admin
       new:
         header: 'New Client'
       edit:
@@ -43,12 +57,13 @@ en:
         title: Client's options
         disable: Disable
         enable: Enable
-        edit: Edit Client
-        destroy: Delete Client
+        edit: Edit client
+        destroy: Delete client
         new: New Client
-        copy: Copy Client
+        copy: Copy client
         design: Edit Design
         licenses: Manage Licenses
+        view_licenses: View licenses
       designs:
         form:
           no_logo: 'No Logo yet'
@@ -61,6 +76,9 @@ en:
           disable: Disable Client
           enable: Enable Client
           create_admin: Create Client Admin
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           disable:
             title:
@@ -108,3 +126,15 @@ en:
           title: Statistics
           all_assessments: All assessments
           assessment_type: Assessment type
+      users:
+        edit_hris_data:
+          key: Key
+          value: Value
+          add: Add
+          remove: Remove
+      threesixty_campaigns:
+        new:
+          header: 'New 360 Campaign'
+      reports:
+        resource:
+          export_data: Export Data

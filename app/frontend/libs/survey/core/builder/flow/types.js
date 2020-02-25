@@ -1,0 +1,7 @@
+export const INIT = 'survey/assessment/INIT'
+export const ADD_ELEMENT = 'survey/flow/ADD_ELEMENT'
+export const ADD_NEW_ELEMENT = 'survey/flow/ADD_NEW_ELEMENT'
+export const DUPLICATE_ELEMENT = 'survey/flow/DUPLICATE_ELEMENT'
+export const UPDATE_TREE = 'survey/flow/UPDATE_TREE'
+export const REMOVE_ELEMENT = 'survey/flow/REMOVE_ELEMENT'
+export const RESET = 'survey/flow/RESET'

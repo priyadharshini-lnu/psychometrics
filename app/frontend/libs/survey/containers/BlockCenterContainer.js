@@ -12,6 +12,8 @@ import Block from 'views/BlockCenter/Block'
 import homeStyles from 'views/Home/components/HomeView.scss'
 import blockStyles from 'views/BlockList/components/BlockListView.scss'
 import Randomization from 'components/Randomization'
+import { Provider } from 'react-redux'
+import store from '../store'
 
 class BlockCenterContainer extends Component {
   undoListener = null
@@ -39,18 +41,20 @@ class BlockCenterContainer extends Component {
 
   render () {
     return (
-      <BlockCenter>
-        <div className={homeStyles.survey}>
-          <div className={blockStyles.main} style={{ background: '#fff', borderRight: '1px solid #ccc' }}>
-            {AppStore.block && <Block model={AppStore.block} store={AppStore} />}
+      <Provider store={store}>
+        <BlockCenter>
+          <div className={homeStyles.survey}>
+            <div className={blockStyles.main} style={{ background: '#fff', borderRight: '1px solid #ccc' }}>
+              {AppStore.block && <Block model={AppStore.block} />}
+            </div>
           </div>
-        </div>
-        <Trash />
-        <PropertyPanel restricted />
-        <Preview />
-        <RichEditor />
-        <Randomization />
-      </BlockCenter>
+          <Trash />
+          <PropertyPanel restricted />
+          <Preview />
+          <RichEditor />
+          <Randomization />
+        </BlockCenter>
+      </Provider>
     )
   }
 }

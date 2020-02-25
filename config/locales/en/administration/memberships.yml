@@ -41,6 +41,6 @@ en:
       toggle_status:
         successfully: User %{name} was successfully updated.
       reset_password:
-        successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
+        successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
       spoof:
         successfully: You was successfully login as %{name}

@@ -5,6 +5,8 @@ en:
         title: Products list
         new: Add
       list:
+        active: Active
+        name: Name
         updated_at: Modified Date
         created_at: Created Date
       new:
@@ -40,6 +42,9 @@ en:
           copy: Copy Product
           edit: Edit Product
           delete: Delete Product
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           delete:
             title:

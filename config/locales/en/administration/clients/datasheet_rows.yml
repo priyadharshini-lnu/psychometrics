@@ -6,6 +6,9 @@ en:
           title: '%{name} Datasheet'
           new: Upload datasheet
         list:
+          email: Email
+          created_at: Created date
+          updated_at: Updated date
         resource:
           tooltips: &tooltips
             delete: Delete

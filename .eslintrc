@@ -50,6 +50,7 @@
   },
   "globals": {
     "__DEV__": true,
+    "__DISABLE_LOGGER_": true,
     "__PROD__": true,
     "_": true,
     "location": true,

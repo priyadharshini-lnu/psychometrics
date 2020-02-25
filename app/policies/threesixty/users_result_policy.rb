@@ -2,7 +2,8 @@
 
 class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
   def update?
-    @record.evaluator_id == @current_user.id || superadmin?
+    (!@record.threesixty_subject.evaluation_status_completed? && @record.evaluator_id == @current_user.id) ||
+      superadmin?
   end
 
   def superadmin?

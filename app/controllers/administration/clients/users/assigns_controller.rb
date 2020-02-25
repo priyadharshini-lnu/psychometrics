@@ -62,7 +62,7 @@ module Administration
         # rubocop:enable Metrics/AbcSize
 
         def destroy
-          resource.destroy
+          Assigns::Destroy.call!(resource)
           respond_to do |format|
             format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
             format.js

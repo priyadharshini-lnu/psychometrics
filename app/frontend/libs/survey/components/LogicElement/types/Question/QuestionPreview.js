@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/AppStore'
 import QuestionCondition from 'libs/conditions'
 
-const QuestionPreview = ({ condition }) => (
+const QuestionPreview = ({ condition, questions }) => (
   <QuestionCondition
     preview
-    questions={store.questions}
+    questions={questions}
     condition={condition}
   />
 )

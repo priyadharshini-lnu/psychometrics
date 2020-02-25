@@ -30,7 +30,7 @@ class ConditionList extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, questions } = this.props
     const { conditions } = model
     return (
       <div>
@@ -41,6 +41,7 @@ class ConditionList extends Component {
             condition={condition}
             onAdd={this.addCondition}
             onRemove={this.removeCondition}
+            questions={questions}
             disableRemove={i === 0 && model.conditions.length === 1}
           />
         ))}

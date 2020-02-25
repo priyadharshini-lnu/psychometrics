@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
-import AppStore from 'store/AppStore'
-import store from 'store/FactorList'
 import { RECODING, SCORING } from 'constants/scoring'
+import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import FactorsMenu from './FactorsMenu'
 import styles from './Scoring.scss'
 
 export default class Header extends Component {
-  closeScoring () {
-    AppStore.scoring = false
-    AppStore.update()
+  closeScoring = () => {
+    const { history, match: { params: { id } } } = this.props
+    history.push(`/administration/assessments/${id}`)
   }
 
-  save () {
-    AppStore.saveScoring()
+  save = () => {
+    const {
+      saveScoring, assessmentId, factors, recoding,
+    } = this.props
+    saveScoring(assessmentId, factors, recoding).then(() => {
+      NotificationDispatcher.notify({ message: 'Scoring successfully saved' })
+    }).catch(() => {
+      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
+    })
   }
 
   render () {
-    const { updateType, type } = this.props
+    const { selectedFactor, updateType, type } = this.props
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div className={styles.factorsContainer}>
@@ -35,7 +41,7 @@ export default class Header extends Component {
               Recoding
             </button>
           </div>
-          {store.currentFactor && type === SCORING && <FactorsMenu />}
+          {selectedFactor && type === SCORING && <FactorsMenu {...this.props} />}
           <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
             <i className="fa fa-save" />
             Save

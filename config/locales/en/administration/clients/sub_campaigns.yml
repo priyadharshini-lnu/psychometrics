@@ -7,9 +7,14 @@ en:
           new: Add
           export: Export
         list: &list
-          name: Sub-Campaign Name
-          assigned_user: Assigned Users
-          completed_user: Completed Users
+          id: Id
+          name: Sub-Campaign name
+          assigned_user: Assigned users
+          completed_user: Completed users
+          assessments: Assessments
+          reports: Reports
+          created_at: Created date
+          updated_at: Updated date
           header:
             sub_campaign: Sub-Campaigns
             actions: Actions
@@ -38,6 +43,7 @@ en:
           new: New Sub-Campaign
           copy: Copy Sub-Campaign
           archive: Archive Sub-Campaign
+          view_licenses: View licenses
         new:
           header: 'New Sub-Campaign'
         edit:

@@ -1,26 +1,15 @@
 import React, { Component } from 'react'
 import styles from 'views/Block/components/Block.scss'
 import Confirmation from 'components/Confirmation'
-import TrashDispatcher from 'dispatchers/TrashDispatcher'
-import store from 'store/TrashStore'
+import FlipMove from 'react-flip-move'
 import trashStyles from './Trash.scss'
 import TrashItem from './TrashItem'
 
 class Trash extends Component {
-  storeListener = null
-
   state = {
     opened: true,
     showConfirmation: false,
     showDeleteConfirmation: false,
-  }
-
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
   }
 
   expand = () => {
@@ -37,15 +26,21 @@ class Trash extends Component {
   }
 
   onDeleteConfirm = () => {
+    const { permanentRemoveBlock, permanentRemoveQuestion } = this.props
     const { type, model } = this.state
     this.setState({ showDeleteConfirmation: false })
-    TrashDispatcher.remove(type, model)
-    TrashDispatcher.update()
+    if (type === 'Block') {
+      permanentRemoveBlock(model, type)
+    }
+    if (type === 'Question') {
+      permanentRemoveQuestion(model, type)
+    }
   }
 
   onConfirm = () => {
+    const { emptyTrash } = this.props
     this.setState({ showConfirmation: false })
-    TrashDispatcher.empty()
+    emptyTrash()
   }
 
   onCancel = () => {
@@ -56,17 +51,19 @@ class Trash extends Component {
     const { type } = item
     const { model } = item
 
-    return !item.permanentRemove && (
+    return !model.permanentRemove && (
       <TrashItem
         type={type}
         model={model}
         key={i}
         onPermanentDelete={this.onPermanentDelete}
+        {...this.props}
       />
     )
   }
 
   render () {
+    const { trash } = this.props
     const { showDeleteConfirmation, showConfirmation } = this.state
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
@@ -83,9 +80,9 @@ class Trash extends Component {
           </div>
         </div>
         <div className={[trashStyles.content]} style={{ display: opened ? 'block' : 'none' }}>
-          <ul className="list-group border-bottom">
-            {store.list.map(this.renderItem)}
-          </ul>
+          <FlipMove typeName="ul" className="list-group border-bottom">
+            {trash.map(this.renderItem)}
+          </FlipMove>
         </div>
         <Confirmation show={showDeleteConfirmation} onConfirm={this.onDeleteConfirm} onCancel={this.onCancel}>
           <p>Are you sure you want to permanently remove?</p>

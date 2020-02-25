@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from 'store/DisplayLogicStore'
 import { Modal } from 'react-bootstrap'
 import LogicElement from 'components/LogicElement'
 import styles from './DisplayLogic.scss'
@@ -8,23 +7,13 @@ const {
   Header, Body, Footer, Title,
 } = Modal
 
-export default class extends Component {
-  componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  close = () => {
-    store.close()
-    this.forceUpdate()
-  }
-
+export default class DisplayLogic extends Component {
   save = () => {
-    store.save()
-    this.close()
+    const {
+      saveDisplayLogic, question, logicElement, close,
+    } = this.props
+    saveDisplayLogic(question, logicElement)
+    close()
   }
 
   update = () => {
@@ -32,16 +21,16 @@ export default class extends Component {
   }
 
   render () {
-    const model = store.question
-    const { logicElement } = store
-    if (!model) { return null }
+    const {
+      question, logicElement, close,
+    } = this.props
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
         <Header>
           <Title>
-Display Logic (
-            {model.name}
-)
+            Display Logic (
+            {question.name}
+            )
           </Title>
         </Header>
         <Body style={{ height: '45vh', overflowY: 'scroll' }}>
@@ -57,7 +46,7 @@ Display Logic (
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Close</button>
+          <button className="btn btn-danger" onClick={() => close()}>Close</button>
         </Footer>
       </Modal>
     )

@@ -1,3 +1,4 @@
 import CreateByTemplate from './components/CreateByTemplate'
+import connect from './connect'
 
-export default CreateByTemplate
+export default connect(CreateByTemplate)

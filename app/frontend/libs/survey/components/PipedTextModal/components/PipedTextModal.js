@@ -1,35 +1,25 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'store/PipedTextModalStore'
 import AppStore from 'store/AppStore'
 import styles from './PipedTextModal.scss'
 import types from './types'
 import FIELDS from './fields'
 
-const { Header } = Modal
-const { Body } = Modal
-const { Footer } = Modal
-const { Title } = Modal
+const {
+  Header, Body, Footer, Title,
+} = Modal
 
 export class PipedTextModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
-  close = () => {
-    store.close()
-  }
-
-  onChange = (text) => {
-    store.text = text
+  insert = (value) => {
+    const { editorRef, close } = this.props
+    close()
+    editorRef.selection.restore()
+    editorRef.html.insert(value)
+    editorRef.events.trigger('change')
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
     const datasheetFields = AppStore.dataSheetColumns
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
@@ -48,7 +38,7 @@ export class PipedTextModal extends Component {
                     const Component = types[field.type]
                     return (
                       <Component
-                        insert={value => store.insert(value)}
+                        insert={value => this.insert(value)}
                         key={field.name}
                         field={field}
                         context={{ datasheetFields }}
@@ -61,7 +51,7 @@ export class PipedTextModal extends Component {
           ))}
         </Body>
         <Footer>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

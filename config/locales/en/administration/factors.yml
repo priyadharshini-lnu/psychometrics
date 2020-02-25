@@ -7,9 +7,18 @@ en:
         tooltips:
           create: Create
         new: Add
+        scoring_strategy: Scoring strategy
+        sub_factors: Sub factors
+        scoring_strategies:
+          questions: Questions
+          sub_factor_questions: Questions of other Factors
+          sub_factors_average: Weighted Sum of Factors
       list:
-        updated_at: Modified Date
-        created_at: Created Date
+        id: Id
+        active: Active
+        name: Name
+        updated_at: Modified date
+        created_at: Created date
       new:
         header: 'New Factor'
       edit:
@@ -37,6 +46,13 @@ en:
           copy: 'Copy Factor'
           edit: 'Edit Factor'
           delete: 'Delete Factor'
+        scoring_strategies:
+          questions: Questions
+          sub_factor_questions: Questions of other factors
+          sub_factors_average: Weighted sum of factors
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
@@ -47,3 +63,13 @@ en:
               Delete <strong>Factor</strong> ?
             body: >
               <p>Are you sure you want to delete this Factor?</p>
+      create:
+        successfully: '%{name} factor was created successfully'
+        error: '%{name} factor was not created'
+      copy:
+        successfully: '%{name} factor was copied successfully'
+        error: '%{name} factor was not copied'
+      update:
+        successfully: '%{name} factor was updated successfully'
+        error: '%{name} factor was not updated'
+

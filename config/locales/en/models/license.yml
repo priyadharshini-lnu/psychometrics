@@ -1,20 +1,22 @@
 en:
   activerecord:
     models:
-      license: 'License'
+      license: License
     attributes:
       license: &DEFAULT
         id: ID
         type: License for
+        types:
+          common: Common
+          threesixty: Threesixty
         number: License Number
         overuse_number: Over Use Allowance
         used_number: Used License Number
         unlimited: Unlimited
-  activerecord:
     errors:
       models:
         license:
-          overuse: License %{name} ssis overused
+          overuse: License %{name} is overused
   simple_form:
     placeholders:
       license:

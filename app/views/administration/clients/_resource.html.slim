@@ -27,9 +27,9 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
         = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
           span.fa.fa-pencil
         - if policy(resource).manage_first_level?
-          = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+          = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy'), disable_with: t('.in_progress.copying') }
             span.fa.fa-copy
-        = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') }
+        = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting') }
           span.fa.fa-times
   - if current_user.is?(:superadmin)
     - resource.licenses.each do |license|

@@ -1,5 +1,6 @@
 import React from 'react'
 import cs from 'classnames'
+import ColorPicker from 'rb/components/ColorPicker'
 import styles from './styles.scss'
 
 export default function Milestone ({ milestone, onRemove, onUpdate }) {
@@ -15,6 +16,10 @@ export default function Milestone ({ milestone, onRemove, onUpdate }) {
           name="name"
           placeholder="Name"
           value={milestone.name}
+        />
+        <ColorPicker
+          color={milestone.color || '#cccccc'}
+          onChange={color => onUpdate(milestone.id, { color: color.hex })}
         />
         <i className={cs('fa', 'fa-minus', 'mls', styles.remove)} onClick={removeMilestone} />
       </div>

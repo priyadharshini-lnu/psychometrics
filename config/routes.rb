@@ -292,7 +292,9 @@ Rails.application.routes.draw do
         get :export
         put :save
         patch :toggle_archive
+        get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
       end
+
       scope module: 'assessments' do
         resources :assigns, only: %i[new create] do
           collection do
@@ -440,7 +442,7 @@ Rails.application.routes.draw do
     end
 
     resources :bulk_reports, only: %i[new create] do
-      get :download, on: :member
+      get 'download(/:index)', to: 'bulk_reports#download', on: :member, as: :download
     end
 
     resources :libraries

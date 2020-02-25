@@ -1,15 +1,27 @@
 .container {
   position: absolute;
-  display: inline-block;
+  display: flex;
+  padding: 2px;
+  border-radius: 15px;
   align-items: center;
+  justify-content: center;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+
+  &.outline {
+    border: 0.5px solid #E9E9E9;
+    box-shadow: 0px 0px 3px #0202020D;
+  }
+
   .value {
-    position: absolute;
-    top: -9px;
-    font-size: 8px;
-    text-align: center;
-    width: 100%;
-    text-shadow: 0px 0px 2px white;
-    color: black;
+    letter-spacing: 0;
+    color: #070101;
+    line-height: initial;
+    margin: 0 4px;
+    transform: translateY(1px);
+  }
+
+  &.reversed {
+    flex-direction: row-reverse;
   }
 }
 .filters {

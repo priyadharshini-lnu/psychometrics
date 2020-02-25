@@ -3,13 +3,13 @@ import styles from './styles.scss'
 
 export default function FilterAvatar ({ filter, fontSize, showLabel }) {
   const fontSizeStr = `${fontSize}px`
-  const heightStr = `${fontSize * 2}px`
+  const heightStr = `${fontSize * 1.8}px`
   const style = {
     backgroundColor: filter.color,
     fontSize: fontSizeStr,
     height: heightStr,
     width: heightStr,
-    lineHeight: heightStr,
+    lineHeight: `${fontSize * 2}px`,
   }
   if (!showLabel) {
     style.color = '#ffffff00'

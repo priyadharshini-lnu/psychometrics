@@ -10,8 +10,15 @@ class TrashItem extends Component {
   }
 
   restore = () => {
-    const { model } = this.props
-    model.restore()
+    const {
+      restoreQuestion, restoreBlock, model, type,
+    } = this.props
+    if (type === 'Question') {
+      restoreQuestion(model)
+    }
+    if (type === 'Block') {
+      restoreBlock(model)
+    }
   }
 
   permanentRemove = () => {

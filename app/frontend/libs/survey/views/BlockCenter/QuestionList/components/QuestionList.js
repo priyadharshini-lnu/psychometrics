@@ -27,7 +27,7 @@ export class QuestionList extends Component {
       <div className={styles.main}>
         {list.map((question, i) => {
           if (question.type !== 'PageBreak') {
-            return <Question store={store} model={question} key={i} />
+            return <Question blockStore={store} model={question} key={i} />
           }
         })}
       </div>

@@ -2,18 +2,16 @@
 import _ from 'lodash'
 import React from 'react'
 import { Scorings } from 'components/modules'
-import FactorList from 'store/FactorList'
-import AppStore from 'store/AppStore'
 import { RECODING, SCORING } from 'constants/scoring'
 import styles from './Scoring.scss'
 
-export default function Scoring ({ model, type }) {
+export default function Scoring ({ model, type, ...props }) {
   const module = model.moduleConfig
   return (
     <div className={styles.questionContainer}>
       <div className={styles.infobar}>{model.name}</div>
       {module.scoring && !_.includes(module.scoringFilteredModules, model.props.type) ? (
-        <ScoringType model={model} type={type} />
+        <ScoringType model={model} type={type} {...props} />
       ) : (
         <div>This question type is not currently supported</div>
       )}
@@ -21,18 +19,19 @@ export default function Scoring ({ model, type }) {
   )
 }
 
-const ScoringType = ({ model, type }) => {
+const ScoringType = ({
+  scorings, recoding, model, type,
+}) => {
   const getScoring = () => {
     if (type === SCORING) {
-      return FactorList.scoring[model.id] || FactorList.addScoring({ question_id: model.id })
+      return scorings[model.id]
     }
     if (type === RECODING) {
-      return AppStore.questionRecodingList.find(q => q.question_id === model.id)
-              || AppStore.addQuestionRecoding({ question_id: model.id })
+      return recoding.find(q => q.question_id === model.id)
     }
   }
-
   const scoring = getScoring()
+  if (!scoring) { return null }
   scoring.setEngine(model.type)
   const View = Scorings[`${model.type}Scoring`] || Scorings.MultipleChoiceScoring
   return (

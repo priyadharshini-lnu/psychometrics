@@ -20,9 +20,15 @@ en:
           member: User
           manager: Manager
           admin: Client Admin
-          superadmin: Super Admin
-          super_admin: Super Admin
+          superadmin: Super admin
+          super_admin: Super admin
           regular: Regular
+          psychometric: Psychometric
+          organisational: Organisational
+          case_study: Case study
+          threesixty: Threesixty
+          mindmill: Mindmill
+          hogan: Hogan
           admins:
             superadmin: Super Admin
             regular: Client Admin

@@ -6,3 +6,5 @@ assigns:
   mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %>
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
+bulk_reports:
+  size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
