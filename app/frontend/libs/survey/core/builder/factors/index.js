@@ -34,7 +34,7 @@ export const saveScoring = (assessmentId, factors, recoding) => {
   const scoring = []
   _.each(factors, (factorModel) => {
     _.each(factorModel.scoring, (scoringModel) => {
-      scoring.push(scoringModel.toJSON())
+      scoring.push(scoringModel.toJSON ? scoringModel.toJSON() : scoringModel)
     })
   })
 
