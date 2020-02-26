@@ -8,7 +8,7 @@ import {
 } from './actions'
 import { getPrevPage, pageQuestions, pageQuestionsWithoutHidden } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, CHANGE_ELEMENT,
 } from './consts'
 
 function* genInitPageProcessing () {
@@ -37,7 +37,7 @@ function* genUpdateResultsAsNotDirty () {
   yield put(setNotDirtyResults(_.map(questions, 'id')))
 }
 
-function* getSaveResults () {
+function* genSaveResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     yield put(saveResults(state.preview))
@@ -47,7 +47,8 @@ function* getSaveResults () {
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
-  takeEvery(SHOW_PAGE, getSaveResults),
+  takeEvery(SHOW_PAGE, genSaveResults),
+  takeEvery(CHANGE_ELEMENT, genSaveResults),
   takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),
-  takeEvery(SHOW_END, getSaveResults),
+  takeEvery(SHOW_END, genSaveResults),
 ]
