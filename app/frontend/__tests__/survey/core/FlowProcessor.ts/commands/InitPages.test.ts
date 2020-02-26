@@ -15,6 +15,15 @@ test('deleted question', () => {
   expect(InitPages.run({ blocks })).toStrictEqual({1: []})
 })
 
+
+test('deleted question', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2, { deleted: true }),question(3)],
+  }]
+  expect(InitPages.run({ blocks })).toStrictEqual({1: [{questions:[1,3], blockId: 1}]})
+})
+
 test('simple block with one page', () => {
   const blocks = [{
     id: 1,
