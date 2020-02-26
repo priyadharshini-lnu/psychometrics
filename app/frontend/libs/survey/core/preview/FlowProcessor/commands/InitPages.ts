@@ -10,7 +10,7 @@ const InitPages = {
       pages = { ...pages, [b.id]: [] }
 
       const questions = _.reduce(b.questions, (questions, q) => {
-        if (q.deleted) { return [] }
+        if (q.deleted) { return questions }
         if (q.type === 'PageBreak') {
           if (questions.length) {
             pages[b.id] = [...pages[b.id], { questions, blockId: b.id }]
