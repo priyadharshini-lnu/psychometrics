@@ -8,8 +8,8 @@ const environment = require('./environment')
 environment.config.merge({
   devServer: {
     https: {
-      key: fs.readFileSync(path.resolve(__dirname, '../../support/dev-ssl/lvh.me.key')),
-      cert: fs.readFileSync(path.resolve(__dirname, '../../support/dev-ssl/lvh.me.crt')),
+      key: fs.readFileSync(path.resolve(__dirname, '../../support/dev-ssl/dev.key')),
+      cert: fs.readFileSync(path.resolve(__dirname, '../../support/dev-ssl/dev-cert.pem')),
     },
   },
 })
