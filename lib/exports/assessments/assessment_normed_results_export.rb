@@ -74,7 +74,7 @@ module Exports
               end
 
               sheet.add_row [assign.encode_id,
-                             assign.user_name,
+                             user_name(assign),
                              assign.user_email,
                              assign.started_at.try(:strftime, '%D %r'),
                              assign.completed_at.try(:strftime, '%D %r'),
@@ -106,7 +106,8 @@ module Exports
            status,
            completed_at,
            started_at,
-           membership.user.last_name.op('||', quoted(', ')).op('||', membership.user.first_name).as('user_name'),
+           membership.user.first_name.as('user_first_name'),
+           membership.user.last_name.as('user_last_name'),
            membership.user.email.as('user_email')]
         end
       end
@@ -120,10 +121,14 @@ module Exports
            status,
            completed_at,
            started_at,
-           original_assign.membership.user.last_name.op('||', quoted(', ')).
-             op('||', original_assign.membership.user.first_name).as('user_name'),
+           original_assign.membership.user.first_name.as('user_first_name'),
+           original_assign.membership.user.last_name.as('user_last_name'),
            original_assign.membership.user.email.as('user_email')]
         end
+      end
+
+      def user_name(assign)
+        [assign.user_first_name, assign.user_last_name].reject(&:blank?).join(', ')
       end
     end
   end
