@@ -40,8 +40,10 @@ module Exports
             completed_at,
             subject.email.as('subject_email'),
             evaluator.email.as('evaluator_email'),
-            subject.last_name.op('||', quoted(', ')).op('||', subject.first_name).as('subject_name'),
-            evaluator.last_name.op('||', quoted(', ')).op('||', evaluator.first_name).as('evaluator_name'),
+            subject.first_name.as('subject_first_name'),
+            subject.last_name.as('subject_last_name'),
+            evaluator.first_name.as('evaluator_first_name'),
+            evaluator.last_name.as('evaluator_last_name'),
             threesixty_participants.relationship_id.as('relationship_id')
           ]
         end.where(assessment_id: assessment.id)
@@ -50,9 +52,9 @@ module Exports
       def result_details_row_values(users_result)
         [
           UsersResult.encode_id(users_result.id),
-          users_result.subject_name,
+          subject_name(users_result),
           users_result.subject_email,
-          users_result.evaluator_name,
+          evaluator_name(users_result),
           users_result.evaluator_email,
           relationship_name_by_id(users_result.relationship_id),
           to_timezone(users_result.started_at),
@@ -75,6 +77,14 @@ module Exports
 
       def to_timezone(time)
         time&.in_time_zone(Time.zone)&.try(:strftime, '%D %r')
+      end
+
+      def subject_name(users_result)
+        user_name(users_result.subject_first_name, users_result.subject_last_name)
+      end
+
+      def evaluator_name(users_result)
+        user_name(users_result.evaluator_first_name, users_result.evaluator_last_name)
       end
     end
   end
