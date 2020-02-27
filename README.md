@@ -53,8 +53,8 @@ $> Users::SuperAdmin.create(
 )
 ```
 1. Setup a loopback address to `lvh.me`
-2. Run the server `bundle exec rails s -p 3030`
-3. Visit `lvh.me:3030`
+2. Run the server `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/lvh.me.key&cert=support/dev-ssl/lvh.me.crt"`
+3. Visit `https://lvh.me:3030`
 
 # Run tests
 
