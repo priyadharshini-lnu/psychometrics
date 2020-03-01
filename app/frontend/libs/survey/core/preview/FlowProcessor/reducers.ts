@@ -41,7 +41,7 @@ const HANDLERS = {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
     let { elements } = data.flow
     if (elements.length === 0) {
-      elements = InitLinearElements.run(normalizedData.entities.blocks)
+      elements = InitLinearElements.run(data.blocks)
     }
     const normalizedTree = NormalizeTree.run(elements)
 

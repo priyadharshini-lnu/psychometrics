@@ -15,9 +15,13 @@ test('linear block elements', () => {
     questions: [question(1), question(2), question(3)],
   },
   {
+    id: 3,
+    questions: [question(6), question(7)],
+  },
+  {
     id: 2,
     questions: [question(4), question(5)],
   }]
 
-  expect(InitLinearElements.run(blocks)).toStrictEqual([{ type: 'Block', props: { current: '1' }, elements: [] }, { type: 'Block', props: { current: '2' }, elements: [] }])
+  expect(InitLinearElements.run(blocks)).toStrictEqual([{ type: 'Block', props: { current: '1' }, elements: [] }, { type: 'Block', props: { current: '3' }, elements: [] } ,{ type: 'Block', props: { current: '2' }, elements: [] }])
 })
