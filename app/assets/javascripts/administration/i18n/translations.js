@@ -5333,7 +5333,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' generated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
