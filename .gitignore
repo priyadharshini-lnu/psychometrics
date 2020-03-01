@@ -71,3 +71,9 @@ yarn-debug.log*
 package-lock.json
 .DS_Store
 .eslintcache
+
+# Ignore local ssl certs
+support/dev-ssl/*.pem
+support/dev-ssl/*.key
+!support/dev-ssl/lvh.me.pem
+!support/dev-ssl/lvh.me.key
