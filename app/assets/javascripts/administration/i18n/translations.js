@@ -286,6 +286,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -1428,8 +1429,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -1735,8 +1741,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -2616,6 +2627,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "create": {
             "successfully": "Successfully Updated"
           },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -2647,6 +2661,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -2779,6 +2799,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reports": {
           "copy": {
             "error": "Report #%{id} was not copied."
@@ -2897,7 +2922,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -3542,7 +3567,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -3931,6 +3956,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -4345,6 +4375,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -4419,8 +4454,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -4874,6 +4914,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "confirm_new_password": "Confirm new password",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "New password",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -5872,6 +5913,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -6004,6 +6046,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -6693,6 +6736,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -7835,8 +7879,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -8142,8 +8191,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -9023,6 +9077,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "create": {
             "successfully": "Successfully Updated"
           },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -9054,6 +9111,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -9186,6 +9249,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reports": {
           "copy": {
             "error": "Report #%{id} was not copied."
@@ -9304,7 +9372,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -9949,7 +10017,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -10338,6 +10406,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -10752,6 +10825,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -10826,8 +10904,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -11281,6 +11364,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "confirm_new_password": "أكّد كلمة السر الجديدة",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "كلمة سر جديدة",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -12283,6 +12367,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -12415,6 +12500,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -13107,6 +13193,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -14249,8 +14336,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -14556,8 +14648,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -15437,6 +15534,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "create": {
             "successfully": "Successfully Updated"
           },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -15468,6 +15568,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -15600,6 +15706,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reports": {
           "copy": {
             "error": "Report #%{id} was not copied."
@@ -15718,7 +15829,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -16363,7 +16474,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -16752,6 +16863,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -17166,6 +17282,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -17240,8 +17361,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -17695,6 +17821,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "confirm_new_password": "Confirm new password",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "New password",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -18693,6 +18820,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -18825,6 +18953,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",

@@ -53,15 +53,15 @@ function FilterComponent ({
   reversed,
 }) {
   const { showLabels, showValues } = model.props
-  const fontSize = showLabels || showValues ? 10 : 8
+  const fontSize = 0.65
   const classes = [styles.container, reversed ? styles.reversed : '', showValues ? styles.outline : '']
 
-  style.bottom = `${-fontSize}px`
+  style.bottom = `${-fontSize}em`
 
   return (
     <div className={cs(classes)} style={style}>
       <FilterAvatar filter={filter} fontSize={fontSize} showLabel={showLabels} />
-      {showValues && <div className={styles.value} style={{ fontSize: `${fontSize}px` }}>{filter.value}</div>}
+      {showValues && <div className={styles.value} style={{ fontSize: `${fontSize}em` }}>{filter.value}</div>}
     </div>
   )
 }
