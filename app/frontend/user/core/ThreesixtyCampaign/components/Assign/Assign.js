@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Icon, PageHeader, Row, Col,
+  Layout, Icon, PageHeader, Row, Col, Statistic,
 } from 'antd'
 import qs from 'query-string'
 import cs from 'classnames'
@@ -8,6 +8,7 @@ import './styles.scss'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 import store from '../../../../store'
+import Timer from '../Timer'
 
 const { Content } = Layout
 
@@ -24,12 +25,15 @@ export default function Assign ({
   match: { params },
   history,
   isFrame,
+  preview,
+  saveResults,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
   }, [])
   // TODO: Fix by creating a setting for list of rtl languages
+
   return (
     <Layout>
       <Content className="fluid-container">
@@ -47,6 +51,7 @@ export default function Assign ({
               {assessment.name}
             </div>
           )}
+          extra={(<Timer preview={preview} saveResults={saveResults} />)}
           onBack={() => history.push('/campaigns')}
         >
           {availableTranslations && availableTranslations.length > 0 && (

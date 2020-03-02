@@ -24,7 +24,7 @@ class UpdateAssign < Rectify::Command
   #   and increases the step of assign
   #
   def update_assign
-    assign.update!(form.attributes)
+    assign.update!(form.attributes_with_values)
 
     # Calculates scoring and sets time of completion
     if assign.completed?

@@ -92,7 +92,7 @@ class Page extends Component {
 
   render () {
     const {
-      type, page, questions, errors, nextPage, enableProgress, enableBack, prevPage, hasPrevPage, block,
+      page, questions, errors, nextPage, preview, preview: { enableProgress, type }, prevPage, hasPrevPage, block,
     } = this.props
     if (!page) { return }
     const { props: { staticContent } } = block
@@ -112,7 +112,7 @@ class Page extends Component {
           </div>
         </div>
         {type !== 'preview_block' && (
-          <Footer hasBack={enableBack} hasPrevPage={hasPrevPage} page={page} prevPage={prevPage} nextPage={nextPage} />
+          <Footer preview={preview} hasPrevPage={hasPrevPage} page={page} prevPage={prevPage} nextPage={nextPage} />
         )}
       </div>
     )

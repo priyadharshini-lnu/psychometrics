@@ -12,7 +12,7 @@ import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
-  SET_NOT_DIRTY_RESULTS,
+  SET_NOT_DIRTY_RESULTS, SAVE_RESULTS,
 } from './consts'
 
 const defaultState: DefaultState = {
@@ -68,6 +68,8 @@ const HANDLERS = {
       initialized: true,
       dbResult: result,
       results: result.results || result.answers || {},
+      expiryDate: result.expiry_date,
+      timerDuration: data.timer_duration,
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
@@ -101,6 +103,7 @@ const HANDLERS = {
       results: { ...state.results, ...results },
     }
   },
+  [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
 }
 
 export default createReducer(HANDLERS, defaultState)

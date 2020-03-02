@@ -8,10 +8,17 @@ module Threesixty
 
     def update
       campaign = Threesixty::Campaign.find(params[:campaign_id])
-      form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
+
+      assign_params = ::UsersResults::ExtendResourceParams.call!(
+        resource_params.to_h,
+        params[:question_ids],
+        @users_result
+      )
+
+      form = ::UsersResults::UpdatingForm.from_params(assign_params)
       ::UsersResults::UpdateUsersResult.call(form, @users_result, campaign)
 
-      head :no_content
+      render json: { expired: @users_result.expired? }
     end
 
     def upload_media_url
@@ -55,6 +62,14 @@ module Threesixty
                         UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
                       end
       authorize [:threesixty, @users_result]
+    end
+
+    private
+
+    def resource_params
+      params[:resource].permit(
+        :current_element, :current_page, :status, :step, :norm_id, embedded_data: {}, answers: {}
+      )
     end
   end
 end

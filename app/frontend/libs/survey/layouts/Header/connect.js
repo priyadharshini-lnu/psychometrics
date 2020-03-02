@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
 import { createBlock } from 'libs/survey/core/builder/assessment/block/actions'
 import { trashItems, blocksWithQuestions } from 'core/builder/assessment/selectors'
+import { updateExtra } from 'libs/survey/core/builder/assessment/actions'
 
 export default connect(
   state => ({
@@ -17,5 +18,6 @@ export default connect(
     openMapNorms: data => openModal('mapNorms', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),
     createBlock,
+    updateExtra,
   },
 )

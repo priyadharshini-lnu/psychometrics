@@ -57,10 +57,12 @@ class AssignsController < ApplicationController
   end
 
   def update
-    @form = AssignForm.from_params(params[:resource])
+    assign_params = ::UsersResults::ExtendResourceParams.call!(resource_params.to_h, params[:question_ids], @assign)
+
+    @form = AssignForm.from_params(assign_params)
     UpdateAssign.call(@form, @assign, current_user)
 
-    head :no_content
+    render json: { expired: @assign.expired? }
   end
 
   def accept_privacy
@@ -133,5 +135,11 @@ class AssignsController < ApplicationController
 
   def current_campaigns_user
     CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  end
+
+  def resource_params
+    params[:resource].permit(
+      :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {}
+    )
   end
 end

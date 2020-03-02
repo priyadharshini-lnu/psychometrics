@@ -8,9 +8,7 @@ import {
 
 export default connect(
   ({ preview, preview: { initialized } }) => ({
-    enableBack: preview.enableBack,
-    enableProgress: preview.enableProgress,
-    type: preview.type,
+    preview,
     hasPrevPage: initialized && getPrevPage(preview),
     page: initialized && getCurrentPage(preview),
     questions: initialized && pageQuestionsWithoutHidden(preview),

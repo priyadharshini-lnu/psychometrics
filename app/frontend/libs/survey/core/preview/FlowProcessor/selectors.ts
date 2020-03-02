@@ -91,4 +91,4 @@ export const getQuestionResults = createSelector(
   (question, results) => results[question.id] || {},
 )
 
-export const getPrevPage = (state): {element: string; page: number} => _.last(state.prevPages)
+export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} => _.last(state.prevPages)
