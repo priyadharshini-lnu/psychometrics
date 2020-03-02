@@ -29,25 +29,41 @@
   th {
     font-size: 1.13em;
     font-weight: 400;
-    padding: 1.7em 1.4em .6em;
+    padding: 1.5em 1em 1em;
     letter-spacing: 1px;
     text-transform: uppercase;
     overflow: hidden;
+
+    &:first-child {
+      padding-left: 1.5em;
+    }
+
+    &:last-child {
+      padding-right: 1.5em;
+    }
   }
 
   td {
-    padding: 1.5em;
+    padding: 1em;
     text-align: start;
     letter-spacing: 1px;
     vertical-align: top;
     white-space: normal;
     border-bottom: 1px solid #ededed;
 
+    &:first-child {
+      padding-left: 1.5em;
+    }
+
+    &:last-child {
+      padding-right: 1.5em;
+    }
+
     &.strength {
       font-size: 1.13em;
       font-weight: bold;
 
-      padding: 1em;
+      padding: .6em;
     }
 
     &.description {
@@ -86,10 +102,11 @@
       &.defaultLists {
         ul {
           padding-left: 1em;
+          margin-bottom: 0;
           list-style-type: disc;
 
           li {
-            padding: 0 0 1.25em 0;
+            padding: 0 0 1em 0;
           }
         }
       }
@@ -126,6 +143,18 @@
     td {
       &.strength, &.score {
         font-size: 1.2em;
+
+        padding: 1em;
+      }
+
+      &.strengthsBlindspots {
+        &.styledLists {
+          ul {
+            li {
+              padding: 0 0 1em 1.5em;
+            }
+          }
+        }
       }
     }
   }
@@ -136,10 +165,10 @@
     }
 
     td {
-      padding: 0.65em 1.56em;
-
       &.strength {
         font-weight: bold;
+
+        padding: 1em;
       }
 
       &.score {
@@ -147,18 +176,10 @@
       }
 
       &.strengthsBlindspots {
-        &.styledLists {
-          ul {
-            li {
-              padding: 0 0 0.65em 1.56em;
-            }
-          }
-        }
-
         &.defaultLists {
           ul {
             li {
-              padding: 0 0 0.65em 0;
+              padding: 0 0 0.5em 0;
             }
           }
         }
