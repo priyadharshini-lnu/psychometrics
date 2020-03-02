@@ -50,3 +50,15 @@
 .td {
   position: relative;
 }
+
+body:not([data-locale="ar"]) {
+  .filters {
+    border-left: 1px solid #02020214;
+  }
+}
+
+body[data-locale="ar"] {
+  .filters {
+    border-right: 1px solid #02020214;
+  }
+}
