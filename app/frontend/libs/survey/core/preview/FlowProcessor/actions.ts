@@ -14,7 +14,19 @@ import {
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
-export const prevPage = (params = {}) => ({ type: PREV_PAGE, ...params })
+export const prevPage = (preview) => {
+  // TODO (atanych): Is used the same endpoint as for `saveResults` with empty resource to update last_activity_at field
+  const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
+
+  return {
+    type: PREV_PAGE,
+    request: {
+      url,
+      method: 'PUT',
+      body: { resource: {} },
+    },
+  }
+}
 
 export const addPrevPage = page => ({ type: ADD_PREV_PAGE, page })
 
@@ -38,7 +50,7 @@ export const setEmbeddedData = (data: object) => ({ type: SET_EMBEDDED_DATA, dat
 export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
 export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })
 
-export const saveResults = (preview) => {
+export const saveResults = (preview, questionIds) => {
   const data = {
     resource: {
       [preview.isThreesixty ? 'answers' : 'results']: _.omitBy(preview.results, 'dirty'),
@@ -47,6 +59,7 @@ export const saveResults = (preview) => {
       embedded_data: preview.embeddedData,
       status: preview.end ? 'completed' : 'in_progress',
     },
+    question_ids: questionIds,
   }
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
   if (preview.end) {

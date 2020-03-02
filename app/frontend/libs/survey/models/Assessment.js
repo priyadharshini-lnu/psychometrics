@@ -15,6 +15,7 @@ const Assessment = function (attrs = {}) {
   this.flow = new Flow(attrs.flow || {})
   this.enable_back = attrs.enable_back
   this.enable_progress = attrs.enable_progress
+  this.extra = attrs.extra
 }
 
 Assessment.prototype = new EventEmitter()
@@ -36,6 +37,7 @@ _.extend(Assessment.prototype, {
       norm_rules: this.norm_rules,
       enable_back: this.enable_back,
       enable_progress: this.enable_progress,
+      extra: this.extra,
     }
   },
 

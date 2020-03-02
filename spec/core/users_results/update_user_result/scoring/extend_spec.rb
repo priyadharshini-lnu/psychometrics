@@ -30,12 +30,12 @@ describe ::UsersResults::Scoring::Extend do
     create(:factors_norm, norm: norm, factor: factor4, type: :eti, props: norm_props)
 
     scoring = {
-      factor1.id.to_s => {
-        'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 }, { 'value' => 5, 'question_id' => 2 }]
+      factor1.id => {
+        results: [{ value: [2, 3, 4], question_id: 1 }, { value: 5, question_id: 2 }]
       },
-      factor2.id.to_s => { 'results' => [{ 'value' => [0, 2], 'question_id' => 3 }] },
-      factor3.id.to_s => { 'results' => [{ 'value' => [1, 5], 'question_id' => 5 }] },
-      factor4.id.to_s => { 'results' => [] }
+      factor2.id => { results: [{ value: [0, 2], question_id: 3 }] },
+      factor3.id => { results: [{ value: [1, 5], question_id: 5 }] },
+      factor4.id => { results: [] }
     }
     expect(::UsersResults::Scoring::Extend.call!(scoring, norm_data)).to eq(
       factor1.id.to_s => {

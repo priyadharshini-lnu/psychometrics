@@ -5,7 +5,6 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
-SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -258,8 +257,11 @@ CREATE TABLE public.assigns (
     evaluator_id bigint,
     subject_id bigint,
     current_element character varying,
-    current_page integer,
-    seedrandom character varying
+    current_page character varying,
+    "integer" character varying,
+    seedrandom character varying,
+    expiry_date timestamp without time zone,
+    last_activity_at timestamp without time zone
 );
 
 
@@ -1041,6 +1043,7 @@ CREATE TABLE public.factors (
     icon character varying,
     description text,
     scoring_strategy smallint DEFAULT 0 NOT NULL,
+    subfactors_count integer DEFAULT 0,
     code character varying
 );
 
@@ -2410,7 +2413,8 @@ CREATE TABLE public.threesixty_email_histories (
     evaluator_id bigint,
     threesixty_campaign_id bigint,
     threesixty_email_schedule_id bigint,
-    status smallint,
+    recipient_type character varying,
+    status integer,
     meta json,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -2955,8 +2959,11 @@ CREATE TABLE public.users_results (
     norm_id bigint,
     campaign_id bigint,
     current_element character varying,
-    current_page integer,
-    seedrandom character varying
+    current_page character varying,
+    "integer" character varying,
+    seedrandom character varying,
+    expiry_date timestamp without time zone,
+    last_activity_at timestamp without time zone
 );
 
 
@@ -5593,7 +5600,7 @@ ALTER TABLE ONLY public.libraries
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_3cb35a810a FOREIGN KEY (threesixty_email_schedule_id) REFERENCES public.threesixty_email_schedules(id);
 
 
 --
@@ -6041,7 +6048,7 @@ ALTER TABLE ONLY public.license_usages
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id);
 
 
 --
@@ -6089,7 +6096,7 @@ ALTER TABLE ONLY public.threesixty_campaigns
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_d00d71891f FOREIGN KEY (evaluator_id) REFERENCES public.users(id);
 
 
 --
@@ -6193,7 +6200,7 @@ ALTER TABLE ONLY public.users_results
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_dee061b324 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id);
 
 
 --
@@ -6641,6 +6648,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200204141530'),
 ('20200207070850'),
 ('20200216190418'),
-('20200216190542');
+('20200216190542'),
+('20200219084808');
 
 

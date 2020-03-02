@@ -1,12 +1,20 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
+import { select, takeEvery, put } from 'redux-saga/effects'
 import {
-  select, takeEvery, put,
-} from 'redux-saga/effects'
-import {
-  nextPage, setDirtyResults, changeElement, removePrevPage, saveResults, setNotDirtyResults,
+  nextPage,
+  setDirtyResults,
+  changeElement,
+  removePrevPage,
+  saveResults,
+  setNotDirtyResults,
 } from './actions'
-import { getPrevPage, pageQuestions, pageQuestionsWithoutHidden } from './selectors'
+import {
+  getPrevPage,
+  pageQuestions,
+  pageQuestionsWithoutHidden,
+  getCurrentPage,
+} from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, CHANGE_ELEMENT,
 } from './consts'
@@ -40,7 +48,8 @@ function* genUpdateResultsAsNotDirty () {
 function* genSaveResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
-    yield put(saveResults(state.preview))
+    const prevPage = getPrevPage(state.preview)
+    yield put(saveResults(state.preview, prevPage?.questionIds || []))
   }
 }
 

@@ -10,8 +10,8 @@ class PageFooter extends Component {
   }
 
   prev = () => {
-    const { prevPage } = this.props
-    prevPage()
+    const { prevPage, preview } = this.props
+    prevPage(preview)
   }
 
   next = () => {
@@ -21,10 +21,10 @@ class PageFooter extends Component {
   }
 
   render () {
-    const { page, hasBack, hasPrevPage } = this.props
+    const { page, preview: { enableBack }, hasPrevPage } = this.props
     return (
       <div className={styles.footer}>
-        {hasBack && hasPrevPage && (
+        {enableBack && hasPrevPage && (
           <a className={cs('btn btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
             {page.prevBtn || 'Back'}
           </a>

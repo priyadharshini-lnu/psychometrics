@@ -9,6 +9,7 @@ import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
 import store from '../../../../store'
+import Timer from '../Timer'
 
 const { Content } = Layout
 
@@ -31,6 +32,8 @@ export default function Evaluation ({
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
+  preview,
+  saveResults,
 }) {
   const assessmentRef = React.createRef()
   const {
@@ -135,6 +138,7 @@ export default function Evaluation ({
           )}
           title={title()}
           onBack={handleBackButtonClick}
+          extra={(<Timer preview={preview} saveResults={saveResults} />)}
         >
           <div className="evaluation-container">
             <Row type="flex" justify="end">

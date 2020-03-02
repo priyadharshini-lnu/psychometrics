@@ -6,7 +6,7 @@ module UsersResults
       private_attr_reader :scoring, :norm_data
 
       def initialize(scoring, norm_data)
-        @scoring = scoring
+        @scoring = scoring.deep_stringify_keys
         @norm_data = norm_data
       end
 

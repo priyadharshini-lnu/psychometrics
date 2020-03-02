@@ -35,7 +35,7 @@ describe UpdateAssign do
     let(:current_user)    { membership.user }
     let!(:assign)         { create(:assign, assessment: assessment, membership: membership, step: 3) }
     let(:assigns_report)  { create(:assigns_report, :licensed, assign: assign, report: report) }
-    let(:form)            { double('form', 'invalid?': false, attributes: {}) }
+    let(:form)            { double('form', 'invalid?': false, attributes_with_values: {}) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
@@ -44,7 +44,7 @@ describe UpdateAssign do
       after { described_class.call(form, assign, current_user) }
       subject { assign }
 
-      it { is_expected.to receive(:update!).with(form.attributes).and_return(true) }
+      it { is_expected.to receive(:update!).with(form.attributes_with_values).and_return(true) }
       it { is_expected.to receive(:save!).at_least(:once) }
 
       context 'assign is completed' do

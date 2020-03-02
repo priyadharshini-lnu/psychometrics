@@ -3,7 +3,7 @@ import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
-  ADD_NORM_RULE, REMOVE_NORM_RULE,
+  ADD_NORM_RULE, REMOVE_NORM_RULE, UPDATE_EXTRA,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -104,7 +104,7 @@ const HANDLERS = {
     return setIn(state, ['norm_rules'], rules)
   },
   [FAKE_UPDATE]: state => ({ ...state, timestamp: new Date() }),
-
+  [UPDATE_EXTRA]: (state, { extra }) => ({ ...state, extra }),
 }
 
 export default createReducer(HANDLERS, defaultState)

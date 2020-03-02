@@ -6,6 +6,8 @@ import ActionsHistory from 'components/ActionsHistory'
 import Block from 'models/Block'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { perform } from 'libs/survey/core/temp/socket'
+import { TimePicker } from 'antd'
+import moment from 'moment'
 import styles from './Header.scss'
 
 export class Header extends Component {
@@ -63,6 +65,22 @@ export class Header extends Component {
     this.form.submit()
   }
 
+  addTimer = () => {
+    const { assessment: { extra }, updateExtra } = this.props
+    updateExtra({ ...extra, timer: null })
+  }
+
+  removeTimer = () => {
+    const { assessment: { extra }, updateExtra } = this.props
+    updateExtra(_.omit(extra, 'timer'))
+  }
+
+  updateTimer = (time) => {
+    const { assessment: { extra }, updateExtra } = this.props
+    const timer = time && moment.duration(time.format('HH:mm:ss')).asSeconds()
+    updateExtra({ ...extra, timer })
+  }
+
   openPreview = () => {
     const { builder, flow } = this.props
     this.previewData.value = JSON.stringify(AppStore.serializeAssessment(builder, flow))
@@ -85,7 +103,8 @@ export class Header extends Component {
   }
 
   render () {
-    const { assessment } = this.props
+    const { assessment, assessment: { extra } } = this.props
+
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
@@ -94,6 +113,18 @@ export class Header extends Component {
           </h3>
         </div>
         <ul className="panel-controls">
+          {_.has(extra, 'timer') && (
+            <li>
+              Timer:
+              <TimePicker
+                value={(extra.timer || extra.timer === 0) ? moment.utc(extra.timer * 1000) : null}
+                onChange={this.updateTimer}
+                placeholder="Set timer"
+                defaultOpenValue={moment.utc(0)}
+                className="mls mrl"
+              />
+            </li>
+          )}
           <li>
             <button className={`btn btn-default ${styles.flow}`} onClick={this.openFlow}>Flow</button>
           </li>
@@ -167,6 +198,11 @@ export class Header extends Component {
               <MenuItem onSelect={this.toggleEnableProgress}>
                 {_.result(AppStore.assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
               </MenuItem>
+              {_.has(extra, 'timer') ? (
+                <MenuItem onSelect={this.removeTimer}>Remove Timer</MenuItem>
+              ) : (
+                <MenuItem onSelect={this.addTimer}>Add Timer</MenuItem>
+              )}
             </DropdownButton>
             <form
               style={{ display: 'none' }}

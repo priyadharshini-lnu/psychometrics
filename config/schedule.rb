@@ -15,3 +15,7 @@ end
 every :day, at: '10:00 am' do
   rake 'reminders:proccess'
 end
+
+every 10.minutes do
+  rake 'users_results:handle_expired'
+end

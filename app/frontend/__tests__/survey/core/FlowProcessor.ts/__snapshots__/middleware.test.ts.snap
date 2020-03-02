@@ -136,6 +136,7 @@ Object {
     "enableProgress": false,
     "end": false,
     "errors": null,
+    "expiryDate": undefined,
     "hrisData": Object {},
     "initialized": true,
     "isThreesixty": undefined,
@@ -321,6 +322,7 @@ Object {
     "randomseed": "",
     "results": Object {},
     "resultsUrl": undefined,
+    "timerDuration": undefined,
     "type": undefined,
   },
   "survey": Object {

@@ -2,13 +2,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import _ from 'lodash'
 import {
-  showErrors, emptyErrors, showPage, changeElement, showEnd, saveResults, hideQuestion, showQuestion,
+  showErrors, emptyErrors, showPage, changeElement, showEnd, hideQuestion, showQuestion,
   addPrevPage, setEmbeddedData,
 } from './actions'
 import { NEXT_PAGE } from './consts'
 import {
   pageQuestions, pageQuestionsWithoutHidden, getNextPage, getNextElementId,
-  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId,
+  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId, getCurrentPage,
 } from './selectors'
 import ValidationProcessor from './commands/ValidationProcessor'
 import ElementProcessor from './commands/ElementProcessor'
@@ -81,7 +81,8 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   dispatch(emptyErrors())
 
   if (preview.currentElement) {
-    dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage }))
+    const questionIds = questions.map(q => q.id)
+    dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage, questionIds }))
   }
 
   const skipLogic = getSkipLogicSelector(preview)
