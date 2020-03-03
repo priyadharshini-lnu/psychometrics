@@ -30,8 +30,10 @@ module Administration
 
     def download
       report = BulkReport.find(params[:id])
-      if report && report.file.file.exists?
-        redirect_to report.private_download_url
+      index = params[:index].to_i || 0
+
+      if report && report.files[index].file.exists?
+        redirect_to report.private_download_url(index)
       else
         redirect_to(administration_root_path, error: t('.removed'))
       end

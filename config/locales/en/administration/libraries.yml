@@ -2,16 +2,18 @@ en:
   administration:
     libraries:
       index:
-        title: Media Library
+        title: Media library
         owner: Owner
         new_folder: New Folder
         upload: Upload
       list:
-        root: Media Library
+        type: Type
+        name: Name
+        root: Media library
         upload: Upload new file
         new_folder: New folder
-        updated_at: Modified Date
-        created_at: Created Date
+        updated_at: Modified date
+        created_at: Created date
       new:
         header: 'New Report'
       edit:

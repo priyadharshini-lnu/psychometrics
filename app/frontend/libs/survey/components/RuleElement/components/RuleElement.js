@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/MappingNormsStore'
 import styles from './RuleElement.scss'
 import Types from './types'
 import ConditionList from './ConditionList'
@@ -53,8 +52,8 @@ class RuleElement extends Component {
   }
 
   remove = () => {
-    const { model } = this.props
-    store.removeRule(model)
+    const { removeNormRule, model } = this.props
+    removeNormRule(model)
     this.forceUpdate()
   }
 
@@ -77,8 +76,8 @@ class RuleElement extends Component {
 
   renderNormOptions () {
     const { normUiType } = this.state
-    const { model } = this.props
-    if (!store.norms.length) {
+    const { model, norms } = this.props
+    if (!norms.length) {
       return (
         <div className="alert alert-danger" style={{ float: 'none' }}>
           You need to add norm for this assessment and relative dimension
@@ -95,7 +94,7 @@ class RuleElement extends Component {
         {normUiType === 'Norm' && (
           <select className={styles.select} value={model.norm_id || ''} onChange={this.changeNorm}>
             {!model.norm_id && <option value="">Choose Norm</option>}
-            {_.map(store.norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
+            {_.map(norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
           </select>
         )}
         {normUiType === 'Norm Type' && (
@@ -109,9 +108,9 @@ class RuleElement extends Component {
   }
 
   renderConditions () {
-    const { model } = this.props
+    const { model, questions } = this.props
     return (
-      <ConditionList model={model} onRemove={this.update} />
+      <ConditionList questions={questions} model={model} onRemove={this.update} />
     )
   }
 

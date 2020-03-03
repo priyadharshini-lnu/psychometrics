@@ -23,6 +23,7 @@ en:
         account_manager_id: TTE Account Manager
         project_manager_id: TTE Project Manager
         privacy_consent: Enable data processing consent
+        strong_password_enabled: Enable strong password
         memberships_count: Users
         report_ids: Reports
         applicable_levels:

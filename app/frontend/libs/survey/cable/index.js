@@ -1,5 +1,4 @@
 /* eslint-disable symbol-description */
-import AssessmentTransport from './AssessmentChannel'
 import QuestionTransport from './QuestionChannel'
 import BlockTransport from './BlockChannel'
 import LibraryTransport from './LibraryChannel'
@@ -9,7 +8,6 @@ const singleton = Symbol()
 const singletonEnforcer = Symbol()
 
 const Providers = {
-  AssessmentTransport,
   QuestionTransport,
   BlockTransport,
 }

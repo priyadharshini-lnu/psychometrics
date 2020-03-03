@@ -29,17 +29,6 @@ _.extend(FlowElement.prototype, {
     this.elements.push(new FlowElement({}, this))
   },
 
-  addElementBelow () {
-    const index = _.findIndex(this.parent.elements, el => this === el)
-    this.parent.elements.splice(index + 1, 0, new FlowElement({}, this.parent))
-  },
-
-  duplicateElement () {
-    const index = _.findIndex(this.parent.elements, el => this === el)
-    const duplicate = new FlowElement(_.cloneDeep(this), this.parent)
-    this.parent.elements.splice(index + 1, 0, duplicate)
-  },
-
   remove (el) {
     if (el) {
       _.pull(this.elements, el)

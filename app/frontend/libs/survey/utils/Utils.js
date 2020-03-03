@@ -1,5 +1,7 @@
 import _ from 'lodash'
 
+const { $ } = window
+
 export default {
   limit (val, min = 0, max = 300) {
     let value = val > min ? val : min
@@ -29,5 +31,9 @@ export default {
 
   defaultTo (value, ...args) {
     return _.defaultTo(value, _.find(args, x => (_.isNumber(x) ? true : _.defaultTo(value, x))))
+  },
+
+  scroll (hash) {
+    $('html,body').animate({ scrollTop: $(`[name="${hash}"]`).offset().top - 70 }, 200)
   },
 }

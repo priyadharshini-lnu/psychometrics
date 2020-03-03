@@ -20,3 +20,7 @@ en:
             title: <strong>%{status}</strong> %{name}?
             body: >
               <p>Are you sure you want to %{status} this Question?</p>
+      create:
+        successfully: Question %{name} created successfully
+      copy:
+        successfully: Question %{name} copied successfully

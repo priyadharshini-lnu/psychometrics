@@ -14,17 +14,24 @@ en:
           new: Add
           export: Export
         list: &list
-          name: Campaign Name
-          assigned_user: Assigned Users
-          completed_user: Completed Users
+          id: Id
+          assessments: Assessments
+          reports: Reports
+          name: Campaign name
+          created_at: Created date
+          updated_at: Updated date
+          assigned_user: Assigned users
+          completed_user: Completed users
           header:
             campaigns: Campaigns
-            sub_campaign: Sub-Campaigns
+            sub_campaigns: Sub-Campaigns
             actions: Actions
             name: Name
-            tests_allocated: Tests Allocated
+            tests_allocated: Tests allocated
             users: Users
-            actual_usage: Actual Usage
+            actual_usage: Actual usage
+            assessments: Assessments
+            reports: Reports
         export:
           <<: *list
         resource:
@@ -36,11 +43,12 @@ en:
           title: Campaign's options
           disable: Disable
           enable: Enable
-          edit: Edit Campaign
-          destroy: Delete Campaign
-          archive: Archive Campaign
-          new: New Campaign
-          copy: Copy Campaign
+          edit: Edit campaign
+          destroy: Delete campaign
+          archive: Archive campaign
+          new: New campaign
+          copy: Copy campaign
+          view_licenses: View licenses
         new:
           header: 'New Campaign'
         edit:

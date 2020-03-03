@@ -21,12 +21,12 @@
 
             = f.input :assessments_category_in,
                       collection: ::Assessment::CATEGORIES,
-                      input_html: { title: 'Category '},
+                      input_html: { title: t('.category') },
                       include_blank: t('administration.any'),
                       label: false
             = f.input :assessments_id_in,
                       collection: policy_scope(Assessment).all.options_for_select,
-                      input_html: { data: { live_search: true }, multiple: true, title: 'Assessment' },
+                      input_html: { data: { live_search: true }, multiple: true, title: t('.assessment') },
                       required: false,
                       label: false
             = f.input :filterable_fields,
@@ -35,7 +35,7 @@
                       placeholder: t('administration.search'),
                       label: false,
                       input_html: { class: 'has_clear periodically-observed' }
-            = link_to "Clear Filter", request.path, class: "btn btn-default"
+            = link_to t('shared.filters.clear'), request.path, class: "btn btn-default"
             .form-group.form-group-long
               .btn-group data-toggle="buttons"
                 - [['Active', false], ['Archived', true]].each do |item|

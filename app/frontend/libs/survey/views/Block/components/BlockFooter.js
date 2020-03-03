@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import BlockListDispatcher from 'dispatchers/BlockListDispatcher'
 import Menu from 'components/ModulesMenu'
-import CreateByTemplateStore from 'store/CreateByTemplateStore'
+import Block from 'models/Block'
 import styles from './Block.scss'
 
 class BlockFooter extends Component {
@@ -21,28 +20,28 @@ class BlockFooter extends Component {
   }
 
   addBlock = () => {
-    const { model } = this.props
-    BlockListDispatcher.create({ position: model.position + 1 })
+    const { model, createBlock } = this.props
+    createBlock(new Block({ position: model.position }))
   }
 
   createDefault = () => {
-    const { model } = this.props
-    model.addQuestion()
+    const { addQuestion, model } = this.props
+    addQuestion(model)
   }
 
   changeType = (type) => {
-    const { model } = this.props
-    model.addQuestion({ type })
+    const { addQuestion, model } = this.props
+    addQuestion(model, { type })
   }
 
   openSearchQuestionPopup = () => {
-    const { model } = this.props
-    CreateByTemplateStore.openQuestionPopup(model, 'Question')
+    const { openCreateByTemplate, model } = this.props
+    openCreateByTemplate({ blockId: model.id, entityName: 'Question' })
   }
 
   openSearchBlockPopup = () => {
-    const { model } = this.props
-    CreateByTemplateStore.openBlockPopup(model.position, 'Block')
+    const { openCreateByTemplate, model } = this.props
+    openCreateByTemplate({ position: model.position, entityName: 'Block' })
   }
 
   renderCopyQuestion () {

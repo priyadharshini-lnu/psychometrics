@@ -3,25 +3,22 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import RandomizationStore from 'store/RandomizationStore'
-import DefaultValueStore from 'store/DefaultValueStore'
-import DisplayLogicStore from 'store/DisplayLogicStore'
+import LogicElement from 'models/logic/LogicElement'
 import styles from './Question.scss'
 
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
   }
 
   addNote = () => {
-    const { model } = this.props
-    model.addNote()
+    const { model, addNote } = this.props
+    addNote(model)
   }
 
   addSkipLogic = () => {
-    const { model } = this.props
-    model.addSkipLogic()
+    const { addSkipLogic, model } = this.props
+    addSkipLogic(model)
   }
 
   invokeAdvanced = (element) => {
@@ -30,36 +27,45 @@ class Question extends Component {
   }
 
   randomization = () => {
-    const { model } = this.props
-    RandomizationStore.open(model, 'choice')
+    const { model, openRandomization } = this.props
+    openRandomization({ id: model.id, entityName: 'choice' })
   }
 
   saveAsTemplate = () => {
-    const { model, store } = this.props
-    store.dispatcher.saveAsTemplate(model)
+    const { saveAsTemplate, model } = this.props
+    saveAsTemplate(model)
   }
 
   defaultValue = () => {
-    const { model } = this.props
-    DefaultValueStore.open(model)
+    const { model, openDefaultValue } = this.props
+    openDefaultValue({ model })
   }
 
   displayLogic = () => {
-    const { model } = this.props
-    DisplayLogicStore.open(model)
+    const { model, openDisplayLogic } = this.props
+    openDisplayLogic({
+      question: model,
+      logicElement: model.display_logic || new LogicElement(),
+    })
   }
 
   changeName = (value) => {
-    const { model, store } = this.props
-    store.dispatcher.rename(model, value)
-    model.rename(value)
-    model.name = value
-    this.forceUpdate()
+    const { renameQuestion, model } = this.props
+    renameQuestion(model, value)
+  }
+
+  hasDefaultValues (model) {
+    if (model.props.defaultValues.length > 0) {
+      return model.type !== 'TextEntry' || _.some(
+        model.props.defaultValues, object => object.value,
+      )
+    }
+    return false
   }
 
   renderRandomMenuItem () {
-    const { model } = this.props
-    if (model.moduleConfig.randomization) {
+    const { moduleConfig } = this.props
+    if (moduleConfig.randomization) {
       return (
         <MenuItem onSelect={this.randomization}>
           <span className={`icon fa fa-random ${styles.menuicon}`} />
@@ -71,8 +77,8 @@ class Question extends Component {
   }
 
   renderAddToTemplate () {
-    const { model } = this.props
-    if (!model.templateId && !model.block.templateId) {
+    const { model, block } = this.props
+    if (!model.templateId && !block.templateId) {
       return (
         <MenuItem onSelect={this.saveAsTemplate}>
           <span className={`icon fa fa-floppy-o ${styles.menuicon}`} />
@@ -84,8 +90,8 @@ class Question extends Component {
   }
 
   renderDefaultValueMenuItem () {
-    const { model } = this.props
-    if (model.moduleConfig.defaultValue) {
+    const { moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
       return (
         <MenuItem onSelect={this.defaultValue}>
           <span className={`icon fa fa-dot-circle-o ${styles.menuicon}`} />
@@ -125,8 +131,8 @@ class Question extends Component {
   }
 
   renderRandomLabel () {
-    const { model } = this.props
-    if (model.moduleConfig.randomization) {
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.randomization) {
       return model.props.randomization.type !== 'No' && (
         <div title="This question has randomization" className={styles.randomized}>
           <span className="fa fa-random" />
@@ -137,9 +143,9 @@ class Question extends Component {
   }
 
   renderDefaultValue () {
-    const { model } = this.props
-    if (model.moduleConfig.defaultValue) {
-      return model.hasDefaultValues() && (
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.defaultValue) {
+      return this.hasDefaultValues(model) && (
         <div title="This question has default choices" className={styles.randomized}>
           <span className="fa fa-dot-circle-o" />
         </div>

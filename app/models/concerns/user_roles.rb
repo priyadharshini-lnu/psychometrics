@@ -62,7 +62,7 @@ module UserRoles
   end
 
   def superadmin?
-    role == 'Users::SuperAdmin'
+    role == SUPER_ADMIN_ROLE
   end
 
   def admin?

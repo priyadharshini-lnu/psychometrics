@@ -22,7 +22,11 @@ module BulkReports
       return unless report_file
 
       make_path
-      download_report(report_file)
+      if File.file?(report_file.path)
+        FileUtils.copy_file(report_file.path, output)
+      elsif report_file.try(:url).present?
+        download_report(report_file)
+      end
     end
 
     private

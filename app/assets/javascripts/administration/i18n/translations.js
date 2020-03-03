@@ -286,6 +286,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -336,6 +337,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "id": "ID",
         "type": "Thumbnail",
         "updated_at": "Modified Date"
+      },
+      "license": {
+        "id": "ID",
+        "number": "License Number",
+        "overuse_number": "Over Use Allowance",
+        "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
+        "unlimited": "Unlimited",
+        "used_number": "Used License Number"
       },
       "membership": {
         "active": "Active",
@@ -474,11 +487,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -521,7 +540,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
-          "overuse": "License %{name} ssis overused"
+          "overuse": "License %{name} is overused"
         },
         "privacy_link": {
           "attributes": {
@@ -551,6 +570,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "factors_norm": "factors_norms",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
+      "license": "License",
       "membership": "Membership",
       "norm": "Norms",
       "occupation": "Innovation Styles",
@@ -602,6 +622,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "faqs": " FAQs",
           "privacy": "Privacy Statement",
           "terms_conditions": " Terms & Conditions"
+        },
+        "simple_design": {
+          "design": "Design",
+          "or": "Or"
         }
       }
     },
@@ -636,7 +660,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
-        "successfully": "Assessment %{name} was Destroyed Successfully."
+        "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
         "header": "Assessment Settings"
@@ -646,8 +670,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "360": "360 Feedback",
           "all": "All Categories",
           "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
           "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "psychometric": "Psychometrics",
+          "threesixty": "Threesixty"
+        },
+        "statuses": {
+          "finished": "Finished",
+          "in_progress": "In progress"
         },
         "timing": {
           "hint": "For Example: 30 minutes to complete"
@@ -659,8 +690,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
           }
         },
         "new": "Add",
@@ -671,8 +705,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New assessment"
@@ -687,6 +726,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "archive": "Archive Assessment",
@@ -757,6 +800,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "blocks": {
+      "copy": {
+        "successfully": "Block %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Block %{name} was successfully created."
+      },
       "destroy": {
         "successfully": "Block %{name} was successfully deleted."
       },
@@ -828,6 +877,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "download": {
         "removed": "Sorry, the file has been removed from the system after one week of storage"
+      },
+      "form": {
+        "end_date": "End date",
+        "start_date": "Start date"
       },
       "mailer": {
         "subject": "Download bulk reports"
@@ -919,14 +972,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Client"
       },
       "export": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "index": {
         "export": "Export",
         "new": "Add",
-        "title": "Campaign Templates"
+        "title": "Campaign templates"
       },
       "license": {
         "header": "%{name} - Edit license"
@@ -938,9 +994,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "new": {
         "header": "New Client"
@@ -1054,7 +1113,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
-          "successfully": "Assessment %{name} was Destroyed Successfully."
+          "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
           "header": "Assessment Settings"
@@ -1064,8 +1123,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
+          },
+          "statuses": {
+            "finished": "Finished",
+            "in_progress": "In progress"
           },
           "timing": {
             "hint": "For Example: 30 minutes to complete"
@@ -1077,8 +1143,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "360": "360 Feedback",
               "all": "All Categories",
               "case_study": "Case Studies",
+              "hogan": "Hogan",
+              "mindmill": "Mindmill",
               "organisational": "Org Surveys",
-              "psychometric": "Psychometrics"
+              "psychometric": "Psychometrics",
+              "threesixty": "Threesixty"
             }
           },
           "new": "Add",
@@ -1089,14 +1158,21 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "dimension_id": "Dimension Id",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "universal_link": "Universal link",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New assessment"
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
+          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -1115,7 +1191,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "external_results": "External Results",
           "generate_universal_link": "Generate Univeral Link",
+          "import_results": "Import Results",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "normed_results": "Normed results",
           "raw_results": "Raw results",
           "regenerate_universal_link": "Regenerate Univeral Link",
@@ -1126,6 +1208,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
           }
+        },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
         },
         "sidebar": {
           "assign": "Assign Assessment",
@@ -1189,6 +1276,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "reports": "Reports",
           "user_access": "User Access"
         },
+        "form_new": {
+          "access": "Access",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
         "new": {
           "header": "Add Reports"
         }
@@ -1217,18 +1310,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Edit Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "index": {
           "export": "Export",
@@ -1236,18 +1336,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Campaign"
@@ -1266,14 +1373,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "sidebar": {
-          "archive": "Archive Campaign",
-          "copy": "Copy Campaign",
-          "destroy": "Delete Campaign",
+          "archive": "Archive campaign",
+          "copy": "Copy campaign",
+          "destroy": "Delete campaign",
           "disable": "Disable",
-          "edit": "Edit Campaign",
+          "edit": "Edit campaign",
           "enable": "Enable",
-          "new": "New Campaign",
-          "title": "Campaign's options"
+          "new": "New campaign",
+          "title": "Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Campaign %{name} was successfully updated."
@@ -1309,14 +1417,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Client Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -1391,7 +1510,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "new": "Upload datasheet",
           "title": "%{name} Datasheet"
         },
-        "list": null,
+        "list": {
+          "created_at": "Created date",
+          "email": "Email",
+          "updated_at": "Updated date"
+        },
         "new": {
           "header": "Upload datasheet"
         },
@@ -1419,9 +1542,23 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Client"
       },
       "export": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_admin": "Project admin",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "index": {
         "export": "Export",
@@ -1473,15 +1610,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "%{client_name} - Manage Licenses"
         },
         "list": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "active": "Active",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "type": "Type",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -1497,15 +1636,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Add License"
         },
         "overview": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "name": "Name",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -1521,15 +1661,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "show": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -1542,9 +1682,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "new": {
         "header": "New Client"
@@ -1576,14 +1729,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Project Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -1669,18 +1833,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Edit Campaign"
           },
           "export": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "index": {
             "export": "Export",
@@ -1688,18 +1859,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "Campaigns"
           },
           "list": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New Campaign"
@@ -1718,14 +1896,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           },
           "sidebar": {
-            "archive": "Archive Campaign",
-            "copy": "Copy Campaign",
-            "destroy": "Delete Campaign",
+            "archive": "Archive campaign",
+            "copy": "Copy campaign",
+            "destroy": "Delete campaign",
             "disable": "Disable",
-            "edit": "Edit Campaign",
+            "edit": "Edit campaign",
             "enable": "Enable",
-            "new": "New Campaign",
-            "title": "Campaign's options"
+            "new": "New campaign",
+            "title": "Campaign's options",
+            "view_licenses": "View licenses"
           },
           "sub_campaigns": {
             "archive": {
@@ -1745,8 +1924,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "header": "Edit Sub-Campaign"
             },
             "export": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -1756,7 +1937,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "header": {
               "actions": "Actions"
@@ -1767,8 +1951,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "title": "Sub Campaigns"
             },
             "list": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -1778,7 +1964,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "new": {
               "header": "New Sub-Campaign"
@@ -1800,7 +1989,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "edit": "Edit Sub-Campaign",
               "enable": "Enable",
               "new": "New Sub-Campaign",
-              "title": "Sub-Campaign's options"
+              "title": "Sub-Campaign's options",
+              "view_licenses": "View licenses"
             },
             "toggle_status": {
               "successfully": "Sub-Campaign %{name} was successfully updated."
@@ -1831,22 +2021,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "export": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "form": {
           "2fa": "2 Factor Authentication",
@@ -1877,22 +2069,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "list": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "new": {
           "header": "New Project"
@@ -1911,7 +2105,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -1990,7 +2184,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "name": "Name",
             "report": "Report",
             "report_bundle": "Report Bundle",
-            "status": "Status"
+            "status": "Status",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -2020,6 +2215,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "title": "Unarchive <strong>%{name}</strong> ?"
               }
             },
+            "export_results": "Export results",
+            "raw_results": "Raw results",
             "tooltips": {
               "campaigns": {
                 "delete": "Delete Campaign"
@@ -2078,6 +2275,19 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "form_fields": {
           "code": "e.g TTE-conf-2019"
         },
+        "index": {
+          "add": "Add",
+          "title": "Registration Codes"
+        },
+        "list": {
+          "actions": "Actions",
+          "active": "Active",
+          "code": "Code",
+          "end_date": "End date",
+          "name": "Name",
+          "start_date": "Start date",
+          "usage_stats": "Usage stats"
+        },
         "name": "Registration Codes",
         "new": {
           "header": "Add Registration code"
@@ -2129,7 +2339,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "index": {
           "add": "Add",
+          "assessment": "Assessment",
           "bulk_download": "Bulk Download",
+          "category": "Category",
           "families": "Report Bundles",
           "filterrific": {
             "with_assessment_category": {
@@ -2149,8 +2361,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "Select Report"
@@ -2185,6 +2401,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
             }
+          },
+          "export_data": "Export Data",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
           },
           "tooltips": {
             "copy": "Copy Report",
@@ -2245,6 +2466,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
         },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
         "tooltips": {
           "copy": "Copy Client",
           "create_admin": "Create Client Admin",
@@ -2255,15 +2480,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "sidebar": {
-        "copy": "Copy Client",
+        "copy": "Copy client",
         "design": "Edit Design",
-        "destroy": "Delete Client",
+        "destroy": "Delete client",
         "disable": "Disable",
-        "edit": "Edit Client",
+        "edit": "Edit client",
         "enable": "Enable",
         "licenses": "Manage Licenses",
         "new": "New Client",
-        "title": "Client's options"
+        "title": "Client's options",
+        "view_licenses": "View licenses"
       },
       "statistics": {
         "index": {
@@ -2290,8 +2516,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Edit Sub-Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -2301,7 +2529,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "header": {
           "actions": "Actions"
@@ -2312,8 +2543,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Sub Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -2323,7 +2556,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Sub-Campaign"
@@ -2345,13 +2581,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "edit": "Edit Sub-Campaign",
           "enable": "Enable",
           "new": "New Sub-Campaign",
-          "title": "Sub-Campaign's options"
+          "title": "Sub-Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         },
         "update": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
+        }
+      },
+      "threesixty_campaigns": {
+        "new": {
+          "header": "New 360 Campaign"
+        },
+        "update": {
+          "successfully": "Campaign '%{name}' was successfully updated."
         }
       },
       "toggle_status": {
@@ -2381,6 +2626,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "create": {
             "successfully": "Successfully Updated"
+          },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
           },
           "form": {
             "assessment": "Assessment",
@@ -2413,6 +2661,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -2457,9 +2711,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Add Reports"
           },
           "form": {
+            "access": "Access",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
+            "reports": "Reports",
             "user_access": {
               "access": "Reports access",
               "user": "User"
@@ -2492,6 +2748,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Edit user",
           "value": "Value"
         },
+        "edit_hris_data": {
+          "add": "Add",
+          "key": "Key",
+          "remove": "Remove",
+          "value": "Value"
+        },
         "form": {
           "choose": " - Choose - "
         },
@@ -2501,6 +2763,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "index": {
           "breadcrumb": "Users",
+          "client_tenancy": "Client tenancy",
           "export": "Export",
           "export_completion_status": "Completion Status",
           "export_users": "Users",
@@ -2524,11 +2787,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
         },
         "reports": {
           "copy": {
@@ -2555,7 +2829,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "index": {
             "add": "Add",
+            "assessment": "Assessment",
             "bulk_download": "Bulk Download",
+            "category": "Category",
             "families": "Report Bundles",
             "filterrific": {
               "with_assessment_category": {
@@ -2575,8 +2851,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           },
           "list": {
-            "created_at": "Created Date",
-            "updated_at": "Modified Date"
+            "active": "Active",
+            "created_at": "Created date",
+            "id": "Id",
+            "name": "Name",
+            "type": "Type",
+            "updated_at": "Modified date"
           },
           "new": {
             "header": "Select Report"
@@ -2606,6 +2886,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
               }
+            },
+            "in_progress": {
+              "copying": "Copying",
+              "deleting": "Deleting"
             },
             "tooltips": {
               "copy": "Copy Report",
@@ -2638,7 +2922,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -2712,7 +2996,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Communication"
       },
       "form": {
+        "all": "All",
         "body_mustache": "{{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users\n{{first_name}} - Recipient First Name\n{{last_name}} - Recipient Last Name\n{{email}} - Recipient Email\n",
+        "completion": "Completion",
         "delivery_at": "Delivery at (GST)",
         "delivery_rules": {
           "in_progress": "If assessment is in progress",
@@ -2721,7 +3007,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "send_now": "Send now",
           "specific_datetime": "Send at"
         },
+        "invitation": "Invitation",
         "kind": "Communication Types",
+        "other": "Other",
+        "reminder": "Reminder",
+        "selected": "Selected",
         "selected_cc_recipients": "Selected CC Recipients",
         "selected_recipients": "Selected Recipients",
         "stop_reminder": "Stop sending reminders",
@@ -2735,7 +3025,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "other": "Other",
         "owner": "Owner",
         "reminder": "Reminder",
-        "title": "Communication Center",
+        "title": "Communication center",
         "tooltips": {
           "create": "Create"
         },
@@ -2746,7 +3036,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "author": "Created by",
         "campaign": "Campaign",
         "client_name": "Client",
-        "created_at": "Created Date",
+        "created_at": "Created date",
         "creator_first_name": "Created by",
         "delivery_rule": "Delivery",
         "kind": "Communication type",
@@ -2754,7 +3044,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "recipients": "Recipients",
         "sub_campaign": "Sub-campaign",
         "subject": "Communication subject",
-        "updated_at": "Modified Date"
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Communication"
@@ -2769,6 +3059,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Communication?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Communication",
@@ -2824,6 +3118,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "edit": {
         "header": "Edit Dimension Name"
       },
+      "form": {
+        "enable_innovation_styles": "Enable Innovation Styles",
+        "enable_occupations": "Enable Occupations"
+      },
       "index": {
         "new": "Add",
         "owner": "Owner",
@@ -2833,7 +3131,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
+        "active": "Active",
+        "created_at": "Created date",
+        "factors_count": "Factors count",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -2850,9 +3152,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
-        "form": {
-          "enable_innovation_styles": "Enable Innovation Styles",
-          "enable_occupations": "Enable Occupations"
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Dimension",
@@ -2880,7 +3182,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "enable": "Enable",
     "factors": {
       "copy": {
-        "error": "Factor #%{id} was not copied."
+        "error": "%{name} factor was not copied",
+        "successfully": "%{name} factor was copied successfully"
+      },
+      "create": {
+        "error": "%{name} factor was not created",
+        "successfully": "%{name} factor was created successfully"
       },
       "destroy": {
         "successfully": "Factor %{name} was successfully deleted."
@@ -2899,14 +3206,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "index": {
         "icon": "Icon",
         "new": "Add",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        },
+        "scoring_strategy": "Scoring strategy",
+        "sub_factors": "Sub factors",
         "title": "Factors",
         "tooltips": {
           "create": "Create"
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Factor"
@@ -2921,6 +3238,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Factor?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other factors",
+          "sub_factors_average": "Weighted sum of factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -2937,6 +3263,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "toggle_status": {
         "successfully": "Factor was successfully updated."
+      },
+      "update": {
+        "error": "%{name} factor was not updated",
+        "successfully": "%{name} factor was updated successfully"
       }
     },
     "genders": {
@@ -3027,6 +3357,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "raw": "Import Raw Results data",
           "scoring": "Import Scoring Results data"
         }
+      },
+      "new": {
+        "header": "New"
       }
     },
     "imports_hris_imports": {
@@ -3155,14 +3488,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "index": {
         "new_folder": "New Folder",
         "owner": "Owner",
-        "title": "Media Library",
+        "title": "Media library",
         "upload": "Upload"
       },
       "list": {
-        "created_at": "Created Date",
+        "created_at": "Created date",
+        "name": "Name",
         "new_folder": "New folder",
-        "root": "Media Library",
-        "updated_at": "Modified Date",
+        "root": "Media library",
+        "type": "Type",
+        "updated_at": "Modified date",
         "upload": "Upload new file"
       },
       "new": {
@@ -3232,7 +3567,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -3292,7 +3627,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "no_data_found": "No data found",
     "norms": {
       "copy": {
-        "error": "Norm #%{id} was not copied."
+        "error": "Norm #%{id} was not copied.",
+        "successfully": "Norm #%{name} was copied successfully"
       },
       "create": {
         "successfully": "Norm %{name} was successfully created."
@@ -3320,8 +3656,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Norms"
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date",
+        "updated_by": "Updated by"
       },
       "new": {
         "header": "New norm"
@@ -3336,6 +3677,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Norm?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Norm",
@@ -3494,7 +3839,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Products list"
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -3510,6 +3857,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Product?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Product",
@@ -3538,6 +3889,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "psychometrics": "Psychometrics",
     "questions": {
+      "copy": {
+        "successfully": "Question %{name} copied successfully"
+      },
+      "create": {
+        "successfully": "Question %{name} created successfully"
+      },
       "destroy": {
         "successfully": "Question %{name} was successfully deleted."
       },
@@ -3585,8 +3942,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Report Bundle"
@@ -3598,6 +3956,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -3665,7 +4028,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "index": {
         "add": "Add",
+        "assessment": "Assessment",
         "bulk_download": "Bulk Download",
+        "category": "Category",
         "families": "Report Bundles",
         "filterrific": {
           "with_assessment_category": {
@@ -3685,8 +4050,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "Select Report"
@@ -3716,6 +4085,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Report",
@@ -3795,7 +4168,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "templates": {
       "blocks": {
         "copy": {
-          "error": "Block"
+          "error": "Block \\#%{name} was not copied."
         },
         "destroy": {
           "successfully": "Block %{name} was successfully deleted."
@@ -3806,6 +4179,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "index": {
           "new": "Add",
           "templates": {
+            "blocks": "Blocks",
+            "questions": "Questions"
           },
           "title": "Blocks",
           "tooltips": {
@@ -3813,8 +4188,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Block"
@@ -3823,6 +4201,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Assign Block to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Block",
             "delete": "Delete Block",
@@ -3861,8 +4243,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Question"
@@ -3871,6 +4256,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Assign Question to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Question",
             "delete": "Delete Question",
@@ -3986,6 +4375,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -4024,6 +4418,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "index": {
         "breadcrumb": "Users",
+        "client_tenancy": "Client tenancy",
         "export": "Export",
         "export_completion_status": "Completion Status",
         "export_users": "Users",
@@ -4047,14 +4442,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "email": "Email",
+        "first_name": "First name",
+        "id": "Id",
+        "last_name": "Last name",
+        "role": "Role",
         "updated_at": "Modified Date"
       },
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -4508,6 +4914,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "confirm_new_password": "Confirm new password",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "New password",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -5466,6 +5873,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -5503,6 +5913,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -5554,11 +5965,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -5629,6 +6046,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -5675,6 +6093,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "number": "License Number",
         "overuse_number": "Over Use Allowance",
         "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
         "unlimited": "Unlimited",
         "used_number": "Used License Number"
       },
@@ -5779,11 +6201,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -5852,6 +6280,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
@@ -5875,6 +6307,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -5923,7 +6356,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -5956,6 +6389,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {
@@ -6302,6 +6736,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -6352,6 +6787,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "id": "ID",
         "type": "Thumbnail",
         "updated_at": "Modified Date"
+      },
+      "license": {
+        "id": "ID",
+        "number": "License Number",
+        "overuse_number": "Over Use Allowance",
+        "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
+        "unlimited": "Unlimited",
+        "used_number": "Used License Number"
       },
       "membership": {
         "active": "Active",
@@ -6490,11 +6937,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -6537,7 +6990,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
-          "overuse": "License %{name} ssis overused"
+          "overuse": "License %{name} is overused"
         },
         "privacy_link": {
           "attributes": {
@@ -6567,6 +7020,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "factors_norm": "factors_norms",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
+      "license": "License",
       "membership": "Membership",
       "norm": "Norms",
       "occupation": "Innovation Styles",
@@ -6618,6 +7072,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "faqs": " FAQs",
           "privacy": "Privacy Statement",
           "terms_conditions": " Terms & Conditions"
+        },
+        "simple_design": {
+          "design": "Design",
+          "or": "Or"
         }
       }
     },
@@ -6652,7 +7110,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
-        "successfully": "Assessment %{name} was Destroyed Successfully."
+        "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
         "header": "Assessment Settings"
@@ -6662,8 +7120,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "360": "360 Feedback",
           "all": "All Categories",
           "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
           "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "psychometric": "Psychometrics",
+          "threesixty": "Threesixty"
+        },
+        "statuses": {
+          "finished": "Finished",
+          "in_progress": "In progress"
         },
         "timing": {
           "hint": "For Example: 30 minutes to complete"
@@ -6675,8 +7140,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
           }
         },
         "new": "Add",
@@ -6687,8 +7155,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New assessment"
@@ -6703,6 +7176,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "archive": "Archive Assessment",
@@ -6773,6 +7250,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "blocks": {
+      "copy": {
+        "successfully": "Block %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Block %{name} was successfully created."
+      },
       "destroy": {
         "successfully": "Block %{name} was successfully deleted."
       },
@@ -6844,6 +7327,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "download": {
         "removed": "Sorry, the file has been removed from the system after one week of storage"
+      },
+      "form": {
+        "end_date": "End date",
+        "start_date": "Start date"
       },
       "mailer": {
         "subject": "Download bulk reports"
@@ -6935,14 +7422,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Client"
       },
       "export": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "index": {
         "export": "Export",
         "new": "Add",
-        "title": "Campaign Templates"
+        "title": "Campaign templates"
       },
       "license": {
         "header": "%{name} - Edit license"
@@ -6954,9 +7444,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "new": {
         "header": "New Client"
@@ -7070,7 +7563,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
-          "successfully": "Assessment %{name} was Destroyed Successfully."
+          "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
           "header": "Assessment Settings"
@@ -7080,8 +7573,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
+          },
+          "statuses": {
+            "finished": "Finished",
+            "in_progress": "In progress"
           },
           "timing": {
             "hint": "For Example: 30 minutes to complete"
@@ -7093,8 +7593,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "360": "360 Feedback",
               "all": "All Categories",
               "case_study": "Case Studies",
+              "hogan": "Hogan",
+              "mindmill": "Mindmill",
               "organisational": "Org Surveys",
-              "psychometric": "Psychometrics"
+              "psychometric": "Psychometrics",
+              "threesixty": "Threesixty"
             }
           },
           "new": "Add",
@@ -7105,14 +7608,21 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "dimension_id": "Dimension Id",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "universal_link": "Universal link",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New assessment"
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
+          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -7131,7 +7641,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "external_results": "External Results",
           "generate_universal_link": "Generate Univeral Link",
+          "import_results": "Import Results",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "normed_results": "Normed results",
           "raw_results": "Raw results",
           "regenerate_universal_link": "Regenerate Univeral Link",
@@ -7142,6 +7658,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
           }
+        },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
         },
         "sidebar": {
           "assign": "Assign Assessment",
@@ -7205,6 +7726,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "reports": "Reports",
           "user_access": "User Access"
         },
+        "form_new": {
+          "access": "Access",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
         "new": {
           "header": "Add Reports"
         }
@@ -7233,18 +7760,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Edit Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "index": {
           "export": "Export",
@@ -7252,18 +7786,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Campaign"
@@ -7282,14 +7823,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "sidebar": {
-          "archive": "Archive Campaign",
-          "copy": "Copy Campaign",
-          "destroy": "Delete Campaign",
+          "archive": "Archive campaign",
+          "copy": "Copy campaign",
+          "destroy": "Delete campaign",
           "disable": "Disable",
-          "edit": "Edit Campaign",
+          "edit": "Edit campaign",
           "enable": "Enable",
-          "new": "New Campaign",
-          "title": "Campaign's options"
+          "new": "New campaign",
+          "title": "Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Campaign %{name} was successfully updated."
@@ -7325,14 +7867,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Client Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -7407,7 +7960,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "new": "Upload datasheet",
           "title": "%{name} Datasheet"
         },
-        "list": null,
+        "list": {
+          "created_at": "Created date",
+          "email": "Email",
+          "updated_at": "Updated date"
+        },
         "new": {
           "header": "Upload datasheet"
         },
@@ -7435,9 +7992,23 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Client"
       },
       "export": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_admin": "Project admin",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "index": {
         "export": "Export",
@@ -7489,15 +8060,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "%{client_name} - Manage Licenses"
         },
         "list": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "active": "Active",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "type": "Type",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -7513,15 +8086,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Add License"
         },
         "overview": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "name": "Name",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -7537,15 +8111,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "show": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -7558,9 +8132,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "new": {
         "header": "New Client"
@@ -7592,14 +8179,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Project Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -7685,18 +8283,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Edit Campaign"
           },
           "export": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "index": {
             "export": "Export",
@@ -7704,18 +8309,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "Campaigns"
           },
           "list": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New Campaign"
@@ -7734,14 +8346,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           },
           "sidebar": {
-            "archive": "Archive Campaign",
-            "copy": "Copy Campaign",
-            "destroy": "Delete Campaign",
+            "archive": "Archive campaign",
+            "copy": "Copy campaign",
+            "destroy": "Delete campaign",
             "disable": "Disable",
-            "edit": "Edit Campaign",
+            "edit": "Edit campaign",
             "enable": "Enable",
-            "new": "New Campaign",
-            "title": "Campaign's options"
+            "new": "New campaign",
+            "title": "Campaign's options",
+            "view_licenses": "View licenses"
           },
           "sub_campaigns": {
             "archive": {
@@ -7761,8 +8374,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "header": "Edit Sub-Campaign"
             },
             "export": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -7772,7 +8387,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "header": {
               "actions": "Actions"
@@ -7783,8 +8401,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "title": "Sub Campaigns"
             },
             "list": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -7794,7 +8414,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "new": {
               "header": "New Sub-Campaign"
@@ -7816,7 +8439,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "edit": "Edit Sub-Campaign",
               "enable": "Enable",
               "new": "New Sub-Campaign",
-              "title": "Sub-Campaign's options"
+              "title": "Sub-Campaign's options",
+              "view_licenses": "View licenses"
             },
             "toggle_status": {
               "successfully": "Sub-Campaign %{name} was successfully updated."
@@ -7847,22 +8471,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "export": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "form": {
           "2fa": "2 Factor Authentication",
@@ -7893,22 +8519,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "list": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "new": {
           "header": "New Project"
@@ -7927,7 +8555,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -8006,7 +8634,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "name": "Name",
             "report": "Report",
             "report_bundle": "Report Bundle",
-            "status": "Status"
+            "status": "Status",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -8036,6 +8665,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "title": "Unarchive <strong>%{name}</strong> ?"
               }
             },
+            "export_results": "Export results",
+            "raw_results": "Raw results",
             "tooltips": {
               "campaigns": {
                 "delete": "Delete Campaign"
@@ -8094,6 +8725,19 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "form_fields": {
           "code": "e.g TTE-conf-2019"
         },
+        "index": {
+          "add": "Add",
+          "title": "Registration Codes"
+        },
+        "list": {
+          "actions": "Actions",
+          "active": "Active",
+          "code": "Code",
+          "end_date": "End date",
+          "name": "Name",
+          "start_date": "Start date",
+          "usage_stats": "Usage stats"
+        },
         "name": "Registration Codes",
         "new": {
           "header": "Add Registration code"
@@ -8145,7 +8789,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "index": {
           "add": "Add",
+          "assessment": "Assessment",
           "bulk_download": "Bulk Download",
+          "category": "Category",
           "families": "Report Bundles",
           "filterrific": {
             "with_assessment_category": {
@@ -8165,8 +8811,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "Select Report"
@@ -8201,6 +8851,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
             }
+          },
+          "export_data": "Export Data",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
           },
           "tooltips": {
             "copy": "Copy Report",
@@ -8261,6 +8916,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
         },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
         "tooltips": {
           "copy": "Copy Client",
           "create_admin": "Create Client Admin",
@@ -8271,15 +8930,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "sidebar": {
-        "copy": "Copy Client",
+        "copy": "Copy client",
         "design": "Edit Design",
-        "destroy": "Delete Client",
+        "destroy": "Delete client",
         "disable": "Disable",
-        "edit": "Edit Client",
+        "edit": "Edit client",
         "enable": "Enable",
         "licenses": "Manage Licenses",
         "new": "New Client",
-        "title": "Client's options"
+        "title": "Client's options",
+        "view_licenses": "View licenses"
       },
       "statistics": {
         "index": {
@@ -8306,8 +8966,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Edit Sub-Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -8317,7 +8979,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "header": {
           "actions": "Actions"
@@ -8328,8 +8993,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Sub Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -8339,7 +9006,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Sub-Campaign"
@@ -8361,13 +9031,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "edit": "Edit Sub-Campaign",
           "enable": "Enable",
           "new": "New Sub-Campaign",
-          "title": "Sub-Campaign's options"
+          "title": "Sub-Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         },
         "update": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
+        }
+      },
+      "threesixty_campaigns": {
+        "new": {
+          "header": "New 360 Campaign"
+        },
+        "update": {
+          "successfully": "Campaign '%{name}' was successfully updated."
         }
       },
       "toggle_status": {
@@ -8397,6 +9076,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "create": {
             "successfully": "Successfully Updated"
+          },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
           },
           "form": {
             "assessment": "Assessment",
@@ -8429,6 +9111,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -8473,9 +9161,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Add Reports"
           },
           "form": {
+            "access": "Access",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
+            "reports": "Reports",
             "user_access": {
               "access": "Reports access",
               "user": "User"
@@ -8508,6 +9198,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Edit user",
           "value": "Value"
         },
+        "edit_hris_data": {
+          "add": "Add",
+          "key": "Key",
+          "remove": "Remove",
+          "value": "Value"
+        },
         "form": {
           "choose": " - Choose - "
         },
@@ -8517,6 +9213,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "index": {
           "breadcrumb": "Users",
+          "client_tenancy": "Client tenancy",
           "export": "Export",
           "export_completion_status": "Completion Status",
           "export_users": "Users",
@@ -8540,11 +9237,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
         },
         "reports": {
           "copy": {
@@ -8571,7 +9279,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "index": {
             "add": "Add",
+            "assessment": "Assessment",
             "bulk_download": "Bulk Download",
+            "category": "Category",
             "families": "Report Bundles",
             "filterrific": {
               "with_assessment_category": {
@@ -8591,8 +9301,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           },
           "list": {
-            "created_at": "Created Date",
-            "updated_at": "Modified Date"
+            "active": "Active",
+            "created_at": "Created date",
+            "id": "Id",
+            "name": "Name",
+            "type": "Type",
+            "updated_at": "Modified date"
           },
           "new": {
             "header": "Select Report"
@@ -8622,6 +9336,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
               }
+            },
+            "in_progress": {
+              "copying": "Copying",
+              "deleting": "Deleting"
             },
             "tooltips": {
               "copy": "Copy Report",
@@ -8654,7 +9372,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -8728,7 +9446,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Communication"
       },
       "form": {
+        "all": "All",
         "body_mustache": "{{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users\n{{first_name}} - Recipient First Name\n{{last_name}} - Recipient Last Name\n{{email}} - Recipient Email\n",
+        "completion": "Completion",
         "delivery_at": "Delivery at (GST)",
         "delivery_rules": {
           "in_progress": "If assessment is in progress",
@@ -8737,7 +9457,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "send_now": "Send now",
           "specific_datetime": "Send at"
         },
+        "invitation": "Invitation",
         "kind": "Communication Types",
+        "other": "Other",
+        "reminder": "Reminder",
+        "selected": "Selected",
         "selected_cc_recipients": "Selected CC Recipients",
         "selected_recipients": "Selected Recipients",
         "stop_reminder": "Stop sending reminders",
@@ -8751,7 +9475,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "other": "Other",
         "owner": "Owner",
         "reminder": "Reminder",
-        "title": "Communication Center",
+        "title": "Communication center",
         "tooltips": {
           "create": "Create"
         },
@@ -8762,7 +9486,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "author": "Created by",
         "campaign": "Campaign",
         "client_name": "Client",
-        "created_at": "Created Date",
+        "created_at": "Created date",
         "creator_first_name": "Created by",
         "delivery_rule": "Delivery",
         "kind": "Communication type",
@@ -8770,7 +9494,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "recipients": "Recipients",
         "sub_campaign": "Sub-campaign",
         "subject": "Communication subject",
-        "updated_at": "Modified Date"
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Communication"
@@ -8785,6 +9509,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Communication?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Communication",
@@ -8840,6 +9568,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "edit": {
         "header": "Edit Dimension Name"
       },
+      "form": {
+        "enable_innovation_styles": "Enable Innovation Styles",
+        "enable_occupations": "Enable Occupations"
+      },
       "index": {
         "new": "Add",
         "owner": "Owner",
@@ -8849,7 +9581,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
+        "active": "Active",
+        "created_at": "Created date",
+        "factors_count": "Factors count",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -8866,9 +9602,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
-        "form": {
-          "enable_innovation_styles": "Enable Innovation Styles",
-          "enable_occupations": "Enable Occupations"
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Dimension",
@@ -8896,7 +9632,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "enable": "Enable",
     "factors": {
       "copy": {
-        "error": "Factor #%{id} was not copied."
+        "error": "%{name} factor was not copied",
+        "successfully": "%{name} factor was copied successfully"
+      },
+      "create": {
+        "error": "%{name} factor was not created",
+        "successfully": "%{name} factor was created successfully"
       },
       "destroy": {
         "successfully": "Factor %{name} was successfully deleted."
@@ -8915,14 +9656,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "index": {
         "icon": "Icon",
         "new": "Add",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        },
+        "scoring_strategy": "Scoring strategy",
+        "sub_factors": "Sub factors",
         "title": "Factors",
         "tooltips": {
           "create": "Create"
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Factor"
@@ -8937,6 +9688,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Factor?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other factors",
+          "sub_factors_average": "Weighted sum of factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -8953,6 +9713,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "toggle_status": {
         "successfully": "Factor was successfully updated."
+      },
+      "update": {
+        "error": "%{name} factor was not updated",
+        "successfully": "%{name} factor was updated successfully"
       }
     },
     "genders": {
@@ -9043,6 +9807,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "raw": "Import Raw Results data",
           "scoring": "Import Scoring Results data"
         }
+      },
+      "new": {
+        "header": "New"
       }
     },
     "imports_hris_imports": {
@@ -9171,14 +9938,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "index": {
         "new_folder": "New Folder",
         "owner": "Owner",
-        "title": "Media Library",
+        "title": "Media library",
         "upload": "Upload"
       },
       "list": {
-        "created_at": "Created Date",
+        "created_at": "Created date",
+        "name": "Name",
         "new_folder": "New folder",
-        "root": "Media Library",
-        "updated_at": "Modified Date",
+        "root": "Media library",
+        "type": "Type",
+        "updated_at": "Modified date",
         "upload": "Upload new file"
       },
       "new": {
@@ -9248,7 +10017,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -9308,7 +10077,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "no_data_found": "No data found",
     "norms": {
       "copy": {
-        "error": "Norm #%{id} was not copied."
+        "error": "Norm #%{id} was not copied.",
+        "successfully": "Norm #%{name} was copied successfully"
       },
       "create": {
         "successfully": "Norm %{name} was successfully created."
@@ -9336,8 +10106,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Norms"
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date",
+        "updated_by": "Updated by"
       },
       "new": {
         "header": "New norm"
@@ -9352,6 +10127,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Norm?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Norm",
@@ -9510,7 +10289,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Products list"
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -9526,6 +10307,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Product?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Product",
@@ -9554,6 +10339,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "psychometrics": "Psychometrics",
     "questions": {
+      "copy": {
+        "successfully": "Question %{name} copied successfully"
+      },
+      "create": {
+        "successfully": "Question %{name} created successfully"
+      },
       "destroy": {
         "successfully": "Question %{name} was successfully deleted."
       },
@@ -9601,8 +10392,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Report Bundle"
@@ -9614,6 +10406,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -9681,7 +10478,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "index": {
         "add": "Add",
+        "assessment": "Assessment",
         "bulk_download": "Bulk Download",
+        "category": "Category",
         "families": "Report Bundles",
         "filterrific": {
           "with_assessment_category": {
@@ -9701,8 +10500,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "Select Report"
@@ -9732,6 +10535,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Report",
@@ -9811,7 +10618,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "templates": {
       "blocks": {
         "copy": {
-          "error": "Block"
+          "error": "Block \\#%{name} was not copied."
         },
         "destroy": {
           "successfully": "Block %{name} was successfully deleted."
@@ -9822,6 +10629,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "index": {
           "new": "Add",
           "templates": {
+            "blocks": "Blocks",
+            "questions": "Questions"
           },
           "title": "Blocks",
           "tooltips": {
@@ -9829,8 +10638,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Block"
@@ -9839,6 +10651,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Assign Block to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Block",
             "delete": "Delete Block",
@@ -9877,8 +10693,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Question"
@@ -9887,6 +10706,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Assign Question to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Question",
             "delete": "Delete Question",
@@ -10002,6 +10825,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -10040,6 +10868,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "index": {
         "breadcrumb": "Users",
+        "client_tenancy": "Client tenancy",
         "export": "Export",
         "export_completion_status": "Completion Status",
         "export_users": "Users",
@@ -10063,14 +10892,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "email": "Email",
+        "first_name": "First name",
+        "id": "Id",
+        "last_name": "Last name",
+        "role": "Role",
         "updated_at": "Modified Date"
       },
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -10524,6 +11364,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "confirm_new_password": "أكّد كلمة السر الجديدة",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "كلمة سر جديدة",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -11486,6 +12327,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -11523,6 +12367,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -11574,11 +12419,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -11649,6 +12500,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -11695,6 +12547,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number": "License Number",
         "overuse_number": "Over Use Allowance",
         "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
         "unlimited": "Unlimited",
         "used_number": "Used License Number"
       },
@@ -11799,11 +12655,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -11872,6 +12734,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
@@ -11895,6 +12761,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -11946,7 +12813,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -11979,6 +12846,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {
@@ -12325,6 +13193,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -12375,6 +13244,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "id": "ID",
         "type": "Thumbnail",
         "updated_at": "Modified Date"
+      },
+      "license": {
+        "id": "ID",
+        "number": "License Number",
+        "overuse_number": "Over Use Allowance",
+        "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
+        "unlimited": "Unlimited",
+        "used_number": "Used License Number"
       },
       "membership": {
         "active": "Active",
@@ -12513,11 +13394,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -12560,7 +13447,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
-          "overuse": "License %{name} ssis overused"
+          "overuse": "License %{name} is overused"
         },
         "privacy_link": {
           "attributes": {
@@ -12590,6 +13477,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "factors_norm": "factors_norms",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
+      "license": "License",
       "membership": "Membership",
       "norm": "Norms",
       "occupation": "Innovation Styles",
@@ -12641,6 +13529,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "faqs": " FAQs",
           "privacy": "Privacy Statement",
           "terms_conditions": " Terms & Conditions"
+        },
+        "simple_design": {
+          "design": "Design",
+          "or": "Or"
         }
       }
     },
@@ -12675,7 +13567,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
-        "successfully": "Assessment %{name} was Destroyed Successfully."
+        "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
         "header": "Assessment Settings"
@@ -12685,8 +13577,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "360": "360 Feedback",
           "all": "All Categories",
           "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
           "organisational": "Org Surveys",
-          "psychometric": "Psychometrics"
+          "psychometric": "Psychometrics",
+          "threesixty": "Threesixty"
+        },
+        "statuses": {
+          "finished": "Finished",
+          "in_progress": "In progress"
         },
         "timing": {
           "hint": "For Example: 30 minutes to complete"
@@ -12698,8 +13597,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
           }
         },
         "new": "Add",
@@ -12710,8 +13612,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New assessment"
@@ -12726,6 +13633,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "archive": "Archive Assessment",
@@ -12796,6 +13707,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "blocks": {
+      "copy": {
+        "successfully": "Block %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Block %{name} was successfully created."
+      },
       "destroy": {
         "successfully": "Block %{name} was successfully deleted."
       },
@@ -12867,6 +13784,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "download": {
         "removed": "Sorry, the file has been removed from the system after one week of storage"
+      },
+      "form": {
+        "end_date": "End date",
+        "start_date": "Start date"
       },
       "mailer": {
         "subject": "Download bulk reports"
@@ -12958,14 +13879,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Client"
       },
       "export": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "index": {
         "export": "Export",
         "new": "Add",
-        "title": "Campaign Templates"
+        "title": "Campaign templates"
       },
       "license": {
         "header": "%{name} - Edit license"
@@ -12977,9 +13901,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
       },
       "new": {
         "header": "New Client"
@@ -13093,7 +14020,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
-          "successfully": "Assessment %{name} was Destroyed Successfully."
+          "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
           "header": "Assessment Settings"
@@ -13103,8 +14030,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
             "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
+          },
+          "statuses": {
+            "finished": "Finished",
+            "in_progress": "In progress"
           },
           "timing": {
             "hint": "For Example: 30 minutes to complete"
@@ -13116,8 +14050,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "360": "360 Feedback",
               "all": "All Categories",
               "case_study": "Case Studies",
+              "hogan": "Hogan",
+              "mindmill": "Mindmill",
               "organisational": "Org Surveys",
-              "psychometric": "Psychometrics"
+              "psychometric": "Psychometrics",
+              "threesixty": "Threesixty"
             }
           },
           "new": "Add",
@@ -13128,14 +14065,21 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "dimension_id": "Dimension Id",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "universal_link": "Universal link",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New assessment"
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
+          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -13154,7 +14098,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "deactivate_universal_link": "Deactivate Univeral Link",
           "export_results": "Export results",
+          "external_results": "External Results",
           "generate_universal_link": "Generate Univeral Link",
+          "import_results": "Import Results",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "normed_results": "Normed results",
           "raw_results": "Raw results",
           "regenerate_universal_link": "Regenerate Univeral Link",
@@ -13165,6 +14115,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "delete": "Delete Assessment",
             "edit": "Edit Assessment"
           }
+        },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
         },
         "sidebar": {
           "assign": "Assign Assessment",
@@ -13228,6 +14183,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "reports": "Reports",
           "user_access": "User Access"
         },
+        "form_new": {
+          "access": "Access",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
         "new": {
           "header": "Add Reports"
         }
@@ -13256,18 +14217,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Edit Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "index": {
           "export": "Export",
@@ -13275,18 +14243,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
-            "actual_usage": "Actual Usage",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
             "campaigns": "Campaigns",
             "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
             "users": "Users"
           },
-          "name": "Campaign Name"
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Campaign"
@@ -13305,14 +14280,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "sidebar": {
-          "archive": "Archive Campaign",
-          "copy": "Copy Campaign",
-          "destroy": "Delete Campaign",
+          "archive": "Archive campaign",
+          "copy": "Copy campaign",
+          "destroy": "Delete campaign",
           "disable": "Disable",
-          "edit": "Edit Campaign",
+          "edit": "Edit campaign",
           "enable": "Enable",
-          "new": "New Campaign",
-          "title": "Campaign's options"
+          "new": "New campaign",
+          "title": "Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Campaign %{name} was successfully updated."
@@ -13348,14 +14324,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Client Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -13430,7 +14417,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "new": "Upload datasheet",
           "title": "%{name} Datasheet"
         },
-        "list": null,
+        "list": {
+          "created_at": "Created date",
+          "email": "Email",
+          "updated_at": "Updated date"
+        },
         "new": {
           "header": "Upload datasheet"
         },
@@ -13458,9 +14449,23 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Client"
       },
       "export": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_admin": "Project admin",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "index": {
         "export": "Export",
@@ -13512,15 +14517,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "%{client_name} - Manage Licenses"
         },
         "list": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "active": "Active",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "type": "Type",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -13536,15 +14543,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Add License"
         },
         "overview": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "name": "Name",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -13560,15 +14568,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "show": {
-          "date_expire": "Date Of Expiry: %{date}",
-          "end_date": "End Date",
-          "header": "%{client_name} - Licenses Usage",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
           "license_has_expired": "License package has expired",
-          "license_type": "License Type",
-          "report_family": "Report Bundle",
-          "start_date": "Start Date",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
           "usage_percent": "% of Usage",
-          "used_license_number": "Used Licenses",
+          "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
         },
@@ -13581,9 +14589,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
+        "account_manager_id": "Account manager",
         "admin": "Client Admin",
-        "client_admins": "Client Admins",
-        "report_bundle": "Report Bundle"
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
       },
       "new": {
         "header": "New Client"
@@ -13615,14 +14636,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Project Admins"
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
         },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
+        },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -13708,18 +14740,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Edit Campaign"
           },
           "export": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "index": {
             "export": "Export",
@@ -13727,18 +14766,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "Campaigns"
           },
           "list": {
-            "assigned_user": "Assigned Users",
-            "completed_user": "Completed Users",
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
             "header": {
               "actions": "Actions",
-              "actual_usage": "Actual Usage",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
               "campaigns": "Campaigns",
               "name": "Name",
-              "sub_campaign": "Sub-Campaigns",
-              "tests_allocated": "Tests Allocated",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
               "users": "Users"
             },
-            "name": "Campaign Name"
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New Campaign"
@@ -13757,14 +14803,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           },
           "sidebar": {
-            "archive": "Archive Campaign",
-            "copy": "Copy Campaign",
-            "destroy": "Delete Campaign",
+            "archive": "Archive campaign",
+            "copy": "Copy campaign",
+            "destroy": "Delete campaign",
             "disable": "Disable",
-            "edit": "Edit Campaign",
+            "edit": "Edit campaign",
             "enable": "Enable",
-            "new": "New Campaign",
-            "title": "Campaign's options"
+            "new": "New campaign",
+            "title": "Campaign's options",
+            "view_licenses": "View licenses"
           },
           "sub_campaigns": {
             "archive": {
@@ -13784,8 +14831,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "header": "Edit Sub-Campaign"
             },
             "export": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -13795,7 +14844,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "header": {
               "actions": "Actions"
@@ -13806,8 +14858,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "title": "Sub Campaigns"
             },
             "list": {
-              "assigned_user": "Assigned Users",
-              "completed_user": "Completed Users",
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
               "header": {
                 "actions": "Actions",
                 "actual_usage": "Actual Usage",
@@ -13817,7 +14871,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "tests_allocated": "Tests Allocated",
                 "users": "Users"
               },
-              "name": "Sub-Campaign Name"
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
             },
             "new": {
               "header": "New Sub-Campaign"
@@ -13839,7 +14896,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "edit": "Edit Sub-Campaign",
               "enable": "Enable",
               "new": "New Sub-Campaign",
-              "title": "Sub-Campaign's options"
+              "title": "Sub-Campaign's options",
+              "view_licenses": "View licenses"
             },
             "toggle_status": {
               "successfully": "Sub-Campaign %{name} was successfully updated."
@@ -13870,22 +14928,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "export": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "form": {
           "2fa": "2 Factor Authentication",
@@ -13916,22 +14976,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "list": {
           "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual Usage",
-          "admin": "Client Admin",
-          "applicable_level": "Applicable Level",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
           "archive_status": "Status",
           "assessments": "Assessments",
-          "assigned_user": "Assigned Users",
+          "assigned_user": "Assigned users",
           "completed_user": "Completed users",
-          "created_at": "Created Date",
+          "created_at": "Created date",
+          "id": "Id",
           "name": "Project name",
-          "project_admin": "Project Admins",
+          "number": "Number",
+          "project_admin": "Project admins",
           "reports": "Reports",
           "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE Project Manager",
-          "updated_at": "Modified Date",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
           "url": "URL",
-          "users_count": "Users Count"
+          "users_count": "Users count"
         },
         "new": {
           "header": "New Project"
@@ -13950,7 +15012,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "sidebar": {
-          "admins": "Admin Users",
+          "admins": "Project Admins",
           "archive": "Archive Project",
           "copy": "Copy Project",
           "design": "Edit Design",
@@ -14029,7 +15091,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "name": "Name",
             "report": "Report",
             "report_bundle": "Report Bundle",
-            "status": "Status"
+            "status": "Status",
+            "updated_at": "Updated date"
           },
           "new": {
             "header": "New 360 Campaign"
@@ -14059,6 +15122,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "title": "Unarchive <strong>%{name}</strong> ?"
               }
             },
+            "export_results": "Export results",
+            "raw_results": "Raw results",
             "tooltips": {
               "campaigns": {
                 "delete": "Delete Campaign"
@@ -14117,6 +15182,19 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "form_fields": {
           "code": "e.g TTE-conf-2019"
         },
+        "index": {
+          "add": "Add",
+          "title": "Registration Codes"
+        },
+        "list": {
+          "actions": "Actions",
+          "active": "Active",
+          "code": "Code",
+          "end_date": "End date",
+          "name": "Name",
+          "start_date": "Start date",
+          "usage_stats": "Usage stats"
+        },
         "name": "Registration Codes",
         "new": {
           "header": "Add Registration code"
@@ -14168,7 +15246,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "index": {
           "add": "Add",
+          "assessment": "Assessment",
           "bulk_download": "Bulk Download",
+          "category": "Category",
           "families": "Report Bundles",
           "filterrific": {
             "with_assessment_category": {
@@ -14188,8 +15268,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "Select Report"
@@ -14224,6 +15308,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
             }
+          },
+          "export_data": "Export Data",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
           },
           "tooltips": {
             "copy": "Copy Report",
@@ -14284,6 +15373,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
         },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
         "tooltips": {
           "copy": "Copy Client",
           "create_admin": "Create Client Admin",
@@ -14294,15 +15387,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "sidebar": {
-        "copy": "Copy Client",
+        "copy": "Copy client",
         "design": "Edit Design",
-        "destroy": "Delete Client",
+        "destroy": "Delete client",
         "disable": "Disable",
-        "edit": "Edit Client",
+        "edit": "Edit client",
         "enable": "Enable",
         "licenses": "Manage Licenses",
         "new": "New Client",
-        "title": "Client's options"
+        "title": "Client's options",
+        "view_licenses": "View licenses"
       },
       "statistics": {
         "index": {
@@ -14329,8 +15423,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Edit Sub-Campaign"
         },
         "export": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -14340,7 +15436,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "header": {
           "actions": "Actions"
@@ -14351,8 +15450,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Sub Campaigns"
         },
         "list": {
-          "assigned_user": "Assigned Users",
-          "completed_user": "Completed Users",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
           "header": {
             "actions": "Actions",
             "actual_usage": "Actual Usage",
@@ -14362,7 +15463,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "tests_allocated": "Tests Allocated",
             "users": "Users"
           },
-          "name": "Sub-Campaign Name"
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
         },
         "new": {
           "header": "New Sub-Campaign"
@@ -14384,13 +15488,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "edit": "Edit Sub-Campaign",
           "enable": "Enable",
           "new": "New Sub-Campaign",
-          "title": "Sub-Campaign's options"
+          "title": "Sub-Campaign's options",
+          "view_licenses": "View licenses"
         },
         "toggle_status": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         },
         "update": {
           "successfully": "Sub-Campaign %{name} was successfully updated."
+        }
+      },
+      "threesixty_campaigns": {
+        "new": {
+          "header": "New 360 Campaign"
+        },
+        "update": {
+          "successfully": "Campaign '%{name}' was successfully updated."
         }
       },
       "toggle_status": {
@@ -14420,6 +15533,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "create": {
             "successfully": "Successfully Updated"
+          },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
           },
           "form": {
             "assessment": "Assessment",
@@ -14452,6 +15568,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "resource": {
             "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
               "assigns_report": {
                 "add_user_access": {
                   "body": "<p>Are you sure you want to add user access to this report?</p>",
@@ -14496,9 +15618,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Add Reports"
           },
           "form": {
+            "access": "Access",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
+            "reports": "Reports",
             "user_access": {
               "access": "Reports access",
               "user": "User"
@@ -14531,6 +15655,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Edit user",
           "value": "Value"
         },
+        "edit_hris_data": {
+          "add": "Add",
+          "key": "Key",
+          "remove": "Remove",
+          "value": "Value"
+        },
         "form": {
           "choose": " - Choose - "
         },
@@ -14540,6 +15670,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "index": {
           "breadcrumb": "Users",
+          "client_tenancy": "Client tenancy",
           "export": "Export",
           "export_completion_status": "Completion Status",
           "export_users": "Users",
@@ -14563,11 +15694,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
+          "active": "Active",
           "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
           "updated_at": "Modified Date"
         },
         "new": {
           "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          }
         },
         "reports": {
           "copy": {
@@ -14594,7 +15736,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "index": {
             "add": "Add",
+            "assessment": "Assessment",
             "bulk_download": "Bulk Download",
+            "category": "Category",
             "families": "Report Bundles",
             "filterrific": {
               "with_assessment_category": {
@@ -14614,8 +15758,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           },
           "list": {
-            "created_at": "Created Date",
-            "updated_at": "Modified Date"
+            "active": "Active",
+            "created_at": "Created date",
+            "id": "Id",
+            "name": "Name",
+            "type": "Type",
+            "updated_at": "Modified date"
           },
           "new": {
             "header": "Select Report"
@@ -14645,6 +15793,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
               }
+            },
+            "in_progress": {
+              "copying": "Copying",
+              "deleting": "Deleting"
             },
             "tooltips": {
               "copy": "Copy Report",
@@ -14677,7 +15829,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
         },
         "resource": {
           "confirmations": {
@@ -14751,7 +15903,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Communication"
       },
       "form": {
+        "all": "All",
         "body_mustache": "{{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users\n{{first_name}} - Recipient First Name\n{{last_name}} - Recipient Last Name\n{{email}} - Recipient Email\n",
+        "completion": "Completion",
         "delivery_at": "Delivery at (GST)",
         "delivery_rules": {
           "in_progress": "If assessment is in progress",
@@ -14760,7 +15914,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "send_now": "Send now",
           "specific_datetime": "Send at"
         },
+        "invitation": "Invitation",
         "kind": "Communication Types",
+        "other": "Other",
+        "reminder": "Reminder",
+        "selected": "Selected",
         "selected_cc_recipients": "Selected CC Recipients",
         "selected_recipients": "Selected Recipients",
         "stop_reminder": "Stop sending reminders",
@@ -14774,7 +15932,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "other": "Other",
         "owner": "Owner",
         "reminder": "Reminder",
-        "title": "Communication Center",
+        "title": "Communication center",
         "tooltips": {
           "create": "Create"
         },
@@ -14785,7 +15943,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "author": "Created by",
         "campaign": "Campaign",
         "client_name": "Client",
-        "created_at": "Created Date",
+        "created_at": "Created date",
         "creator_first_name": "Created by",
         "delivery_rule": "Delivery",
         "kind": "Communication type",
@@ -14793,7 +15951,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "recipients": "Recipients",
         "sub_campaign": "Sub-campaign",
         "subject": "Communication subject",
-        "updated_at": "Modified Date"
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Communication"
@@ -14808,6 +15966,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Communication?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Communication",
@@ -14863,6 +16025,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "edit": {
         "header": "Edit Dimension Name"
       },
+      "form": {
+        "enable_innovation_styles": "Enable Innovation Styles",
+        "enable_occupations": "Enable Occupations"
+      },
       "index": {
         "new": "Add",
         "owner": "Owner",
@@ -14872,7 +16038,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
+        "active": "Active",
+        "created_at": "Created date",
+        "factors_count": "Factors count",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -14889,9 +16059,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "title": "<strong>%{status}</strong> %{name}?"
           }
         },
-        "form": {
-          "enable_innovation_styles": "Enable Innovation Styles",
-          "enable_occupations": "Enable Occupations"
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Dimension",
@@ -14919,7 +16089,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "enable": "Enable",
     "factors": {
       "copy": {
-        "error": "Factor #%{id} was not copied."
+        "error": "%{name} factor was not copied",
+        "successfully": "%{name} factor was copied successfully"
+      },
+      "create": {
+        "error": "%{name} factor was not created",
+        "successfully": "%{name} factor was created successfully"
       },
       "destroy": {
         "successfully": "Factor %{name} was successfully deleted."
@@ -14938,14 +16113,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "index": {
         "icon": "Icon",
         "new": "Add",
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other Factors",
+          "sub_factors_average": "Weighted Sum of Factors"
+        },
+        "scoring_strategy": "Scoring strategy",
+        "sub_factors": "Sub factors",
         "title": "Factors",
         "tooltips": {
           "create": "Create"
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Factor"
@@ -14960,6 +16145,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Factor?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "scoring_strategies": {
+          "questions": "Questions",
+          "sub_factor_questions": "Questions of other factors",
+          "sub_factors_average": "Weighted sum of factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -14976,6 +16170,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "toggle_status": {
         "successfully": "Factor was successfully updated."
+      },
+      "update": {
+        "error": "%{name} factor was not updated",
+        "successfully": "%{name} factor was updated successfully"
       }
     },
     "genders": {
@@ -15066,6 +16264,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "raw": "Import Raw Results data",
           "scoring": "Import Scoring Results data"
         }
+      },
+      "new": {
+        "header": "New"
       }
     },
     "imports_hris_imports": {
@@ -15194,14 +16395,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "index": {
         "new_folder": "New Folder",
         "owner": "Owner",
-        "title": "Media Library",
+        "title": "Media library",
         "upload": "Upload"
       },
       "list": {
-        "created_at": "Created Date",
+        "created_at": "Created date",
+        "name": "Name",
         "new_folder": "New folder",
-        "root": "Media Library",
-        "updated_at": "Modified Date",
+        "root": "Media library",
+        "type": "Type",
+        "updated_at": "Modified date",
         "upload": "Upload new file"
       },
       "new": {
@@ -15271,7 +16474,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
@@ -15331,7 +16534,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "no_data_found": "No data found",
     "norms": {
       "copy": {
-        "error": "Norm #%{id} was not copied."
+        "error": "Norm #%{id} was not copied.",
+        "successfully": "Norm #%{name} was copied successfully"
       },
       "create": {
         "successfully": "Norm %{name} was successfully created."
@@ -15359,8 +16563,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Norms"
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date",
+        "updated_by": "Updated by"
       },
       "new": {
         "header": "New norm"
@@ -15375,6 +16584,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Norm?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Norm",
@@ -15533,7 +16746,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Products list"
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -15549,6 +16764,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Product?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Product",
@@ -15577,6 +16796,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "psychometrics": "Psychometrics",
     "questions": {
+      "copy": {
+        "successfully": "Question %{name} copied successfully"
+      },
+      "create": {
+        "successfully": "Question %{name} created successfully"
+      },
       "destroy": {
         "successfully": "Question %{name} was successfully deleted."
       },
@@ -15624,8 +16849,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "name": "Name",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Report Bundle"
@@ -15637,6 +16863,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "tooltips": {
             "create": "Create"
           }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
         },
         "resource": {
           "confirmations": {
@@ -15704,7 +16935,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "index": {
         "add": "Add",
+        "assessment": "Assessment",
         "bulk_download": "Bulk Download",
+        "category": "Category",
         "families": "Report Bundles",
         "filterrific": {
           "with_assessment_category": {
@@ -15724,8 +16957,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "Select Report"
@@ -15755,6 +16992,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
           }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Report",
@@ -15834,7 +17075,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "templates": {
       "blocks": {
         "copy": {
-          "error": "Block"
+          "error": "Block \\#%{name} was not copied."
         },
         "destroy": {
           "successfully": "Block %{name} was successfully deleted."
@@ -15845,6 +17086,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "index": {
           "new": "Add",
           "templates": {
+            "blocks": "Blocks",
+            "questions": "Questions"
           },
           "title": "Blocks",
           "tooltips": {
@@ -15852,8 +17095,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Block"
@@ -15862,6 +17108,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Assign Block to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Block",
             "delete": "Delete Block",
@@ -15900,8 +17150,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           }
         },
         "list": {
-          "created_at": "Created Date",
-          "updated_at": "Modified Date"
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
         },
         "new": {
           "header": "New Question"
@@ -15910,6 +17163,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Assign Question to Assessments"
         },
         "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
           "tooltips": {
             "copy": "Copy Question",
             "delete": "Delete Question",
@@ -16025,6 +17282,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
         }
+      },
+      "reports": {
+        "show": {
+          "title": "Title"
+        }
       }
     },
     "translations": {
@@ -16063,6 +17325,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "index": {
         "breadcrumb": "Users",
+        "client_tenancy": "Client tenancy",
         "export": "Export",
         "export_completion_status": "Completion Status",
         "export_users": "Users",
@@ -16086,14 +17349,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
+        "active": "Active",
         "created_at": "Created Date",
+        "email": "Email",
+        "first_name": "First name",
+        "id": "Id",
+        "last_name": "Last name",
+        "role": "Role",
         "updated_at": "Modified Date"
       },
       "new": {
         "header": "New user"
       },
+      "password": {
+        "guidelines": {
+          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+        }
+      },
       "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
       },
       "resource": {
         "confirmations": {
@@ -16547,6 +17821,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "confirm_new_password": "Confirm new password",
         "description": "To create a new password, please enter your new password in the boxes below.",
         "new_password": "New password",
+        "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
@@ -17505,6 +18780,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -17542,6 +18820,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -17593,11 +18872,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -17668,6 +18953,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "project_manager": "TTE Project Manager",
         "project_manager_id": "TTE Project Manager",
         "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
         "subdomain": "Subdomain",
         "types": {
           "associate": "Associate",
@@ -17714,6 +19000,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "number": "License Number",
         "overuse_number": "Over Use Allowance",
         "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
         "unlimited": "Unlimited",
         "used_number": "Used License Number"
       },
@@ -17818,11 +19108,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "case_study": "Case study",
+          "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin"
+          "super_admin": "Super admin",
+          "superadmin": "Super admin",
+          "threesixty": "Threesixty"
         },
         "types": {
           "anonymous": "Anonymous Users",
@@ -17891,6 +19187,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
     "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
     "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
     "completed": "Completed",
     "confirm": "Are you sure?",
@@ -17914,6 +19214,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "evaluate": "Evaluate",
     "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
     "export_pdf": "Export PDF",
@@ -17962,7 +19263,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
         "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
         "release_report": "Are you sure you want to release report?",
         "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
         "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
@@ -17995,6 +19296,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
     "waiting": "Waiting",
+    "you": "You",
     "yourself": "Yourself"
   },
   "time": {

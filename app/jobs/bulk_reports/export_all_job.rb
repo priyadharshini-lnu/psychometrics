@@ -11,7 +11,7 @@ module BulkReports
 
       bulk_report = ::BulkReport.create(user: params[:current_user])
       input_dir = bulk_report.input_dir
-      # Removes input dir if for some reason it's was not deleted
+      # Removes input dir if for some reason it was not deleted
       FileUtils.rm_rf(input_dir) if File.directory?(bulk_report.input_dir)
       # Creates a new empty folder for reports
       FileUtils.mkdir_p(input_dir)

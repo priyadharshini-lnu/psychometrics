@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
-import HotSpotStore from 'store/HotSpotStore'
-
 import Validations from 'components/Validations'
 
 import { LibraryStore } from 'libs/library'
@@ -19,12 +17,8 @@ export class Properties extends Component {
   componentDidMount () {
     LibraryTransport.init()
     this.librarySocket = Socket.library()
-    this.propHotSpotStoreListener = HotSpotStore.addListener('change', () => this.forceUpdate())
   }
 
-  componentWillUnmount () {
-    this.propHotSpotStoreListener.remove()
-  }
 
   openLibrary = () => {
     LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
@@ -55,14 +49,13 @@ export class Properties extends Component {
   }
 
   changeRegionsNames = (e) => {
-    const { model } = this.props
-    model.changeArrayProps({ collection: 'regionsNames', i: HotSpotStore.shapeIndex, val: e.currentTarget.value })
+    const { model, shapeIndex } = this.props
+    model.changeArrayProps({ collection: 'regionsNames', i: shapeIndex, val: e.currentTarget.value })
     this.forceUpdate()
   }
 
   renderRegionsNames () {
-    const { model, model: { props: { regionsNames } } } = this.props
-    const { shapeIndex } = HotSpotStore
+    const { model, model: { props: { regionsNames } }, shapeIndex } = this.props
 
     if (shapeIndex === null) { return }
 

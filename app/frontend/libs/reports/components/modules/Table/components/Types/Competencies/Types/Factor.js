@@ -8,8 +8,7 @@ import styles from '../styles.scss'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 
-const LARGE_FILTER_ROW_HEIGHT = 24
-const SMALL_FILTER_ROW_HEIGHT = 12
+const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
 export default function Factor ({ model, filters }) {
@@ -46,14 +45,13 @@ export default function Factor ({ model, filters }) {
   }
 
   const {
-    milestones, factorIds, mainHeaderColor, secondHeaderColor, showValues,
+    milestones, factorIds, mainHeaderColor, secondHeaderColor,
   } = model.props
 
   if (!filters.length || !factorIds.length) return null
   const factorMap = getFactorMap()
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
-  const rowHeight = showValues ? LARGE_FILTER_ROW_HEIGHT : SMALL_FILTER_ROW_HEIGHT
-  const descStyle = { minHeight: `${rowHeight * filters.length}px` }
+  const descStyle = { minHeight: `${FILTER_ROW_HEIGHT * filters.length}px` }
   const { fontSize, fontFamily } = model.props.style
   const style = {
     fontSize,
@@ -68,12 +66,16 @@ export default function Factor ({ model, filters }) {
             <td
               rowSpan={2}
               className={cs(styles.label, styles.competencyLabel)}
-              style={{ background: mainHeaderColor }}
               width={`${DESC_COLUMN_WIDTH}%`}
+              style={{ color: mainHeaderColor }}
             >
               {I18nStore.t('reports.modules.single_value_cluster.competency')}
             </td>
-            <td colSpan={milestones.length} className={styles.label} style={{ background: mainHeaderColor }}>
+            <td
+              colSpan={milestones.length}
+              className={cs(styles.label, styles.factorLabel)}
+              style={{ color: mainHeaderColor }}
+            >
               {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
             </td>
           </tr>
@@ -81,8 +83,8 @@ export default function Factor ({ model, filters }) {
             {milestones.map(m => (
               <td
                 key={m.id}
-                className={styles.label}
-                style={{ background: secondHeaderColor }}
+                className={cs(styles.label, styles.milestoneLabel)}
+                style={{ borderBottomColor: `${m.color}`, color: secondHeaderColor }}
                 width={`${milestoneColumnWidth}%`}
               >
                 {m.name}
@@ -96,8 +98,8 @@ export default function Factor ({ model, filters }) {
             return (
               <tr key={id}>
                 <td className={styles.factorcell}>
-                  <div className={styles.factor} style={{ color: mainHeaderColor }}>
-                    <div className="display-flex">
+                  <div className={styles.factor} style={{ color: secondHeaderColor }}>
+                    <div className="display-flex vertical-align">
                       {factor.icon && <div className="vertical-align"><img src={factor.icon} /></div>}
                       <span className="mls">{I18nStore.tFactor(factor, 'name')}</span>
                     </div>

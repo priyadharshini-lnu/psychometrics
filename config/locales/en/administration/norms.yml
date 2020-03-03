@@ -8,8 +8,13 @@ en:
         new: Add
         owner: Owner
       list:
-        updated_at: Modified Date
-        created_at: Created Date
+        id: Id
+        active: Active
+        name: Name
+        dimension_id: Dimension Id
+        updated_by: Updated by
+        updated_at: Modified date
+        created_at: Created date
       new:
         header: 'New norm'
       edit:
@@ -22,6 +27,7 @@ en:
         successfully: 'Norm %{name} was successfully updated.'
       copy:
         error: 'Norm #%{id} was not copied.'
+        successfully: 'Norm #%{name} was copied successfully'
       toggle_status:
         successfully: 'Norm was successfully updated.'
       editor:
@@ -50,6 +56,9 @@ en:
           copy: 'Copy Norm'
           edit: 'Rename Norm'
           delete: 'Delete Norm'
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

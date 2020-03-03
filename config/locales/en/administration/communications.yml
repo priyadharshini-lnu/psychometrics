@@ -8,13 +8,13 @@ en:
         clients: Clients
         other: Other
         type: Type
-        title: Communication Center
+        title: Communication center
         tooltips:
           create: Create
         new: Add
         owner: Owner
       list:
-        updated_at: Modified Date
+        updated_at: Modified date
         client_name: Client
         project: Project
         campaign: Campaign
@@ -26,7 +26,7 @@ en:
         delivery_rule: Delivery
         author: Created by
         actions: Actions
-        created_at: Created Date
+        created_at: Created date
       new:
         header: 'New Communication'
       edit:
@@ -68,6 +68,12 @@ en:
         delivery_at: Delivery at (GST)
         stop_reminder_datetime: End date for reminders (GST)
         stop_reminder: Stop sending reminders
+        invitation: Invitation
+        reminder: Reminder
+        completion: Completion
+        other: Other
+        all: All
+        selected: Selected
       resource:
         tooltips:
           copy: 'Copy Communication'
@@ -75,6 +81,9 @@ en:
           delete: 'Delete Communication'
           view: 'View Communication'
           download: 'Download Communication History'
+        in_progress:
+          copying: Copying
+          deleting: Deleting
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

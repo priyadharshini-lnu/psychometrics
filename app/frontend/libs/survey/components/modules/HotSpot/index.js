@@ -1,5 +1,6 @@
 import HotSpot from './components/HotSpot'
-import HotSpotProperties from './components/Properties'
+import Properties from './components/Properties'
+import conenct from './connect'
 
-export { HotSpotProperties }
-export default HotSpot
+export const HotSpotProperties = conenct(Properties)
+export default conenct(HotSpot)

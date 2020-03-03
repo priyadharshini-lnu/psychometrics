@@ -14,7 +14,7 @@ const Conditions = {
 }
 
 class QuestionCondition extends React.Component {
-  propTypes = {
+  static propTypes = {
     questions: PropTypes.object.isRequired,
     condition: PropTypes.object.isRequired,
     onChange: PropTypes.func,

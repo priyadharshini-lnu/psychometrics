@@ -8,8 +8,7 @@ import styles from '../styles.scss'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
 
-const LARGE_FILTER_ROW_HEIGHT = 28
-const SMALL_FILTER_ROW_HEIGHT = 16
+const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
 export default function Question ({ filters, model }) {
@@ -57,7 +56,7 @@ export default function Question ({ filters, model }) {
   }
 
   const {
-    milestones, mainHeaderColor, secondHeaderColor, showValues,
+    milestones, mainHeaderColor, secondHeaderColor,
   } = model.props
   if (!filters.length) return null
 
@@ -68,8 +67,7 @@ export default function Question ({ filters, model }) {
   const questionChoices = findQuestionChoices()
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
-  const rowHeight = showValues ? LARGE_FILTER_ROW_HEIGHT : SMALL_FILTER_ROW_HEIGHT
-  const descStyle = { minHeight: `${rowHeight * filters.length}px` }
+  const descStyle = { minHeight: `${FILTER_ROW_HEIGHT * filters.length}px` }
   const { fontSize, fontFamily } = model.props.style
   const style = {
     fontSize,
@@ -84,11 +82,15 @@ export default function Question ({ filters, model }) {
             <td
               rowSpan={2}
               className={cs(styles.label, styles.competencyLabel)}
-              style={{ background: mainHeaderColor }}
+              style={{ color: mainHeaderColor }}
             >
               {I18nStore.t('reports.modules.single_value_cluster.questions')}
             </td>
-            <td colSpan={milestones.length} className={styles.label} style={{ background: mainHeaderColor }}>
+            <td
+              colSpan={milestones.length}
+              className={cs(styles.label, styles.questionLabel)}
+              style={{ color: mainHeaderColor }}
+            >
               {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
             </td>
           </tr>
@@ -96,8 +98,8 @@ export default function Question ({ filters, model }) {
             {milestones.map(m => (
               <td
                 key={m.id}
-                className={styles.label}
-                style={{ background: secondHeaderColor }}
+                className={cs(styles.label, styles.milestoneLabel)}
+                style={{ borderBottomColor: m.color, color: secondHeaderColor }}
                 width={`${milestoneColumnWidth}%`}
               >
                 {m.name}

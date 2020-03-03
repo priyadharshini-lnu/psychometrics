@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import store from 'store/BlockList'
 import Block from 'views/Block'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
+import FlipMove from 'react-flip-move'
 import styles from './BlockListView.scss'
 
 export class BlockListView extends Component {
@@ -12,13 +12,11 @@ export class BlockListView extends Component {
   redoListener = null
 
   componentDidMount () {
-    this.storeListener = store.addListener('change', this.update)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
     this.redoListener = UndoRedoDispatcher.addListener('redo', this.update)
   }
 
   componentWillUnmount () {
-    this.storeListener.remove()
     this.undoListener.remove()
     this.redoListener.remove()
   }
@@ -28,9 +26,13 @@ export class BlockListView extends Component {
   }
 
   render () {
+    const { blocks } = this.props
+
     return (
       <div className={styles.main}>
-        {store.list.map((block, i) => <Block model={block} key={i} last={i === (store.list.length - 1)} />)}
+        <FlipMove>
+          {blocks.map((block, i) => <Block model={block} key={block.id} last={i === (blocks.length - 1)} />)}
+        </FlipMove>
       </div>
     )
   }

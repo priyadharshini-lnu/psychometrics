@@ -24,8 +24,14 @@ module Threesixty
 
       def send_email(recipient)
         context = build_context(recipient)
+        user_ids = get_other_participators(recipient, other_participator_type)
 
-        if (user_ids = get_other_participators(recipient, other_participator_type))
+        if Threesixty::Emails::Name.evaluator_email?(schedule_email.name) &&
+           schedule_email.meta['subject_ids'].blank? && user_ids.blank?
+          return
+        end
+
+        if user_ids
           if schedule_email.consolidatable?
             context[:"#{other_participator_type}_ids"] = user_ids
             Threesixty::ScheduleEmailMailer.send_email(schedule_email, context).deliver_later

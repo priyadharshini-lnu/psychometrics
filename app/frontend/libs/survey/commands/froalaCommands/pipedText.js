@@ -1,5 +1,5 @@
 import FroalaEditor from 'froala-editor'
-import store from 'store/PipedTextModalStore'
+import store from 'store'
 
 FroalaEditor.DefineIcon('pipedText', { NAME: '{x}', template: 'text' })
 
@@ -9,6 +9,8 @@ FroalaEditor.RegisterCommand('pipedText', {
   undo: true,
   refreshAfterCallback: true,
   callback () {
-    store.open(this)
+    this.selection.save()
+    this.toJSON = () => '' // hack for redux logger to avoid looping
+    store.dispatch({ type: 'modals/OPEN_MODAL', name: 'pipedText', data: { editorRef: this } })
   },
 })

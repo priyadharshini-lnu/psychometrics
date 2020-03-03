@@ -3,6 +3,17 @@ en:
     clients:
       registration_codes: &REGISTRATION_CODE
         name: Registration Codes
+        index:
+          title: Registration Codes
+          add: Add
+        list:
+          active: Active
+          name: Name
+          code: Code
+          start_date: Start date
+          end_date: End date
+          usage_stats: Usage stats
+          actions: Actions
         errors:
           review: Please review the problems.
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)

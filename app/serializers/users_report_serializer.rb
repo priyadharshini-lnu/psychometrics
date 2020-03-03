@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersReportSerializer < ActiveModel::Serializer
-  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status
+  attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
 
@@ -31,6 +31,10 @@ class UsersReportSerializer < ActiveModel::Serializer
 
   def options
     @options ||= instance_options[:options]
+  end
+
+  def evalaution_completed_for_subject
+    object.threesixty_subject&.evaluation_status_completed?
   end
 
   private
