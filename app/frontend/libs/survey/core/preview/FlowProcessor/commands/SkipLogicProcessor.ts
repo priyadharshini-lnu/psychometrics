@@ -18,7 +18,7 @@ const SkipLogicProcessor = {
     const conditions = _.map(logic, cond => [{ ...cond, conditionType: 'Question' }])
 
     for (let i = 0; i < conditions.length; i += 1) {
-      const resolver = new ConditionResolver(conditions[i], qwraps, results)
+      const resolver = new ConditionResolver(conditions[i], { questions: qwraps, results })
       if (resolver.resolve()) {
         switch (conditions[i][0].destination) {
           case END_OF_BLOCK:

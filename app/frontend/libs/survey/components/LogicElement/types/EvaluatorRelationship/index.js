@@ -1,4 +1,5 @@
 import Select from './EvaluatorRelationship'
 import Preview from './EvaluatorRelationshipPreview'
+import connect from './connect'
 
-export default { Select, Preview }
+export default { Select: connect(Select), Preview: connect(Preview) }

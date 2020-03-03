@@ -9,7 +9,7 @@ const BranchProcessor = {
     element: ElementInterface,
   ): boolean {
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
-    const resolver = new ConditionResolver(element.props.conditions, qwraps, results)
+    const resolver = new ConditionResolver(element.props.conditions, { questions: qwraps, results })
     return !!resolver.resolve()
   },
 }

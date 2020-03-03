@@ -1,13 +1,16 @@
 import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
+import {
+  toggleEnableBack, toggleEnableProgress, saveAssessment, updateExtra,
+} from 'libs/survey/core/builder/assessment/actions'
 import { createBlock } from 'libs/survey/core/builder/assessment/block/actions'
 import { trashItems, blocksWithQuestions } from 'core/builder/assessment/selectors'
-import { updateExtra } from 'libs/survey/core/builder/assessment/actions'
 
 export default connect(
   state => ({
     assessment: state.survey.builder.assessment,
     builder: state.survey.builder,
+    saving: state.survey.builder.saving,
     blocks: state.survey.builder.assessment.blocks,
     flow: state.survey.builder.flow,
     blocksWithQuestions: blocksWithQuestions(state.survey.builder, state.survey.builder.assessment.blocks),
@@ -18,6 +21,9 @@ export default connect(
     openMapNorms: data => openModal('mapNorms', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),
     createBlock,
+    toggleEnableBack,
+    toggleEnableProgress,
+    saveAssessment,
     updateExtra,
   },
 )

@@ -9,7 +9,8 @@ import {
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
-  SET_NOT_DIRTY_RESULTS,
+  SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
+  TOGGLE_IGNORE_VALIDATION, RESET,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
@@ -49,6 +50,10 @@ export const setEmbeddedData = (data: object) => ({ type: SET_EMBEDDED_DATA, dat
 
 export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
 export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })
+
+export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
+export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
+export const reset = () => ({ type: RESET })
 
 export const saveResults = (preview, questionIds) => {
   const data = {

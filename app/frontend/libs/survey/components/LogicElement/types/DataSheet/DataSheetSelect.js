@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'store/AppStore'
 import css from './DataSheet.scss'
 
 export default class DataSheetSelect extends Component {
@@ -24,7 +23,7 @@ export default class DataSheetSelect extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { dataSheetColumns, condition } = this.props
 
     return (
       <div className={css.datasheetSelect}>
@@ -35,7 +34,7 @@ export default class DataSheetSelect extends Component {
           onChange={this.selectDataSheet}
         >
           {!condition.subject && <option />}
-          {_.map(AppStore.dataSheetColumns, (field, i) => (
+          {_.map(dataSheetColumns, (field, i) => (
             <option key={i} value={field.name}>
               {field.name}
             </option>

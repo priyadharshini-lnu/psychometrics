@@ -1,11 +1,10 @@
 import React from 'react'
-import store from 'store/AppStore'
 import QuestionCondition from 'libs/conditions'
 
-const Question = ({ condition }) => (
+const Question = ({ questions, condition }) => (
   <QuestionCondition
     preview
-    questions={store.questions}
+    questions={questions}
     condition={condition}
   />
 )

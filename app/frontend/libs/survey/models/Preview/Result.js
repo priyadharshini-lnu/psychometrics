@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
 import I18nStore from 'store/I18nStore'
-import PreviewStore from 'store/AssessmentPreviewStore'
+import Watchman from 'store/StoreWatchman'
 import LocalStorage from 'utils/LocalStorage'
 import Results from './Results'
 
@@ -104,8 +104,7 @@ _.extend(Result.prototype, {
     // LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
-    PreviewStore.rstore.dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
-    PreviewStore.update()
+    Watchman.get().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
   },
 
   isEmpty () {

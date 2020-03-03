@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import I18nStore from 'store/I18nStore'
 import VideoRecorder from 'components/VideoRecorder'
-import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
 import MultiLinePreview from './MultiLinePreview'
+import connect from './connect'
 
 export class Preview extends Component {
   static propTypes = {
@@ -28,9 +28,9 @@ export class Preview extends Component {
   }
 
   renderVideoRecorder () {
-    const { model } = this.props
+    const { model, type, mediaUrl } = this.props
     const { result } = model
-    const preview = AssessmentPreviewStore.type === 'preview_assessment'
+    const preview = type === 'preview_assessment'
     return (
       <div className="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
         <VideoRecorder
@@ -39,6 +39,7 @@ export class Preview extends Component {
           preview={preview}
           maxDuration={model.props.duration}
           result={result}
+          mediaUrl={mediaUrl}
           onSuccessUpload={this.successUpload}
           onDeleteMedia={this.deleteMedia}
         />
@@ -63,4 +64,4 @@ export class Preview extends Component {
   }
 }
 
-export default Preview
+export default connect(Preview)

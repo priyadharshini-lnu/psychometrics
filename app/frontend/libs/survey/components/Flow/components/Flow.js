@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import Tree from 'libs/ReactTree'
-import AppStore from 'store/AppStore'
 import styles from './Flow.scss'
 import ButtonNew from './ButtonNew'
 import FlowElement from './FlowElement'
@@ -13,8 +12,8 @@ const {
 
 export class Flow extends Component {
   save = () => {
-    const { flow, close } = this.props
-    AppStore.assessment.flow = flow
+    const { updateFlow, flow, close } = this.props
+    updateFlow(flow)
     close()
   }
 

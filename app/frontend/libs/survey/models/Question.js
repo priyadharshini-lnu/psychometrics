@@ -5,7 +5,6 @@ import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
-import Socket from 'cable'
 import Action from 'undo'
 import store from 'store/AppStore'
 import Condition from './QuestionCondition'
@@ -99,11 +98,11 @@ _.extend(Question.prototype, {
 
   addComment (data) {
     const comment = new Comment(data)
-    Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
-      Object.assign(comment, { id: data.id, name: data.author })
-      this.comments.push(comment)
-      this.store.update()
-    })
+    // Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
+    //   Object.assign(comment, { id: data.id, name: data.author })
+    //   this.comments.push(comment)
+    //   this.store.update()
+    // })
   },
 
   loadComments (comments) {

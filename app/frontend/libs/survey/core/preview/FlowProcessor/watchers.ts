@@ -16,7 +16,7 @@ import {
   getCurrentPage,
 } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, CHANGE_ELEMENT,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
 } from './consts'
 
 function* genInitPageProcessing () {
@@ -55,6 +55,7 @@ function* genSaveResults () {
 
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
+  takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery(SHOW_PAGE, genSaveResults),
   takeEvery(CHANGE_ELEMENT, genSaveResults),

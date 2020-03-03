@@ -19,7 +19,6 @@ const Socket = ({ dispatch }) => next => (action) => {
   }
 
   if (data.action === 'assessment_data') {
-    AppStore.init(data.data)
     const normalizedData = normalize(data.data, schema)
     dispatch({ type: INIT, data: normalizedData })
   } else if (data.action === 'question_data') {

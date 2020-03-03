@@ -74,6 +74,7 @@ export default function Assign ({
                 result={results}
                 locales={translations}
                 dashboardUrl="/assessment_completed"
+                resultsUrl={`/assigns/${results.id}`}
                 selectedLocale={selectedLanguage && selectedLanguage.code}
                 rstore={store}
               />

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
-import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
 import {
   Upload, Button, Icon, Progress,
 } from 'antd'
@@ -19,6 +18,7 @@ import { UPLOAD_STATES } from './constants'
 const { $ } = window
 
 export default function FileUpload ({
+  mediaUrl,
   model,
   model: { result },
   fakeUpload,
@@ -64,8 +64,8 @@ export default function FileUpload ({
   const uploadFile = (id) => {
     const { file } = state
     const urls = {
-      mediaUploadUrl: `${AssessmentPreviewStore.mediaUrl}/upload_media_url?question_id=${id}`,
-      callbackUrl: `${AssessmentPreviewStore.mediaUrl}/upload_callback`,
+      mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
+      callbackUrl: `${mediaUrl}/upload_callback`,
     }
     FileUploader.run({
       urls, file, dispatch, onSuccessUpload,
@@ -83,7 +83,7 @@ export default function FileUpload ({
       if (mediaId) {
         $.ajax({
           method: 'DELETE',
-          url: `${AssessmentPreviewStore.mediaUrl}/remove_media`,
+          url: `${mediaUrl}/remove_media`,
           data: { media_id: mediaId },
         }).done(() => {
           onRemoveFile && onRemoveFile()
@@ -143,6 +143,7 @@ export default function FileUpload ({
 }
 
 FileUpload.propTypes = {
+  mediaUrl: PropTypes.string.isRequired,
   model: PropTypes.object.isRequired,
   onSuccessUpload: PropTypes.func,
   onRemoveFile: PropTypes.func,

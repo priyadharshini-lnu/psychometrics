@@ -1,6 +1,6 @@
 
 declare class ConditionResolver {
-  constructor(logic, questions, results)
+  constructor(logic, context)
 
   resolve(): object[]
 }

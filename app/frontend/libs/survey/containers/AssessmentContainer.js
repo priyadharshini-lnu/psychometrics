@@ -1,13 +1,14 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import store from 'store/AssessmentPreviewStore'
-// import AppStore from 'store/AppStore'
+import Watchman from 'store/StoreWatchman'
 import I18nStore from 'store/I18nStore'
 import styles from 'layouts/Dashboard/Dashboard.scss'
+import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
 
-class PreviewContainer extends Component {
+class AssessmentContainer extends Component {
   componentDidMount () {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
@@ -15,23 +16,33 @@ class PreviewContainer extends Component {
     } = this.props
 
     this.langPartial = langPartial
+    this.type = type
     I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
     if (locales) {
       I18nStore.locales = locales
     }
     const dbResult = result || null
-    store.isThreesixty = isThreesixty === 'true'
-    store.isAnonymousAssessment = isAnonymousAssessment === 'true'
-    store.resultsUrl = resultsUrl
-    store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
-    store.init(data, type, dbResult, dashboardUrl, rstore)
-    this.forceUpdate()
-    // this.appListener = AppStore.addListener('change', () => this.forceUpdate())
+    // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
+    // store.init(data, type, dbResult, rstore)
+
+    rstore.dispatch({
+      type: INIT,
+      data: {
+        ...data,
+        type,
+        dataSheetColumns: data.data_sheet_columns || [],
+        isThreesixty: isThreesixty === 'true',
+        isAnonymousAssessment: isAnonymousAssessment === 'true',
+        resultsUrl,
+        dashboardUrl,
+      },
+      result: dbResult,
+    })
+    Watchman.set(rstore)
   }
 
   componentWillUnmount () {
-    store.reset()
-    // this.appListener.remove()
+    // store.reset()
   }
 
   overlay () {
@@ -55,14 +66,15 @@ class PreviewContainer extends Component {
   }
 
   render () {
+    const { disabled } = this.props
     return (
       <div className="row">
-        {store.type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        {/* {AppStore.disabled && this.overlay()} */}
+        {this.type === 'preview_assessment' && <Header langs={this.langPartial} />}
+        {disabled && this.overlay()}
         <AssessmentPreview />
       </div>
     )
   }
 }
 
-export default PreviewContainer
+export default connect(state => ({ disabled: state.preview.disabled }), {})(AssessmentContainer)

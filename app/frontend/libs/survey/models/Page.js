@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Question from 'models/Preview/Question'
-import { NOT_ANSWERED_QUESTIONS } from 'store/AssessmentPreviewStore'
 
 // eslint-disable-next-line func-names
 const Page = function (attrs = {}, flowElement = null, results) {
@@ -57,10 +56,10 @@ _.extend(Page.prototype, {
     return questions
   },
 
-  countAnsweredQuestions () {
-    const results = this.results()
-    return results.filter(r => !NOT_ANSWERED_QUESTIONS.includes(r.question.type)).filter(r => !r.isEmpty()).length
-  },
+  // countAnsweredQuestions () {
+  //   const results = this.results()
+  //   return results.filter(r => !NOT_ANSWERED_QUESTIONS.includes(r.question.type)).filter(r => !r.isEmpty()).length
+  // },
 
   resetAnswers () {
     this.questions.map(q => q.resetAnswers())

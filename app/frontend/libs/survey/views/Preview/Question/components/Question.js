@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Previews from 'components/modules/Previews'
-import store from 'store/AssessmentPreviewStore'
 import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
 
@@ -36,8 +35,9 @@ class Question extends Component {
   }
 
   render () {
-    const { model, moduleConfig } = this.props
-    const hidden = store.hideHiddenQuestions && moduleConfig.hidden
+    const { model, moduleConfig, hideHiddenQuestions } = this.props
+    const hidden = hideHiddenQuestions && moduleConfig.hidden
+
     const stylesProps = {
       display: hidden ? 'none' : 'flex',
       overflow: 'auto',
