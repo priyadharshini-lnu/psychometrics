@@ -1,0 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export default interface AssessmentInterface {
+  id: number
+  name: string
+  flow: {}
+  norm_rules: []
+  enable_back: boolean
+  enable_progress: boolean
+  blocks?: any[]
+  extra: any
+}

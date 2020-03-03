@@ -24,7 +24,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
     const displayLogic = getDisplayLogicSelector(preview)
     if (displayLogic) {
       const questions = pageQuestions(preview)
-      if (!DisplayLogicProcessor.run(displayLogic, preview.questions, preview.results)) {
+      if (!DisplayLogicProcessor.run(displayLogic, preview)) {
         dispatch(hideQuestion(questions[0].id))
         if (questions.length === 1) {
           nextPage()

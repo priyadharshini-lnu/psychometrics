@@ -1,15 +1,14 @@
 import _ from 'lodash'
-import store from 'store/AssessmentPreviewStore'
 import BaseResolver from './BaseResolver'
 import Selectors from '../../Validations/Selectors'
 import Values from '../../Validations/Values'
 
 export default class QuestionResolver extends BaseResolver {
-  constructor (condition, questions) {
+  constructor (condition, context) {
     super()
     this.condition = condition
     this.subject = condition.subject
-    this.question = _.find(questions || store.allQuestions, { id: this.subject })
+    this.question = _.find(context.questions, { id: this.subject })
     this.prefix = condition.prefix
     this.answer = condition.answer
     this.predicate = condition.predicate
@@ -18,9 +17,9 @@ export default class QuestionResolver extends BaseResolver {
     this.result = null
   }
 
-  resolve (resulsts = store.results) {
+  resolve (results) {
     if (!this.question || !this.predicate) { return false }
-    this.result = resulsts[this.question.id]
+    this.result = results[this.question.id]
 
     return this[this.predicate]()
   }

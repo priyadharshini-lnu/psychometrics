@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import I18nStore from 'store/I18nStore'
 import FileUploadBlock from 'components/FileUpload'
-import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
+import connect from './connect'
 
 export class Preview extends Component {
   static propTypes = {
@@ -22,11 +22,12 @@ export class Preview extends Component {
   }
 
   renderFileUploadBlock () {
-    const { model } = this.props
-    const preview = AssessmentPreviewStore.type === 'preview_assessment'
+    const { model, mediaUrl, type } = this.props
+    const preview = type === 'preview_assessment'
 
     return (
       <FileUploadBlock
+        mediaUrl={mediaUrl}
         model={model}
         fakeUpload={preview}
         onSuccessUpload={this.successUpload}
@@ -50,4 +51,4 @@ export class Preview extends Component {
   }
 }
 
-export default Preview
+export default connect(Preview)

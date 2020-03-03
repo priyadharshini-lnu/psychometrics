@@ -1,6 +1,6 @@
 
 declare class LogicResolver {
-  constructor(logic, questions, results)
+  constructor(logic, context: {questions?, results?, relationship?, dataSheet?})
 
   resolve(): boolean
 }

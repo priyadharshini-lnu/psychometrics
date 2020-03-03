@@ -4,6 +4,7 @@ import { getQuestionErrors, getQuestionResults } from 'core/preview/FlowProcesso
 
 export default connect(
   ({ preview }, { model }) => ({
+    hideHiddenQuestions: preview.hideHiddenQuestions,
     moduleConfig: moduleConfig(preview, model.id),
     errors: getQuestionErrors(preview, model.id),
     result: getQuestionResults(preview, model.id),

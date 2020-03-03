@@ -5,7 +5,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
@@ -50,13 +49,13 @@ class VideoRecorder extends Component {
   }
 
   discardRecording = () => {
-    const { result, onDeleteMedia } = this.props
+    const { result, onDeleteMedia, mediaUrl } = this.props
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {
         $.ajax({
           method: 'DELETE',
-          url: `${AssessmentPreviewStore.mediaUrl}/remove_media`,
+          url: `${mediaUrl}/remove_media`,
           data: { media_id: mediaId },
         }).done(() => {
           onDeleteMedia && onDeleteMedia()
@@ -66,9 +65,12 @@ class VideoRecorder extends Component {
     }
   }
 
-  getUploadUrl = id => $.get(`${AssessmentPreviewStore.mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
-    this.uploadFile(data)
-  })
+  getUploadUrl = (id) => {
+    const { mediaUrl } = this.props
+    $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
+      this.uploadFile(data)
+    })
+  }
 
   uploadFile = (data) => {
     const video = this.player.recordedData
@@ -109,14 +111,14 @@ class VideoRecorder extends Component {
   }
 
   onUploadDone = (media, data) => {
-    const { onSuccessUpload } = this.props
+    const { onSuccessUpload, mediaUrl } = this.props
     const mediaId = data.media_id
     this.setState({ recordingState: 'saved' })
     if (data.env === 'prod') {
       const assetKey = data.key.replace('${filename}', 'video.mp4')
       $.ajax({
         method: 'PUT',
-        url: `${AssessmentPreviewStore.mediaUrl}/upload_callback`,
+        url: `${mediaUrl}/upload_callback`,
         data: { media_id: mediaId, asset_key: assetKey },
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       }).done((data) => {

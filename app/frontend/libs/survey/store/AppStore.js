@@ -13,8 +13,6 @@ const { $ } = window
 
 const AppStore = function () {
   this.loaded = false
-  this.disabled = false
-  this.assessment = null
   // question list
   this.questions = {}
   // use for question center
@@ -28,13 +26,7 @@ AppStore.prototype = new EventEmitter()
 
 _.extend(AppStore.prototype, {
   init (data) {
-    if (this.loaded) { return }
-    // Clear trash
-    this.assessment = new Assessment(data)
-    this.loaded = true
-    this.emit('change')
-    this.dataSheetColumns = data.data_sheet_columns || []
-    this.relationships = data.relationships || []
+    throw new Error('Should be removed from everywhere')
   },
 
   update () {
@@ -55,92 +47,6 @@ _.extend(AppStore.prototype, {
       this.block = new BlockModel(block, this)
       this.update()
     }
-  },
-
-  // Serialize Assessment
-  // assessment: {
-  //   - Assessment Attributes (props, flow, norm)
-  //   blocks: [
-  //     ...
-  //     {
-  //       - Block Attributes
-  //       questions: [
-  //         ...
-  //         {
-  //           - Question Attributes
-  //         }
-  //       ]
-  //     }
-  //   ]
-  // }
-  serializeAssessment (assessmentData, flow) {
-    const assessment = Assessment.prototype.toJSON.call({ ...assessmentData.assessment, flow })
-    assessment.blocks = []
-
-    // Serialize blocks and questions
-    _.each(denormalize(assessmentData.assessment.blocks, [blocks], assessmentData), (blockModel) => {
-      const block = BlockModel.prototype.toJSON.call(BlockSerializer.wrap(blockModel))
-      block.questions = []
-      _.each(blockModel.questions, (questionModel) => {
-        const question = QuestionModel.prototype.toJSON.call({
-          ...QuestionSerializer.wrap(questionModel),
-          block_id: block.id,
-        })
-        block.questions.push(question)
-      })
-      assessment.blocks.push(block)
-    })
-    return assessment
-  },
-
-  // Save Assessment
-  save (assessment, trash, flow) {
-    this.saving = true // TODO: move to redux after refactor saving process
-    this.update()
-    const builder = {
-      assessment: this.serializeAssessment(assessment, flow),
-      trash: [],
-    }
-
-    // Serialize trash
-    _.each(trash, (item) => {
-      if (item.model.isNew) { return }
-      const deletedItem = item.type === 'block'
-        ? ({
-          model: BlockModel.prototype.toJSON.call(item.model),
-          type: item.type,
-          permanent_remove: item.model.permanentRemove,
-        })
-        : ({
-          model: QuestionModel.prototype.toJSON.call(item.model),
-          type: item.type,
-          permanent_remove: item.model.permanentRemove,
-        })
-      builder.trash.push(deletedItem)
-    })
-
-    $.ajax({
-      method: 'PUT',
-      url: `/administration/assessments/${this.assessment.id}/builders`,
-      dataType: 'json',
-      contentType: 'application/json',
-      data: JSON.stringify({ builder }),
-      error: (jqXHR, textStatus, errorThrown) => {
-        // eslint-disable-next-line no-console
-        console.info(jqXHR, textStatus, errorThrown)
-        this.saving = false
-        this.update()
-        NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
-      },
-      success: (data) => {
-        this.loaded = false
-        this.saving = false
-        this.update()
-        const normalizedData = normalize(data.data, schema)
-        this.rstore.dispatch({ type: 'survey/assessment/INIT', data: normalizedData })
-        NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
-      },
-    })
   },
 
   // QCenter

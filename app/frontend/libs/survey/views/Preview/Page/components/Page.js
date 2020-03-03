@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import QuestionList from 'views/Preview/QuestionList'
-import store from 'store/AssessmentPreviewStore'
 import I18nStore from 'store/I18nStore'
 import Utils from 'utils/Utils'
 import cs from 'classnames'
@@ -73,42 +72,46 @@ class Page extends Component {
   }
 
   renderProgressBar () {
-    const progress = store.flow.getProgress()
-    if (progress || progress === 0) {
-      return (
-        <div className={styles.progressBarContainer}>
-          <div className={cs('progress', styles.progress)}>
-            <div
-              className={cs('progress-bar', styles.progressBar)}
-              style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
-            />
-          </div>
-          <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
-        </div>
-      )
-    }
+    // const progress = store.flow.getProgress()
+    // TODO: @fedor replace with getProgress - selector
+    // if (progress || progress === 0) {
+    //   return (
+    //     <div className={styles.progressBarContainer}>
+    //       <div className={cs('progress', styles.progress)}>
+    //         <div
+    //           className={cs('progress-bar', styles.progressBar)}
+    //           style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
+    //         />
+    //       </div>
+    //       <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
+    //     </div>
+    //   )
+    // }
     return null
   }
 
   render () {
     const {
-      page, questions, errors, nextPage, preview, preview: { enableProgress, type }, prevPage, hasPrevPage, block,
+      page, questions, errors, nextPage, preview, prevPage, hasPrevPage, block,
+      preview: {
+        enableBack, enableProgress, ignoreValidation, readOnly, type,
+      },
     } = this.props
     if (!page) { return }
     const { props: { staticContent } } = block
     return (
-      <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${store.type}`)}>
+      <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}>
         <div className={styles.logo}>
           {/* <img src={Logo} /> */}
         </div>
 
-        {store.readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
+        {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent staticContent={staticContent} block={block} />}
           <div>
-            {!store.ignoreValidation && errors && this.renderErrors(page)}
-            <QuestionList page={page} questions={questions} />
+            {!ignoreValidation && errors && this.renderErrors(page)}
+            <QuestionList readOnly={readOnly} page={page} questions={questions} />
           </div>
         </div>
         {type !== 'preview_block' && (

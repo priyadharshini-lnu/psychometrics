@@ -16,12 +16,12 @@ export default class DataSheet extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { condition, dataSheetColumns } = this.props
     return (
       <div className={css.datasheet}>
         <div className={css.container}>
           <div className={css.datasheetBlock}>
-            <DataSheetSelect condition={condition} onChange={this.change} />
+            <DataSheetSelect dataSheetColumns={dataSheetColumns} condition={condition} onChange={this.change} />
           </div>
           <ConditionSelect condition={condition} onChange={this.change} />
         </div>

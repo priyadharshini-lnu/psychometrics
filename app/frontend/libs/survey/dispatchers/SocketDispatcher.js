@@ -8,7 +8,6 @@ const dispatcher = new EventEmitter()
 dispatcher.message = function (data) {
   if (data.action === 'assessment_data') {
     AppStore.init(data.data)
-    AppStore.rstore.dispatch({ type: 'survey/assessment/INIT', data: data.data })
   }
   if (data.action === 'question_data') {
     AppStore.initQCenter(data.data)

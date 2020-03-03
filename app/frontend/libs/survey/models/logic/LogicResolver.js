@@ -1,13 +1,13 @@
 import _ from 'lodash'
-import store from 'store/AppStore'
 import Validations from 'models/Validations'
 import Resolvers from './resolvers'
 
 export default class LogicResolver {
-  constructor (logic, questions, results) {
+  constructor (logic, context) {
     this.logic = logic
-    this.questions = questions || store.questions
-    this.results = results
+    this.context = context
+    this.questions = context.questions || {}
+    this.results = context.results
   }
 
   resolve () {
@@ -53,7 +53,7 @@ export default class LogicResolver {
 
   resolveConditionByType (condition) {
     const Resolver = Resolvers[condition.conditionType]
-    return new Resolver(condition, this.questions).resolve(this.results)
+    return new Resolver(condition, this.context).resolve(this.results)
   }
 
   checkResults (results) {

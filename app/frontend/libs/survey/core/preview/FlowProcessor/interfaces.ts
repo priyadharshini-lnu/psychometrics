@@ -68,6 +68,9 @@ export interface DefaultState{
   enableProgress: boolean
   linear: boolean
   end: boolean
+  hideHiddenQuestions: boolean
+  ignoreValidations: boolean
+  readOnly: boolean
   elements: []
   hrisData?: {}
   blocks: {[id: number]: Block}
@@ -81,4 +84,10 @@ export interface DefaultState{
   currentElement: string | null
   currentPage: number
   errors: {} | null
+  dashboardUrl: string
+  mediaUrl: string | null
+  dataSheetColumns: {[key: string]: {}}[]
+  dataSheet: {[key: string]: {}}[]
+  relationships: []
+  relationship: string | null
 }

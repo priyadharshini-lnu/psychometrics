@@ -1,11 +1,10 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
-import store from 'store/AssessmentPreviewStore'
 
-const ConditionResolver = function (conditions, questions, results) {
+const ConditionResolver = function (conditions, { questions, results }) {
   this.conditions = conditions
-  this.questions = questions || store.questions
+  this.questions = questions
   this.results = results
 }
 

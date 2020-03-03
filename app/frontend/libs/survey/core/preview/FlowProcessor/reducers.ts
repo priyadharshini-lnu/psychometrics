@@ -12,13 +12,17 @@ import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
-  SET_NOT_DIRTY_RESULTS, SAVE_RESULTS,
+  SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
+  RESET, SAVE_RESULTS,
 } from './consts'
 
 const defaultState: DefaultState = {
   initialized: false,
   isThreesixty: false,
-  type: 'preview',
+  hideHiddenQuestions: true,
+  ignoreValidations: false,
+  readOnly: false,
+  type: 'preview_assessment',
   enableBack: false,
   enableProgress: false,
   linear: false,
@@ -34,6 +38,12 @@ const defaultState: DefaultState = {
   currentPage: 0,
   errors: null,
   end: false,
+  dashboardUrl: '/',
+  mediaUrl: null,
+  dataSheetColumns: [],
+  dataSheet: [],
+  relationships: [],
+  relationship: null,
 }
 
 const HANDLERS = {
@@ -49,8 +59,18 @@ const HANDLERS = {
 
     return {
       ...defaultState,
-      type: data.type,
+      initialized: true,
+      type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
+      dashboardUrl: data.dashboardUrl || '/',
+      dataSheetColumns: data.data_sheet_columns,
+      relationships: data.relationships,
+      relationship: result.relationship,
+      isAnonymousAssessment: data.isAnonymousAssessment,
+      readOnly: data.readOnly,
+      mediaUrl: data.isThreesixty
+        ? `/campaigns/${result.campaign_id}/users_results/${result.id}`
+        : `/assigns/${result.id}`,
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: false, // disabled for refactoring data.enable_progress,
@@ -65,7 +85,7 @@ const HANDLERS = {
       currentElement: result.current_element || null,
       currentPage: result.current_page || 0,
       randomseed: result.id || '', // use assign or user id
-      initialized: true,
+      dataSheet: result.data_sheet,
       dbResult: result,
       results: result.results || result.answers || {},
       expiryDate: result.expiry_date,
@@ -103,6 +123,11 @@ const HANDLERS = {
       results: { ...state.results, ...results },
     }
   },
+  [TOGGLE_HIDDEN_QUESTIONS]: state => setIn(state, ['hideHiddenQuestions'], !state.hideHiddenQuestions),
+  [TOGGLE_IGNORE_VALIDATION]: state => setIn(state, ['ignoreValidations'], !state.ignoreValidations),
+  [RESET]: state => ({
+    ...state, results: {}, currentElement: null, current_page: 0,
+  }),
   [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
 }
 

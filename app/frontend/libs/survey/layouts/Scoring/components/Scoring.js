@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import AppStore from 'store/AppStore'
 import ScoringList from 'views/ScoringList'
 import { SCORING } from 'constants/scoring'
 import styles from './Scoring.scss'
@@ -17,11 +16,6 @@ export default class Scoring extends Component {
       const id = urldata && urldata[1]
       subscribeSocket('Assessments::Channel', { assessment_id: id })
     }
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.appListener.remove()
   }
 
   updateType = type => this.setState({ type })

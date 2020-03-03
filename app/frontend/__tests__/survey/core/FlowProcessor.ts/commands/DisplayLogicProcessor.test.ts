@@ -14,7 +14,7 @@ const multipleChoice = {
 }
 
 test('empty display logic should return true', () => {
-  expect(DisplayLogicProcessor.run({}, {}, {})).toBe(false)
+  expect(DisplayLogicProcessor.run({}, {})).toBe(false)
 })
 
 
@@ -48,7 +48,7 @@ test('display logic should return false for empty results', () => {
     3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor.run(displayLogic, questions, {})).toBe(false)
+  expect(DisplayLogicProcessor.run(displayLogic, {questions})).toBe(false)
 })
 
 
@@ -59,5 +59,5 @@ test('display logic should return true for valid results', () => {
     3: question(3, { ...multipleChoice }),
   }
 
-  expect(DisplayLogicProcessor.run(displayLogic, questions, results)).toBe(true)
+  expect(DisplayLogicProcessor.run(displayLogic, {questions, results})).toBe(true)
 })

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/AssessmentPreviewStore'
 import cs from 'classnames'
 import styles from './Page.scss'
 
@@ -17,7 +16,6 @@ class PageFooter extends Component {
   next = () => {
     const { nextPage } = this.props
     nextPage()
-    // store.nextPage()
   }
 
   render () {

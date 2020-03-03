@@ -1,11 +1,10 @@
-import store from 'store/AssessmentPreviewStore'
 import BaseResolver from './BaseResolver'
 
 export default class EvaluatorRelationshipResolver extends BaseResolver {
-  constructor (condition) {
+  constructor (condition, context = {}) {
     super()
     this.condition = condition
-    this.result = store.relationship
+    this.result = context.relationship
   }
 
   resolve () {

@@ -16,3 +16,7 @@ export const HIDE_QUESTION = 'flow_processor/HIDE_QUESTION'
 export const SHOW_QUESTION = 'flow_processor/SHOW_QUESTION'
 export const SET_DIRTY_RESULTS = 'flow_processor/SET_DIRTY_RESULTS'
 export const SET_NOT_DIRTY_RESULTS = 'flow_processor/SET_NOT_DIRTY_RESULTS'
+
+export const TOGGLE_HIDDEN_QUESTIONS = 'preview/TOGGLE_HIDDEN_QUESTIONS'
+export const TOGGLE_IGNORE_VALIDATION = 'preview/TOGGLE_IGNORE_VALIDATION'
+export const RESET = 'preview/RESET'
