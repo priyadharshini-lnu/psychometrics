@@ -111,7 +111,7 @@ module Administration
       # Change resources's status to active/disabled
       #
       def toggle_status
-        resource.toggle!(:disabled)
+        resource_class.update(@_resource.id, disabled: !@_resource.membership_disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
         respond_to do |format|
