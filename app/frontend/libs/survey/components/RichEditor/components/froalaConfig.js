@@ -2,7 +2,7 @@ export default {
   iconsTemplate: 'font_awesome',
   imageUpload: false,
   pluginsEnabled: ['lists', 'image', 'link', 'fontFamily',
-    'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table'],
+    'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table', 'video'],
   toolbarButtons: [
     'pipedText',
     'fontFamily',
@@ -31,6 +31,7 @@ export default {
     'help',
     'undo',
     'redo',
+    'insertVideo',
   ],
   // saveParams: { type },
   width: '100%',
@@ -39,4 +40,5 @@ export default {
   attribution: false,
   autofocus: true,
   toolbarSticky: false,
+  videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
 }

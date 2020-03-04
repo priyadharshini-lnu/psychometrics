@@ -34,6 +34,7 @@ function Editor ({
       'codeView',
       'codeBeautifier',
       'fullscreen',
+      'video',
     ],
     toolbarButtons: [
       'pipedText',
@@ -65,6 +66,7 @@ function Editor ({
       'redo',
       'html',
       'fullscreen',
+      'insertVideo',
     ],
     saveParams: { type, details },
     heightMin: 250,
@@ -79,6 +81,7 @@ function Editor ({
       'table-cell-header': 'Header',
     },
     toolbarSticky: false,
+    videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
   }
   const ref = React.createRef()
 
