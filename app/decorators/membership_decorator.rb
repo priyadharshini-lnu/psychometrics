@@ -49,7 +49,7 @@ class MembershipDecorator < BaseDecorator
   end
 
   def toggle_status_confirmation
-    status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
+    status = object.membership_disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
       title: I18n.t(
         'administration.users.resource.confirmations.toggle_status.title',
@@ -86,5 +86,21 @@ class MembershipDecorator < BaseDecorator
 
   def modifier_name
     object.user.modifier&.decorate&.display_name
+  end
+
+  def status
+    if object.membership_disabled
+      h.content_tag(:i, '', class: 'fa fa-times')
+    else
+      h.content_tag(:i, '', class: 'fa fa-check')
+    end
+  end
+
+  def toggle_status_text
+    if object.membership_disabled
+      I18n.t('administration.enable')
+    else
+      I18n.t('administration.disable')
+    end
   end
 end
