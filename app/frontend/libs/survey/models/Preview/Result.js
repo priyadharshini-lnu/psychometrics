@@ -104,7 +104,7 @@ _.extend(Result.prototype, {
     // LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
-    Watchman.get().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
+    Watchman.get() && Watchman.get().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
   },
 
   isEmpty () {
