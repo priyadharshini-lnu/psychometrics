@@ -17,4 +17,8 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
   def remove_media?
     update?
   end
+
+  def update_meta_data?
+    update?
+  end
 end

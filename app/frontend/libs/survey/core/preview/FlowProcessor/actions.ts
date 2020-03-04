@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
+import { setIn } from 'utils/immutable'
 import _ from 'lodash'
+import { getCurrentBlock } from './selectors'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE, ANSWER,
@@ -11,6 +13,7 @@ import {
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
   TOGGLE_IGNORE_VALIDATION, RESET,
+  UPDATE_META_DATA, UPDATE_META_DATA_REQUEST,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
@@ -83,5 +86,27 @@ export const saveResults = (preview, questionIds) => {
       body: JSON.stringify(data),
       decamelize: false,
     },
+  }
+}
+
+export const updateMetaData = (preview, key, data) => {
+  const block = getCurrentBlock(preview)
+  const metaData = setIn(preview.metaData, [block.id, key], data)
+
+  if (preview.type === 'preview_assessment') return { type: UPDATE_META_DATA_REQUEST, metaData }
+
+  const url = preview.isThreesixty
+    ? `${preview.resultsUrl}/update_meta_data`
+    : `/assigns/${preview.dbResult.id}/update_meta_data`
+
+  return {
+    type: UPDATE_META_DATA,
+    request: {
+      url,
+      method: 'PUT',
+      body: { meta_data: metaData },
+      decamelize: false,
+    },
+    metaData,
   }
 }
