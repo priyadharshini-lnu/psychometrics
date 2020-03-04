@@ -1,6 +1,7 @@
 :global {
   @import 'base';
   @import '~normalize.css/normalize';
+  @import '../../../../assets/stylesheets/common/helper.scss';
 
   body, html {
     width: 100%;
