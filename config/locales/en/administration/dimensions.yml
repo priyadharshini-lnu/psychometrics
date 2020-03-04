@@ -16,6 +16,8 @@ en:
         created_at: Created date
       new:
         header: 'New Dimension'
+      create:
+        successfully: '%{name} dimension was created successfully'
       edit:
         header: 'Edit Dimension Name'
       destroy:

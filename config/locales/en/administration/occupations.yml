@@ -7,6 +7,8 @@ en:
           create: Create
         new: Add
       list:
+        id: Id
+        name: Name
         updated_at: Modified Date
         created_at: Created Date
       new:

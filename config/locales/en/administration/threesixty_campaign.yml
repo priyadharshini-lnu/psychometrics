@@ -2,6 +2,8 @@ en:
   administration:
     clients:
       threesixty_campaigns:
+        create:
+          successfully: 'Campaign %{name} was successfully created.'
         update:
           successfully: "Campaign '%{name}' was successfully updated."
       projects:
@@ -109,3 +111,7 @@ en:
             approved: Approved
             denied: Denied
             completed: Completed
+    threesixty_campaigns:
+      reports:
+        show:
+          title: Subject Report
