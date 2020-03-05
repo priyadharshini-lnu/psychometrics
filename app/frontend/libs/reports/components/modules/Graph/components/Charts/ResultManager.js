@@ -24,7 +24,9 @@ export const getCorrectResults = (model) => {
         results: ResultStore.results[model.assessment_id].getByFilter(f),
       }))
     }
-    return ResultStore.results[model.assessment_id].getByFilter(model.props.filter)
+    if (!Array.isArray(model.props.filter)) {
+      return ResultStore.results[model.assessment_id].getByFilter(model.props.filter)
+    }
   }
   if (model.isMultiFiltering()) {
     return [{ desc: 'All Responses', results: ResultStore.results[model.assessment_id] }]
