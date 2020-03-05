@@ -25,3 +25,40 @@ test('linear block elements', () => {
 
   expect(InitLinearElements.run(blocks)).toStrictEqual([{ type: 'Block', props: { current: '1' }, elements: [] }, { type: 'Block', props: { current: '3' }, elements: [] } ,{ type: 'Block', props: { current: '2' }, elements: [] }])
 })
+
+
+test('linear block elements should ignore empty blocks', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2), question(3)],
+  },
+  {
+    id: 3,
+    questions: [],
+  },
+  {
+    id: 2,
+    questions: [question(4), question(5)],
+  }]
+
+  expect(InitLinearElements.run(blocks)).toStrictEqual([{ type: 'Block', props: { current: '1' }, elements: [] },{ type: 'Block', props: { current: '2' }, elements: [] }])
+})
+
+
+test('linear block elements should ignore deleted blocks', () => {
+  const blocks = [{
+    id: 1,
+    questions: [question(1), question(2), question(3)],
+  },
+  {
+    id: 3,
+    deleted: true,
+    questions: [question(6), question(7)],
+  },
+  {
+    id: 2,
+    questions: [question(4), question(5)],
+  }]
+
+  expect(InitLinearElements.run(blocks)).toStrictEqual([{ type: 'Block', props: { current: '1' }, elements: [] },{ type: 'Block', props: { current: '2' }, elements: [] }])
+})
