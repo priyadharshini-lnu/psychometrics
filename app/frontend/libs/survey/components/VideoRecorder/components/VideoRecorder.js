@@ -62,6 +62,8 @@ class VideoRecorder extends Component {
           this.initRecorder()
         })
       }
+    } else {
+      this.initRecorder()
     }
   }
 
