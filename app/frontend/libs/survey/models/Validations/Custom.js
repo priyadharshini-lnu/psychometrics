@@ -20,7 +20,6 @@ _.extend(Custom.prototype, {
   isSelected () {
     const qType = this.question.type
     const mType = this.question.props.type || 'Main'
-
     const result = Selectors[qType][mType]
     return result(this)
   },
@@ -36,6 +35,7 @@ _.extend(Custom.prototype, {
   validate () {
     if (!this.question || !this.predicate) { return { prefix: 'Or', value: false } }
     this.result = this.results[this.question.id]
+    if (!this.result) { return { prefix: 'Or', value: false } }
     return { prefix: this.prefix, value: this[this.predicate]() }
   },
 

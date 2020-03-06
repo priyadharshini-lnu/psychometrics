@@ -3,9 +3,10 @@ import { ElementInterface, Block } from '../interfaces'
 
 const InitLinearElements = {
   run (blocks: Block[]): ElementInterface[] {
-    return _.map(blocks, b => ({
-      type: 'Block', props: { current: `${b.id}` }, elements: [],
-    }))
+    return _.reduce(blocks, (acc, b) => {
+      if (!b.questions.length || b.deleted) { return acc }
+      return [...acc, { type: 'Block', props: { current: `${b.id}` }, elements: [] }]
+    }, [])
   },
 }
 

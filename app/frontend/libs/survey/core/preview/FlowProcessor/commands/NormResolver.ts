@@ -1,11 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import NormResolver from 'libs/survey/models/NormResolver'
 import _ from 'lodash'
+import QuestionSerializer from 'libs/survey/models/QuestionSerializer'
 import { QuestionsInterface, ResultsInterface } from '../interfaces'
 
 const MapNorms = {
   run (rules: any, hris: any, questions: QuestionsInterface, results: ResultsInterface): {id: string} {
-    const resolver = new NormResolver(rules, hris, questions, results)
+    const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
+    const resolver = new NormResolver(rules, hris, qwraps, results)
     return resolver.resolve()
   },
 }
