@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import I18nStore from 'rb/store/I18nStore'
 import styles from '../Text.scss'
-
-const DEFAULT_VALUES = ['Default answer 1', 'Default answer 2', 'Default answer 3']
 
 export default class MultipleChoice extends Component {
   static propTypes = {
@@ -15,8 +14,14 @@ export default class MultipleChoice extends Component {
   getValues () {
     const { result, question } = this.props
     // TODO (atanych): implement convenient engine to preset default values for preview
-    if (!result) { return DEFAULT_VALUES }
-    return result.filter(r => r.value !== undefined).map(r => question.props.choicesTexts[r.index])
+    if (!result) {
+      return question.props.choicesTexts.map((_, i) => I18nStore.tQuestion(
+        question, `choicesTexts${i + 1}`, { choice: i },
+      ))
+    }
+    return result.filter(r => r.value !== undefined).map(
+      r => I18nStore.tQuestion(question, `choicesTexts${r.index + 1}`, { choice: r.index }),
+    )
   }
 
   render () {
