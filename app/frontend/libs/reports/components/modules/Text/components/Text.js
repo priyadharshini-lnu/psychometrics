@@ -151,21 +151,11 @@ class Text extends Component {
           />
         )
       } if (model.props.sourceType === 'PipedText') {
-        _.templateSettings.interpolate = /{{([\s\S]+?)}}/g
-        const compiled = _.template(I18nStore.tModule(model, 'text'))
-
-        const html = compiled({
-          first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
-          last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),
-          completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
-          norm_used: _.get(AppStore, ['report', 'norm_used', model.assessment_id], '{{norm_used}}'),
-          locale_name: _.get(AppStore, ['report', 'result_locale', model.assessment_id], '{{locale_name}}'),
-        })
         return (
           <div
             ref={(ref) => { this.editor = ref }}
             className={styles.editor}
-            dangerouslySetInnerHTML={{ __html: html }}
+            dangerouslySetInnerHTML={{ __html: I18nStore.tModule(model, 'text') }}
           />
         )
       } if (model.props.sourceType === 'ResponseText') {
