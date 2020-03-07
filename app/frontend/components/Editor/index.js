@@ -10,8 +10,6 @@ import 'froala-editor/js/plugins.pkgd.min'
 
 import './froalaCommands'
 import FroalaEditor from 'react-froala-wysiwyg'
-import cs from 'classnames'
-import styles from './styles'
 
 function Editor ({
   content, handleContentChange, type, details, className,
@@ -87,7 +85,7 @@ function Editor ({
   }, [type, details])
 
   return (
-    <div className={cs(styles.editor, className)}>
+    <div className={className}>
       <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )

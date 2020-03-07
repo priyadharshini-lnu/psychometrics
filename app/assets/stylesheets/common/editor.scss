@@ -9,7 +9,7 @@ table.table-minimal-hr {
         padding: 10px 8px;
     }
     th {
-        border-bottom: 2px solid #eee;    
+        border-bottom: 2px solid #eee;
     }
     td {
         padding: 8px;
@@ -21,4 +21,13 @@ table.table-minimal-hr {
 }
 table.table-full-width {
     width: 100%;
+}
+
+.fr-box {
+  .rtl {
+    text-align: right;
+  }
+  .ltr {
+    text-align: left;
+  }
 }
