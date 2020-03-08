@@ -1,8 +1,15 @@
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/xml/xml'
+
 export default {
   iconsTemplate: 'font_awesome',
   imageUpload: false,
-  pluginsEnabled: ['lists', 'image', 'link', 'fontFamily',
-    'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table', 'video'],
+  codeMirror: CodeMirror,
+  pluginsEnabled: [
+    'lists', 'image', 'link', 'fontFamily',
+    'fontSize', 'colors', 'paragraphFormat',
+    'align', 'quote', 'table', 'video', 'codeView'],
   toolbarButtons: [
     'pipedText',
     'fontFamily',
@@ -32,6 +39,7 @@ export default {
     'undo',
     'redo',
     'insertVideo',
+    'html',
   ],
   // saveParams: { type },
   width: '100%',
