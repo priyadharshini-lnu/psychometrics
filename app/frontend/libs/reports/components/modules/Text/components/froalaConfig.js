@@ -1,8 +1,15 @@
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/xml/xml'
+
 export default {
   iconsTemplate: 'font_awesome',
   imageUpload: false,
+  codeMirror: CodeMirror,
   pluginsEnabled: [
-    'lists', 'image', 'link', 'fontFamily', 'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table', 'video',
+    'lists', 'image', 'link', 'fontFamily',
+    'fontSize', 'colors', 'paragraphFormat',
+    'align', 'quote', 'table', 'video', 'codeView',
   ],
   toolbarContainer: '#froala-editor-toolbar',
   toolbarButtons: [
@@ -34,6 +41,7 @@ export default {
     'undo',
     'redo',
     'insertVideo',
+    'html',
   ],
   // saveParams: { type },
   width: '100%',
