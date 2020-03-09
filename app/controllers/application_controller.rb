@@ -109,8 +109,8 @@ class ApplicationController < ::BaseController
 
   def user_not_authorized
     respond_to do |format|
-      format.html { render plain: 'You does not have access to this page', status: 403 }
-      format.json { render json: { error: ['You do not have permissions to this action'] }, status: 403 }
+      format.html { render plain: I18n.t('errors.forbidden'), status: 403 }
+      format.json { render json: { error: [I18n.t('errors.forbidden_action')] }, status: 403 }
     end
   end
 
