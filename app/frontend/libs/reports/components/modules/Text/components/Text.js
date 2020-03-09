@@ -151,7 +151,7 @@ class Text extends Component {
           />
         )
       } if (model.props.sourceType === 'PipedText') {
-        _.templateSettings.interpolate = /{{([\s\S]+?)}}/g
+        _.templateSettings.interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
         const compiled = _.template(I18nStore.tModule(model, 'text'))
 
         const html = compiled({
