@@ -215,11 +215,11 @@ class ResponseSummary extends Component {
     return (
       <thead>
         <tr>
-          {model.props.showRankOrder && <th scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
+          {model.props.showRankOrder && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
           <th scope="col">{I18nStore.tModule(module, 'strength') || 'Strength'}</th>
           {model.props.showDescription && <th scope="col">{I18nStore.tModule(module, 'description') || 'Description'}</th>}
           {model.props.showStrengthsBlindspots && <th scope="col">{I18nStore.tModule(module, 'strengthsBlindspots') || 'Strengths & Blindspots'}</th>}
-          {model.props.showScore && <th scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
+          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
         </tr>
       </thead>
     )

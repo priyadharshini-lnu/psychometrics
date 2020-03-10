@@ -22,7 +22,6 @@
   }
 
   th, td {
-    line-height: 1;
     text-align: left;
   }
 
@@ -32,13 +31,8 @@
     padding: 1.5em 1em 1em;
     text-transform: uppercase;
     overflow: hidden;
-
-    &:first-child {
-      padding-left: 1.5em;
-    }
-
-    &:last-child {
-      padding-right: 1.5em;
+    &.rankOrder, &.score {
+      text-align: center;
     }
   }
 
@@ -49,12 +43,8 @@
     white-space: normal;
     border-bottom: 1px solid #ededed;
 
-    &:first-child {
-      padding-left: 1.5em;
-    }
-
-    &:last-child {
-      padding-right: 1.5em;
+    &.rankOrder, &.score {
+      text-align: center;
     }
 
     &.strength {
@@ -78,7 +68,7 @@
           li {
             position: relative;
             margin: 0;
-            padding: 0 0 1.25em 1.5em;
+            padding: 0 0 0.35em 1.5em;
 
             &:before {
               content: '';
@@ -149,7 +139,7 @@
         &.styledLists {
           ul {
             li {
-              padding: 0 0 1em 1.5em;
+              padding: 0 0 0.35em 1.5em;
             }
           }
         }
@@ -163,10 +153,10 @@
     }
 
     td {
+      padding: 0.35em 1em;
+      font-size: 1em;
       &.strength {
-        font-weight: bold;
-
-        padding: 1em;
+        font-weight: normal;
       }
 
       &.score {
