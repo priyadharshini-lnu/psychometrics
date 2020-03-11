@@ -40,10 +40,8 @@ module Administration
     # true if it's not Mindmill report and user is Superadmin
     def preview?
       return true if @user.is?(:superadmin)
-      return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? &&
-                     @user.has_grant?(:assigns, :view)
 
-      false
+      @user.is?(:client_admin, :project_admin) && @user.has_grant?(:assigns, :view)
     end
 
     # Can export Report Data?

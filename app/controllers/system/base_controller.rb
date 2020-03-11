@@ -28,7 +28,7 @@ module System
     private
 
     def user_not_authorized
-      render plain: 'You does not have access to this page'
+      render plain: t('shared.no_access_message')
     end
   end
 end
