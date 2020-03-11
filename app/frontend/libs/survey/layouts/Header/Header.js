@@ -91,7 +91,7 @@ export class Header extends Component {
 
   render () {
     const {
-      assessment, assessment: { extra }, saving, toggleEnableBack, toggleEnableProgress,
+      assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress,
     } = this.props
 
     return (
