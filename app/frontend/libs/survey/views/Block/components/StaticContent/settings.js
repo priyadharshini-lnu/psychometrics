@@ -9,6 +9,8 @@ export const NO_REPEAT = 'no-repeat'
 export const CONTAIN = 'contain'
 export const COVER = 'cover'
 
+export const HIGHLIGHT_COLORS = ['#6AD0D0', '#EDB780', '#FC83B6', '#98E581', '#E3DF7D']
+
 export default {
   layouts: [
     { value: NORMAL_TOP, label: 'Top - Normal' },

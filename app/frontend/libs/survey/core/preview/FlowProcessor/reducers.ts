@@ -13,7 +13,7 @@ import {
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
-  RESET, SAVE_RESULTS,
+  RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST,
 } from './consts'
 
 const defaultState: DefaultState = {
@@ -90,6 +90,7 @@ const HANDLERS = {
       results: result.results || result.answers || {},
       expiryDate: result.expiry_date,
       timerDuration: data.timer_duration,
+      metaData: result.meta_data || {},
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
@@ -129,6 +130,7 @@ const HANDLERS = {
     ...state, results: {}, currentElement: null, current_page: 0,
   }),
   [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
+  [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),
 }
 
 export default createReducer(HANDLERS, defaultState)

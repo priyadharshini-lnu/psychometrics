@@ -27,7 +27,7 @@ class AssignsController < ApplicationController
 
   prepend_before_action :authenticate_anonymous_user!
   before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev
-                                      upload_callback remove_media]
+                                      upload_callback remove_media update_meta_data]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -63,6 +63,11 @@ class AssignsController < ApplicationController
     UpdateAssign.call(@form, @assign, current_user)
 
     render json: { expired: @assign.expired? }
+  end
+
+  def update_meta_data
+    @assign.update!(meta_data_params)
+    head :no_content
   end
 
   def accept_privacy
@@ -141,5 +146,9 @@ class AssignsController < ApplicationController
     params[:resource].permit(
       :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {}
     )
+  end
+
+  def meta_data_params
+    params.permit(meta_data: {})
   end
 end

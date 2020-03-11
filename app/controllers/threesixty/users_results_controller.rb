@@ -4,7 +4,7 @@ module Threesixty
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
     skip_before_action :verify_authenticity_token, unless: -> { current_user.superadmin? }
-    before_action :set_user_result, only: %i[update upload_media_url remove_media]
+    before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data]
 
     def update
       campaign = Threesixty::Campaign.find(params[:campaign_id])
@@ -19,6 +19,11 @@ module Threesixty
       ::UsersResults::UpdateUsersResult.call(form, @users_result, campaign)
 
       render json: { expired: @users_result.expired? }
+    end
+
+    def update_meta_data
+      @users_result.update!(meta_data_params)
+      head :no_content
     end
 
     def upload_media_url
@@ -70,6 +75,10 @@ module Threesixty
       params[:resource].permit(
         :current_element, :current_page, :status, :step, :norm_id, embedded_data: {}, answers: {}
       )
+    end
+
+    def meta_data_params
+      params.permit(meta_data: {})
     end
   end
 end

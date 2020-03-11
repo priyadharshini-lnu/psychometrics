@@ -92,13 +92,14 @@ class Page extends Component {
 
   render () {
     const {
-      page, questions, errors, nextPage, preview, prevPage, hasPrevPage, block,
+      page, questions, errors, nextPage, preview, prevPage, hasPrevPage,
+      block: { props: { staticContent } },
       preview: {
         enableBack, enableProgress, ignoreValidation, readOnly, type,
       },
     } = this.props
+
     if (!page) { return }
-    const { props: { staticContent } } = block
     return (
       <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}>
         <div className={styles.logo}>
@@ -108,7 +109,7 @@ class Page extends Component {
         {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
         <div className={this.getQuestionContainerClasses()}>
-          {staticContent && <StaticContent staticContent={staticContent} block={block} />}
+          {staticContent && <StaticContent />}
           <div>
             {!ignoreValidation && errors && this.renderErrors(page)}
             <QuestionList readOnly={readOnly} page={page} questions={questions} />

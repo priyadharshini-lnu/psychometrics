@@ -148,6 +148,7 @@ Object {
     "isThreesixty": undefined,
     "linear": false,
     "mediaUrl": "/assigns/undefined",
+    "metaData": Object {},
     "normRules": Array [],
     "normalizedTree": Object {
       "0": Object {
