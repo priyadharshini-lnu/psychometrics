@@ -73,7 +73,7 @@ const HANDLERS = {
         : `/assigns/${result.id}`,
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
-      enableProgress: false, // disabled for refactoring data.enable_progress,
+      enableProgress: data.enable_progress,
       allPages: InitPages.run(data),
       normalizedTree,
       normRules: data.norm_rules,

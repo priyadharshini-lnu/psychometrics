@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  getCurrentPage, getCurrentBlock, pageQuestionsWithoutHidden, pageErrors, getPrevPage,
+  getCurrentPage, getCurrentBlock, pageQuestionsWithoutHidden, pageErrors, getPrevPage, getProgress,
 } from 'core/preview/FlowProcessor/selectors'
 import {
   nextPage, prevPage,
@@ -14,6 +14,7 @@ export default connect(
     questions: initialized && pageQuestionsWithoutHidden(preview),
     block: initialized && getCurrentBlock(preview),
     errors: initialized && pageErrors(preview),
+    progress: initialized && getProgress(preview),
   }),
   {
     nextPage,
