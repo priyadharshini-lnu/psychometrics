@@ -72,21 +72,20 @@ class Page extends Component {
   }
 
   renderProgressBar () {
-    // const progress = store.flow.getProgress()
-    // TODO: @fedor replace with getProgress - selector
-    // if (progress || progress === 0) {
-    //   return (
-    //     <div className={styles.progressBarContainer}>
-    //       <div className={cs('progress', styles.progress)}>
-    //         <div
-    //           className={cs('progress-bar', styles.progressBar)}
-    //           style={{ width: `${_.round(progress)}%`, minWidth: '2em' }}
-    //         />
-    //       </div>
-    //       <div className={styles.progressPercentage}>{`${_.round(progress)}%`}</div>
-    //     </div>
-    //   )
-    // }
+    const { progress } = this.props
+    if (progress || progress === 0) {
+      return (
+        <div className={styles.progressBarContainer}>
+          <div className={cs('progress', styles.progress)}>
+            <div
+              className={cs('progress-bar', styles.progressBar)}
+              style={{ width: `${progress}%`, minWidth: '2em' }}
+            />
+          </div>
+          <div className={styles.progressPercentage}>{`${progress}%`}</div>
+        </div>
+      )
+    }
     return null
   }
 

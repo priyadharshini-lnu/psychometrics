@@ -92,3 +92,91 @@ export const getQuestionResults = createSelector(
 )
 
 export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} => _.last(state.prevPages)
+
+export const getBlockIds = (state): string[] => _.reduce(
+  state.normalizedTree, (ids, el) => (el.type === 'Block' ? [...ids, el.props.current] : ids), [],
+)
+
+export const getPrevBlockIds = (state): string[] => {
+  let ids: string[] = []
+  let path: string | null = '0'
+  while (path) {
+    const el = state.normalizedTree[path]
+    if (!el || path === state.currentElement) {
+      return state.currentPage > 0 ? [...ids, el.props.current] : ids
+    }
+    ids = el.type === 'Block' ? [...ids, el.props.current] : ids
+    path = getChildOrNextElementId(state, path)
+  }
+  return ids
+}
+
+const pagesQuestions = (pages: PageInterface[]): number => _.flatten(_.map(pages, 'questions')).length
+
+export const getQuestionsCount = (state, blockIds: string[]): number => _.sumBy(
+  blockIds, id => pagesQuestions(state.allPages[id]),
+)
+
+export const lookForEndOfAssessment = (el: string, state): string | null => {
+  let path = GetNextElementId.run(el)
+  while (path) {
+    const element = state.normalizedTree[path]
+    if (!element) { return null }
+    if (element.type === 'EndOfAssessment') {
+      return path
+    }
+    path = GetNextElementId.run(path)
+  }
+  return null
+}
+
+export const getPossibleBlocks = (state): string[] => {
+  let ids: string[] = []
+  let path: string | null = state.currentElement
+  const maybeTopEnd: string | null = lookForEndOfAssessment('0', state)
+  const maybeEnd: string | null = lookForEndOfAssessment(state.currentElement || '', state)
+  while (path) {
+    const el = state.normalizedTree[path]
+    if (!el) { return ids }
+    if (el.type === 'Block' && path === state.currentElement
+           && state.currentPage < state.allPages[el.props.current].length) {
+      ids = [...ids, el.props.current]
+      path = getChildOrNextElementId(state, path)
+      // eslint-disable-next-line no-continue
+      continue
+    }
+    ids = el.type === 'Block' ? [...ids, el.props.current] : ids
+    if ((maybeTopEnd === path) || (maybeEnd === path)) {
+      return ids
+    }
+    path = getChildOrNextElementId(state, path)
+  }
+  return ids
+}
+
+export const getPrevQuestionsCount = (state): number => {
+  const blockIds = getPrevBlockIds(state)
+  if (state.currentPage > 0) {
+    const [last, ...ids] = _.reverse(blockIds)
+    const count = getQuestionsCount(state, ids)
+    return count + pagesQuestions(_.take(state.allPages[last], state.currentPage))
+  }
+  return getQuestionsCount(state, blockIds)
+}
+
+export const getPossibleQuestionsCount = (state): number => {
+  const blockIds = getPossibleBlocks(state)
+  const [current, ...ids] = blockIds
+  if (!current) { return 0 }
+
+  const count = getQuestionsCount(state, ids)
+  const currentPage = state.allPages[current]
+  return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
+}
+
+
+export const getProgress = (state): number => {
+  const prevQuestions = getPrevQuestionsCount(state)
+  const possibleQuestionsCount = getPossibleQuestionsCount(state)
+  return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
+}

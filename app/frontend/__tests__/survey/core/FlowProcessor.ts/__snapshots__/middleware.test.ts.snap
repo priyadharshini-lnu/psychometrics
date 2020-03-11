@@ -136,7 +136,7 @@ Object {
     ],
     "embeddedData": Object {},
     "enableBack": false,
-    "enableProgress": false,
+    "enableProgress": true,
     "end": false,
     "errors": null,
     "expiryDate": undefined,
