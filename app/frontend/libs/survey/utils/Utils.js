@@ -3,7 +3,7 @@ import _ from 'lodash'
 const { $ } = window
 
 export default {
-  limit (val, min = 0, max = 300) {
+  limit (val, min = 0, max = 500) {
     let value = val > min ? val : min
     value = val < max ? val : max
     return value
