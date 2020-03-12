@@ -5,7 +5,7 @@ module Threesixty
     class Filter < BaseCommand
       CRITERIA_RESOLVER = [
         {
-          field_types: %w[name_or_email first_name last_name],
+          field_types: %w[name_or_email first_name last_name disabled],
           class_name: ParticipatorByCriteria::ByUserFields
         },
         {
