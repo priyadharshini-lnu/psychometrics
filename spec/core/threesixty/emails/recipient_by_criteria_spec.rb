@@ -66,16 +66,20 @@ describe Threesixty::Emails::RecipientByCriteria do
   end
 
   context 'adds default criteria' do
+    let!(:default_recipient_criteria) do
+      [{ 'field' => 'disabled', 'value' => false }]
+    end
+
     it 'adds default criteria for subject_reminder email' do
-      default_recipient_criteria = {
+      recipient_criteria = default_recipient_criteria + [{
         'field' => 'subject_status',
         'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED
-      }
+      }]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:subject],
-          criteria_list: [default_recipient_criteria],
+          criteria_list: recipient_criteria,
           email_name: 'subject_reminder'
         ).and_return([threesixty_subject, threesixty_evaluator])
 
@@ -86,12 +90,12 @@ describe Threesixty::Emails::RecipientByCriteria do
     end
 
     it 'adds default criteria for evaluator_invite email' do
-      default_recipient_criteria = [{ 'field' => 'atleast_one_non_self_evalaution' }]
+      recipient_criteria = default_recipient_criteria + [{ 'field' => 'atleast_one_non_self_evalaution' }]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:evaluator],
-          criteria_list: default_recipient_criteria,
+          criteria_list: recipient_criteria,
           email_name: 'evaluator_invite'
         ).and_return([threesixty_subject, threesixty_evaluator])
 
@@ -102,7 +106,7 @@ describe Threesixty::Emails::RecipientByCriteria do
     end
 
     it 'adds default criteria for evaluator_reminder email' do
-      default_recipient_criteria = [
+      recipient_criteria = default_recipient_criteria + [
         { 'field' => 'atleast_one_non_self_evalaution' },
         { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
       ]
@@ -110,7 +114,7 @@ describe Threesixty::Emails::RecipientByCriteria do
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:evaluator],
-          criteria_list: default_recipient_criteria,
+          criteria_list: recipient_criteria,
           email_name: 'evaluator_reminder'
         ).and_return([threesixty_subject, threesixty_evaluator])
 

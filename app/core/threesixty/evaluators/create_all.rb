@@ -80,6 +80,7 @@ module Threesixty
       end
 
       def send_evaluator_invite_email(evaluator, subject)
+        return if evaluator.user.disabled?
         return unless threesixty_campaign.option.messages['send_invite_to_new_evaluator']
 
         ::Threesixty::Emails::Send.call!(
