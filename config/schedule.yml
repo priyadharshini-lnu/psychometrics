@@ -1,0 +1,27 @@
+# Use sidekiq-cron recommened site https://crontab.guru/
+# to generate/verify cronschedule expressions
+
+license_expiry_check_job:
+  cron: "0 5 */1 * * UTC" # At 05:00 UTC on every day-of-month
+  class: Licenses::ExpiryCheckJob
+  queue: cron_tasks
+
+communications_other_type_job:
+  cron: "*/5 * * * *" # At every 5th minute
+  class: Communications::OtherTypeJob
+  queue: communication
+
+threesixty_send_scheduled_email_job:
+  cron: "*/1 * * * *" # At every minute
+  class: Threesixty::SendScheduledEmailJob
+  queue: cron_tasks
+
+threesixty_send_reminders_job:
+  cron: "0 5 */1 * * UTC" # At 05:00 UTC on every day-of-month
+  class: Threesixty::SendRemindersJob
+  queue_as: cron_tasks
+
+users_results_handle_expire_job:
+  cron: "*/10 * * * *" # At every 10th minute
+  class: HandleUserResultExpiryJob
+  queue_as: cron_tasks

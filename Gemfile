@@ -135,7 +135,6 @@ gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.0.3'
 gem 'rectify', '~> 0.13.0'
 gem 'sidekiq', '~> 5.1.3'
-gem 'whenever', '~> 0.9.7', require: false
 
 gem 'bootstrap-slider-rails'
 gem 'hashids', '~> 1.0.5'
@@ -228,3 +227,6 @@ end
 
 # for creating and rendering QR codes into various formats
 gem 'rqrcode'
+
+# a scheduling add-on for sidekiq
+gem 'sidekiq-cron', '~> 1.1'
