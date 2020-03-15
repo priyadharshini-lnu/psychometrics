@@ -53,7 +53,16 @@ class AssignsController < ApplicationController
   end
 
   def assessment
-    render json: @assign.assessment, serializer: AssessmentSerializer, include: '**'
+    piped_text_context = {
+      evaluator: current_user,
+      subject: current_user,
+      threesixty_campaign: {}
+    }
+
+    render json: @assign.assessment,
+           serializer: AssessmentSerializer,
+           include: '**',
+           piped_text_context: piped_text_context
   end
 
   def update

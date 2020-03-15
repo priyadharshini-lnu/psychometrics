@@ -39,9 +39,9 @@ class BlockSerializer < ActiveModel::Serializer
 
     static_content =
       object.props['staticContent'].merge(
-        value: Threesixty::PipedText::Perform.
+        'value' => Threesixty::PipedText::Perform.
           call!(object.props['staticContent']['value'], @instance_options[:piped_text_context])
       )
-    object.props.merge(staticContent: static_content)
+    object.props.merge('staticContent' => static_content)
   end
 end
