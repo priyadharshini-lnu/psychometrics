@@ -33,10 +33,6 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
     end
 
-    def client_admins?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && record.client_admins.exists?(@user.id))
-    end
-
     def project_admins?
       record.prime_project? && @user.is?(:superadmin, :client_admin)
     end

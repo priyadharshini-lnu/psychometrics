@@ -4,7 +4,7 @@ module Administration
   module Threesixty
     class ParticipantPolicy < Threesixty::BasePolicy
       def spoof?
-        index?
+        user.is?(:superadmin)
       end
 
       def destroy?

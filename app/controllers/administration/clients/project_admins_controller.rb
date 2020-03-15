@@ -7,11 +7,12 @@ module Administration
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
       before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
-      before_action :skip_authorization, only: [:sidebar]
+      before_action :skip_authorization, only: %i[sidebar index create edit update destroy]
       append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
-      append_before_action :pundit_authorize, except: [:sidebar]
+      append_before_action :pundit_authorize, except: %i[sidebar index create edit update destroy]
 
       def index
+        authorize @_resource_class, :can_manage_project_admins?
         @_filter_form = policy_scope(resource_class).
                         includes(user: %i[clients memberships]).
                         where(role: Membership::PROJECT_ADMIN_ROLE).
@@ -43,6 +44,7 @@ module Administration
       end
 
       def create
+        authorize @_resource_class, :can_manage_project_admins?
         Memberships::CreateAdminCommand.
           call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
@@ -65,12 +67,14 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
+        authorize @_resource_class, :can_manage_project_admins?
         add_breadcrumb t('administration.breadcrumbs.project_admins'), action: :index
         add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
       def update
+        authorize @_resource_class, :can_manage_project_admins?
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
@@ -85,6 +89,7 @@ module Administration
       end
 
       def destroy
+        authorize @_resource_class, :can_manage_project_admins?
         if resource.user.memberships.count == 1
           resource.user.destroy
         else
