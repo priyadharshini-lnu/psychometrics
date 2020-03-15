@@ -7,7 +7,7 @@ import styles from './StaticContent.scss'
 const highlighter = new Highlighter({ style: { className: styles.highlightWrap } })
 
 const HighlightList = ({
-  highlights, contentRef, selection, updateMetaData, preview,
+  highlights, contentRef, selection, updateMetaData, preview, staticContent,
 }) => {
   const [currentColor, setCurrentColor] = useState(HIGHLIGHT_COLORS[0])
   const [currentHighlight, setCurrentHighlight] = useState(null)
@@ -16,6 +16,7 @@ const HighlightList = ({
     highlighter.setOption({ $root: contentRef.current })
 
     highlights.forEach((h) => {
+      if (!staticContent.value.includes(h.text)) return
       const source = highlighter.fromStore(h.startMeta, h.endMeta, h.text, h.id, h.color)
       initHighlight(source)
     })
@@ -38,7 +39,7 @@ const HighlightList = ({
     saveHighlight({ ...source, color: currentColor })
   }, [selection])
 
-  const initHighlight = source => highlighter.getDoms(source.id).forEach((d) => {
+  const initHighlight = source => source && highlighter.getDoms(source.id).forEach((d) => {
     d.style.backgroundColor = getHighlightColor(source)
     d.onclick = handleHighlightClick
   })
