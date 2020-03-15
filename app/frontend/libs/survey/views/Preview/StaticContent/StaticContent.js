@@ -38,6 +38,7 @@ const StaticContent = ({
         selection={selection}
         updateMetaData={updateMetaData}
         preview={preview}
+        staticContent={staticContent}
       />
       <div
         onMouseUp={handleMouseUp}
