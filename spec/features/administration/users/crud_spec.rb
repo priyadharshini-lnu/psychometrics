@@ -18,6 +18,34 @@ feature 'CRUD User' do
       end
     end
 
+    context 'on Client Tenancy page' do
+      let(:tenancy) { project.root }
+      scenario 'I can create a Client Admin' do
+        visit administration_client_path(tenancy)
+        href = new_step_1_administration_client_client_admins_path(tenancy)
+        find("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']").click
+        wait_for_ajax
+        fill_in 'prepare_user_email', with: 'romero@gmail.com'
+        click_on 'Next'
+        wait_for_ajax
+
+        expect(page).to have_css('#new_resource .grants-table')
+        within('#new_resource .grants-table') do
+          expect(page).to have_content 'Norms'
+          expect(page).to have_content 'Dimensions'
+          expect(page).to have_content 'Assessments'
+          expect(page).to have_content 'Data Centre (Exporting Assessment / Report data sets)'
+          expect(page).to have_content 'Translations'
+          expect(page).to have_content 'Client Tenancies'
+          expect(page).to have_content 'Question Centre'
+          expect(page).to have_content 'Media Libraries'
+          expect(page).to have_content 'Communication Centre'
+          expect(page).to have_content 'Reports'
+          expect(page).to have_content 'Overview Reports'
+        end
+      end
+    end
+
     context 'on Projects page' do
       scenario 'I can create project admin' do
         create_project_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
@@ -107,26 +135,7 @@ feature 'CRUD User' do
         scenario 'I can create another Client Admin' do
           visit administration_client_path(tenancy)
           href = new_step_1_administration_client_client_admins_path(tenancy)
-          expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
-        end
-
-        scenario 'I can create another Client Admin only with my Privileges' do
-          visit administration_client_path(tenancy)
-          href = new_step_1_administration_client_client_admins_path(tenancy)
-          find("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']").click
-          wait_for_ajax
-          fill_in 'prepare_user_email', with: 'romero@gmail.com'
-          click_on 'Next'
-          wait_for_ajax
-
-          expect(page).to have_css('#new_resource .grants-table')
-          within('#new_resource .grants-table') do
-            expect(page).to have_content 'Assessments'
-            expect(page).not_to have_content 'Data Centre (Exporting Assessment / Report data sets)'
-            expect(page).not_to have_content 'Campaigns & Sub-Campaigns'
-            expect(page).to have_content 'Communication Centre'
-            expect(page).not_to have_content 'Overview Reports'
-          end
+          expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{href}']")
         end
       end
 

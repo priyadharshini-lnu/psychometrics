@@ -12,7 +12,7 @@ module Administration
       end
 
       def spoof?
-        index?
+        user.is?(:superadmin)
       end
 
       def preview_report?

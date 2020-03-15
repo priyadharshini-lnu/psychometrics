@@ -32,12 +32,12 @@ module Administration
       create?
     end
 
-    def create_client_admin?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+    def can_manage_client_admins?
+      @user.is?(:superadmin)
     end
 
-    def create_project_admin?
-      @user.is?(:superadmin) || @user.is?(:client_admin)
+    def can_manage_project_admins?
+      @user.is?(:superadmin, :client_admin)
     end
 
     def admins?
