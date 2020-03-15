@@ -42,7 +42,7 @@ const FIELDS = [
         name: 'DataSheet',
         type: 'dropdown',
         items: ({ datasheetFields }) => datasheetFields.map(f => ({ key: f, value: f })),
-        getValue: ({ value }) => `{{p://Field/${value}}`,
+        getValue: ({ value }) => `{{p://Meta/${value}}}`,
       },
     ],
   },
