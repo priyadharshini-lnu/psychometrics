@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {
-  Modal, Button, Icon, Input, Alert, message,
+  Modal, Button, Input, Alert, message,
 } from 'antd'
+import { CheckOutlined, MailOutlined } from '@ant-design/icons'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
 export default function SendTestEmailModal ({
@@ -35,7 +36,7 @@ export default function SendTestEmailModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary" onClick={handleSendTestEmail}>
-          <Icon type="check" />
+          <CheckOutlined />
           Send Test
         </Button>,
       ]}
@@ -50,7 +51,7 @@ export default function SendTestEmailModal ({
       </div>
       <Input
         placeholder="Enter email address"
-        prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+        prefix={<MailOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
         value={email}
         size="large"
         onChange={e => setEmail(e.target.value)}

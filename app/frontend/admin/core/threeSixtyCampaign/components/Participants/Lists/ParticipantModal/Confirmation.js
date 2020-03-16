@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Popconfirm } from 'antd'
+import { Popconfirm } from 'antd'
+import { WarningOutlined } from '@ant-design/icons'
 
 export default function Confirmation ({
   title, onConfirm, placement, children,
@@ -8,7 +9,7 @@ export default function Confirmation ({
     <Popconfirm
       placement={placement || 'topRight'}
       title={title}
-      icon={<Icon type="warning" theme="twoTone" style={{ color: '#f55' }} />}
+      icon={<WarningOutlined theme="twoTone" style={{ color: '#f55' }} />}
       onConfirm={onConfirm}
     >
       {children}

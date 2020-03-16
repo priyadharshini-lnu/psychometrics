@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip,
 } from 'antd'
+import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -76,7 +77,7 @@ export default function Evaluation ({
         >
           <div>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
-            <Icon type="down" />
+            <DownOutlined />
           </div>
         </Dropdown>
       )
@@ -131,7 +132,7 @@ export default function Evaluation ({
           className="page-header"
           backIcon={(
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back to tasks
             </div>

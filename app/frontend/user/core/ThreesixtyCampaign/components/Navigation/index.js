@@ -2,8 +2,11 @@
 import React, { useState } from 'react'
 import { Route } from 'react-router-dom'
 import {
-  Layout, Menu, Icon, Dropdown, Modal,
+  Layout, Menu, Dropdown, Modal,
 } from 'antd'
+import {
+  HomeOutlined, MenuOutlined, GlobalOutlined, QuestionCircleOutlined, UserOutlined,
+} from '@ant-design/icons'
 import './styles.scss'
 import connect from './connect'
 import EditProfileModal from '../EditProfileModal'
@@ -42,7 +45,7 @@ function Navigation ({
               <a href="/">
                 {logo
                   ? <img src={logo} alt="logo" className="logo" />
-                  : <Icon type="home" />}
+                  : <HomeOutlined />}
               </a>
             </div>
             <Menu
@@ -50,13 +53,13 @@ function Navigation ({
               mode="horizontal"
               theme="light"
               style={{ lineHeight: '79px', height: '79px' }}
-              overflowedIndicator={<Icon type="menu" className="overflow-menu-item align-right" />}
+              overflowedIndicator={<MenuOutlined className="overflow-menu-item align-right" />}
             >
               <SubMenu
                 className="align-right"
                 title={(
                   <span className="submenu-title-wrapper">
-                    <Icon type="user" />
+                    <UserOutlined />
                   </span>
                 )}
               >
@@ -66,13 +69,13 @@ function Navigation ({
               <Menu.Item key="app" className="align-right hidden">
                 <Dropdown overlay={() => langMenu()} trigger={['click']}>
                   <a>
-                    <Icon type="global" />
+                    <GlobalOutlined />
                     {I18n.t('threesixty.language')}
                   </a>
                 </Dropdown>
               </Menu.Item>
               <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
-                <Icon type="question-circle" />
+                <QuestionCircleOutlined />
                 Help
               </Menu.Item>
             </Menu>

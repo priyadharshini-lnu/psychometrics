@@ -1,5 +1,6 @@
 import React from 'react'
-import { Input, Select, Icon } from 'antd'
+import { Input, Select } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import NestedOperator from 'admin/core/threeSixtyCampaign/components/common/NestedOperator'
 import styles from './styles.scss'
@@ -49,8 +50,8 @@ export default function Criteria ({
         {relationships.map(r => (<Select.Option key={r.id} value={r.id}>{r.name}</Select.Option>))}
       </Select>
       <span>
-        <Icon type="minus-circle" className={styles.deleteIcon} onClick={removeAvailiblityCondition} />
-        <Icon type="plus-circle" className={styles.addIcon} onClick={addAvailiblityCondition} />
+        <MinusCircleOutlined className={styles.deleteIcon} onClick={removeAvailiblityCondition} />
+        <PlusCircleOutlined className={styles.addIcon} onClick={addAvailiblityCondition} />
       </span>
     </div>
   )

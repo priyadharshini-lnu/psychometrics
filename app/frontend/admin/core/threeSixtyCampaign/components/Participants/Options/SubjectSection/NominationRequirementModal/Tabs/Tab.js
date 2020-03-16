@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Icon, Dropdown, Menu, Input,
+  Dropdown, Menu, Input,
 } from 'antd'
+import { CaretDownOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import styles from './styles.scss'
 
@@ -104,7 +105,7 @@ export default function Tab ({
           placement="bottomLeft"
           trigger={['click']}
         >
-          <Icon type="caret-down" />
+          <CaretDownOutlined />
         </Dropdown>
       </div>
     </div>

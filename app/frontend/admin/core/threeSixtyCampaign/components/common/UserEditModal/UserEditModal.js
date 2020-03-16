@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 import {
-  Modal, Button, Form, Input, Icon,
+  Modal, Button, Form, Input,
 } from 'antd'
+import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
 export default function UserEditModal ({
@@ -41,9 +42,9 @@ export default function UserEditModal ({
 
   const saveButtonIcon = () => {
     if (saveInProgress) {
-      return <Icon type="loading" />
+      return <LoadingOutlined />
     }
-    return <Icon type="check" />
+    return <CheckOutlined />
   }
 
   return (

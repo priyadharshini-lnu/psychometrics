@@ -1,5 +1,6 @@
 import React from 'react'
-import { Input, Select, Icon } from 'antd'
+import { Input, Select } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import NestedOperator from 'admin/core/threeSixtyCampaign/components/common/NestedOperator'
 import styles from '../styles.scss'
@@ -53,8 +54,8 @@ export default function Condition ({
       />
 
       <span>
-        <Icon type="minus-circle" className={styles.deleteIcon} onClick={remove} />
-        <Icon type="plus-circle" className={styles.addIcon} onClick={add} />
+        <MinusCircleOutlined className={styles.deleteIcon} onClick={remove} />
+        <PlusCircleOutlined className={styles.addIcon} onClick={add} />
       </span>
     </div>
   )

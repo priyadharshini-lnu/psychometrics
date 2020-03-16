@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Button, Row, Col, PageHeader, Icon, message,
+  Layout, Typography, Button, Row, Col, PageHeader, message,
 } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -46,7 +47,7 @@ export default function Report ({
           className="page-header"
           backIcon={(
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back to tasks
             </div>

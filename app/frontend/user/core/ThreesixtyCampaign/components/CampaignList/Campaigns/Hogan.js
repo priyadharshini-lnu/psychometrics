@@ -2,8 +2,11 @@
 /* eslint-disable max-len */
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Icon, Card, Progress, Dropdown, Menu, Input,
+  Row, Col, Card, Progress, Dropdown, Menu, Input,
 } from 'antd'
+import {
+  DownloadOutlined, LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
+} from '@ant-design/icons'
 import './styles.scss'
 import ContinueIcon from './ContinueIcon'
 import PrivacyModal from './PrivacyModal'
@@ -14,7 +17,7 @@ const DownloadLink = ({ report, text }) => {
   if (report.hasExternalReport && report.externalReportUrl) {
     return (
       <a href={report.externalReportUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
-        <Icon type="download" />
+        <DownloadOutlined />
         {' '}
         {text}
       </a>
@@ -22,7 +25,7 @@ const DownloadLink = ({ report, text }) => {
   }
   return (
     <a disabled>
-      <Icon type="download" />
+      <DownloadOutlined />
       {I18n.t('threesixty.processing_report')}
     </a>
   )
@@ -53,7 +56,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS) {
     return (
       <a href="#" onClick={showPolicyConfirm}>
-        {loading ? <Icon type="loading" /> : <ContinueIcon />}
+        {loading ? <LoadingOutlined /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
       </a>
@@ -68,7 +71,7 @@ const renderButtonContent = ({
           overlay={() => ReportsMenu(assignedReports)}
         >
           <div className="dropdown">
-            <Icon type="download" />
+            <DownloadOutlined />
             {' '}
             {I18n.t('threesixty.download_reports')}
           </div>
@@ -80,7 +83,7 @@ const renderButtonContent = ({
     }
     return (
       <a>
-        <Icon type="check" />
+        <CheckOutlined />
         {' '}
         {I18n.t('threesixty.completed')}
       </a>
@@ -88,7 +91,7 @@ const renderButtonContent = ({
   }
   return (
     <a href="#" onClick={showPolicyConfirm}>
-      {loading ? <Icon type="loading" /> : <Icon type="play-circle" />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -150,7 +153,7 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">
-                <Icon type="clock-circle" />
+                <ClockCircleOutlined />
                 {' '}
                 {assign.timing}
               </Col>

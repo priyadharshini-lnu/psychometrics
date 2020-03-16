@@ -1,7 +1,7 @@
 import React from 'react'
-import { Input, Select, Icon } from 'antd'
+import { Input, Select } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
-
 
 export default function Criteria ({
   datasheetFields, condition: { field, comparator, value }, updateCriteria, addCriteria, removeCriteria,
@@ -51,8 +51,8 @@ export default function Criteria ({
         />
       )}
       <span>
-        <Icon type="minus-circle" onClick={removeCriteria} className={styles.deleteIcon} />
-        <Icon type="plus-circle" onClick={addCriteria} className={styles.addIcon} />
+        <MinusCircleOutlined onClick={removeCriteria} className={styles.deleteIcon} />
+        <PlusCircleOutlined onClick={addCriteria} className={styles.addIcon} />
       </span>
     </span>
   )

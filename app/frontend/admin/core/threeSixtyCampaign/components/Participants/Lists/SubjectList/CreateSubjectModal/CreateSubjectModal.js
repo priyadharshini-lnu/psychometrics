@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider, Form, Form as AntForm,
+  Modal, Button, Divider, Form, Form as AntForm,
 } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
@@ -63,7 +64,7 @@ export default function CreateSubjectModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
-          <Icon type="check" />
+          <CheckOutlined />
           Add
         </Button>,
       ]}

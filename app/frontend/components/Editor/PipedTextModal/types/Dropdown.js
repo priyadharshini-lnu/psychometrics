@@ -1,5 +1,6 @@
 import React from 'react'
-import { Menu, Dropdown as AntDropdown, Icon } from 'antd'
+import { Menu, Dropdown as AntDropdown } from 'antd'
+import { CaretDownFilled } from '@ant-design/icons'
 
 const menu = (field, context, insert) => (
   <Menu>
@@ -16,7 +17,7 @@ const Dropdown = ({ field, context, insert }) => (
     <a className="ant-dropdown-link" href="#">
       {field.name}
       {' '}
-      <Icon type="caret-down" theme="filled" />
+      <CaretDownFilled />
     </a>
   </AntDropdown>
 )

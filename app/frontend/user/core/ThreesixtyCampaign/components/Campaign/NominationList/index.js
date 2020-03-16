@@ -1,8 +1,9 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
-  List, Collapse, Icon, Progress, Modal, Tooltip,
+  List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
+import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import userPresenter from 'presenters/userPresenter'
@@ -15,7 +16,7 @@ const NominationItem = item => (
   <List.Item className="list-item">
     <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`} style={{ display: 'flex', alignItems: 'center' }}>
       {item.isNominationCompleted
-        ? <Icon type="check-square" theme="filled" className="status-icon" />
+        ? <CheckSquareFilled className="status-icon" />
         : <div className="empty-square" />}
       {' '}
       <Tooltip placement="topLeft" title={item.user.email}>
@@ -102,7 +103,7 @@ of
           </div>
           {nominationHelp && (
           <div className="help">
-            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+            <QuestionCircleOutlined className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
           )}
         </div>
