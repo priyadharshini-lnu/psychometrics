@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from 'antd'
+import { CloudDownloadOutlined } from '@ant-design/icons'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
 export default function FileImport ({
@@ -23,7 +23,7 @@ export default function FileImport ({
           href={`/administration/threesixty_campaigns/${campaignId}/evaluators/download_example_import_file`}
           target="blank"
         >
-          <Icon type="cloud-download" />
+          <CloudDownloadOutlined />
           <span className="mls">Download Example csv</span>
         </a>
       </div>

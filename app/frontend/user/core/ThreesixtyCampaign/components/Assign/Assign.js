@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Icon, PageHeader, Row, Col, Statistic,
+  Layout, PageHeader, Row, Col, Statistic,
 } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 import cs from 'classnames'
 import './styles.scss'
@@ -41,7 +42,7 @@ export default function Assign ({
           className="page-header"
           backIcon={!isFrame && (
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back
             </div>

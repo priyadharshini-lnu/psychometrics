@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Modal, Button, Icon, Row, Col,
+  Modal, Button, Row, Col,
 } from 'antd'
+import { PlusOutlined, CheckOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import List from './Tabs'
 import styles from './styles.scss'
@@ -40,14 +41,14 @@ export default function NominationRequirementModal ({
           onClick={() => addNominationRequirement({ relationshipId: defaultSelectedRelationship })}
           className={styles.addButton}
         >
-          <Icon type="plus" />
+          <PlusOutlined />
           Add Requirement set
         </Button>,
         <Button key="back" onClick={closeModal}>
           Cancel
         </Button>,
         <Button key="submit" type="primary" onClick={handleSave}>
-          <Icon type="check" />
+          <CheckOutlined />
           Save
         </Button>,
       ]}

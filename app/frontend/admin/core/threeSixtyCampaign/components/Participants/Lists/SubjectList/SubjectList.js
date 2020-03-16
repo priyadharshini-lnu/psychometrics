@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Table, Dropdown, Icon, Row, Col,
+  Table, Dropdown, Row, Col,
 } from 'antd'
+import { UserOutlined, EllipsisOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import ResetSubjectModal from 'admin/core/threeSixtyCampaign/components/common/ResetSubjectModal'
@@ -52,7 +53,7 @@ export default function SubjectList ({
     <>
       <Row>
         <Col span={4} className="pls">
-          <Icon type="user" />
+          <UserOutlined />
           <span className="mlm">{`${total} Subjects`}</span>
         </Col>
         <Col>
@@ -138,7 +139,7 @@ export default function SubjectList ({
                   trigger={['click']}
                 >
                   <div className={styles.actions}>
-                    <Icon type="ellipsis" />
+                    <EllipsisOutlined />
                   </div>
                 </Dropdown>
               )}

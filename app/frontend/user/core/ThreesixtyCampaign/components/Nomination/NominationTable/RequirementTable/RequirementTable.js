@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import {
-  Table, Dropdown, Menu, Icon, Button, Row, Popconfirm,
+  Table, Dropdown, Menu, Button, Row, Popconfirm,
 } from 'antd'
+import {
+  DownOutlined, CheckOutlined, SyncOutlined, CloseOutlined, PlusOutlined,
+} from '@ant-design/icons'
 import _ from 'lodash'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -85,7 +88,7 @@ export default function RequirementTable (props) {
         >
           <div>
             { statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
-            <Icon type="down" />
+            <DownOutlined />
           </div>
         </Dropdown>
       )
@@ -122,8 +125,8 @@ export default function RequirementTable (props) {
       children: (
         <div className="status-with-icon">
           {evaluatorNominationStatus === 'completed'
-            ? <Icon type="check" />
-            : <Icon type="sync" /> }
+            ? <CheckOutlined />
+            : <SyncOutlined /> }
           {statusPresenter.getStatus(evaluatorNominationStatus)}
         </div>),
     }
@@ -189,7 +192,7 @@ export default function RequirementTable (props) {
                 title={I18n.t('threesixty.confirmation_for_nomination_removal')}
                 onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
               >
-                <Icon type="close" />
+                <CloseOutlined />
               </Popconfirm>
             )
           }}
@@ -198,7 +201,7 @@ export default function RequirementTable (props) {
       {canAdd && (
       <Row type="flex" justify="end" style={{ marginTop: 8 }}>
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
-          <Icon type="plus" />
+          <PlusOutlined />
           {' '}
           {I18n.t('threesixty.add')}
           {' '}

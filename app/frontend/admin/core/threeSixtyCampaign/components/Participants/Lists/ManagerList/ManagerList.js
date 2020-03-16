@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { useEffect } from 'react'
-import { Col, Icon, Row } from 'antd'
+import { Col, Row } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 import UserEditModal from 'admin/core/threeSixtyCampaign/components/common/UserEditModal'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
@@ -30,7 +31,7 @@ export default function ManagerList ({
     <>
       <Row>
         <Col span={4} className="pls">
-          <Icon type="user" />
+          <UserOutlined />
           <span className="mlm">{`${total} Managers`}</span>
         </Col>
         <div className="float-r">

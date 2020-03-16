@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider,
+  Modal, Button, Divider,
 } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
@@ -85,7 +86,7 @@ export default function CreateEvaluatorModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary" disabled={creationInProgress} onClick={handleOk}>
-          <Icon type="check" />
+          <CheckOutlined />
           Add
         </Button>,
       ]}

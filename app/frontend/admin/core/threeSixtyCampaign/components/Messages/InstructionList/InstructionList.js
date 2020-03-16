@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Row, Col, Button, Empty, Icon, message,
+  Row, Col, Button, Empty, message,
 } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import routeUtils from 'utils/routeUtils'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
@@ -69,7 +70,7 @@ export default function InstructionList ({
           className="mtm mll"
           onClick={saveTemplate}
         >
-          <Icon type="save" />
+          <SaveOutlined />
           Save
         </Button>
       </Col>

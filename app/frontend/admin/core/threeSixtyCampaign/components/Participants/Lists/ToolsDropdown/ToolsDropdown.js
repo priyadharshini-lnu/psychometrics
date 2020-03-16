@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Button, Dropdown, Icon, Menu,
+  Button, Dropdown, Menu,
 } from 'antd'
+import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 
 const menu = ({
   projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation, openModal, dimensionId,
@@ -74,9 +75,9 @@ export default function ToolsDropdown ({
       trigger={['click']}
     >
       <Button>
-        <Icon type="tool" />
+        <ToolOutlined />
         <span>Tools</span>
-        <Icon type="down" />
+        <DownOutlined />
       </Button>
     </Dropdown>
   )

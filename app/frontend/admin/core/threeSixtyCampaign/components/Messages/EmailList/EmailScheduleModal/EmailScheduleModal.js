@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input, message, Switch,
+  Modal, Button, Input, message, Switch,
 } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import Editor from 'components/Editor'
@@ -93,7 +94,7 @@ export default function EmailScheduleModal ({
           disabled={_.isNull(recipientsCount) || recipientsCount === 0}
           onClick={handleSave}
         >
-          <Icon type="check" />
+          <CheckOutlined />
           Schedule
         </Button>,
       ]}

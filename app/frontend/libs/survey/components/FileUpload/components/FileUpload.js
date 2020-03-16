@@ -2,8 +2,9 @@ import _ from 'lodash'
 import React, { useEffect, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Upload, Button, Icon, Progress,
+  Upload, Button, Progress,
 } from 'antd'
+import { UploadOutlined } from '@ant-design/icons'
 import mime from 'mime-types'
 import styles from './FileUpload.scss'
 import ErrorList from './ErrorList'
@@ -111,7 +112,7 @@ export default function FileUpload ({
           onChange={handleFileChange}
         >
           <Button>
-            <Icon type="upload" />
+            <UploadOutlined />
             {' '}
             Select File
           </Button>

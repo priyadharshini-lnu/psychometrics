@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Input, message } from 'antd'
+import { Input, message } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import { GLOBAL } from 'constants/relationship'
 import styles from './styles.scss'
 
@@ -27,9 +28,9 @@ export default function RelationshipRow ({
       </td>
       <td className="pls">
         {relationship.type !== GLOBAL && (
-          <Icon key="1" type="minus-circle" onClick={removeRelationship} className="mls" />
+          <MinusCircleOutlined key="1" onClick={removeRelationship} className="mls" />
         )}
-        <Icon key="2" type="plus-circle" onClick={() => create(campaignId, {})} className="mls" />
+        <PlusCircleOutlined key="2" onClick={() => create(campaignId, {})} className="mls" />
       </td>
     </tr>
   )

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { Statistic, Icon, notification } from 'antd'
+import { Statistic, notification } from 'antd'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import styles from './Timer.scss'
 
 const { Countdown } = Statistic
@@ -40,7 +41,7 @@ const Timer = ({ preview, preview: { expiryDate, timerDuration }, saveResults })
       <Countdown
         value={new Date(expiryDate)}
         onFinish={() => saveResults(preview)}
-        prefix={<Icon className="mrs" type="clock-circle" />}
+        prefix={<ClockCircleOutlined className="mrs" />}
         className={styles.timer}
       />
       )}

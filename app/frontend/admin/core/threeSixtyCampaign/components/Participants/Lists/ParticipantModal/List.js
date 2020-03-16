@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Icon, Select, Table,
+  Select, Table,
 } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
 import Confirmation from './Confirmation'
@@ -74,7 +75,7 @@ export default function List ({
             title={I18n.t('threesixty.confirm')}
             onConfirm={() => destroyParticipant(id)}
           >
-            <Icon type="delete" />
+            <DeleteOutlined />
           </Confirmation>
         )}
       />

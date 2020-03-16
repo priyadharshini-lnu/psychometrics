@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Icon } from 'antd'
+import { FileOutlined, DeleteOutlined } from '@ant-design/icons'
 import styles from './FileUpload.scss'
 
 export default function FileDetails ({ localFile, savedFile, removeFile }) {
@@ -18,19 +18,13 @@ export default function FileDetails ({ localFile, savedFile, removeFile }) {
       <div className={styles.fileName}>
         {/* eslint-disable no-script-url */}
         <a href={fileDetails.url ? fileDetails.url : 'javascript:void(0)'} download>
-          <Icon
-            type="file"
-            className={styles.fileIcon}
-          />
+          <FileOutlined className={styles.fileIcon} />
           {fileDetails.filename}
         </a>
       </div>
       <div className={styles.removeFileButton}>
         <a onClick={removeFile}>
-          <Icon
-            type="delete"
-            className={styles.deleteIcon}
-          />
+          <DeleteOutlined className={styles.deleteIcon} />
         </a>
       </div>
     </div>
