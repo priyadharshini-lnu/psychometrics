@@ -79,7 +79,7 @@ const FIELDS = [
         name: 'DataSheet',
         type: 'dropdown',
         items: ({ datasheetFields }) => datasheetFields.map(f => ({ key: f, value: f })),
-        getValue: ({ value }) => `{{e://Field/${value}}`,
+        getValue: ({ value }) => `{{e://Meta/${value}}}`,
       },
     ],
   },
@@ -124,7 +124,7 @@ const FIELDS = [
         name: 'DataSheet',
         type: 'dropdown',
         items: ({ datasheetFields }) => datasheetFields.map(f => ({ key: f, value: f })),
-        getValue: ({ value }) => `{{s://Field/${value}}}`,
+        getValue: ({ value }) => `{{s://Meta/${value}}}`,
       },
       {
         name: 'Relationship',
