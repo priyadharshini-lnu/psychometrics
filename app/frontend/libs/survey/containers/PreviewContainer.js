@@ -22,7 +22,6 @@ class PreviewContainer extends Component {
     if (locales) {
       I18nStore.locales = JSON.parse(locales)
     }
-    const dbResult = result || null
 
     rstore.dispatch({
       type: INIT,
@@ -34,7 +33,7 @@ class PreviewContainer extends Component {
         isThreesixty: isThreesixty === 'true',
         dashboardUrl,
       },
-      result: {},
+      result: result ? JSON.parse(result) : {},
     })
     Watchman.set(rstore)
     this.forceUpdate()
