@@ -3,7 +3,8 @@ import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
-  ADD_NORM_RULE, REMOVE_NORM_RULE,
+  ADD_NORM_RULE, REMOVE_NORM_RULE, TOGGLE_ENABLE_BACK,
+  TOGGLE_ENABLE_PROGRESS,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -103,6 +104,8 @@ const HANDLERS = {
     _.remove(rules, rule)
     return setIn(state, ['norm_rules'], rules)
   },
+  [TOGGLE_ENABLE_BACK]: state => setIn(state, ['enable_back'], !state.enable_back),
+  [TOGGLE_ENABLE_PROGRESS]: state => setIn(state, ['enable_progress'], !state.enable_progress),
   [FAKE_UPDATE]: state => ({ ...state, timestamp: new Date() }),
 
 }

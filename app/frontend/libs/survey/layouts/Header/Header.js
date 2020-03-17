@@ -70,18 +70,8 @@ export class Header extends Component {
     AppStore.save(builder, trash, flow)
   }
 
-  toggleEnableBack = () => {
-    AppStore.assessment.toggleEnableBack()
-    this.forceUpdate()
-  }
-
-  toggleEnableProgress = () => {
-    AppStore.assessment.toggleEnableProgress()
-    this.forceUpdate()
-  }
-
   render () {
-    const { assessment } = this.props
+    const { assessment, toggleEnableBack, toggleEnableProgress } = this.props
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
@@ -157,11 +147,11 @@ export class Header extends Component {
                   Export Scoring
                 </a>
               </li>
-              <MenuItem onSelect={this.toggleEnableBack}>
-                {_.result(AppStore.assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
+              <MenuItem onSelect={toggleEnableBack}>
+                {_.result(assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
               </MenuItem>
-              <MenuItem onSelect={this.toggleEnableProgress}>
-                {_.result(AppStore.assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
+              <MenuItem onSelect={toggleEnableProgress}>
+                {_.result(assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
               </MenuItem>
             </DropdownButton>
             <form
