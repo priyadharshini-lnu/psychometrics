@@ -4,4 +4,5 @@ export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign',
 export const getSubjectOption = state => _.get(getParticipantOption(state), ['subject'])
 export const getManagerOption = state => _.get(getParticipantOption(state), ['manager'])
 export const getEvaluatorOption = state => _.get(getParticipantOption(state), ['evaluator'])
+export const getGlobalOption = state => _.get(getParticipantOption(state), ['global'])
 export const getRelationships = state => _.get(getParticipantOption(state), ['relationships'])
