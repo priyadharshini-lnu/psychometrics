@@ -8,6 +8,8 @@ export const MOVE_BLOCK_DOWN = 'survey/assessment/MOVE_BLOCK_DOWN'
 export const MOVE_BLOCK_UP = 'survey/assessment/MOVE_BLOCK_UP'
 export const ADD_NORM_RULE = 'survey/assessment/ADD_NORM_RULE'
 export const REMOVE_NORM_RULE = 'survey/assessment/REMOVE_NORM_RULE'
+export const TOGGLE_ENABLE_BACK = 'survey/assessment/TOGGLE_ENABLE_BACK'
+export const TOGGLE_ENABLE_PROGRESS = 'survey/assessment/TOGGLE_ENABLE_PROGRESS'
 
 export const FAKE_UPDATE = 'survey/assessment/FAKE_UPDATE'
 
@@ -21,3 +23,6 @@ export const moveBlockUp = block => ({ type: MOVE_BLOCK_UP, block })
 
 export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
 export const removeNormRule = rule => ({ type: REMOVE_NORM_RULE, rule })
+
+export const toggleEnableBack = () => ({ type: TOGGLE_ENABLE_BACK })
+export const toggleEnableProgress = () => ({ type: TOGGLE_ENABLE_PROGRESS })
