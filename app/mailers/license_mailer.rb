@@ -20,4 +20,14 @@ class LicenseMailer < ApplicationMailer
       template_path: '/mailer/license'
     )
   end
+
+  def weekly_stats(user_id)
+    @resource = User.find(user_id)
+    @stats = Licenses::WeeklyStatsJob.new.send(:get_stats)
+    mail(
+      to: @resource.email,
+      subject: I18n.t('administration.clients.licenses.mailer.weekly_stats.subject'),
+      template_path: '/mailer/license'
+    )
+  end
 end

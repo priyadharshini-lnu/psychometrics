@@ -1,0 +1,37 @@
+p Weekly License Stats :
+br
+- if @stats[:used_licenses]
+  table border="1"
+    tr
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.client_name')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.expiry_date')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.type')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.use_count')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.overuse_count')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.remaining_count')
+    - @stats[:used_licenses].each do |used_license|
+      tr
+        td = used_license[:client_name]
+        td = used_license[:license_end_date]
+        td = used_license[:type]
+        td = used_license[:use_count]
+        td = used_license[:overuse_count]
+        td = used_license[:remaining_count]
+br
+p Lincenses expiring in the next 30 days :
+br
+- if @stats[:expiring_licenses]
+  table border="1"
+    tr
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.client_name')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.expiry_date')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.account_manager')
+      th = I18n.t('administration.clients.licenses.mailer.weekly_stats.column_headers.project_manager')
+    - @stats[:expiring_licenses].each do |expiring_license|
+      tr
+        td = expiring_license[:client_name]
+        td = expiring_license[:license_end_date]
+        td = expiring_license[:account_manager]
+        td = expiring_license[:project_manager]
+br
+p = I18n.t('administration.clients.licenses.mailer.weekly_stats.notice')

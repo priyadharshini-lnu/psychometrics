@@ -53,3 +53,15 @@ en:
             subject: License expired
           license_overuse:
             subject: License overuse
+          weekly_stats:
+            subject: Weekly license usage stats
+            column_headers:
+              client_name: Client Name
+              expiry_date: Expiry date
+              type: License type
+              use_count: Use count
+              overuse_count: Overuse Count
+              remaining_count: Remaining Count
+              account_manager: Account Manager
+              project_manager: Project Manager
+            notice: Note - You can unsubscribe to this weekly email from your profile page.
