@@ -19,6 +19,11 @@ function EvaluationList ({
   const [showHelp, setShowHelp] = useState(false)
   const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
   const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
+  const canNotEvaluate = (item) => {
+    if (item.subjectEvaluationClosed) { return true }
+
+    return options.global.canNotEditEvaluation && isEvaluationCompleted(item)
+  }
 
   const menu = item => (
     <Menu>
@@ -68,7 +73,7 @@ function EvaluationList ({
         <Link
           to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
           style={{ display: 'flex', flex: 1 }}
-          disabled={item.subjectEvaluationClosed}
+          disabled={canNotEvaluate(item)}
         >
           <Tooltip placement="topLeft" title={item.subject.email}>
             <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>

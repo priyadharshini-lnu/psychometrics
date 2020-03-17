@@ -2,11 +2,19 @@
 
 class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
   def show?
-    manage? && !@record.threesixty_subject.evaluation_status_completed?
+    return false unless manage? && !@record.threesixty_subject.evaluation_status_completed?
+
+    option = @record.campaign.threesixty_option.participants
+    puts option
+    return true unless option.dig('global', 'can_not_edit_evaluation')
+
+    !@record.result&.completed?
   end
 
   def edit?
     return false if @current_user.is_anonym? || @record.campaign.closed?
+
+    return false unless show?
 
     @record.evaluator_id == @current_user.id
   end

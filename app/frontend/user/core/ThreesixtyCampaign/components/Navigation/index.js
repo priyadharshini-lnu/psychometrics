@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom'
 import {
   Layout, Menu, Icon, Dropdown, Modal,
 } from 'antd'
-import './styles.scss'
+import styles from './styles.scss'
 import connect from './connect'
 import EditProfileModal from '../EditProfileModal'
 
@@ -56,7 +56,7 @@ function Navigation ({
                 className="align-right"
                 title={(
                   <span className="submenu-title-wrapper">
-                    <Icon type="user" />
+                    <Icon type="menu" className={styles.userIcon} />
                   </span>
                 )}
               >

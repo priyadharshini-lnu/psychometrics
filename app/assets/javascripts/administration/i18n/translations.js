@@ -5876,6 +5876,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "no_access_message": "You do not have access to this page",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -6334,6 +6335,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -12330,6 +12336,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "no_access_message": "You do not have access to this page",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -12791,6 +12798,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -18783,6 +18795,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "no_access_message": "You do not have access to this page",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -19241,6 +19254,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
