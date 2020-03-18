@@ -17,6 +17,7 @@ en:
     each_group_contains: 'Each group needs to contain not less than %{min} and not more than %{max} items'
     please_answer_question: 'Please answer this question'
     please_record_and_save_video_first: 'Please record and save the video before you continue'
+    please_record_and_save_audio_first: 'Please record and save the audio before you continue'
     file_upload:
       required: 'Please upload the file'
       EntityTooLarge: 'File size should be less than %{maxFileSize} MB'

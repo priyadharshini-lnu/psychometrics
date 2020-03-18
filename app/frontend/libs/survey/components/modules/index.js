@@ -15,6 +15,7 @@ import HotSpot, { HotSpotProperties } from './HotSpot'
 import GraphicSlider, { GraphicSliderProperties } from './GraphicSlider'
 import VideoResponse, { VideoResponseProperties } from './VideoResponse'
 import FileUpload, { FileUploadProperties } from './FileUpload'
+import AudioResponse, { AudioResponseProperties } from './AudioResponse'
 import Previews from './Previews'
 
 const Modules = {
@@ -35,6 +36,7 @@ const Modules = {
   GraphicSlider,
   VideoResponse,
   FileUpload,
+  AudioResponse,
 }
 
 const Scorings = {
@@ -63,6 +65,7 @@ const Properties = {
   GraphicSliderProperties,
   VideoResponseProperties,
   FileUploadProperties,
+  AudioResponseProperties,
 }
 export {
   Modules, Previews, Properties, Scorings,

@@ -196,6 +196,11 @@ const DefaultProps = {
     maxFileSize: 1,
     allowedFileTypes: ['pdf'],
   },
+
+  AudioResponse: {
+    questionText: 'Click to write the question text',
+    duration: 10,
+  },
 }
 
 export default DefaultProps

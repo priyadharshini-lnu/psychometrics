@@ -19,6 +19,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -410,6 +414,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -436,6 +441,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -830,6 +839,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
     "number": "يجب أن تحتوي الإجابة على أرقام",
     "please_answer_question": "الرجاء الإجابة على هذا السؤال",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
@@ -856,6 +866,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -1247,6 +1261,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
