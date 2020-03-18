@@ -13,6 +13,7 @@ const LookupValue = {
     return value
   },
   actualValue (externalScoring, sourceType, factor) {
+    if (!externalScoring) return null
     return externalScoring[factor] || _.get(externalScoring, [sourceType, factor])
   },
   getValueOrNaN (externalScoring, sourceType, factor, type) {

@@ -5,15 +5,24 @@ namespace :users_results do
 
   task extend_scoring: :environment do
     puts 'Extend scoring of assigns'
-    Assign.completed.find_each do |assign|
+
+    assign_processed = 0
+    assign_count = Assign.completed.where.not(scoring: [nil, {}]).size
+    Assign.completed.where.not(scoring: [nil, {}]).find_each do |assign|
+      assign_processed += 1
       assign.scoring = ::UsersResults::Scoring::Extend.call!(assign.scoring, assign.norm_data)
       assign.save!(validate: false)
+      puts "Processed #{assign_processed} assigns out of #{assign_count}" if (assign_processed % 100).zero?
     end
 
+    results_processed = 0
+    result_count = UsersResult.completed.where.not(scoring: [nil, {}]).size
     puts 'Extend scoring of users_results'
-    UsersResult.completed.find_each do |result|
+    UsersResult.completed.where.not(scoring: [nil, {}]).find_each do |result|
+      results_processed += 1
       result.scoring = ::UsersResults::Scoring::Extend.call!(result.scoring, {})
       result.save!(validate: false)
+      puts "Processed #{results_processed} users_results out of #{result_count}" if (results_processed % 100).zero?
     end
   end
 end
