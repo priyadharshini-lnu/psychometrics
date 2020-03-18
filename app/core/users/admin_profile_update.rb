@@ -21,7 +21,7 @@ module Users
 
     def add_weekly_license_stats(params)
       params.merge!(
-        personal_settings: { weekly_license_stats: params[:weekly_license_stats] }
+        settings: { weekly_license_stats: params[:weekly_license_stats] }
       ).delete(:weekly_license_stats)
       params
     end

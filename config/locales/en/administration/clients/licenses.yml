@@ -48,20 +48,25 @@ en:
               title: <strong>%{status}</strong> License for %{name}?
               body: >
                 <p>Are you sure you want to %{status} this License?</p>
-        mailer:
-          license_expire:
-            subject: License expired
-          license_overuse:
-            subject: License overuse
-          weekly_stats:
-            subject: Weekly license usage stats
-            column_headers:
-              client_name: Client Name
-              expiry_date: Expiry date
-              type: License type
-              use_count: Use count
-              overuse_count: Overuse Count
-              remaining_count: Remaining Count
-              account_manager: Account Manager
-              project_manager: Project Manager
-            notice: Note - You can unsubscribe to this weekly email from your profile page.
+  mailer:
+    license:
+      expire:
+        subject: License expired
+      overuse:
+        subject: License overuse
+      weekly_stats:
+        subject: Weekly license usage stats
+        weekly_stats: "Past week license usage stats :"
+        no_weekly_stats: No licenses consumed in the last 7 days.
+        expiry_stats: "Licenses expiring in the next 30 days :"
+        no_expiry_stats: No lincenses expiring in the next 30 days.
+        notice: Note - You can unsubscribe to this weekly email from your profile page.
+        column_headers:
+          client_name: Client Name
+          expiry_date: Expiry date
+          type: License type
+          use_count: Use count
+          overuse_count: Overuse Count
+          remaining_count: Remaining Count
+          account_manager: Account Manager
+          project_manager: Project Manager

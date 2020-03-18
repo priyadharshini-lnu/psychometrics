@@ -14,7 +14,7 @@ module Users
     validates :password, strong_password: true
 
     def map_model(model)
-      self.weekly_license_stats = model.personal_settings['weekly_license_stats']
+      self.weekly_license_stats = model.settings['weekly_license_stats']
     end
   end
 end
