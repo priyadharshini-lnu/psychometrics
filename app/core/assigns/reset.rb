@@ -31,7 +31,9 @@ module Assigns
         started_at: nil,
         norm_data: {},
         agile_scoring: {},
-        occupations: []
+        occupations: [],
+        expiry_date: nil,
+        last_activity_at: nil
       )
     end
 
