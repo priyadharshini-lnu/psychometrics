@@ -3,6 +3,7 @@ import styles from './Options.scss'
 import SubjectSection from './SubjectSection'
 import ManagerSection from './ManagerSection'
 import EvaluatorSection from './EvaluatorSection'
+import GlobalSection from './GlobalSection'
 
 function Options ({
   fetchParticipantOptions,
@@ -16,6 +17,8 @@ function Options ({
 
   return (
     <div className={styles.container}>
+      <GlobalSection />
+
       <EvaluatorSection />
 
       <ManagerSection />

@@ -17,7 +17,7 @@ module Users
     end
 
     def after_sign_in_path_for(resource)
-      resource.memberships.join_user.find_by(client_id: @current_project).set_user_invited_for_current_project
+      resource.memberships.join_user.find_by(client_id: @current_project)&.set_user_invited_for_current_project
       '/'
     end
   end

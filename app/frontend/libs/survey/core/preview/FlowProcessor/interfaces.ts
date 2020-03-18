@@ -88,6 +88,7 @@ export interface DefaultState{
   mediaUrl: string | null
   dataSheetColumns: {[key: string]: {}}[]
   dataSheet: {[key: string]: {}}[]
+  subjectDataSheet: { [key: string]: {} }[]
   relationships: []
   relationship: string | null
 }

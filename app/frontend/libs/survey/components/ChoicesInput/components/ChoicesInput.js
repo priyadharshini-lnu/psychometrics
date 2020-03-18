@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styles from './ChoicesInput.scss'
 
 const MIN_VALUE = 0
-const MAX_VALUE = 300
+const MAX_VALUE = 500
 class ChoicesInput extends Component {
   static propTypes = {
     model: PropTypes.object,

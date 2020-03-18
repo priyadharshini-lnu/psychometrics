@@ -2600,6 +2600,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -3120,6 +3123,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -3393,8 +3399,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -3402,7 +3411,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -3412,8 +3422,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -3447,8 +3460,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -3459,6 +3475,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -3476,6 +3501,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -3729,8 +3755,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -3738,7 +3767,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -3749,6 +3779,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -3783,8 +3815,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -3795,6 +3830,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -3812,6 +3856,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -4385,6 +4430,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
+        }
+      },
+      "reports": {
+        "show": {
+          "title": "Subject Report"
         }
       }
     },
@@ -5005,6 +5055,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -5100,6 +5151,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -5384,7 +5437,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' generated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -6344,6 +6397,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -6392,6 +6450,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -9066,6 +9127,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -9586,6 +9650,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -9859,8 +9926,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -9868,7 +9938,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -9878,8 +9949,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -9913,8 +9987,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -9925,6 +10002,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -9942,6 +10028,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -10195,8 +10282,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -10204,7 +10294,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -10215,6 +10306,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -10249,8 +10342,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -10261,6 +10357,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -10278,6 +10383,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -10851,6 +10957,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
+        }
+      },
+      "reports": {
+        "show": {
+          "title": "Subject Report"
         }
       }
     },
@@ -11471,6 +11582,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -11566,6 +11678,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -11854,7 +11968,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -12817,6 +12931,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -12865,6 +12984,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -15539,6 +15661,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -16059,6 +16184,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -16332,8 +16460,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -16341,7 +16472,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -16351,8 +16483,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -16386,8 +16521,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -16398,6 +16536,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -16415,6 +16562,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -16668,8 +16816,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -16677,7 +16828,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -16688,6 +16840,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -16722,8 +16876,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -16734,6 +16891,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -16751,6 +16917,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -17324,6 +17491,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "welcome_message": {
           "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
           "name": "Welcome Message"
+        }
+      },
+      "reports": {
+        "show": {
+          "title": "Subject Report"
         }
       }
     },
@@ -17944,6 +18116,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -18039,6 +18212,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -18323,7 +18498,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -19283,6 +19458,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -19331,6 +19511,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",

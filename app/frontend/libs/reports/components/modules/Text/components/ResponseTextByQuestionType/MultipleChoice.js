@@ -14,12 +14,19 @@ export default class MultipleChoice extends Component {
   getValues () {
     const { result, question } = this.props
     // TODO (atanych): implement convenient engine to preset default values for preview
+
     if (!result) {
       return question.props.choicesTexts.map((_, i) => I18nStore.tQuestion(
         question, `choicesTexts${i + 1}`, { choice: i },
       ))
     }
-    return result.filter(r => r.value !== undefined).map(
+
+    let results = result.filter(r => r.value !== undefined)
+    if (question.type === 'RankOrder') {
+      results = _.sortBy(results, r => parseInt(r.value, 10))
+    }
+
+    return results.map(
       r => I18nStore.tQuestion(question, `choicesTexts${r.index + 1}`, { choice: r.index }),
     )
   }

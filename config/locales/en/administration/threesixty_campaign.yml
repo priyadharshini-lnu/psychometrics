@@ -1,5 +1,9 @@
 en:
   administration:
+    threesixty_campaigns:
+      reports:
+        show:
+          title: Title
     clients:
       threesixty_campaigns:
         create:

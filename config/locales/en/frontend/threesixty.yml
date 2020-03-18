@@ -123,4 +123,6 @@ en:
     closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.
     timer:
       notification: "You have %{minutes} minutes and %{seconds} seconds to complete"
-
+    options:
+      global:
+        cannot_re_edit: Participants cannot edit evaluations

@@ -69,6 +69,10 @@ module Exports
         end
         [result_details_header, question_name_header, question_text_header, question_choice_header]
       end
+
+      def user_name(first_name, last_name)
+        [first_name, last_name].reject(&:blank?).join(', ')
+      end
     end
   end
 end

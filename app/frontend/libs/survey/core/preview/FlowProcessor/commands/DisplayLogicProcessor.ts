@@ -7,16 +7,17 @@ interface Context {
   questions?: QuestionsInterface
   results?: ResultsInterface
   dataSheet?: []
+  subjectDataSheet?: []
   relationship?: string
 }
 
 const DisplayLogicProcessor = {
   run (logic: LogicInterface, {
-    questions = {}, results = {}, dataSheet = [], relationship,
+    questions = {}, results = {}, dataSheet = [], subjectDataSheet = [], relationship,
   }: Context): boolean {
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
     const resolver = new LogicResolver(logic, {
-      questions: qwraps, results, dataSheet, relationship,
+      questions: qwraps, results, dataSheet, subjectDataSheet, relationship,
     })
     return resolver.resolve()
   },

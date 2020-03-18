@@ -42,6 +42,7 @@ const defaultState: DefaultState = {
   mediaUrl: null,
   dataSheetColumns: [],
   dataSheet: [],
+  subjectDataSheet: [],
   relationships: [],
   relationship: null,
 }
@@ -86,6 +87,7 @@ const HANDLERS = {
       currentPage: result.current_page || 0,
       randomseed: result.id || '', // use assign or user id
       dataSheet: result.data_sheet,
+      subjectDataSheet: result.subject_datasheet,
       dbResult: result,
       results: result.results || result.answers || {},
       expiryDate: result.expiry_date,

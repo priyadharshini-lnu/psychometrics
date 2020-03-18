@@ -5,9 +5,9 @@ import {
   Layout, Menu, Dropdown, Modal,
 } from 'antd'
 import {
-  HomeOutlined, MenuOutlined, GlobalOutlined, QuestionCircleOutlined, UserOutlined,
+  HomeOutlined, MenuOutlined, GlobalOutlined, QuestionCircleOutlined,
 } from '@ant-design/icons'
-import './styles.scss'
+import styles from './styles.scss'
 import connect from './connect'
 import EditProfileModal from '../EditProfileModal'
 
@@ -59,7 +59,7 @@ function Navigation ({
                 className="align-right"
                 title={(
                   <span className="submenu-title-wrapper">
-                    <UserOutlined />
+                    <MenuOutlined className={styles.userIcon} />
                   </span>
                 )}
               >

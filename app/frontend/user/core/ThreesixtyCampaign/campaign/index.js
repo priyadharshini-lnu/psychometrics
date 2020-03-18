@@ -38,6 +38,7 @@ export const defaultState = {
       manager: {},
       subject: {},
       evaluator: {},
+      global: {},
     },
     reports: { approval: {} },
   },

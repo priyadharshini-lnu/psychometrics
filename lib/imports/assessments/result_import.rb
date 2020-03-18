@@ -153,7 +153,7 @@ module Imports
       private
 
       def find_or_create_user(data, index)
-        last_name, first_name = data['name']&.split(', ')
+        first_name, last_name = data['name']&.split(', ')
         # TODO: Remove password and uncommit Invite
         user = User.
                create_with(

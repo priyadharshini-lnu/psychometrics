@@ -26,29 +26,26 @@
 
 .label {
   color: #084654;
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 1em;
+  line-height: 1.2empx;
   font-weight: bold;
   padding: 0 5px 5px 0;
   text-transform: capitalize;
 
   &.competencyLabel {
     vertical-align: top;
-    padding: 15px;
-  }
-  &.factorLabel, &.questionLabel {
-    padding: 15px 15px 15px 0;
+    padding: 1.25em;
   }
   &.competencyLabel,
   &.factorLabel,
   &.questionLabel {
     letter-spacing: 0;
-    font-size: 18px;
+    font-size: 1em;
     font-weight: normal;
     text-transform: uppercase;
   }
   &.milestoneLabel {
-    border-bottom: 2px solid #ccc;
+    border-bottom: 3px solid #ccc;
 
     &:last-child {
       border-right: none;
@@ -58,18 +55,18 @@
 
 .factor {
   font-weight: bold;
-  padding: 5px 15px;
+  padding: 1em 1.25em 0 1.25em;
   font-size: 90%;
 
   img {
-    max-width: 36px;
+    max-width: 2em;
     height: auto;
   }
 }
 
 .description {
   font-size: 80%;
-  padding: 5px 15px;
+  padding: 1em 1.25em;
   color: black;
 }
 
@@ -91,13 +88,23 @@
 }
 
 body:not([data-locale="ar"]) {
+  .label {
+    &.factorLabel, &.questionLabel {
+      padding: 1.25em 1.25em 1.25em 0;
+    }
+  }
   .legendItemName {
-    margin: 0 15px 0 5px;
+    margin: 0 1em 0 0.3em;
   }
 }
 
 body[data-locale="ar"] {
+  .label {
+    &.factorLabel, &.questionLabel {
+      padding: 1.25em 0 1.25em 1.25em;
+    }
+  }
   .legendItemName {
-    margin: 0 15px 0 5px;
+    margin: 0 0.3em 0 1em;
   }
 }

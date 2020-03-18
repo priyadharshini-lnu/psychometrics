@@ -3,13 +3,20 @@
 module Threesixty
   module Options
     class ParticipantOptionForm < Rectify::Form
+      attribute :global, Hash
       attribute :subject, Hash
       attribute :manager, Hash
       attribute :evaluator, Hash
 
+      validate :validate_global_fields
       validate :validate_subject_fields
       validate :validate_manager_fields
       validate :validate_evaluator_fields
+
+      def validate_global_fields
+        form = GlobalOptionForm.new(global).with_context(context)
+        add_errors_from_nested(:global, form)
+      end
 
       def validate_subject_fields
         form = SubjectOptionForm.new(subject).with_context(context)

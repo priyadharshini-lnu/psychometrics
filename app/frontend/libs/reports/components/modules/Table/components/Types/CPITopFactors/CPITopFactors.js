@@ -3,6 +3,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import cs from 'classnames'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
 import { renderMarkdown } from 'rb/utils/Markdown'
@@ -126,18 +127,13 @@ class ResponseSummary extends Component {
     module: PropTypes.object.isRequired,
   }
 
-  getColorByScoring (score) {
-    if (score === 1 || score === 2) { return 'blue' }
-    if (score === 3) { return 'orange' }
-    if (score === 4 || score === 5) { return 'green' }
-  }
-
-  getTextByScoring (score) {
-    if (score === 1) { return I18nStore.t('reports.modules.common.rare') }
-    if (score === 2) { return I18nStore.t('reports.modules.common.less_typical') }
-    if (score === 3) { return I18nStore.t('reports.modules.common.moderate') }
-    if (score === 4) { return I18nStore.t('reports.modules.common.more_typical') }
-    if (score === 5) { return I18nStore.t('reports.modules.common.almost_always') }
+  getMockData (size) {
+    const data = []
+    while (data.length < size && size > 0) {
+      const items = _.take(MockData, size - data.length)
+      data.push(...items)
+    }
+    return data
   }
 
   prepareRows () {
@@ -149,82 +145,100 @@ class ResponseSummary extends Component {
       }
       this.topData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds)
     } else {
-      this.topData = _.take(MockData, props.maxPosition - props.minPosition + 1)
+      this.topData = this.getMockData(props.maxPosition - props.minPosition + 1)
     }
     if (props.reverseOrder) {
       this.topData.reverse()
     }
   }
 
-  renderFactor (factor, conditionText) {
+  renderFactors () {
+    const { model, module } = this.props
+
     return (
-      <div className={styles.factor}>
-        <div className={[styles.scoreIcon, styles[`scoreIcon${factor.meanNormScore}`]].join(' ')}>{factor.meanNormScore}</div>
-        <div className={styles.factorName}>{I18nStore.tFactor(factor, 'alias')}</div>
-        <div className={styles.factorDescription}>{conditionText || I18nStore.tFactor(factor, 'description')}</div>
-      </div>
+      this.topData.map((factor, i) => {
+        const conditions = _.filter(module.textConditions, { factorId: factor.id })
+        let conditionText = null
+        let conditionStrengths = null
+        let conditionBlindspots = null
+        if (ResultStore.realResults) {
+          for (let i = 0; i < conditions.length; i += 1) {
+            conditionText = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+              _.indexOf(module.textConditions, conditions[i]), 'text')
+            conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+              _.indexOf(module.textConditions, conditions[i]), 'strengths')
+            conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
+              _.indexOf(module.textConditions, conditions[i]), 'blindspots')
+            if (conditionText) { break }
+          }
+        } else {
+          conditionText = factor.description
+          conditionStrengths = factor.strengths
+          conditionBlindspots = factor.blindspots
+        }
+
+        const {
+          tableStyle, minPosition, maxPosition, reverseOrder, source: { factors },
+        } = model.props
+        const listStyle = tableStyle === 'compact' ? styles.defaultLists : styles.styledLists
+        const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
+        return (
+          <tr key={i}>
+            {model.props.showRankOrder && (
+              <td className={styles.rankOrder}>
+                <span className={tableStyle !== 'compact' ? styles.rankAvatar : ''}>
+                  <span className={styles.rankText}>{startRank + i}</span>
+                </span>
+              </td>
+            )}
+            <td className={styles.strength}>{I18nStore.tFactor(factor, 'alias')}</td>
+            {model.props.showDescription && <td className={styles.description}>{conditionText}</td>}
+            {model.props.showStrengthsBlindspots && (
+              <td className={cs(styles.strengthsBlindspots, listStyle)}>
+                <div className={styles.strengths} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }} />
+                <div className={styles.blindspots} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }} />
+              </td>
+            )}
+            {model.props.showScore && <td className={styles.score}>{factor.meanNormScore}</td>}
+          </tr>
+        )
+      })
+    )
+  }
+
+  renderHeader (headerShown) {
+    if (!headerShown) {
+      return null
+    }
+
+    const { module, model } = this.props
+    return (
+      <thead>
+        <tr>
+          {model.props.showRankOrder && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
+          <th scope="col">{I18nStore.tModule(module, 'strength') || 'Strength'}</th>
+          {model.props.showDescription && <th scope="col">{I18nStore.tModule(module, 'description') || 'Description'}</th>}
+          {model.props.showStrengthsBlindspots && <th scope="col">{I18nStore.tModule(module, 'strengthsBlindspots') || 'Strengths & Blindspots'}</th>}
+          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
+        </tr>
+      </thead>
     )
   }
 
   render () {
-    const { module } = this.props
-    const { fontSize, fontFamily, width } = module.props.style
+    const { module, model } = this.props
+    const { fontSize, fontFamily } = module.props.style
     const style = {
       fontSize,
       fontFamily,
-      width,
     }
     this.prepareRows()
     return (
-      <table className={styles.table} style={style}>
-        {_.map(this.topData, (factor, i) => {
-          const conditions = _.filter(module.textConditions, { factorId: factor.id })
-          let conditionText = null
-          let conditionStrengths = null
-          let conditionBlindspots = null
-          let conditionWorkstyles = null
-          if (ResultStore.realResults) {
-            for (let i = 0; i < conditions.length; i += 1) {
-              conditionText = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
-                _.indexOf(module.textConditions, conditions[i]), 'text')
-              conditionStrengths = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
-                _.indexOf(module.textConditions, conditions[i]), 'strengths')
-              conditionBlindspots = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
-                _.indexOf(module.textConditions, conditions[i]), 'blindspots')
-              conditionWorkstyles = _.invoke(conditions[i], 'getTextByCondition', factor.meanNormScore,
-                _.indexOf(module.textConditions, conditions[i]), 'workstyles')
-              if (conditionText) { break }
-            }
-          } else {
-            conditionText = factor.description
-            conditionStrengths = factor.strengths
-            conditionBlindspots = factor.blindspots
-            conditionWorkstyles = factor.workstyles
-          }
-          return (
-            <tbody key={i}>
-              <tr>
-                <td colSpan="3">
-                  {this.renderFactor(factor, conditionText)}
-                </td>
-              </tr>
-              <tr className={styles.tr}>
-                <td style={{ width: '33%' }} className={styles.text}>
-                  <strong>{I18nStore.tModule(module, 'strengths') || 'Strengths'}</strong>
-                  <div dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }} />
-                </td>
-                <td style={{ width: '33%' }} className={styles.text}>
-                  <strong>{I18nStore.tModule(module, 'blindspots') || 'Blindspots'}</strong>
-                  <div dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }} />
-                </td>
-                <td style={{ width: '33%' }} className={styles.text}>
-                  <strong>{I18nStore.tModule(module, 'workstyles') || 'Workstyles'}</strong>
-                  <div dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionWorkstyles) }} />
-                </td>
-              </tr>
-            </tbody>
-          )
-        })}
+      <table className={cs(styles.table, styles[model.props.tableStyle])} style={style}>
+        {this.renderHeader(model.props.showHeader)}
+        <tbody>
+          {this.renderFactors()}
+        </tbody>
       </table>
     )
   }

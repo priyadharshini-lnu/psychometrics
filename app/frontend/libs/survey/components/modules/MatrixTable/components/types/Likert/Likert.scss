@@ -14,6 +14,7 @@
 
 .scalePointItem{
   font-size: 80%;
+  padding: 0px 6px;
 }
 
 .item {
@@ -101,5 +102,5 @@
 :global(.ltr) {
   .item {
     padding-right: 8px;
-  }  
+  }
 }

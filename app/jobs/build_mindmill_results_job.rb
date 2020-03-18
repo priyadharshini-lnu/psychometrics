@@ -2,7 +2,7 @@
 
 # TODO: (atanych): This job looks like temp hack until MM support answers us
 class BuildMindmillResultsJob < ApplicationJob
-  queue_as :default
+  queue_as :external_results
 
   def perform(assign, current_membership, user_locale)
     return if assign.mindmill_report && assign.external_results
