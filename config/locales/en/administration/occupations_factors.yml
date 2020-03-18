@@ -6,12 +6,22 @@ en:
         tooltips:
           create: Create
         new: Add
+      list:
+        id: Id
+        name: Name
+        condition: Condition
+        position: Position
+        weight: Weight
+        created_at: Created date
+        updated_at: Modified date
       new:
         header: 'Attach Factors'
       edit:
         header: 'Edit Factor'
+      create:
+        successfully: 'Factor %{name} was successfully created.'
       destroy:
-        successfully: 'Factor #%{name} was successfully detached.'
+        successfully: 'Factor %{name} was successfully detached.'
       copy:
         error: 'Factor #%{id} was not copied.'
       toggle_status:
@@ -22,7 +32,7 @@ en:
         enable: Enable
         edit: Edit
         new: Attach Factor
-
+        destroy: Destroy Factor
       resource:
         tooltips:
           edit: Edit Factor

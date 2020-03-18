@@ -16,12 +16,15 @@ en:
       edit:
         header: 'Edit occupation'
       destroy:
-        successfully: 'Occupation #%{name} was successfully deleted.'
+        successfully: 'Occupation %{name} was successfully deleted.'
       copy:
         error: 'Occupation #%{id} was not copied.'
       toggle_status:
         successfully: 'Occupation was successfully updated.'
+      create:
+        successfully: 'Occupation %{name} was successfully created.'
       form:
+        no_icon: No icon
         hint:
           key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
       sidebar:
@@ -31,7 +34,6 @@ en:
         edit: Edit
         new: New Occupation
         copy: Copy Occupation
-
       resource:
         tooltips:
           copy: Copy Occupation

@@ -113,6 +113,8 @@ en:
     error_500: Something went wrong. Contact your administrator.
     try_again: Please try again
     invalid_token: Something went wrong. Plese reload the page and try again.
+    forbidden: You do not have access to this page
+    forbidden_action: You do not have permissions to this action
   my: "My"
   myself: "Myself"
   your: "Your"

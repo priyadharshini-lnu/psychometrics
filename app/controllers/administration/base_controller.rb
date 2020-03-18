@@ -14,7 +14,7 @@ module Administration
     private
 
     def user_not_authorized
-      render plain: 'You does not have access to this page', status: 403
+      render plain: I18n.t('errors.forbidden'), status: 403
     end
 
     def authenticate_user!
