@@ -333,6 +333,7 @@ Object {
     "relationships": undefined,
     "results": Object {},
     "resultsUrl": undefined,
+    "subjectDataSheet": undefined,
     "timerDuration": undefined,
     "type": "preview_assessment",
   },
@@ -412,6 +413,7 @@ Object {
     "relationship": null,
     "relationships": Array [],
     "results": Object {},
+    "subjectDataSheet": Array [],
     "type": "preview_assessment",
   },
   "survey": Object {
