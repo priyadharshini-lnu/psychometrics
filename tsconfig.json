@@ -25,7 +25,11 @@
         "app/frontend/*",
         "app/frontend/libs/survey*"
       ]
-    }
+    },
+    "typeRoots": [
+      "app/frontend/type_definitions",
+      "./node_modules/@types"
+    ]
   },
   "exclude": [
     "**/*.spec.ts",

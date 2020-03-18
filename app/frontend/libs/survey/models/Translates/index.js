@@ -13,6 +13,7 @@ import Slider from './Slider'
 import TextEntry from './TextEntry'
 import VideoResponse from './VideoResponse'
 import FileUpload from './FileUpload'
+import AudioResponse from './AudioResponse'
 
 export default {
   MultipleChoice,
@@ -30,4 +31,5 @@ export default {
   TextEntry,
   VideoResponse,
   FileUpload,
+  AudioResponse,
 }

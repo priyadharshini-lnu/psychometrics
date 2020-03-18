@@ -151,6 +151,10 @@ const DefaultAnswers = {
   FileUpload: {
     questionText: 'Please upload a file',
   },
+
+  AudioResponse: {
+    questionText: 'Click to write the question text',
+  },
 }
 
 export default DefaultAnswers

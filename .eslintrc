@@ -44,7 +44,7 @@
     "space-before-function-paren": ["error", "always"],
     "no-restricted-globals": 0,
     "class-methods-use-this": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", "tsx"] }],
     "import/no-extraneous-dependencies": 0,
     "jsx-a11y/anchor-is-valid": 0,
     "jsx-a11y/click-events-have-key-events": 0,
@@ -68,7 +68,8 @@
     "import/prefer-default-export": 0,
     "func-names": 0,
     "no-use-before-define": 0,
-    "no-template-curly-in-string": 0
+    "no-template-curly-in-string": 0,
+    "jsx-a11y/media-has-caption": 0
   },
   "overrides": [
     {

@@ -11,7 +11,11 @@ class MediaResponseUploader < CarrierWave::Uploader::Base
   end
 
   def extension_whitelist
-    question.props['allowedFileTypes'] || %w[mp4]
+    return question.props['allowedFileTypes'] if question.props['allowedFileTypes']
+
+    return %w[mp4] if question.type == 'VideoResponse'
+
+    return %w[wav] if question.type == 'AudioResponse'
   end
 
   def max_file_size

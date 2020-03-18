@@ -13,7 +13,7 @@ const FileUploader = {
 export default FileUploader
 
 const uploadFile = (data, context) => {
-  const { file, dispatch } = context
+  const { file, fileName, dispatch } = context
   const mediaId = data.media_id
   const fd = new FormData()
   if (data.env === 'prod') {
@@ -25,11 +25,11 @@ const uploadFile = (data, context) => {
     fd.append('x-amz-credential', data['x-amz-credential'])
     fd.append('x-amz-date', data['x-amz-date'])
     fd.append('x-amz-signature', data['x-amz-signature'])
-    fd.append('file', file, file.name)
+    fd.append('file', file, fileName || file.name)
   } else {
     fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
     fd.append('media_id', mediaId)
-    fd.append('asset', file, file.name)
+    fd.append('asset', file, fileName || file.name)
   }
 
   $.ajax({
