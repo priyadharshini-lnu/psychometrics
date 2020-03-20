@@ -626,7 +626,7 @@ Rails.application.routes.draw do
     resource :profiles, only: %i[update edit]
     patch 'users/update_details', to: 'users#update_details'
 
-    get 'survey_instructions', to: 'home#survey_instructions'
+    get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify'
     get 'assessment_completed', to: 'home#assessment_completed'
