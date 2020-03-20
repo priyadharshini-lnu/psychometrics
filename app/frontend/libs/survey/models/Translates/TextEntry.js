@@ -9,16 +9,36 @@ class TextEntry extends BaseTranslate {
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
+    if (['title', 'titleDescription', 'managerName'].includes(field)) {
+      return this.question.props[field]
+    }
+    if (/^messageText/.test(field)) {
+      return this.question.props.messageList.find(m => m.position === extraData.position).text
+    }
   }
 
   exportLocales () {
-    const result = {
+    let result = {
       questionText: this.question.props.questionText,
     }
-    _.times(this.question.props.choices, (i) => {
-      result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]
-    })
-    return result
+    if (this.question.props.type !== 'Chat') {
+      _.times(this.question.props.choices, (i) => {
+        result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]
+      })
+      return result
+    }
+
+    result = {
+      ...result,
+      title: this.question.props.title,
+      titleDescription: this.question.props.titleDescription,
+      managerName: this.question.props.managerName,
+    }
+
+    // eslint-disable-next-line arrow-body-style
+    return this.question.props.messageList.reduce((res, { position, text }) => {
+      return { ...res, [`messageText${position}`]: text }
+    }, result)
   }
 }
 

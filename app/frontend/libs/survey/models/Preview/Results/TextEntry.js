@@ -69,6 +69,9 @@ _.extend(TextEntry.prototype, {
   Form (index, value) {
     this.result.answers[index] = { index, value }
   },
+  Chat (answers) {
+    this.result.answers = answers
+  },
 })
 
 export default TextEntry

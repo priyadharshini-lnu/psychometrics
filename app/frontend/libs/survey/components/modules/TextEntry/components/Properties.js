@@ -4,6 +4,7 @@ import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Validations, { RequiredValidations } from 'components/Validations'
+import { TextEntryProps } from 'constants/DefaultProps'
 
 export class Properties extends Component {
   static propTypes = {
@@ -23,7 +24,7 @@ export class Properties extends Component {
     if (type === 'Form' || model.props.type === 'Form') {
       model.resetDefaultValues()
     }
-    model.changeProps({ type })
+    model.changeProps({ type, ...(TextEntryProps[type] || {}) })
     PropertyPanelStore.update()
   }
 
@@ -31,6 +32,11 @@ export class Properties extends Component {
     const { model } = this.props
     model.setFormFields(val)
     this.forceUpdate()
+  }
+
+  changeAnswersCount = (val) => {
+    const { model } = this.props
+    model.setChoices(val)
   }
 
   renderFormFields () {
@@ -43,6 +49,16 @@ export class Properties extends Component {
     )
   }
 
+  renderAnswersCount () {
+    const { model } = this.props
+    return (
+      <div className={styles.fieldset}>
+        <span className={styles.label}>AnswersCount</span>
+        <ChoicesInput model={model} onChange={this.changeAnswersCount} />
+      </div>
+    )
+  }
+
   render () {
     const { model, restricted } = this.props
     const { type } = model.props
@@ -51,6 +67,7 @@ export class Properties extends Component {
       <div>
         {type === 'Form' && this.renderFormFields()}
         {type === 'Form' && <hr className={styles.divider} />}
+        {type === 'Chat' && this.renderAnswersCount()}
         <div className={styles.fieldset}>
           <div className={styles.label}>Answers</div>
           <label className={styles.inputLabel}>
@@ -129,6 +146,17 @@ export class Properties extends Component {
             />
             {' '}
             Date & Time
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'Chat'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="Chat"
+            />
+            {' '}
+            Chat
           </label>
         </div>
         <hr className={styles.divider} />

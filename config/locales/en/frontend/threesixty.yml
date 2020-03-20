@@ -126,3 +126,6 @@ en:
     options:
       global:
         cannot_re_edit: Participants cannot edit evaluations
+    question:
+      chat_type:
+        input_placeholder: "Write your Message..."
