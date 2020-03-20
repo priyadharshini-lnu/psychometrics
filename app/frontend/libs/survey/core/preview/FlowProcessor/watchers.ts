@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { select, takeEvery, put } from 'redux-saga/effects'
+import {
+  select, takeEvery, put, debounce,
+} from 'redux-saga/effects'
 import {
   nextPage,
   setDirtyResults,
@@ -57,8 +59,6 @@ export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
-  takeEvery(SHOW_PAGE, genSaveResults),
-  takeEvery(CHANGE_ELEMENT, genSaveResults),
   takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),
-  takeEvery(SHOW_END, genSaveResults),
+  debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
 ]
