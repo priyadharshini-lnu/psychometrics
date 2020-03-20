@@ -20,7 +20,7 @@ class ApplicationController < ::BaseController
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
     return 'iframe'     if use_iframe?
 
-    'users_new'
+    'users_new' # NOTE: seems it does not use anywhere
   end
 
   def pundit_user
