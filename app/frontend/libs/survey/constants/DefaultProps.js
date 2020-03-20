@@ -203,4 +203,17 @@ const DefaultProps = {
   },
 }
 
+export const TextEntryProps = {
+  Chat: {
+    choices: 1,
+    title: 'Chat With Manager',
+    titleDescription: 'Chat with your manager to discuss about the feedback on the recent project',
+    managerName: 'Rupert Smith',
+    messageList: [
+      { type: 'their', text: 'Hi, James', position: 0 },
+      { type: 'mine', text: 'Ok Rupert', position: 1 },
+    ],
+  },
+}
+
 export default DefaultProps

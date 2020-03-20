@@ -6436,6 +6436,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -12970,6 +12975,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -19497,6 +19507,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
