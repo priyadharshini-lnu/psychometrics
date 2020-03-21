@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'libs/survey/store/StoreWatchman'
 
 const RangeHotSpot = function ({ minValue, maxValue }) {
   this.minValue = +minValue
@@ -12,7 +12,7 @@ _.extend(RangeHotSpot.prototype, {
     if (compactAnswers.length < this.minValue || compactAnswers.length > this.maxValue) {
       return {
         type: 'RangeHotSpot',
-        message: I18nStore.t('validations.range', { min: this.minValue, max: this.maxValue }),
+        message: Watchman.I18n().t('validations.range', { min: this.minValue, max: this.maxValue }),
       }
     }
   },

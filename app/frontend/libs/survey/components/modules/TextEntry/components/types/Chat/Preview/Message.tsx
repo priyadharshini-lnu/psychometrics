@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import cs from 'classnames'
 import { CloseOutlined } from '@ant-design/icons'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'store/StoreWatchman'
 import styles from './ChatStyle.scss'
 import commonStyles from '../ChatStyle.scss'
 import { Question, Message as MessageInterface } from '../interfaces'
@@ -32,7 +32,7 @@ const Message: React.FC<Props> = ({ model, message, isAnswer }) => {
             { [commonStyles.mineCommon]: message.type === MINE_TYPE },
           )}
         >
-          {isAnswer ? message.text : I18nStore.tQuestion(
+          {isAnswer ? message.text : Watchman.I18n().tQuestion(
             model, `messageText${message.position}`, { position: message.position },
           )}
         </div>

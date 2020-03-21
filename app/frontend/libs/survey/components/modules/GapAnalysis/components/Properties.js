@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Utils from 'utils'
@@ -17,13 +16,11 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeField = (fieldName, e) => {
     const { model } = this.props
     model.changeProps({ [fieldName]: e.currentTarget.value })
-    PropertyPanelStore.update()
   }
 
   changeStatements = (val, undo) => {
@@ -46,7 +43,6 @@ export class Properties extends Component {
       Action('GapAnalysisChangeChoices', this, { oldValue, newValue: props.choices })
     }
     model.update()
-    this.forceUpdate()
   }
 
   changeScalePoints = (val, undo) => {
@@ -63,7 +59,6 @@ export class Properties extends Component {
       Action('ChangeScalePoints', this, { oldValue, newValue: props.scalePoints })
     }
     model.update()
-    this.forceUpdate()
   }
 
   renderRepeatHeaders () {

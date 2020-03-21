@@ -4,7 +4,6 @@ import { Provider, connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import I18nStore from 'store/I18nStore'
 import Watchman from 'store/StoreWatchman'
 import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
@@ -18,16 +17,16 @@ class PreviewContainer extends Component {
       data, type, locales, isThreesixty, dashboardUrl, selectedLocale, isAnonymousAssessment, langPartial, result,
     } = parent.dataset
     this.langPartial = langPartial
-    I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
-    if (locales) {
-      I18nStore.locales = JSON.parse(locales)
-    }
 
+    const dbResult = result || null
+    Watchman.set(rstore)
     rstore.dispatch({
       type: INIT,
       data: {
         ...JSON.parse(data),
         type,
+        locales: JSON.parse(locales),
+        locale: selectedLocale || document.body.dataset.locale,
         readOnly: type === 'view_results',
         isAnonymousAssessment: isAnonymousAssessment === 'true',
         isThreesixty: isThreesixty === 'true',
@@ -35,7 +34,6 @@ class PreviewContainer extends Component {
       },
       result: result ? JSON.parse(result) : {},
     })
-    Watchman.set(rstore)
     this.forceUpdate()
   }
 
@@ -64,7 +62,6 @@ class PreviewContainer extends Component {
       ({ type }) => (
         <div className="row">
           {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-          {/* {AppStore.disabled && this.overlay()} */}
           <AssessmentPreview />
         </div>
       ),

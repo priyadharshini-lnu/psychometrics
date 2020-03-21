@@ -35,7 +35,7 @@ class BlockSerializer < ActiveModel::Serializer
   end
 
   def props
-    return object.props unless object.props['staticContent']
+    return object.props unless object.props && object.props['staticContent']
 
     static_content =
       object.props['staticContent'].merge(

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { createSelector } from 'reselect'
@@ -7,7 +8,19 @@ import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
 import {
   Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
+  I18nInterface,
 } from './interfaces'
+
+let { I18n } = window
+if (I18n) {
+  I18n.fallbacks = true
+} else {
+  I18n = {
+    t (code: string): string {
+      return code
+    },
+  }
+}
 
 export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
 
@@ -180,3 +193,37 @@ export const getProgress = (state): number => {
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
 }
+
+export const getI18n = ({ locales }): I18nInterface => ({
+  t (code: string, data: any): string {
+    return I18n.t(code, data)
+  },
+  tQuestion (question: any, field: string, extraData: any): string {
+    question.isNeedToAddLtrManually = false
+    question.isAnyArabicTranslateExist = true
+
+    if (locales && locales.question && locales.question[question.id]) {
+      if (locales.question[question.id][field]) {
+        question.isNeedToAddLtrManually = false
+        question.isAnyArabicTranslateExist = true
+        return locales.question[question.id][field]
+      }
+    }
+    if (question.id) {
+      question.isNeedToAddLtrManually = true
+    }
+    return question.tDefault(field, extraData)
+  },
+  tBlock (block: Block, key: string, path: string[]): string {
+    const propsPath = path || [key]
+    return _.get(locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
+  },
+  tCustomValidation (question: any): string {
+    if (locales && locales.question && locales.question[question.id]) {
+      if (locales.question[question.id].customValidationText) {
+        return locales.question[question.id].customValidationText
+      }
+    }
+    return question.validation.message
+  },
+})

@@ -1,16 +1,19 @@
 import React from 'react'
-import I18nStore from 'store/I18nStore'
 import PropTypes from 'prop-types'
 import { Alert } from 'antd'
+import { connect } from 'react-redux'
+import { getI18n } from 'libs/survey/core/preview/FlowProcessor/selectors'
 import styles from './FileUpload.scss'
 
-export default function ErrorList ({ errorCodes, errorMessage, errorProps }) {
+function ErrorList ({
+  errorCodes, errorMessage, errorProps, I18n,
+}) {
   let errorMessages = null
   if (!_.isEmpty(errorCodes)) {
     errorMessages = (
       <ul className={styles.errorsList}>
         {errorCodes.map(errorCode => (
-          <li key={errorCode}>{I18nStore.t(`validations.file_upload.${errorCode}`, errorProps)}</li>
+          <li key={errorCode}>{I18n.t(`validations.file_upload.${errorCode}`, errorProps)}</li>
         ))}
       </ul>
     )
@@ -28,3 +31,5 @@ ErrorList.propTypes = {
   errorMessage: PropTypes.string,
   errorProps: PropTypes.object,
 }
+
+export default connect(({ preview }) => ({ I18n: getI18n(preview) }), {})(ErrorList)

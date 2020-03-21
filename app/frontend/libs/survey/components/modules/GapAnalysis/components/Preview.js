@@ -1,10 +1,10 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './GapAnalysis.scss'
 import TableHeader from './TableHeaderPreview'
 import TableBody from './TableBodyPreview'
+import connect from '../connect'
 
 export class Preview extends Component {
   static propTypes = {
@@ -16,13 +16,13 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     return (
       <div style={{ position: 'relative' }}>
         <div className={styles.questionText}>
           <div
             className={styles.questionTextPreview}
-            dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
           />
         </div>
         <table className={styles.preview}>
@@ -34,4 +34,4 @@ export class Preview extends Component {
   }
 }
 
-export default Preview
+export default connect(Preview)

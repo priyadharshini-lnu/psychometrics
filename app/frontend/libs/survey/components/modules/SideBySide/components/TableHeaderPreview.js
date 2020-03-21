@@ -1,9 +1,8 @@
 import _ from 'lodash'
 import React from 'react'
-import I18nStore from 'store/I18nStore'
 import styles from './SideBySide.scss'
 
-const TableHeaderPreview = ({ model }) => {
+const TableHeaderPreview = ({ model, I18n }) => {
   const { props: { columnsData, scalePoints }, moduleConfig } = model
   return (
     <thead className={styles.tableHead}>
@@ -13,7 +12,7 @@ const TableHeaderPreview = ({ model }) => {
           <td key={i} className={styles.column}>
             <div className={styles.group}>
               <span>
-                {I18nStore.tQuestion(model, `text${i + 1}`, { group: i })
+                {I18n.tQuestion(model, `text${i + 1}`, { group: i })
                   || moduleConfig.defaultGroupText(i + 1)}
               </span>
             </div>
@@ -28,7 +27,7 @@ const TableHeaderPreview = ({ model }) => {
               {_.times(columnsData[i].answers, j => (
                 <div className={styles.answer} key={j}>
                   <span>
-                    {I18nStore.tQuestion(model, `answersTexts${i + 1}_${j + 1}`, { answer: j, group: i })
+                    {I18n.tQuestion(model, `answersTexts${i + 1}_${j + 1}`, { answer: j, group: i })
                       || moduleConfig.defaultAnswerText(j + 1)}
                   </span>
                 </div>

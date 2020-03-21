@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'libs/survey/store/StoreWatchman'
 
 const Least = function ({ minValue }) {
   this.minValue = +minValue
@@ -10,7 +10,7 @@ _.extend(Least.prototype, {
     if (answers.length < this.minValue) {
       return {
         type: 'Least',
-        message: I18nStore.t('validations.least', { min: this.minLength }),
+        message: Watchman.I18n().t('validations.least', { min: this.minValue }),
       }
     }
   },

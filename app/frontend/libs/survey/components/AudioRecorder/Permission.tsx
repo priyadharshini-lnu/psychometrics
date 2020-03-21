@@ -1,11 +1,11 @@
 import React from 'react'
 import { message } from 'antd'
 import { AudioFilled, CheckOutlined } from '@ant-design/icons'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'store/StoreWatchman'
 import cs from 'classnames'
 import ColoredButton from 'components/ColoredButton/index'
-import styles from './PermissionStyle.scss'
 import ButtonColor from 'constants/buttonColor'
+import styles from './PermissionStyle.scss'
 
 interface Props {
   onAllow(): void
@@ -16,7 +16,7 @@ const Permission: React.FC<Props> = ({ onAllow }) => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(onAllow)
       .catch(() => {
-        message.info(I18nStore.t('assessments.audio_response.permission_denied_message'))
+        message.info(Watchman.I18n().t('assessments.audio_response.permission_denied_message'))
       })
   }
 
@@ -25,12 +25,12 @@ const Permission: React.FC<Props> = ({ onAllow }) => {
       <div className={styles.iconContainer}>
         <AudioFilled className={cs([styles.icon, 'mtl'])} />
       </div>
-      <div className="mtl">{I18nStore.t('assessments.audio_response.permission_text')}</div>
+      <div className="mtl">{Watchman.I18n().t('assessments.audio_response.permission_text')}</div>
       <ColoredButton
         color={ButtonColor.GREEN}
         type="primary"
         icon={<CheckOutlined />}
-        className='mtl'
+        className="mtl"
         onClick={askForPermission}
       >
         Allow

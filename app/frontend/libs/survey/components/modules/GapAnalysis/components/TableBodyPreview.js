@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './GapAnalysis.scss'
 
 const BOUNDARY_INDEX = 2
@@ -34,11 +33,11 @@ export class TableBodyPreview extends Component {
   }
 
   renderCheckbox (choice, values, text, i) {
-    const { model, readOnly } = this.props
+    const { model, readOnly, I18n } = this.props
     return (
       <label key={i} className={styles.whylabel}>
         <div>
-          <span>{I18nStore.tQuestion(model, `categoriesDataText${choice + 1}_${i + 1}`, { choice, i })}</span>
+          <span>{I18n.tQuestion(model, `categoriesDataText${choice + 1}_${i + 1}`, { choice, i })}</span>
         </div>
         <input
           disabled={readOnly}
@@ -51,7 +50,9 @@ export class TableBodyPreview extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result }, readOnly } = this.props
+    const {
+      model, model: { props, moduleConfig, result }, readOnly, I18n,
+    } = this.props
     const { answers } = result
     return (
       <tbody>
@@ -61,7 +62,7 @@ export class TableBodyPreview extends Component {
             <tr className={styles.mainRow} key={choice}>
               <td className={styles.firstColumn}>
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
+                  {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                   || moduleConfig.defaultCategoryText(choice + 1)}
 
                 </span>

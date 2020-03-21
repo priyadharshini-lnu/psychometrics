@@ -2,9 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
-import I18nStore from 'store/I18nStore'
 import VideoRecorder from 'components/VideoRecorder'
-import MultiLinePreview from './MultiLinePreview'
 import connect from './connect'
 
 export class Preview extends Component {
@@ -20,11 +18,6 @@ export class Preview extends Component {
   deleteMedia = () => {
     const { model } = this.props
     model.result.answer()
-  }
-
-  renderAnswersType () {
-    const { model } = this.props
-    return <MultiLinePreview model={model} />
   }
 
   renderVideoRecorder () {
@@ -43,21 +36,19 @@ export class Preview extends Component {
           onSuccessUpload={this.successUpload}
           onDeleteMedia={this.deleteMedia}
         />
-
       </div>
     )
   }
 
   render () {
-    const { model } = this.props
-    I18nStore.tQuestion(model, 'questionText')
+    const { model, I18n } = this.props
+    I18n.tQuestion(model, 'questionText')
     return (
       <div>
         <div
           className={textEntryStyles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
         />
-        {/* {this.renderAnswersType()} */}
         {this.renderVideoRecorder()}
       </div>
     )

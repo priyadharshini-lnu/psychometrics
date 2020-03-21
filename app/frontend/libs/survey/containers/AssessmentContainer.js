@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
 import Watchman from 'store/StoreWatchman'
-import I18nStore from 'store/I18nStore'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
 
@@ -17,10 +16,7 @@ class AssessmentContainer extends Component {
 
     this.langPartial = langPartial
     this.type = type
-    I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
-    if (locales) {
-      I18nStore.locales = locales
-    }
+
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
     // store.init(data, type, dbResult, rstore)
@@ -29,6 +25,8 @@ class AssessmentContainer extends Component {
       type: INIT,
       data: {
         ...data,
+        locale: selectedLocale || document.body.dataset.locale,
+        locales,
         type,
         dataSheetColumns: data.data_sheet_columns || [],
         isThreesixty: isThreesixty === 'true',

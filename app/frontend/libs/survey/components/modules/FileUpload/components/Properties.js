@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import { RequiredValidations } from 'components/Validations'
 import { Select } from 'antd'
@@ -17,7 +16,6 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeMaxFileSize = (e) => {

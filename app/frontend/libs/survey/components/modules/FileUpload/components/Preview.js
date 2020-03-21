@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
-import I18nStore from 'store/I18nStore'
 import FileUploadBlock from 'components/FileUpload'
 import connect from './connect'
 
@@ -37,13 +36,13 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
-    I18nStore.tQuestion(model, 'questionText')
+    const { model, I18n } = this.props
+    I18n.tQuestion(model, 'questionText')
     return (
       <div>
         <div
           className={textEntryStyles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
         />
         {this.renderFileUploadBlock()}
       </div>

@@ -1,6 +1,15 @@
 import ValidationProcessor from 'libs/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
 import DefaultProps from 'libs/survey/constants/DefaultProps'
 
+jest.mock('libs/survey/store/StoreWatchman', () => {
+  return {
+    I18n: () => ({
+      t: (t) => t
+    })
+  }
+})
+
+
 const multipleChoice = {
   id: 1,
   type: 'MultipleChoice',

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
@@ -24,7 +25,7 @@ import { blocks } from 'libs/survey/store/schema'
 //   ]
 // }
 
-const BlockSerializer = (data: any) => ({
+export const BlockSerializer = (data: any) => ({
   id: data.isNew ? undefined : data.id,
   name: data.name,
   position: data.position,
@@ -35,7 +36,7 @@ const BlockSerializer = (data: any) => ({
   questions: data.questions,
 })
 
-const QuestionSerializer = (data: any) => ({
+export const QuestionSerializer = (data: any) => ({
   id: data.isNew ? undefined : data.id,
   block_id: data.blockId,
   name: data.name,

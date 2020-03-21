@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import QuestionList from 'views/BlockCenter/QuestionList'
-import PropertyPanelStore from 'store/PropertyPanelStore'
+import Question from 'views/BlockCenter/Question'
+import FlipMove from 'react-flip-move'
 import Footer from './BlockFooter'
 import styles from './Block.scss'
 
@@ -19,7 +19,6 @@ class Block extends Component {
 
   expand = () => {
     const { opened } = this.state
-    PropertyPanelStore.question = null
     this.setState({ opened: !opened })
   }
 
@@ -68,7 +67,10 @@ class Block extends Component {
   }
 
   render () {
-    const { model, last, createBlock } = this.props
+    const {
+      model, last, createBlock, questions,
+    } = this.props
+    if (!model) { return null }
     const { opened } = this.state
     const iconClass = `fa fa-chevron-down ${styles.icon} ${opened ? '' : 'fa-rotate-270'}`
     return (
@@ -82,10 +84,15 @@ class Block extends Component {
             {this.renderRandomLabel()}
             <div className={styles.options}>{this.renderOptions()}</div>
           </div>
-
         </div>
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
-          <QuestionList block={model} />
+          <FlipMove style={{ position: 'initial' }}>
+            {questions.map((question) => {
+              if (question.type !== 'PageBreak') {
+                return <Question key={question.id} block={model} model={question} />
+              }
+            })}
+          </FlipMove>
           <Footer createBlock={createBlock} model={model} onMinimize={this.expand} last={last} />
         </div>
       </div>

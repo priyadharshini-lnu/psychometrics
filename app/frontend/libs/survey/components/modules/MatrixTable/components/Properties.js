@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Utils from 'utils'
@@ -16,7 +15,6 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeType = (e) => {
@@ -27,7 +25,6 @@ export class Properties extends Component {
       this.changeScalePoints(2)
     } else {
       model.update()
-      PropertyPanelStore.update()
     }
   }
 
@@ -41,34 +38,29 @@ export class Properties extends Component {
   changeField = (fieldName, e) => {
     const { model } = this.props
     model.changeProps({ [fieldName]: e.currentTarget.value })
-    PropertyPanelStore.update()
   }
 
   changeAnswersType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ answersType: type })
-    PropertyPanelStore.update()
   }
 
   changeTextEntryType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ textEntrySize: type })
-    PropertyPanelStore.update()
   }
 
   changeTotalBoxType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ totalBoxType: type })
-    PropertyPanelStore.update()
   }
 
   changeStatements = (val) => {
     const { model } = this.props
     model.setChoices(val)
-    this.forceUpdate()
   }
 
   changeNotApplicable = () => {
@@ -91,7 +83,6 @@ export class Properties extends Component {
       Action('ChangeScalePoints', this, { oldValue, newValue: props.scalePoints })
     }
     model.update()
-    this.forceUpdate()
   }
 
   changeLabels = (val, undo) => {
@@ -108,7 +99,6 @@ export class Properties extends Component {
       Action('ChangeLabels', this, { oldValue, newValue: props.scalePoints })
     }
     model.update()
-    this.forceUpdate()
   }
 
   notApplicable () {

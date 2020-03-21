@@ -3,17 +3,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import InlineEditor from 'components/InlineEditor'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
 
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
   }
 
   addNote = () => {
-    const { model } = this.props
-    model.addNote()
+    const { model, addNote } = this.props
+    addNote(model)
   }
 
   invokeAdvanced = (element) => {
@@ -23,21 +23,19 @@ class Question extends Component {
 
   randomization = () => {
     const { model, openRandomization } = this.props
-    openRandomization({ model, entityName: 'choice' })
+    QuestionSerializer.wrap(model).update()
+    openRandomization({ id: model.id, entityName: 'choice' })
   }
 
   changeName = (value) => {
-    const { model, store } = this.props
-    store.dispatcher.rename(model, value)
-    model.rename(value)
-    model.name = value
-    this.forceUpdate()
+    const { renameQuestion, model } = this.props
+    renameQuestion(model, value)
   }
 
   renderRandomMenuItem () {
-    const { model } = this.props
+    const { moduleConfig } = this.props
 
-    if (model.moduleConfig.randomization) {
+    if (moduleConfig.randomization) {
       return (
         <MenuItem onSelect={this.randomization}>
           <span className={`icon fa fa-random ${styles.menuicon}`} />
@@ -67,8 +65,8 @@ class Question extends Component {
   }
 
   renderRandomLabel () {
-    const { model } = this.props
-    if (model.moduleConfig.randomization) {
+    const { model, moduleConfig } = this.props
+    if (moduleConfig.randomization) {
       return model.props.randomization.type !== 'No' && (
         <div title="This question has randomization" className={styles.randomized}>
           <span className="fa fa-random" />

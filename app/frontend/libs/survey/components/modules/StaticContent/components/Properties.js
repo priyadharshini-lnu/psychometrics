@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 
 import { LibraryStore } from 'libs/library'
@@ -28,25 +27,18 @@ export class Properties extends Component {
   onSelectGraphic = (item) => {
     const { model } = this.props
     model.changeProps({ graphicUrl: item.file })
-    this.forceUpdate()
   }
 
   changeType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ type })
-    this.update()
   }
 
   changeGraphicType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ graphicType: type })
-    this.update()
-  }
-
-  update = () => {
-    PropertyPanelStore.update()
   }
 
   changeUrl = (e) => {
@@ -54,7 +46,6 @@ export class Properties extends Component {
     const val = e.currentTarget.value
     if (val.match(/(https?:\/\/.*\.(?:png|jpg))/i)) {
       model.changeProps({ graphicUrl: val })
-      this.update()
     }
   }
 

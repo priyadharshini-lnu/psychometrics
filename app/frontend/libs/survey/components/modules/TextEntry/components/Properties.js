@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Validations, { RequiredValidations } from 'components/Validations'
@@ -15,7 +14,6 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeType = (e) => {
@@ -25,13 +23,11 @@ export class Properties extends Component {
       model.resetDefaultValues()
     }
     model.changeProps({ type, ...(TextEntryProps[type] || {}) })
-    PropertyPanelStore.update()
   }
 
   changeFormFields = (val) => {
     const { model } = this.props
     model.setFormFields(val)
-    this.forceUpdate()
   }
 
   changeAnswersCount = (val) => {
