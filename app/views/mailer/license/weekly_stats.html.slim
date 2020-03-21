@@ -7,7 +7,7 @@ br
       th = t('.column_headers.expiry_date')
       th = t('.column_headers.type')
       th = t('.column_headers.use_count')
-      th = t('.column_headers.overuse_count')
+      th = t('.column_headers.overuse_limit')
       th = t('.column_headers.remaining_count')
     - @stats[:used_licenses].each do |used_license|
       tr
@@ -15,7 +15,7 @@ br
         td = used_license[:license_end_date]
         td = used_license[:type]
         td = used_license[:use_count]
-        td = used_license[:overuse_count]
+        td = used_license[:overuse_limit]
         td = used_license[:remaining_count]
   br
 - else

@@ -23,7 +23,7 @@ class LicenseMailer < ApplicationMailer
 
   def weekly_stats(user_id)
     @resource = User.find(user_id)
-    @stats = License::GetStats.call!
+    @stats = Licenses::GetStats.call!
     mail(
       to: @resource.email,
       subject: I18n.t('mailer.license.weekly_stats.subject'),

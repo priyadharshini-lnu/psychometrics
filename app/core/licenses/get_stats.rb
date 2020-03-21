@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-module License
+module Licenses
   class GetStats < BaseCommand
-
-    def initialize()
-    end
-
     def call
       stats = get_stats
       broadcast :ok, stats
@@ -47,7 +43,7 @@ module License
           license_end_date: used_license.end_date,
           type: used_license.type,
           use_count: license_usages[used_license.id],
-          overuse_count: used_license.overuse_number,
+          overuse_limit: used_license.overuse_number,
           remaining_count: used_license.number - used_license.used_number
         )
       end
