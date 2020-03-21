@@ -14,14 +14,6 @@ class Question extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  state = {
-    fadeout: false,
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
   update = () => {
     this.forceUpdate()
   }
@@ -40,18 +32,11 @@ class Question extends Component {
 
   render () {
     const { model, selectedModel } = this.props
-    const { fadeout } = this.state
-    const selected = selectedModel === model
-    const style = {
-      opacity: fadeout ? 0 : 1,
-      cursor: selected ? 'default' : 'pointer',
-    }
     return (
       <div
         ref={(ref) => { this.question = ref }}
         onClick={this.select}
-        className={`${styles.question} ${selected ? styles.selected : ''}`}
-        style={style}
+        className={`${styles.question} ${styles.selected}`}
       >
         <QuestionInfoBar {...this.props} select={this.update} />
         <div className={styles.content}>

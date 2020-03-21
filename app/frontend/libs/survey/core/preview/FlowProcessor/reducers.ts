@@ -16,6 +16,8 @@ import {
   RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST,
 } from './consts'
 
+const { I18n } = window
+
 const defaultState: DefaultState = {
   initialized: false,
   isThreesixty: false,
@@ -45,6 +47,7 @@ const defaultState: DefaultState = {
   subjectDataSheet: [],
   relationships: [],
   relationship: null,
+  locales: null,
 }
 
 const HANDLERS = {
@@ -57,6 +60,9 @@ const HANDLERS = {
     const normalizedTree = NormalizeTree.run(elements)
 
     // saga triggers next_page to process element '0'
+    if (data.locale) {
+      I18n.locale = data.locale
+    }
 
     return {
       ...defaultState,
@@ -93,6 +99,7 @@ const HANDLERS = {
       expiryDate: result.expiry_date,
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
+      locales: data.locales,
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations from 'components/Validations'
 
@@ -27,31 +26,26 @@ export class Properties extends Component {
   onSelectGraphic = (item) => {
     const { model } = this.props
     model.changeProps({ graphicUrl: item.file })
-    this.forceUpdate()
   }
 
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeInteractivity = (e) => {
     const { model } = this.props
     model.changeProps({ interactivity: e.currentTarget.value })
-    this.forceUpdate()
   }
 
   changeAlwaysVisible = (e) => {
     const { model } = this.props
     model.changeProps({ alwaysVisible: (e.currentTarget.value === 'true') })
-    this.forceUpdate()
   }
 
   changeRegionsNames = (e) => {
     const { model, shapeIndex } = this.props
     model.changeArrayProps({ collection: 'regionsNames', i: shapeIndex, val: e.currentTarget.value })
-    this.forceUpdate()
   }
 
   renderRegionsNames () {

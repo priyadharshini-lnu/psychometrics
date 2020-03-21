@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import 'styles/core.scss'
-import AppStore from 'store/AppStore'
-import Socket from 'cable'
+import Modals from 'components/Modals'
+import homeStyles from 'views/Home/components/HomeView.scss'
+import blockStyles from 'views/BlockList/components/BlockListView.scss'
+import Question from 'views/QuestionCenter/Question'
+import PropertyPanel from './PropertyPanel'
 import Header from './Header'
 import styles from './QuestionCenter.scss'
 
 export class Dashboard extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-
   componentDidMount () {
-    Socket.setProvider('Question')
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/questions\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Questions::Channel', { question_id: id })
+    }
   }
 
   componentWillUnmount () {
@@ -61,15 +63,21 @@ export class Dashboard extends Component {
 
 
   render () {
-    const { children } = this.props
+    const { loaded, disabled, question } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
           <Header />
           <div className={`panel-body ${styles.mainContainer}`}>
-            {!AppStore.loaded && this.loading()}
-            {AppStore.disabled && this.overlay()}
-            {children}
+            {!loaded && this.loading()}
+            {disabled && this.overlay()}
+            <div className={homeStyles.survey}>
+              <div className={blockStyles.main} style={{ background: '#fff', borderRight: '1px solid #ccc' }}>
+                {question && <Question model={question} />}
+              </div>
+            </div>
+            <PropertyPanel restricted />
+            <Modals />
           </div>
         </div>
         <div className="clearfix" />

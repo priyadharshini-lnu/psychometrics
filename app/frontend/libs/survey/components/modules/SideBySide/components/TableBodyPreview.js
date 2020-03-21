@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './SideBySide.scss'
 
 export class TableBodyPreview extends Component {
@@ -64,7 +63,9 @@ export class TableBodyPreview extends Component {
   }
 
   renderDropdown (data, scalePoint, choice) {
-    const { readOnly, model, model: { result, moduleConfig } } = this.props
+    const {
+      readOnly, model, model: { result, moduleConfig }, I18n,
+    } = this.props
     const object = _.find(result.answers, { choice, scale: scalePoint }) || {}
     const values = object.values || [{}]
     return (
@@ -81,7 +82,7 @@ export class TableBodyPreview extends Component {
             key={j}
             value={j}
           >
-            {I18nStore.tQuestion(model, `answersTexts${scalePoint + 1}_${j + 1}`, { answer: j, group: scalePoint })
+            {I18n.tQuestion(model, `answersTexts${scalePoint + 1}_${j + 1}`, { answer: j, group: scalePoint })
               || moduleConfig.defaultAnswerText(j + 1)}
           </option>
         ))}
@@ -90,7 +91,7 @@ export class TableBodyPreview extends Component {
   }
 
   renderHeaders (index) {
-    const { model, model: { props, moduleConfig } } = this.props
+    const { model, model: { props, moduleConfig }, I18n } = this.props
     const data = props.columnsData
     const length = props.choices
     const none = props.repeatHeaders === 'None'
@@ -126,7 +127,7 @@ export class TableBodyPreview extends Component {
               {_.times(data[i].answers, j => (
                 <div className={styles.answer} key={j}>
                   <span>
-                    {I18nStore.tQuestion(model, `answersTexts${j + 1}_${i + 1}`, { answer: j, group: i })
+                    {I18n.tQuestion(model, `answersTexts${j + 1}_${i + 1}`, { answer: j, group: i })
                       || moduleConfig.defaultAnswerText(j + 1)}
                   </span>
                 </div>
@@ -139,7 +140,7 @@ export class TableBodyPreview extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig } } = this.props
+    const { model, model: { props, moduleConfig }, I18n } = this.props
     const data = props.columnsData
     return (
       <tbody>
@@ -148,7 +149,7 @@ export class TableBodyPreview extends Component {
           <tr className={styles.mainRow} key={i}>
             <td className={styles.firstColumn}>
               <span>
-                {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                   || moduleConfig.defaultChoiceText(i + 1)}
               </span>
             </td>

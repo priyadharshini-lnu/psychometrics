@@ -1,36 +1,53 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ActionsHistory from 'components/ActionsHistory'
-import AppStore from 'store/AppStore'
+import NotificationDispatcher from 'libs/survey/dispatchers/NotificationDispatcher'
+import { save } from 'libs/survey/core/builder/blockCenter'
+import { connect } from 'react-redux'
+import { selectBlock } from 'libs/survey/core/builder/assessment/selectors'
 import styles from './Header.scss'
 
 const urldata = location.pathname.match(/blocks\/(\d+)/)
 const id = urldata && urldata[1]
-export class Header extends Component {
-  save = () => {
-    AppStore.saveBlock()
+
+const Header = ({
+  save, block, builder, saving,
+}) => {
+  const saveHandler = () => {
+    save(block, builder).then(() => {
+      NotificationDispatcher.notify({ message: 'Block successfully saved' })
+    }).catch(() => {
+      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
+    })
   }
 
-  render () {
-    return (
-      <div className={`panel-heading ${styles.menu}`}>
-        <div>
-          <a href={`/administration/templates/blocks/${id}/preview`} className={`btn btn-default ${styles.preview}`}>
-            <span className="fa fa-search" />
-            Preview Block
-          </a>
-        </div>
-        <ul className="panel-controls">
-          <li>
-            <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
-              <i className="fa fa-save" />
-              Save Block
-            </button>
-          </li>
-          <li><ActionsHistory /></li>
-        </ul>
+  return (
+    <div className={`panel-heading ${styles.menu}`}>
+      <div>
+        <a href={`/administration/templates/blocks/${id}/preview`} className={`btn btn-default ${styles.preview}`}>
+          <span className="fa fa-search" />
+          Preview Block
+        </a>
       </div>
-    )
-  }
+      <ul className="panel-controls">
+        <li>
+          <button onClick={saveHandler} disabled={saving} className={`btn btn-success ${styles.saveButton}`}>
+            <i className="fa fa-save" />
+            Save Block
+          </button>
+        </li>
+        <li><ActionsHistory /></li>
+      </ul>
+    </div>
+  )
 }
 
-export default Header
+export default connect(
+  ({ survey }) => ({
+    builder: survey.builder,
+    block: selectBlock(survey.builder, survey.builder.assessment.id),
+    saving: survey.builder.blockCenter.saving,
+  }),
+  {
+    save,
+  },
+)(Header)

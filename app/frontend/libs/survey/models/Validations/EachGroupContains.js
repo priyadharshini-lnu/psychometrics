@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'libs/survey/store/StoreWatchman'
 
 const EachGroupContains = function ({ minValue, maxValue }, question) {
   this.question = question
@@ -15,7 +15,7 @@ _.extend(EachGroupContains.prototype, {
       if (objects.length < this.minValue || objects.length > this.maxValue) {
         result = {
           type: 'EachGroupContains',
-          message: I18nStore.t('validations.each_group_contains', { min: this.minValue, max: this.maxValue }),
+          message: Watchman.I18n().t('validations.each_group_contains', { min: this.minValue, max: this.maxValue }),
         }
       }
     })

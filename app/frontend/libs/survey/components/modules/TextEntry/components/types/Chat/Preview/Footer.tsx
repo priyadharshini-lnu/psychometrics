@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import cs from 'classnames'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'store/StoreWatchman'
 import { Input } from 'antd'
 import _ from 'lodash'
 import styles from '../ChatStyle.scss'
@@ -41,7 +41,7 @@ const Footer: React.FC<Props> = ({ model, choices }) => {
         disabled={areChoicesOver()}
         onChange={({ target: { value } }): void => setText(value)}
         className={styles.chatInput}
-        placeholder={I18nStore.t('threesixty.question.chat_type.input_placeholder')}
+        placeholder={Watchman.I18n().t('threesixty.question.chat_type.input_placeholder')}
         onKeyUp={handleKeyUp}
       />
       <div onClick={createMessage} className={styles.sendIconContainer}>

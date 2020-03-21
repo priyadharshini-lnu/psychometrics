@@ -147,6 +147,7 @@ Object {
     "isAnonymousAssessment": undefined,
     "isThreesixty": undefined,
     "linear": false,
+    "locales": undefined,
     "mediaUrl": "/assigns/undefined",
     "metaData": Object {},
     "normRules": Array [],
@@ -357,6 +358,9 @@ Object {
         "saving": false,
         "trash": Array [],
       },
+      "blockCenter": Object {
+        "saving": false,
+      },
       "blocks": Object {},
       "factors": Object {
         "current": null,
@@ -365,6 +369,12 @@ Object {
       },
       "flow": Object {
         "elements": Array [],
+      },
+      "questionCenter": Object {
+        "disabled": false,
+        "loaded": false,
+        "question": null,
+        "saving": false,
       },
       "questions": Object {},
     },
@@ -405,6 +415,7 @@ Object {
     "initialized": false,
     "isThreesixty": false,
     "linear": false,
+    "locales": null,
     "mediaUrl": null,
     "normalizedTree": Object {},
     "prevPages": Array [],
@@ -436,6 +447,9 @@ Object {
         "saving": false,
         "trash": Array [],
       },
+      "blockCenter": Object {
+        "saving": false,
+      },
       "blocks": Object {},
       "factors": Object {
         "current": null,
@@ -444,6 +458,12 @@ Object {
       },
       "flow": Object {
         "elements": Array [],
+      },
+      "questionCenter": Object {
+        "disabled": false,
+        "loaded": false,
+        "question": null,
+        "saving": false,
       },
       "questions": Object {},
     },

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { updateMetaData } from 'core/preview/FlowProcessor/actions'
-import { getCurrentBlock } from 'core/preview/FlowProcessor/selectors'
+import { getCurrentBlock, getI18n } from 'core/preview/FlowProcessor/selectors'
 
 export default connect(
   ({ preview, preview: { initialized, metaData } }) => {
@@ -10,6 +10,7 @@ export default connect(
       preview,
       block,
       highlights: (metaData[block.id] && metaData[block.id].highlights) || [],
+      I18n: getI18n(preview),
     }
   },
   {

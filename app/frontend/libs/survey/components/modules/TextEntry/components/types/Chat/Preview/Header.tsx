@@ -1,7 +1,7 @@
 import React from 'react'
 import { Divider } from 'antd'
 import { UserOutlined } from '@ant-design/icons'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'store/StoreWatchman'
 import styles from './ChatStyle.scss'
 import commonStyles from '../ChatStyle.scss'
 import { Question } from '../interfaces'
@@ -12,14 +12,14 @@ interface Props {
 
 const Header: React.FC<Props> = ({ model }) => (
   <div className={commonStyles.header}>
-    <div className={styles.title}>{I18nStore.tQuestion(model, 'title', {})}</div>
-    <div className={styles.titleDescription}>{I18nStore.tQuestion(model, 'titleDescription', {})}</div>
+    <div className={styles.title}>{Watchman.I18n().tQuestion(model, 'title', {})}</div>
+    <div className={styles.titleDescription}>{Watchman.I18n().tQuestion(model, 'titleDescription', {})}</div>
     <div className={commonStyles.manager}>
       <div className={commonStyles.managerIconContainer}>
         <UserOutlined className={commonStyles.managerIcon} />
       </div>
       <div>
-        <div className={commonStyles.managerName}>{I18nStore.tQuestion(model, 'managerName', {})}</div>
+        <div className={commonStyles.managerName}>{Watchman.I18n().tQuestion(model, 'managerName', {})}</div>
       </div>
     </div>
     <Divider />

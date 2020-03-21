@@ -2,7 +2,6 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
-import I18nStore from 'store/I18nStore'
 import Watchman from 'store/StoreWatchman'
 import LocalStorage from 'utils/LocalStorage'
 import Results from './Results'
@@ -32,13 +31,17 @@ _.extend(Result.prototype, {
       && this.question.requiredValidation.type === 'Force') {
       if (!this.moduleResult.requiredValidation()) {
         if (this.moduleResult.videoResponse) {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_record_and_save_video_first') })
+          errors.push({
+            type: 'forceRequired', message: Watchman.I18n().t('validations.please_record_and_save_video_first'),
+          })
         } else if (this.moduleResult.audioResponse) {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_record_and_save_audio_first') })
+          errors.push({
+            type: 'forceRequired', message: Watchman.I18n().t('validations.please_record_and_save_audio_first'),
+          })
         } else if (this.moduleResult.fileUpload) {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.file_upload.required') })
+          errors.push({ type: 'forceRequired', message: Watchman.I18n().t('validations.file_upload.required') })
         } else {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_answer_question') })
+          errors.push({ type: 'forceRequired', message: Watchman.I18n().t('validations.please_answer_question') })
         }
       }
     }
@@ -67,7 +70,7 @@ _.extend(Result.prototype, {
   },
 
   processCustomValidation () {
-    const message = I18nStore.tCustomValidation(this.question)
+    const message = Watchman.I18n().tCustomValidation(this.question)
     const { conditions } = this.question.validation.args
 
     const validations = _.map(conditions, condition => new Validations.Custom(condition))

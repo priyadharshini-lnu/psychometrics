@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import 'styles/core.scss'
-import AppStore from 'store/AppStore'
-import Socket from 'cable'
+import Modals from 'components/Modals'
+import homeStyles from 'views/Home/components/HomeView.scss'
+import blockStyles from 'views/BlockList/components/BlockListView.scss'
+import Trash from 'views/Trash'
+import Block from 'views/BlockCenter/Block'
+import PropertyPanel from 'views/PropertyPanel'
+import BlockSerializer from 'models/BlockSerializer'
 import Header from './Header'
 import styles from './BlockCenter.scss'
 
 export class BlockCenter extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-
   componentDidMount () {
-    Socket.setProvider('Block')
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.appListener.remove()
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/blocks\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Blocks::Channel', { block_id: id })
+    }
   }
 
   disableClick = (e) => {
@@ -38,7 +39,7 @@ export class BlockCenter extends Component {
             <div className="mb-middle">
               <div className="mb-title">
                 <span className="fa fa-times" />
-Attention!
+                Attention!
               </div>
               <div className="mb-content">
                 <p>Something went wrong</p>
@@ -60,15 +61,22 @@ Attention!
   }
 
   render () {
-    const { children } = this.props
+    const { loaded, disabled, block } = this.props
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
           <Header />
           <div className={`panel-body ${styles.mainContainer}`}>
-            {!AppStore.loaded && this.loading()}
-            {AppStore.disabled && this.overlay()}
-            {children}
+            {!loaded && this.loading()}
+            {disabled && this.overlay()}
+            <div className={homeStyles.survey}>
+              <div className={blockStyles.main} style={{ background: '#fff', borderRight: '1px solid #ccc' }}>
+                {block && <Block model={BlockSerializer.wrap(block)} />}
+              </div>
+            </div>
+            <PropertyPanel restricted />
+            <Trash />
+            <Modals />
           </div>
         </div>
         <div className="clearfix" />

@@ -91,4 +91,18 @@ export interface DefaultState{
   subjectDataSheet: { [key: string]: {} }[]
   relationships: []
   relationship: string | null
+  locales: any
+}
+
+export interface I18nInterface {
+  t (code: string, data?: any): string
+  tQuestion (question: any, field: string, extraData?: any): string
+  tBlock (block: any, key: string, path: string[]): string
+  tCustomValidation (question: Question): string
+}
+
+declare global {
+  interface Window {
+    I18n: any;
+  }
 }

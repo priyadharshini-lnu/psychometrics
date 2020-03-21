@@ -19,7 +19,6 @@ export const SAVE = 'survey/assessment/SAVE'
 export const SAVE_REQUEST = 'survey/assessment/SAVE_REQUEST'
 export const SAVE_FAILURE = 'survey/assessment/SAVE_FAILURE'
 
-export const FAKE_UPDATE = 'survey/assessment/FAKE_UPDATE'
 export const UPDATE_EXTRA = 'builder/assessment/UPDATE_EXTRA'
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })

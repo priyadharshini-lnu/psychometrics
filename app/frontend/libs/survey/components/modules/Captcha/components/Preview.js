@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Recaptcha from 'react-google-recaptcha'
-import I18nStore from 'store/I18nStore'
 import styles from './Captcha.scss'
+import connect from '../connect'
 
 // TODO move to settings.yml
 const SITE_KEY = '6Lf8uScTAAAAAAK5o5Zlf9iErXItnDqX70dLzMeO'
@@ -24,14 +24,14 @@ export class CaptchaPreview extends Component {
   }
 
   render () {
-    const { model, readOnly } = this.props
+    const { model, readOnly, I18n } = this.props
     if (readOnly) { return null }
     return (
       <div>
         <div className={styles.questionText}>
           <div
             className={styles.questionTextPreview}
-            dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
           />
         </div>
         <Recaptcha
@@ -43,4 +43,4 @@ export class CaptchaPreview extends Component {
   }
 }
 
-export default CaptchaPreview
+export default connect(CaptchaPreview)

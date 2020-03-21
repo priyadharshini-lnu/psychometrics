@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './SelectBox.scss'
 
 export default class extends Component {
@@ -84,7 +83,9 @@ export default class extends Component {
   }
 
   render () {
-    const { readOnly, model, model: { moduleConfig } } = this.props
+    const {
+      readOnly, model, model: { moduleConfig }, I18n,
+    } = this.props
     const data = _.sortBy(model.result.answers, 'value')
 
     return (
@@ -101,7 +102,7 @@ export default class extends Component {
           >
             {_.map(data, (item, i) => (
               <option value={item.index} key={i}>
-                {I18nStore.tQuestion(model, `choicesTexts${item.index + 1}`, { choice: item.index })
+                {I18n.tQuestion(model, `choicesTexts${item.index + 1}`, { choice: item.index })
                   || moduleConfig.defaultChoiceText(item.index + 1)}
               </option>
             ))}

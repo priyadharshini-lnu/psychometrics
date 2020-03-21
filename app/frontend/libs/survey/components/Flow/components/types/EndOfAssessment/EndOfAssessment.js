@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import EnfOfAssessmentOptionsStore from 'store/EnfOfAssessmentOptionsStore'
 import styles from './EndOfAssessment.scss'
 import Controls from '../../Controls'
 
@@ -11,8 +10,8 @@ class EndOfAssessment extends Component {
   }
 
   showOptions = () => {
-    const { model } = this.props
-    EnfOfAssessmentOptionsStore.open(model)
+    const { model, openModal } = this.props
+    openModal({ flowElement: model })
   }
 
   render () {
@@ -35,7 +34,7 @@ class EndOfAssessment extends Component {
               onAddBelow={onAddBelow}
               onDuplicate={onDuplicate}
               onMove={onMove}
-              customBLocks={<a onClick={this.showOptions} className={styles.dup}>Options</a>}
+              customBlocks={<a onClick={this.showOptions} className={styles.dup}>Options</a>}
             />
           </div>
         </div>

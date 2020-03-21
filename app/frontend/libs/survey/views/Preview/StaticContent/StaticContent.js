@@ -3,12 +3,11 @@ import React, { useRef, useState } from 'react'
 import cs from 'classnames'
 import { FIXED_TOP, LEFT, RIGHT } from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
-import I18nStore from 'store/I18nStore'
 import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlights, updateMetaData,
+  block, block: { props: { staticContent } }, preview, highlights, updateMetaData, I18n,
 }) => {
   const contentRef = useRef(null)
 
@@ -25,7 +24,7 @@ const StaticContent = ({
     [styles.left]: staticContent.layout === LEFT,
     [styles.right]: staticContent.layout === RIGHT,
   })
-  const innerHTML = I18nStore.tBlock(block, 'staticContent', ['staticContent', 'value'])
+  const innerHTML = I18n.tBlock(block, 'staticContent', ['staticContent', 'value'])
 
   return (
     <div

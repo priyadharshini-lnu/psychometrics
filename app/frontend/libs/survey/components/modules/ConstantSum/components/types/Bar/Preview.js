@@ -2,12 +2,12 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ProgressBar from 'components/ProgressBar'
-import I18nStore from 'store/I18nStore'
 import styles from './Bar.scss'
+import connect from '../../../connect'
 
 const TABLE_WIDTH = 700
 
-export default class extends Component {
+class BarPreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -20,7 +20,7 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, result, moduleConfig } } = this.props
+    const { model, model: { props, result, moduleConfig }, I18n } = this.props
 
     const gridMargin = `-${TABLE_WIDTH * 0.75 / (2 * props.gridLines)}px`
     return (
@@ -30,7 +30,7 @@ export default class extends Component {
           <div className={styles.labelItems}>
             {_.times(props.labels, i => (
               <span key={i}>
-                {I18nStore.tQuestion(model, `labelsTexts${i + 1}`, { label: i })
+                {I18n.tQuestion(model, `labelsTexts${i + 1}`, { label: i })
                   || moduleConfig.defaultLabelText(i + 1)}
               </span>
             ))}
@@ -56,7 +56,7 @@ export default class extends Component {
                 <div className={styles.firstColumn}>
                   <div className={styles.item}>
                     <span>
-                      {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                      {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                         || moduleConfig.defaultChoiceText(i + 1)}
                     </span>
                   </div>
@@ -85,3 +85,4 @@ export default class extends Component {
     )
   }
 }
+export default connect(BarPreview)

@@ -1,6 +1,4 @@
 /* eslint-disable symbol-description */
-import QuestionTransport from './QuestionChannel'
-import BlockTransport from './BlockChannel'
 import LibraryTransport from './LibraryChannel'
 // export default AssessmentTransport
 
@@ -8,8 +6,6 @@ const singleton = Symbol()
 const singletonEnforcer = Symbol()
 
 const Providers = {
-  QuestionTransport,
-  BlockTransport,
 }
 
 class Socket {

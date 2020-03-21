@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './MaxDiff.scss'
 
 export default class extends Component {
@@ -27,10 +26,10 @@ export default class extends Component {
   }
 
   renderNotApplicableHeader () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     return (
       <div className={`${styles.column} ${styles.notApplicable}`}>
-        <span className={styles.scalePointItem}>{I18nStore.tQuestion(model, 'notApplicableLabel')}</span>
+        <span className={styles.scalePointItem}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
       </div>
     )
   }
@@ -53,13 +52,15 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, result, moduleConfig }, readOnly } = this.props
+    const {
+      model, model: { props, result, moduleConfig }, readOnly, I18n,
+    } = this.props
     return (
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.header}`}>
           <div className={`${styles.column} ${styles.firstColumn}`}>
             <span className={styles.item}>
-              {I18nStore.tQuestion(model, `scalePointsTexts${1}`, { scale: 0 })
+              {I18n.tQuestion(model, `scalePointsTexts${1}`, { scale: 0 })
                 || moduleConfig.defaultScalePointText(1)}
             </span>
           </div>
@@ -68,7 +69,7 @@ export default class extends Component {
           </div>
           <div className={`${styles.column} ${styles.lastColumn}`}>
             <span className={styles.item}>
-              {I18nStore.tQuestion(model, `scalePointsTexts${2}`, { scale: 1 })
+              {I18n.tQuestion(model, `scalePointsTexts${2}`, { scale: 1 })
                 || moduleConfig.defaultScalePointText(2)}
             </span>
           </div>
@@ -90,7 +91,7 @@ export default class extends Component {
               </div>
               <div className={`${styles.choice} ${styles.choiceNotApplicable}`}>
                 <span className={styles.item}>
-                  {I18nStore.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
+                  {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                     || moduleConfig.defaultChoiceText(choice + 1)}
                 </span>
                 {this.renderNotApplicableCheckbox(choice)}
