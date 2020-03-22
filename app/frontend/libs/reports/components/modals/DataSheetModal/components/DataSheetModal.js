@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/DataSheetModalStore'
 import AppStore from 'rb/store/AppStore'
-import { DATA_SHEET_COLUMN_TYPES } from 'rb/models/Report'
+import { DATA_SHEET_COLUMN_TYPES } from 'rb/consts/Report'
+import { setIn } from 'utils/immutable'
 import styles from './DataSheetModal.module.scss'
 import Column from './Column'
 
@@ -12,14 +12,14 @@ const {
 } = Modal
 
 export default class DataSheetModal extends Component {
-  state = { file: null }
-
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  state = {
+    file: null,
+    columns: [],
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
+  componentDidMount () {
+    const { columns } = this.props
+    this.setState({ columns })
   }
 
   onChangeFile = ({ target }) => {
@@ -38,22 +38,38 @@ export default class DataSheetModal extends Component {
       contentType: false,
       processData: false,
       method: 'POST',
-      success (data) {
-        store.updateColumns(data)
+      success: (data) => {
+        this.updateColumns(data)
       },
     })
   }
 
-  close = () => store.close()
+  save = () => {
+    const { close } = this.props
+    const { columns } = this.state
+    AppStore.report.dataSheetColumns = _.cloneDeep(columns)
+    close()
+  }
 
-  save = () => store.save()
+  addColumn = () => {
+    this.setState(({ columns }) => ({ columns: [...columns, { type: DATA_SHEET_COLUMN_TYPES[0] }] }))
+  }
 
-  addColumn = () => store.add({ type: DATA_SHEET_COLUMN_TYPES[0] })
+  removeColumn = (column) => {
+    this.setState(({ columns }) => ({ columns: columns.filter(col => col.name !== column.name) }))
+  }
 
-  updateColumn = (index, fieldName, value) => store.updateColumn([index, fieldName], value)
+  updateColumns = (columns) => {
+    this.setState({ columns })
+  }
+
+  updateColumn = (index, fieldName, value) => {
+    this.setState(({ columns }) => ({ columns: setIn(columns, [index, fieldName], value) }))
+  }
 
   render () {
-    if (!store.opened) return null
+    const { close } = this.props
+    const { columns } = this.state
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -71,12 +87,12 @@ export default class DataSheetModal extends Component {
               </button>
             </div>
             <div className={styles.columnContainer}>
-              {store.columns.map((column, index) => (
+              {columns.map((column, index) => (
                 <Column
                   key={index}
                   index={index}
                   column={column}
-                  remove={column => store.remove(column)}
+                  remove={column => this.removeColumn(column)}
                   update={this.updateColumn}
                 />
               ))}
@@ -87,7 +103,7 @@ export default class DataSheetModal extends Component {
           <button className="btn btn-success" onClick={this.save}>
             Save
           </button>
-          <button className="btn btn-danger" onClick={this.close}>
+          <button className="btn btn-danger" onClick={close}>
             Cancel
           </button>
         </Footer>

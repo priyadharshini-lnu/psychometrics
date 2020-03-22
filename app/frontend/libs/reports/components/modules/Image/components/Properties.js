@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import store from 'rb/store/PropertyPanelStore'
-import ConditionImageStore from 'rb/store/modals/ConditionImageStore'
 import { LibraryStore } from 'libs/library'
 import LibraryTransport from 'rb/cable/LibraryChannel'
 import Socket from 'rb/cable'
@@ -10,6 +9,7 @@ import AssessmentProperties from 'rb/components/modules/CommonProperties/Assessm
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
 import AppStore from 'rb/store/AppStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import connect from '../connect'
 
 const TYPE_OPTIONS = [
   { label: 'Simple Image', value: 'SimpleImage' },
@@ -56,7 +56,8 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    ConditionImageStore.open(store.model)
+    const { openConditionalImage } = this.props
+    openConditionalImage({ model: store.model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -128,4 +129,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

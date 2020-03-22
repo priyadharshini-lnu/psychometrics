@@ -1,15 +1,11 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Socket from 'rb/cable'
-import AliasStore from 'rb/store/modals/AliasStore'
-import DataConfigurationStore from 'rb/store/modals/DataConfigurationStore'
+import { perform } from 'rb/core/temp/socket'
 import I18nStore from 'rb/store/I18nStore'
 import {
   PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY,
 } from 'rb/models/Assessment'
 import Filter from './Filter'
-
-export const DATA_SHEET_COLUMN_TYPES = ['Text', 'Markdown', 'HTML', 'Number']
 
 export const PAGE_SIZES = [
   { width: 850, height: 1100, label: 'Letter - Portrait (850x1100)' },
@@ -99,8 +95,8 @@ _.extend(Report.prototype, {
     // Socket.socket().perform('report_update', this)
   },
 
-  syncFilters (callback) {
-    Socket.socket().perform('report_change_filters', this, (filters) => {
+  syncFilters (filters, callback) {
+    perform('report_change_filters', { filters }, (filters) => {
       this.setFilters(filters)
       if (callback) {
         callback()
@@ -108,8 +104,8 @@ _.extend(Report.prototype, {
     })
   },
 
-  syncAliases (callback) {
-    Socket.socket().perform('report_change_aliases', { aliases: AliasStore.getFactors() }, () => {
+  syncAliases (factors, callback) {
+    perform('report_change_aliases', { aliases: factors }, () => {
       if (callback) {
         callback()
       }
@@ -118,9 +114,9 @@ _.extend(Report.prototype, {
 
   // Sends to sever new Data Configuration
   //
-  syncDataConfiguration (callback) {
-    const { dataConfiguration } = DataConfigurationStore
-    Socket.socket().perform('report_change_data_configuration', { dataConfiguration }, () => {
+  syncDataConfiguration (dataConfiguration, callback) {
+    this.data_configuration = dataConfiguration
+    perform('report_change_data_configuration', { dataConfiguration }, () => {
       if (callback) {
         callback()
       }

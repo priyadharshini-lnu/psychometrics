@@ -2,19 +2,18 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import store from 'rb/store/PropertyPanelStore'
-import ConditionTextStore from 'rb/store/modals/ConditionTextStore'
 import Action from 'rb/undo'
 import ColorPicker from 'rb/components/ColorPicker'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import ChoicesInput from 'rb/components/ChoicesInput'
 import Select from 'react-select'
-import ConditionalFactorOccupationTextStore from 'rb/store/modals/ConditionalFactorOccupationTextStore'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 import localStyles from './Properties.scss'
 import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
+import connect from '../connect'
 
 const SELECT_OPTIONS = [
   { label: 'Text', value: 'Text' },
@@ -98,11 +97,13 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    ConditionTextStore.open(store.model)
+    const { openConditionalText } = this.props
+    openConditionalText({ module: store.model })
   }
 
   openConditionalFactorOccupationModal = () => {
-    ConditionalFactorOccupationTextStore.open(store.model)
+    const { openConditionalFactorOccupationText } = this.props
+    openConditionalFactorOccupationText({ module: store.model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -303,4 +304,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

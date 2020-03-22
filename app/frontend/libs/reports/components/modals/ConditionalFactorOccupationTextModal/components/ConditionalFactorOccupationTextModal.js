@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/ConditionalFactorOccupationTextStore'
 import AppStore from 'rb/store/AppStore'
+import CPIConditionCollection from 'rb/models/CPIConditionCollection'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 import DefaultValues from './DefaultValues'
@@ -12,55 +12,67 @@ const {
 } = Modal
 
 export class ConditionalTextModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
-  changeTopPosition = (e) => {
-    store.module.props.topPosition = parseInt(e.currentTarget.value, 10)
-    store.update()
-  }
-
-  changeBasedOn = (e) => {
-    const { props } = store.module
-    props.basedOn = e.currentTarget.value
-    props.topPosition = 1
-    props.fieldName = 'name'
-    store.update()
-  }
-
-  changeFieldName = (e) => {
-    store.module.props.fieldName = e.currentTarget.value
-    store.update()
-  }
-
-  close = () => {
-    store.close()
+  constructor (props) {
+    super(props)
+    this.state = {
+      module: _.cloneDeep(props.module),
+    }
   }
 
   addCollection = () => {
-    store.addCollection()
+    const { module } = this.state
+    const max = _.maxBy(AppStore.report.filters, 'id') || { id: 0 }
+    module.addConditionCollection(new CPIConditionCollection(
+      { id: max.id + 1, styles: {}, conditions: [{ type: 'Scoring' }] }, module,
+    ))
+    this.forceUpdate()
   }
 
   save = () => {
-    if (store.module.props.basedOn === 'occupation') { store.module.textConditions = [] }
-    store.save()
+    const { module: newModule } = this.state
+    if (newModule.props.basedOn === 'occupation') { newModule.textConditions = [] }
+    const { module, close } = this.props
+    module.textConditions = newModule.textConditions
+    close()
+  }
+
+  remove = (collection) => {
+    const { module } = this.state
+    module.removeConditionCollection(collection)
+    this.forceUpdate()
+  }
+
+  changeTopPosition = (e) => {
+    const { module: { props } } = this.state
+    props.topPosition = parseInt(e.currentTarget.value, 10)
+    this.forceUpdate()
+  }
+
+  changeBasedOn = (e) => {
+    const { module: { props } } = this.state
+    props.basedOn = e.currentTarget.value
+    props.topPosition = 1
+    props.fieldName = 'name'
+    this.forceUpdate()
+  }
+
+  changeFieldName = (e) => {
+    const { module: { props } } = this.state
+    props.fieldName = e.currentTarget.value
+    this.forceUpdate()
   }
 
   fieldsCollection = () => {
-    const { props } = store.module
+    const { module: { props } } = this.state
     const fieldNames = DefaultValues.fieldNames[props.basedOn]
     return _.map(fieldNames, (value, key) => <option value={key} key={value}>{value}</option>)
   }
 
   renderCollections () {
-    if (store.module.props.basedOn === 'occupation') { return null }
-    if (store.module.textConditions.length) {
-      return _.map(store.module.textConditions, (collection, i) => (
+    const { module, module: { props } } = this.state
+    if (props.basedOn === 'occupation') { return null }
+    if (module.textConditions.length) {
+      return _.map(module.textConditions, (collection, i) => (
         <ConditionCollection key={i} model={collection} />
       ))
     }
@@ -70,8 +82,7 @@ export class ConditionalTextModal extends Component {
   }
 
   renderTopPositionSelect () {
-    const { props } = store.module
-    const { module } = store
+    const { module, module: { props } } = this.state
     if (!props.topPosition) { props.topPosition = 1 }
     const assessment = _.find(AppStore.assessments, { id: module.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
@@ -89,7 +100,7 @@ export class ConditionalTextModal extends Component {
   }
 
   renderFactorsOrOccupationsSelect () {
-    const { props } = store.module
+    const { module: { props } } = this.state
     if (!props.basedOn) { props.basedOn = 'factor' }
     return (
       <div className="form-group">
@@ -103,7 +114,7 @@ export class ConditionalTextModal extends Component {
   }
 
   renderFieldNameSelect () {
-    const { props } = store.module
+    const { module: { props } } = this.state
     return (
       <div className="form-group">
         <label>Conditional text</label>
@@ -116,7 +127,8 @@ export class ConditionalTextModal extends Component {
 
 
   render () {
-    if (!store.opened) { return null }
+    const { module: { props } } = this.state
+    const { close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -129,7 +141,7 @@ export class ConditionalTextModal extends Component {
           {this.renderCollections()}
         </Body>
         <Footer>
-          {store.module.props.basedOn === 'factor'
+          {props.basedOn === 'factor'
             && (
             <button
               className="btn btn-default"
@@ -140,7 +152,7 @@ export class ConditionalTextModal extends Component {
             </button>
             )}
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

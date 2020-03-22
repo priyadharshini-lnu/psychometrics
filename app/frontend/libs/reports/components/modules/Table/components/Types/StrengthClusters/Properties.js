@@ -4,10 +4,10 @@ import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
-import CPIFactorConditionStore from 'rb/store/modals/CPIFactorConditionStore'
 import _ from 'lodash'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import connect from './connect'
 
 const ALL_FACTORS = 'All Factors'
 
@@ -53,7 +53,8 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    CPIFactorConditionStore.open(store.model)
+    const { openConditionModal } = this.props
+    openConditionModal({ module: store.model })
   }
 
   changeProp = (propName, e) => {
@@ -145,4 +146,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

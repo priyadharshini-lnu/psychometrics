@@ -1,3 +1,4 @@
 import Dashboard from './Dashboard'
+import connect from './connect'
 
-export default Dashboard
+export default connect(Dashboard)

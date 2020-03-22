@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/DataConfigurationStore'
+import AppStore from 'rb/store/AppStore'
 
 const { Header } = Modal
 const { Body } = Modal
@@ -10,28 +10,26 @@ const { Title } = Modal
 export default class DataConfigurationModal extends Component {
   constructor (props) {
     super(props)
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
+    this.state = {
+      dataConfiguration: AppStore.report.data_configuration,
+    }
   }
 
   handleChangeValue = (event) => {
-    store.dataConfiguration = event.currentTarget.value
-    store.update()
+    this.setState({ dataConfiguration: event.currentTarget.value })
   }
 
-  close () {
-    store.close()
-  }
-
-  save () {
-    store.save()
+  save = () => {
+    const { close } = this.props
+    const { dataConfiguration } = this.state
+    AppStore.report.syncDataConfiguration(dataConfiguration, () => {
+      close()
+    })
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
+    const { dataConfiguration } = this.state
     return (
       <Modal show keyboard={false} bsSize="lg">
         <Header>
@@ -41,7 +39,7 @@ export default class DataConfigurationModal extends Component {
           <textarea
             ref={(ref) => { this.textarea = ref }}
             className="form-control"
-            value={store.dataConfiguration}
+            value={dataConfiguration}
             onChange={this.handleChangeValue}
             rows="10"
             style={{ width: '100%', display: 'inline-block' }}
@@ -49,7 +47,7 @@ export default class DataConfigurationModal extends Component {
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

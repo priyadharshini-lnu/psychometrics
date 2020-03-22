@@ -1,8 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/FilterStore'
 import AppStore from 'rb/store/AppStore'
+import FilterModel from 'rb/models/Filter'
+import { setIn } from 'utils/immutable'
 import styles from './FilterModal.scss'
 import Filter from './Filter'
 
@@ -11,30 +12,49 @@ const {
 } = Modal
 
 export class FilterModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  constructor (props) {
+    super(props)
+    this.state = {
+      filters: props.filters,
+    }
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
+  addFilter = () => {
+    this.setState(({ filters }) => ({
+      filters: [
+        ...filters, new FilterModel({ conditions: [{ type: 'RelationShip' }] }),
+      ],
+    }))
   }
 
-  close () {
-    store.close()
+  save = () => {
+    const { filters } = this.state
+    const { close } = this.props
+    // TODO: implement save && redux
+    AppStore.report.syncFilters(filters, () => {
+      AppStore.update()
+      close()
+    })
   }
 
-  addFilter () {
-    store.addFilter()
+  change = (model, attrs) => {
+    const { filters } = this.state
+    this.setState(state => setIn(state,
+      ['filters', _.findIndex(filters, model)],
+      new FilterModel({ ...model, ...attrs })))
   }
 
-  save () {
-    store.save()
+  remove = (model) => {
+    this.setState(({ filters }) => ({
+      filters: filters.filter(f => f !== model),
+    }))
   }
 
   renderFilters () {
-    if (AppStore.report.filters.length) {
-      return _.map(AppStore.report.filters, (filter, i) => (
-        <Filter key={i} model={filter} />
+    const { filters } = this.state
+    if (filters.length) {
+      return _.map(filters, (filter, i) => (
+        <Filter key={i} model={filter} onChange={this.change} onRemove={this.remove} />
       ))
     }
     return (
@@ -43,7 +63,7 @@ export class FilterModal extends Component {
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -55,7 +75,7 @@ export class FilterModal extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.addFilter}>Add Filter</button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

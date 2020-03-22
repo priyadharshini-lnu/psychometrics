@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
-import Header from '../Header'
+import Modals from 'rb/components/modals'
+import Prompt from 'rb/components/Prompt'
+import Library from 'libs/library'
+import PageEditor from 'rb/views/PageEditor'
 import styles from './Dashboard.scss'
+import Header from '../Header'
 import 'rb/styles/core.scss'
 
 export class Dashboard extends Component {
@@ -12,6 +16,12 @@ export class Dashboard extends Component {
 
   componentDidMount () {
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
+    const { subscribeSocket, socketInitialized } = this.props
+    if (!socketInitialized) {
+      const urldata = location.pathname.match(/reports\/(\d+)/)
+      const id = urldata && urldata[1]
+      subscribeSocket('Reports::Channel', { report_id: id })
+    }
   }
 
   componentWillUnmount () {
@@ -68,7 +78,10 @@ export class Dashboard extends Component {
               {!AppStore.loaded && this.loading()}
               {/* disable error notification popup */}
               {/* {AppStore.disabled && this.overlay()} */}
-              {children}
+              <PageEditor />
+              <Prompt />
+              <Library />
+              <Modals />
             </div>
           </div>
         </div>
