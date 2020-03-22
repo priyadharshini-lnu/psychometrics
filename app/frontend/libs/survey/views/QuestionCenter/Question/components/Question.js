@@ -31,7 +31,6 @@ class Question extends Component {
   }
 
   render () {
-    const { model, selectedModel } = this.props
     return (
       <div
         ref={(ref) => { this.question = ref }}

@@ -13,7 +13,7 @@ export class Preview extends Component {
   }
 
   renderAnswersType () {
-    const { model, readOnly, I18n } = this.props
+    const { model, readOnly } = this.props
     const { type } = model.props
     const View = Previews[type]
     return <View model={model} preview readOnly={readOnly} />

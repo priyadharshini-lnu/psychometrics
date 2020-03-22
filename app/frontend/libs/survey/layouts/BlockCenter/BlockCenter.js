@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import 'styles/core.scss'
 import Modals from 'components/Modals'
 import homeStyles from 'views/Home/components/HomeView.scss'

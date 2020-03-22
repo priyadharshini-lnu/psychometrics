@@ -24,7 +24,7 @@
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-this-alias": 0,
-    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/member-delimiter-style": 0,
     "@typescript-eslint/no-use-before-define": 0,
     "@typescript-eslint/explicit-function-return-type": 1,

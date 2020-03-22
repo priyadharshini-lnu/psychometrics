@@ -8,9 +8,6 @@ import Header from './QuestionHeader'
 import QuestionInfoBar from './QuestionInfoBar'
 import QuestionRenderer from './QuestionRenderer'
 
-const HEADER_HIEGHT = 40
-const HEADER_PADDING = 30
-
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,

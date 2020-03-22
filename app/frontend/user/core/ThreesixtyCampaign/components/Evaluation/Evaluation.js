@@ -112,7 +112,7 @@ export default function Evaluation ({
     return (
       <div>
         {I18n.t('threesixty.evaluate')}
-        {': '}
+        :
         {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullName(subject)}
       </div>
     )

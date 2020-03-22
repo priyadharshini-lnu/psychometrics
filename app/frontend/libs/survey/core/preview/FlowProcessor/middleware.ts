@@ -8,7 +8,7 @@ import {
 import { NEXT_PAGE } from './consts'
 import {
   pageQuestions, pageQuestionsWithoutHidden, getNextPage, getNextElementId,
-  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId, getCurrentPage,
+  getSkipLogicSelector, getDisplayLogicSelector, getElementIdByBlockId,
 } from './selectors'
 import ValidationProcessor from './commands/ValidationProcessor'
 import ElementProcessor from './commands/ElementProcessor'

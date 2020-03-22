@@ -1,5 +1,4 @@
 import React from 'react'
-import AppStore from 'rb/store/AppStore'
 import styles from './Header.scss'
 
 const Header = ({ name }) => (

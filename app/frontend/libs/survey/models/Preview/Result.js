@@ -3,7 +3,6 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
 import Watchman from 'store/StoreWatchman'
-import LocalStorage from 'utils/LocalStorage'
 import Results from './Results'
 
 const Result = function (question, answers = null, notApplicable = null) {

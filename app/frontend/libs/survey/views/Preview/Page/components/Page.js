@@ -93,7 +93,7 @@ class Page extends Component {
       page, questions, errors, nextPage, preview, prevPage, hasPrevPage,
       block: { props: { staticContent } },
       preview: {
-        enableBack, enableProgress, ignoreValidation, readOnly, type,
+        enableProgress, ignoreValidation, readOnly, type,
       },
     } = this.props
 

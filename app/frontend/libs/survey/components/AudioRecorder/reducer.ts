@@ -1,6 +1,4 @@
 import { createReducer } from 'utils/reduxUtils'
-import _ from 'lodash'
-import { types } from '@babel/core'
 import { RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE } from './constants'
 
 export interface State {

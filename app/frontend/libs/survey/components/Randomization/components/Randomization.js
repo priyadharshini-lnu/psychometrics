@@ -11,7 +11,7 @@ const {
 export class Randomization extends Component {
   state = {}
 
-  componentDidMount = (prevProps) => {
+  componentDidMount = () => {
     const { model } = this.props
     if (model) {
       this.setState({

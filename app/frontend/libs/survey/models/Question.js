@@ -96,14 +96,14 @@ _.extend(Question.prototype, {
     this.name = name
   },
 
-  addComment (data) {
-    const comment = new Comment(data)
-    // Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
-    //   Object.assign(comment, { id: data.id, name: data.author })
-    //   this.comments.push(comment)
-    //   this.store.update()
-    // })
-  },
+  // addComment (data) {
+  // const comment = new Comment(data)
+  // Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
+  //   Object.assign(comment, { id: data.id, name: data.author })
+  //   this.comments.push(comment)
+  //   this.store.update()
+  // })
+  // },
 
   loadComments (comments) {
     _.each(comments, (comment) => {

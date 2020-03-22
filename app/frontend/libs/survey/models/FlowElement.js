@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash'
-import CountQuestionSize, { END } from 'commands/flow/CountQuestionSize'
 import { EventEmitter } from 'fbemitter'
 import FlowCondition from './FlowCondition'
 

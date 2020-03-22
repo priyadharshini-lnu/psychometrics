@@ -2,7 +2,7 @@ import React from 'react'
 import { DragSource, DropTarget } from 'react-dnd'
 
 const SubFactorRow = ({
-  isDragging, connectDragSource, connectDropTarget, connectDragPreview, moveRow, scoringStrategy, ...restProps
+  isDragging, connectDragSource, connectDropTarget, connectDragPreview, scoringStrategy, ...restProps
 }) => {
   const opacity = isDragging ? 0 : 1
 

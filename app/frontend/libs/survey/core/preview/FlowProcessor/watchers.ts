@@ -15,7 +15,6 @@ import {
   getPrevPage,
   pageQuestions,
   pageQuestionsWithoutHidden,
-  getCurrentPage,
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
