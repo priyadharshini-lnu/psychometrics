@@ -1,3 +1,4 @@
 import FilterModal from './components/FilterModal'
+import connect from './connect'
 
-export default FilterModal
+export default connect(FilterModal)

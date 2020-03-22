@@ -6,7 +6,6 @@ import store from 'rb/store/PageList'
 import panelStore from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
-import RichEditorStore from 'rb/store/RichEditorStore'
 import styles from './Foundation.scss'
 
 const { $ } = window
@@ -127,7 +126,9 @@ class Foundation extends Component {
 
 
   select = (e) => {
-    const { preview, module, page } = this.props
+    const {
+      preview, module, page, closeRichEditor,
+    } = this.props
     if (preview) { return }
     e.stopPropagation()
     const shadow = !module.onPage(page) && module.props.showOnAllPages
@@ -135,7 +136,7 @@ class Foundation extends Component {
     const selectModule = () => {
       store.unselectAll()
       store.selected.push(module)
-      RichEditorStore.close()
+      closeRichEditor()
       panelStore.select('Module', module)
       this.forceUpdate()
     }

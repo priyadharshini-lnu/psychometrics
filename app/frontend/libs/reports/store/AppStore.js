@@ -4,8 +4,6 @@ import Report from 'rb/models/Report'
 import Occupation from 'rb/models/Occupation'
 import PageList from 'rb/store/PageList'
 import AssessmentStore from 'rb/store/AssessmentStore'
-import AliasStore from 'rb/store/modals/AliasStore'
-import DataConfigurationStore from 'rb/store/modals/DataConfigurationStore'
 import NotificationDispatcher from 'rb/dispatchers/NotificationDispatcher'
 import PropertyPanelStore from 'rb/store/PropertyPanelStore'
 import InnovationStyle from 'rb/models/InnovationStyle'
@@ -99,12 +97,6 @@ _.extend(AppStore.prototype, {
       return result
     }, [])
 
-    AliasStore.setFactors(this.flatFactors)
-
-    // Set Data Configuration value
-    //
-    DataConfigurationStore.setDataConfiguration(this.report.data_configuration)
-
     PageList.load(data.pages, data.completed_assessments)
     this.loaded = true
     this.name = data.name
@@ -136,6 +128,9 @@ _.extend(AppStore.prototype, {
     this.emit('change')
   },
 
+  update () {
+    this.emit('change')
+  },
   // Serialize Report
   // report: {
   //   - Report Attributes (name, filters)

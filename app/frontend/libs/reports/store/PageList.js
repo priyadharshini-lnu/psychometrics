@@ -150,9 +150,7 @@ _.extend(PageList.prototype, {
   unselectAll () {
     this.selected = []
     panelStore.select('Report', this)
-    if (RichEditorStore.opened) {
-      RichEditorStore.close()
-    }
+    RichEditorStore.close()
     this.update()
   },
 

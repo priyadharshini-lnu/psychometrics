@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/AliasStore'
+import { setIn } from 'utils/immutable'
 import styles from './AliasModal.scss'
 import Alias from './Alias'
 
@@ -10,25 +10,26 @@ const {
 } = Modal
 
 export class AliasModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  constructor (props) {
+    super(props)
+    this.state = {
+      factors: props.factors.reduce((l, f) => ({ ...l, [f.id]: f }), {}),
+    }
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
+  save = () => {
+    const { factors } = this.state
+    const { showSavePopup } = this.props
+    showSavePopup({ factors })
   }
 
-  close () {
-    store.close()
+  changeFactor = (factor, alias) => {
+    this.setState(state => setIn(state, ['factors', factor.id, 'alias'], alias))
   }
 
-  save () {
-    store.showSavePopUp()
-  }
-
-  renderData () {
-    const factors = store.structuredFactors
-    if (factors.length) {
+  renderData = () => {
+    const { factors } = this.state
+    if (_.size(factors)) {
       return (
         <table className={styles.mainTable}>
           <thead>
@@ -48,14 +49,12 @@ export class AliasModal extends Component {
     )
   }
 
-  renderAliases (factors) {
-    return _.map(factors, (factor, i) => (
-      <Alias key={i} model={factor} />
-    ))
-  }
+  renderAliases = factors => _.map(factors, (factor, i) => (
+    <Alias key={i} model={factor} onChange={this.changeFactor} />
+  ))
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal} className={styles.firstModal}>
         <Header>
@@ -66,7 +65,7 @@ export class AliasModal extends Component {
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

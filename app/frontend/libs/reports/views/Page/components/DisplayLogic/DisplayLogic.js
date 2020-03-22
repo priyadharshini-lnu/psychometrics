@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DisplayLogicStore from 'rb/store/modals/DisplayLogicStore'
+import PageList from 'rb/store/PageList'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import styles from './DisplayLogic.scss'
 import LogicPreview from './LogicPreview'
@@ -11,13 +11,14 @@ export default class DisplayLogic extends Component {
   }
 
   openDisplayLogic = () => {
-    const { model } = this.props
-    DisplayLogicStore.open(model)
+    const { model, openDisplayLogic } = this.props
+    openDisplayLogic({ model })
   }
 
   removeDisplayLogic = () => {
     const { model } = this.props
-    DisplayLogicStore.remove(model)
+    model.displayLogic = null // TODO: ¯\_(ツ)_/¯ update to redux
+    PageList.update()
   }
 
   render () {

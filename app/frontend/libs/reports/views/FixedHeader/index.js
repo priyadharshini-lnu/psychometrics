@@ -1,3 +1,4 @@
 import FixedHeader from './components/FixedHeader'
+import connect from './connect'
 
-export default FixedHeader
+export default connect(FixedHeader)

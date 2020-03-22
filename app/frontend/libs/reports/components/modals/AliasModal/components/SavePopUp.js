@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/AliasStore'
 import AppStore from 'rb/store/AppStore'
+import { connect } from 'react-redux'
+import { closeModal, getData } from 'admin/core/temp/modals'
 import styles from './AliasModal.scss'
 
 const {
@@ -9,34 +10,23 @@ const {
 } = Modal
 
 export class SavePopUp extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('savePopUpChange', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
   overrideZIndex = () => {
     // eslint-disable-next-line no-underscore-dangle
     // TODO: Find a fix, refs are empty after react upgrade
     // this.modal._modal.refs.backdrop.style.zIndex = 10000
   }
 
-  close () {
-    store.closeSavePopUp()
-  }
-
-  save (e) {
+  save = (e) => {
+    const { factors } = this.props
     const target = e.currentTarget
     target.setAttribute('disabled', 'disabled')
-    store.save(() => {
+    AppStore.report.syncAliases(_.map(factors, f => f), () => {
       AppStore.save(() => { window.location.reload() })
     })
   }
 
   render () {
-    if (!store.savePopUp) { return null }
+    const { close } = this.props
     return (
       <Modal
         ref={(ref) => { this.modal = ref }}
@@ -58,11 +48,19 @@ export class SavePopUp extends Component {
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )
   }
 }
 
-export default SavePopUp
+
+export default connect(
+  state => ({
+    ...getData(state.report).savePopUp,
+  }),
+  {
+    close: () => closeModal('savePopUp'),
+  },
+)(SavePopUp)

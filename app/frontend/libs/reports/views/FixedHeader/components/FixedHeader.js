@@ -3,13 +3,8 @@ import _ from 'lodash'
 import HeaderDispatcher from 'rb/dispatchers/HeaderDispatcher'
 import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
 import headerStore from 'rb/store/HeaderStore'
-import FilterStore from 'rb/store/modals/FilterStore'
-import DataSheetModalStore from 'rb/store/modals/DataSheetModalStore'
-import AliasStore from 'rb/store/modals/AliasStore'
-import DataConfigurationStore from 'rb/store/modals/DataConfigurationStore'
 import AppStore from 'rb/store/AppStore'
 import I18nStore from 'rb/store/I18nStore'
-import RichEditorStore from 'rb/store/RichEditorStore'
 import styles from './FixedHeader.scss'
 
 const { $ } = window
@@ -19,14 +14,12 @@ export class HomeView extends Component {
     $(document).on('scroll', this.bodyScroll)
     $(document).on('keydown', this.bodyKeyDown)
     this.listener = AppStore.addListener('change', () => this.forceUpdate())
-    this.editorListener = RichEditorStore.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
     $(document).off('scroll', this.bodyScroll)
     $(document).off('keydown', this.bodyKeyDown)
     this.listener.remove()
-    this.editorListener.remove()
   }
 
   bodyScroll = (e) => {
@@ -35,9 +28,10 @@ export class HomeView extends Component {
   }
 
   bodyKeyDown = (e) => {
+    const { richEditorOpened } = this.props
     if (e.target.nodeName === 'INPUT') { return }
     if (e.target.nodeName === 'TEXTAREA') { return }
-    if (RichEditorStore.opened) { return }
+    if (richEditorOpened) { return }
 
     if (e.keyCode === 8 || e.keyCode === 46) {
       HeaderDispatcher.backspace()
@@ -92,23 +86,28 @@ export class HomeView extends Component {
     })
   }
 
-  openFilterModal () {
-    FilterStore.open()
+  openFilterModal = () => {
+    const { openFilter } = this.props
+    openFilter({ filters: AppStore.report.filters })
   }
 
-  openDataSheetModal () {
-    DataSheetModalStore.open()
+  openDataSheetModal = () => {
+    const { openDataSheet } = this.props
+    openDataSheet({ columns: AppStore.report.dataSheetColumns })
   }
 
-  openAliasModal () {
-    AliasStore.open()
+  openAliasModal = () => {
+    const { openAlias } = this.props
+    openAlias({ factors: AppStore.flatFactors })
   }
 
-  openDataConfigurationModal () {
-    DataConfigurationStore.open()
+  openDataConfigurationModal = () => {
+    const { openDataConfiguration } = this.props
+    openDataConfiguration()
   }
 
   render () {
+    const { richEditorOpened } = this.props
     const style = {
       position: 'fixed',
       top: 0,
@@ -119,8 +118,8 @@ export class HomeView extends Component {
 
     return (
       <div ref={(ref) => { this.menu = ref }} className={styles.header} style={style}>
-        {RichEditorStore.opened ? <div id="froala-editor-toolbar" /> : (
-          <div className={styles.components}>
+        {richEditorOpened ? <div key="editor" id="froala-editor-toolbar" /> : (
+          <div key="menu" className={styles.components}>
             <div
               ref={(ref) => { this.cktoolbar = ref }}
               className={styles.ckContainer}

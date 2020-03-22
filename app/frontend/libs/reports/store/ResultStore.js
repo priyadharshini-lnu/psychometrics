@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Result from 'rb/models/Result'
-import MockResults from 'rb/store/MockResults'
+import MockResults from 'rb/consts/MockResults'
 import Scoring from 'libs/reports/models/Scoring'
 import AppStore from './AppStore'
 

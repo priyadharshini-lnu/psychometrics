@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import DataSource from 'rb/components/DataSourceMenu'
 import store from 'rb/store/PropertyPanelStore'
-import FilterStore from 'rb/store/modals/FilterStore'
+import AppStore from 'rb/store/AppStore'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import ColorSet from 'rb/components/ColorSet'
 import PropertyFonts from 'rb/components/PropertyFonts'
-import ConditionTextStore from 'rb/store/modals/ConditionTextStore'
 import ChartProps from './Charts/Properties'
 import iconsStyles from './Graph.scss'
 import Menu from './ChartsMenu'
+import connect from '../connect'
 
 class Properties extends Component {
   static propTypes = {
@@ -18,12 +18,12 @@ class Properties extends Component {
   }
 
   componentDidMount () {
-    this.filterListener = FilterStore.addListener('change', () => this.forceUpdate())
+    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
     this.listener = store.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
-    this.filterListener.remove()
+    this.appListener.remove()
     this.listener.remove()
   }
 
@@ -58,7 +58,8 @@ class Properties extends Component {
   }
 
   openConditionModal () {
-    ConditionTextStore.open(store.model)
+    const { openConditionalText } = this.props
+    openConditionalText({ module: store.model })
   }
 
   renderCustomProperties () {
@@ -134,4 +135,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import CPIFactorConditionStore from 'rb/store/modals/CPIFactorConditionStore'
 import AppStore from 'rb/store/AppStore'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionList from './ConditionList'
@@ -50,9 +49,8 @@ export class ConditionCollection extends Component {
   }
 
   remove = () => {
-    const { model } = this.props
-    CPIFactorConditionStore.module.removeConditionCollection(model)
-    CPIFactorConditionStore.update()
+    const { onRemove, model } = this.props
+    onRemove(model)
   }
 
   update = () => {
