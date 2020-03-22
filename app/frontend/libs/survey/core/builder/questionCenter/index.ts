@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createReducer } from 'utils/reduxUtils'
 import _ from 'lodash'
-import { updateIn, setIn } from 'utils/immutable'
+import { setIn } from 'utils/immutable'
 import Question from 'libs/survey/models/Question'
 import { Question as QuestionInerface } from 'libs/survey/core/preview/FlowProcessor/interfaces'
 import {

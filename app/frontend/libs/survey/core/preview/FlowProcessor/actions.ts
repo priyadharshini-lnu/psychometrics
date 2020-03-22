@@ -6,7 +6,7 @@ import _ from 'lodash'
 import { getCurrentBlock } from './selectors'
 import NormResolver from './commands/NormResolver'
 import {
-  NEXT_PAGE, PREV_PAGE, ANSWER,
+  NEXT_PAGE, PREV_PAGE,
   SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,

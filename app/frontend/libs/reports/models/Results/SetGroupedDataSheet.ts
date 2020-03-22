@@ -1,4 +1,3 @@
-import _ from 'lodash'
 import RawResult from './interfaces/RawResult'
 
 export default {

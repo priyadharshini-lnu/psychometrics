@@ -18,7 +18,6 @@ class PreviewContainer extends Component {
     } = parent.dataset
     this.langPartial = langPartial
 
-    const dbResult = result || null
     Watchman.set(rstore)
     rstore.dispatch({
       type: INIT,

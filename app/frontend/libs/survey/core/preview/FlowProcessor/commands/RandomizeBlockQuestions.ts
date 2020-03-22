@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import shuffle from 'utils/shuffle'
 import seedrandom from 'seedrandom'
-import { QuestionsInterface, PageInterface } from '../interfaces'
+import { PageInterface } from '../interfaces'
 
 const RandomizeBlockQuestions = {
   run (

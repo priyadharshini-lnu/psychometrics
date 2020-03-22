@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ActionsHistory from 'components/ActionsHistory'
 import NotificationDispatcher from 'libs/survey/dispatchers/NotificationDispatcher'
 import { save } from 'libs/survey/core/builder/questionCenter'

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
 import Modals from 'rb/components/modals'
 import Prompt from 'rb/components/Prompt'
@@ -10,10 +9,6 @@ import Header from '../Header'
 import 'rb/styles/core.scss'
 
 export class Dashboard extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-
   componentDidMount () {
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
     const { subscribeSocket, socketInitialized } = this.props
@@ -68,7 +63,6 @@ export class Dashboard extends Component {
   }
 
   render () {
-    const { children } = this.props
     return (
       <div>
         <div>
