@@ -32,7 +32,8 @@ class Assessment < ApplicationRecord
     CASE_STUDY = 'case_study',
     THREESIXTY = 'threesixty',
     MINDMILL = 'mindmill',
-    HOGAN = 'hogan'
+    HOGAN = 'hogan',
+    GAME = 'game'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -40,7 +41,8 @@ class Assessment < ApplicationRecord
     case_study: CASE_STUDY,
     threesixty: THREESIXTY,
     mindmill: MINDMILL,
-    hogan: HOGAN
+    hogan: HOGAN,
+    game: GAME
   }.freeze
 
   # Assessments constant
@@ -87,6 +89,8 @@ class Assessment < ApplicationRecord
   has_many :clients, through: :reports
 
   has_one :hogan_assessment_setting
+  has_one :game
+
   accepts_nested_attributes_for :hogan_assessment_setting
   before_save :delete_hogan_assessment_setting
   before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
@@ -103,6 +107,8 @@ class Assessment < ApplicationRecord
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
+
+  delegate :config, :translations, to: :game, prefix: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -153,6 +159,10 @@ class Assessment < ApplicationRecord
 
   def external?
     mindmill? || hogan?
+  end
+
+  def game?
+    category == GAME
   end
 
   class << self

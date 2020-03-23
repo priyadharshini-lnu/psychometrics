@@ -5,7 +5,10 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = resource.decorate.status
   td
     - if policy(resource).show?
-      = link_to resource.decorate.name, administration_assessment_path(resource)
+      - if resource.game?
+        = link_to resource.decorate.name, administration_assessment_games_path(resource)
+      - else
+        = link_to resource.decorate.name, administration_assessment_path(resource)
     - else
       = resource.decorate.name
   td = resource.dimension.try(:decorate).try(:display_name)

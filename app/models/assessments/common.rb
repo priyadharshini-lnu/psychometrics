@@ -8,6 +8,7 @@ module Assessments
     validate :check_owner
 
     before_create :init_default_state
+    after_create :create_game, if: :game?
 
     # Need for create right urls
     def self.model_name

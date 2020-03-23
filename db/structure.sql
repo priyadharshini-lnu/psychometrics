@@ -256,7 +256,13 @@ CREATE TABLE public.assigns (
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    current_element character varying,
+    current_page integer,
+    seedrandom character varying,
+    expiry_date timestamp without time zone,
+    last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -1168,7 +1174,10 @@ CREATE TABLE public.factors_sub_factors (
     factor_id bigint,
     weight double precision DEFAULT 1.0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    predicate character varying,
+    value double precision,
+    "position" integer
 );
 
 
@@ -1189,6 +1198,37 @@ CREATE SEQUENCE public.factors_sub_factors_id_seq
 --
 
 ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_factors.id;
+
+
+--
+-- Name: games; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.games (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    config json DEFAULT '{}'::json,
+    translations json DEFAULT '{}'::json
+);
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.games_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
 
 
 --
@@ -2947,7 +2987,13 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint
+    campaign_id bigint,
+    current_element character varying,
+    current_page integer,
+    seedrandom character varying,
+    expiry_date timestamp without time zone,
+    last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3178,6 +3224,13 @@ ALTER TABLE ONLY public.factors_scoring ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval('public.factors_sub_factors_id_seq'::regclass);
+
+
+--
+-- Name: games id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
 
 
 --
@@ -3762,6 +3815,14 @@ ALTER TABLE ONLY public.factors_scoring
 
 ALTER TABLE ONLY public.factors_sub_factors
     ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
 
 
 --
@@ -4630,6 +4691,13 @@ CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factor
 --
 
 CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
+
+
+--
+-- Name: index_games_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_games_on_assessment_id ON public.games USING btree (assessment_id);
 
 
 --
@@ -5593,6 +5661,14 @@ ALTER TABLE ONLY public.threesixty_email_histories
 
 ALTER TABLE ONLY public.threesixty_instruction_templates
     ADD CONSTRAINT fk_rails_3e304e0709 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: games fk_rails_406dc2e530; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.games
+    ADD CONSTRAINT fk_rails_406dc2e530 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -6630,6 +6706,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200122113926'),
 ('20200127101833'),
 ('20200204141530'),
-('20200317122132');
+('20200207070850'),
+('20200216190418'),
+('20200216190542'),
+('20200219084808'),
+('20200303084836'),
+('20200317122132'),
+('20200322064957');
 
 
