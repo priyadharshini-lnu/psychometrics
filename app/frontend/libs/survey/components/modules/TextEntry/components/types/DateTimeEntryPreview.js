@@ -11,8 +11,11 @@ export default class DateTimeEntryPreview extends React.Component {
   }
 
   render () {
+    const { model: { result: { answers: [{ value }] } } } = this.props
+
     return (
       <DatePicker
+        value={value ? moment(value, FORMAT) : null}
         format={FORMAT}
         disabledTime={false}
         onChange={this.changeAnswer}

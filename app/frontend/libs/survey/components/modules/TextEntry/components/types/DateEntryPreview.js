@@ -1,5 +1,6 @@
 import React from 'react'
 import { DatePicker } from 'antd'
+import moment from 'moment'
 
 const FORMAT = 'YYYY-MM-DD'
 export default class DateEntryPreview extends React.Component {
@@ -10,8 +11,10 @@ export default class DateEntryPreview extends React.Component {
   }
 
   render () {
+    const { model: { result: { answers: [{ value }] } } } = this.props
+
     return (
-      <DatePicker onChange={this.changeAnswer} format={FORMAT} />
+      <DatePicker value={value ? moment(value, FORMAT) : null} onChange={this.changeAnswer} format={FORMAT} />
     )
   }
 }
