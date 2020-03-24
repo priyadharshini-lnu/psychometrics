@@ -111,6 +111,7 @@ export class Header extends Component {
                 placeholder="Set timer"
                 defaultOpenValue={moment.utc(0)}
                 className="mls mrl"
+                dropdownClassName="assessment-timer"
               />
             </li>
           )}
