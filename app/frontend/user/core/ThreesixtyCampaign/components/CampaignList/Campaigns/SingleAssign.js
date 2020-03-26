@@ -17,7 +17,7 @@ const ASSESSMENT_CATEGORY_ICONS = {
   mindmill: 'mindmill',
   case_study: 'case_study',
   organisational: 'survey',
-  game: 'survey'
+  game: 'survey',
 }
 
 const DownloadLink = ({ report, text }) => {

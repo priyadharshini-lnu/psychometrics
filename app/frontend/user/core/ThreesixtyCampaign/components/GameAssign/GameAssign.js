@@ -1,24 +1,21 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Icon, PageHeader
+  Layout, Icon, PageHeader,
 } from 'antd'
-import { InteractiveAssessments } from "@thetalententerprise/interactive-assessments"
+import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 
 const { Content } = Layout
 
-export default function GameAssign({
+export default function GameAssign ({
   history,
   isFrame,
   gameAssetsUrl,
 }) {
-  useEffect(() => {
-    initializeGame()
-  }, [])
-  console.log(isFrame, gameAssetsUrl)
+
   const initializeGame = () => {
     const appOptions = {
       scale: {
-        parent: "game-container"
+        parent: 'game-container',
       },
       service: {
         baseURL: window.location.href,
@@ -29,13 +26,17 @@ export default function GameAssign({
         },
       },
       settings: {
-        returnURL: "/",
+        returnURL: '/',
         assetsBaseURL: gameAssetsUrl,
-      }
+      },
     }
 
-    window.gameApp = InteractiveAssessments.init(appOptions)
+    InteractiveAssessments.init(appOptions)
   }
+
+  useEffect(() => {
+    initializeGame()
+  }, [])
 
   return (
     <Layout>
@@ -51,8 +52,7 @@ export default function GameAssign({
           )}
           onBack={() => history.push('/campaigns')}
         >
-          <div id='game-container'>
-          </div>
+          <div id="game-container" />
         </PageHeader>
       </Content>
     </Layout>

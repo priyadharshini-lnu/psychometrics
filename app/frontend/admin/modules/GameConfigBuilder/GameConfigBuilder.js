@@ -40,7 +40,7 @@ const GameConfigBuilder = ({
 }
 
 function JSONEditor ({ value, onSave }) {
-  const [stringifiedValue, setStringifiedValue] = useState(JSON.stringify(value))
+  const [stringifiedValue, setStringifiedValue] = useState(JSON.stringify(value, null, 2))
 
   return (
     <div className={styles.tabContent}>
