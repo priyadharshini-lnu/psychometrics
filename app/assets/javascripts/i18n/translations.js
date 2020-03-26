@@ -39,6 +39,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "page": {
+      "back": "Back",
+      "next": "Next"
+    },
     "pickgrouprank": {
       "items": "Items"
     },
@@ -56,6 +60,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {
@@ -478,6 +491,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "page": {
+      "back": "Back",
+      "next": "Next"
+    },
     "pickgrouprank": {
       "items": "العبارات"
     },
@@ -495,6 +512,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {
@@ -920,6 +946,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "page": {
+      "back": "Back",
+      "next": "Next"
+    },
     "pickgrouprank": {
       "items": "Items"
     },
@@ -937,6 +967,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {

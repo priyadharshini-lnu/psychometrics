@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import Watchman from 'libs/survey/store/StoreWatchman'
 import styles from './Page.scss'
 
 class PageFooter extends Component {
@@ -21,15 +22,17 @@ class PageFooter extends Component {
   render () {
     const { page, preview: { enableBack }, hasPrevPage } = this.props
     return (
-      <div className={styles.footer}>
+      <div className={cs(styles.footer)}>
         {enableBack && hasPrevPage && (
-          <a className={cs('btn btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
-            {page.prevBtn || 'Back'}
-          </a>
+          <button type="button" className={cs('btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
+            <span className="mrs mls fa fa-chevron-left rtl-flip" />
+            { page.prevBtn || Watchman.I18n().t('assessments.page.back') }
+          </button>
         )}
-        <a className={cs('btn btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
-          {page.nextBtn || 'Next'}
-        </a>
+        <button type="button" className={cs('btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
+          { page.nextBtn || Watchman.I18n().t('assessments.page.next') }
+          <span className="mls mrs fa fa-chevron-right rtl-flip" />
+        </button>
       </div>
     )
   }

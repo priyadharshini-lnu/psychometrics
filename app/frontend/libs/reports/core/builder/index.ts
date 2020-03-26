@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createReducer } from 'utils/reduxUtils'
-import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR,
   CLOSE_RICH_EDITOR,

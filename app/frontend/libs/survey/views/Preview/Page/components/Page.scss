@@ -89,7 +89,7 @@
 }
 
 .footer {
-  margin: 5px;
+  margin: 15px;
   text-align: right;
 
   .btn {
@@ -103,9 +103,14 @@
   }
 
   .btnPrimary {
+    margin: 5px 0;
+    padding: 10px 25px;
     background-color: $primary-color;
     border-color: $primary-color;
     color: $white;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
 
     &:hover {
       background-color: $processing-color;
@@ -119,6 +124,12 @@
   }
 
   .btnDefault {
+    margin: 5px 0;
+    padding: 10px 25px;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+
     &:hover {
       background-color: $white;
       color: $primary-color;
@@ -221,11 +232,20 @@
 .leftStaticContent {
   flex-direction: row-reverse;
 }
+
 @media(max-width: $screen-md) {
   .sideStaticContent {
     display: block;
     &>* {
       width: 100%;
+    }
+  }
+}
+
+:global {
+  .rtl {
+    .rtl-flip {
+      transform: rotateY(180deg);
     }
   }
 }
