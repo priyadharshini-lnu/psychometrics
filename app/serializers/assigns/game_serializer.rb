@@ -2,11 +2,11 @@
 
 module Assigns
   class GameSerializer < ActiveModel::Serializer
-    attributes :groups, :locale, :completedGroups, :assets
+    attributes :groups, :locale, :completed_groups, :assets
 
     delegate :config, :translations, to: :game
 
-    def completedGroups
+    def completed_groups
       object.meta_data['completed_groups'] || []
     end
 
@@ -24,6 +24,10 @@ module Assigns
 
     def game
       object.game
+    end
+
+    def attributes(*_)
+      Hash[super.to_a.map { |k, v| [k.to_s.camelcase(:lower), v] }]
     end
   end
 end
