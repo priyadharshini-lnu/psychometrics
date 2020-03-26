@@ -10,7 +10,6 @@ class Game::AssignsController < ApplicationController
 
   def show
     respond_to do |format|
-      # format.html { render 'show', layout: false }
       format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
       format.json do
         render json: @assign, serializer: Assigns::GameSerializer
@@ -33,7 +32,7 @@ class Game::AssignsController < ApplicationController
   end
 
   def events
-    @assign.game_logs.create!(event_params)
+    @assign.game_events.create!(event_params)
     render json: { status: :ok }
   end
 

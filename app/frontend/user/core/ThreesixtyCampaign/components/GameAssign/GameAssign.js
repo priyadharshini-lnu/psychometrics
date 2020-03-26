@@ -11,7 +11,6 @@ export default function GameAssign ({
   isFrame,
   gameAssetsUrl,
 }) {
-
   const initializeGame = () => {
     const appOptions = {
       scale: {

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateGameLog < ActiveRecord::Migration[5.1]
+class CreateGameEvents < ActiveRecord::Migration[5.1]
   def change
-    create_table :game_logs do |t|
+    create_table :game_events do |t|
       t.references :assign, foreign_key: { on_delete: :cascade }
       t.string :session_id
       t.string :event

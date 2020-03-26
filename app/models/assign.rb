@@ -29,7 +29,7 @@ class Assign < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :campaign
   has_one :game, through: :assessment
-  has_many :game_logs
+  has_many :game_events
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
