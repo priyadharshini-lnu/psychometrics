@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class Game::AssignsController < ApplicationController
+  include ::Threesixty::InitialState
+
   before_action :set_assign
+  initial_state_for :show
+
   append_before_action :pundit_authorize
 
   def show
@@ -37,6 +41,13 @@ class Game::AssignsController < ApplicationController
 
   def set_assign
     @assign = policy_scope(Assign).find(params[:id])
+  end
+
+  def set_init_state
+    init_state = super
+    @init_state = super.merge(
+      extras: init_state[:extras].merge(gameAssetsUrl: Settings.game_config.asset_url)
+    )
   end
 
   def event_params
