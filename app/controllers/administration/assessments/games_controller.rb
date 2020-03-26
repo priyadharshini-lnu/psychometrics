@@ -28,7 +28,7 @@ class Administration::Assessments::GamesController < Administration::BaseControl
   end
 
   def game_params
-    params.require(:game).permit(:config, :translations)
+    params.require(:game).permit!
   end
 
   def set_resource

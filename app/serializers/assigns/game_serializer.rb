@@ -11,36 +11,15 @@ module Assigns
     end
 
     def groups
-      config
+      config['groups']
+    end
+
+    def assets
+      config['assets']
     end
 
     def locale
       translations
-    end
-
-    def assets
-      {
-        "images": [
-          "background-splash-purple.png",
-          "background-splash-darkblue.png",
-          "background-splash-lightblue.png",
-          "background-splash-green.png",
-          "background-splash-white.png",
-          "background-splash-blue.jpg",
-          "vr-bg.jpg",
-          "logo-number-crunch.png",
-          "logo-error-detection.png"
-        ],
-        "atlases": [
-          "common",
-          "error-detection",
-          "verbal-reasoning",
-          "mouse-check"
-        ],
-        "multiatlases": [
-          "inductive-reasoning"
-        ]
-      }
     end
 
     def game

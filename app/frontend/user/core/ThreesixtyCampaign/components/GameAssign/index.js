@@ -29,9 +29,10 @@ export default function GameAssign({
       },
       settings: {
         returnURL: "https://xyz.tte-lighthouse.com.com",
-        assetsBaseURL: "https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/",
+        assetsBaseURL: "https://ttetemp.s3.amazonaws.com/static/",
       }
     }
+
     window.gameApp = InteractiveAssessments.init(appOptions)
   }
 
@@ -47,14 +48,9 @@ export default function GameAssign({
               Back
             </div>
           )}
-          title={(
-            <div>
-            </div>
-          )}
           onBack={() => history.push('/campaigns')}
         >
-          <div id='game-container' className='evaluation-container'>
-
+          <div id='game-container'>
           </div>
         </PageHeader>
       </Content>

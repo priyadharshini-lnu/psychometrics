@@ -2,7 +2,7 @@
 
 module Assessments
   class GameForm < Rectify::Form
-    attribute :config, Array
+    attribute :config, Hash
     attribute :translations, Hash
 
     def attributes
