@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import VideoRecorder from 'components/VideoRecorder'
 import connect from './connect'
+import styles from '../VideoResponse.scss'
 
 export class Preview extends Component {
   static propTypes = {
@@ -25,7 +26,7 @@ export class Preview extends Component {
     const { result } = model
     const preview = type === 'preview_assessment'
     return (
-      <div className="col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+      <div className="col">
         <VideoRecorder
           key={model.id}
           model={model}
@@ -44,7 +45,7 @@ export class Preview extends Component {
     const { model, I18n } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
-      <div>
+      <div className={styles.videoResponse}>
         <div
           className={textEntryStyles.questionTextPreview}
           dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
