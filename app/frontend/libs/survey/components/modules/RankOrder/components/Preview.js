@@ -20,7 +20,7 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     return (
       <DndProvider backend={HTML5Backend}>
         <div>

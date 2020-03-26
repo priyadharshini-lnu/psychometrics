@@ -18,7 +18,7 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
       <div>
