@@ -619,6 +619,7 @@ Rails.application.routes.draw do
       resources :assigns, only: %i[show update] do
         member do
           post :events
+          put :set_language
         end
       end
     end

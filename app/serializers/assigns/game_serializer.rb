@@ -7,7 +7,7 @@ module Assigns
     delegate :config, :translations, to: :game
 
     def completedGroups
-      object.meta_data['completedGroups'] || []
+      object.meta_data['completed_groups'] || []
     end
 
     def groups
@@ -19,7 +19,7 @@ module Assigns
     end
 
     def locale
-      translations
+      translations.merge('selected' => object.selected_locale || I18n.default_locale)
     end
 
     def game

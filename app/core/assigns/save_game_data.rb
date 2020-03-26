@@ -10,7 +10,14 @@ module Assigns
     end
 
     def call
-      # Code to update assigns
+      results = assign.results || []
+      results << form.attributes
+      completed_groups = assign.meta_data['completed_groups'] || []
+      completed_groups << form.group_id
+
+      assign.update!(results: results, meta_data: assign.meta_data.merge('completed_groups' => completed_groups))
+
+      broadcast :ok
     end
   end
 end

@@ -15,23 +15,33 @@ class Game::AssignsController < ApplicationController
   end
 
   def update
-    form = Assigns::GameForm.from_params(params)
+    form = Assigns::GameForm.new(params.permit!)
     if form.valid?
-      Assigns::SaveGameData.call!(form.attributes)
+      Assigns::SaveGameData.call!(@assign, form)
     else
       render json: { errors: form.errors.full_messages }, status: :bad_request
     end
   end
 
-  def events
+  def set_language
+    @assign.update!(selected_locale: params[:local])
     render json: { status: :ok }
-    # Code to save game log
+  end
+
+  def events
+    @assign.game_logs.create!(event_params)
+    render json: { status: :ok }
   end
 
   private
 
   def set_assign
     @assign = policy_scope(Assign).find(params[:id])
+  end
+
+  def event_params
+    data = params[:data].permit! if params[:data].is_a?(ActionController::Parameters)
+    params.permit(:session_id, :event).merge(data: data)
   end
 
   def pundit_authorize

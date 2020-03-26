@@ -29,7 +29,7 @@ export default function GameAssign({
       },
       settings: {
         returnURL: "https://xyz.tte-lighthouse.com.com",
-        assetsBaseURL: "https://ttetemp.s3.amazonaws.com/static/",
+        assetsBaseURL: "https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/",
       }
     }
 

@@ -1201,6 +1201,38 @@ ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_fac
 
 
 --
+-- Name: game_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.game_logs (
+    id bigint NOT NULL,
+    assign_id bigint,
+    session_id character varying,
+    event character varying,
+    data json DEFAULT '{}'::json
+);
+
+
+--
+-- Name: game_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.game_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: game_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.game_logs_id_seq OWNED BY public.game_logs.id;
+
+
+--
 -- Name: games; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3227,6 +3259,13 @@ ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: game_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.game_logs ALTER COLUMN id SET DEFAULT nextval('public.game_logs_id_seq'::regclass);
+
+
+--
 -- Name: games id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3815,6 +3854,14 @@ ALTER TABLE ONLY public.factors_scoring
 
 ALTER TABLE ONLY public.factors_sub_factors
     ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: game_logs game_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.game_logs
+    ADD CONSTRAINT game_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4691,6 +4738,13 @@ CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factor
 --
 
 CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
+
+
+--
+-- Name: index_game_logs_on_assign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_game_logs_on_assign_id ON public.game_logs USING btree (assign_id);
 
 
 --
@@ -6272,6 +6326,14 @@ ALTER TABLE ONLY public.assessments_reports
 
 
 --
+-- Name: game_logs fk_rails_e05c7e9e09; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.game_logs
+    ADD CONSTRAINT fk_rails_e05c7e9e09 FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_subjects fk_rails_e425b52825; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6712,6 +6774,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200219084808'),
 ('20200303084836'),
 ('20200317122132'),
-('20200322064957');
+('20200322064957'),
+('20200326091232');
 
 
