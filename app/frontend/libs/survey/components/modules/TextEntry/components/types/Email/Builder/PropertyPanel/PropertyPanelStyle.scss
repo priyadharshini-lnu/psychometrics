@@ -1,0 +1,32 @@
+.container {
+  margin: 10px;
+}
+.label {
+  margin: 0;
+  font-size: 11px;
+  color: #737373;
+}
+.inputContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.input {
+  margin-right: 5px;
+}
+.button {
+  background-color: #e6e6e6 !important;
+  &:hover {
+    background-color: #e6e6e6;
+  }
+}
+.divider {
+  clear: both;
+  width: 100%;
+  border-top-color: #ccc;
+  border-bottom: 1px solid #ffffff;
+  border-left: none;
+  border-right: none;
+  margin: 6px 0;
+}

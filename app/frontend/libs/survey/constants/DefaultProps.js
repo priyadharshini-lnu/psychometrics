@@ -213,6 +213,14 @@ export const TextEntryProps = {
       { type: 'their', text: 'Hi, James', position: 0 },
       { type: 'mine', text: 'Ok Rupert', position: 1 },
     ],
+    defaultValues: [],
+  },
+  Email: {
+    title: 'How will you communicate?',
+    titleDescription: 'Write an email to your manager',
+    contactList: ['Rupert Smith'],
+    defaultValues: {},
+    choices: 0,
   },
 }
 
