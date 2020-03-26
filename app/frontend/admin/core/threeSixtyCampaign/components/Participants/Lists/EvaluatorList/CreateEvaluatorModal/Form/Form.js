@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form as AntForm, Select, Button } from 'antd'
 import _ from 'lodash'
+import userPresenter from 'presenters/userPresenter'
 import UserAutocomplete from '../../../shared/UserAutocomplete'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
@@ -27,7 +28,15 @@ export default function Form ({
     setEvaluator({ relationship: relationships[0] })
   }, [relationships])
 
-  const onSelect = (field, user) => setEvaluator({ ...evaluator, [field]: JSON.parse(user) })
+  const onSelect = (field, user) => {
+    const data = JSON.parse(user)
+    setEvaluator({ ...evaluator, [field]: JSON.parse(user) })
+    if (field === 'subject') {
+      setAutocompletedSubject(userPresenter.getFullNameWithEmail(data))
+    } else {
+      setAutocompletedEvaluator(userPresenter.getFullNameWithEmail(data))
+    }
+  }
 
   const onClick = () => {
     setEvaluator({ relationship: evaluator.relationship })
