@@ -4,8 +4,7 @@
 
 div style="background-color: white; margin: 5px 10px"
   = react_component('GameConfigBuilder',
-        { assessmentId: resource.id, config: resource.game_config, translations: resource.game_translations },
-        camelize_props: true)
+      { assessmentId: resource.id, config: resource.game_config, translations: resource.game_translations })
 
 javascript:
   window.reactRails.mountComponents('admin', 'GameConfigBuilder')

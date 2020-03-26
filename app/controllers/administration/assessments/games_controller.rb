@@ -11,7 +11,7 @@ class Administration::Assessments::GamesController < Administration::BaseControl
   end
 
   def update
-    form = Assessments::GameForm.from_params(params[:game])
+    form = Assessments::GameForm.new(game_params)
     if form.valid?
       resource.game.update(form.attributes)
       head :ok
@@ -25,6 +25,10 @@ class Administration::Assessments::GamesController < Administration::BaseControl
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
     add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), administration_assessments_path
+  end
+
+  def game_params
+    params.require(:game).permit(:config, :translations)
   end
 
   def set_resource

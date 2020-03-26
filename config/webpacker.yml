@@ -74,7 +74,7 @@ development:
       'Access-Control-Allow-Origin': '*'
     # watch_options:
       # ignored: '**/node_modules/**'
-    watched_paths: ['app/frontend']
+    watched_paths: ['app/frontend', 'node_modules/@thetalententerprise/interactive-assessments']
 
 
 test:

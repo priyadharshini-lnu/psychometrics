@@ -618,7 +618,7 @@ Rails.application.routes.draw do
     namespace :game do
       resources :assigns, only: %i[show update] do
         member do
-          put :game_log
+          post :events
         end
       end
     end

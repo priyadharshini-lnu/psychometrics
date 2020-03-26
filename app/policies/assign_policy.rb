@@ -11,6 +11,10 @@ class AssignPolicy < BasePolicy
     pass?
   end
 
+  def events?
+    pass?
+  end
+
   def assessment?
     pass?
   end

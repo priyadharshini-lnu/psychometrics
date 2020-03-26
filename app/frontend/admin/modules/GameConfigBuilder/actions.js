@@ -5,6 +5,7 @@ export const saveConfig = (assessmentId, data) => ({
   request: {
     url: `/administration/assessments/${assessmentId}/games`,
     method: 'put',
+    decamelize: false,
     body: { game: data },
   },
 })

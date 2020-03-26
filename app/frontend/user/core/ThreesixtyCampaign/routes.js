@@ -4,6 +4,7 @@ import Nomination, { NominationSidebar } from './components/Nomination'
 import Evaluation, { EvaluationSidebar } from './components/Evaluation'
 import Report, { ReportSidebar } from './components/Report'
 import Assign from './components/Assign'
+import GameAssign from './components/GameAssign'
 
 const routes = [
   {
@@ -31,6 +32,11 @@ const routes = [
     path: '/campaigns/:campaignId/evaluations/:id',
     sidebar: EvaluationSidebar,
     main: Evaluation,
+    exact: true,
+  },
+  {
+    path: '/game/assigns/:assignId',
+    main: GameAssign,
     exact: true,
   },
   {

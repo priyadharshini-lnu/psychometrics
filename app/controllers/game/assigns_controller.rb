@@ -5,7 +5,13 @@ class Game::AssignsController < ApplicationController
   append_before_action :pundit_authorize
 
   def show
-    render json: @assign, serializer: Assigns::GameSerializer
+    respond_to do |format|
+      # format.html { render 'show', layout: false }
+      format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
+      format.json do
+        render json: @assign, serializer: Assigns::GameSerializer
+      end
+    end
   end
 
   def update
@@ -17,7 +23,8 @@ class Game::AssignsController < ApplicationController
     end
   end
 
-  def game_log
+  def events
+    render json: { status: :ok }
     # Code to save game log
   end
 
