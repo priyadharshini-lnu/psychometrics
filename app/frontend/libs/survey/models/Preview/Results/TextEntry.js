@@ -72,6 +72,9 @@ _.extend(TextEntry.prototype, {
   Chat (answers) {
     this.result.answers = answers
   },
+  Email (answer) {
+    this.result.answers = answer
+  },
 })
 
 export default TextEntry

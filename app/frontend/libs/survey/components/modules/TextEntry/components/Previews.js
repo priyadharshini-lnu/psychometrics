@@ -4,6 +4,7 @@ import Form from './types/FormPreview'
 import DateEntry from './types/DateEntryPreview'
 import DateTimeEntry from './types/DateTimeEntryPreview'
 import Chat from './types/Chat/Preview'
+import Email from './types/Email/Preview'
 
 export default {
   SingleLine,
@@ -14,4 +15,5 @@ export default {
   DateEntry,
   DateTimeEntry,
   Chat,
+  Email,
 }

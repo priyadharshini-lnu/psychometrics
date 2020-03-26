@@ -129,3 +129,9 @@ en:
     question:
       chat_type:
         input_placeholder: "Write your Message..."
+      email_type:
+        to: To
+        cc: Cc
+        bcc: Bcc
+        subject: Subject
+        message: Your Message

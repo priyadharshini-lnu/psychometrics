@@ -6439,6 +6439,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "question": {
       "chat_type": {
         "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
       }
     },
     "remind_all": "Remind All",
@@ -12978,6 +12985,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "question": {
       "chat_type": {
         "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
       }
     },
     "remind_all": "Remind All",
@@ -19510,6 +19524,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "question": {
       "chat_type": {
         "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
       }
     },
     "remind_all": "Remind All",

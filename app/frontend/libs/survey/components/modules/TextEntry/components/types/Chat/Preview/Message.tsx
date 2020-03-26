@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import cs from 'classnames'
 import { CloseOutlined } from '@ant-design/icons'
 import Watchman from 'store/StoreWatchman'

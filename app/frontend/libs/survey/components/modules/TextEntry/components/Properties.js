@@ -4,6 +4,7 @@ import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Validations, { RequiredValidations } from 'components/Validations'
 import { TextEntryProps } from 'constants/DefaultProps'
+import EmailPropertyPanel from './types/Email/Builder/PropertyPanel'
 
 export class Properties extends Component {
   static propTypes = {
@@ -64,6 +65,7 @@ export class Properties extends Component {
         {type === 'Form' && this.renderFormFields()}
         {type === 'Form' && <hr className={styles.divider} />}
         {type === 'Chat' && this.renderAnswersCount()}
+        {type === 'Email' && (<EmailPropertyPanel model={model} />)}
         <div className={styles.fieldset}>
           <div className={styles.label}>Answers</div>
           <label className={styles.inputLabel}>
@@ -153,6 +155,17 @@ export class Properties extends Component {
             />
             {' '}
             Chat
+          </label>
+          <label className={styles.inputLabel}>
+            <input
+              checked={type === 'Email'}
+              type="radio"
+              name={`q_${model.id}_type`}
+              onChange={this.changeType}
+              value="Email"
+            />
+            {' '}
+            Email
           </label>
         </div>
         <hr className={styles.divider} />
