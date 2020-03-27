@@ -23,8 +23,8 @@ jobs:
         image: redis
         ports:
         - 6379:6379
-        options: --entrypoint redis-server      
-  
+        options: --entrypoint redis-server
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -73,6 +73,9 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:structure:load
 
-      - name: Run tests
+      - name: Run Javascript Tests
+        run: yarn test
+
+      - name: Run RSpec
         run: EAGER_LOAD=1 bundle exec rspec
 
