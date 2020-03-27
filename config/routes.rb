@@ -633,6 +633,9 @@ Rails.application.routes.draw do
     root to: 'threesixty/campaigns#index'
   end
 
+  get 'media_players/audio', to: 'media_players#audio'
+  get 'media_players/video', to: 'media_players#video'
+
   if Rails.env.production?
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
       # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)

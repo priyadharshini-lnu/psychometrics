@@ -2,7 +2,7 @@
 
 if Rails.env.test? || Rails.env.development?
   CarrierWave.configure do |config|
-    config.asset_host = ActionController::Base.asset_host
+    config.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
     config.storage = :file
   end
 else
