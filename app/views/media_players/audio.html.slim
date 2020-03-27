@@ -1,0 +1,11 @@
+heade
+  = stylesheet_pack_tag "medial_players/audio"
+  = javascript_pack_tag "medial_players/audio"
+
+body style="margin: 0"
+  div.gap-example style="background-color: transparent"
+    audio
+      source src="#{params[:url]}"
+
+  javascript:
+    new GreenAudioPlayer('.gap-example');

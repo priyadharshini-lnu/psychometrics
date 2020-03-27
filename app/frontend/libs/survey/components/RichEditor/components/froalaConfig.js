@@ -1,6 +1,10 @@
+import FroalaEditor from 'froala-editor'
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
+import embedMedia from 'libs/survey/commands/froalaCommands/embedMedia'
+
+FroalaEditor.PLUGINS.embedMedia = embedMedia
 
 export default {
   iconsTemplate: 'font_awesome',
@@ -9,7 +13,7 @@ export default {
   pluginsEnabled: [
     'lists', 'image', 'link', 'fontFamily',
     'fontSize', 'colors', 'paragraphFormat',
-    'align', 'quote', 'table', 'video', 'codeView'],
+    'align', 'quote', 'table', 'video', 'embedMedia', 'codeView'],
   toolbarButtons: [
     'pipedText',
     'fontFamily',
@@ -39,6 +43,7 @@ export default {
     'undo',
     'redo',
     'insertVideo',
+    'embedMedia',
     'html',
   ],
   // saveParams: { type },
