@@ -1,93 +1,269 @@
 .recorder {
+  margin-top: 25px;
+
   :global {
-    .video-js .vjs-control-bar {
-      bottom: 3%;
-      left: 20%;
-      right: 20%;
-      height: 4em;
-      width: initial;
-      justify-content: center;
-      background-color: initial;
-      .vjs-control {
-        transition: all .3s ease-in-out;
-        &.vjs-button {
-          &.vjs-record-button {
-            color: red;
-            border: 3px solid rgb(100, 104, 107);
-            border-radius: 50%;
-            &:before {
-              font-size: 2.8em;
-              line-height: 1em;
-              transition: all .2s ease-in-out;
-            }
-            &:hover {
-              &:before {
-                font-size: 3.4em;
-                line-height: 1em;
-              }
-            }
-          }
-          .vjs-icon-placeholder:before {
-            font-size: 3.4em;
-            line-height: 1.3em;
+    .video-js {
+      border-radius: 5px;
+
+      .vjs-record {
+        &.vjs-device-button {
+          &.vjs-control {
+            display: none;
+            pointer-events: none;
           }
         }
       }
-      .vjs-time-control {
-        font-size: 1.4em;
-        padding: 0 0.5em;
-        &.vjs-time-divider {
-          padding: 0;
-          min-width: auto;
+
+      .vjs-tech {
+        border-radius: 5px;
+        transform: rotateY(180deg);
+      }
+
+      .vjs-control-bar {
+        bottom: 3%;
+        left: 30%;
+        right: 30%;
+        height: 5em;
+        width: initial;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        background-color: initial;
+
+        .tte-status-text {
+          font-size: 11px;
+          color: #FFFFFF;
+          margin: 0 15px;
+          opacity: 0.52;
+          text-transform: capitalize;
+          position: absolute;
+          left: 0;
+          top: 1em;
+
+          &.default {
+            top: unset;
+            opacity: 1;
+            font-size: 14px;
+          }
+        }
+
+        .vjs-control {
+          width: 3em;
+          height: 3em;
+          transition: all .3s ease-in-out;
+
+          &.vjs-button {
+            &.vjs-record-button {
+              color: #e2003d;
+              border: 3px solid #e2003d;
+              border-radius: 50%;
+              margin: 0 15px;
+              position: absolute;
+              right: 0;
+
+              &:before {
+                font-size: 2em;
+                line-height: 1.1em;
+                transition: all .2s ease-in-out;
+              }
+              &:hover {
+                &:before {
+                  font-size: 2.1em;
+                  line-height: 1.2em;
+                }
+              }
+            }
+            .vjs-icon-placeholder:before {
+              font-size: 2em;
+            }
+          }
+
+          &.vjs-play-control {
+            color: #FFF;
+            position: absolute;
+            right: 6em;
+            display: inline-block;
+            background-color: #6b7278;
+            border-radius: 6px;
+          }
+        }
+        .vjs-time-control {
+          &.vjs-current-time, &.tte-remaining-time {
+            font-size: 14px;
+            left: 2px;
+            height: 2em;
+            position: absolute;
+            opacity: 0;
+
+            &.show {
+              opacity: 1;
+            }
+
+            &.hide {
+              opacity: 0;
+            }
+          }
+
+          &.tte-remaining-time {
+            left: 8em;
+          }
         }
       }
     }
   }
-  &.recorded.saving.saved {
+  &.recorded, &.saving, &.saved {
     :global {
-      .video-js .vjs-control-bar {
-        .vjs-control {
-          &.vjs-button {
+      .video-js {
+        .vjs-control-bar {
+          .vjs-control {
             &.vjs-record-button {
               width: 0;
               height: 0;
               visibility: hidden;
               display: none;
             }
+
+            &.vjs-play-control {
+              right: 2em;
+            }
           }
         }
       }
     }
   }
-  &.ready {
+  &.ready, &.recording, &.recorded, &.saving {
     :global {
       .video-js .vjs-control-bar {
+        border: 1px solid #5F5F5F;
+        background: #434A54EA 0% 0% no-repeat padding-box;
+      }
+    }
+  }
+  &.saved {
+    :global {
+      .video-js .vjs-control-bar {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3em;
+
+        .vjs-status-text {
+          display: none;
+        }
+
+        .vjs-control {
+          &.vjs-play-control {
+            left: 1em;
+            bottom: 2em;
+          }
+        }
+
         .vjs-time-control {
-          width: 0;
-          height: 0;
-          visibility: hidden;
+          &.tte-remaining-time {
+            left: unset;
+            right: 0;
+            bottom: 1.75em;
+          }
         }
       }
     }
   }
 }
 
-.controls {
-  margin-top: 10px;
+.perm {
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
   text-align: center;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .permText {
+    font-size: 16px;
+  }
+
+  .circle {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5a5858;
+
+    .icon {
+      &:after {
+        content: '\f101';
+        font: 40px 'videojs-record';
+        display: block;
+      }
+    }
+  }
+
+  .btnAllowRecord {
+    margin-top: 40px;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 6px;
+    background-color: #009C37;
+    box-shadow: 0px 3px 6px #00000029;
+  }
 }
 
-.btn {
-  padding: 4px 8px;
-  margin: 0 4px;
-  border-radius: 2px;
-  &.stop, &.delete {
-    background-color: red;
-    color: white;
-  }
-  &.saved {
-    background-color: #95B75D;
-    color: white;
+.controlBar {
+  height: 4em;
+  width: auto;
+
+  .controls {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .control {
+      font-size: 14px;
+      padding: 5px 10px;
+      border: 2px solid;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      margin: 0 5px;
+
+      &.error {
+        background-color: #e2003d;
+      }
+
+      &.recorded, &.saving, &.saved {
+        color: #FFF;
+        background-color: #868585;
+        border-color: #868585;
+
+        &:hover {
+          color: #868585;
+          background-color: #FFF;
+        }
+      }
+
+      &.saved, &.saving {
+        pointer-events: none;
+      }
+
+      &.discard {
+        color: #FFF;
+        background-color: #e2003d;
+        border-color: #e2003d;
+
+        &:hover {
+          color: #e2003d;
+          background-color: #FFF;
+        }
+      }
+    }
   }
 }
 

@@ -13,6 +13,9 @@ tr id=dom_id(resource)
   td = resource.decorate.client_name
   td.text-center = resource.decorate.created_at
   td.actions-cell
+    - if resource.file?
+      button.btn.btn-default.btn-rounded.btn-xs.copy-coded-url data-toggle="tooltip" data-title="#{resource.file.url}"
+        i.fa.fa-copy
     - if policy(resource).actions?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
