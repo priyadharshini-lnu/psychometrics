@@ -45,7 +45,7 @@
     "action-cable-react": "git+https://github.com/Fabel/action-cable-react.git",
     "airbnb-style": "^2.0.0",
     "antd": "^4.0.3",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.5",
