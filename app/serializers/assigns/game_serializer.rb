@@ -19,7 +19,12 @@ module Assigns
     end
 
     def locale
-      translations.merge('selected' => object.selected_locale || I18n.default_locale)
+      {
+        selected: object.selected_locale || I18n.default_locale,
+        defaultLocale:  I18n.default_locale,
+        available: translations.keys,
+        translations: translations
+      }
     end
 
     def game
