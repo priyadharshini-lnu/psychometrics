@@ -1,0 +1,46 @@
+.inputContainer {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .label {
+    margin: 0;
+    font-size: 11px;
+    text-transform: capitalize;
+
+    &:after {
+      content: ':';
+      margin-right: 5px;
+    }
+  }
+
+  .numberInput {
+    display: flex;
+    align-items: center;
+
+    .input {
+      padding: 0;
+      width: 30px;
+      font-size: 12px;
+      text-align: center;
+    }
+  
+    .control {
+      cursor: pointer;
+      color: #737373;
+      margin: 5px;
+  
+      .icon {
+        color: #737373;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        pointer-events: none;
+      }
+    }
+  }
+}
+
+

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
+import NumberInput from 'components/NumberInput'
 
 export class Properties extends Component {
   static propTypes = {
@@ -20,10 +21,25 @@ export class Properties extends Component {
   ]
 
   frameOptions = [
-    { value: 'none', display: 'None' },
-    { value: 'upper-half-body', display: 'Upper Half Body' },
-    { value: 'full-face', display: 'Full Face' },
+    { value: '', display: 'None' },
+    { value: 'upperHalfBody', display: 'Upper Half Body' },
+    { value: 'face', display: 'Full Face' },
   ]
+
+  trackerOptions = {
+    upperHalfBody: {
+      x: 0,
+      y: 0,
+      height: 0,
+      width: 0,
+    },
+    face: {
+      x: 0,
+      y: 0,
+      height: 0,
+      width: 0,
+    },
+  }
 
   update = () => {
     const { model } = this.props
@@ -37,10 +53,18 @@ export class Properties extends Component {
     this.update()
   }
 
-  changeFitInFrame = (e) => {
+  updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
     model.changeProps({ fitInFrame })
+    this.update()
+  }
+
+  updateTrackerOptions = (key, val) => {
+    const { model, model: { props: { fitInFrame } } } = this.props
+
+    this.trackerOptions[fitInFrame][key] = val
+    model.changeProps({ trackerOptions: this.trackerOptions })
     this.update()
   }
 
@@ -57,15 +81,39 @@ export class Properties extends Component {
     )
   }
 
+  displayTrackerOptions () {
+    const { model: { props: { fitInFrame, trackerOptions } } } = this.props
+
+    if (!fitInFrame) return
+
+    const properties = trackerOptions[fitInFrame]
+    console.log('properties: ', properties)
+    return (
+      <div className={styles.fieldset} style={{ position: 'relative' }}>
+        {Object.keys(properties).map((key, i) => (
+          <NumberInput
+            key={i}
+            label={key}
+            name={key}
+            value={properties[key]}
+            onChange={this.updateTrackerOptions}
+          />
+        ))}
+      </div>
+    )
+  }
+
   frameFields () {
     const { model } = this.props
 
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Fit In Frame</span>
-        <select className="form-control" value={model.props.fitInFrame} onChange={this.changeFitInFrame}>
+        <select className="form-control" value={model.props.fitInFrame} onChange={this.updateFitInFrame}>
           {this.frameOptions.map(o => (<option key={o.value} value={o.value}>{`${o.display}`}</option>))}
         </select>
+
+        { this.displayTrackerOptions() }
       </div>
     )
   }
