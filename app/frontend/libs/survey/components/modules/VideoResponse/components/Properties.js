@@ -22,7 +22,7 @@ export class Properties extends Component {
   frameOptions = [
     { value: 'none', display: 'None' },
     { value: 'upper-half-body', display: 'Upper Half Body' },
-    { value: 'full-face', display: 'Full Face' }
+    { value: 'full-face', display: 'Full Face' },
   ]
 
   update = () => {
