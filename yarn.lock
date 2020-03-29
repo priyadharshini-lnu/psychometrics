@@ -849,10 +849,10 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.0.2.tgz#1d94f02800b094753f9271c206a26c2a06ca14ee"
 
-"@thetalententerprise/interactive-assessments@1.0.2":
-  version "1.0.2"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.0.2/23086e9274f8f7e78a3a80be836449ee4e1a45245853cec6896c7efe44b76813#438215cedf546185ad495c3cabd7ba389343371a"
-  integrity sha512-aDN86W/jYn3eKFVfF84S7yJW9K829tZCKboAkdQt809Pyy9C9bZ17z7VLWgBVvE6m1hewf4qPDKOQyjpOR9Gzg==
+"@thetalententerprise/interactive-assessments@1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.0.3/daf71bdea4f0d193b790fc00b23424a4122d97105d006ec2eb6069dfd174cade#85e89c134f048ab38ee1325e60c34f785c144a98"
+  integrity sha512-Plg7n+0g/Npig7uLSHugcYAY74kkHPlw2Bo5Cl/xMVYnhjGpvvHEMhfroTrkyMUE9BYNrlGAWsfX9wHJyXkDcA==
   dependencies:
     axios "^0.19.2"
     axios-retry "^3.1.2"
