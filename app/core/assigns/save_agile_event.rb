@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assigns
-  class SaveGameEvent < BaseCommand
+  class SaveAgileEvent < BaseCommand
     END_GROUP_EVENT = 'endGroup'
     ASSESSMENT_COMPLETE_EVENT = 'assessmentComplete'
 
@@ -13,10 +13,10 @@ module Assigns
     end
 
     def call
-      game_event = assign.game_events.create!(form.attributes)
+      agile_event = assign.agile_events.create!(form.attributes)
       update_assign
 
-      broadcast :ok, game_event
+      broadcast :ok, agile_event
     end
 
     private

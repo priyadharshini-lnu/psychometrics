@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Game::AssignsController < ApplicationController
+class Agile::AssignsController < ApplicationController
   include ::Threesixty::InitialState
 
   before_action :set_assign
@@ -13,15 +13,15 @@ class Game::AssignsController < ApplicationController
     respond_to do |format|
       format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
       format.json do
-        render json: @assign, serializer: Assigns::GameSerializer
+        render json: @assign, serializer: Assigns::AgileSerializer
       end
     end
   end
 
   def update
-    form = Assigns::GameForm.new(params.permit!)
+    form = Assigns::AgileForm.new(params.permit!)
     if form.valid?
-      Assigns::SaveGameData.call!(@assign, form)
+      Assigns::SaveAgileData.call!(@assign, form)
     else
       render json: { errors: form.errors.full_messages }, status: :bad_request
     end
@@ -34,8 +34,8 @@ class Game::AssignsController < ApplicationController
   end
 
   def events
-    form = Assigns::GameEventForm.from_params(params)
-    Assigns::SaveGameEvent.call!(@assign, form)
+    form = Assigns::AgileEventForm.from_params(params)
+    Assigns::SaveAgileEvent.call!(@assign, form)
 
     head :ok
   end
@@ -49,7 +49,7 @@ class Game::AssignsController < ApplicationController
   def set_init_state
     init_state = super
     @init_state = super.merge(
-      extras: init_state[:extras].merge(gameAssetsUrl: Settings.game_config.asset_url)
+      extras: init_state[:extras].merge(agileAssetsUrl: Settings.agile_config.asset_url)
     )
   end
 

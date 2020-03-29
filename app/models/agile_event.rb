@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class GameEvent < ApplicationRecord
+class AgileEvent < ApplicationRecord
   belongs_to :assign
 end

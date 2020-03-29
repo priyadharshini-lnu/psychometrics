@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Administration::Assessments::GamesController < Administration::BaseController
+class Administration::Assessments::AgilesController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource
   before_action :init_breadcrumbs
@@ -11,9 +11,9 @@ class Administration::Assessments::GamesController < Administration::BaseControl
   end
 
   def update
-    form = Assessments::GameForm.new(game_params)
+    form = Assessments::AgileForm.new(agile_params)
     if form.valid?
-      resource.game.update(form.attributes)
+      resource.agile.update(form.attributes)
       head :ok
     else
       render json: { errors: form.errors.messages }, status: :bad_request
@@ -27,8 +27,8 @@ class Administration::Assessments::GamesController < Administration::BaseControl
     add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), administration_assessments_path
   end
 
-  def game_params
-    params.require(:game).permit!
+  def agile_params
+    params.require(:agile).permit!
   end
 
   def set_resource

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Assigns
-  class GameSerializer < ActiveModel::Serializer
+  class AgileSerializer < ActiveModel::Serializer
     attributes :groups, :locale, :completed_groups, :assets
 
-    delegate :config, :translations, to: :game
+    delegate :config, :translations, to: :agile
 
     def completed_groups
       object.meta_data['completed_groups'] || []
@@ -27,8 +27,8 @@ module Assigns
       }
     end
 
-    def game
-      object.game
+    def agile
+      object.agile
     end
 
     def attributes(*_)

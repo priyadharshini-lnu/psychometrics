@@ -10,7 +10,7 @@ import styles from './styles'
 const { TabPane } = Tabs
 const { TextArea } = Input
 
-const GameConfigBuilder = ({
+const AgileConfigBuilder = ({
   assessmentId, config, translations, saveConfig,
 }) => {
   const handleSaveConfig = (key, value) => {
@@ -50,4 +50,4 @@ function JSONEditor ({ value, onSave }) {
   )
 }
 
-export default connect(GameConfigBuilder)
+export default connect(AgileConfigBuilder)

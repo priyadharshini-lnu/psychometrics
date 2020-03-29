@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assigns
-  class SaveGameData < BaseCommand
+  class SaveAgileData < BaseCommand
     private_attr_accessor :assign, :form
 
     def initialize(assign, form)

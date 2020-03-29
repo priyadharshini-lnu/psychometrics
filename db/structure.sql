@@ -64,6 +64,69 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: agile_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.agile_events (
+    id bigint NOT NULL,
+    assign_id bigint,
+    session_id character varying,
+    event character varying,
+    data json DEFAULT '{}'::json
+);
+
+
+--
+-- Name: agile_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.agile_events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: agile_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.agile_events_id_seq OWNED BY public.agile_events.id;
+
+
+--
+-- Name: agiles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.agiles (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    config json DEFAULT '{}'::json,
+    translations json DEFAULT '{}'::json
+);
+
+
+--
+-- Name: agiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.agiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: agiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.agiles_id_seq OWNED BY public.agiles.id;
+
+
+--
 -- Name: api_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1190,69 +1253,6 @@ CREATE SEQUENCE public.factors_sub_factors_id_seq
 --
 
 ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_factors.id;
-
-
---
--- Name: game_events; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.game_events (
-    id bigint NOT NULL,
-    assign_id bigint,
-    session_id character varying,
-    event character varying,
-    data json DEFAULT '{}'::json
-);
-
-
---
--- Name: game_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.game_events_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: game_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.game_events_id_seq OWNED BY public.game_events.id;
-
-
---
--- Name: games; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.games (
-    id bigint NOT NULL,
-    assessment_id bigint,
-    config json DEFAULT '{}'::json,
-    translations json DEFAULT '{}'::json
-);
-
-
---
--- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.games_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.games_id_seq OWNED BY public.games.id;
 
 
 --
@@ -3040,6 +3040,20 @@ ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
+-- Name: agile_events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events ALTER COLUMN id SET DEFAULT nextval('public.agile_events_id_seq'::regclass);
+
+
+--
+-- Name: agiles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agiles_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3247,20 +3261,6 @@ ALTER TABLE ONLY public.factors_scoring ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.factors_sub_factors ALTER COLUMN id SET DEFAULT nextval('public.factors_sub_factors_id_seq'::regclass);
-
-
---
--- Name: game_events id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.game_events ALTER COLUMN id SET DEFAULT nextval('public.game_events_id_seq'::regclass);
-
-
---
--- Name: games id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.games ALTER COLUMN id SET DEFAULT nextval('public.games_id_seq'::regclass);
 
 
 --
@@ -3600,6 +3600,22 @@ ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: agile_events agile_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT agile_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: agiles agiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles
+    ADD CONSTRAINT agiles_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3845,22 +3861,6 @@ ALTER TABLE ONLY public.factors_scoring
 
 ALTER TABLE ONLY public.factors_sub_factors
     ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
-
-
---
--- Name: game_events game_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.game_events
-    ADD CONSTRAINT game_events_pkey PRIMARY KEY (id);
-
-
---
--- Name: games games_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.games
-    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
 
 
 --
@@ -4267,6 +4267,20 @@ CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING
 --
 
 CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
+
+
+--
+-- Name: index_agile_events_on_assign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agile_events_on_assign_id ON public.agile_events USING btree (assign_id);
+
+
+--
+-- Name: index_agiles_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
 
 
 --
@@ -4729,20 +4743,6 @@ CREATE INDEX index_factors_sub_factors_on_factor_id ON public.factors_sub_factor
 --
 
 CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_factors USING btree (sub_factor_id);
-
-
---
--- Name: index_game_events_on_assign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_game_events_on_assign_id ON public.game_events USING btree (assign_id);
-
-
---
--- Name: index_games_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_games_on_assessment_id ON public.games USING btree (assessment_id);
 
 
 --
@@ -5709,14 +5709,6 @@ ALTER TABLE ONLY public.threesixty_instruction_templates
 
 
 --
--- Name: games fk_rails_406dc2e530; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.games
-    ADD CONSTRAINT fk_rails_406dc2e530 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5746,14 +5738,6 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.datasheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: game_events fk_rails_499c76f802; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.game_events
-    ADD CONSTRAINT fk_rails_499c76f802 FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
 
 
 --
@@ -6050,6 +6034,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: agiles fk_rails_aaee109dc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles
+    ADD CONSTRAINT fk_rails_aaee109dc4 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -6418,6 +6410,14 @@ ALTER TABLE ONLY public.threesixty_participants
 
 ALTER TABLE ONLY public.threesixty_nomination_requirements
     ADD CONSTRAINT fk_rails_f78f0657d6 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: agile_events fk_rails_f7d0aa809c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT fk_rails_f7d0aa809c FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
 
 
 --

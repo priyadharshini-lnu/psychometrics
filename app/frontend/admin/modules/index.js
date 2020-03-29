@@ -1,7 +1,7 @@
 import FactorFormApp from './FactorFormApp'
-import GameConfigBuilder from './GameConfigBuilder'
+import AgileConfigBuilder from './AgileConfigBuilder'
 
 export default {
   FactorFormApp,
-  GameConfigBuilder,
+  AgileConfigBuilder,
 }

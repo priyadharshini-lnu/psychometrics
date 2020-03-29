@@ -4,7 +4,7 @@ import Nomination, { NominationSidebar } from './components/Nomination'
 import Evaluation, { EvaluationSidebar } from './components/Evaluation'
 import Report, { ReportSidebar } from './components/Report'
 import Assign from './components/Assign'
-import GameAssign from './components/GameAssign'
+import AgileAssign from './components/AgileAssign'
 
 const routes = [
   {
@@ -35,8 +35,8 @@ const routes = [
     exact: true,
   },
   {
-    path: '/game/assigns/:assignId',
-    main: GameAssign,
+    path: '/agile/assigns/:assignId',
+    main: AgileAssign,
     exact: true,
   },
   {

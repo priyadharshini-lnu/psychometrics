@@ -17,7 +17,7 @@ const ASSESSMENT_CATEGORY_ICONS = {
   mindmill: 'mindmill',
   case_study: 'case_study',
   organisational: 'survey',
-  game: 'survey',
+  agile: 'agile',
 }
 
 const DownloadLink = ({ report, text }) => {
@@ -72,7 +72,7 @@ const renderButtonContent = ({
   }
 
   if (status === 'completed') {
-    if (!assignedReports.length || assessmentCategory === 'game') {
+    if (!assignedReports.length || assessmentCategory === 'agile') {
       return (
         <a>
           <Icon type="check" />

@@ -308,7 +308,7 @@ Rails.application.routes.draw do
         end
         resource :builders, only: [:update]
         resource :scoring, only: [:update], controller: :scoring
-        resource :games, only: %i[show update]
+        resource :agiles, only: %i[show update]
       end
     end
     ### END ASSESSMENTS
@@ -615,7 +615,7 @@ Rails.application.routes.draw do
       end
     end
 
-    namespace :game do
+    namespace :agile do
       resources :assigns, only: %i[show update] do
         member do
           post :events

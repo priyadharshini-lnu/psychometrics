@@ -13,8 +13,8 @@ features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
-game_config:
-  asset_url: <%= ENV.fetch('GAME_ASSETS_URL', 'https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/') %>
+agile_config:
+  asset_url: <%= ENV.fetch('AGILE_ASSETS_URL', 'https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/') %>
 languages:
   - es
   - fr

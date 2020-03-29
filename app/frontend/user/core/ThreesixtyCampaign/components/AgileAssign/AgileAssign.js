@@ -6,15 +6,15 @@ import { InteractiveAssessments } from '@thetalententerprise/interactive-assessm
 
 const { Content } = Layout
 
-export default function GameAssign ({
+export default function AgileAssign ({
   history,
   isFrame,
-  gameAssetsUrl,
+  agileAssetsUrl,
 }) {
-  const initializeGame = () => {
+  const initializeAgile = () => {
     const appOptions = {
       scale: {
-        parent: 'game-container',
+        parent: 'agile-container',
       },
       service: {
         baseURL: window.location.href,
@@ -26,7 +26,7 @@ export default function GameAssign ({
       },
       settings: {
         returnURL: '/',
-        assetsBaseURL: gameAssetsUrl,
+        assetsBaseURL: agileAssetsUrl,
       },
     }
 
@@ -34,7 +34,7 @@ export default function GameAssign ({
   }
 
   useEffect(() => {
-    initializeGame()
+    initializeAgile()
   }, [])
 
   return (
@@ -51,7 +51,7 @@ export default function GameAssign ({
           )}
           onBack={() => history.push('/campaigns')}
         >
-          <div id="game-container" />
+          <div id="agile-container" />
           <div className="mbl" />
         </PageHeader>
       </Content>

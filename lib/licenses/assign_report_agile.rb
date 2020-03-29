@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Licenses
-  class AssignReportGame < AssignReportBase
+  class AssignReportAgile < AssignReportBase
   end
 end

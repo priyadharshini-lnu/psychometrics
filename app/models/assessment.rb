@@ -33,7 +33,7 @@ class Assessment < ApplicationRecord
     THREESIXTY = 'threesixty',
     MINDMILL = 'mindmill',
     HOGAN = 'hogan',
-    GAME = 'game'
+    AGILE = 'agile'
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
@@ -42,7 +42,7 @@ class Assessment < ApplicationRecord
     threesixty: THREESIXTY,
     mindmill: MINDMILL,
     hogan: HOGAN,
-    game: GAME
+    agile: AGILE
   }.freeze
 
   # Assessments constant
@@ -89,7 +89,7 @@ class Assessment < ApplicationRecord
   has_many :clients, through: :reports
 
   has_one :hogan_assessment_setting
-  has_one :game
+  has_one :agile
 
   accepts_nested_attributes_for :hogan_assessment_setting
   before_save :delete_hogan_assessment_setting
@@ -108,7 +108,7 @@ class Assessment < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
 
-  delegate :config, :translations, to: :game, prefix: true
+  delegate :config, :translations, to: :agile, prefix: true
 
   # TODO: (nest):
   # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
@@ -161,8 +161,8 @@ class Assessment < ApplicationRecord
     mindmill? || hogan?
   end
 
-  def game?
-    category == GAME
+  def agile?
+    category == AGILE
   end
 
   class << self

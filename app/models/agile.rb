@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Game < ApplicationRecord
+class Agile < ApplicationRecord
   belongs_to :assessment
 end

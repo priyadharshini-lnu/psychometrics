@@ -2,7 +2,7 @@ en:
   activemodel:
     errors:
       models:
-        game:
+        agile:
           group_id:
             blank: Group id can't be blank
           answers:

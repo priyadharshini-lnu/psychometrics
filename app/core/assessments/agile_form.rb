@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assessments
-  class GameForm < Rectify::Form
+  class AgileForm < Rectify::Form
     attribute :config, Hash
     attribute :translations, Hash
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assigns
-  class GameForm < Rectify::Form
+  class AgileForm < Rectify::Form
     attribute :group_id, String
     attribute :answers, Hash
 
