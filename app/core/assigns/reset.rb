@@ -31,7 +31,8 @@ module Assigns
         started_at: nil,
         norm_data: {},
         agile_scoring: {},
-        occupations: []
+        occupations: [],
+        meta_data: {}
       )
     end
 

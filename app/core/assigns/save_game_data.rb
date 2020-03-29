@@ -15,9 +15,9 @@ module Assigns
       completed_groups = assign.meta_data['completed_groups'] || []
       completed_groups << form.group_id
 
-      assign.update!(results: results, meta_data: assign.meta_data.merge('completed_groups' => completed_groups))
+      assign.update!(results: results, meta_data: assign.meta_data.merge('completed_groups' => completed_groups.uniq))
 
-      broadcast :ok
+      broadcast :ok, assign
     end
   end
 end

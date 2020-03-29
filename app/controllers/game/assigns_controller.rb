@@ -28,12 +28,15 @@ class Game::AssignsController < ApplicationController
 
   def set_language
     @assign.update!(selected_locale: params[:local])
-    render json: { status: :ok }
+
+    head :ok
   end
 
   def events
-    @assign.game_events.create!(event_params)
-    render json: { status: :ok }
+    form = Assigns::GameEventForm.from_params(params)
+    Assigns::SaveGameEvent.call!(@assign, form)
+
+    head :ok
   end
 
   private
@@ -47,11 +50,6 @@ class Game::AssignsController < ApplicationController
     @init_state = super.merge(
       extras: init_state[:extras].merge(gameAssetsUrl: Settings.game_config.asset_url)
     )
-  end
-
-  def event_params
-    data = params[:data].permit! if params[:data].is_a?(ActionController::Parameters)
-    params.permit(:session_id, :event).merge(data: data)
   end
 
   def pundit_authorize

@@ -52,6 +52,7 @@ export default function GameAssign ({
           onBack={() => history.push('/campaigns')}
         >
           <div id="game-container" />
+          <div className="mbl" />
         </PageHeader>
       </Content>
     </Layout>
