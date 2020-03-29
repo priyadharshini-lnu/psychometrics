@@ -40,14 +40,17 @@ prevent bundle secure warnings with
 
 6. `$> npm install`
 
+7. Install redis.
+> For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
+
 # Run the application locally
 
 0. Create a Super user to login (optional):
 ```
 $> rails c
 $> Users::SuperAdmin.create(
-  email: 'email',
-  password: 'password',
+  email: 'email@gmail.com',
+  password: 'Pass123$',
   first_name: 'FirstName',
   last_name: 'LastName'
 )
@@ -55,7 +58,9 @@ $> Users::SuperAdmin.create(
 
 1. Setup a loopback address to `lvh.me` or another preferred local domain
 2. Run the server `bundle exec rails s -p 3030`
-3. Visit https://lvh.me:3030
+3. start redis server `brew services start redis` or `redis-server`
+4. start webpack server with command `./bin/webpack-dev-server`. Check more details [here](https://github.com/rails/webpacker)
+5. Visit https://lvh.me:3030
 
 
 # SSL
