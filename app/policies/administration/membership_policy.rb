@@ -51,6 +51,8 @@ module Administration
     def permitted_attributes_for_update
       if @user.is?(:superadmin) && (@record.user.is?(:client_admin) || @record.user.is?(:project_admin))
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
+      elsif @user.is?(:client_admin) && @record.user.is?(:project_admin)
+        UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
       else
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS]]
       end
