@@ -28,7 +28,9 @@ export default class ThreeSixtyReportSummary extends Component {
     const { model } = this.props
     if (!model.props.filter) return null
 
-    const filters = AppStore.report.filters.filter(f => model.props.filter.includes(f.id))
+    let filters = model.props.filter.map(id => _.find(AppStore.report.filters, { id }))
+    filters = _.compact(filters)
+
     return (
       <table className={styles.table}>
         <tbody>

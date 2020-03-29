@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'bundler',                    '>= 1.8.4'
+gem 'rack',                       '~> 2.0.9'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'coffee-rails',               '~> 4.2'
