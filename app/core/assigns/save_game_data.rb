@@ -10,7 +10,7 @@ module Assigns
     end
 
     def call
-      results = assign.results || []
+      results = assign.results.presence || []
       results << form.attributes
       completed_groups = assign.meta_data['completed_groups'] || []
       completed_groups << form.group_id
