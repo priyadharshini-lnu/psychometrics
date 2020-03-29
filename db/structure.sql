@@ -257,11 +257,6 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    current_element character varying,
-    current_page integer,
-    seedrandom character varying,
-    expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
     meta_data jsonb DEFAULT '{}'::jsonb
 );
 
@@ -1174,10 +1169,7 @@ CREATE TABLE public.factors_sub_factors (
     factor_id bigint,
     weight double precision DEFAULT 1.0,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    predicate character varying,
-    value double precision,
-    "position" integer
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -2596,7 +2588,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2805,7 +2799,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3020,11 +3016,6 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
-    current_element character varying,
-    current_page integer,
-    seedrandom character varying,
-    expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
     meta_data jsonb DEFAULT '{}'::jsonb
 );
 
@@ -6768,10 +6759,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200122113926'),
 ('20200127101833'),
 ('20200204141530'),
-('20200207070850'),
-('20200216190418'),
-('20200216190542'),
-('20200219084808'),
 ('20200303084836'),
 ('20200317122132'),
 ('20200322064957'),
