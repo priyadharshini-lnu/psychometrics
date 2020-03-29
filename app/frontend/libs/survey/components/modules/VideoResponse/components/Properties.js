@@ -19,6 +19,12 @@ export class Properties extends Component {
     { value: 600, display: '10min' },
   ]
 
+  frameOptions = [
+    { value: 'none', display: 'None' },
+    { value: 'upper-half-body', display: 'Upper Half Body' },
+    { value: 'full-face', display: 'Full Face' }
+  ]
+
   update = () => {
     const { model } = this.props
     model.update()
@@ -31,14 +37,44 @@ export class Properties extends Component {
     this.update()
   }
 
-  renderVideoFields () {
+  changeFitInFrame = (e) => {
     const { model } = this.props
+    const fitInFrame = e.currentTarget.value
+    model.changeProps({ fitInFrame })
+    this.update()
+  }
+
+  durationFields () {
+    const { model } = this.props
+
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Max Duration</span>
         <select className="form-control" value={model.props.duration} onChange={this.changeDuration}>
           {this.durations.map(j => (<option key={j.value} value={j.value}>{`${j.display}`}</option>))}
         </select>
+      </div>
+    )
+  }
+
+  frameFields () {
+    const { model } = this.props
+
+    return (
+      <div className={styles.fieldset} style={{ position: 'relative' }}>
+        <span className={styles.label}>Fit In Frame</span>
+        <select className="form-control" value={model.props.fitInFrame} onChange={this.changeFitInFrame}>
+          {this.frameOptions.map(o => (<option key={o.value} value={o.value}>{`${o.display}`}</option>))}
+        </select>
+      </div>
+    )
+  }
+
+  renderVideoFields () {
+    return (
+      <div>
+        { this.durationFields() }
+        { this.frameFields() }
       </div>
     )
   }
