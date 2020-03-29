@@ -9,6 +9,7 @@ class Game::AssignsController < ApplicationController
   append_before_action :pundit_authorize
 
   def show
+    @assign.in_progress! if @assign.not_started?
     respond_to do |format|
       format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
       format.json do
