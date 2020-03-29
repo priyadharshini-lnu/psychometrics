@@ -50,16 +50,12 @@ class NumberInput extends Component {
     }
   }
 
-  isNumber = (val) => {
-    return !isNaN(parseFloat(val)) && isFinite(val)
-  }
+  isNumber = val => !isNaN(parseFloat(val)) && isFinite(val)
 
   increment = () => {
     let { value } = this.props
     value += this.getStep()
     value = value < this.getMaxValue() ? value : this.getMaxValue()
-
-    // if (val === this.getMaxValue()) this.disableControl('increment')
     this.updateModel(value)
   }
 
@@ -67,8 +63,6 @@ class NumberInput extends Component {
     let { value } = this.props
     value -= this.getStep()
     value = value < this.getMinValue() ? this.getMinValue() : value
-
-    // if (val === this.getMinValue()) this.disableControl('decrement')
     this.updateModel(value)
   }
 

@@ -87,7 +87,6 @@ export class Properties extends Component {
     if (!fitInFrame) return
 
     const properties = trackerOptions[fitInFrame]
-    console.log('properties: ', properties)
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         {Object.keys(properties).map((key, i) => (
