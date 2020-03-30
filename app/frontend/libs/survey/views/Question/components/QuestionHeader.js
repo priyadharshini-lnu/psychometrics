@@ -41,7 +41,7 @@ class QuestionHeader extends Component {
           >
             <MenuItem onSelect={() => openDisplayLogic({
               question: model,
-              logicElement: model.displayLogic || new LogicElement(),
+              logicElement: logicElement || new LogicElement(),
             })}
             >
               <span className={`${styles.menuicon}`} />
