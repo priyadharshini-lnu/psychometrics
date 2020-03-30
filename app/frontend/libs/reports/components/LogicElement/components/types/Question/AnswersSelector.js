@@ -8,11 +8,11 @@ export default {
     value: `${index}`, label: choice,
   })),
 
-  Slider: question => _.map(question.choicesTexts, (choice, index) => ({
+  Slider: question => _.map(question.props.choicesTexts, (choice, index) => ({
     value: `${index}`, label: choice,
   })),
 
-  RankOrder: question => _.map(question.choicesTexts, (choice, index) => ({
+  RankOrder: question => _.map(question.props.choicesTexts, (choice, index) => ({
     value: `${index}`, label: choice,
   })),
 
