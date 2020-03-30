@@ -24,7 +24,7 @@ module Assigns
     def update_assign
       if form.event == END_GROUP_EVENT
         completed_groups = assign.meta_data['completed_groups'] || []
-        completed_groups << form.data['id']
+        completed_groups << form.data[:id]
         assign.update!(meta_data: assign.meta_data.merge('completed_groups' => completed_groups.uniq))
       end
 

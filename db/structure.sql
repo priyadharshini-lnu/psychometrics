@@ -72,7 +72,8 @@ CREATE TABLE public.agile_events (
     assign_id bigint,
     session_id character varying,
     event character varying,
-    data json DEFAULT '{}'::json
+    data json DEFAULT '{}'::json,
+    created_at timestamp without time zone NOT NULL
 );
 
 

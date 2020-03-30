@@ -7,6 +7,8 @@ class CreateAgileEvents < ActiveRecord::Migration[5.1]
       t.string :session_id
       t.string :event
       t.json :data, default: {}
+
+      t.datetime :created_at, null: false
     end
   end
 end
