@@ -287,7 +287,11 @@ class VideoRecorder extends Component {
       <div className={styles.controlBar}>
         <div className={cs(styles.controls, 'display-flex')}>
           {['recorded', 'saved', 'saving'].includes(recordingState) && (
-            <button className={cs(styles.control, styles.discard, styles[recordingState])} onClick={this.discardRecording} title="Discard">
+            <button
+              title="Discard"
+              className={cs(styles.control, styles.discard, styles[recordingState])}
+              onClick={this.discardRecording}
+            >
               <span className="mrs mls fa fa-trash-o" area-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
                 { Watchman.I18n().t('assessments.video_response.discard') }
