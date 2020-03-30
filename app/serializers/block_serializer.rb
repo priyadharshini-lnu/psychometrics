@@ -33,4 +33,15 @@ class BlockSerializer < ActiveModel::Serializer
   def created_at
     I18n.l object.created_at, format: :short
   end
+
+  def props
+    return object.props unless object.props && object.props['staticContent']
+
+    static_content =
+      object.props['staticContent'].merge(
+        'value' => Threesixty::PipedText::Perform.
+          call!(object.props['staticContent']['value'], @instance_options[:piped_text_context])
+      )
+    object.props.merge('staticContent' => static_content)
+  end
 end

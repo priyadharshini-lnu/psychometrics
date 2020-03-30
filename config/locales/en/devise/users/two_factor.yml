@@ -1,6 +1,7 @@
 en:
   devise:
     two_factor_authentication:
+      otp: "Code"
       attempt: "Please enter the OTP, you have received at your registered email address."
       success: "Login with Two Factor Authentication successful."
       attempt_failed: "Incorrect OTP. Please try again."

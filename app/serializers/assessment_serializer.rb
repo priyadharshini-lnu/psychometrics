@@ -21,7 +21,7 @@
 
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
-             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks
+             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration
 
   def blocks
     object.blocks.
@@ -59,5 +59,9 @@ class AssessmentSerializer < ActiveModel::Serializer
   def connected_campaign
     @connected_campaign ||= Campaign.joins(:threesixty_campaign).
                             find_by(threesixty_campaigns: { assessment_id: object.id })
+  end
+
+  def timer_duration
+    object.extra['timer']
   end
 end

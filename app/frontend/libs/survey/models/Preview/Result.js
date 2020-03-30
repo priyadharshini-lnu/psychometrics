@@ -2,9 +2,7 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
-import I18nStore from 'store/I18nStore'
-import PreviewStore from 'store/AssessmentPreviewStore'
-import LocalStorage from 'utils/LocalStorage'
+import Watchman from 'store/StoreWatchman'
 import Results from './Results'
 
 const Result = function (question, answers = null, notApplicable = null) {
@@ -32,18 +30,23 @@ _.extend(Result.prototype, {
       && this.question.requiredValidation.type === 'Force') {
       if (!this.moduleResult.requiredValidation()) {
         if (this.moduleResult.videoResponse) {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_record_and_save_video_first') })
+          errors.push({
+            type: 'forceRequired', message: Watchman.I18n().t('validations.please_record_and_save_video_first'),
+          })
+        } else if (this.moduleResult.audioResponse) {
+          errors.push({
+            type: 'forceRequired', message: Watchman.I18n().t('validations.please_record_and_save_audio_first'),
+          })
+        } else if (this.moduleResult.fileUpload) {
+          errors.push({ type: 'forceRequired', message: Watchman.I18n().t('validations.file_upload.required') })
         } else {
-          errors.push({ type: 'forceRequired', message: I18nStore.t('validations.please_answer_question') })
+          errors.push({ type: 'forceRequired', message: Watchman.I18n().t('validations.please_answer_question') })
         }
       }
     }
 
     const res = this.processValidation()
-
-    if (res) {
-      errors.push(res)
-    }
+    if (res) { errors.push(res) }
 
     return errors
   },
@@ -66,7 +69,7 @@ _.extend(Result.prototype, {
   },
 
   processCustomValidation () {
-    const message = I18nStore.tCustomValidation(this.question)
+    const message = Watchman.I18n().tCustomValidation(this.question)
     const { conditions } = this.question.validation.args
 
     const validations = _.map(conditions, condition => new Validations.Custom(condition))
@@ -97,16 +100,15 @@ _.extend(Result.prototype, {
 
   answer (...args) {
     this.moduleResult.answer.apply(this.moduleResult, args)
-    if (!PreviewStore.flow) { return }
-    const pageResults = PreviewStore.flow.currentPage().results().reduce((res, current) => ({
-      ...res,
-      [current.question.id]: current.toJSON(),
-    }), {})
+    // const pageResults = PreviewStore.flow.currentPage().results().reduce((res, current) => ({
+    //   ...res,
+    //   [current.question.id]: current.toJSON(),
+    // }), {})
 
-    LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
+    // LocalStorage.setIn(PreviewStore.resultLocalStorageKey, pageResults)
     // TODO (atanych): we have confused component updating engine. It will create problems at the most inconvenient time
     // TODO (atanych): Redux forever
-    PreviewStore.update()
+    Watchman.get() && Watchman.get().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
   },
 
   isEmpty () {

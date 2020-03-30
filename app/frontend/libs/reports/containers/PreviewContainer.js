@@ -1,10 +1,12 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import Preview from 'rb/views/Preview'
 import I18nStore from 'rb/store/I18nStore'
 import store from 'rb/store/PreviewStore'
 import 'rb/styles/core.scss'
+import rstore from '../store'
 
 class PreviewContainer extends Component {
   componentDidMount () {
@@ -23,9 +25,11 @@ class PreviewContainer extends Component {
 
   render () {
     return (
-      <div className="row">
-        <Preview />
-      </div>
+      <Provider store={rstore}>
+        <div className="row">
+          <Preview />
+        </div>
+      </Provider>
     )
   }
 }

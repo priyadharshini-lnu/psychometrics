@@ -14,6 +14,8 @@ import CaptchaPreview from './Captcha/components/Preview'
 import HotSpotPreview from './HotSpot/components/Preview'
 import GraphicSliderPreview from './GraphicSlider/components/Preview'
 import VideoResponsePreview from './VideoResponse/components/Preview'
+import FileUploadPreview from './FileUpload/components/Preview'
+import AudioResponsePreview from './AudioResponse/components/Preview'
 
 export default {
   StaticContentPreview,
@@ -32,4 +34,6 @@ export default {
   HotSpotPreview,
   GraphicSliderPreview,
   VideoResponsePreview,
+  FileUploadPreview,
+  AudioResponsePreview,
 }

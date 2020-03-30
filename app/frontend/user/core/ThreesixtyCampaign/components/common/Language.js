@@ -1,5 +1,6 @@
 import React from 'react'
-import { Dropdown, Menu, Icon } from 'antd'
+import { Dropdown, Menu } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 
 export default function Language ({ selectedLanguage, availableTranslations }) {
@@ -27,7 +28,7 @@ export default function Language ({ selectedLanguage, availableTranslations }) {
       <div>
         {I18n.t(`languages.${(selectedLanguage && selectedLanguage.code) || 'en'}`)}
         {' '}
-        <Icon type="down" />
+        <DownOutlined />
       </div>
     </Dropdown>
   )

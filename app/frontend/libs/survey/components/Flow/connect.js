@@ -4,6 +4,9 @@ import { getTree } from 'libs/survey/core/builder/flow/selectors'
 import {
   addElementBelow, duplicateElement, addNew, updateTree, removeElement, reset,
 } from 'libs/survey/core/builder/flow/actions'
+import {
+  updateFlow,
+} from 'libs/survey/core/builder/assessment/actions'
 import { allQuestions, blocksWithoutDeleted } from 'libs/survey/core/builder/assessment/selectors'
 
 export default connect(
@@ -23,5 +26,6 @@ export default connect(
     updateTree,
     removeElement,
     reset,
+    updateFlow,
   },
 )

@@ -1,13 +1,12 @@
 import React from 'react'
-import AppStore from 'rb/store/AppStore'
 import styles from './Header.scss'
 
-const Header = () => (
+const Header = ({ name }) => (
   <div className={`panel-heading ${styles.menu}`}>
     <div>
       <h3 className="panel-title">
         Assessment
-        {AppStore.name}
+        {name}
       </h3>
     </div>
   </div>

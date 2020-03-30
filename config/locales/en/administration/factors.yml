@@ -12,7 +12,8 @@ en:
         scoring_strategies:
           questions: Questions
           sub_factor_questions: Questions of other Factors
-          sub_factors_average: Weighted Sum of Factors
+          sub_factors_average: Weighted Average of Factors
+          sub_factors_conditional_average: Conditional Weighted Average of Factors
       list:
         id: Id
         active: Active
@@ -40,7 +41,8 @@ en:
         scoring_strategies:
           questions: Questions
           sub_factor_questions: Questions of other Factors
-          sub_factors_average: Weighted Sum of Factors
+          sub_factors_average: Weighted Average of Factors
+          sub_factors_conditional_average: Conditional Weighted Average of Factors
       resource:
         tooltips:
           copy: 'Copy Factor'
@@ -49,7 +51,8 @@ en:
         scoring_strategies:
           questions: Questions
           sub_factor_questions: Questions of other factors
-          sub_factors_average: Weighted sum of factors
+          sub_factors_average: Weighted Average of factors
+          sub_factors_conditional_average: Conditional Weighted Average of Factors
         in_progress:
           copying: Copying
           deleting: Deleting

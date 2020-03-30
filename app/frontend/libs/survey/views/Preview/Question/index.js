@@ -1,3 +1,4 @@
 import Question from './components/Question'
+import connect from './connect'
 
-export default Question
+export default connect(Question)

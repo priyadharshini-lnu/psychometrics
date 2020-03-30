@@ -10,8 +10,7 @@ export default {
     }]
   },
 
-  // eslint-disable-next-line no-unused-vars
-  xAxis (question, embeddedData, func = 'Count', results) {
+  xAxis (question, embeddedData = 'Count', results) {
     const keys = _.keys(_.groupBy(results.embeddedData[question.name], data => data.value))
     const labels = _.map(keys, (key, i) => embeddedData.props.choicesTexts[i] || key)
     return {

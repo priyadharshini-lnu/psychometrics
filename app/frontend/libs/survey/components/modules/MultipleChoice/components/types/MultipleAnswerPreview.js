@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from '../MultipleChoice.scss'
+import connect from '../../connect'
 
-export default class extends Component {
+class MultipleAnswerPreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -24,7 +24,7 @@ export default class extends Component {
   }
 
   renderNotApplicable () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     const { props: { notApplicable }, result } = model
     if (!notApplicable) { return null }
     const checked = result.notApplicable
@@ -36,14 +36,16 @@ export default class extends Component {
             type="checkbox"
             onClick={this.changeNotApplicable}
           />
-          <span>{I18nStore.tQuestion(model, 'notApplicableLabel')}</span>
+          <span>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
         </label>
       </li>
     )
   }
 
   render () {
-    const { model, model: { moduleConfig }, readOnly } = this.props
+    const {
+      model, model: { moduleConfig }, readOnly, I18n,
+    } = this.props
 
     const result = model.result || []
     const listStyles = {
@@ -65,7 +67,7 @@ export default class extends Component {
                   type="checkbox"
                 />
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                  {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                     || moduleConfig.defaultChoiceText(i + 1)}
                 </span>
               </label>
@@ -77,3 +79,5 @@ export default class extends Component {
     )
   }
 }
+
+export default connect(MultipleAnswerPreview)

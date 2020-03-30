@@ -4,3 +4,9 @@ import QuestionCenterContainer from 'libs/survey/containers/QuestionCenterContai
 
 const ID = window.questionCenterDomElementId || 'psychometrics_question_center'
 ReactDOM.render(<QuestionCenterContainer />, document.getElementById(ID))
+
+if (__DEV__) {
+  if (module.hot) {
+    module.hot.accept()
+  }
+}

@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Menu, Button, Icon, Dropdown, Row, Col,
+  Menu, Button, Dropdown, Row, Col,
 } from 'antd'
+import { ScheduleOutlined, CaretDownOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 
 export default function TitleBar ({ emailTemplate, openModal }) {
@@ -36,7 +37,7 @@ export default function TitleBar ({ emailTemplate, openModal }) {
                 className={styles.button}
                 onClick={() => openModal('EmailScheduleModal', { selectedEmailTemplateId: emailTemplate.id })}
               >
-                <Icon type="schedule" />
+                <ScheduleOutlined />
                 {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
               </Button>
               <Dropdown
@@ -45,7 +46,7 @@ export default function TitleBar ({ emailTemplate, openModal }) {
                 placement="bottomLeft"
                 trigger={['click']}
               >
-                <Icon type="caret-down" />
+                <CaretDownOutlined />
               </Dropdown>
             </div>
           )}

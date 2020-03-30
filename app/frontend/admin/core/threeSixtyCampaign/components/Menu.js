@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Menu, Icon } from 'antd'
+import { Menu } from 'antd'
+import { UserOutlined, MailOutlined, PieChartOutlined } from '@ant-design/icons'
 import routeUtils from 'utils/routeUtils'
 import settings from '../settings'
 
@@ -10,15 +11,15 @@ const MyMenu = ({ history, routes }) => {
   return (
     <Menu className="mbm" onSelect={onClick} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
       <Menu.Item key="/participants">
-        <Icon type="user" />
+        <UserOutlined />
         Participants
       </Menu.Item>
       <Menu.Item key="/messages/options">
-        <Icon type="mail" />
+        <MailOutlined />
         Messages
       </Menu.Item>
       <Menu.Item key="/reports/options">
-        <Icon type="pie-chart" />
+        <PieChartOutlined />
         Reports
       </Menu.Item>
     </Menu>

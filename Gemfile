@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'bundler',                    '>= 1.8.4'
+gem 'rack',                       '~> 2.0.9'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'coffee-rails',               '~> 4.2'
@@ -135,7 +136,6 @@ gem 'chronic', '~> 0.10.2'
 gem 'mustache', '~> 1.0.3'
 gem 'rectify', '~> 0.13.0'
 gem 'sidekiq', '~> 5.1.3'
-gem 'whenever', '~> 0.9.7', require: false
 
 gem 'bootstrap-slider-rails'
 gem 'hashids', '~> 1.0.5'
@@ -225,3 +225,9 @@ group :test do
   gem 'webdrivers'
   gem 'wisper-rspec', '~> 1.1.0', require: false
 end
+
+# for creating and rendering QR codes into various formats
+gem 'rqrcode'
+
+# a scheduling add-on for sidekiq
+gem 'sidekiq-cron', '~> 1.1'

@@ -4,10 +4,10 @@ import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
-import CPIFactorConditionStore from 'rb/store/modals/CPIFactorConditionStore'
 import _ from 'lodash'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import connect from './connect'
 
 const ALL_FACTORS = 'All Subfactors'
 
@@ -53,7 +53,8 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    CPIFactorConditionStore.open(store.model)
+    const { openConditionModal } = this.props
+    openConditionModal({ module: store.model })
   }
 
   changeProp = (propName, e) => {
@@ -65,6 +66,18 @@ class Properties extends Component {
   changeOrder = () => {
     const { model } = store
     model.props.reverseOrder = !model.props.reverseOrder
+    store.model.update()
+    this.forceUpdate()
+  }
+
+  setProp = (propName, e) => {
+    store.model.props[propName] = e.currentTarget.checked
+    store.model.update()
+    this.forceUpdate()
+  }
+
+  changeStyle = (propName, e) => {
+    store.model.props[propName] = e.currentTarget.value
     store.model.update()
     this.forceUpdate()
   }
@@ -113,6 +126,48 @@ class Properties extends Component {
     )
   }
 
+  renderStyleSelect () {
+    const layouts = [
+      { value: 'default', label: 'Default' },
+      { value: 'comfortable', label: 'Comfortable' },
+      { value: 'compact', label: 'Compact' },
+    ]
+
+    return (
+      <select onChange={e => this.changeStyle('tableStyle', e)} value={store.model.props.tableStyle || 'default'}>
+        {layouts.map((layout, i) => (
+          <option value={layout.value} key={i}>
+            {layout.label}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
+  renderTableOptions () {
+    const options = [
+      { label: 'Show Header', prop: 'showHeader', default: false },
+      { label: 'Show RankOrder', prop: 'showRankOrder', default: false },
+      { label: 'Show Score', prop: 'showScore', default: false },
+      { label: 'Show Description', prop: 'showDescription', default: false },
+      { label: 'Show Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
+    ]
+
+    return (
+      options.map((option, i) => (
+        <label className={styles.inputLabel} key={i}>
+          <input
+            style={{ marginRight: '5px' }}
+            type="checkbox"
+            checked={_.get(store.model.props, option.prop, option.default)}
+            onChange={e => this.setProp(option.prop, e)}
+          />
+          {option.label}
+        </label>
+      ))
+    )
+  }
+
   render () {
     const { model } = store
     return (
@@ -140,6 +195,14 @@ class Properties extends Component {
           </div>
         </div>
         <hr className={styles.divider} />
+        <div className="margin-top-10">
+          {this.renderTableOptions()}
+        </div>
+        <hr className={styles.divider} />
+        <div className={styles.selectContainer}>
+          {this.renderStyleSelect()}
+        </div>
+        <hr className={styles.divider} />
         <div>Font</div>
         <PropertyFonts colors={false} />
         <hr className={styles.divider} />
@@ -148,4 +211,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

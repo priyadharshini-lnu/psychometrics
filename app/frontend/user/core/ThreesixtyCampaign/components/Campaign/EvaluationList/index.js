@@ -2,8 +2,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Menu, Dropdown, List, Collapse, Icon, Progress, Modal, Tooltip,
+  Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
+import {
+  CheckSquareFilled, InfoCircleOutlined, DownOutlined, QuestionCircleOutlined,
+} from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import { STATUSES } from 'constants/userResult'
 import connect from './connect'
@@ -19,6 +22,11 @@ function EvaluationList ({
   const [showHelp, setShowHelp] = useState(false)
   const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
   const evaluationHelp = _.find(instructions, { name: 'evaluation_help' })
+  const canNotEvaluate = (item) => {
+    if (item.subjectEvaluationClosed) { return true }
+
+    return options.global.canNotEditEvaluation && isEvaluationCompleted(item)
+  }
 
   const menu = item => (
     <Menu>
@@ -62,13 +70,13 @@ function EvaluationList ({
     <List.Item>
       <div className="evaluation-item list-item">
         {isEvaluationCompleted(item)
-          ? <a><Icon type="check-square" theme="filled" className="status-icon" /></a>
+          ? <a><CheckSquareFilled className="status-icon" /></a>
           : <div className="empty-square" />}
         {' '}
         <Link
           to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
           style={{ display: 'flex', flex: 1 }}
-          disabled={item.subjectEvaluationClosed}
+          disabled={canNotEvaluate(item)}
         >
           <Tooltip placement="topLeft" title={item.subject.email}>
             <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
@@ -77,7 +85,7 @@ function EvaluationList ({
 
         {item.subjectEvaluationClosed && (
         <Tooltip placement="top" title="Evaluation is closed for this subject">
-          <Icon type="info-circle" />
+          <InfoCircleOutlined />
         </Tooltip>
         )}
 
@@ -85,7 +93,7 @@ function EvaluationList ({
           && (
             <Dropdown overlay={() => menu(item)} trigger={['click']} placement="bottomRight">
               <a className="ant-dropdown-link actions-btn" href="#" style={{ alignSelf: 'flex-end' }}>
-                <Icon type="down" className="menu-icon" />
+                <DownOutlined className="menu-icon" />
               </a>
             </Dropdown>
           )
@@ -103,7 +111,7 @@ function EvaluationList ({
               <Tooltip placement="topLeft" title={item.user.email}>
                 <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
               </Tooltip>
-              <Icon type="down" className="menu-icon" />
+              <DownOutlined className="menu-icon" />
             </a>
           </Dropdown>
         </div>
@@ -162,7 +170,7 @@ of
           </div>
           {evaluationHelp && (
           <div className="help">
-            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+            <QuestionCircleOutlined className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
           )}
         </div>

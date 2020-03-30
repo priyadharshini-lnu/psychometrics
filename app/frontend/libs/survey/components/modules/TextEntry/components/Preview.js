@@ -1,9 +1,9 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './TextEntry.scss'
 import Previews from './Previews'
+import connect from '../connect'
 
 export class Preview extends Component {
   static propTypes = {
@@ -18,13 +18,13 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
-    I18nStore.tQuestion(model, 'questionText')
+    const { model, I18n } = this.props
+    I18n.tQuestion(model, 'questionText')
     return (
       <div>
         <div
           className={styles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
         />
         {this.renderAnswersType()}
       </div>
@@ -32,4 +32,4 @@ export class Preview extends Component {
   }
 }
 
-export default Preview
+export default connect(Preview)

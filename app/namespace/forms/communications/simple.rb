@@ -58,7 +58,7 @@ module Forms
       validates :delivery_rule,
                 presence: true,
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:invitation] },
-                if: :invitation?
+                if: -> { invitation? && recipients != 'new_users' }
 
       validates :delivery_rule,
                 presence: true,

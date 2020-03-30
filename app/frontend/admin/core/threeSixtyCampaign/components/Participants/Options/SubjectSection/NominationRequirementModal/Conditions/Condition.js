@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Select, Input } from 'antd'
+import { Select, Input } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import cs from 'classnames'
 import styles from '../styles.scss'
 
@@ -47,12 +48,11 @@ export default function Condition ({
       </Select>
 
       <span>
-        <Icon
-          type="minus-circle"
+        <MinusCircleOutlined
           onClick={handleRemove}
           className={cs(styles.deleteIcon, { [styles.disabledIcon]: !canRemove })}
         />
-        <Icon type="plus-circle" className={styles.addIcon} onClick={add} />
+        <PlusCircleOutlined type="plus-circle" className={styles.addIcon} onClick={add} />
       </span>
     </div>
   )

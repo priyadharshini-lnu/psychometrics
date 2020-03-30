@@ -2,7 +2,7 @@
 
 module Hogan
   class LoadResultsJob < ApplicationJob
-    queue_as :default
+    queue_as :external_results
 
     def perform(assign, membership_with_result, project)
       assign.original_or_self.reports.select(&:hogan?).each do |report|

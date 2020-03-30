@@ -1,0 +1,25 @@
+head
+  = javascript_pack_tag "vendors"
+  = stylesheet_pack_tag  "medial_players/video"
+  = javascript_pack_tag "medial_players/video"
+  css:
+    .video-js .vjs-control-bar {
+      display: flex;
+    }
+
+body style="margin: 0"
+  div
+    video id="my_video" class="video-js vjs-default-skin" controls=true preload="none"
+      source src="#{params[:url]}"
+
+  javascript:
+    var options = {
+      sources: [{
+        src: "#{params[:url]}",
+      }],
+      preload: false,
+      controls: true,
+      fill: true
+    }
+
+    window.videojs('my_video', options)

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Button, Icon } from 'antd'
+import { Modal, Button } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 
 export default function ConfirmationModal ({
   title,
@@ -20,7 +21,7 @@ export default function ConfirmationModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary" onClick={onConfirm}>
-          <Icon type="check" />
+          <CheckOutlined />
           Confirm
         </Button>,
       ]}

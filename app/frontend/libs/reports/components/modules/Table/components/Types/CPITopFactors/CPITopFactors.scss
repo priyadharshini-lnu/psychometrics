@@ -1,93 +1,224 @@
 .table {
-  position: relative;
   width: 100%;
-}
-.text {
-  padding: 10px;
-  vertical-align: top;
-  ul, ol {
-    margin: 0;
-    padding-left: 1.2em;
-  }
-}
-.scoreIcon {
-  width: 68px;
-  height: 68px;
-  background-color: white;
-  background-size: contain;
-  background-repeat: no-repeat;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border: 4px solid white;
-  border-radius: 50%;
-}
-.factor {
+  color: #333333;
   position: relative;
-  height: 68px;
-  display: flex;
+  white-space: nowrap;
+  border-spacing: 0;
+  border-collapse: unset;
+  border-radius: 12px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;;
+  border: 0.5px solid #0202020D;
+  box-shadow: 0px 0px 8px #0202020D;
+
+  tbody {
+    tr:last-child {
+      td:first-child {
+        border-bottom-left-radius: 15px;
+      }
+      td:last-child {
+        border-bottom-right-radius: 15px;
+      }
+    }
+  }
+
+  th, td {
+    text-align: left;
+  }
+
+  th {
+    font-size: 1.13em;
+    font-weight: 400;
+    padding: 1.5em 1em 1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    &.rankOrder, &.score {
+      text-align: center;
+    }
+  }
+
+  td {
+    padding: 1em;
+    text-align: start;
+    vertical-align: top;
+    white-space: normal;
+    border-bottom: 1px solid #ededed;
+
+    &.rankOrder, &.score {
+      text-align: center;
+    }
+
+    &.strength {
+      font-size: 1.13em;
+      font-weight: bold;
+
+      padding: .6em;
+    }
+
+    &.description {
+      color: #7B7B7B;
+    }
+
+    &.strengthsBlindspots {
+      &.styledLists {
+        ul {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            position: relative;
+            margin: 0;
+            padding: 0 0 0.35em 1.5em;
+
+            &:before {
+              content: '';
+              top: 0;
+              left: 0;
+              padding: 0;
+              margin: 0;
+              width: 1em;
+              height: 1em;
+              position: absolute;
+              background-color: #fff;
+              border-radius: 50%;
+              border: .32em solid #bdbdbd;
+            }
+          }
+        }
+      }
+
+      &.defaultLists {
+        ul {
+          padding-left: 1em;
+          margin-bottom: 0;
+          list-style-type: disc;
+
+          li {
+            padding: 0 0 1em 0;
+          }
+        }
+      }
+
+      .blindspots {
+        color: #7B7B7B;
+        font-style: italic;
+      }
+    }
+
+    &.score {
+      font-size: 1em;
+      font-weight: bold;
+    }
+  }
+
+  &.default {
+    th {
+      font-weight: 500;
+    }
+
+    td {
+      &.strength {
+        font-size: 1.56em;
+      }
+
+      &.score {
+        font-size: 1.25em;
+      }
+    }
+  }
+
+  &.comfortable {
+    td {
+      &.strength, &.score {
+        font-size: 1.2em;
+
+        padding: 1em;
+      }
+
+      &.strengthsBlindspots {
+        &.styledLists {
+          ul {
+            li {
+              padding: 0 0 0.35em 1.5em;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.compact {
+    th {
+      font-size: 1em;
+    }
+
+    td {
+      padding: 0.35em 1em;
+      font-size: 1em;
+      &.strength {
+        font-weight: normal;
+      }
+
+      &.score {
+        font-weight: normal;
+      }
+
+      &.strengthsBlindspots {
+        &.defaultLists {
+          ul {
+            li {
+              padding: 0 0 0.5em 0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-.factorName {
-  background-color: #192B38;
-  flex: 0 0 220px;
-  margin-left: 38px;
-  padding: 0 10px 0 45px;
-  display: flex;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  -ms-flex-preferred-size: calc(220px - 45px);
-}
-.factorDescription {
-  background-color: #CBCCCD;
-  flex: 1 1 100%;
+
+.rankAvatar {
+  box-sizing: border-box;
+  font-size: 1.2em;
+  list-style: none;
+  position: relative;
+  display: inline-block;
   overflow: hidden;
-  padding: 2px 10px;
-  align-items: center;
-  display: flex;
-  border-top-right-radius: 34px;
-  border-bottom-right-radius: 34px;
+  color: #FFF;
+  white-space: nowrap;
+  text-align: center;
+  vertical-align: middle;
+  background: #A4A4A4 0% 0% no-repeat padding-box;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2.5em;
+  border-radius: 50%;
+
+  .rankText {
+    font-weight: bold;
+    transform: scale(1) translateX(-50%);
+  }
 }
-.scoreIcon1 {
-  background-image: url('~libs/reports/static/icons/donut-icon-1.png');
-}
-.scoreIcon2 {
-  background-image: url('~libs/reports/static/icons/donut-icon-2.png');
-}
-.scoreIcon3 {
-  background-image: url('~libs/reports/static/icons/donut-icon-3.png');
-}
-.scoreIcon4 {
-  background-image: url('~libs/reports/static/icons/donut-icon-4.png');
-}
-.scoreIcon5 {
-  background-image: url('~libs/reports/static/icons/donut-icon-5.png');
-}
+
 body[data-locale="ar"] {
-  .scoreIcon {
-    right: 0;
-  }
-  .factorName {
-    flex: 0 0 220px;
-    margin-right: 38px;
-    margin-left: 0;
-    padding: 0 45px 0 10px;
-  }
-  .factorDescription {
-    padding: 2px 10px;
-    border-top-left-radius: 34px;
-    border-bottom-left-radius: 34px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-  .text {
-    ul, ol {
-      padding-right: 1.2em;
-      padding-left: 0;
+  .table {
+    direction: rtl;
+
+    th {
+      text-align: right;
+    }
+
+    td {
+      &.strengthsBlindspots {
+        ul {
+          li {
+            padding: 0 1.5em 1.25em 0;
+
+            &:before {
+              right: 0;
+            }
+          }
+        }
+      }
     }
   }
 }

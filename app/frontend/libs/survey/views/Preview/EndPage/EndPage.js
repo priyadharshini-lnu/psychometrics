@@ -1,27 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/AssessmentPreviewStore'
 import styles from './EndPage.scss'
 
 export class EndPage extends Component {
   static propTypes = {
-    page: PropTypes.object.isRequired,
-  }
-
-  changeHidden = (e) => {
-    store.hideHiddenQuestions = e.currentTarget.checked
-    store.update()
-    this.forceUpdate()
-  }
-
-  changeIgnore = (e) => {
-    store.ignoreValidation = e.currentTarget.checked
-    this.forceUpdate()
-  }
-
-  restart () {
-    store.restart()
+    flowElement: PropTypes.object,
   }
 
   addLtrStyleIfNeed (phrase) {
@@ -29,13 +13,13 @@ export class EndPage extends Component {
   }
 
   renderUniqueId () {
-    const { page: { flowElement } } = this.props
+    const { flowElement, dbResult } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.showUniqueId) {
         return (
           <div className={styles.end}>
             Your unique ID:
-            {_.result(store.dbResult, 'hash_id', '<it is builder>')}
+            {_.result(dbResult, 'hash_id', '<it is builder>')}
           </div>
         )
       }
@@ -46,7 +30,7 @@ export class EndPage extends Component {
   render () {
     let message = `You have now completed the survey and your response has been recorded.
       Thank you for taking the time to share your feedback.`
-    const { page: { flowElement } } = this.props
+    const { flowElement, dashboardUrl, isAnonymousAssessment } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
         // eslint-disable-next-line prefer-destructuring
@@ -61,10 +45,10 @@ export class EndPage extends Component {
         <div className={styles.end} style={this.addLtrStyleIfNeed(message)}>
           {message}
         </div>
-        {!store.isAnonymousAssessment && (
-        <div className={styles.end}>
-          <a href={store.dashboardUrl}>Go to dashboard</a>
-        </div>
+        {!isAnonymousAssessment && (
+          <div className={styles.end}>
+            <a href={dashboardUrl}>Go to dashboard</a>
+          </div>
         )}
         {this.renderUniqueId()}
       </div>

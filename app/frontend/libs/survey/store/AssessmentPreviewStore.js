@@ -16,6 +16,7 @@ const AssessmentPreviewStore = function () {
   this.dbResult = {}
   this.dataSheetColumns = []
   this.dataSheet = null
+  this.subjectDataSheet = null
   this.relationships = null
   this.ignoreValidation = false
   this.hideHiddenQuestions = true
@@ -43,6 +44,7 @@ _.extend(AssessmentPreviewStore.prototype, {
     this.dataSheetColumns = data.data_sheet_columns || []
     this.relationships = data.relationships
     this.dataSheet = dbResult && dbResult.data_sheet
+    this.subjectDataSheet = dbResult && dbResult.subject_datasheet
     this.relationship = dbResult && dbResult.relationship
 
     // can be pass_assessment, preview_block or preview_assessment

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Utils from 'utils'
@@ -16,20 +15,17 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.value
     model.changeProps({ type })
-    PropertyPanelStore.update()
   }
 
   changeChoices = (val) => {
     const { model } = this.props
     model.setChoices(val)
-    this.forceUpdate()
   }
 
   changeScalePoints = (val, undo) => {
@@ -47,25 +43,21 @@ export class Properties extends Component {
       Action('ChangeScalePoints', this, { oldValue, newValue })
     }
     model.update()
-    this.forceUpdate()
   }
 
   changeColumns = (e) => {
     const { model } = this.props
     model.changeProps({ columns: (e.currentTarget.value === 'true') })
-    this.forceUpdate()
   }
 
   changeStackItems = (e) => {
     const { model } = this.props
     model.changeProps({ stackItems: e.currentTarget.checked })
-    this.forceUpdate()
   }
 
   changeStackItemsGroup = (e) => {
     const { model } = this.props
     model.changeProps({ stackItemsGroup: e.currentTarget.checked })
-    this.forceUpdate()
   }
 
   renderChoices () {

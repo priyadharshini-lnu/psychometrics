@@ -1,5 +1,6 @@
 import React from 'react'
-import { Select, Icon } from 'antd'
+import { Select } from 'antd'
+import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import cs from 'classnames'
 import { NAME } from 'constants/emailTemplate'
@@ -68,8 +69,8 @@ export default function Criteria ({
         </Select>
         <div className={cs(['mls', styles.comparatorContainer])}>{renderComparator()}</div>
         <span>
-          <Icon type="minus-circle" onClick={remove} className="mls" />
-          <Icon type="plus-circle" onClick={add} className="mls" />
+          <MinusCircleOutlined onClick={remove} className="mls" />
+          <PlusCircleOutlined onClick={add} className="mls" />
         </span>
       </div>
     </div>

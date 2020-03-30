@@ -25,7 +25,7 @@ class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
-             :type, :occupations, :innovation_styles
+             :type, :occupations, :innovation_styles, :expiry_date, :meta_data
 
   has_one :user, serializer: UserSerializer
 

@@ -4,25 +4,47 @@ tr id=dom_id(resource)
   td = resource.decorate.created_at
   - if client.tenancy?
     td = resource.decorate.clients_names
-  td = resource.decorate.anonym_link_for(client)
+  td
+    - if resource.external?
+      = t('.na')
+    - else
+      - if resource.decorate.anonym_link?(client)
+        = resource.decorate.link_to_anonym_link(client)
+        .div.float-r
+          button.btn.btn-default.btn-rounded.btn-xs.copy-coded-url data-toggle="tooltip" data-title="#{resource.decorate.anonym_link_for(client)}"
+            .i.fa.fa-copy
+          .btn-group
+            button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
+              .i.fa.fa-qrcode
+              =<> t('.qr_code')
+              span.caret
+            ul.dropdown-menu
+              li
+                = link_to administration_client_assessment_download_qrcode_path(client, resource, type: t('.png'), format: 'png')
+                  .i.fa.fa-download
+                  =<> t('.png')
+              li
+                = link_to administration_client_assessment_download_qrcode_path(client, resource, type: t('.svg'), format: 'svg') do
+                  .i.fa.fa-download
+                  =<> t('.svg')
   td.actions-cell
     - if policy(resource).can_configure_universal_links?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type="button"
           .i.fa.fa-link
-          =<> t('.configure')
+          =<> t('.link')
           span.caret
         ul.dropdown-menu
-          - unless client.assessment_universal_links_enabled?(resource.id)
-            li
-              = link_to t('.activate_universal_link'),
-                administration_client_assessment_enable_universal_links_path(client, resource),
-                remote: true,
-                method: :put
           - if client.assessment_universal_links_enabled?(resource.id)
             li
               = link_to t('.deactivate_universal_link'),
                 administration_client_assessment_disable_universal_links_path(client, resource),
+                remote: true,
+                method: :put
+          - else
+            li
+              = link_to t('.activate_universal_link'),
+                administration_client_assessment_enable_universal_links_path(client, resource),
                 remote: true,
                 method: :put
           - if client.has_assessment_key?(resource)
@@ -42,7 +64,7 @@ tr id=dom_id(resource)
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-download
-          =<> t('.export_results')
+          =<> t('.export')
           span.caret
         ul.dropdown-menu
           - if policy(resource).export_scoring_results?
@@ -68,7 +90,7 @@ tr id=dom_id(resource)
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-upload
-          =<> t('.import_results')
+          =<> t('.import')
           span.caret
         ul.dropdown-menu
           li

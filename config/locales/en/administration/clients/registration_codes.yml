@@ -39,6 +39,9 @@ en:
         resource:
           copy: Copy
           url: URL
+          qr_code: QR code
+          svg: SVG
+          png: PNG
           tooltips:
             edit: Edit
             delete: Delete

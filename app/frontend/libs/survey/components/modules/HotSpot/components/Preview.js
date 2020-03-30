@@ -3,9 +3,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Raphael from 'raphael'
-import I18nStore from 'store/I18nStore'
 import styles from './HotSpot.scss'
-
+import connect from '../connect'
 
 function ShapeView (raphaelPaper, model, readOnly) {
   const self = this
@@ -132,12 +131,12 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     return (
       <div>
         <div
           className={styles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
         />
         <div ref={(ref) => { this.raphaelPaper = ref }} className={styles.graphicWrap}>
           {this.renderGraphic()}
@@ -149,4 +148,4 @@ export class Preview extends Component {
 }
 
 
-export default Preview
+export default connect(Preview)

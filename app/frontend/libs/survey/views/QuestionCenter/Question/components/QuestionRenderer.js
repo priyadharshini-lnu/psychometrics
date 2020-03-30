@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modules } from 'components/modules'
+import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
 
 class QuestionRenderer extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired,
   }
 
   renderModule () {
-    const { model: { type } } = this.props
+    const { model, model: { type } } = this.props
     const View = Modules[type] || Modules.MultipleChoice
-    return <View {...this.props} />
+    return <View {...this.props} model={QuestionSerializer.wrap(model)} />
   }
 
   render () {

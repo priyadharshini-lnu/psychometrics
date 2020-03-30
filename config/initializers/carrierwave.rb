@@ -2,7 +2,7 @@
 
 if Rails.env.test? || Rails.env.development?
   CarrierWave.configure do |config|
-    config.asset_host = ActionController::Base.asset_host
+    config.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
     config.storage = :file
   end
 else
@@ -21,10 +21,10 @@ else
     config.use_action_status = true
     config.asset_host =
       if Settings.file_host.present?
-        "#{Settings.protocol}://#{Settings.file_host}"
+        "https://#{Settings.file_host}"
       else
         domain = "#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
-        "#{Settings.protocol}://#{domain}"
+        "https://#{domain}"
       end
   end
 end

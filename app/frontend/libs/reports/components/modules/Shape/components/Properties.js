@@ -3,10 +3,10 @@ import panelStyles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import ColorPicker from 'rb/components/ColorPicker'
 import ChoicesInput from 'rb/components/ChoicesInput'
 import store from 'rb/store/PropertyPanelStore'
-import ConditionTextStore from 'rb/store/modals/ConditionTextStore'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
 import styles from './PropStyles.scss'
+import connect from '../connect'
 
 class Properties extends Component {
   changeBg = (color) => {
@@ -53,7 +53,8 @@ class Properties extends Component {
   }
 
   openConditionModal = () => {
-    ConditionTextStore.open(store.model)
+    const { openConditionalText } = this.props
+    openConditionalText({ module: store.model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -117,4 +118,4 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+export default connect(Properties)

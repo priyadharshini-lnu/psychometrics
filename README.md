@@ -52,9 +52,35 @@ $> Users::SuperAdmin.create(
   last_name: 'LastName'
 )
 ```
-1. Setup a loopback address to `lvh.me`
+
+1. Setup a loopback address to `lvh.me` or another preferred local domain
 2. Run the server `bundle exec rails s -p 3030`
-3. Visit `lvh.me:3030`
+3. Visit https://lvh.me:3030
+
+
+# SSL
+Add the following environment variables. Use appropriate local development domains if not using `lvh.me`
+
+```
+WEBPACKER_DEV_SERVER_HTTPS="true"
+WEBPACKER_DEV_SERVER_HOST="lvh.me"
+WEBPACKER_DEV_SERVER_PUBLIC="lvh.me:3035"
+```
+
+1. Run the server
+
+   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/lvh.me.key&cert=support/dev-ssl/lvh.me.pem"`
+2. Visit https://lvh.me:3030
+
+## Using other local domains with SSL
+Example of using `psy.loc`
+
+1. Generate SSL key and certificates using the [instructions](support/dev-ssl/steps.md)
+2. Ensure the key is named `psy.loc.key` and certificate is named `psy.loc.pem`
+3. Run the server with
+
+   `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/psy.loc.key&cert=support/dev-ssl/psy.loc.pem"`
+
 
 # Run tests
 

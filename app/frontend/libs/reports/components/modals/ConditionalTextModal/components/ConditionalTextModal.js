@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/ConditionTextStore'
+import TextConditionCollection from 'rb/models/TextConditionCollection'
+import AppStore from 'rb/store/AppStore'
 import styles from './ConditionalTextModal.scss'
 import ConditionCollection from './ConditionCollection'
 
@@ -10,13 +11,13 @@ const {
 } = Modal
 
 export class ConditionalTextModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  constructor (props) {
+    super(props)
+    this.state = {
+      module: _.cloneDeep(props.module),
+    }
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
 
   getBtnLabel (type) {
     switch (type) {
@@ -30,22 +31,33 @@ export class ConditionalTextModal extends Component {
     }
   }
 
-  close () {
-    store.close()
+  addCollection = () => {
+    const { module } = this.state
+    const max = _.maxBy(AppStore.report.filters, 'id') || { id: 0 }
+    module.addConditionCollection(new TextConditionCollection(
+      { id: max.id + 1, conditions: [{ props: {} }] }, module,
+    ))
+    this.forceUpdate()
   }
 
-  addCollection () {
-    store.addCollection()
+  save = () => {
+    const { module: newModule } = this.state
+    const { module, close } = this.props
+    module.textConditions = newModule.textConditions
+    close()
   }
 
-  save () {
-    store.save()
+  remove = (collection) => {
+    const { module } = this.state
+    module.removeConditionCollection(collection)
+    this.forceUpdate()
   }
 
   renderCollections () {
-    if (store.module.textConditions.length) {
-      return _.map(store.module.textConditions, (collection, i) => (
-        <ConditionCollection key={i} model={collection} />
+    const { module } = this.state
+    if (module.textConditions.length) {
+      return _.map(module.textConditions, (collection, i) => (
+        <ConditionCollection key={i} model={collection} onRemove={this.remove} />
       ))
     }
     return (
@@ -54,13 +66,14 @@ export class ConditionalTextModal extends Component {
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
+    const { module } = this.state
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
           <Title>
             Conditional
-            {store.module.type}
+            {module.type}
           </Title>
         </Header>
         <Body>
@@ -69,10 +82,10 @@ export class ConditionalTextModal extends Component {
         <Footer>
           <button className="btn btn-default" style={{ float: 'left' }} onClick={this.addCollection}>
             Add
-            {this.getBtnLabel(store.module.type)}
+            {this.getBtnLabel(module.type)}
           </button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

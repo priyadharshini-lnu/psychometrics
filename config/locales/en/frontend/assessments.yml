@@ -9,3 +9,17 @@ en:
       hogan: Hogan
     pickgrouprank:
       items: Items
+    audio_response:
+      permission_text: Please allow to use microphone to record audio
+      permission_denied_message: Please enable microphone permission in your borwser to record the answer
+    page:
+      next: 'Next'
+      back: 'Back'
+    video_response:
+      device: 'Allow'
+      delete: 'Delete'
+      discard: 'Discard'
+      save: 'Save'
+      saved: 'Saved'
+      saving: 'Saving...'
+      retry: 'Retry'

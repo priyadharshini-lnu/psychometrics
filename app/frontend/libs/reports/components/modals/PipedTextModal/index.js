@@ -1,3 +1,4 @@
 import PipedTextModal from './components/PipedTextModal'
+import connect from './connect'
 
-export default PipedTextModal
+export default connect(PipedTextModal)

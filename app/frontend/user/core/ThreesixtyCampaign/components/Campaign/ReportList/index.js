@@ -2,8 +2,9 @@
 import React, { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import {
-  List, Collapse, Icon, Modal, Progress, Tooltip,
+  List, Collapse, Modal, Progress, Tooltip,
 } from 'antd'
+import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import ConfirmationModal from 'components/ConfirmationModal'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -73,7 +74,7 @@ function ReportList ({
             </div>
             {reportHelp && (
             <div className="help">
-              <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+              <QuestionCircleOutlined className="help-icon" onClick={() => setShowHelp(true)} />
             </div>
             )}
           </div>
@@ -84,7 +85,7 @@ function ReportList ({
           <div className="report-row">
             <a onClick={() => showReport(subjectReport)}>
               {!subjectReport.approved
-                ? <Icon type="check-square" theme="filled" className="status-icon" />
+                ? <CheckSquareFilled className="status-icon" />
                 : <div className="empty-square" />}
               {I18n.t('threesixty.view_my_report')}
             </a>
@@ -124,7 +125,7 @@ const ReportItem = ({ item, showReport }) => (
   <List.Item>
     <a onClick={showReport}>
       {!item.approval_status
-        ? <Icon type="check-square" theme="filled" className="status-icon" />
+        ? <CheckSquareFilled className="status-icon" />
         : <div className="empty-square" />}
       {' '}
       <Tooltip placement="topLeft" title={item.user.email}>

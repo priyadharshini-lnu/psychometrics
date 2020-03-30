@@ -1172,7 +1172,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
-          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -1189,19 +1188,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               }
             }
           },
-          "deactivate_universal_link": "Deactivate Univeral Link",
-          "export_results": "Export results",
+          "deactivate_universal_link": "Deactivate Universal Link",
+          "export": "Export",
           "external_results": "External Results",
-          "generate_universal_link": "Generate Univeral Link",
-          "import_results": "Import Results",
+          "generate_universal_link": "Generate Universal Link",
+          "import": "Import",
           "in_progress": {
             "copying": "Copying",
             "deleting": "Deleting"
           },
+          "link": "Link",
+          "mindmill_results": "Mindmill",
+          "na": "N/A",
           "normed_results": "Normed results",
+          "png": "PNG",
+          "qr_code": "QR code",
           "raw_results": "Raw results",
-          "regenerate_universal_link": "Regenerate Univeral Link",
+          "regenerate_universal_link": "Regenerate Universal Link",
           "scoring_results": "Scoring results",
+          "svg": "SVG",
           "tooltips": {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
@@ -1431,7 +1436,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -1743,7 +1748,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -2304,6 +2309,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           },
           "copy": "Copy",
+          "png": "PNG",
+          "qr_code": "QR code",
+          "svg": "SVG",
           "tooltips": {
             "delete": "Delete",
             "edit": "Edit"
@@ -2592,6 +2600,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -2801,7 +2812,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reports": {
@@ -3112,6 +3123,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -3200,7 +3214,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         }
       },
       "index": {
@@ -3209,7 +3224,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "scoring_strategy": "Scoring strategy",
         "sub_factors": "Sub factors",
@@ -3246,7 +3262,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted sum of factors"
+          "sub_factors_average": "Weighted Average of factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -3382,8 +3399,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -3391,7 +3411,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -3401,8 +3422,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -3436,8 +3460,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -3448,6 +3475,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -3465,6 +3501,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -3718,8 +3755,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -3727,7 +3767,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -3738,6 +3779,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -3772,8 +3815,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -3784,6 +3830,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -3801,6 +3856,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -4378,7 +4434,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "reports": {
         "show": {
-          "title": "Title"
+          "title": "Subject Report"
         }
       }
     },
@@ -4456,7 +4512,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "password": {
         "guidelines": {
-          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
         }
       },
       "reset_password": {
@@ -4537,6 +4593,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -4552,6 +4612,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -4570,6 +4634,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "assigns": {
@@ -4995,6 +5068,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -5090,6 +5164,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -5101,10 +5177,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "before": "must be before %{date}",
       "before_or_equal_to": "must be before or equal to %{date}",
       "blank": "can't be blank",
-      "carrierwave_direct_allowed_extensions": "Allowed file types are %{extensions}",
+      "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
       "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
       "carrierwave_direct_attachment_missing": "attachment is missing",
-      "carrierwave_direct_filename_invalid": "is invalid. ",
+      "carrierwave_direct_filename_invalid": "",
       "carrierwave_direct_filename_taken": "filename was already taken",
       "carrierwave_direct_upload_missing": "upload is missing",
       "carrierwave_download_error": "could not be downloaded",
@@ -5374,7 +5450,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -6334,6 +6410,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -6368,6 +6449,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -6382,6 +6475,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -6422,6 +6518,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",
@@ -6431,6 +6532,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -7622,7 +7724,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
-          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -7639,19 +7740,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               }
             }
           },
-          "deactivate_universal_link": "Deactivate Univeral Link",
-          "export_results": "Export results",
+          "deactivate_universal_link": "Deactivate Universal Link",
+          "export": "Export",
           "external_results": "External Results",
-          "generate_universal_link": "Generate Univeral Link",
-          "import_results": "Import Results",
+          "generate_universal_link": "Generate Universal Link",
+          "import": "Import",
           "in_progress": {
             "copying": "Copying",
             "deleting": "Deleting"
           },
+          "link": "Link",
+          "mindmill_results": "Mindmill",
+          "na": "N/A",
           "normed_results": "Normed results",
+          "png": "PNG",
+          "qr_code": "QR code",
           "raw_results": "Raw results",
-          "regenerate_universal_link": "Regenerate Univeral Link",
+          "regenerate_universal_link": "Regenerate Universal Link",
           "scoring_results": "Scoring results",
+          "svg": "SVG",
           "tooltips": {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
@@ -7881,7 +7988,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -8193,7 +8300,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -8754,6 +8861,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           },
           "copy": "Copy",
+          "png": "PNG",
+          "qr_code": "QR code",
+          "svg": "SVG",
           "tooltips": {
             "delete": "Delete",
             "edit": "Edit"
@@ -9042,6 +9152,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -9251,7 +9364,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reports": {
@@ -9562,6 +9675,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -9650,7 +9766,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         }
       },
       "index": {
@@ -9659,7 +9776,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "scoring_strategy": "Scoring strategy",
         "sub_factors": "Sub factors",
@@ -9696,7 +9814,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted sum of factors"
+          "sub_factors_average": "Weighted Average of factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -9832,8 +9951,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -9841,7 +9963,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -9851,8 +9974,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -9886,8 +10012,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -9898,6 +10027,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -9915,6 +10053,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -10168,8 +10307,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -10177,7 +10319,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -10188,6 +10331,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -10222,8 +10367,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -10234,6 +10382,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -10251,6 +10408,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -10828,7 +10986,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "reports": {
         "show": {
-          "title": "Title"
+          "title": "Subject Report"
         }
       }
     },
@@ -10906,7 +11064,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "password": {
         "guidelines": {
-          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
         }
       },
       "reset_password": {
@@ -10987,6 +11145,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -11002,6 +11164,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "العبارات"
@@ -11020,6 +11186,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "assigns": {
@@ -11445,6 +11620,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -11540,6 +11716,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -11551,10 +11729,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "before": "must be before %{date}",
       "before_or_equal_to": "must be before or equal to %{date}",
       "blank": "can't be blank",
-      "carrierwave_direct_allowed_extensions": "Allowed file types are %{extensions}",
+      "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
       "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
       "carrierwave_direct_attachment_missing": "attachment is missing",
-      "carrierwave_direct_filename_invalid": "is invalid. ",
+      "carrierwave_direct_filename_invalid": "",
       "carrierwave_direct_filename_taken": "filename was already taken",
       "carrierwave_direct_upload_missing": "upload is missing",
       "carrierwave_download_error": "could not be downloaded",
@@ -11828,7 +12006,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -12791,6 +12969,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -12825,6 +13008,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -12839,6 +13034,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -12879,6 +13077,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
     "least_hotspot": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -12888,6 +13091,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
     "number": "يجب أن تحتوي الإجابة على أرقام",
     "please_answer_question": "الرجاء الإجابة على هذا السؤال",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
@@ -14079,7 +14283,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "resource": {
           "activate_universal_link": "Activate Universal Link",
-          "configure": "Configure",
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
@@ -14096,19 +14299,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               }
             }
           },
-          "deactivate_universal_link": "Deactivate Univeral Link",
-          "export_results": "Export results",
+          "deactivate_universal_link": "Deactivate Universal Link",
+          "export": "Export",
           "external_results": "External Results",
-          "generate_universal_link": "Generate Univeral Link",
-          "import_results": "Import Results",
+          "generate_universal_link": "Generate Universal Link",
+          "import": "Import",
           "in_progress": {
             "copying": "Copying",
             "deleting": "Deleting"
           },
+          "link": "Link",
+          "mindmill_results": "Mindmill",
+          "na": "N/A",
           "normed_results": "Normed results",
+          "png": "PNG",
+          "qr_code": "QR code",
           "raw_results": "Raw results",
-          "regenerate_universal_link": "Regenerate Univeral Link",
+          "regenerate_universal_link": "Regenerate Universal Link",
           "scoring_results": "Scoring results",
+          "svg": "SVG",
           "tooltips": {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
@@ -14338,7 +14547,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -14650,7 +14859,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reset_password": {
@@ -15211,6 +15420,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           },
           "copy": "Copy",
+          "png": "PNG",
+          "qr_code": "QR code",
+          "svg": "SVG",
           "tooltips": {
             "delete": "Delete",
             "edit": "Edit"
@@ -15499,6 +15711,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -15708,7 +15923,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "password": {
           "guidelines": {
-            "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
           }
         },
         "reports": {
@@ -16019,6 +16234,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
       "destroy": {
         "successfully": "Dimension %{name} was successfully deleted."
       },
@@ -16107,7 +16325,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         }
       },
       "index": {
@@ -16116,7 +16335,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other Factors",
-          "sub_factors_average": "Weighted Sum of Factors"
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "scoring_strategy": "Scoring strategy",
         "sub_factors": "Sub factors",
@@ -16153,7 +16373,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "scoring_strategies": {
           "questions": "Questions",
           "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted sum of factors"
+          "sub_factors_average": "Weighted Average of factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
           "copy": "Copy Factor",
@@ -16289,8 +16510,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Innovation Style #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Innovation Style #%{name} was successfully deleted."
+        "successfully": "Innovation Style %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Innovation Style"
@@ -16298,7 +16522,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -16308,8 +16533,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "list": {
-        "created_at": "Created Date",
-        "updated_at": "Modified Date"
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
       },
       "new": {
         "header": "New Innovation Style"
@@ -16343,8 +16571,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -16355,6 +16586,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -16372,6 +16612,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -16625,8 +16866,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Occupation #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully deleted."
+        "successfully": "Occupation %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -16634,7 +16878,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "hint": {
           "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        }
+        },
+        "no_icon": "No icon"
       },
       "index": {
         "new": "Add",
@@ -16645,6 +16890,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "list": {
         "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
         "updated_at": "Modified Date"
       },
       "new": {
@@ -16679,8 +16926,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "copy": {
         "error": "Factor #%{id} was not copied."
       },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
       "destroy": {
-        "successfully": "Factor #%{name} was successfully detached."
+        "successfully": "Factor %{name} was successfully detached."
       },
       "edit": {
         "header": "Edit Factor"
@@ -16691,6 +16941,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "tooltips": {
           "create": "Create"
         }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
       },
       "new": {
         "header": "Attach Factors"
@@ -16708,6 +16967,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "sidebar": {
+        "destroy": "Destroy Factor",
         "disable": "Disable",
         "edit": "Edit",
         "enable": "Enable",
@@ -17285,7 +17545,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "reports": {
         "show": {
-          "title": "Title"
+          "title": "Subject Report"
         }
       }
     },
@@ -17363,7 +17623,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "password": {
         "guidelines": {
-          "error": "Password does not contain : Minimum of 8 characters, 1 lowercase or 1 uppercase or 1 number or 1 special character."
+          "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
         }
       },
       "reset_password": {
@@ -17444,6 +17704,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -17459,6 +17723,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -17477,6 +17745,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "assigns": {
@@ -17902,6 +18179,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "otp": "Code",
       "success": "Login with Two Factor Authentication successful."
     },
     "unlocks": {
@@ -17997,6 +18275,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "errors": {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
     "format": "%{attribute} %{message}",
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
@@ -18008,10 +18288,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "before": "must be before %{date}",
       "before_or_equal_to": "must be before or equal to %{date}",
       "blank": "can't be blank",
-      "carrierwave_direct_allowed_extensions": "Allowed file types are %{extensions}",
+      "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
       "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
       "carrierwave_direct_attachment_missing": "attachment is missing",
-      "carrierwave_direct_filename_invalid": "is invalid. ",
+      "carrierwave_direct_filename_invalid": "",
       "carrierwave_direct_filename_taken": "filename was already taken",
       "carrierwave_direct_upload_missing": "upload is missing",
       "carrierwave_download_error": "could not be downloaded",
@@ -18281,7 +18561,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "jobs": {
     "reports_export": {
       "download": {
-        "description": "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
         "message": "Report is ready"
       }
     },
@@ -19241,6 +19521,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -19275,6 +19560,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -19289,6 +19586,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -19329,6 +19629,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",
@@ -19338,6 +19643,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",

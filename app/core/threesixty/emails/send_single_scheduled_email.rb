@@ -23,6 +23,8 @@ module Threesixty
       private
 
       def send_email(recipient)
+        return if recipient.disabled?
+
         context = build_context(recipient)
         user_ids = get_other_participators(recipient, other_participator_type)
 

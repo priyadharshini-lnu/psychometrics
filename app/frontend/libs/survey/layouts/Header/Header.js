@@ -1,22 +1,17 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
-import AppStore from 'store/AppStore'
-import ActionsHistory from 'components/ActionsHistory'
-import Block from 'models/Block'
-import QuestionSerializer from 'models/QuestionSerializer'
+import ActionsHistory from 'libs/survey/components/ActionsHistory'
+import Block from 'libs/survey/models/Block'
+import QuestionSerializer from 'libs/survey/models/QuestionSerializer'
 import { perform } from 'libs/survey/core/temp/socket'
+import NotificationDispatcher from 'libs/survey/dispatchers/NotificationDispatcher'
+import SerializeAssessment from 'libs/survey/core/builder/assessment/SerializeAssessment'
+import { TimePicker } from 'antd'
+import moment from 'moment'
 import styles from './Header.scss'
 
 export class Header extends Component {
-  componentDidMount () {
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.appListener.remove()
-  }
-
   openFlow = () => {
     const { openFlow } = this.props
     openFlow()
@@ -47,10 +42,14 @@ export class Header extends Component {
   export = () => {
     const { blocksWithQuestions } = this.props
     const result = {
+      block: {},
       question: {},
       flow: {},
     }
     _.each(blocksWithQuestions, (block) => {
+      result.block[block.id] = {
+        staticContent: _.get(block, ['props', 'staticContent', 'value']),
+      }
       _.each(block.questions, (question) => {
         result.question[question.id] = QuestionSerializer.wrap(question).exportLocales()
       })
@@ -59,29 +58,42 @@ export class Header extends Component {
     this.form.submit()
   }
 
+  addTimer = () => {
+    const { assessment: { extra }, updateExtra } = this.props
+    updateExtra({ ...extra, timer: null })
+  }
+
+  removeTimer = () => {
+    const { assessment: { extra }, updateExtra } = this.props
+    updateExtra(_.omit(extra, 'timer'))
+  }
+
+  updateTimer = (time) => {
+    const { assessment: { extra }, updateExtra } = this.props
+    const timer = time && moment.duration(time.format('HH:mm:ss')).asSeconds()
+    updateExtra({ ...extra, timer })
+  }
+
   openPreview = () => {
-    const { builder, flow } = this.props
-    this.previewData.value = JSON.stringify(AppStore.serializeAssessment(builder, flow))
+    const { builder } = this.props
+    this.previewData.value = JSON.stringify(SerializeAssessment.run(builder))
     this.previewForm.submit()
   }
 
   save = () => {
-    const { builder, flow, trash } = this.props
-    AppStore.save(builder, trash, flow)
-  }
-
-  toggleEnableBack = () => {
-    AppStore.assessment.toggleEnableBack()
-    this.forceUpdate()
-  }
-
-  toggleEnableProgress = () => {
-    AppStore.assessment.toggleEnableProgress()
-    this.forceUpdate()
+    const { saveAssessment, builder } = this.props
+    saveAssessment(builder).then(() => {
+      NotificationDispatcher.notify({ message: 'Assessment successfully saved' })
+    }).catch(() => {
+      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
+    })
   }
 
   render () {
-    const { assessment } = this.props
+    const {
+      assessment, assessment: { extra, saving }, toggleEnableBack, toggleEnableProgress,
+    } = this.props
+
     return (
       <div className={`panel-heading ${styles.menu}`}>
         <div>
@@ -90,6 +102,19 @@ export class Header extends Component {
           </h3>
         </div>
         <ul className="panel-controls">
+          {_.has(extra, 'timer') && (
+            <li>
+              Timer:
+              <TimePicker
+                value={(extra.timer || extra.timer === 0) ? moment.utc(extra.timer * 1000) : null}
+                onChange={this.updateTimer}
+                placeholder="Set timer"
+                defaultOpenValue={moment.utc(0)}
+                className="mls mrl"
+                dropdownClassName="assessment-timer"
+              />
+            </li>
+          )}
           <li>
             <button className={`btn btn-default ${styles.flow}`} onClick={this.openFlow}>Flow</button>
           </li>
@@ -109,11 +134,11 @@ export class Header extends Component {
             </button>
           </li>
 
-          {AppStore.assessment && (
+          {assessment && (
             <li>
               <span>
                 <a
-                  href={`/administration/reports?q[assessment_id_in][]=${AppStore.assessment.id}`}
+                  href={`/administration/reports?q[assessment_id_in][]=${assessment.id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`btn btn-default ${styles.preview}`}
@@ -144,7 +169,7 @@ export class Header extends Component {
                 <a
                   className={styles.linkExport}
                   data-remote="true"
-                  href={`/administration/translations/assessments/${_.result(AppStore.assessment, 'id')}/new`}
+                  href={`/administration/translations/assessments/${_.result(assessment, 'id')}/new`}
                 >
                   Import Translations
                 </a>
@@ -152,22 +177,27 @@ export class Header extends Component {
               <li>
                 <a
                   className={styles.linkExport}
-                  href={`/administration/assessments/${_.result(AppStore.assessment, 'id')}/export.xlsx`}
+                  href={`/administration/assessments/${_.result(assessment, 'id')}/export.xlsx`}
                 >
                   Export Scoring
                 </a>
               </li>
-              <MenuItem onSelect={this.toggleEnableBack}>
-                {_.result(AppStore.assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
+              <MenuItem onSelect={toggleEnableBack}>
+                {_.result(assessment, 'enable_back') ? 'Disable Back Button' : 'Enable Back Button'}
               </MenuItem>
-              <MenuItem onSelect={this.toggleEnableProgress}>
-                {_.result(AppStore.assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
+              <MenuItem onSelect={toggleEnableProgress}>
+                {_.result(assessment, 'enable_progress') ? 'Disable Progress Bar' : 'Enable Progress Bar'}
               </MenuItem>
+              {_.has(extra, 'timer') ? (
+                <MenuItem onSelect={this.removeTimer}>Remove Timer</MenuItem>
+              ) : (
+                <MenuItem onSelect={this.addTimer}>Add Timer</MenuItem>
+              )}
             </DropdownButton>
             <form
               style={{ display: 'none' }}
               ref={(ref) => { this.form = ref }}
-              action={`/administration/translations/assessments/${_.result(AppStore.assessment, 'id')}/export`}
+              action={`/administration/translations/assessments/${_.result(assessment, 'id')}/export`}
               method="POST"
             >
               <input
@@ -193,7 +223,7 @@ export class Header extends Component {
             </form>
           </li>
           <li>
-            <button onClick={this.save} disabled={AppStore.saving} className={`btn btn-success ${styles.saveButton}`}>
+            <button onClick={this.save} disabled={saving} className={`btn btn-success ${styles.saveButton}`}>
               <i className="fa fa-save" />
               Save
             </button>

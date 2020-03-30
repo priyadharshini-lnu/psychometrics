@@ -5,12 +5,14 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AssessmentPreviewStore from 'store/AssessmentPreviewStore'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
+import Watchman from 'libs/survey/store/StoreWatchman'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
+import StatusText from './controls/status_text'
+import RemainingTime from './controls/remaining_time'
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -20,13 +22,14 @@ const { $ } = window
 class VideoRecorder extends Component {
   state = {
     deviceReady: false,
-    recordingState: 'ready',
+    recordingState: 'initialized',
     percent: 0,
     key: 'player',
   }
 
   componentDidMount () {
     const { result } = this.props
+
     if (result && result.answers.length > 0) {
       this.initPlayer()
     } else {
@@ -49,26 +52,36 @@ class VideoRecorder extends Component {
     this.player.record().stop()
   }
 
+  // open device dialog
+  allowRecording = () => {
+    this.player.record().getDevice()
+  }
+
   discardRecording = () => {
-    const { result, onDeleteMedia } = this.props
+    const { result, onDeleteMedia, mediaUrl } = this.props
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {
         $.ajax({
           method: 'DELETE',
-          url: `${AssessmentPreviewStore.mediaUrl}/remove_media`,
+          url: `${mediaUrl}/remove_media`,
           data: { media_id: mediaId },
         }).done(() => {
           onDeleteMedia && onDeleteMedia()
-          this.initRecorder()
+          this.resetRecorder()
         })
       }
+    } else {
+      this.resetRecorder()
     }
   }
 
-  getUploadUrl = id => $.get(`${AssessmentPreviewStore.mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
-    this.uploadFile(data)
-  })
+  getUploadUrl = (id) => {
+    const { mediaUrl } = this.props
+    $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
+      this.uploadFile(data)
+    })
+  }
 
   uploadFile = (data) => {
     const video = this.player.recordedData
@@ -109,15 +122,16 @@ class VideoRecorder extends Component {
   }
 
   onUploadDone = (media, data) => {
-    const { onSuccessUpload } = this.props
+    const { onSuccessUpload, mediaUrl } = this.props
     const mediaId = data.media_id
     this.setState({ recordingState: 'saved' })
     if (data.env === 'prod') {
       const assetKey = data.key.replace('${filename}', 'video.mp4')
       $.ajax({
         method: 'PUT',
-        url: `${AssessmentPreviewStore.mediaUrl}/upload_callback`,
+        url: `${mediaUrl}/upload_callback`,
         data: { media_id: mediaId, asset_key: assetKey },
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       }).done((data) => {
         onSuccessUpload(data)
       })
@@ -142,6 +156,17 @@ class VideoRecorder extends Component {
     }
 
     this.getUploadUrl(model.id)
+    this.handleRecordingSaved()
+  }
+
+  handleRecordingSaved = () => {
+    this.player.trigger('statechanged', { status: 'saved' })
+
+    this.statusText.hide()
+    this.player.controlBar.progressControl.show()
+
+    this.player.controlBar.currentTimeDisplay.addClass('hide')
+    this.player.controlBar.currentTimeDisplay.removeClass('show')
   }
 
   initPlayer () {
@@ -165,15 +190,32 @@ class VideoRecorder extends Component {
     this.setState({ recordingState: 'saved', deviceReady: true })
   }
 
+  resetRecorder () {
+    this.initRecorder()
+
+    this.setState({ recordingState: 'ready' })
+    this.player.controlBar.playToggle.hide()
+    this.player.controlBar.progressControl.hide()
+
+    this.statusText.reset()
+
+    this.remainingTime.hide()
+
+    this.player.controlBar.currentTimeDisplay.addClass('hide')
+    this.player.controlBar.currentTimeDisplay.removeClass('show')
+  }
+
   initRecorder () {
     const { maxDuration } = this.props
-    this.setState({ recordingState: 'ready', key: 'record' }, () => {
+    this.setState({ recordingState: 'initialized', key: 'record' }, () => {
       const options = {
         controls: true,
         fluid: true,
         controlBar: {
           fullscreenToggle: false,
           volumePanel: false,
+          timeDivider: false,
+          durationDisplay: false,
         },
         plugins: {
           record: {
@@ -189,67 +231,100 @@ class VideoRecorder extends Component {
 
       this.player = videojs(this.video, options)
 
+      this.player.on('ready', () => {
+        if (!this.remainingTime) this.addRemainingTimeControl()
+        if (!this.statusText) this.addStatusTextControl()
+      })
       this.player.on('deviceReady', () => {
-        this.setState({ deviceReady: true })
+        this.setState({
+          deviceReady: true,
+          recordingState: 'ready',
+        })
+        this.statusText.show()
       })
       this.player.on('startRecord', () => {
         this.setState({ recordingState: 'recording' })
+        this.player.trigger('statechanged', { status: 'recording' })
+
+        this.remainingTime.show()
+        this.player.controlBar.currentTimeDisplay.addClass('show')
+        this.player.controlBar.currentTimeDisplay.removeClass('hide')
       })
       this.player.on('finishRecord', () => {
+        this.player.trigger('statechanged', { status: 'recorded' })
         this.setState({ recordingState: 'recorded' })
       })
-
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
         console.warn(error)
       })
       this.player.on('deviceError', () => {
+        const btnAllow = document.querySelector('#btn-allow-record')
+        btnAllow.classList.add('vjs-hidden')
+
         // eslint-disable-next-line no-console
-        console.error('device error:', this.player.deviceErrorCode)
+        console.error('Device Error:', this.player.deviceErrorCode)
       })
     })
+  }
+
+  addRemainingTimeControl () {
+    this.remainingTime = new RemainingTime(this.player)
+    this.player.controlBar.addChild(this.remainingTime)
+  }
+
+  addStatusTextControl () {
+    this.statusText = new StatusText(this.player, { text: 'Start Recording' })
+    this.player.getChild('controlBar').addChild(this.statusText)
   }
 
   renderControls () {
     const { onSuccessUpload } = this.props
     const { recordingState, deviceReady } = this.state
     if (!deviceReady || !onSuccessUpload) { return null }
+
     return (
-      <div className={styles.controls}>
-        {recordingState === 'recorded'
-          && (
-            <button className={cs('btn-default', styles.btn, styles.delete)} onClick={this.discardRecording}>
-              Discard
+      <div className={styles.controlBar}>
+        <div className={cs(styles.controls, 'display-flex')}>
+          {['recorded', 'saved', 'saving'].includes(recordingState) && (
+            <button className={cs(styles.control, styles.discard)} onClick={this.discardRecording} title="Discard">
+              <span className="mrs mls fa fa-trash-o" area-hidden="true" />
+              <span className="vjs-control-text" aria-live="polite">
+                { Watchman.I18n().t('assessments.video_response.discard') }
+              </span>
             </button>
           )}
-        {recordingState === 'saved'
-          && (
-            <button className={cs('btn-default', styles.btn, styles.delete)} onClick={this.discardRecording}>
-              Delete
+          {recordingState === 'recorded' && (
+            <button className={cs(styles.control, styles[recordingState])} onClick={this.saveRecording} title="Save">
+              <span className="mrs mls fa fa-check" aria-hidden="true" />
+              <span className="vjs-control-text" aria-live="polite">
+                { Watchman.I18n().t('assessments.video_response.save') }
+              </span>
             </button>
           )}
-        {recordingState === 'recorded'
-          && (
-            <button className={cs('btn-default', styles.btn, styles.save)} onClick={this.saveRecording}>
-              Save
+          {recordingState === 'saving' && (
+            <button className={cs(styles.control, styles[recordingState])} onClick={this.saveRecording} title="Save">
+              <span className="vjs-control-text" aria-live="polite">
+                { Watchman.I18n().t('assessments.video_response.saving') }
+              </span>
             </button>
           )}
-        {recordingState === 'error'
-          && (
-            <button className={cs('btn-default', styles.btn, styles.saved)} onClick={this.saveRecording}>
-              Retry
+          {recordingState === 'saved' && (
+            <button className={cs(styles.control, styles[recordingState])} title="Saved">
+              <span className="mrs mls fa fa-check" aria-hidden="true" />
+              <span className="vjs-control-text" aria-live="polite">
+                { Watchman.I18n().t('assessments.video_response.saved') }
+              </span>
             </button>
           )}
-        {recordingState === 'saved'
-          && (
-            <button className={cs('btn-default', styles.btn, styles.saved)}>
-              <span className="glyphicon glyphicon-ok" aria-hidden="true" />
-              {' '}
-              Saved
+          {recordingState === 'error' && (
+            <button className={cs(styles.control, styles.error)} onClick={this.saveRecording} title="Retry Save">
+              <span className="vjs-control-text" aria-live="polite">
+                { Watchman.I18n().t('assessments.video_response.retry') }
+              </span>
             </button>
           )}
-        {recordingState === 'saving'
-          && <button className={cs('btn-default', styles.btn, styles.saving)}>Saving</button>}
+        </div>
       </div>
     )
   }
@@ -267,14 +342,37 @@ class VideoRecorder extends Component {
     )
   }
 
+  renderPerm () {
+    return (
+      <div className={styles.perm}>
+        <div className={styles.circle}>
+          <span className={styles.icon} />
+        </div>
+        <div className={styles.permText}>
+          Please allow to use camera and microphone to record audio and Video
+        </div>
+
+        <button
+          id="btn-allow-record"
+          className={cs('btn-default', styles.btnAllowRecord)}
+          onClick={this.allowRecording}
+        >
+          <span className="mrs mls fa fa-check" aria-hidden="true" />
+          { Watchman.I18n().t('assessments.video_response.device') }
+        </button>
+      </div>
+    )
+  }
+
   render () {
-    const { recordingState } = this.state
+    const { deviceReady, recordingState } = this.state
     const showProgress = _.includes(['saving'], recordingState)
     const { key } = this.state
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>
         <div data-vjs-player key={key}>
-          <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin" />
+          { !deviceReady && recordingState === 'initialized' && this.renderPerm() }
+          <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         {showProgress && this.renderProgress()}
         {this.renderControls()}

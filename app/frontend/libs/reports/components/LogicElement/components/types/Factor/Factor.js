@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
-import AliasStore from 'rb/store/modals/AliasStore'
 import css from './Factor.scss'
 import ConditionSelect from '../Question/ConditionSelect'
 import FactorSelect from './FactorSelect'
@@ -55,7 +54,7 @@ export default class Factor extends Component {
           <div className={css.factorBlock}>
             {condition.filterId && (
             <FactorSelect
-              factors={AliasStore.getFactors()}
+              factors={AppStore.flatFactor}
               condition={condition}
               onChange={this.change}
             />

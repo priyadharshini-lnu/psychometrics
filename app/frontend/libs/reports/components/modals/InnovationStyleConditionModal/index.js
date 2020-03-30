@@ -1,3 +1,4 @@
 import InnovationStyleConditionModal from './components/InnovationStyleConditionModal'
+import connect from './connect'
 
-export default InnovationStyleConditionModal
+export default connect(InnovationStyleConditionModal)

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/modals/ConditionalFactorOccupationTextStore'
 import AppStore from 'rb/store/AppStore'
 import { FONTS, FONT_MIN_SIZE, FONT_MAX_SIZE } from 'rb/components/PropertyFonts/components/PropertyFonts'
 import ColorPicker from 'rb/components/ColorPicker'
@@ -26,9 +25,8 @@ export class ConditionCollection extends Component {
   }
 
   remove = () => {
-    const { model } = this.props
-    store.module.removeConditionCollection(model)
-    store.update()
+    const { onRemove, model } = this.props
+    onRemove(model)
   }
 
   changeFontFamily = (e) => {

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
@@ -131,6 +133,7 @@ Rails.application.routes.draw do
         resource :assign_assessments, only: %i[new create edit update]
         resources :registration_codes do
           patch :toggle_status, on: :member
+          get :download_qrcode, on: :member
         end
         resources :statistics, only: [:index]
 
@@ -189,6 +192,7 @@ Rails.application.routes.draw do
           get :export_hogan_results
           put :enable_universal_links
           put :disable_universal_links
+          get :download_qrcode
           post :generate_universal_link
         end
         resources :datasheet_rows, except: %i[show edit update]
@@ -560,6 +564,7 @@ Rails.application.routes.draw do
         put :upload_callback
         post :upload_media_dev
         delete :remove_media
+        put :update_meta_data
       end
     end
 
@@ -589,6 +594,7 @@ Rails.application.routes.draw do
             put :upload_callback
             post :upload_media_dev
             delete :remove_media
+            put :update_meta_data
           end
         end
         collection do
@@ -620,12 +626,15 @@ Rails.application.routes.draw do
     resource :profiles, only: %i[update edit]
     patch 'users/update_details', to: 'users#update_details'
 
-    get 'survey_instructions', to: 'home#survey_instructions'
+    get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify'
     get 'assessment_completed', to: 'home#assessment_completed'
     root to: 'threesixty/campaigns#index'
   end
+
+  get 'media_players/audio', to: 'media_players#audio'
+  get 'media_players/video', to: 'media_players#video'
 
   if Rails.env.production?
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|

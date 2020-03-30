@@ -12,7 +12,7 @@ import './froalaCommands'
 import FroalaEditor from 'react-froala-wysiwyg'
 
 function Editor ({
-  content, handleContentChange, type, details,
+  content, handleContentChange, type, details, className,
 }) {
   const config = {
     iconsTemplate: 'font_awesome',
@@ -32,6 +32,7 @@ function Editor ({
       'codeView',
       'codeBeautifier',
       'fullscreen',
+      'video',
     ],
     toolbarButtons: [
       'pipedText',
@@ -63,6 +64,7 @@ function Editor ({
       'redo',
       'html',
       'fullscreen',
+      'insertVideo',
     ],
     saveParams: { type, details },
     heightMin: 250,
@@ -76,6 +78,8 @@ function Editor ({
     tableCellStyles: {
       'table-cell-header': 'Header',
     },
+    toolbarSticky: false,
+    videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
   }
   const ref = React.createRef()
 
@@ -84,7 +88,7 @@ function Editor ({
   }, [type, details])
 
   return (
-    <div>
+    <div className={className}>
       <FroalaEditor ref={ref} config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )

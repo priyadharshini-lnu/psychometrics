@@ -115,7 +115,8 @@ class Membership < ApplicationRecord
         user.last_name,
         user.email,
         user.role.as('user_role'),
-        user.is_anonym
+        user.is_anonym,
+        disabled.as('membership_disabled')
       ]
     end
   }
@@ -224,11 +225,11 @@ class Membership < ApplicationRecord
   end
 
   def create_invitation_emails
-    invites = invitations_for_current_membership
     return if already_invited?
 
-    if invites.present?
-      invites.last&.emails&.create(membership_id: id)
+    invite = invitation_for_current_membership
+    if invite
+      invite.emails.create(membership_id: id)
     elsif through_registration
       raw_token = Users::FindOrCreateInvitationToken.call!(user)
       InvitationMailer.invite(user_id, client_id, raw_token).deliver_later
@@ -258,8 +259,9 @@ class Membership < ApplicationRecord
     errors.add(:role, 'Invalid') unless valid
   end
 
-  def invitations_for_current_membership
-    Communication.invitation_for_end_level_id(client.path_ids).includes(:memberships).select do |communication|
+  def invitation_for_current_membership
+    Communication.new_users_recipients.invitation_for_end_level_id(client.path_ids).
+      includes(:memberships).order(created_at: :desc).detect do |communication|
       communication.current_memberships_ids.include?(id)
     end
   end

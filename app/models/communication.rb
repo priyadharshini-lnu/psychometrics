@@ -43,7 +43,7 @@ class Communication < ApplicationRecord
   belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id
   belongs_to :creator, class_name: 'User'
 
-  enum recipients: %i[all selected], _suffix: true
+  enum recipients: { all: 0, selected: 1, new_users: 2 }, _suffix: true
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
   enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 

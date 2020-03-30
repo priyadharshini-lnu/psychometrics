@@ -1,5 +1,6 @@
 import React from 'react'
-import { Menu, Dropdown as AntDropdown, Icon } from 'antd'
+import { Menu, Dropdown as AntDropdown } from 'antd'
+import { DownOutlined } from '@ant-design/icons'
 
 const menu = ({ values, onChange }) => (
   <Menu onClick={({ key }) => onChange({ value: key })}>
@@ -20,7 +21,7 @@ export default function Dropdown ({
       <span className="mls">
         {entity[field.key] || 'Choose'}
         {' '}
-        <Icon type="down" />
+        <DownOutlined />
       </span>
     </AntDropdown>
   )

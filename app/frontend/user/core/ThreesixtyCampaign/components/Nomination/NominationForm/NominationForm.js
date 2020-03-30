@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
+  Typography, Form, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
 } from 'antd'
+import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import { relationshipWithoutSelf } from 'utils/relationship'
@@ -73,7 +74,7 @@ export default function NominationForm (props) {
           ? (
             <Form layout="inline">
               <Form.Item>
-                <Button type="primary" shape="circle" icon="close" size="large" onClick={hideForm} />
+                <Button type="primary" shape="circle" icon={<CloseOutlined />} size="large" onClick={hideForm} />
               </Form.Item>
               <Form.Item>
                 <AutoComplete
@@ -123,7 +124,7 @@ export default function NominationForm (props) {
             </Form>
           )
           : (
-            <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
+            <Button type="primary" shape="circle" icon={<PlusOutlined />} size="large" onClick={showForm} />
           )}
       </div>
       <div>
@@ -132,7 +133,7 @@ export default function NominationForm (props) {
             {isSelf && canSendRequestApprovalEmail && (
             <Col>
               <Button type="link" onClick={handleRequestApproval} disabled={requestApprovalButtonDisabled}>
-                <Icon type="team" />
+                <TeamOutlined />
                 {I18n.t('threesixty.email_approve_request')}
               </Button>
             </Col>
@@ -140,7 +141,7 @@ export default function NominationForm (props) {
             {options.messages.subjectCanSendReminder && (
             <Col>
               <Button type="primary" onClick={handleSendEvaluatorReminder}>
-                <Icon type="team" />
+                <TeamOutlined />
                 {I18n.t('threesixty.remind_all')}
               </Button>
             </Col>

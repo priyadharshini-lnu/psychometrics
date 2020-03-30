@@ -9,6 +9,7 @@ import RichEditor from '../RichEditor'
 import Flow from '../Flow'
 import CreateByTemplate from '../CreateByTemplate'
 import MappingNorms from '../MappingNorms'
+import EndOfAssessmentModal from '../EndOfAssessmentModal'
 
 const MODALS = {
   displayLogic: DisplayLogic,
@@ -21,6 +22,7 @@ const MODALS = {
   customValidation: CustomValidation,
   createByTemplate: CreateByTemplate,
   mapNorms: MappingNorms,
+  endOfAssessment: EndOfAssessmentModal,
 }
 
 

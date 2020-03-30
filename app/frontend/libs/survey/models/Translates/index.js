@@ -12,6 +12,8 @@ import RankOrder from './RankOrder'
 import Slider from './Slider'
 import TextEntry from './TextEntry'
 import VideoResponse from './VideoResponse'
+import FileUpload from './FileUpload'
+import AudioResponse from './AudioResponse'
 
 export default {
   MultipleChoice,
@@ -28,4 +30,6 @@ export default {
   Slider,
   TextEntry,
   VideoResponse,
+  FileUpload,
+  AudioResponse,
 }

@@ -19,6 +19,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -34,6 +38,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -52,6 +60,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {
@@ -330,6 +347,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -364,6 +386,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -378,6 +412,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -393,6 +430,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",
@@ -402,6 +444,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -428,6 +471,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -443,6 +490,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "العبارات"
@@ -461,6 +512,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {
@@ -742,6 +802,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -776,6 +841,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -790,6 +867,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -805,6 +885,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
     "least_hotspot": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -814,6 +899,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
     "number": "يجب أن تحتوي الإجابة على أرقام",
     "please_answer_question": "الرجاء الإجابة على هذا السؤال",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
@@ -840,6 +926,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
     "categories": {
       "360": "360 Campaign",
       "case_study": "Case Study",
@@ -855,6 +945,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -873,6 +967,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "in_progress": "Resume",
         "not_started": "Start"
       }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving..."
     }
   },
   "languages": {
@@ -1151,6 +1254,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "nominate_evaluators": "Nominate Evaluators to",
     "nomination": "Nomination",
     "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
     "or": "Or",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
@@ -1185,6 +1293,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "processing": "Processing",
     "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "message": "Your Message",
+        "subject": "Subject",
+        "to": "To"
+      }
+    },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
@@ -1199,6 +1319,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -1214,6 +1337,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
     "least_hotspot": "Please answer at least %{min} choice(s).",
@@ -1223,6 +1351,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
     "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",

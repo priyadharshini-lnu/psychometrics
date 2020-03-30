@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/CPIFactorConditionStore'
+import CPIConditionCollection from 'rb/models/CPIConditionCollection'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 
@@ -10,30 +10,40 @@ const {
 } = Modal
 
 export class ConditionalTextModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
+  constructor (props) {
+    super(props)
+    this.state = {
+      module: _.cloneDeep(props.module),
+    }
   }
 
-  componentWillUnmount () {
-    this.popupListener.remove()
+  addCollection = () => {
+    const { module } = this.state
+    const max = _.maxBy(module.textConditions, 'id') || { id: 0 }
+    module.addConditionCollection(new CPIConditionCollection(
+      { id: max.id + 1, conditions: [{ type: 'Scoring' }] }, module,
+    ))
+    this.forceUpdate()
   }
 
-  close () {
-    store.close()
+  save = () => {
+    const { module: newModule } = this.state
+    const { module, close } = this.props
+    module.textConditions = newModule.textConditions
+    close()
   }
 
-  addCollection () {
-    store.addCollection()
-  }
-
-  save () {
-    store.save()
+  remove = (collection) => {
+    const { module } = this.state
+    module.removeConditionCollection(collection)
+    this.forceUpdate()
   }
 
   renderCollections () {
-    if (store.module.textConditions.length) {
-      return _.map(store.module.textConditions, (collection, i) => (
-        <ConditionCollection key={i} model={collection} />
+    const { module } = this.state
+    if (module.textConditions.length) {
+      return _.map(module.textConditions, (collection, i) => (
+        <ConditionCollection key={i} model={collection} onRemove={this.remove} />
       ))
     }
     return (
@@ -42,7 +52,7 @@ export class ConditionalTextModal extends Component {
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -60,7 +70,7 @@ export class ConditionalTextModal extends Component {
             Add Conditional Subfactor
           </button>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

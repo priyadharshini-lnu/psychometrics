@@ -2,10 +2,10 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Utils from 'utils/Utils'
-import I18nStore from 'store/I18nStore'
 import styles from './Choice.scss'
+import connect from '../../../connect'
 
-export default class extends Component {
+class ChoicePreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -46,7 +46,7 @@ export default class extends Component {
   }
 
   renderHorizontal () {
-    const { model, model: { result, moduleConfig } } = this.props
+    const { model, model: { result, moduleConfig }, I18n } = this.props
     return (
       <div className={styles.horizontalTable}>
         {_.map(model.choicesIds, (i) => {
@@ -58,7 +58,7 @@ export default class extends Component {
               </div>
               <div>
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                  {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                     || moduleConfig.defaultChoiceText(i + 1)}
                 </span>
               </div>
@@ -70,7 +70,7 @@ export default class extends Component {
   }
 
   renderVertical () {
-    const { model, model: { result, moduleConfig } } = this.props
+    const { model, model: { result, moduleConfig }, I18n } = this.props
     return (
       <div className={styles.table}>
         {_.map(model.choicesIds, (i) => {
@@ -79,7 +79,7 @@ export default class extends Component {
             <div key={i} className={styles.row}>
               <div className={styles.firstColumn}>
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                  {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                     || moduleConfig.defaultChoiceText(i + 1)}
                 </span>
               </div>
@@ -108,3 +108,4 @@ export default class extends Component {
     )
   }
 }
+export default connect(ChoicePreview)

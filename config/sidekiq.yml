@@ -7,7 +7,9 @@ production:
   :concurrency: <%= ENV['SIDEKIQ_CONCURRENCY'] || 2 %>
 :queues:
   - two_factor_codes
+  - external_results
   - mailers
   - communication
   - reports
+  - cron_tasks
   - default

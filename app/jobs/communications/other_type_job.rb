@@ -2,8 +2,6 @@
 
 module Communications
   class OtherTypeJob < ApplicationJob
-    queue_as :communication
-
     def perform
       communications = Communication.other.specific_datetime.
                        joining { emails.outer }.where.has { emails.id.eq(nil) & (delivery_at <= Time.current) }.

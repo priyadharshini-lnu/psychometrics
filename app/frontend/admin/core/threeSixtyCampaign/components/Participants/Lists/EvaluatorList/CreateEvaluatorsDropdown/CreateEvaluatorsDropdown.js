@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Button, Dropdown, Icon, Menu,
+  Button, Dropdown, Menu,
 } from 'antd'
+import { PlusOutlined, DownOutlined } from '@ant-design/icons'
 
 const CreateEvaluatorsDropdown = ({ openModal }) => {
   const menu = (
@@ -16,9 +17,9 @@ const CreateEvaluatorsDropdown = ({ openModal }) => {
   return (
     <Dropdown overlay={menu} className="mrm" trigger={['click']}>
       <Button type="primary">
-        <Icon type="plus" />
+        <PlusOutlined />
         <span>Add Evaluators</span>
-        <Icon type="down" />
+        <DownOutlined />
       </Button>
     </Dropdown>
   )

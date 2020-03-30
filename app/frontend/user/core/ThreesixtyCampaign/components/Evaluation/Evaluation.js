@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip,
 } from 'antd'
+import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
+import store from '../../../../store'
+import Timer from '../Timer'
 
 const { Content } = Layout
 
@@ -30,6 +33,8 @@ export default function Evaluation ({
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
+  preview,
+  saveResults,
 }) {
   const assessmentRef = React.createRef()
   const {
@@ -72,7 +77,7 @@ export default function Evaluation ({
         >
           <div>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
-            <Icon type="down" />
+            <DownOutlined />
           </div>
         </Dropdown>
       )
@@ -107,7 +112,7 @@ export default function Evaluation ({
     return (
       <div>
         {I18n.t('threesixty.evaluate')}
-        {': '}
+        :
         {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullName(subject)}
       </div>
     )
@@ -127,21 +132,22 @@ export default function Evaluation ({
           className="page-header"
           backIcon={(
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back to tasks
             </div>
           )}
           title={title()}
           onBack={handleBackButtonClick}
+          extra={(<Timer preview={preview} saveResults={saveResults} />)}
         >
           <div className="evaluation-container">
-            <Row type="flex" justify="end">
-              <Col>
+            <Row justify="end">
+              <Col flex="none">
                 <StatusDropdown />
               </Col>
               {availableTranslations && availableTranslations.length > 0 && (
-                <Col>
+                <Col flex="none">
                   <div className="mlm">
                     <Language
                       selectedLanguage={selectedLanguage}
@@ -164,6 +170,7 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
                 />
               </div>
             )}

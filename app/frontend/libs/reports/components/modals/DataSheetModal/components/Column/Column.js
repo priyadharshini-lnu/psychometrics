@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DATA_SHEET_COLUMN_TYPES } from 'rb/models/Report'
+import { DATA_SHEET_COLUMN_TYPES } from 'rb/consts/Report'
 import styles from './Column.module.scss'
 
 export default class Column extends Component {

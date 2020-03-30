@@ -1,3 +1,4 @@
 import BlockCenter from './BlockCenter'
+import connect from './connect'
 
-export default BlockCenter
+export default connect(BlockCenter)

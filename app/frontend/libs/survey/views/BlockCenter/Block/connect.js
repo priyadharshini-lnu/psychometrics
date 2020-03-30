@@ -1,21 +1,17 @@
 import { connect } from 'react-redux'
-import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
+import { selectBlock, questionsWithoutDeleted } from 'libs/survey/core/builder/assessment/selectors'
 import { openModal } from 'admin/core/temp/modals'
-import { createBlock, renameBlock } from 'libs/survey/core/builder/assessment/block/actions'
+import { renameBlock } from 'libs/survey/core/builder/assessment/block/actions'
+import BlockSerializer from 'libs/survey/models/BlockSerializer'
 
 export default connect(
-  ({ survey: { builder: { assessment: { timestamp, propPanel } } } }) => ({
-    selectedModel: propPanel.question,
-    timestamp, // NOTE: @fedor used to fake update
+  ({ survey: { builder } }) => ({
+    model: BlockSerializer.wrap(selectBlock(builder, builder.assessment.id)),
+    questions: questionsWithoutDeleted(builder, selectBlock(builder, builder.assessment.id).questions),
   }),
   {
-    select: selectQuestion,
-    unselect: unselectQuestion,
-    openDisplayLogic: data => openModal('displayLogic', data),
-    openDefaultValue: data => openModal('defaultValue', data),
     openRandomization: data => openModal('randomization', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),
-    createBlock,
     renameBlock,
   },
 )

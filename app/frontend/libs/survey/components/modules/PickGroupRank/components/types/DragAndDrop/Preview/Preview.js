@@ -1,10 +1,9 @@
 import _ from 'lodash'
 import React from 'react'
-import I18nStore from 'store/I18nStore'
 import Container from './Container'
 import styles from '../DragAndDrop.scss'
 
-const PickGroupPreview = ({ model, readOnly }) => {
+const PickGroupPreview = ({ model, readOnly, I18n }) => {
   const columns = model.props.columns ? styles.columns : ''
 
   const groupedAnswers = _.groupBy(model.result.answers, 'scale')
@@ -29,14 +28,15 @@ const PickGroupPreview = ({ model, readOnly }) => {
               key={-1}
               id={-1}
               cards={notSelectedChoices || []}
-              text={I18nStore.t('assessments.pickgrouprank.items')}
+              text={I18n.t('assessments.pickgrouprank.items')}
               stacked={model.props.stackItems}
+              I18n={I18n}
             />
           </div>
         </div>
         <div className={`${styles.column} ${styles.groups} ${columns}`}>
           {_.times(model.props.scalePoints, (groupId) => {
-            const text = I18nStore.tQuestion(model, `scalePointsTexts${groupId + 1}`, { scale: groupId })
+            const text = I18n.tQuestion(model, `scalePointsTexts${groupId + 1}`, { scale: groupId })
               || model.moduleConfig.defaultScalePointText(groupId + 1)
             return (
               <Container
@@ -48,6 +48,7 @@ const PickGroupPreview = ({ model, readOnly }) => {
                 id={groupId}
                 cards={groupedAnswers[groupId] || []}
                 stacked={model.props.stackItemsGroup}
+                I18n={I18n}
               />
             )
           })}

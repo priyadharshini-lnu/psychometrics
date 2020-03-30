@@ -1,1 +1,3 @@
-export default from './components/LogicElement'
+import LogicElement from './components/LogicElement'
+
+export default LogicElement

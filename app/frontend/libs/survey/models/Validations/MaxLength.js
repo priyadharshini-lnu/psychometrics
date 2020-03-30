@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'libs/survey/store/StoreWatchman'
 
 const MaxLength = function ({ maxLength }) {
   this.maxLength = +maxLength
@@ -10,7 +10,7 @@ _.extend(MaxLength.prototype, {
     if (answers[0].value.length > this.maxLength) {
       return {
         type: 'MaxLength',
-        message: I18nStore.t('validations.max_length', { max: this.maxLength }),
+        message: Watchman.I18n().t('validations.max_length', { max: this.maxLength }),
       }
     }
   },

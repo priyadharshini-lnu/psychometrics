@@ -20,7 +20,9 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def url(version = nil)
-    svg? ? super() : super(version)
+    return super() if svg? || version.nil?
+
+    super(version)
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

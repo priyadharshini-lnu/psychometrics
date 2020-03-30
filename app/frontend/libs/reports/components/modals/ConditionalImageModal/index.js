@@ -1,3 +1,4 @@
 import ConditionalImageModal from './components/ConditionalImageModal'
+import connect from './connect'
 
-export default ConditionalImageModal
+export default connect(ConditionalImageModal)

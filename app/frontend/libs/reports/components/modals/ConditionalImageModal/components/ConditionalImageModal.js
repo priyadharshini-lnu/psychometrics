@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import store from 'rb/store/modals/ConditionImageStore'
 import AppStore from 'rb/store/AppStore'
 import styles from './ConditionalImageModal.scss'
 
@@ -9,39 +8,37 @@ const {
 } = Modal
 
 export class ConditionalImageModal extends Component {
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
-  }
-
-  close = () => {
-    store.close()
+  constructor (props) {
+    super(props)
+    this.state = {
+      model: _.cloneDeep(props.model),
+    }
   }
 
   save = () => {
-    store.save()
+    const { model: newModule } = this.state
+    const { model, close } = this.props
+    model.props = newModule.props
+    close()
   }
 
   changeTopPosition = (e) => {
-    store.module.props.topPosition = parseInt(e.currentTarget.value, 10)
-    store.update()
+    const { model } = this.state
+    model.props.topPosition = parseInt(e.currentTarget.value, 10)
+    this.forceUpdate()
   }
 
   changeBasedOn = (e) => {
-    const { props } = store.module
+    const { model: { props } } = this.state
     props.basedOn = e.currentTarget.value
     props.topPosition = 1
-    store.update()
+    this.forceUpdate()
   }
 
   renderTopPositionSelect () {
-    const { props } = store.module
-    const { module } = store
+    const { model, model: { props } } = this.state
     if (!props.topPosition) { props.topPosition = 1 }
-    const assessment = _.find(AppStore.assessments, { id: module.assessment_id })
+    const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
     const max = props.basedOn === 'factor'
       ? AppStore.subfactors[dimensionId].length
@@ -57,7 +54,7 @@ export class ConditionalImageModal extends Component {
   }
 
   renderFactorsOrOccupationsSelect () {
-    const { props } = store.module
+    const { model: { props } } = this.state
     if (!props.basedOn) { props.basedOn = 'factor' }
     return (
       <div className="form-group">
@@ -78,13 +75,14 @@ export class ConditionalImageModal extends Component {
   }
 
   render () {
-    if (!store.opened) { return null }
+    const { model } = this.state
+    const { close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
           <Title>
             Conditional
-            {store.module.type}
+            {model.type}
           </Title>
         </Header>
         <Body>
@@ -93,7 +91,7 @@ export class ConditionalImageModal extends Component {
         </Body>
         <Footer>
           <button className="btn btn-success" onClick={this.save}>Save</button>
-          <button className="btn btn-danger" onClick={this.close}>Cancel</button>
+          <button className="btn btn-danger" onClick={close}>Cancel</button>
         </Footer>
       </Modal>
     )

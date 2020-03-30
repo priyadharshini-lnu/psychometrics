@@ -9,8 +9,6 @@ import ResultStore from 'rb/store/ResultStore'
 import AppStore from 'rb/store/AppStore'
 import RichEditorStore from 'rb/store/RichEditorStore'
 import I18nStore from 'rb/store/I18nStore'
-import ConditionTextStore from 'rb/store/modals/ConditionTextStore'
-import ConditionalFactorOccupationTextStore from 'rb/store/modals/ConditionalFactorOccupationTextStore'
 // import config from 'rb/consts/CKConfig'
 import AssessmentStore from 'rb/store/AssessmentStore'
 import Factors from 'rb/commands/Factors'
@@ -22,6 +20,8 @@ import FroalaEditor from 'react-froala-wysiwyg'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.scss'
 import config from './froalaConfig'
+import GetText from './GetText'
+import GetStyles from './GetStyles'
 
 const { md } = window
 class Text extends Component {
@@ -43,16 +43,19 @@ class Text extends Component {
   }
 
   componentDidUpdate () {
-    const { module, preview } = this.props
+    const {
+      module, preview, openRichEditor, closeRichEditor, richEditorOpened,
+    } = this.props
     if (!preview) {
       if (_.find(store.selected, module) && this.edit) {
         if (this.editor) {
-          RichEditorStore.open()
+          openRichEditor()
         }
-      } else if (this.editor && this.edit && RichEditorStore.opened) {
+      } else if (this.editor && this.edit && !richEditorOpened) {
         module.update()
-        RichEditorStore.close()
+        closeRichEditor()
         this.edit = false
+        this.forceUpdate()
       }
     }
   }
@@ -68,15 +71,16 @@ class Text extends Component {
   }
 
   openEditor = () => {
-    const { module } = this.props
+    const {
+      openConditionalText, openConditionalFactorOccupationText, module, openRichEditor,
+    } = this.props
     if (module.props.sourceType === 'ConditionalText') {
-      ConditionTextStore.open(module)
+      openConditionalText({ module })
     } else if (module.props.sourceType === 'ConditionalFactorOccupationText') {
-      ConditionalFactorOccupationTextStore.open(module)
+      openConditionalFactorOccupationText({ module })
     } else {
       this.edit = true
-      RichEditorStore.open(module)
-      this.forceUpdate()
+      openRichEditor()
     }
   }
 
@@ -86,12 +90,12 @@ class Text extends Component {
     }
   }
 
-  closeEditor =() => {
+  closeEditor = () => {
+    const { closeRichEditor } = this.props
     if (this.edit) {
       const { module } = this.props
       module.update()
-      this.edit = false
-      this.forceUpdate()
+      closeRichEditor()
     }
   }
 
@@ -133,7 +137,7 @@ class Text extends Component {
           />
         )
       } if (model.props.sourceType === 'ConditionalFactorOccupationText') {
-        const html = renderMarkdown(ConditionalFactorOccupationTextStore.getText(model))
+        const html = renderMarkdown(GetText.run(model))
         return (
           <div
             ref={(ref) => { this.editor = ref }}
@@ -142,7 +146,7 @@ class Text extends Component {
           />
         )
       } if (model.props.sourceType === 'ConditionalFactorOccupationText') {
-        const html = md.render(ConditionalFactorOccupationTextStore.getText(model))
+        const html = md.render(GetText.run(model))
         return (
           <div
             ref={(ref) => { this.editor = ref }}
@@ -151,7 +155,7 @@ class Text extends Component {
           />
         )
       } if (model.props.sourceType === 'PipedText') {
-        _.templateSettings.interpolate = /{{([\s\S]+?)}}/g
+        _.templateSettings.interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
         const compiled = _.template(I18nStore.tModule(model, 'text'))
 
         const html = compiled({
@@ -215,13 +219,14 @@ class Text extends Component {
     return this.edit
       ? (
         <FroalaEditor
-          ref={(ref) => { this.editorRef = ref }}
+          key="editor"
+          ref={(ref) => { this.editor = ref }}
           config={config}
           model={model.props.text}
           onModelChange={this.onChange}
         />
       )
-      : <div className={styles.editor} dangerouslySetInnerHTML={{ __html: model.props.text }} />
+      : <div key="text" className={styles.editor} dangerouslySetInnerHTML={{ __html: model.props.text }} />
   }
 
   render () {
@@ -255,7 +260,7 @@ class Text extends Component {
       || (model.props.sourceType === 'ConditionalFactorOccupationText' && model.props.basedOn === 'factor')) {
       let styles = {}
       if (model.props.sourceType === 'ConditionalFactorOccupationText') {
-        styles = ConditionalFactorOccupationTextStore.fetchStyles(model)
+        styles = GetStyles.run(model)
       } else {
         styles = model.getStylesByCondition()
       }

@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Result from 'rb/models/Result'
+import MockResults from 'rb/consts/MockResults'
+import Scoring from 'libs/reports/models/Scoring'
 import AppStore from './AppStore'
 
 const ResultStore = function () {
@@ -25,7 +27,42 @@ _.extend(ResultStore.prototype, {
 
   setMockResults (assessmentId, sourceType, sourceModel, factors = []) {
     this.results[assessmentId] = new Result(assessmentId)
-    this.results[assessmentId].setMockData(sourceType, sourceModel, factors)
+    let keys; let
+      mockLength
+    switch (sourceType) {
+      case 'Factor':
+        keys = _.keys(MockResults[sourceType])
+        mockLength = keys.length
+        this.results[assessmentId].scoring = {}
+        // fill scoring data
+        _.each(factors, (factor, i) => {
+          this.results[assessmentId].scoring[factor.id] = {
+            results: _.map(MockResults[sourceType][keys[i % mockLength]].results, r => new Scoring(r)),
+            name: factor.name,
+          }
+        })
+        break
+      case 'EmbeddedData':
+        this.results[assessmentId].embeddedData[sourceModel.name] = MockResults[sourceType]
+        break
+      case 'ExternalFactor':
+        this.results[assessmentId].externalScoring = (sourceModel || []).reduce((res, factor, index) => {
+          const mockResults = MockResults[sourceType]
+          res[factor] = mockResults[index % mockResults.length]
+          return res
+        }, {})
+        break
+      case 'DataSheet':
+        this.results[assessmentId].dataSheet = (sourceModel || []).reduce((res, field, index) => {
+          const mockResults = MockResults[sourceType]
+          res[field] = mockResults[index % mockResults.length]
+          return res
+        }, {})
+        this.results[assessmentId].groupedDataSheet = [this.results[assessmentId].dataSheet]
+        break
+      default:
+        this.results[assessmentId].questions[sourceModel.id] = MockResults[sourceType]
+    }
   },
 
   reset () {

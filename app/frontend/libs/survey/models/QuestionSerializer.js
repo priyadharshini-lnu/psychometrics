@@ -37,7 +37,7 @@ const shuffleChoices = (question) => {
 }
 
 export class QuestionSerializer {
-  static wrap (attrs) {
+  static wrap (attrs, answers) {
     if (!attrs) {
       return null
     }
@@ -61,6 +61,8 @@ export class QuestionSerializer {
     question.displayLogic = attrs.display_logic ? new LogicElement(attrs.display_logic) : null
     question.skipLogic = attrs.skip_logic || []
     question.deletedAt = attrs.deleted_at
+    question.errors = []
+
     if (question.skipLogic && question.skipLogic.length) {
       question.skipLogic = _.map(question.skipLogic, condition => new Condition(condition))
     }
@@ -70,7 +72,7 @@ export class QuestionSerializer {
     }
     _.extend(question.props, _.clone(attrs.props))
     shuffleChoices(question)
-    question.result = new Result(question)
+    question.result = new Result(question, answers)
 
     return question
   }

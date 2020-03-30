@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import ConditionList from './ConditionList'
 import Condition from './Condition'
-import LogicResolver from './LogicResolver'
 
 export default class LogicElement {
   constructor (attrs = {}) {
@@ -14,11 +13,6 @@ export default class LogicElement {
         }),
       ]
     }
-  }
-
-  resolve () {
-    const resolver = new LogicResolver(this)
-    return resolver.resolve()
   }
 
   addNewList (condition) {

@@ -44,6 +44,7 @@ const defaultState = {
   },
   manager: {},
   evaluator: {},
+  global: {},
   relationships: [],
 }
 

@@ -2,8 +2,6 @@
 
 module Threesixty
   class SendRemindersJob < ApplicationJob
-    queue_as :default
-
     def perform
       Threesixty::Emails::SendReminders.call!
     end

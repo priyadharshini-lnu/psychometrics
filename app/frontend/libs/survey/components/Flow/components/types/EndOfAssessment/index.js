@@ -1,3 +1,4 @@
 import EndOfAssessment from './EndOfAssessment'
+import connect from './connect'
 
-export default EndOfAssessment
+export default connect(EndOfAssessment)

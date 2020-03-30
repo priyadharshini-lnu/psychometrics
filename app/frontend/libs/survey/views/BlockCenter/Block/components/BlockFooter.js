@@ -18,11 +18,6 @@ class BlockFooter extends Component {
     this.setState({ opened: !opened })
   }
 
-  addBlock = () => {
-    const { createBlock } = this.props
-    createBlock()
-  }
-
   createDefault = () => {
     const { model } = this.props
     model.addQuestion()

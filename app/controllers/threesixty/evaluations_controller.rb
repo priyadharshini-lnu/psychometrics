@@ -18,13 +18,13 @@ module Threesixty
           @users_result = UsersResult.find_or_create_by(campaign_id: @campaign.campaign_id,
                                                         subject_id: @participant.subject_id,
                                                         evaluator_id: @participant.evaluator_id) do |result|
-            result.assessment_id = @campaign.assessment_id
-            result.status = :in_progress
+            init_result(result)
           end
 
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
-            @users_result.step = 0
+            @users_result.current_element = nil
+            @users_result.current_page = 0
           end
 
           @users_result.step = params[:step].to_i if params[:step]
@@ -80,6 +80,16 @@ module Threesixty
         subject: @users_result.subject,
         threesixty_campaign: @campaign
       }
+    end
+
+    def init_result(result)
+      result.assign_attributes(
+        assessment_id: @campaign.assessment_id,
+        status: :in_progress,
+        last_activity_at: DateTime.current,
+        expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
+        answers: {}
+      )
     end
   end
 end

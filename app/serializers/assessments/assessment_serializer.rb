@@ -4,7 +4,7 @@ module Assessments
   class AssessmentSerializer < ActiveModel::Serializer
     attributes :id, :name, :category, :disabled, :created_at,
                :flow, :norm_rules, :factors, :enable_back, :enable_progress, :question_recoding,
-               :data_sheet_columns, :relationships
+               :data_sheet_columns, :relationships, :extra
 
     has_many :blocks, serializer: Assessments::BlockSerializer do
       object.blocks.
@@ -31,13 +31,13 @@ module Assessments
     end
 
     def data_sheet_columns
-      return [] unless object.threesixty?
+      return [] if !object.threesixty? || connected_campaign.nil?
 
       Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
     end
 
     def relationships
-      return [] unless object.threesixty?
+      return [] if !object.threesixty? || connected_campaign.nil?
 
       Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
     end
