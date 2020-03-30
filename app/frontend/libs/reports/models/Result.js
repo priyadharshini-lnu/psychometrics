@@ -438,14 +438,15 @@ _.extend(Result.prototype, {
   },
 
   initDataSheet (data, filters) {
+    const dataSheet = data.subject_datasheet || data.data_sheet
     filters.forEach((filter) => {
       if (filter.correctByFilter(data)) {
-        this.resultsByFilter[filter.id].dataSheet = data.data_sheet
-        this.resultsByFilter[filter.id].groupedDataSheet.push(data.data_sheet)
+        this.resultsByFilter[filter.id].dataSheet = dataSheet
+        this.resultsByFilter[filter.id].groupedDataSheet.push(dataSheet)
       }
     })
-    this.dataSheet = data.data_sheet
-    this.groupedDataSheet.push(data.data_sheet)
+    this.dataSheet = dataSheet
+    this.groupedDataSheet.push(dataSheet)
   },
 
   initScoring (data, filters, index) {
