@@ -125,6 +125,7 @@ class VideoRecorder extends Component {
     const { onSuccessUpload, mediaUrl } = this.props
     const mediaId = data.media_id
     this.setState({ recordingState: 'saved' })
+    this.handleRecordingSaved()
     if (data.env === 'prod') {
       const assetKey = data.key.replace('${filename}', 'video.mp4')
       $.ajax({
@@ -156,7 +157,6 @@ class VideoRecorder extends Component {
     }
 
     this.getUploadUrl(model.id)
-    this.handleRecordingSaved()
   }
 
   handleRecordingSaved = () => {
