@@ -57,7 +57,7 @@ export default function Form (props) {
 
 // TODO (atanych): dont use this component in future. We should avoid ruby form and ruby modal and use react entirely
 const InputFile = ({ value, onChange }) => (
-  <AntForm.Item label="Icon" className={styles.fileContainer}>
+  <AntForm.Item label="Icon" className={styles.fileContainer} labelCol={{ flex: 'none' }}>
     <input name="resource[icon]" type="file" />
     {value && (
       <div className="mtm">
