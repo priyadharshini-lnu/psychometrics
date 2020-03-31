@@ -13,6 +13,7 @@ import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
+import Tracker from './Tracker'
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -366,6 +367,9 @@ class VideoRecorder extends Component {
 
   render () {
     const { deviceReady, recordingState } = this.state
+    const { fitInFrame, trackerOptions } = this.props
+    const trackingEnabled = !!fitInFrame
+
     const showProgress = _.includes(['saving'], recordingState)
     const { key } = this.state
     return (
@@ -374,6 +378,9 @@ class VideoRecorder extends Component {
           { !deviceReady && recordingState === 'initialized' && this.renderPerm() }
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
+        { trackingEnabled
+        && recordingState === 'ready'
+        && <Tracker fitInFrame={fitInFrame} trackerOptions={trackerOptions} /> }
         {showProgress && this.renderProgress()}
         {this.renderControls()}
       </div>
@@ -385,6 +392,8 @@ VideoRecorder.propTypes = {
   maxDuration: PropTypes.number.isRequired,
   onSuccessUpload: PropTypes.func,
   onDeleteMedia: PropTypes.func,
+  fitInFrame: PropTypes.string,
+  trackerOptions: PropTypes.object,
 }
 
 export default VideoRecorder

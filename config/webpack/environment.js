@@ -27,6 +27,7 @@ environment.plugins.insert(
   new webpack.ProvidePlugin({
     videojs: 'video.js/dist/video.cjs.js',
     RecordRTC: 'recordrtc',
+    tracking: 'tracking',
   }),
 )
 

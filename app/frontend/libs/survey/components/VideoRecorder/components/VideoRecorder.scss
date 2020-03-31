@@ -1,5 +1,6 @@
 .recorder {
   margin-top: 25px;
+  position: relative;
 
   :global {
     .video-js {
@@ -271,4 +272,9 @@
   .progressBar {
     height: 6px;
   }
+}
+
+.canvas {
+  top: 0;
+  position: absolute;
 }
