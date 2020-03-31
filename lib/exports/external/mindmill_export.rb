@@ -90,7 +90,7 @@ module Exports
             assigns.find_each(batch_size: 100) do |assign|
               sheet.add_row([
                               assign.encode_id,
-                              assign.user_name,
+                              user_name(assign),
                               assign.user_email,
                               assign.started_at.try(:strftime, '%D %r'),
                               assign.completed_at.try(:strftime, '%D %r'),
@@ -106,6 +106,10 @@ module Exports
         return [] unless assign.external_results
 
         keys.map { |field| assign.external_results[field.to_s] }
+      end
+
+      def user_name(assign)
+        [assign.user_first_name, assign.user_last_name].reject(&:blank?).join(', ')
       end
     end
   end

@@ -255,13 +255,20 @@
       }
 
       &.discard {
+        opacity: 1;
         color: #FFF;
         background-color: #e2003d;
         border-color: #e2003d;
+        pointer-events: auto;
 
         &:hover {
           color: #e2003d;
           background-color: #FFF;
+        }
+
+        &.saving {
+          opacity: 0.7;
+          pointer-events: none;
         }
       }
     }

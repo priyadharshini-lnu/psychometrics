@@ -126,6 +126,7 @@ class VideoRecorder extends Component {
     const { onSuccessUpload, mediaUrl } = this.props
     const mediaId = data.media_id
     this.setState({ recordingState: 'saved' })
+    this.handleRecordingSaved()
     if (data.env === 'prod') {
       const assetKey = data.key.replace('${filename}', 'video.mp4')
       $.ajax({
@@ -157,7 +158,6 @@ class VideoRecorder extends Component {
     }
 
     this.getUploadUrl(model.id)
-    this.handleRecordingSaved()
   }
 
   handleRecordingSaved = () => {
@@ -288,7 +288,11 @@ class VideoRecorder extends Component {
       <div className={styles.controlBar}>
         <div className={cs(styles.controls, 'display-flex')}>
           {['recorded', 'saved', 'saving'].includes(recordingState) && (
-            <button className={cs(styles.control, styles.discard)} onClick={this.discardRecording} title="Discard">
+            <button
+              title="Discard"
+              className={cs(styles.control, styles.discard, styles[recordingState])}
+              onClick={this.discardRecording}
+            >
               <span className="mrs mls fa fa-trash-o" area-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
                 { Watchman.I18n().t('assessments.video_response.discard') }
