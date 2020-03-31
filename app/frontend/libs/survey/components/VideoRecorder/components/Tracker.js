@@ -56,7 +56,7 @@ class Tracker extends Component {
     const tracker = new tracking.ObjectTracker('face')
     tracker.setStepSize(1.7)
 
-    tracking.track(`#${id}`, tracker)
+    this.trackerTask = tracking.track(`#${id}`, tracker)
     // eslint-disable-next-line no-console
     console.log('player id: ', id)
 
@@ -72,9 +72,11 @@ class Tracker extends Component {
         // eslint-disable-next-line prefer-destructuring
         rect = event.data.slice(-1)[0] // take the last rectangle
         if (this.isInBoundary(rect)) {
+          // eslint-disable-next-line no-console
           console.log('In Boundary')
           context.clearRect(0, 0, offsetWidth, offsetHeight)
         } else {
+          // eslint-disable-next-line no-console
           console.log('Not In Boundary')
           context.strokeRect(rect.x, rect.y, rect.width, rect.height)
         }
@@ -109,6 +111,11 @@ class Tracker extends Component {
     text = text.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') // add space between camelCase text
     text = text.toLowerCase()
     return text
+  }
+
+  stopTracking () {
+    // TODO: cleanup after stopping the trackerTask
+    this.trackerTask.stop()
   }
 
   render () {

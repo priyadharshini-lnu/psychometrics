@@ -254,6 +254,8 @@ class VideoRecorder extends Component {
       this.player.on('finishRecord', () => {
         this.player.trigger('statechanged', { status: 'recorded' })
         this.setState({ recordingState: 'recorded' })
+
+        this.tracker.stopTracking()
       })
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
@@ -383,8 +385,14 @@ class VideoRecorder extends Component {
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         { trackingEnabled
-        && recordingState === 'ready'
-        && <Tracker fitInFrame={fitInFrame} trackerOptions={trackerOptions} /> }
+        && ['ready', 'recording', 'recorded', 'saving', 'saved'].includes(recordingState)
+        && (
+          <Tracker
+            ref={(instance) => { this.tracker = instance }}
+            fitInFrame={fitInFrame}
+            trackerOptions={trackerOptions}
+          />
+        )}
         {showProgress && this.renderProgress()}
         {this.renderControls()}
       </div>
