@@ -40,7 +40,8 @@ class Tracker extends Component {
     this.contextRef = context
   }
 
-  initTracker = () => {
+  initTracker = (event) => {
+    const { onInitTracker } = this.props
     const playerEl = document.querySelector('video')
     const { id, offsetWidth, offsetHeight } = playerEl
 
@@ -53,12 +54,15 @@ class Tracker extends Component {
     context.strokeStyle = 'blue'
 
     const tracker = new tracking.ObjectTracker('face')
-    tracker.setStepSize(1.7)
+    // tracker.setStepSize(1.7)
+    tracker.setInitialScale(4)
+    tracker.setStepSize(2)
+    tracker.setEdgesDensity(0.1)
 
     this.trackerTask = tracking.track(`#${id}`, tracker)
 
-    // const boundaryEl = document.querySelector('.boundary')
-    // const statusEl = boundaryEl.children[0]
+    const helperEl = event.currentTarget.parentElement
+    const helpText = helperEl.querySelector('#helpText')
 
     let rect
     tracker.on('track', (event) => {
@@ -69,22 +73,26 @@ class Tracker extends Component {
         // eslint-disable-next-line prefer-destructuring
         rect = event.data.slice(-1)[0] // take the last rectangle
         if (this.isInBoundary(rect)) {
-          // eslint-disable-next-line no-console
-          console.log('In Boundary')
+          this.hideElements([helpText])
           context.clearRect(0, 0, offsetWidth, offsetHeight)
         } else {
-          // eslint-disable-next-line no-console
-          console.log('Not In Boundary')
+          this.showElements([helpText])
           context.strokeRect(rect.x, rect.y, rect.width, rect.height)
         }
 
         // event.data.forEach((rect) => {
-        //   if (!this.isInBoundary(rect)) {
+        //   if (this.isInBoundary(rect)) {
+        //     context.clearRect(0, 0, offsetWidth, offsetHeight)
+        //   } else {
         //     context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+        //     this.showElements([helpText])
         //   }
         // })
       }
     })
+
+    onInitTracker()
+    this.hideElements([...helperEl.children])
   }
 
   isInBoundary = (rect) => {
@@ -96,11 +104,6 @@ class Tracker extends Component {
     ]
 
     const inBoundary = coordinates.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
-    // console.log('coordinates: ', coordinates)
-    // for (const coords of coordinates) {
-    //   if (!this.contextRef.isPointInPath(coords.x, coords.y)) return false
-    // }
-
     return inBoundary
   }
 
@@ -110,28 +113,44 @@ class Tracker extends Component {
     return text
   }
 
+  showElements (targets) {
+    targets.forEach(target => target.classList.remove('hidden'))
+  }
+
+  hideElements (targets) {
+    targets.forEach(target => target.classList.add('hidden'))
+  }
+
   stopTracking () {
     // TODO: cleanup after stopping the trackerTask
     this.trackerTask.stop()
   }
 
   render () {
-    const { fitInFrame, onInitTracker } = this.props
+    const { fitInFrame } = this.props
 
     return (
       <div className={styles.canvasContainer}>
         <canvas id="canvasInner" className={cs(styles.canvas, styles.inner)} />
         <canvas id="canvasOuter" className={cs(styles.canvas, styles.outer)} />
 
-        <div className={styles.help}>
-          Please make sure that your
-          {this.unCamelize(fitInFrame)}
-          fits inside the frame.
+        <div id="help" className={styles.help}>
+          <div id="helpText" className={styles.helpText}>
+            Please make sure that your &nbsp;
+            {this.unCamelize(fitInFrame)}
+            &nbsp; fits inside the frame.
+          </div>
 
           <div className={styles.secondary}>
             {"Press the 'Ready' when you're set to record the video."}
           </div>
-          <button className={styles.btnReady} onClick={this.initTracker && onInitTracker()}>Ready</button>
+          <button
+            id="btnReady"
+            className={styles.btnReady}
+            onClick={e => this.initTracker(e)}
+          >
+            Ready
+          </button>
         </div>
       </div>
     )

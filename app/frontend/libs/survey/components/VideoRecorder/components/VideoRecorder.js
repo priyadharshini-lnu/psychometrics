@@ -405,7 +405,7 @@ class VideoRecorder extends Component {
             ref={(instance) => { this.tracker = instance }}
             fitInFrame={fitInFrame}
             trackerOptions={trackerOptions}
-            onInitTracker={() => this.onInitTracker}
+            onInitTracker={this.onInitTracker}
           />
         )}
         {showProgress && this.renderProgress()}
