@@ -23,7 +23,7 @@ export default function ColoredButton (props: Props) {
   const buttonProps = (passedButtonProps || {}) as ButtonProps
 
   const passedStyles = buttonProps.style || {}
-  let newButtonStyles = { ...buttonProps, backgroundColor: color, borderColor: color }
+  let newButtonStyles = { ...buttonProps, backgroundColor: color, borderColor: color, color: 'white' }
 
   buttonProps.style = { ...passedStyles, ...newButtonStyles }
 

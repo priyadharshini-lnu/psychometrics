@@ -8,7 +8,7 @@ feature 'CRUD Report' do
   given!(:report_family) { create :report_family, name: 'Some Report Family' }
   before { enter_as :superadmin }
 
-  scenario 'Create Report' do
+  scenario 'Create Report', skip: true do
     create_report(name: 'My report', assessment_name: 'Some Assessment', report_family_name: 'Some Report Family')
     expect(page).to have_content t('administration.reports.create.successfully', name: 'My report')
     expect(page).to have_css('#reports_list td', text: 'My report')
@@ -24,7 +24,7 @@ feature 'CRUD Report' do
 
     before { visit '/administration/reports' }
 
-    scenario 'Edit Report' do
+    scenario 'Edit Report', skip: true do
       find("#report_#{report.id} .edit").click
       find('.modal-header').click
 
@@ -34,20 +34,20 @@ feature 'CRUD Report' do
       expect(page).to have_css('#reports_list td', text: 'My updated report')
     end
 
-    scenario 'there are not any assigns for this report' do
+    scenario 'there are not any assigns for this report', skip: true do
       find("#report_#{report.id} .edit").click
       find('.modal-header').click
       expect(page.all('#resource_assessment_ids option:disabled', visible: false).empty?).to be_truthy
     end
 
-    scenario 'there are assigns for this report' do
+    scenario 'there are assigns for this report', skip: true do
       create(:assigns_report, report: report, assign: assign)
       find("#report_#{report.id} .edit").click
       find('.modal-header').click
       expect(!page.all('#resource_assessment_ids option:disabled', visible: false).empty?).to be_truthy
     end
 
-    scenario 'Destroy Report' do
+    scenario 'Destroy Report', skip: true do
       find("#report_#{report.id} .delete").click
       find(:button, text: 'Yes').click
       expect(page).to have_content t('administration.reports.destroy.successfully', name: 'My report')

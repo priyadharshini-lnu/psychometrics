@@ -52,11 +52,11 @@ const uploadFile = (data, context) => {
 
 const onUploadDone = (media, data, context) => {
   const {
-    urls, file, dispatch, onSuccessUpload,
+    urls, file, fileName, dispatch, onSuccessUpload,
   } = context
   const mediaId = data.media_id
   if (data.env === 'prod') {
-    const assetKey = data.key.replace('${filename}', file.name)
+    const assetKey = data.key.replace('${filename}', fileName || file.name)
     $.ajax({
       method: 'PUT',
       url: urls.callbackUrl,
