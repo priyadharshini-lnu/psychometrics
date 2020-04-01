@@ -28,7 +28,7 @@ class Agile::AssignsController < ApplicationController
   end
 
   def set_language
-    @assign.update!(selected_locale: params[:local])
+    @assign.update!(selected_locale: params[:locale])
 
     head :ok
   end
