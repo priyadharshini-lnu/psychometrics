@@ -29,11 +29,12 @@ module Licenses
         used_licenses: []
       }
       expiring_licenses.each do |expiring_license|
+        client = expiring_license.client
         hash[:expiring_licenses].push(
-          client_name: expiring_license.client.name,
+          client_name: client.name,
           license_end_date: expiring_license.end_date,
-          account_manager: User.find(expiring_license.client.account_manager_id).decorate.display_name,
-          project_manager: User.find(expiring_license.client.project_manager_id).decorate.display_name
+          account_manager: client.account_manager.decorate.display_name,
+          project_manager: client.project_manager.decorate.display_name
         )
       end
 

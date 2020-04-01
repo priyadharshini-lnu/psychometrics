@@ -64,6 +64,70 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: agile_events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.agile_events (
+    id bigint NOT NULL,
+    assign_id bigint,
+    session_id character varying,
+    event character varying,
+    data json DEFAULT '{}'::json,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: agile_events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.agile_events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: agile_events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.agile_events_id_seq OWNED BY public.agile_events.id;
+
+
+--
+-- Name: agiles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.agiles (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    config json DEFAULT '{}'::json,
+    translations json DEFAULT '{}'::json
+);
+
+
+--
+-- Name: agiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.agiles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: agiles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.agiles_id_seq OWNED BY public.agiles.id;
+
+
+--
 -- Name: api_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2987,6 +3051,20 @@ ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
+-- Name: agile_events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events ALTER COLUMN id SET DEFAULT nextval('public.agile_events_id_seq'::regclass);
+
+
+--
+-- Name: agiles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles ALTER COLUMN id SET DEFAULT nextval('public.agiles_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3530,6 +3608,22 @@ ALTER TABLE ONLY public.users_reports ALTER COLUMN id SET DEFAULT nextval('publi
 --
 
 ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('public.users_results_id_seq'::regclass);
+
+
+--
+-- Name: agile_events agile_events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT agile_events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: agiles agiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles
+    ADD CONSTRAINT agiles_pkey PRIMARY KEY (id);
 
 
 --
@@ -4184,6 +4278,20 @@ CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING
 --
 
 CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
+
+
+--
+-- Name: index_agile_events_on_assign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agile_events_on_assign_id ON public.agile_events USING btree (assign_id);
+
+
+--
+-- Name: index_agiles_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agiles_on_assessment_id ON public.agiles USING btree (assessment_id);
 
 
 --
@@ -5940,6 +6048,14 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
+-- Name: agiles fk_rails_aaee109dc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agiles
+    ADD CONSTRAINT fk_rails_aaee109dc4 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users_assessments fk_rails_ab767322bc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6308,6 +6424,14 @@ ALTER TABLE ONLY public.threesixty_nomination_requirements
 
 
 --
+-- Name: agile_events fk_rails_f7d0aa809c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT fk_rails_f7d0aa809c FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6652,6 +6776,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200219084808'),
 ('20200303084836'),
 ('20200317122132'),
-('20200318224159');
+('20200318224159'),
+('20200322064957'),
+('20200326091232');
 
 

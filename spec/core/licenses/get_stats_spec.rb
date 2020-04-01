@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 describe Licenses::GetStats do
-  let(:client_one) { create(:tenancy, without_license: false, name: 'ClientOne') }
-  let(:client_two) { create(:tenancy, without_license: false, name: 'ClientTwo') }
+  let(:client_one) { create(:tenancy, with_license: false, name: 'ClientOne') }
+  let(:client_two) { create(:tenancy, with_license: false, name: 'ClientTwo') }
 
   let(:campaign) { create(:campaign, name: 'first') }
   let(:user) { create(:user, first_name: 'Vasily', last_name: 'Pupkin', email: 'pup@gmail.com') }
@@ -36,10 +36,18 @@ describe Licenses::GetStats do
       client: client_two, start_date: 2.months.ago, end_date: 15.days.since)
 
     get_stats = Licenses::GetStats.call!
-    expect(get_stats[:expiring_licenses][0][:client_name]).not_to eql(client_one.name)
-    expect(get_stats[:expiring_licenses][0][:account_manager]).to eql(
-      User.find(client_two.account_manager_id).decorate.display_name
-    )
+    get_stats.except!(:used_licenses)
+    expected_stats = {
+      expiring_licenses: [
+        {
+          client_name: 'ClientTwo',
+          license_end_date: 15.days.since.to_date,
+          account_manager: 'super admin',
+          project_manager: 'super admin'
+        }
+      ]
+    }
+    expect(get_stats).to eql(expected_stats)
   end
 
   it 'gets stats of license usage for a week' do
@@ -59,7 +67,19 @@ describe Licenses::GetStats do
       user: user, campaign: campaign, created_at: 21.days.ago)
 
     get_stats = Licenses::GetStats.call!
-    expect(get_stats[:used_licenses][0][:use_count]).to eq(1) # License used 1.day.ago
-    expect(get_stats[:used_licenses][0][:remaining_count]).to eq(2) # Remaining licenses
+    get_stats.except!(:expiring_licenses)
+    expected_stats = {
+      used_licenses: [
+        {
+          client_name: 'ClientOne',
+          license_end_date: 2.months.since.to_date,
+          type: 'threesixty',
+          use_count: 1,
+          overuse_limit: 0,
+          remaining_count: 2
+        }
+      ]
+    }
+    expect(get_stats).to eq(expected_stats)
   end
 end

@@ -39,7 +39,7 @@ FactoryGirl.define do
 
     factory :tenancy do
       transient do
-        without_license true
+        with_license true
       end
 
       parent nil
@@ -50,7 +50,7 @@ FactoryGirl.define do
       association :project_manager, factory: :superadmin
       association :account_manager, factory: :superadmin
       after(:create) do |tenancy, evaluator|
-        create :license, client: tenancy if evaluator.without_license
+        create :license, client: tenancy if evaluator.with_license
       end
     end
 
