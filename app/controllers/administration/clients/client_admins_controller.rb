@@ -12,7 +12,7 @@ module Administration
       append_before_action :pundit_authorize, except: %i[sidebar index create edit update destroy]
 
       def index
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         @filter_term = params.dig(:q, :filterable_fields)
         @_filter_form = policy_scope(resource_class).
                         includes(user: %i[clients memberships]).
@@ -45,7 +45,7 @@ module Administration
       end
 
       def create
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         Memberships::CreateAdminCommand.
           call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
           on(:invalid) { render :new, locals: { is_new: true } }
@@ -67,14 +67,14 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         add_breadcrumb t('administration.breadcrumbs.client_admins'), action: :index
         add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
       def update
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if resource.update(update_resource_params)
@@ -90,7 +90,7 @@ module Administration
       end
 
       def destroy
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         if resource.user.memberships.count == 1
           resource.user.destroy
         else
@@ -117,7 +117,7 @@ module Administration
       # Change resources's status to active/disabled
       #
       def toggle_status
-        authorize @_resource_class, :can_manage_client_admins?
+        authorize resource_class, :can_manage_client_admins?
         resource_class.update(@_resource.id, disabled: !@_resource.membership_disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
