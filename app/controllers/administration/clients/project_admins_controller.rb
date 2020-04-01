@@ -116,6 +116,7 @@ module Administration
       # Change resources's status to active/disabled
       #
       def toggle_status
+        authorize @_resource_class, :can_manage_project_admins?
         resource_class.update(@_resource.id, disabled: !@_resource.membership_disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
