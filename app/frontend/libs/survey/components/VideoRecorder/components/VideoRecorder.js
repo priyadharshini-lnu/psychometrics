@@ -21,11 +21,17 @@ require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 const { $ } = window
 
 class VideoRecorder extends Component {
-  state = {
-    deviceReady: false,
-    recordingState: 'initialized',
-    percent: 0,
-    key: 'player',
+  constructor (props) {
+    super(props)
+
+    const { fitInFrame } = this.props
+    this.state = {
+      deviceReady: false,
+      recordingState: 'initialized',
+      percent: 0,
+      key: 'player',
+      trackingEnabled: !!fitInFrame,
+    }
   }
 
   componentDidMount () {
@@ -170,6 +176,10 @@ class VideoRecorder extends Component {
     this.player.controlBar.currentTimeDisplay.removeClass('show')
   }
 
+  onInitTracker = () => {
+    this.player.controlBar.show()
+  }
+
   initPlayer () {
     const { result } = this.props
 
@@ -208,6 +218,8 @@ class VideoRecorder extends Component {
 
   initRecorder () {
     const { maxDuration } = this.props
+    const { trackingEnabled } = this.state
+
     this.setState({ recordingState: 'initialized', key: 'record' }, () => {
       const options = {
         controls: true,
@@ -241,6 +253,8 @@ class VideoRecorder extends Component {
           deviceReady: true,
           recordingState: 'ready',
         })
+
+        if (trackingEnabled) this.player.controlBar.hide()
         this.statusText.show()
       })
       this.player.on('startRecord', () => {
@@ -372,12 +386,12 @@ class VideoRecorder extends Component {
   }
 
   render () {
-    const { deviceReady, recordingState } = this.state
+    const {
+      key, deviceReady, recordingState, trackingEnabled,
+    } = this.state
     const { fitInFrame, trackerOptions } = this.props
-    const trackingEnabled = !!fitInFrame
-
     const showProgress = _.includes(['saving'], recordingState)
-    const { key } = this.state
+
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>
         <div data-vjs-player key={key}>
@@ -391,6 +405,7 @@ class VideoRecorder extends Component {
             ref={(instance) => { this.tracker = instance }}
             fitInFrame={fitInFrame}
             trackerOptions={trackerOptions}
+            onInitTracker={() => this.onInitTracker}
           />
         )}
         {showProgress && this.renderProgress()}

@@ -12,7 +12,6 @@ import styles from './Tracker.scss'
 class Tracker extends Component {
   componentDidMount () {
     this.setupBoundingBox()
-    // console.log('Tracker ComponentDidMount')
   }
 
   setupBoundingBox () {
@@ -57,8 +56,6 @@ class Tracker extends Component {
     tracker.setStepSize(1.7)
 
     this.trackerTask = tracking.track(`#${id}`, tracker)
-    // eslint-disable-next-line no-console
-    console.log('player id: ', id)
 
     // const boundaryEl = document.querySelector('.boundary')
     // const statusEl = boundaryEl.children[0]
@@ -119,7 +116,7 @@ class Tracker extends Component {
   }
 
   render () {
-    const { fitInFrame } = this.props
+    const { fitInFrame, onInitTracker } = this.props
 
     return (
       <div className={styles.canvasContainer}>
@@ -134,7 +131,7 @@ class Tracker extends Component {
           <div className={styles.secondary}>
             {"Press the 'Ready' when you're set to record the video."}
           </div>
-          <button className={styles.btnReady} onClick={this.initTracker}>Ready</button>
+          <button className={styles.btnReady} onClick={this.initTracker && onInitTracker()}>Ready</button>
         </div>
       </div>
     )
@@ -144,6 +141,7 @@ class Tracker extends Component {
 Tracker.popTypes = {
   fitInFrame: PropTypes.string,
   trackerOptions: PropTypes.object,
+  onInitTracker: PropTypes.func,
 }
 
 export default Tracker
