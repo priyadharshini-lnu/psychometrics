@@ -23,25 +23,27 @@ prevent bundle secure warnings with
 # Local Setup
 
 0. Create a Gemset (optional)
-> RVM: `$> rvm gemset create tte-psychometrics`
-> rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
+
+    RVM: `$> rvm gemset create tte-psychometrics`
+    rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
+
 1. `$> bundle install`
 2. `$> cp config/application.sample.yml config/application.yml`
 3. `$> cp config/database.yml.example config/database.yml`
 4. `$> cp config/settings/development.yml.example config/settings/development.yml`
 
-> Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
+    Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
-> Edit and setup `database.yml` as appropriate.
+    Edit and setup `database.yml` as appropriate.
 
 5. Create databases `$> bundle exec rake db:create`
 
-> Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
+    Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
 
-6. `$> npm install`
+6. `$> npm instal l`
 
 7. Install redis.
-> For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
+     For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
 
 # Run the application locally
 
