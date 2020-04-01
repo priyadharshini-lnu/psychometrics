@@ -13,12 +13,12 @@ describe Assigns::SaveAgileEvent do
   end
 
   it "updates completed_group in assign for 'endGroup' event" do
-    form = Assigns::AgileEventForm.new(event: 'endGroup', data: { 'id' => 'group_id1' })
+    form = Assigns::AgileEventForm.new(event: 'endGroup', data: { id: 'group_id1' })
     Assigns::SaveAgileEvent.call!(assign, form)
 
     expect(assign.meta_data).to eq('completed_groups' => ['group_id1'])
 
-    form = Assigns::AgileEventForm.new(event: 'endGroup', data: { 'id' => 'group_id2' })
+    form = Assigns::AgileEventForm.new(event: 'endGroup', data: { id: 'group_id2' })
     Assigns::SaveAgileEvent.call!(assign, form)
 
     expect(assign.meta_data).to eq('completed_groups' => %w[group_id1 group_id2])
