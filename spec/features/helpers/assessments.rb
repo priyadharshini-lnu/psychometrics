@@ -12,7 +12,7 @@ module Features
           select opts[:dimension_name], from: 'resource_dimension_id', visible: false
           click_on 'Create'
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
       end
 
       def toggle_assessment(assessment, enable = true)

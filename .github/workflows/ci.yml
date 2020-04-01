@@ -23,8 +23,8 @@ jobs:
         image: redis
         ports:
         - 6379:6379
-        options: --entrypoint redis-server      
-  
+        options: --entrypoint redis-server
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -76,3 +76,9 @@ jobs:
       - name: Run tests
         run: EAGER_LOAD=1 bundle exec rspec
 
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: capybara_screenshots
+          path: tmp/capybara

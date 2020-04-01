@@ -17,9 +17,13 @@ module Features
       # overwrite in feature
     end
 
-    def wait_for_ajax
+    def wait_for_ajax(no_of_ajax_request: 1)
       Timeout.timeout(Capybara.default_max_wait_time) do
-        loop until finished_all_ajax_requests?
+        sleep 0.3
+        no_of_ajax_request.times do
+          loop until finished_all_ajax_requests?
+          sleep 0.5 if no_of_ajax_request > 1
+        end
       end
     end
 
