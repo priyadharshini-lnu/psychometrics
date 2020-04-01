@@ -42,7 +42,6 @@ const myCssLoaderOptions = {
 
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
-
 environment.loaders.append('less', less)
 
 loaders.nodeModules.use[0].options.sourceMaps = true

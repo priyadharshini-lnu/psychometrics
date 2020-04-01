@@ -17,6 +17,7 @@ const ASSESSMENT_CATEGORY_ICONS = {
   mindmill: 'mindmill',
   case_study: 'case_study',
   organisational: 'survey',
+  agile: 'agile',
 }
 
 const DownloadLink = ({ report, text }) => {
@@ -42,7 +43,7 @@ const ReportsMenu = reports => (
 )
 
 const renderButtonContent = ({
-  mindmill, mindmillUrl, url, status, assignedReports, needConfirm,
+  mindmill, mindmillUrl, url, status, assignedReports, needConfirm, assessmentCategory,
 }, setShowConfirm, loading, loadAssessment) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
@@ -71,6 +72,15 @@ const renderButtonContent = ({
   }
 
   if (status === 'completed') {
+    if (!assignedReports.length || assessmentCategory === 'agile') {
+      return (
+        <a>
+          <Icon type="check" />
+          {' '}
+          {I18n.t('threesixty.completed')}
+        </a>
+      )
+    }
     if (assignedReports.length > 1) {
       return (
         <Dropdown
@@ -88,13 +98,6 @@ const renderButtonContent = ({
       const report = assignedReports[0]
       return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
     }
-    return (
-      <a>
-        <Icon type="check" />
-        {' '}
-        {I18n.t('threesixty.completed')}
-      </a>
-    )
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
