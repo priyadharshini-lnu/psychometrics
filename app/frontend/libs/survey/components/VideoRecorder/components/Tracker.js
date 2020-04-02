@@ -1,5 +1,3 @@
-/* eslint-disable import/no-webpack-loader-syntax */
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -96,14 +94,14 @@ class Tracker extends Component {
   }
 
   isInBoundary = (rect) => {
-    const coordinates = [
+    const corners = [
       { x: rect.x, y: rect.y }, // topleft
       { x: rect.x + rect.width, y: rect.y }, // topRight
       { x: rect.x, y: rect.y + rect.height }, // bottomLeft
       { x: rect.x + rect.width, y: rect.y + rect.height }, // bottomRight
     ]
 
-    const inBoundary = coordinates.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
+    const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
     return inBoundary
   }
 
