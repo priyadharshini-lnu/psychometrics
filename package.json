@@ -42,6 +42,7 @@
     "@rails/webpacker": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
+    "@thetalententerprise/interactive-assessments": "1.0.4",
     "action-cable-react": "git+https://github.com/Fabel/action-cable-react.git",
     "airbnb-style": "^2.0.0",
     "antd": "^4.0.3",
