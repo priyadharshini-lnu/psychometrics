@@ -23,7 +23,7 @@ feature 'Actions Norm' do
   end
 
   context 'Sidebar' do
-    scenario 'Export/Import Norm', :js do
+    scenario 'Export/Import Norm', skip: true do
       file = export_norm(norm)
       new_norm = import_norm file
       expect(new_norm.name).to eq('Some Norm (1)')
