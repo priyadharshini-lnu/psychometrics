@@ -50,7 +50,7 @@ gem 'two_factor_authentication',  '~> 2.2.0'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
-gem 'bootstrap-sass',             '~> 3.3.6'
+gem 'bootstrap-sass',             '~> 3.4.1'
 gem 'font-awesome-rails',         '~> 4.7'
 gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
