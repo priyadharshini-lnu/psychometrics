@@ -312,6 +312,7 @@ Rails.application.routes.draw do
         end
         resource :builders, only: [:update]
         resource :scoring, only: [:update], controller: :scoring
+        resource :agiles, only: %i[show update]
       end
     end
     ### END ASSESSMENTS
@@ -616,6 +617,15 @@ Rails.application.routes.draw do
           get :redirect
           get :results
           put :pass
+        end
+      end
+    end
+
+    namespace :agile do
+      resources :assigns, only: %i[show update] do
+        member do
+          post :events
+          put :set_language
         end
       end
     end

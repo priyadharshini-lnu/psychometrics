@@ -11,7 +11,7 @@ module EndUser
     attribute :need_confirm
 
     def url
-      pass_assign_path(object)
+      object.assessment.agile? ? agile_assign_path(object) : pass_assign_path(object)
     end
 
     def type

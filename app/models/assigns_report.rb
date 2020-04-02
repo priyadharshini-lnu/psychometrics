@@ -19,7 +19,8 @@ class AssignsReport < ApplicationRecord
     Assessment::CASE_STUDY => Licenses::AssignReportCaseStudy,
     Assessment::THREESIXTY => Licenses::CreateThreesixtySubject,
     Assessment::MINDMILL => Licenses::AssignReportMindmill,
-    Assessment::HOGAN => Licenses::AssignReportHogan
+    Assessment::HOGAN => Licenses::AssignReportHogan,
+    Assessment::AGILE => Licenses::AssignReportAgile
   }.freeze
 
   belongs_to :assign, inverse_of: :assigns_reports

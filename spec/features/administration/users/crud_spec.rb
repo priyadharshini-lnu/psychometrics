@@ -82,12 +82,12 @@ feature 'CRUD User' do
           expect(page).to have_content 'Communication Centre'
           expect(page).to have_content 'Overview Reports'
 
-          expect(page).not_to have_css :td, text: 'Norms'
-          expect(page).not_to have_css :td, text: 'Dimensions'
-          expect(page).not_to have_css :td, text: 'Translations'
-          expect(page).not_to have_css :td, text: 'Client Tenancies'
-          expect(page).not_to have_css :td, text: 'Question Centre'
-          expect(page).not_to have_css :td, text: 'Media Libraries'
+          expect(page).not_to have_css 'td', text: 'Norms'
+          expect(page).not_to have_css 'td', text: 'Dimensions'
+          expect(page).not_to have_css 'td', text: 'Translations'
+          expect(page).not_to have_css 'td', text: 'Client Tenancies'
+          expect(page).not_to have_css 'td', text: 'Question Centre'
+          expect(page).not_to have_css 'td', text: 'Media Libraries'
         end
       end
     end
