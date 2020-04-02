@@ -507,7 +507,7 @@ GEM
     pundit (2.1.0)
       activesupport (>= 3.0.0)
     raabro (1.1.6)
-    rack (2.0.9)
+    rack (2.2.2)
     rack-contrib (2.1.0)
       rack (~> 2.0)
     rack-protection (2.0.1)
@@ -936,7 +936,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.0.1)
   pundit (~> 2.1.0)
-  rack (~> 2.0.9)
+  rack (~> 2.2.0)
   rack-timeout (~> 0.4.2)
   rails (~> 5.1.6)
   rails-assets-Sortable (= 1.6.0)!
