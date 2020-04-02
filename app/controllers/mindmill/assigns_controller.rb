@@ -15,6 +15,7 @@ class Mindmill::AssignsController < ApplicationController
     @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + results_mindmill_assign_path(@assign)}"
 
     @assign.in_progress!
+    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale)
     # Set Not Started for all Mindmill assigns, except current
     # Cause only one Mindmill can has In Progress status
     Assign.
@@ -26,23 +27,11 @@ class Mindmill::AssignsController < ApplicationController
     redirect_to @ssourl
   end
 
-  def results
+  def redirect
     redirect_to(root_path, success: t('.successfully')) && return if @assign.completed?
-    mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
-    mindmill.assign_user
-    redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless mindmill.ssourl
-    @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + results_mindmill_assign_path(@assign)}"
-
-    @assign.in_progress!
-    BuildMindmillResultsJob.set(wait: 1.hour).perform_later(@assign, @current_membership, user_locale)
-    Assign.
-      in_progress.
-      mindmill.
-      where(membership_id: @current_membership.id).
-      where.not(id: @assign.id).
-      update_all(status: :not_started)
-
-    redirect_to @ssourl
+    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale)
+    Assigns::GenerateReport.call(@assign, current_user)
+    redirect_to(root_path, success: t('.successfully'))
   end
 
   private
