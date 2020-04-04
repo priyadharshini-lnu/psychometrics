@@ -21,7 +21,7 @@ export class Filter extends Component {
 
   changeAssessment = (e) => {
     const { model, onChange } = this.props
-    onChange(model, { assessment_id: e.currentTarget.value })
+    onChange(model, { assessmentId: e.currentTarget.value })
   }
 
   renderConditions () {
