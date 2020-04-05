@@ -6,15 +6,20 @@ import LogicElement from './logic/LogicElement'
 
 let id = 1
 
-const Page = function (attrs = {}, completedAssessments) {
+const Page = function (attrs = {}, completedAssessments = []) {
   id += 1
-  this.id = attrs.id || `fake${id}`
+  this.id = attrs.id
+  this.isNew = attrs.isNew
+  if (!this.id) {
+    this.id = Date.now() + id
+    this.isNew = true
+  }
   this.name = attrs.name || 'Page'
   this.position = attrs.position
   this.props = attrs.props || {}
   this.visible = true
   this.renderModules = true
-  this.removed = false
+  this.removed = attrs.removed || false
   this.displayLogic = attrs.display_logic ? new LogicElement(attrs.display_logic) : null
   this.modules = new ModulesStore(attrs.modules, this, completedAssessments)
   this.layoutManager = new LayoutManager(this)
@@ -31,6 +36,8 @@ _.extend(Page.prototype, {
       position: this.position,
       removed: this.removed,
       display_logic: this.displayLogic,
+      modules: [],
+      isNew: this.isNew,
     }
   },
 

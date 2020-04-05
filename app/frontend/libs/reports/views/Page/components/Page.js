@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Modules } from 'rb/components/modules'
 import panelStore from 'rb/store/PropertyPanelStore'
-import AppStore from 'rb/store/AppStore'
-import store from 'rb/store/PageList'
+import ModuleModel from 'rb/models/Module'
+import RichEditorStore from 'rb/store/RichEditorStore'
 import styles from './Page.scss'
 import Header from './PageHeader'
 import Footer from './PageFooter'
@@ -28,45 +28,48 @@ class Page extends Component {
   }
 
   renderModuleType = (module, i) => {
-    const { model } = this.props
+    const { model: page } = this.props
     if (!module.type) { return false }
+    const model = new ModuleModel(module, page)
     const View = Modules[module.type]
-    return !module.removed && <View key={i} module={module} page={model} />
+    return !model.removed && <View key={i} module={model} page={page} />
   }
 
   renderShadowModule = (module, i) => {
-    const { model } = this.props
-    if (module.onPage(model)) { return }
-    const View = Modules[module.type]
-    return <View key={i} module={module} page={model} />
+    const { model: page } = this.props
+    const model = new ModuleModel(module, page)
+    const View = Modules[model.type]
+    return <View key={i} module={model} page={page} shadow />
   }
 
   selectPage = (e) => {
-    const { model } = this.props
+    const { model, unselectModules } = this.props
     e.stopPropagation()
-    store.unselectAll()
+    unselectModules()
+    RichEditorStore.close()
     panelStore.select('Page', model)
   }
 
   render () {
-    const { model = {}, renderModules } = this.props
-
+    const {
+      report: { builder }, modules, model = {}, renderModules, showOnAllPages,
+    } = this.props
     const selected = panelStore.model === model
 
     const style = {
-      ...AppStore.report.props.sizes,
+      ...builder.props.sizes,
     }
     return (
       <div className={styles.page} name={model.id} onClick={this.selectPage}>
         <div
           className={`${styles.pageContainer} ${selected ? styles.selected : ''}`}
-          style={{ width: AppStore.report.props.sizes.width }}
+          style={{ width: builder.props.sizes.width }}
         >
           <Header {...this.props} />
           {model.displayLogic && <DisplayLogic {...this.props} />}
           <div className={styles.pageContent} style={style}>
-            {renderModules && model.modules.list.map(this.renderModuleType)}
-            {renderModules && store.showOnAllPages.list.map(this.renderShadowModule)}
+            {renderModules && modules.map(this.renderModuleType)}
+            {renderModules && showOnAllPages.map(this.renderShadowModule)}
           </div>
         </div>
         <Footer {...this.props} />

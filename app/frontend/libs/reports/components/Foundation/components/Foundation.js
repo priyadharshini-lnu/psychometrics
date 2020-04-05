@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import interact from 'interact.js'
-import store from 'rb/store/PageList'
 import panelStore from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
@@ -74,8 +73,9 @@ class Foundation extends Component {
   }
 
   dragHandler = (event) => {
+    event.stopPropagation()
     const { preview, module } = this.props
-    if (preview || module !== panelStore.model) {
+    if (preview) {
       return
     }
     const $target = $(event.target)
@@ -98,7 +98,7 @@ class Foundation extends Component {
   resizeHandler = (event) => {
     const { module, preview } = this.props
     const $target = $(event.target)
-    if (preview || module !== panelStore.model) {
+    if (preview) {
       return
     }
     let x = module.props.position.left
@@ -127,34 +127,34 @@ class Foundation extends Component {
 
   select = (e) => {
     const {
-      preview, module, page, closeRichEditor,
+      preview, module, closeRichEditor, selected, selectModule, unselectModules, shadow,
     } = this.props
     if (preview) { return }
     e.stopPropagation()
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
 
-    const selectModule = () => {
-      store.unselectAll()
-      store.selected.push(module)
+    if (_.find(selected, id => id === module.id)) { return }
+
+    const select = () => {
+      unselectModules()
+      selectModule(module.id)
       closeRichEditor()
       panelStore.select('Module', module)
-      this.forceUpdate()
     }
 
     if (shadow) {
-      ScrollDispatcher.scroll(module.store.page.id, `Module_${module.id}`, () => {
-        selectModule()
+      ScrollDispatcher.scroll(module.page_id, `Module_${module.id}`, () => {
+        select()
       })
       return
     }
-    selectModule()
+    select()
   }
 
   keydown () {}
 
   render () {
     const {
-      module, outerStyle: frameStyle, children, page,
+      module, outerStyle: frameStyle, children, shadow, selected,
     } = this.props
     const mprops = module.props
     const {
@@ -174,10 +174,8 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-
-    const selected = _.find(store.selected, module)
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
-    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${selected ? styles.selected : ''}`
+    const isSelected = _.find(selected, id => id === module.id)
+    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
     return (
       <div
         ref={(ref) => { this.base = ref }}
@@ -190,7 +188,7 @@ class Foundation extends Component {
           {children}
         </div>
         <i
-          className={`fa fa-arrows ${styles.mover} ${!selected ? 'hidden' : ''}`}
+          className={`fa fa-arrows ${styles.mover} ${!isSelected ? 'hidden' : ''}`}
           data-right="true"
           data-bottom="true"
           ref={(ref) => { this.mover = ref }}

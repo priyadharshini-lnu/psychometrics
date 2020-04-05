@@ -3,17 +3,19 @@ import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import store from 'rb/store/PropertyPanelStore'
 import PageList from 'rb/store/PageList'
 import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
+import conenct from './connect'
 
 class PageProperties extends Component {
-  removePage () {
-    PageList.removePage(store.model)
+  removePage = () => {
+    const { removePage } = this.props
+    removePage(store.model.id)
   }
 
-  copyPage () {
+  copyPage = () => {
     ClipboardDispatcher.copyPage(store.model)
   }
 
-  pastePage () {
+  pastePage = () => {
     ClipboardDispatcher.pastePage(store.model)
   }
 
@@ -38,4 +40,4 @@ class PageProperties extends Component {
   }
 }
 
-export default PageProperties
+export default conenct(PageProperties)

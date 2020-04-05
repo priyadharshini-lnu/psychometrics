@@ -37,6 +37,15 @@ class PropertyPanel extends Component {
     this.forceUpdate()
   }
 
+  showOnAllPages = () => {
+    const { model } = store
+    const { showOnAllPages } = this.props
+    model.props.showOnAllPages = !model.props.showOnAllPages
+    model.update()
+
+    showOnAllPages(store.model, model.props.showOnAllPages)
+  }
+
   renderCustomProperties () {
     const { model } = store
     const type = store.type === 'Module' ? store.model.type : store.type
@@ -90,7 +99,7 @@ class PropertyPanel extends Component {
               <input
                 type="checkbox"
                 checked={model.props.showOnAllPages || false}
-                onChange={e => this.layoutHandler('showOnAllPages', e)}
+                onChange={e => this.showOnAllPages()}
               />
               Show On All Pages
             </label>
