@@ -434,8 +434,7 @@ CREATE TABLE public.bulk_reports (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    files character varying[] DEFAULT '{}'::character varying[],
-    file character varying
+    files character varying[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -2910,7 +2909,8 @@ CREATE TABLE public.users (
     encrypted_otp_secret_key_salt character varying,
     direct_otp character varying,
     direct_otp_sent_at timestamp without time zone,
-    totp_timestamp timestamp without time zone
+    totp_timestamp timestamp without time zone,
+    settings jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -6776,6 +6776,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200219084808'),
 ('20200303084836'),
 ('20200317122132'),
+('20200318224159'),
 ('20200322064957'),
 ('20200326091232');
 
