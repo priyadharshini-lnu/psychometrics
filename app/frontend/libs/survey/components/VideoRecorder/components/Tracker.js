@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import tracking from 'tracking'
 import 'tracking/build/data/face-min'
+import 'tracking-data/upper-body'
 
 import styles from './Tracker.scss'
 
@@ -132,6 +133,9 @@ class Tracker extends Component {
         <canvas id="canvasInner" className={cs(styles.canvas, styles.inner)} />
         <canvas id="canvasOuter" className={cs(styles.canvas, styles.outer)} />
 
+        <div className={styles.overlay}>
+          <div className={styles.trackedObject} />
+        </div>
         <div id="help" className={styles.help}>
           <div id="helpText" className={styles.helpText}>
             Please make sure that your &nbsp;

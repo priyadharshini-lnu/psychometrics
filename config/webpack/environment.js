@@ -124,6 +124,7 @@ environment.config.merge({
       'window.RecordRTC': 'recordrtc',
       'survey-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/survey'),
       'reports-ui': resolve(__dirname, '..', '..', 'app/frontend/libs/reports'),
+      'tracking-data': resolve(__dirname, '..', '..', 'app/assets/javascripts/tracking'),
     },
   },
   mode: __DEV__ ? 'development' : 'production',
