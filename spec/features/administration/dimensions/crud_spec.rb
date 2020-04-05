@@ -12,7 +12,7 @@ feature 'CRUD Dimension' do
       wait_for_ajax
       fill_in 'resource_name', with: 'Employment Thriving Index'
       click_on 'Create'
-      wait_for_ajax
+      wait_for_ajax(no_of_ajax_request: 2)
       expect(page).to have_content 'Employment Thriving Index'
     end
 
@@ -60,7 +60,7 @@ feature 'CRUD Dimension' do
       wait_for_ajax
       fill_in 'resource_name', with: 'Employment Thriving Index'
       click_on 'Create'
-      wait_for_ajax
+      wait_for_ajax(no_of_ajax_request: 2)
       expect(page).to have_content 'Employment Thriving Index'
     end
   end

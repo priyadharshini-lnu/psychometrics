@@ -6,7 +6,7 @@ class LicenseMailer < ApplicationMailer
     @client = Client.find(client_id) if client_id
     mail(
       to: @resource.email,
-      subject: I18n.t('administration.clients.licenses.mailer.license_expire.subject'),
+      subject: I18n.t('mailer.license.expire.subject'),
       template_path: '/mailer/license'
     )
   end
@@ -16,7 +16,17 @@ class LicenseMailer < ApplicationMailer
     @client = Client.find(client_id) if client_id
     mail(
       to: @resource.email,
-      subject: I18n.t('administration.clients.licenses.mailer.license_overuse.subject'),
+      subject: I18n.t('mailer.license.overuse.subject'),
+      template_path: '/mailer/license'
+    )
+  end
+
+  def weekly_stats(user_id)
+    @resource = User.find(user_id)
+    @stats = Licenses::GetStats.call!
+    mail(
+      to: @resource.email,
+      subject: I18n.t('mailer.license.weekly_stats.subject'),
       template_path: '/mailer/license'
     )
   end

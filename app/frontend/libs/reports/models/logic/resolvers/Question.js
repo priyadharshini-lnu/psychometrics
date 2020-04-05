@@ -17,7 +17,7 @@ export default class QuestionResolver extends BaseResolver {
       return true
     }
 
-    if (!this.isFilled()) { return false }
+    if (!this.isFilled() || !this.getAnswers()) { return false }
     if (this[this.condition.type]) {
       const typeValue = this[this.condition.type]()
       return this[this.condition.predicate](typeValue, +this.condition.value)
@@ -34,7 +34,9 @@ export default class QuestionResolver extends BaseResolver {
     const assessment = ResultManager.getAssessmentByFilter(this.condition.filterId)
     const question = store.questions[assessment.id][this.condition.subject]
     const qResults = this.results.questions[this.condition.subject]
-    return QuestionTypesAnswers[question.type](qResults[0], this.condition.answer)
+    if (qResults) {
+      return QuestionTypesAnswers[question.type](qResults[0], this.condition.answer)
+    }
   }
 
   Mean () {

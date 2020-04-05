@@ -15,7 +15,7 @@ module Features
           fill_in 'resource_last_name', with: opts[:last_name]
           click_on t('administration.create')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else
@@ -44,7 +44,7 @@ module Features
           fill_in 'resource_user_attributes_last_name', with: opts[:last_name] if opts[:last_name]
           click_on 'Create'
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else
@@ -73,7 +73,7 @@ module Features
           select admin_membership.decorate.display_name, from: 'project_admin_ids', visible: false
           click_on t('administration.save')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else
@@ -110,7 +110,7 @@ module Features
           fill_in 'resource_last_name', with: opts[:last_name]
           click_on t('administration.create')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else

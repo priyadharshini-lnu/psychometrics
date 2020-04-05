@@ -5,6 +5,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       RAILS_ENV: test
       REDIS_HOST: localhost
@@ -79,3 +80,9 @@ jobs:
       - name: Run RSpec
         run: EAGER_LOAD=1 bundle exec rspec
 
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: capybara_screenshots
+          path: tmp/capybara
