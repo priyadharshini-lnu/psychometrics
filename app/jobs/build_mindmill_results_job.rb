@@ -3,7 +3,7 @@
 # TODO: (atanych): This job looks like temp hack until MM support answers us
 class BuildMindmillResultsJob < ApplicationJob
   queue_as :external_results
-  retry_on StandardError, wait: 10.minutes, attempts: 3
+  retry_on StandardError, wait: ->(executions) { executions * 2.minutes }, attempts: 3
 
   def perform(assign, current_membership, user_locale)
     return if assign.mindmill_report && assign.external_results
@@ -11,7 +11,7 @@ class BuildMindmillResultsJob < ApplicationJob
     mindmill = Api::Mindmill.new(assign, current_membership, user_locale)
     mindmill.load_results
     mindmill.load_scores
-    raise StandardError unless mindmill.report && mindmill.scores
+    raise StandardError, 'Unable to fetch mindmill report' unless mindmill.report && mindmill.scores
 
     normalised_scores = Imports::External::BaseExternalImport.build(:mindmill).process(mindmill.scores, assign)
     report = "data:application/pdf;base64,#{mindmill.report}"
