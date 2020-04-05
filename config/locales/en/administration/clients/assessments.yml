@@ -14,6 +14,7 @@ en:
           generate_universal_link: 'Generate Univeral Link'
           deactivate_universal_link: 'Deactivate Univeral Link'
           regenerate_universal_link: 'Regenerate Univeral Link'
+          mindmill_results: "Mindmill Results"
           confirmations:
             universal_links:
               regeneration:

@@ -15,6 +15,7 @@ class PreviewContainer extends Component {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl, selectedLocale, isAnonymousAssessment,
+      agileAssetsUrl, agileAssignUrl,
     } = parent.dataset
 
     this.langPartial = parent.dataset.langPartial
@@ -27,6 +28,8 @@ class PreviewContainer extends Component {
     store.resultsUrl = resultsUrl
     store.resultLocalStorageKey = [location.pathname]
     store.isAnonymousAssessment = isAnonymousAssessment === 'true'
+    store.agileAssetsUrl = agileAssetsUrl
+    store.agileAssignUrl = agileAssignUrl
     store.init(JSON.parse(data), type, JSON.parse(dbResult), dashboardUrl)
     this.forceUpdate()
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
