@@ -61,7 +61,8 @@ export class Properties extends Component {
   }
 
   updateTrackerOptions = (key, val) => {
-    const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
+    const { model, model: { props: { fitInFrame } } } = this.props
+    const trackerOptions = { ...this.trackerOptions, ...this.trackerOptions }
 
     trackerOptions[fitInFrame][key] = val
     model.changeProps({ trackerOptions })
@@ -86,7 +87,7 @@ export class Properties extends Component {
 
     if (!fitInFrame) return
 
-    const properties = trackerOptions[fitInFrame]
+    const properties = (trackerOptions || this.trackerOptions)[fitInFrame]
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         {Object.keys(properties).map((key, i) => (

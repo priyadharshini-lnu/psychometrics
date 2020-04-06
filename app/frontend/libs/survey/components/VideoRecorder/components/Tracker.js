@@ -6,6 +6,10 @@ import tracking from 'tracking'
 import 'tracking/build/data/face-min'
 import 'tracking-data/upper-body'
 
+import face from './images/face_frame.svg'
+import uipperHalfBody from './images/upper_half_body_frame.svg'
+import fullBody from './images/full_body_frame.svg'
+
 import styles from './Tracker.scss'
 
 class Tracker extends Component {
@@ -134,7 +138,9 @@ class Tracker extends Component {
         <canvas id="canvasOuter" className={cs(styles.canvas, styles.outer)} />
 
         <div className={styles.overlay}>
-          <div className={styles.trackedObject} />
+          <div className={styles.trackedObject}>
+            <img src={fitInFrame} />
+          </div>
         </div>
         <div id="help" className={styles.help}>
           <div id="helpText" className={styles.helpText}>
