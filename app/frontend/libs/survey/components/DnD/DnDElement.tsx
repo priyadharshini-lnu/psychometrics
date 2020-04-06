@@ -1,87 +1,74 @@
-import React from 'react'
-import {
-  DragSource, DropTarget, DragSourceMonitor, ConnectDragPreview, ConnectDragSource, ConnectDropTarget,
-  DropTargetMonitor,
-} from 'react-dnd'
+import React, { useRef, useCallback } from 'react'
+import { useDrop, useDrag, DragSourceMonitor } from 'react-dnd'
 import cs from 'classnames'
 import styles from './DnDStyle.scss'
+import ItemTypes from './ItemTypes'
 
-interface DndElementProps {
+interface Props {
   children: React.ReactNode
   index: number
   onEndDrag?: () => void
   rowList: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   onDrag: (list: any[]) => void // eslint-disable-line @typescript-eslint/no-explicit-any
+  wrapper?: React.ComponentType
 }
 
-interface DragProps {
-  // TODO (atanych): All DragProps are optional to prevent ts errors when render this component
-  isDragging?: DragSourceMonitor
-  connectDragSource?: ConnectDragSource
-  connectDragPreview?: ConnectDragPreview
-  connectDropTarget?: ConnectDropTarget
+interface DragItem {
+  index: number
+  type: string
 }
-
-type Props = DndElementProps & DragProps
 
 const DndElement: React.FC<Props> = ({
-  children, isDragging = false, connectDragSource, connectDragPreview, connectDropTarget,
+  children, rowList, onDrag, index, onEndDrag, wrapper, ...props
 }) => {
+  const elementRef = useRef<HTMLDivElement>(null)
+
+  const moveRow = useCallback((dragPosition: number, hoverPosition: number): void => {
+    const filteredRowList = rowList.filter((_o, i) => i !== dragPosition)
+
+    onDrag([
+      ...(filteredRowList.slice(0, hoverPosition)),
+      rowList[dragPosition],
+      ...(filteredRowList.slice(hoverPosition)),
+    ])
+  }, [rowList])
+
+  const [, drop] = useDrop({
+    accept: ItemTypes.ELEMENT,
+    hover (item: DragItem) {
+      const dragIndex = item.index
+      const hoverIndex = index
+
+      if (dragIndex === hoverIndex) return
+
+      moveRow(dragIndex, hoverIndex)
+      item.index = hoverIndex
+    },
+    drop () {
+      onEndDrag && onEndDrag()
+    },
+  })
+
+  const [{ isDragging }, source, drag] = useDrag({
+    item: { type: ItemTypes.ELEMENT, index },
+    collect: (monitor: DragSourceMonitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+
   const opacity = isDragging ? 0.25 : 1
+  drag(drop(elementRef))
 
-  // TODO (atanych): This condition need to resolve ts warnings due to DragProps are optional
-  if (!connectDragSource || !connectDragPreview || !connectDropTarget) return <div />
+  const WrapperComponent = wrapper || 'div'
 
-  return connectDragPreview(connectDropTarget(
-    <div className={styles.rowContainer} style={{ opacity }}>
-      {connectDragSource(<i className={cs('fa fa-bars', styles.draggingIcon)} />)}
-      {children}
-    </div>,
-  ))
+  return (
+    <WrapperComponent {...props}>
+      <div ref={elementRef} className={styles.rowContainer} style={{ opacity }}>
+        <i ref={source} className={cs('fa fa-bars', styles.draggingIcon)} />
+        {children}
+      </div>
+    </WrapperComponent>
+  )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const moveRow = (dragPosition: number, hoverPosition: number, { rowList, onDrag }: Props): void => {
-  const filteredRowList = rowList.filter((_o, i) => i !== dragPosition)
-
-  onDrag([
-    ...(filteredRowList.slice(0, hoverPosition)),
-    rowList[dragPosition],
-    ...(filteredRowList.slice(hoverPosition)),
-  ])
-}
-
-const optionTarget = {
-  hover (props: Props, monitor: DropTargetMonitor): void {
-    const dragPosition = monitor.getItem().index
-    const hoverPosition = props.index
-
-    if (dragPosition === hoverPosition) return
-
-    monitor.getItem().index = hoverPosition
-
-    moveRow(dragPosition, hoverPosition, props)
-  },
-}
-
-const optionSource = {
-  beginDrag ({ index }: Props): object {
-    return { index }
-  },
-  isDragging (props: Props, monitor: DragSourceMonitor): boolean {
-    return monitor.getItem().index === props.index
-  },
-  endDrag ({ onEndDrag }: Props): void {
-    onEndDrag && onEndDrag()
-  },
-}
-
-export default DropTarget('message', optionTarget, connect => ({
-  connectDropTarget: connect.dropTarget(),
-}))(
-  DragSource<DndElementProps>('message', optionSource, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    connectDragPreview: connect.dragPreview(),
-    isDragging: monitor.isDragging(),
-  }))(DndElement),
-)
+export default DndElement

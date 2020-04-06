@@ -39,6 +39,7 @@
   align-items: center;
 }
 .optionList {
+  border: 1px solid #ccc;
   background-color: #f9f9f9;
 }
 .menuInput {
@@ -52,4 +53,8 @@
 }
 .previewLabel {
   flex: 0.5;
+}
+.dropdown {
+  margin: 0 8px;
+  padding: 0 8px;
 }

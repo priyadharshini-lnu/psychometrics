@@ -27,6 +27,7 @@ const Select: React.FC<Props> = ({
         {optionList?.map((option: string, i: number) => (<Option key={i} value={option}>{option}</Option>))}
       </BaseSelect>
       <Dropdown
+        className={styles.dropdown}
         overlay={(<OptionList type={type} model={model} index={index} />)}
         trigger={['click']}
       >

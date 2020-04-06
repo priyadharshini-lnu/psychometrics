@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, Input } from 'antd'
+import Utils from 'utils/Utils'
 import { DnDProvider, DnDElement } from '../../../../../../../../../components/DnD'
 import styles from '../../../FormStyle.scss'
 import { Question } from '../../../interfaces'
@@ -12,17 +13,28 @@ interface Props {
   index: number
 }
 
+interface OptionListState {
+  id: string
+  text: string
+}
 const { Item, Divider } = Menu
 
 const OptionList: React.FC<Props> = ({
   type, type: { optionList = [] }, index, model,
 }) => {
   const [text, setText] = useState<string>('')
-  const [optionListState, setOptionListState] = useState<string[]>(optionList)
+
+  // eslint-disable-next-line arrow-body-style
+  const addIdToOptionList = (optionList: string[]): OptionListState[] => {
+    return optionList.map(option => ({ id: Utils.genId(), text: option }))
+  }
+
+  const [optionListState, setOptionListState] = useState<OptionListState[]>(addIdToOptionList(optionList))
 
   useEffect(() => {
-    setOptionListState(optionList)
+    setOptionListState(addIdToOptionList(optionList))
   }, [optionList])
+
 
   const addOption = (e): void => {
     e.preventDefault()
@@ -48,7 +60,7 @@ const OptionList: React.FC<Props> = ({
     model.changeArrayProps({
       collection: 'formTypes',
       i: index,
-      val: { ...type, optionList: optionListState },
+      val: { ...type, optionList: optionListState.map(o => o.text) },
     }, false)
   }
 
@@ -56,15 +68,20 @@ const OptionList: React.FC<Props> = ({
     <DnDProvider>
       <Menu className={styles.optionList}>
         {optionListState.map((option, i) => (
-          <Item key={i}>
-            <DnDElement onDrag={setOptionListState} rowList={optionListState} index={i} onEndDrag={updateOptionList}>
-              <Option
-                option={option}
-                i={i}
-                removeOption={removeOption}
-              />
-            </DnDElement>
-          </Item>
+          <DnDElement
+            key={option.id}
+            wrapper={Item}
+            onDrag={setOptionListState}
+            rowList={optionListState}
+            index={i}
+            onEndDrag={updateOptionList}
+          >
+            <Option
+              option={option.text}
+              i={i}
+              removeOption={removeOption}
+            />
+          </DnDElement>
         ))}
         <Divider />
         <div className={styles.menuInputContainer}>
