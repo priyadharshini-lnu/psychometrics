@@ -615,13 +615,20 @@ Rails.application.routes.draw do
       end
     end
 
-    namespace :agile do
+    concern :agile_assigns do
       resources :assigns, only: %i[show update] do
         member do
           post :events
           put :set_language
         end
       end
+    end
+
+    namespace :agile do
+      namespace :anonym do
+        concerns :agile_assigns
+      end
+      concerns :agile_assigns
     end
 
     resources :reports, only: %i[show] do
