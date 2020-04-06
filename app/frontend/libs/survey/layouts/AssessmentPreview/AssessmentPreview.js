@@ -34,7 +34,7 @@ export class AssessmentPreview extends Component {
         },
       },
       settings: {
-        returnURL: '/',
+        returnURL: '',
         assetsBaseURL: store.agileAssetsUrl,
       },
     }
