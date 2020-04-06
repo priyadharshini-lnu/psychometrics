@@ -1,32 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { snakeCase } from 'lodash'
 import cs from 'classnames'
 import tracking from 'tracking'
 import 'tracking/build/data/face-min'
 import 'tracking-data/upper-body'
-
-// import face from './images/face_frame.svg'
-// import uipperHalfBody from './images/upper_half_body_frame.svg'
-// import fullBody from './images/full_body_frame.svg'
-
+import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
 class Tracker extends Component {
-  componentDidMount () {
-    this.setupBoundingBox()
+  constructor () {
+    super()
+
+    this.state = {}
   }
 
-  setupBoundingBox () {
+  componentWillMount () {
     const { fitInFrame, trackerOptions } = this.props
     const playerEl = document.querySelector('video')
 
     const { offsetWidth, offsetHeight } = playerEl
-    const canvasInner = document.querySelector('#canvasInner')
-    const context = canvasInner.getContext('2d')
-
-    canvasInner.width = offsetWidth
-    canvasInner.height = offsetHeight
 
     const boundaries = {
       x: trackerOptions[fitInFrame].x * offsetWidth,
@@ -34,6 +28,23 @@ class Tracker extends Component {
       width: trackerOptions[fitInFrame].width * offsetWidth,
       height: trackerOptions[fitInFrame].height * offsetHeight,
     }
+
+    this.setState({ boundaries, playerEl })
+  }
+
+  componentDidMount () {
+    this.setupBoundingBox()
+  }
+
+  setupBoundingBox () {
+    const { boundaries, playerEl } = this.state
+    const { offsetWidth, offsetHeight } = playerEl
+
+    const canvasInner = document.querySelector('#canvasInner')
+    const context = canvasInner.getContext('2d')
+
+    canvasInner.width = offsetWidth
+    canvasInner.height = offsetHeight
 
     context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
     context.lineWidth = 3
@@ -45,8 +56,7 @@ class Tracker extends Component {
 
   initTracker = (event) => {
     const { onInitTracker } = this.props
-    const playerEl = document.querySelector('video')
-    const { id, offsetWidth, offsetHeight } = playerEl
+    const { playerEl: { id, offsetWidth, offsetHeight } } = this.state
 
     const canvas = document.querySelector('#canvasOuter')
     const context = canvas.getContext('2d')
@@ -111,8 +121,7 @@ class Tracker extends Component {
   }
 
   unCamelize = (text) => {
-    text = text.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') // add space between camelCase text
-    text = text.toLowerCase()
+    text = snakeCase(text).replace(/_/g, ' ')
     return text
   }
 
@@ -131,17 +140,14 @@ class Tracker extends Component {
 
   render () {
     const { fitInFrame } = this.props
+    const { boundaries: position } = this.state
 
     return (
       <div className={styles.canvasContainer}>
         <canvas id="canvasInner" className={cs(styles.canvas, styles.inner)} />
         <canvas id="canvasOuter" className={cs(styles.canvas, styles.outer)} />
 
-        <div className={styles.overlay}>
-          <div className={styles.trackedObject}>
-            <img src={fitInFrame} />
-          </div>
-        </div>
+        <Overlay resolve={() => import(`./images/${snakeCase(fitInFrame)}_frame.svg`)} position={position} />
         <div id="help" className={styles.help}>
           <div id="helpText" className={styles.helpText}>
             Please make sure that your &nbsp;

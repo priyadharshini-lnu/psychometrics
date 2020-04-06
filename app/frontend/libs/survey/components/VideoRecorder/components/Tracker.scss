@@ -30,19 +30,6 @@
     }
   }
 
-  .overlay {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    position: absolute;
-
-    .trackedObject {
-      width: 100px;
-      height: 100px;
-      // background-image: url('./images/face_frame.svg');
-    }
-  }
-
   .canvas {
     top: 0;
     position: absolute;
