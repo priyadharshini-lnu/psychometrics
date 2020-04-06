@@ -6,9 +6,9 @@ import tracking from 'tracking'
 import 'tracking/build/data/face-min'
 import 'tracking-data/upper-body'
 
-import face from './images/face_frame.svg'
-import uipperHalfBody from './images/upper_half_body_frame.svg'
-import fullBody from './images/full_body_frame.svg'
+// import face from './images/face_frame.svg'
+// import uipperHalfBody from './images/upper_half_body_frame.svg'
+// import fullBody from './images/full_body_frame.svg'
 
 import styles from './Tracker.scss'
 
