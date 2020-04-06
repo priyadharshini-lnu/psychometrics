@@ -20,7 +20,7 @@ export const fetchAssign = (assignId, isEdit) => ({
   request: {
     url: `/assigns/${assignId}/pass`,
     camelize: false,
-    body: { edit: isEdit },
+    body: { edit: isEdit, cache: new Date().valueOf() },
   },
 })
 
