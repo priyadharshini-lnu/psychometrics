@@ -160,6 +160,7 @@ class VideoRecorder extends Component {
     const { preview, model } = this.props
     this.setState({ recordingState: 'saving' })
     if (preview) {
+      this.handleRecordingSaved()
       return this.setState({ percent: 100, recordingState: 'saved' })
     }
 

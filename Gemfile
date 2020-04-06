@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'bundler',                    '>= 1.8.4'
-gem 'rack',                       '~> 2.0.9'
+gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'coffee-rails',               '~> 4.2'
@@ -42,7 +42,7 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.4.3'
+gem 'devise',                     '~> 4.7.1'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'pundit',                     '~> 2.1.0'
@@ -50,7 +50,7 @@ gem 'two_factor_authentication',  '~> 2.2.0'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
-gem 'bootstrap-sass',             '~> 3.3.6'
+gem 'bootstrap-sass',             '~> 3.4.1'
 gem 'font-awesome-rails',         '~> 4.7'
 gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
@@ -126,7 +126,7 @@ gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
-gem 'mini_magick', '~> 4.5.1'
+gem 'mini_magick', '~> 4.10.1'
 gem 'remotipart', '~> 1.2'
 
 gem 'ancestry'
