@@ -176,10 +176,6 @@ class VideoRecorder extends Component {
     this.player.controlBar.currentTimeDisplay.removeClass('show')
   }
 
-  onInitTracker = () => {
-    this.player.controlBar.show()
-  }
-
   initPlayer () {
     const { result } = this.props
 
@@ -218,7 +214,6 @@ class VideoRecorder extends Component {
 
   initRecorder () {
     const { maxDuration } = this.props
-    const { trackingEnabled } = this.state
 
     this.setState({ recordingState: 'initialized', key: 'record' }, () => {
       const options = {
@@ -254,7 +249,6 @@ class VideoRecorder extends Component {
           recordingState: 'ready',
         })
 
-        if (trackingEnabled) this.player.controlBar.hide()
         this.statusText.show()
       })
       this.player.on('startRecord', () => {
@@ -264,6 +258,8 @@ class VideoRecorder extends Component {
         this.remainingTime.show()
         this.player.controlBar.currentTimeDisplay.addClass('show')
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
+
+        this.tracker.startTracking()
       })
       this.player.on('finishRecord', () => {
         this.player.trigger('statechanged', { status: 'recorded' })
@@ -405,7 +401,6 @@ class VideoRecorder extends Component {
             ref={(instance) => { this.tracker = instance }}
             fitInFrame={fitInFrame}
             trackerOptions={trackerOptions}
-            onInitTracker={this.onInitTracker}
           />
         )}
         {showProgress && this.renderProgress()}

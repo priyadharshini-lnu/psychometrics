@@ -13,7 +13,9 @@ class Tracker extends Component {
   constructor () {
     super()
 
-    this.state = {}
+    this.state = {
+      showOverlay: true,
+    }
   }
 
   componentWillMount () {
@@ -41,31 +43,18 @@ class Tracker extends Component {
       boundaries,
       playerEl: { offsetHeight, offsetWidth },
     } = this.state
-    const canvasInner = document.querySelector('#canvasInner')
+    const canvasInner = document.querySelector('#canvas')
     const context = canvasInner.getContext('2d')
 
     canvasInner.width = offsetWidth
     canvasInner.height = offsetHeight
 
     context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
-    context.lineWidth = 3
-    context.strokeStyle = 'yellow'
-    context.stroke()
-
     this.contextRef = context
   }
 
-  initTracker = (event) => {
-    const { onInitTracker } = this.props
-    const { playerEl: { id, offsetWidth, offsetHeight } } = this.state
-
-    const canvas = document.querySelector('#canvasOuter')
-    const context = canvas.getContext('2d')
-
-    canvas.width = offsetWidth
-    canvas.height = offsetHeight
-    context.lineWidth = 2
-    context.strokeStyle = 'blue'
+  initTracker = () => {
+    const { playerEl: { id } } = this.state
 
     const tracker = new tracking.ObjectTracker('face')
     // tracker.setStepSize(1.7)
@@ -75,23 +64,22 @@ class Tracker extends Component {
 
     this.trackerTask = tracking.track(`#${id}`, tracker)
 
-    const helperEl = event.currentTarget.parentElement
+    const helperEl = document.querySelector('#help')
     const helpText = helperEl.querySelector('#helpText')
 
     let rect
     tracker.on('track', (event) => {
-      context.clearRect(0, 0, offsetWidth, offsetHeight)
       if (event === undefined) return
 
       if (event.data && event.data.length > 0) {
         // eslint-disable-next-line prefer-destructuring
         rect = event.data.slice(-1)[0] // take the last rectangle
         if (this.isInBoundary(rect)) {
+          this.setState({ showOverlay: false })
           this.hideElements([helpText])
-          context.clearRect(0, 0, offsetWidth, offsetHeight)
         } else {
+          this.setState({ showOverlay: true })
           this.showElements([helpText])
-          context.strokeRect(rect.x, rect.y, rect.width, rect.height)
         }
 
         // event.data.forEach((rect) => {
@@ -105,7 +93,6 @@ class Tracker extends Component {
       }
     })
 
-    onInitTracker()
     this.hideElements([...helperEl.children])
   }
 
@@ -121,11 +108,6 @@ class Tracker extends Component {
     return inBoundary
   }
 
-  unCamelize = (text) => {
-    text = snakeCase(text).replace(/_/g, ' ')
-    return text
-  }
-
   showElements (targets) {
     targets.forEach(target => target.classList.remove('hidden'))
   }
@@ -134,39 +116,44 @@ class Tracker extends Component {
     targets.forEach(target => target.classList.add('hidden'))
   }
 
+  startTracking () {
+    this.setState({ showOverlay: true })
+    this.initTracker()
+  }
+
   stopTracking () {
-    // TODO: cleanup after stopping the trackerTask
+    this.setState({ showOverlay: false })
     this.trackerTask.stop()
   }
 
   render () {
     const { fitInFrame } = this.props
-    const { boundaries: position } = this.state
+    const { showOverlay, boundaries: position } = this.state
 
     return (
       <div className={styles.canvasContainer}>
-        <canvas id="canvasInner" className={cs(styles.canvas, styles.inner)} />
-        <canvas id="canvasOuter" className={cs(styles.canvas, styles.outer)} />
+        <canvas id="canvas" className={styles.canvas} />
 
-        <Overlay resolve={() => import(`./images/${snakeCase(fitInFrame)}_frame.svg`)} position={position} />
-        <div id="help" className={styles.help}>
-          <div id="helpText" className={styles.helpText}>
-            Please make sure that your &nbsp;
-            {this.unCamelize(fitInFrame)}
-            &nbsp; fits inside the frame.
-          </div>
+        {showOverlay && (
+          <Overlay
+            position={position}
+            ref={(instance) => { this.overlay = instance }}
+            resolve={() => import(`./images/${snakeCase(fitInFrame)}_frame.svg`)}
+          />
+        )}
+        {showOverlay && (
+          <div id="help" className={cs(styles.help, styles[fitInFrame])}>
+            <div id="helpText" className={styles.helpText}>
+              Please make sure that your&nbsp;
+              {snakeCase(fitInFrame).replace(/_/g, ' ')}
+              &nbsp;fits inside the frame.
+            </div>
 
-          <div className={styles.secondary}>
-            {"Press the 'Ready' when you're set to record the video."}
+            <div className={styles.secondary}>
+              {"Press the 'Record' button when you're ready to record the video."}
+            </div>
           </div>
-          <button
-            id="btnReady"
-            className={styles.btnReady}
-            onClick={e => this.initTracker(e)}
-          >
-            Ready
-          </button>
-        </div>
+        )}
       </div>
     )
   }
@@ -175,7 +162,6 @@ class Tracker extends Component {
 Tracker.popTypes = {
   fitInFrame: PropTypes.string,
   trackerOptions: PropTypes.object,
-  onInitTracker: PropTypes.func,
 }
 
 export default Tracker

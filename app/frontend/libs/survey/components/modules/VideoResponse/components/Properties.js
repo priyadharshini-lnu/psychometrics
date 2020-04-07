@@ -62,7 +62,7 @@ export class Properties extends Component {
 
   updateTrackerOptions = (key, val) => {
     const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
-    const options = { ...trackerOptions, ...this.trackerOptions }
+    const options = { ...this.trackerOptions, ...trackerOptions }
 
     options[fitInFrame][key] = val
     model.changeProps({ trackerOptions: options })
