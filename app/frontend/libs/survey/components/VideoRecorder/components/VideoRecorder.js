@@ -2,7 +2,6 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable import/no-unresolved */
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import 'recordrtc'
@@ -391,7 +390,7 @@ class VideoRecorder extends Component {
       key, deviceReady, recordingState, trackingEnabled,
     } = this.state
     const { fitInFrame, trackerOptions } = this.props
-    const showProgress = _.includes(['saving'], recordingState)
+    const showProgress = ['saving'].includes(recordingState)
 
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>

@@ -34,13 +34,15 @@ export class Overlay extends React.Component {
       },
     } = this.props
 
-    const style = { top: x, left: y }
+    const style = {
+      top: x, left: y, width, height,
+    }
 
     if (hasError) return <div>{hasError.message}</div>
 
     return (
       <div className={styles.overlay}>
-        <img className={styles.frame} src={image} width={width} height={height} style={style} />
+        <img className={styles.frame} src={image} style={style} />
       </div>
     )
   }

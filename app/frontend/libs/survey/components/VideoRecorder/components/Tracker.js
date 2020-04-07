@@ -37,9 +37,10 @@ class Tracker extends Component {
   }
 
   setupBoundingBox () {
-    const { boundaries, playerEl } = this.state
-    const { offsetWidth, offsetHeight } = playerEl
-
+    const {
+      boundaries,
+      playerEl: { offsetHeight, offsetWidth },
+    } = this.state
     const canvasInner = document.querySelector('#canvasInner')
     const context = canvasInner.getContext('2d')
 
