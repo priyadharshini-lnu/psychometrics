@@ -59,7 +59,7 @@ gem 'webpacker',                  '~> 4.0.2'
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
-gem 'simple_form',                '3.5.1'
+gem 'simple_form',                '5.0.2'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 0.17.0'
