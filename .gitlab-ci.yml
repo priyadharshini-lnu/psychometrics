@@ -41,7 +41,7 @@ test:
   # - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.yml.sample  config/application.yml
   - yarn install
-  - node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0
+  - node_modules/eslint/bin/eslint.js --ext .js,.jsx,.ts,.tsx app/frontend --max-warnings=0
   - npm test
   - bundle exec rubocop
   - bundle exec rake db:create

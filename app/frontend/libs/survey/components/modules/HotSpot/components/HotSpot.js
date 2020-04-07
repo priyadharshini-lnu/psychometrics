@@ -186,7 +186,7 @@ export class HotSpot extends Component {
                 disabled={disabledRemovePointButton}
                 className="btn btn-primary"
               >
-              Remove Point
+                Remove Point
               </button>
               <button
                 onClick={this.removeShape}
@@ -194,7 +194,7 @@ export class HotSpot extends Component {
                 disabled={disabledRemoveButton}
                 className="btn btn-danger pull-right"
               >
-              Remove Shape
+                Remove Shape
               </button>
             </div>
           </div>

@@ -25,16 +25,16 @@ import GetStyles from './GetStyles'
 
 const { md } = window
 class Text extends Component {
+  editor = null
+
+  edit = false
+
   static propTypes = {
     module: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     children: PropTypes.node,
     preview: PropTypes.bool,
   }
-
-  editor = null
-
-  edit = false
 
   componentDidMount () {
     this.listener = RichEditorStore.addListener('close', () => {

@@ -143,12 +143,12 @@ class Block extends Component {
         {model.props.staticContent ? (
           <MenuItem onSelect={this.removeStaticContent}>
             <span className={`icon fa fa-trash ${styles.menuicon}`} />
-          Remove Static Content
+            Remove Static Content
           </MenuItem>
         ) : (
           <MenuItem onSelect={this.addStaticContent}>
             <span className={`icon fa fa-list-alt ${styles.menuicon}`} />
-          Add Static Content
+            Add Static Content
           </MenuItem>
         )}
         <MenuItem onSelect={this.moveUp}>

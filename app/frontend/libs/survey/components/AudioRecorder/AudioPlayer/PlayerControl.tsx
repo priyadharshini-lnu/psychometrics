@@ -53,7 +53,7 @@ const PlayerControl: React.FC<Props> = ({
     {uploadState === UPLOAD_STATES.SAVED && (
     <div className={styles.savedTextContainer}>
       <CheckOutlined className={styles.icon} />
-        <span className={styles.savedText}>{Watchman.I18n().t('assessments.video_response.saved')}</span>
+      <span className={styles.savedText}>{Watchman.I18n().t('assessments.video_response.saved')}</span>
     </div>
     )}
 

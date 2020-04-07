@@ -23,7 +23,7 @@ const Message = ({ emailSchedules, changeSelected, selectedId }) => {
   if (emailSchedules.length > 1) {
     return (
       <div>
-      Messages:
+        Messages:
         <Select className="mls" value={selectedId} onChange={changeSelected}>
           {emailSchedules.map(emailSchedule => (
             <Select.Option value={emailSchedule.id} key={emailSchedule.id}>

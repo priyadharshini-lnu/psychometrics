@@ -143,7 +143,7 @@ export class Header extends Component {
                   rel="noopener noreferrer"
                   className={`btn btn-default ${styles.preview}`}
                 >
-                Reports
+                  Reports
                 </a>
               </span>
             </li>

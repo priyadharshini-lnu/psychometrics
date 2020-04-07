@@ -54,6 +54,9 @@ const ElementProcessor = {
         case END:
           return { embeddedData: result.embeddedData }
         case BLOCK:
+          if (!store.blocks[element.props.current || '']) {
+            break
+          }
           if (result.element) {
             return result
           }
