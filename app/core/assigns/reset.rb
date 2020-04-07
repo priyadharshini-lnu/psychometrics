@@ -33,7 +33,8 @@ module Assigns
         agile_scoring: {},
         occupations: [],
         expiry_date: nil,
-        last_activity_at: nil
+        last_activity_at: nil,
+        meta_data: {}
       )
     end
 

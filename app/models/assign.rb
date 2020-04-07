@@ -23,13 +23,14 @@
 #  mindmill_prefix   :string
 #  expiry_date       :datetime
 #
-
 class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
   belongs_to :evaluator, class_name: 'User'
   belongs_to :subject, class_name: 'User'
   belongs_to :campaign
+  has_one :agile, through: :assessment
+  has_many :agile_events
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'

@@ -21,7 +21,7 @@ module Features
           select opts[:project_manager], from: 'resource_project_manager_id', visible: false
           click_on t('administration.create')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else
@@ -45,7 +45,7 @@ module Features
           select opts[:applicable_level], from: 'resource_applicable_level', visible: false
           click_on t('administration.create')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else
@@ -67,7 +67,7 @@ module Features
           fill_in 'resource_name', with: opts[:name]
           click_on t('administration.create')
         end
-        wait_for_ajax
+        wait_for_ajax(no_of_ajax_request: 2)
         if block_given?
           yield
         else

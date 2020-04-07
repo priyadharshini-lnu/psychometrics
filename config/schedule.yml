@@ -25,3 +25,8 @@ users_results_handle_expire_job:
   cron: "*/10 * * * *" # At every 10th minute
   class: HandleUserResultExpiryJob
   queue_as: cron_tasks
+
+weekly_stats_job:
+  cron: "0 6 * * SUN UTC" # At 06:00 on Sunday
+  class: Licenses::WeeklyStatsJob
+  queue_as: cron_tasks
