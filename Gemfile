@@ -13,7 +13,7 @@ gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 4.0.1'
-gem 'rails',                      '~> 5.1.6'
+gem 'rails',                      '~> 5.1.7'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'uglifier', '>= 1.3.0'
 
