@@ -7,7 +7,13 @@
       justify-content: space-between;
       width: 100%;
 
+      .actions-btn {
+        display: flex;
+        align-items: center;
+      }
+
       .menu-icon {
+        margin-left: 8px;
         font-size: 1.5em;
       }
     }

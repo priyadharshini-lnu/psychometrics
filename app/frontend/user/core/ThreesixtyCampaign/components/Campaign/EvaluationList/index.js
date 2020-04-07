@@ -105,16 +105,14 @@ function EvaluationList ({
   const SubjectItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
-        <div>
-          <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
-            <a className="ant-dropdown-link actions-btn" href="#">
-              <Tooltip placement="topLeft" title={item.user.email}>
-                <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
-              </Tooltip>
-              <DownOutlined className="menu-icon" />
-            </a>
-          </Dropdown>
-        </div>
+        <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']} placement="bottomRight">
+          <a className="ant-dropdown-link actions-btn" href="#">
+            <Tooltip placement="topLeft" title={item.user.email}>
+              <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
+            </Tooltip>
+            <DownOutlined className="menu-icon" />
+          </a>
+        </Dropdown>
       </div>
     </List.Item>
   )
