@@ -12,7 +12,7 @@ interface Props {
   onChange: (i: number, value: string) => void
 }
 
-const Date: React.FC<Props> = ({
+const DateEntry: React.FC<Props> = ({
   onChange, model: { result: { answers } }, index,
 }) => {
   const { value } = answers[index]
@@ -26,4 +26,4 @@ const Date: React.FC<Props> = ({
   )
 }
 
-export default Date
+export default DateEntry

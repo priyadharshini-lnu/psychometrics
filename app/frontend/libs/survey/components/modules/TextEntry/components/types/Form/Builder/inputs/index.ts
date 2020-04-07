@@ -3,7 +3,7 @@ import TextArea from './TextArea'
 import Checkbox from './Checkbox'
 import Select from './Select'
 import MultiSelect from './MultiSelect'
-import Date from './Date'
+import DateEntry from './DateEntry'
 
 export default {
   Input,
@@ -11,5 +11,5 @@ export default {
   Checkbox,
   Select,
   MultiSelect,
-  Date,
+  DateEntry,
 }

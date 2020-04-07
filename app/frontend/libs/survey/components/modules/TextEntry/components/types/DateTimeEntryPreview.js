@@ -1,6 +1,7 @@
 import React from 'react'
 import { DatePicker } from 'antd'
 import moment from 'moment'
+import { getIn } from 'utils/immutable'
 
 const FORMAT = 'YYYY-MM-DD HH:mm:ss'
 export default class DateTimeEntryPreview extends React.Component {
@@ -11,7 +12,9 @@ export default class DateTimeEntryPreview extends React.Component {
   }
 
   render () {
-    const { model: { result: { answers: [{ value }] } } } = this.props
+    const { model: { result: { answers } } } = this.props
+
+    const value = getIn(answers, ['0', 'value'])
 
     return (
       <DatePicker

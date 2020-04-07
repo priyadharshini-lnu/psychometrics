@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import React from 'react'
 import { Select } from 'antd'
-import LabelEditor from '../../../../../../LabelEditor'
+import LabelEditor from 'components/LabelEditor'
 import styles from '../FormStyle.scss'
 import commonStyles from '../../../TextEntry.scss'
 import inputs from './inputs'
