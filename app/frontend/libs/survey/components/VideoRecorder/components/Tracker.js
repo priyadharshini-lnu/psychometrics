@@ -150,7 +150,7 @@ class Tracker extends Component {
             </div>
 
             <div className={styles.secondary}>
-              {"Press the 'Record' button when you're ready to record the video."}
+              Press the Record button when ready to record the video.
             </div>
           </div>
         )}
