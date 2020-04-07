@@ -156,7 +156,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "./node_modules/eslint/bin/eslint.js --ext .js,.ts app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
+      "pre-push": "./node_modules/eslint/bin/eslint.js --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --cache && bundle exec rubocop"
     }
   }
 }

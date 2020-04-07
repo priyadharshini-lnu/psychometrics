@@ -9,13 +9,13 @@ import styles from './Slider.scss'
 const TABLE_WIDTH = 700
 
 export default class extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
-
   handleDebounce = _.debounce(function () {
     this.forceUpdate()
   }, 50, { maxWait: 1000 })
+
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+  }
 
   changeValue = (i, value) => {
     const { model: { props } } = this.props

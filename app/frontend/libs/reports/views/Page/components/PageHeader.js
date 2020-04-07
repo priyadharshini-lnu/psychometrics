@@ -38,7 +38,7 @@ export default class PageHeader extends Component {
           >
             <MenuItem onSelect={this.addDisplayLogic}>
               <span className={`icon fa fa-eye ${styles.icon}`} />
-                Add Display Logic...
+              Add Display Logic...
             </MenuItem>
           </DropdownButton>
         </div>

@@ -8,16 +8,16 @@ const Header = ({
   <div className={`panel-heading ${styles.menu}`}>
     <div className={styles.preview}>
       <span className={`fa fa-search ${styles.icon}`} />
-        Previewing Assessment
+      Previewing Assessment
     </div>
     <div className={styles.options}>
       <label>
         <input type="checkbox" onChange={toggleIgnoreValidation} checked={ignoreValidation} />
-          Ignore Validation
+        Ignore Validation
       </label>
       <label>
         <input type="checkbox" onChange={toggleHiddenQuestions} checked={hideHiddenQuestions} />
-          Do Not Show Hidden Questions
+        Do Not Show Hidden Questions
       </label>
     </div>
     <div className={styles.restart}>

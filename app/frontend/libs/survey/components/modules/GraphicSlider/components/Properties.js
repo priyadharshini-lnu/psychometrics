@@ -260,7 +260,7 @@ export class Properties extends Component {
               checked={model.props.enableLabels}
               onChange={({ currentTarget }) => { this.updateProps(currentTarget.checked, 'enableLabels') }}
             />
-             Enable Labels
+            Enable Labels
           </label>
           {model.props.enableLabels && (
           <input
