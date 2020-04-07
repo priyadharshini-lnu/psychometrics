@@ -136,7 +136,7 @@ const HANDLERS = {
   [TOGGLE_HIDDEN_QUESTIONS]: state => setIn(state, ['hideHiddenQuestions'], !state.hideHiddenQuestions),
   [TOGGLE_IGNORE_VALIDATION]: state => setIn(state, ['ignoreValidations'], !state.ignoreValidations),
   [RESET]: state => ({
-    ...state, results: {}, currentElement: null, current_page: 0,
+    ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
   [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
   [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),
