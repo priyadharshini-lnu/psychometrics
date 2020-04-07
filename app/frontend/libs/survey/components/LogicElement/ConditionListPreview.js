@@ -32,9 +32,9 @@ export default class ConditionListPreview extends Component {
   renderConditionTypeSelect (condition) {
     return (
       <span className={css.mute}>
-[
+        [
         {condition.conditionType}
-]
+        ]
       </span>
     )
   }

@@ -74,7 +74,7 @@ export default class ResponseText extends Component {
         <label className="show">
           <input checked={styled} type="checkbox" onChange={this.onChangeStyled} value={1} />
           {' '}
-Styled
+          Styled
         </label>
         )}
       </div>

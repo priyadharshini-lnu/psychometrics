@@ -28,7 +28,7 @@ class Properties extends Component {
         <div className="margin-bottom-10">Up to 4 items can be displayed</div>
         <hr className={styles.divider} />
         <div className={styles.block}>
-        Pie Thickness
+          Pie Thickness
           <ChoicesInput
             value={parseInt(chartBorderWidth, 10)}
             onChange={this.changeBorderWidth}
