@@ -15,6 +15,10 @@ class AssignPolicy < BasePolicy
     pass?
   end
 
+  def set_language?
+    pass?
+  end
+
   def assessment?
     pass?
   end
