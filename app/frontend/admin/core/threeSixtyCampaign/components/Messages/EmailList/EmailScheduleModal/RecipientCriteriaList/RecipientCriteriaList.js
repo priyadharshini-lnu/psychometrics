@@ -62,7 +62,7 @@ const ViewParticipantButton = ({ recipientsCount, recipientType, openModal }) =>
   }
   return (
     <Button className="mlm" type="primary" size="small" onClick={() => openModal('RecipientListModal')}>
-        View
+      View
       {' '}
       {recipientsCount}
       {' '}

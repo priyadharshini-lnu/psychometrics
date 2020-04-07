@@ -162,7 +162,7 @@ function EvaluationList ({
               <div className="value">
                 {evaluationsCounters.completedEvaluations}
                 {' '}
-of
+                of
                 {' '}
                 {evaluationsCounters.totalEvaluations}
               </div>

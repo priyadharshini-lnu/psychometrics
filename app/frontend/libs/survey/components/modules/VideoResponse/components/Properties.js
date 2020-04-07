@@ -5,11 +5,6 @@ import Validations, { RequiredValidations } from 'components/Validations'
 import NumberInput from 'components/NumberInput'
 
 export class Properties extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-    restricted: PropTypes.bool,
-  }
-
   durations = [
     { value: 10, display: '10s' },
     { value: 30, display: '30s' },
@@ -19,6 +14,11 @@ export class Properties extends Component {
     { value: 300, display: '5min' },
     { value: 600, display: '10min' },
   ]
+
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+    restricted: PropTypes.bool,
+  }
 
   frameOptions = [
     { value: '', display: 'None' },

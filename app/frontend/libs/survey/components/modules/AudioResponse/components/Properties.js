@@ -4,12 +4,12 @@ import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
 
 export class Properties extends Component {
+  durations = [10, 20, 30, 40, 50, 60, 90, 120]
+
   static propTypes = {
     model: PropTypes.object.isRequired,
     restricted: PropTypes.bool,
   }
-
-  durations = [10, 20, 30, 40, 50, 60, 90, 120]
 
   update = () => {
     const { model } = this.props

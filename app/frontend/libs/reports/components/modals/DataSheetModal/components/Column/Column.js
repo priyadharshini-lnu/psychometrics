@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { DATA_SHEET_COLUMN_TYPES } from 'rb/consts/Report'
-import styles from './Column.module.scss'
+import styles from './Column.scss'
 
 export default class Column extends Component {
   remove = () => {

@@ -6,9 +6,9 @@ import styles from './styles.scss'
 import settings from '../../../settings.js'
 
 function Pagination ({
-  history, total, path, onChange
+  history, total, path, onChange,
 }) {
-  const handleOnChange = page => {
+  const handleOnChange = (page) => {
     onChange && onChange(page)
     routeUtils.moveTo(history, settings.urlPrefix, `${path}?page=${page}`)
   }
