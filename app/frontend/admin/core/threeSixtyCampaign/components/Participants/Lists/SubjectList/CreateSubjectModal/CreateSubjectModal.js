@@ -8,6 +8,7 @@ import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
+import userPresenter from 'presenters/userPresenter'
 import UserAutocomplete from '../../shared/UserAutocomplete'
 
 const tableFields = [
@@ -49,7 +50,9 @@ export default function CreateSubjectModal ({
   const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))
 
   const onSelect = (user) => {
-    const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
+    const data = JSON.parse(user)
+    const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(data, ['id']))
+    setAutocompletedUser(userPresenter.getFullNameWithEmail(data))
     fillSubjects(newSubjects)
   }
 

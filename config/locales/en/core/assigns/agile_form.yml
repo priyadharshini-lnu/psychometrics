@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        agile:
+          group_id:
+            blank: Group id can't be blank
+          answers:
+            blank: Answers can't be blank

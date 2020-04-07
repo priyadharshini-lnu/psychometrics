@@ -3,6 +3,7 @@ import { getNextElementId } from 'libs/survey/core/preview/FlowProcessor/selecto
 import DefaultProps from 'libs/survey/constants/DefaultProps'
 
 const state = {
+  blocks: {1: {}, 2:{}, 3:{}, 4: {}, 5: {}},
   questions: {
     1: {
       id: 1,
@@ -71,6 +72,7 @@ test('next element id should return valid result', () => {
 
 
 const state2 = {
+  blocks: {1: {}, 5: {}},
   normalizedTree: {
     0: { type: 'Block', props: { current: '1' } },
     1: { type: 'Branch', props: { conditions: [] } },
@@ -85,6 +87,7 @@ test('element processor should process next block if branch has not content', ()
 
 
 const stateWithEmbeded = {
+  blocks: {1: {}},
   normalizedTree: {
     0: { type: 'Block', props: { current: '1' } },
     1: { type: 'EmbeddedData', props: { storage: [{ key: 'test', value: '111' }] } },
@@ -98,6 +101,7 @@ test('element processor should process next block if branch has not content', ()
 })
 
 const stateWithMultipleEmbeded = {
+  blocks: {1: {}},
   normalizedTree: {
     '0': { type: 'Block', props: { current: '1' } },
     '1': { type: 'Randomizer', props: { number: 1 }},
@@ -114,6 +118,7 @@ test('element processor should process next block if branch has not content', ()
 
 
 const stateInvalidBlock = {
+  blocks: {1: {}, 5: {}},
   normalizedTree: {
     0: { type: 'Block', props: { current: '1' } },
     1: { type: 'WrongType', props: {} },
@@ -127,6 +132,7 @@ test('element processor should ignore and skip invalid block type', () => {
 
 
 const stateWithRandomization = {
+  blocks: {1: {}, 2: {}, 3: {}},
   normalizedTree: {
     0: { type: 'Block', props: { current: '1' } },
     1: { type: 'Randomizer', props: { number: 1 } },
@@ -139,4 +145,19 @@ test('element processor should ignore and skip invalid block type', () => {
   expect(ElementProcessor.run(stateWithRandomization, '0')).toStrictEqual({ element: '0', embeddedData: {} })
   expect(ElementProcessor.run(stateWithRandomization, '1')).toStrictEqual({ element: '1/0', embeddedData: {} })
   expect(ElementProcessor.run(stateWithRandomization, '1/0')).toStrictEqual({ element: '1/0', embeddedData: {} })
+})
+
+
+const stateWithDeletedBlock = {
+  blocks: {1: {}, 3: {}},
+  normalizedTree: {
+    0: { type: 'Block', props: { current: '1' } },
+    1: { type: 'Block', props: { current: '2' } },
+    2: { type: 'Block', props: { current: '3' } },
+  },
+}
+
+test('element processor should ignore and skip invalid block type', () => {
+  expect(ElementProcessor.run(stateWithDeletedBlock, '0')).toStrictEqual({ element: '0', embeddedData: {} })
+  expect(ElementProcessor.run(stateWithDeletedBlock, '1')).toStrictEqual({ element: '2', embeddedData: {} })
 })

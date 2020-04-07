@@ -8,7 +8,9 @@ html
     = csrf_meta_tags
     = jquery_include_tag :google
 
-    = stylesheet_link_tag    'administration', media: 'all'
+    = stylesheet_link_tag 'administration', media: 'all'
+    - if Rails.env.test?
+      = stylesheet_link_tag 'test'
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
 

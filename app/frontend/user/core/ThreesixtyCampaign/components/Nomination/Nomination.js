@@ -10,7 +10,6 @@ import _ from 'lodash'
 import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
 import NameModal from './NominationForm/NameModal'
-
 import './styles.scss'
 
 const { Paragraph } = Typography

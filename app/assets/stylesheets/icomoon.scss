@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-agile:before {
+  content: "\e906";
+}
 .icon-360:before {
   content: "\e900";
 }

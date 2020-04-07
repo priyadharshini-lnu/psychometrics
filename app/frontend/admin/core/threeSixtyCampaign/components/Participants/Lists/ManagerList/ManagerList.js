@@ -29,7 +29,7 @@ export default function ManagerList ({
 
   return (
     <>
-      <Row>
+      <Row justify="space-between">
         <Col span={4} className="pls">
           <UserOutlined />
           <span className="mlm">{`${total} Managers`}</span>

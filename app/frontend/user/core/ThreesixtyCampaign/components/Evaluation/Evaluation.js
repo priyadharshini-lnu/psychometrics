@@ -142,12 +142,12 @@ export default function Evaluation ({
           extra={(<Timer preview={preview} saveResults={saveResults} />)}
         >
           <div className="evaluation-container">
-            <Row type="flex" justify="end">
-              <Col>
+            <Row justify="end">
+              <Col flex="none">
                 <StatusDropdown />
               </Col>
               {availableTranslations && availableTranslations.length > 0 && (
-                <Col>
+                <Col flex="none">
                   <div className="mlm">
                     <Language
                       selectedLanguage={selectedLanguage}

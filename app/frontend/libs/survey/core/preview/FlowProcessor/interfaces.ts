@@ -38,6 +38,7 @@ export interface ElementInterface {
   props: {
     storage?: {}
     conditions?: []
+    current?: string
   }
   elements: any[]
 }
