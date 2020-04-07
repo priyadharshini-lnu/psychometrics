@@ -16,14 +16,6 @@ class Mindmill::AssignsController < ApplicationController
 
     @assign.in_progress!
     BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale)
-    # Set Not Started for all Mindmill assigns, except current
-    # Cause only one Mindmill can has In Progress status
-    Assign.
-      in_progress.
-      mindmill.
-      where(membership_id: @current_membership.id).
-      where.not(id: @assign.id).
-      update_all(status: :not_started)
     redirect_to @ssourl
   end
 
