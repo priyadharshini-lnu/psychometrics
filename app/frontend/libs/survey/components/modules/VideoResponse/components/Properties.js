@@ -15,11 +15,6 @@ export class Properties extends Component {
     { value: 600, display: '10min' },
   ]
 
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-    restricted: PropTypes.bool,
-  }
-
   frameOptions = [
     { value: '', display: 'None' },
     { value: 'upperHalfBody', display: 'Upper Half Body' },
@@ -39,6 +34,11 @@ export class Properties extends Component {
       height: 0,
       width: 0,
     },
+  }
+
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+    restricted: PropTypes.bool,
   }
 
   update = () => {
