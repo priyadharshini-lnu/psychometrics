@@ -73,7 +73,9 @@ Object {
     "dashboardUrl": "/",
     "dataSheet": undefined,
     "dataSheetColumns": undefined,
-    "dbResult": Object {},
+    "dbResult": Object {
+      "id": 1,
+    },
     "elements": Array [
       Object {
         "elements": Array [],
@@ -148,7 +150,7 @@ Object {
     "isThreesixty": undefined,
     "linear": false,
     "locales": undefined,
-    "mediaUrl": "/assigns/undefined",
+    "mediaUrl": "/assigns/1",
     "metaData": Object {},
     "normRules": Array [],
     "normalizedTree": Object {
@@ -328,7 +330,7 @@ Object {
         },
       },
     },
-    "randomseed": "",
+    "randomseed": 1,
     "readOnly": undefined,
     "relationship": undefined,
     "relationships": undefined,

@@ -81,7 +81,7 @@ const HANDLERS = {
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
-      allPages: InitPages.run(data),
+      allPages: InitPages.run(data, result.id || Date.now()),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -91,7 +91,7 @@ const HANDLERS = {
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,
       currentPage: result.current_page || 0,
-      randomseed: result.id || '', // use assign or user id
+      randomseed: result.id || Date.now(), // use assign or user id
       dataSheet: result.data_sheet,
       subjectDataSheet: result.subject_datasheet,
       dbResult: result,
