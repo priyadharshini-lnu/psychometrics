@@ -6,17 +6,16 @@ import {
 } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
 import mime from 'mime-types'
+import api from 'middleware/api'
 import styles from './FileUpload.scss'
 import ErrorList from './ErrorList'
 import FileDetails from './FileDetails'
 import FileValidation from './FileValidation'
 import FileUploader from './FileUploader'
 import reducer, {
-  SET_UPLOAD_STATE, SET_FILE, REMOVE_FILE, SET_ERRORS, initialState,
+  SET_UPLOAD_STATE, SET_FILE, REMOVE_FILE, SET_ERRORS, initialState, deleteFile,
 } from './reducer'
 import { UPLOAD_STATES } from './constants'
-
-const { $ } = window
 
 export default function FileUpload ({
   mediaUrl,
@@ -82,11 +81,7 @@ export default function FileUpload ({
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {
-        $.ajax({
-          method: 'DELETE',
-          url: `${mediaUrl}/remove_media`,
-          data: { media_id: mediaId },
-        }).done(() => {
+        api()(dispatch)(deleteFile(`${mediaUrl}/remove_media`, mediaId)).then(() => {
           onRemoveFile && onRemoveFile()
         })
       }
@@ -144,7 +139,7 @@ export default function FileUpload ({
 }
 
 FileUpload.propTypes = {
-  mediaUrl: PropTypes.string.isRequired,
+  mediaUrl: PropTypes.string,
   model: PropTypes.object.isRequired,
   onSuccessUpload: PropTypes.func,
   onRemoveFile: PropTypes.func,
