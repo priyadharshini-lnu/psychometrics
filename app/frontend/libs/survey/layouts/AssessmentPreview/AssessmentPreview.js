@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import Page from 'views/Preview/Page'
 import EndPage from 'views/Preview/EndPage'
-import store from 'store/AssessmentPreviewStore'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 
-const AssessmentPreview = ({ end, initialized }) => {
-  isAgile = () => store.assessment && store.assessment.category === 'agile'
+const AssessmentPreview = ({ end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl }) => {
+  const isAgile = () => assessmentCategory === 'agile'
 
   useEffect(() => {
-    initializeAgile()
+    isAgile() && initializeAgile()
   }, [])
 
   const initializeAgile = () => {
@@ -17,7 +16,7 @@ const AssessmentPreview = ({ end, initialized }) => {
         parent: 'agile-container',
       },
       service: {
-        baseURL: store.agileAssignUrl,
+        baseURL: agileAssignUrl,
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -26,7 +25,7 @@ const AssessmentPreview = ({ end, initialized }) => {
       },
       settings: {
         returnURL: '',
-        assetsBaseURL: store.agileAssetsUrl,
+        assetsBaseURL: agileAssetsUrl,
       },
     }
 

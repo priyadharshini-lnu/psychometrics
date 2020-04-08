@@ -67,6 +67,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
       dashboardUrl: data.dashboardUrl || '/',
