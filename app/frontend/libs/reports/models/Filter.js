@@ -6,8 +6,9 @@ import FilterCondition from './FilterCondition'
 const Filter = function (attrs = {}) {
   this.id = attrs.id
   this.name = attrs.name
-  this.minRequiredResponses = attrs.min_required_responses || 0
-  this.assessmentId = attrs.assessment_id
+  // TODO (atanych): it's fast hack, when we replace fetching filters with redux middleware way, all keys will be camel
+  this.minRequiredResponses = attrs.min_required_responses || attrs.minRequiredResponses || 0
+  this.assessmentId = attrs.assessment_id || attrs.assessmentId
   this.conditions = []
   if (attrs.conditions) {
     _.each(attrs.conditions, (condition) => {
