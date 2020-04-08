@@ -67,6 +67,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
       dashboardUrl: data.dashboardUrl || '/',
@@ -100,6 +101,8 @@ const HANDLERS = {
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
       locales: data.locales,
+      agileAssetsUrl: data.agileAssetsUrl,
+      agileAssignUrl: data.agileAssignUrl,
       end: data.approveEvaluation ? false : result.status === 'completed',
       prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
     }

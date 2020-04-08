@@ -31,7 +31,7 @@ export const fetchEvaluation = (campaignId, evaluationId, body) => ({
   request: {
     url: `/campaigns/${campaignId}/evaluations/${evaluationId}`,
     camelize: false,
-    body,
+    body: { ...body, cache: new Date().valueOf() },
   },
 })
 
