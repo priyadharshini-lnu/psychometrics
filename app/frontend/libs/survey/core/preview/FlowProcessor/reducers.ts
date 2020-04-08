@@ -100,6 +100,8 @@ const HANDLERS = {
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
       locales: data.locales,
+      agileAssetsUrl: data.agileAssetsUrl,
+      agileAssignUrl: data.agileAssignUrl,
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
