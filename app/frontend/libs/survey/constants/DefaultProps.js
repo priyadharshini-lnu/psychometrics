@@ -222,6 +222,9 @@ export const TextEntryProps = {
     defaultValues: {},
     choices: 0,
   },
+  Form: {
+    choices: 3,
+  },
 }
 
 export default DefaultProps

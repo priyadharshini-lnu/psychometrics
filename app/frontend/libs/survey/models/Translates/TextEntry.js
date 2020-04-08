@@ -19,6 +19,9 @@ class TextEntry extends BaseTranslate {
     if (/^contact/.test(field)) {
       return this.question.props.contactList[extraData.index]
     }
+    if (/^formOptionText/.test(field)) {
+      return this.question.props.formTypes[extraData.typeIndex].optionList[extraData.i]
+    }
   }
 
   exportLocales () {
