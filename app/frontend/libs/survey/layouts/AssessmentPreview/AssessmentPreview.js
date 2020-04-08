@@ -3,7 +3,9 @@ import Page from 'views/Preview/Page'
 import EndPage from 'views/Preview/EndPage'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 
-const AssessmentPreview = ({ end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl }) => {
+const AssessmentPreview = ({
+  end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl,
+}) => {
   const isAgile = () => assessmentCategory === 'agile'
 
   useEffect(() => {
