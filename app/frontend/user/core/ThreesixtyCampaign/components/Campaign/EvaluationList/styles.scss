@@ -10,6 +10,8 @@
       .actions-btn {
         display: flex;
         align-items: center;
+        flex: 1;
+        justify-content: space-between;
       }
 
       .menu-icon {
@@ -22,6 +24,13 @@
       font-weight: 500;
     }
   }
+  .approve-list {
+
+    .evaluation-item {
+      padding-left: 28px;
+    }
+  }
+
 }
 .flex {
   display: flex;
