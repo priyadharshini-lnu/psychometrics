@@ -100,6 +100,8 @@ const HANDLERS = {
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
       locales: data.locales,
+      end: data.approveEvaluation ? false : result.status === 'completed',
+      prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
