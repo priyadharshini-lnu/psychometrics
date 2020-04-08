@@ -3,6 +3,8 @@
 exports[`initializing base assessment init action should init assessment data: init_assessment 1`] = `
 Object {
   "preview": Object {
+    "agileAssetsUrl": undefined,
+    "agileAssignUrl": undefined,
     "allPages": Object {
       "1": Array [
         Object {
@@ -27,6 +29,7 @@ Object {
         },
       ],
     },
+    "assessmentCategory": undefined,
     "blocks": Object {
       "1": Object {
         "id": 1,
