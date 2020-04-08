@@ -29,6 +29,7 @@ class AssessmentContainer extends Component {
         locale: selectedLocale || document.body.dataset.locale,
         locales,
         type,
+        readOnly: type === 'view_results',
         dataSheetColumns: data.data_sheet_columns || [],
         isThreesixty: isThreesixty === 'true',
         isAnonymousAssessment: isAnonymousAssessment === 'true',

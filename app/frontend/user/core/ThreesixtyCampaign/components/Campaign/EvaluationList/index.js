@@ -52,7 +52,7 @@ function EvaluationList ({
         <Menu.Item
           key={evaluator.id}
           onClick={() => {
-            history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approveEvaluation=true&step=0`)
+            history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approve_evaluation=true&step=0`)
           }}
         >
           {userPresenter.getFullNameWithEmail(evaluator.user)}

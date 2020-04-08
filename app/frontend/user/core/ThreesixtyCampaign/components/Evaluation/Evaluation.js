@@ -22,7 +22,6 @@ export default function Evaluation ({
       subject,
       user,
       is_self: isSelf,
-      as_manager: asManager,
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       translations,
@@ -38,11 +37,13 @@ export default function Evaluation ({
 }) {
   const assessmentRef = React.createRef()
   const {
-    edit, step, approveEvaluation, lang,
+    edit, step, approve_evaluation, lang,
   } = qs.parse(location.search)
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step, lang })
+    fetchAssessment(params.campaignId, params.id, {
+      isEdit: edit, step, approve_evaluation, lang,
+    })
   }, [])
 
   if (!loaded) { return null }
@@ -69,7 +70,7 @@ export default function Evaluation ({
   )
 
   const StatusDropdown = () => {
-    if (approveEvaluation) {
+    if (approve_evaluation) {
       return (
         <Dropdown
           trigger={['click']}
@@ -87,7 +88,7 @@ export default function Evaluation ({
   }
 
   const title = () => {
-    if (asManager) {
+    if (approve_evaluation) {
       return (
         <div>
           {I18n.t('threesixty.subject')}
@@ -162,7 +163,7 @@ export default function Evaluation ({
                 <PassAssessment
                   ref={assessmentRef}
                   id="pass_assessment"
-                  type={asManager ? 'view_results' : 'pass_assessment'}
+                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
                   isThreesixty="true"
                   resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
                   data={assessment}
@@ -170,7 +171,7 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
-                  approveEvaluation={approveEvaluation}
+                  approveEvaluation={approve_evaluation}
                   rstore={store}
                 />
               </div>
