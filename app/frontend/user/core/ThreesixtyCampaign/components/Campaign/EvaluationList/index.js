@@ -133,6 +133,7 @@ function EvaluationList ({
     <Collapse bordered={false} defaultActiveKey="panel">
       <Panel header={<div className="panel-header">{title}</div>} key="panel">
         <List
+          className="approve-list"
           size="large"
           dataSource={list}
           renderItem={SubjectItem}
