@@ -95,7 +95,7 @@ function NominationList ({
               <div className="value">
                 {nominationsCounters.completedNominations}
                 {' '}
-of
+                of
                 {' '}
                 {nominationsCounters.totalNominations}
               </div>

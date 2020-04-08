@@ -228,27 +228,27 @@ class Properties extends Component {
             <div>
               {'{{first_name}}'}
               {' '}
-- First Name
+              - First Name
             </div>
             <div>
               {'{{last_name}}'}
               {' '}
-- Last Name
+              - Last Name
             </div>
             <div>
               {'{{completed_at}}'}
               {' '}
-- Date of completion assessment
+              - Date of completion assessment
             </div>
             <div>
               {'{{norm_used}}'}
               {' '}
-- Norm Used
+              - Norm Used
             </div>
             <div>
               {'{{locale_name}}'}
               {' '}
-- Locale
+              - Locale
             </div>
             <br />
             <em>{'Note: {{}} Must only be used with available Piped Text Options'}</em>

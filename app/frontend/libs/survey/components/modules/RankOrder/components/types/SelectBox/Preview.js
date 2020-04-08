@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import styles from './SelectBox.scss'
 
 export default class extends Component {
-  static propTypes = {
-    model: PropTypes.object.isRequired,
-  }
-
   selectedItemId = null
 
   current = null
+
+  static propTypes = {
+    model: PropTypes.object.isRequired,
+  }
 
   componentWillMount () {
     const { model, model: { moduleConfig } } = this.props

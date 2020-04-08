@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Slider, Spin } from 'antd'
+import { getMinutesAndSeconds } from 'utils/time'
 import { PLAYER_STATE } from '../constants'
 import styles from './AudioPlayerStyle.scss'
-import { getMinutesAndSeconds } from 'utils/time'
-import { setPlayerState } from '../reducer'
 
 interface Props {
   playerState: string
@@ -50,9 +49,7 @@ const AudioPlayer: React.FC<Props> = ({ playerState, audioFileUrl, onComplete })
     onComplete()
   }
 
-  const playPercentage = () => {
-    return Math.round(currentTime / duration * 100)
-  }
+  const playPercentage = () => Math.round(currentTime / duration * 100)
 
   const updateProgress = () => {
     hideLoadingIndicator()

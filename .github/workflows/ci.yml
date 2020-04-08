@@ -10,6 +10,7 @@ jobs:
       RAILS_ENV: test
       REDIS_HOST: localhost
       REDIS_URL: redis://localhost:6379/1
+      NODE_OPTIONS: --max-old-space-size=4096
     services:
       postgres:
         image: postgres:11
@@ -65,7 +66,7 @@ jobs:
           yarn install --pure-lockfile
       - name: Linters
         run: |
-          node_modules/eslint/bin/eslint.js app/frontend/ --max-warnings=0
+          node_modules/eslint/bin/eslint.js --ext .js,.jsx,.ts,.tsx app/frontend --max-warnings=0
           bundle exec rubocop
       - name: Setup Database
         run: |
@@ -76,6 +77,19 @@ jobs:
 
       - name: Run Javascript Tests
         run: yarn test
+
+      - name: Webpack compile cache
+        uses: actions/cache@v1
+        with:
+          path: public/packs-test
+          key: ${{ runner.os }}-webpack-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('app/frontend/**/*.*') }}
+      - name: Webpack compile
+        run: |
+          if [[ ! -d public/packs-test ]]; then
+            bundle exec rails webpacker:compile
+          else
+            echo "No need to compile assets. Asset fetched from cache."
+          fi
 
       - name: Run RSpec
         run: EAGER_LOAD=1 bundle exec rspec

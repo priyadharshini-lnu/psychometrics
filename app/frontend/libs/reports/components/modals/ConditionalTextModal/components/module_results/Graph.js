@@ -36,7 +36,7 @@ export default class ConditionCollection extends Component {
     const { model } = this.state
     return (
       <div>
-      Then use the following colors:
+        Then use the following colors:
         <div className={styles.stylesBlock} style={{ position: 'relative' }}>
           <ColorSet model={model} />
         </div>

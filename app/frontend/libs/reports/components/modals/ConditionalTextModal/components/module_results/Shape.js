@@ -48,7 +48,7 @@ export class ConditionCollection extends Component {
     return (
       <div>
         <div className={styles.stylesBlock}>
-        and apply the following styles:
+          and apply the following styles:
           <div style={style} />
           <div className={styles.row}>
             <div className={styles.block} style={{ position: 'relative' }}>

@@ -304,7 +304,7 @@ export class Properties extends Component {
             checked={!!props.hideChoiceText}
             onChange={e => this.changeField('hideChoiceText', e)}
           />
-           Choice text
+          Choice text
         </label>
         <label className={styles.inputLabel}>
           <input
@@ -312,7 +312,7 @@ export class Properties extends Component {
             checked={!!props.hideGridValues}
             onChange={e => this.changeField('hideGridValues', e)}
           />
-           Grid values
+          Grid values
         </label>
         <label className={styles.inputLabel}>
           <input
@@ -320,7 +320,7 @@ export class Properties extends Component {
             checked={!!props.hideValue}
             onChange={e => this.changeField('hideValue', e)}
           />
-           Slider value
+          Slider value
         </label>
       </div>
     )

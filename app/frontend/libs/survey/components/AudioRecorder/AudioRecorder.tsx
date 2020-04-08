@@ -1,6 +1,7 @@
-import _ from 'lodash'
 import React, { useReducer, useEffect, useRef } from 'react'
 import cs from 'classnames'
+import { getMinutesAndSeconds } from 'utils/time'
+import api from 'middleware/api'
 import styles from './AudioRecorderStyle.scss'
 import {
   RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
@@ -14,10 +15,8 @@ import FileUploader from '../FileUpload/components/FileUploader'
 import Permission from './Permission'
 import AudioPlayer from './AudioPlayer/index'
 import Microphone from './images/microphone.png'
-import { getMinutesAndSeconds } from 'utils/time'
 import RecorderControl from './Recorder/RecorderControl'
 import PlayerControl from './AudioPlayer/PlayerControl'
-import api from 'middleware/api'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { $ } = window as any
@@ -232,12 +231,20 @@ const AudioRecorder: React.FC<Props> = ({
         </div>
       </div>
       {recordingState === RECORDER_STATES.RECORDED && fileUrl()
-        && <AudioPlayer playerState={playerState} onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))} audioFileUrl={fileUrl() as string} />}
+        && (
+        <AudioPlayer
+          playerState={playerState}
+          onComplete={
+          (): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
+          audioFileUrl={fileUrl() as string}
+        />
+        )
+          }
       {recordingState !== RECORDER_STATES.RECORDED
         && (
         <div className={styles.recordingTime}>
           {getMinutesAndSeconds(state.recordingTime)}
-          {' / '}
+          /
           {getMinutesAndSeconds(maxDuration)}
         </div>
         )}
