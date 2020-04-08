@@ -170,6 +170,7 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
+                  approveEvaluation={approveEvaluation}
                   rstore={store}
                 />
               </div>
