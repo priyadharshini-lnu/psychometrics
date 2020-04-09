@@ -19,9 +19,11 @@ en:
         roles:
           member: User
           manager: Manager
-          admin: Client Admin
-          superadmin: Super admin
-          super_admin: Super admin
+          admin: Admin
+          client_admin: Client Admin
+          project_admin: Project Admin
+          superadmin: Super Admin
+          super_admin: Super Admin
           regular: Regular
           psychometric: Psychometric
           organisational: Organisational
