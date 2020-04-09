@@ -5,7 +5,7 @@ import {
   Menu, Dropdown, List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
 import {
-  CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined,
+  CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import { STATUSES } from 'constants/userResult'
@@ -110,7 +110,7 @@ function EvaluationList ({
             <Tooltip placement="topLeft" title={item.user.email}>
               <div className={styles.flex}>{userPresenter.selfUserName(item)}</div>
             </Tooltip>
-            <EllipsisOutlined className="menu-icon" />
+            <DownOutlined className="menu-icon" />
           </a>
         </Dropdown>
       </div>
