@@ -24,6 +24,7 @@ export default function FileUpload ({
   fakeUpload,
   onSuccessUpload,
   onRemoveFile,
+  readOnly,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -105,6 +106,7 @@ export default function FileUpload ({
           customRequest={() => {}}
           fileList={[]}
           onChange={handleFileChange}
+          disabled={readOnly}
         >
           <Button>
             <UploadOutlined />
@@ -133,7 +135,7 @@ export default function FileUpload ({
       </>
       )}
       {uploadState === UPLOAD_STATES.SAVED
-        && <FileDetails localFile={file} savedFile={answer} removeFile={removeFile} /> }
+        && <FileDetails localFile={file} savedFile={answer} removeFile={removeFile} readOnly={readOnly} /> }
     </div>
   )
 }

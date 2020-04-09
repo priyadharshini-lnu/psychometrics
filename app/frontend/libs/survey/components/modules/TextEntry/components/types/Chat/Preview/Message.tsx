@@ -11,9 +11,10 @@ interface Props {
   message: MessageInterface
   model: Question
   isAnswer?: boolean
+  readOnly?: boolean
 }
 
-const Message: React.FC<Props> = ({ model, message, isAnswer }) => {
+const Message: React.FC<Props> = ({ model, message, isAnswer, readOnly }) => {
   const deleteMessage = (): void => {
     model.result.answer(model.result.answers.filter(r => r.index !== message.position))
   }
@@ -36,7 +37,7 @@ const Message: React.FC<Props> = ({ model, message, isAnswer }) => {
             model, `messageText${message.position}`, { position: message.position },
           )}
         </div>
-        {isAnswer && (
+        {isAnswer && !readOnly && (
           <div className={commonStyles.deleteIconContainer}>
             <CloseOutlined onClick={deleteMessage} className={commonStyles.deleteIcon} />
           </div>
