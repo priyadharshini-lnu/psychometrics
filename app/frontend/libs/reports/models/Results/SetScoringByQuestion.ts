@@ -11,7 +11,7 @@ export default {
     (result: ScoringByQuestion, data: RawResult) => _.reduce(
       AppStore.mapFactors[dimensionId],
       (result: ScoringByQuestion, factor: Factor, factorId: string) => {
-        const scoringResults = data.scoring[factorId]
+        const scoringResults = _.get(data, ['scoring', factorId])
         if (!scoringResults) return result
 
         if (!result[factorId]) {
