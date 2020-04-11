@@ -2,8 +2,11 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react'
 import {
-  Row, Col, Icon, Card, Progress, Dropdown, Menu,
+  Row, Col, Card, Progress, Dropdown, Menu,
 } from 'antd'
+import {
+  DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
+} from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
@@ -25,7 +28,7 @@ const DownloadLink = ({ report, text }) => {
 
   return (
     <a href={mindmill ? mindmillReportUrl : pdfUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
-      <Icon type="download" />
+      <DownloadOutlined />
       {' '}
       {text}
     </a>
@@ -64,7 +67,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS) {
     return (
       <LinkTag>
-        {loading ? <Icon type="loading" /> : <ContinueIcon />}
+        {loading ? <LoadingOutlined /> : <ContinueIcon />}
         {' '}
         {I18n.t('threesixty.continue')}
       </LinkTag>
@@ -75,7 +78,7 @@ const renderButtonContent = ({
     if (!assignedReports.length || assessmentCategory === 'agile') {
       return (
         <a>
-          <Icon type="check" />
+          <CheckOutlined />
           {' '}
           {I18n.t('threesixty.completed')}
         </a>
@@ -88,7 +91,7 @@ const renderButtonContent = ({
           overlay={() => ReportsMenu(assignedReports)}
         >
           <div className="dropdown">
-            <Icon type="download" />
+            <DownloadOutlined />
             {' '}
             {I18n.t('threesixty.download_report')}
           </div>
@@ -101,7 +104,7 @@ const renderButtonContent = ({
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
-      {loading ? <Icon type="loading" /> : <Icon type="play-circle" />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -157,7 +160,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">
-                <Icon type="clock-circle" />
+                <ClockCircleOutlined />
                 {' '}
                 {assign.timing}
               </Col>

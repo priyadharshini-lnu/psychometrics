@@ -1,3 +1,4 @@
 import CPIFactorConditionModal from './components/CPIFactorConditionModal'
+import connect from './connect'
 
-export default CPIFactorConditionModal
+export default connect(CPIFactorConditionModal)

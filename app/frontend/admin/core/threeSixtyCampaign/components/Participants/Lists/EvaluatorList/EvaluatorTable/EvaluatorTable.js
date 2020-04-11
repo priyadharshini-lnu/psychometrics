@@ -1,5 +1,6 @@
 import React from 'react'
-import { Dropdown, Icon, Table } from 'antd'
+import { Dropdown, Table } from 'antd'
+import { CheckOutlined, EllipsisOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import ActionsMenu from '../ActionsMenu'
 import styles from './EvaluatorTable.scss'
@@ -51,8 +52,7 @@ export default function EvaluatorTable ({
 
       <Column
         title="Is Subject"
-        render={({ isSubject }) => isSubject && <Icon className="text-success" type="check" />
-        }
+        render={({ isSubject }) => isSubject && <CheckOutlined className="text-success" />}
         key="isSubject"
       />
 
@@ -72,7 +72,7 @@ export default function EvaluatorTable ({
             trigger={['click']}
           >
             <div className={styles.actions}>
-              <Icon type="ellipsis" />
+              <EllipsisOutlined />
             </div>
           </Dropdown>
         )}

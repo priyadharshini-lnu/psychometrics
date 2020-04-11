@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import AppStore from 'store/AppStore'
 import styles from './PipedTextModal.scss'
 import types from './types'
 import FIELDS from './fields'
@@ -19,8 +18,7 @@ export class PipedTextModal extends Component {
   }
 
   render () {
-    const { close } = this.props
-    const datasheetFields = AppStore.dataSheetColumns
+    const { dataSheetColumns, close } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -41,7 +39,7 @@ export class PipedTextModal extends Component {
                         insert={value => this.insert(value)}
                         key={field.name}
                         field={field}
-                        context={{ datasheetFields }}
+                        context={{ datasheetFields: dataSheetColumns }}
                       />
                     )
                   })}

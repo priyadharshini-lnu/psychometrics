@@ -7,7 +7,7 @@ default: &default
   public_output_path: packs
   cache_path: tmp/cache/webpacker
   check_yarn_integrity: false
-  webpack_compile_output: false
+  webpack_compile_output: true
 
   # Additional paths webpack should lookup modules
   # ['app/assets', 'engine/foo/app/assets']
@@ -48,6 +48,8 @@ default: &default
     - .gif
     - .jpeg
     - .jpg
+    - .ts
+    - .tsx
 
 development:
   <<: *default
@@ -58,10 +60,7 @@ development:
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
-    https: false
-    host: localhost
     port: 3035
-    public: localhost:3035
     hmr: true
     # Inline should be set to true if using HMR
     inline: true

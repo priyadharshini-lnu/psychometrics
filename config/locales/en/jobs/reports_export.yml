@@ -3,4 +3,4 @@ en:
     reports_export:
       download:
           message: Report is ready
-          description: "Report '%{report_name}' genrated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>"
+          description: "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>"

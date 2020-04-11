@@ -172,6 +172,11 @@ const FIELDS = [
         type: 'link',
         value: '{{dash://Url}}',
       },
+      {
+        name: 'QR Code',
+        type: 'link',
+        value: '{{dash://QrCode}}',
+      },
     ],
   },
 ]

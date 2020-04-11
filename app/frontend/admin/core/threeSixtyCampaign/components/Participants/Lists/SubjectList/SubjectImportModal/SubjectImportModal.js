@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon,
+  Modal, Button,
 } from 'antd'
+import { LoadingOutlined, ImportOutlined } from '@ant-design/icons'
 import UserList from 'admin/core/threeSixtyCampaign/components/UserList/UserList'
 import cs from 'classnames'
 import FileImport from './FileImport'
@@ -22,9 +23,9 @@ export default function SubjectImportModal ({
 
   const importButtonIcon = () => {
     if (importInProgress) {
-      return <Icon type="loading" />
+      return <LoadingOutlined />
     }
-    return <Icon type="import" />
+    return <ImportOutlined />
   }
 
   const handleOnCancel = () => {

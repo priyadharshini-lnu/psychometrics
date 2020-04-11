@@ -1,3 +1,4 @@
 import ConditionalTextModal from './components/ConditionalTextModal'
+import connect from './connect'
 
-export default ConditionalTextModal
+export default connect(ConditionalTextModal)

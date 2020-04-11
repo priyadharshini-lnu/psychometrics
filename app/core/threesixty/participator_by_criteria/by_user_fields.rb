@@ -20,6 +20,8 @@ module Threesixty
           if criteria['field'] == 'name_or_email'
             Comparator::String.call!(user.decorate.full_name, criteria['value'], criteria['comparator']) ||
               Comparator::String.call!(user.email, criteria['value'], criteria['comparator'])
+          elsif criteria['field'] == 'disabled'
+            Comparator::Boolean.call!(user.disabled, criteria['value'])
           else
             Comparator::String.call!(user.public_send(criteria['field']), criteria['value'], criteria['comparator'])
           end

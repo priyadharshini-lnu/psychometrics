@@ -15,6 +15,12 @@ class UsersResult < ApplicationRecord
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
 
+  def expired?
+    return false unless expiry_date
+
+    expiry_date < Time.current
+  end
+
   class << self
     def encode_id(id)
       hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)

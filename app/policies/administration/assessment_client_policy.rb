@@ -33,5 +33,9 @@ module Administration
     def generate_universal_link?
       @user.is?(:superadmin)
     end
+
+    def download_qrcode?
+      @user.admin?
+    end
   end
 end

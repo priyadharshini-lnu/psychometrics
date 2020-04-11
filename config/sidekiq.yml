@@ -11,4 +11,5 @@ production:
   - mailers
   - communication
   - reports
+  - cron_tasks
   - default

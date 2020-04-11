@@ -31,23 +31,27 @@ class AssessmentDecorator < BaseDecorator
     # object.timing ? "- #{object.timing}" : ''
   end
 
-  def anonym_link_for(client)
-    # Disallow universal links for Hogan and MM
-    return 'N/A' if object.external?
-
+  def anonym_link?(client)
     assessments_client = client.assessments_clients.find_by(assessment_id: object.id)
 
-    return unless assessments_client.enable_universal_links?
-    return unless assessments_client.assessment_key
+    assessments_client.enable_universal_links? && assessments_client.assessment_key
+  end
+
+  def link_to_anonym_link(client)
+    url = anonym_link_for(client)
+    h.link_to url.truncate(30), url
+  end
+
+  def anonym_link_for(client)
+    assessments_client = client.assessments_clients.find_by(assessment_id: object.id)
 
     options = {
       assessment_key: assessments_client.assessment_key,
       domain: Settings.domain,
       subdomain: client.project.subdomain
     }
-    url = h.anonym_assessment_pass_url(options)
 
-    h.link_to(url, url)
+    h.anonym_assessment_pass_url(options)
   end
 
   def universal_link_regeneration_confirmation

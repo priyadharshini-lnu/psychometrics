@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Button, Icon, Input, Menu, Dropdown, DatePicker,
+  Button, Input, Menu, Dropdown, DatePicker,
 } from 'antd'
+import { CaretDownOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 
 export default function ScheduledDateField ({ scheduledDate, updateScheduleDate }) {
@@ -51,7 +52,7 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
       />
       <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
         <Button className={styles.scheduleDateDropdownButton}>
-          <Icon type="caret-down" />
+          <CaretDownOutlined />
         </Button>
       </Dropdown>
     </Input.Group>

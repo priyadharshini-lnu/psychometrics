@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Slider as CustomSlider } from 'components/Slider'
 import Utils from 'utils'
-import I18nStore from 'store/I18nStore'
 import styles from './Slider.scss'
 
 export default class extends Component {
@@ -21,7 +20,7 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result } } = this.props
+    const { model, model: { props, moduleConfig, result }, I18n } = this.props
     return (
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.labels}`}>
@@ -29,7 +28,7 @@ export default class extends Component {
           <div className={styles.labelItems}>
             {_.times(props.labels, i => (
               <span key={i}>
-                {I18nStore.tQuestion(model, `labelsTexts${i + 1}`, { label: i })
+                {I18n.tQuestion(model, `labelsTexts${i + 1}`, { label: i })
                 || moduleConfig.defaultLabelText(i + 1)}
               </span>
             ))}
@@ -59,7 +58,7 @@ export default class extends Component {
                 <div className={styles.firstColumn}>
                   <div className={styles.item}>
                     <span>
-                      {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                      {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                         || moduleConfig.defaultChoiceText(i + 1)}
                     </span>
                   </div>

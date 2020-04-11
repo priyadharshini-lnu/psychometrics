@@ -5,9 +5,8 @@ import _ from 'lodash'
 import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
-import Socket from 'cable'
 import Action from 'undo'
-import rstore from 'store'
+import Watchman from 'store/StoreWatchman'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -97,14 +96,14 @@ _.extend(Question.prototype, {
     this.name = name
   },
 
-  addComment (data) {
-    const comment = new Comment(data)
-    Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
-      Object.assign(comment, { id: data.id, name: data.author })
-      this.comments.push(comment)
-      this.store.update()
-    })
-  },
+  // addComment (data) {
+  // const comment = new Comment(data)
+  // Socket.socket().perform('comment_create', { question_id: this.id, text: comment.text }, (data) => {
+  //   Object.assign(comment, { id: data.id, name: data.author })
+  //   this.comments.push(comment)
+  //   this.store.update()
+  // })
+  // },
 
   loadComments (comments) {
     _.each(comments, (comment) => {
@@ -276,12 +275,11 @@ _.extend(Question.prototype, {
     // this.store.update()
 
     // NOTE: @fedor the next dispatches it's a hack to update ui. should be removed later
-    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
-    // rstore.dispatch({ type: 'survey/assessment/FAKE_UPDATE' })
+    Watchman.get().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   updateDefaultProps () {
-    rstore.dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    Watchman.get().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   sync () {

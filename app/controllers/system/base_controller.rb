@@ -28,7 +28,7 @@ module System
     private
 
     def user_not_authorized
-      render plain: t('shared.no_access_message')
+      render plain: I18n.t('errors.forbidden')
     end
   end
 end

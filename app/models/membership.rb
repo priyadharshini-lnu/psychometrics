@@ -115,7 +115,8 @@ class Membership < ApplicationRecord
         user.last_name,
         user.email,
         user.role.as('user_role'),
-        user.is_anonym
+        user.is_anonym,
+        disabled.as('membership_disabled')
       ]
     end
   }

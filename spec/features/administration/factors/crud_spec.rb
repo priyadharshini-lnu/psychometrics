@@ -6,7 +6,7 @@ feature 'CRUD Factor' do
   before(:each) { enter_as :superadmin }
   given!(:dimension) { create :dimension }
 
-  scenario 'Create Factor' do
+  scenario 'Create Factor', skip: true do
     visit "/administration/dimensions/#{dimension.id}/factors"
     find('.panel-heading a', text: t('administration.factors.index.new')).click
     wait_for_ajax
@@ -20,7 +20,7 @@ feature 'CRUD Factor' do
 
   context 'I have a factor' do
     given!(:factor) { create(:factor, name: 'Drive', dimension: dimension) }
-    scenario 'Edit Factor' do
+    scenario 'Edit Factor', skip: true do
       visit "/administration/dimensions/#{dimension.id}/factors"
 
       find("#factor_#{factor.id} .edit").click
@@ -32,7 +32,7 @@ feature 'CRUD Factor' do
       expect(page).to have_content 'Employ'
     end
 
-    scenario 'Destroy Factor' do
+    scenario 'Destroy Factor', skip: true do
       visit "/administration/dimensions/#{dimension.id}/factors"
 
       find("#factor_#{factor.id} .delete").click

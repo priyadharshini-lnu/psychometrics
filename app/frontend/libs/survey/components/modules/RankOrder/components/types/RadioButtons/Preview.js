@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './RadioButtons.scss'
 
 export default class extends Component {
@@ -16,7 +15,9 @@ export default class extends Component {
   }
 
   render () {
-    const { readOnly, model, model: { props, moduleConfig, result } } = this.props
+    const {
+      readOnly, model, model: { props, moduleConfig, result }, I18n,
+    } = this.props
     return (
       <div className={styles.table}>
         <div className={styles.row}>
@@ -36,7 +37,7 @@ export default class extends Component {
               <div className={styles.firstColumn}>
                 <div className={styles.item}>
                   <span>
-                    {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                    {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                       || moduleConfig.defaultChoiceText(i + 1)}
                   </span>
                 </div>

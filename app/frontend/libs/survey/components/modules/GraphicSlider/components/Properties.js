@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import { RequiredValidations } from 'components/Validations'
 import ChoicesInput from 'components/ChoicesInput'
@@ -80,25 +79,21 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeTextPosition = (e) => {
     const { model } = this.props
     model.changeProps({ textPosition: e.currentTarget.value })
-    this.forceUpdate()
   }
 
   changeSliderPosition = (e) => {
     const { model } = this.props
     model.changeProps({ sliderPosition: e.currentTarget.value })
-    this.forceUpdate()
   }
 
   updateProps = (val, fieldName) => {
     const { model } = this.props
     model.changeProps({ [fieldName]: val })
-    this.forceUpdate()
   }
 
   changeCategory = (e) => {
@@ -109,7 +104,6 @@ export class Properties extends Component {
     model.changeProps({
       category: e.currentTarget.value, modification, min, max, value: min,
     })
-    this.forceUpdate()
   }
 
   changeModification = (e) => {
@@ -119,13 +113,11 @@ export class Properties extends Component {
     model.changeProps({
       modification: e.currentTarget.value, min, max, value: min,
     })
-    this.forceUpdate()
   }
 
   changeBarType = (e) => {
     const { model } = this.props
     model.changeProps({ barType: e.currentTarget.value })
-    this.forceUpdate()
   }
 
   renderTextPosition () {

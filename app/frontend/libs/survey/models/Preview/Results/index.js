@@ -13,6 +13,8 @@ import MetaInfo from './MetaInfo'
 import Captcha from './Captcha'
 import PickGroupRank from './PickGroupRank'
 import VideoResponse from './VideoResponse'
+import FileUpload from './FileUpload'
+import AudioResponse from './AudioResponse'
 
 export default {
   MultipleChoice,
@@ -30,4 +32,6 @@ export default {
   Captcha,
   PickGroupRank,
   VideoResponse,
+  FileUpload,
+  AudioResponse,
 }

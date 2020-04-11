@@ -3,9 +3,9 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactSlider from 'react-slider'
-import I18nStore from 'store/I18nStore'
 import classNames from 'classnames'
 import styles from './GraphicSlider.scss'
+import connect from '../connect'
 
 export class Preview extends Component {
   origin = __DEV__ ? 'http://localhost:3000' : location.origin
@@ -21,7 +21,9 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model, model: { props, result }, readOnly } = this.props
+    const {
+      model, model: { props, result }, readOnly, I18n,
+    } = this.props
     const value = (result.answers[0] && result.answers[0].value) || props.value
     const img = props.category === 'bars' ? `${props.modification}/${props.barType}.png` : `${props.modification}.png`
     const backgroundImage = `url(${this.origin}/graphics/questions/graphic_slider/${img})`
@@ -32,7 +34,7 @@ export class Preview extends Component {
         <div className={`${styles.mainrow} ${styles[props.textPosition]}`}>
           <div
             className={`${styles.questionText} ${styles.column}`}
-            dangerouslySetInnerHTML={{ __html: I18nStore.tQuestion(model, 'questionText') }}
+            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
           />
           <div className={`${styles.questionSlider} ${styles.column}`}>
             <div className={`${styles.row} ${styles[props.sliderPosition]}`}>
@@ -46,8 +48,8 @@ export class Preview extends Component {
                 {props.enableLabels && (
                   <span className={styles.label}>
                     {props.sliderPosition === 'vertical'
-                      ? I18nStore.tQuestion(model, 'labelHigh')
-                      : I18nStore.tQuestion(model, 'labelLow')}
+                      ? I18n.tQuestion(model, 'labelHigh')
+                      : I18n.tQuestion(model, 'labelLow')}
                   </span>
                 )}
 
@@ -74,8 +76,8 @@ export class Preview extends Component {
                 {props.enableLabels && (
                   <span className={styles.label}>
                     {props.sliderPosition === 'vertical'
-                      ? I18nStore.tQuestion(model, 'labelLow')
-                      : I18nStore.tQuestion(model, 'labelHigh')}
+                      ? I18n.tQuestion(model, 'labelLow')
+                      : I18n.tQuestion(model, 'labelHigh')}
                   </span>
                 )}
               </div>
@@ -87,4 +89,4 @@ export class Preview extends Component {
   }
 }
 
-export default Preview
+export default connect(Preview)

@@ -3,6 +3,8 @@ import MultiLine from './types/MultiLine'
 import Form from './types/Form'
 import DateEntry from './types/DateEntry'
 import DateTimeEntry from './types/DateTimeEntry'
+import Chat from './types/Chat/Builder'
+import Email from './types/Email/Builder'
 import Previews from './Previews'
 
 const Templates = {
@@ -13,6 +15,8 @@ const Templates = {
   EssayTextBox: MultiLine,
   DateEntry,
   DateTimeEntry,
+  Chat,
+  Email,
 }
 
 export { Templates, Previews }

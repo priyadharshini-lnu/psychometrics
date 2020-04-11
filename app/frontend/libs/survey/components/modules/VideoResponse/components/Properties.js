@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
 
@@ -10,12 +9,19 @@ export class Properties extends Component {
     restricted: PropTypes.bool,
   }
 
-  durations = [10, 20, 30, 40, 50, 60, 90, 120]
+  durations = [
+    { value: 10, display: '10s' },
+    { value: 30, display: '30s' },
+    { value: 60, display: '1min' },
+    { value: 120, display: '2min' },
+    { value: 180, display: '3min' },
+    { value: 300, display: '5min' },
+    { value: 600, display: '10min' },
+  ]
 
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeDuration = (e) => {
@@ -31,7 +37,7 @@ export class Properties extends Component {
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Max Duration</span>
         <select className="form-control" value={model.props.duration} onChange={this.changeDuration}>
-          {this.durations.map(j => (<option key={j} value={j}>{`${j}s`}</option>))}
+          {this.durations.map(j => (<option key={j.value} value={j.value}>{`${j.display}`}</option>))}
         </select>
       </div>
     )

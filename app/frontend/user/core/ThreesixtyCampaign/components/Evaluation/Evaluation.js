@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip,
 } from 'antd'
+import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
 import Language from '../common/Language'
+import store from '../../../../store'
+import Timer from '../Timer'
 
 const { Content } = Layout
 
@@ -19,7 +22,6 @@ export default function Evaluation ({
       subject,
       user,
       is_self: isSelf,
-      as_manager: asManager,
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       translations,
@@ -30,14 +32,18 @@ export default function Evaluation ({
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
+  preview,
+  saveResults,
 }) {
   const assessmentRef = React.createRef()
   const {
-    edit, step, approveEvaluation, lang,
+    edit, step, approve_evaluation, lang,
   } = qs.parse(location.search)
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step, lang })
+    fetchAssessment(params.campaignId, params.id, {
+      isEdit: edit, step, approve_evaluation, lang,
+    })
   }, [])
 
   if (!loaded) { return null }
@@ -64,7 +70,7 @@ export default function Evaluation ({
   )
 
   const StatusDropdown = () => {
-    if (approveEvaluation) {
+    if (approve_evaluation) {
       return (
         <Dropdown
           trigger={['click']}
@@ -72,7 +78,7 @@ export default function Evaluation ({
         >
           <div>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
-            <Icon type="down" />
+            <DownOutlined />
           </div>
         </Dropdown>
       )
@@ -82,7 +88,7 @@ export default function Evaluation ({
   }
 
   const title = () => {
-    if (asManager) {
+    if (approve_evaluation) {
       return (
         <div>
           {I18n.t('threesixty.subject')}
@@ -107,7 +113,7 @@ export default function Evaluation ({
     return (
       <div>
         {I18n.t('threesixty.evaluate')}
-        {': '}
+        :
         {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullName(subject)}
       </div>
     )
@@ -127,21 +133,22 @@ export default function Evaluation ({
           className="page-header"
           backIcon={(
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back to tasks
             </div>
           )}
           title={title()}
           onBack={handleBackButtonClick}
+          extra={(<Timer preview={preview} saveResults={saveResults} />)}
         >
           <div className="evaluation-container">
-            <Row type="flex" justify="end">
-              <Col>
+            <Row justify="end">
+              <Col flex="none">
                 <StatusDropdown />
               </Col>
               {availableTranslations && availableTranslations.length > 0 && (
-                <Col>
+                <Col flex="none">
                   <div className="mlm">
                     <Language
                       selectedLanguage={selectedLanguage}
@@ -156,7 +163,7 @@ export default function Evaluation ({
                 <PassAssessment
                   ref={assessmentRef}
                   id="pass_assessment"
-                  type={asManager ? 'view_results' : 'pass_assessment'}
+                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
                   isThreesixty="true"
                   resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
                   data={assessment}
@@ -164,6 +171,8 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
+                  approveEvaluation={approve_evaluation}
+                  rstore={store}
                 />
               </div>
             )}

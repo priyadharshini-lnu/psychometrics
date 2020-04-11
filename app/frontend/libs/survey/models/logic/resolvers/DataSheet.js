@@ -1,11 +1,10 @@
-import store from 'store/AssessmentPreviewStore'
 import BaseResolver from './BaseResolver'
 
 export default class DataSheetResolver extends BaseResolver {
-  constructor (condition) {
+  constructor (condition, context) {
     super()
     this.condition = condition
-    this.datasheet = store.dataSheet
+    this.datasheet = context.dataSheet
   }
 
   resolve () {

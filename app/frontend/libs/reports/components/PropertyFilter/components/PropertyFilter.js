@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
-import FilterStore from 'rb/store/modals/FilterStore'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 import styles from './PropertyFilter.scss'
@@ -12,12 +11,10 @@ class PropertyFilter extends Component {
   static propTypes = {}
 
   componentDidMount () {
-    this.filterListener = FilterStore.addListener('change', () => this.forceUpdate())
     this.propPanelListener = store.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
-    this.filterListener.remove()
     this.propPanelListener.remove()
   }
 

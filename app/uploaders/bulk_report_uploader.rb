@@ -15,4 +15,12 @@ class BulkReportUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w[zip]
   end
+
+  def fog_public
+    false
+  end
+
+  def fog_authenticated_url_expiration
+    10.minutes
+  end
 end

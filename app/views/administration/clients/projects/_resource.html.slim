@@ -25,8 +25,8 @@
               span.fa.fa-plus
     td = resource.parent.account_manager&.decorate&.display_name
     td
-      = resource.decorate.client_project_admins
-      - if policy(:membership).create_project_admin?
+      = resource.decorate.client_project_admins(current_user)
+      - if policy(:membership).can_manage_project_admins?
         .add-icon-box
           = link_to new_step_1_administration_client_project_admins_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus

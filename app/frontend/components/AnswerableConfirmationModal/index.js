@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {
-  Modal, Input, Button, Icon, Alert,
+  Modal, Input, Button, Alert,
 } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 
 export default function AnswerableConfirmationModal ({
   confirmationTitle,
@@ -40,7 +41,7 @@ export default function AnswerableConfirmationModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary" onClick={handleConfirmation}>
-          <Icon type="check" />
+          <CheckOutlined />
           Confirm
         </Button>,
       ]}

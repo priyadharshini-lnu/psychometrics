@@ -1,1 +1,3 @@
-export default from './Factor'
+import Factor from './Factor'
+
+export default Factor

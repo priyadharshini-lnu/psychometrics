@@ -8,6 +8,8 @@ import Confirmation from 'components/Confirmation'
 import BlockModel from 'models/Block'
 import Footer from './BlockFooter'
 import styles from './Block.scss'
+import StaticContent from './StaticContent'
+import { NORMAL_TOP, STRETCH } from './StaticContent/settings'
 
 class Block extends Component {
   static propTypes = {
@@ -47,6 +49,21 @@ class Block extends Component {
   moveUp = () => {
     const { model, moveBlockUp } = this.props
     moveBlockUp(model)
+  }
+
+  addStaticContent = () => {
+    const { model, updateBlockProps } = this.props
+    updateBlockProps(model, {
+      staticContent: {
+        backgroundImageOptions: STRETCH,
+        layout: NORMAL_TOP,
+      },
+    })
+  }
+
+  removeStaticContent = () => {
+    const { model, updateBlockProps } = this.props
+    updateBlockProps(model, { staticContent: null })
   }
 
   copy = () => {
@@ -123,6 +140,17 @@ class Block extends Component {
           <span className={`icon fa fa-copy ${styles.menuicon}`} />
           Copy Block...
         </MenuItem>
+        {model.props.staticContent ? (
+          <MenuItem onSelect={this.removeStaticContent}>
+            <span className={`icon fa fa-trash ${styles.menuicon}`} />
+          Remove Static Content
+          </MenuItem>
+        ) : (
+          <MenuItem onSelect={this.addStaticContent}>
+            <span className={`icon fa fa-list-alt ${styles.menuicon}`} />
+          Add Static Content
+          </MenuItem>
+        )}
         <MenuItem onSelect={this.moveUp}>
           <span className={`icon fa fa-arrow-up ${styles.menuicon}`} />
           Move Up...
@@ -186,6 +214,7 @@ class Block extends Component {
 
         </div>
         {this.isTemplate(model) && this.renderTemplateWarning()}
+        {(model.props.staticContent) && <StaticContent model={model} />}
         <div className={[styles.content]} style={{ display: opened ? 'block' : 'none' }}>
           <QuestionList block={model} />
           <Footer {...this.props} onMinimize={this.expand} />

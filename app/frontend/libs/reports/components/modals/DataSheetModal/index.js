@@ -1,3 +1,4 @@
 import DataSheetModal from './components/DataSheetModal'
+import connect from './connect'
 
-export default DataSheetModal
+export default connect(DataSheetModal)

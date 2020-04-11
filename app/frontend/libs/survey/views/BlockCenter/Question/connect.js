@@ -1,11 +1,19 @@
 import { connect } from 'react-redux'
 import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
 import { openModal } from 'admin/core/temp/modals'
+import { moduleConfig } from 'libs/survey/core/builder/assessment/question/selectors'
+import {
+  addSkipLogic, renameQuestion, saveAsTemplate, unlinkTemplate, addComment, addNote, removeComment,
+} from 'libs/survey/core/builder/assessment/question/actions'
+import {
+  removeQuestion, moveQuestionUp, moveQuestionDown,
+  insertBeforeQuestion, insertAfterQuestion,
+} from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(
-  ({ survey: { builder: { assessment: { timestamp, propPanel } } } }) => ({
+  ({ survey: { builder, builder: { assessment: { propPanel } } } }, props) => ({
     selectedModel: propPanel.question,
-    timestamp, // NOTE: @fedor used to fake update
+    moduleConfig: moduleConfig(builder, props.model.id),
   }),
   {
     select: selectQuestion,
@@ -13,5 +21,17 @@ export default connect(
     openDisplayLogic: data => openModal('displayLogic', data),
     openDefaultValue: data => openModal('defaultValue', data),
     openRandomization: data => openModal('randomization', data),
+    removeQuestion,
+    insertAfterQuestion,
+    insertBeforeQuestion,
+    moveQuestionUp,
+    moveQuestionDown,
+    addSkipLogic,
+    renameQuestion,
+    saveAsTemplate,
+    unlinkTemplate,
+    addComment,
+    addNote,
+    removeComment,
   },
 )

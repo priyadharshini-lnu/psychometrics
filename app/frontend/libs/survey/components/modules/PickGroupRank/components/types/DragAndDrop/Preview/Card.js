@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import flow from 'lodash/flow'
-import I18nStore from 'store/I18nStore'
 import styles from '../DragAndDrop.scss'
 
 class Card extends Component {
@@ -18,13 +17,13 @@ class Card extends Component {
 
   render () {
     const {
-      model, cardId, isDragging, connectDragSource, connectDropTarget,
+      model, cardId, isDragging, connectDragSource, connectDropTarget, I18n,
     } = this.props
     const opacity = isDragging ? 0 : 1
 
     return connectDragSource(connectDropTarget(
       <div className={styles.item} style={{ opacity }}>
-        {I18nStore.tQuestion(model, `choicesTexts${cardId + 1}`, { choice: cardId })
+        {I18n.tQuestion(model, `choicesTexts${cardId + 1}`, { choice: cardId })
           || model.moduleConfig.defaultChoiceText(cardId + 1)}
       </div>,
     ))

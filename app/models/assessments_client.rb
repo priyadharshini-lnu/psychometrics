@@ -18,7 +18,7 @@ class AssessmentsClient < ApplicationRecord
   end
 
   def expired?
-    Time.now > key_expires_at
+    Time.now > key_expires_at.to_i
   end
 
   def has_valid_universal_link?

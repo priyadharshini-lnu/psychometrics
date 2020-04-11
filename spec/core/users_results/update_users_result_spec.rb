@@ -68,7 +68,7 @@ describe ::UsersResults::UpdateUsersResult do
                                                   campaign: campaign,
                                                   report: report)
     end
-    let(:form)            { double('form', 'invalid?': false, attributes: {}) }
+    let(:form)            { double('form', 'invalid?': false, attributes_with_values: {}) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
@@ -77,7 +77,7 @@ describe ::UsersResults::UpdateUsersResult do
       after { described_class.call(form, users_result, threesixty_campaign) }
       subject { users_result }
 
-      it { is_expected.to receive(:assign_attributes).with(form.attributes) }
+      it { is_expected.to receive(:assign_attributes).with(form.attributes_with_values) }
       it { is_expected.to receive(:save!).at_least(:once) }
 
       context 'users_result is completed' do
@@ -86,7 +86,7 @@ describe ::UsersResults::UpdateUsersResult do
         end
 
         it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
-        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
+        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject, {}) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }
       end

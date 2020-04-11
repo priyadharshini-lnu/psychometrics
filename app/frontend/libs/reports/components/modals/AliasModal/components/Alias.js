@@ -3,20 +3,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/modals/AliasStore'
 import styles from './AliasModal.scss'
 
 export class Alias extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-  }
-
-  componentDidMount () {
-    this.popupListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
   }
 
   selectAlias = (e, factor) => {
@@ -30,9 +21,8 @@ export class Alias extends Component {
   }
 
   onChangeAlias = (e, factor) => {
-    factor.alias = e.currentTarget.value
-    store.changeFactorsAlias(factor.id, factor.alias)
-    this.forceUpdate()
+    const { onChange } = this.props
+    onChange(factor, e.currentTarget.value)
   }
 
   onBlurAlias = (e, factor) => {

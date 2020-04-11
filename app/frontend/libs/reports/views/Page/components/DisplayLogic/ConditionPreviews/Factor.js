@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
-import AliasStore from 'rb/store/modals/AliasStore'
 import css from '../Condition.scss'
 
 export default class Factor extends Component {
@@ -12,7 +11,7 @@ export default class Factor extends Component {
 
   renderFactor () {
     const { condition: { answer } } = this.props
-    const factor = _.find(AliasStore.getFactors(), { id: +answer })
+    const factor = _.find(AppStore.flatFactors, { id: +answer })
 
     return <div>{factor ? factor.name : 'Undefined'}</div>
   }

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './Profile.scss'
 
 export default class extends Component {
@@ -27,9 +26,9 @@ export default class extends Component {
   }
 
   renderNotApplicableHeader () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     return (
-      <span className={styles.scalePointItem}>{I18nStore.tQuestion(model, 'notApplicableLabel')}</span>
+      <span className={styles.scalePointItem}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     )
   }
 
@@ -53,7 +52,9 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result }, readOnly } = this.props
+    const {
+      model, model: { props, moduleConfig, result }, readOnly, I18n,
+    } = this.props
     return (
       <div className={styles.table}>
         {_.times(props.choices, choice => (
@@ -61,7 +62,7 @@ export default class extends Component {
             <div className={styles.firstColumn}>
               <div className={styles.item}>
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
+                  {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                     || moduleConfig.defaultChoiceText(choice + 1)}
                 </span>
               </div>
@@ -72,7 +73,7 @@ export default class extends Component {
                 return (
                   <label key={scale} className={styles.inputGroup}>
                     <div>
-                      {I18nStore.tQuestion(model, `scalePointsTexts${scale + 1}`, { scale })
+                      {I18n.tQuestion(model, `scalePointsTexts${scale + 1}`, { scale })
                         || moduleConfig.defaultScalePointText(scale + 1)}
                     </div>
                     <input

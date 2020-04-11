@@ -3,6 +3,8 @@
 module Imports
   module Translations
     class AssessmentImport < Imports::BaseImport
+      TRANSLATABLE_BRANCHES = %w[block question].freeze
+
       attr_accessor :assessment_id
       validates :assessment_id, presence: true
 
@@ -52,34 +54,38 @@ module Imports
         collect_translations = {}
         rows.each do |row|
           data = Hash[header.zip(row)]
-          question_id, key = data.delete('Key').split(':')
-          collect_translations[question_id] ||= {}
+          branch_type, id, key = data.delete('Key').split(':')
+          collect_translations[branch_type] ||= {}
+          collect_translations[branch_type][id] ||= {}
           data.each do |locale, translation|
             locale = locale.split(' / ').last
             next if locale == 'en' || translation.blank? # Default locale or not translated
 
-            collect_translations[question_id][locale] ||= {}
-            collect_translations[question_id][locale][key] = translation
+            collect_translations[branch_type][id][locale] ||= {}
+            collect_translations[branch_type][id][locale][key] = translation
           end
         end
 
         translations = []
-        collect_translations.each do |question_id, locales|
-          # If can't find question for specified assessment, then add error
-          unless Question.ransack(block_assessment_id_eq: assessment_id, id_eq: question_id).result.exists?
-            errors.add(:base, I18n.t('administration.imports.errors.translation.error',
-                                     id: question_id, error: "Can't find Question")) && next
-          end
-          locales.each do |locale, props|
-            translation = Translation.find_or_initialize_by(
-              translateable_id: question_id,
-              translateable_type: 'Question',
-              resource_id: assessment_id,
-              resource_type: Assessment::TYPES[:common],
-              locale: locale
-            )
-            translation.props = props
-            translations << translation
+        assessment = Assessment.find(assessment_id)
+        TRANSLATABLE_BRANCHES.each do |branch|
+          collect_translations[branch].each do |id, locales|
+            # If can't find question/block for specified assessment, then add error
+            unless assessment.public_send(branch.pluralize).where(id: id).exists?
+              errors.add(:base, I18n.t('administration.imports.errors.translation.error',
+                                       id: id, error: "Can't find #{branch}")) && next
+            end
+            locales.each do |locale, props|
+              translation = Translation.find_or_initialize_by(
+                translateable_id: id,
+                translateable_type: branch.capitalize,
+                resource_id: assessment_id,
+                resource_type: Assessment::TYPES[:common],
+                locale: locale
+              )
+              translation.props = props
+              translations << translation
+            end
           end
         end
 

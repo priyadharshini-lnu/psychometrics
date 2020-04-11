@@ -21,6 +21,7 @@
 #  agile_scoring     :jsonb
 #  project_assign_id :integer
 #  mindmill_prefix   :string
+#  expiry_date       :datetime
 #
 class Assign < ApplicationRecord
   belongs_to :assessment
@@ -79,6 +80,8 @@ class Assign < ApplicationRecord
   before_save :notification_handler
   before_create :set_mindmill_prefix
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
+  before_update :set_expiry_date, if: proc { status_changed? && in_progress? && !expiry_date }
+  before_update :set_last_activity_at, if: proc { status_changed? && in_progress? }
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
   after_update_commit ::Callbacks::Models::Assigns::UpdateStartedAtByParent.new
@@ -95,6 +98,14 @@ class Assign < ApplicationRecord
     self.step = 0
   end
 
+  def set_expiry_date
+    self.expiry_date = assessment.extra['timer']&.second&.from_now
+  end
+
+  def set_last_activity_at
+    self.last_activity_at = DateTime.current
+  end
+
   def init
     self.status ||= Assign.statuses['not_started'] if respond_to? :status
     self.step ||= 0 if respond_to? :step
@@ -102,7 +113,7 @@ class Assign < ApplicationRecord
     self.agile_scoring ||= {} if respond_to? :agile_scoring
   end
 
-  mount_base64_uploader :mindmill_report, FileUploader, file_name: proc { 'mindmill_report' }
+  mount_base64_uploader :mindmill_report, PrivateFileUploader, file_name: proc { 'mindmill_report' }
 
   #
   # 1 step:
@@ -202,6 +213,12 @@ class Assign < ApplicationRecord
 
   def threesixty_subject
     Threesixty::Subject.find_by(user_id: subject_id, campaign_id: campaign_id)
+  end
+
+  def expired?
+    return false unless expiry_date
+
+    expiry_date < Time.current
   end
 
   private

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'store/AppStore'
 import Home from 'views/Home'
 import Trash from 'views/Trash'
 import PropertyPanel from 'views/PropertyPanel'
@@ -23,11 +22,6 @@ export class Dashboard extends Component {
       const id = urldata && urldata[1]
       subscribeSocket('Assessments::Channel', { assessment_id: id })
     }
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.appListener.remove()
   }
 
   disableClick = (e) => {
@@ -48,7 +42,7 @@ export class Dashboard extends Component {
             <div className="mb-middle">
               <div className="mb-title">
                 <span className="fa fa-times" />
-Attention!
+                Attention!
               </div>
               <div className="mb-content">
                 <p>Something went wrong</p>

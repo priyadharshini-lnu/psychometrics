@@ -2,7 +2,6 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import StarBar from 'components/StarBar'
-import I18nStore from 'store/I18nStore'
 import styles from './Star.scss'
 
 export default class extends Component {
@@ -18,7 +17,7 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result } } = this.props
+    const { model, model: { props, moduleConfig, result }, I18n } = this.props
     return (
       <div className={styles.table}>
         {_.map(model.choicesIds, (i) => {
@@ -27,7 +26,7 @@ export default class extends Component {
             <div key={i} className={styles.row}>
               <div className={styles.firstColumn}>
                 <span>
-                  {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+                  {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                   || moduleConfig.defaultChoiceText(i + 1)}
                 </span>
               </div>

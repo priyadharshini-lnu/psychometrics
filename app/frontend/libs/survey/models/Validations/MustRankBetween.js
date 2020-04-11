@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'libs/survey/store/StoreWatchman'
 
 const MustRankBetween = function ({ minValue, maxValue }) {
   this.minValue = +minValue
@@ -20,7 +20,7 @@ _.extend(MustRankBetween.prototype, {
     if (error) {
       return {
         type: 'MustRankBetween',
-        message: I18nStore.t('validations.must_rank_between', { min: this.minValue, max: this.maxValue }),
+        message: Watchman.I18n().t('validations.must_rank_between', { min: this.minValue, max: this.maxValue }),
       }
     }
   },

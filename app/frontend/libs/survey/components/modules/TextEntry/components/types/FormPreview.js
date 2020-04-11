@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from '../TextEntry.scss'
+import connect from '../../connect'
 
-export default class extends Component {
+class Form extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
   }
@@ -16,14 +16,16 @@ export default class extends Component {
   }
 
   render () {
-    const { readOnly, model, model: { result, moduleConfig } } = this.props
+    const {
+      readOnly, model, model: { result, moduleConfig }, I18n,
+    } = this.props
 
     return (
       <ul className={styles.list}>
         {_.map(model.choicesIds, i => (
           <li className={styles.listItem} key={i}>
             <span className={styles.previewLabel}>
-              {I18nStore.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+              {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                 || moduleConfig.defaultChoiceText(i + 1)}
             </span>
             <input
@@ -41,3 +43,5 @@ export default class extends Component {
     )
   }
 }
+
+export default connect(Form)

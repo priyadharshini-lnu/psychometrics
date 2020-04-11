@@ -2,8 +2,9 @@
 import React from 'react'
 import _ from 'lodash'
 import {
-  Row, Col, Icon, Card, Progress,
+  Row, Col, Card, Progress,
 } from 'antd'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import './styles.scss'
 import mindmill from './mindmill.png'
@@ -41,7 +42,7 @@ export default function Threesixty ({ campaign }) {
               </div>
               <Row type="flex" className="info-line">
                 <Col className="info-block">
-                  <Icon type="clock-circle" />
+                  <ClockCircleOutlined />
                   {' '}
                   {campaign.timing}
                 </Col>

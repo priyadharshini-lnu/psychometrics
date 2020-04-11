@@ -1,10 +1,11 @@
 import { createReducer } from 'utils/reduxUtils'
 import { updateIn, setIn } from 'utils/immutable'
 import {
-  INIT, SELECT_QUESTION, UNSELECT_QUESTION, FAKE_UPDATE,
+  INIT, SELECT_QUESTION, UNSELECT_QUESTION,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
-  ADD_NORM_RULE, REMOVE_NORM_RULE, TOGGLE_ENABLE_BACK,
-  TOGGLE_ENABLE_PROGRESS,
+  ADD_NORM_RULE, REMOVE_NORM_RULE, UPDATE_FLOW,
+  TOGGLE_ENABLE_BACK, TOGGLE_ENABLE_PROGRESS, SAVE,
+  SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -14,6 +15,7 @@ import { blocksWithoutDeleted } from './selectors'
 export const defaultState = {
   loaded: false,
   disabled: false,
+  saving: false,
   id: null,
   name: '',
   blocks: [],
@@ -38,6 +40,7 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
+      dataSheetColumns: assessment.data_sheet_columns,
       // fix wrong norms initializing app/models/assessments/common.rb:23
       norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules,
       propPanel: {
@@ -104,10 +107,13 @@ const HANDLERS = {
     _.remove(rules, rule)
     return setIn(state, ['norm_rules'], rules)
   },
+  [UPDATE_FLOW]: (state, { flow }) => ({ ...state, flow }),
   [TOGGLE_ENABLE_BACK]: state => setIn(state, ['enable_back'], !state.enable_back),
   [TOGGLE_ENABLE_PROGRESS]: state => setIn(state, ['enable_progress'], !state.enable_progress),
-  [FAKE_UPDATE]: state => ({ ...state, timestamp: new Date() }),
-
+  [SAVE_REQUEST]: state => setIn(state, ['saving'], true),
+  [SAVE_FAILURE]: state => setIn(state, ['saving'], false),
+  [SAVE]: state => setIn(state, ['saving'], false),
+  [UPDATE_EXTRA]: (state, { extra }) => ({ ...state, extra }),
 }
 
 export default createReducer(HANDLERS, defaultState)

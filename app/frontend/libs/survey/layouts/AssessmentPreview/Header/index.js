@@ -1,3 +1,4 @@
 import Header from './Header'
+import connect from './connect'
 
-export default Header
+export default connect(Header)

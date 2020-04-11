@@ -1,0 +1,25 @@
+.title {
+  * {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+.titleDescription {
+  * {
+    font-size: 12px;
+    color: #777777;
+  }
+}
+.mine {
+  span {
+    color: #ffffff;
+    &:hover {
+      color: unset;
+    }
+  }
+}
+.messageRow {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}

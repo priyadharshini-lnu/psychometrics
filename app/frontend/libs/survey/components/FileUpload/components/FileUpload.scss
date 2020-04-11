@@ -1,0 +1,39 @@
+.progressBar {
+  margin-left: 12px !important;
+}
+
+.fileName, .removeFileButton {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.fileName {
+  i {
+    margin-right: 5px;
+  }
+}
+
+.removeFileButton {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.errorsList {
+  margin-bottom: 0px;
+}
+
+.alert {
+  margin-bottom: 8px !important;
+}
+
+.fileIcon, .deleteIcon {
+  font-size: 16px !important;
+}
+
+.deleteIcon {
+  color: black !important;
+}
+
+.saveFileBtn {
+  margin-top: 8px;
+}

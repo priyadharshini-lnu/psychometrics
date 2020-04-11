@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './Likert.scss'
 import { NOT_APPLICABLE } from '../../Consts'
 
@@ -24,16 +23,18 @@ export default class extends Component {
   }
 
   renderNotApplicableOption () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     const { notApplicable } = model.props
     if (!notApplicable) { return null }
     return (
-      <option value={NOT_APPLICABLE}>{I18nStore.tQuestion(model, 'notApplicableLabel')}</option>
+      <option value={NOT_APPLICABLE}>{I18n.tQuestion(model, 'notApplicableLabel')}</option>
     )
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result }, readOnly } = this.props
+    const {
+      model, model: { props, moduleConfig, result }, readOnly, I18n,
+    } = this.props
 
     return (
       <div className={styles.table}>
@@ -45,7 +46,7 @@ export default class extends Component {
               <div className={styles.firstColumn}>
                 <div className={styles.item}>
                   <span>
-                    {I18nStore.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
+                    {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                       || moduleConfig.defaultChoiceText(choice + 1)}
                   </span>
                 </div>

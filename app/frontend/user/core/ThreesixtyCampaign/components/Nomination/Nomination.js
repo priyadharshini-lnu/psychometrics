@@ -2,14 +2,14 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
 import {
-  Layout, Typography, PageHeader, Icon, Alert,
+  Layout, Typography, PageHeader, Alert,
 } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
 import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
 import NameModal from './NominationForm/NameModal'
-
 import './styles.scss'
 
 const { Paragraph } = Typography
@@ -59,7 +59,7 @@ export default function Nominations (props) {
           className="page-header"
           backIcon={(
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               {I18n.t('threesixty.back_to_tasks')}
             </div>

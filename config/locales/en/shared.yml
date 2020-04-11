@@ -7,4 +7,3 @@ en:
       email_label: 'Email Address'
     filters:
       clear: 'Clear Filters'
-    no_access_message: 'You do not have access to this page'

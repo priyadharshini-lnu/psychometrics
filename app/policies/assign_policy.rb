@@ -42,19 +42,23 @@ class AssignPolicy < BasePolicy
   end
 
   def upload_media_url?
-    @record.membership_id == @current_membership.id
+    update?
   end
 
   def upload_media_dev?
-    @record.membership_id == @current_membership.id
+    update?
   end
 
   def upload_callback?
-    @record.membership_id == @current_membership.id
+    update?
   end
 
   def remove_media?
-    @record.membership_id == @current_membership.id
+    update?
+  end
+
+  def update_meta_data?
+    update?
   end
 
   def redirect?

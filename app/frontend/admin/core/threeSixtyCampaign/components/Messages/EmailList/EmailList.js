@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Input, Row, Col, Button, Empty, Icon, message, Switch,
+  Input, Row, Col, Button, Empty, message, Switch,
 } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 import routeUtils from 'utils/routeUtils'
@@ -98,7 +99,7 @@ export default function Emails ({
           className="mtm mll"
           onClick={saveTemplate}
         >
-          <Icon type="save" />
+          <SaveOutlined />
           Save
         </Button>
       </Col>

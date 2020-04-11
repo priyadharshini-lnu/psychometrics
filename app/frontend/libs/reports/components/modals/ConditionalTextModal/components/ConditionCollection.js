@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ConditionTextStore from 'rb/store/modals/ConditionTextStore'
 import styles from './ConditionalTextModal.scss'
 import ConditionList from './ConditionList'
 import moduleResults from './module_results'
@@ -11,9 +10,8 @@ class ConditionCollection extends Component {
   }
 
   remove = () => {
-    const { model } = this.props
-    ConditionTextStore.module.removeConditionCollection(model)
-    ConditionTextStore.update()
+    const { model, onRemove } = this.props
+    onRemove(model)
   }
 
   render () {

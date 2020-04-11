@@ -41,6 +41,7 @@ module Threesixty
       private
 
       def add_default_criteria(recipient_criteria)
+        recipient_criteria << { 'field' => 'disabled', 'value' => false }
         recipient_criteria = add_default_criteria_for_subject_email(recipient_criteria)
         add_default_criteria_for_evaluator_email(recipient_criteria)
       end

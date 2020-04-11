@@ -4,15 +4,13 @@ import {
 } from 'antd'
 
 function NameModal ({
-  form, showPrompt, setShowPrompt, handleAdd, participant,
+  showPrompt, setShowPrompt, handleAdd, participant,
 }) {
-  const submit = () => {
-    form.validateFields((err, values) => {
-      if (!err) {
-        handleAdd(values)
-        form.resetFields()
-      }
-    })
+  const [form] = Form.useForm()
+
+  const submit = (values) => {
+    handleAdd(values)
+    form.resetFields()
   }
 
   return (
@@ -30,39 +28,39 @@ function NameModal ({
       onCancel={() => setShowPrompt(false)}
       footer={null}
     >
-      <Form.Item label={I18n.t('threesixty.first_name')} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
-        {form.getFieldDecorator('firstName', {
-          rules: [
-            {
-              required: true,
-              message: I18n.t('threesixty.first_name_error'),
-            },
-          ],
-        })(<Input
-          required
-          placeholder={I18n.t('threesixty.first_name')}
-        />)}
-      </Form.Item>
-      <Form.Item label={I18n.t('threesixty.last_name')} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
-        {form.getFieldDecorator('lastName', {
-          rules: [
-            {
-              required: true,
-              message: I18n.t('threesixty.last_name_error'),
-            },
-          ],
-        })(<Input
-          required
-          placeholder={I18n.t('threesixty.last_name')}
-        />)}
-      </Form.Item>
-      <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
-        <Button type="primary" htmlType="submit" onClick={submit}>
-          {I18n.t('threesixty.submit')}
-        </Button>
-      </Form.Item>
+      <Form form={form} name="control-hooks" onFinish={submit}>
+        <Form.Item
+          rules={[{ required: true, message: I18n.t('threesixty.first_name_error') }]}
+          label={I18n.t('threesixty.first_name')}
+          name="firstName"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
+        >
+          <Input
+            required
+            placeholder={I18n.t('threesixty.first_name')}
+          />
+        </Form.Item>
+        <Form.Item
+          rules={[{ required: true, message: I18n.t('threesixty.last_name_error') }]}
+          label={I18n.t('threesixty.last_name')}
+          name="lastName"
+          labelCol={{ span: 6 }}
+          wrapperCol={{ span: 16 }}
+        >
+          <Input
+            required
+            placeholder={I18n.t('threesixty.last_name')}
+          />
+        </Form.Item>
+        <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
+          <Button type="primary" htmlType="submit">
+            {I18n.t('threesixty.submit')}
+          </Button>
+        </Form.Item>
+      </Form>
     </Modal>
   )
 }
 
-export default Form.create({ name: 'evaluatorName' })(NameModal)
+export default NameModal

@@ -11,23 +11,27 @@ module Threesixty
     initial_state_for [:show]
 
     def show
-      authorize @participant
+      params[:approve_evaluation] ? authorize(@participant, :approve_evaluation?) : authorize(@participant)
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do
           @users_result = UsersResult.find_or_create_by(campaign_id: @campaign.campaign_id,
                                                         subject_id: @participant.subject_id,
                                                         evaluator_id: @participant.evaluator_id) do |result|
-            result.assessment_id = @campaign.assessment_id
-            result.status = :in_progress
+            init_result(result)
           end
 
           if params[:is_edit] == 'true'
             render(json: { error: '403' }, status: 403) && return unless policy(@participant).edit?
-            @users_result.step = 0
+            @users_result.current_element = nil
+            @users_result.current_page = 0
+          end
+          if params[:step]
+            @users_result.step = params[:step].to_i
+            @users_result.current_element = nil
+            @users_result.current_page = 0
           end
 
-          @users_result.step = params[:step].to_i if params[:step]
           set_locale_for_assessment(@users_result.assessment_id)
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
@@ -80,6 +84,16 @@ module Threesixty
         subject: @users_result.subject,
         threesixty_campaign: @campaign
       }
+    end
+
+    def init_result(result)
+      result.assign_attributes(
+        assessment_id: @campaign.assessment_id,
+        status: :in_progress,
+        last_activity_at: DateTime.current,
+        expiry_date: @campaign.assessment.extra['timer']&.second&.from_now,
+        answers: {}
+      )
     end
   end
 end

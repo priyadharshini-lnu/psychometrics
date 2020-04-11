@@ -89,7 +89,9 @@ class Container extends Component {
 
   render () {
     const { cards } = this.state
-    const { model, stacked, text } = this.props
+    const {
+      model, stacked, text, I18n,
+    } = this.props
     const { connectDropTarget, id, questionId } = this.props
     const stackItems = stacked ? styles.stackItems : ''
 
@@ -108,6 +110,7 @@ class Container extends Component {
               removeCard={this.removeCard}
               moveCard={this.moveCard}
               onEndDrug={this.updateResults}
+              I18n={I18n}
             />
           ))}
         </div>

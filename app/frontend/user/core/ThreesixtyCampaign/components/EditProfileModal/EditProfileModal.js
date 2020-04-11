@@ -3,10 +3,10 @@ import {
   Form,
   Input,
   Modal,
-  Icon,
   Button,
   message,
 } from 'antd'
+import { CheckOutlined } from '@ant-design/icons'
 import './styles.scss'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
@@ -55,7 +55,7 @@ export default function EditProfileModal ({
           type="primary"
           onClick={handleFormSave}
         >
-          <Icon type="check" />
+          <CheckOutlined />
           Update
         </Button>,
       ]}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AppStore from 'store/AppStore'
 import styles from '../../Condition.scss'
 import embeddedStyles from './EvaluatorRelationship.scss'
 
@@ -22,7 +21,7 @@ export default class EvaluatorRelationship extends Component {
   }
 
   render () {
-    const { condition } = this.props
+    const { relationships, condition } = this.props
     return (
       <div className={styles.questionDock}>
         <select
@@ -39,7 +38,7 @@ export default class EvaluatorRelationship extends Component {
           onChange={this.changeValue}
         >
           <option />
-          {AppStore.relationships.map((relation, i) => <option key={i} value={relation.name}>{relation.name}</option>)}
+          {relationships.map((relation, i) => <option key={i} value={relation.name}>{relation.name}</option>)}
         </select>
       </div>
     )

@@ -169,10 +169,8 @@ export default {
       FactorQuestionsScore: 'Factor - Questions Mean Score',
       HighestLowestScore: 'Highest - Lowest Mean Score',
       HighestLowestQuestion: 'Highest - Lowest Questions Score',
-      HighestLowestSubject: 'Highest-Lowest Subject score',
       SingleValueScoring: 'Single Value - Scoring',
       GapAssessmentScoring: 'Gap Assessment - Scoring',
-      AgileFactors: 'Agile Factors',
       CPITopFactors: 'Career - Top Factors',
       CPIOccupations: 'Career - Occupations',
       PotentialCareerShort: 'Career - Potential (short)',
@@ -193,9 +191,6 @@ export default {
         EmbeddedData: false,
         Factor: true,
       },
-      AgileFactors: {
-        Question: ['PickGroupRank'],
-      },
       HighestLowest: {
         Question: true,
         EmbeddedData: false,
@@ -204,13 +199,11 @@ export default {
     },
 
     settings: {
-      HighestLowestSubject: { multiFiltering: true },
       SingleValueScoring: { multiFiltering: true },
       GapAssessment: { multiFiltering: true },
       ThreeSixtyDefault: { multiFiltering: true },
       FactorQuestionsScore: { multiFiltering: true },
       GapAssessmentScoring: { multiFiltering: true },
-      AgileFactors: { questionMultiFiltering: true },
       ThreeSixtyReportSummary: { multiFiltering: true },
       VideoResponse: { multiFiltering: true },
       SingleValue: { multiFiltering: true },

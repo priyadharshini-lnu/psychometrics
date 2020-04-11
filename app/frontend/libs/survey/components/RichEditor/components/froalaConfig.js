@@ -1,8 +1,19 @@
+import FroalaEditor from 'froala-editor'
+import CodeMirror from 'codemirror'
+import 'codemirror/lib/codemirror.css'
+import 'codemirror/mode/xml/xml'
+import embedMedia from 'libs/survey/commands/froalaCommands/embedMedia'
+
+FroalaEditor.PLUGINS.embedMedia = embedMedia
+
 export default {
   iconsTemplate: 'font_awesome',
   imageUpload: false,
-  pluginsEnabled: ['lists', 'image', 'link', 'fontFamily',
-    'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table'],
+  codeMirror: CodeMirror,
+  pluginsEnabled: [
+    'lists', 'image', 'link', 'fontFamily',
+    'fontSize', 'colors', 'paragraphFormat',
+    'align', 'quote', 'table', 'video', 'embedMedia', 'codeView'],
   toolbarButtons: [
     'pipedText',
     'fontFamily',
@@ -31,6 +42,9 @@ export default {
     'help',
     'undo',
     'redo',
+    'insertVideo',
+    'embedMedia',
+    'html',
   ],
   // saveParams: { type },
   width: '100%',
@@ -39,4 +53,5 @@ export default {
   attribution: false,
   autofocus: true,
   toolbarSticky: false,
+  videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
 }

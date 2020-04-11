@@ -8,33 +8,16 @@ import Header from './QuestionHeader'
 import QuestionInfoBar from './QuestionInfoBar'
 import QuestionRenderer from './QuestionRenderer'
 
-const HEADER_HIEGHT = 40
-const HEADER_PADDING = 30
-
 class Question extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-    blockStore: PropTypes.object.isRequired,
-  }
-
-  state = {
-    fadeout: false,
-  }
-
-  componentWillUnmount () {
-    this.popupListener.remove()
   }
 
   remove = () => {
-    const { blockStore, model, unselect } = this.props
-    this.setState({ fadeout: true })
-    setTimeout(() => {
-      blockStore.dispatcher.clickRemove(model)
-      unselect()
-      if (this.isMounted()) {
-        this.setState({ fadeout: false })
-      }
-    }, 400)
+    const {
+      block, model, removeQuestion,
+    } = this.props
+    removeQuestion(block, model)
   }
 
   update = () => {
@@ -43,22 +26,15 @@ class Question extends Component {
 
   select = () => {
     const { model, select } = this.props
-    let offsetTop = this.question.getBoundingClientRect().top
-    if (document.body.scrollTop < HEADER_HIEGHT + HEADER_PADDING) {
-      offsetTop = HEADER_PADDING
-    } else {
-      offsetTop = document.body.scrollTop - HEADER_HIEGHT
-    }
+    const { offsetTop } = this.question
     select(model, offsetTop)
     this.forceUpdate()
   }
 
   render () {
     const { model, selectedModel } = this.props
-    const { fadeout } = this.state
-    const selected = selectedModel === model
+    const selected = selectedModel === model.id
     const style = {
-      opacity: fadeout ? 0 : 1,
       cursor: selected ? 'default' : 'pointer',
     }
     return (
@@ -74,7 +50,7 @@ class Question extends Component {
           <QuestionRenderer {...this.props} />
           <Footer {...this.props} />
         </div>
-        <Buttons {...this.props} remove={this.remove} />
+        <Buttons {...this.props} remove={this.remove} selected={selected} />
       </div>
     )
   }

@@ -6,9 +6,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DndProvider, DragSource, DropTarget } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
-
 import update from 'react-addons-update'
-import I18nStore from 'store/I18nStore'
 import ItemPreview from './ItemPreview'
 import styles from './DragAndDrop.scss'
 
@@ -103,13 +101,16 @@ class Preview extends Component {
     this.setState(this.dataForState(nextProps.model))
   }
 
-  dataForState = model => ({
-    data: _.map(model.result.answers, answer => ({
-      id: answer.index,
-      text: I18nStore.tQuestion(model, `choicesTexts${answer.index + 1}`, { choice: answer.index })
-              || model.moduleConfig.defaultChoiceText(answer.index + 1),
-    })),
-  })
+  dataForState = (model) => {
+    const { I18n } = this.props
+    return {
+      data: _.map(model.result.answers, answer => ({
+        id: answer.index,
+        text: I18n.tQuestion(model, `choicesTexts${answer.index + 1}`, { choice: answer.index })
+                || model.moduleConfig.defaultChoiceText(answer.index + 1),
+      })),
+    }
+  }
 
   moveItem = (dragIndex, hoverIndex) => {
     const { readOnly } = this.props

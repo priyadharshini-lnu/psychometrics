@@ -8,7 +8,6 @@ import {
 import {
   removeQuestion, moveQuestionUp, moveQuestionDown,
   insertBeforeQuestion, insertAfterQuestion,
-
 } from 'libs/survey/core/builder/assessment/block/actions'
 
 export default connect(

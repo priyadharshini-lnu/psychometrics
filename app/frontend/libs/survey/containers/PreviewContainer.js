@@ -1,42 +1,43 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
+import { Provider, connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import store from 'store/AssessmentPreviewStore'
-import AppStore from 'store/AppStore'
-import I18nStore from 'store/I18nStore'
+import Watchman from 'store/StoreWatchman'
+import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
+import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
+import rstore from '../store'
 
 class PreviewContainer extends Component {
   componentDidMount () {
-    store.reset()
-
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
-      data, type, locales, isThreesixty, resultsUrl, dashboardUrl, selectedLocale, isAnonymousAssessment,
+      data, type, locales, isThreesixty, dashboardUrl, selectedLocale, isAnonymousAssessment, langPartial, result,
       agileAssetsUrl, agileAssignUrl,
     } = parent.dataset
+    this.langPartial = langPartial
 
-    this.langPartial = parent.dataset.langPartial
-    I18nStore.setLocale(selectedLocale || document.body.dataset.locale)
-    if (locales) {
-      I18nStore.locales = JSON.parse(locales)
-    }
-    const dbResult = parent.dataset.result || null
-    store.isThreesixty = isThreesixty === 'true'
-    store.resultsUrl = resultsUrl
-    store.resultLocalStorageKey = [location.pathname]
-    store.isAnonymousAssessment = isAnonymousAssessment === 'true'
-    store.agileAssetsUrl = agileAssetsUrl
-    store.agileAssignUrl = agileAssignUrl
-    store.init(JSON.parse(data), type, JSON.parse(dbResult), dashboardUrl)
+    Watchman.set(rstore)
+    rstore.dispatch({
+      type: INIT,
+      data: {
+        ...JSON.parse(data),
+        type,
+        locales: JSON.parse(locales),
+        locale: selectedLocale || document.body.dataset.locale,
+        readOnly: type === 'view_results',
+        isAnonymousAssessment: isAnonymousAssessment === 'true',
+        isThreesixty: isThreesixty === 'true',
+        dashboardUrl,
+        agileAssetsUrl,
+        agileAssignUrl,
+      },
+      result: result ? JSON.parse(result) : {},
+    })
+
     this.forceUpdate()
-    this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.appListener.remove()
   }
 
   overlay () {
@@ -60,12 +61,19 @@ class PreviewContainer extends Component {
   }
 
   render () {
+    const Content = connect(({ preview }) => ({ type: preview.type }), {})(
+      ({ type }) => (
+        <div className="row">
+          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          <AssessmentPreview />
+        </div>
+      ),
+    )
+
     return (
-      <div className="row">
-        {store.type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        {AppStore.disabled && this.overlay()}
-        <AssessmentPreview />
-      </div>
+      <Provider store={rstore}>
+        <Content />
+      </Provider>
     )
   }
 }

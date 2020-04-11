@@ -1,3 +1,4 @@
 import EndPage from './EndPage'
+import connect from './connect'
 
-export default EndPage
+export default connect(EndPage)

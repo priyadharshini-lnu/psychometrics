@@ -1,4 +1,5 @@
-import { Icon, Input } from 'antd'
+import { Input } from 'antd'
+import { SearchOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
 import routeUtils from 'utils/routeUtils'
@@ -24,7 +25,7 @@ export default function Search ({
       value={value}
       onChange={onChange}
       placeholder="Search..."
-      suffix={<Icon type="search" />}
+      suffix={<SearchOutlined />}
       className={styles.container}
     />
   )

@@ -4,6 +4,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const less = require('./loaders/less')
+const tsLoader = require('./loaders/ts-loader')
 // uncomment it in order to use bundle analyzer
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
@@ -43,6 +44,7 @@ const myCssLoaderOptions = {
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 environment.loaders.append('less', less)
+environment.loaders.append('typescript', tsLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 
@@ -75,6 +77,7 @@ const vendors = [
 ]
 
 environment.config.merge({
+  stats: 'errors-only',
   optimization: {
     splitChunks: {
       cacheGroups: {

@@ -19,7 +19,9 @@ describe Assigns::Reset do
                     started_at: Time.now,
                     norm_data: test,
                     agile_scoring: test,
-                    occupations: test)
+                    occupations: test,
+                    expiry_date: Time.now,
+                    last_activity_at: Time.now)
   end
   let(:assign_with_result) { assign.assign_with_result }
 
@@ -39,7 +41,9 @@ describe Assigns::Reset do
       and change { assign_with_result.status }.from('completed').to('not_started').
       and change { assign_with_result.completed_at }.from(Time.now).to(nil).
       and change { assign_with_result.started_at }.from(Time.now).to(nil).
-      and change { assign_with_result.step }.from(100).to(0)
+      and change { assign_with_result.step }.from(100).to(0).
+      and change { assign_with_result.expiry_date }.from(Time.now).to(nil).
+      and change { assign_with_result.last_activity_at }.from(Time.now).to(nil)
   end
 
   it 'dont touch original assign' do

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import I18nStore from 'store/I18nStore'
 import styles from './RankOrder.scss'
 
 export default class extends Component {
@@ -29,11 +28,11 @@ export default class extends Component {
   }
 
   renderNotApplicableHeader () {
-    const { model } = this.props
+    const { model, I18n } = this.props
     const { notApplicable } = model.props
     if (!notApplicable) { return null }
     return (
-      <span className={styles.labelItem}>{I18nStore.tQuestion(model, 'notApplicableLabel')}</span>
+      <span className={styles.labelItem}>{I18n.tQuestion(model, 'notApplicableLabel')}</span>
     )
   }
 
@@ -55,14 +54,16 @@ export default class extends Component {
   }
 
   render () {
-    const { model, model: { props, moduleConfig, result }, readOnly } = this.props
+    const {
+      model, model: { props, moduleConfig, result }, readOnly, I18n,
+    } = this.props
     return (
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.header}`}>
           <div className={styles.firstColumn} />
           {_.times(props.scalePoints, i => (
             <span className={styles.labelItem} key={i}>
-              {I18nStore.tQuestion(model, `scalePointsTexts${i + 1}`, { scale: i })
+              {I18n.tQuestion(model, `scalePointsTexts${i + 1}`, { scale: i })
                 || moduleConfig.defaultScalePointText(i + 1)}
             </span>
           ))}
@@ -74,7 +75,7 @@ export default class extends Component {
             <div className={styles.firstColumn}>
               <div className={styles.item}>
                 <div key={choice}>
-                  {I18nStore.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
+                  {I18n.tQuestion(model, `choicesTexts${choice + 1}`, { choice })
                     || moduleConfig.defaultChoiceText(choice + 1)}
                 </div>
               </div>

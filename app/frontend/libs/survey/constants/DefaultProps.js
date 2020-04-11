@@ -191,6 +191,37 @@ const DefaultProps = {
     duration: 10,
   },
 
+  FileUpload: {
+    questionText: 'Click to write the question text',
+    maxFileSize: 1,
+    allowedFileTypes: ['pdf'],
+  },
+
+  AudioResponse: {
+    questionText: 'Click to write the question text',
+    duration: 10,
+  },
+}
+
+export const TextEntryProps = {
+  Chat: {
+    choices: 1,
+    title: 'Chat With Manager',
+    titleDescription: 'Chat with your manager to discuss about the feedback on the recent project',
+    managerName: 'Rupert Smith',
+    messageList: [
+      { type: 'their', text: 'Hi, James', position: 0 },
+      { type: 'mine', text: 'Ok Rupert', position: 1 },
+    ],
+    defaultValues: [],
+  },
+  Email: {
+    title: 'How will you communicate?',
+    titleDescription: 'Write an email to your manager',
+    contactList: ['Rupert Smith'],
+    defaultValues: {},
+    choices: 0,
+  },
 }
 
 export default DefaultProps

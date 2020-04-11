@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Foundation from 'rb/components/Foundation'
-import ConditionImageStore from 'rb/store/modals/ConditionImageStore'
+import GetImageURL from './GetImageURL'
 import styles from './Image.scss'
 
 export class Image extends Component {
@@ -17,7 +17,8 @@ export class Image extends Component {
   openEditor = () => {
     const { module: model, preview } = this.props
     if (!preview && model.props.sourceType === 'ConditionalImage') {
-      ConditionImageStore.open(model)
+      const { openConditionalImage } = this.props
+      openConditionalImage({ model })
     }
   }
 
@@ -36,7 +37,7 @@ export class Image extends Component {
       return (
         <div
           className={styles.image}
-          style={{ backgroundImage: `url(${ConditionImageStore.getImageUrl(model)})` }}
+          style={{ backgroundImage: `url(${GetImageURL.run(model)})` }}
           onLoad={this.load}
         />
       )

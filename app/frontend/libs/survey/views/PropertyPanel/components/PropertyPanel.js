@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'store/PropertyPanelStore'
 import { Properties } from 'components/modules'
 import Menu from 'components/ModulesMenu'
 import Action from 'undo'
@@ -51,8 +50,6 @@ class PropertyPanel extends Component {
     if (question.type === type && props === {}) { return }
     Action('QuestionChangeType', question, { oldType: question.type, newType: type })
     changeType(question, type, props)
-    store.update()
-    this.forceUpdate()
   }
 
   renderDefaultAction () {

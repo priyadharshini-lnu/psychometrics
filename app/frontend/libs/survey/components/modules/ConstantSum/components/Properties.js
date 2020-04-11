@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Utils from 'utils'
@@ -16,7 +15,6 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   // ====================================
@@ -27,14 +25,12 @@ export class Properties extends Component {
     const type = e.currentTarget.value
     model.props.type = type
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeField = (fieldName, value) => {
     const { model } = this.props
     model.props[fieldName] = value.currentTarget ? value.currentTarget.value : value
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeOptions = (e) => {
@@ -46,7 +42,6 @@ export class Properties extends Component {
       model.props.options = _.remove(options, n => n !== e.currentTarget.name)
     }
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeChoices = (val) => {
@@ -64,7 +59,6 @@ export class Properties extends Component {
       }
     }
     model.update()
-    this.forceUpdate()
   }
 
   changeLabels = (val) => {
@@ -77,7 +71,6 @@ export class Properties extends Component {
       }
     }
     model.update()
-    this.forceUpdate()
   }
 
   // ====================================

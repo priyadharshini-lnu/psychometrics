@@ -47,8 +47,11 @@ export default function Form (props) {
         resourceName="resource"
       />
       <BaseForm fields={FIELDS} errors={errors} context={props} onChange={onChange} resource={resource} />
-      <InputFile onChange={onChange} value={resource.icon} />
-      <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />
+      <div className="ant-form-vertical">
+        <InputFile onChange={onChange} value={resource.icon} />
+      </div>
+      {resource.scoring_strategy !== 'questions'
+      && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>
   )
 }
@@ -56,8 +59,8 @@ export default function Form (props) {
 
 // TODO (atanych): dont use this component in future. We should avoid ruby form and ruby modal and use react entirely
 const InputFile = ({ value, onChange }) => (
-  <AntForm.Item label="Icon" className={styles.fileContainer}>
-    <input name="resource[icon]" type="file" />
+  <AntForm.Item label="Icon" className={styles.fileContainer} labelCol={{ flex: 'none' }}>
+    <input name="resource[icon]" type="file" className="mbm" />
     {value && (
       <div className="mtm">
         <img width="50" src={value} alt="Factor Icon" />

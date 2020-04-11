@@ -27,7 +27,7 @@ class AssignsController < ApplicationController
 
   prepend_before_action :authenticate_anonymous_user!
   before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev
-                                      upload_callback remove_media]
+                                      upload_callback remove_media update_meta_data]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -53,13 +53,29 @@ class AssignsController < ApplicationController
   end
 
   def assessment
-    render json: @assign.assessment, serializer: AssessmentSerializer, include: '**'
+    piped_text_context = {
+      evaluator: current_user,
+      subject: current_user,
+      threesixty_campaign: {}
+    }
+
+    render json: @assign.assessment,
+           serializer: AssessmentSerializer,
+           include: '**',
+           piped_text_context: piped_text_context
   end
 
   def update
-    @form = AssignForm.from_params(params[:resource])
+    assign_params = ::UsersResults::ExtendResourceParams.call!(resource_params.to_h, params[:question_ids], @assign)
+
+    @form = AssignForm.from_params(assign_params)
     UpdateAssign.call(@form, @assign, current_user)
 
+    render json: { expired: @assign.expired? }
+  end
+
+  def update_meta_data
+    @assign.update!(meta_data_params)
     head :no_content
   end
 
@@ -77,20 +93,25 @@ class AssignsController < ApplicationController
 
     media = MediaResponse.find(params[:media_id])
     media.update_attributes(asset: params[:asset])
-    render json: media
+    render json: media.as_json.merge(filename: media.filename)
   end
 
   def upload_callback
     media = MediaResponse.find(params[:media_id])
-    media.update_attributes(asset_key: params[:asset_key])
-    media.reload # get data after fetching from s3
-    render json: media
+    media.asset_key = params[:asset_key]
+    if media.save
+      render json: media.reload.as_json.merge(filename: media.filename)
+    else
+      error_message = media.errors.messages.values.join(',')
+      media.destroy
+      render json: { error_message: error_message }, status: :unprocessable_entity
+    end
   end
 
   def remove_media
     media = MediaResponse.find_by!(id: params[:media_id], assign_id: @assign.id)
     media.destroy
-    if @assign.results[media.question_id.to_s]
+    if @assign.results&.dig(media.question_id.to_s)
       @assign.results[media.question_id.to_s]['answers'] = []
       @assign.save
     end
@@ -128,5 +149,15 @@ class AssignsController < ApplicationController
 
   def current_campaigns_user
     CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  end
+
+  def resource_params
+    params[:resource].permit(
+      :current_element, :current_page, :status, :step, norm_data: {}, embedded_data: {}, results: {}
+    )
+  end
+
+  def meta_data_params
+    params.permit(meta_data: {})
   end
 end

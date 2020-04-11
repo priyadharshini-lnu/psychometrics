@@ -1,3 +1,4 @@
 import AssessmentPreview from './AssessmentPreview'
+import connect from './connect'
 
-export default AssessmentPreview
+export default connect(AssessmentPreview)

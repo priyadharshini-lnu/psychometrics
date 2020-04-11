@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Layout, Button, Progress, Icon,
+  Layout, Button, Progress,
 } from 'antd'
+import { LeftOutlined } from '@ant-design/icons'
 
 const { Sider } = Layout
 
@@ -21,7 +22,7 @@ export default function Sidebar ({ history, match }) {
       <div className="content">
         <div className="reports-btn">
           <Button type="primary" block onClick={goBack}>
-            <Icon type="left" />
+            <LeftOutlined />
             All Tasks
           </Button>
         </div>

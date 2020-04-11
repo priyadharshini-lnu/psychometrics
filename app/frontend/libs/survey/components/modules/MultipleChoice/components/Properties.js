@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PropertyPanelStore from 'store/PropertyPanelStore'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import ChoicesInput from 'components/ChoicesInput'
 import Validations, { RequiredValidations } from 'components/Validations'
@@ -16,7 +15,6 @@ export class Properties extends Component {
     const type = e.currentTarget.value
     model.resetDefaultValues()
     model.changeProps({ type })
-    PropertyPanelStore.update()
   }
 
   changePosition = (e) => {
@@ -34,13 +32,11 @@ export class Properties extends Component {
   update = () => {
     const { model } = this.props
     model.update()
-    PropertyPanelStore.update()
   }
 
   changeChoices = (val) => {
     const { model } = this.props
     model.setChoices(val)
-    this.forceUpdate()
   }
 
   notApplicable () {

@@ -1,0 +1,25 @@
+head
+  = stylesheet_packs_with_chunks_tag 'medial_players/video'
+  = javascript_packs_with_chunks_tag 'medial_players/video'
+
+  css:
+    .video-js .vjs-control-bar {
+      display: flex;
+    }
+
+body style="margin: 0"
+  div
+    video id="my_video" class="video-js vjs-default-skin" controls=true preload="none"
+      source src="#{params[:url]}"
+
+  javascript:
+    var options = {
+      sources: [{
+        src: "#{params[:url]}",
+      }],
+      preload: false,
+      controls: true,
+      fill: true
+    }
+
+    window.videojs('my_video', options)

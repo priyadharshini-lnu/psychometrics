@@ -1,5 +1,6 @@
 import React from 'react'
-import { Icon, Tooltip } from 'antd'
+import { Tooltip } from 'antd'
+import { QuestionCircleOutlined } from '@ant-design/icons'
 
 const ScoringStrategyLabel = () => (
   <span>
@@ -25,7 +26,7 @@ const ScoringStrategyLabel = () => (
         </div>
       )}
     >
-      <Icon type="question-circle-o" />
+      <QuestionCircleOutlined />
     </Tooltip>
   </span>
 )

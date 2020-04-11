@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react'
-import { Icon, Table } from 'antd'
+import { Table } from 'antd'
+import { DeleteOutlined, EyeOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
 import { StatusSelect, RelationSelect } from '../List'
@@ -44,7 +45,7 @@ export default function List ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon type="eye" />
+            <EyeOutlined />
             {' '}
             {result.hash}
           </a>
@@ -115,7 +116,7 @@ export default function List ({
             title={I18n.t('threesixty.confirm')}
             onConfirm={() => destroyEvaluation(id, result.subjectId, evaluator.id)}
           >
-            <Icon type="delete" />
+            <DeleteOutlined />
           </Confirmation>
         )}
       />

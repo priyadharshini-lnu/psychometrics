@@ -284,7 +284,7 @@ class StrengthClusters extends Component {
               conditionColor = _.invoke(conditions[i], 'getColorByCondition', factor.meanNormScore)
               if (conditionText) { break }
             }
-            subfactors = ResultStore.results[model.assessment_id].getSubFactors(1, 3, factor.id)
+            subfactors = ResultStore.results[model.assessment_id].getTopSubFactors(1, 3, factor.id)
           } else {
             conditionText = factor.description
             conditionWorkstyles = factor.workstyles

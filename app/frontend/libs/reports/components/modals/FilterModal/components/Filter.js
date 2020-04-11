@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
-import store from 'rb/store/modals/FilterStore'
 import styles from './FilterModal.scss'
 import ConditionList from './ConditionList'
 
@@ -11,21 +10,18 @@ export class Filter extends Component {
   }
 
   change = ({ currentTarget }) => {
-    const { model } = this.props
-    model[currentTarget.name] = currentTarget.value
-    this.forceUpdate()
+    const { model, onChange } = this.props
+    onChange(model, { [currentTarget.name]: currentTarget.value })
   }
 
   remove = () => {
-    const { model } = this.props
-    store.removeFilter(model)
-    this.forceUpdate()
+    const { model, onRemove } = this.props
+    onRemove(model)
   }
 
   changeAssessment = (e) => {
-    const { model } = this.props
-    model.assessmentId = e.currentTarget.value
-    this.forceUpdate()
+    const { model, onChange } = this.props
+    onChange(model, { assessmentId: e.currentTarget.value })
   }
 
   renderConditions () {
