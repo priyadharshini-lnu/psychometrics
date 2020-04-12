@@ -24,6 +24,7 @@ class Foundation extends Component {
     const {
       module, page, preview, aspectRatio,
     } = this.props
+    this.listener = store.addListener('change', () => this.forceUpdate())
     const shadow = !module.onPage(page) && module.props.showOnAllPages
     if (shadow || preview) { return }
     interact(this.base)
@@ -71,6 +72,10 @@ class Foundation extends Component {
           this.base,
         ) // target Element
       })
+  }
+
+  componentWillUnmount () {
+    this.listener.remove()
   }
 
   dragHandler = (event) => {
