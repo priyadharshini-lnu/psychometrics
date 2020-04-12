@@ -67,6 +67,7 @@ const HANDLERS = {
     return {
       ...defaultState,
       initialized: true,
+      assessmentCategory: data.category,
       type: data.type || 'preview_assessment',
       isThreesixty: data.isThreesixty,
       dashboardUrl: data.dashboardUrl || '/',
@@ -81,7 +82,7 @@ const HANDLERS = {
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
-      allPages: InitPages.run(data),
+      allPages: InitPages.run(data, result.id || Date.now()),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -91,7 +92,7 @@ const HANDLERS = {
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,
       currentPage: result.current_page || 0,
-      randomseed: result.id || '', // use assign or user id
+      randomseed: result.id || Date.now(), // use assign or user id
       dataSheet: result.data_sheet,
       subjectDataSheet: result.subject_datasheet,
       dbResult: result,
@@ -100,6 +101,10 @@ const HANDLERS = {
       timerDuration: data.timer_duration,
       metaData: result.meta_data || {},
       locales: data.locales,
+      agileAssetsUrl: data.agileAssetsUrl,
+      agileAssignUrl: data.agileAssignUrl,
+      end: data.approveEvaluation ? false : result.status === 'completed',
+      prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
     }
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
@@ -136,7 +141,7 @@ const HANDLERS = {
   [TOGGLE_HIDDEN_QUESTIONS]: state => setIn(state, ['hideHiddenQuestions'], !state.hideHiddenQuestions),
   [TOGGLE_IGNORE_VALIDATION]: state => setIn(state, ['ignoreValidations'], !state.ignoreValidations),
   [RESET]: state => ({
-    ...state, results: {}, currentElement: null, current_page: 0,
+    ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
   [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
   [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),

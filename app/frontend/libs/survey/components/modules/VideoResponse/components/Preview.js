@@ -22,7 +22,9 @@ export class Preview extends Component {
   }
 
   renderVideoRecorder () {
-    const { model, type, mediaUrl } = this.props
+    const {
+      model, type, mediaUrl, readOnly,
+    } = this.props
     const { result } = model
     const preview = type === 'preview_assessment'
     return (
@@ -31,6 +33,7 @@ export class Preview extends Component {
           key={model.id}
           model={model}
           preview={preview}
+          readOnly={readOnly}
           maxDuration={model.props.duration}
           result={result}
           mediaUrl={mediaUrl}

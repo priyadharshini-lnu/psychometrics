@@ -10,12 +10,13 @@ interface Props {
   model: Question
   type: ContactType
   toggleCopyField: (type: 'cc' | 'bcc') => void
+  readOnly?: boolean
 }
 
 const { Option } = Select
 
 const ContactSelect: React.FC<Props> = ({
-  model, model: { props: { contactList } }, type, toggleCopyField,
+  model, model: { props: { contactList } }, type, toggleCopyField, readOnly,
 }) => {
   const handleChange = (value: ContactType[]): void => {
     model.result.answer({ ...model.result.answers, [type]: value })
@@ -36,7 +37,13 @@ const ContactSelect: React.FC<Props> = ({
         </div>
         )}
       </div>
-      <Select className={styles.select} mode="multiple" value={model.result.answers[type]} onChange={handleChange}>
+      <Select
+        className={styles.select}
+        mode="multiple"
+        value={model.result.answers[type]}
+        onChange={handleChange}
+        disabled={readOnly}
+      >
         {contactList?.filter(Boolean).map((contact, i) => (
           <Option key={i} value={contact}>{Watchman.I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
         ))}

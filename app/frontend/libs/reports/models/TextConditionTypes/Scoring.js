@@ -16,6 +16,8 @@ class Scoring extends BaseType {
 
   compareAggregatedData () {
     const { scoring } = this.getResults()
+    if (!scoring) { return false }
+
     const factorData = scoring[parseInt(this.condition.props.subject, 10)]
     if (factorData && factorData.results.length) {
       const { results } = factorData
