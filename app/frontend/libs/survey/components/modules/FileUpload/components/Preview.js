@@ -21,13 +21,16 @@ export class Preview extends Component {
   }
 
   renderFileUploadBlock () {
-    const { model, mediaUrl, type } = this.props
+    const {
+      model, mediaUrl, type, readOnly,
+    } = this.props
     const preview = type === 'preview_assessment'
 
     return (
       <FileUploadBlock
         mediaUrl={mediaUrl}
         model={model}
+        readOnly={readOnly}
         fakeUpload={preview}
         onSuccessUpload={this.successUpload}
         onRemoveFile={this.removeFile}

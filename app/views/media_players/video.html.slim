@@ -1,7 +1,7 @@
 head
-  = javascript_pack_tag "vendors"
-  = stylesheet_pack_tag  "medial_players/video"
-  = javascript_pack_tag "medial_players/video"
+  = stylesheet_packs_with_chunks_tag 'medial_players/video'
+  = javascript_packs_with_chunks_tag 'medial_players/video'
+
   css:
     .video-js .vjs-control-bar {
       display: flex;

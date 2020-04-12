@@ -10,6 +10,7 @@ import { Question } from '../interfaces'
 
 interface Props {
   model: Question
+  readOnly?: boolean
 }
 
 interface ContactProps {
@@ -19,7 +20,7 @@ interface ContactProps {
 
 const { TextArea } = Input
 
-const Form: React.FC<Props> = ({ model }) => {
+const Form: React.FC<Props> = ({ model, readOnly }) => {
   const defaultContactProps: ContactProps[] = [
     { type: TO_TYPE, visible: true },
     { type: CC_TYPE, visible: !_.isEmpty(model.result.answers[CC_TYPE]) },
@@ -39,13 +40,14 @@ const Form: React.FC<Props> = ({ model }) => {
   return (
     <div className={styles.emailForm}>
       {contactProps.filter(({ visible }) => visible).map(({ type }, i) => (
-        <ContactSelect key={i} model={model} toggleCopyField={toggleCopyField} type={type} />
+        <ContactSelect key={i} model={model} toggleCopyField={toggleCopyField} type={type} readOnly={readOnly} />
       ))}
       <div className={styles.subject}>
         <div>{Watchman.I18n().t('threesixty.question.email_type.subject')}</div>
         <Input
           value={model.result.answers.subject}
           onChange={({ target: { value } }): void => handleTestChange('subject', value)}
+          disabled={readOnly}
         />
       </div>
       <div>
@@ -55,6 +57,7 @@ const Form: React.FC<Props> = ({ model }) => {
           value={model.result.answers.message}
           rows={7}
           onChange={({ target: { value } }): void => handleTestChange('message', value)}
+          disabled={readOnly}
         />
       </div>
     </div>
