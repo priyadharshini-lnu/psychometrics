@@ -8,11 +8,12 @@ interface Props {
   value: string,
   onChange: (value: string) => void
   width?: number
+  readOnly?: boolean
 }
 
 const ESC_CODE = 27
 
-const MultiInlineEditor: React.FC<Props> = ({ value, onChange, width }) => {
+const MultiInlineEditor: React.FC<Props> = ({ value, onChange, width, readOnly }) => {
   const [edit, setEdit] = useState<boolean>(false)
   const [text, setText] = useState<string>(value)
 
@@ -50,6 +51,7 @@ const MultiInlineEditor: React.FC<Props> = ({ value, onChange, width }) => {
           onBlur={handleBlur}
           value={text}
           onChange={handleChange}
+          disabled={readOnly}
         />
       </div>
     )

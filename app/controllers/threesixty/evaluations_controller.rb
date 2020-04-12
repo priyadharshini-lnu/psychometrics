@@ -11,7 +11,7 @@ module Threesixty
     initial_state_for [:show]
 
     def show
-      authorize @participant
+      params[:approve_evaluation] ? authorize(@participant, :approve_evaluation?) : authorize(@participant)
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do
@@ -26,8 +26,12 @@ module Threesixty
             @users_result.current_element = nil
             @users_result.current_page = 0
           end
+          if params[:step]
+            @users_result.step = params[:step].to_i
+            @users_result.current_element = nil
+            @users_result.current_page = 0
+          end
 
-          @users_result.step = params[:step].to_i if params[:step]
           set_locale_for_assessment(@users_result.assessment_id)
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,

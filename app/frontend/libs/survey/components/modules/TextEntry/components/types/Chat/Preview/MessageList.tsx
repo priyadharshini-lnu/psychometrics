@@ -8,9 +8,10 @@ import { MINE_TYPE } from '../constants'
 interface Props {
   model: Question
   messageList: MessageInterface[]
+  readOnly?: boolean
 }
 
-const MessageList: React.FC<Props> = ({ messageList, model, model: { result: { answers } } }) => {
+const MessageList: React.FC<Props> = ({ messageList, model, model: { result: { answers } }, readOnly }) => {
   const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const MessageList: React.FC<Props> = ({ messageList, model, model: { result: { a
       {_.sortBy(messageList, 'position').map((message, i) => (
         <Message model={model} key={i} message={message} />
       ))}
-      {answersMessageList().map((message, i) => (<Message model={model} key={i} message={message} isAnswer />))}
+      {answersMessageList().map((message, i) => (<Message model={model} key={i} message={message} isAnswer readOnly={readOnly} />))}
     </div>
   )
 }

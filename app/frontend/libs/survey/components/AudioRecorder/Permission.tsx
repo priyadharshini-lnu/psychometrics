@@ -9,9 +9,10 @@ import styles from './PermissionStyle.scss'
 
 interface Props {
   onAllow(): void
+  readOnly?: boolean
 }
 
-const Permission: React.FC<Props> = ({ onAllow }) => {
+const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
   const askForPermission = () => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(onAllow)
@@ -32,6 +33,7 @@ const Permission: React.FC<Props> = ({ onAllow }) => {
         icon={<CheckOutlined />}
         className="mtl"
         onClick={askForPermission}
+        disabled={readOnly}
       >
         Allow
       </ColoredButton>
