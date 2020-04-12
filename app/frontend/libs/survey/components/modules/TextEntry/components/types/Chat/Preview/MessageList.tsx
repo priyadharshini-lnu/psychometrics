@@ -11,7 +11,9 @@ interface Props {
   readOnly?: boolean
 }
 
-const MessageList: React.FC<Props> = ({ messageList, model, model: { result: { answers } }, readOnly }) => {
+const MessageList: React.FC<Props> = ({
+  messageList, model, model: { result: { answers } }, readOnly,
+}) => {
   const messagesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -28,7 +30,9 @@ const MessageList: React.FC<Props> = ({ messageList, model, model: { result: { a
       {_.sortBy(messageList, 'position').map((message, i) => (
         <Message model={model} key={i} message={message} />
       ))}
-      {answersMessageList().map((message, i) => (<Message model={model} key={i} message={message} isAnswer readOnly={readOnly} />))}
+      {answersMessageList().map((message, i) => (
+        <Message model={model} key={i} message={message} isAnswer readOnly={readOnly} />
+      ))}
     </div>
   )
 }

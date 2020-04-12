@@ -37,8 +37,13 @@ const ContactSelect: React.FC<Props> = ({
         </div>
         )}
       </div>
-      <Select className={styles.select} mode="multiple" value={model.result.answers[type]} onChange={handleChange}
-        disabled={readOnly}>
+      <Select
+        className={styles.select}
+        mode="multiple"
+        value={model.result.answers[type]}
+        onChange={handleChange}
+        disabled={readOnly}
+      >
         {contactList?.filter(Boolean).map((contact, i) => (
           <Option key={i} value={contact}>{Watchman.I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
         ))}

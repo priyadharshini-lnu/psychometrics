@@ -23,7 +23,8 @@ const PlayerControl: React.FC<Props> = ({
   playerState, percent, uploadState, discardRecording, saveRecording, playAudio, pauseAudio, readOnly,
 }) => (
   <div className={styles.controls}>
-    {!readOnly && <ColoredButton
+    {!readOnly && (
+    <ColoredButton
       color={ButtonColor.GREY}
       type="primary"
       icon={<DeleteOutlined />}
@@ -31,7 +32,8 @@ const PlayerControl: React.FC<Props> = ({
       onClick={discardRecording}
     >
       {Watchman.I18n().t('assessments.video_response.delete')}
-    </ColoredButton>}
+    </ColoredButton>
+    )}
 
     {playerState === PLAYER_STATE.PLAYING && <MediaButtons.PauseButton onClick={pauseAudio} />}
     {playerState === PLAYER_STATE.PAUSED && <MediaButtons.PlayButton onClick={playAudio} />}
@@ -51,7 +53,7 @@ const PlayerControl: React.FC<Props> = ({
           </ColoredButton>
         )}
 
-   {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
+    {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
     <div className={styles.savedTextContainer}>
       <CheckOutlined className={styles.icon} />
       <span className={styles.savedText}>{Watchman.I18n().t('assessments.video_response.saved')}</span>
