@@ -61,14 +61,15 @@ module UserScopes
       where('users.hris @> ?', data.to_json)
     }
 
-    scope :role_scope_in, lambda { |role_scope|
-      if role_scope == 'users'
-        joins(:memberships).
-          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
-      elsif role_scope == 'administration'
-        joining { memberships.outer }.
-          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
+    scope :role_scope_in, lambda { |*roles|
+      user_roles = User::USER_ROLES.values & roles
+      membership_roles_indexes = roles.map do |role|
+        Membership.roles[role]
       end
+
+      joins(:memberships).where(
+        'users.role IN (?)', user_roles
+      ).or(User.joins(:memberships).where('memberships.role IN (?)', membership_roles_indexes))
     }
 
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }

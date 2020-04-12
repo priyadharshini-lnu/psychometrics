@@ -16,7 +16,11 @@ class UserDecorator < BaseDecorator
   end
 
   def role
-    I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
+    if object.is?(:admin)
+      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop}")
+    else
+      I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
+    end
   end
 
   def admin_role

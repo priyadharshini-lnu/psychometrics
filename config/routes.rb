@@ -607,7 +607,7 @@ Rails.application.routes.draw do
       resources :assigns, only: [] do
         member do
           get :pass
-          get :results
+          get :redirect
         end
       end
     end
@@ -615,7 +615,6 @@ Rails.application.routes.draw do
       resources :assigns, only: [] do
         member do
           get :redirect
-          get :results
           put :pass
         end
       end
