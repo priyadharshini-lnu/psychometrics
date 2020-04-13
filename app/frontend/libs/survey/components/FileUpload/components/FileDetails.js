@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { FileOutlined, DeleteOutlined } from '@ant-design/icons'
 import styles from './FileUpload.scss'
 
-export default function FileDetails ({ localFile, savedFile, removeFile }) {
+export default function FileDetails ({
+  localFile, savedFile, removeFile, readOnly,
+}) {
   let fileDetails = null
   if (savedFile) {
     fileDetails = { filename: savedFile.filename, url: savedFile.value }
@@ -22,11 +24,13 @@ export default function FileDetails ({ localFile, savedFile, removeFile }) {
           {fileDetails.filename}
         </a>
       </div>
+      {!readOnly && (
       <div className={styles.removeFileButton}>
         <a onClick={removeFile}>
           <DeleteOutlined className={styles.deleteIcon} />
         </a>
       </div>
+      )}
     </div>
   )
 }
