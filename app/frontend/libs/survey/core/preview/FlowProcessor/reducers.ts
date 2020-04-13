@@ -103,7 +103,7 @@ const HANDLERS = {
       locales: data.locales,
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
-      end: data.approveEvaluation ? false : result.status === 'completed',
+      end: data.notAnEndPage ? false : result.status === 'completed',
       prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
     }
   },

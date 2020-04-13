@@ -65,7 +65,7 @@ export const saveResults = (preview, questionIds) => {
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
-      status: preview.end ? 'completed' : 'in_progress',
+      status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
     },
     question_ids: questionIds,
   }
