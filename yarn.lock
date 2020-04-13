@@ -1134,10 +1134,10 @@
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@redux-saga/types/-/types-1.0.2.tgz#1d94f02800b094753f9271c206a26c2a06ca14ee"
 
-"@thetalententerprise/interactive-assessments@1.0.6":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.0.6/a69fd07c284bd7efac053512c7ff75fad3331e603e9dc93dc0910130801383c0#adc5eed9b0b680ef70dbc24ff0b1fd3a9b0b8d04"
-  integrity sha512-DV8UbWdqhc2B6mT9LPxRZJHrLKCnEAqiyYj+zudty1+IGrGdEpt4ltzEXg7Me/QpiHuQeK1nt1Ecf9gZ90dk5A==
+"@thetalententerprise/interactive-assessments@1.0.8":
+  version "1.0.8"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.0.8/acfcb37a782ca2b337b3f62fb3b39f862a357e4c4d374cffb83c3947ff0ad6e1#2fd8a0deaf44ff1753b3c69bde490dfb43804913"
+  integrity sha512-kgb+vRWbxuiXdqvAgO06SN3gkTgt5RFXnzEw9ujxxfeTDcts0GEEKCxXmZSr7nQWnNJq1SuLsVnj4dj1U67mDA==
 
 "@types/asap@^2.0.0":
   version "2.0.0"
