@@ -7,7 +7,15 @@
       justify-content: space-between;
       width: 100%;
 
+      .actions-btn {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: space-between;
+      }
+
       .menu-icon {
+        margin-left: 8px;
         font-size: 1.5em;
       }
     }
@@ -16,6 +24,13 @@
       font-weight: 500;
     }
   }
+  .approve-list {
+
+    .evaluation-item {
+      padding-left: 28px;
+    }
+  }
+
 }
 .flex {
   display: flex;

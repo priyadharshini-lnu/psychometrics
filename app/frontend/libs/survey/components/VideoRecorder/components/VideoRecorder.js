@@ -292,14 +292,14 @@ class VideoRecorder extends Component {
   }
 
   renderControls () {
-    const { onSuccessUpload } = this.props
+    const { onSuccessUpload, readOnly } = this.props
     const { recordingState, deviceReady } = this.state
     if (!deviceReady || !onSuccessUpload) { return null }
 
     return (
       <div className={styles.controlBar}>
         <div className={cs(styles.controls, 'display-flex')}>
-          {['recorded', 'saved', 'saving'].includes(recordingState) && (
+          {['recorded', 'saved', 'saving'].includes(recordingState) && !readOnly && (
             <button
               title="Discard"
               className={cs(styles.control, styles.discard, styles[recordingState])}
@@ -326,7 +326,7 @@ class VideoRecorder extends Component {
               </span>
             </button>
           )}
-          {recordingState === 'saved' && (
+          {recordingState === 'saved' && !readOnly && (
             <button className={cs(styles.control, styles[recordingState])} title="Saved">
               <span className="mrs mls fa fa-check" aria-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
@@ -360,6 +360,8 @@ class VideoRecorder extends Component {
   }
 
   renderPerm () {
+    const { readOnly } = this.props
+
     return (
       <div className={styles.perm}>
         <div className={styles.circle}>
@@ -373,6 +375,7 @@ class VideoRecorder extends Component {
           id="btn-allow-record"
           className={cs('btn-default', styles.btnAllowRecord)}
           onClick={this.allowRecording}
+          disabled={readOnly}
         >
           <span className="mrs mls fa fa-check" aria-hidden="true" />
           { Watchman.I18n().t('assessments.video_response.device') }

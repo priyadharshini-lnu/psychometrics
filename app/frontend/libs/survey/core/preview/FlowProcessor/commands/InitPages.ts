@@ -50,7 +50,7 @@ const InitPages = {
         pages[b.id] = [...pages[b.id], attrs]
       }
       if (b.props && b.props.randomization) {
-        pages[b.id] = RandomizeBlockQuestions.run(b.props.randomization, pages[b.id], seed)
+        pages[b.id] = RandomizeBlockQuestions.run(b.props.randomization, pages[b.id], seed + b.id)
       }
       return { ...pages }
     }, {})

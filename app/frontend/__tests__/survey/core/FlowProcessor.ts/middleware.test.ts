@@ -24,7 +24,7 @@ describe('initializing base assessment', () => {
 
 
   test('init action should init assessment data', () => {
-    store.dispatch({ type: INIT, data: assessment, result: {} })
+    store.dispatch({ type: INIT, data: assessment, result: {id: 1} })
     expect(store.getState()).toMatchSnapshot('init_assessment')
   })
 

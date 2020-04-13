@@ -17,13 +17,13 @@ export class FileUpload extends React.Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, readOnly } = this.props
     return (
       <div className="position-relative">
         <div className={textEntryStyles.questionText}>
           <TextEditor model={model} value={model.props.questionText} onChange={this.changeQuestionText} />
         </div>
-        <FileUploadBlock model={model} fakeUpload />
+        <FileUploadBlock model={model} fakeUpload readOnly={readOnly} />
       </div>
     )
   }
