@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
-import NumberInput from 'components/NumberInput'
+import { InputNumber } from 'antd'
 
 export class Properties extends Component {
   durations = [
@@ -60,7 +60,7 @@ export class Properties extends Component {
     this.update()
   }
 
-  updateTrackerOptions = (key, val) => {
+  updateTrackerOptions = (val, key) => {
     const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
     const options = { ...this.trackerOptions, ...trackerOptions }
 
@@ -91,13 +91,19 @@ export class Properties extends Component {
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         {Object.keys(properties).map((key, i) => (
-          <NumberInput
-            key={i}
-            label={key}
-            name={key}
-            value={properties[key]}
-            onChange={this.updateTrackerOptions}
-          />
+          <div className={styles.numberInputWrapper}>
+            <label className={styles.label}>{key}</label>
+            <InputNumber
+              key={i}
+              min={0.1}
+              max={1.0}
+              step={0.1}
+              size="small"
+              value={properties[key]}
+              precision={1}
+              onChange={e => this.updateTrackerOptions(e, key)}
+            />
+          </div>
         ))}
       </div>
     )
