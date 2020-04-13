@@ -11,8 +11,8 @@ class MultipleAnswerPreview extends Component {
 
   changeAnswer = (index, e) => {
     const { model } = this.props
-    model.result.answer(index, e.currentTarget.checked)
     model.result.notApplicable = false
+    model.result.answer(index, e.currentTarget.checked)
     this.forceUpdate()
   }
 
@@ -20,6 +20,7 @@ class MultipleAnswerPreview extends Component {
     const { model } = this.props
     model.result.answers = []
     model.result.notApplicable = true
+    model.result.reduxAnswer()
     this.forceUpdate()
   }
 

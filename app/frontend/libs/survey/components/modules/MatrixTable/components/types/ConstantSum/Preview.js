@@ -24,6 +24,7 @@ export default class extends Component {
     _.remove(result.answers, { choice })
     result.notApplicable = result.notApplicable || {}
     result.notApplicable[choice] = true
+    result.reduxAnswer()
     this.forceUpdate()
   }
 
