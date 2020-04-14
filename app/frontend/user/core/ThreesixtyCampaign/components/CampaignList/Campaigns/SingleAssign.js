@@ -13,6 +13,8 @@ import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
 
 const IN_PROGRESS = 'in_progress'
+const INTERRUPTED = 'interrupted'
+
 const ASSESSMENT_CATEGORY_ICONS = {
   psychometric: 'assessment',
   360: '360',
@@ -64,7 +66,7 @@ const renderButtonContent = ({
     ? <a href={href} onClick={showPolicyConfirm}>{children}</a>
     : <Link to={href} onClick={showPolicyConfirm}>{children}</Link>)
 
-  if (status === IN_PROGRESS) {
+  if (status === IN_PROGRESS || status === INTERRUPTED) {
     return (
       <LinkTag>
         {loading ? <LoadingOutlined /> : <ContinueIcon />}
