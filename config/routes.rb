@@ -64,9 +64,10 @@ Rails.application.routes.draw do
         resources :users do
           # user_id means membership_id in this case
           scope module: :users do
-            resources :assigns, only: %i[index new create destroy] do
+            resources :assigns, only: %i[index new create edit destroy] do
               get :reports, on: :collection
               put :reset, on: :member
+              put :update_additional_time, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
