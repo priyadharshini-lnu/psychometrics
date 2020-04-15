@@ -59,7 +59,7 @@ gem 'webpacker',                  '~> 4.0.2'
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
-gem 'simple_form',                '3.5.1'
+gem 'simple_form',                '5.0.2'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 0.17.0'
@@ -70,7 +70,7 @@ gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 1.8.10'
 gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
-gem 'active_link_to',             '~> 1.0.3'
+gem 'active_link_to',             '~> 1.0.5'
 
 ### Translaters for javascripts
 gem 'i18n-js',                    '~> 3.0.0.rc3'

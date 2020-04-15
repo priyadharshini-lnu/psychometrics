@@ -27,6 +27,7 @@ interface Props {
   fakeUpload: boolean
   onSuccessUpload(): void
   onRecordingDiscard(): void
+  readOnly?: boolean
 }
 
 interface Model {
@@ -56,6 +57,7 @@ const AudioRecorder: React.FC<Props> = ({
   fakeUpload,
   onSuccessUpload,
   onRecordingDiscard,
+  readOnly,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const updateAudioPulseRef = useRef<() => void>()
@@ -69,6 +71,7 @@ const AudioRecorder: React.FC<Props> = ({
   useEffect(() => {
     if (result && result.answers.length) {
       dispatch(setRecordingState(RECORDER_STATES.RECORDED))
+      dispatch(setUploadState(UPLOAD_STATES.SAVED))
     } else {
       initRecorder()
     }
@@ -193,6 +196,7 @@ const AudioRecorder: React.FC<Props> = ({
           pauseAudio={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
           saveRecording={saveRecording}
           discardRecording={discardRecording}
+          readOnly={readOnly}
         />
       )
     }
@@ -212,7 +216,7 @@ const AudioRecorder: React.FC<Props> = ({
 
   if (state.recordingState === RECORDER_STATES.INIT) {
     return (
-      <Permission onAllow={(): void => dispatch(setRecordingState(RECORDER_STATES.READY))} />
+      <Permission onAllow={(): void => dispatch(setRecordingState(RECORDER_STATES.READY))} readOnly={readOnly} />
     )
   }
 

@@ -23,6 +23,12 @@ tr id=dom_id(resource)
                           toggle: 'tooltip',
                           title: t('.tooltips.reset') })
           span.fa.fa-trash-o
+      - if policy(resource).update_additional_time?
+        = link_to edit_administration_client_user_assign_path(client, membership, resource),
+                remote: true,
+                class: 'btn btn-default btn-rounded btn-sm',
+                data: {toggle: 'tooltip', title: t('.tooltips.additional_time')}
+          span.fa.fa-clock-o
       - if assessment.hogan?
         div
           - participant_id = membership.membership_with_result&.hogan_credential&.participant_id

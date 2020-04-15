@@ -6,12 +6,13 @@ import Form from './Form'
 
 interface Props {
   model: Question
+  readOnly?: boolean
 }
 
-const Email: React.FC<Props> = ({ model }) => (
+const Email: React.FC<Props> = ({ model, readOnly }) => (
   <div className={styles.container}>
     <Header model={model} />
-    <Form model={model} />
+    <Form model={model} readOnly={readOnly} />
   </div>
 )
 

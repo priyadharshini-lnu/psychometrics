@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class Threesixty::ParticipantPolicy < Threesixty::BasePolicy
+  def approve_evaluation?
+    option = @record.campaign.threesixty_option.participants
+
+    option.dig('manager', 'can_approves_evaluations') && manager?(@record.threesixty_subject)
+  end
+
   def show?
     return false unless manage? && !@record.threesixty_subject.evaluation_status_completed?
 
     option = @record.campaign.threesixty_option.participants
-    puts option
     return true unless option.dig('global', 'can_not_edit_evaluation')
 
     !@record.result&.completed?

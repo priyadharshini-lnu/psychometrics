@@ -33,7 +33,7 @@ module EndUser
     end
 
     def results_hogan_url
-      results_hogan_assign_path(assign, report_id: object.id)
+      redirect_hogan_assign_path(assign, report_id: object.id)
     end
 
     def generating

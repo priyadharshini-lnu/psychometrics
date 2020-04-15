@@ -13,6 +13,16 @@ export const SET_FILE = 'SET_FILE'
 export const REMOVE_FILE = 'REMOVE_FILE'
 export const SET_ERRORS = 'SET_ERROR_CODES'
 export const SET_PERCENTAGE = 'SET_PERCENTAGE'
+export const DELETE_FILE = 'DELETE_FILE'
+
+export const deleteFile = (url, mediaId) => ({
+  type: DELETE_FILE,
+  request: {
+    url,
+    method: 'delete',
+    body: { mediaId },
+  },
+})
 
 const HANDLERS = {
   [SET_UPLOAD_STATE]: (state, { payload: { uploadState } }) => ({ ...state, uploadState }),

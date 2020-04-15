@@ -64,9 +64,10 @@ Rails.application.routes.draw do
         resources :users do
           # user_id means membership_id in this case
           scope module: :users do
-            resources :assigns, only: %i[index new create destroy] do
+            resources :assigns, only: %i[index new create edit destroy] do
               get :reports, on: :collection
               put :reset, on: :member
+              put :update_additional_time, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
@@ -607,7 +608,7 @@ Rails.application.routes.draw do
       resources :assigns, only: [] do
         member do
           get :pass
-          get :results
+          get :redirect
         end
       end
     end
@@ -615,19 +616,25 @@ Rails.application.routes.draw do
       resources :assigns, only: [] do
         member do
           get :redirect
-          get :results
           put :pass
         end
       end
     end
 
-    namespace :agile do
+    concern :agile_assigns do
       resources :assigns, only: %i[show update] do
         member do
           post :events
           put :set_language
         end
       end
+    end
+
+    namespace :agile do
+      namespace :anonym do
+        concerns :agile_assigns
+      end
+      concerns :agile_assigns
     end
 
     resources :reports, only: %i[show] do

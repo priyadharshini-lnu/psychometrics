@@ -15,6 +15,7 @@ class PreviewContainer extends Component {
     const parent = ReactDOM.findDOMNode(this).parentNode
     const {
       data, type, locales, isThreesixty, dashboardUrl, selectedLocale, isAnonymousAssessment, langPartial, result,
+      agileAssetsUrl, agileAssignUrl,
     } = parent.dataset
     this.langPartial = langPartial
 
@@ -30,9 +31,12 @@ class PreviewContainer extends Component {
         isAnonymousAssessment: isAnonymousAssessment === 'true',
         isThreesixty: isThreesixty === 'true',
         dashboardUrl,
+        agileAssetsUrl,
+        agileAssignUrl,
       },
       result: result ? JSON.parse(result) : {},
     })
+
     this.forceUpdate()
   }
 

@@ -12,9 +12,10 @@ const { TextArea } = Input
 interface Props {
   model: Question
   choices: number
+  readOnly?: boolean
 }
 
-const Footer: React.FC<Props> = ({ model, choices }) => {
+const Footer: React.FC<Props> = ({ model, choices, readOnly }) => {
   const [text, setText] = useState<string>('')
 
   const createMessage = (): void => {
@@ -38,7 +39,7 @@ const Footer: React.FC<Props> = ({ model, choices }) => {
       <TextArea
         autoSize
         value={text}
-        disabled={areChoicesOver()}
+        disabled={readOnly || areChoicesOver()}
         onChange={({ target: { value } }): void => setText(value)}
         className={styles.chatInput}
         placeholder={Watchman.I18n().t('threesixty.question.chat_type.input_placeholder')}
