@@ -27,8 +27,8 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def toggle_status?
     return true if @user.is?(:superadmin)
-    return true if @user.is?(:client_admin) && @record.is?(:project_admin, :regular)
-    return true if @user.is?(:project_admin) && @record.is?(:regular)
+    return true if @user.is?(:client_admin) && %w[project_admin regular].include?(@record.role)
+    return true if @user.is?(:project_admin) && 'regular'.eql?(@record.role)
 
     false
   end
