@@ -2,6 +2,7 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './RadioButtons.scss'
+import DescriptionPreview from '../../DescriptionPreview'
 
 export default class extends Component {
   static propTypes = {
@@ -40,6 +41,11 @@ export default class extends Component {
                     {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                       || moduleConfig.defaultChoiceText(i + 1)}
                   </span>
+                  {props.showDescription && (
+                    <DescriptionPreview
+                      description={I18n.tQuestion(model, `descriptionTexts${i + 1}`, { choice: i })}
+                    />
+                  )}
                 </div>
               </div>
               <div className={styles.inputs}>
