@@ -20,6 +20,9 @@ import {
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
 export const prevPage = (preview) => {
+  if (preview.type !== 'pass_assessment') {
+    return { type: PREV_PAGE }
+  }
   // TODO (atanych): Is used the same endpoint as for `saveResults` with empty resource to update last_activity_at field
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
 
