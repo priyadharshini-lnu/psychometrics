@@ -14,7 +14,7 @@ module Threesixty
         evaluators.
         includes(:user, self_subject: :user).
         joins(participants_join_query).
-        joins('LEFT JOIN relationships ON relationships.id = threesixty_participants.relationship_id').
+        joins('LEFT JOIN relationships ON relationships.id = users_campaigns_assessments.relationship_id').
         where(participants: { relationships: { name: 'Manager', type: :global } }).
         where(
           'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{q}%", "%#{q}%", "%#{q}%"
@@ -28,9 +28,9 @@ module Threesixty
 
     def participants_join_query
       <<-SQL.strip_heredoc
-        LEFT JOIN threesixty_participants
-        ON threesixty_participants.evaluator_id = threesixty_evaluators.user_id
-        AND threesixty_participants.campaign_id = #{threesixty_campaign.campaign_id}
+        LEFT JOIN users_campaigns_assessments
+        ON users_campaigns_assessments.evaluator_id = threesixty_evaluators.user_id
+        AND users_campaigns_assessments.campaign_id = #{threesixty_campaign.campaign_id}
       SQL
     end
   end

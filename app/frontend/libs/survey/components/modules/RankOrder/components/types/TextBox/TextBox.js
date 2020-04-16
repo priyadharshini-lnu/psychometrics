@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import styles from './TextBox.scss'
+import Description from '../../Description'
 
 export default class extends Component {
   static propTypes = {
@@ -27,7 +28,7 @@ export default class extends Component {
   }
 
   render () {
-    const { model: { props, moduleConfig } } = this.props
+    const { model, model: { props, moduleConfig } } = this.props
     return (
       <div className={styles.table}>
         {_.times(props.choices, i => (
@@ -35,11 +36,14 @@ export default class extends Component {
             <div className={styles.item}>
               <input key={i} type="text" className={styles.input} />
               <div className={styles.item}>
-                <LabelEditor
-                  onChange={e => this.changeLabel(i, e)}
-                  maxWidth={150}
-                  value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
-                />
+                <div>
+                  <LabelEditor
+                    onChange={e => this.changeLabel(i, e)}
+                    maxWidth={150}
+                    value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
+                  />
+                  <Description model={model} index={i} />
+                </div>
               </div>
             </div>
           </div>

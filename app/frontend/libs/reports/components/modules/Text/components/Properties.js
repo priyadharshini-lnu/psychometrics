@@ -35,6 +35,7 @@ class Properties extends Component {
 
   update = () => {
     store.model.update()
+    store.update()
     this.forceUpdate()
   }
 
