@@ -27,9 +27,9 @@ export default {
       fontFamily: 'Arial',
       borderRadius: 0,
       backgroundColor: {
-        r: '238',
-        g: '238',
-        b: '238',
+        r: '255',
+        g: '255',
+        b: '255',
         a: '1',
       },
       verticalAlign: 'flex-start',

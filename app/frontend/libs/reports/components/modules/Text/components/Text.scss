@@ -47,19 +47,48 @@
     padding: 0px;
     border: 1px solid #ccc;
     border-bottom: 0px;
+    align-items: center;
     &:last-child {
       border-bottom: 1px solid #ccc;
     }
-    .listItemNumber, .listItemBullet {
+    .listItemBullet {
       display: inline-block;
-      width: 40px;
+      width: 10%;
+      max-width: 10%;
       font-weight: bold;
       padding: 8px;
       text-align: center;
       background-color: #F5F5F5;
     }
     .listItemText {
+      flex: 1;
       padding: 8px 10px;
     }
   }
+}
+.listItemNumber {
+  display: flex;
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #00d3d0;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin: 8px 24px;
+}
+.numberHeader {
+  width: 72px;
+  max-width: 72px;
+  padding: 8px;
+  word-wrap: break-word;
+}
+.textHeader {
+  padding: 8px;
+}
+.listItemDescription {
+  font-size: 11px;
+  color: #777777;
+  font-weight: normal;
 }

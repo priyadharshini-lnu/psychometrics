@@ -95,6 +95,8 @@ export default function Factor ({ model, filters }) {
         <tbody>
           {factorIds.map((id) => {
             const factor = factorMap[id]
+            if (!factor) return null
+
             return (
               <tr key={id}>
                 <td className={styles.factorcell}>

@@ -16,6 +16,8 @@ class Properties extends Component {
   changeType = (e) => {
     const { model } = this.props
     const type = e.currentTarget.getAttribute('type')
+    if (model.props.type === type) return null
+
     model.props.type = type
     model.props.rowData = null
     model.props.headerData = null
