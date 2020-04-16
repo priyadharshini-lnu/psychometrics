@@ -3,6 +3,7 @@ import _ from 'lodash'
 import {
   select, takeEvery, put, debounce,
 } from 'redux-saga/effects'
+import { getItem, setItem } from 'utils/storage'
 import {
   nextPage,
   setDirtyResults,
@@ -10,6 +11,7 @@ import {
   removePrevPage,
   saveResults,
   setNotDirtyResults,
+  setLocalResults,
 } from './actions'
 import {
   getPrevPage,
@@ -17,8 +19,11 @@ import {
   pageQuestionsWithoutHidden,
 } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE, REMOVE_PREV_PAGE,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
+  REMOVE_PREV_PAGE, ANSWER,
 } from './consts'
+
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
 function* genInitPageProcessing () {
   const state = yield select()
@@ -61,8 +66,29 @@ function* genSaveResults () {
   }
 }
 
+function* genFetchLocalResults () {
+  const state = yield select()
+  if (state.preview.type === 'pass_assessment') {
+    const { preview: { dbResult } } = state
+    const data = getItem(`result_${dbResult.id}`, `${dbResult.id}${dbResult.user_id}`)
+    if (data) {
+      yield put(setLocalResults(data))
+    }
+  }
+}
+
+function* genSaveResultsLocal () {
+  const state = yield select()
+  if (state.preview.type === 'pass_assessment') {
+    const { preview: { results, dbResult } } = state
+    setItem(`result_${dbResult.id}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
+  }
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
+  takeEvery(INIT, genFetchLocalResults),
+  debounce(200, ANSWER, genSaveResultsLocal),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),

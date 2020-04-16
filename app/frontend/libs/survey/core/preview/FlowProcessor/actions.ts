@@ -14,6 +14,7 @@ import {
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
   TOGGLE_IGNORE_VALIDATION, RESET,
   UPDATE_META_DATA, UPDATE_META_DATA_REQUEST,
+  SET_LOCAL_RESULTS,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
@@ -57,6 +58,7 @@ export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS,
 export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
 export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
 export const reset = () => ({ type: RESET })
+export const setLocalResults = (data: object) => ({ type: SET_LOCAL_RESULTS, data })
 
 export const saveResults = (preview, questionIds) => {
   const data = {
