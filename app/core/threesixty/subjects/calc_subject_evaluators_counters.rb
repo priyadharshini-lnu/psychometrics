@@ -71,7 +71,7 @@ module Threesixty
       def sql
         <<-SQL.strip_heredoc
         SELECT count(participants.id) as cache_counter, participants.subject_id, relationship_id
-        FROM threesixty_participants as participants
+        FROM users_campaigns_assessments as participants
         LEFT JOIN users_results ur on ur.subject_id = participants.subject_id and ur.evaluator_id = participants.evaluator_id
         WHERE participants.subject_id in (:user_ids) AND participants.campaign_id = :campaign_id AND ur.status = :user_result_status
         AND manager_nomination_status != :manager_nomination_status AND evaluator_nomination_status != :evaluator_nomination_status
