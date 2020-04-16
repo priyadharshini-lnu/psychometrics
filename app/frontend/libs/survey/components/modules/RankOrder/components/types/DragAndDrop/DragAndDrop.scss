@@ -13,6 +13,7 @@
     text-align: center;
     padding: 4px 8px;
     background-color: #666;
+    height: max-content;
   }
 
   &:nth-last-child(2) {
@@ -32,6 +33,7 @@
 
   .item {
     display: flex;
+    align-items: center;
     justify-content: flex-start;
     padding: 10px 4px;
     cursor: move;

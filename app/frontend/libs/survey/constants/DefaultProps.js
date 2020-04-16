@@ -69,6 +69,7 @@ const DefaultProps = {
     questionText: 'Click to write the question text',
     type: 'DragAndDrop',
     defaultValues: [],
+    descriptionList: [],
   },
 
   MetaInfo: {

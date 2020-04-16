@@ -37,6 +37,23 @@ export class Properties extends Component {
     )
   }
 
+  renderDescriptionCheckbox () {
+    const { model, model: { props: { showDescription } } } = this.props
+    return (
+      <div className={styles.fieldset}>
+        <label className={styles.inputLabel}>
+          <input
+            type="checkbox"
+            checked={showDescription}
+            onChange={e => model.changeProps({ showDescription: e.target.checked })}
+          />
+          {' '}
+          Description
+        </label>
+      </div>
+    )
+  }
+
   render () {
     const { model, restricted } = this.props
     const { type } = model.props
@@ -92,6 +109,8 @@ export class Properties extends Component {
             Select Box
           </label>
         </div>
+        <hr className={styles.divider} />
+        {this.renderDescriptionCheckbox()}
         <hr className={styles.divider} />
         {!restricted && (
         <RequiredValidations

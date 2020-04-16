@@ -61,6 +61,9 @@ _.extend(ResultStore.prototype, {
         this.results[assessmentId].groupedDataSheet = [this.results[assessmentId].dataSheet]
         break
       default:
+        if (!this.results[assessmentId].questions) {
+          this.results[assessmentId].questions = {}
+        }
         this.results[assessmentId].questions[sourceModel.id] = MockResults[sourceType]
     }
   },
