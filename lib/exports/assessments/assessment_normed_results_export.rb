@@ -41,6 +41,8 @@ module Exports
                 normed_results[factor_id] = assign.scoring&.dig(factor_id.to_s, 'norm_score')
               end
 
+              norm = Norm.find_by(id: assign.norm_data['id']) if assign.norm_data.try(:[], 'id')
+
               sheet.add_row [assign.encode_id,
                              user_name(assign),
                              assign.user_email,
