@@ -9,7 +9,8 @@ import PageInterface from '../interfaces/Page'
 
 export const getModules = (state: any, ids: number[]): ModuleInterface[] => denormalize(ids, [module], state)
 export const getModule = (state: any, id: number): ModuleInterface => state.modules[id]
-
+export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(state.modules, m => m.props.showOnAllPages && !m.removed)
+export const getSelected = (state: any) => state.selected
 
 export const getPages = (state: any, ids: number[]): PageInterface[] => denormalize(ids, [page], state)
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]

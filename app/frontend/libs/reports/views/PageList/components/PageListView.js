@@ -25,8 +25,9 @@ export class PageListView extends Component {
     renameReport(val)
   }
 
-  unselectAllModules () {
-    store.unselectAll()
+  unselectAllModules = () => {
+    const { selectModule } = this.props
+    selectModule('Report', store)
   }
 
   render () {

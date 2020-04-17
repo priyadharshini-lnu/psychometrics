@@ -41,7 +41,7 @@ export class FixedHeader extends Component {
 
     if (e.keyCode === 8 || e.keyCode === 46) {
       unselectModules()
-      selected[0] && removeModule(selected[0])
+      selected.moduleId && removeModule(selected.moduleId)
       HeaderDispatcher.backspace()
     }
 

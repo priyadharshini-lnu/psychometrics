@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
-import { renameReport } from 'libs/reports/core/builder/actions'
+import { renameReport, selectModule } from 'libs/reports/core/builder/actions'
 import { getPages } from 'libs/reports/core/builder/selectors'
 
 export default connect(
@@ -11,5 +11,6 @@ export default connect(
   {
     openDisplayLogic: data => openModal('displayLogic', data),
     renameReport,
+    selectModule,
   },
 )

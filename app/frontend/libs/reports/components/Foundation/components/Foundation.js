@@ -1,10 +1,8 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import interact from 'interact.js'
 import panelStore from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
-import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
 import styles from './Foundation.scss'
 
 const { $ } = window
@@ -12,7 +10,6 @@ const { $ } = window
 class Foundation extends Component {
   static propTypes = {
     module: PropTypes.object.isRequired,
-    page: PropTypes.object.isRequired,
     aspectRatio: PropTypes.bool,
     children: PropTypes.node,
     preview: PropTypes.bool,
@@ -21,10 +18,9 @@ class Foundation extends Component {
 
   componentDidMount () {
     const {
-      module, page, preview, aspectRatio,
+      preview, aspectRatio,
     } = this.props
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
-    if (shadow || preview) { return }
+    if (preview) { return }
     interact(this.base)
       .draggable({
         manualStart: true,
@@ -127,26 +123,20 @@ class Foundation extends Component {
 
   select = (e) => {
     const {
-      preview, module, closeRichEditor, selected, selectModule, unselectModules, shadow,
+      preview, module, closeRichEditor, selected, selectModule, unselectModules,
     } = this.props
     if (preview) { return }
     e.stopPropagation()
 
-    if (_.find(selected, id => id === module.id)) { return }
+    if (selected.moduleId === module.id) { return }
 
     const select = () => {
       unselectModules()
-      selectModule(module.id)
+      selectModule('Module', module.id)
       closeRichEditor()
       panelStore.select('Module', module)
     }
 
-    if (shadow) {
-      ScrollDispatcher.scroll(module.page_id, `Module_${module.id}`, () => {
-        select()
-      })
-      return
-    }
     select()
   }
 
@@ -174,7 +164,7 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-    const isSelected = _.find(selected, id => id === module.id)
+    const isSelected = selected.moduleId === module.id
     const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
     return (
       <div

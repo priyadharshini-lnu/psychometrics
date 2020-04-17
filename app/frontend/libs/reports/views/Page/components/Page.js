@@ -29,7 +29,8 @@ class Page extends Component {
 
   renderModuleType = (module, i) => {
     const { model: page } = this.props
-    if (!module.type) { return false }
+    if (!module.type) { return null }
+    if (module.props.showOnAllPages) { return null }
     const model = new ModuleModel(module, page)
     const View = Modules[module.type]
     return !model.removed && <View key={i} module={model} page={page} />
@@ -43,11 +44,11 @@ class Page extends Component {
   }
 
   selectPage = (e) => {
-    const { model, unselectModules } = this.props
+    const { model, unselectModules, selectModule } = this.props
     e.stopPropagation()
     unselectModules()
     RichEditorStore.close()
-    panelStore.select('Page', model)
+    selectModule('Page', model)
   }
 
   render () {

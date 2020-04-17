@@ -5,7 +5,7 @@ import { setIn } from 'utils/immutable'
 import { updateIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
-  CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, SHOW_ON_ALL_PAGES,
+  CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE,
 } from './actions'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
@@ -37,8 +37,10 @@ export const defaultState = {
   questions: {},
   richEditorOpened: false,
   currentPage: 0,
-  selected: [],
-  showOnAllPages: [],
+  selected: {
+    type: null,
+    moduleId: null,
+  },
 }
 
 const HANDLERS = {
@@ -68,11 +70,8 @@ const HANDLERS = {
   [ADD_PAGE]: (state, { page, index }) => updateIn(
     state, 'pages', pages => ([...pages.slice(0, index), page.id, ...pages.slice(index)]),
   ),
-  [SELECT_MODULE]: (state, { id }) => ({ ...state, selected: [...state.selected, id] }),
-  [UNSELECT_MODULES]: state => ({ ...state, selected: [] }),
-  [SHOW_ON_ALL_PAGES]: (state, { id, show }) => ({
-    ...state, showOnAllPages: show ? [...state.showOnAllPages, id] : _.filter(state.showOnAllPages, i => i === id),
-  }),
+  [SELECT_MODULE]: (state, { moduleType, id }) => setIn(state, 'selected', { type: moduleType, moduleId: id }),
+  [UNSELECT_MODULES]: state => ({ ...state, selected: {} }),
 }
 
 export default createReducer(HANDLERS, defaultState)
