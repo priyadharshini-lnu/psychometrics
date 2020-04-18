@@ -21,10 +21,12 @@ class Page extends Component {
   componentDidMount () {
     const { model: { modules } } = this.props
     this.storeListener = modules.addListener('change', () => this.forceUpdate())
+    this.pageListStoreListener = store.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
     this.storeListener.remove()
+    this.pageListStoreListener.remove()
   }
 
   renderModuleType = (module, i) => {

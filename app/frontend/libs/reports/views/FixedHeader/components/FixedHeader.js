@@ -180,7 +180,7 @@ export class FixedHeader extends Component {
             <div className={`${styles.set} ${styles.rightSet}`}>
               <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
                 <i className="fa fa-save" />
-            Save
+                Save
               </button>
               <div className="dropdown">
                 <button
@@ -191,7 +191,7 @@ export class FixedHeader extends Component {
                   aria-expanded="true"
                 >
                   <span className="fa fa-gear" />
-                      Report Options
+                  Report Options
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">

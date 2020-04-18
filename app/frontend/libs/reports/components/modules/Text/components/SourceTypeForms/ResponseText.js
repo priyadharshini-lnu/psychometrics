@@ -30,11 +30,12 @@ export default class ResponseText extends Component {
 
   onChangeFormat = ({ currentTarget: { value } }) => this.props.onChangeModelIn(['props', 'format'], value)
 
-  onChangeStyled = ({ currentTarget: { checked } }) => this.props.onChangeModelIn(['props', 'styled'], checked)
-
   onChangeTextEntryFormAnswerIndex = e => this.props.onChangeModelIn(['props', 'answerIndex'], e.currentTarget.value)
 
-  onChangeStyled = ({ currentTarget: { checked } }) => this.props.onChangeModelIn(['props', 'styled'], checked)
+  onChangeCheckbox = ({ currentTarget: { checked } }, name) => {
+    this.props.onChangeModelIn(['props', name], checked)
+    this.forceUpdate()
+  }
 
   onChangeTextEntryFormAnswerIndex = e => this.props.onChangeModelIn(['props', 'answerIndex'], e.currentTarget.value)
 
@@ -50,7 +51,11 @@ export default class ResponseText extends Component {
   lookupQuestionById = (assessmentId, id) => AssessmentStore.questions[assessmentId][id]
 
   renderFormats () {
-    const { assessment_id: assessmentId, props: { question, format, styled } } = this.props.model
+    const {
+      assessment_id: assessmentId, props: {
+        question, format, styled, showDescription, showHeader,
+      },
+    } = this.props.model
     const currentQuestion = this.lookupQuestionById(assessmentId, question)
     if (!currentQuestion || !['MultipleChoice', 'RankOrder'].includes(currentQuestion.type)) { return false }
     if (['SingleAnswer', 'Dropdown', 'SelectBox'].includes(currentQuestion.props.type)) { return false }
@@ -72,10 +77,34 @@ export default class ResponseText extends Component {
         {isList && <div>Styling</div>}
         {isList && (
         <label className="show">
-          <input checked={styled} type="checkbox" onChange={this.onChangeStyled} value={1} />
+          <input checked={styled} type="checkbox" onChange={e => this.onChangeCheckbox(e, 'styled')} value={1} />
           {' '}
-Styled
+          Styled
         </label>
+        )}
+        {isList && (
+          <label className="show">
+            <input
+              checked={showDescription}
+              type="checkbox"
+              onChange={e => this.onChangeCheckbox(e, 'showDescription')}
+              value={1}
+            />
+            {' '}
+            Show Description
+          </label>
+        )}
+        {isList && (
+          <label className="show">
+            <input
+              checked={showHeader}
+              type="checkbox"
+              onChange={e => this.onChangeCheckbox(e, 'showHeader')}
+              value={1}
+            />
+            {' '}
+            Show Header
+          </label>
         )}
       </div>
     )

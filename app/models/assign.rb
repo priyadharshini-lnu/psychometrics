@@ -56,7 +56,7 @@ class Assign < ApplicationRecord
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
-  enum status: %i[not_started in_progress completed]
+  enum status: %i[not_started in_progress completed interrupted]
   enum role: %i[member manager admin]
 
   scope :mindmill, lambda {
@@ -99,7 +99,8 @@ class Assign < ApplicationRecord
   end
 
   def set_expiry_date
-    self.expiry_date = assessment.extra['timer']&.second&.from_now
+    time = status_in_database == 'interrupted' ? additional_time : assessment.extra['timer']
+    self.expiry_date = time.second&.from_now if time
   end
 
   def set_last_activity_at

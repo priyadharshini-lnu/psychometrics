@@ -7,13 +7,14 @@ import { Question } from '../interfaces'
 
 interface Props {
   model: Question
+  readOnly?: boolean
 }
 
-const Chat: React.FC<Props> = ({ model, model: { props } }) => (
+const Chat: React.FC<Props> = ({ model, model: { props }, readOnly }) => (
   <div className={styles.container}>
     <Header model={model} />
-    <MessageList {...props} model={model} />
-    <Footer {...props} model={model} />
+    <MessageList {...props} model={model} readOnly={readOnly} />
+    <Footer {...props} model={model} readOnly={readOnly} />
   </div>
 )
 

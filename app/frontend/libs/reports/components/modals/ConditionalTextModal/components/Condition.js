@@ -19,7 +19,7 @@ class Condition extends Component {
     const { condition } = this.props
     const { value } = currentTarget
     condition.type = value
-    condition.props = { ...(DefaultValues[value] || {}), prefix: condition.props.prefix }
+    condition.props = { ...condition.props, ...(DefaultValues[value] || {}), prefix: condition.props.prefix }
     this.forceUpdate()
   }
 

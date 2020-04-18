@@ -38,6 +38,7 @@ export interface ElementInterface {
   props: {
     storage?: {}
     conditions?: []
+    current?: string
   }
   elements: any[]
 }
@@ -91,7 +92,9 @@ export interface DefaultState{
   subjectDataSheet: { [key: string]: {} }[]
   relationships: []
   relationship: string | null
-  locales: any
+  locales: any,
+  agileAssetsUrl?: string,
+  agileAssignUrl?: string,
 }
 
 export interface I18nInterface {

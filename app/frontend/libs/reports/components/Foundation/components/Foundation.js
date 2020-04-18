@@ -68,6 +68,10 @@ class Foundation extends Component {
       })
   }
 
+  componentWillUnmount () {
+    this.listener.remove()
+  }
+
   dragHandler = (event) => {
     event.stopPropagation()
     const { preview, module } = this.props

@@ -1,0 +1,60 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.listItem {
+  padding: 4px 0;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+.inputContainer {
+  flex: 1;
+  margin: 3px 7px !important;
+}
+.select {
+  flex: 0.5;
+}
+.formCheckbox {
+  width: fit-content;
+}
+.formSelect {
+  width: 100%;
+  div {
+    padding-right: 16px !important;
+  }
+}
+.selectContainer {
+  display: flex;
+  align-items: center;
+}
+.optionsLink {
+  font-weight: bold;
+  color: #212d69;
+}
+.menuInputContainer {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+}
+.optionList {
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+.menuInput {
+  margin-right: 8px;
+}
+.menuOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.previewLabel {
+  flex: 0.5;
+}
+.dropdown {
+  margin: 0 8px;
+  padding: 0 8px;
+}

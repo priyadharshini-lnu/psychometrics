@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '2.5.1'
 gem 'bundler',                    '>= 1.8.4'
-gem 'rack',                       '~> 2.0.9'
+gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'coffee-rails',               '~> 4.2'
@@ -13,7 +13,7 @@ gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 4.0.1'
-gem 'rails',                      '~> 5.1.6'
+gem 'rails',                      '~> 5.1.7'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'uglifier', '>= 1.3.0'
 
@@ -42,7 +42,7 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.4.3'
+gem 'devise',                     '~> 4.7.1'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'pundit',                     '~> 2.1.0'
@@ -50,7 +50,7 @@ gem 'two_factor_authentication',  '~> 2.2.0'
 
 ### Assets
 gem 'bh',                         '~> 1.3'
-gem 'bootstrap-sass',             '~> 3.3.6'
+gem 'bootstrap-sass',             '~> 3.4.1'
 gem 'font-awesome-rails',         '~> 4.7'
 gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
@@ -59,7 +59,7 @@ gem 'webpacker',                  '~> 4.0.2'
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'cocoon', '1.2.9'
-gem 'simple_form',                '3.5.1'
+gem 'simple_form',                '5.0.2'
 ### Pagination helpers
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'kaminari',                   '~> 0.17.0'
@@ -70,7 +70,7 @@ gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 1.8.10'
 gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
-gem 'active_link_to',             '~> 1.0.3'
+gem 'active_link_to',             '~> 1.0.5'
 
 ### Translaters for javascripts
 gem 'i18n-js',                    '~> 3.0.0.rc3'
@@ -126,7 +126,7 @@ gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'
 gem 'fog-aws', '~> 2.0.1'
-gem 'mini_magick', '~> 4.5.1'
+gem 'mini_magick', '~> 4.10.1'
 gem 'remotipart', '~> 1.2'
 
 gem 'ancestry'
@@ -196,14 +196,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano', '3.6.0'
-  gem 'capistrano-nc', '~> 0.2', require: false
-  gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
-  gem 'capistrano-passenger',     '~> 0.2.0'
-  gem 'capistrano-rails',         '~> 1.1.6'
-  gem 'capistrano-rails-console', '~> 2.2.1', require: false
-  gem 'capistrano-rvm',           '~> 0.1.2'
-  gem 'capistrano-sidekiq'
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard'
   gem 'i18n-tasks', '~> 0.9.25'

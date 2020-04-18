@@ -1,23 +1,24 @@
 import React, { useState, useRef, useEffect } from 'react'
-import ReactDOMServer from 'react-dom/server';
+import ReactDOMServer from 'react-dom/server'
 import { Button, Tabs } from 'antd'
 import { AudioOutlined, VideoCameraOutlined } from '@ant-design/icons'
-const { TabPane } = Tabs;
+
+const { TabPane } = Tabs
 
 const AUDIO = 'audio'
 const VIDEO = 'video'
 const URL_TYPE = { AUDIO, VIDEO }
 
-interface Props { editor: any }
+interface Props { editor: any } /* eslint-disable-line @typescript-eslint/no-explicit-any */
 
 const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
   const [currentTab, setCurrentTab] = useState(URL_TYPE.AUDIO)
-  const [_, setUrl] = useState<string | null>(null)
+  const [_, setUrl] = useState<string | null>(null) /* eslint-disable-line @typescript-eslint/no-unused-vars */
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    editor.popups.onRefresh('embedMedia.insert', reset);
-    editor.popups.onHide('embedMedia.insert', reset);
+    editor.popups.onRefresh('embedMedia.insert', reset)
+    editor.popups.onHide('embedMedia.insert', reset)
   }, [])
 
   const reset = (): void => {
@@ -32,7 +33,7 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
   }
 
   const getPlayerTemplate = (url: string): void => {
-    if (currentTab == URL_TYPE.AUDIO) {
+    if (currentTab === URL_TYPE.AUDIO) {
       return ReactDOMServer.renderToStaticMarkup(<AudioPlayer url={url} />)
     }
 
@@ -43,7 +44,7 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
     if (editor.helpers.isURL(url)) {
       setError(null)
       setUrl(url)
-      let template = getPlayerTemplate(url)
+      const template = getPlayerTemplate(url)
 
       editor.events.focus(true)
       editor.selection.restore()
@@ -63,23 +64,23 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
         <>
           <Tabs defaultActiveKey={URL_TYPE.AUDIO} activeKey={currentTab} animated={false} onChange={onCurrentTabChange}>
             <TabPane
-              tab={
+              tab={(
                 <span>
                   <AudioOutlined />
                   Audio
                 </span>
-              }
+              )}
               key={URL_TYPE.AUDIO}
             >
               <InputUrl editor={editor} onUrlChange={onUrlChange} type={URL_TYPE.AUDIO} />
             </TabPane>
             <TabPane
-              tab={
+              tab={(
                 <span>
                   <VideoCameraOutlined />
                   Video
                 </span>
-              }
+              )}
               key={URL_TYPE.VIDEO}
             >
               <InputUrl editor={editor} onUrlChange={onUrlChange} type={URL_TYPE.VIDEO} />
@@ -93,23 +94,19 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
 
 interface PlayerProps { url: string }
 
-const AudioPlayer: React.FC<PlayerProps> = ({ url }) => {
-  return (
-    <div className='fr-rendered-audio-container'>
-      <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="416px" height="82px" />
-    </div>
-  )
-}
+const AudioPlayer: React.FC<PlayerProps> = ({ url }) => (
+  <div className="fr-rendered-audio-container">
+    <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="416px" height="82px" title="Audio Player" />
+  </div>
+)
 
-const VideoPlayer: React.FC<PlayerProps> = ({ url }) => {
-  return (
-    <div className='fr-rendered-video-container'>
-      <iframe src={`/media_players/video?url=${url}`} frameBorder="0" width="620px" height="465px" />
-    </div>
-  )
-}
+const VideoPlayer: React.FC<PlayerProps> = ({ url }) => (
+  <div className="fr-rendered-video-container">
+    <iframe src={`/media_players/video?url=${url}`} frameBorder="0" width="620px" height="465px" title="Video Player" />
+  </div>
+)
 
-interface InputUrlProps extends Props { onUrlChange(val:string): void, type: string }
+interface InputUrlProps extends Props { onUrlChange(val: string): void, type: string }
 
 const InputUrl: React.FC<InputUrlProps> = ({ onUrlChange, type }) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -123,7 +120,7 @@ const InputUrl: React.FC<InputUrlProps> = ({ onUrlChange, type }) => {
   }, [])
 
   const handleOnKeyDown = (e: React.KeyboardEvent) => {
-    if (inputRef.current && e.which == 13) { onUrlChange(inputRef.current.value) }
+    if (inputRef.current && e.which === 13) { onUrlChange(inputRef.current.value) }
   }
 
   return (
@@ -133,10 +130,11 @@ const InputUrl: React.FC<InputUrlProps> = ({ onUrlChange, type }) => {
           ref={inputRef}
           type="text"
           placeholder={`Paste in a ${type} URL`}
-          onKeyDown={handleOnKeyDown}/>
+          onKeyDown={handleOnKeyDown}
+        />
       </div>
       <div className="fr-action-buttons">
-        <Button onClick={() => { if (inputRef.current) { onUrlChange(inputRef.current.value) } } }>Insert</Button>
+        <Button onClick={() => { if (inputRef.current) { onUrlChange(inputRef.current.value) } }}>Insert</Button>
       </div>
     </div>
   )
@@ -144,16 +142,14 @@ const InputUrl: React.FC<InputUrlProps> = ({ onUrlChange, type }) => {
 
 interface ErrorProps {
   error: string
-  clearError():void
+  clearError(): void
 }
 
-const Error: React.FC<ErrorProps> = ({ error, clearError }) => {
-  return (
-    <div className='fr-layer fr-active'>
-      <h3>{error}</h3>
-      <Button onClick={clearError}>Ok</Button>
-    </div>
-  )
-}
+const Error: React.FC<ErrorProps> = ({ error, clearError }) => (
+  <div className="fr-layer fr-active">
+    <h3>{error}</h3>
+    <Button onClick={clearError}>Ok</Button>
+  </div>
+)
 
 export default EmbedMediaComponent

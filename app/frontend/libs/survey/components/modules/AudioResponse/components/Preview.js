@@ -22,7 +22,9 @@ export class Preview extends Component {
   }
 
   renderAudioResponseBlock () {
-    const { model, type, mediaUrl } = this.props
+    const {
+      model, type, mediaUrl, readOnly,
+    } = this.props
     const preview = type === 'preview_assessment'
 
     return (
@@ -30,6 +32,7 @@ export class Preview extends Component {
         mediaUrl={mediaUrl}
         model={model}
         fakeUpload={preview}
+        readOnly={readOnly}
         onSuccessUpload={this.successUpload}
         onRecordingDiscard={this.onRecordingDiscard}
       />

@@ -38,6 +38,10 @@ FactoryGirl.define do
     sequence(:name) { |i| "Client #{i}" }
 
     factory :tenancy do
+      transient do
+        with_license true
+      end
+
       parent nil
       sequence(:name) { |i| "Client Tenancy #{i}" }
       sequence(:number) { |i| "Number #{i}" }
@@ -45,8 +49,8 @@ FactoryGirl.define do
       country 'Barbados'
       association :project_manager, factory: :superadmin
       association :account_manager, factory: :superadmin
-      after(:create) do |tenancy, _evaluator|
-        create :license, client: tenancy
+      after(:create) do |tenancy, evaluator|
+        create :license, client: tenancy if evaluator.with_license
       end
     end
 

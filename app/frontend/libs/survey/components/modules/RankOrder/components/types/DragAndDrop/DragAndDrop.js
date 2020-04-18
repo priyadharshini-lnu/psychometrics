@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import LabelEditor from 'components/LabelEditor'
 import styles from './DragAndDrop.scss'
+import Description from '../../Description'
 
 export default class extends Component {
   static propTypes = {
@@ -16,17 +17,20 @@ export default class extends Component {
   }
 
   render () {
-    const { model: { props, moduleConfig } } = this.props
+    const { model, model: { props, moduleConfig } } = this.props
     return (
       <div>
         {_.times(props.choices, i => (
           <div className={styles.item} key={i}>
-            <LabelEditor
-              key={i}
-              onChange={e => this.changeLabel(i, e)}
-              maxWidth={150}
-              value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
-            />
+            <div>
+              <LabelEditor
+                key={i}
+                onChange={e => this.changeLabel(i, e)}
+                maxWidth={150}
+                value={props.choicesTexts[i] || moduleConfig.defaultChoiceText(i + 1)}
+              />
+              <Description model={model} index={i} />
+            </div>
             <div className={styles.number}>{i + 1}</div>
           </div>
         ))}

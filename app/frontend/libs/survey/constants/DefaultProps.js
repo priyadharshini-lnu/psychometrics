@@ -69,6 +69,7 @@ const DefaultProps = {
     questionText: 'Click to write the question text',
     type: 'DragAndDrop',
     defaultValues: [],
+    descriptionList: [],
   },
 
   MetaInfo: {
@@ -221,6 +222,9 @@ export const TextEntryProps = {
     contactList: ['Rupert Smith'],
     defaultValues: {},
     choices: 0,
+  },
+  Form: {
+    choices: 3,
   },
 }
 

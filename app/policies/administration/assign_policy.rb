@@ -24,6 +24,10 @@ module Administration
       destroy? && !@record&.assign_with_result&.not_started?
     end
 
+    def update_additional_time?
+      destroy? && @record&.assign_with_result&.completed? && @record&.assign_with_result&.expired?
+    end
+
     # Permission to view statistics link
     def statistics?
       @user.is?(:superadmin, :client_admin, :project_admin)
