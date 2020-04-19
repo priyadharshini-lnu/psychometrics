@@ -24,10 +24,10 @@ class Tracker extends Component {
     const { offsetWidth, offsetHeight } = playerEl
 
     const boundaries = {
-      x: box.x * offsetWidth,
-      y: box.y * offsetHeight,
-      width: box.width * offsetWidth,
-      height: box.height * offsetHeight,
+      x: (box.x + thresholds.threshold) * offsetWidth,
+      y: (box.y + thresholds.threshold) * offsetHeight,
+      width: (box.width + thresholds.threshold) * offsetWidth,
+      height: (box.height + thresholds.threshold) * offsetHeight,
     }
 
     this.setState({ boundaries, playerEl })
@@ -42,11 +42,11 @@ class Tracker extends Component {
       boundaries,
       playerEl: { offsetHeight, offsetWidth },
     } = this.state
-    const canvasInner = document.querySelector('#canvas')
-    const context = canvasInner.getContext('2d')
+    const canvas = document.querySelector('#canvas')
+    const context = canvas.getContext('2d')
 
-    canvasInner.width = offsetWidth
-    canvasInner.height = offsetHeight
+    canvas.width = offsetWidth
+    canvas.height = offsetHeight
 
     context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
     this.contextRef = context
