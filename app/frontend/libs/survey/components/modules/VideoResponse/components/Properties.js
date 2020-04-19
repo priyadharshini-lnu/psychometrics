@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import cs from 'classnames'
+import { DefaultTrackerOptions } from 'constants/DefaultProps'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
 import { Button, InputNumber } from 'antd'
@@ -22,45 +23,6 @@ export class Properties extends Component {
     { value: 'face', display: 'Full Face' },
     { value: 'custom', display: 'Custom' },
   ]
-
-  trackerOptions = {
-    upperHalfBody: {
-      box: {
-        x: 0.3,
-        y: 0.3,
-        height: 0.4,
-        width: 0.4,
-      },
-      object: {
-        size: 0.3,
-        threshold: 0.1,
-      },
-    },
-    face: {
-      box: {
-        x: 0.4,
-        y: 0.4,
-        height: 0.5,
-        width: 0.5,
-      },
-      object: {
-        size: 0.3,
-        threshold: 0.1,
-      },
-    },
-    custom: {
-      box: {
-        x: 0,
-        y: 0,
-        height: 0,
-        width: 0,
-      },
-      object: {
-        size: 0,
-        threshold: 0,
-      },
-    },
-  }
 
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -89,13 +51,13 @@ export class Properties extends Component {
 
   resetTrackerOptions = () => {
     const { model } = this.props
-    model.changeProps({ trackerOptions: this.trackerOptions })
+    model.changeProps({ trackerOptions: DefaultTrackerOptions })
     this.update()
   }
 
   updateTrackerOptions = (val, object, key) => {
     const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
-    const options = { ...this.trackerOptions, ...trackerOptions }
+    const options = { ...DefaultTrackerOptions, ...trackerOptions }
 
     options[fitInFrame][object][key] = val
     model.changeProps({ trackerOptions: options })
@@ -120,7 +82,7 @@ export class Properties extends Component {
 
     if (!fitInFrame) return
 
-    const { box, object } = { ...this.trackerOptions, ...trackerOptions }[fitInFrame]
+    const { box, object } = { ...DefaultTrackerOptions, ...trackerOptions }[fitInFrame]
     return (
       <div className="">
         <div className={styles.fieldset} style={{ position: 'relative' }}>
@@ -157,7 +119,14 @@ export class Properties extends Component {
             </div>
           ))}
         </div>
-        <Button danger type="link" onClick={this.resetTrackerOptions}>Reset Defaults</Button>
+        <Button
+          danger
+          type="link"
+          className="float-r ps"
+          onClick={this.resetTrackerOptions}
+        >
+          Reset Defaults
+        </Button>
       </div>
     )
   }

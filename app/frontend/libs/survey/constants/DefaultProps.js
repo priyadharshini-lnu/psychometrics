@@ -228,4 +228,43 @@ export const TextEntryProps = {
   },
 }
 
+export const DefaultTrackerOptions = {
+  upperHalfBody: {
+    box: {
+      x: 0.3,
+      y: 0.3,
+      height: 0.4,
+      width: 0.4,
+    },
+    object: {
+      size: 0.3,
+      threshold: 0.1,
+    },
+  },
+  face: {
+    box: {
+      x: 0.4,
+      y: 0.4,
+      height: 0.5,
+      width: 0.5,
+    },
+    object: {
+      size: 0.3,
+      threshold: 0.1,
+    },
+  },
+  custom: {
+    box: {
+      x: 0,
+      y: 0,
+      height: 0,
+      width: 0,
+    },
+    object: {
+      size: 0,
+      threshold: 0,
+    },
+  },
+}
+
 export default DefaultProps
