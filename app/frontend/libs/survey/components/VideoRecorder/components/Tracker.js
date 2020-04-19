@@ -5,7 +5,6 @@ import { snakeCase } from 'lodash'
 import cs from 'classnames'
 import tracking from 'tracking'
 import 'tracking/build/data/face-min'
-import 'tracking-data/upper-body'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
@@ -19,16 +18,16 @@ class Tracker extends Component {
   }
 
   componentWillMount () {
-    const { fitInFrame, trackerOptions } = this.props
+    const { fitInFrame, trackerOptions: { [fitInFrame]: { box, object: thresholds } } } = this.props
     const playerEl = document.querySelector('video')
 
     const { offsetWidth, offsetHeight } = playerEl
 
     const boundaries = {
-      x: trackerOptions[fitInFrame].x * offsetWidth,
-      y: trackerOptions[fitInFrame].y * offsetHeight,
-      width: trackerOptions[fitInFrame].width * offsetWidth,
-      height: trackerOptions[fitInFrame].height * offsetHeight,
+      x: box.x * offsetWidth,
+      y: box.y * offsetHeight,
+      width: box.width * offsetWidth,
+      height: box.height * offsetHeight,
     }
 
     this.setState({ boundaries, playerEl })

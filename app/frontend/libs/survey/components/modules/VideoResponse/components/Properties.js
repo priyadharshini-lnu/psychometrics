@@ -44,8 +44,11 @@ export class Properties extends Component {
   updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
+    const { model: { props: { trackerOptions } } } = this.props
+    const options = { ...DefaultTrackerOptions, ...trackerOptions }
+
     if (fitInFrame === 'none') this.resetTrackerOptions()
-    model.changeProps({ fitInFrame })
+    model.changeProps({ fitInFrame, trackerOptions: options })
     this.update()
   }
 
