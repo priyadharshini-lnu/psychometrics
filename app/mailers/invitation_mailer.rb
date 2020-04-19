@@ -5,7 +5,7 @@ class InvitationMailer < ApplicationMailer
     @resource = User.find(user_id)
     @token = token
     client = Client.find(invited_to_id)
-    @subdomain = @resource.is?(:regular) ? client.project.subdomain : false
+    @subdomain = @resource.is?(:regular) ? client.project.subdomain : nil
     mail(
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: @resource.email,
