@@ -14,23 +14,25 @@ class Tracker extends Component {
 
     this.state = {
       showOverlay: true,
+      frame: 'person',
     }
   }
 
   componentWillMount () {
-    const { fitInFrame, trackerOptions: { [fitInFrame]: { box, object: thresholds } } } = this.props
+    const { fitInFrame, trackerOptions: { [fitInFrame]: { box, object } } } = this.props
     const playerEl = document.querySelector('video')
 
     const { offsetWidth, offsetHeight } = playerEl
 
     const boundaries = {
-      x: (box.x + thresholds.threshold) * offsetWidth,
-      y: (box.y + thresholds.threshold) * offsetHeight,
-      width: (box.width + thresholds.threshold) * offsetWidth,
-      height: (box.height + thresholds.threshold) * offsetHeight,
+      x: box.x * offsetWidth,
+      y: box.y * offsetHeight,
+      width: box.width * offsetWidth,
+      height: box.height * offsetHeight,
     }
 
-    this.setState({ boundaries, playerEl })
+    // eslint-disable-next-line react/no-unused-state
+    this.setState({ boundaries, thresholds: object, playerEl })
   }
 
   componentDidMount () {
@@ -96,6 +98,9 @@ class Tracker extends Component {
   }
 
   isInBoundary = (rect) => {
+    // const { thresholds: { threshold }, playerEl: { offsetHeight, offsetWidth } } = this.state
+    // const thresholdWidth = threshold * offsetWidth
+    // const thresholdHeight = threshold * offsetHeight
     const corners = [
       { x: rect.x, y: rect.y }, // topleft
       { x: rect.x + rect.width, y: rect.y }, // topRight
@@ -116,7 +121,7 @@ class Tracker extends Component {
   }
 
   startTracking () {
-    this.setState({ showOverlay: true })
+    this.setState({ showOverlay: true, frame: 'box' })
     this.initTracker()
   }
 
@@ -127,7 +132,7 @@ class Tracker extends Component {
 
   render () {
     const { fitInFrame } = this.props
-    const { showOverlay, boundaries: position } = this.state
+    const { showOverlay, frame, boundaries: position } = this.state
 
     return (
       <div className={styles.canvasContainer}>
@@ -137,7 +142,7 @@ class Tracker extends Component {
           <Overlay
             position={position}
             ref={(instance) => { this.overlay = instance }}
-            resolve={() => import(`./images/${snakeCase(fitInFrame)}_frame.svg`)}
+            resolve={() => import(`./images/${frame}.svg`)}
           />
         )}
         {showOverlay && (
