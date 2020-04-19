@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PageListDispatcher from 'rb/dispatchers/PageListDispatcher'
 import PageModel from 'rb/models/Page'
 import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
 import styles from './Page.scss'

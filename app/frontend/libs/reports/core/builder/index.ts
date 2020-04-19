@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
-import { setIn } from 'utils/immutable'
-import { updateIn } from 'utils/immutable'
+import { setIn, updateIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
-  CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE,
+  CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
 } from './actions'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
@@ -72,6 +70,7 @@ const HANDLERS = {
   ),
   [SELECT_MODULE]: (state, { moduleType, id }) => setIn(state, 'selected', { type: moduleType, moduleId: id }),
   [UNSELECT_MODULES]: state => ({ ...state, selected: {} }),
+  [CHANGE_SIZE]: (state, { size }) => setIn(state, ['props', 'sizes'], size),
 }
 
 export default createReducer(HANDLERS, defaultState)

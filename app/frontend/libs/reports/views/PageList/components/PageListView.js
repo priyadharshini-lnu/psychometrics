@@ -37,7 +37,7 @@ export class PageListView extends Component {
         <div className={styles.reportName}>
           <LabelEditor value={report.name || ''} onChange={this.changeName} width={650} />
         </div>
-        {_.map(pages, (model, i) => {
+        {_.map(pages, (model) => {
           const page = new PageModel(model, report.completed_assessments)
           return !page.removed && page.visible
           && (

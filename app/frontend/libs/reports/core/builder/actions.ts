@@ -14,6 +14,7 @@ export const ADD_PAGE = 'report/ADD_PAGE'
 export const SELECT_MODULE = 'report/SELECT_MODULE'
 export const UNSELECT_MODULES = 'report/UNSELECT_MODULES'
 export const SHOW_ON_ALL_PAGES = 'report/SHOW_ON_ALL_PAGES'
+export const CHANGE_SIZE = 'report/CHANGE_SIZE'
 
 enum SelectedTypes {
   'Module',
@@ -28,6 +29,7 @@ interface UpdateCurrentPage { type: typeof UPDATE_CURRENT_PAGE, offset: number }
 interface AddPage { type: typeof ADD_PAGE, page: PageInterface, index?: number }
 interface SelectModule { type: typeof SELECT_MODULE, moduleType: SelectedTypes, id: number }
 interface UnselectModules { type: typeof UNSELECT_MODULES }
+interface ChangeSize { type: typeof CHANGE_SIZE, size: {width: number, height: number} }
 
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR })
@@ -40,7 +42,7 @@ export const selectModule = (moduleType: SelectedTypes, id: number): SelectModul
   type: SELECT_MODULE, moduleType, id,
 })
 export const unselectModules = (): UnselectModules => ({ type: UNSELECT_MODULES })
-
+export const changeSize = (size: {width: number, height: number}): ChangeSize => ({ type: CHANGE_SIZE, size })
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
 export const save = (report: any) => {
   const builder = {

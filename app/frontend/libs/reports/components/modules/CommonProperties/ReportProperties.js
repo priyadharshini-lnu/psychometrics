@@ -1,38 +1,32 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
-import AppStore from 'rb/store/AppStore'
-import Action from 'rb/undo'
 import { PAGE_SIZES } from 'rb/models/Report'
-import PageList from 'rb/store/PageList'
+import connect from './connect'
 
 class ReportProperties extends Component {
-  changeType = (type, props = {}) => {
-    if (store.question.type === type) { return }
-    Action('QuestionChangeType', store.question, { oldType: store.question.type, newType: type })
-    store.question.changeType(type, props)
-    store.update()
+  changePageSize = ({ target }) => {
+    const { changeSize, report } = this.props
+    const size = PAGE_SIZES.find(size => size.label === target.value)
+    changeSize({ width: size.width, height: size.height, fontSize: report.props.sizes.fontSize })
   }
 
-  changePageSize = ({ target }) => {
-    const { report } = AppStore
-    const size = PAGE_SIZES.find(size => size.label === target.value)
-    // TODO (atanych): should be handler via redux actions
-    report.props.sizes.width = size.width
-    report.props.sizes.height = size.height
-    PageList.update()
-    this.forceUpdate()
+  getPageSizeLabel = (report) => {
+    const size = PAGE_SIZES.find(
+      ({ width, height }) => width === report.props.sizes.width && height === report.props.sizes.height,
+    )
+    return size.label
   }
 
   render () {
-    if (!AppStore.report.id) { return null }
+    const { report } = this.props
+    if (!report.id) { return null }
     return (
       <div>
         <div className={styles.title}>Report Options</div>
         <hr className={styles.divider} />
         <div>
           Page size
-          <select value={AppStore.report.getPageSizeLabel()} onChange={this.changePageSize} className="form-control">
+          <select value={this.getPageSizeLabel(report)} onChange={this.changePageSize} className="form-control">
             {PAGE_SIZES.map(({ label }) => <option key={label} value={label}>{label}</option>)}
           </select>
         </div>
@@ -41,4 +35,4 @@ class ReportProperties extends Component {
   }
 }
 
-export default ReportProperties
+export default connect(ReportProperties)
