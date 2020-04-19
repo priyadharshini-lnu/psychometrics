@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
-import { InputNumber } from 'antd'
+import { Button, InputNumber } from 'antd'
 
 export class Properties extends Component {
   durations = [
@@ -19,20 +20,45 @@ export class Properties extends Component {
     { value: '', display: 'None' },
     { value: 'upperHalfBody', display: 'Upper Half Body' },
     { value: 'face', display: 'Full Face' },
+    { value: 'custom', display: 'Custom' },
   ]
 
   trackerOptions = {
     upperHalfBody: {
-      x: 0,
-      y: 0,
-      height: 0,
-      width: 0,
+      box: {
+        x: 0.3,
+        y: 0.3,
+        height: 0.4,
+        width: 0.4,
+      },
+      object: {
+        size: 0.3,
+        threshold: 0.1,
+      },
     },
     face: {
-      x: 0,
-      y: 0,
-      height: 0,
-      width: 0,
+      box: {
+        x: 0.4,
+        y: 0.4,
+        height: 0.5,
+        width: 0.5,
+      },
+      object: {
+        size: 0.3,
+        threshold: 0.1,
+      },
+    },
+    custom: {
+      box: {
+        x: 0,
+        y: 0,
+        height: 0,
+        width: 0,
+      },
+      object: {
+        size: 0,
+        threshold: 0,
+      },
     },
   }
 
@@ -56,15 +82,22 @@ export class Properties extends Component {
   updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
+    if (fitInFrame === 'none') this.resetTrackerOptions()
     model.changeProps({ fitInFrame })
     this.update()
   }
 
-  updateTrackerOptions = (val, key) => {
+  resetTrackerOptions = () => {
+    const { model } = this.props
+    model.changeProps({ trackerOptions: this.trackerOptions })
+    this.update()
+  }
+
+  updateTrackerOptions = (val, object, key) => {
     const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
     const options = { ...this.trackerOptions, ...trackerOptions }
 
-    options[fitInFrame][key] = val
+    options[fitInFrame][object][key] = val
     model.changeProps({ trackerOptions: options })
     this.update()
   }
@@ -87,24 +120,44 @@ export class Properties extends Component {
 
     if (!fitInFrame) return
 
-    const properties = (trackerOptions || this.trackerOptions)[fitInFrame]
+    const { box, object } = { ...this.trackerOptions, ...trackerOptions }[fitInFrame]
     return (
-      <div className={styles.fieldset} style={{ position: 'relative' }}>
-        {Object.keys(properties).map((key, i) => (
-          <div className={styles.numberInputWrapper}>
-            <label className={styles.label}>{key}</label>
-            <InputNumber
-              key={i}
-              min={0.1}
-              max={1.0}
-              step={0.1}
-              size="small"
-              value={properties[key]}
-              precision={1}
-              onChange={e => this.updateTrackerOptions(e, key)}
-            />
-          </div>
-        ))}
+      <div className="">
+        <div className={styles.fieldset} style={{ position: 'relative' }}>
+          <div className={cs(styles.label, 'font-bold')}>Box</div>
+          {Object.keys(box).map((key, i) => (
+            <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
+              <label className={styles.label}>{key}</label>
+              <InputNumber
+                min={0.1}
+                max={1.0}
+                step={0.1}
+                size="small"
+                value={box[key]}
+                precision={1}
+                disabled={fitInFrame !== 'custom'}
+                onChange={e => this.updateTrackerOptions(e, 'box', key)}
+              />
+            </div>
+          ))}
+
+          <div className={cs(styles.label, 'font-bold')}>Face</div>
+          {Object.keys(object).map((key, i) => (
+            <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
+              <label className={styles.label}>{key}</label>
+              <InputNumber
+                min={0.1}
+                max={1.0}
+                step={0.1}
+                size="small"
+                value={object[key]}
+                precision={1}
+                onChange={e => this.updateTrackerOptions(e, 'object', key)}
+              />
+            </div>
+          ))}
+        </div>
+        <Button danger type="link" onClick={this.resetTrackerOptions}>Reset Defaults</Button>
       </div>
     )
   }
@@ -114,7 +167,7 @@ export class Properties extends Component {
 
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
-        <span className={styles.label}>Fit In Frame</span>
+        <div className={styles.label}>Fit In Frame</div>
         <select className="form-control" value={model.props.fitInFrame} onChange={this.updateFitInFrame}>
           {this.frameOptions.map(o => (<option key={o.value} value={o.value}>{`${o.display}`}</option>))}
         </select>
