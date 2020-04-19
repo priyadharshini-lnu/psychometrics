@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PageList from 'rb/store/PageList'
 import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
-import conenct from './connect'
+import connect from './connect'
 
 class PageProperties extends Component {
   removePage = () => {
@@ -41,4 +41,4 @@ class PageProperties extends Component {
   }
 }
 
-export default conenct(PageProperties)
+export default connect(PageProperties)

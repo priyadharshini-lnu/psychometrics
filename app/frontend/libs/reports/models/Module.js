@@ -9,13 +9,13 @@ import AppStore from 'rb/store/AppStore'
 import { HOGAN, MINDMILL } from 'rb/models/Assessment'
 import rstore from 'rb/store'
 import { UPDATE_MODULE } from 'rb/core/builder/module/actions'
+import Utils from 'libs/reports/utils/Utils'
 import TextConditionCollection from './TextConditionCollection'
 import CPIConditionCollection from './CPIConditionCollection'
 import InnovationStyleConditionCollection from './InnovationStyleConditionCollection'
 import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
-const count = 1
 
 const Module = function (attrs = {}, page) {
   this.store = page
@@ -24,7 +24,7 @@ const Module = function (attrs = {}, page) {
   this.isNew = attrs.isNew
 
   if (!this.id) {
-    this.id = Date.now() + count
+    this.id = Utils.genId()
     this.isNew = true
   }
 

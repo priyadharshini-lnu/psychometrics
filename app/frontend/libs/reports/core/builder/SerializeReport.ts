@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { getModules } from './selectors'
 
-const SerializePage = page => ({
+const serializePage = page => ({
   id: page.isNew ? undefined : page.id,
   name: page.name,
   props: page.props,
@@ -11,7 +11,7 @@ const SerializePage = page => ({
   modules: [],
 })
 
-const SerializeModule = (module) => {
+const serializeModule = (module) => {
   const { props } = module
   if (module.textConditions) {
     props.textConditions = module.textConditions
@@ -38,8 +38,8 @@ const SerializeReport = {
     }
 
     report.pages = _.map(state.pages, (page) => {
-      const data = SerializePage(page)
-      const modules = _.map(getModules(state, page.modules), module => SerializeModule(module))
+      const data = serializePage(page)
+      const modules = _.map(getModules(state, page.modules), module => serializeModule(module))
       return { ...data, modules }
     })
     return report

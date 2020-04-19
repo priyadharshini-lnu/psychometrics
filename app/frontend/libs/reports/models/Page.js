@@ -1,17 +1,15 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import ModulesStore from 'rb/store/ModulesStore'
+import Utils from 'libs/reports/utils/Utils'
 import LayoutManager from './LayoutManager'
 import LogicElement from './logic/LogicElement'
 
-let id = 1
-
 const Page = function (attrs = {}, completedAssessments = []) {
-  id += 1
   this.id = attrs.id
   this.isNew = attrs.isNew
   if (!this.id) {
-    this.id = Date.now() + id
+    this.id = Utils.genId()
     this.isNew = true
   }
   this.name = attrs.name || 'Page'
