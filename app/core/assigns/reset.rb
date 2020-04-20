@@ -34,7 +34,9 @@ module Assigns
         occupations: [],
         expiry_date: nil,
         last_activity_at: nil,
-        meta_data: {}
+        meta_data: {},
+        current_element: nil,
+        current_page: nil
       )
     end
 
