@@ -14,7 +14,7 @@ import PrivacyModal from './PrivacyModal'
 const IN_PROGRESS = 'in_progress'
 
 const DownloadLink = ({ report, text }) => {
-  const reportUrl = report.pdfUrl || report.externalReportUrl
+  const reportUrl = report.externalReportUrl || report.pdfUrl
   if (reportUrl) {
     return (
       <a href={reportUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
