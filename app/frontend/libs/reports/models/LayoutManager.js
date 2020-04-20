@@ -1,13 +1,13 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import PageList from 'rb/store/PageList'
+import AppStore from 'libs/reports/store/AppStore'
 
 const TOP = 5000
 const BOTTOM = 2000
 
 const LayoutManager = function (page) {
   this.page = page
-  this.size = page.size
   this.last = 3000
 }
 
@@ -25,7 +25,7 @@ _.extend(LayoutManager.prototype, {
   },
 
   alignBottom (module) {
-    module.props.position.top = this.size.height - module.props.position.height
+    module.props.position.top = AppStore.report.props.sizes.height - module.props.position.height
     module.update()
   },
 
@@ -35,17 +35,17 @@ _.extend(LayoutManager.prototype, {
   },
 
   alignRight (module) {
-    module.props.position.left = this.size.width - module.props.position.width
+    module.props.position.left = AppStore.report.props.sizes.width - module.props.position.width
     module.update()
   },
 
   alignMiddleVertical (module) {
-    module.props.position.top = Math.floor((this.size.height - module.props.position.height) / 2)
+    module.props.position.top = Math.floor((AppStore.report.props.sizes.height - module.props.position.height) / 2)
     module.update()
   },
 
   alignMiddleHorizontal (module) {
-    module.props.position.left = Math.floor((this.size.width - module.props.position.width) / 2)
+    module.props.position.left = Math.floor((AppStore.report.props.sizes.width - module.props.position.width) / 2)
     module.update()
   },
 

@@ -196,14 +196,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano', '3.6.0'
-  gem 'capistrano-nc', '~> 0.2', require: false
-  gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
-  gem 'capistrano-passenger',     '~> 0.2.0'
-  gem 'capistrano-rails',         '~> 1.1.6'
-  gem 'capistrano-rails-console', '~> 2.2.1', require: false
-  gem 'capistrano-rvm',           '~> 0.1.2'
-  gem 'capistrano-sidekiq'
   gem 'db-clone', git: 'https://github.com/smshuja/db-clone.git', branch: 'load-with-erb'
   gem 'guard'
   gem 'i18n-tasks', '~> 0.9.25'

@@ -5,6 +5,7 @@ import { DragLayer } from 'react-dnd'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
 import styles from './DragAndDrop.scss'
+import DescriptionPreview from '../../DescriptionPreview'
 
 function collect (monitor) {
   const item = monitor.getItem()
@@ -12,6 +13,8 @@ function collect (monitor) {
     id: item && item.id,
     number: item && item.number,
     text: item && item.text,
+    description: item && item.description,
+    showDescription: item && item.showDescription,
     currentOffset: monitor.getSourceClientOffset(),
     initialOffset: monitor.getInitialSourceClientOffset(),
     isDragging: monitor.isDragging(),
@@ -80,7 +83,7 @@ class ItemPreview extends Component {
 
   render () {
     const {
-      number, text, isDragging, currentOffset, initialOffset,
+      number, text, isDragging, currentOffset, initialOffset, description, showDescription,
     } = this.props
     const { parentOffset } = this.state
     if (!isDragging) {
@@ -91,7 +94,10 @@ class ItemPreview extends Component {
       <div className={styles.item} style={getItemStyles(currentOffset, parentOffset, initialOffset)}>
         <span className={`fa fa-bars ${styles.icon}`} />
         <div className={styles.number}>{number}</div>
-        <div className={styles.text}>{text}</div>
+        <div>
+          <div className={styles.text}>{text}</div>
+          {showDescription && <DescriptionPreview description={description} />}
+        </div>
       </div>
     )
   }
@@ -100,6 +106,8 @@ class ItemPreview extends Component {
 ItemPreview.propTypes = {
   number: PropTypes.number,
   text: PropTypes.string,
+  showDescription: PropTypes.bool,
+  description: PropTypes.string,
   currentOffset: PropTypes.shape({
     x: PropTypes.number,
     y: PropTypes.number,

@@ -13,7 +13,7 @@ module Threesixty
     has_many :campaigns_users, through: :campaign
     has_many :subjects, through: :campaign
     has_many :evaluators, through: :campaign
-    has_many :users_assessments, dependent: :destroy
+    has_many :users_campaigns_assessments, dependent: :destroy
     has_many :email_templates, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :email_schedules, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :instruction_templates, foreign_key: :threesixty_campaign_id, dependent: :destroy
