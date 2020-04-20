@@ -102,10 +102,11 @@ en:
                     <p>Are you sure you want to unarchive?</p>
               delete:
                 title:
-                  Delete <strong>%{name}</strong> ?
+                  Delete <strong>%{name}</strong>?
                 body:
                   <p>Are you sure you want to delete?</p>
-                  <p>All Sub-campaigns and users will also be deleted</p>
+                  <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p>
+                  <p>Please type <strong>%{name}</strong> to confirm.</p>
           statistics:
             index:
               title: Statistics

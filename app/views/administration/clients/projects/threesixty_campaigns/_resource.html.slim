@@ -23,5 +23,5 @@ tr id=dom_id(resource)
         remote: true,
         class: 'btn btn-default btn-rounded btn-sm',
         method: 'delete',
-        data: { confirm: resource.threesixty_campaign.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.campaigns.delete') }
+        data: { confirm: resource.threesixty_campaign.decorate.delete_confirmation, pattern: resource.name, target: '#mb-campaign-confirm-template', toggle: 'tooltip', title: t('.tooltips.campaigns.delete') }
         span.fa.fa-times
