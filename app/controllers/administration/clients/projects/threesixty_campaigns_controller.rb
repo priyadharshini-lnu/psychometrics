@@ -86,9 +86,9 @@ module Administration
         end
 
         def destroy
-          campaign = project.project_campaigns.find(params[:id])
-          campaign.destroy
-          @_resource = campaign
+          @campaign = project.project_campaigns.find(params[:id])
+          @campaign.destroy
+          @_resource = @campaign
           respond_to do |format|
             format.js
           end
