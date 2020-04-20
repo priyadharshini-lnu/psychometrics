@@ -12,7 +12,10 @@ module Threesixty
           'administration.clients.projects.threesixty_campaigns.resource.confirmations.delete.title',
           name: display_name
         ),
-        body: I18n.t('administration.clients.projects.threesixty_campaigns.resource.confirmations.delete.body', name: display_name)
+        body: I18n.t(
+          'administration.clients.projects.threesixty_campaigns.resource.confirmations.delete.body',
+          name: display_name
+        )
       }.to_json
     end
   end
