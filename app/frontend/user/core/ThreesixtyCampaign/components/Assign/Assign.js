@@ -28,6 +28,7 @@ export default function Assign ({
   isFrame,
   preview,
   saveResults,
+  block,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search)
@@ -37,7 +38,7 @@ export default function Assign ({
 
   return (
     <Layout>
-      <Content className="fluid-container">
+      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
         <PageHeader
           className="page-header"
           backIcon={!isFrame && (

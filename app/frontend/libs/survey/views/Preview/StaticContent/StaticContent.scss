@@ -6,6 +6,9 @@
   padding: 10px;
   border-radius: 10px;
   margin-top: 20px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
 }
 .fixed {
   height: 50vh;
@@ -44,6 +47,12 @@
     border-radius: 50%;
   }
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  img {
+    max-width: 100%;
+  }
+  table {
+    max-width: 100%;
+  }
 }
 
 :global(.rtl) {
