@@ -10,7 +10,8 @@ module UsersResults
           sub_factor_ids = factor_data[:sub_factor_hash].keys
 
           results = sub_factor_ids.map do |id|
-            extended_scoring[id.to_s]['results'] if factor_hash[id][:factor].questions_strategy?
+            result = extended_scoring.dig(id.to_s, 'results')
+            result if result && factor_hash[id][:factor].questions_strategy?
           end
 
           score = calc_score(results.flatten.compact)

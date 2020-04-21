@@ -16,9 +16,10 @@ class MultiSelectBox extends Component {
       if (e.currentTarget.value === NOT_APPLICABLE) {
         model.result.answers = []
         model.result.notApplicable = true
+        model.result.reduxAnswer()
       } else {
-        model.result.answer(parseInt(e.currentTarget.value, 10))
         model.result.notApplicable = false
+        model.result.answer(parseInt(e.currentTarget.value, 10))
       }
       this.forceUpdate()
     }

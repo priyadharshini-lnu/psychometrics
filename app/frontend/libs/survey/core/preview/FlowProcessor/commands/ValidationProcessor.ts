@@ -10,7 +10,7 @@ const ValidationProcessor = {
 
       const choicesIds = _.times(question.props.choices, i => i)
       const qwrap = { ...question, choicesIds, requiredValidation: question.required_validation }
-      const resultModel = new Result(qwrap, result.answers, result.notApplicable)
+      const resultModel = new Result(qwrap, result.answers, result.not_applicable)
       const err = resultModel.validate()
 
       if (!err.length) return errors

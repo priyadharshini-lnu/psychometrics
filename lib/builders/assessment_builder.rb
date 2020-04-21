@@ -27,7 +27,7 @@ module Builders
           id = block_params.delete(:id)
           questions = block_params.delete(:questions)
           block = @assessment.blocks.find_or_initialize_by(id: id)
-          block.update(block_params)
+          block.update(block_params.merge(deleted_at: block_params[:deleted_at]))
 
           questions.each do |question_params|
             id = question_params.delete(:id)
