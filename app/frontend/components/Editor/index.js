@@ -34,6 +34,7 @@ function Editor ({
       'codeBeautifier',
       'fullscreen',
       'video',
+      'embedMedia',
     ],
     toolbarButtons: [
       'pipedText',
@@ -66,6 +67,7 @@ function Editor ({
       'html',
       'fullscreen',
       'insertVideo',
+      'embedMedia',
     ],
     saveParams: { type, details },
     heightMin: 250,

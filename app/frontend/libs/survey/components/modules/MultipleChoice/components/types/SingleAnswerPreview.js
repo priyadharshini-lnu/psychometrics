@@ -11,8 +11,8 @@ class SingleAnswerPreview extends Component {
 
   changeAnswer = (e) => {
     const { model } = this.props
-    model.result.answer(parseInt(e.currentTarget.value, 10))
     model.result.notApplicable = false
+    model.result.answer(parseInt(e.currentTarget.value, 10))
     this.forceUpdate()
   }
 
@@ -20,6 +20,7 @@ class SingleAnswerPreview extends Component {
     const { model } = this.props
     model.result.answers = []
     model.result.notApplicable = true
+    model.result.reduxAnswer()
     this.forceUpdate()
   }
 

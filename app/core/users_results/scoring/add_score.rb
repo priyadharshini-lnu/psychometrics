@@ -17,7 +17,7 @@ module UsersResults
 
           factor_scoring = extending_scoring[factor.id.to_s]
 
-          if factor_scoring.key?('score')
+          if factor_scoring&.key?('score')
             extending_scoring
           else
             module_name = "::UsersResults::Scoring::AddScoreByStrategy::#{factor.scoring_strategy.camelize}".constantize
