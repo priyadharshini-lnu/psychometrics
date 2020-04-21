@@ -3,6 +3,7 @@ import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
 import embedMedia from 'libs/survey/commands/froalaCommands/embedMedia'
+import events from 'components/Editor/events'
 
 FroalaEditor.PLUGINS.embedMedia = embedMedia
 
@@ -54,4 +55,12 @@ export default {
   autofocus: true,
   toolbarSticky: false,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
+  events: {
+    'video.codeError': function (code) {
+      events.video_code_error(this, code)
+    },
+    'video.linkError': function (link) {
+      events.video_link_error(this, link)
+    },
+  },
 }
