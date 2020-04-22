@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { snakeCase } from 'lodash'
 import cs from 'classnames'
-import tracking from 'tracking'
-import 'tracking/build/data/face-min'
+// import tracking from 'tracking'
+// import 'tracking/build/data/face-min'
 import * as faceapi from 'face-api.js'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
@@ -189,9 +188,7 @@ class Tracker extends Component {
         {showOverlay && (
           <div id="help" className={cs(styles.help, styles[fitInFrame])}>
             <div id="helpText" className={styles.helpText}>
-              Please make sure that your&nbsp;
-              {snakeCase(fitInFrame).replace(/_/g, ' ')}
-              &nbsp;fits inside the frame.
+              Please make sure that your face fits inside the frame.
             </div>
 
             <div className={styles.secondary}>

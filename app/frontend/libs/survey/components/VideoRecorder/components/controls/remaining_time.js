@@ -9,7 +9,7 @@ class RemainingTime extends videojs.getComponent('Component') {
   }
 
   createEl () {
-    const el = videojs.createEl('div', {
+    const el = videojs.dom.createEl('div', {
       className: 'vjs-time-control tte-remaining-time',
     })
 
