@@ -5,7 +5,6 @@
   width: 80%;
   margin: 20px auto;
   border-radius: 2;
-  background: #fff;
   padding: 20px;
 }
 
@@ -58,12 +57,14 @@
 }
 
 .errors {
-  margin: 20px;
+  margin: 20px 12px -10px 12px;
   padding: 15px;
   border-radius: 4px;
   background: #ffebeb;
   color: #E73F61;
   font-size: 14px;
+  border-radius: 6px;
+  box-shadow: rgba(0,0,0,.16) 0px 0px 6px;
 
   h1 {
     color: #E73F61;
@@ -208,7 +209,7 @@
   min-width: 89%;
   display: inline-block;
   box-shadow: initial;
-  background-color: #f5f5f5;
+  background-color: $light-gray;
   border-color: transparent;
 
   .progressBar {
@@ -230,7 +231,7 @@
     width: 50%;
   }
 }
-.leftStaticContent {
+.rightStaticContent {
   flex-direction: row-reverse;
 }
 

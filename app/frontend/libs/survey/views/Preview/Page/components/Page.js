@@ -29,7 +29,7 @@ class Page extends Component {
     const { layout } = staticContent
     return cs({
       [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
-      [styles.leftStaticContent]: (layout === LEFT),
+      [styles.rightStaticContent]: (layout === RIGHT),
     })
   }
 

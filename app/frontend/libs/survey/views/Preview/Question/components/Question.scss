@@ -4,8 +4,11 @@
   margin: 5px;
   border-radius: 0;
   display: flex;
-  min-height: 175px;
   position: relative;
+  border-radius: 6px;
+  box-shadow: rgba(0,0,0,.16) 0px 0px 6px;
+  margin: 12px;
+
   input[type='radio']:after {
     width: 20px;
     height: 20px;
@@ -18,7 +21,7 @@
     display: inline-block;
     visibility: visible;
   }
-  
+
   input[type='radio']:checked:after {
     width: 20px;
     height: 20px;
@@ -56,8 +59,7 @@
 }
 
 .contentOuter {
-  padding: 10px;
-  min-height: 175px;
+  padding: 26px;
 }
 
 .infobar{
