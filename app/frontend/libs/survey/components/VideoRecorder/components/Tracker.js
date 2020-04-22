@@ -17,9 +17,8 @@ class Tracker extends Component {
       isTracking: false,
       faceDetectionModelLoaded: false,
     }
-
-    this.helpRef = React.createRef()
   }
+
 
   componentWillMount () {
     const {
@@ -115,12 +114,11 @@ class Tracker extends Component {
 
     this.track(playerEl)
 
-    const helperEl = this.helpRef.current
+    const helperEl = document.querySelector('#help')
     const helpText = helperEl.querySelector('#helpText')
     const moveBackTextRef = helperEl.querySelector('#instructionMoveBack')
     const moveForwardTextRef = helperEl.querySelector('#instructionMoveForward')
 
-    this.helperEl = helperEl
     this.helpTextRef = helpText
     this.moveBackTextRef = moveBackTextRef
     this.moveForwardTextRef = moveForwardTextRef
@@ -130,6 +128,7 @@ class Tracker extends Component {
   async track (videoEl) {
     const { isTracking } = this.state
     const { offsetHeight } = videoEl
+    const helperEl = document.querySelector('#help')
 
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
     const inputSize = this.closestDivisible(offsetHeight, 32)
@@ -140,7 +139,6 @@ class Tracker extends Component {
 
     let inSize
     let inBoundary
-    const helperElRef = this.helperEl
     const helpRefs = []
     if (result) {
       // Face detected
@@ -152,10 +150,10 @@ class Tracker extends Component {
 
       if (inBoundary && inSize === 0) {
         this.setState({ showOverlay: false })
-        this.hideElements([...helperElRef.children])
+        this.hideElements([...helperEl.children])
       } else {
         this.setState({ showOverlay: true })
-        this.hideElements([...helperElRef.children])
+        this.hideElements([...helperEl.children])
 
         if (!inBoundary) helpRefs.push(this.helpTextRef)
         if (inSize !== 0) {
@@ -219,7 +217,7 @@ class Tracker extends Component {
         )}
         {showOverlay && (
           <div id="help" className={cs(styles.help, styles[fitInFrame])}>
-            <div ref={this.helpRef} className={styles.helpText}>
+            <div id="#helpText" className={styles.helpText}>
               Please make sure that your face fits inside the frame.
             </div>
             <div className={styles.secondary}>
