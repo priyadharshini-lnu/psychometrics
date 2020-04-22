@@ -11,7 +11,7 @@ class StatusText extends videojs.getComponent('Component') {
   }
 
   createEl () {
-    const el = videojs.createEl('div', {
+    const el = videojs.dom.createEl('div', {
       className: 'tte-status-text default hide',
     })
 
