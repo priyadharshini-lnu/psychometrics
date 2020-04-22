@@ -35,7 +35,9 @@ module Assigns
         expiry_date: nil,
         last_activity_at: nil,
         meta_data: {},
-        additional_time: nil
+        additional_time: nil,
+        current_element: nil,
+        current_page: nil
       )
     end
 

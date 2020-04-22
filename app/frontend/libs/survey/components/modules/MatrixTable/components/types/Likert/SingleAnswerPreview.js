@@ -10,10 +10,10 @@ export default class extends Component {
 
   changeValue = (scale, choice, e) => {
     const { model: { result } } = this.props
-    result.answer(scale, choice, e.currentTarget.checked)
     if (result.notApplicable && result.notApplicable[choice]) {
       result.notApplicable[choice] = false
     }
+    result.answer(scale, choice, e.currentTarget.checked)
     this.forceUpdate()
   }
 
@@ -22,6 +22,7 @@ export default class extends Component {
     _.remove(result.answers, { choice })
     result.notApplicable = result.notApplicable || {}
     result.notApplicable[choice] = true
+    result.reduxAnswer()
     this.forceUpdate()
   }
 

@@ -21,7 +21,7 @@ module Administration
     end
 
     def reset?
-      destroy? && !@record&.assign_with_result&.not_started?
+      destroy? && !@record&.assign_with_result&.not_started? && !@record&.assessment&.external?
     end
 
     def update_additional_time?

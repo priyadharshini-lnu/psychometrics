@@ -30,7 +30,9 @@ module UsersResults
     #   and increases the step of users_result
     #
     def update_users_result
-      users_result.update!(form.attributes_with_values)
+      attributes = form.attributes_with_values
+      attributes.delete(:status) if users_result.completed?
+      users_result.update!(attributes)
 
       # Calculates scoring and sets time of completion
       if users_result.completed?

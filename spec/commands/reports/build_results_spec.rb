@@ -40,8 +40,8 @@ describe Reports::BuildResults do
     # Contains scoring results
     let(:scoring) do
       {
-        '1' => { 'results' => [1, 2, 3] },
-        '2' => { 'results' => [4, 5, 6] }
+        '1' => { 'results' => [1, 2, 3], 'norm_score' => 3 },
+        '2' => { 'results' => [4, 5, 6], 'norm_score' => 5.5 }
       }
     end
 
@@ -69,6 +69,7 @@ describe Reports::BuildResults do
       context 'when data is not valid' do
         it do
           data['key'] = 'not_exists'
+
           is_expected.to eq(key: 'not_exists', name: 'First Name', value: nil, config_data: data)
         end
       end
@@ -100,31 +101,16 @@ describe Reports::BuildResults do
       subject { Reports::ResultTypes::NormedFactor.call(build_results_command, data) }
 
       it do
-        expect(factors_norm).to receive(:detect_normed_result).with(scoring['1']['results'])
         is_expected.to eq(key: 1, name: 'Test factor', value: 3, config_data: data)
       end
 
-      it 'collect sub_factors results' do
-        allow(factor).to receive(:id).and_return(-1)
-        expect(factors_norm).to receive(:detect_normed_result).with(scoring['2']['results'])
-        is_expected.to eq(key: 1, name: 'Test factor', value: 3, config_data: data)
+      it do
+        data['factorId'] = 2
+        is_expected.to eq(key: 2, name: 'Test factor', value: 5.5, config_data: data)
       end
 
       it 'assessment ID not exists' do
         data['assessmentId'] = 'not_exists'
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
-      end
-
-      it 'assign#norm_data is nil' do
-        allow(assign).to receive(:norm_data).and_return(nil)
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
-      end
-      it 'factor is not exists' do
-        allow(Factor).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to eq(key: 1, name: nil, value: nil, config_data: data)
-      end
-      it 'factors_norms is not exists' do
-        allow(FactorsNorm).to receive(:find_by!).and_raise(ActiveRecord::RecordNotFound)
         is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
       end
     end
@@ -231,6 +217,12 @@ describe Reports::BuildResults do
                 { 'type' => 'less_than_or_equal', 'value' => 6 }
               ],
               'result' => 3
+            },
+            {
+              'conditions' => [
+                { 'type' => 'greater_than_or_equal', 'value' => 6 }
+              ],
+              'result' => 4
             }
           ]
         }
@@ -241,7 +233,7 @@ describe Reports::BuildResults do
         is_expected.to eq(
           key: 'mapped_value',
           name: 'Overall Aspiration Score',
-          value: mapped_value['value'],
+          value: 4,
           config_data: data
         )
       }

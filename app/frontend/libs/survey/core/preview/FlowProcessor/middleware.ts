@@ -48,6 +48,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const processNextElement = () => {
+    const { preview } = getState()
     const { element, embeddedData } = ElementProcessor.run(preview, getNextElementId(preview))
     if (_.size(embeddedData) > 0) {
       dispatch(setEmbeddedData(embeddedData))
