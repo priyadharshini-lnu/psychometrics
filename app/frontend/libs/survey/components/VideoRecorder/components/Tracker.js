@@ -7,6 +7,13 @@ import * as faceapi from 'face-api.js'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
+const messages = {
+  frame: 'Please make sure that your face aligns with the frame.',
+  ready: 'Press the Record button when ready to record.',
+  forward: 'You are too far away from the screen. Please move a bit closer.',
+  backward: 'You are too close to the screen. Please move a bit back.',
+}
+
 class Tracker extends Component {
   constructor () {
     super()
@@ -18,7 +25,6 @@ class Tracker extends Component {
       faceDetectionModelLoaded: false,
     }
   }
-
 
   componentWillMount () {
     const {
@@ -45,6 +51,8 @@ class Tracker extends Component {
     const thresholdWidth = object.threshold * offsetWidth
     const thresholdHeight = object.threshold * offsetHeight
 
+    // eslint-disable-next-line no-console
+    console.log('thresholdWidth: ', thresholdWidth, ' thresholdHeight: ', thresholdHeight)
     const minHeight = (object.size * offsetHeight) - thresholdHeight
     const minWidth = (object.size * offsetWidth) - thresholdWidth
     const maxHeight = (object.size * offsetHeight) + thresholdHeight
@@ -61,6 +69,7 @@ class Tracker extends Component {
 
   componentDidMount () {
     this.setupBoundingBox()
+    this.showElements(['frame', 'ready'])
   }
 
   setupBoundingBox () {
@@ -90,6 +99,9 @@ class Tracker extends Component {
     const { thresholds } = this.state
     const boxArea = rect.width * rect.height
 
+    // eslint-disable-next-line no-console
+    console.log('thresholds: ', thresholds, ' boxArea: ', boxArea)
+
     if (boxArea > thresholds.areaMax) return 1
     if (boxArea < thresholds.areaMin) return -1
 
@@ -109,26 +121,9 @@ class Tracker extends Component {
     return inBoundary
   }
 
-  initTracker () {
-    const { playerEl } = this.state
-
-    this.track(playerEl)
-
-    const helperEl = document.querySelector('#help')
-    const helpText = helperEl.querySelector('#helpText')
-    const moveBackTextRef = helperEl.querySelector('#instructionMoveBack')
-    const moveForwardTextRef = helperEl.querySelector('#instructionMoveForward')
-
-    this.helpTextRef = helpText
-    this.moveBackTextRef = moveBackTextRef
-    this.moveForwardTextRef = moveForwardTextRef
-    this.hideElements([...helperEl.children])
-  }
-
   async track (videoEl) {
     const { isTracking } = this.state
     const { offsetHeight } = videoEl
-    const helperEl = document.querySelector('#help')
 
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
     const inputSize = this.closestDivisible(offsetHeight, 32)
@@ -139,7 +134,7 @@ class Tracker extends Component {
 
     let inSize
     let inBoundary
-    const helpRefs = []
+    const helpTexts = []
     if (result) {
       // Face detected
       inBoundary = this.isInBoundary(result.box)
@@ -150,16 +145,16 @@ class Tracker extends Component {
 
       if (inBoundary && inSize === 0) {
         this.setState({ showOverlay: false })
-        this.hideElements([...helperEl.children])
+        this.hideElements(Object.keys(messages))
       } else {
         this.setState({ showOverlay: true })
-        this.hideElements([...helperEl.children])
+        this.hideElements(Object.keys(messages))
 
-        if (!inBoundary) helpRefs.push(this.helpTextRef)
+        if (!inBoundary) helpTexts.push('frame')
         if (inSize !== 0) {
-          helpRefs.push(inSize < 0 ? this.moveForwardTextRef : this.moveBackTextRef)
+          helpTexts.push(inSize < 0 ? 'forward' : 'backward')
         }
-        this.showElements(helpRefs)
+        this.showElements(helpTexts)
       }
     } else {
       // No face
@@ -172,18 +167,38 @@ class Tracker extends Component {
     }
   }
 
+  initTracker () {
+    const { playerEl } = this.state
+    this.track(playerEl)
+  }
+
   loadFaceDetectionNet () {
     return Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models'),
     ]).then(this.setState({ faceDetectionModelLoaded: true }))
   }
 
+  findElements (ids, containerSelector = '#help') {
+    const container = document.querySelector(containerSelector)
+    if (container) {
+      return container.querySelectorAll(ids.map(id => `#${id}`).join(', '))
+    }
+
+    return null
+  }
+
   showElements (targets) {
-    targets.forEach(target => target.classList.remove('hidden'))
+    const elements = this.findElements(targets)
+    if (elements) {
+      elements.forEach(target => target.classList.remove('hidden'))
+    }
   }
 
   hideElements (targets) {
-    targets.forEach(target => target.classList.add('hidden'))
+    const elements = this.findElements(targets)
+    if (elements) {
+      elements.forEach(target => target.classList.add('hidden'))
+    }
   }
 
   startTracking () {
@@ -201,11 +216,10 @@ class Tracker extends Component {
   }
 
   render () {
-    const { fitInFrame } = this.props
     const { showOverlay, frame, boundaries: position } = this.state
 
     return (
-      <div className={styles.canvasContainer}>
+      <div id="container" className={styles.canvasContainer}>
         <canvas id="canvas" className={styles.canvas} />
 
         {showOverlay && (
@@ -215,20 +229,13 @@ class Tracker extends Component {
             resolve={() => import(`./images/${frame}.svg`)}
           />
         )}
+
         {showOverlay && (
-          <div id="help" className={cs(styles.help, styles[fitInFrame])}>
-            <div id="#helpText" className={styles.helpText}>
-              Please make sure that your face fits inside the frame.
-            </div>
-            <div className={styles.secondary}>
-              Press the Record button when ready to record the video.
-            </div>
-            <div id="instructionMoveForward" className={cs(styles.instruction, 'hidden')}>
-              You are too far away from the screen. Please move a bit closer.
-            </div>
-            <div id="instructionMoveBack" className={cs(styles.instruction, 'hidden')}>
-              You are too close to the screen. Please move a bit back.
-            </div>
+          <div id="help" className={styles.help}>
+            <div id="frame" className={cs(styles.message, 'hidden')}>{messages.frame}</div>
+            <div id="ready" className={cs(styles.message, 'hidden')}>{messages.ready}</div>
+            <div id="forward" className={cs(styles.message, 'hidden')}>{messages.forward}</div>
+            <div id="backward" className={cs(styles.message, 'hidden')}>{messages.backward}</div>
           </div>
         )}
       </div>
