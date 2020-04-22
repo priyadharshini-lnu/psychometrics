@@ -28,9 +28,9 @@ prevent bundle secure warnings with
     rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
 
 1. `$> bundle install`
-2. `$> cp config/application.sample.yml config/application.yml`
-3. `$> cp config/database.yml.example config/database.yml`
-4. `$> cp config/settings/development.yml.example config/settings/development.yml`
+2. `$> cp config/application.yml.sample config/application.yml`
+3. `$> cp config/database.yml.sample config/database.yml`
+4. `$> cp config/settings/development.yml.sample config/settings/development.yml`
 
     Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
