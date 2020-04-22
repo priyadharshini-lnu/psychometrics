@@ -40,7 +40,7 @@ prevent bundle secure warnings with
 
     Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
 
-6. `$> npm instal l`
+6. `$> npm install`
 
 7. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
