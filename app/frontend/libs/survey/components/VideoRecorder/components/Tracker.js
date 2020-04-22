@@ -5,6 +5,7 @@ import { snakeCase } from 'lodash'
 import cs from 'classnames'
 import tracking from 'tracking'
 import 'tracking/build/data/face-min'
+import * as faceapi from 'face-api.js'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
@@ -15,7 +16,14 @@ class Tracker extends Component {
     this.state = {
       showOverlay: true,
       frame: 'person',
+      faceDetectionModelLoaded: false,
     }
+  }
+
+  loadFaceDetectionNet () {
+    return Promise.all([
+      faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models'),
+    ]).then(this.setState({ faceDetectionModelLoaded: true }))
   }
 
   componentWillMount () {
@@ -33,6 +41,8 @@ class Tracker extends Component {
 
     // eslint-disable-next-line react/no-unused-state
     this.setState({ boundaries, thresholds: object, playerEl })
+
+    this.loadFaceDetectionNet()
   }
 
   componentDidMount () {
@@ -50,51 +60,81 @@ class Tracker extends Component {
     canvas.width = offsetWidth
     canvas.height = offsetHeight
 
+    context.beginPath()
     context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
     this.contextRef = context
+
+    context.strokeStyle = 'yellow'
+    context.stroke()
   }
 
-  initTracker = () => {
-    const { playerEl: { id } } = this.state
+  closesetDivisible = (n, m) => {
+    let q = Math.floor(n / m)
+    let first = m * q
+    let second = (n * m) > 0 ? (m * (q + 1)) : (m * (q - 1))
+    if (Math.abs(n - first) < Math.abs(n - second)) return first
+    return second
+  }
 
-    const tracker = new tracking.ObjectTracker('face')
-    // tracker.setStepSize(1.7)
-    tracker.setInitialScale(4)
-    tracker.setStepSize(2)
-    tracker.setEdgesDensity(0.1)
+  async initTracker() {
+    const { playerEl, playerEl: { id, offsetHeight } } = this.state
+    const inputSize = this.closesetDivisible(offsetHeight, 32)
+    const scoreThreshold = 0.5
+    const options = new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
 
-    this.trackerTask = tracking.track(`#${id}`, tracker)
+    let result = await faceapi.detectSingleFace(playerEl, options)
+    if (result) {
+      console.log("face: ", result)
+      const canvas = document.querySelector('#canvas')
+      const dims = faceapi.matchDimensions(canvas, playerEl, true)
 
-    const helperEl = document.querySelector('#help')
-    const helpText = helperEl.querySelector('#helpText')
+      faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
+    }
 
-    let rect
-    tracker.on('track', (event) => {
-      if (event === undefined) return
+    setTimeout(() => this.initTracker())
+    // const tracker = new tracking.ObjectTracker('face')
+    // // tracker.setStepSize(1.7)
+    // tracker.setInitialScale(4)
+    // tracker.setStepSize(2)
+    // tracker.setEdgesDensity(0.1)
 
-      if (event.data && event.data.length > 0) {
-        // eslint-disable-next-line prefer-destructuring
-        rect = event.data.slice(-1)[0] // take the last rectangle
-        if (this.isInBoundary(rect)) {
-          this.setState({ showOverlay: false })
-          this.hideElements([helpText])
-        } else {
-          this.setState({ showOverlay: true })
-          this.showElements([helpText])
-        }
+    // this.trackerTask = tracking.track(`#${id}`, tracker)
 
-        // event.data.forEach((rect) => {
-        //   if (this.isInBoundary(rect)) {
-        //     context.clearRect(0, 0, offsetWidth, offsetHeight)
-        //   } else {
-        //     context.strokeRect(rect.x, rect.y, rect.width, rect.height)
-        //     this.showElements([helpText])
-        //   }
-        // })
-      }
-    })
+    // const helperEl = document.querySelector('#help')
+    // const helpText = helperEl.querySelector('#helpText')
 
-    this.hideElements([...helperEl.children])
+    // let rect
+    // tracker.on('track', (event) => {
+    //   if (event === undefined) return
+
+    //   if (event.data && event.data.length > 0) {
+    //     console.log('rects: ', event.data.length)
+    //     // eslint-disable-next-line prefer-destructuring
+    //     rect = event.data.slice(-1)[0] // take the last rectangle
+    //     this.contextRef.beginPath()
+    //     this.contextRef.strokeStyle = 'blue'
+    //     this.contextRef.rect(rect.x, rect.y, rect.width, rect.height)
+    //     this.contextRef.stroke()
+    //     if (this.isInBoundary(rect)) {
+    //       this.setState({ showOverlay: false })
+    //       this.hideElements([helpText])
+    //     } else {
+    //       this.setState({ showOverlay: true })
+    //       this.showElements([helpText])
+    //     }
+
+    //     // event.data.forEach((rect) => {
+    //     //   if (this.isInBoundary(rect)) {
+    //     //     context.clearRect(0, 0, offsetWidth, offsetHeight)
+    //     //   } else {
+    //     //     context.strokeRect(rect.x, rect.y, rect.width, rect.height)
+    //     //     this.showElements([helpText])
+    //     //   }
+    //     // })
+    //   }
+    // })
+
+    // this.hideElements([...helperEl.children])
   }
 
   isInBoundary = (rect) => {
@@ -109,6 +149,7 @@ class Tracker extends Component {
     ]
 
     const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
+    console.log('inBoundary: ', inBoundary)
     return inBoundary
   }
 
@@ -126,7 +167,7 @@ class Tracker extends Component {
   }
 
   stopTracking () {
-    this.setState({ showOverlay: false })
+    this.setState({ showOverlay: false, frame: 'person' })
     this.trackerTask.stop()
   }
 
