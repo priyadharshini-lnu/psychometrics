@@ -17,6 +17,8 @@ class Tracker extends Component {
       isTracking: false,
       faceDetectionModelLoaded: false,
     }
+
+    this.helpRef = React.createRef()
   }
 
   componentWillMount () {
@@ -54,9 +56,7 @@ class Tracker extends Component {
       areaMax: maxHeight * maxWidth,
     }
 
-    // eslint-disable-next-line react/no-unused-state
     this.setState({ boundaries, thresholds, playerEl })
-
     this.loadFaceDetectionNet()
   }
 
@@ -79,7 +79,7 @@ class Tracker extends Component {
     this.contextRef = context
   }
 
-  closesetDivisible = (n, m) => {
+  closestDivisible = (n, m) => {
     const q = Math.floor(n / m)
     const first = m * q
     const second = (n * m) > 0 ? (m * (q + 1)) : (m * (q - 1))
@@ -91,7 +91,10 @@ class Tracker extends Component {
     const { thresholds } = this.state
     const boxArea = rect.width * rect.height
 
-    return boxArea > thresholds.areaMin && boxArea < thresholds.areaMax
+    if (boxArea > thresholds.areaMax) return 1
+    if (boxArea < thresholds.areaMin) return -1
+
+    return 0
   }
 
   isInBoundary = (rect) => {
@@ -112,10 +115,15 @@ class Tracker extends Component {
 
     this.track(playerEl)
 
-    const helperEl = document.querySelector('#help')
+    const helperEl = this.helpRef.current
     const helpText = helperEl.querySelector('#helpText')
+    const moveBackTextRef = helperEl.querySelector('#instructionMoveBack')
+    const moveForwardTextRef = helperEl.querySelector('#instructionMoveForward')
 
+    this.helperEl = helperEl
     this.helpTextRef = helpText
+    this.moveBackTextRef = moveBackTextRef
+    this.moveForwardTextRef = moveForwardTextRef
     this.hideElements([...helperEl.children])
   }
 
@@ -124,22 +132,36 @@ class Tracker extends Component {
     const { offsetHeight } = videoEl
 
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
-    const inputSize = this.closesetDivisible(offsetHeight, 32)
+    const inputSize = this.closestDivisible(offsetHeight, 32)
     const scoreThreshold = 0.5
 
     const options = new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
     const result = await faceapi.detectSingleFace(videoEl, options)
 
+    let inSize
+    let inBoundary
+    const helperElRef = this.helperEl
+    const helpRefs = []
     if (result) {
-      // There is a face
-      if (this.isInBoundary(result.box)) {
-        // eslint-disable-next-line no-console
-        console.info('Face is in boundary')
+      // Face detected
+      inBoundary = this.isInBoundary(result.box)
+      inSize = this.isInSize(result.box)
+
+      // eslint-disable-next-line no-console
+      console.log('inBoundary: ', inBoundary, ' inSize: ', inSize)
+
+      if (inBoundary && inSize === 0) {
         this.setState({ showOverlay: false })
-        this.hideElements([this.helpTextRef])
+        this.hideElements([...helperElRef.children])
       } else {
         this.setState({ showOverlay: true })
-        this.showElements([this.helpTextRef])
+        this.hideElements([...helperElRef.children])
+
+        if (!inBoundary) helpRefs.push(this.helpTextRef)
+        if (inSize !== 0) {
+          helpRefs.push(inSize < 0 ? this.moveForwardTextRef : this.moveBackTextRef)
+        }
+        this.showElements(helpRefs)
       }
     } else {
       // No face
@@ -167,7 +189,7 @@ class Tracker extends Component {
   }
 
   startTracking () {
-    this.setState({ showOverlay: true, frame: 'box', isTracking: true })
+    this.setState({ showOverlay: false, frame: 'box', isTracking: true })
     this.initTracker()
   }
 
@@ -197,12 +219,17 @@ class Tracker extends Component {
         )}
         {showOverlay && (
           <div id="help" className={cs(styles.help, styles[fitInFrame])}>
-            <div id="helpText" className={styles.helpText}>
+            <div ref={this.helpRef} className={styles.helpText}>
               Please make sure that your face fits inside the frame.
             </div>
-
             <div className={styles.secondary}>
               Press the Record button when ready to record the video.
+            </div>
+            <div id="instructionMoveForward" className={cs(styles.instruction, 'hidden')}>
+              You are too far away from the screen. Please move a bit closer.
+            </div>
+            <div id="instructionMoveBack" className={cs(styles.instruction, 'hidden')}>
+              You are too close to the screen. Please move a bit back.
             </div>
           </div>
         )}
