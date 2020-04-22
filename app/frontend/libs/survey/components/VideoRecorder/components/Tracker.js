@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import cs from 'classnames'
-// import tracking from 'tracking'
-// import 'tracking/build/data/face-min'
 import * as faceapi from 'face-api.js'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
@@ -15,6 +13,7 @@ class Tracker extends Component {
     this.state = {
       showOverlay: true,
       frame: 'person',
+      isTracking: false,
       faceDetectionModelLoaded: false,
     }
   }
@@ -31,15 +30,32 @@ class Tracker extends Component {
 
     const { offsetWidth, offsetHeight } = playerEl
 
+    const width = box.width * offsetWidth
+    const height = box.height * offsetHeight
     const boundaries = {
       x: box.x * offsetWidth,
       y: box.y * offsetHeight,
-      width: box.width * offsetWidth,
-      height: box.height * offsetHeight,
+      width: width,
+      height:height,
+      area: width * height,
+    }
+
+    // min, max box calculations
+    const thresholdWidth = object.threshold * offsetWidth
+    const thresholdHeight = object.threshold * offsetHeight
+
+    const minHeight = (object.size * offsetHeight) - thresholdHeight
+    const minWidth = (object.size * offsetWidth) - thresholdWidth
+    const maxHeight = (object.size * offsetHeight) + thresholdHeight
+    const maxWidth = (object.size * offsetWidth) + thresholdWidth
+
+    const thresholds = {
+      areaMin: minHeight * minWidth,
+      areaMax: maxHeight * maxWidth,
     }
 
     // eslint-disable-next-line react/no-unused-state
-    this.setState({ boundaries, thresholds: object, playerEl })
+    this.setState({ boundaries, thresholds, playerEl })
 
     this.loadFaceDetectionNet()
   }
@@ -59,12 +75,8 @@ class Tracker extends Component {
     canvas.width = offsetWidth
     canvas.height = offsetHeight
 
-    context.beginPath()
     context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
     this.contextRef = context
-
-    context.strokeStyle = 'yellow'
-    context.stroke()
   }
 
   closesetDivisible = (n, m) => {
@@ -75,80 +87,68 @@ class Tracker extends Component {
     return second
   }
 
-  async initTracker() {
-    const { playerEl, playerEl: { id, offsetHeight } } = this.state
+  async track(videoEl) {
+    const { isTracking } = this.state
+    const { offsetHeight } = videoEl
+
+    // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32 
     const inputSize = this.closesetDivisible(offsetHeight, 32)
     const scoreThreshold = 0.5
+
     const options = new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
+    let result = await faceapi.detectSingleFace(videoEl, options)
 
-    let result = await faceapi.detectSingleFace(playerEl, options)
     if (result) {
-      console.log("face: ", result)
-      const canvas = document.querySelector('#canvas')
-      const dims = faceapi.matchDimensions(canvas, playerEl, true)
-
-      faceapi.draw.drawDetections(canvas, faceapi.resizeResults(result, dims))
+      // There is a face
+      if (this.isInBoundary(result.box)) {
+        console.info("Face is in boundary")
+        this.setState({ showOverlay: false })
+        this.hideElements([this.helpTextRef])
+      } else {
+        this.setState({ showOverlay: true })
+        this.showElements([this.helpTextRef])
+      }
+    } else {
+      // No face
+      this.setState({ showOverlay: true })
+      this.showElements([this.helpTextRef])
     }
 
-    setTimeout(() => this.initTracker())
-    // const tracker = new tracking.ObjectTracker('face')
-    // // tracker.setStepSize(1.7)
-    // tracker.setInitialScale(4)
-    // tracker.setStepSize(2)
-    // tracker.setEdgesDensity(0.1)
+    if (isTracking) {
+      setTimeout(() => this.track(videoEl))
+    }
+  }
 
-    // this.trackerTask = tracking.track(`#${id}`, tracker)
+  initTracker() {
+    const { playerEl } = this.state
 
-    // const helperEl = document.querySelector('#help')
-    // const helpText = helperEl.querySelector('#helpText')
+    this.track(playerEl)
 
-    // let rect
-    // tracker.on('track', (event) => {
-    //   if (event === undefined) return
+    const helperEl = document.querySelector('#help')
+    const helpText = helperEl.querySelector('#helpText')
 
-    //   if (event.data && event.data.length > 0) {
-    //     console.log('rects: ', event.data.length)
-    //     // eslint-disable-next-line prefer-destructuring
-    //     rect = event.data.slice(-1)[0] // take the last rectangle
-    //     this.contextRef.beginPath()
-    //     this.contextRef.strokeStyle = 'blue'
-    //     this.contextRef.rect(rect.x, rect.y, rect.width, rect.height)
-    //     this.contextRef.stroke()
-    //     if (this.isInBoundary(rect)) {
-    //       this.setState({ showOverlay: false })
-    //       this.hideElements([helpText])
-    //     } else {
-    //       this.setState({ showOverlay: true })
-    //       this.showElements([helpText])
-    //     }
+    this.helpTextRef = helpText
+    this.hideElements([...helperEl.children])
+  }
 
-    //     // event.data.forEach((rect) => {
-    //     //   if (this.isInBoundary(rect)) {
-    //     //     context.clearRect(0, 0, offsetWidth, offsetHeight)
-    //     //   } else {
-    //     //     context.strokeRect(rect.x, rect.y, rect.width, rect.height)
-    //     //     this.showElements([helpText])
-    //     //   }
-    //     // })
-    //   }
-    // })
+  isProperSize = (rect) => {
+    const { thresholds, playerEl } = this.state
+    const { offsetHeight, offsetWidth } = playerEl
 
-    // this.hideElements([...helperEl.children])
+    const boxArea = rect.width * rect.height
+
+    return boxArea > thresholds.areaMin && boxArea < thresholds.areaMax
   }
 
   isInBoundary = (rect) => {
-    // const { thresholds: { threshold }, playerEl: { offsetHeight, offsetWidth } } = this.state
-    // const thresholdWidth = threshold * offsetWidth
-    // const thresholdHeight = threshold * offsetHeight
     const corners = [
-      { x: rect.x, y: rect.y }, // topleft
-      { x: rect.x + rect.width, y: rect.y }, // topRight
-      { x: rect.x, y: rect.y + rect.height }, // bottomLeft
-      { x: rect.x + rect.width, y: rect.y + rect.height }, // bottomRight
+      { ...rect.topLeft }, // topleft
+      { ...rect.topRight }, // topRight
+      { ...rect.bottomLeft }, // bottomLeft
+      { ...rect.bottomRight }, // bottomRight
     ]
 
-    const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
-    console.log('inBoundary: ', inBoundary)
+    const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner._x, corner._y))
     return inBoundary
   }
 
@@ -161,13 +161,17 @@ class Tracker extends Component {
   }
 
   startTracking () {
-    this.setState({ showOverlay: true, frame: 'box' })
+    this.setState({ showOverlay: true, frame: 'box', isTracking: true })
     this.initTracker()
   }
 
   stopTracking () {
-    this.setState({ showOverlay: false, frame: 'person' })
-    this.trackerTask.stop()
+    const { isTracking } = this.state
+    if (!isTracking) {
+      return
+    }
+
+    this.setState({ showOverlay: false, frame: 'person', isTracking: false })
   }
 
   render () {
