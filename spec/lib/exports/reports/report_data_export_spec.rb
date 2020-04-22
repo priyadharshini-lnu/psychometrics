@@ -41,8 +41,8 @@ describe Exports::Reports::ReportDataExport do
     # Contains scoring results
     let(:scoring) do
       {
-        '1' => { 'results' => [1, 2, 3] },
-        '2' => { 'results' => [4, 5, 6] }
+        '1' => { 'results' => [1, 2, 3], 'norm_score' => 3 },
+        '2' => { 'results' => [4, 5, 6], 'norm_score' => 5.5 }
       }
     end
 
@@ -84,7 +84,7 @@ describe Exports::Reports::ReportDataExport do
                                      'Test factor',
                                      'Fit Score',
                                      'Overall Aspiration Score']).in_row(1)
-        expect(sheet).to have_cells(['Jon', 'Snow', 1, 2, 3, 3.0, 3]).in_row(2)
+        expect(sheet).to have_cells(['Jon', 'Snow', 1, 2, 3, 4.67, nil]).in_row(2)
       end
     end
   end

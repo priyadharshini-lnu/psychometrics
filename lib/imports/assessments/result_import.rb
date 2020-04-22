@@ -127,7 +127,7 @@ module Imports
           end
           assign.results = new_results
           if assign.completed?
-            assign.calculate_scoring
+            assign.scoring = ::UsersResults::CalculateScoring.call!(assign, assign.norm_data)
             assign.occupations = Assigns::CalculateOccupations.call!(assign)
             assign.innovation_styles = Assigns::CalculateInnovationStyles.call!(assign)
           end
