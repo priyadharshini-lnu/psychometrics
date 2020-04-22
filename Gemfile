@@ -6,7 +6,6 @@ gem 'bundler',                    '>= 1.8.4'
 gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
-gem 'coffee-rails',               '~> 4.2'
 gem 'jbuilder',                   '~> 2.6.4'
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
