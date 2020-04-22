@@ -23,7 +23,8 @@ module Hogan
 
       # Sets loaded report
       assigns_reports_scope.find_each do |assigns_report|
-        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report.report}")
+        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report.report}",
+          generating: false)
       end
 
       # Fetchs score and sets to AssignsReports

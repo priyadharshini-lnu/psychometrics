@@ -15,13 +15,13 @@ class Mindmill::AssignsController < ApplicationController
     @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + results_mindmill_assign_path(@assign)}"
 
     @assign.in_progress!
-    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale)
+    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale, regenerate: false)
     redirect_to @ssourl
   end
 
   def redirect
     redirect_to(root_path, success: t('.successfully')) && return if @assign.completed?
-    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale)
+    BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale, regenerate: false)
     Assigns::GenerateReport.call(@assign, current_user)
     redirect_to(root_path, success: t('.successfully'))
   end
