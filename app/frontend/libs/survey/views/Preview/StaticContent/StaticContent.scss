@@ -1,20 +1,23 @@
 @import "user/styles/variables";
 
 .container {
-  height: fit-content;
-  min-height: 200px;
+  min-height: 50vh;
   padding: 10px;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 12px;
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  border: 1px solid #d9d9d9;
+  background-color: $white;
 }
 .fixed {
   height: 50vh;
   overflow: auto;
 }
 .side {
-  position: absolute;
-  top: 0;
-  height: calc(100% - 20px);
+  position: relative;
+  // height: calc(100% - 20px);
   overflow: auto;
 }
 .left {
@@ -24,9 +27,13 @@
   right: 0;
 }
 .content {
-  height: 100%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
   overflow: auto;
-  padding: 5px;
+  padding: 14px;
   &::-webkit-scrollbar {
     width: 15px;
   }
@@ -44,6 +51,12 @@
     border-radius: 50%;
   }
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  img {
+    max-width: 100%;
+  }
+  table {
+    max-width: 100%;
+  }
 }
 
 :global(.rtl) {

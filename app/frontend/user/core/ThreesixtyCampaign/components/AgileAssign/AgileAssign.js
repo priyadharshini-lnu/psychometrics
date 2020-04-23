@@ -3,6 +3,7 @@ import {
   Layout, Icon, PageHeader,
 } from 'antd'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
+import './styles.scss'
 
 const { Content } = Layout
 
@@ -51,7 +52,7 @@ export default function AgileAssign ({
           )}
           onBack={() => history.push('/campaigns')}
         >
-          <div id="agile-container" />
+          <div id="agile-container" className="agile-container" />
           <div className="mbl" />
         </PageHeader>
       </Content>

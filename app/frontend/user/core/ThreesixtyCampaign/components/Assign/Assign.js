@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col,
+  Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
@@ -26,62 +26,74 @@ export default function Assign ({
   match: { params },
   history,
   isFrame,
+  preview: {
+    enableProgress,
+    type,
+  },
   preview,
   saveResults,
+  block,
+  progress,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
   }, [])
   // TODO: Fix by creating a setting for list of rtl languages
-
   return (
     <Layout>
-      <Content className="fluid-container">
-        <PageHeader
-          className="page-header"
-          backIcon={!isFrame && (
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back
-            </div>
-          )}
-          title={(
-            <div>
-              {assessment.name}
-            </div>
-          )}
-          extra={(<Timer preview={preview} saveResults={saveResults} />)}
-          onBack={() => history.push('/campaigns')}
-        >
-          {availableTranslations && availableTranslations.length > 0 && (
-            <Row type="flex" justify="end">
-              <Col>
-                <Language
-                  assignId={assignId}
-                  selectedLanguage={selectedLanguage}
-                  availableTranslations={availableTranslations || []}
-                />
-              </Col>
-            </Row>
-          )}
-          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-            {loaded && !error && (
-              <PassAssessment
-                id="pass_assessment"
-                type="pass_assessment"
-                data={assessment}
-                result={results}
-                locales={translations}
-                dashboardUrl="/assessment_completed"
-                resultsUrl={`/assigns/${results.id}`}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                rstore={store}
-              />
+      <div className="page-header-wrap">
+        <Content className="fluid-container">
+          <PageHeader
+            className="page-header"
+            backIcon={!isFrame && (
+              <div>
+                <ArrowLeftOutlined />
+                {' '}
+                Back
+              </div>
             )}
-          </div>
-        </PageHeader>
+            title={(
+              <div>
+                {assessment.name}
+              </div>
+            )}
+            extra={[
+              type !== 'preview_block' && enableProgress
+                && (<Progress percent={progress} style={{ width: '200px' }} />),
+              <Timer preview={preview} saveResults={saveResults} />,
+            ]}
+            onBack={() => history.push('/campaigns')}
+          />
+        </Content>
+      </div>
+      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+        {availableTranslations && availableTranslations.length > 0 && (
+          <Row type="flex" justify="end" className="mtm mrm">
+            <Col>
+              <Language
+                assignId={assignId}
+                selectedLanguage={selectedLanguage}
+                availableTranslations={availableTranslations || []}
+              />
+            </Col>
+          </Row>
+        )}
+        <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
+          {loaded && !error && (
+            <PassAssessment
+              id="pass_assessment"
+              type="pass_assessment"
+              data={assessment}
+              result={results}
+              locales={translations}
+              dashboardUrl="/assessment_completed"
+              resultsUrl={`/assigns/${results.id}`}
+              selectedLocale={selectedLanguage && selectedLanguage.code}
+              rstore={store}
+            />
+          )}
+        </div>
       </Content>
     </Layout>
   )

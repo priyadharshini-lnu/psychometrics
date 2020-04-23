@@ -36,16 +36,14 @@ const Timer = ({ preview, preview: { expiryDate, timerDuration }, saveResults })
   }
 
   return (
-    <div>
-      {expiryDate && (
+    expiryDate ? (
       <Countdown
         value={new Date(expiryDate)}
         onFinish={() => saveResults(preview)}
         prefix={<ClockCircleOutlined className="mrs" />}
         className={styles.timer}
       />
-      )}
-    </div>
+    ) : null
   )
 }
 

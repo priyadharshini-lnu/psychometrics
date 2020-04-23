@@ -1,7 +1,11 @@
+@import 'user/styles/variables';
+
 :global {
-  .evaluations-list {
-    box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.15);
-    margin-top: 16px;
+  .ant-list-bordered.evaluations-list {
+    background-color: $white;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+    border-radius: 9px;
+    overflow: hidden;
     .evaluation-item {
       display: flex;
       justify-content: space-between;

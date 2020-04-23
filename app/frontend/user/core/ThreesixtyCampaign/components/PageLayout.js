@@ -7,7 +7,7 @@ const { Content } = Layout
 
 export default function PageLayout ({ children }) {
   return (
-    <Layout className="ant-layout" style={{ backgroundColor: '#fff' }}>
+    <Layout>
       <Navigation />
       <Content>
         {children}

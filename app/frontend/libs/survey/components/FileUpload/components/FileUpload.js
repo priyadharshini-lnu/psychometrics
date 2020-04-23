@@ -116,14 +116,16 @@ export default function FileUpload ({
           {'   '}
           <span>{file && file.name}</span>
         </Upload>
-        <Button
-          type="primary"
-          onClick={saveFile}
-          disabled={!file}
-          className={styles.saveFileBtn}
-        >
-          {showProgress ? ' Uploading ' : ' Start Upload '}
-        </Button>
+        {file && (
+          <Button
+            type="primary"
+            onClick={saveFile}
+            disabled={!file}
+            className={styles.saveFileBtn}
+          >
+            {showProgress ? ' Uploading ' : ' Start Upload '}
+          </Button>
+        )}
         {showProgress && (
           <Progress
             type="circle"
