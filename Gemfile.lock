@@ -538,7 +538,7 @@ GEM
     rails-assets-summernote (0.8.6)
       rails-assets-bootstrap (>= 3.0.1)
       rails-assets-jquery (>= 1.9.0)
-    rails-assets-x-editable (1.5.0)
+    rails-assets-x-editable (1.5.1)
       rails-assets-jquery (>= 1.6)
     rails-controller-testing (1.0.4)
       actionpack (>= 5.0.1.x)
@@ -920,7 +920,7 @@ DEPENDENCIES
   rails-assets-noty!
   rails-assets-quicksearch (= 2.3.1)!
   rails-assets-summernote (= 0.8.6)!
-  rails-assets-x-editable (= 1.5.0)!
+  rails-assets-x-editable (~> 1.5.0)!
   rails-controller-testing (~> 1.0.4)
   rails_autoscale_agent (~> 0.6.3)
   ransack (~> 1.8.10)
