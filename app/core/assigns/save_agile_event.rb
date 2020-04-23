@@ -5,11 +5,12 @@ module Assigns
     END_GROUP_EVENT = 'endGroup'
     ASSESSMENT_COMPLETE_EVENT = 'assessmentComplete'
 
-    private_attr_accessor :assign, :form
+    private_attr_accessor :assign, :form, :current_user
 
-    def initialize(assign, form)
+    def initialize(assign, form, current_user)
       @assign = assign
       @form = form
+      @current_user = current_user
     end
 
     def call
@@ -27,8 +28,10 @@ module Assigns
         completed_groups << form.data[:id]
         assign.update!(meta_data: assign.meta_data.merge('completed_groups' => completed_groups.uniq))
       end
-
-      assign.update(status: :completed, completed_at: Time.now) if form.event == ASSESSMENT_COMPLETE_EVENT
+      if form.event == ASSESSMENT_COMPLETE_EVENT
+        assign.update(status: :completed, completed_at: Time.now)
+        ::Assigns::GenerateReport.call(assign, current_user)
+      end
     end
   end
 end
