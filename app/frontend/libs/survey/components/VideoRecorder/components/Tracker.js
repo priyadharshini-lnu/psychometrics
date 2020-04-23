@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { isEqual } from 'lodash'
 import cs from 'classnames'
 import * as faceapi from 'face-api.js'
 import { Overlay } from './Overlay'
@@ -27,43 +28,10 @@ class Tracker extends Component {
   }
 
   componentWillMount () {
-    const {
-      fitInFrame,
-      trackerOptions: {
-        [fitInFrame]: { box, object },
-      },
-    } = this.props
     const playerEl = document.querySelector('video')
 
-    const { offsetWidth, offsetHeight } = playerEl
-
-    const width = box.width * offsetWidth
-    const height = box.height * offsetHeight
-    const boundaries = {
-      x: box.x * offsetWidth,
-      y: box.y * offsetHeight,
-      width,
-      height,
-      area: width * height,
-    }
-
-    // min, max box calculations
-    const thresholdWidth = object.threshold * offsetWidth
-    const thresholdHeight = object.threshold * offsetHeight
-
-    // eslint-disable-next-line no-console
-    console.log('thresholdWidth: ', thresholdWidth, ' thresholdHeight: ', thresholdHeight)
-    const minHeight = (object.size * offsetHeight) - thresholdHeight
-    const minWidth = (object.size * offsetWidth) - thresholdWidth
-    const maxHeight = (object.size * offsetHeight) + thresholdHeight
-    const maxWidth = (object.size * offsetWidth) + thresholdWidth
-
-    const thresholds = {
-      areaMin: minHeight * minWidth,
-      areaMax: maxHeight * maxWidth,
-    }
-
-    this.setState({ boundaries, thresholds, playerEl })
+    this.videoEl = playerEl
+    this.calculateBoundaries()
     this.loadFaceDetectionNet()
   }
 
@@ -72,11 +40,22 @@ class Tracker extends Component {
     this.showElements(['frame', 'ready'])
   }
 
+  componentDidUpdate (prevProps) {
+    const { fitInFrame, trackerOptions } = this.props
+    console.log('this.props: ', fitInFrame, trackerOptions[fitInFrame])
+    console.log('prevProps: ', prevProps.trackerOptions[prevProps.fitInFrame])
+    if (
+      prevProps.fitInFrame !== fitInFrame
+      || !isEqual(prevProps.trackerOptions[prevProps.fitInFrame], trackerOptions[fitInFrame])) {
+      this.calculateBoundaries()
+    } else {
+      console.log('component update completed')
+    }
+  }
+
   setupBoundingBox () {
-    const {
-      boundaries,
-      playerEl: { offsetHeight, offsetWidth },
-    } = this.state
+    const { boundaries } = this.state
+    const { offsetHeight, offsetWidth } = this.videoEl
     const canvas = document.querySelector('#canvas')
     const context = canvas.getContext('2d')
 
@@ -121,16 +100,54 @@ class Tracker extends Component {
     return inBoundary
   }
 
-  async track (videoEl) {
+  calculateBoundaries () {
+    const {
+      fitInFrame,
+      trackerOptions: {
+        [fitInFrame]: { box, object },
+      },
+    } = this.props
+    const { offsetWidth, offsetHeight } = this.videoEl
+
+    const width = box.width * offsetWidth
+    const height = box.height * offsetHeight
+    const boundaries = {
+      x: box.x * offsetWidth,
+      y: box.y * offsetHeight,
+      width,
+      height,
+      area: width * height,
+    }
+
+    // min, max box calculations
+    const thresholdWidth = object.threshold * offsetWidth
+    const thresholdHeight = object.threshold * offsetHeight
+
+    // eslint-disable-next-line no-console
+    console.log('thresholdWidth: ', thresholdWidth, ' thresholdHeight: ', thresholdHeight)
+    const minHeight = (object.size * offsetHeight) - thresholdHeight
+    const minWidth = (object.size * offsetWidth) - thresholdWidth
+    const maxHeight = (object.size * offsetHeight) + thresholdHeight
+    const maxWidth = (object.size * offsetWidth) + thresholdWidth
+
+    const thresholds = {
+      areaMin: minHeight * minWidth,
+      areaMax: maxHeight * maxWidth,
+    }
+
+    this.setState({ boundaries, thresholds })
+  }
+
+  async track () {
     const { isTracking } = this.state
-    const { offsetHeight } = videoEl
+    const { offsetHeight } = this.videoEl
 
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
     const inputSize = this.closestDivisible(offsetHeight, 32)
     const scoreThreshold = 0.5
 
     const options = new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
-    const result = await faceapi.detectSingleFace(videoEl, options)
+    const result = await faceapi.detectSingleFace(this.videoEl, options)
 
     let inSize
     let inBoundary
@@ -163,13 +180,12 @@ class Tracker extends Component {
     }
 
     if (isTracking) {
-      setTimeout(() => this.track(videoEl))
+      setTimeout(() => this.track())
     }
   }
 
   initTracker () {
-    const { playerEl } = this.state
-    this.track(playerEl)
+    this.track(this.videoEl)
   }
 
   loadFaceDetectionNet () {

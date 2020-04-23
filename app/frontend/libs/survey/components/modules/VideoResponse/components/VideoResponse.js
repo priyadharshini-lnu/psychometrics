@@ -26,7 +26,12 @@ export class VideoResponse extends React.Component {
 
     return (
       <div className="col-md-8">
-        <VideoRecorder key={model.id} maxDuration={model.props.duration || 10} />
+        <VideoRecorder
+          key={model.id}
+          maxDuration={model.props.duration || 10}
+          fitInFrame={model.props.fitInFrame}
+          trackerOptions={model.props.trackerOptions}
+        />
       </div>
     )
   }
