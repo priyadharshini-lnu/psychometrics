@@ -2,7 +2,6 @@
 @import 'user/styles/variables';
 
 .block {
-  width: 80%;
   margin: 20px auto;
   border-radius: 2;
   padding: 20px;
@@ -57,13 +56,13 @@
 }
 
 .errors {
-  margin: 20px 12px -10px 12px;
+  margin: 12px 12px 0px 12px;
   padding: 15px;
   border-radius: 4px;
   background: #ffebeb;
   color: #E73F61;
   font-size: 14px;
-  border-radius: 6px;
+  border-radius: 9px;
   box-shadow: rgba(0,0,0,.16) 0px 0px 6px;
 
   h1 {

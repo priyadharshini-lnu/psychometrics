@@ -96,7 +96,7 @@ interface PlayerProps { url: string }
 const AudioPlayer: React.FC<PlayerProps> = ({ url }) => {
   return (
     <div className='fr-rendered-audio-container'>
-      <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="416px" height="82px" />
+      <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="460px" height="140px" title="Audio" />
     </div>
   )
 }
