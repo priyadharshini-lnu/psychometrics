@@ -526,7 +526,7 @@ GEM
       rails-assets-spin.js (~> 2.0.2)
     rails-assets-lodash (4.17.15)
     rails-assets-moment (2.19.4)
-    rails-assets-moment-timezone (0.5.14)
+    rails-assets-moment-timezone (0.5.25)
       rails-assets-moment (>= 2.9.0)
     rails-assets-multiselect (0.9.12)
       rails-assets-jquery (>= 1.7.1)
@@ -914,7 +914,7 @@ DEPENDENCIES
   rails-assets-ladda (~> 1.0.5)!
   rails-assets-lodash (~> 4.17.11)!
   rails-assets-moment (~> 2.19.3)!
-  rails-assets-moment-timezone (= 0.5.14)!
+  rails-assets-moment-timezone (~> 0.5.14)!
   rails-assets-multiselect (= 0.9.12)!
   rails-assets-mustache.js!
   rails-assets-noty!

@@ -30,7 +30,7 @@ source 'https://rails-assets.org/' do
   gem 'rails-assets-ladda', '~> 1.0.5'
   gem 'rails-assets-lodash', '~> 4.17.11'
   gem 'rails-assets-moment', '~> 2.19.3'
-  gem 'rails-assets-moment-timezone', '0.5.14'
+  gem 'rails-assets-moment-timezone', '~> 0.5.14'
   gem 'rails-assets-multiselect', '0.9.12'
   gem 'rails-assets-mustache.js'
   gem 'rails-assets-noty'
