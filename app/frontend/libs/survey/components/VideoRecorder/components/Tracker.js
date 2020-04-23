@@ -42,13 +42,16 @@ class Tracker extends Component {
 
   componentDidUpdate (prevProps) {
     const { fitInFrame, trackerOptions } = this.props
+    // eslint-disable-next-line no-console
     console.log('this.props: ', fitInFrame, trackerOptions[fitInFrame])
+    // eslint-disable-next-line no-console
     console.log('prevProps: ', prevProps.trackerOptions[prevProps.fitInFrame])
     if (
       prevProps.fitInFrame !== fitInFrame
       || !isEqual(prevProps.trackerOptions[prevProps.fitInFrame], trackerOptions[fitInFrame])) {
       this.calculateBoundaries()
     } else {
+      // eslint-disable-next-line no-console
       console.log('component update completed')
     }
   }
