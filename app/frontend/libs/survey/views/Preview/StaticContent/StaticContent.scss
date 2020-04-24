@@ -74,6 +74,7 @@
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  color: #333333;
 }
 .paletteTip {
   -webkit-user-select: none;
@@ -92,6 +93,7 @@
   overflow: visible;
   display: flex;
   align-items: center;
+  z-index: 2;
 }
 .paletteColor {
   height: 16px;

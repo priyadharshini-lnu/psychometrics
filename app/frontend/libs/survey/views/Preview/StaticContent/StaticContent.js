@@ -7,7 +7,7 @@ import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlights, updateMetaData, I18n,
+  block, block: { props: { staticContent } }, preview, highlights, updateMetaData, updateMetaDataLocally, I18n,
 }) => {
   const contentRef = useRef(null)
 
@@ -36,6 +36,7 @@ const StaticContent = ({
         contentRef={contentRef}
         selection={selection}
         updateMetaData={updateMetaData}
+        updateMetaDataLocally={updateMetaDataLocally}
         preview={preview}
         staticContent={staticContent}
       />
