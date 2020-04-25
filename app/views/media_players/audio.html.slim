@@ -1,8 +1,17 @@
-heade
+head
   = stylesheet_pack_tag "medial_players/audio"
   = javascript_pack_tag "medial_players/audio"
-
-body style="margin: 0; padding-top: 41px;"
+  css:
+    .green-audio-player {
+      box-shadow: none;
+      border: 1px solid #ececec;
+      box-shadow: 0 0px 6px 0 rgba(0, 0, 0, 0.1)
+    }
+    .green-audio-player .volume .volume__controls.middle {
+      height: 70px;
+      bottom: -22px;
+    }
+body style="margin: 0; padding: 10px;"
   div.gap-example style="background-color: transparent"
     audio
       source src="#{params[:url]}"

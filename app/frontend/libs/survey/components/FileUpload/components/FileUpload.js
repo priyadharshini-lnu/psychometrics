@@ -97,7 +97,7 @@ export default function FileUpload ({
   const showError = uploadState === UPLOAD_STATES.ERROR
 
   return (
-    <div className="col-md-8">
+    <div>
       {showError && <ErrorList errorCodes={errorCodes} errorMessage={errorMessage} errorProps={model.props} />}
       {uploadState !== UPLOAD_STATES.SAVED && (
       <>

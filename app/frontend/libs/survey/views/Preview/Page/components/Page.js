@@ -85,7 +85,7 @@ class Page extends Component {
         {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent />}
-          <div>
+          <div className={styles.questionsBlock}>
             {!ignoreValidation && errors && this.renderErrors(page)}
             <QuestionList readOnly={readOnly} page={page} questions={questions} />
           </div>
