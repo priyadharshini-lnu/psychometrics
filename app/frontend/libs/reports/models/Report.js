@@ -132,12 +132,6 @@ _.extend(Report.prototype, {
     return filter ? I18nStore.tFilterName(filter) : null
   },
 
-  getPageSizeLabel () {
-    const size = PAGE_SIZES.find(
-      ({ width, height }) => width === this.props.sizes.width && height === this.props.sizes.height,
-    )
-    return size.label
-  },
 })
 
 export default Report
