@@ -52,7 +52,7 @@ module UsersResults
         end
       end
 
-      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm_data)
+      broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm_data, users_result.assessment.dimension)
     end
 
     def answers

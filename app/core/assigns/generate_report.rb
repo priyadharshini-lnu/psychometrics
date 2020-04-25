@@ -10,8 +10,9 @@ module Assigns
     end
 
     def call
-      enabled_assigns_reports = assign.original_or_self.enabled_assigns_reports
-      AssignsReports::GenerateReport.call(enabled_assigns_reports, current_user, assign)
+      assigns_reports = assign.original_or_self.enabled_assigns_reports.includes(:report)
+      assigns_reports = assigns_reports.select { |assigns_report| assigns_report.report.provider_internal? }
+      AssignsReports::GenerateReport.call(assigns_reports, current_user, assign)
     end
   end
 end

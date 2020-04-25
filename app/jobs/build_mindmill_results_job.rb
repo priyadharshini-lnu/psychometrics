@@ -5,8 +5,8 @@ class BuildMindmillResultsJob < ApplicationJob
   queue_as :external_results
   retry_on StandardError, wait: ->(executions) { executions * 2.minutes }, attempts: 3
 
-  def perform(assign, current_membership, user_locale)
-    return if assign.mindmill_report && assign.external_results
+  def perform(assign, current_membership, user_locale = 'en', regenerate: true)
+    return if !regenerate && assign.mindmill_report && assign.external_results
 
     mindmill = Api::Mindmill.new(assign, current_membership, user_locale)
     mindmill.load_results
@@ -21,5 +21,6 @@ class BuildMindmillResultsJob < ApplicationJob
       status: :completed,
       completed_at: Time.current
     )
+    assign.assigns_reports.update_all(generating: false)
   end
 end

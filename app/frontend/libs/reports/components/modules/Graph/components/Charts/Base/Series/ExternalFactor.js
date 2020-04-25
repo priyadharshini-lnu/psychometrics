@@ -10,9 +10,9 @@ export default {
   series (results, factors, model) {
     const sourceType = _.get(model, 'props.source.type')
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-    const factorsById = _.keyBy(assessment.factors, 'id')
+    const factorsByIdAndType = _.keyBy(assessment.factors, f => `${f.id}/${f.type}`)
     const data = (model.props.source.factors || []).map(f => ({
-      name: I18nStore.tExternalFactorName(model.assessment_id, _.get(factorsById, f, f)),
+      name: I18nStore.tExternalFactorName(model.assessment_id, _.get(factorsByIdAndType, `${f}/${sourceType}`, f)),
       y: Factors.LookupValue.call(results.externalScoring, sourceType, f),
     }))
 

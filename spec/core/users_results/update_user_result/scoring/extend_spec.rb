@@ -37,7 +37,8 @@ describe ::UsersResults::Scoring::Extend do
       factor3.id => { results: [{ value: [1, 5], question_id: 5 }] },
       factor4.id => { results: [] }
     }
-    expect(::UsersResults::Scoring::Extend.call!(scoring, norm_data)).to eq(
+    dimension = double(all_factors: [factor1, factor2, factor3, factor4])
+    expect(::UsersResults::Scoring::Extend.call!(scoring, norm_data, dimension)).to eq(
       factor1.id.to_s => {
         'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 }, { 'value' => 5, 'question_id' => 2 }],
         'score' => 2.2,

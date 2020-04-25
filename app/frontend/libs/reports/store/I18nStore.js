@@ -118,7 +118,7 @@ _.extend(I18nStore.prototype, {
   },
 
   tExternalFactorName (assessmentId, factor) {
-    return _.get(this.locales, ['external/factor', assessmentId, factor.id], factor.name)
+    return _.get(this.locales, ['external/factor', assessmentId, `${factor.id}/${factor.type}`], factor.name)
   },
 
   tOccupation (occupation, key) {
@@ -195,7 +195,7 @@ _.extend(I18nStore.prototype, {
     AppStore.assessments.filter(x => EXTERNAL_CATEGORIES.includes(x.category) && x.factors)
       .forEach((x) => {
         x.factors.forEach((f) => {
-          _.setWith(result, ['external/factor', x.id, f.id], f.name, Object)
+          _.setWith(result, ['external/factor', x.id, `${f.id}/${f.type}`], f.name, Object)
         })
       })
     return result

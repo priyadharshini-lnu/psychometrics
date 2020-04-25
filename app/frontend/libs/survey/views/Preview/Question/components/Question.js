@@ -20,7 +20,13 @@ class Question extends Component {
   renderPreview () {
     const { model, result } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
-    return <View {...this.props} model={QuestionSerializer.wrap(model, result.answers)} preview />
+    return (
+      <View
+        {...this.props}
+        model={QuestionSerializer.wrap(model, result.answers, result.not_applicable)}
+        preview
+      />
+    )
   }
 
   renderError () {

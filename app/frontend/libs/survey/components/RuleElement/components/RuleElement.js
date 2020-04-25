@@ -1,9 +1,20 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { setIn, getIn } from 'utils/immutable'
 import styles from './RuleElement.scss'
 import Types from './types'
 import ConditionList from './ConditionList'
+
+const DISABLED_QUESTION_TYPES = {
+  TextEntry: {
+    Email: true,
+    Chat: true,
+  },
+  FileUpload: true,
+  VideoResponse: true,
+  AudioResponse: true,
+}
 
 class RuleElement extends Component {
   static propTypes = {
@@ -57,6 +68,26 @@ class RuleElement extends Component {
     this.forceUpdate()
   }
 
+  getQuestions = () => {
+    const { questions } = this.props
+    return _.reduce(
+      questions,
+      (res, question) => {
+        if (
+          getIn(DISABLED_QUESTION_TYPES, [question.type]) === true
+          || getIn(DISABLED_QUESTION_TYPES, [
+            question.type,
+            question.props.type,
+          ]) === true
+        ) {
+          return res
+        }
+        return setIn(res, [question.id], question)
+      },
+      {},
+    )
+  }
+
   renderType () {
     const { model } = this.props
     const View = Types[model.type]
@@ -108,9 +139,14 @@ class RuleElement extends Component {
   }
 
   renderConditions () {
-    const { model, questions } = this.props
+    const { model } = this.props
+
     return (
-      <ConditionList questions={questions} model={model} onRemove={this.update} />
+      <ConditionList
+        questions={this.getQuestions()}
+        model={model}
+        onRemove={this.update}
+      />
     )
   }
 

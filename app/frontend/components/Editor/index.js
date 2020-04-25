@@ -4,12 +4,13 @@ import CodeMirror from 'codemirror'
 import 'codemirror/mode/xml/xml'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
+import FroalaEditor from 'react-froala-wysiwyg'
+import events from './events'
 
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
 import './froalaCommands'
-import FroalaEditor from 'react-froala-wysiwyg'
 
 function Editor ({
   content, handleContentChange, type, details, className,
@@ -33,6 +34,7 @@ function Editor ({
       'codeBeautifier',
       'fullscreen',
       'video',
+      'embedMedia',
     ],
     toolbarButtons: [
       'pipedText',
@@ -65,6 +67,7 @@ function Editor ({
       'html',
       'fullscreen',
       'insertVideo',
+      'embedMedia',
     ],
     saveParams: { type, details },
     heightMin: 250,
@@ -80,6 +83,14 @@ function Editor ({
     },
     toolbarSticky: false,
     videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
+    events: {
+      'video.codeError': function (code) {
+        events.video_code_error(this, code)
+      },
+      'video.linkError': function (link) {
+        events.video_link_error(this, link)
+      },
+    },
   }
   const ref = React.createRef()
 
