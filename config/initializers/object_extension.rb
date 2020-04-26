@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Style/AccessModifierDeclarations
+
 module PrivateAccessors
   def private_attr_accessor(*names)
     attr_accessor(*names)
@@ -19,3 +21,5 @@ module PrivateAccessors
 end
 
 Object.include(PrivateAccessors)
+
+# rubocop:enable Style/AccessModifierDeclarations
