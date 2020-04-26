@@ -140,7 +140,7 @@ gem 'bootstrap-slider-rails'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 0.12.2'
-gem 'money-rails', '~> 1.7.0'
+gem 'money-rails', '~> 1.11.0'
 gem 'reform-rails', '~> 0.1.7'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
