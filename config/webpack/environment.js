@@ -50,6 +50,7 @@ environment.loaders.append('typescript', tsLoader)
 loaders.nodeModules.use[0].options.sourceMaps = true
 
 const vendors = [
+  'core-js/shim',
   'react',
   'react-dom',
   'react-dnd',

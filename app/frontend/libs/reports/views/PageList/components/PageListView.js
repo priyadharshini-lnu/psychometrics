@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import store from 'rb/store/PageList'
 import Page from 'rb/views/Page'
+import PageModel from 'rb/models/Page'
 import LabelEditor from 'rb/components/LabelEditor'
-import AppStore from 'rb/store/AppStore'
 import styles from './PageListView.scss'
 
 export class PageListView extends Component {
@@ -21,22 +21,34 @@ export class PageListView extends Component {
   }
 
   changeName = (val) => {
-    AppStore.report.rename(val)
-    this.forceUpdate()
+    const { renameReport } = this.props
+    renameReport(val)
   }
 
-  unselectAllModules () {
-    store.unselectAll()
+  unselectAllModules = () => {
+    const { selectModule } = this.props
+    selectModule('Report', store)
   }
 
   render () {
+    const { pages, report } = this.props
     return (
       <div className={styles.main} onClick={this.unselectAllModules}>
         <div className={styles.reportName}>
-          <LabelEditor value={AppStore.report.name || ''} onChange={this.changeName} width={650} />
+          <LabelEditor value={report.name || ''} onChange={this.changeName} width={650} />
         </div>
-        {store.list.map((model, i) => !model.removed && model.visible
-          && <Page key={i} model={model} renderModules={model.renderModules} />)}
+        {_.map(pages, (model) => {
+          const page = new PageModel(model, report.completed_assessments)
+          return !page.removed && page.visible
+          && (
+            <Page
+              key={page.id}
+              model={page}
+              moduleIds={model.modules}
+              renderModules={page.renderModules}
+            />
+          )
+        })}
       </div>
     )
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import store from 'rb/store/PageList'
 import { DropTarget } from 'react-dnd'
 import update from 'react-addons-update'
+import PageModel from 'rb/models/Page'
 import PageLabel from './PageLabel'
 import styles from './PageEditor.scss'
 
@@ -52,20 +53,21 @@ class PageEditor extends Component {
   }
 
   render () {
-    const { connectDropTarget } = this.props
+    const { report: { currentPage }, pages, connectDropTarget } = this.props
     return connectDropTarget(
       <div className={styles.leftSide}>
-        {store.list.map((model, i) => {
-          if (model.removed) { return false }
-          model.renderModules = _.includes([(store.current - 1), store.current, (store.current + 1)], i)
+        {_.map(pages, (data, i) => {
+          const page = new PageModel(data, [])
+          if (page.removed) { return false }
+          page.renderModules = _.includes([(currentPage - 1), currentPage, (currentPage + 1)], i)
           return (
             <PageLabel
-              key={model.id}
+              key={page.id}
               movePage={this.movePage}
               findPage={this.findPage}
-              page={model}
+              page={page}
               number={i + 1}
-              active={i === store.current ? styles.active : ''}
+              active={currentPage === page.id ? styles.active : ''}
               onChange={this.change}
             />
           )

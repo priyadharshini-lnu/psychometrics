@@ -1,3 +1,4 @@
 import PropertyPanel from './components/PropertyPanel'
+import connect from './connect'
 
-export default PropertyPanel
+export default connect(PropertyPanel)

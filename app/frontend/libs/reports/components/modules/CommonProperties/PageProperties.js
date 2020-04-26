@@ -1,29 +1,32 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
 import PageList from 'rb/store/PageList'
 import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
+import connect from './connect'
 
 class PageProperties extends Component {
-  removePage () {
-    PageList.removePage(store.model)
+  removePage = () => {
+    const { module, removePage } = this.props
+    removePage(module.id)
   }
 
-  copyPage () {
-    ClipboardDispatcher.copyPage(store.model)
+  copyPage = () => {
+    const { module } = this.props
+    ClipboardDispatcher.copyPage(module)
   }
 
-  pastePage () {
-    ClipboardDispatcher.pastePage(store.model)
+  pastePage = () => {
+    const { module } = this.props
+    ClipboardDispatcher.pastePage(module)
   }
 
   render () {
-    const { model } = store
+    const { module } = this.props
     return (
       <div>
         <div className={styles.title}>Page Options</div>
         <hr className={styles.divider} />
-        <div>{model.name}</div>
+        <div>{module.name}</div>
         <div style={{ textAlign: 'center' }}>
           {PageList.list.length > 1 && <button onClick={this.removePage} className="btn btn-default">Remove</button>}
         </div>
@@ -38,4 +41,4 @@ class PageProperties extends Component {
   }
 }
 
-export default PageProperties
+export default connect(PageProperties)

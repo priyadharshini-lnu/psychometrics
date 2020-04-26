@@ -32,22 +32,21 @@ export default function CampaignList ({
                 {I18n.t('threesixty.dashboard_title', { name: currentUser.firstName })}
               </div>
             )}
-          >
-            <Row type="flex" gutter={12} className="cards">
-              {campaigns.map((campaign) => {
-                const Component = Campaigns[campaign.type]
-                return (
-                  <Component
-                    key={campaign.id}
-                    campaign={campaign}
-                    downloadReport={downloadReport}
-                    loginHogan={loginHogan}
-                    acceptPolicy={acceptPolicy}
-                  />
-                )
-              })}
-            </Row>
-          </PageHeader>
+          />
+          <Row type="flex" gutter={12} className="cards">
+            {campaigns.map((campaign) => {
+              const Component = Campaigns[campaign.type]
+              return (
+                <Component
+                  key={campaign.id}
+                  campaign={campaign}
+                  downloadReport={downloadReport}
+                  loginHogan={loginHogan}
+                  acceptPolicy={acceptPolicy}
+                />
+              )
+            })}
+          </Row>
         </div>
       </Content>
     </Layout>

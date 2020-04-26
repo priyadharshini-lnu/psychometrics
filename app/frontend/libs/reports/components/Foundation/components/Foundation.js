@@ -1,11 +1,8 @@
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import interact from 'interact.js'
-import store from 'rb/store/PageList'
 import panelStore from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
-import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
 import styles from './Foundation.scss'
 
 const { $ } = window
@@ -13,7 +10,6 @@ const { $ } = window
 class Foundation extends Component {
   static propTypes = {
     module: PropTypes.object.isRequired,
-    page: PropTypes.object.isRequired,
     aspectRatio: PropTypes.bool,
     children: PropTypes.node,
     preview: PropTypes.bool,
@@ -22,11 +18,9 @@ class Foundation extends Component {
 
   componentDidMount () {
     const {
-      module, page, preview, aspectRatio,
+      preview, aspectRatio,
     } = this.props
-    this.listener = store.addListener('change', () => this.forceUpdate())
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
-    if (shadow || preview) { return }
+    if (preview) { return }
     interact(this.base)
       .draggable({
         manualStart: true,
@@ -74,13 +68,10 @@ class Foundation extends Component {
       })
   }
 
-  componentWillUnmount () {
-    this.listener.remove()
-  }
-
   dragHandler = (event) => {
+    event.stopPropagation()
     const { preview, module } = this.props
-    if (preview || module !== panelStore.model) {
+    if (preview) {
       return
     }
     const $target = $(event.target)
@@ -103,7 +94,7 @@ class Foundation extends Component {
   resizeHandler = (event) => {
     const { module, preview } = this.props
     const $target = $(event.target)
-    if (preview || module !== panelStore.model) {
+    if (preview) {
       return
     }
     let x = module.props.position.left
@@ -132,34 +123,28 @@ class Foundation extends Component {
 
   select = (e) => {
     const {
-      preview, module, page, closeRichEditor,
+      preview, module, closeRichEditor, selected, selectModule, unselectModules,
     } = this.props
     if (preview) { return }
     e.stopPropagation()
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
 
-    const selectModule = () => {
-      store.unselectAll()
-      store.selected.push(module)
+    if (selected.moduleId === module.id) { return }
+
+    const select = () => {
+      unselectModules()
+      selectModule('Module', module.id)
       closeRichEditor()
       panelStore.select('Module', module)
-      this.forceUpdate()
     }
 
-    if (shadow) {
-      ScrollDispatcher.scroll(module.store.page.id, `Module_${module.id}`, () => {
-        selectModule()
-      })
-      return
-    }
-    selectModule()
+    select()
   }
 
   keydown () {}
 
   render () {
     const {
-      module, outerStyle: frameStyle, children, page,
+      module, outerStyle: frameStyle, children, shadow, selected,
     } = this.props
     const mprops = module.props
     const {
@@ -179,10 +164,8 @@ class Foundation extends Component {
     } else {
       style.transform = `translate(${left}px,${top}px)`
     }
-
-    const selected = _.find(store.selected, module)
-    const shadow = !module.onPage(page) && module.props.showOnAllPages
-    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${selected ? styles.selected : ''}`
+    const isSelected = selected.moduleId === module.id
+    const className = `${styles.base} ${shadow && !preview ? styles.shadow : ''} ${isSelected ? styles.selected : ''}`
     return (
       <div
         ref={(ref) => { this.base = ref }}
@@ -195,7 +178,7 @@ class Foundation extends Component {
           {children}
         </div>
         <i
-          className={`fa fa-arrows ${styles.mover} ${!selected ? 'hidden' : ''}`}
+          className={`fa fa-arrows ${styles.mover} ${!isSelected ? 'hidden' : ''}`}
           data-right="true"
           data-bottom="true"
           ref={(ref) => { this.mover = ref }}

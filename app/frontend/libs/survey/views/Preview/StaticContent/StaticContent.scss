@@ -1,20 +1,33 @@
 @import "user/styles/variables";
 
 .container {
-  height: fit-content;
-  min-height: 200px;
+  min-height: 50vh;
   padding: 10px;
-  border-radius: 10px;
-  margin-top: 20px;
+  margin: 12px 0;
+  position: relative;
+}
+.box {
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 6px;
+  border: 1px solid #d9d9d9;
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .fixed {
   height: 50vh;
   overflow: auto;
+  .box {
+    margin: 0 12px;
+  }
 }
 .side {
-  position: absolute;
-  top: 0;
-  height: calc(100% - 20px);
+  position: relative;
+  // height: calc(100% - 20px);
   overflow: auto;
 }
 .left {
@@ -24,9 +37,13 @@
   right: 0;
 }
 .content {
-  height: 100%;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
   overflow: auto;
-  padding: 5px;
+  padding: 26px;
   &::-webkit-scrollbar {
     width: 15px;
   }
@@ -44,6 +61,12 @@
     border-radius: 50%;
   }
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.1);
+  img {
+    max-width: 100%;
+  }
+  table {
+    max-width: 100%;
+  }
 }
 
 :global(.rtl) {
@@ -61,6 +84,7 @@
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
+  color: #333333;
 }
 .paletteTip {
   -webkit-user-select: none;
@@ -79,6 +103,7 @@
   overflow: visible;
   display: flex;
   align-items: center;
+  z-index: 2;
 }
 .paletteColor {
   height: 16px;
@@ -101,13 +126,41 @@
   margin-right: 5px;
   cursor: pointer;
 }
-
-@media (max-width: $screen-md) {
-  .fixed {
-    height: 100%;
+.normal {
+  .container {
+    min-height: initial;
+    margin: 0;
   }
-  .side {
-    position: static;
-    height: 100%;
+  .content {
+    position: relative;
+    top: initial;
+    right: initial;
+    left: initial;
+    bottom: initial;
+  }
+  .box {
+    position: relative;
+  }
+}
+@media (max-width: $screen-md) {
+  .container {
+    min-height: initial;
+    margin: 0;
+  }
+  .content {
+    position: relative;
+    top: initial;
+    right: initial;
+    left: initial;
+    bottom: initial;
+  }
+  .box {
+    position: relative;
+  }
+  .fixed {
+    height: initial;
+    .box {
+      margin: 0;
+    }
   }
 }

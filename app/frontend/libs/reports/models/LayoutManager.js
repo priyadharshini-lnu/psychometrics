@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import PageList from 'rb/store/PageList'
 import AppStore from 'libs/reports/store/AppStore'
 
 const TOP = 5000
@@ -81,17 +80,6 @@ _.extend(LayoutManager.prototype, {
   moveInBack (module) {
     module.props.zIndex -= 1
     module.update()
-  },
-
-  showOnAllPages (module) {
-    module.props.showOnAllPages = !module.props.showOnAllPages
-    if (module.props.showOnAllPages) {
-      PageList.showOnAllPages.add(module)
-    } else {
-      PageList.showOnAllPages.remove(module)
-    }
-    module.update()
-    PageList.update()
   },
 
   update () {

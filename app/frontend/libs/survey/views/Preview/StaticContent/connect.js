@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { updateMetaData } from 'core/preview/FlowProcessor/actions'
+import { updateMetaData, updateMetaDataLocally } from 'core/preview/FlowProcessor/actions'
 import { getCurrentBlock, getI18n } from 'core/preview/FlowProcessor/selectors'
 
 export default connect(
@@ -15,5 +15,6 @@ export default connect(
   },
   {
     updateMetaData,
+    updateMetaDataLocally,
   },
 )
