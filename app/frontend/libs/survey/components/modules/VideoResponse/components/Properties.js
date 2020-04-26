@@ -94,7 +94,7 @@ export class Properties extends Component {
             <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
               <label className={styles.label}>{key}</label>
               <InputNumber
-                min={0.1}
+                min={0.0}
                 max={1.0}
                 step={0.1}
                 size="small"
@@ -111,7 +111,7 @@ export class Properties extends Component {
             <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
               <label className={styles.label}>{key}</label>
               <InputNumber
-                min={0.1}
+                min={0.0}
                 max={1.0}
                 step={0.1}
                 size="small"

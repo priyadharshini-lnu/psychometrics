@@ -40,19 +40,17 @@ class Tracker extends Component {
     this.showElements(['frame', 'ready'])
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate () {
+    const { prevProps } = this.state
     const { fitInFrame, trackerOptions } = this.props
-    // eslint-disable-next-line no-console
-    console.log('this.props: ', fitInFrame, trackerOptions[fitInFrame])
-    // eslint-disable-next-line no-console
-    console.log('prevProps: ', prevProps.trackerOptions[prevProps.fitInFrame])
+
+    window.prevProps = prevProps
+    window.currentProps = trackerOptions[fitInFrame]
     if (
       prevProps.fitInFrame !== fitInFrame
-      || !isEqual(prevProps.trackerOptions[prevProps.fitInFrame], trackerOptions[fitInFrame])) {
+      || !isEqual(prevProps.box, trackerOptions[fitInFrame].box)
+      || !isEqual(prevProps.object, trackerOptions[fitInFrame].object)) {
       this.calculateBoundaries()
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('component update completed')
     }
   }
 
@@ -80,9 +78,6 @@ class Tracker extends Component {
   isInSize = (rect) => {
     const { thresholds } = this.state
     const boxArea = rect.width * rect.height
-
-    // eslint-disable-next-line no-console
-    console.log('thresholds: ', thresholds, ' boxArea: ', boxArea)
 
     if (boxArea > thresholds.areaMax) return 1
     if (boxArea < thresholds.areaMin) return -1
@@ -126,8 +121,6 @@ class Tracker extends Component {
     const thresholdWidth = object.threshold * offsetWidth
     const thresholdHeight = object.threshold * offsetHeight
 
-    // eslint-disable-next-line no-console
-    console.log('thresholdWidth: ', thresholdWidth, ' thresholdHeight: ', thresholdHeight)
     const minHeight = (object.size * offsetHeight) - thresholdHeight
     const minWidth = (object.size * offsetWidth) - thresholdWidth
     const maxHeight = (object.size * offsetHeight) + thresholdHeight
@@ -138,7 +131,13 @@ class Tracker extends Component {
       areaMax: maxHeight * maxWidth,
     }
 
-    this.setState({ boundaries, thresholds })
+    const prevProps = {
+      fitInFrame,
+      box,
+      object,
+    }
+
+    this.setState({ boundaries, thresholds, prevProps })
   }
 
   async track () {
@@ -159,9 +158,6 @@ class Tracker extends Component {
       // Face detected
       inBoundary = this.isInBoundary(result.box)
       inSize = this.isInSize(result.box)
-
-      // eslint-disable-next-line no-console
-      console.log('inBoundary: ', inBoundary, ' inSize: ', inSize)
 
       if (inBoundary && inSize === 0) {
         this.setState({ showOverlay: false })

@@ -232,9 +232,9 @@ export const DefaultTrackerOptions = {
   upperHalfBody: {
     box: {
       x: 0.3,
-      y: 0.3,
-      height: 0.4,
-      width: 0.4,
+      y: 0.2,
+      height: 0.6,
+      width: 0.5,
     },
     object: {
       size: 0.3,
@@ -243,10 +243,10 @@ export const DefaultTrackerOptions = {
   },
   face: {
     box: {
-      x: 0.4,
-      y: 0.4,
-      height: 0.5,
-      width: 0.5,
+      x: 0.2,
+      y: 0.1,
+      height: 0.6,
+      width: 0.6,
     },
     object: {
       size: 0.3,
