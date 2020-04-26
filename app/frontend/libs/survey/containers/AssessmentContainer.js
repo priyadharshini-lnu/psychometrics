@@ -1,6 +1,7 @@
 /* eslint-disable react/no-find-dom-node */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { ConfigProvider } from 'antd'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
 import Watchman from 'store/StoreWatchman'
@@ -67,13 +68,15 @@ class AssessmentContainer extends Component {
   }
 
   render () {
-    const { disabled } = this.props
+    const { disabled, selectedLocale } = this.props
     return (
-      <div className="row">
-        {this.type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        {disabled && this.overlay()}
-        <AssessmentPreview />
-      </div>
+      <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="ant-row">
+          {this.type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          {disabled && this.overlay()}
+          <AssessmentPreview />
+        </div>
+      </ConfigProvider>
     )
   }
 }

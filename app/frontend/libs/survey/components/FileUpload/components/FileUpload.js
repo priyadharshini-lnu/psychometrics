@@ -97,7 +97,7 @@ export default function FileUpload ({
   const showError = uploadState === UPLOAD_STATES.ERROR
 
   return (
-    <div className="col-md-8">
+    <div>
       {showError && <ErrorList errorCodes={errorCodes} errorMessage={errorMessage} errorProps={model.props} />}
       {uploadState !== UPLOAD_STATES.SAVED && (
       <>
@@ -116,14 +116,16 @@ export default function FileUpload ({
           {'   '}
           <span>{file && file.name}</span>
         </Upload>
-        <Button
-          type="primary"
-          onClick={saveFile}
-          disabled={!file}
-          className={styles.saveFileBtn}
-        >
-          {showProgress ? ' Uploading ' : ' Start Upload '}
-        </Button>
+        {file && (
+          <Button
+            type="primary"
+            onClick={saveFile}
+            disabled={!file}
+            className={styles.saveFileBtn}
+          >
+            {showProgress ? ' Uploading ' : ' Start Upload '}
+          </Button>
+        )}
         {showProgress && (
           <Progress
             type="circle"

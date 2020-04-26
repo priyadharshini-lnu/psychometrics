@@ -47,7 +47,6 @@ class Question extends Component {
     const stylesProps = {
       display: hidden ? 'none' : 'flex',
       overflow: 'auto',
-      marginTop: '20px',
     }
     return (
       <div
