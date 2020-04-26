@@ -10,7 +10,7 @@ const routeUtils = {
     history.push(`${this.getBasePath(prefix)}${path}`)
   },
   getActiveRoutePath (routes) {
-    const route = routes.find(route => location.pathname.includes(route.path))
+    const route = _.find(routes, route => location.pathname.includes(route.path))
     return route ? route.path : null
   },
   getCurrentPage () {

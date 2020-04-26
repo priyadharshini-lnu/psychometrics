@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import Highlighter from 'web-highlighter'
-import { HIGHLIGHT_COLORS } from 'views/Block/components/StaticContent/settings'
 import Palette from './Palette'
 import styles from './StaticContent.scss'
+
+const DEFAULT_COLOR = '#c1c4fc'
 
 const highlighter = new Highlighter({ style: { className: styles.highlightWrap } })
 
 const HighlightList = ({
-  highlights, contentRef, selection, updateMetaData, preview, staticContent,
+  highlights, contentRef, selection, updateMetaData, updateMetaDataLocally, preview,
 }) => {
-  const [currentColor, setCurrentColor] = useState(HIGHLIGHT_COLORS[0])
-  const [currentHighlight, setCurrentHighlight] = useState(null)
+  const [currentHighlightId, setCurrentHighlightId] = useState(null)
 
   useEffect(() => {
     highlighter.setOption({ $root: contentRef.current })
 
     highlights.forEach((h) => {
-      if (!staticContent.value.includes(h.text)) return
       const source = highlighter.fromStore(h.startMeta, h.endMeta, h.text, h.id, h.color)
       initHighlight(source)
     })
@@ -25,7 +24,7 @@ const HighlightList = ({
       highlighter.dispose()
       window.getSelection().empty()
     }
-  }, [highlights])
+  }, [])
 
   useEffect(() => {
     if (!selection) return
@@ -35,8 +34,8 @@ const HighlightList = ({
 
     const source = highlighter.fromRange(selection)
     initHighlight(source)
-    setCurrentHighlight(source.id)
-    saveHighlight({ ...source, color: currentColor })
+    setCurrentHighlightId(source.id)
+    updateMetaDataLocally(preview, 'highlights', [...highlights, { ...source, color: DEFAULT_COLOR, notStored: true }])
   }, [selection])
 
   const initHighlight = source => source && highlighter.getDoms(source.id).forEach((d) => {
@@ -45,24 +44,29 @@ const HighlightList = ({
   })
 
   const handleHighlightClick = ({ target: { dataset: { highlightId } } }) => {
-    setCurrentHighlight(highlightId)
-    setCurrentColor(highlights.find(h => h.id === highlightId).color)
+    setCurrentHighlightId(highlightId)
   }
 
   const getHighlightColor = (source) => {
-    const { color } = highlights.find(h => h.id === source.id) || { color: currentColor }
+    const { color } = highlights.find(h => h.id === source.id) || { color: DEFAULT_COLOR }
     return color
-  }
-
-  const saveHighlight = (source) => {
-    updateMetaData(preview, 'highlights', [...highlights, source])
   }
 
   const removeHighlight = (sourceId) => {
     highlighter.remove(sourceId)
-    setCurrentHighlight(null)
+    setCurrentHighlightId(null)
     const filteredHighlight = highlights.filter(h => h.id !== sourceId)
     updateMetaData(preview, 'highlights', filteredHighlight)
+
+    refreshColors(filteredHighlight)
+  }
+
+  const refreshColors = (highlights) => {
+    highlights.forEach((h) => {
+      highlighter.getDoms(h.id).forEach((d) => {
+        d.style.backgroundColor = h.color
+      })
+    })
   }
 
   const updateHighlightColor = (color, sourceId) => {
@@ -70,22 +74,20 @@ const HighlightList = ({
       d.style.backgroundColor = color
     })
 
-    const updatedHighlight = highlights.map(h => (h.id === sourceId ? { ...h, color } : h))
-    setCurrentColor(color)
+    const updatedHighlight = highlights.map(h => (h.id === sourceId ? { ...h, color, notStored: false } : h))
     updateMetaData(preview, 'highlights', updatedHighlight)
   }
 
   return (
     <>
-      {currentHighlight && (
+      {currentHighlightId && (
         <Palette
-          currentHighlight={currentHighlight}
+          currentHighlight={highlights.find(h => h.id === currentHighlightId)}
           highlighter={highlighter}
-          currentColor={currentColor}
           removeHighlight={removeHighlight}
           updateHighlightColor={updateHighlightColor}
           contentRef={contentRef}
-          setCurrentHighlight={setCurrentHighlight}
+          setCurrentHighlightId={setCurrentHighlightId}
         />
       )}
     </>

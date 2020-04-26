@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dropdown, Menu } from 'antd'
+import { Dropdown, Menu, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import qs from 'query-string'
 
@@ -25,11 +25,11 @@ export default function Language ({ selectedLanguage, availableTranslations }) {
 
   return (
     <Dropdown trigger={['click']} overlay={() => LangMenu()}>
-      <div>
+      <Button>
         {I18n.t(`languages.${(selectedLanguage && selectedLanguage.code) || 'en'}`)}
         {' '}
         <DownOutlined />
-      </div>
+      </Button>
     </Dropdown>
   )
 }

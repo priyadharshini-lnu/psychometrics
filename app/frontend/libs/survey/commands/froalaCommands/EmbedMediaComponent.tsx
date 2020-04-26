@@ -94,11 +94,13 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
 
 interface PlayerProps { url: string }
 
-const AudioPlayer: React.FC<PlayerProps> = ({ url }) => (
-  <div className="fr-rendered-audio-container">
-    <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="416px" height="82px" title="Audio Player" />
-  </div>
-)
+const AudioPlayer: React.FC<PlayerProps> = ({ url }) => {
+  return (
+    <div className='fr-rendered-audio-container'>
+      <iframe src={`/media_players/audio?url=${url}`} frameBorder="0" width="448px" height="100px" title="Audio Player" />
+    </div>
+  )
+}
 
 const VideoPlayer: React.FC<PlayerProps> = ({ url }) => (
   <div className="fr-rendered-video-container">
