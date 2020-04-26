@@ -60,8 +60,8 @@ export default function Assign ({
             )}
             extra={[
               type !== 'preview_block' && enableProgress
-                && (<Progress percent={progress} style={{ width: '200px' }} />),
-              <Timer preview={preview} saveResults={saveResults} />,
+                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+              <Timer key="2" preview={preview} saveResults={saveResults} />,
             ]}
             onBack={() => history.push('/campaigns')}
           />

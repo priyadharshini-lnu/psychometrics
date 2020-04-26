@@ -1,7 +1,9 @@
 /* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
 import cs from 'classnames'
-import { FIXED_TOP, LEFT, RIGHT } from 'views/Block/components/StaticContent/settings'
+import {
+  FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
+} from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
 import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
@@ -19,6 +21,7 @@ const StaticContent = ({
   }
 
   const getStaticContentClasses = () => ({
+    [styles.normal]: staticContent.layout === NORMAL_TOP,
     [styles.fixed]: staticContent.layout === FIXED_TOP,
     [styles.side]: staticContent.layout === LEFT || staticContent.layout === RIGHT,
     [styles.left]: staticContent.layout === LEFT,
@@ -29,23 +32,27 @@ const StaticContent = ({
   return (
     <div
       className={cs(styles.container, getStaticContentClasses())}
-      style={GetBackgroundStyles.run(staticContent)}
     >
-      <HighlightList
-        highlights={highlights}
-        contentRef={contentRef}
-        selection={selection}
-        updateMetaData={updateMetaData}
-        updateMetaDataLocally={updateMetaDataLocally}
-        preview={preview}
-        staticContent={staticContent}
-      />
       <div
-        onMouseUp={handleMouseUp}
-        ref={contentRef}
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: innerHTML }}
-      />
+        className={styles.box}
+        style={GetBackgroundStyles.run(staticContent)}
+      >
+        <HighlightList
+          highlights={highlights}
+          contentRef={contentRef}
+          selection={selection}
+          updateMetaData={updateMetaData}
+          updateMetaDataLocally={updateMetaDataLocally}
+          preview={preview}
+          staticContent={staticContent}
+        />
+        <div
+          onMouseUp={handleMouseUp}
+          ref={contentRef}
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: innerHTML }}
+        />
+      </div>
     </div>
   )
 }
