@@ -6,13 +6,12 @@ const LEFT_SHIFT = 20
 const TOP_SHIFT = 45
 
 const Palette = ({
-  currentColor,
   removeHighlight,
   updateHighlightColor,
   currentHighlight,
   highlighter,
   contentRef,
-  setCurrentHighlight,
+  setCurrentHighlightId,
 }) => {
   const paletteRef = useRef(null)
 
@@ -26,18 +25,22 @@ const Palette = ({
 
   const handleClickOutside = ({ target }) => {
     if (paletteRef.current && !paletteRef.current.contains(target)) {
-      setCurrentHighlight(null)
+      if (currentHighlight.notStored) {
+        removeHighlight(currentHighlight.id)
+      } else {
+        setCurrentHighlightId(null)
+      }
     }
   }
 
-  const handleDelete = () => removeHighlight(currentHighlight)
+  const handleDelete = () => removeHighlight(currentHighlight.id)
 
   const changeCurrentColor = (color) => {
-    updateHighlightColor(color, currentHighlight)
+    updateHighlightColor(color, currentHighlight.id)
   }
 
   const getPosition = () => {
-    const [dom] = highlighter.getDoms(currentHighlight)
+    const [dom] = highlighter.getDoms(currentHighlight.id)
     const left = dom.offsetLeft - LEFT_SHIFT
     const top = dom.offsetTop - contentRef.current.scrollTop - TOP_SHIFT
     return { left: `${left}px`, top: `${Math.max(0, top)}px` }
@@ -49,20 +52,22 @@ const Palette = ({
       ref={paletteRef}
     >
       {HIGHLIGHT_COLORS.map((color, i) => (
-        <Color key={i} color={color} currentColor={currentColor} changeCurrentColor={changeCurrentColor} />
+        <Color key={i} color={color} currentHighlight={currentHighlight} changeCurrentColor={changeCurrentColor} />
       ))}
-      <div className={styles.paletteRemove} onClick={handleDelete}>Delete</div>
+      {!currentHighlight.notStored && <div className={styles.paletteRemove} onClick={handleDelete}>Delete</div>}
     </div>
   )
 }
 
-const Color = ({ color, currentColor, changeCurrentColor }) => (
+const Color = ({
+  color, currentHighlight, changeCurrentColor,
+}) => (
   <div
     className={styles.paletteColor}
     style={{ backgroundColor: color }}
     onClick={() => changeCurrentColor(color)}
   >
-    {currentColor === color && <div className={styles.currentColor} />}
+    {currentHighlight.color === color && <div className={styles.currentColor} />}
   </div>
 )
 

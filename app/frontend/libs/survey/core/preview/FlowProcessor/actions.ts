@@ -115,3 +115,10 @@ export const updateMetaData = (preview, key, data) => {
     metaData,
   }
 }
+
+export const updateMetaDataLocally = (preview, key, data) => {
+  const block = getCurrentBlock(preview)
+  const metaData = setIn(preview.metaData, [block.id, key], data)
+
+  return { type: UPDATE_META_DATA_REQUEST, metaData }
+}

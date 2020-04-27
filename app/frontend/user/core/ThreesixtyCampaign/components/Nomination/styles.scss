@@ -6,9 +6,12 @@
   }
 
   .fluid-container {
-    max-width: $screen-xl;
+    max-width: $screen-xxl;
     width: 100%;
     margin: 0 auto;
+    &.has-static-content {
+      max-width: $screen-xxl
+    }
   }
 
   .nominations-container {
