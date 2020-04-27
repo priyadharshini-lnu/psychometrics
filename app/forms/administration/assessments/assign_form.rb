@@ -12,8 +12,9 @@ module Administration
 
       def access_reports_at
         return @access_reports_at if @access_reports_at
+
         if access_reports_at_date && access_reports_at_time
-          return DateTime.parse("#{access_reports_at_date} #{access_reports_at_time}")
+          DateTime.parse("#{access_reports_at_date} #{access_reports_at_time}")
         end
       end
 

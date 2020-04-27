@@ -104,7 +104,7 @@ module Imports
 
           # Parse answers
           data.each do |key, value|
-            next unless key =~ /qid/
+            next unless /qid/.match?(key)
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)

@@ -10,7 +10,10 @@ class EvaluateCondition < Rectify::Command
 
   def call
     return broadcast :invalid_operator unless respond_to?(operator)
+    # rubocop:disable Performance/Count
     return broadcast :invalid_operands unless [left, right].reject(&:nil?).size == 2
+
+    # rubocop:enable Performance/Count
 
     broadcast :ok, evaluate
   end
