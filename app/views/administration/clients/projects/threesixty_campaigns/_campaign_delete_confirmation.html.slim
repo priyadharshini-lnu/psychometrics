@@ -18,7 +18,7 @@ script id="mb-campaign-confirm-template" type="x-tmpl-mustache"
 javascript:
   function verify (target) {
     var pattern = $('#confirm-container').data('validation-pattern')
-    if (pattern === $(target).data('pattern')) {
+    if (pattern === $(target).val()) {
       $('button#confirm').removeAttr('disabled')
     } else {
       $('button#confirm').attr('disabled', 'disabled')
