@@ -75,7 +75,6 @@ gem 'active_link_to',             '~> 1.0.5'
 gem 'i18n-js',                    '~> 3.0.0.rc3'
 
 ### Decorator
-gem 'activemodel-serializers-xml'
 gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
