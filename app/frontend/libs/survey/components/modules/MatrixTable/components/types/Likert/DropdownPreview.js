@@ -15,9 +15,10 @@ export default class extends Component {
       _.remove(result.answers, { choice })
       result.notApplicable = result.notApplicable || {}
       result.notApplicable[choice] = true
+      result.reduxAnswer()
     } else {
-      result.answer(e.currentTarget.value, choice, e.currentTarget.checked)
       result.notApplicable[choice] = false
+      result.answer(e.currentTarget.value, choice, e.currentTarget.checked)
     }
     this.forceUpdate()
   }

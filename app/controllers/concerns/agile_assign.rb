@@ -30,7 +30,7 @@ module AgileAssign
 
   def events
     form = Assigns::AgileEventForm.from_params(params)
-    Assigns::SaveAgileEvent.call!(@assign, form)
+    Assigns::SaveAgileEvent.call!(@assign, form, current_user)
 
     head :ok
   end

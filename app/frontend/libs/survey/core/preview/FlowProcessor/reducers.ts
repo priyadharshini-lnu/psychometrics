@@ -13,7 +13,7 @@ import {
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
-  RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST,
+  RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST, SET_LOCAL_RESULTS,
 } from './consts'
 
 const { I18n } = window
@@ -103,9 +103,15 @@ const HANDLERS = {
       locales: data.locales,
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
-      end: data.approveEvaluation ? false : result.status === 'completed',
+      end: data.notAnEndPage ? false : result.status === 'completed',
       prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
     }
+  },
+  [SET_LOCAL_RESULTS]: (state, { data }) => {
+    const results = _.reduce(data, (acc, result, key) => (
+      acc[key] || (!state.questions[key]) ? acc : setIn(acc, key, result)
+    ), state.results)
+    return setIn(state, 'results', results)
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
   [SHOW_ERRORS]: (state, { errors }) => setIn(state, ['errors'], errors),

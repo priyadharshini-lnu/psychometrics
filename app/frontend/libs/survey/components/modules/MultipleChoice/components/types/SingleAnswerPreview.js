@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import styles from '../MultipleChoice.scss'
 import connect from '../../connect'
 
@@ -11,8 +12,8 @@ class SingleAnswerPreview extends Component {
 
   changeAnswer = (e) => {
     const { model } = this.props
-    model.result.answer(parseInt(e.currentTarget.value, 10))
     model.result.notApplicable = false
+    model.result.answer(parseInt(e.currentTarget.value, 10))
     this.forceUpdate()
   }
 
@@ -20,6 +21,7 @@ class SingleAnswerPreview extends Component {
     const { model } = this.props
     model.result.answers = []
     model.result.notApplicable = true
+    model.result.reduxAnswer()
     this.forceUpdate()
   }
 
@@ -51,13 +53,14 @@ class SingleAnswerPreview extends Component {
       display: model.props.position === 'Vertical' ? 'block' : 'flex',
     }
     return (
-      <ul className={`${styles.list} ${styles[model.props.position]}`} style={listStyles}>
+      <ul className={cs(styles.list, styles[model.props.position], styles.singleAnswer)} style={listStyles}>
         {_.map(model.choicesIds, (i) => {
           const object = _.find(result.answers, { index: i }) || {}
           const checked = !!object.value
           return (
             <li className={`${styles.listItem} ${styles.liButton} ${checked ? styles.buttonActive : ''}`} key={i}>
               <label className={`${styles.label} ${styles.labelButton}`}>
+                <span className={cs('fa fa-check', styles.checkIcon)} />
                 <input
                   disabled={readOnly}
                   className={styles.input}

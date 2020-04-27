@@ -6,7 +6,8 @@ module UsersResults
       class Questions < BaseStrategy
         def call
           factor = factor_data[:factor]
-          results = extended_scoring[factor.id.to_s]['results']
+          results = extended_scoring.dig(factor.id.to_s, 'results')
+          return  broadcast :ok, extended_scoring unless results
 
           score = calc_score(results)
 

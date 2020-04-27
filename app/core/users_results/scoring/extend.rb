@@ -3,20 +3,21 @@
 module UsersResults
   module Scoring
     class Extend < BaseCommand
-      private_attr_reader :scoring, :norm_data
+      private_attr_reader :scoring, :norm_data, :dimension
 
-      def initialize(scoring, norm_data)
+      def initialize(scoring, norm_data, dimension)
         @scoring = scoring.deep_stringify_keys
         @norm_data = norm_data
+        @dimension = dimension
       end
 
       def call
         return broadcast :ok, scoring if scoring.blank?
 
-        factor_hash = Factor.where(id: scoring.keys).index_by(&:id)
+        factor_hash = dimension.all_factors.index_by(&:id)
 
         sub_factor_hash = FactorsSubFactor.
-                          where(factor_id: scoring.keys, sub_factor_id: scoring.keys).
+                          where(factor_id: factor_hash.keys, sub_factor_id: factor_hash.keys).
                           select(:factor_id, :sub_factor_id, :weight).
                           group_by(&:factor_id)
 

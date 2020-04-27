@@ -1,20 +1,23 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import ModulesStore from 'rb/store/ModulesStore'
+import Utils from 'libs/reports/utils/Utils'
 import LayoutManager from './LayoutManager'
 import LogicElement from './logic/LogicElement'
 
-let id = 1
-
-const Page = function (attrs = {}, completedAssessments) {
-  id += 1
-  this.id = attrs.id || `fake${id}`
+const Page = function (attrs = {}, completedAssessments = []) {
+  this.id = attrs.id
+  this.isNew = attrs.isNew
+  if (!this.id) {
+    this.id = Utils.genId()
+    this.isNew = true
+  }
   this.name = attrs.name || 'Page'
   this.position = attrs.position
   this.props = attrs.props || {}
   this.visible = true
   this.renderModules = true
-  this.removed = false
+  this.removed = attrs.removed || false
   this.displayLogic = attrs.display_logic ? new LogicElement(attrs.display_logic) : null
   this.modules = new ModulesStore(attrs.modules, this, completedAssessments)
   this.layoutManager = new LayoutManager(this)
@@ -31,6 +34,8 @@ _.extend(Page.prototype, {
       position: this.position,
       removed: this.removed,
       display_logic: this.displayLogic,
+      modules: [],
+      isNew: this.isNew,
     }
   },
 
