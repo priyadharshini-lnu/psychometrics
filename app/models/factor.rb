@@ -111,7 +111,7 @@ class Factor < ApplicationRecord
 
   def clone_and_save
     @cloned_factor = deep_clone include: [:factors_sub_factors] do |original, kopy|
-      kopy.icon = original.icon
+      kopy.icon = original.icon if original.is_a?(Factor)
     end
     @cloned_factor.gen_uniq_name
     @cloned_factor.save ? @cloned_factor : nil
