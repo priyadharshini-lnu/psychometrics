@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, PageHeader,
+  Layout, Row, PageHeader, Col,
 } from 'antd'
 import Campaigns from './Campaigns'
 import './styles.scss'
@@ -23,31 +23,33 @@ export default function CampaignList ({
   return (
     <Layout>
       <Content className="fluid-container">
-        <div className="main-container campaigns-list">
-          <PageHeader
-            className="page-header"
-            backIcon={null}
-            title={(
-              <div className="title-with-dash">
-                {I18n.t('threesixty.dashboard_title', { name: currentUser.firstName })}
-              </div>
-            )}
-          />
-          <Row type="flex" gutter={12} className="cards">
-            {campaigns.map((campaign) => {
-              const Component = Campaigns[campaign.type]
-              return (
-                <Component
-                  key={campaign.id}
-                  campaign={campaign}
-                  downloadReport={downloadReport}
-                  loginHogan={loginHogan}
-                  acceptPolicy={acceptPolicy}
-                />
-              )
-            })}
-          </Row>
-        </div>
+        <Row justify="center">
+          <Col xs={24} xl={20}>
+            <PageHeader
+              className="page-header"
+              backIcon={null}
+              title={(
+                <div className="title-with-dash">
+                  {I18n.t('threesixty.dashboard_title', { name: currentUser.firstName })}
+                </div>
+              )}
+            />
+            <Row type="flex" gutter={12} className="cards">
+              {campaigns.map((campaign) => {
+                const Component = Campaigns[campaign.type]
+                return (
+                  <Component
+                    key={campaign.id}
+                    campaign={campaign}
+                    downloadReport={downloadReport}
+                    loginHogan={loginHogan}
+                    acceptPolicy={acceptPolicy}
+                  />
+                )
+              })}
+            </Row>
+          </Col>
+        </Row>
       </Content>
     </Layout>
   )
