@@ -51,12 +51,10 @@ class Devise::TwoFactorAuthenticationController < DeviseController
     expires_seconds = resource.class.remember_otp_session_for_seconds
 
     if expires_seconds && expires_seconds&.positive?
-      # rubocop:disable Layout/IndentHash
       cookies.signed[TwoFactorAuthentication::REMEMBER_TFA_COOKIE_NAME] = {
-          value: "#{resource.class}-#{resource.public_send(Devise.second_factor_resource_id)}",
-          expires: expires_seconds.seconds.from_now
+        value: "#{resource.class}-#{resource.public_send(Devise.second_factor_resource_id)}",
+        expires: expires_seconds.seconds.from_now
       }
-      # rubocop:enable Layout/IndentHash
     end
   end
 

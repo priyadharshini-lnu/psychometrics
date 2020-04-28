@@ -15,7 +15,7 @@ class Administration::FactorsController < Administration::BaseController
                     includes(:sub_factors).
                     ransack(params[:q])
 
-    @_resources   = filter_form.result.page(params[:page])
+    @_resources = filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render :index, formats: [:js] }

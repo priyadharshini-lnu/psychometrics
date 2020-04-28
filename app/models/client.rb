@@ -274,7 +274,7 @@ class Client < ApplicationRecord
   end
 
   def subdomain_format_validation
-    return if subdomain =~ /^[a-zA-Z0-9\-_]+$/
+    return if /^[a-zA-Z0-9\-_]+$/.match?(subdomain)
 
     errors.add(:subdomain, 'Wrong subdomain format')
   end
