@@ -13,7 +13,7 @@ en:
               download the results you should assign all assessments linked to the report.
           edit_form:
             submit: Add
-            additional_time_label: Additional Time, sec
+            additional_time_label: Additional Time, min
           new:
             header: Assign Assessment and Reports
           edit:
