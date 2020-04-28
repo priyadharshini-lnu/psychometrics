@@ -94,7 +94,7 @@ module Administration
               :base,
               I18n.t(
                 'administration.clients.projects.threesixty_campaigns.destroy.error',
-                @campaign.decorate.display_name
+                name: @campaign.decorate.display_name
               )
             )
           end
