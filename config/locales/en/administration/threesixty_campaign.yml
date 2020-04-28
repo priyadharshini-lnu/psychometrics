@@ -48,6 +48,7 @@ en:
             header: '%{name} - Edit license'
           destroy:
             successfully: 'Client Tenancy %{name} was successfully deleted.'
+            error: Can't delete %{name} because some dependent associations of subjects or evaluators exist.
           copy:
             successfully: 'Client Tenancy %{name} was successfully copied.'
             error: 'Client Tenancy %{name} was not copied.'

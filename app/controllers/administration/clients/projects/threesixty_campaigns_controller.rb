@@ -90,7 +90,13 @@ module Administration
           if @campaign.can_destroy?
             @campaign.destroy
           else
-            @campaign.errors.add(:base, "Can't delete this campaign because some dependent associations of subjects or evaluators exist.")
+            @campaign.errors.add(
+              :base,
+              I18n.t(
+                'administration.clients.projects.threesixty_campaigns.destroy.error',
+                @campaign.decorate.display_name
+              )
+            )
           end
           @_resource = @campaign
           respond_to do |format|

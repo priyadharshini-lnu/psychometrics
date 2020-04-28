@@ -28,9 +28,9 @@ class Campaign < ApplicationRecord
   def can_destroy?
     self.class.reflect_on_all_associations.all? do |assoc|
       [
-        %w(restrict_with_error restrict_with_exception).exclude?(assoc.options[:dependent].to_s),
-        (assoc.macro == :has_one  && self.send(assoc.name).nil?),
-        (assoc.macro == :has_many && self.send(assoc.name).empty?)
+        %w[restrict_with_error restrict_with_exception].exclude?(assoc.options[:dependent].to_s),
+        (assoc.macro == :has_one  && send(assoc.name).nil?),
+        (assoc.macro == :has_many && send(assoc.name).empty?)
       ].include?(true)
     end
   end
