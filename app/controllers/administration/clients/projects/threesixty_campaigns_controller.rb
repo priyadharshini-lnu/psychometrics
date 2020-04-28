@@ -87,7 +87,11 @@ module Administration
 
         def destroy
           @campaign = project.project_campaigns.find(params[:id])
-          @campaign.destroy
+          if @campaign.can_destroy?
+            @campaign.destroy
+          else
+            @campaign.errors.add(:base, "Can't delete this campaign because some dependent associations of subjects or evaluators exist.")
+          end
           @_resource = @campaign
           respond_to do |format|
             format.js

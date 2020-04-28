@@ -24,4 +24,14 @@ class Campaign < ApplicationRecord
 
   enum type: %i[common threesixty]
   enum status: { active: 0, closed: 1 }
+
+  def can_destroy?
+    self.class.reflect_on_all_associations.all? do |assoc|
+      [
+        %w(restrict_with_error restrict_with_exception).exclude?(assoc.options[:dependent].to_s),
+        (assoc.macro == :has_one  && self.send(assoc.name).nil?),
+        (assoc.macro == :has_many && self.send(assoc.name).empty?)
+      ].include?(true)
+    end
+  end
 end
