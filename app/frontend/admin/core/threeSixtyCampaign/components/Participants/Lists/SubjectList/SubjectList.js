@@ -52,20 +52,18 @@ export default function SubjectList ({
   return (
     <>
       <Row>
-        <Col span={4} className="pls">
+        <Col span={4} className="pll">
           <UserOutlined />
           <span className="mlm">{`${total} Subjects`}</span>
         </Col>
-        <Col>
-          <div className="float-r">
-            <SearchInput
-              onChange={curriedFetchSubjects(campaignId)}
-              path="/participants/subjects"
-              searchTerm={searchTerm}
-            />
-            <ToolsDropdown />
-            <CreateSubjectsDropdown />
-          </div>
+        <Col span={20} className="text-align-r">
+          <SearchInput
+            onChange={curriedFetchSubjects(campaignId)}
+            path="/participants/subjects"
+            searchTerm={searchTerm}
+          />
+          <ToolsDropdown />
+          <CreateSubjectsDropdown />
         </Col>
       </Row>
       <Row>
