@@ -8,12 +8,16 @@ import styles from './PropertyPanel.scss'
 const { $ } = window
 
 class PropertyPanel extends Component {
+  state = {
+    popupOpen: false,
+  }
+
   componentDidMount () {
     $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
-      store.popupOpened()
+      this.setState({ popupOpen: true })
     })
     $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
-      store.popupClosed()
+      this.setState({ popupOpen: false })
     })
   }
 
@@ -98,8 +102,9 @@ class PropertyPanel extends Component {
 
   render () {
     const { selected } = this.props
+    const { popupOpen } = this.state
     const inspectorClasses = [styles.inspector]
-    if (store.popupOpen) {
+    if (popupOpen) {
       inspectorClasses.push(styles.dropdownOpen)
     }
     return (

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import ColorSet from 'rb/components/ColorSet'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
@@ -11,13 +10,13 @@ import dataSources from '../SingleValue/dataSources'
 
 export default class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     const DataSource = dataSources[model.props.sourceType]
 
     return (
@@ -51,7 +50,7 @@ export default class Properties extends Component {
               <input
                 style={{ marginRight: '5px' }}
                 type="checkbox"
-                checked={store.model.props.showLabels}
+                checked={model.props.showLabels}
                 onChange={e => this.onChange('showLabels', e.currentTarget.checked)}
               />
               Labels
@@ -60,7 +59,7 @@ export default class Properties extends Component {
               <input
                 style={{ marginRight: '5px' }}
                 type="checkbox"
-                checked={store.model.props.showValues}
+                checked={model.props.showValues}
                 onChange={e => this.onChange('showValues', e.currentTarget.checked)}
               />
               Values
@@ -69,7 +68,7 @@ export default class Properties extends Component {
               <input
                 style={{ marginRight: '5px' }}
                 type="checkbox"
-                checked={store.model.props.showLines}
+                checked={model.props.showLines}
                 onChange={e => this.onChange('showLines', e.currentTarget.checked)}
               />
               Lines
