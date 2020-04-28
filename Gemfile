@@ -75,7 +75,6 @@ gem 'active_link_to',             '~> 1.0.5'
 gem 'i18n-js',                    '~> 3.0.0.rc3'
 
 ### Decorator
-gem 'activemodel-serializers-xml'
 gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
@@ -180,8 +179,8 @@ group :development, :test do
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
   gem 'rswag-specs', '~> 2.0.5'
-  gem 'rubocop', '~> 0.67.2', require: false
-  gem 'rubocop-performance', '~> 1.1.0'
+  gem 'rubocop', '~>  0.82.0', require: false
+  gem 'rubocop-performance', '~> 1.5.2'
   gem 'stackprof', '~> 0.2.12'
 end
 

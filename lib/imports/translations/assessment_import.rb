@@ -75,6 +75,7 @@ module Imports
               errors.add(:base, I18n.t('administration.imports.errors.translation.error',
                                        id: id, error: "Can't find #{branch}")) && next
             end
+
             locales.each do |locale, props|
               translation = Translation.find_or_initialize_by(
                 translateable_id: id,

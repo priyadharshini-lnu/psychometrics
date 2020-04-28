@@ -14,10 +14,9 @@ module Campaigns
 
       duplicated_campaign = campaign.dup
       duplicated_campaign.update!(form.attributes)
-      duplicated_campaign.clients_reports = campaign.clients_reports.
-                                            map { |d|
+      duplicated_campaign.clients_reports = campaign.clients_reports.map do |d|
         ClientsReport.new d.attributes.slice('report_id', 'report_family_id', 'user_access')
-      }
+      end
       duplicated_campaign.assessments = campaign.assessments
 
       broadcast :ok, duplicated_campaign

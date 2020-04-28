@@ -14,7 +14,7 @@ class HttpUrlValidator < ActiveModel::EachValidator
     uri = URI.parse(url)
     return false unless VALID_SCHEMES.include?(uri.scheme)
 
-    return false unless HOST_REGEX =~ uri.host
+    return false unless HOST_REGEX.match?(uri.host)
 
     true
   rescue URI::InvalidURIError

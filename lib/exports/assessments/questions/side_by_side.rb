@@ -34,6 +34,7 @@ module Exports
               values = (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
               column_data = question.props['columnsData'][scale]
               parsed_result << '' && next unless values
+
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
                                else
