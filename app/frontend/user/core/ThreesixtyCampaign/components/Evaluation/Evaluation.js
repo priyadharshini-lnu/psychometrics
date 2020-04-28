@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
@@ -8,6 +8,7 @@ import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
+import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
@@ -32,8 +33,14 @@ export default function Evaluation ({
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
+  preview: {
+    enableProgress,
+    type,
+  },
   preview,
   saveResults,
+  block,
+  progress,
 }) {
   const assessmentRef = React.createRef()
   const {
@@ -128,56 +135,63 @@ export default function Evaluation ({
 
   return (
     <Layout>
-      <Content className="fluid-container">
-        <PageHeader
-          className="page-header"
-          backIcon={(
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back to tasks
-            </div>
-          )}
-          title={title()}
-          onBack={handleBackButtonClick}
-          extra={(<Timer preview={preview} saveResults={saveResults} />)}
-        >
-          <div className="evaluation-container">
-            <Row justify="end">
-              <Col flex="none">
-                <StatusDropdown />
-              </Col>
-              {availableTranslations && availableTranslations.length > 0 && (
-                <Col flex="none">
-                  <div className="mlm">
-                    <Language
-                      selectedLanguage={selectedLanguage}
-                      availableTranslations={availableTranslations || []}
-                    />
-                  </div>
-                </Col>
-              )}
-            </Row>
-            {!error && (
-              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-                <PassAssessment
-                  ref={assessmentRef}
-                  id="pass_assessment"
-                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
-                  isThreesixty="true"
-                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                  data={assessment}
-                  result={results}
-                  dashboardUrl={`/campaigns/${params.campaignId}`}
-                  locales={translations}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  notAnEndPage={approve_evaluation || edit === 'true'}
-                  rstore={store}
-                />
+      <div className="page-header-wrap">
+        <Content className="fluid-container">
+          <PageHeader
+            className="page-header"
+            backIcon={(
+              <div>
+                <ArrowLeftOutlined />
+                {' '}
+                Back to tasks
               </div>
             )}
-          </div>
-        </PageHeader>
+            title={title()}
+            onBack={handleBackButtonClick}
+            extra={[
+              type !== 'preview_block' && enableProgress
+                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+              <Timer key="2" preview={preview} saveResults={saveResults} />,
+            ]}
+          />
+        </Content>
+      </div>
+      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+        <div className="evaluation-container">
+          <Row justify="end">
+            <Col flex="none">
+              <StatusDropdown />
+            </Col>
+            {availableTranslations && availableTranslations.length > 0 && (
+              <Col flex="none">
+                <div className="mlm">
+                  <Language
+                    selectedLanguage={selectedLanguage}
+                    availableTranslations={availableTranslations || []}
+                  />
+                </div>
+              </Col>
+            )}
+          </Row>
+          {!error && (
+            <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+              <PassAssessment
+                ref={assessmentRef}
+                id="pass_assessment"
+                type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                isThreesixty="true"
+                resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                data={assessment}
+                result={results}
+                dashboardUrl={`/campaigns/${params.campaignId}`}
+                locales={translations}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                notAnEndPage={approve_evaluation || edit === 'true'}
+                rstore={store}
+              />
+            </div>
+          )}
+        </div>
       </Content>
     </Layout>
   )
