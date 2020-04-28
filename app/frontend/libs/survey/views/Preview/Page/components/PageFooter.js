@@ -24,15 +24,19 @@ class PageFooter extends Component {
     return (
       <div className={cs(styles.footer)}>
         {enableBack && hasPrevPage && (
-          <button type="button" className={cs('btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
-            <span className="mrs mls fa fa-chevron-left rtl-flip" />
-            { page.prevBtn || Watchman.I18n().t('assessments.page.back') }
-          </button>
+          <a href="#">
+            <button type="button" className={cs('btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
+              <span className="mrs mls fa fa-chevron-left rtl-flip" />
+              { page.prevBtn || Watchman.I18n().t('assessments.page.back') }
+            </button>
+          </a>
         )}
-        <button type="button" className={cs('btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
-          { page.nextBtn || Watchman.I18n().t('assessments.page.next') }
-          <span className="mls mrs fa fa-chevron-right rtl-flip" />
-        </button>
+        <a href="#">
+          <button type="button" className={cs('btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
+            { page.nextBtn || Watchman.I18n().t('assessments.page.next') }
+            <span className="mls mrs fa fa-chevron-right rtl-flip" />
+          </button>
+        </a>
       </div>
     )
   }
