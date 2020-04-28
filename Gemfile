@@ -42,8 +42,8 @@ end
 
 ### Authentication and authorization
 gem 'devise',                     '~> 4.7.1'
-gem 'devise-i18n',                '~> 1.1.0'
-gem 'devise_invitable',           '~> 1.6.0'
+gem 'devise-i18n',                '~> 1.9.1'
+gem 'devise_invitable',           '~> 2.0.1'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 
