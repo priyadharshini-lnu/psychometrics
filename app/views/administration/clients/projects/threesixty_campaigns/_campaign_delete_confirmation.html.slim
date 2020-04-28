@@ -9,7 +9,7 @@ script id="mb-campaign-confirm-template" type="x-tmpl-mustache"
         .mb-content
           | {{{ body }}}
           .form-inputs.clearfix
-            = text_field_tag :name, nil, { class: 'form-control mtl', id:'campaign-name', onchange: 'verify(this)' }
+            = text_field_tag :name, nil, { class: 'form-control mtl', id:'campaign-name', oninput: 'verify(this)' }
         .mb-footer
           .pull-right
             button.btn.btn-success.btn-lg.mb-control-close.mb-confirm-yes disabled='disabled' id='confirm' data-dismiss="modal" = t('yes')
