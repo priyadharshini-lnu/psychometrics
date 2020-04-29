@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import DataSourceMenu from '../../DataSourceMenu'
@@ -11,8 +10,8 @@ export default class Properties extends Component {
   }
 
   update = () => {
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.update()
   }
 
   render () {

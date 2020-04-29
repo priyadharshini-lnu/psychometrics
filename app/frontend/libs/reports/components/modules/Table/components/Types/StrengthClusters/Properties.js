@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
@@ -47,36 +46,37 @@ class Properties extends Component {
   }
 
   update = () => {
-    store.model.props.group = null
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.group = null
+    model.update()
   }
 
   openConditionModal = () => {
+    const { model } = this.props
     const { openConditionModal } = this.props
-    openConditionModal({ module: store.model })
+    openConditionModal({ module: model })
   }
 
   changeProp = (propName, e) => {
-    store.model.props[propName] = parseInt(e.currentTarget.value, 10)
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props[propName] = parseInt(e.currentTarget.value, 10)
+    model.update()
   }
 
   changeOrder = () => {
-    const { model } = store
+    const { model } = this.props
     model.props.reverseOrder = !model.props.reverseOrder
-    store.model.update()
-    this.forceUpdate()
+    model.update()
   }
 
   renderTopFactors () {
+    const { model } = this.props
     return (
       <div>
         <span className={styles.label}>Factors</span>
         <Select
           name="form-field-name"
-          value={getValue(this.collectFactors(), _.result(store.model, 'props.source.factors', 'Choose factor'))}
+          value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
           options={this.collectFactors()}
           getOptionValue={opt => opt.id}
           getOptionLabel={opt => opt.alias}
@@ -89,7 +89,7 @@ class Properties extends Component {
   }
 
   renderMinSelect () {
-    const { model } = store
+    const { model } = this.props
     return (
       <select onChange={e => this.changeProp('minPosition', e)} value={model.props.minPosition}>
         {_.times(model.props.maxPosition, i => <option value={i + 1} key={i}>{i + 1}</option>)}
@@ -98,7 +98,7 @@ class Properties extends Component {
   }
 
   renderMaxSelect () {
-    const { model } = store
+    const { model } = this.props
     const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
     let max = AppStore.mainFactors[dimensionId].length + 1
@@ -112,7 +112,8 @@ class Properties extends Component {
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
+
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">

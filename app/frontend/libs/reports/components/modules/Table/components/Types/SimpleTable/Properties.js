@@ -21,7 +21,6 @@ class Properties extends Component {
     })
 
     model.update()
-    this.forceUpdate()
   }
 
   changeRowsCount = (val) => {
@@ -34,7 +33,6 @@ class Properties extends Component {
     })
 
     model.update()
-    this.forceUpdate()
   }
 
   render () {

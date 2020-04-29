@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import PropertyPagination from 'rb/components/PropertyPagination'
-import store from 'rb/store/PropertyPanelStore'
 import connect from './connect'
 
 class Properties extends Component {
   openConditionModal = () => {
+    const { model } = this.props
     const { openInnovationStyleCondition } = this.props
-    openInnovationStyleCondition({ module: store.model })
+    openInnovationStyleCondition({ module: model })
   }
 
   render () {

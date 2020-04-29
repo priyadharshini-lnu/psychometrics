@@ -28,7 +28,7 @@ Page.prototype = new EventEmitter()
 _.extend(Page.prototype, {
   toJSON () {
     return {
-      id: typeof this.id === 'string' ? null : this.id,
+      id: this.id,
       name: this.name,
       props: this.props,
       position: this.position,

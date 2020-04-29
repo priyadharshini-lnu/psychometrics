@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 
 export default class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
   }
 
   update = () => {
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.update()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     return (
       <div>
         <div className={styles.title}>Gap Assessment</div>
