@@ -25,7 +25,7 @@ export const PLAYER_STATE = {
 export const DEFAULT_MAX_DURATION = 10
 
 // Time in milesecond after which pulse sample would be checked to determine audio level
-export const AUDIO_LEVEL_CHANGE_THRESOLD = 2000
+export const AUDIO_LEVEL_CHANGE_THRESOLD = 300
 
 // Pulse thresold which are considered high
 export const HIGH_PULSE_THRESOLD = 0.80
