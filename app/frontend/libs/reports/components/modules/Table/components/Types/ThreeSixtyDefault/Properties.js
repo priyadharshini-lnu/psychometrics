@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
 import Select from 'react-select'
 import _ from 'lodash'
 import AppStore from 'rb/store/AppStore'
@@ -14,11 +13,12 @@ function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const options = _.map(AppStore.factors[assessment.dimensionId] || [],
     factor => ({ label: factor.name, value: factor.id }))
+
   return (
     <div className="mtm">
       Factor
       <Select
-        value={getValue(options, store.model.props.factorId)}
+        value={getValue(options, model.props.factorId)}
         options={options}
         getOptionValue={opt => opt.value}
         autoFocus={false}
@@ -39,7 +39,7 @@ function QuestionList ({ model, onChange }) {
     <div className="mtm">
       Question
       <Select
-        value={getValue(options, store.model.props.questionId)}
+        value={getValue(options, model.props.questionId)}
         options={options}
         getOptionValue={opt => opt.value}
         autoFocus={false}
@@ -58,13 +58,14 @@ const lists = {
 
 export default class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     const List = lists[model.props.sourceType]
     return (
       <div>

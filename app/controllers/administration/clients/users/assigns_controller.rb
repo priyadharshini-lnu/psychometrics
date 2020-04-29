@@ -81,7 +81,7 @@ module Administration
           @form = Assigns::AdditionalTimeForm.from_params(update_additional_time_params)
 
           if @form.valid?
-            Assigns::AddAdditionalTime.call(resource, @form.additional_time)
+            Assigns::AddAdditionalTime.call(resource, @form.additional_time * 60)
           else
             render :edit
           end

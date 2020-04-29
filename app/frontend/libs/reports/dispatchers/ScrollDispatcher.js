@@ -8,6 +8,7 @@ function getTopOffset (name) {
 }
 
 dispatcher.scroll = function (hash, next = false, onComplete) {
+  if (!$(`[name="${hash}"]`).length) { return }
   $('html,body').animate({ scrollTop: getTopOffset(hash) }, 200, () => {
     if (next) {
       setTimeout(() => {
