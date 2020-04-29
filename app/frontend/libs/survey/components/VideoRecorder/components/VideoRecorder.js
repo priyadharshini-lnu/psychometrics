@@ -252,6 +252,7 @@ class VideoRecorder extends Component {
         this.statusText.show()
       })
       this.player.on('startRecord', () => {
+        const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recording' })
         this.player.trigger('statechanged', { status: 'recording' })
 
@@ -259,13 +260,14 @@ class VideoRecorder extends Component {
         this.player.controlBar.currentTimeDisplay.addClass('show')
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
 
-        this.tracker.startTracking()
+        if (trackingEnabled && this.tracker) this.tracker.startTracking()
       })
       this.player.on('finishRecord', () => {
-        this.player.trigger('statechanged', { status: 'recorded' })
+        const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recorded' })
+        this.player.trigger('statechanged', { status: 'recorded' })
 
-        this.tracker.stopTracking()
+        if (trackingEnabled && this.tracker) this.tracker.stopTracking()
       })
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
@@ -398,7 +400,7 @@ class VideoRecorder extends Component {
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         { trackingEnabled
-        && ['ready', 'recording'].includes(recordingState)
+        && ['ready', 'recording', 'recorded'].includes(recordingState)
         && (
           <Tracker
             ref={(instance) => { this.tracker = instance }}
