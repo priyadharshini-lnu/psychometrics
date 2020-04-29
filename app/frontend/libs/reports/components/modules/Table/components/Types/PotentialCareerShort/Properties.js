@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import _ from 'lodash'
@@ -14,19 +13,21 @@ const SELECT_OPTIONS = _.times(30, i => ({
 
 class Properties extends Component {
   changeTopPosition = (e) => {
-    store.model.props.topPosition = e ? e.value : null
-    store.model.update()
+    const { model } = this.props
+    model.props.topPosition = e ? e.value : null
+    model.update()
     this.forceUpdate()
   }
 
   changeBackgroundColor = (color) => {
-    store.model.props.style.backgroundColor = color.hex
-    store.model.update()
+    const { model } = this.props
+    model.props.style.backgroundColor = color.hex
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     return (
       <div>
         <span className={styles.label}>Top Position</span>
