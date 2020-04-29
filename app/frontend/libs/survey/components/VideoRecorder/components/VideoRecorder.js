@@ -398,7 +398,7 @@ class VideoRecorder extends Component {
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         { trackingEnabled
-        && ['ready', 'recording', 'recorded'].includes(recordingState)
+        && ['ready', 'recording'].includes(recordingState)
         && (
           <Tracker
             ref={(instance) => { this.tracker = instance }}
