@@ -34,11 +34,11 @@ export default function EvaluatorList ({
   return (
     <>
       <Row justify="space-between">
-        <Col span={4} className="pls">
+        <Col span={4} className="pll">
           <UserOutlined />
           <span className="mlm">{`${total} Evaluators`}</span>
         </Col>
-        <div className="float-r">
+        <Col span={20} className="text-align-r">
           <SearchInput
             onChange={curriedFetchEvaluators(campaignId)}
             path="/participants/evaluators"
@@ -46,7 +46,7 @@ export default function EvaluatorList ({
           />
           <ToolsDropdown />
           <CreateEvaluatorsDropdown />
-        </div>
+        </Col>
       </Row>
       <Row>
         <Col span={24}>

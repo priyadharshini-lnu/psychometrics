@@ -17,7 +17,7 @@ gem 'sassc-rails', '~> 2.1.2'
 gem 'uglifier', '~> 3.0.2'
 
 source 'https://rails-assets.org/' do
-  gem 'rails-assets-bootstrap-add-clear', '~> 1.0.6'
+  gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
   gem 'rails-assets-bootstrap-file-input', '1.0.0'
@@ -75,7 +75,6 @@ gem 'active_link_to',             '~> 1.0.5'
 gem 'i18n-js',                    '~> 3.0.0.rc3'
 
 ### Decorator
-gem 'activemodel-serializers-xml'
 gem 'annotate', '~> 2.7.0'
 gem 'draper',                     '~> 3.0.0'
 ### For organisation ENV variable
@@ -175,13 +174,13 @@ group :development, :test do
   gem 'hirb'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
-  gem 'rspec-rails', '~> 3.8.2'
+  gem 'rspec-rails', '~> 4.0.0'
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
   gem 'rswag-specs', '~> 2.0.5'
-  gem 'rubocop', '~> 0.67.2', require: false
-  gem 'rubocop-performance', '~> 1.1.0'
+  gem 'rubocop', '~>  0.82.0', require: false
+  gem 'rubocop-performance', '~> 1.5.2'
   gem 'stackprof', '~> 0.2.12'
 end
 

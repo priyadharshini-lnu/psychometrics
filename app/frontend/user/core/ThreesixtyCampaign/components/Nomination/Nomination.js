@@ -53,19 +53,25 @@ export default function Nominations (props) {
   }
 
   return (
-    <Layout className="layout">
+    <Layout>
+      <div className="page-header-wrap">
+        <Content className="fluid-container">
+          <PageHeader
+            className="page-header"
+            backIcon={(
+              <div>
+                <ArrowLeftOutlined />
+                {' '}
+                {I18n.t('threesixty.back_to_tasks')}
+              </div>
+            )}
+            title="Nomination"
+            onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
+          />
+        </Content>
+      </div>
       <Content className="fluid-container">
-        <PageHeader
-          className="page-header"
-          backIcon={(
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              {I18n.t('threesixty.back_to_tasks')}
-            </div>
-          )}
-          onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
-        >
+        <div className="mtl mbl">
           <div className="nominations-container">
             {hasNominationPermission && evalautionCompletedForSubject && (
             <Alert
@@ -76,11 +82,11 @@ export default function Nominations (props) {
             />
             )}
             {instruction ? (
-              <div className="content padding">
+              <div className="content">
                 <div dangerouslySetInnerHTML={{ __html: instruction.content }} />
               </div>
             ) : (
-              <div className="content padding">
+              <div className="content">
                 <Paragraph>
                   Please nominate all your elevators from whom you wish to recieve feedback. And then complete your Self assessment.
                 </Paragraph>
@@ -113,7 +119,7 @@ export default function Nominations (props) {
               handleAdd={handleAdd}
             />
           </div>
-        </PageHeader>
+        </div>
       </Content>
     </Layout>
   )
