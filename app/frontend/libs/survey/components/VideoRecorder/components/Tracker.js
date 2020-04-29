@@ -44,8 +44,6 @@ class Tracker extends Component {
     const { prevProps } = this.state
     const { fitInFrame, trackerOptions } = this.props
 
-    window.prevProps = prevProps
-    window.currentProps = trackerOptions[fitInFrame]
     if (
       prevProps.fitInFrame !== fitInFrame
       || !isEqual(prevProps.box, trackerOptions[fitInFrame].box)
@@ -175,7 +173,7 @@ class Tracker extends Component {
     } else {
       // No face
       this.setState({ showOverlay: true })
-      this.showElements([this.helpTextRef])
+      this.showElements(['frame'])
     }
 
     if (isTracking) {
