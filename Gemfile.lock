@@ -503,7 +503,7 @@ GEM
     rails-assets-Sortable (1.6.0)
     rails-assets-bootstrap (3.3.7)
       rails-assets-jquery (>= 1.9.1, < 4)
-    rails-assets-bootstrap-add-clear (1.0.7)
+    rails-assets-bootstrap-add-clear (1.0.6)
       rails-assets-jquery (>= 1.8)
     rails-assets-bootstrap-colorpicker (2.3.6)
       rails-assets-bootstrap (>= 2)
@@ -900,7 +900,7 @@ DEPENDENCIES
   rack-timeout (~> 0.4.2)
   rails (~> 5.1.7)
   rails-assets-Sortable (= 1.6.0)!
-  rails-assets-bootstrap-add-clear (~> 1.0.6)!
+  rails-assets-bootstrap-add-clear (= 1.0.6)!
   rails-assets-bootstrap-colorpicker (= 2.3.6)!
   rails-assets-bootstrap-datetimepicker-3 (= 4.17.47)!
   rails-assets-bootstrap-file-input (= 1.0.0)!
