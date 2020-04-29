@@ -174,7 +174,7 @@ group :development, :test do
   gem 'hirb'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
-  gem 'rspec-rails', '~> 3.8.2'
+  gem 'rspec-rails', '~> 4.0.0'
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
