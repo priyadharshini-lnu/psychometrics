@@ -127,7 +127,6 @@ class Foundation extends Component {
     } = this.props
     if (preview) { return }
     e.stopPropagation()
-
     if (selected.moduleId === module.id) { return }
 
     const select = () => {
