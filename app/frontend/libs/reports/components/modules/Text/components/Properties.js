@@ -114,12 +114,11 @@ class Properties extends Component {
     this.update()
   }
 
-  // TODO (atanych): prefix _ does not makes sense, because all component methods we use inside this component
   changeModelIn = (keys, value) => {
-    const { model } = this.props
+    const { model } = store
     // TODO (atanych): update model by link directly in the component is not good
     // practice. We should avoid mutations in future.
-    // TODO (atanych): But in now let's keep as is.
+    // TODO (atanych): But for now let's keep as is.
     _.set(model, keys, value)
     this.update()
   }
