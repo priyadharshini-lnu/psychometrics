@@ -11,5 +11,5 @@ export default {
   Checkbox,
   Select,
   MultiSelect,
-  DateEntry,
+  Date: DateEntry,
 }
