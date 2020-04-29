@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import * as d3 from 'd3'
+import I18nStore from 'rb/store/I18nStore'
 import { FACTOR_FONT_SIZE_RATE } from './consts'
 import Container from './Container'
 
@@ -57,7 +58,7 @@ class FactorArc {
 
   calcDataSet (seriesData) {
     return _.map(seriesData, ser => ({
-      name: ser.name,
+      name: I18nStore.tFactor(ser, 'name'),
       value: ser.subFactors.length,
       color: ser.color,
     }))
