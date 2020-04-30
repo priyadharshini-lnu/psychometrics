@@ -2,7 +2,6 @@ import React from 'react'
 import { Progress } from 'antd'
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
-import ButtonColor from 'constants/buttonColor'
 import Watchman from 'libs/survey/store/StoreWatchman'
 import styles from '../AudioRecorderStyle.scss'
 import MediaButtons from '../MediaButtons'
@@ -25,7 +24,7 @@ const PlayerControl: React.FC<Props> = ({
   <div className={styles.controls}>
     {!readOnly && (
     <ColoredButton
-      color={ButtonColor.GREY}
+      color="grey"
       type="primary"
       icon={<DeleteOutlined />}
       className={styles.deleteBtn}
@@ -41,7 +40,7 @@ const PlayerControl: React.FC<Props> = ({
     {uploadState !== UPLOAD_STATES.SAVED
         && (
           <ColoredButton
-            color={ButtonColor.GREEN}
+            color="green"
             type="primary"
             icon={<CheckOutlined />}
             className={styles.saveBtn}

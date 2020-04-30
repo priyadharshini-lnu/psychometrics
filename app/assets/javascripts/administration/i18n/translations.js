@@ -37,6 +37,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -223,6 +231,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -480,23 +489,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "reset_password_token": "Reset password token",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -668,6 +680,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -688,6 +701,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -1121,6 +1135,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -1141,6 +1156,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -1628,14 +1644,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
-        },
-        "mailer": {
-          "license_expire": {
-            "subject": "License expired"
-          },
-          "license_overuse": {
-            "subject": "License overuse"
-          }
         },
         "new": {
           "header": "Add License"
@@ -2641,6 +2649,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "destroy": {
             "successfully": "%{name} was successfully detached"
           },
+          "edit": {
+            "header": "Add Additional Time"
+          },
+          "edit_form": {
+            "additional_time_label": "Additional Time, sec",
+            "submit": "Add"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -2706,6 +2721,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "no_reports": "No relative reports",
             "not_completed": "Not completed",
             "tooltips": {
+              "additional_time": "Add additional time",
               "assigns_report": {
                 "add_user_access": "Add user access",
                 "delete": "Detach Report",
@@ -2715,6 +2731,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": "Detach Assessment",
               "reset": "Reset result"
             }
+          },
+          "update_additional_time": {
+            "successfully": "Additional time was successfully added"
           }
         },
         "assigns_reports": {
@@ -4446,6 +4465,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -4599,6 +4623,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -4714,6 +4739,54 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "ckeditor": {
@@ -5027,7 +5100,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
       "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
-      "updated": "Your account has been updated successfully."
+      "updated": "Your account has been updated successfully.",
+      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     },
     "sessions": {
       "already_signed_out": "Signed out successfully.",
@@ -5534,7 +5608,33 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "loading": "Processing...",
   "mailer": {
-    "from": "The Talent Enterprise"
+    "from": "The Talent Enterprise",
+    "license": {
+      "expire": {
+        "subject": "License expired"
+      },
+      "overuse": {
+        "subject": "License overuse"
+      },
+      "weekly_stats": {
+        "column_headers": {
+          "account_manager": "Account Manager",
+          "client_name": "Client Name",
+          "expiry_date": "Expiry date",
+          "overuse_limit": "Overuse Limit",
+          "project_manager": "Project Manager",
+          "remaining_count": "Remaining Count",
+          "type": "License type",
+          "use_count": "Use count"
+        },
+        "expiry_stats": "Licenses expiring in the next 30 days :",
+        "no_expiry_stats": "No lincenses expiring in the next 30 days.",
+        "no_weekly_stats": "No licenses consumed in the last 7 days.",
+        "notice": "Note - You can unsubscribe to this weekly email from your profile page.",
+        "subject": "Weekly license usage stats",
+        "weekly_stats": "Past week license usage stats :"
+      }
+    }
   },
   "managers": {
     "assessments": {
@@ -6034,23 +6134,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -6063,6 +6166,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -6270,23 +6374,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -6589,6 +6696,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -6775,6 +6890,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -7032,23 +7148,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "reset_password_token": "Reset password token",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -7220,6 +7339,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -7240,6 +7360,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -7673,6 +7794,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -7693,6 +7815,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -8180,14 +8303,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
-        },
-        "mailer": {
-          "license_expire": {
-            "subject": "License expired"
-          },
-          "license_overuse": {
-            "subject": "License overuse"
-          }
         },
         "new": {
           "header": "Add License"
@@ -9193,6 +9308,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "destroy": {
             "successfully": "%{name} was successfully detached"
           },
+          "edit": {
+            "header": "Add Additional Time"
+          },
+          "edit_form": {
+            "additional_time_label": "Additional Time, sec",
+            "submit": "Add"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -9258,6 +9380,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "no_reports": "No relative reports",
             "not_completed": "Not completed",
             "tooltips": {
+              "additional_time": "Add additional time",
               "assigns_report": {
                 "add_user_access": "Add user access",
                 "delete": "Detach Report",
@@ -9267,6 +9390,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": "Detach Assessment",
               "reset": "Reset result"
             }
+          },
+          "update_additional_time": {
+            "successfully": "Additional time was successfully added"
           }
         },
         "assigns_reports": {
@@ -10998,6 +11124,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -11151,6 +11282,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -11266,6 +11398,54 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "ckeditor": {
@@ -11579,7 +11759,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "signed_up_but_unconfirmed": "تمّ إرسال رسالة تحوي على رابط تأكيد الحساب باستخدام البريد الإلكتروني، يُرجى فتح الرابط لتفعيل الحساب.",
       "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "تُم تعديل الحساب بنجاح، يرجى تأكيد البريد الإلكتروني. الرجاء الذهاب الى البريد الإلكتروني والضغط على الرابط الموجود للانتهاء من عمليّة التاكيد.",
-      "updated": "تمّ تعديل الحساب بنجاح."
+      "updated": "تمّ تعديل الحساب بنجاح.",
+      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     },
     "sessions": {
       "already_signed_out": "Signed out successfully.",
@@ -12090,7 +12271,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "loading": "Processing...",
   "mailer": {
-    "from": "The Talent Enterprise"
+    "from": "The Talent Enterprise",
+    "license": {
+      "expire": {
+        "subject": "License expired"
+      },
+      "overuse": {
+        "subject": "License overuse"
+      },
+      "weekly_stats": {
+        "column_headers": {
+          "account_manager": "Account Manager",
+          "client_name": "Client Name",
+          "expiry_date": "Expiry date",
+          "overuse_limit": "Overuse Limit",
+          "project_manager": "Project Manager",
+          "remaining_count": "Remaining Count",
+          "type": "License type",
+          "use_count": "Use count"
+        },
+        "expiry_stats": "Licenses expiring in the next 30 days :",
+        "no_expiry_stats": "No lincenses expiring in the next 30 days.",
+        "no_weekly_stats": "No licenses consumed in the last 7 days.",
+        "notice": "Note - You can unsubscribe to this weekly email from your profile page.",
+        "subject": "Weekly license usage stats",
+        "weekly_stats": "Past week license usage stats :"
+      }
+    }
   },
   "managers": {
     "assessments": {
@@ -12590,23 +12797,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -12619,6 +12829,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -12826,23 +13037,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -13148,6 +13362,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -13334,6 +13556,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -13591,23 +13814,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "reset_password_token": "Reset password token",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -13779,6 +14005,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -13799,6 +14026,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -14232,6 +14460,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -14252,6 +14481,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -14739,14 +14969,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "used_license_number": "Used licenses",
           "used_license_overuse_number": "Over Use Allowance",
           "used_out_of": "%{used_number} out of %{number}"
-        },
-        "mailer": {
-          "license_expire": {
-            "subject": "License expired"
-          },
-          "license_overuse": {
-            "subject": "License overuse"
-          }
         },
         "new": {
           "header": "Add License"
@@ -15752,6 +15974,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "destroy": {
             "successfully": "%{name} was successfully detached"
           },
+          "edit": {
+            "header": "Add Additional Time"
+          },
+          "edit_form": {
+            "additional_time_label": "Additional Time, sec",
+            "submit": "Add"
+          },
           "form": {
             "assessment": "Assessment",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
@@ -15817,6 +16046,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "no_reports": "No relative reports",
             "not_completed": "Not completed",
             "tooltips": {
+              "additional_time": "Add additional time",
               "assigns_report": {
                 "add_user_access": "Add user access",
                 "delete": "Detach Report",
@@ -15826,6 +16056,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": "Detach Assessment",
               "reset": "Reset result"
             }
+          },
+          "update_additional_time": {
+            "successfully": "Additional time was successfully added"
           }
         },
         "assigns_reports": {
@@ -17557,6 +17790,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -17710,6 +17948,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -17825,6 +18064,54 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "ckeditor": {
@@ -18138,7 +18425,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
       "success": "Signup successful. Please check your email for further instructions.",
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
-      "updated": "Your account has been updated successfully."
+      "updated": "Your account has been updated successfully.",
+      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     },
     "sessions": {
       "already_signed_out": "Signed out successfully.",
@@ -18645,7 +18933,33 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "loading": "Processing...",
   "mailer": {
-    "from": "The Talent Enterprise"
+    "from": "The Talent Enterprise",
+    "license": {
+      "expire": {
+        "subject": "License expired"
+      },
+      "overuse": {
+        "subject": "License overuse"
+      },
+      "weekly_stats": {
+        "column_headers": {
+          "account_manager": "Account Manager",
+          "client_name": "Client Name",
+          "expiry_date": "Expiry date",
+          "overuse_limit": "Overuse Limit",
+          "project_manager": "Project Manager",
+          "remaining_count": "Remaining Count",
+          "type": "License type",
+          "use_count": "Use count"
+        },
+        "expiry_stats": "Licenses expiring in the next 30 days :",
+        "no_expiry_stats": "No lincenses expiring in the next 30 days.",
+        "no_weekly_stats": "No licenses consumed in the last 7 days.",
+        "notice": "Note - You can unsubscribe to this weekly email from your profile page.",
+        "subject": "Weekly license usage stats",
+        "weekly_stats": "Past week license usage stats :"
+      }
+    }
   },
   "managers": {
     "assessments": {
@@ -19145,23 +19459,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {
@@ -19174,6 +19491,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -19381,23 +19699,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
-          "admin": "Client Admin",
+          "admin": "Admin",
           "admins": {
             "admin": "Admin",
             "project_admin": "Project Admin",
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
+          "client_admin": "Client Admin",
           "hogan": "Hogan",
           "manager": "Manager",
           "member": "User",
           "mindmill": "Mindmill",
           "organisational": "Organisational",
+          "project_admin": "Project Admin",
           "psychometric": "Psychometric",
           "regular": "Regular",
-          "super_admin": "Super admin",
-          "superadmin": "Super admin",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
         "types": {

@@ -64,7 +64,8 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def update
     respond_to do |format|
-      if resource.update(resource_params)
+      extra = resource.extra.merge(resource_params[:extra])
+      if resource.update(resource_params.to_h.merge('extra' => extra))
         format.js
       else
         format.js { render :edit }
@@ -134,6 +135,7 @@ class Administration::AssessmentsController < Administration::BaseController
     params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing,
                                      :status,
                                      :icon, :icon_color, :remove_icon,
-                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id])
+                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
+                                     extra: %i[enable_video_check enable_audio_check enable_network_check])
   end
 end

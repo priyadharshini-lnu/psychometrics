@@ -14,13 +14,13 @@ interface ButtonProps {
 }
 
 interface Props extends ButtonProps {
-  color: ButtonColor,
+  color: ButtonColor | 'green' | 'grey',
   children: React.ReactNode,
 }
 
 export default function ColoredButton (props: Props) {
   const {
-    color, children, className, ...passedButtonProps
+    children, className, color, ...passedButtonProps
   } = props
   const buttonProps = (passedButtonProps || {}) as ButtonProps
 

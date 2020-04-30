@@ -32,7 +32,7 @@ const EmbedMediaComponent: React.FC<Props> = ({ editor }) => {
     setUrl(null)
   }
 
-  const getPlayerTemplate = (url: string): void => {
+  const getPlayerTemplate = (url: string): string => {
     if (currentTab === URL_TYPE.AUDIO) {
       return ReactDOMServer.renderToStaticMarkup(<AudioPlayer url={url} />)
     }

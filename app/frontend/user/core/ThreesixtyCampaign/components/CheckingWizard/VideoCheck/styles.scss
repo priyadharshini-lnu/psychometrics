@@ -1,0 +1,52 @@
+.container {
+  text-align: center;
+  .card {
+    box-shadow: 0px 0px 6px #00000024;
+    border-radius: 9px;
+    text-align: center;
+    margin-bottom: 10px;
+    .video {
+      background: #262626;
+      border-radius: 6px;
+      padding: 80px 0;
+
+      .allowTitle {
+        color: #FFFFFF;
+        margin-bottom: 30px;
+      }
+
+      .iconContainer {
+        display: inline-block;
+        font-size: 40px;
+        width: 60px;
+        height: 60px;
+        text-align: center;
+        border-radius: 50%;
+        background: #5A5858;
+        color: #FFFFFF;
+        .icon {
+          display: inline-block;
+          width: 60px;
+          height: 60px;
+          background: transparent url('./icon.svg');
+          background-size: contain;
+        }
+      }
+    }
+  }
+  .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .continueButton {
+    margin-top: 24px;
+    text-transform: uppercase;
+  }
+
+  .mainIcon {
+    color: #cac9c9;
+    font-size: 45px;
+    margin-bottom: 16px;
+  }
+}

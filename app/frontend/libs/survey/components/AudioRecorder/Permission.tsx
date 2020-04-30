@@ -4,7 +4,6 @@ import { AudioFilled, CheckOutlined } from '@ant-design/icons'
 import Watchman from 'store/StoreWatchman'
 import cs from 'classnames'
 import ColoredButton from 'components/ColoredButton/index'
-import ButtonColor from 'constants/buttonColor'
 import styles from './PermissionStyle.scss'
 
 interface Props {
@@ -28,7 +27,7 @@ const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
       </div>
       <div className="mtl">{Watchman.I18n().t('assessments.audio_response.permission_text')}</div>
       <ColoredButton
-        color={ButtonColor.GREEN}
+        color="green"
         type="primary"
         icon={<CheckOutlined />}
         className="mtl"
