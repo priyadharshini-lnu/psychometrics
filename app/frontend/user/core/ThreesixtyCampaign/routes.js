@@ -5,8 +5,14 @@ import Evaluation, { EvaluationSidebar } from './components/Evaluation'
 import Report, { ReportSidebar } from './components/Report'
 import Assign from './components/Assign'
 import AgileAssign from './components/AgileAssign'
+import CheckingWizard from './components/CheckingWizard'
 
 const routes = [
+  {
+    path: '/system-checks/:assessmentId/:id',
+    main: CheckingWizard,
+    exact: true,
+  },
   {
     path: '/',
     main: CampaignList,

@@ -32,10 +32,12 @@ module Administration
       def new
         @_resource = resource_class.new
         @_resource.build_privacy_link
+        @_resource.privacy_consent = true
         resource.parent = client
       end
 
       def edit
+        @_resource.privacy_consent = false if @_resource.privacy_consent.nil?
         @_resource.privacy_link.present? || @_resource.build_privacy_link
       end
 

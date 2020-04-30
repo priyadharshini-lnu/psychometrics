@@ -10,6 +10,7 @@ en:
           in_progress: 'Resume'
           overdue: 'Overdue'
           'completed': 'Completed'
+          'interrupted': 'Interrupted'
     errors:
       messages:
         not_uniqueness: 'Assign has already been taken'

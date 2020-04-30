@@ -19,6 +19,7 @@ const mapStateToProps = state => ({
   reports: state.threeSixtyCampaign.campaign.reports,
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
   totalProgress: getTotalProgress(state.threeSixtyCampaign.campaign),
+  enabledWizard: state.temp.checkingWizard.enabled,
 })
 
 const mapDispatchToProps = {
