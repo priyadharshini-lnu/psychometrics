@@ -7,7 +7,7 @@ import { getMinutesAndSeconds } from 'utils/time'
 import api from 'middleware/api'
 import styles from './AudioRecorderStyle.scss'
 import {
-  RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION, AUDIO_LEVEL_CHANGE_THRESOLD,
+  RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION, AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD,
   AUDIO_LEVEL, HIGH_PULSE_THRESOLD, PERCENT_OF_HIGH_PULSE_THRESOLD,
 } from './constants'
 import RecorderCore from './Recorder/Core'
@@ -100,7 +100,10 @@ const AudioRecorder: React.FC<Props> = ({
       return
     }
 
-    if ((performance.now() - lastAudiDetectorColorChangeRef.current) > AUDIO_LEVEL_CHANGE_THRESOLD) {
+    // If audio is low it can immediately change to high.
+    //  To change from high to low it will wait for time specified by AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD
+    if ((audioLevel === AUDIO_LEVEL.LOW && batchPulsesRef.current.length)
+      || (performance.now() - lastAudiDetectorColorChangeRef.current) > AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD) {
       const totalPulse = batchPulsesRef.current.length
       const pulseWithHighThresold = _.filter(batchPulsesRef.current,
         (pulse: number) => pulse > HIGH_PULSE_THRESOLD).length
