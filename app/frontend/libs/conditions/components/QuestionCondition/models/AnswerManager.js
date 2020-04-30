@@ -99,7 +99,7 @@ class AnswerManager {
   }
 
   getAnswers () {
-    if (!this.config.conditions) {
+    if (!this.config || !this.config.conditions) {
       return
     }
     switch (this.question.type) {

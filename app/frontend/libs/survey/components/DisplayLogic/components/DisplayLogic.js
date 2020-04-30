@@ -10,9 +10,9 @@ const {
 export default class DisplayLogic extends Component {
   save = () => {
     const {
-      saveDisplayLogic, question, logicElement, close,
+      saveDisplayLogic, question, logic, close,
     } = this.props
-    saveDisplayLogic(question, logicElement)
+    saveDisplayLogic(question, logic)
     close()
   }
 
@@ -22,7 +22,7 @@ export default class DisplayLogic extends Component {
 
   render () {
     const {
-      question, logicElement, close,
+      question, logic, close,
     } = this.props
     return (
       <Modal show dialogClassName={styles.modal} bsSize="large" keyboard={false}>
@@ -40,8 +40,7 @@ export default class DisplayLogic extends Component {
               'Question', 'DeviceType', 'EmbeddedData', 'GeoIP',
               'SubjectDataSheet', 'EvaluatorDataSheet', 'EvaluatorRelationship',
             ]}
-            logic={logicElement}
-            onChange={this.update}
+            logic={logic}
           />
         </Body>
         <Footer>
