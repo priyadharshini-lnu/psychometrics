@@ -16,6 +16,7 @@ module Memberships
         m.role = role
         m.client = client
       end
+
       admin = User.find_by(email: membership.user&.email, project_id: nil)
       if admin
         membership.user = admin
@@ -28,7 +29,7 @@ module Memberships
         end
       end
       if membership.save!
-        membership.user.invite!(creator, client.id)
+        membership.reload.user.invite!(creator, client.id)
         broadcast :ok, membership
       else
         broadcast :invalid
