@@ -17,6 +17,7 @@ module Administration
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview
+          @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
           args = {
             project: client.project,
             campaign: nil,
