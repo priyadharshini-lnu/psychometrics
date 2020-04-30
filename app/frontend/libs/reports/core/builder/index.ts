@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createReducer } from 'utils/reduxUtils'
-import { setIn, updateIn } from 'utils/immutable'
+import { setIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
@@ -51,7 +51,7 @@ const HANDLERS = {
       assessments: data.entities.assessments,
       questions: data.entities.questions,
       loaded: true,
-      currentPage: report.pages[0] || 0,
+      currentPage: report.pages[0],
     }
   },
   [ENABLE]: state => ({ ...state, disabled: false }),
@@ -64,9 +64,11 @@ const HANDLERS = {
     const page = state.pages[index]
     return setIn(state, 'currentPage', page)
   },
-  [ADD_PAGE]: (state, { page, index }) => updateIn(
-    state, 'pages', pages => ([...pages.slice(0, index), page.id, ...pages.slice(index)]),
-  ),
+  [ADD_PAGE]: (state, { page, index }) => ({
+    ...state,
+    pages: ([...state.pages.slice(0, index), page.id, ...state.pages.slice(index)]),
+    currentPage: page.id,
+  }),
   [SELECT_MODULE]: (state, { moduleType, id }) => setIn(state, 'selected', { type: moduleType, moduleId: id }),
   [UNSELECT_MODULES]: state => ({ ...state, selected: {} }),
   [CHANGE_SIZE]: (state, { size }) => setIn(state, ['props', 'sizes'], size),
