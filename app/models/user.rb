@@ -174,7 +174,7 @@ class User < ApplicationRecord
     super(invited_by, options)
 
     if is?(:superadmin, :client_admin, :project_admin)
-      InvitationMailer.invite_superadmin(id, @raw_invitation_token).deliver_later
+      InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
     end
