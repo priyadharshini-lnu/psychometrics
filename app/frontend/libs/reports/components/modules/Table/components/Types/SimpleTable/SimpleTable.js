@@ -20,6 +20,7 @@ class SimpleTable extends Component {
         module.props.rowData[i][j] = module.props.rowData[i][j] || {}
       })
     })
+    module.update()
   }
 
   getRow = (i) => {
@@ -30,6 +31,7 @@ class SimpleTable extends Component {
   render () {
     const { module } = this.props
 
+    if (!module.props.rowData) { return }
     return (
       <div className={styles.table}>
         <Table

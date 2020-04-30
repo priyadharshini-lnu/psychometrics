@@ -49,7 +49,7 @@ class Properties extends Component {
     this.update()
   }
 
-  reset () {
+  reset = () => {
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
       store.model.reset()
@@ -57,7 +57,7 @@ class Properties extends Component {
     }
   }
 
-  openConditionModal () {
+  openConditionModal = () => {
     const { openConditionalText } = this.props
     openConditionalText({ module: store.model })
   }

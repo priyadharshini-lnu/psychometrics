@@ -11,11 +11,13 @@ class PageFooter extends Component {
 
   prev = () => {
     const { prevPage, preview } = this.props
+    document.body.scrollIntoView({ behavior: 'smooth' })
     prevPage(preview)
   }
 
   next = () => {
     const { nextPage } = this.props
+    document.body.scrollIntoView({ behavior: 'smooth' })
     nextPage()
   }
 
@@ -24,10 +26,10 @@ class PageFooter extends Component {
     return (
       <div className={cs(styles.footer)}>
         {enableBack && hasPrevPage && (
-          <button type="button" className={cs('btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
-            <span className="mrs mls fa fa-chevron-left rtl-flip" />
-            { page.prevBtn || Watchman.I18n().t('assessments.page.back') }
-          </button>
+        <button type="button" className={cs('btn-default', styles.btn, styles.btnDefault)} onClick={this.prev}>
+          <span className="mrs mls fa fa-chevron-left rtl-flip" />
+          { page.prevBtn || Watchman.I18n().t('assessments.page.back') }
+        </button>
         )}
         <button type="button" className={cs('btn-default', styles.btn, styles.btnPrimary)} onClick={this.next}>
           { page.nextBtn || Watchman.I18n().t('assessments.page.next') }

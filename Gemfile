@@ -17,7 +17,7 @@ gem 'sassc-rails', '~> 2.1.2'
 gem 'uglifier', '~> 3.0.2'
 
 source 'https://rails-assets.org/' do
-  gem 'rails-assets-bootstrap-add-clear', '~> 1.0.6'
+  gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
   gem 'rails-assets-bootstrap-file-input', '1.0.0'
@@ -42,8 +42,8 @@ end
 
 ### Authentication and authorization
 gem 'devise',                     '~> 4.7.1'
-gem 'devise-i18n',                '~> 1.1.0'
-gem 'devise_invitable',           '~> 1.6.0'
+gem 'devise-i18n',                '~> 1.9.1'
+gem 'devise_invitable',           '~> 2.0.1'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 
