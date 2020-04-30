@@ -29,8 +29,9 @@ export class Overlay extends React.Component {
   render () {
     const { image, hasError } = this.state
     const {
+      frame,
       position: {
-        width, x, y,
+        x, y, [`${frame}Width`]: width,
       },
     } = this.props
 
@@ -49,6 +50,7 @@ export class Overlay extends React.Component {
 }
 
 Overlay.propTypes = {
+  frame: PropTypes.string,
   resolve: PropTypes.func,
   position: PropTypes.object,
 }

@@ -61,7 +61,7 @@ class Tracker extends Component {
     canvas.width = offsetWidth
     canvas.height = offsetHeight
 
-    context.rect(boundaries.x, boundaries.y, boundaries.width, boundaries.height)
+    context.rect(boundaries.x, boundaries.y, boundaries.boxWidth, boundaries.height)
     this.contextRef = context
   }
 
@@ -105,24 +105,27 @@ class Tracker extends Component {
     } = this.props
     const { offsetWidth, offsetHeight } = this.videoEl
 
-    const width = box.width * offsetWidth
     const height = box.height * offsetHeight
+    const boxWidth = box.width * offsetWidth
+    const personWidth = object.size * offsetWidth
+    const personHeight = object.size * offsetHeight
     const boundaries = {
       x: box.x * offsetWidth,
       y: box.y * offsetHeight,
-      width,
       height,
-      area: width * height,
+      boxWidth,
+      personWidth,
+      area: personWidth * height,
     }
 
     // min, max box calculations
-    const thresholdWidth = object.threshold * offsetWidth
-    const thresholdHeight = object.threshold * offsetHeight
+    const thresholdWidth = object.threshold * personWidth
+    const thresholdHeight = object.threshold * personHeight
 
-    const minHeight = (object.size * offsetHeight) - thresholdHeight
-    const minWidth = (object.size * offsetWidth) - thresholdWidth
-    const maxHeight = (object.size * offsetHeight) + thresholdHeight
-    const maxWidth = (object.size * offsetWidth) + thresholdWidth
+    const minHeight = (object.size * personHeight) - thresholdHeight
+    const minWidth = (object.size * personWidth) - thresholdWidth
+    const maxHeight = (object.size * personHeight) + thresholdHeight
+    const maxWidth = (object.size * personWidth) + thresholdWidth
 
     const thresholds = {
       areaMin: minHeight * minWidth,
@@ -154,6 +157,8 @@ class Tracker extends Component {
     const helpTexts = []
     if (result) {
       // Face detected
+      // Uncomment the following line if you need the face box drawn on canvas for testing
+      // faceapi.draw.drawDetections(this.contextRef, result)
       inBoundary = this.isInBoundary(result.box)
       inSize = this.isInSize(result.box)
 
@@ -177,7 +182,7 @@ class Tracker extends Component {
     }
 
     if (isTracking) {
-      setTimeout(() => this.track())
+      setTimeout(() => this.track(), 1000)
     }
   }
 
@@ -239,6 +244,7 @@ class Tracker extends Component {
           <Overlay
             position={position}
             ref={(instance) => { this.overlay = instance }}
+            frame={frame}
             resolve={() => import(`./images/${frame}.svg`)}
           />
         )}
