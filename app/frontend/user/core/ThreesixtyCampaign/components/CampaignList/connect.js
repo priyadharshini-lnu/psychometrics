@@ -5,6 +5,7 @@ import { fetchCampaigns, loginHogan, acceptPolicy } from '../../campaigns'
 const mapStateToProps = state => ({
   campaigns: state.threeSixtyCampaign.campaigns,
   currentUser: state.threeSixtyCampaign.temp.currentUser,
+  enabledWizard: state.temp.checkingWizard.enabled,
 })
 
 const mapDispatchToProps = {

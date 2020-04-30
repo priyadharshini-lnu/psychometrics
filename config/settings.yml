@@ -985,3 +985,7 @@ providers:
             - id: '04'
               name: Completion_Time
               type: Percentile Scale
+checking_wizard:
+  network:
+    upload: <%= ENV.fetch('MIN_NETWORK_UPLOAD', 20).to_i %>
+    download: <%= ENV.fetch('MIN_NETWORK_DOWNLOAD', 20).to_i %>

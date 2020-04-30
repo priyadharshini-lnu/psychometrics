@@ -25,6 +25,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -69,6 +70,54 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving..."
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "languages": {
@@ -477,6 +526,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -521,6 +571,54 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving..."
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "languages": {
@@ -932,6 +1030,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -976,6 +1075,54 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving..."
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "finish": "Finish",
+      "processing": "Processing",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "languages": {
