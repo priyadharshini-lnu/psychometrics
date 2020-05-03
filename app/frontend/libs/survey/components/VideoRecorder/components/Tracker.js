@@ -158,7 +158,7 @@ class Tracker extends Component {
     if (result) {
       // Face detected
       // Uncomment the following line if you need the face box drawn on canvas for testing
-      // faceapi.draw.drawDetections(this.contextRef, result)
+      faceapi.draw.drawDetections(this.contextRef, result)
       inBoundary = this.isInBoundary(result.box)
       inSize = this.isInSize(result.box)
 
@@ -231,6 +231,10 @@ class Tracker extends Component {
     }
 
     this.setState({ showOverlay: false, frame: 'person', isTracking: false })
+
+    // Uncomment following lines if we're doing drawDetections (see: `track` method)
+    const { offsetWidth, offsetHeight } = this.videoEl
+    this.contextRef.clearRect(0, 0, offsetWidth, offsetHeight)
   }
 
   render () {
