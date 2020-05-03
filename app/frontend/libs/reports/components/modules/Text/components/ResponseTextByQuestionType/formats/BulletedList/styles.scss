@@ -1,0 +1,21 @@
+.bullet {
+  display: flex;
+  align-items: center;
+  width: 15%;
+  max-width: 15%;
+  font-weight: bold;
+  text-align: center;
+  justify-content: center;
+  background-color: #F5F5F5;
+}
+
+.text {
+  flex: 1;
+  padding: 8px 10px;
+
+  .description {
+    font-size: 11px;
+    color: #777777;
+    font-weight: normal;
+  }
+}

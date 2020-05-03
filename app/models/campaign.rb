@@ -11,9 +11,9 @@ class Campaign < ApplicationRecord
   has_one :datasheet, through: :project
   has_many :relationships, dependent: :destroy
   has_many :license_usages, inverse_of: :campaign
-  has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
-  has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :destroy
-  has_many :participants, class_name: 'Threesixty::Participant', dependent: :destroy
+  has_many :subjects, class_name: 'Threesixty::Subject', dependent: :restrict_with_error
+  has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :restrict_with_error
+  has_many :participants, class_name: 'Threesixty::Participant', dependent: :restrict_with_error
   has_many :users_reports, dependent: :destroy
   has_many :campaigns_users, dependent: :destroy
   has_many :instruction_templates, -> { enabled }
@@ -24,4 +24,8 @@ class Campaign < ApplicationRecord
 
   enum type: %i[common threesixty]
   enum status: { active: 0, closed: 1 }
+
+  def can_destroy?
+    [subjects.exists?, evaluators.exists?, participants.exists?].none?
+  end
 end
