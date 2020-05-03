@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'query-string'
@@ -83,10 +83,10 @@ export default function Evaluation ({
           trigger={['click']}
           overlay={StatusMenu}
         >
-          <div>
+          <Button>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
             <DownOutlined />
-          </div>
+          </Button>
         </Dropdown>
       )
     }
@@ -158,7 +158,7 @@ export default function Evaluation ({
       </div>
       <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
         <div className="evaluation-container">
-          <Row justify="end">
+          <Row type="flex" justify="end" className="mtm mrm">
             <Col flex="none">
               <StatusDropdown />
             </Col>
