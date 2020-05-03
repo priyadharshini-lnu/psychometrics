@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import I18nStore from 'rb/store/I18nStore'
-import LabelEditor from 'rb/components/LabelEditor'
 import store from 'rb/store/PropertyPanelStore'
-import styles from '../Text.scss'
+import Formats from './formats'
 
-const NUMBER_HEADER = 'Rating'
-const TEXT_HEADER = 'Learning Pathways'
 export default class MultipleChoice extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -63,9 +60,8 @@ export default class MultipleChoice extends Component {
     )
   }
 
-  updateHeader (text, name) {
+  update = () => {
     const { model } = this.props
-    model.props[name] = text
     model.update()
     this.forceUpdate()
   }
@@ -73,14 +69,7 @@ export default class MultipleChoice extends Component {
   render () {
     const {
       model,
-      model: {
-        props: {
-          format,
-          styled,
-          showHeader,
-          showDescription,
-        },
-      },
+      model: { props: { format } },
       isReal,
       result,
       preview,
@@ -90,53 +79,15 @@ export default class MultipleChoice extends Component {
     const values = this.getValues()
     const descriptionList = this.getDescriptionList()
 
-    if (!format || format === 'CommaSeparated') {
-      return <div>{values.join(', ')}</div>
-    } if (format === 'BulletedList') {
-      return (
-        <ul className={styled && styles.styledList}>
-          {values.map((v, i) => (
-            <li key={i}>
-              <div className={styles.listItemBullet}>●</div>
-              <div className={styles.listItemText}>
-                <div>{v}</div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )
-    } if (format === 'NumberedList') {
-      return (
-        <ol className={styled && styles.styledList}>
-          {showHeader && (
-          <li>
-            <LabelEditor
-              readOnly={preview}
-              onChange={e => this.updateHeader(e, 'numberHeader')}
-              value={I18nStore.tModule(model, 'numberHeader') || NUMBER_HEADER}
-              styles={styles.numberHeader}
-            />
-            <LabelEditor
-              readOnly={preview}
-              onChange={e => this.updateHeader(e, 'textHeader')}
-              value={I18nStore.tModule(model, 'textHeader') || TEXT_HEADER}
-              styles={styles.textHeader}
-            />
-          </li>
-          )}
-          {values.map((v, i) => (
-            <li key={i}>
-              <div className={styles.listItemNumber}>{i + 1}</div>
-              <div className={styles.listItemText}>
-                <div>{v}</div>
-                {showDescription
-                && <div className={styles.listItemDescription}>{descriptionList[i]}</div>}
-              </div>
-            </li>
-          ))}
-        </ol>
-      )
-    }
-    return null
+    const FormatComponent = Formats[format] || 'CommaSeparated'
+    return (
+      <FormatComponent
+        update={this.update}
+        model={model}
+        values={values}
+        descriptionList={descriptionList}
+        preview={preview}
+      />
+    )
   }
 }
