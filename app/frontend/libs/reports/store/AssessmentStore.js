@@ -7,6 +7,7 @@ const FILTER_QUESTION_TYPES = [
   'StaticContent',
   'MetaInfo',
   'Captcha',
+  'FileUpload',
 ]
 
 const AssessmentStore = function () {
