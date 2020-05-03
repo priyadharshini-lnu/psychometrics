@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import panelStyles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import ColorPicker from 'rb/components/ColorPicker'
 import ChoicesInput from 'rb/components/ChoicesInput'
-import store from 'rb/store/PropertyPanelStore'
 import AssessmentProperties from 'rb/components/modules/CommonProperties/AssessmentProperties'
 import clearAfterAssessmentChange from 'rb/components/modules/CommonMethods/clearAfterAssessmentChange'
 import styles from './PropStyles.scss'
@@ -10,51 +9,55 @@ import connect from '../connect'
 
 class Properties extends Component {
   changeBg = (color) => {
-    store.model.props.style.backgroundColor = color.rgb
+    const { model } = this.props
+    model.props.style.backgroundColor = color.rgb
     this.forceUpdate()
   }
 
   changeBorder = (color) => {
-    store.model.props.style.borderColor = color.rgb
+    const { model } = this.props
+    model.props.style.borderColor = color.rgb
     this.forceUpdate()
   }
 
   complete = () => {
-    store.model.update()
+    const { model } = this.props
+    model.update()
   }
 
   changeBorderRadius = (val) => {
-    store.model.props.style.borderRadius = val
-    this.forceUpdate()
-    store.model.update()
+    const { model } = this.props
+    model.props.style.borderRadius = val
+    model.update()
   }
 
   changeShadow = (val) => {
-    store.model.props.style.shadow = val
-    this.forceUpdate()
-    store.model.update()
+    const { model } = this.props
+    model.props.style.shadow = val
+    model.update()
   }
 
   changeX = (val) => {
-    store.model.props.style.offsetX = val
-    this.forceUpdate()
-    store.model.update()
+    const { model } = this.props
+    model.props.style.offsetX = val
+    model.update()
   }
 
   changeY = (val) => {
-    store.model.props.style.offsetY = val
-    this.forceUpdate()
-    store.model.update()
+    const { model } = this.props
+    model.props.style.offsetY = val
+    model.update()
   }
 
   changeShapeType = (obj) => {
-    store.model.props.shapeType = obj.value
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.shapeType = obj.value
+    model.update()
   }
 
   openConditionModal = () => {
-    const { openConditionalText } = this.props
-    openConditionalText({ module: store.model })
+    const { model, openConditionalText } = this.props
+    openConditionalText({ module: model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -65,10 +68,10 @@ class Properties extends Component {
   }
 
   render () {
+    const { model } = this.props
     const {
       borderRadius, backgroundColor, borderColor, shadow, offsetX, offsetY,
-    } = store.model.props.style
-    const { model } = this.props
+    } = model.props.style
 
     return (
       <div>
