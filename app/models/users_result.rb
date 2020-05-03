@@ -11,6 +11,10 @@ class UsersResult < ApplicationRecord
     where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
   }
 
+  def participant
+    Threesixty::Participant.find_by(evaluator_id: evaluator_id, subject_id: subject_id, campaign_id: campaign_id)
+  end
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end

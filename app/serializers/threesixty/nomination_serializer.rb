@@ -41,7 +41,7 @@ module Threesixty
     end
 
     def instructions
-      object.campaign.threesixty_campaign.instruction_templates
+      object.campaign.threesixty_campaign.instruction_templates.enabled
     end
   end
 end

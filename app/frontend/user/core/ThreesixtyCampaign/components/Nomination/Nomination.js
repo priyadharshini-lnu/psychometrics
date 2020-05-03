@@ -52,6 +52,9 @@ export default function Nominations (props) {
     })
   }
 
+  const { nomination: { loaded } } = props
+  if (!loaded) { return null }
+
   return (
     <Layout>
       <div className="page-header-wrap">
