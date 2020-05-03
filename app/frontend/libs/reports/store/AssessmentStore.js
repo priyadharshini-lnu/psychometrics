@@ -8,6 +8,8 @@ const FILTER_QUESTION_TYPES = [
   'MetaInfo',
   'Captcha',
   'FileUpload',
+  'AudioResponse',
+  'VideoResponse',
 ]
 
 const AssessmentStore = function () {
