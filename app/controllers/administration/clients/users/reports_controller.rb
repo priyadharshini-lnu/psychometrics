@@ -18,13 +18,14 @@ module Administration
 
         def preview
           @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
+          @selected_locale = params[:lang] || resource.default_language
           args = {
             project: client.project,
             campaign: nil,
             subject: nil,
             membership: membership,
             report: resource,
-            locale: user_locale
+            locale: @selected_locale
           }
 
           @data = ::Reports::PrepareDataForReport.call!(args)
@@ -36,7 +37,7 @@ module Administration
             format.pdf do
               add_cookie_for_file_download
               pdf_file = ::Exports::Reports::Pdf::ReportExport.
-                         export(@current_user, resource, user, client, lang: user_locale)
+                         export(@current_user, resource, user, client, lang: @selected_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end

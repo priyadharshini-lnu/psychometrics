@@ -14,7 +14,7 @@ html
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
 
-  body#administration data-locale="#{params[:lang] || I18n.locale}"
+  body#administration data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     .page-container
       = render partial: 'left_sidebar'
       .page-content
