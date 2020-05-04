@@ -13,7 +13,6 @@ import PickGroupRank from './PickGroupRank'
 import TextEntry from './TextEntry'
 import MatrixTable from './MatrixTable'
 import DataSheet from './DataSheet'
-import FileUpload from './FileUpload'
 
 export default {
   Slider,
@@ -31,5 +30,4 @@ export default {
   TextEntry,
   MatrixTable,
   DataSheet,
-  FileUpload,
 }
