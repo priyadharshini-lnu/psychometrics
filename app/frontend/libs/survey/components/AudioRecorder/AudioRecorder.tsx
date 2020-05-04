@@ -64,6 +64,7 @@ const AudioRecorder: React.FC<Props> = ({
   const updateAudioPulseRef = useRef<() => void>()
   const recorderRef = useRef<RecorderCore>()
   const maxDuration = model.props.duration || DEFAULT_MAX_DURATION
+  const playerRef = useRef<HTMLAudioElement>()
 
   useEffect(() => {
     updateAudioPulseRef.current = updateAudioPulse
@@ -182,6 +183,11 @@ const AudioRecorder: React.FC<Props> = ({
     dispatch(setRecordingTime(time))
   }
 
+  const playAudio = (): void => {
+    dispatch(setPlayerState(PLAYER_STATE.PLAYING))
+    playerRef.current?.play()
+  }
+
   const renderControls = (): JSX.Element => {
     const {
       recordingState, playerState, uploadState, percent,
@@ -193,7 +199,7 @@ const AudioRecorder: React.FC<Props> = ({
           percent={percent}
           playerState={playerState}
           uploadState={uploadState}
-          playAudio={(): void => dispatch(setPlayerState(PLAYER_STATE.PLAYING))}
+          playAudio={playAudio}
           pauseAudio={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
           saveRecording={saveRecording}
           discardRecording={discardRecording}
@@ -236,7 +242,15 @@ const AudioRecorder: React.FC<Props> = ({
         </div>
       </div>
       {recordingState === RECORDER_STATES.RECORDED && fileUrl()
-        && <AudioPlayer playerState={playerState} onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))} audioFileUrl={fileUrl() as string} />}
+        && (
+        <AudioPlayer
+          playerState={playerState}
+          setPlayerElement={(playerElement): void => { playerRef.current = playerElement }}
+          onComplete={(): void => dispatch(setPlayerState(PLAYER_STATE.PAUSED))}
+          audioFileUrl={fileUrl() as string}
+        />
+        )
+      }
       {recordingState !== RECORDER_STATES.RECORDED
         && (
         <div className={styles.recordingTime}>
