@@ -5,20 +5,9 @@ function gotoCampaign () {
 }
 
 <% if @campaign.errors.any? %>
-  noty({
-    layout: 'center',
-    theme: 'relax',
-    text: "<%= @campaign.errors.messages[:base].first %>",
-    type: 'warning',
-    buttons: [
-      {
-        addClass: 'btn btn-danger center-block', text: 'Ok', onClick: function($noty) {
-          $noty.close();
-          gotoCampaign();
-        }
-      }
-    ],
-  });
+  noty({text: "<%= @campaign.errors.messages[:base].first %>", type: 'warning'});
 <% else %>
   noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.decorate.display_name) %>', type: 'success'});
 <% end %>
+
+setTimeout(gotoCampaign, 3000);
