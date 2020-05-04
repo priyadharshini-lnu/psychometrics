@@ -207,7 +207,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div>Font</div>
-        <PropertyFonts colors={false} />
+        <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />
       </div>
     )

@@ -70,7 +70,7 @@ export default class Properties extends Component {
     return (
       <div>
         <div>Font</div>
-        <PropertyFonts colors={false} />
+        <PropertyFonts model={model} colors={false} />
         <div className={styles.title}>Default 360</div>
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <List model={model} onChange={this.onChange} />

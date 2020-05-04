@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import ColorPicker from 'rb/components/ColorPicker'
 
 export const FONTS = {
@@ -27,36 +26,42 @@ class PropertyFilter extends Component {
   static propTypes = {}
 
   changeFontFamily = (e) => {
-    store.model.props.style.fontFamily = e.currentTarget.value
+    const { model } = this.props
+    model.props.style.fontFamily = e.currentTarget.value
     this.update()
   }
 
   changeFontSize = (e) => {
-    store.model.props.style.fontSize = e.currentTarget.value
+    const { model } = this.props
+    model.props.style.fontSize = e.currentTarget.value
     this.update()
   }
 
   changeFontColor = (color) => {
-    store.model.props.style.fontColor = color.hex
+    const { model } = this.props
+    model.props.style.fontColor = color.hex
     this.update()
   }
 
   update = () => {
-    store.model.update()
+    const { model } = this.props
+    model.update()
     this.forceUpdate()
   }
 
   renderFontFamily () {
+    const { model } = this.props
     return (
-      <select className="form-control" value={store.model.props.style.fontFamily} onChange={this.changeFontFamily}>
+      <select className="form-control" value={model.props.style.fontFamily} onChange={this.changeFontFamily}>
         {_.map(FONTS, (value, key) => (<option key={key} value={value}>{key}</option>))}
       </select>
     )
   }
 
   renderFontSize () {
+    const { model } = this.props
     return (
-      <select className="form-control" value={store.model.props.style.fontSize} onChange={this.changeFontSize}>
+      <select className="form-control" value={model.props.style.fontSize} onChange={this.changeFontSize}>
         {_.times(1 + (FONT_MAX_SIZE - FONT_MIN_SIZE) / 10, i => (
           <option key={i} value={`${i * 10 + FONT_MIN_SIZE}%`}>
             {i * 10 + FONT_MIN_SIZE}
@@ -68,7 +73,8 @@ class PropertyFilter extends Component {
   }
 
   renderFontColor () {
-    const { fontColor } = store.model.props.style
+    const { model } = this.props
+    const { fontColor } = model.props.style
     return (
       <ColorPicker color={fontColor} onChange={this.changeFontColor} onComplete={this.update} />
     )

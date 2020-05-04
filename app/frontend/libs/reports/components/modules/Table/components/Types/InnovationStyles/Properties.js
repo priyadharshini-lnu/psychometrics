@@ -12,13 +12,14 @@ class Properties extends Component {
   }
 
   render () {
+    const { model } = this.props
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">
           Manage conditions
         </div>
         <div>Font</div>
-        <PropertyFonts colors={false} />
+        <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />
         <PropertyPagination />
         <hr className={styles.divider} />

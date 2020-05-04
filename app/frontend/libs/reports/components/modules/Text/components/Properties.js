@@ -261,7 +261,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
-        <PropertyFonts />
+        <PropertyFonts model={model} />
         <div className="margin-top-10">Paragraph</div>
         {this.renderPosition()}
         <div className="margin-top-10">

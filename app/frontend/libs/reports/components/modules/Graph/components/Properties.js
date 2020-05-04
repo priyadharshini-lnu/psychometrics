@@ -110,7 +110,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
-        <PropertyFonts />
+        <PropertyFonts model={model} />
         <div style={{ position: 'relative' }}>
           <div className="margin-top-10">Colors</div>
           <ColorSet model={model} />
