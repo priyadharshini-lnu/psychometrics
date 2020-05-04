@@ -47,7 +47,7 @@ class Text extends Component {
       module, preview, openRichEditor, closeRichEditor, richEditorOpened,
     } = this.props
     if (!preview) {
-      if (_.find(store.selected, module) && this.edit) {
+      if (_.find(store.selected, { id: module.id }) && !this.edit) {
         if (this.editor) {
           openRichEditor()
         }
