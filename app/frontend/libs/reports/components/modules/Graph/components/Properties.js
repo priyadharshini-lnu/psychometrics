@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import DataSource from 'rb/components/DataSourceMenu'
-import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import ColorSet from 'rb/components/ColorSet'
@@ -19,28 +18,28 @@ class Properties extends Component {
 
   componentDidMount () {
     this.appListener = AppStore.addListener('change', () => this.forceUpdate())
-    this.listener = store.addListener('change', () => this.forceUpdate())
   }
 
   componentWillUnmount () {
     this.appListener.remove()
-    this.listener.remove()
   }
 
   update = () => {
-    store.model.update()
+    const { model } = this.props
+    model.update()
     this.forceUpdate()
   }
 
   changeFontColor = (color) => {
-    store.model.props.style.fontColor = color.hex
+    const { model } = this.props
+    model.props.style.fontColor = color.hex
+    model.update()
   }
 
   select = (type, presetName) => {
     const { model } = this.props
     model.changeType(type, presetName)
-    store.update()
-    this.forceUpdate()
+    model.update()
   }
 
   checkboxHandler = (type, e) => {
@@ -50,16 +49,17 @@ class Properties extends Component {
   }
 
   reset = () => {
+    const { model } = this.props
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
-      store.model.reset()
+      model.reset()
       this.forceUpdate()
     }
   }
 
   openConditionModal = () => {
-    const { openConditionalText } = this.props
-    openConditionalText({ module: store.model })
+    const { model, openConditionalText } = this.props
+    openConditionalText({ module: model })
   }
 
   renderCustomProperties () {
