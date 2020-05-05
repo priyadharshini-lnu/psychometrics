@@ -15,6 +15,7 @@ export const SELECT_MODULE = 'report/SELECT_MODULE'
 export const UNSELECT_MODULES = 'report/UNSELECT_MODULES'
 export const SHOW_ON_ALL_PAGES = 'report/SHOW_ON_ALL_PAGES'
 export const CHANGE_SIZE = 'report/CHANGE_SIZE'
+export const UPDATE_PAGE_POSITIONS = 'report/UPDATE_PAGE_POSITIONS'
 
 enum SelectedTypes {
   'Module',
@@ -30,12 +31,16 @@ interface AddPage { type: typeof ADD_PAGE, page: PageInterface, index?: number }
 interface SelectModule { type: typeof SELECT_MODULE, moduleType: SelectedTypes, id: number }
 interface UnselectModules { type: typeof UNSELECT_MODULES }
 interface ChangeSize { type: typeof CHANGE_SIZE, size: {width: number, height: number} }
+interface UpdatePagePositions { type: typeof UPDATE_PAGE_POSITIONS, pageId: number, newIndex: number }
 
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR })
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
 export const updateCurrentPage = (offset: number): UpdateCurrentPage => ({ type: UPDATE_CURRENT_PAGE, offset })
+export const updatePagePositions = (pageId, newIndex): UpdatePagePositions => ({
+  type: UPDATE_PAGE_POSITIONS, pageId, newIndex,
+})
 
 export const addPage = (page: PageInterface, index: number): AddPage => ({ type: ADD_PAGE, page, index })
 export const selectModule = (moduleType: SelectedTypes, id: number): SelectModule => ({

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { getPages } from 'libs/reports/core/builder/selectors'
+import { updatePagePositions } from 'libs/reports/core/builder/actions'
 
 export default connect(
   state => ({
@@ -7,5 +8,6 @@ export default connect(
     pages: getPages(state.report, state.report.builder.pages),
   }),
   {
+    updatePagePositions,
   },
 )
