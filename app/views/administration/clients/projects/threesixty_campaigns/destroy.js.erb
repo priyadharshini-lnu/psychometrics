@@ -6,8 +6,7 @@ function gotoCampaign () {
 
 <% if @campaign.errors.any? %>
   noty({text: "<%= @campaign.errors.messages[:base].first %>", type: 'warning'});
+  setTimeout(gotoCampaign, 3000);
 <% else %>
   noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.decorate.display_name) %>', type: 'success'});
 <% end %>
-
-setTimeout(gotoCampaign, 3000);
