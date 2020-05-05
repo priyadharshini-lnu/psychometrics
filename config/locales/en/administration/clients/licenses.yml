@@ -1,4 +1,11 @@
 en:
+  activerecord:
+    errors:
+      models:
+        license:
+          attributes:
+            used_number:
+              overused: License used can't be more than the sum of license allocated and overuse limit.
   administration:
     clients:
       licenses:

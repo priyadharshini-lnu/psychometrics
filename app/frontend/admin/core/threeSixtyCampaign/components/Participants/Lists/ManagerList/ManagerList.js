@@ -13,6 +13,7 @@ export default function ManagerList ({
   managers,
   openModal,
   editUser,
+  removeUser,
   total,
   page,
   searchTerm,
@@ -51,6 +52,7 @@ export default function ManagerList ({
             evaluators={managers}
             editUser={editUser}
             onCloseParticipantModal={() => fetchManagers(campaignId, page, searchTerm)}
+            removeUser={removeUser}
           />
           <div className="pm">
             <Pagination total={total} fetch={curriedFetchManagers(campaignId)} path="/participants/managers" />

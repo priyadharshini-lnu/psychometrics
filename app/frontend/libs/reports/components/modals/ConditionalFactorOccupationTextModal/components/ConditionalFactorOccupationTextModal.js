@@ -33,6 +33,7 @@ export class ConditionalTextModal extends Component {
     if (newModule.props.basedOn === 'occupation') { newModule.textConditions = [] }
     const { module, close } = this.props
     module.textConditions = newModule.textConditions
+    module.update()
     close()
   }
 

@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
 import Action from 'rb/undo'
 import ColorPicker from 'rb/components/ColorPicker'
 import PropertyFonts from 'rb/components/PropertyFonts'
@@ -25,86 +24,86 @@ const SELECT_OPTIONS = [
 ]
 
 class Properties extends Component {
-  componentDidMount () {
-    this.listener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.listener.remove()
-  }
-
   update = () => {
-    store.model.update()
-    store.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.update()
   }
 
   changeBg = (color) => {
-    store.model.props.style.backgroundColor = color.rgb
+    const { model } = this.props
+    model.props.style.backgroundColor = color.rgb
   }
 
   changeBorder = (color) => {
-    store.model.props.style.borderColor = color.rgb
+    const { model } = this.props
+    model.props.style.borderColor = color.rgb
   }
 
   changeType = (type, props = {}) => {
-    if (store.question.type === type) { return }
-    Action('QuestionChangeType', store.question, { oldType: store.question.type, newType: type })
-    store.question.changeType(type, props)
+    const { model } = this.props
+    if (model.type === type) { return }
+    Action('QuestionChangeType', model, { oldType: model.type, newType: type })
+    model.changeType(type, props)
     this.update()
   }
 
   changeHorizontalAlign = (type) => {
-    if (store.model.props.style.horizontalAlign === type) {
-      store.model.props.style.horizontalAlign = ''
+    const { model } = this.props
+    if (model.props.style.horizontalAlign === type) {
+      model.props.style.horizontalAlign = ''
     } else {
-      store.model.props.style.horizontalAlign = type
+      model.props.style.horizontalAlign = type
     }
-
-    this.update()
+    model.update()
   }
 
   changeVerticalAlign = (type) => {
-    store.model.props.style.verticalAlign = type
+    const { model } = this.props
+    model.props.style.verticalAlign = type
     this.update()
   }
 
   changeFontWeight = (e) => {
-    store.model.props.style.fontWeight = e.currentTarget.checked ? 'bold' : 'normal'
+    const { model } = this.props
+    model.props.style.fontWeight = e.currentTarget.checked ? 'bold' : 'normal'
     this.update()
   }
 
   changeFontStyle = (e) => {
-    store.model.props.style.fontStyle = e.currentTarget.checked ? 'italic' : 'normal'
+    const { model } = this.props
+    model.props.style.fontStyle = e.currentTarget.checked ? 'italic' : 'normal'
     this.update()
   }
 
   changeBorderRadius = (val) => {
-    store.model.props.style.borderRadius = val
+    const { model } = this.props
+    model.props.style.borderRadius = val
     this.update()
   }
 
   reset = () => {
+    const { model } = this.props
     // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure?')) {
-      store.model.reset()
+      model.reset()
       this.forceUpdate()
     }
   }
 
   changeSourceType = (obj) => {
-    store.model.props.sourceType = obj.value
+    const { model } = this.props
+    model.props.sourceType = obj.value
     this.update()
   }
 
   openConditionModal = () => {
-    const { openConditionalText } = this.props
-    openConditionalText({ module: store.model })
+    const { model, openConditionalText } = this.props
+    openConditionalText({ module: model })
   }
 
   openConditionalFactorOccupationModal = () => {
-    const { openConditionalFactorOccupationText } = this.props
-    openConditionalFactorOccupationText({ module: store.model })
+    const { model, openConditionalFactorOccupationText } = this.props
+    openConditionalFactorOccupationText({ module: model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -115,7 +114,7 @@ class Properties extends Component {
   }
 
   changeModelIn = (keys, value) => {
-    const { model } = store
+    const { model } = this.props
     // TODO (atanych): update model by link directly in the component is not good
     // practice. We should avoid mutations in future.
     // TODO (atanych): But for now let's keep as is.
@@ -124,8 +123,9 @@ class Properties extends Component {
   }
 
   renderPosition () {
-    const { verticalAlign } = store.model.props.style
-    const { horizontalAlign } = store.model.props.style
+    const { model } = this.props
+    const { verticalAlign } = model.props.style
+    const { horizontalAlign } = model.props.style
     return (
       <div className={localStyles.containersBox}>
         <div className={localStyles.horizontalContainer}>
@@ -156,24 +156,26 @@ class Properties extends Component {
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
   renderResponseTextForm () {
-    if (store.model.props.sourceType !== 'ResponseText') { return null }
+    const { model } = this.props
+    if (model.props.sourceType !== 'ResponseText') { return null }
     return (
-      <ResponseText model={store.model} onChangeModelIn={this.changeModelIn} />
+      <ResponseText model={model} onChangeModelIn={this.changeModelIn} />
     )
   }
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
   renderResultTextForm () {
-    if (store.model.props.sourceType !== 'ResultText') { return null }
+    const { model } = this.props
+    if (model.props.sourceType !== 'ResultText') { return null }
     return (
-      <ResultText model={store.model} onChangeModelIn={this.changeModelIn} update={this.update} />
+      <ResultText model={model} onChangeModelIn={this.changeModelIn} update={this.update} />
     )
   }
 
   renderDataSourceOptions () {
-    if (store.model.props.sourceType === 'ResultText') return null
-
     const { model } = this.props
+    if (model.props.sourceType === 'ResultText') return null
+
     return (
       <div>
         <hr className={styles.divider} />
@@ -183,7 +185,8 @@ class Properties extends Component {
   }
 
   render () {
-    const { backgroundColor, borderColor, borderRadius } = store.model.props.style
+    const { model } = this.props
+    const { backgroundColor, borderColor, borderRadius } = model.props.style
     return (
       <div>
         <div className={styles.title}>Text Options</div>
@@ -192,14 +195,14 @@ class Properties extends Component {
         <div className="margin-top-10 margin-bottom-10">
           <Select
             name="form-field-name"
-            value={getValue(SELECT_OPTIONS, store.model.props.sourceType)}
+            value={getValue(SELECT_OPTIONS, model.props.sourceType)}
             options={SELECT_OPTIONS}
             getOptionValue={opt => opt.value}
             autoFocus={false}
             isClearable={false}
             onChange={this.changeSourceType}
           />
-          {store.model.props.sourceType === 'ConditionalText'
+          {model.props.sourceType === 'ConditionalText'
             && (
             <div
               style={{ width: '100%' }}
@@ -209,7 +212,7 @@ class Properties extends Component {
               Manage condition
             </div>
             )}
-          {store.model.props.sourceType === 'ConditionalFactorOccupationText'
+          {model.props.sourceType === 'ConditionalFactorOccupationText'
             && (
             <div
               style={{ width: '100%' }}
@@ -222,7 +225,7 @@ class Properties extends Component {
           {this.renderResponseTextForm()}
           {this.renderResultTextForm()}
           {
-          store.model.props.sourceType === 'PipedText'
+          model.props.sourceType === 'PipedText'
           && (
           <div style={{ width: '100%' }}>
             <div>
@@ -258,7 +261,7 @@ class Properties extends Component {
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>
-        <PropertyFonts />
+        <PropertyFonts model={model} />
         <div className="margin-top-10">Paragraph</div>
         {this.renderPosition()}
         <div className="margin-top-10">
@@ -266,7 +269,7 @@ class Properties extends Component {
             <input
               style={{ marginRight: '5px' }}
               type="checkbox"
-              checked={store.model.props.style.fontWeight === 'bold'}
+              checked={model.props.style.fontWeight === 'bold'}
               onChange={this.changeFontWeight}
             />
             Bold
@@ -275,7 +278,7 @@ class Properties extends Component {
             <input
               style={{ marginRight: '5px' }}
               type="checkbox"
-              checked={store.model.props.style.fontStyle === 'italic'}
+              checked={model.props.style.fontStyle === 'italic'}
               onChange={this.changeFontStyle}
             />
             Italics

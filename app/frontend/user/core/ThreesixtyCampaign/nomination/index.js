@@ -99,7 +99,7 @@ const setStateFromResponse = (state, action) => {
 }
 
 const HANDLERS = {
-  [FETCH]: setStateFromResponse,
+  [FETCH]: (state, action) => ({ ...setStateFromResponse(state, action), loaded: true }),
   [ADD]: (state, action) => {
     const { relationship } = action.response
     const newStore = updateIn(state, ['evaluators', relationship.name], (list = []) => list.concat(action.response))
@@ -138,6 +138,7 @@ const defaultState = {
   evaluators: [],
   relationships: [],
   instructions: [],
+  loaded: false,
   options: { messages: {}, participants: { manager: {}, subject: [] } },
   form: {
     attrs: {},
