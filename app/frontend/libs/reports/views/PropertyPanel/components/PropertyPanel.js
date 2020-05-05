@@ -13,10 +13,10 @@ class PropertyPanel extends Component {
   }
 
   componentDidMount () {
-    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
+    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
       this.setState({ popupOpen: true })
     })
-    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
+    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
       this.setState({ popupOpen: false })
     })
   }
