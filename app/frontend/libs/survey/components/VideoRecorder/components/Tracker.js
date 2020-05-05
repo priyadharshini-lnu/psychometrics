@@ -5,14 +5,15 @@ import PropTypes from 'prop-types'
 import { isEqual } from 'lodash'
 import cs from 'classnames'
 import * as faceapi from 'face-api.js'
+import Watchman from 'libs/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
 const messages = {
-  frame: 'Please make sure that your face aligns with the frame.',
-  ready: 'Press the Record button when ready to record.',
-  forward: 'You are too far away from the screen. Please move a bit closer.',
-  backward: 'You are too close to the screen. Please move a bit back.',
+  frame: Watchman.I18n().t('assessments.video_response.tracker.frame'),
+  ready: Watchman.I18n().t('assessments.video_response.tracker.ready'),
+  forward: Watchman.I18n().t('assessments.video_response.tracker.forward'),
+  backward: Watchman.I18n().t('assessments.video_response.tracker.backward'),
 }
 
 class Tracker extends Component {
@@ -158,7 +159,7 @@ class Tracker extends Component {
     if (result) {
       // Face detected
       // Uncomment the following line if you need the face box drawn on canvas for testing
-      faceapi.draw.drawDetections(this.contextRef, result)
+      // faceapi.draw.drawDetections(this.contextRef, result)
       inBoundary = this.isInBoundary(result.box)
       inSize = this.isInSize(result.box)
 
@@ -233,8 +234,8 @@ class Tracker extends Component {
     this.setState({ showOverlay: false, frame: 'person', isTracking: false })
 
     // Uncomment following lines if we're doing drawDetections (see: `track` method)
-    const { offsetWidth, offsetHeight } = this.videoEl
-    this.contextRef.clearRect(0, 0, offsetWidth, offsetHeight)
+    // const { offsetWidth, offsetHeight } = this.videoEl
+    // this.contextRef.clearRect(0, 0, offsetWidth, offsetHeight)
   }
 
   render () {

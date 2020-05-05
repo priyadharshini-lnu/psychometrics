@@ -69,7 +69,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {
@@ -570,7 +576,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {
@@ -1074,7 +1086,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {
