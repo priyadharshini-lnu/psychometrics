@@ -37,6 +37,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -223,6 +231,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -487,6 +496,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -668,6 +678,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -688,6 +699,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -1121,6 +1133,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -1141,6 +1154,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -4446,6 +4460,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -4599,6 +4618,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -4639,6 +4659,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
@@ -6041,6 +6065,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -6063,6 +6088,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -6277,6 +6303,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -6589,6 +6616,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -6775,6 +6810,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -7039,6 +7075,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -7220,6 +7257,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -7240,6 +7278,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -7673,6 +7712,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -7693,6 +7733,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -10998,6 +11039,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -11151,6 +11197,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -11191,6 +11238,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
@@ -12597,6 +12648,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -12619,6 +12671,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -12833,6 +12886,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -13148,6 +13202,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           }
         },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
         "assign_report": {
           "attributes": {
             "adding_report_ids": {
@@ -13334,6 +13396,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -13598,6 +13661,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -13779,6 +13843,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "agile": "AGILE",
           "all": "All Categories",
           "case_study": "Case Studies",
           "hogan": "Hogan",
@@ -13799,6 +13864,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -14232,6 +14298,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "agile": "AGILE",
             "all": "All Categories",
             "case_study": "Case Studies",
             "hogan": "Hogan",
@@ -14252,6 +14319,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "agile": "AGILE",
               "all": "All Categories",
               "case_study": "Case Studies",
               "hogan": "Hogan",
@@ -17557,6 +17625,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "import": {
         "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
       }
     },
     "tte": "TTE",
@@ -17710,6 +17783,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -17750,6 +17824,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
@@ -19152,6 +19230,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
@@ -19174,6 +19253,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Campaign",
+          "agile": "AGILE",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -19388,6 +19468,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regular": "Client Admin",
             "superadmin": "Super Admin"
           },
+          "agile": "AGILE",
           "case_study": "Case study",
           "hogan": "Hogan",
           "manager": "Manager",
