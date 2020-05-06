@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Overlay.scss'
+import frames from './frames'
 
 export class Overlay extends React.Component {
   constructor () {
@@ -33,6 +34,7 @@ export class Overlay extends React.Component {
       position: {
         x, y, [`${frame}Width`]: width,
       },
+      position,
     } = this.props
 
     const style = {
@@ -40,10 +42,10 @@ export class Overlay extends React.Component {
     }
 
     if (hasError) return <div>{hasError.message}</div>
-
+    const Frame = frames[frame]
     return (
       <div className={styles.overlay}>
-        <img className={styles.frame} src={image} style={style} />
+        <Frame boundaries={position} />
       </div>
     )
   }

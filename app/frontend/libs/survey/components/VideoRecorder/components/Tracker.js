@@ -9,14 +9,14 @@ import Watchman from 'libs/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
-const messages = {
-  frame: Watchman.I18n().t('assessments.video_response.tracker.frame'),
-  ready: Watchman.I18n().t('assessments.video_response.tracker.ready'),
-  forward: Watchman.I18n().t('assessments.video_response.tracker.forward'),
-  backward: Watchman.I18n().t('assessments.video_response.tracker.backward'),
-}
-
 class Tracker extends Component {
+  messages = {
+    frame: Watchman.I18n().t('assessments.video_response.tracker.frame'),
+    ready: Watchman.I18n().t('assessments.video_response.tracker.ready'),
+    forward: Watchman.I18n().t('assessments.video_response.tracker.forward'),
+    backward: Watchman.I18n().t('assessments.video_response.tracker.backward'),
+  }
+
   constructor () {
     super()
 
@@ -39,6 +39,7 @@ class Tracker extends Component {
   componentDidMount () {
     this.setupBoundingBox()
     this.showElements(['frame', 'ready'])
+    window.addEventListener('resize', this.calculateBoundaries)
   }
 
   componentDidUpdate () {
@@ -51,6 +52,10 @@ class Tracker extends Component {
       || !isEqual(prevProps.object, trackerOptions[fitInFrame].object)) {
       this.calculateBoundaries()
     }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.calculateBoundaries)
   }
 
   setupBoundingBox () {
@@ -97,7 +102,7 @@ class Tracker extends Component {
     return inBoundary
   }
 
-  calculateBoundaries () {
+  calculateBoundaries = () => {
     const {
       fitInFrame,
       trackerOptions: {
@@ -116,6 +121,10 @@ class Tracker extends Component {
       height,
       boxWidth,
       personWidth,
+      offsetHeight,
+      offsetWidth,
+      box,
+      object,
       area: personWidth * height,
     }
 
@@ -165,10 +174,10 @@ class Tracker extends Component {
 
       if (inBoundary && inSize === 0) {
         this.setState({ showOverlay: false })
-        this.hideElements(Object.keys(messages))
+        this.hideElements(Object.keys(this.messages))
       } else {
         this.setState({ showOverlay: true })
-        this.hideElements(Object.keys(messages))
+        this.hideElements(Object.keys(this.messages))
 
         if (!inBoundary) helpTexts.push('frame')
         if (inSize !== 0) {
@@ -256,10 +265,10 @@ class Tracker extends Component {
 
         {showOverlay && (
           <div id="help" className={styles.help}>
-            <div id="frame" className={cs(styles.message, 'hidden')}>{messages.frame}</div>
-            <div id="ready" className={cs(styles.message, 'hidden')}>{messages.ready}</div>
-            <div id="forward" className={cs(styles.message, 'hidden')}>{messages.forward}</div>
-            <div id="backward" className={cs(styles.message, 'hidden')}>{messages.backward}</div>
+            <div id="frame" className={cs(styles.message, 'hidden')}>{this.messages.frame}</div>
+            <div id="ready" className={cs(styles.message, 'hidden')}>{this.messages.ready}</div>
+            <div id="forward" className={cs(styles.message, 'hidden')}>{this.messages.forward}</div>
+            <div id="backward" className={cs(styles.message, 'hidden')}>{this.messages.backward}</div>
           </div>
         )}
       </div>
