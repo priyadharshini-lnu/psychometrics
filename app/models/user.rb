@@ -244,8 +244,7 @@ class User < ApplicationRecord
             email.eq(warden_conditions[:email]&.downcase) &
             clients.subdomain.eq(subdomain) &
             clients.disabled.not_eq(true)
-        end .
-          first
+        end.first
       else
         enabled.
           identified.

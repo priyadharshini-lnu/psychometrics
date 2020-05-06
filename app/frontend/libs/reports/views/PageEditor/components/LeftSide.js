@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import store from 'rb/store/PageList'
 import { DropTarget } from 'react-dnd'
-import update from 'react-addons-update'
 import PageModel from 'rb/models/Page'
 import PageLabel from './PageLabel'
 import styles from './PageEditor.scss'
@@ -28,23 +27,19 @@ class PageEditor extends Component {
   }
 
   movePage = (id, atIndex) => {
-    const { page, index } = this.findPage(id)
-    store.list = update(store.list, {
-      $splice: [
-        [index, 1],
-        [atIndex, 0, page],
-      ],
-    })
-    store.updatePositions()
-    this.forceUpdate()
+    const { updatePagePositions } = this.props
+    // const { page, index } = this.findPage(id)
+
+    updatePagePositions(id, atIndex)
   }
 
-  findPage (id) {
-    const page = _.find(store.list, { id })
+  findPage = (id) => {
+    const { pages } = this.props
+    const page = _.find(pages, { id })
 
     return {
       page,
-      index: store.list.indexOf(page),
+      index: pages.indexOf(page),
     }
   }
 

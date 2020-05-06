@@ -184,7 +184,7 @@ module Imports
                joining do
           dimension.assessments.alias('assessments').
             on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
-        end .
+        end.
                where(name: norm_name).
                pluck(:id)
         { id: norm.try(:first), type: norm_type }

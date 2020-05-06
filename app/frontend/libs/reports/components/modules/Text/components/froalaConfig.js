@@ -51,6 +51,7 @@ export default {
   attribution: false,
   autofocus: true,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
+  pasteDeniedAttrs: ['style'],
   events: {
     'video.codeError': function (code) {
       events.video_code_error(this, code)

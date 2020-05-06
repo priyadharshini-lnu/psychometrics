@@ -1,10 +1,14 @@
-import React, { useReducer, useEffect, useRef } from 'react'
+import React, {
+  useReducer, useEffect, useRef, useState,
+} from 'react'
 import cs from 'classnames'
+import _ from 'lodash'
 import { getMinutesAndSeconds } from 'utils/time'
 import api from 'middleware/api'
 import styles from './AudioRecorderStyle.scss'
 import {
-  RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
+  RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION, AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD,
+  AUDIO_LEVEL, HIGH_PULSE_THRESOLD, PERCENT_OF_HIGH_PULSE_THRESOLD,
 } from './constants'
 import RecorderCore from './Recorder/Core'
 import reducer, {
@@ -14,7 +18,8 @@ import reducer, {
 import FileUploader from '../FileUpload/components/FileUploader'
 import Permission from './Permission'
 import AudioPlayer from './AudioPlayer/index'
-import Microphone from './images/microphone.png'
+import RedMicrophone from './images/red-microphone.png'
+import GreenMicrophone from './images/green-microphone.png'
 import RecorderControl from './Recorder/RecorderControl'
 import PlayerControl from './AudioPlayer/PlayerControl'
 
@@ -49,7 +54,6 @@ interface Answer {
   value: string
 }
 
-
 const AudioRecorder: React.FC<Props> = ({
   mediaUrl,
   model,
@@ -60,8 +64,11 @@ const AudioRecorder: React.FC<Props> = ({
   readOnly,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [audioLevel, setAudioLevel] = useState(AUDIO_LEVEL.LOW)
   const updateAudioPulseRef = useRef<() => void>()
   const recorderRef = useRef<RecorderCore>()
+  const lastAudiDetectorColorChangeRef = useRef<number>()
+  const batchPulsesRef = useRef<Array<number>>([])
   const maxDuration = model.props.duration || DEFAULT_MAX_DURATION
 
   useEffect(() => {
@@ -77,10 +84,36 @@ const AudioRecorder: React.FC<Props> = ({
     }
   }, [result])
 
+  useEffect(() => {
+    changeAudioLevel()
+  }, [state.audioPulse])
+
   const animationFrames: Array<number> = []
 
   const initRecorder = (): void => {
     recorderRef.current = new RecorderCore({ onUpdateRecordTime: updateRecordTime })
+  }
+
+  const changeAudioLevel = () => {
+    if (!lastAudiDetectorColorChangeRef.current) {
+      lastAudiDetectorColorChangeRef.current = performance.now()
+      return
+    }
+
+    // If audio is low it can immediately change to high.
+    //  To change from high to low it will wait for time specified by AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD
+    if ((audioLevel === AUDIO_LEVEL.LOW && batchPulsesRef.current.length)
+      || (performance.now() - lastAudiDetectorColorChangeRef.current) > AUDIO_LEVEL_CHANGE_TO_LOW_THRESOLD) {
+      const totalPulse = batchPulsesRef.current.length
+      const pulseWithHighThresold = _.filter(batchPulsesRef.current,
+        (pulse: number) => pulse > HIGH_PULSE_THRESOLD).length
+      const percentOfHighPulse = (pulseWithHighThresold / totalPulse) * 100
+      setAudioLevel(percentOfHighPulse > PERCENT_OF_HIGH_PULSE_THRESOLD ? AUDIO_LEVEL.HIGH : AUDIO_LEVEL.LOW)
+      lastAudiDetectorColorChangeRef.current = performance.now()
+      batchPulsesRef.current = []
+    } else {
+      batchPulsesRef.current = batchPulsesRef.current.concat(state.audioPulse)
+    }
   }
 
   const startRecording = (): void => {
@@ -96,6 +129,7 @@ const AudioRecorder: React.FC<Props> = ({
   const pauseRecording = (): void => {
     recorderRef.current?.stop()
     dispatch(setRecordingState(RECORDER_STATES.PAUSED))
+    setAudioLevel(AUDIO_LEVEL.LOW)
     setTimeout(() => {
       dispatch(setAudioPulse(initialState.audioPulse))
     }, 100)
@@ -111,6 +145,7 @@ const AudioRecorder: React.FC<Props> = ({
           dispatch(setAudioPulse(initialState.audioPulse))
           dispatch(setRecordingTime(initialState.recordingTime))
           dispatch(setFile(file))
+          setAudioLevel(AUDIO_LEVEL.LOW)
         })
     }
   }
@@ -225,11 +260,11 @@ const AudioRecorder: React.FC<Props> = ({
       <div>
         <div className={styles.recordingIndicatorContainer}>
           <div
-            className={styles.pulsRing}
+            className={cs(styles.pulsRing, styles[`${audioLevel}Audio`])}
             style={{ transform: `scale(${audioPulse})` }}
           />
           <img
-            src={Microphone}
+            src={audioLevel === AUDIO_LEVEL.LOW ? RedMicrophone : GreenMicrophone}
             className={styles.microphoneImg}
           />
         </div>

@@ -39,8 +39,7 @@ export class PageListView extends Component {
         </div>
         {_.map(pages, (model) => {
           const page = new PageModel(model, report.completed_assessments)
-          return !page.removed && page.visible
-          && (
+          return !page.removed && page.visible && (
             <Page
               key={page.id}
               model={page}

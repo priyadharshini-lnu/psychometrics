@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { SketchPicker } from 'react-color'
 import _ from 'lodash'
-import store from 'rb/store/PropertyPanelStore'
 import styles from './ColorPicker.scss'
+
+const { $ } = window
 
 class ColorPicker extends Component {
   static propTypes = {
@@ -32,15 +33,15 @@ class ColorPicker extends Component {
   handleClick = () => {
     const { displayColorPicker } = this.state
     if (displayColorPicker) {
-      store.popupClosed()
+      $(this.el).trigger('hide.bs.dropdown')
     } else {
-      store.popupOpened()
+      $(this.el).trigger('show.bs.dropdown')
     }
     this.setState({ displayColorPicker: !displayColorPicker })
   }
 
   handleClose = () => {
-    store.popupClosed()
+    $(this.el).trigger('hide.bs.dropdown')
     this.setState({ displayColorPicker: false })
   }
 
@@ -54,7 +55,7 @@ class ColorPicker extends Component {
     }
 
     return (
-      <div>
+      <div ref={(ref) => { this.el = ref }} className="color-picker">
         <div onClick={this.handleClick} className={styles.swatch}>
           <div className={styles.color} style={style} />
         </div>

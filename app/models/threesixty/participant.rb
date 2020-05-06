@@ -5,6 +5,14 @@ module Threesixty
     self.inheritance_column = :disabled
     self.table_name = 'users_campaigns_assessments'
 
+    before_create do
+      self.assessment_id = threesixty_campaign&.assessment_id unless assessment_id?
+    end
+
+    def threesixty_campaign
+      campaign.threesixty_campaign
+    end
+
     def threesixty_evaluator
       Threesixty::Evaluator.find_by(campaign_id: campaign_id, user_id: evaluator_id)
     end

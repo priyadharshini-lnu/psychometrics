@@ -33,9 +33,17 @@ const HighlightList = ({
     if (!contentRef.current.contains(selection.endContainer)) selection.setEnd(contentRef.current.lastChild, 0)
 
     const source = highlighter.fromRange(selection)
-    initHighlight(source)
-    setCurrentHighlightId(source.id)
-    updateMetaDataLocally(preview, 'highlights', [...highlights, { ...source, color: DEFAULT_COLOR, notStored: true }])
+    // on FF browser sometimes we face the issue when source is null.
+    // More details about this bug: https://tte.atlassian.net/browse/LH-649
+    if (source) {
+      initHighlight(source)
+      setCurrentHighlightId(source.id)
+      updateMetaDataLocally(preview, 'highlights', [...highlights, {
+        ...source,
+        color: DEFAULT_COLOR,
+        notStored: true,
+      }])
+    }
   }, [selection])
 
   const initHighlight = source => source && highlighter.getDoms(source.id).forEach((d) => {
