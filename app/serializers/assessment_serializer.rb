@@ -29,7 +29,7 @@ class AssessmentSerializer < ActiveModel::Serializer
       ['blocks.*',
        coalesce(template.props, props).as('props'),
        coalesce(template.name, name).as('name')]
-    end .
+    end.
       joining { template.outer }.
       includes(questions_ams: :comments).
       where.has { (template.disabled == false) | (template.id == nil) }.map do |block|

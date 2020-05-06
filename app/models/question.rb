@@ -56,7 +56,7 @@ class Question < ApplicationRecord
  THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
        '(CASE WHEN blocks.template_id IS NOT NULL
  THEN templates_questions.position ELSE questions.position END) AS reposition']
-    end .
+    end.
       joining { template.outer }.
       joining { block }.
       where.has { (template.disabled == false) | (template.id == nil) }.

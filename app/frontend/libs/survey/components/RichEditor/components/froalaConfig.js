@@ -55,6 +55,7 @@ export default {
   autofocus: true,
   toolbarSticky: false,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
+  pasteDeniedAttrs: ['style'],
   events: {
     'video.codeError': function (code) {
       events.video_code_error(this, code)

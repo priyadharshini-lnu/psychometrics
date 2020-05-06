@@ -96,11 +96,11 @@ gem 'redis', '~> 4.1.3'
 gem 'redis-rails', '~> 5.0.2'
 
 # A workaround for `roo` since it requires an old version of rubyzip
-gem 'rubyzip', '~> 1.2'
+gem 'rubyzip', '~> 2.3'
 
 ### dependencies for XLS export (via templates)
 gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'axlsx_rails', '~> 0.6.0'
+gem 'caxlsx_rails', '~> 0.6.0'
 gem 'roo', '~> 2.8.2'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.

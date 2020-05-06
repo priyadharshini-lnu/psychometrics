@@ -6,8 +6,8 @@ import connect from './connect'
 
 class PageProperties extends Component {
   removePage = () => {
-    const { module, removePage } = this.props
-    removePage(module.id)
+    const { page, removePage } = this.props
+    removePage(page.id)
   }
 
   copyPage = () => {
@@ -21,12 +21,12 @@ class PageProperties extends Component {
   }
 
   render () {
-    const { module } = this.props
+    const { page } = this.props
     return (
       <div>
         <div className={styles.title}>Page Options</div>
         <hr className={styles.divider} />
-        <div>{module.name}</div>
+        <div>{page.name}</div>
         <div style={{ textAlign: 'center' }}>
           {PageList.list.length > 1 && <button onClick={this.removePage} className="btn btn-default">Remove</button>}
         </div>

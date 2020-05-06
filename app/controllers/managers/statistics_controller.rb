@@ -16,7 +16,7 @@ module Managers
                       'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
                       assessment.name,
                       assessment_id.as('id')]
-                   end .
+                   end.
                    grouping { [assessment_id, assessment.name] }
       respond_to do |format|
         format.html

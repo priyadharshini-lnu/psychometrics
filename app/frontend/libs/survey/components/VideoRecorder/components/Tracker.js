@@ -187,6 +187,10 @@ class Tracker extends Component {
       }
     } else {
       // No face
+      if (!isTracking) {
+        return
+      }
+
       this.setState({ showOverlay: true })
       this.showElements(['frame'])
     }
