@@ -12,9 +12,13 @@ module Exports
         # TO:
         #   ['Value']
 
+        QUESTIONS_TYPE_TO_NOT_EXPORT = %w[Email Chat].freeze
+
         def self.result(answers, question, scoring = false, _export_with_labels = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
+          return [] if QUESTIONS_TYPE_TO_NOT_EXPORT.include?(question.props['type'])
+
           remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
@@ -30,7 +34,9 @@ module Exports
           question_id_header = []
           question_choices_header = []
 
-          if %w[Form].include?(question.props['type'])
+          if QUESTIONS_TYPE_TO_NOT_EXPORT.include?(question.props['type'])
+            # Do nothing
+          elsif %w[Form].include?(question.props['type'])
             question.props['choices'].to_i.times do |c|
               question_id_header << "QID#{question.id}_#{c + 1}"
               question_choices_header << question.props.dig('choicesTexts', c)

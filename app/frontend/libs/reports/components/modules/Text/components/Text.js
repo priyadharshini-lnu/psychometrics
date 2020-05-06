@@ -2,6 +2,7 @@
 /* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import React, { Component } from 'react'
+import cs from 'classnames'
 import PropTypes from 'prop-types'
 import Foundation from 'rb/components/Foundation'
 import store from 'rb/store/PageList'
@@ -168,7 +169,7 @@ class Text extends Component {
         return (
           <div
             ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
+            className={cs(styles.editor, 'ltr')}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
