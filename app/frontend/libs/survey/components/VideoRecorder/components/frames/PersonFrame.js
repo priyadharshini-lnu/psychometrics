@@ -1,8 +1,17 @@
 /* eslint-disable max-len */
 import React from 'react'
 
-const STROKE_WIDTH = 5
-const FACE_HEIGHT = 70
+const STROKE_WIDTH = 5 // Original stroke width in the svg
+const FACE_HEIGHT = 70 // Face Height from the person svg artwork.
+
+/**
+ * Origin of the person svg is moved to the center of the face. So, any positioning
+ * or transformation such as scaling or rotation will happen about the center of the face.
+ * Which is about 9% from the top and 50% from the left of the person frame.
+ * Scale: OffsetHeight x object.size = RequiredFaceHeight; RequiredFaceHeight / FACE_HEIGHT = SCALE_FACTOR
+ * Left: Center point of the box along x-axis divided by offsetWidth to get the fraction later multiplied by 100 to get the percentage
+ * Top: Similar to Left, but along y-axis
+ */
 
 function PersonFrame ({ boundaries, className }) {
   const scale = (boundaries.offsetHeight * boundaries.object.size / FACE_HEIGHT)
