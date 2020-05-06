@@ -7,7 +7,7 @@ gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
 gem 'jbuilder',                   '~> 2.10.0'
-gem 'jquery-rails',               '~> 4.1.1'
+gem 'jquery-rails',               '~> 4.3.5'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.18.4'
