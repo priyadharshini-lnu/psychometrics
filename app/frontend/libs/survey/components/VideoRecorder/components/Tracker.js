@@ -248,7 +248,7 @@ class Tracker extends Component {
   }
 
   render () {
-    const { showOverlay, frame, boundaries: position } = this.state
+    const { showOverlay, frame, boundaries } = this.state
 
     return (
       <div id="container" className={styles.canvasContainer}>
@@ -256,7 +256,7 @@ class Tracker extends Component {
 
         {showOverlay && (
           <Overlay
-            position={position}
+            boundaries={boundaries}
             ref={(instance) => { this.overlay = instance }}
             frame={frame}
             resolve={() => import(`./images/${frame}.svg`)}

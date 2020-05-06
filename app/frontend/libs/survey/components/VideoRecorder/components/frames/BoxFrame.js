@@ -1,21 +1,24 @@
 /* eslint-disable max-len */
 import React from 'react'
+import styles from './Frames.scss'
 
-export default function BoxFrame ({ boundaries, className }) {
+export default function BoxFrame ({ boundaries }) {
   const style = {
-    left: boundaries.x + boundaries.boxWidth / 2,
-    top: boundaries.y + boundaries.height / 2,
-    transform: 'translate(-50%, -50%)',
+    position: 'absolute',
+    left: boundaries.x,
+    top: boundaries.y,
+    width: boundaries.boxWidth,
+    height: boundaries.height,
   }
-  style.transformOrigin = '50% 50%'
+  const fillStyle = {
+    fill: '#fff',
+  }
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="287" height="286" viewBox="0 0 287 286" style={style} className={className}>
-      <g id="Video_Frame" transform="translate(-343 -124)">
-        <path id="Union_1" data-name="Union 1" d="M0,43.5V2.5A2.5,2.5,0,0,1,2.5,0h41a2.5,2.5,0,0,1,0,5H5V43.5a2.5,2.5,0,1,1-5,0Z" transform="translate(344 124)" fill="#fff" />
-        <path id="Union_2" data-name="Union 2" d="M2.5,46A2.5,2.5,0,0,1,0,43.5V2.5a2.5,2.5,0,1,1,5,0V41H43.5a2.5,2.5,0,0,1,0,5Z" transform="translate(629 170) rotate(180)" fill="#fff" />
-        <path id="Union_4" data-name="Union 4" d="M0,42.974V3.027A3.026,3.026,0,0,1,3.027,0H42.974a3.026,3.026,0,1,1,0,6.053H6.053V42.974a3.026,3.026,0,1,1-6.053,0Z" transform="translate(630 410) rotate(180)" fill="#fff" />
-        <path id="Union_5" data-name="Union 5" d="M3.027,46A3.026,3.026,0,0,1,0,42.973V3.026a3.026,3.026,0,1,1,6.053,0V39.947H42.974a3.027,3.027,0,1,1,0,6.053Z" transform="translate(343 364)" fill="#fff" />
-      </g>
-    </svg>
+    <div className={styles.box} style={style}>
+      <svg className={styles.topLeft} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46"><g id="TopLeft" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="Union_1" data-name="Union 1" d="M0,43.5V2.5A2.5,2.5,0,0,1,2.5,0h41a2.5,2.5,0,0,1,0,5H5V43.5a2.5,2.5,0,0,1-5,0Z" style={fillStyle} /></g></g></svg>
+      <svg className={styles.topRight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46"><g id="TopRight" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="Union_2" data-name="Union 2" d="M43.5,0A2.5,2.5,0,0,1,46,2.5v41a2.5,2.5,0,0,1-5,0V5H2.5a2.5,2.5,0,0,1,0-5Z" style={fillStyle} /></g></g></svg>
+      <svg className={styles.bottomRight} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46 46"><g id="BottomRight" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="Union_4" data-name="Union 4" d="M46,3V43a3,3,0,0,1-3,3H3a3,3,0,1,1,0-6H40V3a3,3,0,1,1,6,0Z" style={fillStyle} /></g></g></svg>
+      <svg className={styles.bottomLeft} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.06 46"><g id="BottomLeft" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path id="Union_5" data-name="Union 5" d="M3,46a3,3,0,0,1-3-3H0V3A3,3,0,1,1,6.05,3V40H43a3,3,0,1,1,.11,6H3Z" style={fillStyle} /></g></g></svg>
+    </div>
   )
 }
