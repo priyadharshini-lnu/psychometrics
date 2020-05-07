@@ -72,7 +72,7 @@ gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 gem 'active_link_to',             '~> 1.0.5'
 
 ### Translaters for javascripts
-gem 'i18n-js',                    '~> 3.0.0.rc3'
+gem 'i18n-js',                    '~> 3.6.0'
 
 ### Decorator
 gem 'annotate', '~> 2.7.0'
