@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { getModules } from './selectors'
+import { getModules, getPages } from './selectors'
 
 const serializePage = page => ({
   id: page.isNew ? undefined : page.id,
@@ -36,8 +36,7 @@ const SerializeReport = {
       name: state.builder.name,
       pages: [],
     }
-
-    report.pages = _.map(state.pages, (page) => {
+    report.pages = _.map(getPages(state, state.builder.pages), (page) => {
       const data = serializePage(page)
       const modules = _.map(getModules(state, page.modules), module => serializeModule(module))
       return { ...data, modules }
