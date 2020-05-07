@@ -263,7 +263,6 @@ class Tracker extends Component {
             boundaries={boundaries}
             ref={(instance) => { this.overlay = instance }}
             frame={frame}
-            resolve={() => import(`./images/${frame}.svg`)}
           />
         )}
 
