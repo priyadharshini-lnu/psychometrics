@@ -137,7 +137,7 @@ GEM
       railties (>= 3.2, < 6.0)
     breadcrumbs_on_rails (4.0.0)
       rails (>= 5.0)
-    browser (2.4.0)
+    browser (4.0.0)
     builder (3.2.4)
     bullet (6.1.0)
       activesupport (>= 3.0.0)
@@ -837,7 +837,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.4.1)
   bootstrap-slider-rails (~> 9.2.0)
   breadcrumbs_on_rails (~> 4.0.0)
-  browser (~> 2.4.0)
+  browser (~> 4.0.0)
   bullet (~> 6.1.0)
   bundler (>= 1.8.4)
   byebug
