@@ -5,7 +5,9 @@ import {
 import PageModel from 'libs/reports/models/Page'
 import {
   INIT,
+  UPDATE_PAGE_POSITIONS,
   addPage,
+  setPagePositions,
 } from './actions'
 
 function* genInitDefaultPage () {
@@ -16,6 +18,12 @@ function* genInitDefaultPage () {
   }
 }
 
+function* genSetPagePositions () {
+  const { report: { builder } } = yield select()
+  yield put(setPagePositions(builder.pages))
+}
+
 export const watchers = [
   takeEvery(INIT, genInitDefaultPage),
+  takeEvery(UPDATE_PAGE_POSITIONS, genSetPagePositions),
 ]
