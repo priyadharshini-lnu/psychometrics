@@ -39,6 +39,7 @@ class Tracker extends Component {
   componentDidMount () {
     this.setupBoundingBox()
     this.showElements(['frame', 'ready'])
+    window.addEventListener('resize', this.calculateBoundaries)
   }
 
   componentDidUpdate () {
@@ -51,6 +52,10 @@ class Tracker extends Component {
       || !isEqual(prevProps.object, trackerOptions[fitInFrame].object)) {
       this.calculateBoundaries()
     }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('resize', this.calculateBoundaries)
   }
 
   setupBoundingBox () {
@@ -97,7 +102,7 @@ class Tracker extends Component {
     return inBoundary
   }
 
-  calculateBoundaries () {
+  calculateBoundaries = () => {
     const {
       fitInFrame,
       trackerOptions: {
@@ -116,6 +121,10 @@ class Tracker extends Component {
       height,
       boxWidth,
       personWidth,
+      offsetHeight,
+      offsetWidth,
+      box,
+      object,
       area: personWidth * height,
     }
 
@@ -243,7 +252,7 @@ class Tracker extends Component {
   }
 
   render () {
-    const { showOverlay, frame, boundaries: position } = this.state
+    const { showOverlay, frame, boundaries } = this.state
 
     return (
       <div id="container" className={styles.canvasContainer}>
@@ -251,7 +260,7 @@ class Tracker extends Component {
 
         {showOverlay && (
           <Overlay
-            position={position}
+            boundaries={boundaries}
             ref={(instance) => { this.overlay = instance }}
             frame={frame}
             resolve={() => import(`./images/${frame}.svg`)}

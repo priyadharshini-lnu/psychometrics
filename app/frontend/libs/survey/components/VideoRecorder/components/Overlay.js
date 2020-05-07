@@ -2,24 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Overlay.scss'
+import frames from './frames'
 
 export class Overlay extends React.Component {
   constructor () {
     super()
 
-    this.state = {
-      image: null,
-    }
-  }
-
-  async componentDidMount () {
-    try {
-      const { resolve } = this.props
-      const { default: image } = await resolve()
-      this.setState({ image })
-    } catch (error) {
-      this.setState({ hasError: error })
-    }
+    this.state = {}
   }
 
   componentDidCatch (error) {
@@ -27,23 +16,17 @@ export class Overlay extends React.Component {
   }
 
   render () {
-    const { image, hasError } = this.state
+    const { hasError } = this.state
     const {
       frame,
-      position: {
-        x, y, [`${frame}Width`]: width,
-      },
+      boundaries,
     } = this.props
 
-    const style = {
-      top: y, left: x, width,
-    }
-
     if (hasError) return <div>{hasError.message}</div>
-
+    const Frame = frames[frame]
     return (
       <div className={styles.overlay}>
-        <img className={styles.frame} src={image} style={style} />
+        <Frame boundaries={boundaries} />
       </div>
     )
   }
@@ -51,6 +34,5 @@ export class Overlay extends React.Component {
 
 Overlay.propTypes = {
   frame: PropTypes.string,
-  resolve: PropTypes.func,
-  position: PropTypes.object,
+  boundaries: PropTypes.object,
 }
