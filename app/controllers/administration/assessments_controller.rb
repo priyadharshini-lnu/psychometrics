@@ -64,7 +64,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def update
     respond_to do |format|
-      extra = resource.extra.merge(resource_params[:extra])
+      extra = resource.extra.merge(resource_params[:extra] || {})
       if resource.update(resource_params.to_h.merge('extra' => extra))
         format.js
       else
