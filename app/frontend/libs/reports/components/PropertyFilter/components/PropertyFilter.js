@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import AppStore from 'rb/store/AppStore'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
@@ -10,31 +9,25 @@ const SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING = ['PickGroupRank', 'MatrixTable
 class PropertyFilter extends Component {
   static propTypes = {}
 
-  componentDidMount () {
-    this.propPanelListener = store.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.propPanelListener.remove()
-  }
-
   changeFilter = (filter) => {
-    if (store.model.isMultiFiltering()) {
+    const { model } = this.props
+    if (model.isMultiFiltering()) {
       if (filter) {
-        store.model.props.filter = _.map(filter, f => f.value)
+        model.props.filter = _.map(filter, f => f.value)
       } else {
-        store.model.props.filter = []
+        model.props.filter = []
       }
     } else {
-      store.model.props.filter = filter ? filter.value : null
+      model.props.filter = filter ? filter.value : null
     }
-    store.model.update()
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const showDesc = store.model.isMultiFiltering()
-      && _.indexOf(SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING, store.model.getSourceType()) !== -1
+    const { model } = this.props
+    const showDesc = model.isMultiFiltering()
+      && _.indexOf(SKIPPED_QUESTION_TYPES_FOR_MULTIFILTERING, model.getSourceType()) !== -1
     const SELECT_OPTIONS = _.map(AppStore.report.filters, filter => ({ label: filter.name, value: filter.id }))
     return (
       <div>
@@ -48,14 +41,14 @@ class PropertyFilter extends Component {
         )}
         <Select
           name="form-field-name"
-          value={getValue(SELECT_OPTIONS, store.model.props.filter)}
+          value={getValue(SELECT_OPTIONS, model.props.filter)}
           options={SELECT_OPTIONS}
           autoFocus={false}
           isClearable
           getOptionValue={opt => opt.value}
           getLabelValue={opt => opt.label}
           hideSelectedOptions
-          isMulti={store.model.isMultiFiltering()}
+          isMulti={model.isMultiFiltering()}
           onChange={this.changeFilter}
           placeholder="All Responses"
         />

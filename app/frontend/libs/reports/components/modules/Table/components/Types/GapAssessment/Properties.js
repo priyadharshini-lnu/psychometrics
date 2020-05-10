@@ -22,7 +22,7 @@ export default class Properties extends Component {
         <div className={styles.title}>Gap Assessment</div>
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <hr className={styles.divider} />
-        <PropertyFilter />
+        <PropertyFilter model={model} />
         <div style={{ fontStyle: 'italic' }}>2 filters should be selected for comparison</div>
         <hr className={styles.divider} />
       </div>
