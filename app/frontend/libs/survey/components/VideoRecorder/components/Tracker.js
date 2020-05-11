@@ -17,11 +17,13 @@ class Tracker extends Component {
     backward: Watchman.I18n().t('assessments.video_response.tracker.backward'),
   }
 
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
+    this.canvasRef = React.createRef()
     this.state = {
       showOverlay: true,
+      visibleMessages: ['frame', 'ready'],
       frame: 'person',
       isTracking: false,
       faceDetectionModelLoaded: false,
@@ -29,16 +31,14 @@ class Tracker extends Component {
   }
 
   componentWillMount () {
-    const playerEl = document.querySelector('video')
-
-    this.videoEl = playerEl
+    const { videoRef } = this.props
+    this.videoEl = videoRef
     this.calculateBoundaries()
     this.loadFaceDetectionNet()
   }
 
   componentDidMount () {
     this.setupBoundingBox()
-    this.showElements(['frame', 'ready'])
     window.addEventListener('resize', this.calculateBoundaries)
   }
 
@@ -61,7 +61,7 @@ class Tracker extends Component {
   setupBoundingBox () {
     const { boundaries } = this.state
     const { offsetHeight, offsetWidth } = this.videoEl
-    const canvas = document.querySelector('#canvas')
+    const canvas = this.canvasRef.current
     const context = canvas.getContext('2d')
 
     canvas.width = offsetWidth
@@ -80,25 +80,22 @@ class Tracker extends Component {
   }
 
   isInSize = (rect) => {
-    const { thresholds } = this.state
-    const boxArea = rect.width * rect.height
+    const { thresholds: { minHeight, maxHeight } } = this.state
 
-    if (boxArea > thresholds.areaMax) return 1
-    if (boxArea < thresholds.areaMin) return -1
+    if (rect.height > maxHeight) return 1
+    if (rect.height < minHeight) return -1
 
     return 0
   }
 
   isInBoundary = (rect) => {
     const corners = [
-      { ...rect.topLeft }, // topleft
-      { ...rect.topRight }, // topRight
-      { ...rect.bottomLeft }, // bottomLeft
-      { ...rect.bottomRight }, // bottomRight
+      { x: rect.x, y: rect.y }, // topleft
+      { x: rect.x + rect.width, y: rect.y }, // topRight
+      { x: rect.x, y: rect.height + rect.y }, // bottomLeft
+      { x: rect.width + rect.x, y: rect.height + rect.y }, // bottomRight
     ]
-
-    // eslint-disable-next-line no-underscore-dangle
-    const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner._x, corner._y))
+    const inBoundary = corners.every(corner => this.contextRef.isPointInPath(corner.x, corner.y))
     return inBoundary
   }
 
@@ -129,17 +126,14 @@ class Tracker extends Component {
     }
 
     // min, max box calculations
-    const thresholdWidth = object.threshold * personWidth
     const thresholdHeight = object.threshold * personHeight
 
-    const minHeight = (object.size * personHeight) - thresholdHeight
-    const minWidth = (object.size * personWidth) - thresholdWidth
-    const maxHeight = (object.size * personHeight) + thresholdHeight
-    const maxWidth = (object.size * personWidth) + thresholdWidth
+    const minHeight = personHeight - thresholdHeight
+    const maxHeight = personHeight + thresholdHeight
 
     const thresholds = {
-      areaMin: minHeight * minWidth,
-      areaMax: maxHeight * maxWidth,
+      minHeight,
+      maxHeight,
     }
 
     const prevProps = {
@@ -149,6 +143,24 @@ class Tracker extends Component {
     }
 
     this.setState({ boundaries, thresholds, prevProps })
+  }
+
+  adjustedHeadBox (result) {
+    const { relativeBox } = result
+    const { boundaries: { offsetWidth, offsetHeight } } = this.state
+
+    const headWidth = offsetWidth * relativeBox.width
+    const faceHeight = offsetHeight * relativeBox.height
+    const headHeight = faceHeight * 1.3 // Approximate value
+    const x = offsetWidth * (1 - relativeBox.x - relativeBox.width) // Flip x coordinates as image is mirrored
+    const y = offsetHeight * relativeBox.y - (faceHeight * 0.3)
+
+    return {
+      x,
+      y,
+      width: headWidth,
+      height: headHeight,
+    }
   }
 
   async track () {
@@ -164,35 +176,24 @@ class Tracker extends Component {
 
     let inSize
     let inBoundary
-    const helpTexts = []
+    const visibleMessages = []
     if (result) {
-      // Face detected
-      // Uncomment the following line if you need the face box drawn on canvas for testing
-      // faceapi.draw.drawDetections(this.contextRef, result)
-      inBoundary = this.isInBoundary(result.box)
-      inSize = this.isInSize(result.box)
+      const headBox = this.adjustedHeadBox(result)
+      inBoundary = this.isInBoundary(headBox)
+      inSize = this.isInSize(headBox)
+      const showOverlay = !inBoundary || inSize !== 0
 
-      if (inBoundary && inSize === 0) {
-        this.setState({ showOverlay: false })
-        this.hideElements(Object.keys(this.messages))
-      } else {
-        this.setState({ showOverlay: true })
-        this.hideElements(Object.keys(this.messages))
+      if (!inBoundary) visibleMessages.push('frame')
+      if (inSize !== 0) visibleMessages.push(inSize < 0 ? 'forward' : 'backward')
 
-        if (!inBoundary) helpTexts.push('frame')
-        if (inSize !== 0) {
-          helpTexts.push(inSize < 0 ? 'forward' : 'backward')
-        }
-        this.showElements(helpTexts)
-      }
+      this.setState({ showOverlay, visibleMessages })
     } else {
       // No face
       if (!isTracking) {
         return
       }
-
-      this.setState({ showOverlay: true })
-      this.showElements(['frame'])
+      visibleMessages.push('frame')
+      this.setState({ showOverlay: true, visibleMessages })
     }
 
     if (isTracking) {
@@ -201,36 +202,13 @@ class Tracker extends Component {
   }
 
   initTracker () {
-    this.track(this.videoEl)
+    this.track()
   }
 
   loadFaceDetectionNet () {
     return Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models'),
     ]).then(this.setState({ faceDetectionModelLoaded: true }))
-  }
-
-  findElements (ids, containerSelector = '#help') {
-    const container = document.querySelector(containerSelector)
-    if (container) {
-      return container.querySelectorAll(ids.map(id => `#${id}`).join(', '))
-    }
-
-    return null
-  }
-
-  showElements (targets) {
-    const elements = this.findElements(targets)
-    if (elements) {
-      elements.forEach(target => target.classList.remove('hidden'))
-    }
-  }
-
-  hideElements (targets) {
-    const elements = this.findElements(targets)
-    if (elements) {
-      elements.forEach(target => target.classList.add('hidden'))
-    }
   }
 
   startTracking () {
@@ -252,11 +230,13 @@ class Tracker extends Component {
   }
 
   render () {
-    const { showOverlay, frame, boundaries } = this.state
+    const {
+      showOverlay, frame, boundaries, visibleMessages,
+    } = this.state
 
     return (
-      <div id="container" className={styles.canvasContainer}>
-        <canvas id="canvas" className={styles.canvas} />
+      <div className={styles.canvasContainer}>
+        <canvas ref={this.canvasRef} className={styles.canvas} />
 
         {showOverlay && (
           <Overlay
@@ -267,11 +247,19 @@ class Tracker extends Component {
         )}
 
         {showOverlay && (
-          <div id="help" className={styles.help}>
-            <div id="frame" className={cs(styles.message, 'hidden')}>{this.messages.frame}</div>
-            <div id="ready" className={cs(styles.message, 'hidden')}>{this.messages.ready}</div>
-            <div id="forward" className={cs(styles.message, 'hidden')}>{this.messages.forward}</div>
-            <div id="backward" className={cs(styles.message, 'hidden')}>{this.messages.backward}</div>
+          <div className={styles.help}>
+            {visibleMessages.includes('frame') && (
+              <div className={cs(styles.message)}>{this.messages.frame}</div>
+            )}
+            {visibleMessages.includes('ready') && (
+              <div className={cs(styles.message)}>{this.messages.ready}</div>
+            )}
+            {visibleMessages.includes('forward') && (
+              <div className={cs(styles.message)}>{this.messages.forward}</div>
+            )}
+            {visibleMessages.includes('backward') && (
+              <div className={cs(styles.message)}>{this.messages.backward}</div>
+            )}
           </div>
         )}
       </div>
@@ -282,6 +270,7 @@ class Tracker extends Component {
 Tracker.popTypes = {
   fitInFrame: PropTypes.string,
   trackerOptions: PropTypes.object,
+  videoRef: PropTypes.instanceOf(Element).isRequired,
 }
 
 export default Tracker
