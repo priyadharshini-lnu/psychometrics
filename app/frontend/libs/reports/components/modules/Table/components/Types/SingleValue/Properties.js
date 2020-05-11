@@ -22,7 +22,7 @@ export default class Properties extends Component {
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <DataSource model={model} onChange={this.onChange} />
         <div className="mtm">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
         </div>
       </div>
     )

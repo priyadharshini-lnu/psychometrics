@@ -106,7 +106,7 @@ class Properties extends Component {
         </div>
         {this.renderCustomProperties()}
         <div className="margin-top-10">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
         </div>
         <hr className={styles.divider} />
         <div className="margin-top-10">Font</div>

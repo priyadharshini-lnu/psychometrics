@@ -20,7 +20,7 @@ export default class Properties extends Component {
       <div className="ptl">
         <div className={styles.title}>HighestLowest - Properties</div>
         <DataSourceMenu model={model} onSelect={this.update} />
-        <PropertyFilter />
+        <PropertyFilter model={model} />
         <hr className={styles.divider} />
       </div>
     )

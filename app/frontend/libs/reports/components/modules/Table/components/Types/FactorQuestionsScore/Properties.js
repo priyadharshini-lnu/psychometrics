@@ -26,7 +26,7 @@ class Properties extends Component {
       <div>
         <div className={styles.title}>Factor - Questions Mean Score Props</div>
         <DataSource model={model} onSelect={this.update} />
-        <PropertyFilter />
+        <PropertyFilter model={model} />
         <div className={styles.block}>
           <div className="margin-top-10">
             <label className={styles.inputLabel}>

@@ -25,7 +25,7 @@ export default class Properties extends Component {
       <div>
         <div className={styles.title}>Video Response</div>
         <div className="mtm">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
           <div className="mtm">
             Question
             <Select
