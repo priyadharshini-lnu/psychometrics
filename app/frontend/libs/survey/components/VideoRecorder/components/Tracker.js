@@ -50,8 +50,8 @@ class Tracker extends Component {
 
     if (
       prevProps.fitInFrame !== fitInFrame
-      || !isEqual(prevProps.box, trackerOptions[fitInFrame].box)
-      || !isEqual(prevProps.object, trackerOptions[fitInFrame].object)) {
+      || !isEqual(prevProps.box, trackerOptions.box)
+      || !isEqual(prevProps.object, trackerOptions.object)) {
       this.calculateBoundaries()
     }
   }
@@ -109,9 +109,7 @@ class Tracker extends Component {
   calculateBoundaries = () => {
     const {
       fitInFrame,
-      trackerOptions: {
-        [fitInFrame]: { box, object },
-      },
+      trackerOptions: { box, object },
     } = this.props
     const { offsetWidth, offsetHeight } = this.videoEl
 
@@ -264,6 +262,7 @@ class Tracker extends Component {
       fitInFrame,
       trackerOptions,
     } = this.props
+    console.log(fitInFrame, trackerOptions)
     return (
       <div className={styles.canvasContainer}>
         <canvas ref={this.canvasRef} className={styles.canvas} />
@@ -273,7 +272,7 @@ class Tracker extends Component {
             boundaries={boundaries}
             ref={(instance) => { this.overlay = instance }}
             frame={frame}
-            trackerOptions={trackerOptions[fitInFrame]}
+            trackerOptions={trackerOptions}
           />
         )}
 
