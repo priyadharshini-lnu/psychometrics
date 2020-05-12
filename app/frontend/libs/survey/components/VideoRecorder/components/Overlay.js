@@ -20,13 +20,14 @@ export class Overlay extends React.Component {
     const {
       frame,
       boundaries,
+      trackerOptions,
     } = this.props
 
     if (hasError) return <div>{hasError.message}</div>
     const Frame = frames[frame]
     return (
       <div className={styles.overlay}>
-        <Frame boundaries={boundaries} />
+        <Frame boundaries={boundaries} trackerOptions={trackerOptions} />
       </div>
     )
   }
@@ -35,4 +36,5 @@ export class Overlay extends React.Component {
 Overlay.propTypes = {
   frame: PropTypes.string,
   boundaries: PropTypes.object,
+  trackerOptions: PropTypes.object,
 }

@@ -2,14 +2,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { isEqual } from 'lodash'
+import { isEqual, debounce } from 'lodash'
 import cs from 'classnames'
 import * as faceapi from 'face-api.js'
 import Watchman from 'libs/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
-const FACE_TO_HEAD = 0.3 // Assume Head is 30% bigger than the face
+const FACE_TO_HEAD_RATIO = 0.3 // Assume Head is 30% bigger than the face
 
 class Tracker extends Component {
   messages = {
@@ -61,8 +61,12 @@ class Tracker extends Component {
     window.removeEventListener('resize', this.calculateBoundaries)
   }
 
+  onNoFaceDetected = debounce(() => {
+    this.setState({ showOverlay: true, visibleMessages: ['frame'] })
+  }, 2000, { maxWait: 2000 })
+
   setupBoundingBox () {
-    const { boundaries } = this.state
+    const { boundaries: { box } } = this.state
     const { offsetHeight, offsetWidth } = this.videoEl
     const canvas = this.canvasRef.current
     const context = canvas.getContext('2d')
@@ -70,7 +74,7 @@ class Tracker extends Component {
     canvas.width = offsetWidth
     canvas.height = offsetHeight
 
-    context.rect(boundaries.x, boundaries.y, boundaries.boxWidth, boundaries.height)
+    context.rect(box.x, box.y, box.width, box.height)
     this.contextRef = context
   }
 
@@ -111,18 +115,20 @@ class Tracker extends Component {
     } = this.props
     const { offsetWidth, offsetHeight } = this.videoEl
 
-    const height = box.height * offsetHeight
+    const boxHeight = box.height * offsetHeight
     const boxWidth = box.width * offsetWidth
     const personHeight = object.size * offsetHeight
     const boundaries = {
-      x: box.x * offsetWidth,
-      y: box.y * offsetHeight,
-      height,
-      boxWidth,
-      offsetHeight,
-      offsetWidth,
-      box,
-      object,
+      box: {
+        x: box.x * offsetWidth,
+        y: box.y * offsetHeight,
+        width: boxWidth,
+        height: boxHeight,
+      },
+      canvas: {
+        width: offsetWidth,
+        height: offsetHeight,
+      },
     }
 
     // min, max box calculations
@@ -146,41 +152,41 @@ class Tracker extends Component {
   }
 
   adjustedHeadBox (result) {
-    const { relativeBox } = result
-    const { boundaries: { offsetWidth, offsetHeight } } = this.state
-
-    const headWidth = offsetWidth * relativeBox.width
-    const faceHeight = offsetHeight * relativeBox.height
-    const headHeight = faceHeight + (faceHeight * FACE_TO_HEAD)
-    const x = offsetWidth * (1 - relativeBox.x - relativeBox.width) // Flip x coordinates as image is mirrored
-    const y = offsetHeight * relativeBox.y - (faceHeight * FACE_TO_HEAD)
+    const { box } = result
+    const { offsetWidth } = this.videoEl
+    const headHeight = box.height + (box.height * FACE_TO_HEAD_RATIO)
+    const x = (offsetWidth - box.x - box.width) // Flip x coordinates as image is mirrored
+    const y = box.y - (box.height * FACE_TO_HEAD_RATIO)
 
     return {
       x,
       y,
-      width: headWidth,
+      width: box.width,
       height: headHeight,
     }
   }
 
   async track () {
     const { isTracking } = this.state
-    const { offsetHeight } = this.videoEl
+    const { offsetWidth, offsetHeight } = this.videoEl
 
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
     const inputSize = this.closestDivisible(offsetHeight, 32)
-    const scoreThreshold = 0.5
 
-    const options = new faceapi.TinyFaceDetectorOptions({ inputSize, scoreThreshold })
-    const result = await faceapi.detectSingleFace(this.videoEl, options)
+    const options = new faceapi.TinyFaceDetectorOptions({ inputSize })
+    const detections = await faceapi.detectSingleFace(this.videoEl, options)
 
     let inSize
     let inBoundary
     const visibleMessages = []
-    if (result) {
+    if (detections) {
+      this.onNoFaceDetected.cancel()
+      const result = faceapi.resizeResults(detections, { width: offsetWidth, height: offsetHeight })
       const headBox = this.adjustedHeadBox(result)
+
       inBoundary = this.isInBoundary(headBox)
       inSize = this.isInSize(headBox)
+
       const showOverlay = !inBoundary || inSize !== 0
 
       if (!inBoundary) visibleMessages.push('frame')
@@ -192,12 +198,35 @@ class Tracker extends Component {
       if (!isTracking) {
         return
       }
-      visibleMessages.push('frame')
-      this.setState({ showOverlay: true, visibleMessages })
+      this.onNoFaceDetected()
     }
 
     if (isTracking) {
-      setTimeout(() => this.track(), 1000)
+      setTimeout(() => this.track(), 500)
+    }
+  }
+
+  drawThresholds () {
+    const { boundaries: { box }, thresholds: { minHeight, maxHeight } } = this.state
+    const canvas = this.canvasRef.current
+    if (canvas) {
+      const ctx = canvas.getContext('2d')
+      const minRect = {
+        x: box.x + box.width / 2 - (minHeight / 2),
+        y: box.y + box.height / 2 - (minHeight / 2),
+        width: minHeight,
+        height: minHeight,
+      }
+      const maxRect = {
+        x: box.x + box.width / 2 - (maxHeight / 2),
+        y: box.y + box.height / 2 - (maxHeight / 2),
+        width: maxHeight,
+        height: maxHeight,
+      }
+      ctx.strokeStyle = '#FF0000'
+      ctx.strokeRect(minRect.x, minRect.y, minRect.width, minRect.height)
+      ctx.strokeStyle = '#FF00FF'
+      ctx.strokeRect(maxRect.x, maxRect.y, maxRect.width, maxRect.height)
     }
   }
 
@@ -214,6 +243,8 @@ class Tracker extends Component {
   startTracking () {
     this.setState({ showOverlay: false, frame: 'box', isTracking: true })
     this.initTracker()
+    // Uncomment this to draw thresholds for testing
+    // this.drawThresholds()
   }
 
   stopTracking () {
@@ -223,17 +254,16 @@ class Tracker extends Component {
     }
 
     this.setState({ showOverlay: false, frame: 'person', isTracking: false })
-
-    // Uncomment following lines if we're doing drawDetections (see: `track` method)
-    // const { offsetWidth, offsetHeight } = this.videoEl
-    // this.contextRef.clearRect(0, 0, offsetWidth, offsetHeight)
   }
 
   render () {
     const {
       showOverlay, frame, boundaries, visibleMessages,
     } = this.state
-
+    const {
+      fitInFrame,
+      trackerOptions,
+    } = this.props
     return (
       <div className={styles.canvasContainer}>
         <canvas ref={this.canvasRef} className={styles.canvas} />
@@ -243,6 +273,7 @@ class Tracker extends Component {
             boundaries={boundaries}
             ref={(instance) => { this.overlay = instance }}
             frame={frame}
+            trackerOptions={trackerOptions[fitInFrame]}
           />
         )}
 

@@ -13,17 +13,17 @@ const FACE_HEIGHT = 70 // Face Height from the person svg artwork.
  * Top: Similar to Left, but along y-axis
  */
 
-function PersonFrame ({ boundaries, className }) {
-  const scale = (boundaries.offsetHeight * boundaries.object.size / FACE_HEIGHT)
+function PersonFrame ({ boundaries: { box, canvas }, className, trackerOptions: { object } }) {
+  const scale = (canvas.height * object.size / FACE_HEIGHT)
   const strokeWidth = STROKE_WIDTH / scale
-  const left = (boundaries.x + boundaries.boxWidth / 2) / boundaries.offsetWidth
-  const top = (boundaries.y + boundaries.height / 2) / boundaries.offsetHeight
+  const left = (box.x + box.width / 2) / canvas.width
+  const top = (box.y + box.height / 2) / canvas.height
   const style = {
     position: 'absolute',
     left: `${left * 100}%`,
     top: `${top * 100}%`,
-    transform: `translate(-50%, -8%) scale(${scale})`,
-    transformOrigin: '50% 8%',
+    transform: `translate(-50%, -9%) scale(${scale})`,
+    transformOrigin: '50% 9%',
   }
 
   return (
