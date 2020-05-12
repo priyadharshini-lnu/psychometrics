@@ -12,8 +12,7 @@ module Threesixty
         @users_report = users_report
         @options = options
 
-        export_report
-        save_to_s3
+        save_report
         remove_tmp_file
         send_to_user
       rescue Exception => e # rubocop:disable Lint/RescueException
@@ -27,30 +26,18 @@ module Threesixty
 
       # Generates PDF file and placed it into TMP folder
       #
-      def export_report
-        @pdf_file = ::Threesixty::Reports::ExportReport.
-                    call!(current_user, threesixty_campaign, subject, users_report, options)
-      end
-
-      # Uploads PDF file to AssignsReport
-      #
-      def save_to_s3
-        filename = File.basename(pdf_file)
-        s3 = Aws::S3::Resource.new(region: Rails.application.secrets.region,
-                                   access_key_id: Rails.application.secrets.access_key_id,
-                                   secret_access_key: Rails.application.secrets.secret_access_key)
-        bucket = Rails.application.secrets.directory
-        @s3_obj = s3.bucket(bucket).object(filename)
-
-        File.open(pdf_file) do |file|
-          s3_obj.put(body: file)
+      def save_report
+        if !users_report.pdf_exists? || !subject.evaluation_status_completed?
+          @pdf_file = ::Threesixty::Reports::ExportReport.
+                      call!(current_user, threesixty_campaign, subject, users_report, options)
+          users_report.update!(pdf: File.open(pdf_file))
         end
       end
 
       # Removes TMP folder
       #
       def remove_tmp_file
-        FileUtils.rm(pdf_file)
+        FileUtils.rm(pdf_file) if pdf_file
       end
 
       # Send URL of saved PDF to user
@@ -60,7 +47,7 @@ module Threesixty
                                      type: 'success',
                                      message: I18n.t('jobs.threesixty.reports.download.message'),
                                      description: I18n.t(
-                                       'jobs.threesixty.reports.download.description', url: s3_obj.presigned_url(:get)
+                                       'jobs.threesixty.reports.download.description', url: users_report.pdf.url
                                      )
       end
 
