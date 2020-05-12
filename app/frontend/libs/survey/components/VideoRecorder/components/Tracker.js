@@ -9,6 +9,8 @@ import Watchman from 'libs/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
+const FACE_TO_HEAD = 0.3 // Assume Head is 30% bigger than the face
+
 class Tracker extends Component {
   messages = {
     frame: Watchman.I18n().t('assessments.video_response.tracker.frame'),
@@ -55,6 +57,7 @@ class Tracker extends Component {
   }
 
   componentWillUnmount () {
+    this.stopTracking()
     window.removeEventListener('resize', this.calculateBoundaries)
   }
 
@@ -110,19 +113,16 @@ class Tracker extends Component {
 
     const height = box.height * offsetHeight
     const boxWidth = box.width * offsetWidth
-    const personWidth = object.size * offsetWidth
     const personHeight = object.size * offsetHeight
     const boundaries = {
       x: box.x * offsetWidth,
       y: box.y * offsetHeight,
       height,
       boxWidth,
-      personWidth,
       offsetHeight,
       offsetWidth,
       box,
       object,
-      area: personWidth * height,
     }
 
     // min, max box calculations
@@ -151,9 +151,9 @@ class Tracker extends Component {
 
     const headWidth = offsetWidth * relativeBox.width
     const faceHeight = offsetHeight * relativeBox.height
-    const headHeight = faceHeight * 1.3 // Approximate value
+    const headHeight = faceHeight + (faceHeight * FACE_TO_HEAD)
     const x = offsetWidth * (1 - relativeBox.x - relativeBox.width) // Flip x coordinates as image is mirrored
-    const y = offsetHeight * relativeBox.y - (faceHeight * 0.3)
+    const y = offsetHeight * relativeBox.y - (faceHeight * FACE_TO_HEAD)
 
     return {
       x,
