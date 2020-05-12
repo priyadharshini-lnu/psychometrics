@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './EndPage.scss'
 
+const { I18n } = window
 export class EndPage extends Component {
   static propTypes = {
     flowElement: PropTypes.object,
@@ -28,8 +29,7 @@ export class EndPage extends Component {
   }
 
   render () {
-    let message = `You have now completed the survey and your response has been recorded.
-      Thank you for taking the time to share your feedback.`
+    let message = I18n.t('assessments.communications.finish')
     const { flowElement, dashboardUrl, isAnonymousAssessment } = this.props
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
@@ -47,7 +47,7 @@ export class EndPage extends Component {
         </div>
         {!isAnonymousAssessment && (
           <div className={styles.end}>
-            <a href={dashboardUrl}>Go to dashboard</a>
+            <a href={dashboardUrl}>{I18n.t('assessments.actions.goto_dashboard')}</a>
           </div>
         )}
         {this.renderUniqueId()}
