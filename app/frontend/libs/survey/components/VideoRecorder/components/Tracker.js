@@ -259,10 +259,9 @@ class Tracker extends Component {
       showOverlay, frame, boundaries, visibleMessages,
     } = this.state
     const {
-      fitInFrame,
       trackerOptions,
     } = this.props
-    console.log(fitInFrame, trackerOptions)
+
     return (
       <div className={styles.canvasContainer}>
         <canvas ref={this.canvasRef} className={styles.canvas} />
