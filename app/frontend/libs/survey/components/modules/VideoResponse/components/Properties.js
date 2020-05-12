@@ -99,7 +99,7 @@ export class Properties extends Component {
                 step={0.1}
                 size="small"
                 value={box[key]}
-                precision={1}
+                precision={2}
                 disabled={fitInFrame !== 'custom'}
                 onChange={e => this.updateTrackerOptions(e, 'box', key)}
               />
@@ -116,7 +116,7 @@ export class Properties extends Component {
                 step={0.1}
                 size="small"
                 value={object[key]}
-                precision={1}
+                precision={2}
                 onChange={e => this.updateTrackerOptions(e, 'object', key)}
               />
             </div>
