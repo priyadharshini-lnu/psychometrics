@@ -20,7 +20,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "الذهاب إلى لوحة القيادة"
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -36,7 +36,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "psychometric": "Assessment"
     },
     "communications": {
-      "finish": "لقد أكملت الآن الاستطلاع وتم تسجيل ردك. نشكرك على تخصيص بعض الوقت لمشاركة تعليقاتك."
+      "finish": "لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة"
     },
     "decorator": {
       "no_description": "Description is empty"
