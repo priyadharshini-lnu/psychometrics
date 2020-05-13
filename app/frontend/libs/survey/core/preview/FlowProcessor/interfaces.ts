@@ -59,6 +59,11 @@ export interface LogicInterface {
   conditions?: object[]
 }
 
+export interface InProgressQuestion {
+  questionId: number,
+  progressState: string,
+}
+
 export interface DefaultState{
   type: string
   resultsUrl?: string
@@ -92,9 +97,10 @@ export interface DefaultState{
   subjectDataSheet: { [key: string]: {} }[]
   relationships: []
   relationship: string | null
-  locales: any,
-  agileAssetsUrl?: string,
-  agileAssignUrl?: string,
+  locales: any
+  agileAssetsUrl?: string
+  agileAssignUrl?: string
+  inProgressQuestions: InProgressQuestion[]
 }
 
 export interface I18nInterface {

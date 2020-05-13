@@ -12,6 +12,7 @@ import {
   saveResults,
   setNotDirtyResults,
   setLocalResults,
+  clearInProgressQuestion,
 } from './actions'
 import {
   getPrevPage,
@@ -42,6 +43,7 @@ function* genPrevPage () {
   const prev = getPrevPage(state.preview)
   yield put(changeElement(prev.element, prev.page))
   yield put(removePrevPage())
+  yield put(clearInProgressQuestion())
 }
 
 function* genSavePrevPages () {
@@ -59,6 +61,7 @@ function* genUpdateResultsAsNotDirty () {
 }
 
 function* genSaveResults () {
+  yield put(clearInProgressQuestion())
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)

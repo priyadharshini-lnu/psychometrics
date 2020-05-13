@@ -15,6 +15,9 @@ import {
   TOGGLE_IGNORE_VALIDATION, RESET,
   UPDATE_META_DATA, UPDATE_META_DATA_REQUEST,
   SET_LOCAL_RESULTS,
+  MARK_QUESTION_IN_PROGRESS,
+  REMOVE_QUESTION_IN_PROGRESS,
+  CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
@@ -62,6 +65,12 @@ export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
 export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
 export const reset = () => ({ type: RESET })
 export const setLocalResults = (data: object) => ({ type: SET_LOCAL_RESULTS, data })
+
+export const markQuestionInProgress = (questionId, progressState) => (
+  { type: MARK_QUESTION_IN_PROGRESS, questionId, progressState })
+export const removeQuestionInProgress = (questionId, progressState) => (
+  { type: REMOVE_QUESTION_IN_PROGRESS, questionId, progressState })
+export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION })
 
 export const saveResults = (preview, questionIds) => {
   const data = {

@@ -29,3 +29,5 @@ en:
         ready: 'Press the Record button when ready to record'
         forward: 'You are too far away from the screen. Please move a bit closer'
         backward: 'You are too close to the screen. Please move a bit back'
+    wait: 'Wait'
+    proceed: 'Proceed Anyway'

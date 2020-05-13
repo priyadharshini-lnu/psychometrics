@@ -22,13 +22,15 @@ export class VideoResponse extends React.Component {
   }
 
   renderVideoRecorder () {
-    const { model } = this.props
+    const { model, markQuestionInProgress, removeQuestionInProgress } = this.props
 
     return (
       <div className="col-md-8">
         <VideoRecorder
           key={model.id}
           maxDuration={model.props.duration || 10}
+          markQuestionInProgress={markQuestionInProgress}
+          removeQuestionInProgress={removeQuestionInProgress}
           fitInFrame={model.props.fitInFrame}
           trackerOptions={model.props.trackerOptions}
         />

@@ -23,7 +23,7 @@ export class Preview extends Component {
 
   renderVideoRecorder () {
     const {
-      model, type, mediaUrl, readOnly,
+      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const { result } = model
     const preview = type === 'preview_assessment'
@@ -41,6 +41,8 @@ export class Preview extends Component {
           trackerOptions={model.props.trackerOptions}
           onSuccessUpload={this.successUpload}
           onDeleteMedia={this.deleteMedia}
+          markQuestionInProgress={markQuestionInProgress}
+          removeQuestionInProgress={removeQuestionInProgress}
         />
       </div>
     )

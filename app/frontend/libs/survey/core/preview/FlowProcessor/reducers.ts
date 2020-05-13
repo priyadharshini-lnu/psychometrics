@@ -2,11 +2,11 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { normalize } from 'normalizr'
-import { setIn } from 'utils/immutable'
+import { setIn, updateIn } from 'utils/immutable'
 import InitPages from './commands/InitPages'
 import NormalizeTree from './commands/NormalizeTree'
 import InitLinearElements from './commands/InitLinearElements'
-import { DefaultState } from './interfaces'
+import { DefaultState, InProgressQuestion } from './interfaces'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
@@ -14,6 +14,7 @@ import {
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST, SET_LOCAL_RESULTS,
+  MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
 
 const { I18n } = window
@@ -48,6 +49,7 @@ const defaultState: DefaultState = {
   relationships: [],
   relationship: null,
   locales: null,
+  inProgressQuestions: [],
 }
 
 const HANDLERS = {
@@ -151,6 +153,21 @@ const HANDLERS = {
   }),
   [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
   [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),
+  [MARK_QUESTION_IN_PROGRESS]: (state, { questionId, progressState }: { questionId: number, progressState: string}) => {
+    const { inProgressQuestions } = state
+    const currentQuestion: InProgressQuestion = _.find(inProgressQuestions, { questionId })
+    if (currentQuestion) {
+      return updateIn(state, 'inProgressQuestions', (questions: InProgressQuestion[]) => (
+        questions.map(question => (question.questionId === questionId ? { questionId, progressState } : question))
+      ))
+    }
+    return { ...state, inProgressQuestions: [...inProgressQuestions, { questionId, progressState }] }
+  },
+  [REMOVE_QUESTION_IN_PROGRESS]: (state, { questionId }: { questionId: string}) => {
+    const inProgressQuestions = _.filter(state.inProgressQuestions, ({ questionId: id }) => id !== questionId)
+    return { ...state, inProgressQuestions }
+  },
+  [CLEAR_IN_PROGRESS_QUESTION]: state => ({ ...state, inProgressQuestions: [] }),
 }
 
 export default createReducer(HANDLERS, defaultState)
