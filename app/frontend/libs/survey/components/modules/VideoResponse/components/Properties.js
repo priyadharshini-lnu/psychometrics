@@ -44,8 +44,7 @@ export class Properties extends Component {
   updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
-    const { model: { props: { trackerOptions } } } = this.props
-    const options = { ...DefaultTrackerOptions, ...trackerOptions }
+    const options = { ...DefaultTrackerOptions[fitInFrame] }
 
     if (fitInFrame === 'none') this.resetTrackerOptions()
     model.changeProps({ fitInFrame, trackerOptions: options })
@@ -53,16 +52,15 @@ export class Properties extends Component {
   }
 
   resetTrackerOptions = () => {
-    const { model } = this.props
-    model.changeProps({ trackerOptions: DefaultTrackerOptions })
+    const { model, model: { props: { fitInFrame } } } = this.props
+    model.changeProps({ trackerOptions: DefaultTrackerOptions[fitInFrame] || {} })
     this.update()
   }
 
   updateTrackerOptions = (val, object, key) => {
     const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
-    const options = { ...DefaultTrackerOptions, ...trackerOptions }
-
-    options[fitInFrame][object][key] = val
+    const options = { ...(DefaultTrackerOptions[fitInFrame] || {}), ...trackerOptions }
+    options[object][key] = val
     model.changeProps({ trackerOptions: options })
     this.update()
   }
@@ -85,7 +83,7 @@ export class Properties extends Component {
 
     if (!fitInFrame) return
 
-    const { box, object } = { ...DefaultTrackerOptions, ...trackerOptions }[fitInFrame]
+    const { box, object } = { ...(DefaultTrackerOptions[fitInFrame] || {}), ...trackerOptions }
     return (
       <div className="">
         <div className={styles.fieldset} style={{ position: 'relative' }}>
@@ -99,7 +97,7 @@ export class Properties extends Component {
                 step={0.1}
                 size="small"
                 value={box[key]}
-                precision={1}
+                precision={2}
                 disabled={fitInFrame !== 'custom'}
                 onChange={e => this.updateTrackerOptions(e, 'box', key)}
               />
@@ -116,7 +114,7 @@ export class Properties extends Component {
                 step={0.1}
                 size="small"
                 value={object[key]}
-                precision={1}
+                precision={2}
                 onChange={e => this.updateTrackerOptions(e, 'object', key)}
               />
             </div>
@@ -135,12 +133,12 @@ export class Properties extends Component {
   }
 
   frameFields () {
-    const { model } = this.props
+    const { model: { props: { fitInFrame } } } = this.props
 
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <div className={styles.label}>Fit In Frame</div>
-        <select className="form-control" value={model.props.fitInFrame} onChange={this.updateFitInFrame}>
+        <select className="form-control" value={fitInFrame || ''} onChange={this.updateFitInFrame}>
           {this.frameOptions.map(o => (<option key={o.value} value={o.value}>{`${o.display}`}</option>))}
         </select>
 

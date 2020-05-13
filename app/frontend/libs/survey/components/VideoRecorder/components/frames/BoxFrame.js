@@ -2,13 +2,13 @@
 import React from 'react'
 import styles from './Frames.scss'
 
-export default function BoxFrame ({ boundaries }) {
+export default function BoxFrame ({ boundaries: { box } }) {
   const style = {
     position: 'absolute',
-    left: boundaries.x,
-    top: boundaries.y,
-    width: boundaries.boxWidth,
-    height: boundaries.height,
+    left: box.x,
+    top: box.y,
+    width: box.width,
+    height: box.height,
   }
   const fillStyle = {
     fill: '#fff',

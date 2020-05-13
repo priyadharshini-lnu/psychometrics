@@ -404,6 +404,7 @@ class VideoRecorder extends Component {
         && (
           <Tracker
             ref={(instance) => { this.tracker = instance }}
+            videoRef={this.video}
             fitInFrame={fitInFrame}
             trackerOptions={trackerOptions}
           />

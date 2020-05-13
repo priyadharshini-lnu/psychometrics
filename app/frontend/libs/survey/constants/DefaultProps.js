@@ -231,26 +231,26 @@ export const TextEntryProps = {
 export const DefaultTrackerOptions = {
   upperHalfBody: {
     box: {
-      x: 0.3,
-      y: 0.2,
+      x: 0.2,
+      y: 0.0,
+      width: 0.6,
       height: 0.6,
-      width: 0.5,
     },
     object: {
-      size: 0.3,
-      threshold: 0.1,
+      size: 0.4,
+      threshold: 0.2,
     },
   },
   face: {
     box: {
-      x: 0.2,
-      y: 0.1,
-      height: 0.6,
-      width: 0.6,
+      x: 0.01,
+      y: 0.01,
+      width: 0.98,
+      height: 0.98,
     },
     object: {
-      size: 0.3,
-      threshold: 0.1,
+      size: 0.6,
+      threshold: 0.3,
     },
   },
   custom: {
