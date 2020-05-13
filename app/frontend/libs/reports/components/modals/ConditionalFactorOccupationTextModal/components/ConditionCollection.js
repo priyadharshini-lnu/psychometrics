@@ -63,6 +63,7 @@ export class ConditionCollection extends Component {
     const { model } = this.props
     const assessment = _.find(AppStore.assessments, { id: model.module.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
+    if (!dimensionId) { return null }
     return AppStore.subfactors[dimensionId].map(factor => (
       <option key={factor.id} value={factor.id}>{factor.alias}</option>
     ))
