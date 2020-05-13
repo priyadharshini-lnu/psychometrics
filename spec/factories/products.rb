@@ -13,10 +13,10 @@
 #  updated_at  :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product do
     sequence(:name) { |n| "Product #{n}" }
-    description 'Description'
+    description { 'Description' }
     trait :with_image do
       after :create do |product|
         product.update_column(:image, 'foo/bar/baz.png')

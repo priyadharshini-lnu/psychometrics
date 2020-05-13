@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :translation do
-    locale 'en'
-    props '{}'
+    locale { 'en' }
+    props { '{}' }
 
     association :translateable
     association :resource

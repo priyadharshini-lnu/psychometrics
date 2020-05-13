@@ -170,7 +170,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print', '~> 1.8.0'
   gem 'byebug', platform: :mri
-  gem 'factory_girl_rails', '~> 4.7.0'
+  gem 'factory_bot_rails', '~> 5.2.0'
   gem 'hirb'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
@@ -181,6 +181,7 @@ group :development, :test do
   gem 'rswag-specs', '~> 2.0.5'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
+  gem 'rubocop-rspec', require: false
   gem 'stackprof', '~> 0.2.12'
 end
 

@@ -16,10 +16,10 @@
 #  description      :text
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :factor do
     sequence(:name) { |i| "factor #{i}" }
-    description 'Lorem ipsum dolor sit amet.'
+    description { 'Lorem ipsum dolor sit amet.' }
     dimension
 
     trait :with_subfactor do

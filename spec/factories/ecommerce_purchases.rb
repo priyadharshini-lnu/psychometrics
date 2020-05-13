@@ -14,7 +14,7 @@
 #  updated_at     :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :ecommerce_purchase, class: 'Ecommerce::Purchase' do
   end
 end
