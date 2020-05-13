@@ -24,3 +24,8 @@ en:
       saved: 'Saved'
       saving: 'Saving...'
       retry: 'Retry'
+      tracker:
+        frame: 'Please make sure that your face aligns with the frame'
+        ready: 'Press the Record button when ready to record'
+        forward: 'You are too far away from the screen. Please move a bit closer'
+        backward: 'You are too close to the screen. Please move a bit back'

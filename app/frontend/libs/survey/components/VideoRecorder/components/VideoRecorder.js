@@ -2,7 +2,6 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable import/no-webpack-loader-syntax */
 /* eslint-disable import/no-unresolved */
-import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import 'recordrtc'
@@ -13,6 +12,7 @@ import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
+import Tracker from './Tracker'
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -20,11 +20,17 @@ require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 const { $ } = window
 
 class VideoRecorder extends Component {
-  state = {
-    deviceReady: false,
-    recordingState: 'initialized',
-    percent: 0,
-    key: 'player',
+  constructor (props) {
+    super(props)
+
+    const { fitInFrame } = this.props
+    this.state = {
+      deviceReady: false,
+      recordingState: 'initialized',
+      percent: 0,
+      key: 'player',
+      trackingEnabled: !!fitInFrame,
+    }
   }
 
   componentDidMount () {
@@ -208,6 +214,7 @@ class VideoRecorder extends Component {
 
   initRecorder () {
     const { maxDuration } = this.props
+
     this.setState({ recordingState: 'initialized', key: 'record' }, () => {
       const options = {
         controls: true,
@@ -241,19 +248,26 @@ class VideoRecorder extends Component {
           deviceReady: true,
           recordingState: 'ready',
         })
+
         this.statusText.show()
       })
       this.player.on('startRecord', () => {
+        const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recording' })
         this.player.trigger('statechanged', { status: 'recording' })
 
         this.remainingTime.show()
         this.player.controlBar.currentTimeDisplay.addClass('show')
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
+
+        if (trackingEnabled && this.tracker) this.tracker.startTracking()
       })
       this.player.on('finishRecord', () => {
-        this.player.trigger('statechanged', { status: 'recorded' })
+        const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recorded' })
+        this.player.trigger('statechanged', { status: 'recorded' })
+
+        if (trackingEnabled && this.tracker) this.tracker.stopTracking()
       })
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
@@ -373,15 +387,28 @@ class VideoRecorder extends Component {
   }
 
   render () {
-    const { deviceReady, recordingState } = this.state
-    const showProgress = _.includes(['saving'], recordingState)
-    const { key } = this.state
+    const {
+      key, deviceReady, recordingState, trackingEnabled,
+    } = this.state
+    const { fitInFrame, trackerOptions } = this.props
+    const showProgress = ['saving'].includes(recordingState)
+
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>
         <div data-vjs-player key={key}>
           { !deviceReady && recordingState === 'initialized' && this.renderPerm() }
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
+        { trackingEnabled
+        && ['ready', 'recording', 'recorded'].includes(recordingState)
+        && (
+          <Tracker
+            ref={(instance) => { this.tracker = instance }}
+            videoRef={this.video}
+            fitInFrame={fitInFrame}
+            trackerOptions={trackerOptions}
+          />
+        )}
         {showProgress && this.renderProgress()}
         {this.renderControls()}
       </div>
@@ -393,6 +420,8 @@ VideoRecorder.propTypes = {
   maxDuration: PropTypes.number.isRequired,
   onSuccessUpload: PropTypes.func,
   onDeleteMedia: PropTypes.func,
+  fitInFrame: PropTypes.string,
+  trackerOptions: PropTypes.object,
 }
 
 export default VideoRecorder

@@ -37,6 +37,8 @@ export class Preview extends Component {
           maxDuration={model.props.duration}
           result={result}
           mediaUrl={mediaUrl}
+          fitInFrame={model.props.fitInFrame}
+          trackerOptions={model.props.trackerOptions}
           onSuccessUpload={this.successUpload}
           onDeleteMedia={this.deleteMedia}
         />

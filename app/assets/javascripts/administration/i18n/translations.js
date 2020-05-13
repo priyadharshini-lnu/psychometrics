@@ -259,6 +259,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         }
@@ -474,18 +475,30 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "user": {
         "active": "Active",
+        "confirmation_sent_at": "Confirmation sent at",
+        "confirmation_token": "Confirmation token",
+        "confirmed_at": "Confirmed at",
         "created_at": "Created Date",
         "current_password": "Current password",
+        "current_sign_in_at": "Current sign in at",
+        "current_sign_in_ip": "Current sign in IP",
         "disabled": "Disable",
         "email": "Email Address",
+        "encrypted_password": "Encrypted password",
+        "failed_attempts": "Failed attempts",
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "last_sign_in_at": "Last sign in at",
+        "last_sign_in_ip": "Last sign in IP",
+        "locked_at": "Locked at",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
         "password": "Password",
         "password_confirmation": "Password confirmation",
+        "remember_created_at": "Remember created at",
         "remember_me": "Remember me",
+        "reset_password_sent_at": "Reset password sent at",
         "reset_password_token": "Reset password token",
         "role": "Role",
         "roles": {
@@ -511,10 +524,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
+        "sign_in_count": "Sign in count",
         "types": {
           "anonymous": "Anonymous Users",
           "identified": "Identified Users"
         },
+        "unconfirmed_email": "Unconfirmed email",
         "unlock_token": "Unlock token",
         "updated_at": "Modified Date"
       },
@@ -552,6 +567,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
+          "attributes": {
+            "used_number": {
+              "overused": "License used can't be more than the sum of license allocated and overuse limit."
+            }
+          },
           "overuse": "License %{name} is overused"
         },
         "privacy_link": {
@@ -1021,11 +1041,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "resource": {
         "confirmations": {
           "delete": {
-            "body": {
-              "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-              "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-              "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-            },
+            "body": "<p>Are you sure you want to delete this Campaign Template?</p>\n",
             "title": "Delete <strong>%{name}</strong> ?"
           },
           "disable": {
@@ -1046,6 +1062,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             },
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
+        },
+        "in_progress": {
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Client",
@@ -2158,6 +2177,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           },
           "destroy": {
+            "error": "Can't delete %{name} because some dependent associations of subjects or evaluators exist.",
             "successfully": "Client Tenancy %{name} was successfully deleted."
           },
           "edit": {
@@ -2206,8 +2226,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                "title": "Delete <strong>%{name}</strong> ?"
+                "body": "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>",
+                "title": "Delete <strong>%{name}</strong>?"
               },
               "disable": {
                 "body": {
@@ -2611,6 +2631,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
         },
+        "destroy": {
+          "successfully": "Campaign '%{name}' was deleted successfully."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -2653,7 +2676,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Add Additional Time"
           },
           "edit_form": {
-            "additional_time_label": "Additional Time, sec",
+            "additional_time_label": "Additional Time, min",
             "submit": "Add"
           },
           "form": {
@@ -4667,7 +4690,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "assigns": {
@@ -5018,6 +5047,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "subject": "Confirmation instructions"
       },
       "email_changed": {
+        "greeting": "Hello %{recipient}!",
+        "message": "We're contacting you to notify you that your email has been changed to %{email}.",
         "subject": "Email Changed"
       },
       "invitation_instructions": {
@@ -5036,7 +5067,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "reset_password_instructions": {
         "action": "Change my password",
         "greeting": "Hello %{recipient}!",
-        "instruction": "Someone has requested a link to change your password, and you can do this through the link below.",
+        "instruction": "Someone has requested a link to change your password. You can do this through the link below.",
         "instruction_2": "If you didn't request this, please ignore this email.",
         "instruction_3": "Your password won't change until you access the link above and create a new one.",
         "subject": "Reset password instructions"
@@ -5045,7 +5076,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "action": "Unlock my account",
         "greeting": "Hello %{recipient}!",
         "instruction": "Click the link below to unlock your account:",
-        "message": "Your account has been locked due to an excessive amount of unsuccessful sign in attempts.",
+        "message": "Your account has been locked due to an excessive number of unsuccessful sign in attempts.",
         "subject": "Unlock instructions"
       }
     },
@@ -5081,7 +5112,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "currently_waiting_confirmation_for_email": "Currently waiting confirmation for: %{email}",
         "leave_blank_if_you_don_t_want_to_change_it": "leave blank if you don't want to change it",
         "title": "Edit %{resource}",
-        "unhappy": "Unhappy",
+        "unhappy": "Unhappy?",
         "update": "Update",
         "we_need_your_current_password_to_confirm_your_changes": "we need your current password to confirm your changes"
       },
@@ -5110,7 +5141,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "forgot_password": "Forgot password?",
         "keep_sign_in": "Yes, Keep me signed in",
         "password_placeholder": "Enter your password",
-        "sign_in": "Sign in",
+        "sign_in": "Log in",
         "submit": "Login",
         "tabs": {
           "register": "Register",
@@ -5126,9 +5157,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "didn_t_receive_confirmation_instructions": "Didn't receive confirmation instructions?",
         "didn_t_receive_unlock_instructions": "Didn't receive unlock instructions?",
         "forgot_your_password": "Forgot your password?",
-        "sign_in": "Sign in",
+        "sign_in": "Log in",
         "sign_in_with_provider": "Sign in with %{provider}",
         "sign_up": "Sign up"
+      },
+      "minimum_password_length": {
+        "one": "(%{count} character minimum)",
+        "other": "(%{count} characters minimum)"
       }
     },
     "two_factor_authentication": {
@@ -5506,6 +5541,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "usages": {
       "none": "No key usages found."
+    },
+    "yandex_translate": {
+      "errors": {
+        "no_api_key": "Set Yandex API key via YANDEX_API_KEY environment variable or translation.yandex_api_key in config/i18n-tasks.yml. Get the key at https://tech.yandex.com/translate.",
+        "no_results": "Yandex returned no results."
+      }
     }
   },
   "id": "Id",
@@ -6183,6 +6224,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "completed": "Completed",
           "finished": "finished",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         },
@@ -6918,6 +6960,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         }
@@ -7133,19 +7176,31 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "user": {
         "active": "Active",
-        "created_at": "Created Date",
+        "confirmation_sent_at": "تم إرسال رسالة التأكيد في",
+        "confirmation_token": "رمز التوكن للتأكيد",
+        "confirmed_at": "تم التأكيد في",
+        "created_at": "تم الإنشاء في",
         "current_password": "كلمة المرور الحالية",
+        "current_sign_in_at": "تسجيل الدخول الحالي في",
+        "current_sign_in_ip": "عنوان IP لتسجيل الدخول الحالي",
         "disabled": "Disable",
-        "email": "البريد الإلكتروني",
+        "email": "بريد إلكتروني",
+        "encrypted_password": "كلمة المرور المشفرة",
+        "failed_attempts": "محاولات فاشلة",
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "last_sign_in_at": "آخر تسجيل دخول في",
+        "last_sign_in_ip": "عنوان IP لآخر تسجيل دخول",
+        "locked_at": "تم القفل في",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
-        "password": "كلمة المرود",
+        "password": "كلمة المرور",
         "password_confirmation": "تأكيد كلمة المرور",
+        "remember_created_at": "تم إنشاء التذكير في",
         "remember_me": "تذكرني",
-        "reset_password_token": "Reset password token",
+        "reset_password_sent_at": "إعادة تعيين كلمة المرور مرسلة في",
+        "reset_password_token": "رمز التوكن لإعادة تعيين كلمة المرور",
         "role": "Role",
         "roles": {
           "admin": "Admin",
@@ -7170,12 +7225,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
+        "sign_in_count": "عدد تسجيلات الدخول",
         "types": {
           "anonymous": "Anonymous Users",
           "identified": "Identified Users"
         },
-        "unlock_token": "Unlock token",
-        "updated_at": "Modified Date"
+        "unconfirmed_email": "البريد الإلكتروني غير مؤكد",
+        "unlock_token": "فتح قفل رمز التوكن",
+        "updated_at": "تم التحديث في"
       },
       "user_form": {
         "active": "Active",
@@ -7211,6 +7268,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
+          "attributes": {
+            "used_number": {
+              "overused": "License used can't be more than the sum of license allocated and overuse limit."
+            }
+          },
           "overuse": "License %{name} is overused"
         },
         "privacy_link": {
@@ -7680,11 +7742,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "resource": {
         "confirmations": {
           "delete": {
-            "body": {
-              "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-              "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-              "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-            },
+            "body": "<p>Are you sure you want to delete this Campaign Template?</p>\n",
             "title": "Delete <strong>%{name}</strong> ?"
           },
           "disable": {
@@ -7705,6 +7763,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
+        },
+        "in_progress": {
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Client",
@@ -8817,6 +8878,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             }
           },
           "destroy": {
+            "error": "Can't delete %{name} because some dependent associations of subjects or evaluators exist.",
             "successfully": "Client Tenancy %{name} was successfully deleted."
           },
           "edit": {
@@ -8865,8 +8927,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                "title": "Delete <strong>%{name}</strong> ?"
+                "body": "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>",
+                "title": "Delete <strong>%{name}</strong>?"
               },
               "disable": {
                 "body": {
@@ -9270,6 +9332,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
         },
+        "destroy": {
+          "successfully": "Campaign '%{name}' was deleted successfully."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -9312,7 +9377,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Add Additional Time"
           },
           "edit_form": {
-            "additional_time_label": "Additional Time, sec",
+            "additional_time_label": "Additional Time, min",
             "submit": "Add"
           },
           "form": {
@@ -11326,7 +11391,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "assigns": {
@@ -11624,24 +11695,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "confirmations": {
-      "confirmed": "تمّ تأكيد الحساب بنجاح، وتمّ تسجيل الدّخول.",
+      "confirmed": "تم تأكيد عنوان بريدك الإلكتروني بنجاح.",
       "new": {
-        "resend_confirmation_instructions": "أعدْ إرسال تعليمات التأكيد"
+        "resend_confirmation_instructions": "إعادة إرسال تعليمات التأكيد"
       },
-      "send_instructions": "ستصل خلال دقائق رسالة على البريد الإلكتروني تتضمّن الخطوات اللازمة لتأكيد الحساب.",
-      "send_paranoid_instructions": "إذا كان البريد الإلكتروني مسجّلاً، فستصل خلال دقائق رسالة تتضمّن الخطوات اللازمة لتأكيد الحساب."
+      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في بضع دقائق."
     },
     "failure": {
-      "already_authenticated": "تم تسجيل الدخول من قَبل.",
-      "inactive": "لم يتمّ تنشيط الحساب بعد.",
-      "invalid": "البريد الإلكتروني أو كلمة السر غير صحيحة.",
+      "already_authenticated": "لقد قمت بتسجيل الدخول بالفعل.",
+      "inactive": "لم يتم تفعيل حسابك بعد.",
+      "invalid": "Invalid %{authentication_keys} or password.",
       "invited": "You have a pending invitation, accept it to finish creating your account.",
-      "last_attempt": "بقيت محاولة أخيرة قبل غلق الحساب.",
-      "locked": "الحساب مُعلّق.",
-      "not_found_in_database": "خطأ فى البريد الإلكتروني أو كلمة السر",
-      "timeout": "لقد انتهت صلاحيّة الجلسة، الرجاء تسجيل الدّخول مجدداً.",
-      "unauthenticated": "يجب إنشاء حساب أو تسجيل الدخول قبل المتابعة.",
-      "unconfirmed": "يجب تأكيد الحساب حتّى تتمكّن من المُتابعة."
+      "last_attempt": "لديك محاولة أو أكثر قبل غلق حسابك.",
+      "locked": "تم غلق حسابك.",
+      "not_found_in_database": "Invalid %{authentication_keys} or password.",
+      "timeout": "انتهى الوقت المخصص للجلسة. الرجاء تسجيل الدخول مرة أخرى للمتابعة.",
+      "unauthenticated": "تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.",
+      "unconfirmed": "تحتاج إلى تأكيد عنوان بريدك الإلكتروني قبل المتابعة."
     },
     "invitations": {
       "edit": {
@@ -11671,13 +11742,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "subject": "Invitation to Lighthouse"
       },
       "confirmation_instructions": {
-        "action": "أكّد حسابي",
-        "greeting": "مرحبا %{recipient}",
-        "instruction": "يمكن تأكيد حساب بريدك الإلكتروني من خلال الرابط التّالي:",
-        "subject": "تعليمات تأكيد الحساب"
+        "action": "تأكيد حسابي",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "يُمكنك تأكيد بريدك الإلكتروني من خلال الرابط أدناه:",
+        "subject": "تعليمات التأكيد"
       },
       "email_changed": {
-        "subject": "Email Changed"
+        "greeting": "أهلا %{recipient} !",
+        "message": "نتصل بك لإخبارك أنّ عنوان بريدك الإلكتروني قد تم تغييره إلى %{email}.",
+        "subject": "تم تغيير عنوان البريد الإلكتروني"
       },
       "invitation_instructions": {
         "accept": "Accept invitation",
@@ -11688,64 +11761,64 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "subject": "The Talent Enterprise – Your Link to Thriving Index"
       },
       "password_change": {
-        "greeting": "Hello %{recipient}!",
-        "message": "We're contacting you to notify you that your password has been changed.",
-        "subject": "Password Changed"
+        "greeting": "مرحباً %{recipient}",
+        "message": "لقد قمنا بالاتصال بك لإخبارك أنه قد تم تغيير كلمة مرورك.",
+        "subject": "تم تغيير كلمة المرور"
       },
       "reset_password_instructions": {
-        "action": "غيّر كلمة السر",
-        "greeting": "مرحبا %{recipient}",
-        "instruction": "طلب أحدهم رابطًا لتغيير كلمة السر الخاصة بك، ويُمكن عمل ذلك من خلال الرابط التالي.",
-        "instruction_2": "إن لم تكن أنت من طلب هذا، من فضلك تجاهل هذه الرسالة.",
-        "instruction_3": "لن تتغيّر كلمة السر الخاصة بك حتى تتبع الرابط السابق وتُنشئ كلمة سر جديدة.",
+        "action": "تغيير كلمة مروري",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "لقد طلب شخص ما رابط لتغيير كلمة مرورك، ويُمكنك القيام بذلك من خلال الرابط أدناه.",
+        "instruction_2": "إذا لم تقم بطلب ذلك، الرجاء تجاهل هذه الرسالة.",
+        "instruction_3": "لن يتم تغيير كلمة مرورك حتى تقوم بفتح الرابط أعلاه وإنشاء كلمة مرور جديدة.",
         "subject": "تعليمات إعادة تعيين كلمة المرور"
       },
       "unlock_instructions": {
-        "action": "أزلْ الحظر عن حسابي",
-        "greeting": "مرحبًا %{recipient}",
-        "instruction": "انقرْ الرابط على الرابط التالي لفك الحظر عن حسابك:",
-        "message": "قُفل حسابك بسبب المحاولات الفاشلة في تسجيل الدخول.",
-        "subject": "تعليمات إعادة تفعيل الحساب"
+        "action": "إلغاء قفل حسابي",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "انقر فوق الرابط أدناه لإلغاء قفل حسابك:",
+        "message": "تم غلق حسابك بسس العدد الكبير من محاولات تسجيل الدخول غير الناجحة.",
+        "subject": "تعليمات إلغاء القفل"
       }
     },
     "omniauth_callbacks": {
-      "failure": "فشلت عمليّة التحقق عبر %{kind} للسبب التّالي: %{reason}",
-      "success": "تمّ التحقّق من الحساب بنجاح بإستخدام %{kind}"
+      "failure": "تعذر التحقق منك من %{kind} بسبب \"%{reason}\".",
+      "success": "تمت المصادقة بنجاح من حساب %{kind}."
     },
     "passwords": {
       "edit": {
-        "change_my_password": "غيّر كلمة المرور خاصتي",
-        "change_your_password": "غيّر كلمة المرور الخاصة بك",
-        "confirm_new_password": "أكّد كلمة السر الجديدة",
+        "change_my_password": "تغيير كلمة مروري",
+        "change_your_password": "تغيير كلمة مرورك",
+        "confirm_new_password": "تأكيد كلمة المرور الجديدة",
         "description": "To create a new password, please enter your new password in the boxes below.",
-        "new_password": "كلمة سر جديدة",
+        "new_password": "كلمة المرور الجديدة",
         "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
-        "forgot_your_password": "هل نسيت كلمة المرور؟",
-        "send_me_reset_password_instructions": "أرسلْ لي تعليمات تصفير كلمة المرور"
+        "forgot_your_password": "نسيت كلمة مرورك؟",
+        "send_me_reset_password_instructions": "أرسل لي تعليمات إعادة تعيين كلمة المرور"
       },
-      "no_token": "لا يُمكن الدّخول إلى هذه الصفحة إلّا بإستخدام رسالة إعادة ضبط كلمة المرور. إن كان الوصول لهذه الصفحة عبر تلك الرسالة فالرجاء التأكد من فتح كامل الرابط بشكل صحيح.",
-      "send_instructions": "ستصل خلال دقائق رسالة بريد إلكتروني تحوي التعليمات اللازمة لإعادة ضبط كلمة السر.",
-      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني مسجلاً عندنا فستصل إليه خلال دقائق رسالة تتضمّن رابطاً لاستعادة كلمة المرور.",
-      "updated": "لقد تمّ تغيير كلمة المرور بنجاح، وتم تسجيل الدخول.",
-      "updated_not_active": "تمّ تعديل كلمة المرور بنجاح."
+      "no_token": "لا يُمكنك الوصول إلى هذه الصفحة دون تأكيد رسالة البريد الإلكتروني المحتوية على إعادة تعيين كلمة المرور. إذا كنت قد انتقلت من رسالة تعيين كلمة المرور، الرجاء التأكد من أنك استخدمت رابط URL الكامل الموجود في الرسالة.",
+      "send_instructions": "ستتلقى رسالة بريد إلكرتوني بها تعليمات ععن كيفية إعادة تعيين كلمة مرورك في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رابط استعادة كلمة المرور على عنوان بريدك الإلكتروني في غضون بضع دقائق.",
+      "updated": "تم تغيير كلمة مرورك بنجاح. أنت الآن مُسجِّل الدخول.",
+      "updated_not_active": "تم تغيير كلمة مرورك بنجاح."
     },
     "registrations": {
-      "destroyed": "لقد تمّت إزالة الحساب، نأمل في نتقابل مجدداً في وقت قريب، إلى اللقاء! ",
+      "destroyed": "وداعاً! تم إلغاء حسابك بنجاح. نأمل أن نراك مرة أخرى في القريب العاجل.",
       "edit": {
-        "are_you_sure": "هل أنت متأكّد؟",
-        "cancel_my_account": "ألغِ حسابي",
-        "currently_waiting_confirmation_for_email": "في انتظار تفعيل البريد الإلكتروني %{email}",
-        "leave_blank_if_you_don_t_want_to_change_it": "أبقه فارغًا إن كنت لا ترغب في تغييره",
-        "title": "تعديل %{resource}",
-        "unhappy": "غير راضٍ؟",
+        "are_you_sure": "هل أنت متأكد؟",
+        "cancel_my_account": "إلغاء حسابي",
+        "currently_waiting_confirmation_for_email": "قيد انتظار التأكيد حالياً لـ: %{email}",
+        "leave_blank_if_you_don_t_want_to_change_it": "اتركه فارغاً إذا كنت لا ترغب في تغييره",
+        "title": "تحرير %{resource}",
+        "unhappy": "غير سعيد؟",
         "update": "تحديث",
-        "we_need_your_current_password_to_confirm_your_changes": "نحتاج كلمة المرور الحالية خاصتك لتأكيد تغيراتك"
+        "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
       },
       "new": {
-        "sign_up": "سجّلْ",
+        "sign_up": "التسجيل",
         "submit": "Register",
         "tabs": {
           "register": "Register",
@@ -11753,41 +11826,45 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
-      "signed_up": "تمّ التسجيل في الموقع بنجاح، أهلاً وسهلاً!",
-      "signed_up_but_inactive": "تمّ التسجيل في الموقع بنجاح، ولكن لا يُمكن تسجيل الدخول قبل تفعيل الحساب.",
-      "signed_up_but_locked": "تمّ التسجيل في الموقع بنجاح، ولكن لا يمكن تسجيل الدخول ﻷن الحساب مُعلّق.",
-      "signed_up_but_unconfirmed": "تمّ إرسال رسالة تحوي على رابط تأكيد الحساب باستخدام البريد الإلكتروني، يُرجى فتح الرابط لتفعيل الحساب.",
+      "signed_up": "مرحباً! لقد قمت بالتسجيل بنجاح.",
+      "signed_up_but_inactive": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك لم يتم تفعيله بعد.",
+      "signed_up_but_locked": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك مغلق.",
+      "signed_up_but_unconfirmed": "تم إرسال رسالة بها رابط التأكيد إلى عنوان بريدك الإلكتروني. الرجاء اتباع الرابط لتفعيل حسابك.",
       "success": "Signup successful. Please check your email for further instructions.",
-      "update_needs_confirmation": "تُم تعديل الحساب بنجاح، يرجى تأكيد البريد الإلكتروني. الرجاء الذهاب الى البريد الإلكتروني والضغط على الرابط الموجود للانتهاء من عمليّة التاكيد.",
-      "updated": "تمّ تعديل الحساب بنجاح.",
+      "update_needs_confirmation": "لقد قمت بتحديث حسابك بنجاح، ولكن نحتاج إلى تأكيد عنوان بريدك الإلكتروني الجديد. الرجاء التحقق من بريدك الإلكتروني واتباع رابط التأكيد لتأكيد عنوان بريدك الإلكتروني الجديد.",
+      "updated": "تم تحديث حسابك بنجاح.",
       "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     },
     "sessions": {
-      "already_signed_out": "Signed out successfully.",
+      "already_signed_out": "تم تسجيل الخروج بنجاح.",
       "new": {
         "email_label": "Email Address",
         "forgot_password": "Forgot password?",
         "keep_sign_in": "Yes, Keep me signed in",
         "password_placeholder": "Enter your password",
-        "sign_in": "سجّلْ الدخول",
+        "sign_in": "تسجيل الدخول",
         "submit": "Login",
         "tabs": {
           "register": "Register",
           "sign_in": "Login"
         }
       },
-      "signed_in": "تمّ تسجيل الدخول.",
-      "signed_out": "تمّ تسجيل الخروج."
+      "signed_in": "تم تسجيل الدخول بنجاح.",
+      "signed_out": "تم تسجيل الخروج بنجاح."
     },
     "shared": {
       "links": {
-        "back": "عودة",
-        "didn_t_receive_confirmation_instructions": "ألم تستلم تعليمات التأكيد؟",
-        "didn_t_receive_unlock_instructions": "ألم تستلم تعليمات فك الحظر؟",
-        "forgot_your_password": "هل نسيت كلمة المرور؟",
-        "sign_in": "سجّلْ الدخول",
-        "sign_in_with_provider": "سجّلْ الدخول عن طريق %{provider}",
-        "sign_up": "سجّلْ"
+        "back": "رجوع",
+        "didn_t_receive_confirmation_instructions": "لم تتلقى تعليمات التأكيد؟",
+        "didn_t_receive_unlock_instructions": "لم تتلقى تعليمات إلغاء القفل؟",
+        "forgot_your_password": "نسيت كلمة مرورك؟",
+        "sign_in": "تسجيل الدخول",
+        "sign_in_with_provider": "تسجيل الدخول باستخدام %{provider}",
+        "sign_up": "التسجيل"
+      },
+      "minimum_password_length": {
+        "one": "(%{count} character minimum)",
+        "other": "(%{count} characters minimum)"
       }
     },
     "two_factor_authentication": {
@@ -11806,11 +11883,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "unlocks": {
       "new": {
-        "resend_unlock_instructions": "أعدْ إرسال تعليمات فك الحظر"
+        "resend_unlock_instructions": "إعادة إرسال تعليمات إلغاء القفل"
       },
-      "send_instructions": "خلال بضعة دقائق، سوف تصل رسالة بالتعليمات اللازمة لإعادة تفعيل الحساب.",
-      "send_paranoid_instructions": "إذا كان الحساب موجوداً، ستصل رسالة خلال دقائق تتضمّن الارشادات عن كيفيّة التفعيل.  ",
-      "unlocked": "لقد تمّ فتح الحساب بنجاح. الرجاء الدخول للاستمرار."
+      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء قفل حسابك في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان حسابك موجود، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء القفلل غي غضون دقائق.",
+      "unlocked": "تم إلغاء قفل حسابك بنجاح. الرجاء تسجيل الدخول للمتابعة."
     }
   },
   "ecommerce": {
@@ -11906,7 +11983,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "after": "must be after %{date}",
       "after_or_equal_to": "must be after or equal to %{date}",
       "allowed_file_content_types": "file should be one of %{types}",
-      "already_confirmed": "الحساب مُفعّل، الرجاء محاولة تسجيل الدخول",
+      "already_confirmed": "تم تأكيده بالفعل، الرجاء محاولة تسجيل الدخول",
       "before": "must be before %{date}",
       "before_or_equal_to": "must be before or equal to %{date}",
       "blank": "can't be blank",
@@ -11920,7 +11997,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "carrierwave_integrity_error": "is not of an allowed file type",
       "carrierwave_processing_error": "failed to be processed",
       "confirmation": "doesn't match %{attribute}",
-      "confirmation_period_expired": "بحاجة الى تفعيل خلال %{period}، الرجاء طلب تفعيل ",
+      "confirmation_period_expired": "يحتاج إلى التأكيد في غضون %{period}،الرجاء طلب رابط تأكيد جديد",
       "content_type_blacklist_error": "You are not allowed to upload %{content_type} files",
       "content_type_whitelist_error": "You are not allowed to upload %{content_type} files",
       "empty": "can't be empty",
@@ -11928,7 +12005,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "even": "must be even",
       "excluded_file_content_types": "file cannot be %{types}",
       "exclusion": "is reserved",
-      "expired": "انتهت الصلاحيّة، الرجاء عمل طلب جديد",
+      "expired": "قد انتهت المدة، الرجاء طلب رابط تأكيد جديد",
       "extension_blacklist_error": "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}",
       "extension_whitelist_error": "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}",
       "file_size_is_greater_than": "file size must be greater than %{count}",
@@ -11951,14 +12028,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "not_a_number": "is not a number",
       "not_an_integer": "must be an integer",
       "not_found": "غير موجود",
-      "not_locked": "غير مقفل",
+      "not_locked": "لم يتم إلغاء قفله",
       "not_saved": {
-        "few": "%{count} مشكلة منعت %{resource} من التخزين بنجاح.",
-        "many": "%{count} مشاكل منعت %{resource} من التخزين بنجاح.",
-        "one": "مشكلة واحدة منعت %{resource} من التخزين بنجاح.",
-        "other": "%{count} مشكلة منعت %{resource} من التخزين بنجاح.",
-        "two": "مشكلتين منعتا %{resource} من التخزين بنجاح.",
-        "zero": null
+        "few": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "many": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "one": "1 خطأ منع %{resource} هذا من أن يتم حفظه:",
+        "other": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "two": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "zero": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:"
       },
       "odd": "must be odd",
       "other_than": "must be other than %{count}",
@@ -12169,6 +12246,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "usages": {
       "none": "No key usages found."
+    },
+    "yandex_translate": {
+      "errors": {
+        "no_api_key": "Set Yandex API key via YANDEX_API_KEY environment variable or translation.yandex_api_key in config/i18n-tasks.yml. Get the key at https://tech.yandex.com/translate.",
+        "no_results": "Yandex returned no results."
+      }
     }
   },
   "id": "Id",
@@ -12846,6 +12929,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "completed": "Completed",
           "finished": "finished",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         },
@@ -13584,6 +13668,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         }
@@ -13799,19 +13884,31 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "user": {
         "active": "Active",
-        "created_at": "Created Date",
-        "current_password": "Current password",
+        "confirmation_sent_at": "Pengesahan dihantar ke",
+        "confirmation_token": "Token pengesahan",
+        "confirmed_at": "Disahkan pada",
+        "created_at": "Dicipta pada",
+        "current_password": "Kata laluan kini",
+        "current_sign_in_at": "Kini log masuk pada",
+        "current_sign_in_ip": "IP log masuk kini",
         "disabled": "Disable",
-        "email": "Email Address",
+        "email": "E-mel",
+        "encrypted_password": "Kata laluan tersulit",
+        "failed_attempts": "Percubaan gagal",
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "last_sign_in_at": "Log masuk terakhir pada",
+        "last_sign_in_ip": "IP log masuk terakhir",
+        "locked_at": "Dikunci pada",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
-        "password": "Password",
-        "password_confirmation": "Password confirmation",
-        "remember_me": "Remember me",
-        "reset_password_token": "Reset password token",
+        "password": "Kata laluan",
+        "password_confirmation": "Pengesahan kata laluan",
+        "remember_created_at": "Ingat dicipta pada",
+        "remember_me": "Ingat saya",
+        "reset_password_sent_at": "Kata laluan set semula dihantar pada",
+        "reset_password_token": "Token kata laluan set semula",
         "role": "Role",
         "roles": {
           "admin": "Admin",
@@ -13836,12 +13933,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "superadmin": "Super Admin",
           "threesixty": "Threesixty"
         },
+        "sign_in_count": "Kiraan log masuk",
         "types": {
           "anonymous": "Anonymous Users",
           "identified": "Identified Users"
         },
-        "unlock_token": "Unlock token",
-        "updated_at": "Modified Date"
+        "unconfirmed_email": "E-mel yang belum sah",
+        "unlock_token": "Buka token",
+        "updated_at": "Dikemaskinikan pada"
       },
       "user_form": {
         "active": "Active",
@@ -13877,6 +13976,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "score_to_must_be_number": "Score to must be number"
         },
         "license": {
+          "attributes": {
+            "used_number": {
+              "overused": "License used can't be more than the sum of license allocated and overuse limit."
+            }
+          },
           "overuse": "License %{name} is overused"
         },
         "privacy_link": {
@@ -13917,7 +14021,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "report": "Report",
       "report_family": "ReportFamily",
       "task": "Tasks",
-      "user": "Users",
+      "user": "User",
       "user_form": "User"
     }
   },
@@ -14346,11 +14450,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "resource": {
         "confirmations": {
           "delete": {
-            "body": {
-              "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-              "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-              "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-            },
+            "body": "<p>Are you sure you want to delete this Campaign Template?</p>\n",
             "title": "Delete <strong>%{name}</strong> ?"
           },
           "disable": {
@@ -14371,6 +14471,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "title": "Unarchive <strong>%{name}</strong> ?"
           }
+        },
+        "in_progress": {
+          "deleting": "Deleting"
         },
         "tooltips": {
           "copy": "Copy Client",
@@ -15483,6 +15586,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           },
           "destroy": {
+            "error": "Can't delete %{name} because some dependent associations of subjects or evaluators exist.",
             "successfully": "Client Tenancy %{name} was successfully deleted."
           },
           "edit": {
@@ -15531,8 +15635,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "resource": {
             "confirmations": {
               "delete": {
-                "body": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-                "title": "Delete <strong>%{name}</strong> ?"
+                "body": "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>",
+                "title": "Delete <strong>%{name}</strong>?"
               },
               "disable": {
                 "body": {
@@ -15936,6 +16040,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
         },
+        "destroy": {
+          "successfully": "Campaign '%{name}' was deleted successfully."
+        },
         "new": {
           "header": "New 360 Campaign"
         },
@@ -15978,7 +16085,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Add Additional Time"
           },
           "edit_form": {
-            "additional_time_label": "Additional Time, sec",
+            "additional_time_label": "Additional Time, min",
             "submit": "Add"
           },
           "form": {
@@ -17992,7 +18099,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "assigns": {
@@ -18290,24 +18403,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "confirmations": {
-      "confirmed": "Your email address has been successfully confirmed.",
+      "confirmed": "Alamat e-mel anda telah berjaya disahkan.",
       "new": {
-        "resend_confirmation_instructions": "Resend confirmation instructions"
+        "resend_confirmation_instructions": "Hantar semula pengesahan arahan"
       },
-      "send_instructions": "You will receive an email with instructions for how to confirm your email address in a few minutes.",
-      "send_paranoid_instructions": "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      "send_instructions": "Anda akan menerima e-mel dengan arahan untuk bagaimana untuk mengesahkan alamat e-mel anda dalam beberapa minit.",
+      "send_paranoid_instructions": "Jika emel anda wujud di dalam pangkalan data kami, anda akan menerima e-mel dengan arahan untuk bagaimana mengesahkan alamat e-mel anda dalam beberapa minit."
     },
     "failure": {
-      "already_authenticated": "You are already signed in.",
-      "inactive": "Your account is not activated yet.",
+      "already_authenticated": "Anda telah log masuk.",
+      "inactive": "Akaun anda belum diaktifkan lagi.",
       "invalid": "Invalid %{authentication_keys} or password.",
       "invited": "You have a pending invitation, accept it to finish creating your account.",
-      "last_attempt": "You have one more attempt before your account is locked.",
-      "locked": "Your account is locked.",
+      "last_attempt": "Anda ada satu lagi percubaan sebelum akaun anda dikunci.",
+      "locked": "Akaun anda telah dikunci.",
       "not_found_in_database": "Invalid %{authentication_keys} or password.",
-      "timeout": "Your session expired. Please login again to continue.",
-      "unauthenticated": "You need to login or register before continuing.",
-      "unconfirmed": "You have to confirm your email address before continuing."
+      "timeout": "Sesi anda telah tamat. Sila log masuk lagi untuk meneruskan.",
+      "unauthenticated": "Anda perlu log masuk atau daftar sebelum meneruskan.",
+      "unconfirmed": "Anda perlu mengesahkan alamat e-mel anda sebelum meneruskan."
     },
     "invitations": {
       "edit": {
@@ -18337,12 +18450,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "subject": "Invitation to Lighthouse"
       },
       "confirmation_instructions": {
-        "action": "Confirm my account",
-        "greeting": "Welcome %{recipient}!",
-        "instruction": "You can confirm your account email through the link below:",
-        "subject": "Confirmation instructions"
+        "action": "Sahkan akaun saya",
+        "greeting": "Selamat datang %{recipient}!",
+        "instruction": "Anda boleh mengesahkan akaun e-mel anda melalui pautan di bawah:",
+        "subject": "Arahan pengesahan"
       },
       "email_changed": {
+        "greeting": "Hello %{recipient}!",
+        "message": "We're contacting you to notify you that your email has been changed to %{email}.",
         "subject": "Email Changed"
       },
       "invitation_instructions": {
@@ -18354,64 +18469,64 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "subject": "The Talent Enterprise – Your Link to Thriving Index"
       },
       "password_change": {
-        "greeting": "Hello %{recipient}!",
-        "message": "We're contacting you to notify you that your password has been changed.",
-        "subject": "Password Changed"
+        "greeting": "Helo %{recipient}!",
+        "message": "Kami sedang menghubungi anda untuk memberitahu anda bahawa kata laluan anda telah ditukar.",
+        "subject": "Kata Laluan Ditukar"
       },
       "reset_password_instructions": {
-        "action": "Change my password",
-        "greeting": "Hello %{recipient}!",
-        "instruction": "Someone has requested a link to change your password, and you can do this through the link below.",
-        "instruction_2": "If you didn't request this, please ignore this email.",
-        "instruction_3": "Your password won't change until you access the link above and create a new one.",
-        "subject": "Reset password instructions"
+        "action": "Tukar kata laluan saya",
+        "greeting": "Helo %{recipient}!",
+        "instruction": "Seseorang telah meminta sebuah pautan untuk menukar kata laluan anda dan anda boleh melakukannya melalui pautan di bawah.",
+        "instruction_2": "Jika anda tidak meminta ini, sila abaikan e-mel ini.",
+        "instruction_3": "Kata laluan anda tidak akan ditukar sehingga anda mengakses pautan di atas dan membuat yang baru.",
+        "subject": "Arahan kata laluan set semula"
       },
       "unlock_instructions": {
-        "action": "Unlock my account",
-        "greeting": "Hello %{recipient}!",
-        "instruction": "Click the link below to unlock your account:",
-        "message": "Your account has been locked due to an excessive amount of unsuccessful sign in attempts.",
-        "subject": "Unlock instructions"
+        "action": "Buka akaun saya",
+        "greeting": "Helo %{recipient}!",
+        "instruction": "Klik pautan di bawah untuk membuka akaun anda:",
+        "message": "Akaun anda telah dikunci disebabkan terlalu banyak kegagalan percubaan log masuk.",
+        "subject": "Arahan membuka"
       }
     },
     "omniauth_callbacks": {
-      "failure": "Could not authenticate you from %{kind} because \"%{reason}\".",
-      "success": "Successfully authenticated from %{kind} account."
+      "failure": "Tidak dapat mengesahkan anda daripada %{kind} kerana \"%{reason}\".",
+      "success": "Berjaya mengesahkan daripada akaun %{kind}."
     },
     "passwords": {
       "edit": {
-        "change_my_password": "Change my password",
-        "change_your_password": "Change your password",
-        "confirm_new_password": "Confirm new password",
+        "change_my_password": "Tukar kata laluan saya",
+        "change_your_password": "Tukar kata laluan anda",
+        "confirm_new_password": "Sahkan kata laluan baru",
         "description": "To create a new password, please enter your new password in the boxes below.",
-        "new_password": "New password",
+        "new_password": "Kata laluan baru",
         "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
-        "forgot_your_password": "Forgot your password?",
-        "send_me_reset_password_instructions": "Send me reset password instructions"
+        "forgot_your_password": "Lupa kata laluan anda?",
+        "send_me_reset_password_instructions": "Hantar saya arahan kata laluan set semula"
       },
-      "no_token": "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.",
-      "send_instructions": "You will receive an email with instructions on how to reset your password in a few minutes.",
-      "send_paranoid_instructions": "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.",
-      "updated": "Your password has been changed successfully. You are now signed in.",
-      "updated_not_active": "Your password has been changed successfully."
+      "no_token": "Anda tidak boleh mengakses halaman ini tanpa didatangi daripada e-mel kata laluan set semula. Jika anda datang daripada e-mel kata laluan set semula, sila pastikan anda telah menggunakan URL penuh yang diberikan.",
+      "send_instructions": "Anda akan menerima sebuah e-mel dengan arahan mengenai bagaimana untuk menetapkan semula kata laluan anda dalam beberapa minit.",
+      "send_paranoid_instructions": "Jika alamat e-mel anda wujud di dalam pangkalan data kami, anda akan menerima sebuah pemulihan kata laluan di alamat e-mel anda dalam beberapa minit.",
+      "updated": "Kata laluan anda telah berjaya ditukar. Anda kini telah log masuk.",
+      "updated_not_active": "Kata laluan anda telah berjaya ditukar"
     },
     "registrations": {
-      "destroyed": "Bye! Your account has been successfully cancelled. We hope to see you again soon.",
+      "destroyed": "Selamat tinggal! Akaun anda telah berjaya dibatalkan. Kami berharap untuk berjumpa dengan anda lagi.",
       "edit": {
-        "are_you_sure": "Are you sure?",
-        "cancel_my_account": "Cancel my account",
-        "currently_waiting_confirmation_for_email": "Currently waiting confirmation for: %{email}",
-        "leave_blank_if_you_don_t_want_to_change_it": "leave blank if you don't want to change it",
+        "are_you_sure": "Adakah anda pasti?",
+        "cancel_my_account": "Batalkan akaun saya",
+        "currently_waiting_confirmation_for_email": "Kini menunggu pengesahan untuk: %{email}",
+        "leave_blank_if_you_don_t_want_to_change_it": "tinggalkan kosong jika anda tidak ingin untuk mengubahnya",
         "title": "Edit %{resource}",
-        "unhappy": "Unhappy",
-        "update": "Update",
-        "we_need_your_current_password_to_confirm_your_changes": "we need your current password to confirm your changes"
+        "unhappy": "Tidak Gembira?",
+        "update": "Kemas Kini",
+        "we_need_your_current_password_to_confirm_your_changes": "kami memerlukan kata laluan anda yang kini untuk mengesahkan perubahan anda"
       },
       "new": {
-        "sign_up": "Sign up",
+        "sign_up": "Daftar",
         "submit": "Register",
         "tabs": {
           "register": "Register",
@@ -18419,41 +18534,45 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
       },
-      "signed_up": "Welcome! You have signed up successfully.",
-      "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
-      "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
-      "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
+      "signed_up": "Selamat datang! Anda telah berjaya mendaftar.",
+      "signed_up_but_inactive": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda belum diaktifkan.",
+      "signed_up_but_locked": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda telah dikunci.",
+      "signed_up_but_unconfirmed": "Sebuah mesej dengan pautan pengesahan telah dihantar ke alamat e-mel anda. Sila ikuti pautan tersebut untuk mengaktifkan akaun anda.",
       "success": "Signup successful. Please check your email for further instructions.",
-      "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
-      "updated": "Your account has been updated successfully.",
+      "update_needs_confirmation": "Anda telah mengemas kini akaun anda dengan berjaya, tetapi kami perlu mengesahkan alamat e-mel anda yang baharu. Sila periksa e-mel anda dan ikuti pautan pengesahan untuk mengesahkan alamat e-mel anda yang baharu.",
+      "updated": "Akaun anda telah berjaya dikemaskinikan.",
       "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
     },
     "sessions": {
-      "already_signed_out": "Signed out successfully.",
+      "already_signed_out": "Berjaya dilog keluar.",
       "new": {
         "email_label": "Email Address",
         "forgot_password": "Forgot password?",
         "keep_sign_in": "Yes, Keep me signed in",
         "password_placeholder": "Enter your password",
-        "sign_in": "Sign in",
+        "sign_in": "Log masuk",
         "submit": "Login",
         "tabs": {
           "register": "Register",
           "sign_in": "Login"
         }
       },
-      "signed_in": "Signed in successfully.",
-      "signed_out": "Signed out successfully."
+      "signed_in": "Berjaya dilog masuk.",
+      "signed_out": "Berjaya dilog keluar."
     },
     "shared": {
       "links": {
-        "back": "Back",
-        "didn_t_receive_confirmation_instructions": "Didn't receive confirmation instructions?",
-        "didn_t_receive_unlock_instructions": "Didn't receive unlock instructions?",
-        "forgot_your_password": "Forgot your password?",
-        "sign_in": "Sign in",
-        "sign_in_with_provider": "Sign in with %{provider}",
-        "sign_up": "Sign up"
+        "back": "Kembali",
+        "didn_t_receive_confirmation_instructions": "Tidak mendapat arahan pengesahan?",
+        "didn_t_receive_unlock_instructions": "Tidak mendapat arahan membuka akaun?",
+        "forgot_your_password": "Lupa kata laluan anda?",
+        "sign_in": "Log masuk",
+        "sign_in_with_provider": "Log masuk dengan %{provider}",
+        "sign_up": "Daftar"
+      },
+      "minimum_password_length": {
+        "one": "(%{count} character minimum)",
+        "other": "(%{count} characters minimum)"
       }
     },
     "two_factor_authentication": {
@@ -18472,11 +18591,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "unlocks": {
       "new": {
-        "resend_unlock_instructions": "Resend unlock instructions"
+        "resend_unlock_instructions": "Hantar semula arahan buka akaun"
       },
-      "send_instructions": "You will receive an email with instructions for how to unlock your account in a few minutes.",
-      "send_paranoid_instructions": "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.",
-      "unlocked": "Your account has been unlocked successfully. Please login to continue."
+      "send_instructions": "Anda akan menerima sebuah e-mel dengan arahan untuk bagaimana untuk membuka akaun anda dalam beberapa minit.",
+      "send_paranoid_instructions": "Jika akaun anda wujud, anda akan menerima sebuah e-mel dengan arahan untuk bagaimana untuk membukanya dalam beberapa minit.",
+      "unlocked": "Akaun anda telah berjaya dibuka. Sila log masuk untuk meneruskan."
     }
   },
   "ecommerce": {
@@ -18572,7 +18691,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "after": "must be after %{date}",
       "after_or_equal_to": "must be after or equal to %{date}",
       "allowed_file_content_types": "file should be one of %{types}",
-      "already_confirmed": "was already confirmed, please try signing in",
+      "already_confirmed": "telah disahkan, sila cuba untuk log masuk",
       "before": "must be before %{date}",
       "before_or_equal_to": "must be before or equal to %{date}",
       "blank": "can't be blank",
@@ -18586,7 +18705,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "carrierwave_integrity_error": "is not of an allowed file type",
       "carrierwave_processing_error": "failed to be processed",
       "confirmation": "doesn't match %{attribute}",
-      "confirmation_period_expired": "needs to be confirmed within %{period}, please request a new one",
+      "confirmation_period_expired": "perlu disahkan dalam %{period}, sila minta yang baharu",
       "content_type_blacklist_error": "You are not allowed to upload %{content_type} files",
       "content_type_whitelist_error": "You are not allowed to upload %{content_type} files",
       "empty": "can't be empty",
@@ -18594,7 +18713,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "even": "must be even",
       "excluded_file_content_types": "file cannot be %{types}",
       "exclusion": "is reserved",
-      "expired": "has expired, please request a new one",
+      "expired": "telah tamat, sila minta yang baharu",
       "extension_blacklist_error": "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}",
       "extension_whitelist_error": "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}",
       "file_size_is_greater_than": "file size must be greater than %{count}",
@@ -18616,11 +18735,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "not_a_date": "is not a date",
       "not_a_number": "is not a number",
       "not_an_integer": "must be an integer",
-      "not_found": "not found",
-      "not_locked": "was not locked",
+      "not_found": "tidak dijumpai",
+      "not_locked": "tidak dikunci",
       "not_saved": {
-        "one": "1 error prohibited this %{resource} from being saved:",
-        "other": "%{count} errors prohibited this %{resource} from being saved:"
+        "one": "1 ralat telah melarang %{resource} ini daripada disimpan:",
+        "other": "%{count} ralat telah melarang %{resource} daripada disimpan:"
       },
       "odd": "must be odd",
       "other_than": "must be other than %{count}",
@@ -18831,6 +18950,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "usages": {
       "none": "No key usages found."
+    },
+    "yandex_translate": {
+      "errors": {
+        "no_api_key": "Set Yandex API key via YANDEX_API_KEY environment variable or translation.yandex_api_key in config/i18n-tasks.yml. Get the key at https://tech.yandex.com/translate.",
+        "no_results": "Yandex returned no results."
+      }
     }
   },
   "id": "Id",
@@ -19508,6 +19633,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "completed": "Completed",
           "finished": "finished",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New",
           "overdue": "Overdue"
         },
