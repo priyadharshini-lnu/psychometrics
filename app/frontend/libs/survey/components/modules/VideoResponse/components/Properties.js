@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
+import { DefaultTrackerOptions } from 'constants/DefaultProps'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
+import { Button, InputNumber } from 'antd'
 
 export class Properties extends Component {
   durations = [
@@ -12,6 +15,13 @@ export class Properties extends Component {
     { value: 180, display: '3min' },
     { value: 300, display: '5min' },
     { value: 600, display: '10min' },
+  ]
+
+  frameOptions = [
+    { value: '', display: 'None' },
+    { value: 'upperHalfBody', display: 'Upper Half Body' },
+    { value: 'face', display: 'Full Face' },
+    { value: 'custom', display: 'Custom' },
   ]
 
   static propTypes = {
@@ -31,14 +41,117 @@ export class Properties extends Component {
     this.update()
   }
 
-  renderVideoFields () {
+  updateFitInFrame = (e) => {
     const { model } = this.props
+    const fitInFrame = e.currentTarget.value
+    const options = { ...DefaultTrackerOptions[fitInFrame] }
+
+    if (fitInFrame === 'none') this.resetTrackerOptions()
+    model.changeProps({ fitInFrame, trackerOptions: options })
+    this.update()
+  }
+
+  resetTrackerOptions = () => {
+    const { model, model: { props: { fitInFrame } } } = this.props
+    model.changeProps({ trackerOptions: DefaultTrackerOptions[fitInFrame] || {} })
+    this.update()
+  }
+
+  updateTrackerOptions = (val, object, key) => {
+    const { model, model: { props: { fitInFrame, trackerOptions } } } = this.props
+    const options = { ...(DefaultTrackerOptions[fitInFrame] || {}), ...trackerOptions }
+    options[object][key] = val
+    model.changeProps({ trackerOptions: options })
+    this.update()
+  }
+
+  durationFields () {
+    const { model } = this.props
+
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Max Duration</span>
         <select className="form-control" value={model.props.duration} onChange={this.changeDuration}>
           {this.durations.map(j => (<option key={j.value} value={j.value}>{`${j.display}`}</option>))}
         </select>
+      </div>
+    )
+  }
+
+  displayTrackerOptions () {
+    const { model: { props: { fitInFrame, trackerOptions } } } = this.props
+
+    if (!fitInFrame) return
+
+    const { box, object } = { ...(DefaultTrackerOptions[fitInFrame] || {}), ...trackerOptions }
+    return (
+      <div className="">
+        <div className={styles.fieldset} style={{ position: 'relative' }}>
+          <div className={cs(styles.label, 'font-bold')}>Box</div>
+          {Object.keys(box).map((key, i) => (
+            <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
+              <label className={styles.label}>{key}</label>
+              <InputNumber
+                min={0.0}
+                max={1.0}
+                step={0.1}
+                size="small"
+                value={box[key]}
+                precision={2}
+                disabled={fitInFrame !== 'custom'}
+                onChange={e => this.updateTrackerOptions(e, 'box', key)}
+              />
+            </div>
+          ))}
+
+          <div className={cs(styles.label, 'font-bold')}>Face</div>
+          {Object.keys(object).map((key, i) => (
+            <div key={i.toString()} className={cs(styles.numberInputWrapper, 'mbs')}>
+              <label className={styles.label}>{key}</label>
+              <InputNumber
+                min={0.0}
+                max={1.0}
+                step={0.1}
+                size="small"
+                value={object[key]}
+                precision={2}
+                onChange={e => this.updateTrackerOptions(e, 'object', key)}
+              />
+            </div>
+          ))}
+        </div>
+        <Button
+          danger
+          type="link"
+          className="float-r ps"
+          onClick={this.resetTrackerOptions}
+        >
+          Reset Defaults
+        </Button>
+      </div>
+    )
+  }
+
+  frameFields () {
+    const { model: { props: { fitInFrame } } } = this.props
+
+    return (
+      <div className={styles.fieldset} style={{ position: 'relative' }}>
+        <div className={styles.label}>Fit In Frame</div>
+        <select className="form-control" value={fitInFrame || ''} onChange={this.updateFitInFrame}>
+          {this.frameOptions.map(o => (<option key={o.value} value={o.value}>{`${o.display}`}</option>))}
+        </select>
+
+        { this.displayTrackerOptions() }
+      </div>
+    )
+  }
+
+  renderVideoFields () {
+    return (
+      <div>
+        { this.durationFields() }
+        { this.frameFields() }
       </div>
     )
   }

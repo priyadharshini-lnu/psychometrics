@@ -20,7 +20,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "goto_dashboard": "الذهاب إلى لوحة القيادة"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -36,7 +36,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "psychometric": "Assessment"
     },
     "communications": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      "finish": "لقد أكملت الآن الاستطلاع وتم تسجيل ردك. نشكرك على تخصيص بعض الوقت لمشاركة تعليقاتك."
     },
     "decorator": {
       "no_description": "Description is empty"
@@ -75,7 +75,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {
@@ -585,7 +591,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {
@@ -1092,7 +1104,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      }
     }
   },
   "checking_wizard": {

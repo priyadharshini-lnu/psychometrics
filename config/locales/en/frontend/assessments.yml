@@ -24,7 +24,13 @@ en:
       saved: 'Saved'
       saving: 'Saving...'
       retry: 'Retry'
+      tracker:
+        frame: 'Please make sure that your face aligns with the frame'
+        ready: 'Press the Record button when ready to record'
+        forward: 'You are too far away from the screen. Please move a bit closer'
+        backward: 'You are too close to the screen. Please move a bit back'
     communications:
       finish: "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
     actions:
       goto_dashboard: Go To Dashboard
+      
