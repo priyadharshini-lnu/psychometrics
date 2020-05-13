@@ -10,3 +10,7 @@ ar:
       agile: AGILE
     pickgrouprank:
       items: 'العبارات'
+    communications:
+      finish: 'لقد أكملت الآن الاستطلاع وتم تسجيل ردك. نشكرك على تخصيص بعض الوقت لمشاركة تعليقاتك.'
+    actions:
+      goto_dashboard: 'الذهاب إلى لوحة القيادة'
