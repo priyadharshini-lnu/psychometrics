@@ -35,10 +35,9 @@
                            wrapper_html: { class: 'common mindmill hogan' }
         = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan' }
         .clearfix
-          = f.fields_for :extra, OpenStruct.new(resource.extra) do |df|
-            = df.input :enable_video_check, as: :boolean, disabled: true
-            = df.input :enable_audio_check, as: :boolean, disabled: true
-            = df.input :enable_network_check, as: :boolean, disabled: true
+          = f.input :enable_video_check, as: :boolean, disabled: true
+          = f.input :enable_audio_check, as: :boolean, disabled: true
+          = f.input :enable_network_check, as: :boolean, disabled: true
         = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer
       .btn-group
