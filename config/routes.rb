@@ -603,7 +603,7 @@ Rails.application.routes.draw do
           post :change_locale
         end
       end
-      get ':system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
+      get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
     end
     namespace :mindmill do
       resources :assigns, only: [] do
