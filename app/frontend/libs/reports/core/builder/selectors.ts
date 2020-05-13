@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
-import { module, page } from 'libs/reports/store/schema'
+import { module, page, blocks as blocksSchema } from 'libs/reports/store/schema'
+import QuestionModel from 'libs/reports/models/Question'
 import ModuleInterface from '../interfaces/Module'
 import PageInterface from '../interfaces/Page'
 
@@ -19,3 +20,41 @@ export const getSelected = (state: any) => state.selected
 export const getPages = (state: any, ids: number[]): PageInterface[] => denormalize(ids, [page], state)
 
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]
+
+const FILTER_QUESTION_TYPES = [
+  'PageBreak',
+  'StaticContent',
+  'MetaInfo',
+  'Captcha',
+  'FileUpload',
+  'AudioResponse',
+  'VideoResponse',
+]
+
+export const getQuestions = (state: any, assessmentId: number) => {
+  const blocks = denormalize(state.builder.assessments[assessmentId].blocks, [blocksSchema], state.builder)
+  return _.reduce(blocks, (acc, block) => {
+    const questions = _.filter(block.questions, q => !_.includes(
+      FILTER_QUESTION_TYPES, q.type,
+    )).map(q => new QuestionModel(q))
+    return [...acc, ...questions]
+  }, [])
+}
+
+
+export const getEmbeddedData = (state: any, assessmentId: number) => {
+  const parse = elements => _.reduce(elements, (acc, element) => {
+    if (element.type === 'EmbeddedData') {
+      _.map(element.props.storage, (el) => {
+        acc = [...acc, { name: el.key, value: el.key, label: el.key }]
+      })
+    }
+    if (element.elements.length > 0) {
+      return [...acc, ...parse(element.elements)]
+    }
+    return acc
+  }, [])
+
+  const { flow: { elements } } = state.builder.assessments[assessmentId]
+  return parse(elements || [])
+}

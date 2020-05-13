@@ -156,19 +156,19 @@ class Properties extends Component {
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
   renderResponseTextForm () {
-    const { model } = this.props
+    const { model, questions } = this.props
     if (model.props.sourceType !== 'ResponseText') { return null }
     return (
-      <ResponseText model={model} onChangeModelIn={this.changeModelIn} />
+      <ResponseText model={model} onChangeModelIn={this.changeModelIn} questions={questions} />
     )
   }
 
   // TODO (atanych): should be extracted neighbourhood as dedicated Components according to store.model.props.sourceType
   renderResultTextForm () {
-    const { model } = this.props
+    const { model, questions } = this.props
     if (model.props.sourceType !== 'ResultText') { return null }
     return (
-      <ResultText model={model} onChangeModelIn={this.changeModelIn} update={this.update} />
+      <ResultText model={model} onChangeModelIn={this.changeModelIn} update={this.update} questions={questions} />
     )
   }
 

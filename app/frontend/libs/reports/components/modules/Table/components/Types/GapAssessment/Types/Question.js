@@ -2,9 +2,10 @@ import React from 'react'
 import _ from 'lodash'
 import ResultStore from 'rb/store/ResultStore'
 import AppStore from 'rb/store/AppStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import Utils from 'rb/utils'
 import I18nStore from 'rb/store/I18nStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import styles from '../styles.scss'
 
 const MOCK_POSITIVE_ROWS = [
@@ -47,7 +48,9 @@ const MOCK_POSITIVE_ROWS = [
 const MOCK_NEGATIVE_ROWS = []
 
 // TODO (atanych): I have copied and pasted from another file. Have to sort out when integrate real results
-export default function Question ({ filters: [left, right], filters, model }) {
+function Question ({
+  filters: [left, right], filters, model, questions,
+}) {
   const getResults = () => {
     if (!ResultStore.realResults) return [MOCK_POSITIVE_ROWS, MOCK_NEGATIVE_ROWS]
 
@@ -71,7 +74,7 @@ export default function Question ({ filters: [left, right], filters, model }) {
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const dimensionId = assessment && assessment.dimensionId
     const factorMap = _.keyBy(AppStore.factors[dimensionId], f => f.id)
-    const questionMap = AssessmentStore.questions[model.assessment_id]
+    const questionMap = questions
 
     let results = _.flatMap(questionScoringLeft,
       (questionResults, factorId) => _.map(questionResults, (res, questionId) => {
@@ -162,3 +165,8 @@ function TBody ({ rows, emptyText }) {
     </tbody>
   )
 }
+
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Question)

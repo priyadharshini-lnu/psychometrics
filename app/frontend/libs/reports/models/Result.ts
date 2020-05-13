@@ -72,6 +72,7 @@ export default class Result {
     this.assessmentId = assessmentId
     this.dimensionId = _.find(AppStore.assessments, { id: this.assessmentId })?.dimensionId
     this.resultsByFilter = {}
+    this.embeddedData = {}
   }
 
   // toJSON = () => ({ name: this.name, filters: this.filters })
