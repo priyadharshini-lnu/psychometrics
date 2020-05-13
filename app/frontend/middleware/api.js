@@ -1,25 +1,26 @@
 import axios from 'axios'
-import queryString from 'query-string'
+import queryString from 'qs'
 import humps from 'humps'
-import _ from 'lodash'
 import { LOADING, LOADING_COMPLETE } from 'admin/core/temp/request'
+import { setIn } from 'utils/immutable'
 
 const debounceTimers = {}
-const buildUrl = ({ method = 'get', url, body }) => {
+const buildUrl = ({
+  method = 'get', url, body, tableConfig,
+}) => {
   if (method !== 'get') return url
-  const normalizedBody = _.transform(
-    humps.decamelizeKeys(body),
-    (res, v, k) => {
-      if (_.isPlainObject(v)) {
-        res[k] = JSON.stringify(v)
-      } else {
-        res[k] = v
-      }
-      return res
-    },
-    {},
-  )
+  const normalizedBody = humps.decamelizeKeys({ ...bodyFromTableConfig(tableConfig), ...body })
+
   return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
+}
+
+// Sends data in the format required by ransack gem
+const bodyFromTableConfig = (tableConfig) => {
+  if (!tableConfig) { return {} }
+
+  const data = { filters: tableConfig.filters || {}, page: tableConfig.page }
+  if (!tableConfig.sort) return data
+  return setIn(data, ['filters', 's'], `${tableConfig.sort.columnName} ${tableConfig.sort.order}`)
 }
 
 const buildOptions = ({ options: options = {} }) => ({

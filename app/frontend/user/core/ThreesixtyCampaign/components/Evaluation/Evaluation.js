@@ -3,7 +3,7 @@ import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'

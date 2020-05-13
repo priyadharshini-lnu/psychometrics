@@ -48,6 +48,11 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
     end
+    resources :projects do
+      scope module: :projects do
+        resources :new_campaigns
+      end
+    end
     ### CLIENTS
     resources :clients do
       member do
@@ -159,6 +164,9 @@ Rails.application.routes.draw do
                 end
               end
             end
+
+            resources :new_campaigns
+
             resources :threesixty_campaigns, concerns: :client_editable do
               member do
                 get :export_results
