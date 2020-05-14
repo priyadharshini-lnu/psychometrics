@@ -6,7 +6,7 @@ describe Reports::IsGeneratable do
   it "return true if report doesn't have multiple assessment" do
     report = create(:report, assessments: [build(:assessment)])
 
-    result = described_class.call!(report, build(:assign, status: :completed))
+    result = described_class.call!(report, create(:assign, status: :completed))
 
     expect(result).to eq(true)
   end

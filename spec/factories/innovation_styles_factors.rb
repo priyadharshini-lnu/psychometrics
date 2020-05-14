@@ -14,7 +14,7 @@
 #  updated_at          :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :innovation_styles_factor do
     innovation_style
     factor

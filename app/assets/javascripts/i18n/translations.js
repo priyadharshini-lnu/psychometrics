@@ -53,6 +53,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "pickgrouprank": {
       "items": "العبارات"
     },
+    "proceed": "Proceed Anyway",
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -82,7 +83,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       }
-    }
+    },
+    "wait": "Wait"
   },
   "checking_wizard": {
     "audio_check": {
@@ -490,6 +492,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "yourself": "Yourself"
   },
   "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
@@ -569,6 +591,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "pickgrouprank": {
       "items": "Items"
     },
+    "proceed": "Proceed Anyway",
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -598,7 +621,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       }
-    }
+    },
+    "wait": "Wait"
   },
   "checking_wizard": {
     "audio_check": {
@@ -1003,6 +1027,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "yourself": "Yourself"
   },
   "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
@@ -1082,6 +1126,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "pickgrouprank": {
       "items": "Items"
     },
+    "proceed": "Proceed Anyway",
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -1111,7 +1156,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       }
-    }
+    },
+    "wait": "Wait"
   },
   "checking_wizard": {
     "audio_check": {
@@ -1516,6 +1562,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "yourself": "Yourself"
   },
   "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",

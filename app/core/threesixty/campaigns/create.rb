@@ -21,6 +21,12 @@ module Threesixty
 
         load_templates(threesixty_campaign)
 
+        campaign = threesixty_campaign.campaign
+        if threesixty_campaign.assessment
+          campaign.campaigns_assessments.create(assessment_id: threesixty_campaign.assessment_id)
+        end
+        campaign.campaigns_reports.create(report_id: threesixty_campaign.report_id) if threesixty_campaign.report
+
         broadcast :ok, threesixty_campaign
       end
 

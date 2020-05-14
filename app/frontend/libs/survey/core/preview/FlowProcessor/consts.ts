@@ -23,3 +23,7 @@ export const RESET = 'preview/RESET'
 export const UPDATE_META_DATA = 'flow_processor/UPDATE_META_DATA'
 export const UPDATE_META_DATA_REQUEST = 'flow_processor/UPDATE_META_DATA_REQUEST'
 export const SET_LOCAL_RESULTS = 'flow_processor/SET_LOCAL_RESULTS'
+
+export const MARK_QUESTION_IN_PROGRESS = 'flow_processor/MARK_QUESTION_IN_PROGRESS'
+export const REMOVE_QUESTION_IN_PROGRESS = 'flow_processor/REMOVE_QUESTION_IN_PROGRESS'
+export const CLEAR_IN_PROGRESS_QUESTION = 'flow_processor/CLEAR_IN_PROGRESS_QUESTION'

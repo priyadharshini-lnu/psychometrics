@@ -33,4 +33,5 @@ en:
       finish: "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
     actions:
       goto_dashboard: Go To Dashboard
-      
+    wait: 'Wait'
+    proceed: 'Proceed Anyway'

@@ -16,7 +16,7 @@
 #  description      :text
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :occupations_factor do
     occupation
     factor

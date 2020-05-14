@@ -20,7 +20,7 @@
 #  owner_id          :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :assessment, class: ::Assessments::Common do
     sequence(:name) { |i| "assessment #{i}" }
     dimension
@@ -33,9 +33,9 @@ FactoryGirl.define do
     end
 
     trait :hogan do
-      category Assessment::CATEGORIES[:hogan]
-      type ::Assessments::Hogan
-      dimension nil
+      category { Assessment::CATEGORIES[:hogan] }
+      type { ::Assessments::Hogan }
+      dimension { nil }
     end
   end
   factory :assessment_hogan, class: ::Assessments::Hogan do

@@ -3,7 +3,7 @@ import {
   Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'

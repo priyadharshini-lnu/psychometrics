@@ -12,9 +12,9 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :product_image do
-    image 'MyString'
-    position 1
+    image { 'MyString' }
+    position { 1 }
   end
 end

@@ -11,7 +11,7 @@
 #  props     :json
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :factors_norm do
     factor
     norm

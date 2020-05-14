@@ -30,9 +30,11 @@ interface Props {
   mediaUrl: string
   model: Model
   fakeUpload: boolean
-  onSuccessUpload(): void
+  onSuccessUpload(media: object): void
   onRecordingDiscard(): void
   readOnly?: boolean
+  markQuestionInProgress(questionId: number, progressState: string): void
+  removeQuestionInProgress(questionId: number): void
 }
 
 interface Model {
@@ -62,6 +64,8 @@ const AudioRecorder: React.FC<Props> = ({
   onSuccessUpload,
   onRecordingDiscard,
   readOnly,
+  markQuestionInProgress,
+  removeQuestionInProgress,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [audioLevel, setAudioLevel] = useState(AUDIO_LEVEL.LOW)
@@ -118,6 +122,7 @@ const AudioRecorder: React.FC<Props> = ({
 
   const startRecording = (): void => {
     dispatch(setRecordingState(RECORDER_STATES.RECORDING))
+    markQuestionInProgress(model.id, RECORDER_STATES.RECORDING)
     setTimeout(() => {
       $(window).on(RECORDER_STATES.RECORDING, () => {
         if (updateAudioPulseRef.current) { updateAudioPulseRef.current() }
@@ -141,6 +146,7 @@ const AudioRecorder: React.FC<Props> = ({
         .getWavFile()
         .then((file: Blob) => {
           recorderRef.current?.releaseMic()
+          markQuestionInProgress(model.id, RECORDER_STATES.RECORDED)
           dispatch(setRecordingState(RECORDER_STATES.RECORDED))
           dispatch(setAudioPulse(initialState.audioPulse))
           dispatch(setRecordingTime(initialState.recordingTime))
@@ -154,9 +160,15 @@ const AudioRecorder: React.FC<Props> = ({
     dispatch(setRecordingState(RECORDER_STATES.RECORDED))
     dispatch(setUploadState(UPLOAD_STATES.SAVING))
     if (fakeUpload) {
+      removeQuestionInProgress(model.id)
       return dispatch(setUploadState(UPLOAD_STATES.SAVED))
     }
     uploadFile(model.id)
+  }
+
+  const handleSuccessfulUpload = (media: object) => {
+    removeQuestionInProgress(model.id)
+    onSuccessUpload && onSuccessUpload(media)
   }
 
   const uploadFile = (id: number): void => {
@@ -165,13 +177,15 @@ const AudioRecorder: React.FC<Props> = ({
       mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
+    markQuestionInProgress(id, UPLOAD_STATES.SAVING)
     FileUploader.run({
-      urls, file, fileName: 'audio.wav', dispatch, onSuccessUpload,
+      urls, file, fileName: 'audio.wav', dispatch, onSuccessUpload: handleSuccessfulUpload,
     })
   }
 
   const discardRecording = (): void => {
     dispatch(removeFile())
+    removeQuestionInProgress(model.id)
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {

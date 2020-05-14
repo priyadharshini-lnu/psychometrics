@@ -64,7 +64,10 @@ class VideoRecorder extends Component {
   }
 
   discardRecording = () => {
-    const { result, onDeleteMedia, mediaUrl } = this.props
+    const {
+      result, onDeleteMedia, mediaUrl, removeQuestionInProgress, model,
+    } = this.props
+    removeQuestionInProgress(model.id)
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {
@@ -156,8 +159,9 @@ class VideoRecorder extends Component {
   }
 
   saveRecording = async () => {
-    const { preview, model } = this.props
+    const { preview, model, markQuestionInProgress } = this.props
     this.setState({ recordingState: 'saving' })
+    markQuestionInProgress(model.id, 'saving')
     if (preview) {
       this.handleRecordingSaved()
       return this.setState({ percent: 100, recordingState: 'saved' })
@@ -167,7 +171,9 @@ class VideoRecorder extends Component {
   }
 
   handleRecordingSaved = () => {
+    const { model, removeQuestionInProgress } = this.props
     this.player.trigger('statechanged', { status: 'saved' })
+    removeQuestionInProgress(model.id)
 
     this.statusText.hide()
     this.player.controlBar.progressControl.show()
@@ -213,7 +219,7 @@ class VideoRecorder extends Component {
   }
 
   initRecorder () {
-    const { maxDuration } = this.props
+    const { maxDuration, model, markQuestionInProgress } = this.props
 
     this.setState({ recordingState: 'initialized', key: 'record' }, () => {
       const options = {
@@ -255,6 +261,7 @@ class VideoRecorder extends Component {
         const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recording' })
         this.player.trigger('statechanged', { status: 'recording' })
+        markQuestionInProgress(model.id, 'recording')
 
         this.remainingTime.show()
         this.player.controlBar.currentTimeDisplay.addClass('show')
@@ -265,6 +272,7 @@ class VideoRecorder extends Component {
       this.player.on('finishRecord', () => {
         const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recorded' })
+        markQuestionInProgress(model.id, 'recorded')
         this.player.trigger('statechanged', { status: 'recorded' })
 
         if (trackingEnabled && this.tracker) this.tracker.stopTracking()

@@ -25,6 +25,8 @@ export default function FileUpload ({
   onSuccessUpload,
   onRemoveFile,
   readOnly,
+  markQuestionInProgress,
+  removeQuestionInProgress,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -62,14 +64,20 @@ export default function FileUpload ({
     return valid
   }
 
+  const handleSuccessfulUpload = (media) => {
+    removeQuestionInProgress(model.id)
+    onSuccessUpload && onSuccessUpload(media)
+  }
+
   const uploadFile = (id) => {
     const { file } = state
     const urls = {
       mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
+    markQuestionInProgress(id, UPLOAD_STATES.SAVING)
     FileUploader.run({
-      urls, file, dispatch, onSuccessUpload,
+      urls, file, dispatch, onSuccessUpload: handleSuccessfulUpload,
     })
   }
 

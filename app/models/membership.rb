@@ -84,6 +84,7 @@ class Membership < ApplicationRecord
   scope :enabled, -> { where.not(disabled: true) }
   scope :assigned, -> { joins(:assigns) }
   scope :completed, -> { where(assigns_completed: true) }
+  scope :client_admin_role, -> { where(role: CLIENT_ADMIN_ROLE) }
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :with_client, ->(client_id) { where(client_id: client_id) }
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }

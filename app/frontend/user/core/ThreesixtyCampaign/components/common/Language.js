@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, Menu, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 
 export default function Language ({ selectedLanguage, availableTranslations }) {
   const handleLanguageChange = ({ key }) => {

@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
 import currentUser from 'core/temp/currentUser'
+import { connectRouter } from 'connected-react-router'
+import tables from 'admin/filterAndPagination/reducers'
 import subjects from './core/threeSixtyCampaign/subjects'
 import evaluators from './core/threeSixtyCampaign/evaluators'
 import managers from './core/threeSixtyCampaign/managers'
@@ -20,8 +22,10 @@ import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates
 import campaignDetails from './core/threeSixtyCampaign/campaignDetails'
 import mailHistories from './core/threeSixtyCampaign/mailHistories'
 import users from './core/threeSixtyCampaign/users'
+import campaignReducers from './core/campaigns/reducers'
 
-export default combineReducers({
+const createRootReducer = history => combineReducers({
+  router: connectRouter(history),
   threeSixtyCampaign: combineReducers({
     subjects,
     evaluators,
@@ -49,4 +53,8 @@ export default combineReducers({
     request,
     currentUser,
   }),
+  tables,
+  campaigns: campaignReducers,
 })
+
+export default createRootReducer
