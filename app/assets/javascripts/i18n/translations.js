@@ -35,9 +35,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "organisational": "Survey",
       "psychometric": "Assessment"
     },
-    "communications": {
-      "finish": "لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة"
-    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -45,6 +42,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "messages": {
+      "finish": "لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة"
     },
     "page": {
       "back": "Back",
@@ -551,9 +551,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "organisational": "Survey",
       "psychometric": "Assessment"
     },
-    "communications": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
-    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -561,6 +558,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "messages": {
+      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
     },
     "page": {
       "back": "Back",
@@ -1064,9 +1064,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "organisational": "Survey",
       "psychometric": "Assessment"
     },
-    "communications": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
-    },
     "decorator": {
       "no_description": "Description is empty"
     },
@@ -1074,6 +1071,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
+    },
+    "messages": {
+      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
     },
     "page": {
       "back": "Back",

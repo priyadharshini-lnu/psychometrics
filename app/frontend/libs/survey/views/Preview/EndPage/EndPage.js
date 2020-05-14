@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from './EndPage.scss'
 
-const { I18n } = window
 export class EndPage extends Component {
   static propTypes = {
     flowElement: PropTypes.object,
@@ -29,8 +28,11 @@ export class EndPage extends Component {
   }
 
   render () {
-    let message = I18n.t('assessments.communications.finish')
-    const { flowElement, dashboardUrl, isAnonymousAssessment } = this.props
+    const {
+      flowElement, dashboardUrl, isAnonymousAssessment, I18n,
+    } = this.props
+    let message = I18n.t('assessments.messages.finish')
+
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
         // eslint-disable-next-line prefer-destructuring
