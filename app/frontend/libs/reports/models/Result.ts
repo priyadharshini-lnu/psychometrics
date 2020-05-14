@@ -1,6 +1,8 @@
 import _ from 'lodash'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import AppStore from '../store/AppStore'
 import Filter from './Filter'
+import store from '../store'
 
 import {
   RawResult,
@@ -181,6 +183,7 @@ export default class Result {
 
   questionScoringWithoutFactors = (filterId: string): QuestionScoringWithoutFactorsObject => {
     const questionScoring = this.getBranchData(filterId, 'questionScoring')
-    return GetQuestionScoringWithoutFactors.run(this.assessmentId, questionScoring, this.dimensionId)
+    const questions = getQuestions(store.getState().report, this.assessmentId)
+    return GetQuestionScoringWithoutFactors.run(this.assessmentId, questionScoring, this.dimensionId, questions)
   }
 }

@@ -36,9 +36,9 @@ export const getQuestions = (state: any, assessmentId: number) => {
   return _.reduce(blocks, (acc, block) => {
     const questions = _.filter(block.questions, q => !_.includes(
       FILTER_QUESTION_TYPES, q.type,
-    )).map(q => new QuestionModel(q))
-    return [...acc, ...questions]
-  }, [])
+    )).reduce((acc, q) => ({ ...acc, [q.id]: new QuestionModel(q) }), {})
+    return { ...acc, ...questions }
+  }, {})
 }
 
 

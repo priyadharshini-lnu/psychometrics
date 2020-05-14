@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
-import { getQuestions } from 'libs/reports/core/builder/selectors'
-import store from '../../store'
+
 import AppStore from '../../store/AppStore'
 import { QuestionScoringObject } from './interfaces/ScoringByQuestion'
 import ResultScoring from './interfaces/ResultScoring'
@@ -14,8 +13,9 @@ export default {
     assessmentId: number,
     questionScoring: ResultScoring,
     dimensionId: number,
+    questions,
   ): QuestionScoringWithoutFactorsObject => {
-    const assessmentQuestions = getQuestions(store.getState().report, assessmentId)
+    const assessmentQuestions = questions
 
     const result = _.reduce(questionScoring, (
       result: QuestionScoringWithoutFactorsObject,
