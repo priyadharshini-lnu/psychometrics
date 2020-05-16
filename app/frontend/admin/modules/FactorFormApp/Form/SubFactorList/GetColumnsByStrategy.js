@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, InputNumber, Select } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 
 export default {
   run: (factor, onChange, onRemove, errors) => getColumns(onChange, onRemove, errors).filter(
     c => !c.scoringStrategies
-        || c.scoringStrategies.includes(factor.scoring_strategy),
+      || c.scoringStrategies.includes(factor.scoring_strategy),
   ),
 }
 const { Option } = Select
@@ -89,7 +90,7 @@ const getColumns = (onChange, onRemove, errors) => [
         size="small"
         onClick={() => onRemove(record)}
       >
-Delete
+        <DeleteOutlined />
       </Button>
     ),
   },

@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect } from 'react'
 import _ from 'lodash'
+import { MenuOutlined } from '@ant-design/icons'
 import { useDrop, useDrag, DragSourceMonitor } from 'react-dnd'
-import cs from 'classnames'
 import styles from './DnDStyle.scss'
 import ItemTypes from './ItemTypes'
 
@@ -154,7 +154,7 @@ const DnDElement: React.FC<Props> = ({
   const renderChildren = () => (
     <>
       <IconWrapper className={iconClass}>
-        <i ref={source} className={cs('fa fa-bars', styles.draggingIcon)} />
+        <MenuOutlined ref={source} className={styles.draggingIcon} />
       </IconWrapper>
       {children}
     </>
