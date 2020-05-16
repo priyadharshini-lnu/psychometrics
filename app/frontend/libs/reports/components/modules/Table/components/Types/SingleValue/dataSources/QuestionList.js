@@ -2,13 +2,12 @@ import _ from 'lodash'
 import Select from 'react-select'
 import React from 'react'
 import store from 'rb/store/PropertyPanelStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 
-export default function QuestionList ({ model, onChange }) {
-  const findQuestion = id => _.find(AssessmentStore.questions[model.assessment_id], question => question.id === id)
+export default function QuestionList ({ model, onChange, questions }) {
+  const findQuestion = id => _.find(questions, question => question.id === id)
 
   const onChangeQuestion = ({ id }) => {
     onChange('questionId', id)
@@ -18,8 +17,8 @@ export default function QuestionList ({ model, onChange }) {
     }
   }
 
-  const questions = _.filter(
-    AssessmentStore.questions[model.assessment_id] || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
+  const filteredQuestions = _.filter(
+    questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
   )
 
   const question = findQuestion(model.props.questionId)
@@ -34,8 +33,8 @@ export default function QuestionList ({ model, onChange }) {
       <div className="mtm">
         Question
         <Select
-          value={questions.find(q => q.id === store.model.props.questionId)}
-          options={questions}
+          value={filteredQuestions.find(q => q.id === store.model.props.questionId)}
+          options={filteredQuestions}
           getOptionValue={opt => opt.id}
           getOptionLabel={opt => opt.name}
           autoFocus={false}

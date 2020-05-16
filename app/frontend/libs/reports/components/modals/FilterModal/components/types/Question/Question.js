@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/AssessmentStore'
 import QuestionCondition from 'libs/conditions'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 
 export class Question extends Component {
   static propTypes = {
-    model: PropTypes.object.isRequired,
     condition: PropTypes.object.isRequired,
   }
 
@@ -16,11 +16,10 @@ export class Question extends Component {
   }
 
   render () {
-    const { model, condition } = this.props
-    const assessmentId = model.module.assessment_id
+    const { condition, questions } = this.props
     return (
       <QuestionCondition
-        questions={store.questions[assessmentId]}
+        questions={questions}
         onChange={this.changeQuestionCondition}
         condition={condition.props}
       />
@@ -28,4 +27,7 @@ export class Question extends Component {
   }
 }
 
-export default Question
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.module.assessment_id),
+}), {})(Question)

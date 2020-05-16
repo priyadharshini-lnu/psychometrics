@@ -24,9 +24,10 @@ export default class ConditionListPreview extends Component {
   }
 
   renderConditionType = (condition) => {
+    const { questions } = this.props
     const type = condition.conditionType
     const View = Previews[type]
-    return <View condition={condition} />
+    return <View condition={condition} questions={questions} />
   }
 
   renderConditionTypeSelect = condition => (

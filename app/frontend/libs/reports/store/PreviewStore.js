@@ -3,7 +3,6 @@ import { EventEmitter } from 'fbemitter'
 import Result from 'rb/models/Result'
 import PageList from './PageList'
 import AppStore from './AppStore'
-import AssessmentStore from './AssessmentStore'
 import ResultStore from './ResultStore'
 
 const PreviewStore = function () {
@@ -25,7 +24,6 @@ _.extend(PreviewStore.prototype, {
       PageList.load(data.pages, data.completed_assessments)
     }
     this.assessment = data
-    AssessmentStore.init(data.assessments)
     this.update()
   },
 

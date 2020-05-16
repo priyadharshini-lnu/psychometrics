@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import _ from 'lodash'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import Series from './Series'
 
 class Properties extends Component {
@@ -146,14 +147,13 @@ class Properties extends Component {
   }
 
   renderDataFormat () {
-    const { model } = this.props
+    const { model, questions } = this.props
     if (!model.props.source) {
       return null
     }
     let question
-    const assessmentId = model.assessment_id
     if (model.props.source && model.props.source.type === 'Question') {
-      question = AssessmentStore.questions[assessmentId][model.props.source.id]
+      question = questions[model.props.source.id]
       if (!question) {
         return null
       }
@@ -197,4 +197,7 @@ class Properties extends Component {
   }
 }
 
-export default Properties
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Properties)
