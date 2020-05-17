@@ -56,7 +56,7 @@ const HANDLERS = {
       blocks: data.entities.blocks,
       questions: data.entities.questions,
       loaded: true,
-      currentPage: report.pages[0],
+      currentPage: state.currentPage || report.pages[0],
     }
   },
   [ENABLE]: state => ({ ...state, disabled: false }),
