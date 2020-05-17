@@ -6,7 +6,24 @@ import ModuleModel from 'rb/models/Module'
 import styles from './PropertyPanel.scss'
 import ColorPickerModal from './ColorPickerModal'
 
+const { $ } = window
+
 class PropertyPanel extends Component {
+  state = {
+    popupOpen: false,
+  }
+
+  componentDidMount () {
+    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = this.inspector.scrollTop
+      this.setState({ popupOpen: true })
+    })
+    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = 0
+      this.setState({ popupOpen: false })
+    })
+  }
+
   layoutHandler = (method) => {
     const layout = store.model.layout()
     layout[method](store.model)
@@ -88,10 +105,20 @@ class PropertyPanel extends Component {
 
   render () {
     const { selected } = this.props
-
+    const { popupOpen } = this.state
+    const inspectorClasses = [styles.inspector]
+    let style = {}
+    if (popupOpen) {
+      inspectorClasses.push(styles.dropdownOpen)
+      if (this.scrollTop > 0) {
+        style = {
+          marginTop: -this.scrollTop,
+        }
+      }
+    }
     return (
       <>
-        <div className={styles.inspector} ref={(ref) => { this.inspector = ref }}>
+        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
           <div className={styles.main}>
             {this.renderCustomProperties()}
             {selected.type === 'Module' && this.renderLayout()}
