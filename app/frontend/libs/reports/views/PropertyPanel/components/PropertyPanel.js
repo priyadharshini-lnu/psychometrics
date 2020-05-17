@@ -4,6 +4,7 @@ import store from 'rb/store/PropertyPanelStore'
 import { Properties } from 'rb/components/modules'
 import ModuleModel from 'rb/models/Module'
 import styles from './PropertyPanel.scss'
+import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 
@@ -117,12 +118,15 @@ class PropertyPanel extends Component {
       }
     }
     return (
-      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
-        <div className={styles.main}>
-          {this.renderCustomProperties()}
-          {selected.type === 'Module' && this.renderLayout()}
+      <>
+        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+          <div className={styles.main}>
+            {this.renderCustomProperties()}
+            {selected.type === 'Module' && this.renderLayout()}
+          </div>
         </div>
-      </div>
+        <ColorPickerModal />
+      </>
     )
   }
 }

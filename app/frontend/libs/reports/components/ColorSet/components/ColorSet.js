@@ -42,20 +42,17 @@ let ColorSet = class extends Component {
     }
   }
 
-  moveSwatch = (id, atIndex) => {
-    const { colors } = this.state
-    const { model } = this.props
-    const { color, index } = this.findSwatch(id)
-    this.setState(update(model.props, {
-      colors: {
-        $splice: [
-          [index, 1],
-          [atIndex, 0, color],
-        ],
-      },
-    }))
-    model.props.colors = colors
-    this.forceUpdate()
+  moveSwatch = (id, newId) => {
+    const { model: { props: { colors } }, model } = this.props
+    const { color } = this.findSwatch(id)
+    const { color: newColor } = this.findSwatch(newId)
+    const newColors = colors.map((c) => {
+      if (c.id === id) { return newColor }
+      if (c.id === newId) { return color }
+      return c
+    })
+    model.props.colors = newColors
+    this.setState({ colors: newColors })
   }
 
   remove = (id) => {
