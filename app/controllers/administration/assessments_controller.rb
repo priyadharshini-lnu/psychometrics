@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
-                                        preview export toggle_archive]
+                                        preview export toggle_archive questions]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -51,6 +51,18 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def reports
     render layout: 'empty'
+  end
+
+  def assessments
+    render json: Assessment.pluck(:id, :name).map { |id, name| { id: id, name: name } }
+  end
+
+  def questions
+    render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props| { id: id, name: name, props: props } }
+  end
+
+  def resources
+    render json: :ok
   end
 
   def show

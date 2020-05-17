@@ -27,6 +27,11 @@ export class Header extends Component {
     history.push(`/administration/assessments/${id}/scoring`)
   }
 
+  showResourceManager = () => {
+    const { history, match: { params: { id } } } = this.props
+    history.push(`/administration/assessments/${id}/resources`)
+  }
+
   openSearchPopup = () => {
     const { openCreateByTemplate } = this.props
     openCreateByTemplate({ entityName: 'Block' })
@@ -126,6 +131,11 @@ export class Header extends Component {
           <li>
             <button onClick={this.showScoring} className={`btn btn-default ${styles.preview}`}>
               Scoring
+            </button>
+          </li>
+          <li>
+            <button onClick={this.showResourceManager} className={`btn btn-default ${styles.preview}`}>
+              Resource Manager
             </button>
           </li>
           <li>

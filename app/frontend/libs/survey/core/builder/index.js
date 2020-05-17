@@ -5,6 +5,7 @@ import blocks from './assessment/block/reducers'
 import questions from './assessment/question/reducers'
 import questionCenter from './questionCenter'
 import blockCenter from './blockCenter'
+import resources from './resources'
 
 export default {
   assessment,
@@ -14,4 +15,5 @@ export default {
   questions,
   factors,
   flow,
+  resources,
 }

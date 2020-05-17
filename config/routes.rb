@@ -306,6 +306,10 @@ Rails.application.routes.draw do
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
+        get :resources, to: 'assessments#show', constraints: { all: /.*/ }
+        put :resources
+        get :assessments
+        get :questions
       end
 
       scope module: 'assessments' do
