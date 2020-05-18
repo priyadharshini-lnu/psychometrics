@@ -49,6 +49,7 @@ class PropertyPanel extends Component {
 
   renderLayout () {
     const { module } = this.props
+    if (!module) { return null }
     return (
       <div className={styles.layout}>
         Layout
