@@ -109,7 +109,7 @@ _.extend(Module.prototype, {
     }
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        const question = getQuestions(rstore.report, this.assessment_id)[this.props.source.id]
+        const question = getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
         return question && question.type
       default:
         return _.result(this.props, 'source.type')
@@ -119,7 +119,7 @@ _.extend(Module.prototype, {
   getSourceModel () {
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        return getQuestions(rstore.report, this.assessment_id)[this.props.source.id]
+        return getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
       case 'DataSheet':
         return this.props.source.columns
       case 'EmbeddedData':
