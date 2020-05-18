@@ -123,7 +123,7 @@ class AssignsController < ApplicationController
   def set_assign
     @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to(controller: :campaigns, action: :index)
+    redirect_to root_path
   end
 
   # Authorisation user
