@@ -46,7 +46,7 @@ class Properties extends Component {
   onSelectGraphic = (item) => {
     const { model } = this.props
     model.props.url = item.file
-    this.forceUpdate()
+    this.update()
   }
 
   changeSourceType = (obj) => {
