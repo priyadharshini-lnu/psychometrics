@@ -2,7 +2,6 @@ import React from 'react'
 
 function withCopyProtection (WrappedComponent) {
   return class extends React.Component {
-    private ref = React.createRef()
 
     componentDidMount () {
       const disableEvnet = (e: Event) => {
@@ -10,12 +9,14 @@ function withCopyProtection (WrappedComponent) {
         return false
       }
       ['cut', 'copy', 'contextmenu'].forEach((ev) => {
-        (this.ref.current as HTMLElement).addEventListener(ev, disableEvnet)
+        (this.ref as HTMLElement).addEventListener(ev, disableEvnet)
       })
     }
 
+    private ref: HTMLElement
+
     render () {
-      return <WrappedComponent {...this.props} ref={this.ref} />
+      return <WrappedComponent {...this.props} forwardRef={(el) => { this.ref = el }} />
     }
   }
 }

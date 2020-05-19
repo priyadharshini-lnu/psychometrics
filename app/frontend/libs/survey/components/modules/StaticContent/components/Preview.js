@@ -53,4 +53,4 @@ export class Preview extends Component {
 
 const ConnectedPreview = connect(Preview)
 
-export default withCopyProtection(React.forwardRef((props, ref) => <ConnectedPreview {...props} forwardRef={ref} />))
+export default withCopyProtection(ConnectedPreview)
