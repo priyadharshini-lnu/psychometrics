@@ -8,6 +8,10 @@ import I18nStore from 'rb/store/I18nStore'
 import NotificationDispatcher from 'rb/dispatchers/NotificationDispatcher'
 import Module from 'rb/models/Module'
 import { getModule } from 'libs/reports/core/builder/selectors'
+import store from 'libs/reports/store'
+import schema from 'libs/reports/store/schema'
+import { INIT } from 'libs/reports/core/builder/actions'
+import { normalize } from 'normalizr'
 import styles from './FixedHeader.scss'
 
 const { $ } = window
@@ -102,8 +106,11 @@ export class FixedHeader extends Component {
     const target = e.currentTarget
     target.setAttribute('disabled', 'disabled')
 
-    save(report).then(() => {
+    save(report).then(({ response: { data } }) => {
       target.removeAttribute('disabled')
+      const normalizedData = normalize(data, schema)
+      AppStore.init(data.data)
+      store.dispatch({ type: INIT, data: normalizedData })
       NotificationDispatcher.notify({ message: 'Report successfully saved' })
     }).catch(() => {
       target.removeAttribute('disabled')

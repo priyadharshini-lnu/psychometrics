@@ -9,8 +9,6 @@ import ResultStore from 'rb/store/ResultStore'
 import AppStore from 'rb/store/AppStore'
 import RichEditorStore from 'rb/store/RichEditorStore'
 import I18nStore from 'rb/store/I18nStore'
-// import config from 'rb/consts/CKConfig'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import Factors from 'rb/commands/Factors'
 import { renderMarkdown } from 'rb/utils/Markdown'
 import 'rb/commands/froalaCommands'
@@ -133,11 +131,12 @@ class Text extends Component {
           source, sourceType, text, question: modelQuestion,
         },
       },
+      questions,
       preview,
     } = this.props
 
     if (sourceType === 'ResponseText') {
-      const question = AssessmentStore.questions[assessmentId][modelQuestion]
+      const question = _.find(questions, { id: modelQuestion })
       if (!question) { return null }
       const QuestionTypeModel = ResponseTextByQuestionType[question.type]
       const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])

@@ -47,13 +47,16 @@ const HANDLERS = {
   [INIT]: (state, { data }) => {
     // console.log(data)
     const report = data.entities.report[data.result]
+
+
     return {
       ...state,
       ...report,
       assessments: data.entities.assessments,
+      blocks: data.entities.blocks,
       questions: data.entities.questions,
       loaded: true,
-      currentPage: report.pages[0],
+      currentPage: state.currentPage || report.pages[0],
     }
   },
   [ENABLE]: state => ({ ...state, disabled: false }),

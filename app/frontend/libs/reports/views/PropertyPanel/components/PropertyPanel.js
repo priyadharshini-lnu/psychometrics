@@ -4,6 +4,7 @@ import store from 'rb/store/PropertyPanelStore'
 import { Properties } from 'rb/components/modules'
 import ModuleModel from 'rb/models/Module'
 import styles from './PropertyPanel.scss'
+import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 
@@ -14,9 +15,11 @@ class PropertyPanel extends Component {
 
   componentDidMount () {
     $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = this.inspector.scrollTop
       this.setState({ popupOpen: true })
     })
     $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = 0
       this.setState({ popupOpen: false })
     })
   }
@@ -36,6 +39,7 @@ class PropertyPanel extends Component {
 
   renderCustomProperties () {
     const { selected, module } = this.props
+    if (!module || !selected) { return null }
     const type = selected.type === 'Module' ? module.type : selected.type
     const View = Properties[`${type}Properties`]
     if (!View) { return }
@@ -45,6 +49,7 @@ class PropertyPanel extends Component {
 
   renderLayout () {
     const { module } = this.props
+    if (!module) { return null }
     return (
       <div className={styles.layout}>
         Layout
@@ -104,16 +109,25 @@ class PropertyPanel extends Component {
     const { selected } = this.props
     const { popupOpen } = this.state
     const inspectorClasses = [styles.inspector]
+    let style = {}
     if (popupOpen) {
       inspectorClasses.push(styles.dropdownOpen)
+      if (this.scrollTop > 0) {
+        style = {
+          marginTop: -this.scrollTop,
+        }
+      }
     }
     return (
-      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }}>
-        <div className={styles.main}>
-          {this.renderCustomProperties()}
-          {selected.type === 'Module' && this.renderLayout()}
+      <>
+        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+          <div className={styles.main}>
+            {this.renderCustomProperties()}
+            {selected.type === 'Module' && this.renderLayout()}
+          </div>
         </div>
-      </div>
+        <ColorPickerModal />
+      </>
     )
   }
 }

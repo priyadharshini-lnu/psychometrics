@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'rb/consts/DefaultProps'
 import ModuleConfigs from 'rb/consts/ModuleConfigs'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import Presets from 'rb/consts/Presets'
 import AppStore from 'rb/store/AppStore'
 import { HOGAN, MINDMILL } from 'rb/models/Assessment'
@@ -109,7 +109,7 @@ _.extend(Module.prototype, {
     }
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        const question = AssessmentStore.questions[this.assessment_id][this.props.source.id]
+        const question = getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
         return question && question.type
       default:
         return _.result(this.props, 'source.type')
@@ -119,7 +119,7 @@ _.extend(Module.prototype, {
   getSourceModel () {
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        return AssessmentStore.questions[this.assessment_id][this.props.source.id]
+        return getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
       case 'DataSheet':
         return this.props.source.columns
       case 'EmbeddedData':

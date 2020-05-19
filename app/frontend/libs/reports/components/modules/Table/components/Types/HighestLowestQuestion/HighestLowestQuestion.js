@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import store from 'rb/store'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import Utils from 'rb/utils'
 import Text from '../../Table/CellTypes/Text/Text'
 import styles from './HighestLowestQuestion.scss'
@@ -84,7 +85,7 @@ class HighestLowestQuestion extends Component {
     this.prepareRows()
     const { module } = this.props
     const assessmentId = module.assessment_id
-    const questions = ResultStore.realResults ? AssessmentStore.questions[assessmentId] : QUESTIONS
+    const questions = ResultStore.realResults ? getQuestions(store.getState().report, assessmentId) : QUESTIONS
     return (
       <div className={styles.table}>
         <table>

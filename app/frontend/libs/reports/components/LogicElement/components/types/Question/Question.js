@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/AssessmentStore'
 import AppStore from 'rb/store/AppStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import QuestionSelect from './QuestionSelect'
 import AnswerSelect from './AnswerSelect'
 import ConditionSelect from './ConditionSelect'
@@ -44,8 +45,7 @@ export class Question extends Component {
   }
 
   render () {
-    const { condition } = this.props
-    const assessment = _.first(AppStore.assessments)
+    const { condition, questions } = this.props
 
     return (
       <div className={css.question}>
@@ -54,13 +54,13 @@ export class Question extends Component {
           <div className={css.questionBlock}>
             {condition.filterId && (
             <QuestionSelect
-              questions={store.questions[assessment.id]}
+              questions={questions}
               condition={condition}
               onChange={this.change}
             />
             )}
             <AnswerSelect
-              questions={store.questions[assessment.id]}
+              questions={questions}
               condition={condition}
               onChange={this.change}
             />
@@ -72,4 +72,6 @@ export class Question extends Component {
   }
 }
 
-export default Question
+export default connect(state => ({
+  questions: getQuestions(state.report, _.first(AppStore.assessments).id),
+}), {})(Question)

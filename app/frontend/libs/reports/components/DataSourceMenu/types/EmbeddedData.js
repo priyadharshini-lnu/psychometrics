@@ -1,13 +1,14 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { connect } from 'react-redux'
+import { getEmbeddedData } from 'libs/reports/core/builder/selectors'
 
 class EmbeddedData extends Component {
   getOptions = () => {
-    const { model } = this.props
-    return AssessmentStore.embeddedData[model.assessment_id]
+    const { embeddedData } = this.props
+    return embeddedData
   }
 
   onChange = (data) => {
@@ -32,4 +33,6 @@ class EmbeddedData extends Component {
   }
 }
 
-export default EmbeddedData
+export default connect((state, { model }) => ({
+  embeddedData: getEmbeddedData(state.report, model.assessment_id),
+}), {})(EmbeddedData)

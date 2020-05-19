@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import Utils from 'rb/utils'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import store from 'rb/store'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import AppStore from 'rb/store/AppStore'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
@@ -155,7 +156,7 @@ class ResponseSummary extends Component {
     const filterIds = model.props.filter
     const { filters } = AppStore.report
     const assessmentId = model.assessment_id
-    const questions = ResultStore.realResults ? AssessmentStore.questions[assessmentId] : QUESTIONS
+    const questions = ResultStore.realResults ? getQuestions(store.getState().report, assessmentId) : QUESTIONS
     if (!filterIds) { return null }
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId

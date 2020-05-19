@@ -3,7 +3,6 @@ import { EventEmitter } from 'fbemitter'
 import Report from 'rb/models/Report'
 import Occupation from 'rb/models/Occupation'
 import PageList from 'rb/store/PageList'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import NotificationDispatcher from 'rb/dispatchers/NotificationDispatcher'
 import PropertyPanelStore from 'rb/store/PropertyPanelStore'
 import InnovationStyle from 'rb/models/InnovationStyle'
@@ -34,7 +33,6 @@ _.extend(AppStore.prototype, {
 
     this.report = new Report(data)
     this.category = data.category
-    AssessmentStore.init(data.assessments)
     _.each(data.dimension_ids, (dimensionId) => {
       this.sortedOccupations[dimensionId] = []
       this.occupations[dimensionId] = []
