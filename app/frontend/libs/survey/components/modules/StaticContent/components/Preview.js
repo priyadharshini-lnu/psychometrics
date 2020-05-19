@@ -39,11 +39,11 @@ export class Preview extends Component {
 
   render () {
     const {
-      model, model: { props }, I18n, forwardRef,
+      model, model: { props }, I18n, containerRef,
     } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
-      <div ref={forwardRef}>
+      <div ref={containerRef}>
         {this.renderText(props)}
         {this.renderType(props)}
       </div>

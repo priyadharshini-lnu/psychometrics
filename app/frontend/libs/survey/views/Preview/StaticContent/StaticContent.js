@@ -10,7 +10,7 @@ import HighlightList from './HighlightList'
 
 const StaticContent = ({
   block, block: { props: { staticContent } }, preview, highlights, updateMetaData,
-  updateMetaDataLocally, I18n, forwardRef,
+  updateMetaDataLocally, I18n, containerRef,
 }) => {
   const contentRef = useRef(null)
 
@@ -32,7 +32,7 @@ const StaticContent = ({
 
   return (
     <div
-      ref={forwardRef}
+      ref={containerRef}
       className={cs(styles.container, getStaticContentClasses())}
     >
       <div

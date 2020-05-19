@@ -15,7 +15,7 @@ function withCopyProtection (WrappedComponent) {
     private ref: HTMLElement
 
     render () {
-      return <WrappedComponent {...this.props} forwardRef={(el) => { this.ref = el }} />
+      return <WrappedComponent {...this.props} containerRef={(el) => { this.ref = el }} />
     }
   }
 }
