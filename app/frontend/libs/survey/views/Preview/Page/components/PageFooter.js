@@ -18,6 +18,13 @@ class PageFooter extends Component {
     page: PropTypes.object.isRequired,
   }
 
+  componentDidMount() {
+    window.onbeforeunload = () => {
+      if (this.areQuestionsInProgress()) { return true }
+      return null
+    };
+  }
+
   areQuestionsInProgress = () => {
     const { preview: { inProgressQuestions } } = this.props
     return inProgressQuestions.length
@@ -25,6 +32,7 @@ class PageFooter extends Component {
 
   moveToPreviousPage = () => {
     const { prevPage, preview } = this.props
+    this.setState({ popConfirmVisibleFor: null })
     document.body.scrollIntoView({ behavior: 'smooth' })
     prevPage(preview)
   }
@@ -39,6 +47,7 @@ class PageFooter extends Component {
 
   moveToNextPage = () => {
     const { nextPage } = this.props
+    this.setState({ popConfirmVisibleFor: null })
     document.body.scrollIntoView({ behavior: 'smooth' })
     nextPage()
   }
@@ -124,7 +133,7 @@ function QuestionInProgressPopConfirm ({
       okText={Watchman.I18n().t('assessments.proceed')}
       cancelText={Watchman.I18n().t('assessments.wait')}
       onCancel={hidePopConfirm}
-      visible={visible && inProgressQuestions.length}
+      visible={visible && inProgressQuestions.length > 0}
       disabled={!inProgressQuestions.length}
       placement="topRight"
     >

@@ -7,7 +7,6 @@ import {
 import { UploadOutlined } from '@ant-design/icons'
 import mime from 'mime-types'
 import api from 'middleware/api'
-import styles from './FileUpload.scss'
 import ErrorList from './ErrorList'
 import FileDetails from './FileDetails'
 import FileValidation from './FileValidation'
@@ -36,13 +35,13 @@ export default function FileUpload ({
     }
   }, [])
 
-  const saveFile = async () => {
+  const saveFile = async (file) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVING } })
-    if (!validateFile()) { return }
+    if (!validateFile(file)) { return }
     if (fakeUpload) {
       return dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     }
-    uploadFile(model.id)
+    uploadFile(model.id, file)
   }
 
   const allowedMimeTypes = () => {
@@ -50,8 +49,7 @@ export default function FileUpload ({
     return allowedFileTypes.map(fileType => mime.lookup(fileType))
   }
 
-  const validateFile = () => {
-    const { file } = state
+  const validateFile = (file) => {
     const { props: { maxFileSize } } = model
     const errorCodes = FileValidation.run(file, allowedMimeTypes(), maxFileSize)
 
@@ -69,8 +67,7 @@ export default function FileUpload ({
     onSuccessUpload && onSuccessUpload(media)
   }
 
-  const uploadFile = (id) => {
-    const { file } = state
+  const uploadFile = (id, file) => {
     const urls = {
       mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
       callbackUrl: `${mediaUrl}/upload_callback`,
@@ -83,6 +80,7 @@ export default function FileUpload ({
 
   const handleFileChange = ({ file }) => {
     dispatch({ type: SET_FILE, payload: { file: file.originFileObj } })
+    saveFile(file.originFileObj)
   }
 
   const removeFile = () => {
@@ -124,22 +122,12 @@ export default function FileUpload ({
           {'   '}
           <span>{file && file.name}</span>
         </Upload>
-        {file && (
-          <Button
-            type="primary"
-            onClick={saveFile}
-            disabled={!file}
-            className={styles.saveFileBtn}
-          >
-            {showProgress ? ' Uploading ' : ' Start Upload '}
-          </Button>
-        )}
         {showProgress && (
           <Progress
             type="circle"
             percent={percent}
             width={32}
-            className={styles.progressBar}
+            className='mtm'
           />
         )}
       </>
