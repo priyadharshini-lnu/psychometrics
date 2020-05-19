@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import PageList from 'rb/store/PageList'
 import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
 import connect from './connect'
 
@@ -21,7 +20,7 @@ class PageProperties extends Component {
   }
 
   render () {
-    const { page, report } = this.props
+    const { page } = this.props
     if (!page) { return }
     return (
       <div>
