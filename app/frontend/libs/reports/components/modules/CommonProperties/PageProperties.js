@@ -21,21 +21,22 @@ class PageProperties extends Component {
   }
 
   render () {
-    const { page } = this.props
+    const { page, report } = this.props
+    if (!page) { return }
     return (
       <div>
         <div className={styles.title}>Page Options</div>
         <hr className={styles.divider} />
         <div>{page.name}</div>
         <div style={{ textAlign: 'center' }}>
-          {PageList.list.length > 1 && <button onClick={this.removePage} className="btn btn-default">Remove</button>}
+          <button onClick={this.removePage} className="btn btn-default">Remove</button>
         </div>
 
-        <div>Clipboard: </div>
+        {/* <div>Clipboard: </div>
         <div style={{ textAlign: 'center' }}>
-          {PageList.list.length > 1 && <button onClick={this.copyPage} className="btn btn-default">Copy</button>}
-          {PageList.list.length > 1 && <button onClick={this.pastePage} className="btn btn-default">Paste</button>}
-        </div>
+          <button onClick={this.copyPage} className="btn btn-default">Copy</button>
+          <button onClick={this.pastePage} className="btn btn-default">Paste</button>
+        </div> */}
       </div>
     )
   }
