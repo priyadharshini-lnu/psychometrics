@@ -35,6 +35,9 @@ const SerializeReport = {
       id: state.builder.id,
       name: state.builder.name,
       pages: [],
+      props: state.builder.props,
+      data_sheet_columns: state.builder.data_sheet_columns,
+      filters: state.builder.filters,
     }
     report.pages = _.map(getPages(state, state.builder.pages), (page) => {
       const data = serializePage(page)

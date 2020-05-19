@@ -7,6 +7,7 @@ import {
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
   UPDATE_PAGE_POSITIONS,
 } from './actions'
+import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
 
@@ -45,13 +46,13 @@ export const defaultState = {
 
 const HANDLERS = {
   [INIT]: (state, { data }) => {
-    // console.log(data)
     const report = data.entities.report[data.result]
-
-
     return {
       ...state,
       ...report,
+      props: report.props.sizes
+        ? report.props
+        : { width: PAGE_SIZES[0].width, height: PAGE_SIZES[0].height, fontSize: BASE_FONT_SIZE },
       assessments: data.entities.assessments,
       blocks: data.entities.blocks,
       questions: data.entities.questions,
