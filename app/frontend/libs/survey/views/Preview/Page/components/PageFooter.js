@@ -18,11 +18,11 @@ class PageFooter extends Component {
     page: PropTypes.object.isRequired,
   }
 
-  componentDidMount() {
+  componentDidMount () {
     window.onbeforeunload = () => {
       if (this.areQuestionsInProgress()) { return true }
       return null
-    };
+    }
   }
 
   areQuestionsInProgress = () => {

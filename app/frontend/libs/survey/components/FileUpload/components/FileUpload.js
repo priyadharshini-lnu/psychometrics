@@ -127,7 +127,7 @@ export default function FileUpload ({
             type="circle"
             percent={percent}
             width={32}
-            className='mtm'
+            className="mtm"
           />
         )}
       </>
