@@ -73,7 +73,8 @@ function* genFetchLocalResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const { preview: { dbResult } } = state
-    const data = getItem(`result_${dbResult.id}`, `${dbResult.id}${dbResult.user_id}`)
+    const resetCount = dbResult.reset_count || 0
+    const data = getItem(`result_${dbResult.id}_${resetCount}`, `${dbResult.id}${dbResult.user_id}`)
     if (data) {
       yield put(setLocalResults(data))
     }
@@ -84,7 +85,8 @@ function* genSaveResultsLocal () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const { preview: { results, dbResult } } = state
-    setItem(`result_${dbResult.id}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
+    const resetCount = dbResult.reset_count || 0
+    setItem(`result_${dbResult.id}_${resetCount}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
   }
 }
 

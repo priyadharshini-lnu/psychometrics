@@ -42,7 +42,8 @@ module Assigns
         meta_data: {},
         additional_time: nil,
         current_element: nil,
-        current_page: nil
+        current_page: nil,
+        reset_count: assign_with_result.reset_count + 1
       )
     end
 
