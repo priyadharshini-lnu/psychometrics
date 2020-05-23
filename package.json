@@ -114,6 +114,7 @@
     "qs": "^6.9.3",
     "raphael": "^2.2.1",
     "raw-loader": "^4.0.1",
+    "rc-tween-one": "^2.6.8",
     "react": "^16.8.6",
     "react-addons-update": "^15.6.2",
     "react-bootstrap": "^0.32.4",

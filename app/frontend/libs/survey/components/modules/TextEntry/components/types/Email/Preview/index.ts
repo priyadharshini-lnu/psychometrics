@@ -1,3 +1,3 @@
-import Email from './Email'
+import Preview from './Preview'
 
-export default Email
+export default Preview
