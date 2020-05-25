@@ -13,6 +13,8 @@ import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
 import Tracker from './Tracker'
+const qs = require('qs')
+import axios from 'axios'
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -88,46 +90,61 @@ class VideoRecorder extends Component {
   getUploadUrl = (id) => {
     const { mediaUrl } = this.props
     $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
-      this.uploadFile(data)
+      this.urls = data
     })
   }
 
-  uploadFile = (data) => {
-    const video = this.player.recordedData
-    const mediaId = data.media_id
-    const fd = new FormData()
-    if (data.env === 'prod') {
-      fd.append('key', data.key)
-      fd.append('acl', data.acl)
-      fd.append('success_action_status', data.success_action_status)
-      fd.append('policy', data.policy)
-      fd.append('x-amz-algorithm', data['x-amz-algorithm'])
-      fd.append('x-amz-credential', data['x-amz-credential'])
-      fd.append('x-amz-date', data['x-amz-date'])
-      fd.append('x-amz-signature', data['x-amz-signature'])
-      fd.append('file', video, 'video.mp4')
-    } else {
-      fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
-      fd.append('media_id', mediaId)
-      fd.append('asset', video, 'video.mp4')
-    }
+  uploadFile = (urlDetails, blob) => {
+    // const video = this.player.recordedData
+    // const mediaId = urlDetails.media_id
+    // const fd = new FormData()
+    // if (urlDetails.env === 'prod') {
+    //   // fd.append('key', urlDetails.key)
+    //   // fd.append('acl', urlDetails.acl)
+    //   // fd.append('success_action_status', urlDetails.success_action_status)
+    //   // fd.append('policy', urlDetails.policy)
+    //   fd.append('x-amz-algorithm', urlDetails['x-amz-algorithm'])
+    //   fd.append('x-amz-credential', urlDetails['x-amz-credential'])
+    //   fd.append('x-amz-date', urlDetails['x-amz-date'])
+    //   fd.append('x-amz-signature', urlDetails['x-amz-signature'])
+    //   fd.append('uploadId', urlDetails.uploadId)
+    //   fd.append('partNumber', urlDetails.partNumber)
+    //   fd.append('file', blob, 'video.mp4')
+    // } else {
+    //   fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
+    //   fd.append('media_id', mediaId)
+    //   fd.append('asset', blob, 'video.mp4')
+    // }
 
-    $.ajax({
-      method: 'POST',
-      url: data.url,
-      data: fd,
-      processData: false,
-      contentType: false,
-      xhr: () => {
-        const xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener('progress', this.onUploadProgress, false)
-        return xhr
-      },
-    }).done((media) => {
-      this.onUploadDone(media, data)
-    }).fail(() => {
-      this.setState({ recordingState: 'error' })
-    })
+    // const query = _.pick(urlDetails, ["X-AMZ-ALGORITHM", "X-AMZ-CREDENTIAL", "X-AMZ-DATE", "X-AMZ-SIGNATURE", 'X-Amz-SignedHeaders', 'uploadId', 'partNumber'])
+    // const presignedUrl = `https://s3.amazonaws.com/talententerprise/${urlDetails.key}?${qs.stringify(query)}`
+    // console.log(query)
+
+    const uploadResp = axios.put(
+      urlDetails,
+      blob,
+      {}
+    )
+    if (!this.promisesArray) { this.promisesArray = [] }
+    this.promisesArray.push(uploadResp)
+
+    // $.ajax({
+    //   method: 'PUT',
+    //   url: urlDetails.url,
+    //   data: fd,
+    //   processData: false,
+    //   contentType: false,
+    //   xhr: () => {
+    //     const xhr = new XMLHttpRequest()
+    //     xhr.upload.addEventListener('progress', this.onUploadProgress, false)
+    //     return xhr
+    //   },
+    // }).done((media, abc) => {
+    //   debugger
+    //   // this.onUploadDone(media, data)
+    // }).fail(() => {
+    //   this.setState({ recordingState: 'error' })
+    // })
   }
 
   onUploadDone = (media, data) => {
@@ -236,9 +253,10 @@ class VideoRecorder extends Component {
             pip: false,
             audio: true,
             video: true,
-            maxLength: maxDuration || 10,
+            maxLength: 220,
             debug: true,
             videoMimeType: 'video/webm;codecs=H264',
+            timeSlice: 10000,
           },
         },
       }
@@ -249,6 +267,19 @@ class VideoRecorder extends Component {
         if (!this.remainingTime) this.addRemainingTimeControl()
         if (!this.statusText) this.addStatusTextControl()
       })
+
+      this.player.on('timestamp', () => {
+        console.log('current timestamp: ', this.player.currentTimestamp);
+        console.log('all timestamps: ', this.player.allTimestamps);
+        console.log('array of blobs: ', this.player.recordedData);
+        const totalSlices = this.player.recordedData.length
+        console.log(_.sum(_.map(this.player.recordedData, (a) => a.size)))
+        if (totalSlices > 0) {
+          console.log(totalSlices, this.urls[totalSlices - 1])
+          this.uploadFile(this.urls[totalSlices - 1], this.player.recordedData[totalSlices - 1])
+        }
+      })
+
       this.player.on('deviceReady', () => {
         this.setState({
           deviceReady: true,
@@ -259,6 +290,9 @@ class VideoRecorder extends Component {
       })
       this.player.on('startRecord', () => {
         const { trackingEnabled } = this.state
+        const { model } = this.props
+
+        this.getUploadUrl(model.id)
         this.setState({ recordingState: 'recording' })
         this.player.trigger('statechanged', { status: 'recording' })
         markQuestionInProgress(model.id, 'recording')
@@ -269,13 +303,25 @@ class VideoRecorder extends Component {
 
         if (trackingEnabled && this.tracker) this.tracker.startTracking()
       })
-      this.player.on('finishRecord', () => {
+      this.player.on('finishRecord', async () => {
         const { trackingEnabled } = this.state
         this.setState({ recordingState: 'recorded' })
         markQuestionInProgress(model.id, 'recorded')
         this.player.trigger('statechanged', { status: 'recorded' })
 
         if (trackingEnabled && this.tracker) this.tracker.stopTracking()
+
+        let resolvedArray = await Promise.all(this.promisesArray)
+        console.log(resolvedArray, ' resolvedAr')
+
+        let uploadPartsArray = []
+        resolvedArray.forEach((resolvedPromise, index) => {
+          uploadPartsArray.push({
+            ETag: resolvedPromise.headers.etag,
+            PartNumber: index + 1
+          })
+        })
+        console.log(uploadPartsArray)
       })
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console

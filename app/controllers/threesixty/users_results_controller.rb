@@ -31,7 +31,7 @@ module Threesixty
     end
 
     def upload_media_dev
-      return head :no_content if Rails.env.production?
+      return head :no_content if Rails.env.production? || true
 
       media = MediaResponse.find(params[:media_id])
       media.update_attributes(asset: params[:asset])
@@ -82,3 +82,4 @@ module Threesixty
     end
   end
 end
+

@@ -4,7 +4,7 @@ require 'carrierwave/storage/fog'
 require 'carrierwave_direct'
 
 class MediaResponseUploader < CarrierWave::Uploader::Base
-  include CarrierWaveDirect::Uploader if Rails.env.production?
+  include CarrierWaveDirect::Uploader if Rails.env.production?|| true
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
