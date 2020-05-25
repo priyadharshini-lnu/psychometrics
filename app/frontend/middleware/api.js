@@ -66,7 +66,6 @@ const apiMiddleware = () => next => (action) => {
       requestAction: action,
     }))
     .catch((error) => {
-      console.log(error)
       const errors = humps.camelizeKeys(error.response.data.errors)
       next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
       throw errors

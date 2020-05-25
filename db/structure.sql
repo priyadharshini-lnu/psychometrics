@@ -213,7 +213,8 @@ CREATE TABLE public.assessments (
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    archived boolean DEFAULT false
+    archived boolean DEFAULT false,
+    resources json
 );
 
 
@@ -6979,6 +6980,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200406101817'),
 ('20200420101736'),
 ('20200420102139'),
-('20200420102632');
+('20200420102632'),
+('20200525102435');
 
 

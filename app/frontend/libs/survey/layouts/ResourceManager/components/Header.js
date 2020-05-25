@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import cs from 'classnames'
-import { RECODING, SCORING } from 'constants/scoring'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.scss'
 

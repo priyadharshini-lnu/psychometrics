@@ -3,7 +3,6 @@ import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
-import QuestionSerializer from 'models/QuestionSerializer'
 import * as assessmentActions from '../assessment/actions'
 import { allQuestions } from '../assessment/selectors'
 
@@ -41,13 +40,13 @@ export const addResource = () => ({ type: ADD_RESOURCE })
 export const changeResource = (index, resource) => ({ type: CHANGE_RESOURCE, index, resource })
 
 
-export const saveResources = (assessmentId, recources) => ({
+export const saveResources = (assessmentId, resources) => ({
   type: SAVE_RESOURCES,
   request: {
     decamelize: false,
     method: 'put',
     url: `/administration/assessments/${assessmentId}/resources`,
-    body: { recources },
+    body: { resources },
   },
 })
 
@@ -58,6 +57,7 @@ const HANDLERS = {
     return {
       ...state,
       defaultAssessmen: id,
+      resources: assessment[id].resources || [],
       assessmentQuestions: { [id]: _.filter(allQuestions({ questions }), q => q.type === 'StaticContent') },
     }
   },
@@ -89,6 +89,15 @@ function* genLoadQuestions ({ resource: { assessmentId } }) {
   }
 }
 
+function* genLoadAssessmentQuestions () {
+  const { survey: { builder: { resources: { resources } } } } = yield select()
+  for (let i = 0; i < resources.length; i += 1) {
+    yield put(loadQuestions(resources[i].assessmentId))
+  }
+}
+
+
 export const watchers = [
   takeEvery(CHANGE_RESOURCE, genLoadQuestions),
+  takeEvery(assessmentActions.INIT, genLoadAssessmentQuestions),
 ]

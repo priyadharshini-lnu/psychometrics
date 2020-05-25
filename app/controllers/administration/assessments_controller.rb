@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
-                                        preview export toggle_archive questions]
+                                        preview export toggle_archive questions resources]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -62,6 +62,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resources
+    resource.update(resources: params[:resources])
     render json: :ok
   end
 
