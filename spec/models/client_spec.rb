@@ -22,9 +22,9 @@ describe Client, type: :model do
     let(:user_two) { create(:user) }
 
     it 'work on name' do
-      create_list(:client, 10, number: 101, country: 'UAE',
+      clients = create_list(:client, 10, number: 101, country: 'UAE',
         year: '2019', account_manager_id: user_one.id, project_manager_id: user_two.id)
-      name = Client.all.sample.name
+      name = clients.last.name
       specific_client = Client.ransack(filterable_fields: name).result
       all_clients = Client.ransack(filterable_fields: 'Client').result
       expect(specific_client.length).to eq(1)

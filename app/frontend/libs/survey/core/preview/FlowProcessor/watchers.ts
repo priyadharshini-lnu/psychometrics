@@ -18,6 +18,7 @@ import {
   getPrevPage,
   pageQuestions,
   pageQuestionsWithoutHidden,
+  getCurrentBlock,
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
@@ -65,7 +66,8 @@ function* genSaveResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)
-    yield put(saveResults(state.preview, prevPage?.questionIds || []))
+    const currentBlock = getCurrentBlock(state.preview)
+    yield put(saveResults(state.preview, prevPage?.questionIds || [], currentBlock.id))
   }
 }
 

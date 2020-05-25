@@ -151,7 +151,10 @@ const HANDLERS = {
   [RESET]: state => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
-  [SAVE_RESULTS]: (state, { response: { expired } }) => ({ ...state, end: expired || state.end }),
+  [SAVE_RESULTS]: (state, { response: { expired, currentBlock } }) => {
+    const blocks = setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
+    return { ...state, end: expired || state.end, blocks }
+  },
   [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),
   [MARK_QUESTION_IN_PROGRESS]: (state, { questionId, progressState }: { questionId: number, progressState: string}) => {
     const { inProgressQuestions } = state

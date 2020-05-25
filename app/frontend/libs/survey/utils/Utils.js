@@ -41,4 +41,10 @@ export default {
   genId () {
     return v4()
   },
+
+  stripHTML (dirtyString) {
+    dirtyString = _.unescape(dirtyString)
+    dirtyString = dirtyString.replace(/<\/?[^>]+(>|$)|\\n|&nbsp;/g, '')
+    return _.trim(dirtyString)
+  },
 }
