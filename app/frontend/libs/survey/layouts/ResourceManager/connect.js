@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { subscribeSocket } from 'libs/survey/core/temp/socket'
 import {
   addResource, saveResources, loadAssessments, changeResource,
-  reorderResources,
+  reorderResources, removeResource,
 } from 'libs/survey/core/builder/resources'
 
 export default connect(
@@ -19,5 +19,6 @@ export default connect(
     loadAssessments,
     changeResource,
     reorderResources,
+    removeResource,
   },
 )

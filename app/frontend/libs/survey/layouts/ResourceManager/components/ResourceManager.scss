@@ -50,16 +50,16 @@
 }
 
 .resourceWrapper {
-  width: 100%;
+  max-width: 100%;
   padding: 16px;
 }
 
 .resource {
-  width: 100%;
   padding: 16px;
-
+  align-items: center;
 }
 
 .row {
   width: 100%;
+  align-items: center;
 }

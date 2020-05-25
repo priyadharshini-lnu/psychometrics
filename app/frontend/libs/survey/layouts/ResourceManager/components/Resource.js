@@ -1,59 +1,77 @@
 import React from 'react'
-import { Select, Row, Col } from 'antd'
+import {
+  Select, Row, Col, Button, Form,
+} from 'antd'
 import Utils from 'libs/survey/utils'
 import styles from './ResourceManager.scss'
 
 export default function Resource ({
   resource, index, assessments, changeResource, assessmentQuestions,
+  removeResource,
 }) {
   const assessmentOptions = assessments.map(({ id, name }) => ({ id, label: name }))
   const questionOptions = assessmentQuestions[resource.assessmentId]
     && assessmentQuestions[resource.assessmentId].map(({ id, props }) => ({
-      id, label: Utils.stripHTML(props.questionText || 'default text').substr(0, 200),
+      id, label: Utils.stripHTML(props.questionText || 'default text').substr(0, 150),
     }))
+
+  const remove = () => {
+    // eslint-disable-next-line no-alert
+    if (confirm('Are you sure?')) {
+      removeResource(index)
+    }
+  }
 
   return (
     <Row className={styles.row}>
       <Col flex={1} className={styles.resource}>
-        <div>
-          Assessment:
-          <Select
-            style={{ width: '100%' }}
-            showSearch
-            labelInValue
-            value={_.find(assessmentOptions, { id: +resource.assessmentId })}
-            onChange={({ value }) => changeResource(index, { assessmentId: value, questionId: null })}
-            placeholder="Select an assessment"
-            defaultValue={_.find(assessmentOptions, { id: resource.assessmentId })}
-            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        <Form>
+          <Form.Item
+            label="Assessment"
+            labelCol={{ span: 3 }}
           >
-            {assessmentOptions.map(({ id, label }) => (
-              <Select.Option key={id} value={id}>{label}</Select.Option>
-            ))}
-          </Select>
-        </div>
-        {questionOptions && (
-          <div>
-            Question:
             <Select
-              style={{ width: '100%' }}
               showSearch
               labelInValue
-              value={_.find(questionOptions, { id: resource.questionId })}
-              onChange={({ value }) => changeResource(index, { ...resource, questionId: value })}
-              placeholder="Select a question"
-              filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
+              value={_.find(assessmentOptions, { id: +resource.assessmentId })}
+              onChange={({ value }) => changeResource(index, { assessmentId: value, questionId: null })}
+              placeholder="Select an assessment"
+              defaultValue={_.find(assessmentOptions, { id: resource.assessmentId })}
+              filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
             >
-              {questionOptions.map(({ id, label }) => (
-                <Select.Option key={id} value={id}>
-                  {label}
-                </Select.Option>
+              {assessmentOptions.map(({ id, label }) => (
+                <Select.Option key={id} value={id}>{label}</Select.Option>
               ))}
             </Select>
-          </div>
-        )}
+          </Form.Item>
+          {questionOptions && (
+            <Form.Item
+              label="Question"
+              labelCol={{ span: 3 }}
+              style={{ marginBottom: 0 }}
+            >
+              <Select
+                showSearch
+                labelInValue
+                value={_.find(questionOptions, { id: resource.questionId })}
+                onChange={({ value }) => changeResource(index, { ...resource, questionId: value })}
+                placeholder="Select a question"
+                filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              >
+                {questionOptions.map(({ id, label }) => (
+                  <Select.Option key={id} value={id}>
+                    {label}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
+        </Form>
       </Col>
+      <Col style={{ width: 80 }}>
+        <Button type="danger" onClick={remove}>Remove</Button>
+      </Col>
+      <hr />
     </Row>
   )
 }

@@ -38,6 +38,7 @@ export const reorderResources = resources => ({ type: REORDER_RESOURCES, resourc
 
 export const addResource = () => ({ type: ADD_RESOURCE })
 export const changeResource = (index, resource) => ({ type: CHANGE_RESOURCE, index, resource })
+export const removeResource = index => ({ type: REMOVE_RESOURCE, index })
 
 
 export const saveResources = (assessmentId, resources) => ({
@@ -70,6 +71,9 @@ const HANDLERS = {
   }),
   [CHANGE_RESOURCE]: (state, { index, resource }) => setIn(state, ['resources', index], resource),
   [REORDER_RESOURCES]: (state, { resources }) => setIn(state, ['resources'], resources),
+  [REMOVE_RESOURCE]: (state, { index }) => setIn(
+    state, 'resources', _.filter(state.resources, (_resource, i) => i !== index),
+  ),
 }
 
 export const defaultState = {

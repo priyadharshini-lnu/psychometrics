@@ -58,7 +58,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def questions
-    render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props| { id: id, name: name, props: props } }
+    render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props|
+      { id: id, name: name, props: props }
+    }
   end
 
   def resources
