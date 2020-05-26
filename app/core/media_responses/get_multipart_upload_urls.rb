@@ -17,7 +17,7 @@ module MediaResponses
       multipart_request = Aws::S3::Client.new.create_multipart_upload(
         bucket: Rails.application.secrets.directory, key: media.video_file_path, acl: media.asset.acl
       )
-      4.times do |time|
+      number_of_urls.times do |time|
         part_number = (time + 1).to_s
         urls << signer.presigned_url(
           :upload_part,
@@ -34,6 +34,15 @@ module MediaResponses
         upload_id: multipart_request.upload_id,
         urls: urls
       })
+    end
+
+    private
+
+    def number_of_urls
+      question = Question.find(question_id)
+      duration = question.props['duration'] || 10
+
+      (duration / 30.0).ceil
     end
   end
 end
