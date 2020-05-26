@@ -165,8 +165,7 @@ class VideoRecorder extends Component {
     this.player.controlBar.playToggle.hide()
     this.player.controlBar.progressControl.hide()
 
-    if (!this.statusText) { this.statusText.reset() }
-
+    this.statusText.reset()
     this.remainingTime.hide()
 
     this.player.controlBar.currentTimeDisplay.addClass('hide')
