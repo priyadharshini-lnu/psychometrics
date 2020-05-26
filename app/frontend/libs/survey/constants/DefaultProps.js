@@ -220,6 +220,7 @@ export const TextEntryProps = {
     title: 'How will you communicate?',
     titleDescription: 'Write an email to your manager',
     contactList: ['Rupert Smith'],
+    maxLength: 120,
     defaultValues: {},
     choices: 0,
   },
