@@ -45,15 +45,15 @@ class AssignPolicy < BasePolicy
     update?
   end
 
-  def upload_media_dev?
-    update?
-  end
-
   def upload_callback?
     update?
   end
 
   def remove_media?
+    update?
+  end
+
+  def complete_multipart_upload?
     update?
   end
 

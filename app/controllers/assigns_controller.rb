@@ -26,7 +26,7 @@ class AssignsController < ApplicationController
   include AuthenticateAnonymousUser
 
   prepend_before_action :authenticate_anonymous_user!
-  before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev
+  before_action :set_assign, only: %i[pass assessment update upload_media_url
                                       upload_callback remove_media update_meta_data]
   append_before_action :pundit_authorize
 
@@ -85,15 +85,7 @@ class AssignsController < ApplicationController
   end
 
   def upload_media_url
-    render json: Assigns::GetMediaUploadUrl.call!(@assign, params[:question_id])
-  end
-
-  def upload_media_dev
-    return head :no_content if Rails.env.production?
-
-    media = MediaResponse.find(params[:media_id])
-    media.update_attributes(asset: params[:asset])
-    render json: media.as_json.merge(filename: media.filename)
+    render json: MediaResponses::GetUploadUrl.call!(@assign, params[:question_id])
   end
 
   def upload_callback
@@ -116,6 +108,13 @@ class AssignsController < ApplicationController
       @assign.save
     end
     head :ok
+  end
+
+  def complete_multipart_upload
+    media = @assign.media_responses.find_by!(id: params[:media_id])
+    MediaResponses::CompleteMultipartUpload.call!(media, params[:upload_id], params[:parts])
+
+    render json: media.reload.as_json
   end
 
   private

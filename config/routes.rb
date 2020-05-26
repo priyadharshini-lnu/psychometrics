@@ -229,7 +229,6 @@ Rails.application.routes.draw do
             member do
               get :upload_media_url
               put :upload_callback
-              post :upload_media_dev
               delete :remove_media
             end
           end
@@ -572,8 +571,8 @@ Rails.application.routes.draw do
       member do
         get :upload_media_url
         put :upload_callback
-        post :upload_media_dev
         delete :remove_media
+        put :complete_multipart_upload
         put :update_meta_data
       end
     end
@@ -602,8 +601,8 @@ Rails.application.routes.draw do
           member do
             get :upload_media_url
             put :upload_callback
-            post :upload_media_dev
             delete :remove_media
+            put :complete_multipart_upload
             put :update_meta_data
           end
         end

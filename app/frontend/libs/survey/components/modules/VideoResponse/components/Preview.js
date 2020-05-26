@@ -13,7 +13,7 @@ export class Preview extends Component {
 
   successUpload = (data) => {
     const { model } = this.props
-    model.result.answer(data.asset.url, data.id, data.name)
+    model.result.answer(data.asset.url, data.id)
   }
 
   deleteMedia = () => {
