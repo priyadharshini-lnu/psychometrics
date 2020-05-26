@@ -8,13 +8,12 @@ import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
 import Watchman from 'libs/survey/store/StoreWatchman'
+import axios from 'axios'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
 import Tracker from './Tracker'
-const qs = require('qs')
-import axios from 'axios'
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -96,43 +95,48 @@ class VideoRecorder extends Component {
 
   uploadFile = (urlDetails, batchNumber) => {
     const batchForUpload = this.batches[batchNumber]
-    console.log(this.batches, batchForUpload)
     const blob = new Blob(batchForUpload.batchedBlobs, {
-      type: 'video/webm'
-    });
+      type: 'video/webm',
+    })
+
+    const { percent } = this.state
+    if (!percent[batchNumber]) {
+      this.setState({ percent: { ...percent, [batchNumber]: 0 } })
+    }
+
     const uploadResp = axios.put(
       urlDetails,
       blob,
-      { onUploadProgress: e => this.setProgress(e, batchNumber) }
+      { onUploadProgress: e => this.setProgress(e, batchNumber) },
     )
 
     if (!this.promisesArray) { this.promisesArray = [] }
     this.promisesArray.push(uploadResp)
 
-    uploadResp.then(() => batchForUpload.batchedBlobs = null)
+    uploadResp.then(() => { batchForUpload.batchedBlobs = null })
   }
 
   setProgress = (e, batchNumber) => {
     if (e.lengthComputable) {
       let percentComplete = e.loaded / e.total
       percentComplete = parseInt(percentComplete * 100, 10)
-      this.setState({ percent: { ...this.state.percent, [batchNumber]: percentComplete } })
+      const { percent } = this.state
+      this.setState({ percent: { ...percent, [batchNumber]: percentComplete } })
     }
   }
 
   getUploadProgressPercentage = () => {
     let totalUploaded = 0
     let total = 0
-    console.log(this.batches)
-    _.each(this.state.percent, (percent, batchNumber) => {
-      totalUploaded = totalUploaded + (this.batches[batchNumber].size * percent / 100)
-      total = total + this.batches[batchNumber].size
+    const { percent } = this.state
+    _.each(percent, (percent, batchNumber) => {
+      totalUploaded += (this.batches[batchNumber].size * percent / 100)
+      total += this.batches[batchNumber].size
     })
-    console.log(this.state.percent)
-    console.log(totalUploaded,  total)
     return totalUploaded / total * 100
   }
 
+  // eslint-disable-next-line react/sort-comp
   initPlayer () {
     const { result } = this.props
 
@@ -187,7 +191,7 @@ class VideoRecorder extends Component {
             pip: false,
             audio: true,
             video: true,
-            maxLength: 90,
+            maxLength: maxDuration || 10,
             debug: true,
             videoMimeType: 'video/webm;codecs=H264',
             timeSlice: 10000,
@@ -249,12 +253,12 @@ class VideoRecorder extends Component {
         if (trackingEnabled && this.tracker) this.tracker.stopTracking()
 
         if (!preview) {
-          let resolvedArray = await Promise.all(this.promisesArray)
-          let uploadPartsArray = []
+          const resolvedArray = await Promise.all(this.promisesArray)
+          const uploadPartsArray = []
           resolvedArray.forEach((resolvedPromise, index) => {
             uploadPartsArray.push({
               etag: resolvedPromise.headers.etag,
-              part_number: index + 1
+              part_number: index + 1,
             })
           })
 
@@ -287,7 +291,7 @@ class VideoRecorder extends Component {
 
     const lastBatch = this.batches[this.batches.length - 1]
     const batchedBlobs = this.player.recordedData.slice(lastBatch.firstIndex, totalSlices)
-    const sizeInBytes = _.sum(_.map(batchedBlobs, (a) => a.size))
+    const sizeInBytes = _.sum(_.map(batchedBlobs, a => a.size))
     const sizeInMB = sizeInBytes / 1024 / 1024
     lastBatch.size = sizeInBytes
 
@@ -297,7 +301,7 @@ class VideoRecorder extends Component {
       this.batches.push({
         firstIndex: lastBatch.lastIndex + 1,
         batchedBlobs: [],
-        size: 0
+        size: 0,
       })
     } else {
       lastBatch.batchedBlobs = batchedBlobs
@@ -316,12 +320,11 @@ class VideoRecorder extends Component {
     const { mediaUrl } = this.props
     axios.put(
       `${mediaUrl}/complete_multipart_upload`,
-      { parts: uploadPartsArray, media_id: this.urlDetails.media_id, upload_id: this.urlDetails.upload_id }
+      { parts: uploadPartsArray, media_id: this.urlDetails.media_id, upload_id: this.urlDetails.upload_id },
     ).then(({ data }) => this.handleRecordingSaved(data))
   }
 
   handleRecordingSaved = (data) => {
-    console.log(data)
     const { model, removeQuestionInProgress, onSuccessUpload } = this.props
     onSuccessUpload && data && onSuccessUpload(data)
     this.player.trigger('statechanged', { status: 'saved' })

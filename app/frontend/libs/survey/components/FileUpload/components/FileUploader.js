@@ -14,7 +14,6 @@ export default FileUploader
 
 const uploadFile = (data, context) => {
   const { file, fileName, dispatch } = context
-  const mediaId = data.media_id
   const fd = new FormData()
   fd.append('key', data.key)
   fd.append('acl', data.acl)

@@ -4,7 +4,8 @@ module Threesixty
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
     skip_before_action :verify_authenticity_token, unless: -> { current_user.superadmin? }
-    before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data complete_multipart_upload]
+    before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
+                                             complete_multipart_upload]
 
     def update
       campaign = Threesixty::Campaign.find(params[:campaign_id])
