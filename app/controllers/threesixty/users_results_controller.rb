@@ -57,7 +57,7 @@ module Threesixty
 
     def complete_multipart_upload
       media = @users_result.media_responses.find_by!(id: params[:media_id])
-      MediaResponses::CompleteMultipartUpload.call!(media, params[:upload_id], params[:parts])
+      MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
       render json: media.reload.as_json
     end

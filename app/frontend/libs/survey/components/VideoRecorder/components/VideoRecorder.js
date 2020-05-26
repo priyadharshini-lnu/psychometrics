@@ -19,6 +19,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 
 const { $ } = window
+const UPLOAD_CHUNK_SIZE = 5.5
 
 class VideoRecorder extends Component {
   constructor (props) {
@@ -294,7 +295,7 @@ class VideoRecorder extends Component {
     const sizeInMB = sizeInBytes / 1024 / 1024
     lastBatch.size = sizeInBytes
 
-    if (sizeInMB > 5.5) {
+    if (sizeInMB > UPLOAD_CHUNK_SIZE) {
       lastBatch.lastIndex = totalSlices - 1
       this.uploadFile(this.urlDetails.urls[this.batches.length - 1], this.batches.length - 1)
       this.batches.push({
@@ -319,7 +320,12 @@ class VideoRecorder extends Component {
     const { mediaUrl } = this.props
     axios.put(
       `${mediaUrl}/complete_multipart_upload`,
-      { parts: uploadPartsArray, media_id: this.urlDetails.media_id, upload_id: this.urlDetails.upload_id },
+      {
+        parts: uploadPartsArray,
+        media_id: this.urlDetails.media_id,
+        asset_key: this.urlDetails.asset_key,
+        upload_id: this.urlDetails.upload_id,
+      },
     ).then(({ data }) => this.handleRecordingSaved(data))
   }
 
