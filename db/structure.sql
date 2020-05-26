@@ -321,13 +321,14 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
-    additional_time integer
+    additional_time integer,
+    reset_count integer DEFAULT 0
 );
 
 
@@ -2702,7 +2703,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2873,7 +2876,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3095,12 +3100,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb
+    last_activity_at timestamp without time zone
 );
 
 
@@ -6965,6 +6970,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200406101817'),
 ('20200420101736'),
 ('20200420102139'),
-('20200420102632');
+('20200420102632'),
+('20200519155451');
 
 

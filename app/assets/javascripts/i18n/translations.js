@@ -459,8 +459,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "email_type": {
         "bcc": "Bcc",
         "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
         "message": "Your Message",
+        "send": "Send",
         "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
         "to": "To"
       }
     },
@@ -994,8 +998,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "email_type": {
         "bcc": "Bcc",
         "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
         "message": "Your Message",
+        "send": "Send",
         "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
         "to": "To"
       }
     },
@@ -1529,8 +1537,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "email_type": {
         "bcc": "Bcc",
         "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
         "message": "Your Message",
+        "send": "Send",
         "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
         "to": "To"
       }
     },
