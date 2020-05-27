@@ -4,6 +4,7 @@ import store from 'rb/store/PropertyPanelStore'
 import { Properties } from 'rb/components/modules'
 import ModuleModel from 'rb/models/Module'
 import styles from './PropertyPanel.scss'
+import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 
@@ -37,16 +38,18 @@ class PropertyPanel extends Component {
   }
 
   renderCustomProperties () {
-    const { selected, module } = this.props
+    const { selected, module, page } = this.props
+    if ((!module && !page) || !selected) { return null }
     const type = selected.type === 'Module' ? module.type : selected.type
     const View = Properties[`${type}Properties`]
     if (!View) { return }
     const model = new ModuleModel(module, { id: module.page_id })
-    return (<View model={model} />)
+    return (<View model={model || page} />)
   }
 
   renderLayout () {
     const { module } = this.props
+    if (!module) { return null }
     return (
       <div className={styles.layout}>
         Layout
@@ -116,12 +119,15 @@ class PropertyPanel extends Component {
       }
     }
     return (
-      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
-        <div className={styles.main}>
-          {this.renderCustomProperties()}
-          {selected.type === 'Module' && this.renderLayout()}
+      <>
+        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+          <div className={styles.main}>
+            {this.renderCustomProperties()}
+            {selected.type === 'Module' && this.renderLayout()}
+          </div>
         </div>
-      </div>
+        <ColorPickerModal />
+      </>
     )
   }
 }

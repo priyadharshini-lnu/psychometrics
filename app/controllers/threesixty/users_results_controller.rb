@@ -18,7 +18,9 @@ module Threesixty
       form = ::UsersResults::UpdatingForm.from_params(assign_params)
       ::UsersResults::UpdateUsersResult.call(form, @users_result, campaign)
 
-      render json: { expired: @users_result.expired? }
+      render json: @users_result,
+      serializer: UsersResultUpdateSerializer,
+      current_block_id: params[:current_block_id], campaign: campaign
     end
 
     def update_meta_data

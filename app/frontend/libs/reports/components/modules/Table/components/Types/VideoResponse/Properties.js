@@ -3,12 +3,13 @@ import Select from 'react-select'
 import _ from 'lodash'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 
 const AVAILABLE_QUESTION_TYPES = ['VideoResponse']
 
-export default class Properties extends Component {
+class Properties extends Component {
   onChange = (key, value) => {
     const { model } = this.props
     model.props[key] = value
@@ -17,9 +18,9 @@ export default class Properties extends Component {
   }
 
   render () {
-    const { model } = this.props
-    const questions = _.filter(
-      AssessmentStore.questions[model.assessment_id] || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
+    const { model, questions } = this.props
+    const videoQuestions = _.filter(
+      questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
     )
     return (
       <div>
@@ -29,8 +30,8 @@ export default class Properties extends Component {
           <div className="mtm">
             Question
             <Select
-              value={getValue(questions, model.props.questionId)}
-              options={questions}
+              value={getValue(videoQuestions, model.props.questionId)}
+              options={videoQuestions}
               getOptionValue={opt => opt.id}
               getOptionLabel={opt => opt.name}
               autoFocus={false}
@@ -44,3 +45,7 @@ export default class Properties extends Component {
     )
   }
 }
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Properties)

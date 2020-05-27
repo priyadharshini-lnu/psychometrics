@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import _ from 'lodash'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import store from 'rb/store'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import Utils from 'rb/utils/Utils'
 import Text from '../../Table/CellTypes/Text/Text'
 import styles from './HighestLowest.scss'
@@ -52,7 +53,7 @@ export default class QuestionHighestLowest extends Component {
   renderScores (data) {
     const { module } = this.props
     const assessmentId = module.assessment_id
-    const questions = ResultStore.realResults ? AssessmentStore.questions[assessmentId] : QUESTIONS
+    const questions = ResultStore.realResults ? getQuestions(store.getState().report, assessmentId) : QUESTIONS
     return _.map(data, ({ id, avg, factorName }, i) => {
       const question = questions[id]
       return (

@@ -26,7 +26,7 @@ class AssignSerializer < ActiveModel::Serializer
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
              :type, :occupations, :innovation_styles, :expiry_date, :meta_data,
-             :current_element, :current_page, :seedrandom
+             :current_element, :current_page, :seedrandom, :reset_count
 
   has_one :user, serializer: UserSerializer
 

@@ -45,6 +45,12 @@ module Threesixty
           name: 'subject_smart_text',
           class_name: 'Threesixty::PipedText::Branches::SubjectSmartText',
           required_context: %i[subject evaluator]
+        },
+        {
+          key: 'answer',
+          name: 'answer',
+          class_name: 'Threesixty::PipedText::Branches::Answer',
+          required_context: %i[answers]
         }
       ].freeze
 

@@ -1,9 +1,8 @@
 import React from 'react'
 import {
-  Card, Empty, Table,
+  Card, Empty,
 } from 'antd'
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { DnDProvider } from 'components/DnD'
 import styles from './styles.scss'
 import Title from './Title'
 import SubFactorRow from './SubFactorRow'
@@ -29,50 +28,38 @@ export default function SubFactorList ({
     onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
   }
 
-  const moveRow = (dragPosition, hoverPosition) => {
-    const value = factor[FACTORS_SUB_FACTORS].map((subFactor) => {
-      const { position } = subFactor
-      if (position === dragPosition) return { ...subFactor, position: hoverPosition }
-
-      if (dragPosition < hoverPosition && position > dragPosition && position <= hoverPosition) {
-        return { ...subFactor, position: position - 1 }
-      }
-
-      if (dragPosition > hoverPosition && position >= hoverPosition && position < dragPosition) {
-        return { ...subFactor, position: position + 1 }
-      }
-
-      return subFactor
-    })
-    onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value } })
-  }
-
-  const components = {
-    body: {
-      row: SubFactorRow,
-    },
+  const moveRow = (list) => {
+    onChange({ currentTarget: { name: FACTORS_SUB_FACTORS, value: list } })
   }
 
   const tableErrors = (errors && errors.factorsSubFactorsAttributes) || []
 
+  const dataSource = _.sortBy(factor[FACTORS_SUB_FACTORS], ['position'])
+  const columns = GetColumnsByStrategy.run(factor, onUpdate, onRemove, tableErrors)
   return (
     <Card className={styles.container} title={<Title factors={factors} factor={factor} onAdd={onAdd} />}>
       {factor[FACTORS_SUB_FACTORS].length ? (
-        <DndProvider backend={HTML5Backend}>
-          <Table
-            columns={GetColumnsByStrategy.run(factor, onUpdate, onRemove, tableErrors)}
-            dataSource={_.sortBy(factor[FACTORS_SUB_FACTORS], ['position'])}
-            size="small"
-            rowKey="sub_factor_id"
-            pagination={false}
-            components={components}
-            onRow={({ position }) => ({
-              position,
-              moveRow,
-              scoringStrategy: factor.scoring_strategy,
-            })}
-          />
-        </DndProvider>
+        <DnDProvider>
+          <table className="table table-bordered">
+            <thead>
+              <tr>
+                {columns.map(d => <th key={d.dataIndex}>{d.title}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {dataSource.map(s => (
+                <SubFactorRow
+                  key={s.sub_factor_id}
+                  subFactor={s}
+                  moveRow={moveRow}
+                  scoringStrategy={factor.scoring_strategy}
+                  columns={columns}
+                  list={dataSource}
+                />
+              ))}
+            </tbody>
+          </table>
+        </DnDProvider>
       ) : (
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
       )}

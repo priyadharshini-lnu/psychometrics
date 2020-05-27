@@ -70,6 +70,23 @@ describe Threesixty::PipedText::Perform do
       expect(response).to eq(Time.now.strftime('%-d/%-m/%Y'))
     end
 
+    it do
+      response = described_class.call!('{{answer://FileUpload/826?w=50%&h=500px}}', answers: {
+        '826' => {
+          'answers' => [
+            {
+              'value' => 'https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf',
+              'filename' => 'Screen_Shot_2020-05-21_at_20.51.00.pdf',
+              'media_id' => 1
+            }
+          ],
+          'question_id' => 826
+        }
+      })
+      expect(response).to eq("<iframe style='width: 50%; height: 500px;' src='https://docs.google.com/gview?\
+url=https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf&embedded=true'></iframe>")
+    end
+
     it 'empty if error occure' do
       response = described_class.call!('{{d://Current?f=%--}}')
       expect { response.call }.to raise_error(Exception)

@@ -3,7 +3,8 @@ import _ from 'lodash'
 import cs from 'classnames'
 import I18nStore from 'rb/store/I18nStore'
 import ResultStore from 'rb/store/ResultStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import styles from '../styles.scss'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
@@ -11,7 +12,7 @@ import buildFakeData from '../buildFakeData'
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
 
-export default function Question ({ filters, model }) {
+function Question ({ filters, model, questions }) {
   const enhanceFiltersByValue = (question, choice) => {
     if (!ResultStore.realResults) {
       const { milestones } = model.props
@@ -44,7 +45,7 @@ export default function Question ({ filters, model }) {
   }
 
   const findQuestion = () => _.find(
-    AssessmentStore.questions[model.assessment_id], question => question.id === model.props.questionId,
+    questions, question => question.id === model.props.questionId,
   )
 
   const findQuestionChoices = () => {
@@ -130,3 +131,8 @@ export default function Question ({ filters, model }) {
     </div>
   )
 }
+
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Question)

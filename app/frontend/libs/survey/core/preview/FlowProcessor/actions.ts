@@ -72,7 +72,7 @@ export const removeQuestionInProgress = (questionId, progressState) => (
   { type: REMOVE_QUESTION_IN_PROGRESS, questionId, progressState })
 export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION })
 
-export const saveResults = (preview, questionIds) => {
+export const saveResults = (preview, questionIds, currentBlockId?) => {
   const data = {
     resource: {
       [preview.isThreesixty ? 'answers' : 'results']: _.omitBy(preview.results, 'dirty'),
@@ -82,6 +82,7 @@ export const saveResults = (preview, questionIds) => {
       status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
     },
     question_ids: questionIds,
+    current_block_id: currentBlockId,
   }
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
   if (preview.end) {

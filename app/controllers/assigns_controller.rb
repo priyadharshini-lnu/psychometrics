@@ -53,16 +53,10 @@ class AssignsController < ApplicationController
   end
 
   def assessment
-    piped_text_context = {
-      evaluator: current_user,
-      subject: current_user,
-      threesixty_campaign: {}
-    }
-
     render json: @assign.assessment,
            serializer: AssessmentSerializer,
            include: '**',
-           piped_text_context: piped_text_context
+           piped_text_context: build_piped_context
   end
 
   def update
@@ -71,7 +65,9 @@ class AssignsController < ApplicationController
     @form = AssignForm.from_params(assign_params)
     UpdateAssign.call(@form, @assign, current_user)
 
-    render json: { expired: @assign.expired? }
+    render json: @assign,
+    serializer: AssignUpdateSerializer,
+    current_block_id: params[:current_block_id], piped_text_context: build_piped_context
   end
 
   def update_meta_data
@@ -123,7 +119,7 @@ class AssignsController < ApplicationController
   def set_assign
     @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to(controller: :campaigns, action: :index)
+    redirect_to root_path
   end
 
   # Authorisation user
@@ -149,6 +145,15 @@ class AssignsController < ApplicationController
 
   def current_campaigns_user
     CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  end
+
+  def build_piped_context
+    {
+      evaluator: current_user,
+      subject: current_user,
+      threesixty_campaign: {},
+      answers: Assign.find(params[:id])&.results || {}
+    }
   end
 
   def resource_params

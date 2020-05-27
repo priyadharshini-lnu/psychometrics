@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import withCopyProtection from 'components/hocs/withCopyProtection'
 import styles from './StaticContent.scss'
 import Previews from './Previews'
 import connect from '../connect'
@@ -37,10 +38,12 @@ export class Preview extends Component {
   }
 
   render () {
-    const { model, model: { props }, I18n } = this.props
+    const {
+      model, model: { props }, I18n, containerRef,
+    } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
-      <div>
+      <div ref={containerRef}>
         {this.renderText(props)}
         {this.renderType(props)}
       </div>
@@ -48,4 +51,6 @@ export class Preview extends Component {
   }
 }
 
-export default connect(Preview)
+const ConnectedPreview = connect(Preview)
+
+export default withCopyProtection(ConnectedPreview)

@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
 import { openRichEditor, closeRichEditor } from 'libs/reports/core/builder/actions'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 
 export default connect(
-  state => ({
+  (state, { module, model }) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
+    questions: getQuestions(state.report, (module || model).assessment_id) || {},
   }),
   {
     openConditionalText: data => openModal('conditionalText', data),

@@ -342,7 +342,8 @@ CREATE TABLE public.assigns (
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
     meta_data jsonb DEFAULT '{}'::jsonb,
-    additional_time integer
+    additional_time integer,
+    reset_count integer DEFAULT 0
 );
 
 
@@ -6981,6 +6982,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200420101736'),
 ('20200420102139'),
 ('20200420102632'),
+('20200519155451'),
 ('20200525102435');
 
 

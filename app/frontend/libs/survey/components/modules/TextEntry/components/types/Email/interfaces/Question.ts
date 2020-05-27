@@ -10,6 +10,7 @@ export default interface Question {
 interface QuestionProps {
   title: string
   titleDescription: string
+  maxLength?: number
   contactList: ContactType[]
 }
 

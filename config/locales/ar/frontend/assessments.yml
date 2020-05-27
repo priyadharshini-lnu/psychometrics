@@ -10,3 +10,7 @@ ar:
       agile: AGILE
     pickgrouprank:
       items: 'العبارات'
+    messages:
+      finish: 'لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة'
+    actions:
+      goto_dashboard: 'الذهاب إلى الصفحة الرئيسية'

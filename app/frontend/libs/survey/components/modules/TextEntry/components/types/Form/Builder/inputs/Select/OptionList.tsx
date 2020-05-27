@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, Input } from 'antd'
 import Utils from 'libs/survey/utils/Utils'
-import { DnDProvider, DnDElement } from 'libs/survey/components/DnD'
+import { DnDProvider, DnDElement } from 'components/DnD'
 import styles from '../../../FormStyle.scss'
 import { Question } from '../../../interfaces'
 import { FormType } from '../../../interfaces/Question'
@@ -29,10 +29,10 @@ const OptionList: React.FC<Props> = ({
     return optionList.map(option => ({ id: Utils.genId(), text: option }))
   }
 
-  const [optionListState, setOptionListState] = useState<OptionListState[]>(addIdToOptionList(optionList))
+  const [options, setOptions] = useState<OptionListState[]>(addIdToOptionList(optionList))
 
   useEffect(() => {
-    setOptionListState(addIdToOptionList(optionList))
+    setOptions(addIdToOptionList(optionList))
   }, [optionList])
 
 
@@ -60,20 +60,23 @@ const OptionList: React.FC<Props> = ({
     model.changeArrayProps({
       collection: 'formTypes',
       i: index,
-      val: { ...type, optionList: optionListState.map(o => o.text) },
+      val: { ...type, optionList: options.map(o => o.text) },
     }, false)
   }
 
   return (
     <DnDProvider>
       <Menu className={styles.optionList}>
-        {optionListState.map((option, i) => (
+        {options.map((option, i) => (
           <DnDElement
             key={option.id}
+            uniqField="id"
+            strategy="index"
             wrapper={Item}
-            onDrag={setOptionListState}
-            rowList={optionListState}
-            index={i}
+            onDrag={setOptions}
+            list={options}
+            element={option}
+            additionalWrapper
             onEndDrag={updateOptionList}
           >
             <Option

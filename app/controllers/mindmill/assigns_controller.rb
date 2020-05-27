@@ -14,7 +14,7 @@ class Mindmill::AssignsController < ApplicationController
     mindmill.assign_user
     redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless mindmill.ssourl
 
-    @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + results_mindmill_assign_path(@assign)}"
+    @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + redirect_mindmill_assign_path(@assign)}"
 
     @assign.in_progress!
     BuildMindmillResultsJob.perform_now(@assign, @current_membership, user_locale, regenerate: false)

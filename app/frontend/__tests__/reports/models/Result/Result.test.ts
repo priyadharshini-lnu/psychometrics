@@ -6,9 +6,14 @@ import Result from 'libs/reports/models/Result'
 import AppStore from 'libs/reports/store/AppStore'
 import _ from 'lodash'
 import Scoring from 'libs/reports/models/Scoring'
+import store from 'libs/reports/store'
+import schema from 'libs/reports/store/schema'
+import { normalize } from 'normalizr'
 
 beforeAll(() => {
     AppStore.init(appStoreData)
+    const normalizedData = normalize(appStoreData, schema)
+    store.dispatch({ type: 'report/INIT', data: normalizedData })
 });
 
 const FILTER_MANAGERS = '61'
