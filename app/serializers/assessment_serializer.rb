@@ -47,6 +47,8 @@ class AssessmentSerializer < ActiveModel::Serializer
 
   def resources_content
     ids = object.resources&.map { |r| r['questionId'] }
+    return [] unless ids
+
     questions = Question.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
     questions.map { |q| QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context]) }
   end

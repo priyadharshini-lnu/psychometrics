@@ -63,13 +63,9 @@ class Administration::AssessmentsController < Administration::BaseController
     }
   end
 
-  def resources
-    respond_to do |format|
-      format.json do
-        resource.update(resources: params[:resources])
-        render json: :ok
-      end
-    end
+  def content_resources
+    resource.update(resources: params[:resources])
+    render json: :ok
   end
 
   def show
