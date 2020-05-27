@@ -249,7 +249,6 @@ class VideoRecorder extends Component {
 
         this.player.trigger('statechanged', { status: 'recorded' })
 
-
         if (trackingEnabled && this.tracker) this.tracker.stopTracking()
 
         if (!preview) {
@@ -325,6 +324,9 @@ class VideoRecorder extends Component {
         media_id: this.urlDetails.media_id,
         asset_key: this.urlDetails.asset_key,
         upload_id: this.urlDetails.upload_id,
+      },
+      {
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       },
     ).then(({ data }) => this.handleRecordingSaved(data))
   }
