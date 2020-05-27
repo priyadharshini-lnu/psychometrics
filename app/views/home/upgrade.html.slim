@@ -1,7 +1,19 @@
-.mainContent
-  .upgrade-message
-    | Your browser is freakin' old, please, for fucks' sake, upgrade it or use the latest chrome or firefox!
-
-  ul
-    li = link_to 'Link To Download Chrome', 'javascript:void'
-    li = link_to 'Link To Download Firefox', 'javascript:void'
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+    .not-supported
+      .icon = image_tag("browsers/not_supported.svg")
+      .message The browser you are using is not supported by Lighthouse.
+      .instruction Please download and use any of the following browsers.
+      ul.browsers
+        li.browser
+          .icon = image_tag("browsers/chrome.svg")
+          .name Google Chrome
+        li.browser
+          .icon = image_tag("browsers/firefox.svg")
+          .name Mozilla Firefox
+        li.browser
+          .icon = image_tag("browsers/edge.svg")
+          .name Microsoft Edge
+        li.browser
+          .icon = image_tag("browsers/safari.svg")
+          .name Apple Safari
