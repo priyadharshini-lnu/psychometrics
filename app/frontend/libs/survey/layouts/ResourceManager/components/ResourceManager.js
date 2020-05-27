@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import DndProvider from 'libs/survey/components/DnD/DnDProvider'
-import DndElement from 'libs/survey/components/DnD/DnDElement'
+import DndProvider from 'components/DnD/DnDProvider'
+import DndElement from 'components/DnD/DnDElement'
+import utils from 'libs/survey/utils'
 import styles from './ResourceManager.scss'
 import Header from './Header'
 import Resource from './Resource'
@@ -30,14 +31,24 @@ export default class ResourceManager extends Component {
     const onDrag = (list) => {
       reorderResources(list)
     }
+    const list = resources.map(r => ({ id: utils.genId(), ...r }))
+
     return (
       <div className="col-md-12">
         <div className="panel panel-default">
           <Header {...this.props} />
           <DndProvider>
             <div className={styles.resourceWrapper}>
-              {resources.map((resource, index) => (
-                <DndElement index={index} rowList={resources} onDrag={onDrag}>
+              {list.map((resource, index) => (
+                <DndElement
+                  className={styles.dragable}
+                  iconClass={styles.iconHandler}
+                  strategy="index"
+                  uniqField="id"
+                  element={resource}
+                  list={list}
+                  onDrag={onDrag}
+                >
                   <Resource
                     index={index}
                     resource={resource}

@@ -21,7 +21,8 @@
 
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
-             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration
+             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
+             :resources_content
 
   def blocks
     object.blocks.
@@ -42,6 +43,12 @@ class AssessmentSerializer < ActiveModel::Serializer
 
     object.dimension.all_factors.includes(:sub_factors).
       map { |factor| Factors::WithSubFactorsSerializer.new(factor).to_hash }
+  end
+
+  def resources_content
+    ids = object.resources&.map { |r| r['questionId'] }
+    questions = Question.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
+    questions.map { |q| QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context]) }
   end
 
   def data_sheet_columns
