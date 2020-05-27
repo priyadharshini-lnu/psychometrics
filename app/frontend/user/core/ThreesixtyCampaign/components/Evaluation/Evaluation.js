@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Tabs,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -12,8 +12,10 @@ import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
+import Resources from '../Resources'
 
 const { Content } = Layout
+const { TabPane } = Tabs
 
 export default function Evaluation ({
   evaluation: {
@@ -156,7 +158,10 @@ export default function Evaluation ({
           />
         </Content>
       </div>
-      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+      <Content className={
+          cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content', 'main-container')
+        }
+      >
         <div className="evaluation-container">
           <Row justify="end">
             <Col flex="none">
@@ -174,22 +179,29 @@ export default function Evaluation ({
             )}
           </Row>
           {!error && (
-            <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-              <PassAssessment
-                ref={assessmentRef}
-                id="pass_assessment"
-                type={approve_evaluation ? 'view_results' : 'pass_assessment'}
-                isThreesixty="true"
-                resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/campaigns/${params.campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                notAnEndPage={approve_evaluation || edit === 'true'}
-                rstore={store}
-              />
-            </div>
+            <Tabs defaultActiveKey="assessment" className="tabs-row">
+              <TabPane tab="Assessment" key="assessment">
+                <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                  <PassAssessment
+                    ref={assessmentRef}
+                    id="pass_assessment"
+                    type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                    isThreesixty="true"
+                    resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                    data={assessment}
+                    result={results}
+                    dashboardUrl={`/campaigns/${params.campaignId}`}
+                    locales={translations}
+                    selectedLocale={selectedLanguage && selectedLanguage.code}
+                    notAnEndPage={approve_evaluation || edit === 'true'}
+                    rstore={store}
+                  />
+                </div>
+              </TabPane>
+              <TabPane tab="Resource Content" key="resources">
+                <Resources assessment={assessment} />
+              </TabPane>
+            </Tabs>
           )}
         </div>
       </Content>

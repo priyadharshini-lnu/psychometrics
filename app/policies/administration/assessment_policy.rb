@@ -16,7 +16,7 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
 
-    def resources?
+    def content_resources?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
 

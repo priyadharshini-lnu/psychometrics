@@ -63,7 +63,7 @@ class Administration::AssessmentsController < Administration::BaseController
     }
   end
 
-  def resources
+  def content_resources
     resource.update(resources: params[:resources])
     render json: :ok
   end

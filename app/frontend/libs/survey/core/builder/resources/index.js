@@ -47,7 +47,7 @@ export const saveResources = (assessmentId, resources) => ({
     decamelize: false,
     method: 'put',
     url: `/administration/assessments/${assessmentId}/resources`,
-    body: { resources },
+    body: { resources: resources.map(r => (_.omit(r, 'id'))) },
   },
 })
 
