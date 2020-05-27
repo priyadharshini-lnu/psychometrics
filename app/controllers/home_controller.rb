@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:identify, :upgrade]
+  skip_before_action :authenticate_user!, only: %I[identify upgrade]
 
   def survey_instructions
     render layout: 'users_new'

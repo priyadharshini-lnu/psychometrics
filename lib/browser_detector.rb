@@ -9,19 +9,19 @@ class BrowserDetector
 
   def supported_browser?(browser)
     [
-      browser.chrome?(">= 53"),
-      browser.firefox?(">= 36"),
-      browser.edge?(">= 12"),
-      browser.safari?(">= 11"),
-      browser.opera?(">= 40")
+      browser.chrome?('>= 53'),
+      browser.firefox?('>= 36'),
+      browser.edge?('>= 12'),
+      browser.safari?('>= 11'),
+      browser.opera?('>= 40')
     ].any?
   end
 
   def preferred_browser?(browser)
     [
-      browser.chrome?(">= 53"),
-      browser.firefox?(">= 42"),
-      browser.edge?(">= 79")
+      browser.chrome?('>= 53'),
+      browser.firefox?('>= 42'),
+      browser.edge?('>= 79')
     ].any?
   end
 end
