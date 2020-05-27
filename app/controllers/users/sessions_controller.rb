@@ -26,8 +26,7 @@ module Users
       browser = Browser.new(request.user_agent)
       @browser_detections = BrowserDetector.new.detect(browser)
 
-      puts "browser_detections: #{@browser_detections}"
-      redirect_to upgrade_url unless @browser_detections.supported_browser? # FIXME
+      redirect_to upgrade_url unless @browser_detections.supported_browser?
     end
   end
 end
