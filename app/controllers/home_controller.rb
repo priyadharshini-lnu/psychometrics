@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:identify]
+  skip_before_action :authenticate_user!, only: [:identify, :upgrade]
 
   def survey_instructions
     render layout: 'users_new'
@@ -30,6 +30,11 @@ class HomeController < ApplicationController
     cookies.permanent[:ident_session] = 1
     redirect_url = params.fetch(:redirect_url) { root_path }
     redirect_to(redirect_url)
+  end
+
+  # Browser upgrade notification
+  def upgrade
+    render layout: 'devise'
   end
 
   private
