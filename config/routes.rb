@@ -307,7 +307,6 @@ Rails.application.routes.draw do
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
         get :resources, to: 'assessments#show', constraints: { all: /.*/ }
-        put :resources, to: 'assessments#content_resources'
         get :assessments
         get :questions
       end
