@@ -101,6 +101,8 @@ class Properties extends Component {
     const { model } = this.props
     const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
+    if (!dimensionId) { return null }
+
     let max = AppStore.mainFactors[dimensionId].length + 1
     if (max < 6) { max = 6 }
     return (
