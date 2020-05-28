@@ -12,7 +12,7 @@ import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
-import Resources from '../Resources'
+import ResourceList from '../ResourceList'
 
 const { Content } = Layout
 const { TabPane } = Tabs
@@ -159,7 +159,7 @@ export default function Evaluation ({
         </Content>
       </div>
       <Content className={
-          cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content', 'main-container')
+          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) }, 'main-container')
         }
       >
         <div className="evaluation-container">
@@ -199,7 +199,7 @@ export default function Evaluation ({
                 </div>
               </TabPane>
               <TabPane tab="Resource Content" key="resources">
-                <Resources assessment={assessment} />
+                <ResourceList assessment={assessment} />
               </TabPane>
             </Tabs>
           )}

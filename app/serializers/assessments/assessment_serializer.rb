@@ -51,7 +51,7 @@ module Assessments
       return {} unless object.resources
 
       ids = object.resources.map { |r| r['assessmentId'] }
-      Question.where(type: 'StaticContent').where(assessment_id: ids).group_by(&:assessment_id)
+      Question.where(assessment_id: ids, type: 'StaticContent').group_by(&:assessment_id)
     end
   end
 end

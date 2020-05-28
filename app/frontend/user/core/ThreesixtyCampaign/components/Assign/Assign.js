@@ -10,7 +10,7 @@ import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
-import Resources from '../Resources'
+import ResourceList from '../ResourceList'
 
 const { TabPane } = Tabs
 const { Content } = Layout
@@ -78,7 +78,7 @@ export default function Assign ({
       <Content
         className={
           cs('fluid-container',
-            _.get(block, ['props', 'staticContent']) && 'has-static-content',
+            { 'has-static-content': _.get(block, ['props', 'staticContent']) },
             'main-container')
         }
       >
@@ -110,7 +110,7 @@ export default function Assign ({
                 />
               </TabPane>
               <TabPane tab="Resource Content" key="resources">
-                <Resources assessment={assessment} />
+                <ResourceList assessment={assessment} />
               </TabPane>
             </Tabs>
           )}
