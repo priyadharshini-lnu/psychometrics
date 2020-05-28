@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Select, Row, Col, Button, Form,
 } from 'antd'
-import Utils from 'libs/survey/utils'
+import QuestionPresenter from 'libs/survey/presenters/question'
 import styles from './ResourceManager.scss'
 
 export default function Resource ({
@@ -12,7 +12,7 @@ export default function Resource ({
   const assessmentOptions = assessments.map(({ id, name }) => ({ id, label: name }))
   const questionOptions = assessmentQuestions[resource.assessmentId]
     && assessmentQuestions[resource.assessmentId].map(({ id, props }) => ({
-      id, label: Utils.stripHTML(props.questionText || 'default text').substr(0, 150),
+      id, label: QuestionPresenter.getName({ name, props }, 150),
     }))
 
   const remove = () => {
