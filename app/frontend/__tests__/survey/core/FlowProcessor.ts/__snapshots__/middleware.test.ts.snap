@@ -383,6 +383,12 @@ Object {
         "saving": false,
       },
       "questions": Object {},
+      "resources": Object {
+        "assessmentQuestions": Object {},
+        "assessments": Array [],
+        "defaultAssessmen": null,
+        "resources": Array [],
+      },
     },
     "temp": Object {
       "hotSpot": Object {
@@ -473,6 +479,12 @@ Object {
         "saving": false,
       },
       "questions": Object {},
+      "resources": Object {
+        "assessmentQuestions": Object {},
+        "assessments": Array [],
+        "defaultAssessmen": null,
+        "resources": Array [],
+      },
     },
     "temp": Object {
       "hotSpot": Object {

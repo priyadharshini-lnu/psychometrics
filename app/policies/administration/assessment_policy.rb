@@ -8,6 +8,18 @@ module Administration
       super || @user.has_grant?(:assessments, :view)
     end
 
+    def assessments?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
+
+    def questions?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
+
+    def content_resources?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
+
     # Can open builder of Assessment (Blocks, Questions and etc.)
     # true if it's Common Assessment
     #   and user is Superadmin or user has grants
