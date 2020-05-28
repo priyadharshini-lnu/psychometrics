@@ -35,7 +35,7 @@ function Editor ({
       'fullscreen',
       'video',
       'embedMedia',
-
+      'audio',
     ],
     toolbarButtons: [
       'pipedText',
@@ -69,6 +69,7 @@ function Editor ({
       'fullscreen',
       'insertVideo',
       'embedMedia',
+      'insertAudio',
     ],
     saveParams: { type, details },
     heightMin: 250,
