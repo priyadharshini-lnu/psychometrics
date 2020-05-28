@@ -10,9 +10,13 @@ class MediaResponse < ApplicationRecord
   belongs_to :assign
   belongs_to :users_result
 
-  validates :asset, filename_format: true if Rails.env.production?
+  validates :asset, filename_format: true
 
   def filename
     asset&.filename&.split('/')&.last
+  end
+
+  def video_file_path
+    asset.key.sub('${filename}', 'video.mp4')
   end
 end
