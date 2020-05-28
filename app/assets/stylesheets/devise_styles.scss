@@ -147,14 +147,12 @@ a {
     list-style: none;
 
     display: grid;
-    grid-template-columns: 140px 140px 140px;
+    grid-template-columns: 160px 160px 160px;
 
     li {
       display: grid;
-      grid-template-columns: 40px 100px;
-      grid-template-areas:
-        "icon name"
-        "icon version";
+      grid-template-columns: 40px 120px;
+      grid-template-areas:"icon name";
       column-gap: 5px;
       font-size: 13px;
 
@@ -165,11 +163,7 @@ a {
       .name {
         grid-area: name;
         color: #9F9F9F;
-      }
-
-      .version {
-        grid-area: version;
-        color: #9F9F9F;
+        align-self: center;
 
         a {
           color: #6973F0;

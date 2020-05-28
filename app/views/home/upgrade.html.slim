@@ -1,19 +1,19 @@
 .row
   .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .not-supported
+    .unsupported-browsers
       .icon = image_tag("browsers/not_supported.svg")
-      .message The browser you are using is not supported by Lighthouse.
-      .instruction Please download and use any of the following browsers.
+      .message = t('browsers.support.message')
+      .instruction = t('browsers.support.instruction')
       ul.browsers
         li.browser
           .icon = image_tag("browsers/chrome.svg")
-          .name Google Chrome
+          .name = t('browsers.google')
         li.browser
           .icon = image_tag("browsers/firefox.svg")
-          .name Mozilla Firefox
+          .name = t('browsers.google')
         li.browser
           .icon = image_tag("browsers/edge.svg")
-          .name Microsoft Edge
+          .name = t('browsers.google')
         li.browser
           .icon = image_tag("browsers/safari.svg")
-          .name Apple Safari
+          .name = t('browsers.google')

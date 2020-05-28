@@ -1,15 +1,21 @@
 .browser-detections
-  div.message Please use latest version of the browsers
+  div.message = t('browsers.upgrade.message')
   ul.browsers
     li.browser
       .icon = image_tag("browsers/chrome.svg")
-      .name Google Chrome
-      .version = link_to('Upgrade Now', 'https://www.google.com/chrome/', target: '_blank')
+      .name
+        = t('browsers.chrome')
+        - if @browser_detections.name == 'Chrome'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.chrome'), target: '_blank')
     li.browser
       .icon = image_tag("browsers/firefox.svg")
-      .name Mozilla Firefox
-      .version 76
+      .name
+        = t('browsers.firefox')
+        - if @browser_detections.name == 'Firefox'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.firefox'), target: '_blank')
     li.browser
       .icon = image_tag("browsers/edge.svg")
-      .name Microsoft Edge
-      .version 81
+      .name
+        = t('browsers.edge')
+        - if @browser_detections.name == 'Edge'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.edge'), target: '_blank')
