@@ -35,7 +35,7 @@ class HomeController < ApplicationController
 
   # Browser upgrade notification
   def upgrade
-    redirect_to root_path and return if @browser_detections.supported_browser?
+    redirect_to root_path && return if @browser_detections.supported_browser?
 
     render layout: 'devise'
   end
