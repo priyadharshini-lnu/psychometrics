@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 import cs from 'classnames'
 import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.scss'
 
-export default class Header extends Component {
-  closeScoring = () => {
-    const { history, match: { params: { id } } } = this.props
+export default function Header ({
+  history, saveResources, assessmentId, resources, addResource,
+}) {
+  const closeScoring = () => {
+    const { match: { params: { id } } } = history
     history.push(`/administration/assessments/${id}`)
   }
 
-  save = () => {
-    const {
-      saveResources, assessmentId, resources,
-    } = this.props
+  const save = () => {
     saveResources(assessmentId, resources).then(() => {
       NotificationDispatcher.notify({ message: 'Scoring successfully saved' })
     }).catch(() => {
@@ -20,35 +19,32 @@ export default class Header extends Component {
     })
   }
 
-  render () {
-    const { addResource } = this.props
-    return (
-      <div className={`panel-heading ${styles.menu}`}>
-        <div className={styles.factorsContainer}>
-          <div className="btn-group mrh">
-            <button
-              onClick={() => addResource()}
-              className={cs('btn')}
-            >
-              Add Resource
-            </button>
-          </div>
-          <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
-            <i className="fa fa-save" />
-            Save
+  return (
+    <div className={`panel-heading ${styles.menu}`}>
+      <div className={styles.factorsContainer}>
+        <div className="btn-group mrh">
+          <button
+            onClick={() => addResource()}
+            className={cs('btn')}
+          >
+            Add Resource
           </button>
         </div>
-        <ul className="panel-controls">
-          <li>
-            <div>
-              <a onClick={this.closeScoring} className={`btn btn-default ${styles.preview}`}>
-                <span className="fa fa-chevron-left" />
-                Back To Editor
-              </a>
-            </div>
-          </li>
-        </ul>
+        <button onClick={save} className={`btn btn-success ${styles.saveButton}`}>
+          <i className="fa fa-save" />
+          Save
+        </button>
       </div>
-    )
-  }
+      <ul className="panel-controls">
+        <li>
+          <div>
+            <a onClick={closeScoring} className={`btn btn-default ${styles.preview}`}>
+              <span className="fa fa-chevron-left" />
+              Back To Editor
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  )
 }

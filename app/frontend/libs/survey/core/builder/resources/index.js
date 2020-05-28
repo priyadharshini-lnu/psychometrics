@@ -46,20 +46,24 @@ export const saveResources = (assessmentId, resources) => ({
   request: {
     decamelize: false,
     method: 'put',
-    url: `/administration/assessments/${assessmentId}/resources`,
-    body: { resources: resources.map(r => (_.omit(r, 'id'))) },
+    url: `/administration/assessments/${assessmentId}`,
+    body: { resource: { resources: resources.map(r => (_.omit(r, 'id'))) } },
   },
 })
 
 const HANDLERS = {
   [assessmentActions.INIT]: (state, { data }) => {
-    const { assessment, questions } = data.entities
-    const [id] = _.keys(assessment)
+    const { assessment: assessments, questions } = data.entities
+    const [id] = _.keys(assessments)
+    const assessment = assessments[id]
     return {
       ...state,
       defaultAssessmen: id,
-      resources: assessment[id].resources || [],
-      assessmentQuestions: { [id]: _.filter(allQuestions({ questions }), q => q.type === 'StaticContent') },
+      resources: assessment.resources || [],
+      assessmentQuestions: {
+        ...assessment.resources_data,
+        [id]: _.filter(allQuestions({ questions }), q => q.type === 'StaticContent'),
+      },
     }
   },
   [LOAD_ASSESSMNTS]: (state, { response }) => ({ ...state, assessments: response }),
@@ -93,15 +97,6 @@ function* genLoadQuestions ({ resource: { assessmentId } }) {
   }
 }
 
-function* genLoadAssessmentQuestions () {
-  const { survey: { builder: { resources: { resources } } } } = yield select()
-  for (let i = 0; i < resources.length; i += 1) {
-    yield put(loadQuestions(resources[i].assessmentId))
-  }
-}
-
-
 export const watchers = [
   takeEvery(CHANGE_RESOURCE, genLoadQuestions),
-  takeEvery(assessmentActions.INIT, genLoadAssessmentQuestions),
 ]
