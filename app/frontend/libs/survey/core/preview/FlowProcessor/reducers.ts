@@ -13,7 +13,7 @@ import {
   CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
-  RESET, SAVE_RESULTS, UPDATE_META_DATA_REQUEST, SET_LOCAL_RESULTS,
+  RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
 
@@ -50,6 +50,7 @@ const defaultState: DefaultState = {
   relationship: null,
   locales: null,
   inProgressQuestions: [],
+  highlights: {},
 }
 
 const HANDLERS = {
@@ -65,6 +66,13 @@ const HANDLERS = {
     if (data.locale) {
       I18n.locale = data.locale
     }
+
+    const highlights = (result.highlights || []).map(h => ({
+      id: h.id,
+      data: h.data,
+      resourceType: h.resource_type,
+      resourceId: h.resource_id,
+    }))
 
     return {
       ...defaultState,
@@ -107,6 +115,7 @@ const HANDLERS = {
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
       prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
+      highlights: _.keyBy(highlights, 'id'),
     }
   },
   [SET_LOCAL_RESULTS]: (state, { data }) => {
@@ -155,7 +164,11 @@ const HANDLERS = {
     const blocks = setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
     return { ...state, end: expired || state.end, blocks }
   },
-  [UPDATE_META_DATA_REQUEST]: (state, { metaData }) => ({ ...state, metaData }),
+  [UPDATE_HIGHLIGHT_REQUEST]: (state, { payload }) => {
+    if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)
+
+    return { ...state, highlights: { ...state.highlights, [payload.id]: payload } }
+  },
   [MARK_QUESTION_IN_PROGRESS]: (state, { questionId, progressState }: { questionId: number, progressState: string}) => {
     const { inProgressQuestions } = state
     const currentQuestion: InProgressQuestion = _.find(inProgressQuestions, { questionId })

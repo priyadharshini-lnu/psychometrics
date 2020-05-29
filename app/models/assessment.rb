@@ -65,6 +65,7 @@ class Assessment < ApplicationRecord
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :highlights, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :communications, dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy

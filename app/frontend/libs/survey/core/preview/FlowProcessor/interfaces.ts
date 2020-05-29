@@ -64,6 +64,14 @@ export interface InProgressQuestion {
   progressState: string,
 }
 
+export interface Highlight {
+  id: string,
+  assessmentId?: number,
+  data: object,
+  resourceId: number,
+  resourceType: string,
+}
+
 export interface DefaultState{
   type: string
   resultsUrl?: string
@@ -100,7 +108,10 @@ export interface DefaultState{
   locales: any
   agileAssetsUrl?: string
   agileAssignUrl?: string
-  inProgressQuestions: InProgressQuestion[]
+  inProgressQuestions: InProgressQuestion[],
+  highlights: {
+    [id: string]: Highlight
+  },
 }
 
 export interface I18nInterface {

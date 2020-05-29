@@ -580,6 +580,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :highlights, only: %i[update]
+
     scope module: :threesixty do
       resources :campaigns, only: %i[show index] do
         resources :nominations do
