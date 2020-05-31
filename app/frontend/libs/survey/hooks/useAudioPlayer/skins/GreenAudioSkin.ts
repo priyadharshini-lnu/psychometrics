@@ -5,6 +5,7 @@ import { AudioPlayerSkin } from '../interfaces'
 
 const GreenAudioSkin: AudioPlayerSkin = {
   render (el) {
+    el.querySelector('audio')?.removeAttribute('controls')
     // eslint-disable-next-line no-new
     new GreenAudioPlayer(el)
   },

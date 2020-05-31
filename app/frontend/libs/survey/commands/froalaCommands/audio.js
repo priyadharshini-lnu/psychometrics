@@ -240,7 +240,8 @@ FE.PLUGINS.audio = function (editor) {
       if (!currentAudio) return false
       // Center is the default, so just clear the alignment if that's what was requested.
       if (val === 'center') val = ''
-      currentAudio.css({ textAlign: val })
+      currentAudio.addClass(`align-${val}`)
+      currentAudio.attr('data-align', val)
       // Changing the alignment will almost certainly move the actual audio player away from the edit popup,
       // so we re-display the popup to get them back in sync.
       editor.audio.showEditPopup(currentAudio)
@@ -262,13 +263,13 @@ FE.PLUGINS.audio = function (editor) {
     },
     refreshAlignButton ($btn) {
       if (!currentAudio) return false
-      const align = currentAudio.css('textAlign') || 'center'
+      const align = currentAudio.attr('data-align') || 'center'
       // This is copied from how the video plugin does it. Yes, it's gross.
       $btn.find('>*').first().replaceWith(editor.icon.create(`audioAlign${_.capitalize(align)}`))
     },
     refreshAlignDropdown ($btn, $dropdown) {
       if (!currentAudio) return
-      const align = currentAudio.css('textAlign') || 'center'
+      const align = currentAudio.attr('data-align') || 'center'
       $dropdown.find(`.fr-command[data-param1="${align}"]`).addClass('fr-active').attr('aria-selected', true)
     },
 
@@ -434,6 +435,7 @@ FE.RegisterCommand('audioSkin', {
   options: {
     none: 'None',
     GreenAudio: 'Full',
+    WaveSurfer: 'Waveform',
     Minimal: 'Minimal',
   },
   html () {

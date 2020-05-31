@@ -13,7 +13,7 @@ export function initAudioPlayer (el: HTMLElement): void {
     const { autoplay, skin } = tag.dataset
     tag.classList.add(`audio-skin-${skin}`)
     tag.classList.add('fr-audio-initialized')
-    audio.removeAttribute('controls')
+    tag.removeAttribute('style')
     if (autoplay) {
       audio.setAttribute('autoplay', 'autoplay')
     }
