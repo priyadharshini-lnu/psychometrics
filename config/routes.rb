@@ -576,6 +576,7 @@ Rails.application.routes.draw do
         put :upload_callback
         delete :remove_media
         put :complete_multipart_upload
+        put :user_selected_take
         put :update_meta_data
       end
     end
@@ -608,6 +609,7 @@ Rails.application.routes.draw do
             put :upload_callback
             delete :remove_media
             put :complete_multipart_upload
+            put :user_selected_take
             put :update_meta_data
           end
         end

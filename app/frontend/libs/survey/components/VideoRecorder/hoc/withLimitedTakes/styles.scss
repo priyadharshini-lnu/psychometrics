@@ -1,0 +1,19 @@
+.retakeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.retakeContainer > div {
+  width: 33.33%;
+}
+
+.activeTakeBtn {
+  border: 1px solid #00B4AA !important;
+}
+
+.unusedTake {
+  background-color: #eee !important;
+}

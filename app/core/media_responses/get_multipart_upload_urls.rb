@@ -10,7 +10,7 @@ module MediaResponses
     end
 
     def call
-      media = result.media_responses.find_or_create_by(question_id: question_id)
+      media = result.media_responses.create(question_id: question_id)
 
       urls = []
       signer = Aws::S3::Presigner.new

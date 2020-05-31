@@ -62,6 +62,12 @@ module Threesixty
       render json: media.reload.as_json
     end
 
+    def user_selected_take
+      media = @users_result.media_responses.find_by!(id: params[:media_id])
+      MediaResponses::MarkAsUserSelected.call!(media)
+      head :ok
+    end
+
     def set_user_result
       @users_result = if current_user.superadmin?
                         UsersResult.find_by!(id: params[:id])

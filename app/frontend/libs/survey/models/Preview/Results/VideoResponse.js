@@ -6,12 +6,22 @@ const VideoResponse = function (result) {
 }
 
 _.extend(VideoResponse.prototype, {
-  answer (url, mediaId) {
-    if (url) {
-      this.result.answers = [{ value: url, media_id: mediaId }]
-    } else {
-      this.result.answers = []
-    }
+  answer (url, mediaId, takeNo = 1) {
+    if (!this.result.answers) { this.result.answers = [] }
+    this.result.answers = [
+      ...this.result.answers,
+      { value: url, media_id: mediaId, take_no: takeNo }
+    ]
+  },
+
+  userSelectedTake (takeNo) {
+    this.result.answers = this.result.answers.map((answer) => (
+      { ...answer, user_selected: answer.take_no === takeNo }
+    ))
+  },
+
+  deleteAnswer() {
+    this.result.answers = []
   },
 
   results () {

@@ -3,8 +3,11 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import VideoRecorder from 'components/VideoRecorder'
+import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import connect from './connect'
 import styles from '../VideoResponse.scss'
+
+const VideoRecorderWithLimitedTakes = withLimitedTakes(VideoRecorder, { maxTakes: 3 })
 
 export class Preview extends Component {
   static propTypes = {
@@ -12,13 +15,14 @@ export class Preview extends Component {
   }
 
   successUpload = (data) => {
-    const { model } = this.props
-    model.result.answer(data.asset.url, data.id)
+    const { model, saveCurrentPage } = this.props
+    model.result.answer(data.asset.url, data.id, data.takeNo)
+    setTimeout(() => saveCurrentPage(), 300)
   }
 
   deleteMedia = () => {
     const { model } = this.props
-    model.result.answer()
+    model.result.deleteAnswer()
   }
 
   renderVideoRecorder () {
@@ -26,13 +30,12 @@ export class Preview extends Component {
       model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const { result } = model
-    const preview = type === 'preview_assessment'
     return (
       <div className="col">
-        <VideoRecorder
+        <VideoRecorderWithLimitedTakes
           key={model.id}
           model={model}
-          preview={preview}
+          preview={type === 'preview_assessment'}
           readOnly={readOnly}
           maxDuration={model.props.duration}
           result={result}
