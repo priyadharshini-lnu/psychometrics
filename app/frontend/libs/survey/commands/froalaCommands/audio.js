@@ -233,9 +233,8 @@ FE.PLUGINS.audio = function (editor) {
 
     autoplay () {
       if (!currentAudio) return false
-      const $player = currentAudio.find('audio')
-      const isAuto = $player.attr('data-autoplay') === 'true'
-      $player.attr('data-autoplay', !isAuto)
+      const isAuto = currentAudio.attr('data-autoplay') === 'true'
+      currentAudio.attr('data-autoplay', !isAuto)
     },
     align (val) {
       if (!currentAudio) return false
@@ -250,7 +249,7 @@ FE.PLUGINS.audio = function (editor) {
     skin (val) {
       if (!currentAudio) return false
       // Center is the default, so just clear the alignment if that's what was requested.
-      currentAudio.find('audio').attr('data-skin', val)
+      currentAudio.attr('data-skin', val)
       // Changing the alignment will almost certainly move the actual audio player away from the edit popup,
       // so we re-display the popup to get them back in sync.
       editor.audio.showEditPopup(currentAudio)
@@ -258,7 +257,7 @@ FE.PLUGINS.audio = function (editor) {
 
     refreshAutoplayButton ($btn) {
       if (!currentAudio) return false
-      const isAuto = currentAudio.find('audio').attr('data-autoplay') === 'true'
+      const isAuto = currentAudio.attr('data-autoplay') === 'true'
       $btn.toggleClass('fr-active', isAuto).attr('aria-pressed', isAuto)
     },
     refreshAlignButton ($btn) {
@@ -275,7 +274,7 @@ FE.PLUGINS.audio = function (editor) {
 
     refreshSkinDropdown ($btn, $dropdown) {
       if (!currentAudio) return
-      const skin = currentAudio.find('audio').attr('data-skin') || 'none'
+      const skin = currentAudio.attr('data-skin') || 'none'
       $dropdown.find(`.fr-command[data-param1="${skin}"]`).addClass('fr-active').attr('aria-selected', true)
     },
 
@@ -434,8 +433,8 @@ FE.RegisterCommand('audioSkin', {
   title: 'Skin',
   options: {
     none: 'None',
-    full: 'Full',
-    minimal: 'Minimal',
+    GreenAudio: 'Full',
+    Minimal: 'Minimal',
   },
   html () {
     const mkOption = (label, val) => `<li role="presentation">

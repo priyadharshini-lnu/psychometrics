@@ -5,6 +5,7 @@ import {
   FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
 } from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
+import { useAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
 import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
@@ -13,7 +14,7 @@ const StaticContent = ({
   updateMetaDataLocally, I18n, containerRef,
 }) => {
   const contentRef = useRef(null)
-
+  useAudioPlayer(contentRef)
   const [selection, setSelection] = useState(null)
 
   const handleMouseUp = () => {

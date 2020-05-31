@@ -66,3 +66,9 @@ table.table-full-width {
 .fr-modal .fr-buttons:not(.fr-tabs) .fr-command.fr-btn.fr-active:not(.fr-dropdown) {
     color: #0098f7;
 }
+
+.fr-audio {
+    &.green-audio-player {
+        box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.16);
+    }
+}
