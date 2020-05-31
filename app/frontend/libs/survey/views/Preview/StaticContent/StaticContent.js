@@ -10,8 +10,8 @@ import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlights, updateMetaData,
-  updateMetaDataLocally, I18n, containerRef,
+  block, block: { props: { staticContent } }, preview, highlight, updateHighlight,
+  I18n, containerRef,
 }) => {
   const contentRef = useRef(null)
   useAudioPlayer(contentRef)
@@ -41,11 +41,10 @@ const StaticContent = ({
         style={GetBackgroundStyles.run(staticContent)}
       >
         <HighlightList
-          highlights={highlights}
+          highlight={highlight}
           contentRef={contentRef}
           selection={selection}
-          updateMetaData={updateMetaData}
-          updateMetaDataLocally={updateMetaDataLocally}
+          updateHighlight={updateHighlight}
           preview={preview}
           staticContent={staticContent}
         />

@@ -263,6 +263,7 @@ const assessmentWithEmbededData = {
       ],
     },
   ],
+  highlights: [],
 }
 
 export default assessmentWithEmbededData

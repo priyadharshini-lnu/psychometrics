@@ -3,12 +3,13 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 import { denormalize } from 'normalizr'
+import genUUID from 'uuid/v4'
 import { question } from '../../../store/schema'
 import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
 import {
   Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
-  I18nInterface,
+  I18nInterface, Highlight,
 } from './interfaces'
 
 let { I18n } = window
@@ -192,6 +193,15 @@ export const getProgress = (state): number => {
   const prevQuestions = getPrevQuestionsCount(state)
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
+}
+export const getHighlightByType = ({ preview },
+  id: number,
+  type: string): object => _.find(preview.highlights,
+  (h: Highlight) => h.resourceId === id && h.resourceType === type) || {
+  id: genUUID(),
+  data: [],
+  resourceId: id,
+  resourceType: type,
 }
 
 export const getI18n = ({ locales }): I18nInterface => ({

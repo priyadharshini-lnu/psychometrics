@@ -4,8 +4,8 @@ class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
-             :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date, :meta_data,
-             :subject_datasheet
+             :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
+             :subject_datasheet, :highlights
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
@@ -87,6 +87,12 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def participant
     @participant ||= instance_options[:participant]
+  end
+
+  def highlights
+    Highlight.where(assessment_id: object.assessment_id, user_id: user_id).map do |h|
+      HighlightSerializer.new(h)
+    end
   end
 
   private
