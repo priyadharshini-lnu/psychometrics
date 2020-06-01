@@ -166,14 +166,21 @@ class VideoRecorder extends Component {
   }
 
   resetRecorder () {
-    this.initRecorder()
+    const { key } = this.state
+    if (key === 'record') {
+      this.player.record().reset()
+      this.setState({ recordingState: 'ready' })
+      this.allowRecording()
+    } else {
+      this.setState({ deviceReady: false })
+      this.initRecorder()
+    }
 
-    this.setState({ recordingState: 'ready' })
     this.player.controlBar.playToggle.hide()
     this.player.controlBar.progressControl.hide()
 
-    this.statusText.reset()
-    this.remainingTime.hide()
+    if (this.statusText) { this.statusText.reset() }
+    if (this.remainingTime) { this.remainingTime.hide() }
 
     this.player.controlBar.currentTimeDisplay.addClass('hide')
     this.player.controlBar.currentTimeDisplay.removeClass('show')
@@ -323,6 +330,7 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
+    this.promisesArray = []
     axios.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
