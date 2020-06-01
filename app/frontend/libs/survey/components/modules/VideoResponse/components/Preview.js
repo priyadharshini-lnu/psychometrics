@@ -22,7 +22,7 @@ export class Preview extends Component {
 
   deleteMedia = () => {
     const { model } = this.props
-    model.result.deleteAnswer()
+    model.result.answer()
   }
 
   renderVideoRecorder () {
@@ -38,7 +38,7 @@ export class Preview extends Component {
           preview={type === 'preview_assessment'}
           readOnly={readOnly}
           maxDuration={model.props.duration}
-          result={result}
+          answer={result && result.answers[0]}
           mediaUrl={mediaUrl}
           fitInFrame={model.props.fitInFrame}
           trackerOptions={model.props.trackerOptions}

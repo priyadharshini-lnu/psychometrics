@@ -66,6 +66,7 @@ class VideoRecorder extends Component {
   // open device dialog
   allowRecording = () => {
     this.player.record().getDevice()
+    this.props.onRecordingAllowed()
   }
 
   discardRecording = () => {

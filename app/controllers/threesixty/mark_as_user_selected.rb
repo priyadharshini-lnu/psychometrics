@@ -9,7 +9,7 @@ module MediaResponses
     end
 
     def call
-      media_response.question.media_responses.update_all(user_selected: true)
+      media_response.question.media_responses.update_all(user_selected: false)
       media_response.update_column(:user_selected, true)
     end
   end

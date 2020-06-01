@@ -7,6 +7,10 @@ const VideoResponse = function (result) {
 
 _.extend(VideoResponse.prototype, {
   answer (url, mediaId, takeNo = 1) {
+    if (!url) {
+      this.result.answers = []
+      return
+    }
     if (!this.result.answers) { this.result.answers = [] }
     this.result.answers = [
       ...this.result.answers,
@@ -18,10 +22,7 @@ _.extend(VideoResponse.prototype, {
     this.result.answers = this.result.answers.map((answer) => (
       { ...answer, user_selected: answer.take_no === takeNo }
     ))
-  },
-
-  deleteAnswer() {
-    this.result.answers = []
+    this.result.reduxAnswer()
   },
 
   results () {

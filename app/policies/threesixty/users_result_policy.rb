@@ -22,6 +22,10 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
     update?
   end
 
+  def user_selected_take?
+    update?
+  end
+
   def update_meta_data?
     update?
   end

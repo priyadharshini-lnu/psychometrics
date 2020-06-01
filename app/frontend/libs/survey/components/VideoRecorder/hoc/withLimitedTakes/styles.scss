@@ -17,3 +17,25 @@
 .unusedTake {
   background-color: #eee !important;
 }
+
+.inUse {
+  color: #00B4AA;
+  font-size: 16px;
+}
+
+.retakeBtn {
+  width: 100px;
+  border: 1px solid #dedbdb;
+  margin: auto;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.recordBtnContainer {
+  margin: 0px 5px 0px 0px !important;
+}
+
+.recordBtn {
+  padding: 8px !important;
+}
