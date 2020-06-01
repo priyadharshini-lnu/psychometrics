@@ -15,11 +15,33 @@ module Exports
         def self.result(answers, question, scoring = false, _export_with_labels = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
-          remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
-          factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          answers = (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
-          Utility::Array.ensure_size(answers, question_header_size(question))
+          answers = retrieve_answers(answers, question, scoring)
+          formatted_answers(question, answers)
+        end
+
+        def self.retrieve_answers(answers, question, scoring)
+          if question.of_sub_type?('Email') && answers.present?
+            email_type_answers(answers)
+          else
+            remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
+            factors_scoring = question.detect_specified_scoring.
+                              each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+            (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
+          end
+        end
+
+        def self.email_type_answers(answers)
+          Question::EMAIL_QUESTION_FIELDS.each_with_object([]) do |email_field, data|
+            data << (answers[email_field].is_a?(Array) ? answers[email_field].join(', ') : answers[email_field])
+          end
+        end
+
+        def self.formatted_answers(question, answers)
+          if question.of_sub_type?('Chat')
+            answers.join("\r\n")
+          else
+            Utility::Array.ensure_size(answers, question_header_size(question))
+          end
         end
 
         def self.result_label(answers, question)
@@ -29,11 +51,15 @@ module Exports
         def self.question_id_and_choice_headers(question)
           question_id_header = []
           question_choices_header = []
-
-          if %w[Form].include?(question.props['type'])
+          if question.of_sub_type?('Form')
             question.props['choices'].to_i.times do |c|
               question_id_header << "QID#{question.id}_#{c + 1}"
               question_choices_header << question.props.dig('choicesTexts', c)
+            end
+          elsif question.of_sub_type?('Email')
+            Question::EMAIL_QUESTION_FIELDS.each do |email_field|
+              question_id_header << "QID#{question.id}_#{email_field}"
+              question_choices_header << email_field
             end
           else
             question_id_header << "QID#{question.id}"
