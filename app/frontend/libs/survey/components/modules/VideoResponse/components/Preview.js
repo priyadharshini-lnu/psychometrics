@@ -16,7 +16,6 @@ export class Preview extends Component {
     super(props)
     this.VideoRecorderComponent = VideoRecorder
     const { model: { props: { maxTakes } } } = props
-    console.log(maxTakes)
     if (maxTakes && maxTakes !== '') {
       this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, { maxTakes })
     }

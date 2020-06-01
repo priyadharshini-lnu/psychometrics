@@ -43,7 +43,7 @@ class VideoRecorder extends Component {
     } else {
       this.initRecorder()
       if (recordingAllowed) {
-        setTimeout(() => this.allowRecording(), 500)
+        setTimeout(() => this.allowRecording(), 300)
       }
     }
   }
