@@ -1,21 +1,50 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Space } from 'antd'
-import cs from 'classnames'
 import _ from 'lodash'
 import axios from 'axios'
 import { CheckOutlined } from '@ant-design/icons'
-import styles from './styles.scss'
 import ColoredButton from 'components/ColoredButton'
 import RecordButton from 'components/AudioRecorder/MediaButtons/RecordButton'
+import InProgressQuestion from 'core/preview/FlowProcessor/interfaces'
+import MultipleTakeButtons from './MultipleTakeButtons'
+import styles from './styles.scss'
 
-const withLimitedTakes = (WrappedComponent, { maxTakes }) => (props) => {
-  const { onSuccessUpload, model, model: { result }, inProgressQuestions } = props
+interface Props {
+  onSuccessUpload(object): void
+  saveCurrentPage(): void
+  model: {
+    id: number
+    result: {
+      answers: Answer[],
+      moduleResult: {
+        userSelectedTake(takeNo: number): void
+      }
+    }
+  }
+  inProgressQuestions: InProgressQuestion[]
+  mediaUrl: string
+}
+
+export interface Answer {
+  take_no: number
+  user_selected: boolean
+}
+
+const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) => (props: Props) => {
+  const {
+    onSuccessUpload, model, model: { result }, inProgressQuestions,
+  } = props
   const [currentTakeNo, setCurrentTakeNo] = useState(1)
   const [recordingAllowed, setRecordingAllowed] = useState(false)
+
   const completedTakes = result.answers.length
-  const currentTakeDetails = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo)
-  const showRetakes = completedTakes > 0 && completedTakes < maxTakes && currentTakeDetails
-  const recordingInProgress = _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id)
+
+  const currentTakeDetails: Answer = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo)
+
+  const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !_.isNull(currentTakeDetails)
+
+  const recordingInProgress = !_.isNull(
+    _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id),
+  )
 
   useEffect(() => {
     const selectedTake = _.find(result.answers, ({ user_selected }) => user_selected)
@@ -29,26 +58,29 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }) => (props) => {
 
   const handleOnSuccessUpload = (data) => {
     onSuccessUpload && onSuccessUpload({ ...data, takeNo: currentTakeNo })
-    if (maxTakes === 1 || currentTakeNo === 1) { handleUserSelectedTake() }
+
+    // First take is always marked as user selected. User can change it after recording second video
+    if (currentTakeNo === 1) { handleUserSelectedTake() }
   }
 
   const handleUserSelectedTake = () => {
     const { mediaUrl, saveCurrentPage } = props
     result.moduleResult.userSelectedTake(currentTakeNo)
     setTimeout(() => saveCurrentPage(), 200)
-    axios.put(`${mediaUrl}/user_selected_take`, { take_no: currentTakeNo })
+    axios.put(`${mediaUrl}/mark_as_user_selected_take`, { take_no: currentTakeNo })
   }
 
-  const renderWrappedComponent = () => {
-    return <WrappedComponent
+  const renderWrappedComponent = () => (
+    <WrappedComponent
       {...props}
       answer={currentTakeDetails}
       key={currentTakeNo}
       onSuccessUpload={handleOnSuccessUpload}
-      disallowDiscard={true}
+      disallowDiscard
       recordingAllowed={recordingAllowed}
-      onRecordingAllowed={handleAllowRecording} />
-  }
+      onRecordingAllowed={handleAllowRecording}
+    />
+  )
 
   if (maxTakes === 1) {
     return renderWrappedComponent()
@@ -59,48 +91,44 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }) => (props) => {
   return (
     <div>
       {renderWrappedComponent()}
-      {!recordingInProgress && <div className={styles.retakeContainer}>
+      {!recordingInProgress && (
+      <div className={styles.retakeContainer}>
         <div>
-          <TakeButtons maxTakes={maxTakes} currentTakeNo={currentTakeNo} result={result} onChangeTake={setCurrentTakeNo}  />
+          <MultipleTakeButtons
+            maxTakes={maxTakes}
+            currentTakeNo={currentTakeNo}
+            answers={result.answers}
+            onChangeTake={setCurrentTakeNo}
+          />
         </div>
-        <div className='text-align-c'>
-          {showRetakes && <div onClick={() => setCurrentTakeNo(completedTakes + 1)} className={styles.retakeBtn}>
-            <RecordButton className={styles.recordBtnContainer} recordButtonClass={styles.recordBtn}/>
+        <div className="text-align-c">
+          {showRetakes && (
+          <div onClick={() => setCurrentTakeNo(completedTakes + 1)} className={styles.retakeBtn}>
+            <RecordButton className={styles.recordBtnContainer} recordButtonClass={styles.recordBtn} />
             Retake
-          </div>}
+          </div>
+          )}
         </div>
-        <div className='text-align-r'>
-          {completedTakes > 1 && !currentTakeIsSelected &&
+        <div className="text-align-r">
+          {completedTakes > 1 && !currentTakeIsSelected
+            && (
             <ColoredButton type="primary" className={styles.allowButton} color="green" onClick={handleUserSelectedTake}>
               <CheckOutlined />
               Use This
-            </ColoredButton>}
-          {completedTakes > 1 && currentTakeIsSelected &&
-            <div className={styles.inUse}><CheckOutlined /> In Use</div>}
+            </ColoredButton>
+            )}
+          {completedTakes > 1 && currentTakeIsSelected
+            && (
+            <div className={styles.inUse}>
+              <CheckOutlined />
+              {' '}
+              In Use
+            </div>
+            )}
         </div>
-      </div>}
+      </div>
+      )}
     </div>
-  )
-}
-
-function TakeButtons({ maxTakes, currentTakeNo, result, onChangeTake }) {
-  return (
-    <Space>
-      {_.times(maxTakes, (index) => {
-        const takeNo = index + 1
-        const answer = _.find(result.answers, ({ take_no }) => take_no === takeNo)
-        console.log(answer)
-        if (!answer && takeNo !== currentTakeNo) {
-          return <Button key={takeNo} className={styles.unusedTake} disabled>&nbsp;</Button>
-        }
-        return <Button
-          key={takeNo}
-          className={cs({ [styles.activeTakeBtn]: takeNo === currentTakeNo })}
-          onClick={() => onChangeTake(takeNo)}>
-          {takeNo}
-        </Button>
-      })}
-    </Space>
   )
 }
 

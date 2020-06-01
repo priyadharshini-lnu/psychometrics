@@ -114,6 +114,12 @@ class AssignsController < ApplicationController
     render json: media.reload.as_json
   end
 
+  def mark_as_user_selected_take
+    media = @assign.media_responses.find_by!(id: params[:media_id])
+    MediaResponses::MarkAsUserSelected.call!(media)
+    head :ok
+  end
+
   private
 
   def set_assign

@@ -24,12 +24,13 @@ class MediaResponse < ApplicationRecord
   def verify_multiple_take_limit
     return unless question.type == 'VideoResponse'
 
-    maximum_takes = question.props['maximumTakes']
+    maximum_takes = question.props['maxTakes']
 
     return if maximum_takes.blank?
 
-    media_responses_count = question.media_responses.where(assign_id: assign.id, users_result_id: users_result.id).count
+    media_responses_count = question.media_responses.
+                            where(assign_id: assign&.id, users_result_id: users_result&.id).count
 
-    errors.add(:base, :max_takes_limit_reached) if maximum_takes >= media_responses_count
+    errors.add(:base, :max_takes_limit_reached) if media_responses_count >= maximum_takes
   end
 end

@@ -22,7 +22,7 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
     update?
   end
 
-  def user_selected_take?
+  def mark_as_user_selected_take?
     update?
   end
 

@@ -42,10 +42,10 @@ export class Properties extends Component {
     this.update()
   }
 
-  changMaximumTakes = (e) => {
+  changmaxTakes = (e) => {
     const { model } = this.props
-    const maximumTakes = parseInt(e.currentTarget.value, 10)
-    model.changeProps({ maximumTakes })
+    const maxTakes = parseInt(e.currentTarget.value, 10)
+    model.changeProps({ maxTakes })
     this.update()
   }
 
@@ -86,13 +86,13 @@ export class Properties extends Component {
     )
   }
 
-  maximumTakesFields() {
+  maxTakesFields () {
     const { model } = this.props
 
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Number of takes</span>
-        <select className="form-control" value={model.props.maximumTakes} onChange={this.changMaximumTakes}>
+        <select className="form-control" value={model.props.maxTakes} onChange={this.changmaxTakes}>
           <option value={null}>No Restriction</option>
           {_.times(5, takeNo => (<option key={takeNo} value={takeNo + 1}>{takeNo + 1}</option>))}
         </select>
@@ -173,7 +173,7 @@ export class Properties extends Component {
     return (
       <div>
         { this.durationFields() }
-        {this.maximumTakesFields() }
+        {this.maxTakesFields() }
         { this.frameFields() }
       </div>
     )

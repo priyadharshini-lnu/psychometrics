@@ -14,12 +14,12 @@ _.extend(VideoResponse.prototype, {
     if (!this.result.answers) { this.result.answers = [] }
     this.result.answers = [
       ...this.result.answers,
-      { value: url, media_id: mediaId, take_no: takeNo }
+      { value: url, media_id: mediaId, take_no: takeNo },
     ]
   },
 
   userSelectedTake (takeNo) {
-    this.result.answers = this.result.answers.map((answer) => (
+    this.result.answers = this.result.answers.map(answer => (
       { ...answer, user_selected: answer.take_no === takeNo }
     ))
     this.result.reduxAnswer()

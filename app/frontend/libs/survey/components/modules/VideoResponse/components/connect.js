@@ -12,6 +12,6 @@ export default connect(
   {
     markQuestionInProgress,
     removeQuestionInProgress,
-    saveCurrentPage
+    saveCurrentPage,
   },
 )

@@ -3,9 +3,9 @@ import { saveCurrentPage } from 'core/preview/FlowProcessor/actions'
 
 export default connect(
   ({ preview: { inProgressQuestions } }) => ({
-    inProgressQuestions
+    inProgressQuestions,
   }),
   {
-    saveCurrentPage
-  }
+    saveCurrentPage,
+  },
 )

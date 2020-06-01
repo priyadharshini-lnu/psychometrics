@@ -23,7 +23,7 @@ import { Highlight } from './interfaces'
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
 export const saveCurrentPage = () => (dispatch, getState) => {
-  const preview = getState().preview
+  const { preview } = getState()
   if (preview.type === 'pass_assessment') {
     const currentBlock = getCurrentBlock(preview)
     dispatch(saveResults(preview, [], currentBlock.id))

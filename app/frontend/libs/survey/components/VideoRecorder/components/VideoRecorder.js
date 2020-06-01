@@ -65,8 +65,9 @@ class VideoRecorder extends Component {
 
   // open device dialog
   allowRecording = () => {
+    const { onRecordingAllowed } = this.props
     this.player.record().getDevice()
-    this.props.onRecordingAllowed()
+    onRecordingAllowed && onRecordingAllowed()
   }
 
   discardRecording = () => {
@@ -432,7 +433,9 @@ class VideoRecorder extends Component {
     const {
       key, deviceReady, recordingState, trackingEnabled,
     } = this.state
-    const { fitInFrame, trackerOptions, recordingAllowed, disallowDiscard } = this.props
+    const {
+      fitInFrame, trackerOptions, recordingAllowed, disallowDiscard,
+    } = this.props
     const showProgress = ['saving'].includes(recordingState)
 
     return (

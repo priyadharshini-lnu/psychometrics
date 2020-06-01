@@ -7,11 +7,18 @@ import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import connect from './connect'
 import styles from '../VideoResponse.scss'
 
-const VideoRecorderWithLimitedTakes = withLimitedTakes(VideoRecorder, { maxTakes: 3 })
-
 export class Preview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
+  }
+
+  constructor (props) {
+    super(props)
+    this.VideoRecorderComponent = VideoRecorder
+    const { model: { props: { maxTakes } } } = props
+    if (maxTakes && maxTakes !== '') {
+      this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, { maxTakes })
+    }
   }
 
   successUpload = (data) => {
@@ -30,9 +37,10 @@ export class Preview extends Component {
       model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const { result } = model
+    const { VideoRecorderComponent } = this
     return (
       <div className="col">
-        <VideoRecorderWithLimitedTakes
+        <VideoRecorderComponent
           key={model.id}
           model={model}
           preview={type === 'preview_assessment'}
