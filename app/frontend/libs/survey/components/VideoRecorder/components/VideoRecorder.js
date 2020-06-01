@@ -455,7 +455,7 @@ class VideoRecorder extends Component {
           />
         )}
         {showProgress && this.renderProgress()}
-        {!disallowDiscard && this.renderControls()}
+        {(!disallowDiscard || recordingState === 'saving') && this.renderControls()}
       </div>
     )
   }

@@ -11,7 +11,7 @@ class MediaResponse < ApplicationRecord
   belongs_to :users_result
 
   validates :asset, filename_format: true
-  validate :verify_multiple_take_limit
+  validate :verify_multiple_take_limit, on: :create
 
   def filename
     asset&.filename&.split('/')&.last

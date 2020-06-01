@@ -4,7 +4,7 @@ import axios from 'axios'
 import { CheckOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
 import RecordButton from 'components/AudioRecorder/MediaButtons/RecordButton'
-import InProgressQuestion from 'core/preview/FlowProcessor/interfaces'
+import { InProgressQuestion } from 'core/preview/FlowProcessor/interfaces'
 import MultipleTakeButtons from './MultipleTakeButtons'
 import styles from './styles.scss'
 
@@ -40,11 +40,9 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
 
   const currentTakeDetails: Answer = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo)
 
-  const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !_.isNull(currentTakeDetails)
+  const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !!currentTakeDetails
 
-  const recordingInProgress = !_.isNull(
-    _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id),
-  )
+  const recordingInProgress = _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id)
 
   useEffect(() => {
     const selectedTake = _.find(result.answers, ({ user_selected }) => user_selected)
