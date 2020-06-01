@@ -24,7 +24,7 @@ module Users
 
     def detect_browser
       browser = Browser.new(request.user_agent)
-      @browser_detections = BrowserDetector.new.detect(browser)
+      @browser_detections = BrowserDetector.new(Settings.browsers).detect(browser)
 
       redirect_to upgrade_url unless @browser_detections.supported_browser?
     end

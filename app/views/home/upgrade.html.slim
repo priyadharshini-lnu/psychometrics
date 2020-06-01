@@ -7,13 +7,22 @@
       ul.browsers
         li.browser
           .icon = image_tag("browsers/chrome.svg")
-          .name = t('browsers.google')
+          .name
+            = t('browsers.chrome')
+            - if @browser_detections.name == 'Chrome'
+              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.chrome'), target: '_blank')
         li.browser
           .icon = image_tag("browsers/firefox.svg")
-          .name = t('browsers.google')
+          .name
+            = t('browsers.firefox')
+            - if @browser_detections.name == 'Firefox'
+              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.firefox'), target: '_blank')
         li.browser
           .icon = image_tag("browsers/edge.svg")
-          .name = t('browsers.google')
+          .name
+            = t('browsers.edge')
+            - if @browser_detections.name == 'Edge'
+              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.edge'), target: '_blank')
         li.browser
           .icon = image_tag("browsers/safari.svg")
-          .name = t('browsers.google')
+          .name = t('browsers.safari')

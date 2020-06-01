@@ -3,6 +3,14 @@
 BrowserDetections = Struct.new(:supported_browser?, :preferred_browser?, :name)
 
 class BrowserDetector
+  attr_accessor :supported_browsers, :preferred_browsers
+
+  Browsers = Struct.new(:chrome, :firefox, :edge, :safari, :opera)
+  def initialize(config = nil)
+    @supported_browsers = config&.supported || Browsers.new('>= 67', '>= 54', '>= 16', '>= 11.1', '>= 54')
+    @preferred_browsers = config&.preferred || Browsers.new('>= 67', '>= 54', '>= 16')
+  end
+
   def detect(browser)
     BrowserDetections.new(
       supported_browser?(browser),
@@ -13,19 +21,19 @@ class BrowserDetector
 
   def supported_browser?(browser)
     [
-      browser.chrome?(Settings.browsers.supported.chrome),
-      browser.firefox?(Settings.browsers.supported.firefox),
-      browser.edge?(Settings.browsers.supported.edge),
-      browser.safari?(Settings.browsers.supported.safari),
-      browser.opera?(Settings.browsers.supported.opera)
+      browser.chrome?(supported_browsers.chrome),
+      browser.firefox?(supported_browsers.firefox),
+      browser.edge?(supported_browsers.edge),
+      browser.safari?(supported_browsers.safari),
+      browser.opera?(supported_browsers.opera)
     ].any?
   end
 
   def preferred_browser?(browser)
     [
-      browser.chrome?(Settings.browsers.preferred.chrome),
-      browser.firefox?(Settings.browsers.preferred.firefox),
-      browser.edge?(Settings.browsers.preferred.edge)
+      browser.chrome?(preferred_browsers.chrome),
+      browser.firefox?(preferred_browsers.firefox),
+      browser.edge?(preferred_browsers.edge)
     ].any?
   end
 end

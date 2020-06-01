@@ -28,15 +28,14 @@
     display: grid;
     row-gap: 20px;
     column-gap: 20px;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 160px 160px;
 
     li {
       display: grid;
-      grid-template-columns: 40px 100px;
+      grid-template-columns: 40px 120px;
       grid-template-areas: "icon name";
       column-gap: 5px;
       font-size: 13px;
-      align-items: center;
 
       .icon {
         grid-area: icon;
@@ -45,6 +44,11 @@
       .name {
         grid-area: name;
         color: #9F9F9F;
+        align-self: center;
+
+        a {
+          color: #6973F0;
+        }
       }
     }
   }
