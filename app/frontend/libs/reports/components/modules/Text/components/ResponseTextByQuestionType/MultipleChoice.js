@@ -79,7 +79,7 @@ export default class MultipleChoice extends Component {
     const values = this.getValues()
     const descriptionList = this.getDescriptionList()
 
-    const FormatComponent = Formats[format] || 'CommaSeparated'
+    const FormatComponent = Formats[format] || Formats.CommaSeparated
     return (
       <FormatComponent
         update={this.update}

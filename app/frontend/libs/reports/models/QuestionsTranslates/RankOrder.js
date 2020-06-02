@@ -10,7 +10,7 @@ class RankOrder extends BaseTranslate {
       return this.question.props.choicesTexts[extraData.choice]
     }
     if (/^descriptionTexts/.test(field)) {
-      return this.question.props.descriptionList[extraData.choice]
+      return _.get(this.question, ['props', 'descriptionList', 'extraData.choice'])
     }
   }
 

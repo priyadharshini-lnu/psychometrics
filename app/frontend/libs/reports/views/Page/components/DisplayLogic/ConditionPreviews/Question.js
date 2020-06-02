@@ -17,7 +17,7 @@ export default class Question extends Component {
   renderQuestion () {
     const { condition: { subject }, questions } = this.props
     const assessment = _.first(AppStore.assessments)
-    const q = questions(assessment.id)[subject]
+    const q = questions && questions(assessment.id)[subject]
     if (q) {
       return <div>{`${q.name} ${this.stripHTML(q.props.questionText).substring(0, 80)}`}</div>
     }
@@ -27,7 +27,7 @@ export default class Question extends Component {
   renderAnswer () {
     const { condition: { subject, answer }, questions } = this.props
     const assessment = _.first(AppStore.assessments)
-    const question = questions(assessment.id)[subject]
+    const question = questions && questions(assessment.id)[subject]
     if (question) {
       const text = question.props.choicesTexts[answer] || `${`Click to write Choice ${answer + 1}`}`
       return <div>{text}</div>
