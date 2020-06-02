@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress,
+  Layout, PageHeader, Row, Col, Progress, Tabs,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -10,7 +10,9 @@ import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
+import ResourceList from '../ResourceList'
 
+const { TabPane } = Tabs
 const { Content } = Layout
 
 export default function Assign ({
@@ -39,6 +41,12 @@ export default function Assign ({
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
   }, [])
+
+  const loadResources = (tab) => {
+    if (tab === 'resources') {
+      // check and loadResourcesHighlight
+    }
+  }
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -67,9 +75,15 @@ export default function Assign ({
           />
         </Content>
       </div>
-      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+      <Content
+        className={
+          cs('fluid-container',
+            { 'has-static-content': _.get(block, ['props', 'staticContent']) },
+            'main-container')
+        }
+      >
         {availableTranslations && availableTranslations.length > 0 && (
-          <Row type="flex" justify="end" className="mtm mrm">
+          <Row type="flex" justify="end" className="mtm mrm lang-row">
             <Col>
               <Language
                 assignId={assignId}
@@ -81,17 +95,24 @@ export default function Assign ({
         )}
         <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
           {loaded && !error && (
-            <PassAssessment
-              id="pass_assessment"
-              type="pass_assessment"
-              data={assessment}
-              result={results}
-              locales={translations}
-              dashboardUrl="/assessment_completed"
-              resultsUrl={`/assigns/${results.id}`}
-              selectedLocale={selectedLanguage && selectedLanguage.code}
-              rstore={store}
-            />
+            <Tabs defaultActiveKey="assessment" onChange={loadResources} className="tabs-row">
+              <TabPane tab="Assessment" key="assessment">
+                <PassAssessment
+                  id="pass_assessment"
+                  type="pass_assessment"
+                  data={assessment}
+                  result={results}
+                  locales={translations}
+                  dashboardUrl="/assessment_completed"
+                  resultsUrl={`/assigns/${results.id}`}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
+                />
+              </TabPane>
+              <TabPane tab="Resource Content" key="resources">
+                <ResourceList assessment={assessment} />
+              </TabPane>
+            </Tabs>
           )}
         </div>
       </Content>

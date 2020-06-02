@@ -229,7 +229,6 @@ Rails.application.routes.draw do
             member do
               get :upload_media_url
               put :upload_callback
-              post :upload_media_dev
               delete :remove_media
             end
           end
@@ -306,6 +305,9 @@ Rails.application.routes.draw do
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
+        get :resources, to: 'assessments#show', constraints: { all: /.*/ }
+        get :assessments
+        get :questions
       end
 
       scope module: 'assessments' do
@@ -572,11 +574,13 @@ Rails.application.routes.draw do
       member do
         get :upload_media_url
         put :upload_callback
-        post :upload_media_dev
         delete :remove_media
+        put :complete_multipart_upload
         put :update_meta_data
       end
     end
+
+    resources :highlights, only: %i[update]
 
     scope module: :threesixty do
       resources :campaigns, only: %i[show index] do
@@ -602,8 +606,8 @@ Rails.application.routes.draw do
           member do
             get :upload_media_url
             put :upload_callback
-            post :upload_media_dev
             delete :remove_media
+            put :complete_multipart_upload
             put :update_meta_data
           end
         end
@@ -656,6 +660,7 @@ Rails.application.routes.draw do
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify'
     get 'assessment_completed', to: 'home#assessment_completed'
+    get 'upgrade', to: 'home#upgrade'
     root to: 'threesixty/campaigns#index'
   end
 

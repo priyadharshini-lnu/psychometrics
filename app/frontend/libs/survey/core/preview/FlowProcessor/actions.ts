@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-import { setIn } from 'utils/immutable'
 import _ from 'lodash'
-import { getCurrentBlock } from './selectors'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -13,12 +11,13 @@ import {
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
   TOGGLE_IGNORE_VALIDATION, RESET,
-  UPDATE_META_DATA, UPDATE_META_DATA_REQUEST,
+  UPDATE_HIGHLIGHT, UPDATE_HIGHLIGHT_REQUEST,
   SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS,
   REMOVE_QUESTION_IN_PROGRESS,
   CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
+import { Highlight } from './interfaces'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -104,31 +103,37 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
   }
 }
 
-export const updateMetaData = (preview, key, data) => {
-  const block = getCurrentBlock(preview)
-  const metaData = setIn(preview.metaData, [block.id, key], data)
-
-  if (preview.type === 'preview_assessment') return { type: UPDATE_META_DATA_REQUEST, metaData }
-
-  const url = preview.isThreesixty
-    ? `${preview.resultsUrl}/update_meta_data`
-    : `/assigns/${preview.dbResult.id}/update_meta_data`
-
-  return {
-    type: UPDATE_META_DATA,
-    request: {
-      url,
-      method: 'PUT',
-      body: { meta_data: metaData },
-      decamelize: false,
-    },
-    metaData,
-  }
+interface Opts {
+  notStored?: boolean
 }
 
-export const updateMetaDataLocally = (preview, key, data) => {
-  const block = getCurrentBlock(preview)
-  const metaData = setIn(preview.metaData, [block.id, key], data)
+export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
+  const { preview, threeSixtyCampaign: { assign: { assessment }, evaluation } } = getState()
 
-  return { type: UPDATE_META_DATA_REQUEST, metaData }
+  const payload = {
+    id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
+  }
+
+  if (preview.type === 'preview_assessment' || opts.notStored) {
+    return dispatch({
+      type: UPDATE_HIGHLIGHT_REQUEST,
+      payload,
+    })
+  }
+
+  return dispatch({
+    type: UPDATE_HIGHLIGHT,
+    request: {
+      url: `/highlights/${highlight.id}`,
+      method: 'PUT',
+      body: {
+        data,
+        resource_type: highlight.resourceType,
+        resource_id: highlight.resourceId,
+        assessment_id: assessment.id || evaluation.assessment.id,
+      },
+      decamelize: false,
+    },
+    payload,
+  })
 }

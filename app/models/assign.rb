@@ -49,6 +49,7 @@ class Assign < ApplicationRecord
   has_many :reports, through: :assigns_reports, dependent: :destroy
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
+  has_many :media_responses
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true

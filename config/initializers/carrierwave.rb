@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.test? || Rails.env.development?
+if Rails.env.test?
   CarrierWave.configure do |config|
     config.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
     config.storage = :file

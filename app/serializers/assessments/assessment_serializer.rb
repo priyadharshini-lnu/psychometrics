@@ -4,7 +4,7 @@ module Assessments
   class AssessmentSerializer < ActiveModel::Serializer
     attributes :id, :name, :category, :disabled, :created_at,
                :flow, :norm_rules, :factors, :enable_back, :enable_progress, :question_recoding,
-               :data_sheet_columns, :relationships, :extra
+               :data_sheet_columns, :relationships, :extra, :resources, :resources_data
 
     has_many :blocks, serializer: Assessments::BlockSerializer do
       object.blocks.
@@ -45,6 +45,13 @@ module Assessments
     def connected_campaign
       @connected_campaign ||= Campaign.
                               joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
+    end
+
+    def resources_data
+      return {} unless object.resources
+
+      ids = object.resources.map { |r| r['assessmentId'] }
+      Question.where(assessment_id: ids, type: 'StaticContent').group_by(&:assessment_id)
     end
   end
 end

@@ -8,6 +8,7 @@ import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
 import Watchman from 'libs/survey/store/StoreWatchman'
+import axios from 'axios'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
@@ -18,6 +19,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 
 const { $ } = window
+const UPLOAD_CHUNK_SIZE = 5.5
 
 class VideoRecorder extends Component {
   constructor (props) {
@@ -27,7 +29,7 @@ class VideoRecorder extends Component {
     this.state = {
       deviceReady: false,
       recordingState: 'initialized',
-      percent: 0,
+      percent: {},
       key: 'player',
       trackingEnabled: !!fitInFrame,
     }
@@ -87,101 +89,55 @@ class VideoRecorder extends Component {
 
   getUploadUrl = (id) => {
     const { mediaUrl } = this.props
-    $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (data) => {
-      this.uploadFile(data)
+    $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (urlDetails) => {
+      this.urlDetails = urlDetails
     })
   }
 
-  uploadFile = (data) => {
-    const video = this.player.recordedData
-    const mediaId = data.media_id
-    const fd = new FormData()
-    if (data.env === 'prod') {
-      fd.append('key', data.key)
-      fd.append('acl', data.acl)
-      fd.append('success_action_status', data.success_action_status)
-      fd.append('policy', data.policy)
-      fd.append('x-amz-algorithm', data['x-amz-algorithm'])
-      fd.append('x-amz-credential', data['x-amz-credential'])
-      fd.append('x-amz-date', data['x-amz-date'])
-      fd.append('x-amz-signature', data['x-amz-signature'])
-      fd.append('file', video, 'video.mp4')
-    } else {
-      fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
-      fd.append('media_id', mediaId)
-      fd.append('asset', video, 'video.mp4')
-    }
-
-    $.ajax({
-      method: 'POST',
-      url: data.url,
-      data: fd,
-      processData: false,
-      contentType: false,
-      xhr: () => {
-        const xhr = new XMLHttpRequest()
-        xhr.upload.addEventListener('progress', this.onUploadProgress, false)
-        return xhr
-      },
-    }).done((media) => {
-      this.onUploadDone(media, data)
-    }).fail(() => {
-      this.setState({ recordingState: 'error' })
+  uploadFile = (urlDetails, batchNumber) => {
+    const batchForUpload = this.batches[batchNumber]
+    const blob = new Blob(batchForUpload.batchedBlobs, {
+      type: 'video/webm',
     })
-  }
 
-  onUploadDone = (media, data) => {
-    const { onSuccessUpload, mediaUrl } = this.props
-    const mediaId = data.media_id
-    this.setState({ recordingState: 'saved' })
-    this.handleRecordingSaved()
-    if (data.env === 'prod') {
-      const assetKey = data.key.replace('${filename}', 'video.mp4')
-      $.ajax({
-        method: 'PUT',
-        url: `${mediaUrl}/upload_callback`,
-        data: { media_id: mediaId, asset_key: assetKey },
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-      }).done((data) => {
-        onSuccessUpload(data)
-      })
-    } else {
-      onSuccessUpload(media)
+    const { percent } = this.state
+    if (!percent[batchNumber]) {
+      this.setState({ percent: { ...percent, [batchNumber]: 0 } })
     }
+
+    const uploadResp = axios.put(
+      urlDetails,
+      blob,
+      { onUploadProgress: e => this.setProgress(e, batchNumber) },
+    )
+
+    if (!this.promisesArray) { this.promisesArray = [] }
+    this.promisesArray.push(uploadResp)
+
+    uploadResp.then(() => { batchForUpload.batchedBlobs = null })
   }
 
-  onUploadProgress = (e) => {
+  setProgress = (e, batchNumber) => {
     if (e.lengthComputable) {
       let percentComplete = e.loaded / e.total
       percentComplete = parseInt(percentComplete * 100, 10)
-      this.setState({ percent: percentComplete })
+      const { percent } = this.state
+      this.setState({ percent: { ...percent, [batchNumber]: percentComplete } })
     }
   }
 
-  saveRecording = async () => {
-    const { preview, model, markQuestionInProgress } = this.props
-    this.setState({ recordingState: 'saving' })
-    markQuestionInProgress(model.id, 'saving')
-    if (preview) {
-      this.handleRecordingSaved()
-      return this.setState({ percent: 100, recordingState: 'saved' })
-    }
-
-    this.getUploadUrl(model.id)
+  getUploadProgressPercentage = () => {
+    let totalUploaded = 0
+    let total = 0
+    const { percent } = this.state
+    _.each(percent, (percent, batchNumber) => {
+      totalUploaded += (this.batches[batchNumber].size * percent / 100)
+      total += this.batches[batchNumber].size
+    })
+    return totalUploaded / total * 100
   }
 
-  handleRecordingSaved = () => {
-    const { model, removeQuestionInProgress } = this.props
-    this.player.trigger('statechanged', { status: 'saved' })
-    removeQuestionInProgress(model.id)
-
-    this.statusText.hide()
-    this.player.controlBar.progressControl.show()
-
-    this.player.controlBar.currentTimeDisplay.addClass('hide')
-    this.player.controlBar.currentTimeDisplay.removeClass('show')
-  }
-
+  // eslint-disable-next-line react/sort-comp
   initPlayer () {
     const { result } = this.props
 
@@ -211,7 +167,6 @@ class VideoRecorder extends Component {
     this.player.controlBar.progressControl.hide()
 
     this.statusText.reset()
-
     this.remainingTime.hide()
 
     this.player.controlBar.currentTimeDisplay.addClass('hide')
@@ -239,6 +194,7 @@ class VideoRecorder extends Component {
             maxLength: maxDuration || 10,
             debug: true,
             videoMimeType: 'video/webm;codecs=H264',
+            timeSlice: 10000,
           },
         },
       }
@@ -249,6 +205,12 @@ class VideoRecorder extends Component {
         if (!this.remainingTime) this.addRemainingTimeControl()
         if (!this.statusText) this.addStatusTextControl()
       })
+
+      this.player.on('timestamp', () => {
+        const { preview } = this.props
+        if (!preview) { this.multipartUpload() }
+      })
+
       this.player.on('deviceReady', () => {
         this.setState({
           deviceReady: true,
@@ -257,8 +219,12 @@ class VideoRecorder extends Component {
 
         this.statusText.show()
       })
+
       this.player.on('startRecord', () => {
         const { trackingEnabled } = this.state
+        const { model, preview } = this.props
+
+        if (!preview) { this.getUploadUrl(model.id) }
         this.setState({ recordingState: 'recording' })
         this.player.trigger('statechanged', { status: 'recording' })
         markQuestionInProgress(model.id, 'recording')
@@ -269,14 +235,36 @@ class VideoRecorder extends Component {
 
         if (trackingEnabled && this.tracker) this.tracker.startTracking()
       })
-      this.player.on('finishRecord', () => {
+
+      this.player.on('finishRecord', async () => {
+        const { preview } = this.props
         const { trackingEnabled } = this.state
-        this.setState({ recordingState: 'recorded' })
-        markQuestionInProgress(model.id, 'recorded')
+        if (preview) {
+          this.handleRecordingSaved()
+        } else {
+          this.uploadLastPart()
+          this.setState({ recordingState: 'saving' })
+          markQuestionInProgress(model.id, 'saving')
+        }
+
         this.player.trigger('statechanged', { status: 'recorded' })
 
         if (trackingEnabled && this.tracker) this.tracker.stopTracking()
+
+        if (!preview) {
+          const resolvedArray = await Promise.all(this.promisesArray)
+          const uploadPartsArray = []
+          resolvedArray.forEach((resolvedPromise, index) => {
+            uploadPartsArray.push({
+              etag: resolvedPromise.headers.etag,
+              part_number: index + 1,
+            })
+          })
+
+          this.completeMediaUpload(uploadPartsArray)
+        }
       })
+
       this.player.on('error', (element, error) => {
         // eslint-disable-next-line no-console
         console.warn(error)
@@ -289,6 +277,72 @@ class VideoRecorder extends Component {
         console.error('Device Error:', this.player.deviceErrorCode)
       })
     })
+  }
+
+  multipartUpload = () => {
+    const totalSlices = this.player.recordedData.length
+    if (!this.batches) {
+      this.batches = []
+      this.batches.push({
+        firstIndex: 0,
+      })
+    }
+
+    const lastBatch = this.batches[this.batches.length - 1]
+    const batchedBlobs = this.player.recordedData.slice(lastBatch.firstIndex, totalSlices)
+    const sizeInBytes = _.sum(_.map(batchedBlobs, a => a.size))
+    const sizeInMB = sizeInBytes / 1024 / 1024
+    lastBatch.size = sizeInBytes
+
+    if (sizeInMB > UPLOAD_CHUNK_SIZE) {
+      lastBatch.lastIndex = totalSlices - 1
+      this.uploadFile(this.urlDetails.urls[this.batches.length - 1], this.batches.length - 1)
+      this.batches.push({
+        firstIndex: lastBatch.lastIndex + 1,
+        batchedBlobs: [],
+        size: 0,
+      })
+    } else {
+      lastBatch.batchedBlobs = batchedBlobs
+    }
+  }
+
+  uploadLastPart = () => {
+    const lastBatch = this.batches[this.batches.length - 1]
+    // If there is no lastIndex, it means last batch is not uploaded still
+    if (!lastBatch.lastIndex) {
+      this.uploadFile(this.urlDetails.urls[this.batches.length - 1], this.batches.length - 1)
+    }
+  }
+
+  completeMediaUpload = (uploadPartsArray) => {
+    const { mediaUrl } = this.props
+    axios.put(
+      `${mediaUrl}/complete_multipart_upload`,
+      {
+        parts: uploadPartsArray,
+        media_id: this.urlDetails.media_id,
+        asset_key: this.urlDetails.asset_key,
+        upload_id: this.urlDetails.upload_id,
+      },
+      {
+        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+      },
+    ).then(({ data }) => this.handleRecordingSaved(data))
+  }
+
+  handleRecordingSaved = (data) => {
+    const { model, removeQuestionInProgress, onSuccessUpload } = this.props
+    onSuccessUpload && data && onSuccessUpload(data)
+    this.player.trigger('statechanged', { status: 'saved' })
+    this.setState({ recordingState: 'saved' })
+    removeQuestionInProgress(model.id)
+
+    this.statusText.hide()
+    this.player.controlBar.progressControl.show()
+
+    this.player.controlBar.currentTimeDisplay.addClass('hide')
+    this.player.controlBar.currentTimeDisplay.removeClass('show')
   }
 
   addRemainingTimeControl () {
@@ -309,7 +363,7 @@ class VideoRecorder extends Component {
     return (
       <div className={styles.controlBar}>
         <div className={cs(styles.controls, 'display-flex')}>
-          {['recorded', 'saved', 'saving'].includes(recordingState) && !readOnly && (
+          {recordingState === 'saved' && !readOnly && (
             <button
               title="Discard"
               className={cs(styles.control, styles.discard, styles[recordingState])}
@@ -321,28 +375,10 @@ class VideoRecorder extends Component {
               </span>
             </button>
           )}
-          {recordingState === 'recorded' && (
-            <button className={cs(styles.control, styles[recordingState])} onClick={this.saveRecording} title="Save">
-              <span className="mrs mls fa fa-check" aria-hidden="true" />
-              <span className="vjs-control-text" aria-live="polite">
-                { Watchman.I18n().t('assessments.video_response.save') }
-              </span>
-            </button>
-          )}
           {recordingState === 'saving' && (
-            <button className={cs(styles.control, styles[recordingState])} onClick={this.saveRecording} title="Save">
-              <span className="vjs-control-text" aria-live="polite">
-                { Watchman.I18n().t('assessments.video_response.saving') }
-              </span>
-            </button>
-          )}
-          {recordingState === 'saved' && !readOnly && (
-            <button className={cs(styles.control, styles[recordingState])} title="Saved">
-              <span className="mrs mls fa fa-check" aria-hidden="true" />
-              <span className="vjs-control-text" aria-live="polite">
-                { Watchman.I18n().t('assessments.video_response.saved') }
-              </span>
-            </button>
+            <span className="vjs-control-text" aria-live="polite">
+              { Watchman.I18n().t('assessments.video_response.saving') }
+            </span>
           )}
           {recordingState === 'error' && (
             <button className={cs(styles.control, styles.error)} onClick={this.saveRecording} title="Retry Save">
@@ -357,7 +393,7 @@ class VideoRecorder extends Component {
   }
 
   renderProgress () {
-    const { percent } = this.state
+    const percent = this.getUploadProgressPercentage()
     const width = `${percent}%`
     return (
       <div className={styles.progress}>

@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
-                                        preview export toggle_archive]
+                                        preview export toggle_archive questions]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -53,6 +53,16 @@ class Administration::AssessmentsController < Administration::BaseController
     render layout: 'empty'
   end
 
+  def assessments
+    render json: Assessment.pluck(:id, :name).map { |id, name| { id: id, name: name } }
+  end
+
+  def questions
+    render json: resource.questions.where(type: 'StaticContent').pluck(:id, :name, :props).map { |id, name, props|
+      { id: id, name: name, props: props }
+    }
+  end
+
   def show
     add_breadcrumb resource.decorate.display_name
   end
@@ -66,8 +76,10 @@ class Administration::AssessmentsController < Administration::BaseController
     respond_to do |format|
       if resource.update(resource_params)
         format.js
+        format.json { render json: :ok }
       else
         format.js { render :edit }
+        format.json { render json: :fail }
       end
     end
   end
@@ -135,6 +147,7 @@ class Administration::AssessmentsController < Administration::BaseController
                                      :status,
                                      :icon, :icon_color, :remove_icon,
                                      :enable_video_check, :enable_audio_check, :enable_network_check,
-                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id])
+                                     :owner_id, hogan_assessment_setting_attributes: %i[id hogan_assessment_id],
+                                     resources: %i[assessmentId questionId])
   end
 end

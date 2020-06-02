@@ -14,23 +14,16 @@ export default FileUploader
 
 const uploadFile = (data, context) => {
   const { file, fileName, dispatch } = context
-  const mediaId = data.media_id
   const fd = new FormData()
-  if (data.env === 'prod') {
-    fd.append('key', data.key)
-    fd.append('acl', data.acl)
-    fd.append('success_action_status', data.success_action_status)
-    fd.append('policy', data.policy)
-    fd.append('x-amz-algorithm', data['x-amz-algorithm'])
-    fd.append('x-amz-credential', data['x-amz-credential'])
-    fd.append('x-amz-date', data['x-amz-date'])
-    fd.append('x-amz-signature', data['x-amz-signature'])
-    fd.append('file', file, fileName || file.name)
-  } else {
-    fd.append('authenticity_token', $('meta[name="csrf-token"]').attr('content'))
-    fd.append('media_id', mediaId)
-    fd.append('asset', file, fileName || file.name)
-  }
+  fd.append('key', data.key)
+  fd.append('acl', data.acl)
+  fd.append('success_action_status', data.success_action_status)
+  fd.append('policy', data.policy)
+  fd.append('x-amz-algorithm', data['x-amz-algorithm'])
+  fd.append('x-amz-credential', data['x-amz-credential'])
+  fd.append('x-amz-date', data['x-amz-date'])
+  fd.append('x-amz-signature', data['x-amz-signature'])
+  fd.append('file', file, fileName || file.name)
 
   $.ajax({
     method: 'POST',
@@ -55,23 +48,18 @@ const onUploadDone = (media, data, context) => {
     urls, file, fileName, dispatch, onSuccessUpload,
   } = context
   const mediaId = data.media_id
-  if (data.env === 'prod') {
-    const assetKey = data.key.replace('${filename}', fileName || file.name)
-    $.ajax({
-      method: 'PUT',
-      url: urls.callbackUrl,
-      data: { media_id: mediaId, asset_key: assetKey },
-      headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-    }).done((data) => {
-      dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
-      onSuccessUpload(data)
-    }).fail((data) => {
-      dispatch({ type: SET_ERRORS, payload: { errorCodes: [data.responseJSON.error_message] } })
-    })
-  } else {
+  const assetKey = data.key.replace('${filename}', fileName || file.name)
+  $.ajax({
+    method: 'PUT',
+    url: urls.callbackUrl,
+    data: { media_id: mediaId, asset_key: assetKey },
+    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+  }).done((data) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
-    onSuccessUpload(media)
-  }
+    onSuccessUpload(data)
+  }).fail((data) => {
+    dispatch({ type: SET_ERRORS, payload: { errorCodes: [data.responseJSON.error_message] } })
+  })
 }
 
 const onUploadProgress = (e, dispatch) => {

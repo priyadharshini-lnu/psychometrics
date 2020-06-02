@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -199,7 +213,8 @@ CREATE TABLE public.assessments (
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    archived boolean DEFAULT false
+    archived boolean DEFAULT false,
+    resources json
 );
 
 
@@ -317,16 +332,16 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -1372,6 +1387,20 @@ ALTER SEQUENCE public.factors_sub_factors_id_seq OWNED BY public.factors_sub_fac
 
 
 --
+-- Name: highlights; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.highlights (
+    id uuid NOT NULL,
+    assessment_id bigint,
+    user_id bigint,
+    data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    resource_id integer NOT NULL,
+    resource_type character varying NOT NULL
+);
+
+
+--
 -- Name: hogan_assessment_settings; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2322,8 +2351,8 @@ CREATE TABLE public.reports (
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -2703,9 +2732,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2876,9 +2903,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -3100,12 +3125,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone
+    last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3988,6 +4013,14 @@ ALTER TABLE ONLY public.factors_scoring
 
 ALTER TABLE ONLY public.factors_sub_factors
     ADD CONSTRAINT factors_sub_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: highlights highlights_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.highlights
+    ADD CONSTRAINT highlights_pkey PRIMARY KEY (id);
 
 
 --
@@ -4921,6 +4954,20 @@ CREATE INDEX index_factors_sub_factors_on_sub_factor_id ON public.factors_sub_fa
 
 
 --
+-- Name: index_highlights_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_highlights_on_assessment_id ON public.highlights USING btree (assessment_id);
+
+
+--
+-- Name: index_highlights_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_highlights_on_user_id ON public.highlights USING btree (user_id);
+
+
+--
 -- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5848,6 +5895,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: highlights fk_rails_3b86ceac89; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.highlights
+    ADD CONSTRAINT fk_rails_3b86ceac89 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: libraries fk_rails_3c26848d46; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6456,6 +6511,14 @@ ALTER TABLE ONLY public.clients_reports
 
 
 --
+-- Name: highlights fk_rails_d662418e45; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.highlights
+    ADD CONSTRAINT fk_rails_d662418e45 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: relationships fk_rails_d734d0e1e6; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6971,6 +7034,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200420101736'),
 ('20200420102139'),
 ('20200420102632'),
-('20200519155451');
+('20200519155451'),
+('20200524174421'),
+('20200525102435');
 
 

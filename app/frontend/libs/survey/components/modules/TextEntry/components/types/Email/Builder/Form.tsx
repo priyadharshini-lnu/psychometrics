@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Input } from 'antd'
-import styles from '../EmailStyle.scss'
+import styles from '../commonStyles.scss'
 import ContactSelect from './ContactSelect'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
 import { ContactType } from '../interfaces/Email'

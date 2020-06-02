@@ -11,7 +11,10 @@ module Exports
 
       def get_xlsx_export_result
         Axlsx::Package.new do |package|
-          package.workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
+          package.use_shared_strings = true
+          workbook = package.workbook
+          workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
+            wrap = workbook.styles.add_style alignment: { wrap_text: true }
             result_details_header = get_result_details_header
 
             get_all_headers(all_questions, result_details_header).each do |header|
@@ -33,7 +36,7 @@ module Exports
 
               user_results_flattened = user_results.map { |a| a == [] ? '' : a }.flatten
 
-              sheet.add_row [*result_details_row_values(result), *user_results_flattened]
+              sheet.add_row [*result_details_row_values(result), *user_results_flattened], style: wrap
             end
           end
         end
