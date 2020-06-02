@@ -62,7 +62,10 @@ class Tracker extends Component {
   }
 
   onNoFaceDetected = debounce(() => {
-    this.setState({ showOverlay: true, visibleMessages: ['frame'] })
+    const { isTracking, showOverlay } = this.state
+    if (!isTracking) return
+
+    this.setState({ showOverlay, visibleMessages: ['frame'] })
   }, 2000, { maxWait: 2000 })
 
   setupBoundingBox () {
