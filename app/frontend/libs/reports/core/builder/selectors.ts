@@ -2,7 +2,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import _ from 'lodash'
 import { denormalize } from 'normalizr'
-import { module, page, blocks as blocksSchema } from 'libs/reports/store/schema'
+import {
+  module, page, pages, blocks as blocksSchema,
+} from 'libs/reports/store/schema'
 import QuestionModel from 'libs/reports/models/Question'
 import ModuleInterface from '../interfaces/Module'
 import PageInterface from '../interfaces/Page'
@@ -11,6 +13,7 @@ export const getModules = (state: any, ids: number[]): ModuleInterface[] => deno
 
 export const getModule = (state: any, id: number): ModuleInterface => state.modules[id]
 
+
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
   state.modules, m => m.props.showOnAllPages && !m.removed,
 )
@@ -18,6 +21,7 @@ export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
 export const getSelected = (state: any) => state.selected
 
 export const getPages = (state: any, ids: number[]): PageInterface[] => denormalize(ids, [page], state)
+export const getPage = (state: any, id: number): PageInterface => _.first(denormalize([id], [pages], state))
 
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]
 

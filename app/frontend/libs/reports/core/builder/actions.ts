@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import SerializeReport from './SerializeReport'
 import PageInterface from '../interfaces/Page'
+import ModuleInterface from '../interfaces/Module'
 
 export const INIT = 'report/INIT'
 export const ENABLE = 'report/ENABLE'
@@ -17,6 +18,8 @@ export const SHOW_ON_ALL_PAGES = 'report/SHOW_ON_ALL_PAGES'
 export const CHANGE_SIZE = 'report/CHANGE_SIZE'
 export const UPDATE_PAGE_POSITIONS = 'report/UPDATE_PAGE_POSITIONS'
 export const SET_PAGE_POSITIONS = 'report/SET_PAGE_POSITIONS'
+export const COPY_PAGE = 'report/COPY_PAGE'
+export const PASTE_PAGE = 'report/PASTE_PAGE'
 
 enum SelectedTypes {
   'Module',
@@ -34,9 +37,16 @@ interface UnselectModules { type: typeof UNSELECT_MODULES }
 interface ChangeSize { type: typeof CHANGE_SIZE, size: {width: number, height: number} }
 interface UpdatePagePositions { type: typeof UPDATE_PAGE_POSITIONS, pageId: number, newIndex: number }
 interface SetPagePositions { type: typeof SET_PAGE_POSITIONS, order: number[] }
+interface CopyPage { type: typeof COPY_PAGE, pageId: number }
+interface PastePage { type: typeof PASTE_PAGE, pageId: number, modules: ModuleInterface[] }
 
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR })
+
+export const copyPage = (pageId: number): CopyPage => ({ type: COPY_PAGE, pageId })
+export const pastePage = (pageId: number, modules: ModuleInterface[]): PastePage => ({
+  type: PASTE_PAGE, pageId, modules,
+})
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
 export const updateCurrentPage = (offset: number): UpdateCurrentPage => ({ type: UPDATE_CURRENT_PAGE, offset })
