@@ -14,3 +14,5 @@ en:
       chrome: 'https://www.google.com/chrome/'
       firefox: 'https://www.mozilla.org/en-US/firefox/new/'
       edge: 'https://www.microsoft.com/en-us/edge'
+      safari: 'https://www.apple.com/safari/'
+      instruction: Download
