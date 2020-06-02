@@ -436,7 +436,6 @@ FE.RegisterCommand('audioSkin', {
     none: 'None',
     GreenAudio: 'Full',
     WaveSurfer: 'Waveform',
-    Minimal: 'Minimal',
   },
   html () {
     const mkOption = (label, val) => `<li role="presentation">
