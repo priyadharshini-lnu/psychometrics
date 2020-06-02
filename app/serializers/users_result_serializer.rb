@@ -90,7 +90,9 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def highlights
-    Highlight.where(assessment_id: object.assessment_id, user_id: user_id).map do |h|
+    ids = [object.assessment_id]
+    ids += object.assessment.resources.map { |r| r['assessmentId'] } if object.assessment.resources
+    Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
       HighlightSerializer.new(h)
     end
   end

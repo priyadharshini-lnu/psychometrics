@@ -4,10 +4,10 @@ import NotificationDispatcher from 'dispatchers/NotificationDispatcher'
 import styles from './ResourceManager.scss'
 
 export default function Header ({
-  history, saveResources, assessmentId, resources, addResource,
+  history, match, saveResources, assessmentId, resources, addResource,
 }) {
-  const closeScoring = () => {
-    const { match: { params: { id } } } = history
+  const back = () => {
+    const { params: { id } } = match
     history.push(`/administration/assessments/${id}`)
   }
 
@@ -38,7 +38,7 @@ export default function Header ({
       <ul className="panel-controls">
         <li>
           <div>
-            <a onClick={closeScoring} className={`btn btn-default ${styles.preview}`}>
+            <a onClick={back} className={`btn btn-default ${styles.preview}`}>
               <span className="fa fa-chevron-left" />
               Back To Editor
             </a>

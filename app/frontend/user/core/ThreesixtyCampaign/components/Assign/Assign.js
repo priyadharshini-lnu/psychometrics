@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, Tabs,
+  Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -10,9 +10,8 @@ import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
-import ResourceList from '../ResourceList'
+import ResourcesTabs from '../ResourcesTabs'
 
-const { TabPane } = Tabs
 const { Content } = Layout
 
 export default function Assign ({
@@ -41,12 +40,6 @@ export default function Assign ({
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.assignId, edit)
   }, [])
-
-  const loadResources = (tab) => {
-    if (tab === 'resources') {
-      // check and loadResourcesHighlight
-    }
-  }
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -95,24 +88,19 @@ export default function Assign ({
         )}
         <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
           {loaded && !error && (
-            <Tabs defaultActiveKey="assessment" onChange={loadResources} className="tabs-row">
-              <TabPane tab="Assessment" key="assessment">
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl="/assessment_completed"
-                  resultsUrl={`/assigns/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                />
-              </TabPane>
-              <TabPane tab="Resource Content" key="resources">
-                <ResourceList assessment={assessment} />
-              </TabPane>
-            </Tabs>
+            <ResourcesTabs assessment={assessment}>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl="/assessment_completed"
+                resultsUrl={`/assigns/${results.id}`}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+              />
+            </ResourcesTabs>
           )}
         </div>
       </Content>

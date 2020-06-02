@@ -114,6 +114,7 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
 
 interface Opts {
   notStored?: boolean
+  assessmentId?: number
 }
 
 export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
@@ -139,7 +140,7 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
         data,
         resource_type: highlight.resourceType,
         resource_id: highlight.resourceId,
-        assessment_id: assessment.id || evaluation.assessment.id,
+        assessment_id: opts.assessmentId || assessment.id || evaluation.assessment.id,
       },
       decamelize: false,
     },

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Tabs,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -12,10 +12,9 @@ import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
-import ResourceList from '../ResourceList'
+import ResourcesTabs from '../ResourcesTabs'
 
 const { Content } = Layout
-const { TabPane } = Tabs
 
 export default function Evaluation ({
   evaluation: {
@@ -179,29 +178,24 @@ export default function Evaluation ({
             )}
           </Row>
           {!error && (
-            <Tabs defaultActiveKey="assessment" className="tabs-row">
-              <TabPane tab="Assessment" key="assessment">
-                <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-                  <PassAssessment
-                    ref={assessmentRef}
-                    id="pass_assessment"
-                    type={approve_evaluation ? 'view_results' : 'pass_assessment'}
-                    isThreesixty="true"
-                    resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                    data={assessment}
-                    result={results}
-                    dashboardUrl={`/campaigns/${params.campaignId}`}
-                    locales={translations}
-                    selectedLocale={selectedLanguage && selectedLanguage.code}
-                    notAnEndPage={approve_evaluation || edit === 'true'}
-                    rstore={store}
-                  />
-                </div>
-              </TabPane>
-              <TabPane tab="Resource Content" key="resources">
-                <ResourceList assessment={assessment} />
-              </TabPane>
-            </Tabs>
+            <ResourcesTabs assessment={assessment}>
+              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                <PassAssessment
+                  ref={assessmentRef}
+                  id="pass_assessment"
+                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                  isThreesixty="true"
+                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${params.campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  notAnEndPage={approve_evaluation || edit === 'true'}
+                  rstore={store}
+                />
+              </div>
+            </ResourcesTabs>
           )}
         </div>
       </Content>
