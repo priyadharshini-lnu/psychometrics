@@ -5,6 +5,7 @@ import { DefaultTrackerOptions } from 'constants/DefaultProps'
 import styles from 'views/PropertyPanel/components/PropertyPanel.scss'
 import Validations, { RequiredValidations } from 'components/Validations'
 import { Button, InputNumber } from 'antd'
+import _ from 'lodash'
 
 export class Properties extends Component {
   durations = [
@@ -41,6 +42,13 @@ export class Properties extends Component {
     this.update()
   }
 
+  changeMaxTakes = (e) => {
+    const { model } = this.props
+    const maxTakes = parseInt(e.currentTarget.value, 10)
+    model.changeProps({ maxTakes })
+    this.update()
+  }
+
   updateFitInFrame = (e) => {
     const { model } = this.props
     const fitInFrame = e.currentTarget.value
@@ -73,6 +81,20 @@ export class Properties extends Component {
         <span className={styles.label}>Max Duration</span>
         <select className="form-control" value={model.props.duration} onChange={this.changeDuration}>
           {this.durations.map(j => (<option key={j.value} value={j.value}>{`${j.display}`}</option>))}
+        </select>
+      </div>
+    )
+  }
+
+  maxTakesFields () {
+    const { model } = this.props
+
+    return (
+      <div className={styles.fieldset} style={{ position: 'relative' }}>
+        <span className={styles.label}>Number of takes</span>
+        <select className="form-control" value={model.props.maxTakes} onChange={this.changeMaxTakes}>
+          <option value={null}>No Restriction</option>
+          {_.times(5, takeNo => (<option key={takeNo} value={takeNo + 1}>{takeNo + 1}</option>))}
         </select>
       </div>
     )
@@ -151,6 +173,7 @@ export class Properties extends Component {
     return (
       <div>
         { this.durationFields() }
+        {this.maxTakesFields() }
         { this.frameFields() }
       </div>
     )

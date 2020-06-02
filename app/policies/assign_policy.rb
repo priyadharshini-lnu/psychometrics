@@ -57,6 +57,10 @@ class AssignPolicy < BasePolicy
     update?
   end
 
+  def mark_as_user_selected_take?
+    update?
+  end
+
   def update_meta_data?
     update?
   end

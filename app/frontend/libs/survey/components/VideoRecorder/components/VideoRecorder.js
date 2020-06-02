@@ -36,12 +36,15 @@ class VideoRecorder extends Component {
   }
 
   componentDidMount () {
-    const { result } = this.props
+    const { answer, recordingAllowed } = this.props
 
-    if (result && result.answers.length > 0) {
+    if (answer) {
       this.initPlayer()
     } else {
       this.initRecorder()
+      if (recordingAllowed) {
+        setTimeout(() => this.allowRecording(), 300)
+      }
     }
   }
 
@@ -62,20 +65,23 @@ class VideoRecorder extends Component {
 
   // open device dialog
   allowRecording = () => {
+    const { onRecordingAllowed } = this.props
     this.player.record().getDevice()
+    onRecordingAllowed && onRecordingAllowed()
   }
 
   discardRecording = () => {
     const {
-      result, onDeleteMedia, mediaUrl, removeQuestionInProgress, model,
+      answer, onDeleteMedia, mediaUrl, removeQuestionInProgress, model,
     } = this.props
     removeQuestionInProgress(model.id)
-    if (result && result.answers.length > 0) {
-      const mediaId = result.answers[0].media_id
+    if (answer) {
+      const mediaId = answer.media_id
       if (mediaId) {
         $.ajax({
           method: 'DELETE',
           url: `${mediaUrl}/remove_media`,
+          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
           data: { media_id: mediaId },
         }).done(() => {
           onDeleteMedia && onDeleteMedia()
@@ -139,11 +145,11 @@ class VideoRecorder extends Component {
 
   // eslint-disable-next-line react/sort-comp
   initPlayer () {
-    const { result } = this.props
+    const { answer } = this.props
 
     const options = {
       sources: [{
-        src: result ? result.answers[0].value : undefined,
+        src: answer ? answer.value : undefined,
         type: 'video/mp4',
       }],
       preload: 'auto',
@@ -160,14 +166,21 @@ class VideoRecorder extends Component {
   }
 
   resetRecorder () {
-    this.initRecorder()
+    const { key } = this.state
+    if (key === 'record') {
+      this.player.record().reset()
+      this.setState({ recordingState: 'ready' })
+      this.allowRecording()
+    } else {
+      this.setState({ deviceReady: false })
+      this.initRecorder()
+    }
 
-    this.setState({ recordingState: 'ready' })
     this.player.controlBar.playToggle.hide()
     this.player.controlBar.progressControl.hide()
 
-    this.statusText.reset()
-    this.remainingTime.hide()
+    if (this.statusText) { this.statusText.reset() }
+    if (this.remainingTime) { this.remainingTime.hide() }
 
     this.player.controlBar.currentTimeDisplay.addClass('hide')
     this.player.controlBar.currentTimeDisplay.removeClass('show')
@@ -317,6 +330,7 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
+    this.promisesArray = []
     axios.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
@@ -380,13 +394,6 @@ class VideoRecorder extends Component {
               { Watchman.I18n().t('assessments.video_response.saving') }
             </span>
           )}
-          {recordingState === 'error' && (
-            <button className={cs(styles.control, styles.error)} onClick={this.saveRecording} title="Retry Save">
-              <span className="vjs-control-text" aria-live="polite">
-                { Watchman.I18n().t('assessments.video_response.retry') }
-              </span>
-            </button>
-          )}
         </div>
       </div>
     )
@@ -434,13 +441,15 @@ class VideoRecorder extends Component {
     const {
       key, deviceReady, recordingState, trackingEnabled,
     } = this.state
-    const { fitInFrame, trackerOptions } = this.props
+    const {
+      fitInFrame, trackerOptions, recordingAllowed, disallowDiscard,
+    } = this.props
     const showProgress = ['saving'].includes(recordingState)
 
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>
         <div data-vjs-player key={key}>
-          { !deviceReady && recordingState === 'initialized' && this.renderPerm() }
+          {!deviceReady && recordingState === 'initialized' && !recordingAllowed && this.renderPerm() }
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
         { trackingEnabled
@@ -454,7 +463,7 @@ class VideoRecorder extends Component {
           />
         )}
         {showProgress && this.renderProgress()}
-        {this.renderControls()}
+        {(!disallowDiscard || recordingState === 'saving') && this.renderControls()}
       </div>
     )
   }

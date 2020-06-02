@@ -24,6 +24,9 @@ en:
       saved: 'Saved'
       saving: 'Saving...'
       retry: 'Retry'
+      selected: 'Selected'
+      use_this: 'Use This'
+      retake: 'Retake'
       tracker:
         frame: 'Please make sure that your face aligns with the frame'
         ready: 'Press the Record button when ready to record'

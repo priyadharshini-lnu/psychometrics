@@ -17,9 +17,18 @@ import {
   REMOVE_QUESTION_IN_PROGRESS,
   CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
+import { getCurrentBlock } from './selectors'
 import { Highlight } from './interfaces'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
+
+export const saveCurrentPage = () => (dispatch, getState) => {
+  const { preview } = getState()
+  if (preview.type === 'pass_assessment') {
+    const currentBlock = getCurrentBlock(preview)
+    dispatch(saveResults(preview, [], currentBlock.id))
+  }
+}
 
 export const prevPage = (preview) => {
   if (preview.type !== 'pass_assessment') {

@@ -28,7 +28,7 @@ class AssignsController < ApplicationController
   prepend_before_action :authenticate_anonymous_user!
   before_action :set_assign, only: %i[pass assessment update upload_media_url
                                       upload_callback remove_media update_meta_data
-                                      complete_multipart_upload]
+                                      complete_multipart_upload mark_as_user_selected_take]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -112,6 +112,12 @@ class AssignsController < ApplicationController
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
     render json: media.reload.as_json
+  end
+
+  def mark_as_user_selected_take
+    media = @assign.media_responses.find_by!(id: params[:media_id])
+    MediaResponses::MarkAsUserSelected.call!(media)
+    head :ok
   end
 
   private

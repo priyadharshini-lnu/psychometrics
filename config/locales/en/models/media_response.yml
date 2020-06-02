@@ -3,3 +3,10 @@ en:
     messages:
       carrierwave_direct_filename_invalid: ''
       carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}
+  activerecord:
+    errors:
+      models:
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: 'Limit reached for maximum takes'

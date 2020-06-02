@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import VideoRecorder from 'components/VideoRecorder'
+import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
 import connect from './connect'
 import styles from '../VideoResponse.scss'
 
@@ -11,9 +12,20 @@ export class Preview extends Component {
     model: PropTypes.object.isRequired,
   }
 
-  successUpload = (data) => {
-    const { model } = this.props
-    model.result.answer(data.asset.url, data.id)
+  constructor (props) {
+    super(props)
+    this.VideoRecorderComponent = VideoRecorder
+    const { model: { props: { maxTakes } } } = props
+    if (maxTakes && maxTakes !== '') {
+      this.VideoRecorderComponent = withLimitedTakes(VideoRecorder, { maxTakes })
+    }
+  }
+
+  successUpload = (data, options = { shouldSaveCurrentPage: true }) => {
+    const { model, saveCurrentPage } = this.props
+    const { shouldSaveCurrentPage } = options
+    model.result.answer(data.asset.url, data.id, data.takeNo)
+    if (shouldSaveCurrentPage) { setTimeout(() => saveCurrentPage(), 300) }
   }
 
   deleteMedia = () => {
@@ -26,16 +38,16 @@ export class Preview extends Component {
       model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const { result } = model
-    const preview = type === 'preview_assessment'
+    const { VideoRecorderComponent } = this
     return (
       <div className="col">
-        <VideoRecorder
+        <VideoRecorderComponent
           key={model.id}
           model={model}
-          preview={preview}
+          preview={type === 'preview_assessment'}
           readOnly={readOnly}
           maxDuration={model.props.duration}
-          result={result}
+          answer={result && result.answers[0]}
           mediaUrl={mediaUrl}
           fitInFrame={model.props.fitInFrame}
           trackerOptions={model.props.trackerOptions}

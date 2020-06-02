@@ -190,6 +190,7 @@ const DefaultProps = {
   VideoResponse: {
     questionText: 'Click to write the question text',
     duration: 10,
+    maxTakes: '',
   },
 
   FileUpload: {
