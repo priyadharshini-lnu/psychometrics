@@ -1,0 +1,27 @@
+.browser-detections
+  div.message = t('browsers.upgrade.message')
+  ul.browsers
+    li.browser
+      .icon = image_tag("browsers/chrome.svg")
+      .name
+        = t('browsers.chrome')
+        - if @browser_detections.name == 'Chrome'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.chrome'), target: '_blank')
+        - else
+          .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.chrome'), target: '_blank')
+    li.browser
+      .icon = image_tag("browsers/firefox.svg")
+      .name
+        = t('browsers.firefox')
+        - if @browser_detections.name == 'Firefox'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.firefox'), target: '_blank')
+        - else
+          .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.firefox'), target: '_blank')
+    li.browser
+      .icon = image_tag("browsers/edge.svg")
+      .name
+        = t('browsers.edge')
+        - if @browser_detections.name == 'Edge'
+          .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.edge'), target: '_blank')
+        - else
+          .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.edge'), target: '_blank')

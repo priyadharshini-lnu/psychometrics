@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:identify]
+  skip_before_action :authenticate_user!, only: %I[identify upgrade]
+  before_action :detect_browser, only: :upgrade
 
   def survey_instructions
     render layout: 'users_new'
@@ -32,6 +33,13 @@ class HomeController < ApplicationController
     redirect_to(redirect_url)
   end
 
+  # Browser upgrade notification
+  def upgrade
+    redirect_to root_path && return if @browser_detections.supported_browser?
+
+    render layout: 'devise'
+  end
+
   private
 
   def redirect_to_return_url(type)
@@ -44,5 +52,10 @@ class HomeController < ApplicationController
     redirect_to uri.to_s
   rescue URI::InvalidURIError
     redirect_to(root_path)
+  end
+
+  def detect_browser
+    browser = Browser.new(request.user_agent)
+    @browser_detections = BrowserDetector.new(Settings.browsers).detect(browser)
   end
 end
