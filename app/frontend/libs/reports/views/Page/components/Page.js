@@ -33,7 +33,9 @@ class Page extends Component {
     if (module.props.showOnAllPages) { return null }
     const model = new ModuleModel(module, page)
     const View = Modules[module.type]
-    return !model.removed && <View key={i} module={model} page={page} />
+
+    // NOTE: @fedor temporary kept update for connects
+    return !model.removed && <View key={i} module={model} page={page} update={{}} />
   }
 
   renderShadowModule = (module, i) => {

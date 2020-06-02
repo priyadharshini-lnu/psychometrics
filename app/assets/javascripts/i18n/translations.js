@@ -73,6 +73,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -618,6 +622,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -1160,6 +1168,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",

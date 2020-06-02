@@ -32,6 +32,7 @@ class VideoRecorder extends Component {
       percent: {},
       key: 'player',
       trackingEnabled: !!fitInFrame,
+      hasMediaRecorder: true,
     }
   }
 
@@ -189,7 +190,11 @@ class VideoRecorder extends Component {
   initRecorder () {
     const { maxDuration, model, markQuestionInProgress } = this.props
 
-    this.setState({ recordingState: 'initialized', key: 'record' }, () => {
+    this.setState({
+      recordingState: 'initialized',
+      key: 'record',
+      hasMediaRecorder: !(typeof window.MediaRecorder === 'undefined'),
+    }, () => {
       const options = {
         controls: true,
         fluid: true,
@@ -414,6 +419,7 @@ class VideoRecorder extends Component {
 
   renderPerm () {
     const { readOnly } = this.props
+    const { hasMediaRecorder } = this.state
 
     return (
       <div className={styles.perm}>
@@ -421,18 +427,22 @@ class VideoRecorder extends Component {
           <span className={styles.icon} />
         </div>
         <div className={styles.permText}>
-          Please allow to use camera and microphone to record audio and Video
+          {hasMediaRecorder
+            ? Watchman.I18n().t('assessments.video_response.media_recorder.success')
+            : Watchman.I18n().t('assessments.video_response.media_recorder.failure')}
         </div>
 
-        <button
-          id="btn-allow-record"
-          className={cs('btn-default', styles.btnAllowRecord)}
-          onClick={this.allowRecording}
-          disabled={readOnly}
-        >
-          <span className="mrs mls fa fa-check" aria-hidden="true" />
-          { Watchman.I18n().t('assessments.video_response.device') }
-        </button>
+        { hasMediaRecorder && (
+          <button
+            id="btn-allow-record"
+            className={cs('btn-default', styles.btnAllowRecord)}
+            onClick={this.allowRecording}
+            disabled={readOnly}
+          >
+            <span className="mrs mls fa fa-check" aria-hidden="true" />
+            { Watchman.I18n().t('assessments.video_response.device') }
+          </button>
+        )}
       </div>
     )
   }

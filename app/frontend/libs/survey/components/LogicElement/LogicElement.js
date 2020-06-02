@@ -7,19 +7,18 @@ export default class LogicElement extends Component {
   static propTypes = {
     types: PropTypes.array.isRequired,
     logic: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
   }
 
   addNewList = (condition) => {
-    const { logic: { addNewList }, onChange } = this.props
-    addNewList(condition)
-    onChange()
+    const { logic } = this.props
+    logic.addNewList(condition)
+    this.forceUpdate()
   }
 
   removeList = (list) => {
-    const { logic: { removeList }, onChange } = this.props
-    removeList(list)
-    onChange()
+    const { logic } = this.props
+    logic.removeList(list)
+    this.forceUpdate()
   }
 
   render () {

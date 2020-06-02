@@ -8,7 +8,7 @@ html.body-full-height
     = jquery_include_tag :google
     = javascript_include_tag 'application'
     = render 'layouts/favicons'
-  body data-locale="#{params[:lang] || I18n.locale}"
+  body data-locale="#{@selected_locale  || params[:lang] || I18n.locale}"
     = yield
 css:
   body[data-locale="ar"] #psychometrics_preview,

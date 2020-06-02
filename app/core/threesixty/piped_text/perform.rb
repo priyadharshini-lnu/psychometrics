@@ -54,9 +54,12 @@ module Threesixty
         }
       ].freeze
 
-      def initialize(body, context = {})
+      private_attr_reader :body, :context, :transformer
+
+      def initialize(body, context = {}, transformer = nil)
         @body = body
         @context = context || {}
+        @transformer = transformer
       end
 
       # rubocop:disable Lint/AmbiguousRegexpLiteral, Lint/UriEscapeUnescape
@@ -69,9 +72,12 @@ module Threesixty
             branch = lookup_branch(match)
             if valid_branch?(branch)
               path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
-              branch[:class_name].constantize.call!(
+              value = branch[:class_name].constantize.call!(
                 path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context
               )
+              next transformer.call(value) if transformer
+
+              value
             else
               ''
             end
@@ -92,10 +98,6 @@ module Threesixty
 
         branch[:required_context].all? { |key| context[key] }
       end
-
-      private
-
-      attr_reader :body, :context
     end
   end
 end

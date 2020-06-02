@@ -4701,6 +4701,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -4786,6 +4790,27 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "browsers": {
+    "chrome": "Google Chrome",
+    "download": {
+      "chrome": "https://www.google.com/chrome/",
+      "edge": "https://www.microsoft.com/en-us/edge",
+      "firefox": "https://www.mozilla.org/en-US/firefox/new/",
+      "instruction": "Download",
+      "safari": "https://www.apple.com/safari/"
+    },
+    "edge": "Microsoft Edge",
+    "firefox": "Mozilla Firefox",
+    "safari": "Apple Safari",
+    "support": {
+      "instruction": "Please download and use any of the following browsers.",
+      "message": "The browser you are using is not supported by Lighthouse."
+    },
+    "upgrade": {
+      "instruction": "Upgrade Now",
+      "message": "Please use latest version of the browsers"
     }
   },
   "checking_wizard": {
@@ -11451,6 +11476,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -11536,6 +11565,27 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "browsers": {
+    "chrome": "Google Chrome",
+    "download": {
+      "chrome": "https://www.google.com/chrome/",
+      "edge": "https://www.microsoft.com/en-us/edge",
+      "firefox": "https://www.mozilla.org/en-US/firefox/new/",
+      "instruction": "Download",
+      "safari": "https://www.apple.com/safari/"
+    },
+    "edge": "Microsoft Edge",
+    "firefox": "Mozilla Firefox",
+    "safari": "Apple Safari",
+    "support": {
+      "instruction": "Please download and use any of the following browsers.",
+      "message": "The browser you are using is not supported by Lighthouse."
+    },
+    "upgrade": {
+      "instruction": "Upgrade Now",
+      "message": "Please use latest version of the browsers"
     }
   },
   "checking_wizard": {
@@ -18194,6 +18244,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -18279,6 +18333,27 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "load_results": "Load Results: %{report}",
       "processing": "Processing...",
       "results": "Results"
+    }
+  },
+  "browsers": {
+    "chrome": "Google Chrome",
+    "download": {
+      "chrome": "https://www.google.com/chrome/",
+      "edge": "https://www.microsoft.com/en-us/edge",
+      "firefox": "https://www.mozilla.org/en-US/firefox/new/",
+      "instruction": "Download",
+      "safari": "https://www.apple.com/safari/"
+    },
+    "edge": "Microsoft Edge",
+    "firefox": "Mozilla Firefox",
+    "safari": "Apple Safari",
+    "support": {
+      "instruction": "Please download and use any of the following browsers.",
+      "message": "The browser you are using is not supported by Lighthouse."
+    },
+    "upgrade": {
+      "instruction": "Upgrade Now",
+      "message": "Please use latest version of the browsers"
     }
   },
   "checking_wizard": {

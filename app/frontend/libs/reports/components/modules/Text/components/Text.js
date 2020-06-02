@@ -2,6 +2,7 @@
 /* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import React, { Component } from 'react'
+import cs from 'classnames'
 import PropTypes from 'prop-types'
 import Foundation from 'rb/components/Foundation'
 import store from 'rb/store/PageList'
@@ -45,8 +46,8 @@ class Text extends Component {
       module, preview, openRichEditor, closeRichEditor, richEditorOpened,
     } = this.props
     if (!preview) {
-      if (_.find(store.selected, module) && this.edit) {
-        if (this.editor) {
+      if (_.find(store.selected, { id: module.id }) && this.edit) {
+        if (this.editor && !richEditorOpened) {
           openRichEditor()
         }
       } else if (this.editor && this.edit && !richEditorOpened) {
@@ -200,7 +201,7 @@ class Text extends Component {
         return (
           <div
             ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
+            className={cs(styles.editor, 'ltr')}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
