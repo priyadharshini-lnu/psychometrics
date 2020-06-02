@@ -162,7 +162,10 @@ const HANDLERS = {
   }),
   [SAVE_RESULTS]: (state, { response: { expired, currentBlock } }) => {
     const blocks = setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
-    return { ...state, end: expired || state.end, blocks }
+    const end = expired || state.end
+    return end ? {
+      ...state, end, blocks, currentElement: null, currentPage: null,
+    } : { ...state, end, blocks }
   },
   [UPDATE_HIGHLIGHT_REQUEST]: (state, { payload }) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)

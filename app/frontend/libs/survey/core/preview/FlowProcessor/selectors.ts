@@ -188,12 +188,12 @@ export const getPossibleQuestionsCount = (state): number => {
   return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
 }
 
-
 export const getProgress = (state): number => {
   const prevQuestions = getPrevQuestionsCount(state)
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
 }
+
 export const getHighlightByType = ({ preview },
   id: number,
   type: string): object => _.find(preview.highlights,
