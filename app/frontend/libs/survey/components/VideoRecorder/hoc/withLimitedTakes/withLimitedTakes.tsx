@@ -5,11 +5,12 @@ import { CheckOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
 import RecordButton from 'components/AudioRecorder/MediaButtons/RecordButton'
 import { InProgressQuestion } from 'core/preview/FlowProcessor/interfaces'
+import Watchman from 'libs/survey/store/StoreWatchman'
 import MultipleTakeButtons from './MultipleTakeButtons'
 import styles from './styles.scss'
 
 interface Props {
-  onSuccessUpload(object): void
+  onSuccessUpload(answer: Answer, { shouldSaveCurrentPage: boolean }): void
   saveCurrentPage(): void
   model: {
     id: number
@@ -27,6 +28,7 @@ interface Props {
 export interface Answer {
   take_no: number
   user_selected: boolean
+  media_id: number
 }
 
 const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) => (props: Props) => {
@@ -55,17 +57,26 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
   }
 
   const handleOnSuccessUpload = (data) => {
-    onSuccessUpload && onSuccessUpload({ ...data, takeNo: currentTakeNo })
+    onSuccessUpload
+      && onSuccessUpload({ ...data, takeNo: currentTakeNo }, { shouldSaveCurrentPage: currentTakeNo !== 1 })
 
     // First take is always marked as user selected. User can change it after recording second video
-    if (currentTakeNo === 1) { handleUserSelectedTake() }
+    if (currentTakeNo === 1) { handleUserSelectedTake(data.id) }
   }
 
-  const handleUserSelectedTake = () => {
+  const handleUserSelectedTake = (mediaId: number) => {
     const { mediaUrl, saveCurrentPage } = props
     result.moduleResult.userSelectedTake(currentTakeNo)
     setTimeout(() => saveCurrentPage(), 200)
-    axios.put(`${mediaUrl}/mark_as_user_selected_take`, { take_no: currentTakeNo })
+    axios.put(
+      `${mediaUrl}/mark_as_user_selected_take`,
+      { take_no: currentTakeNo, media_id: mediaId },
+      {
+        headers: {
+          'X-CSRF-Token': (document.querySelector('meta[name="csrf-token"]') as Element).getAttribute('content'),
+        },
+      },
+    )
   }
 
   const renderWrappedComponent = () => (
@@ -103,16 +114,21 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
           {showRetakes && (
           <div onClick={() => setCurrentTakeNo(completedTakes + 1)} className={styles.retakeBtn}>
             <RecordButton className={styles.recordBtnContainer} recordButtonClass={styles.recordBtn} />
-            Retake
+            {Watchman.I18n().t('assessments.video_response.retake')}
           </div>
           )}
         </div>
         <div className="text-align-r">
           {completedTakes > 1 && !currentTakeIsSelected
             && (
-            <ColoredButton type="primary" className={styles.allowButton} color="green" onClick={handleUserSelectedTake}>
+            <ColoredButton
+              type="primary"
+              className={styles.allowButton}
+              color="green"
+              onClick={() => handleUserSelectedTake(currentTakeDetails.media_id)}
+            >
               <CheckOutlined />
-              Use This
+              {Watchman.I18n().t('assessments.video_response.use_this')}
             </ColoredButton>
             )}
           {completedTakes > 1 && currentTakeIsSelected
@@ -120,7 +136,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
             <div className={styles.inUse}>
               <CheckOutlined />
               {' '}
-              In Use
+              {Watchman.I18n().t('assessments.video_response.selected')}
             </div>
             )}
         </div>

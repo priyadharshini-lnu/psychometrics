@@ -73,16 +73,19 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving...",
+      "selected": "Selected",
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
-      }
+      },
+      "use_this": "Use This"
     },
     "wait": "Wait"
   },
@@ -615,16 +618,19 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving...",
+      "selected": "Selected",
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
-      }
+      },
+      "use_this": "Use This"
     },
     "wait": "Wait"
   },
@@ -1154,16 +1160,19 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
       "saving": "Saving...",
+      "selected": "Selected",
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
-      }
+      },
+      "use_this": "Use This"
     },
     "wait": "Wait"
   },

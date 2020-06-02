@@ -42,7 +42,7 @@ export class Properties extends Component {
     this.update()
   }
 
-  changmaxTakes = (e) => {
+  changeMaxTakes = (e) => {
     const { model } = this.props
     const maxTakes = parseInt(e.currentTarget.value, 10)
     model.changeProps({ maxTakes })
@@ -92,7 +92,7 @@ export class Properties extends Component {
     return (
       <div className={styles.fieldset} style={{ position: 'relative' }}>
         <span className={styles.label}>Number of takes</span>
-        <select className="form-control" value={model.props.maxTakes} onChange={this.changmaxTakes}>
+        <select className="form-control" value={model.props.maxTakes} onChange={this.changeMaxTakes}>
           <option value={null}>No Restriction</option>
           {_.times(5, takeNo => (<option key={takeNo} value={takeNo + 1}>{takeNo + 1}</option>))}
         </select>

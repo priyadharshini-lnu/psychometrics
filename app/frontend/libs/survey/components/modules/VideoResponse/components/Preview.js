@@ -21,10 +21,11 @@ export class Preview extends Component {
     }
   }
 
-  successUpload = (data) => {
+  successUpload = (data, options = { shouldSaveCurrentPage: true }) => {
     const { model, saveCurrentPage } = this.props
+    const { shouldSaveCurrentPage } = options
     model.result.answer(data.asset.url, data.id, data.takeNo)
-    setTimeout(() => saveCurrentPage(), 300)
+    if (shouldSaveCurrentPage) { setTimeout(() => saveCurrentPage(), 300) }
   }
 
   deleteMedia = () => {
