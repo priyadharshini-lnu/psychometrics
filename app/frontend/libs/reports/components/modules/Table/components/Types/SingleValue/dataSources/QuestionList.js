@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import Select from 'react-select'
 import React from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
@@ -33,7 +32,7 @@ export default function QuestionList ({ model, onChange, questions }) {
       <div className="mtm">
         Question
         <Select
-          value={filteredQuestions.find(q => q.id === store.model.props.questionId)}
+          value={filteredQuestions.find(q => q.id === model.props.questionId)}
           options={filteredQuestions}
           getOptionValue={opt => opt.id}
           getOptionLabel={opt => opt.name}
@@ -47,7 +46,7 @@ export default function QuestionList ({ model, onChange, questions }) {
         <div className="mtm">
           Question Choices
           <Select
-            value={getValue(getChoices(), store.model.props.questionChoiceIds)}
+            value={getValue(getChoices(), model.props.questionChoiceIds)}
             options={getChoices()}
             getOptionValue={opt => opt.value}
             isClearable={false}
