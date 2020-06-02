@@ -65,8 +65,7 @@ class Tracker extends Component {
     const { isTracking, showOverlay } = this.state
     if (!isTracking) return
 
-    const yes_or_no = isTracking || showOverlay
-    this.setState({ showOverlay: yes_or_no, visibleMessages: ['frame'] })
+    this.setState({ showOverlay, visibleMessages: ['frame'] })
   }, 2000, { maxWait: 2000 })
 
   setupBoundingBox () {
