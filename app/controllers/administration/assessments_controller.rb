@@ -54,7 +54,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def assessments
-    render json: Assessment.pluck(:id, :name).map { |id, name| { id: id, name: name } }
+    render json: Assessment.where(archived: false).pluck(:id, :name).map { |id, name| { id: id, name: name } }
   end
 
   def questions
