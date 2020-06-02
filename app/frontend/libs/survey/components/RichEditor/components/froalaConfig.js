@@ -14,7 +14,7 @@ export default {
   pluginsEnabled: [
     'lists', 'image', 'link', 'fontFamily',
     'fontSize', 'colors', 'paragraphFormat',
-    'align', 'quote', 'table', 'video', 'embedMedia', 'codeView'],
+    'align', 'quote', 'table', 'video', 'embedMedia', 'codeView', 'audio'],
   toolbarButtons: [
     'pipedText',
     'fontFamily',
@@ -45,6 +45,7 @@ export default {
     'redo',
     'insertVideo',
     'embedMedia',
+    'insertAudio',
     'html',
   ],
   // saveParams: { type },
