@@ -4,7 +4,7 @@ import I18nStore from 'rb/store/I18nStore'
 import styles from './styles.scss'
 
 const NUMBER_HEADER = 'RATING'
-const TEXT_HEADER = 'LEARNING PATHWAYS'
+const TEXT_HEADER = 'HEADING'
 
 export default function Header ({ model, preview, update }) {
   const updateHeader = (text, name) => {

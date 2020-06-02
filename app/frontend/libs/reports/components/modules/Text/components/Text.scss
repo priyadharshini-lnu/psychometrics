@@ -41,14 +41,18 @@
   flex-direction: column;
   flex: 1;
   padding: 0;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: #0202021c 0 0 5px;
+  margin: 5px;
+  border: 1px solid #0202021c;
   ol, li {
     display: flex;
     flex: 1;
     padding: 0px;
-    border: 1px solid #ccc;
-    border-bottom: 0px;
-    &:last-child {
-      border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #0202021c;
+    &:first-child, &:last-child {
+      border-bottom: 0;
     }
   }
 }
