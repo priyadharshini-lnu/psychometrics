@@ -335,7 +335,6 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
-    this.promisesArray = []
     axios.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
@@ -347,7 +346,15 @@ class VideoRecorder extends Component {
       {
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       },
-    ).then(({ data }) => this.handleRecordingSaved(data))
+    ).then(({ data }) => {
+      this.handleRecordingSaved(data)
+      this.resetMultipartUpload()
+    })
+  }
+
+  resetMultipartUpload = () => {
+    this.batches = null
+    this.promisesArray = []
   }
 
   handleRecordingSaved = (data) => {
