@@ -122,4 +122,9 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [
     %r{https?:\/\/.+\.#{Settings.domain}}, %r{https?:\/\/#{Settings.domain}}
   ]
+
+  if ENV['GOOGLE_ANALYTICS_ID'].present?
+    config.staccato.tracker_id = ENV['GOOGLE_ANALYTICS_ID']
+    config.staccato.hostname = Settings.domain
+  end
 end
