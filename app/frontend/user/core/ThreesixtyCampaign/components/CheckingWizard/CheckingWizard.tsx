@@ -5,6 +5,7 @@ import {
 import cs from 'classnames'
 import { useMedia } from 'user/rootHooks'
 import routeUtils from 'utils/routeUtils'
+import { Checks, Config } from 'user/core/checkingWizard/interfaces'
 import styles from './styles.scss'
 import SystemCheck from './SystemCheck'
 import NetworkCheck from './NetworkCheck'
@@ -16,24 +17,12 @@ const { I18n } = window
 
 const { Content } = Layout
 
-interface Checks {
-  video: boolean
-  audio: boolean
-  network: boolean
-}
-
 const STEPS = [
   {
     key: 'system',
     component: SystemCheck,
     title: 'checking_wizard.steps.system_check',
     when: () => true,
-  },
-  {
-    key: 'network',
-    component: NetworkCheck,
-    title: 'checking_wizard.steps.network_check',
-    when: ({ network }) => network,
   },
   {
     key: 'video',
@@ -47,11 +36,18 @@ const STEPS = [
     title: 'checking_wizard.steps.audio_check',
     when: ({ audio }) => audio,
   },
+  {
+    key: 'network',
+    component: NetworkCheck,
+    title: 'checking_wizard.steps.network_check',
+    when: ({ network }) => network,
+  },
 ]
 
 
 interface Props {
   checks: Checks
+  config: Config
   url?: string
   history?: object
   campaignId?: number
@@ -61,7 +57,7 @@ interface Props {
 }
 
 const CheckingWizard: React.FC<Props> = ({
-  url, checks, fetch, match: { params }, history, campaignId, id,
+  url, checks, config, fetch, match: { params }, history, campaignId, id,
 }) => {
   useEffect(() => {
     fetch(params.assessmentId, params.id)
@@ -123,7 +119,7 @@ const CheckingWizard: React.FC<Props> = ({
           <Row justify="center">
             <Col xs={24} xl={20}>
               <Row gutter={12} className="m16">
-                <CurrentCheck nextStep={nextStep} />
+                <CurrentCheck nextStep={nextStep} config={config} />
               </Row>
             </Col>
 

@@ -7,6 +7,7 @@ en:
       audio_check: Microphone Test
     system_check:
       title: Before starting this assessment, your system needs to undergo some checks.
+      start: Start
       continue: Continue
     network_check:
       title: Click start to begin internet speed test.
@@ -18,6 +19,14 @@ en:
       please_check_connection: Please check your Internet Connection
       run_again_title: And run this test again
       run_again: Run again
+      network: Network
+      levels:
+        0: Network broken (reconnecting)
+        1: Very bad network
+        2: Bad network
+        3: Average network
+        4: Good network
+        5: Very good network
     video_check:
       title: We need to ensure your system can record the video
       allow_title: Please allow to use camera to record Video
@@ -27,6 +36,8 @@ en:
       face_detection: Face detection
       ambient_light: Ambient Light
       continue: Continue
+      run_again: Run again
+      access_help: "Click here for help."
     audio_check:
       title: We need to ensure your system can record audio.
       allow_title: Please allow to use microphone to record audio
@@ -36,7 +47,8 @@ en:
       processing: Processing
       access: Access
       speech_detection: Speech detection
-      finish: Finish
+      continue: Continue
+      run_again: Run again
     success:
       title: You have successfully completed all checks.
       start: Start assessment

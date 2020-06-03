@@ -71,7 +71,7 @@ function EvaluationList ({
     || item.assessmentExtra.enableVideoCheck === '1'
 
   const getPath = (item) => {
-    if (isWizardRequired(item)) return `/system-checks/${item.assessmentId}/${item.id}`
+    if (isWizardRequired(item)) return `/system_checks/${item.assessmentId}/${item.id}`
     return `/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
   }
 

@@ -9,7 +9,7 @@ import CheckingWizard from './components/CheckingWizard'
 
 const routes = [
   {
-    path: '/system-checks/:assessmentId/:id',
+    path: '/system_checks/:assessmentId/:id',
     main: CheckingWizard,
     exact: true,
   },

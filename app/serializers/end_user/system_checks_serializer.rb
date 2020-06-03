@@ -3,7 +3,7 @@
 module EndUser
   class SystemChecksSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :url, :checks, :id
+    attributes :url, :checks, :id, :config
     attribute :campaign_id, if: -> { object.assessment.threesixty? }
     attribute :url, unless: -> { object.assessment.threesixty? }
 
@@ -20,6 +20,13 @@ module EndUser
         video: object.assessment.extra['enable_video_check'] == '1',
         audio: object.assessment.extra['enable_audio_check'] == '1',
         network: object.assessment.extra['enable_network_check'] == '1'
+      }
+    end
+
+    def config
+      {
+        network: Settings.checking_wizard.network.to_h,
+        speed_of_me_api_token: Settings.checking_wizard.speed_of_me_api_token
       }
     end
   end

@@ -124,5 +124,6 @@ export interface I18nInterface {
 declare global {
   interface Window {
     I18n: any;
+    SomApi: any;
   }
 }

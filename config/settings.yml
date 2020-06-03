@@ -997,6 +997,7 @@ providers:
               name: Completion_Time
               type: Percentile Scale
 checking_wizard:
+  speed_of_me_api_token: <%= ENV.fetch('SPEED_OF_ME_API_TOKEN', '') %>
   network:
-    upload: <%= ENV.fetch('MIN_NETWORK_UPLOAD', 20).to_i %>
-    download: <%= ENV.fetch('MIN_NETWORK_DOWNLOAD', 20).to_i %>
+    upload: <%= ENV.fetch('MIN_NETWORK_UPLOAD', 4).to_i %>
+    download: <%= ENV.fetch('MIN_NETWORK_DOWNLOAD', 8).to_i %>

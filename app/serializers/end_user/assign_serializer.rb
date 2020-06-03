@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
                :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :current_element, :current_page, :seedrandom, :assessment_extra, :config, :assessment_id
+               :current_element, :current_page, :seedrandom, :assessment_extra, :assessment_id
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
     attribute :need_confirm
@@ -88,12 +88,6 @@ module EndUser
 
     def assessment_category
       object.assessment.category
-    end
-
-    def config
-      {
-        network: Settings.checking_wizard.network.to_h
-      }
     end
 
     private

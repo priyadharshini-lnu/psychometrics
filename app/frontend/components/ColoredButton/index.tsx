@@ -18,6 +18,10 @@ interface Props extends ButtonProps {
   children: React.ReactNode,
 }
 
+const COLORS = {
+  green: '#2CBE4F',
+  grey: 'grey',
+}
 export default function ColoredButton (props: Props) {
   const {
     children, className, color, ...passedButtonProps
@@ -26,7 +30,7 @@ export default function ColoredButton (props: Props) {
 
   const passedStyles = buttonProps.style || {}
   const newButtonStyles = {
-    ...buttonProps, backgroundColor: color, borderColor: color, color: 'white',
+    ...buttonProps, backgroundColor: COLORS[color], borderColor: COLORS[color], color: 'white',
   }
 
   buttonProps.style = { ...passedStyles, ...newButtonStyles }

@@ -11,7 +11,7 @@ import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 import project from './core/temp/project'
 import extras from './core/extras'
-import temp from './core/temp'
+import checkingWizard from './core/checkingWizard'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -28,7 +28,7 @@ export default combineReducers({
     }),
   }),
   extras,
-  temp,
   preview,
   report: combineReducers({ builder: reportBuilder }),
+  checkingWizard,
 })

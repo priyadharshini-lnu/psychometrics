@@ -4818,8 +4818,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "access": "Access",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
-      "finish": "Finish",
+      "continue": "Continue",
       "processing": "Processing",
+      "run_again": "Run again",
       "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
       "test_message": "Hi, Its great to speak with you",
@@ -4828,6 +4829,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "network_check": {
       "continue": "Continue",
       "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
       "please_check_connection": "Please check your Internet Connection",
       "processing": "Processing",
       "run_again": "Run again",
@@ -4848,16 +4858,19 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "system_check": {
       "continue": "Continue",
+      "start": "Start",
       "title": "Before starting this assessment, your system needs to undergo some checks."
     },
     "video_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use camera to record Video",
       "ambient_light": "Ambient Light",
       "continue": "Continue",
       "face_detection": "Face detection",
       "processing": "Processing",
+      "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
   },
@@ -11593,8 +11606,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "access": "Access",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
-      "finish": "Finish",
+      "continue": "Continue",
       "processing": "Processing",
+      "run_again": "Run again",
       "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
       "test_message": "Hi, Its great to speak with you",
@@ -11603,6 +11617,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "network_check": {
       "continue": "Continue",
       "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
       "please_check_connection": "Please check your Internet Connection",
       "processing": "Processing",
       "run_again": "Run again",
@@ -11623,16 +11646,19 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "system_check": {
       "continue": "Continue",
+      "start": "Start",
       "title": "Before starting this assessment, your system needs to undergo some checks."
     },
     "video_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use camera to record Video",
       "ambient_light": "Ambient Light",
       "continue": "Continue",
       "face_detection": "Face detection",
       "processing": "Processing",
+      "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
   },
@@ -18361,8 +18387,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "access": "Access",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
-      "finish": "Finish",
+      "continue": "Continue",
       "processing": "Processing",
+      "run_again": "Run again",
       "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
       "test_message": "Hi, Its great to speak with you",
@@ -18371,6 +18398,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "network_check": {
       "continue": "Continue",
       "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
       "please_check_connection": "Please check your Internet Connection",
       "processing": "Processing",
       "run_again": "Run again",
@@ -18391,16 +18427,19 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "system_check": {
       "continue": "Continue",
+      "start": "Start",
       "title": "Before starting this assessment, your system needs to undergo some checks."
     },
     "video_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use camera to record Video",
       "ambient_light": "Ambient Light",
       "continue": "Continue",
       "face_detection": "Face detection",
       "processing": "Processing",
+      "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
   },

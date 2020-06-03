@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Button, Card, Col,
 } from 'antd'
+import { Config } from 'user/core/checkingWizard/interfaces'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
 import styles from './styles.scss'
@@ -15,6 +16,7 @@ const { I18n } = window
 
 interface Props {
   nextStep: () => void
+  config: Config
 }
 
 const AudioCheck: React.FC<Props> = ({ nextStep }) => (
@@ -47,7 +49,7 @@ const AudioCheck: React.FC<Props> = ({ nextStep }) => (
           ]}
         />
         <Button type="primary" className={styles.continueButton} onClick={nextStep}>
-          {I18n.t('checking_wizard.audio_check.finish')}
+          {I18n.t('checking_wizard.audio_check.continue')}
           <RightOutlined />
         </Button>
       </Card>

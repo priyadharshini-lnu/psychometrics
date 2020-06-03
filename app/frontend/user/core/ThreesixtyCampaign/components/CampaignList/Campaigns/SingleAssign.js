@@ -125,7 +125,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
   }
 
   const loadAssessmentOrCheckingWizard = () => {
-    if (isWizardRequired()) return routeUtils.moveTo(history, '', `/system-checks/${assign.assessmentId}/${assign.id}`)
+    if (isWizardRequired()) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
     return loadAssessment(assign)
   }
 
