@@ -14,6 +14,7 @@ gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 4.3.3'
 gem 'rails',                      '~> 5.1.7'
 gem 'sassc-rails', '~> 2.1.2'
+gem 'staccato-rails'
 gem 'uglifier', '~> 3.0.2'
 
 source 'https://rails-assets.org/' do
