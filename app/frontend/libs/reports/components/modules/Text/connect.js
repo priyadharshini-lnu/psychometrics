@@ -6,7 +6,7 @@ import { getQuestions } from 'libs/reports/core/builder/selectors'
 export default connect(
   (state, { module, model }) => ({
     richEditorOpened: state.report.builder.richEditorOpened,
-    questions: getQuestions(state.report, (module || model).assessment_id) || {},
+    questions: state.report.builder.loaded ? getQuestions(state.report, (module || model).assessment_id) || {} : {},
   }),
   {
     openConditionalText: data => openModal('conditionalText', data),

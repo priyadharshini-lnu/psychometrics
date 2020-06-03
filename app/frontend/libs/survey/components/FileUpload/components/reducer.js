@@ -5,6 +5,7 @@ export const initialState = {
   file: null,
   uploadState: UPLOAD_STATES.READY,
   errorCodes: [],
+  errorMessages: [],
   percent: 0,
 }
 
@@ -30,7 +31,10 @@ const HANDLERS = {
   [REMOVE_FILE]: state => ({
     ...state, file: null, uploadState: UPLOAD_STATES.READY, errorCodes: [],
   }),
-  [SET_ERRORS]: (state, { payload: { errorCodes } }) => ({ ...state, errorCodes, uploadState: UPLOAD_STATES.ERROR }),
+  [SET_ERRORS]: (state, { payload: { errorCodes, errorMessages } }) => (
+    {
+      ...state, errorCodes: errorCodes || [], errorMessages: errorMessages || [], uploadState: UPLOAD_STATES.ERROR,
+    }),
   [SET_PERCENTAGE]: (state, { payload: { percent } }) => ({ ...state, percent }),
 }
 

@@ -50,8 +50,8 @@ export default function FileUpload ({
   }
 
   const validateFile = (file) => {
-    const { props: { maxFileSize } } = model
-    const errorCodes = FileValidation.run(file, allowedMimeTypes(), maxFileSize)
+    const { props: { maxFileSize, allowedFileTypes } } = model
+    const errorCodes = FileValidation.run(file, allowedFileTypes, maxFileSize)
 
     const valid = _.isEmpty(errorCodes)
 
@@ -96,7 +96,7 @@ export default function FileUpload ({
   }
 
   const {
-    uploadState, file, percent, errorCodes, errorMessage,
+    uploadState, file, percent, errorCodes, errorMessages,
   } = state
   const answer = result.answers[0]
   const showProgress = uploadState === UPLOAD_STATES.SAVING
@@ -104,7 +104,7 @@ export default function FileUpload ({
 
   return (
     <div>
-      {showError && <ErrorList errorCodes={errorCodes} errorMessage={errorMessage} errorProps={model.props} />}
+      {showError && <ErrorList errorCodes={errorCodes} errorMessages={errorMessages} errorProps={model.props} />}
       {uploadState !== UPLOAD_STATES.SAVED && (
       <>
         <Upload

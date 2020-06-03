@@ -37,7 +37,7 @@ export default function Assign ({
   progress,
 }) {
   useEffect(() => {
-    const { edit } = qs.parse(location.search)
+    const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.assignId, edit)
   }, [])
   // TODO: Fix by creating a setting for list of rtl languages

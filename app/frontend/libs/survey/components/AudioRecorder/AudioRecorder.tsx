@@ -186,7 +186,6 @@ const AudioRecorder: React.FC<Props> = ({
 
   const discardRecording = (): void => {
     dispatch(removeFile())
-    removeQuestionInProgress(model.id)
     if (result && result.answers.length > 0) {
       const mediaId = result.answers[0].media_id
       if (mediaId) {
@@ -194,6 +193,8 @@ const AudioRecorder: React.FC<Props> = ({
           onRecordingDiscard && onRecordingDiscard()
         })
       }
+    } else {
+      removeQuestionInProgress(model.id)
     }
     initRecorder()
   }

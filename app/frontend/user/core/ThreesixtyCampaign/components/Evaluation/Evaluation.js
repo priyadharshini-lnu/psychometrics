@@ -46,7 +46,7 @@ export default function Evaluation ({
   const assessmentRef = React.createRef()
   const {
     edit, step, approve_evaluation, lang,
-  } = qs.parse(location.search)
+  } = qs.parse(location.search.substr(1))
 
   useEffect(() => {
     fetchAssessment(params.campaignId, params.id, {

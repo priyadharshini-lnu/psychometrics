@@ -5,7 +5,7 @@ import qs from 'qs'
 
 export default function Language ({ selectedLanguage, availableTranslations }) {
   const handleLanguageChange = ({ key }) => {
-    const query = qs.parse(location.search)
+    const query = qs.parse(location.search.substr(1))
     query.lang = key
     window.location.search = qs.stringify(query)
   }

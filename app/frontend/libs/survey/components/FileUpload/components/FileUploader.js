@@ -58,7 +58,7 @@ const onUploadDone = (media, data, context) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     onSuccessUpload(data)
   }).fail((data) => {
-    dispatch({ type: SET_ERRORS, payload: { errorCodes: [data.responseJSON.error_message] } })
+    dispatch({ type: SET_ERRORS, payload: { errorMessages: [data.responseJSON.error_message] } })
   })
 }
 
