@@ -23,11 +23,11 @@ module Threesixty
           def styles
             width = params['w'] || DEFAULT_WIDTH
             height = params['h'] || DEFAULT_HEIGHT
-            "width: #{width}; height: #{height};"
+            "width: #{width}; height: #{height}; background: black; border: none;"
           end
 
           def src(file_path)
-            "https://docs.google.com/gview?url=#{file_path}&embedded=true"
+            "https://docs.google.com/viewer?url=#{file_path}&embedded=true"
           end
 
           def valid_file_path?(file_path)
