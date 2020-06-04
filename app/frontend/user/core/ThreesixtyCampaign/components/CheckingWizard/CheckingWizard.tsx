@@ -65,7 +65,6 @@ const CheckingWizard: React.FC<Props> = ({
 
   const [current, setCurrent] = useState(0)
   const [finish, setFinish] = useState(false)
-  const CurrentCheck = STEPS[current].component
 
   const isMD = useMedia('md')
 
@@ -88,6 +87,8 @@ const CheckingWizard: React.FC<Props> = ({
       setFinish(true)
     }
   }
+
+  const CurrentCheck = getSteps()[current].component
 
   const getHeaderClassNames = () => {
     const steps = getSteps()
