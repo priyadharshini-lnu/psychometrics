@@ -1,3 +1,4 @@
+import mime from 'mime-types'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
 
@@ -15,6 +16,7 @@ export default FileUploader
 const uploadFile = (data, context) => {
   const { file, fileName, dispatch } = context
   const fd = new FormData()
+  fd.append('Content-Type', mime.lookup(fileName || file.name))
   fd.append('key', data.key)
   fd.append('acl', data.acl)
   fd.append('success_action_status', data.success_action_status)

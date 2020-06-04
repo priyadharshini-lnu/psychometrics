@@ -83,8 +83,8 @@ describe Threesixty::PipedText::Perform do
           'question_id' => 826
         }
       })
-      expect(response).to eq("<object style='width: 50%; height: 500px; background: black; border: none;'\
- data='https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf'></object>")
+      expect(response).to eq('<object style="width: 50%; height: 500px; background: black; border: none;"'\
+        ' data="https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>')
     end
 
     it 'empty if error occure' do
