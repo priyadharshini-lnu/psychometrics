@@ -13,8 +13,8 @@ module ApplicationHelper
     params[:lang] || I18n.locale
   end
 
-  def detect_browser(ua)
-    browser = Browser.new(ua)
+  def detect_browser(user_agent)
+    browser = Browser.new(user_agent)
     platform = browser.platform.id
     settings = Settings.browser_requirements.platforms[platform.to_sym] || Settings.browser_requirements.default
 
