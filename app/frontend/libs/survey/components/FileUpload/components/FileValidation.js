@@ -6,7 +6,6 @@ export default {
     }
 
     const extension = file.name.split('.').pop()
-    allowedFileTypes = _.includes(allowedFileTypes, 'jpg') ? [...allowedFileTypes, 'jpeg'] : allowedFileTypes
     if (!_.includes(allowedFileTypes, extension)) {
       errorCodes.push('WrongFileType')
     }

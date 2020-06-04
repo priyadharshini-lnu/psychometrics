@@ -5,7 +5,6 @@ import {
   Upload, Button, Progress,
 } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import mime from 'mime-types'
 import api from 'middleware/api'
 import ErrorList from './ErrorList'
 import FileDetails from './FileDetails'
@@ -44,14 +43,14 @@ export default function FileUpload ({
     uploadFile(model.id, file)
   }
 
-  const allowedMimeTypes = () => {
+  const allowedFileTypes = () => {
     const { props: { allowedFileTypes } } = model
-    return allowedFileTypes.map(fileType => mime.lookup(fileType))
+    return _.includes(allowedFileTypes, 'jpg') ? [...allowedFileTypes, 'jpeg'] : allowedFileTypes
   }
 
   const validateFile = (file) => {
-    const { props: { maxFileSize, allowedFileTypes } } = model
-    const errorCodes = FileValidation.run(file, allowedFileTypes, maxFileSize)
+    const { props: { maxFileSize } } = model
+    const errorCodes = FileValidation.run(file, allowedFileTypes(), maxFileSize)
 
     const valid = _.isEmpty(errorCodes)
 
@@ -101,6 +100,7 @@ export default function FileUpload ({
   const answer = result.answers[0]
   const showProgress = uploadState === UPLOAD_STATES.SAVING
   const showError = uploadState === UPLOAD_STATES.ERROR
+  const fileExtension = _.map(allowedFileTypes(), extension => `.${extension}`)
 
   return (
     <div>
@@ -108,7 +108,7 @@ export default function FileUpload ({
       {uploadState !== UPLOAD_STATES.SAVED && (
       <>
         <Upload
-          accept={_.join(allowedMimeTypes(), ',')}
+          accept={_.join(fileExtension, ',')}
           customRequest={() => {}}
           fileList={[]}
           onChange={handleFileChange}

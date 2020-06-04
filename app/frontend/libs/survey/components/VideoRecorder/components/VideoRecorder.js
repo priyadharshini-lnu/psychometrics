@@ -19,7 +19,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 
 const { $ } = window
-const UPLOAD_CHUNK_SIZE = 5.5
+const UPLOAD_CHUNK_SIZE = 5.1
 
 class VideoRecorder extends Component {
   constructor (props) {
@@ -309,9 +309,9 @@ class VideoRecorder extends Component {
     const lastBatch = this.batches[this.batches.length - 1]
     const batchedBlobs = this.player.recordedData.slice(lastBatch.firstIndex, totalSlices)
     const sizeInBytes = _.sum(_.map(batchedBlobs, a => a.size))
-    const sizeInMB = sizeInBytes / 1024 / 1024
+    const sizeInMB = sizeInBytes / 1000 / 1000
     lastBatch.size = sizeInBytes
-
+    lastBatch.batchedBlobs = batchedBlobs
     if (sizeInMB > UPLOAD_CHUNK_SIZE) {
       lastBatch.lastIndex = totalSlices - 1
       this.uploadFile(this.urlDetails.urls[this.batches.length - 1], this.batches.length - 1)
@@ -320,8 +320,6 @@ class VideoRecorder extends Component {
         batchedBlobs: [],
         size: 0,
       })
-    } else {
-      lastBatch.batchedBlobs = batchedBlobs
     }
   }
 
