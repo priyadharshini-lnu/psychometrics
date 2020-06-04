@@ -15,17 +15,64 @@ bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
   asset_url: <%= ENV.fetch('AGILE_ASSETS_URL', 'https://tte-static.s3.eu-west-1.amazonaws.com/interactive-assessments/') %>
-browsers:
-  supported:
-    chrome: <%= ENV.fetch('CHROME_MIN_VERSION', '">= 67"') %>
-    firefox: <%= ENV.fetch('FIREFOX_MIN_VERSION', '">= 54"') %>
-    edge: <%= ENV.fetch('EDGE_MIN_VERSION', '">= 16"') %>
-    safari: <%= ENV.fetch('SAFARI_MIN_VERSION', '">= 11.1"') %>
-    opera: <%= ENV.fetch('OPERA_MIN_VERSION', '">= 54"') %>
-  preferred:
-    chrome: <%= ENV.fetch('CHROME_MIN_VERSION', '">= 67"') %>
-    firefox: <%= ENV.fetch('FIREFOX_MIN_VERSION', '">= 54"') %>
-    edge: <%= ENV.fetch('EDGE_MIN_VERSION', '">= 16"') %>
+browser_requirements:
+  default:
+    supported:
+      chrome: ">= 67"
+      firefox: ">= 54"
+      edge: ">= 16"
+      safari: ">= 11.1"
+      opera: ">= 54"
+    preferred:
+      chrome: ">= 67"
+      firefox: ">= 54"
+      edge: ">= 16"
+  platforms:
+    ios:
+      supported:
+        chrome: ">= 67"
+        safari: ">= 11.1"
+      preferred:
+        safari: ">= 11.1"
+    android:
+      supported:
+        chrome: ">= 67"
+      preferred:
+        chrome: ">= 67"
+    mac:
+      supported:
+        chrome: ">= 67"
+        firefox: ">= 54"
+        edge: ">= 16"
+        safari: ">= 11.1"
+        opera: ">= 54"
+      preferred:
+        chrome: ">= 67"
+        firefox: ">= 54"
+        edge: ">= 16"
+    linux:
+      supported:
+        chrome: ">= 67"
+        firefox: ">= 54"
+        opera: ">= 54"
+      preferred:
+        chrome: ">= 67"
+        firefox: ">= 54"
+    chrome_os:
+      supported:
+        chrome: ">= 67"
+      preferred:
+        chrome: ">= 67"
+    windows:
+      supported:
+        chrome: ">= 67"
+        firefox: ">= 54"
+        edge: ">= 16"
+        opera: ">= 54"
+      preferred:
+        chrome: ">= 67"
+        firefox: ">= 54"
+        edge: ">= 16"
 languages:
   - es
   - fr

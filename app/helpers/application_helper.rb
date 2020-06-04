@@ -12,4 +12,12 @@ module ApplicationHelper
   def lang_param
     params[:lang] || I18n.locale
   end
+
+  def detect_browser(ua)
+    browser = Browser.new(ua)
+    platform = browser.platform.id
+    settings = Settings.browser_requirements.platforms[platform.to_sym] || Settings.browser_requirements.default
+
+    BrowserDetector.new(settings).detect(browser)
+  end
 end

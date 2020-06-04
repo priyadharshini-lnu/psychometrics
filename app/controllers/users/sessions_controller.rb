@@ -3,7 +3,7 @@
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
-    before_action :detect_browser, only: [:new]
+    before_action :perform_browser_check, only: [:new]
     after_action :redirect_to_return_url, only: [:new]
 
     private
@@ -22,9 +22,8 @@ module Users
       '/'
     end
 
-    def detect_browser
-      browser = Browser.new(request.user_agent)
-      @browser_detections = BrowserDetector.new(Settings.browsers).detect(browser)
+    def perform_browser_check
+      @browser_detections = helpers.detect_browser(request.user_agent)
 
       redirect_to upgrade_url unless @browser_detections.supported_browser?
     end

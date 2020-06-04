@@ -2,7 +2,6 @@
 
 class HomeController < ApplicationController
   skip_before_action :authenticate_user!, only: %I[identify upgrade]
-  before_action :detect_browser, only: :upgrade
 
   def survey_instructions
     render layout: 'users_new'
@@ -36,6 +35,7 @@ class HomeController < ApplicationController
   # Browser upgrade notification
   # rubocop:disable Style/AndOr
   def upgrade
+    @browser_detections = helpers.detect_browser(request.user_agent)
     redirect_to root_path and return if @browser_detections.supported_browser?
 
     render layout: 'devise'
@@ -54,10 +54,5 @@ class HomeController < ApplicationController
     redirect_to uri.to_s
   rescue URI::InvalidURIError
     redirect_to(root_path)
-  end
-
-  def detect_browser
-    browser = Browser.new(request.user_agent)
-    @browser_detections = BrowserDetector.new(Settings.browsers).detect(browser)
   end
 end
