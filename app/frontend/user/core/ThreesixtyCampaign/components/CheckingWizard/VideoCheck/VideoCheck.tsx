@@ -7,8 +7,8 @@ import * as faceapi from 'face-api.js'
 import { browserName } from 'react-device-detect'
 import ColoredButton from 'components/ColoredButton'
 import { Config } from 'user/core/checkingWizard/interfaces'
+import _ from 'lodash'
 import InitVideo from './InitVideo'
-
 import styles from './styles.scss'
 import Progress from '../Progress'
 import CheckList from '../CheckList'
@@ -93,7 +93,7 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
           <div className={styles.title}>{I18n.t('checking_wizard.video_check.title')}</div>
           <div className="position-relative">
             <video ref={videoRef} className={styles.video} />
-            {[CheckListStatus.InProgress, CheckListStatus.Failed].includes(state.access) && (
+            {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access) && (
             <div className={styles.videoOverlap}>
               <div className={styles.iconContainer}>
                 <span className={styles.icon} />
