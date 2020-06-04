@@ -34,11 +34,13 @@ class HomeController < ApplicationController
   end
 
   # Browser upgrade notification
+  # rubocop:disable Style/AndOr
   def upgrade
-    redirect_to root_path && return if @browser_detections.supported_browser?
+    redirect_to root_path and return if @browser_detections.supported_browser?
 
     render layout: 'devise'
   end
+  # rubocop:enable Style/AndOr
 
   private
 
