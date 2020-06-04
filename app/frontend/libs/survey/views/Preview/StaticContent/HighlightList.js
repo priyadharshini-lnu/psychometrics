@@ -21,7 +21,7 @@ const HighlightList = ({
 
     return () => {
       highlighter.current.dispose()
-      window.getSelection().empty()
+      window.getSelection().empty && window.getSelection().empty()
     }
   }, [])
 
