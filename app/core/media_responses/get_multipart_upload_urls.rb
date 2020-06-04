@@ -26,7 +26,8 @@ module MediaResponses
           key: key,
           upload_id: multipart_request.upload_id,
           part_number: part_number,
-          expires_in: 1800
+          expires_in: 1800,
+          use_accelerate_endpoint: Settings.aws.s3.accelerated
         )
       end
 
