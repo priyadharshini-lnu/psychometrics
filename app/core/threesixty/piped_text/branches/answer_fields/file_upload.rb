@@ -15,9 +15,9 @@ module Threesixty
             file_path = context.dig(:answers, path.second.to_s, 'answers', 0, 'value')
             if file_path && valid_file_path?(file_path)
               if get_extname(file_path).in?(PDF_EXTENSIONS)
-                broadcast :ok, "<object style='#{styles}' data='#{file_path}'></object>"
+                broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
               else
-                broadcast :ok, "<iframe style='#{styles}' src='#{src(file_path)}'></iframe>"
+                broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_path)}\"></iframe>"
               end
             else
               broadcast :ok, nil
