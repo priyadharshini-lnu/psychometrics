@@ -127,6 +127,10 @@ a {
 }
 .helpContent { padding: 25px 15px; background: #fff; border-radius: 10px; }
 
+.upgrade-message {
+  padding: 15px;
+}
+
 .browser-detections {
   display: grid;
   grid-gap: 15px;
@@ -144,15 +148,13 @@ a {
   ul.browsers {
     padding: 0;
     margin: 0;
-    list-style: none;
-
     display: grid;
-    grid-template-columns: 160px 160px 160px;
+    list-style: none;
 
     li {
       display: grid;
-      grid-template-columns: 40px 120px;
-      grid-template-areas:"icon name";
+      grid-template-columns: min-content;
+      grid-template-areas: "icon name";
       column-gap: 5px;
       font-size: 13px;
 
@@ -173,8 +175,32 @@ a {
   }
 }
 
-.upgrade-message {
-  padding: 15px;
+@media screen and (min-width: 320px) {
+  .browser-detections {
+    ul.browsers {
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
+      grid-row-gap: 1ch;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .browser-detections {
+    ul.browsers {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .browser-detections {
+    ul.browsers {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
 }
 
 @media screen and (min-width: 481px) and (max-width: 767px) {

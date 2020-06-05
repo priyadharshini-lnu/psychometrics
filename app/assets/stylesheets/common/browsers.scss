@@ -1,7 +1,6 @@
 .unsupported-browsers {
   background: #FFF;
   border-radius: 5px;
-  padding: 50px 65px;
   box-shadow: 0px 3px 6px #00000029;
 
   display: grid;
@@ -26,13 +25,11 @@
     list-style: none;
 
     display: grid;
-    row-gap: 20px;
-    column-gap: 20px;
-    grid-template-columns: 160px 160px;
+    grid-row-gap: 1ch;
+    grid-column-gap: 1ch;
 
     li {
       display: grid;
-      grid-template-columns: 40px 120px;
       grid-template-areas: "icon name";
       column-gap: 5px;
       font-size: 13px;
@@ -51,5 +48,45 @@
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .unsupported-browsers {
+    padding: 20px 10px;
+    margin: 20px 0;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 411px) {
+  .unsupported-browsers {
+    padding: 20px 20px;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 736px) {
+  .unsupported-browsers {
+    padding: 20px 30px;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .unsupported-browsers {
+    padding: 50px 60px;
   }
 }
