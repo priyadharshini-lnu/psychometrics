@@ -86,11 +86,12 @@ const HighlightList = ({
     updateHighlight(highlight, updatedHighlight)
   }
 
+  const currentHighlight = highlight.data.find(h => h.id === currentHighlightId)
   return (
     <>
-      {currentHighlightId && (
+      {currentHighlight && (
         <Palette
-          currentHighlight={highlight.data.find(h => h.id === currentHighlightId)}
+          currentHighlight={currentHighlight}
           highlighter={highlighter.current}
           removeHighlight={removeHighlight}
           updateHighlightColor={updateHighlightColor}
