@@ -49,8 +49,9 @@ const Palette = ({
     }
 
     const top = dom.offsetTop - contentRef.current.scrollTop - TOP_SHIFT
-    return { left: `${left}px`, top: `${Math.max(0, top)}px` }
+    return { left: `${left < 0 ? 0 : left}px`, top: `${Math.max(0, top)}px` }
   }
+
   return (
     <div
       className={styles.paletteTip}
