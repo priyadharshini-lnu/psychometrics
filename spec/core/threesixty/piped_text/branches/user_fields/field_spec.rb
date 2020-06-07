@@ -20,7 +20,8 @@ describe Threesixty::PipedText::Branches::UserFields::Field do
     end
 
     it do
-      response = described_class.call!(%w[Field FirstName], {}, subject: subject, threesixty_campaign: 'ddd', user: user)
+      response = described_class.call!(%w[Field FirstName], {}, subject: subject, threesixty_campaign: 'ddd',
+        user: user)
       expect(response).to eq('Vasiliy')
     end
 

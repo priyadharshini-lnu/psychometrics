@@ -41,7 +41,7 @@ describe Threesixty::PipedText::Perform do
 
     it do
       response = described_class.call('{{u:Field/Name}} ss', user: user)
-      expect(response.to match('Vasiliy Pupkin'))
+      expect(response).to match('Vasiliy Pupkin')
     end
 
     it do
