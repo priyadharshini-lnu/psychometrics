@@ -1,3 +1,4 @@
 import Preview from './Preview'
+import connect from './connect'
 
-export default Preview
+export default connect(Preview)

@@ -16,7 +16,8 @@ export class Preview extends Component {
   }
 
   render () {
-    const { localeDirection } = this.props
+    const { localeDirection, loaded } = this.props
+    if (!loaded) { return null }
     return (
       <div style={{ position: 'relative' }} className={localeDirection}>
         {PageList.list.map((page, i) => {
