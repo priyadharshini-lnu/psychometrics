@@ -6,7 +6,7 @@ export default function ResourceList ({
   assessment: { resources_content: resourcesContent },
 }) {
   return (
-    <div>
+    <div className="resource-list">
       {resourcesContent.map((resource, i) => (
         <Resource key={i} resource={resource} />
       ))}

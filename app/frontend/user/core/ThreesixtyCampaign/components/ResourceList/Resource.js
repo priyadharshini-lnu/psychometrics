@@ -26,6 +26,7 @@ function Resource ({ resource, highlight, updateHighlight }) {
         )}
       />
       <div
+        className="resource-content"
         onMouseUp={handleMouseUp}
         ref={contentRef}
         dangerouslySetInnerHTML={{ __html: resource.props.questionText }}
