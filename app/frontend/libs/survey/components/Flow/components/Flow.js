@@ -46,6 +46,7 @@ export class Flow extends Component {
       <div key={i} className={styles.node} draggable={false}>
         <FlowElement
           model={element.module}
+          index={i}
           {...this.props}
         />
       </div>

@@ -20,8 +20,8 @@ export class FlowElement extends Component {
   }
 
   addBelow = () => {
-    const { model, addElementBelow } = this.props
-    addElementBelow(model)
+    const { model, addElementBelow, index } = this.props
+    addElementBelow(model, index)
   }
 
   duplicate = () => {
@@ -66,9 +66,9 @@ export class FlowElement extends Component {
         </div>
         <div className={styles.row}>
           {this.canAddMore(model.type) && (
-          <div>
-            <ButtonNew onClick={this.addNew} />
-          </div>
+            <div>
+              <ButtonNew onClick={this.addNew} />
+            </div>
           )}
         </div>
       </div>
