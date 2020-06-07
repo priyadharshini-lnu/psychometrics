@@ -32,7 +32,11 @@ module Imports
         def self.build_email_answers(data)
           answers = {}
           Question::EMAIL_QUESTION_FIELDS.each_with_index do |email_field, index|
-            answers[email_field] = data[index].include?(', ') ? data[index].split(', ') : data[index]
+            answers[email_field] = if Question::EMAIL_QUESTION_TEXT_FIELDS.include?(email_field)
+                                     data[index]
+                                   else
+                                     data[index] && data[index].split(', ')
+                                   end
           end
           answers
         end
