@@ -158,7 +158,7 @@ export default function Evaluation ({
         </Content>
       </div>
       <Content className={
-          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) }, 'main-container')
+          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
         }
       >
         <div className="evaluation-container">

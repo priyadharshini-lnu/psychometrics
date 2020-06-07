@@ -70,9 +70,7 @@ export default function Assign ({
       </div>
       <Content
         className={
-          cs('fluid-container',
-            { 'has-static-content': _.get(block, ['props', 'staticContent']) },
-            'main-container')
+          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
         }
       >
         {availableTranslations && availableTranslations.length > 0 && (

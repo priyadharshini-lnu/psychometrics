@@ -14,7 +14,7 @@ export function initAudioPlayer (el: HTMLElement): void {
     tag.classList.add(`audio-skin-${skin}`)
     tag.classList.add('fr-audio-initialized')
     tag.removeAttribute('style')
-    if (autoplay) {
+    if (autoplay === 'true') {
       audio.setAttribute('autoplay', 'autoplay')
     }
     if (skin && PlayerSkins[skin]) {

@@ -127,7 +127,7 @@
   cursor: pointer;
 }
 .normal {
-  .container {
+  &.container {
     min-height: initial;
     margin: 0;
   }
