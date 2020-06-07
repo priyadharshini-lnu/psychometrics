@@ -17,7 +17,7 @@ export const defaultState: State = {
       upload: 0,
       download: 0,
     },
-    somapiToken: '',
+    speedOfMeApiToken: '',
   },
 }
 
