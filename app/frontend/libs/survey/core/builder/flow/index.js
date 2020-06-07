@@ -31,7 +31,12 @@ const HANDLERS = {
   [ADD_ELEMENT]: (state, { element, newElement }) => {
     const path = lookUpPath(element)
     const index = _.findIndex(getIn(state, path), el => _.isEqual(el.path, element.path))
-    return updateIn(state, path, elements => elements.splice(index + 1, 0, newElement) && elements)
+    return updateIn(state, path, (elements) => {
+      const rightElements = elements.slice(index + 1, elements.length).map(
+        el => setIn(el, ['path', el.path.length - 1], el.path[el.path.length - 1] + 1),
+      )
+      return [...elements.slice(0, index + 1), newElement, ...rightElements]
+    })
   },
   [DUPLICATE_ELEMENT]: (state, { element, duplicate }) => {
     const path = lookUpPath(element)

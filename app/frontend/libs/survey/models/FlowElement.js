@@ -3,11 +3,11 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import FlowCondition from './FlowCondition'
 
-const FlowElement = function (attrs = {}, parent, index = 0) {
+const FlowElement = function (attrs = {}, parentPath = null, index = 0) {
   this.type = attrs.type
   this.parent = parent
   this.props = attrs.props || {}
-  this.path = parent && parent.path ? parent.path.concat(index) : [index]
+  this.path = parentPath ? parentPath.concat(index) : [index]
   if (this.props.conditions && this.props.conditions.length) {
     this.props.conditions = _.map(this.props.conditions, condition => new FlowCondition(condition))
   }
