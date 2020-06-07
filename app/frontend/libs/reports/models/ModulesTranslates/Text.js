@@ -12,6 +12,9 @@ class Text extends BaseTranslate {
       }
       return ''
     }
+    if (['numberHeader', 'textHeader'].includes(field)) {
+      return this.module.props[field]
+    }
   }
 
   exportLocales () {
@@ -25,7 +28,8 @@ class Text extends BaseTranslate {
         }
       })
     }
-    return result
+    const { numberHeader, textHeader } = this.module.props
+    return { ...result, numberHeader, textHeader }
   }
 }
 

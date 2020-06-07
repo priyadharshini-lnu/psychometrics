@@ -1,11 +1,11 @@
 import React from 'react'
-import { Dropdown, Menu } from 'antd'
+import { Dropdown, Menu, Button } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 
 export default function Language ({ selectedLanguage, availableTranslations }) {
   const handleLanguageChange = ({ key }) => {
-    const query = qs.parse(location.search)
+    const query = qs.parse(location.search.substr(1))
     query.lang = key
     window.location.search = qs.stringify(query)
   }
@@ -25,11 +25,11 @@ export default function Language ({ selectedLanguage, availableTranslations }) {
 
   return (
     <Dropdown trigger={['click']} overlay={() => LangMenu()}>
-      <div>
+      <Button>
         {I18n.t(`languages.${(selectedLanguage && selectedLanguage.code) || 'en'}`)}
         {' '}
         <DownOutlined />
-      </div>
+      </Button>
     </Dropdown>
   )
 }

@@ -18,6 +18,7 @@ _.extend(FileUpload.prototype, {
     }
   },
 
+  // Cache bust
   results () {
     return this.result.answers
   },

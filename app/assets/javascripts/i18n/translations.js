@@ -1,456 +1,4 @@
 I18n.translations || (I18n.translations = {});
-I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
-  "anonym": {
-    "copy": {
-      "archived": "has been archived",
-      "expired": "has expired",
-      "not_active": "is no longer active"
-    },
-    "labels": {
-      "archived": "Archived",
-      "expired": "Expired",
-      "not_active": "Not Active"
-    },
-    "notifications": {
-      "restart": {
-        "copy": "You had already started this survey. You can choose to Continue or Restart.",
-        "title": "Continue?"
-      }
-    }
-  },
-  "assessments": {
-    "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
-      "permission_text": "Please allow to use microphone to record audio"
-    },
-    "categories": {
-      "360": "360 Campaign",
-      "case_study": "Case Study",
-      "hogan": "Hogan",
-      "mindmill": "Mindmill",
-      "organisational": "Survey",
-      "psychometric": "Assessment"
-    },
-    "decorator": {
-      "no_description": "Description is empty"
-    },
-    "index": {
-      "managers_assessments_button": "Action Planning",
-      "managers_dashboard_button": "Managers Dashboard",
-      "user_dashboard_button": "User Dashboard"
-    },
-    "page": {
-      "back": "Back",
-      "next": "Next"
-    },
-    "pickgrouprank": {
-      "items": "Items"
-    },
-    "resource": {
-      "assigned": "Assigned %{date}",
-      "invite_users": "Invite Users",
-      "questions": {
-        "one": "1 Question",
-        "other": "%{count} Questions",
-        "zero": "No Questions"
-      },
-      "results": "Results",
-      "status": {
-        "completed": "Completed",
-        "in_progress": "Resume",
-        "not_started": "Start"
-      }
-    },
-    "video_response": {
-      "delete": "Delete",
-      "device": "Allow",
-      "discard": "Discard",
-      "retry": "Retry",
-      "save": "Save",
-      "saved": "Saved",
-      "saving": "Saving..."
-    }
-  },
-  "languages": {
-    "ar": "Arabic",
-    "bg": "Bulgarian",
-    "bs": "Bosnian",
-    "ca": "Catalan",
-    "cn": "Chinese",
-    "cs": "Czech",
-    "cy": "Welsh",
-    "da": "Danish",
-    "de": "German",
-    "el": "Greek",
-    "en": "English",
-    "en-GB": "English - UK",
-    "eo": "Esperanto",
-    "es": "Spanish (Latin America)",
-    "es-ES": "Spanish (Spain)",
-    "et": "Estonian",
-    "fa": "Persian",
-    "fi": "Finnish",
-    "fr": "French",
-    "gu": "Gujarati",
-    "he": "Hebrew",
-    "hi": "Hindi",
-    "hr": "Croatian",
-    "hu": "Hungarian",
-    "id": "Bahasa Indonesia",
-    "it": "Italian",
-    "ja": "Japanese",
-    "km": "Khmer",
-    "ko": "Korean",
-    "lt": "Lithuanian",
-    "lv": "Latvian",
-    "mk": "Macedonian",
-    "mn": "Mongolian",
-    "ms": "Bahasa Malaysia",
-    "my": "Myanmar",
-    "nl": "Dutch",
-    "no": "Norwegian",
-    "pl": "Polish",
-    "pt": "Portuguese",
-    "pt-BR": "Brazilian Portuguese",
-    "ro": "Romanian",
-    "ru": "Russian",
-    "sk": "Slovak",
-    "sl": "Slovenian",
-    "sr": "Serbian",
-    "sv": "Swedish",
-    "sw": "Swahili",
-    "ta": "Tamil",
-    "th": "Thai",
-    "tr": "Turkish",
-    "uk": "Ukrainian",
-    "ur": "Urdu",
-    "vi": "Vietnamese",
-    "zh": "Chinese Simplified",
-    "zh-TW": "Chinese Traditional"
-  },
-  "reports": {
-    "modules": {
-      "common": {
-        "almost_always": "Almost Always",
-        "less_typical": "Less Typical",
-        "moderate": "Moderate",
-        "more_typical": "More Typical",
-        "rare": "Rare"
-      },
-      "cpi_occupations": {
-        "occupations": "Occupations",
-        "your_potential_suitability": "Your Potential Suitability"
-      },
-      "gap_assessment": {
-        "gap": "Gap",
-        "item": "Item",
-        "negative_gap": "Negative Gaps",
-        "no_negative_gaps": "There are no Negative Gaps",
-        "no_positive_gaps": "There are no Positive Gaps",
-        "positive_gap": "Positive Gaps",
-        "rank": "Rank",
-        "scoring_category": "Scoring Category"
-      },
-      "highest_lowest": {
-        "average": "Average",
-        "bottom_5": "BOTTOM 5",
-        "category": "Category",
-        "email": "Email",
-        "first_name": "First Name",
-        "highest_scores": "Highest Scores",
-        "item": "Item",
-        "last_name": "Last Name",
-        "lowest_scores": "Lowest scores",
-        "mean_score": "Mean Score",
-        "rank": "Rank",
-        "result": "Result",
-        "score": "Score",
-        "scoring_category": "Scoring Category",
-        "sub_competenties": "Sub-Competencies",
-        "top_5": "TOP 5"
-      },
-      "potential_career_full": {
-        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
-        "career_strengths_and_results": "Career Strengths and Your Results",
-        "career_sub_tracks": "Career Sub-tracks",
-        "detailed_career_guide": "Detailed Career Guide",
-        "diploma_qualification": "Diploma Qualification",
-        "education_level": "Education Level",
-        "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.",
-        "potential_areas_of_study": "Potential Areas of Study",
-        "potential_roles": "Potential Roles",
-        "strength_high": "Signature Strength",
-        "strength_low": "Developmental Strength",
-        "strength_moderate": "Potential Strength",
-        "work_environment": "Work Environment",
-        "your_suitability": "Your Suitability"
-      },
-      "potential_career_short": {
-        "career": "career",
-        "for_this": "for this",
-        "key": "key",
-        "strengths": "strengths",
-        "your_scores": "Your Scores"
-      },
-      "single_value": {
-        "factor_name": "Scoring Category",
-        "question_name": "Questions"
-      },
-      "single_value_cluster": {
-        "competency": "Competency",
-        "description": "Description",
-        "developmental_rating": "Developmental Rating",
-        "questions": "Questions"
-      },
-      "strength_clusters": {
-        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
-        "possible_roles": "Possible Roles",
-        "work_environments": "Expected Work Environments"
-      },
-      "three_sixty_default": {
-        "factor": {
-          "items": "Items",
-          "max": "Max Value",
-          "mean": "Mean",
-          "min": "Min Value",
-          "standardDeviation": "Standard Deviation",
-          "sum": "Sum",
-          "totalResponses": "Total Responses",
-          "variance": "Variance",
-          "weightedMean": "Weighted Mean"
-        },
-        "statistic": "Statistic",
-        "value": "Value"
-      },
-      "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
-        "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
-        "number_of_evaluators_responded": "Number of evaluators responded",
-        "subject": "Subject",
-        "title": "Report Summary",
-        "total_evaluations": "Total evaluations for this assessment"
-      },
-      "video_response": {
-        "no_results": "No videos recorded"
-      }
-    },
-    "show": {
-      "export_pdf": "Export to PDF",
-      "header": "Report"
-    },
-    "statuses": {
-      "approved": "Approved",
-      "available": "Available",
-      "denied": "Denied",
-      "incomplete": "Incomplete",
-      "not_available": "Not available",
-      "on_hold": "On hold",
-      "released": "Released"
-    }
-  },
-  "shared": {
-    "filters": {
-      "clear": "Clear Filters"
-    },
-    "password_reset": {
-      "description": "Please enter your email address in the box below and click 'Reset Password'.",
-      "email_label": "Email Address",
-      "submit": "Reset Password",
-      "title": "Forgotten Password"
-    },
-    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
-  },
-  "subjects": {
-    "statuses": {
-      "completed": "Completed",
-      "declined": "Declined",
-      "denied": "Denied",
-      "done": "Done",
-      "not_completed": "Not Completed",
-      "waiting": "Waiting"
-    }
-  },
-  "threesixty": {
-    "accept_privacy_modal": {
-      "accept": "Accept",
-      "reject": "Reject",
-      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
-      "title": "Data processing consent"
-    },
-    "add": "Add",
-    "and": "And",
-    "approve_all": "Approve All",
-    "approve_all_successful": "Approved all nominations",
-    "approve_evaluations": "Approve Evaluations",
-    "approve_nominations": "Approve Nominations",
-    "approve_reports": "Approve Reports",
-    "approved": "Approved",
-    "approving_mail_sent": "Mail for approving nomination has been sent to managers",
-    "as_my": "as my",
-    "assessment": "Assessment",
-    "back_to_tasks": "Back to tasks",
-    "begin": "Begin",
-    "cancel": "Cancel",
-    "close_evaluation_modal": {
-      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
-      "title": "Are you sure you want to view the report?"
-    },
-    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
-    "completed": "Completed",
-    "confirm": "Are you sure?",
-    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
-    "confirmation_required": "Confirmation required",
-    "confirmation_text_incorrect": "Confirmation text is incorrect",
-    "confirmation_text_placeholder": "Confirmation text here",
-    "continue": "Continue",
-    "dashboard_title": "Welcome %{name}",
-    "decline": "Decline",
-    "decline_invite": "Decline Invite",
-    "denied": "Denied",
-    "deny_all": "Deny All",
-    "deny_all_successful": "Denied all nominations",
-    "download_report": "Download Report",
-    "download_reports": "Download Reports",
-    "edit_user": "Edit User",
-    "email_approve_request": "Email Approval Request",
-    "email_schedules": {
-      "delete_successful": "Email schedule deleted successfully"
-    },
-    "evaluate": "Evaluate",
-    "evaluation": "Evaluation",
-    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
-    "evaluations": "Evaluations",
-    "evaluator": "Evaluator",
-    "export_pdf": "Export PDF",
-    "first_name": "First Name",
-    "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
-    "help": "Help",
-    "helps": {
-      "main": "<h2>Help</h2> <p>need content for help modal</p>"
-    },
-    "language": "Language",
-    "last_name": "Last Name",
-    "last_name_error": "Please input Last Name",
-    "load_results": "Load Results",
-    "mail_history": {
-      "statuses": {
-        "success": "Success",
-        "undelivered": "Undelivered"
-      }
-    },
-    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
-    "my_projects": "My Projects",
-    "nominate": "Nominate",
-    "nominate_evaluators": "Nominate Evaluators to",
-    "nomination": "Nomination",
-    "nominations": "Nominations",
-    "options": {
-      "global": {
-        "cannot_re_edit": "Participants cannot edit evaluations"
-      }
-    },
-    "or": "Or",
-    "page_title": "Signify 360° Review - Apply Level",
-    "participant_list": {
-      "actions": {
-        "approve_report": "Approve Report",
-        "download_report": "Download Report",
-        "edit": "Edit",
-        "hold_report": "Hold report",
-        "login": "Login",
-        "mark_as_done": "Mark as done",
-        "release_report": "Release report",
-        "remove_campaign": "Remove from campaign",
-        "remove_report_approval": "Remove report approval",
-        "remove_report_hold_release_report": "Remove Report Hold/Release",
-        "remove_subject": "Remove subject",
-        "unmark_as_done": "Unmark as done",
-        "view_report": "View Report",
-        "view_responses": "View Responses"
-      },
-      "confirmation_messages": {
-        "approve_report": "Are you sure you want to approve report?",
-        "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
-        "release_report": "Are you sure you want to release report?",
-        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
-        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
-        "remove_report_approval": "Are you sure you want to remove report approval?",
-        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
-        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
-      },
-      "report_generation_message": "Report is generating. We will let you know when the report is ready."
-    },
-    "processing": "Processing",
-    "processing_report": "Processing Report",
-    "question": {
-      "chat_type": {
-        "input_placeholder": "Write your Message..."
-      },
-      "email_type": {
-        "bcc": "Bcc",
-        "cc": "Cc",
-        "message": "Your Message",
-        "subject": "Subject",
-        "to": "To"
-      }
-    },
-    "remind_all": "Remind All",
-    "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
-    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
-    "reports": "Reports",
-    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
-    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
-    "save": "Save",
-    "select_relationnship": "Select Relationship",
-    "select_relationship": "Select Relationship",
-    "self": "Self",
-    "set_name_for_evaluator": "Set name for Evaluator",
-    "setup_nominations": "Set up nominations",
-    "subject": "Subject",
-    "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
-    "total_progress": "Total progress",
-    "user_name_input_placeholder": "type name or email...",
-    "validation_errors": "Validation Errors",
-    "view_my_report": "View My Report",
-    "view_nominations": "View nominations",
-    "view_reports": "View Reports",
-    "waiting": "Waiting",
-    "you": "You",
-    "yourself": "Yourself"
-  },
-  "validations": {
-    "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (mm/dd/yyyy)",
-    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
-    "email": "Your response must be a valid email",
-    "file_upload": {
-      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
-    },
-    "issue": "Issue",
-    "least": "Please answer at least %{min} choice(s).",
-    "least_hotspot": "Please answer at least %{min} choice(s).",
-    "max_length": "Your response must be no more than %{max} characters.",
-    "min_length": "Your response must be at least %{min} characters.",
-    "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
-    "must_select": "Please select from %{min} to %{max} choices",
-    "number": "Your response must be a number",
-    "please_answer_question": "Please answer this question",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
-    "range": "Please answer at least %{min} and no more than %{max} choice(s).",
-    "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
-  }
-});
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "anonym": {
     "copy": {
@@ -471,12 +19,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "assessments": {
+    "actions": {
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
+    },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -491,6 +43,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "messages": {
+      "finish": "لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة"
+    },
     "page": {
       "back": "Back",
       "next": "Next"
@@ -498,6 +53,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "pickgrouprank": {
       "items": "العبارات"
     },
+    "proceed": "Proceed Anyway",
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -517,10 +73,85 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
+      "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "selected": "Selected",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      },
+      "use_this": "Use This"
+    },
+    "wait": "Wait"
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "continue": "Continue",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "start": "Start",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "access_help": "Click here for help.",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "languages": {
@@ -848,8 +479,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "email_type": {
         "bcc": "Bcc",
         "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
         "message": "Your Message",
+        "send": "Send",
         "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
         "to": "To"
       }
     },
@@ -881,6 +516,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "yourself": "Yourself"
   },
   "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
@@ -906,7 +561,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
   }
 });
-I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "anonym": {
     "copy": {
       "archived": "has been archived",
@@ -926,12 +581,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "assessments": {
+    "actions": {
+      "goto_dashboard": "Go To Dashboard"
+    },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
       "360": "360 Campaign",
+      "agile": "AGILE",
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
@@ -946,6 +605,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
+    "messages": {
+      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+    },
     "page": {
       "back": "Back",
       "next": "Next"
@@ -953,6 +615,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "pickgrouprank": {
       "items": "Items"
     },
+    "proceed": "Proceed Anyway",
     "resource": {
       "assigned": "Assigned %{date}",
       "invite_users": "Invite Users",
@@ -972,10 +635,85 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "delete": "Delete",
       "device": "Allow",
       "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
+      "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
       "saved": "Saved",
-      "saving": "Saving..."
+      "saving": "Saving...",
+      "selected": "Selected",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      },
+      "use_this": "Use This"
+    },
+    "wait": "Wait"
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "continue": "Continue",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "start": "Start",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "access_help": "Click here for help.",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "title": "We need to ensure your system can record the video"
     }
   },
   "languages": {
@@ -1300,8 +1038,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "email_type": {
         "bcc": "Bcc",
         "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
         "message": "Your Message",
+        "send": "Send",
         "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
         "to": "To"
       }
     },
@@ -1333,6 +1075,585 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "yourself": "Yourself"
   },
   "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
+    "date": "Your response must be a valid date (mm/dd/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
+    "email": "Your response must be a valid email",
+    "file_upload": {
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
+      "required": "Please upload the file"
+    },
+    "issue": "Issue",
+    "least": "Please answer at least %{min} choice(s).",
+    "least_hotspot": "Please answer at least %{min} choice(s).",
+    "max_length": "Your response must be no more than %{max} characters.",
+    "min_length": "Your response must be at least %{min} characters.",
+    "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
+    "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
+    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
+    "please_record_and_save_video_first": "Please record and save the video before you continue",
+    "range": "Please answer at least %{min} and no more than %{max} choice(s).",
+    "text": "Your response must not contain a numbers",
+    "title": "Sorry, you cannot continue until you correct the following:"
+  }
+});
+I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "anonym": {
+    "copy": {
+      "archived": "has been archived",
+      "expired": "has expired",
+      "not_active": "is no longer active"
+    },
+    "labels": {
+      "archived": "Archived",
+      "expired": "Expired",
+      "not_active": "Not Active"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "You had already started this survey. You can choose to Continue or Restart.",
+        "title": "Continue?"
+      }
+    }
+  },
+  "assessments": {
+    "actions": {
+      "goto_dashboard": "Go To Dashboard"
+    },
+    "audio_response": {
+      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
+    },
+    "categories": {
+      "360": "360 Campaign",
+      "agile": "AGILE",
+      "case_study": "Case Study",
+      "hogan": "Hogan",
+      "mindmill": "Mindmill",
+      "organisational": "Survey",
+      "psychometric": "Assessment"
+    },
+    "decorator": {
+      "no_description": "Description is empty"
+    },
+    "index": {
+      "managers_assessments_button": "Action Planning",
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "messages": {
+      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+    },
+    "page": {
+      "back": "Back",
+      "next": "Next"
+    },
+    "pickgrouprank": {
+      "items": "Items"
+    },
+    "proceed": "Proceed Anyway",
+    "resource": {
+      "assigned": "Assigned %{date}",
+      "invite_users": "Invite Users",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
+    },
+    "video_response": {
+      "delete": "Delete",
+      "device": "Allow",
+      "discard": "Discard",
+      "media_recorder": {
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
+      },
+      "retake": "Retake",
+      "retry": "Retry",
+      "save": "Save",
+      "saved": "Saved",
+      "saving": "Saving...",
+      "selected": "Selected",
+      "tracker": {
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
+      },
+      "use_this": "Use This"
+    },
+    "wait": "Wait"
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "Access",
+      "allow": "Allow",
+      "allow_title": "Please allow to use microphone to record audio",
+      "continue": "Continue",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
+      "speech_detection": "Speech detection",
+      "test_message": "Hi, Its great to speak with you",
+      "title": "We need to ensure your system can record audio."
+    },
+    "network_check": {
+      "continue": "Continue",
+      "download": "Download",
+      "levels": {
+        "0": "Network broken (reconnecting)",
+        "1": "Very bad network",
+        "2": "Bad network",
+        "3": "Average network",
+        "4": "Good network",
+        "5": "Very good network"
+      },
+      "network": "Network",
+      "please_check_connection": "Please check your Internet Connection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "run_again_title": "And run this test again",
+      "start": "Start",
+      "title": "Click start to begin internet speed test.",
+      "upload": "Upload"
+    },
+    "steps": {
+      "audio_check": "Microphone Test",
+      "network_check": "Internet Speed Test",
+      "system_check": "System Check",
+      "video_check": "Video Camera Test"
+    },
+    "success": {
+      "start": "Start assessment",
+      "title": "You have successfully completed all checks."
+    },
+    "system_check": {
+      "continue": "Continue",
+      "start": "Start",
+      "title": "Before starting this assessment, your system needs to undergo some checks."
+    },
+    "video_check": {
+      "access": "Access",
+      "access_help": "Click here for help.",
+      "allow": "Allow",
+      "allow_title": "Please allow to use camera to record Video",
+      "ambient_light": "Ambient Light",
+      "continue": "Continue",
+      "face_detection": "Face detection",
+      "processing": "Processing",
+      "run_again": "Run again",
+      "title": "We need to ensure your system can record the video"
+    }
+  },
+  "languages": {
+    "ar": "Arabic",
+    "bg": "Bulgarian",
+    "bs": "Bosnian",
+    "ca": "Catalan",
+    "cn": "Chinese",
+    "cs": "Czech",
+    "cy": "Welsh",
+    "da": "Danish",
+    "de": "German",
+    "el": "Greek",
+    "en": "English",
+    "en-GB": "English - UK",
+    "eo": "Esperanto",
+    "es": "Spanish (Latin America)",
+    "es-ES": "Spanish (Spain)",
+    "et": "Estonian",
+    "fa": "Persian",
+    "fi": "Finnish",
+    "fr": "French",
+    "gu": "Gujarati",
+    "he": "Hebrew",
+    "hi": "Hindi",
+    "hr": "Croatian",
+    "hu": "Hungarian",
+    "id": "Bahasa Indonesia",
+    "it": "Italian",
+    "ja": "Japanese",
+    "km": "Khmer",
+    "ko": "Korean",
+    "lt": "Lithuanian",
+    "lv": "Latvian",
+    "mk": "Macedonian",
+    "mn": "Mongolian",
+    "ms": "Bahasa Malaysia",
+    "my": "Myanmar",
+    "nl": "Dutch",
+    "no": "Norwegian",
+    "pl": "Polish",
+    "pt": "Portuguese",
+    "pt-BR": "Brazilian Portuguese",
+    "ro": "Romanian",
+    "ru": "Russian",
+    "sk": "Slovak",
+    "sl": "Slovenian",
+    "sr": "Serbian",
+    "sv": "Swedish",
+    "sw": "Swahili",
+    "ta": "Tamil",
+    "th": "Thai",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
+    "ur": "Urdu",
+    "vi": "Vietnamese",
+    "zh": "Chinese Simplified",
+    "zh-TW": "Chinese Traditional"
+  },
+  "reports": {
+    "modules": {
+      "common": {
+        "almost_always": "Almost Always",
+        "less_typical": "Less Typical",
+        "moderate": "Moderate",
+        "more_typical": "More Typical",
+        "rare": "Rare"
+      },
+      "cpi_occupations": {
+        "occupations": "Occupations",
+        "your_potential_suitability": "Your Potential Suitability"
+      },
+      "gap_assessment": {
+        "gap": "Gap",
+        "item": "Item",
+        "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
+        "positive_gap": "Positive Gaps",
+        "rank": "Rank",
+        "scoring_category": "Scoring Category"
+      },
+      "highest_lowest": {
+        "average": "Average",
+        "bottom_5": "BOTTOM 5",
+        "category": "Category",
+        "email": "Email",
+        "first_name": "First Name",
+        "highest_scores": "Highest Scores",
+        "item": "Item",
+        "last_name": "Last Name",
+        "lowest_scores": "Lowest scores",
+        "mean_score": "Mean Score",
+        "rank": "Rank",
+        "result": "Result",
+        "score": "Score",
+        "scoring_category": "Scoring Category",
+        "sub_competenties": "Sub-Competencies",
+        "top_5": "TOP 5"
+      },
+      "potential_career_full": {
+        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
+        "detailed_career_guide": "Detailed Career Guide",
+        "diploma_qualification": "Diploma Qualification",
+        "education_level": "Education Level",
+        "high_school_entry_roles": "High School Entry Roles",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.",
+        "potential_areas_of_study": "Potential Areas of Study",
+        "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
+      },
+      "potential_career_short": {
+        "career": "career",
+        "for_this": "for this",
+        "key": "key",
+        "strengths": "strengths",
+        "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
+      },
+      "three_sixty_default": {
+        "factor": {
+          "items": "Items",
+          "max": "Max Value",
+          "mean": "Mean",
+          "min": "Min Value",
+          "standardDeviation": "Standard Deviation",
+          "sum": "Sum",
+          "totalResponses": "Total Responses",
+          "variance": "Variance",
+          "weightedMean": "Weighted Mean"
+        },
+        "statistic": "Statistic",
+        "value": "Value"
+      },
+      "three_sixty_report_summary": {
+        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
+        "number_of_evaluators_invited": "Number of evaluators invited",
+        "number_of_evaluators_received": "Number of evaluations received",
+        "number_of_evaluators_responded": "Number of evaluators responded",
+        "subject": "Subject",
+        "title": "Report Summary",
+        "total_evaluations": "Total evaluations for this assessment"
+      },
+      "video_response": {
+        "no_results": "No videos recorded"
+      }
+    },
+    "show": {
+      "export_pdf": "Export to PDF",
+      "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold",
+      "released": "Released"
+    }
+  },
+  "shared": {
+    "filters": {
+      "clear": "Clear Filters"
+    },
+    "password_reset": {
+      "description": "Please enter your email address in the box below and click 'Reset Password'.",
+      "email_label": "Email Address",
+      "submit": "Reset Password",
+      "title": "Forgotten Password"
+    },
+    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "declined": "Declined",
+      "denied": "Denied",
+      "done": "Done",
+      "not_completed": "Not Completed",
+      "waiting": "Waiting"
+    }
+  },
+  "threesixty": {
+    "accept_privacy_modal": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+      "title": "Data processing consent"
+    },
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_all_successful": "Approved all nominations",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "approving_mail_sent": "Mail for approving nomination has been sent to managers",
+    "as_my": "as my",
+    "assessment": "Assessment",
+    "back_to_tasks": "Back to tasks",
+    "begin": "Begin",
+    "cancel": "Cancel",
+    "close_evaluation_modal": {
+      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
+      "title": "Are you sure you want to view the report?"
+    },
+    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
+    "completed": "Completed",
+    "confirm": "Are you sure?",
+    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
+    "confirmation_required": "Confirmation required",
+    "confirmation_text_incorrect": "Confirmation text is incorrect",
+    "confirmation_text_placeholder": "Confirmation text here",
+    "continue": "Continue",
+    "dashboard_title": "Welcome %{name}",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "deny_all_successful": "Denied all nominations",
+    "download_report": "Download Report",
+    "download_reports": "Download Reports",
+    "edit_user": "Edit User",
+    "email_approve_request": "Email Approval Request",
+    "email_schedules": {
+      "delete_successful": "Email schedule deleted successfully"
+    },
+    "evaluate": "Evaluate",
+    "evaluation": "Evaluation",
+    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
+    "evaluations": "Evaluations",
+    "evaluator": "Evaluator",
+    "export_pdf": "Export PDF",
+    "first_name": "First Name",
+    "first_name_error": "Please input First Name",
+    "generate_report": "Generate Report",
+    "help": "Help",
+    "helps": {
+      "main": "<h2>Help</h2> <p>need content for help modal</p>"
+    },
+    "language": "Language",
+    "last_name": "Last Name",
+    "last_name_error": "Please input Last Name",
+    "load_results": "Load Results",
+    "mail_history": {
+      "statuses": {
+        "success": "Success",
+        "undelivered": "Undelivered"
+      }
+    },
+    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "options": {
+      "global": {
+        "cannot_re_edit": "Participants cannot edit evaluations"
+      }
+    },
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "participant_list": {
+      "actions": {
+        "approve_report": "Approve Report",
+        "download_report": "Download Report",
+        "edit": "Edit",
+        "hold_report": "Hold report",
+        "login": "Login",
+        "mark_as_done": "Mark as done",
+        "release_report": "Release report",
+        "remove_campaign": "Remove from campaign",
+        "remove_report_approval": "Remove report approval",
+        "remove_report_hold_release_report": "Remove Report Hold/Release",
+        "remove_subject": "Remove subject",
+        "unmark_as_done": "Unmark as done",
+        "view_report": "View Report",
+        "view_responses": "View Responses"
+      },
+      "confirmation_messages": {
+        "approve_report": "Are you sure you want to approve report?",
+        "hold_report": "Are you sure you want to hold report?",
+        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
+        "release_report": "Are you sure you want to release report?",
+        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
+        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
+        "remove_report_approval": "Are you sure you want to remove report approval?",
+        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
+        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
+      },
+      "report_generation_message": "Report is generating. We will let you know when the report is ready."
+    },
+    "processing": "Processing",
+    "processing_report": "Processing Report",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "Write your Message..."
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "edit": "Edit",
+        "max_length_warning": "%{x} characters remaining",
+        "message": "Your Message",
+        "send": "Send",
+        "subject": "Subject",
+        "successful_message": "You have successfully sent the email",
+        "to": "To"
+      }
+    },
+    "remind_all": "Remind All",
+    "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
+    "reports": "Reports",
+    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
+    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
+    "save": "Save",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "self": "Self",
+    "set_name_for_evaluator": "Set name for Evaluator",
+    "setup_nominations": "Set up nominations",
+    "subject": "Subject",
+    "submit": "Submit",
+    "timer": {
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "validation_errors": "Validation Errors",
+    "view_my_report": "View My Report",
+    "view_nominations": "View nominations",
+    "view_reports": "View Reports",
+    "waiting": "Waiting",
+    "you": "You",
+    "yourself": "Yourself"
+  },
+  "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
+      }
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "File upload is in progress"
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
+      }
+    },
+    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",

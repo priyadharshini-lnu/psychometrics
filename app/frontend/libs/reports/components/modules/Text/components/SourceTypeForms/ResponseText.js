@@ -1,6 +1,5 @@
 /* eslint-disable react/destructuring-assignment */
 import _ from 'lodash'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
@@ -30,28 +29,36 @@ export default class ResponseText extends Component {
 
   onChangeFormat = ({ currentTarget: { value } }) => this.props.onChangeModelIn(['props', 'format'], value)
 
-  onChangeStyled = ({ currentTarget: { checked } }) => this.props.onChangeModelIn(['props', 'styled'], checked)
-
   onChangeTextEntryFormAnswerIndex = e => this.props.onChangeModelIn(['props', 'answerIndex'], e.currentTarget.value)
 
-  onChangeStyled = ({ currentTarget: { checked } }) => this.props.onChangeModelIn(['props', 'styled'], checked)
+  onChangeCheckbox = ({ currentTarget: { checked } }, name) => {
+    this.props.onChangeModelIn(['props', name], checked)
+    this.forceUpdate()
+  }
 
   onChangeTextEntryFormAnswerIndex = e => this.props.onChangeModelIn(['props', 'answerIndex'], e.currentTarget.value)
 
   // TODO (atanych): should be added memoization. e.g. https://github.com/reduxjs/reselect
   getFilteredQuestions () {
-    const { assessment_id: assessmentId } = this.props.model
+    const { questions } = this.props
     const filteredQuestions = _.filter(
-      AssessmentStore.questions[assessmentId], question => VALID_QUESTIONS.includes(question.type),
+      questions, question => VALID_QUESTIONS.includes(question.type),
     )
     return filteredQuestions.map(question => ({ label: QuestionPresenter.getName(question), value: question.id }))
   }
 
-  lookupQuestionById = (assessmentId, id) => AssessmentStore.questions[assessmentId][id]
+  lookupQuestionById = (id) => {
+    const { questions } = this.props
+    return questions[id]
+  }
 
   renderFormats () {
-    const { assessment_id: assessmentId, props: { question, format, styled } } = this.props.model
-    const currentQuestion = this.lookupQuestionById(assessmentId, question)
+    const {
+      props: {
+        question, format, styled, showDescription, showHeader,
+      },
+    } = this.props.model
+    const currentQuestion = this.lookupQuestionById(question)
     if (!currentQuestion || !['MultipleChoice', 'RankOrder'].includes(currentQuestion.type)) { return false }
     if (['SingleAnswer', 'Dropdown', 'SelectBox'].includes(currentQuestion.props.type)) { return false }
     const isList = ['BulletedList', 'NumberedList'].includes(format)
@@ -72,10 +79,40 @@ export default class ResponseText extends Component {
         {isList && <div>Styling</div>}
         {isList && (
         <label className="show">
-          <input checked={styled} type="checkbox" onChange={this.onChangeStyled} value={1} />
+          <input
+            disabled={showHeader}
+            checked={styled}
+            type="checkbox"
+            onChange={e => this.onChangeCheckbox(e, 'styled')}
+            value={1}
+          />
           {' '}
-Styled
+          Styled
         </label>
+        )}
+        {isList && (
+          <label className="show">
+            <input
+              checked={showDescription}
+              type="checkbox"
+              onChange={e => this.onChangeCheckbox(e, 'showDescription')}
+              value={1}
+            />
+            {' '}
+            Show Description
+          </label>
+        )}
+        {isList && styled && (
+          <label className="show">
+            <input
+              checked={showHeader}
+              type="checkbox"
+              onChange={e => this.onChangeCheckbox(e, 'showHeader')}
+              value={1}
+            />
+            {' '}
+            Show Header
+          </label>
         )}
       </div>
     )

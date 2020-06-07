@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-import { setIn } from 'utils/immutable'
 import _ from 'lodash'
-import { getCurrentBlock } from './selectors'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -13,12 +11,29 @@ import {
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
   TOGGLE_IGNORE_VALIDATION, RESET,
-  UPDATE_META_DATA, UPDATE_META_DATA_REQUEST,
+  UPDATE_HIGHLIGHT, UPDATE_HIGHLIGHT_REQUEST,
+  SET_LOCAL_RESULTS,
+  MARK_QUESTION_IN_PROGRESS,
+  REMOVE_QUESTION_IN_PROGRESS,
+  CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
+import { getCurrentBlock } from './selectors'
+import { Highlight } from './interfaces'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
+export const saveCurrentPage = () => (dispatch, getState) => {
+  const { preview } = getState()
+  if (preview.type === 'pass_assessment') {
+    const currentBlock = getCurrentBlock(preview)
+    dispatch(saveResults(preview, [], currentBlock.id))
+  }
+}
+
 export const prevPage = (preview) => {
+  if (preview.type !== 'pass_assessment') {
+    return { type: PREV_PAGE }
+  }
   // TODO (atanych): Is used the same endpoint as for `saveResults` with empty resource to update last_activity_at field
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
 
@@ -57,17 +72,25 @@ export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS,
 export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
 export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
 export const reset = () => ({ type: RESET })
+export const setLocalResults = (data: object) => ({ type: SET_LOCAL_RESULTS, data })
 
-export const saveResults = (preview, questionIds) => {
+export const markQuestionInProgress = (questionId, progressState) => (
+  { type: MARK_QUESTION_IN_PROGRESS, questionId, progressState })
+export const removeQuestionInProgress = (questionId, progressState) => (
+  { type: REMOVE_QUESTION_IN_PROGRESS, questionId, progressState })
+export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION })
+
+export const saveResults = (preview, questionIds, currentBlockId?) => {
   const data = {
     resource: {
       [preview.isThreesixty ? 'answers' : 'results']: _.omitBy(preview.results, 'dirty'),
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
-      status: preview.end ? 'completed' : 'in_progress',
+      status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
     },
     question_ids: questionIds,
+    current_block_id: currentBlockId,
   }
   const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
   if (preview.end) {
@@ -89,24 +112,38 @@ export const saveResults = (preview, questionIds) => {
   }
 }
 
-export const updateMetaData = (preview, key, data) => {
-  const block = getCurrentBlock(preview)
-  const metaData = setIn(preview.metaData, [block.id, key], data)
+interface Opts {
+  notStored?: boolean
+  assessmentId?: number
+}
 
-  if (preview.type === 'preview_assessment') return { type: UPDATE_META_DATA_REQUEST, metaData }
+export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
+  const { preview, threeSixtyCampaign: { assign: { assessment }, evaluation } } = getState()
 
-  const url = preview.isThreesixty
-    ? `${preview.resultsUrl}/update_meta_data`
-    : `/assigns/${preview.dbResult.id}/update_meta_data`
+  const payload = {
+    id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
+  }
 
-  return {
-    type: UPDATE_META_DATA,
+  if (preview.type === 'preview_assessment' || opts.notStored) {
+    return dispatch({
+      type: UPDATE_HIGHLIGHT_REQUEST,
+      payload,
+    })
+  }
+
+  return dispatch({
+    type: UPDATE_HIGHLIGHT,
     request: {
-      url,
+      url: `/highlights/${highlight.id}`,
       method: 'PUT',
-      body: { meta_data: metaData },
+      body: {
+        data,
+        resource_type: highlight.resourceType,
+        resource_id: highlight.resourceId,
+        assessment_id: opts.assessmentId || assessment.id || evaluation.assessment.id,
+      },
       decamelize: false,
     },
-    metaData,
-  }
+    payload,
+  })
 }

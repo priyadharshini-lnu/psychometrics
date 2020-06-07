@@ -3,6 +3,7 @@ import _ from 'lodash'
 import {
   select, takeEvery, put, debounce,
 } from 'redux-saga/effects'
+import { getItem, setItem } from 'utils/storage'
 import {
   nextPage,
   setDirtyResults,
@@ -10,15 +11,21 @@ import {
   removePrevPage,
   saveResults,
   setNotDirtyResults,
+  setLocalResults,
+  clearInProgressQuestion,
 } from './actions'
 import {
   getPrevPage,
   pageQuestions,
   pageQuestionsWithoutHidden,
+  getCurrentBlock,
 } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE, REMOVE_PREV_PAGE,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
+  REMOVE_PREV_PAGE, ANSWER,
 } from './consts'
+
+const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
 function* genInitPageProcessing () {
   const state = yield select()
@@ -37,6 +44,7 @@ function* genPrevPage () {
   const prev = getPrevPage(state.preview)
   yield put(changeElement(prev.element, prev.page))
   yield put(removePrevPage())
+  yield put(clearInProgressQuestion())
 }
 
 function* genSavePrevPages () {
@@ -54,15 +62,40 @@ function* genUpdateResultsAsNotDirty () {
 }
 
 function* genSaveResults () {
+  yield put(clearInProgressQuestion())
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)
-    yield put(saveResults(state.preview, prevPage?.questionIds || []))
+    const currentBlock = getCurrentBlock(state.preview)
+    yield put(saveResults(state.preview, prevPage?.questionIds || [], currentBlock.id))
+  }
+}
+
+function* genFetchLocalResults () {
+  const state = yield select()
+  if (state.preview.type === 'pass_assessment') {
+    const { preview: { dbResult } } = state
+    const resetCount = dbResult.reset_count || 0
+    const data = getItem(`result_${dbResult.id}_${resetCount}`, `${dbResult.id}${dbResult.user_id}`)
+    if (data) {
+      yield put(setLocalResults(data))
+    }
+  }
+}
+
+function* genSaveResultsLocal () {
+  const state = yield select()
+  if (state.preview.type === 'pass_assessment') {
+    const { preview: { results, dbResult } } = state
+    const resetCount = dbResult.reset_count || 0
+    setItem(`result_${dbResult.id}_${resetCount}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
   }
 }
 
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
+  takeEvery(INIT, genFetchLocalResults),
+  debounce(200, ANSWER, genSaveResultsLocal),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),

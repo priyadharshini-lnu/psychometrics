@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Button } from 'antd'
 import ButtonColor from 'constants/buttonColor'
 import cs from 'classnames'
@@ -14,16 +14,24 @@ interface ButtonProps {
 }
 
 interface Props extends ButtonProps {
-  color: ButtonColor,
+  color: ButtonColor | 'green' | 'grey',
   children: React.ReactNode,
 }
 
+const COLORS = {
+  green: '#2CBE4F',
+  grey: 'grey',
+}
 export default function ColoredButton (props: Props) {
-  const { color, children, className, ...passedButtonProps } = props
+  const {
+    children, className, color, ...passedButtonProps
+  } = props
   const buttonProps = (passedButtonProps || {}) as ButtonProps
 
   const passedStyles = buttonProps.style || {}
-  let newButtonStyles = { ...buttonProps, backgroundColor: color, borderColor: color, color: 'white' }
+  const newButtonStyles = {
+    ...buttonProps, backgroundColor: COLORS[color], borderColor: COLORS[color], color: 'white',
+  }
 
   buttonProps.style = { ...passedStyles, ...newButtonStyles }
 
@@ -33,4 +41,3 @@ export default function ColoredButton (props: Props) {
     </Button>
   )
 }
-

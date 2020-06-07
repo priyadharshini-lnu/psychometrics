@@ -1,0 +1,41 @@
+.retakeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.retakeContainer > div {
+  width: 33.33%;
+}
+
+.activeTakeBtn {
+  border: 1px solid #00B4AA !important;
+}
+
+.unusedTake {
+  background-color: #eee !important;
+}
+
+.inUse {
+  color: #00B4AA;
+  font-size: 16px;
+}
+
+.retakeBtn {
+  width: 100px;
+  border: 1px solid #dedbdb;
+  margin: auto;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.recordBtnContainer {
+  margin: 0px 5px 0px 0px !important;
+}
+
+.recordBtn {
+  padding: 8px !important;
+}

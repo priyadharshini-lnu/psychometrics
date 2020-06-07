@@ -1,16 +1,20 @@
 /* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
 import cs from 'classnames'
-import { FIXED_TOP, LEFT, RIGHT } from 'views/Block/components/StaticContent/settings'
+import {
+  FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
+} from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
+import { useAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
 import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlights, updateMetaData, I18n,
+  block, block: { props: { staticContent } }, preview, highlight, updateHighlight,
+  I18n, containerRef,
 }) => {
   const contentRef = useRef(null)
-
+  useAudioPlayer(contentRef)
   const [selection, setSelection] = useState(null)
 
   const handleMouseUp = () => {
@@ -19,6 +23,7 @@ const StaticContent = ({
   }
 
   const getStaticContentClasses = () => ({
+    [styles.normal]: staticContent.layout === NORMAL_TOP,
     [styles.fixed]: staticContent.layout === FIXED_TOP,
     [styles.side]: staticContent.layout === LEFT || staticContent.layout === RIGHT,
     [styles.left]: staticContent.layout === LEFT,
@@ -28,23 +33,28 @@ const StaticContent = ({
 
   return (
     <div
+      ref={containerRef}
       className={cs(styles.container, getStaticContentClasses())}
-      style={GetBackgroundStyles.run(staticContent)}
     >
-      <HighlightList
-        highlights={highlights}
-        contentRef={contentRef}
-        selection={selection}
-        updateMetaData={updateMetaData}
-        preview={preview}
-        staticContent={staticContent}
-      />
       <div
-        onMouseUp={handleMouseUp}
-        ref={contentRef}
-        className={styles.content}
-        dangerouslySetInnerHTML={{ __html: innerHTML }}
-      />
+        className={styles.box}
+        style={GetBackgroundStyles.run(staticContent)}
+      >
+        <HighlightList
+          highlight={highlight}
+          contentRef={contentRef}
+          selection={selection}
+          updateHighlight={updateHighlight}
+          preview={preview}
+          staticContent={staticContent}
+        />
+        <div
+          onMouseUp={handleMouseUp}
+          ref={contentRef}
+          className={styles.content}
+          dangerouslySetInnerHTML={{ __html: innerHTML }}
+        />
+      </div>
     </div>
   )
 }

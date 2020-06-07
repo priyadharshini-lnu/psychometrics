@@ -1,6 +1,6 @@
 import SingleLine from './types/SingleLine'
 import MultiLine from './types/MultiLine'
-import Form from './types/Form'
+import Form from './types/Form/Builder'
 import DateEntry from './types/DateEntry'
 import DateTimeEntry from './types/DateTimeEntry'
 import Chat from './types/Chat/Builder'

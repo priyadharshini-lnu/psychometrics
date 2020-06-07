@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Icon, PageHeader,
+  Layout, PageHeader,
 } from 'antd'
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
+import './styles.scss'
 
 const { Content } = Layout
 
@@ -44,14 +46,14 @@ export default function AgileAssign ({
           className="page-header"
           backIcon={!isFrame && (
             <div>
-              <Icon type="arrow-left" />
+              <ArrowLeftOutlined />
               {' '}
               Back
             </div>
           )}
           onBack={() => history.push('/campaigns')}
         >
-          <div id="agile-container" />
+          <div id="agile-container" className="agile-container" />
           <div className="mbl" />
         </PageHeader>
       </Content>

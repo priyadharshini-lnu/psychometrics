@@ -5,3 +5,5 @@ export const STATUSES = {
   ACTIVE,
   CLOSED,
 }
+
+export const DEFAULT_PAGE_SIZE = 25

@@ -146,8 +146,10 @@ Object {
     "errors": null,
     "expiryDate": undefined,
     "hideHiddenQuestions": true,
+    "highlights": Object {},
     "hrisData": Object {},
     "ignoreValidations": false,
+    "inProgressQuestions": Array [],
     "initialized": true,
     "isAnonymousAssessment": undefined,
     "isThreesixty": undefined,
@@ -382,6 +384,12 @@ Object {
         "saving": false,
       },
       "questions": Object {},
+      "resources": Object {
+        "assessmentQuestions": Object {},
+        "assessments": Array [],
+        "defaultAssessmen": null,
+        "resources": Array [],
+      },
     },
     "temp": Object {
       "hotSpot": Object {
@@ -416,7 +424,9 @@ Object {
     "end": false,
     "errors": null,
     "hideHiddenQuestions": true,
+    "highlights": Object {},
     "ignoreValidations": false,
+    "inProgressQuestions": Array [],
     "initialized": false,
     "isThreesixty": false,
     "linear": false,
@@ -471,6 +481,12 @@ Object {
         "saving": false,
       },
       "questions": Object {},
+      "resources": Object {
+        "assessmentQuestions": Object {},
+        "assessments": Array [],
+        "defaultAssessmen": null,
+        "resources": Array [],
+      },
     },
     "temp": Object {
       "hotSpot": Object {

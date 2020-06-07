@@ -1,36 +1,37 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
 import _ from 'lodash'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 
 const AVAILABLE_QUESTION_TYPES = ['VideoResponse']
 
-export default class Properties extends Component {
+class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const { model } = store
-    const questions = _.filter(
-      AssessmentStore.questions[model.assessment_id] || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
+    const { model, questions } = this.props
+    const videoQuestions = _.filter(
+      questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
     )
     return (
       <div>
         <div className={styles.title}>Video Response</div>
         <div className="mtm">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
           <div className="mtm">
             Question
             <Select
-              value={getValue(questions, store.model.props.questionId)}
-              options={questions}
+              value={getValue(videoQuestions, model.props.questionId)}
+              options={videoQuestions}
               getOptionValue={opt => opt.id}
               getOptionLabel={opt => opt.name}
               autoFocus={false}
@@ -44,3 +45,7 @@ export default class Properties extends Component {
     )
   }
 }
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Properties)

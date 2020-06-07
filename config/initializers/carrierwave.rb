@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.test? || Rails.env.development?
+if Rails.env.test?
   CarrierWave.configure do |config|
     config.asset_host = "#{Settings.protocol}://#{Settings.domain}:#{Settings.port}"
     config.storage = :file
@@ -19,11 +19,18 @@ else
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
     config.use_action_status = true
+    config.fog_aws_accelerate = Settings.aws.s3.accelerated
     config.asset_host =
       if Settings.file_host.present?
         "https://#{Settings.file_host}"
       else
-        domain = "#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
+        s3_endpoint =
+          if Settings.aws.s3.accelerated
+            's3-accelerate.dualstack'
+          else
+            "s3.dualstack.#{Rails.application.secrets.region}"
+          end
+        domain = "#{Rails.application.secrets.directory}.#{s3_endpoint}.amazonaws.com"
         "https://#{domain}"
       end
   end

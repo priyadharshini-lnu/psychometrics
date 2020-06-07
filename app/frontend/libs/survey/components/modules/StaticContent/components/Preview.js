@@ -1,9 +1,11 @@
 /* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import withCopyProtection from 'components/hocs/withCopyProtection'
 import styles from './StaticContent.scss'
 import Previews from './Previews'
 import connect from '../connect'
+import Text from './Text'
 
 export class Preview extends Component {
   static propTypes = {
@@ -28,19 +30,18 @@ export class Preview extends Component {
     const { graphicType } = props
     if (type === 'Text' || (type === 'Graphic' && (graphicType === 'WithText' || graphicType === 'UrlWithText'))) {
       return (
-        <div
-          className={style}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
-        />
+        <Text model={model} style={style} I18n={I18n} />
       )
     }
   }
 
   render () {
-    const { model, model: { props }, I18n } = this.props
+    const {
+      model, model: { props }, I18n, containerRef,
+    } = this.props
     I18n.tQuestion(model, 'questionText')
     return (
-      <div>
+      <div ref={containerRef}>
         {this.renderText(props)}
         {this.renderType(props)}
       </div>
@@ -48,4 +49,6 @@ export class Preview extends Component {
   }
 }
 
-export default connect(Preview)
+const ConnectedPreview = connect(Preview)
+
+export default withCopyProtection(ConnectedPreview)

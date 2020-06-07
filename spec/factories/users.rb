@@ -33,28 +33,28 @@
 #  is_anonym              :boolean          default(FALSE)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "user+#{n}@example.com" }
-    password 'Pass123$'
-    role User::REGULAR_ROLE
-    first_name 'test'
-    last_name 'test'
+    password { 'Pass123$' }
+    role { User::REGULAR_ROLE }
+    first_name { 'test' }
+    last_name { 'test' }
     transient do
-      memberships_options [{}]
+      memberships_options { [{}] }
     end
 
     factory :superadmin, class: 'Users::SuperAdmin' do
-      role User::SUPER_ADMIN_ROLE
-      first_name 'super'
-      last_name 'admin'
+      role { User::SUPER_ADMIN_ROLE }
+      first_name { 'super' }
+      last_name { 'admin' }
     end
 
     factory :client_admin, traits: [:with_membership_client_admin] do
-      role User::ADMIN_ROLE
+      role { User::ADMIN_ROLE }
     end
     factory :project_admin, traits: [:with_membership_project_admin] do
-      role User::ADMIN_ROLE
+      role { User::ADMIN_ROLE }
     end
     factory :manager, traits: [:with_membership_manager]
 

@@ -9,6 +9,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import update from 'react-addons-update'
 import ItemPreview from './ItemPreview'
 import styles from './DragAndDrop.scss'
+import DescriptionPreview from '../../DescriptionPreview'
 
 const itemSource = {
   beginDrag (props) {
@@ -16,6 +17,8 @@ const itemSource = {
       id: props.id,
       index: props.index,
       text: props.text,
+      description: props.description,
+      showDescription: props.showDescription,
       number: props.number,
     }
   },
@@ -57,11 +60,13 @@ let Item = class extends Component {
     isDragging: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
     number: PropTypes.number,
+    showDescription: PropTypes.bool,
+    description: PropTypes.string,
   }
 
   render () {
     const {
-      text, isDragging, connectDragSource, connectDropTarget, number,
+      text, isDragging, connectDragSource, connectDropTarget, number, description, showDescription,
     } = this.props
     const opacity = isDragging ? 0 : 1
     return (
@@ -69,7 +74,10 @@ let Item = class extends Component {
         <div className={styles.item} style={{ opacity }}>
           <span className={`fa fa-bars ${styles.icon}`} />
           <div className={styles.number}>{number}</div>
-          <div className={styles.text}>{text}</div>
+          <div>
+            <div className={styles.text}>{text}</div>
+            {showDescription && <DescriptionPreview description={description} />}
+          </div>
         </div>,
       ))
     )
@@ -108,6 +116,8 @@ class Preview extends Component {
         id: answer.index,
         text: I18n.tQuestion(model, `choicesTexts${answer.index + 1}`, { choice: answer.index })
                 || model.moduleConfig.defaultChoiceText(answer.index + 1),
+        showDescription: model.props.showDescription,
+        description: I18n.tQuestion(model, `descriptionTexts${answer.index + 1}`, { choice: answer.index }),
       })),
     }
   }
@@ -146,6 +156,8 @@ class Preview extends Component {
               index={i}
               number={i + 1}
               text={item.text}
+              showDescription={item.showDescription}
+              description={item.description}
               moveItem={this.moveItem}
               endMoveItem={this.endMoveItem}
             />

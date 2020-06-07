@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
-import AssessmentStore from '../../store/AssessmentStore'
+
 import AppStore from '../../store/AppStore'
 import { QuestionScoringObject } from './interfaces/ScoringByQuestion'
 import ResultScoring from './interfaces/ResultScoring'
@@ -13,8 +13,9 @@ export default {
     assessmentId: number,
     questionScoring: ResultScoring,
     dimensionId: number,
+    questions,
   ): QuestionScoringWithoutFactorsObject => {
-    const assessmentQuestions = AssessmentStore.questions[assessmentId]
+    const assessmentQuestions = questions
 
     const result = _.reduce(questionScoring, (
       result: QuestionScoringWithoutFactorsObject,

@@ -37,7 +37,7 @@ const shuffleChoices = (question) => {
 }
 
 export class QuestionSerializer {
-  static wrap (attrs, answers) {
+  static wrap (attrs, answers, notApplicable = null) {
     if (!attrs) {
       return null
     }
@@ -72,7 +72,7 @@ export class QuestionSerializer {
     }
     _.extend(question.props, _.clone(attrs.props))
     shuffleChoices(question)
-    question.result = new Result(question, answers)
+    question.result = new Result(question, answers, notApplicable)
 
     return question
   }

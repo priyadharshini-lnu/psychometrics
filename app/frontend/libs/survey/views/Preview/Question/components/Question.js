@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
+import { initAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
 import styles from './Question.scss'
 
 class Question extends Component {
@@ -9,6 +10,10 @@ class Question extends Component {
     model: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     readOnly: PropTypes.bool,
+  }
+
+  componentDidMount () {
+    initAudioPlayer(this.question)
   }
 
   update = () => {
@@ -20,7 +25,13 @@ class Question extends Component {
   renderPreview () {
     const { model, result } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
-    return <View {...this.props} model={QuestionSerializer.wrap(model, result.answers)} preview />
+    return (
+      <View
+        {...this.props}
+        model={QuestionSerializer.wrap(model, result.answers, result.not_applicable)}
+        preview
+      />
+    )
   }
 
   renderError () {
@@ -41,7 +52,6 @@ class Question extends Component {
     const stylesProps = {
       display: hidden ? 'none' : 'flex',
       overflow: 'auto',
-      marginTop: '20px',
     }
     return (
       <div

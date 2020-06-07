@@ -6,19 +6,6 @@ module Hogan
     append_before_action :pundit_authorize
     layout false
 
-    def results
-      @report = Report.find(params[:report_id])
-
-      Hogan::LoadResults.call(@assign, @report, @current_membership.membership_with_result, @current_project) do
-        on(:not_completed) { flash[:error] = t('.not_completed') }
-        on(:ok) { flash[:success] = t('.successfully') }
-      end
-    rescue ActiveRecord::RecordNotFound
-      flash[:error] = I18n.t('administration.noty.error_500')
-    ensure
-      redirect_to root_path
-    end
-
     def redirect
       @assign.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
 

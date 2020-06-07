@@ -13,12 +13,14 @@ export const assessment = new schema.Entity('assessments', {
 })
 
 export const module = new schema.Entity('modules')
-export const page = new schema.Entity('pages', {
+export const page = new schema.Entity('pages')
+
+export const pages = new schema.Entity('pages', {
   modules: [module],
 })
 
 export const report = new schema.Entity('report', {
-  pages: [page],
+  pages: [pages],
   assessments: [assessment],
 })
 

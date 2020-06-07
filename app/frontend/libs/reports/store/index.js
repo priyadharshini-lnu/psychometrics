@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import logger from 'redux-logger'
 import api from 'middleware/api'
+import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import rootReducers from '../core/rootReducers'
 import socket from '../middleware/Socket'
@@ -13,7 +14,7 @@ let composeEnhancers = compose
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
 
-let middleware = [api, socket, sagaMiddleware]
+let middleware = [api, socket, sagaMiddleware, thunk]
 
 if (__TEST__) {
   middleware = []

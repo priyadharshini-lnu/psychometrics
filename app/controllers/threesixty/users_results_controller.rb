@@ -3,8 +3,8 @@
 module Threesixty
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
-    skip_before_action :verify_authenticity_token, unless: -> { current_user.superadmin? }
-    before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data]
+    before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
+                                             complete_multipart_upload mark_as_user_selected_take]
 
     def update
       campaign = Threesixty::Campaign.find(params[:campaign_id])
@@ -18,7 +18,9 @@ module Threesixty
       form = ::UsersResults::UpdatingForm.from_params(assign_params)
       ::UsersResults::UpdateUsersResult.call(form, @users_result, campaign)
 
-      render json: { expired: @users_result.expired? }
+      render json: @users_result,
+      serializer: UsersResultUpdateSerializer,
+      current_block_id: params[:current_block_id], campaign: campaign
     end
 
     def update_meta_data
@@ -27,15 +29,7 @@ module Threesixty
     end
 
     def upload_media_url
-      render json: UsersResults::GetMediaUploadUrl.call!(@users_result, params[:question_id])
-    end
-
-    def upload_media_dev
-      return head :no_content if Rails.env.production?
-
-      media = MediaResponse.find(params[:media_id])
-      media.update_attributes(asset: params[:asset])
-      render json: media.as_json.merge(filename: media.filename)
+      render json: MediaResponses::GetUploadUrl.call!(@users_result, params[:question_id])
     end
 
     def upload_callback
@@ -57,6 +51,19 @@ module Threesixty
         @users_result.answers[media.question_id.to_s]['answers'] = []
         @users_result.save
       end
+      head :ok
+    end
+
+    def complete_multipart_upload
+      media = @users_result.media_responses.find_by!(id: params[:media_id])
+      MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
+
+      render json: media.reload.as_json
+    end
+
+    def mark_as_user_selected_take
+      media = @users_result.media_responses.find_by!(id: params[:media_id])
+      MediaResponses::MarkAsUserSelected.call!(media)
       head :ok
     end
 

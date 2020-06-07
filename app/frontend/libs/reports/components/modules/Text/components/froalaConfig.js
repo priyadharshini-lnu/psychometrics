@@ -1,6 +1,7 @@
 import CodeMirror from 'codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/mode/xml/xml'
+import events from 'components/Editor/events'
 
 export default {
   iconsTemplate: 'font_awesome',
@@ -50,4 +51,13 @@ export default {
   attribution: false,
   autofocus: true,
   videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
+  pasteDeniedAttrs: ['style'],
+  events: {
+    'video.codeError': function (code) {
+      events.video_code_error(this, code)
+    },
+    'video.linkError': function (link) {
+      events.video_link_error(this, link)
+    },
+  },
 }

@@ -2,23 +2,21 @@
 
 :global {
   .campaigns-list {
-    .page-header {
-      min-height: 550px;
-    }
-
     .controls {
       margin-top: 24px
     }
 
     .cards {
       margin-top: 24px;
+      padding: 0 24px;
       flex-flow: row wrap;
+      min-height: 550px;
     }
 
   }
 
-  .page-header {
-    @media(max-width: $screen-lg) {
+  .cards {
+    @media(max-width: $screen-xl) {
       padding: 16px;
     }
   }
@@ -37,7 +35,6 @@
   }
 
   .main-container {
-    background: $white;
 
     .percentage {
       font-weight: bold;

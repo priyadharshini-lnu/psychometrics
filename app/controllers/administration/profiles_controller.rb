@@ -7,17 +7,18 @@ module Administration
 
     def edit
       authorize user
+      @form = ::Users::AdminProfileEditForm.from_model(user)
     end
 
     def update
       authorize user
-      respond_to do |format|
-        if user.update(profile_params)
-          bypass_sign_in(user)
-          format.html { redirect_to edit_administration_profiles_path, notice: t('.edit.success') }
-        else
-          format.html { render :edit }
-        end
+      @form = ::Users::AdminProfileEditForm.from_params(profile_params)
+      if @form.valid?
+        user = ::Users::AdminProfileUpdate.call!(@form, current_user)
+        bypass_sign_in(user)
+        redirect_to edit_administration_profiles_path, notice: t('.edit.success')
+      else
+        render :edit
       end
     end
 
@@ -32,7 +33,10 @@ module Administration
         params[:user].delete(:password)
         params[:user].delete(:password_confirmation)
       end
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(
+        :first_name, :last_name, :email,
+        :password, :password_confirmation, :weekly_license_stats
+      )
     end
   end
 end

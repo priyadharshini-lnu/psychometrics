@@ -99,7 +99,7 @@ class AnswerManager {
   }
 
   getAnswers () {
-    if (!this.config.conditions) {
+    if (!this.config || !this.config.conditions) {
       return
     }
     switch (this.question.type) {
@@ -127,13 +127,13 @@ class AnswerManager {
     }
     const fields = this.config.conditions[this.question.props.type]
     let result = []
-    if (fields.collection) {
+    if (fields && fields.collection) {
       result = _.map(this.question.props[fields.collection], (field, i) => (
         { value: i.toString(), label: `${field || this.config.defaultChoiceText(i + 1)}`, type: fields.type }
       ))
     }
 
-    if (fields.additional) {
+    if (fields && fields.additional) {
       _.each(fields.additional, (condition) => {
         result.push(condition)
       })

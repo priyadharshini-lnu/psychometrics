@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import v4 from 'uuid/v4'
 
 const { $ } = window
 
@@ -35,5 +36,15 @@ export default {
 
   scroll (hash) {
     $('html,body').animate({ scrollTop: $(`[name="${hash}"]`).offset().top - 70 }, 200)
+  },
+
+  genId () {
+    return v4()
+  },
+
+  stripHTML (dirtyString) {
+    dirtyString = _.unescape(dirtyString)
+    dirtyString = dirtyString.replace(/<\/?[^>]+(>|$)|\\n|&nbsp;/g, '')
+    return _.trim(dirtyString)
   },
 }

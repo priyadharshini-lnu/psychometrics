@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import _ from 'lodash'
@@ -13,19 +12,19 @@ const SELECT_OPTIONS = _.times(30, i => ({
 
 class Properties extends Component {
   update = () => {
-    store.model.props.group = null
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.group = null
+    model.update()
   }
 
   changeTopPosition = (e) => {
-    store.model.props.topPosition = e ? e.value : null
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.topPosition = e ? e.value : null
+    model.update()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     return (
       <div>
         <span className={styles.label}>Top Position</span>
@@ -38,7 +37,7 @@ class Properties extends Component {
         />
         <hr className={styles.divider} />
         <div>Font</div>
-        <PropertyFonts colors={false} />
+        <PropertyFonts model={model} colors={false} />
         <hr className={styles.divider} />
       </div>
     )

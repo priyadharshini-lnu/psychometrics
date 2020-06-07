@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
 import Select from 'react-select'
 import _ from 'lodash'
 import AppStore from 'rb/store/AppStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
 
 function FactorList ({ model, onChange }) {
   const assessment = AppStore.getAssessmentById(model.assessment_id)
   const options = _.map(AppStore.factors[assessment.dimensionId] || [],
     factor => ({ label: factor.name, value: factor.id }))
+
   return (
     <div className="mtm">
       Factor
       <Select
-        value={getValue(options, store.model.props.factorId)}
+        value={getValue(options, model.props.factorId)}
         options={options}
         getOptionValue={opt => opt.value}
         autoFocus={false}
@@ -30,16 +31,15 @@ function FactorList ({ model, onChange }) {
   )
 }
 
-function QuestionList ({ model, onChange }) {
-  const questions = _.filter(AssessmentStore.questions[model.assessment_id] || [], q => q.type === 'TextEntry')
-  const options = _.map(questions,
-    question => ({ label: question.name, value: question.id }))
+function QuestionList ({ model, onChange, questions }) {
+  const textQuestions = _.filter(questions || [], q => q.type === 'TextEntry')
+  const options = _.map(textQuestions, question => ({ label: question.name, value: question.id }))
 
   return (
     <div className="mtm">
       Question
       <Select
-        value={getValue(options, store.model.props.questionId)}
+        value={getValue(options, model.props.questionId)}
         options={options}
         getOptionValue={opt => opt.value}
         autoFocus={false}
@@ -56,27 +56,32 @@ const lists = {
   Question: QuestionList,
 }
 
-export default class Properties extends Component {
+class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const { model } = store
+    const { model, questions } = this.props
     const List = lists[model.props.sourceType]
     return (
       <div>
         <div>Font</div>
-        <PropertyFonts colors={false} />
+        <PropertyFonts model={model} colors={false} />
         <div className={styles.title}>Default 360</div>
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
-        <List model={model} onChange={this.onChange} />
+        <List model={model} onChange={this.onChange} questions={questions} />
         <div className="mtm">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
         </div>
       </div>
     )
   }
 }
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Properties)

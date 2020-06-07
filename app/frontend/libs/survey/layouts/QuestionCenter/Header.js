@@ -22,7 +22,7 @@ const Header = ({ save, question }) => {
         <li>
           <button onClick={saveHandler} className={`btn btn-success ${styles.saveButton}`}>
             <i className="fa fa-save" />
-              Save Question
+            Save Question
           </button>
         </li>
         <li><ActionsHistory /></li>

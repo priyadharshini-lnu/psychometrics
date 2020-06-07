@@ -4,14 +4,14 @@ require 'carrierwave/storage/fog'
 require 'carrierwave_direct'
 
 class MediaResponseUploader < CarrierWave::Uploader::Base
-  include CarrierWaveDirect::Uploader if Rails.env.production?
+  include CarrierWaveDirect::Uploader
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
   end
 
   def extension_whitelist
-    return question.props['allowedFileTypes'] if question.props['allowedFileTypes']
+    return allowed_file_types_from_question if question.props['allowedFileTypes']
 
     return %w[mp4] if question.type == 'VideoResponse'
 
@@ -24,5 +24,13 @@ class MediaResponseUploader < CarrierWave::Uploader::Base
 
   def question
     model.question
+  end
+
+  private
+
+  def allowed_file_types_from_question
+    return question.props['allowedFileTypes'].concat(['jpeg']) if question.props['allowedFileTypes'].include?('jpg')
+
+    question.props['allowedFileTypes']
   end
 end

@@ -44,6 +44,7 @@ module.exports = function (api) {
     ].filter(Boolean),
     plugins: [
       require('babel-plugin-macros'),
+      require('@babel/plugin-transform-object-assign').default,
       require('@babel/plugin-syntax-dynamic-import').default,
       isTestEnv && require('babel-plugin-dynamic-import-node'),
       require('@babel/plugin-transform-destructuring').default,
@@ -90,7 +91,7 @@ module.exports = function (api) {
         },
       ],
     ].filter(Boolean),
-    ignore: [/node_modules\/(?!survey-ui|reports-ui)/],
+    ignore: [/node_modules\/(?!survey-ui|reports-ui|query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/],
     sourceMaps: true,
     // test: ['app/frontend', 'node_modules/survey-ui'],
     // ignore: [/node_modules\/(?!survey-ui)/],

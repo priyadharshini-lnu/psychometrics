@@ -3,7 +3,7 @@ import { Modal } from 'react-bootstrap'
 import AppStore from 'rb/store/AppStore'
 import { DATA_SHEET_COLUMN_TYPES } from 'rb/consts/Report'
 import { setIn } from 'utils/immutable'
-import styles from './DataSheetModal.module.scss'
+import styles from './DataSheetModal.scss'
 import Column from './Column'
 
 const { $ } = window

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import SourceTypeButtonGroup from '../../SourceTypeButtonGroup'
@@ -7,13 +6,14 @@ import dataSources from './dataSources'
 
 export default class Properties extends Component {
   onChange = (key, value) => {
-    store.model.props[key] = value
-    store.model.update()
+    const { model } = this.props
+    model.props[key] = value
+    model.update()
     this.forceUpdate()
   }
 
   render () {
-    const { model } = store
+    const { model } = this.props
     const DataSource = dataSources[model.props.sourceType]
 
     return (
@@ -22,7 +22,7 @@ export default class Properties extends Component {
         <SourceTypeButtonGroup model={model} onChange={this.onChange} />
         <DataSource model={model} onChange={this.onChange} />
         <div className="mtm">
-          <PropertyFilter />
+          <PropertyFilter model={model} />
         </div>
       </div>
     )

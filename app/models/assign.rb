@@ -49,6 +49,7 @@ class Assign < ApplicationRecord
   has_many :reports, through: :assigns_reports, dependent: :destroy
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
+  has_many :media_responses
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
@@ -56,7 +57,7 @@ class Assign < ApplicationRecord
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
-  enum status: %i[not_started in_progress completed]
+  enum status: %i[not_started in_progress completed interrupted]
   enum role: %i[member manager admin]
 
   scope :mindmill, lambda {
@@ -99,7 +100,8 @@ class Assign < ApplicationRecord
   end
 
   def set_expiry_date
-    self.expiry_date = assessment.extra['timer']&.second&.from_now
+    time = status_in_database == 'interrupted' ? additional_time : assessment.extra['timer']
+    self.expiry_date = time.second&.from_now if time
   end
 
   def set_last_activity_at
@@ -114,61 +116,6 @@ class Assign < ApplicationRecord
   end
 
   mount_base64_uploader :mindmill_report, PrivateFileUploader, file_name: proc { 'mindmill_report' }
-
-  #
-  # 1 step:
-  # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map
-  #
-  # 2 step:
-  # Generate hash from questions related with FactorsScoring:
-  # {question_id: [Question], question_id: [Question]} - questions_map
-  #
-  # 3 step:
-  # Run through hash #1:
-  #   for every factor calculate scoring by assign->results and FactorScoring->props
-  #
-  # 4 step:
-  # Temporal result save to assign->scoring:
-  # Example: {866=>{:name=>"Rubyable", :results=>[2.0, 2.5, 3.0]}, 867=>{:name=>"Reactable", :results=>[2.0, 2.5, 3.0]}}
-  #
-  #
-  # 5 step:
-  # Calculate average of field scoring[factor_id][:results]
-  # Example: {866=>{:name=>"Rubyable", :results=>3.75}, 867=>{:name=>"Reactable", :results=>2.5}}
-  #
-  def calculate_scoring
-    raise 'To calculate you need to pass relative assessment' unless completed?
-
-    factors_scoring = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
-    factors_scoring_map = factors_scoring.group_by(&:factor_id)
-    questions_ids = factors_scoring.pluck(:question_id).uniq
-    questions_map = Question.where(id: questions_ids).all.group_by(&:id)
-    self.scoring = {}
-    self.agile_scoring = {}
-
-    factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id.to_s] = { 'results' => [] }
-      self.agile_scoring[factor_id.to_s] = { 'results' => [] }
-      scoring_array.each do |question_scoring|
-        question = questions_map[question_scoring.question_id].try(:first)
-        scoring_class = "Scoring::#{question.try(:type)}"
-        result = results[question.try(:id).try(:to_s)]
-        next unless result && question && !question_scoring.props.empty?
-
-        scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
-        # type 'PickGroupRank' is used for agile methodology
-        # for common scoring we need to skip this type
-        if question.try(:type) == 'PickGroupRank'
-          if scoring_point
-            self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
-          end
-        elsif scoring_point
-          self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point }
-        end
-      end
-    end
-    nil
-  end
 
   def notification_handler
     if status_changed?

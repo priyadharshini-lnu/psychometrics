@@ -1,4 +1,5 @@
 import moment from 'moment'
+import QuestionPresenter from 'libs/survey/presenters/question'
 
 const DATE_FORMATS = [
   {
@@ -208,6 +209,20 @@ const FIELDS = [
         name: 'Second Person Reflexive',
         type: 'link',
         value: '{{sst://FirstPersonReflexive}}',
+      },
+    ],
+  },
+  {
+    branch: 'Answers',
+    fields: [
+      {
+        name: 'FileUpload',
+        type: 'autocomplete',
+        items: ({ questions }) => _.filter(questions, q => q.type === 'FileUpload').map(q => ({
+          label: QuestionPresenter.getName(q, 80),
+          id: q.id,
+        })),
+        getValue: ({ id }) => `{{answer://FileUpload/${id}?w=100%&h=400px}}`,
       },
     ],
   },

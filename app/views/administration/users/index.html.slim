@@ -15,8 +15,8 @@
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
 
-          = f.input :role_in,
-                    collection: ::User::USER_ROLES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] },
+          = f.input :role_scope_in,
+                    collection: roles_dropdown(current_user),
                     input_html: { multiple: true, title: 'Roles'},
                     label: false
           = f.input :memberships_client_id_in,

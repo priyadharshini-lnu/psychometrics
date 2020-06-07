@@ -65,6 +65,7 @@ class Assessment < ApplicationRecord
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :highlights, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :communications, dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
@@ -104,7 +105,8 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
-  store :extra, accessors: [:icon_color], coder: JsonSerializer
+  store :extra, accessors: %i[icon_color enable_video_check enable_audio_check enable_network_check],
+    coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
 

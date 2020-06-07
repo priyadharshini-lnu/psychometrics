@@ -1,5 +1,6 @@
 import BlockList from 'views/BlockList'
 import Scorring from 'layouts/Scoring'
+import ResourceManager from 'layouts/ResourceManager'
 
 const routes = [
   {
@@ -7,6 +8,7 @@ const routes = [
     component: BlockList,
     routes: [
       { path: '/scoring', component: Scorring },
+      { path: '/resources', component: ResourceManager },
     ],
   },
 ]

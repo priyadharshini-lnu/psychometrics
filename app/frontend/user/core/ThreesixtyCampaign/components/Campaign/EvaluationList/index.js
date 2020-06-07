@@ -66,6 +66,15 @@ function EvaluationList ({
       && !isEvaluationCompleted(item)
   )
 
+  const isWizardRequired = item => item.assessmentExtra.enableNetworkCheck === '1'
+    || item.assessmentExtra.enableAudioCheck === '1'
+    || item.assessmentExtra.enableVideoCheck === '1'
+
+  const getPath = (item) => {
+    if (isWizardRequired(item)) return `/system_checks/${item.assessmentId}/${item.id}`
+    return `/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
+  }
+
   const EvaluationItem = item => (
     <List.Item>
       <div className="evaluation-item list-item">
@@ -74,9 +83,10 @@ function EvaluationList ({
           : <div className="empty-square" />}
         {' '}
         <Link
-          to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`}
+          to={getPath(item)}
           style={{ display: 'flex', flex: 1 }}
           disabled={canNotEvaluate(item)}
+          onClick={e => moveTo(e, item)}
         >
           <Tooltip placement="topLeft" title={item.subject.email}>
             <div className={styles.flex}>{userPresenter.selfUserName(item, item.subject)}</div>
@@ -161,7 +171,7 @@ function EvaluationList ({
               <div className="value">
                 {evaluationsCounters.completedEvaluations}
                 {' '}
-of
+                of
                 {' '}
                 {evaluationsCounters.totalEvaluations}
               </div>

@@ -1,22 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Slider, Spin } from 'antd'
+import { getMinutesAndSeconds } from 'utils/time'
 import { PLAYER_STATE } from '../constants'
 import styles from './AudioPlayerStyle.scss'
-import { getMinutesAndSeconds } from 'utils/time'
-import { setPlayerState } from '../reducer'
 
 interface Props {
   playerState: string
   audioFileUrl: string,
   onComplete(): void,
+  setPlayerElement(player: HTMLAudioElement): void
 }
 
-const AudioPlayer: React.FC<Props> = ({ playerState, audioFileUrl, onComplete }) => {
+const AudioPlayer: React.FC<Props> = ({
+  playerState, audioFileUrl, onComplete, setPlayerElement,
+}) => {
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
   const [loading, setLoading] = useState(false)
   const callbackRef = useRef({})
   const playerRef = useRef<HTMLAudioElement>(null)
+
+  useEffect(() => {
+    if (playerRef.current) {
+      setPlayerElement(playerRef.current)
+    }
+  }, [playerRef])
 
   useEffect(() => {
     callbackRef.current = {
@@ -37,7 +45,6 @@ const AudioPlayer: React.FC<Props> = ({ playerState, audioFileUrl, onComplete })
   useEffect(() => {
     if (playerState === PLAYER_STATE.PLAYING) {
       showLoadingIndicator()
-      playerRef.current?.play()
     }
 
     if (playerState === PLAYER_STATE.PAUSED) {
@@ -50,9 +57,7 @@ const AudioPlayer: React.FC<Props> = ({ playerState, audioFileUrl, onComplete })
     onComplete()
   }
 
-  const playPercentage = () => {
-    return Math.round(currentTime / duration * 100)
-  }
+  const playPercentage = () => Math.round(currentTime / duration * 100)
 
   const updateProgress = () => {
     hideLoadingIndicator()

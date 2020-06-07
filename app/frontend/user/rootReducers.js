@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import currentUser from 'core/temp/currentUser'
 import preview from 'libs/survey/core/preview'
+import reportBuilder from 'libs/reports/core/builder'
 import campaign from './core/ThreesixtyCampaign/campaign'
 import campaigns from './core/ThreesixtyCampaign/campaigns'
 import nomination from './core/ThreesixtyCampaign/nomination'
@@ -10,6 +11,7 @@ import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 import project from './core/temp/project'
 import extras from './core/extras'
+import checkingWizard from './core/checkingWizard'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -27,4 +29,6 @@ export default combineReducers({
   }),
   extras,
   preview,
+  report: combineReducers({ builder: reportBuilder }),
+  checkingWizard,
 })

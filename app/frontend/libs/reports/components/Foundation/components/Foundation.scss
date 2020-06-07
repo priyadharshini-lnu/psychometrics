@@ -29,11 +29,18 @@
   overflow: visible;
   cursor: auto;
   box-shadow: #639CD3 0 0 0.2em;
+
+
+  &.shadow {
+    box-shadow: yellow 0 0 0.2em;
+  }
 }
 
 .base.selected:hover {
   box-shadow: #639CD3 0 0 0.2em;
-
+  &.shadow {
+    box-shadow: yellow 0 0 0.2em;
+  }
 }
 
 .base.selected .frame {

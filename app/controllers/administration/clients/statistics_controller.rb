@@ -15,7 +15,7 @@ module Administration
                       result.
                       joining do |a|
                         a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id))
-                      end .
+                      end.
                       joining { assessment }.
                       selecting do
                         ['COUNT(CASE WHEN assigns.status = 0 THEN 1 ELSE null END) AS new_count',
@@ -23,7 +23,7 @@ module Administration
                          'COUNT(CASE WHEN assigns.status = 2 THEN 1 ELSE null END) AS completed_count',
                          assessment.name,
                          assessment_id.as('id')]
-                      end .
+                      end.
                       grouping { [assessment_id, assessment.name] }
         respond_to do |format|
           format.html

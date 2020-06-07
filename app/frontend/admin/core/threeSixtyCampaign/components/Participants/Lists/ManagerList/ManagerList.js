@@ -13,6 +13,7 @@ export default function ManagerList ({
   managers,
   openModal,
   editUser,
+  removeUser,
   total,
   page,
   searchTerm,
@@ -30,18 +31,18 @@ export default function ManagerList ({
   return (
     <>
       <Row justify="space-between">
-        <Col span={4} className="pls">
+        <Col span={4} className="pll">
           <UserOutlined />
           <span className="mlm">{`${total} Managers`}</span>
         </Col>
-        <div className="float-r">
+        <Col span={20} className="text-align-r">
           <SearchInput
             onChange={curriedFetchManagers(campaignId)}
             path="/participants/managers"
             searchTerm={searchTerm}
           />
           <ToolsDropdown />
-        </div>
+        </Col>
       </Row>
       <Row>
         <Col span={24}>
@@ -51,6 +52,7 @@ export default function ManagerList ({
             evaluators={managers}
             editUser={editUser}
             onCloseParticipantModal={() => fetchManagers(campaignId, page, searchTerm)}
+            removeUser={removeUser}
           />
           <div className="pm">
             <Pagination total={total} fetch={curriedFetchManagers(campaignId)} path="/participants/managers" />

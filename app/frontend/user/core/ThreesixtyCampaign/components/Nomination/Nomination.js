@@ -52,20 +52,29 @@ export default function Nominations (props) {
     })
   }
 
+  const { nomination: { loaded } } = props
+  if (!loaded) { return null }
+
   return (
-    <Layout className="layout">
+    <Layout>
+      <div className="page-header-wrap">
+        <Content className="fluid-container">
+          <PageHeader
+            className="page-header"
+            backIcon={(
+              <div>
+                <ArrowLeftOutlined />
+                {' '}
+                {I18n.t('threesixty.back_to_tasks')}
+              </div>
+            )}
+            title="Nomination"
+            onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
+          />
+        </Content>
+      </div>
       <Content className="fluid-container">
-        <PageHeader
-          className="page-header"
-          backIcon={(
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              {I18n.t('threesixty.back_to_tasks')}
-            </div>
-          )}
-          onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
-        >
+        <div className="mtl mbl">
           <div className="nominations-container">
             {hasNominationPermission && evalautionCompletedForSubject && (
             <Alert
@@ -76,19 +85,19 @@ export default function Nominations (props) {
             />
             )}
             {instruction ? (
-              <div className="content padding">
+              <div className="content">
                 <div dangerouslySetInnerHTML={{ __html: instruction.content }} />
               </div>
             ) : (
-              <div className="content padding">
+              <div className="content">
                 <Paragraph>
-                Please nominate all your elevators from whom you wish to recieve feedback. And then complete your Self assessment.
+                  Please nominate all your elevators from whom you wish to recieve feedback. And then complete your Self assessment.
                 </Paragraph>
                 <Paragraph>
-                Please ensure you select a minimun of three evaluators from each of the groups. Your nominationswill be approved by your Line Manager, before the requests for feedback are send directly to the Evaluators. We encourage you to discuss and agree your evaluators with your Line Manager before entering them on the system.
+                  Please ensure you select a minimun of three evaluators from each of the groups. Your nominationswill be approved by your Line Manager, before the requests for feedback are send directly to the Evaluators. We encourage you to discuss and agree your evaluators with your Line Manager before entering them on the system.
                 </Paragraph>
                 <Paragraph>
-                If you have any questions, please contact us.
+                  If you have any questions, please contact us.
                 </Paragraph>
               </div>
             )}
@@ -113,7 +122,7 @@ export default function Nominations (props) {
               handleAdd={handleAdd}
             />
           </div>
-        </PageHeader>
+        </div>
       </Content>
     </Layout>
   )

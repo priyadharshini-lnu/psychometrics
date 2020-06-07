@@ -3,10 +3,10 @@ import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
 import PropertyPagination from 'rb/components/PropertyPagination'
 
-const Properties = () => (
+const Properties = ({ model }) => (
   <div>
     <div>Font</div>
-    <PropertyFonts colors={false} />
+    <PropertyFonts model={model} colors={false} />
     <hr className={styles.divider} />
     <PropertyPagination />
     <hr className={styles.divider} />

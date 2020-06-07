@@ -2,6 +2,7 @@
 /* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import React, { Component } from 'react'
+import cs from 'classnames'
 import PropTypes from 'prop-types'
 import Foundation from 'rb/components/Foundation'
 import store from 'rb/store/PageList'
@@ -9,8 +10,6 @@ import ResultStore from 'rb/store/ResultStore'
 import AppStore from 'rb/store/AppStore'
 import RichEditorStore from 'rb/store/RichEditorStore'
 import I18nStore from 'rb/store/I18nStore'
-// import config from 'rb/consts/CKConfig'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import Factors from 'rb/commands/Factors'
 import { renderMarkdown } from 'rb/utils/Markdown'
 import 'rb/commands/froalaCommands'
@@ -25,16 +24,16 @@ import GetStyles from './GetStyles'
 
 const { md } = window
 class Text extends Component {
+  editor = null
+
+  edit = false
+
   static propTypes = {
     module: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     children: PropTypes.node,
     preview: PropTypes.bool,
   }
-
-  editor = null
-
-  edit = false
 
   componentDidMount () {
     this.listener = RichEditorStore.addListener('close', () => {
@@ -47,8 +46,8 @@ class Text extends Component {
       module, preview, openRichEditor, closeRichEditor, richEditorOpened,
     } = this.props
     if (!preview) {
-      if (_.find(store.selected, module) && this.edit) {
-        if (this.editor) {
+      if (_.find(store.selected, { id: module.id }) && this.edit) {
+        if (this.editor && !richEditorOpened) {
           openRichEditor()
         }
       } else if (this.editor && this.edit && !richEditorOpened) {
@@ -125,9 +124,43 @@ class Text extends Component {
   }
 
   renderText () {
-    const { module: model, preview } = this.props
+    const {
+      module: model,
+      module: {
+        assessment_id: assessmentId,
+        props: {
+          source, sourceType, text, question: modelQuestion,
+        },
+      },
+      questions,
+      preview,
+    } = this.props
+
+    if (sourceType === 'ResponseText') {
+      const question = _.find(questions, { id: modelQuestion })
+      if (!question) { return null }
+      const QuestionTypeModel = ResponseTextByQuestionType[question.type]
+      const particularResult = _.get(ResultStore, ['results', assessmentId, 'questions', question.id, 0])
+      if (!QuestionTypeModel) {
+        // eslint-disable-next-line no-console
+        console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
+        return null
+      }
+      return (
+        <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
+          <QuestionTypeModel
+            result={particularResult}
+            model={model}
+            question={question}
+            isReal={ResultStore.realResults}
+            preview={preview}
+          />
+        </div>
+      )
+    }
+
     if (preview) {
-      if (model.props.sourceType === 'ConditionalText') {
+      if (sourceType === 'ConditionalText') {
         const html = renderMarkdown(model.getTextByCondition())
         return (
           <div
@@ -136,7 +169,7 @@ class Text extends Component {
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
-      } if (model.props.sourceType === 'ConditionalFactorOccupationText') {
+      } if (sourceType === 'ConditionalFactorOccupationText') {
         const html = renderMarkdown(GetText.run(model))
         return (
           <div
@@ -145,7 +178,7 @@ class Text extends Component {
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
-      } if (model.props.sourceType === 'ConditionalFactorOccupationText') {
+      } if (sourceType === 'ConditionalFactorOccupationText') {
         const html = md.render(GetText.run(model))
         return (
           <div
@@ -154,7 +187,7 @@ class Text extends Component {
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
-      } if (model.props.sourceType === 'PipedText') {
+      } if (sourceType === 'PipedText') {
         _.templateSettings.interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
         const compiled = _.template(I18nStore.tModule(model, 'text'))
 
@@ -162,37 +195,17 @@ class Text extends Component {
           first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
           last_name: _.get(ResultStore, 'user.last_name', '{{last_name}}'),
           completed_at: _.get(AppStore, 'report.result_completed_at', '{{completed_at}}'),
-          norm_used: _.get(AppStore, ['report', 'norm_used', model.assessment_id], '{{norm_used}}'),
-          locale_name: _.get(AppStore, ['report', 'result_locale', model.assessment_id], '{{locale_name}}'),
+          norm_used: _.get(AppStore, ['report', 'norm_used', assessmentId], '{{norm_used}}'),
+          locale_name: _.get(AppStore, ['report', 'result_locale', assessmentId], '{{locale_name}}'),
         })
         return (
           <div
             ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
+            className={cs(styles.editor, 'ltr')}
             dangerouslySetInnerHTML={{ __html: html }}
           />
         )
-      } if (model.props.sourceType === 'ResponseText') {
-        const question = AssessmentStore.questions[model.assessment_id][model.props.question]
-        if (!question) { return null }
-        const QuestionTypeModel = ResponseTextByQuestionType[question.type]
-        const particularResult = _.get(ResultStore, ['results', model.assessment_id, 'questions', question.id, 0])
-        if (!QuestionTypeModel) {
-          // eslint-disable-next-line no-console
-          console.error(`QuestionTypeModel for ResponseText is not found by question ${question}`)
-          return null
-        }
-        return (
-          <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
-            <QuestionTypeModel
-              result={particularResult}
-              model={model}
-              question={question}
-              isReal={ResultStore.realResults}
-            />
-          </div>
-        )
-      } if (model.props.sourceType === 'ResultText') {
+      } if (sourceType === 'ResultText') {
         return (
           <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
             {/* TODO: Render as markdown only for Datasheet where the column is markdown */}
@@ -208,11 +221,11 @@ class Text extends Component {
         />
       )
     }
-    if (model.props.sourceType === 'ResultText') {
+    if (sourceType === 'ResultText') {
       return (
         <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
           {/* TODO: Render as markdown only for Datasheet where the column is markdown */}
-          <div>{`${JSON.stringify(model.props.source)}`}</div>
+          <div>{`${JSON.stringify(source)}`}</div>
         </div>
       )
     }
@@ -222,11 +235,11 @@ class Text extends Component {
           key="editor"
           ref={(ref) => { this.editor = ref }}
           config={config}
-          model={model.props.text}
+          model={text}
           onModelChange={this.onChange}
         />
       )
-      : <div key="text" className={styles.editor} dangerouslySetInnerHTML={{ __html: model.props.text }} />
+      : <div key="text" className={styles.editor} dangerouslySetInnerHTML={{ __html: text }} />
   }
 
   render () {

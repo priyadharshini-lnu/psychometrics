@@ -4,7 +4,8 @@ class InvitationMailer < ApplicationMailer
   def invite(user_id, invited_to_id, token)
     @resource = User.find(user_id)
     @token = token
-    @project = Client.find(invited_to_id).project
+    client = Client.find(invited_to_id)
+    @subdomain = @resource.is?(:regular) ? client.project.subdomain : nil
     mail(
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: @resource.email,
@@ -14,15 +15,15 @@ class InvitationMailer < ApplicationMailer
     )
   end
 
-  def invite_superadmin(user_id, token)
+  def invite_admin(user_id, token)
     @resource = User.find(user_id)
     @token = token
     mail(
       from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
       to: @resource.email,
-      subject: I18n.t('devise.mailer.invitation_instructions.subject'),
+      subject: I18n.t('devise.mailer.admin_invitation_instructions.subject'),
       template_path: '/devise/mailer',
-      template_name: 'superadmin_invitation_instructions'
+      template_name: 'admin_invitation_instructions'
     )
   end
 

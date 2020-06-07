@@ -9,6 +9,9 @@ class RankOrder extends BaseTranslate {
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
+    if (/^descriptionTexts/.test(field)) {
+      return _.get(this.question, ['props', 'descriptionList', 'extraData.choice'])
+    }
   }
 
   exportLocales () {
@@ -17,6 +20,9 @@ class RankOrder extends BaseTranslate {
     }
     _.times(this.question.props.choices, (i) => {
       result[`choicesTexts${i + 1}`] = this.question.props.choicesTexts[i]
+      if (this.question.props.descriptionList[i]) {
+        result[`descriptionTexts${i + 1}`] = this.question.props.descriptionList[i]
+      }
     })
     return result
   }

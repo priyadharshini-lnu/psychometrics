@@ -155,7 +155,7 @@ export default function NominationForm (props) {
                 </Button>
               </Col>
               <Col>
-                <Button type="danger" className="deny-button" onClick={handleDenyAll}>
+                <Button type="primary" danger onClick={handleDenyAll}>
                   {I18n.t('threesixty.deny_all')}
                 </Button>
               </Col>

@@ -38,62 +38,67 @@ export default function Campaign ({
   return (
     <Layout>
       <Content className="fluid-container">
-        <div className="main-container">
-          <PageHeader
-            className="page-header"
-            onBack={() => history.push('/campaigns')}
-            title={<div className="title-with-dash">{campaign.name}</div>}
-          >
-            {camapaignClosed && (
-            <div className="mbm font-bold">
-              <Alert message={I18n.t('threesixty.closed_campaign_message')} type="info" showIcon />
-            </div>
-            )}
-            <div>
-              {welcomeMessage && (
-                <Row type="flex">
-                  <div dangerouslySetInnerHTML={{ __html: welcomeMessage.content }} />
-                </Row>
-              )}
-
-              <Row className="progress-wrapper">
-                <Col>
-                  <div className="progress-column">
-                    <Progress
-                      strokeColor="#00B4AA"
-                      percent={_.round(totalProgress)}
-                      strokeWidth={16}
-                      format={percent => (
-                        <div className="percentage">{`${percent}%`}</div>
-                      )}
-                    />
-                    <div className="progress-label">{I18n.t('threesixty.total_progress')}</div>
+        <Row justify="center">
+          <Col xs={24} lg={22} xl={18} xxl={16}>
+            <div className="main-container">
+              <>
+                <PageHeader
+                  className="page-header"
+                  onBack={() => history.push('/campaigns')}
+                  title={<div className="title-with-dash">{campaign.name}</div>}
+                />
+                {camapaignClosed && (
+                  <div className="mbm font-bold">
+                    <Alert message={I18n.t('threesixty.closed_campaign_message')} type="info" showIcon />
                   </div>
-                </Col>
-              </Row>
+                )}
+                <div>
+                  {welcomeMessage && (
+                    <Row type="flex" className="assessment-info">
+                      <div dangerouslySetInnerHTML={{ __html: welcomeMessage.content }} />
+                    </Row>
+                  )}
+
+                  <Row className="progress-wrapper rounded-box pl mtl">
+                    <Col span={24}>
+                      <div className="progress-column">
+                        <Progress
+                          strokeColor="#00B4AA"
+                          percent={_.round(totalProgress)}
+                          strokeWidth={16}
+                          format={percent => (
+                            <div className="percentage">{`${percent}%`}</div>
+                          )}
+                        />
+                        <div className="progress-label">{I18n.t('threesixty.total_progress')}</div>
+                      </div>
+                    </Col>
+                  </Row>
+                </div>
+                <Row type="flex" gutter={16} className="task_cards">
+                  {nominationsCounters.totalNominations !== 0 && !camapaignClosed
+                && (
+                  <Col xs={{ span: 24 }} md={{ span: 8 }} style={{ marginTop: 16 }}>
+                    <Nominations percent={nominationsPercent} />
+                  </Col>
+                )}
+                  {evaluationsCounters.totalEvaluations !== 0 && !camapaignClosed
+                && (
+                  <Col xs={{ span: 24 }} md={{ span: 8 }} style={{ marginTop: 16 }}>
+                    <Evaluations history={history} percent={evaluationsPercent} />
+                  </Col>
+                )}
+                  {reportsCounters.totalReports !== 0
+                && (
+                  <Col xs={{ span: 24 }} md={{ span: 8 }} style={{ marginTop: 16 }}>
+                    <Reports percent={reportsPercent} />
+                  </Col>
+                )}
+                </Row>
+              </>
             </div>
-            <Row type="flex" gutter={16} className="task_cards">
-              {nominationsCounters.totalNominations !== 0 && !camapaignClosed
-                && (
-                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                  <Nominations percent={nominationsPercent} />
-                </Col>
-                )}
-              {evaluationsCounters.totalEvaluations !== 0 && !camapaignClosed
-                && (
-                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                  <Evaluations history={history} percent={evaluationsPercent} />
-                </Col>
-                )}
-              {reportsCounters.totalReports !== 0
-                && (
-                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                  <Reports percent={reportsPercent} />
-                </Col>
-                )}
-            </Row>
-          </PageHeader>
-        </div>
+          </Col>
+        </Row>
       </Content>
     </Layout>
   )

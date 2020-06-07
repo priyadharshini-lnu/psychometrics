@@ -18,6 +18,14 @@ class Threesixty::UsersResultPolicy < Threesixty::BasePolicy
     update?
   end
 
+  def complete_multipart_upload?
+    update?
+  end
+
+  def mark_as_user_selected_take?
+    update?
+  end
+
   def update_meta_data?
     update?
   end

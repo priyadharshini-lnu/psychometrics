@@ -7,17 +7,15 @@ interface Props {
   onClick(): void
 }
 
-const PlayButton: React.FC<Props> = ({ onClick }) => {
-  return (
-    <div
-      className={cs([styles.mediaBtnContainer, styles.playBtnContainer])}
-      onClick={onClick}
-    >
-      <div className={cs([styles.mediaBtn, styles.playBtn])}>
-        <CaretRightOutlined className={styles.icon} />
-      </div>
+const PlayButton: React.FC<Props> = ({ onClick }) => (
+  <div
+    className={cs([styles.mediaBtnContainer, styles.playBtnContainer])}
+    onClick={onClick}
+  >
+    <div className={cs([styles.mediaBtn, styles.playBtn])}>
+      <CaretRightOutlined className={styles.icon} />
     </div>
-  )
-}
+  </div>
+)
 
 export default PlayButton

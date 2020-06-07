@@ -63,6 +63,9 @@ $(function() {
       $(id).addClass('active').siblings('.tab').removeClass('active')
     })
   });
+
+  // enable events-buttons after pafe load
+  $("a.btn.disable-link.disabled").removeClass('disabled');
 });
 
 // Replace with return new DOM

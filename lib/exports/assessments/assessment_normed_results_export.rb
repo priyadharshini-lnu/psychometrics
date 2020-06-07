@@ -10,7 +10,7 @@ module Exports
         self.client = Client.find(client_id)
       end
 
-      # rubocop:disable Metrics/BlockLength, Metrics/AbcSize
+      # rubocop:disable Metrics/BlockLength
       def to_xlsx
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentNormedResults') do |sheet|
@@ -30,12 +30,6 @@ module Exports
               factor_ids[factor_id] = factor.sub_factor_ids
             end
 
-            # Fetchs FactorsNorm and groups by Norm ID, Type and Factor ID
-            #
-            factors_norms = FactorsNorm.
-                            where(factor_id: normed_results.keys).
-                            group_by { |fn| "#{fn.norm_id}_#{fn.type}_#{fn.factor_id}" }
-
             # Draws headers
             #
             sheet.add_row header[:header].flatten
@@ -43,35 +37,11 @@ module Exports
             # Draws results
             #
             current_level_assigns.find_each(batch_size: 100) do |assign|
-              norm_data = assign.norm_data || {}
-              norm = Norm.find_by(id: norm_data['id']) if norm_data['id']
-
-              # Iterates Factor IDs for calculate normed result
-              #
-              normed_results.keys.each do |factor_id|
-                factor = factors[factor_id]
-                scoring = assign.scoring&.dig(factor_id.to_s, 'results')
-                normed_results[factor_id] = ''
-
-                # Gets sub_factor results
-                if factor.sub_factor_questions_strategy?
-                  scoring = if factor_ids[factor_id].present?
-                              factor_ids[factor_id].
-                                each_with_object([]) do |sub_factor_id, res|
-                                res << assign.scoring&.dig(sub_factor_id.to_s, 'results')
-                              end.flatten.compact
-                            end
-                end
-
-                # Skip if there is no scoring or norm
-                next if scoring.blank? || norm.nil?
-
-                # Detects FactorsNorm and skip if there is no
-                factors_norm = factors_norms["#{norm.id}_#{norm_data['type']}_#{factor_id}".downcase]&.first
-                next unless factors_norm
-
-                normed_results[factor_id] = factors_norm.detect_normed_result(scoring)
+              normed_results.each_key do |factor_id|
+                normed_results[factor_id] = assign.scoring&.dig(factor_id.to_s, 'norm_score')
               end
+
+              norm = Norm.find_by(id: assign.norm_data['id']) if assign.norm_data.try(:[], 'id')
 
               sheet.add_row [assign.encode_id,
                              user_name(assign),
@@ -85,7 +55,7 @@ module Exports
           end
         end
       end
-      # rubocop:enable Metrics/BlockLength, Metrics/AbcSize
+      # rubocop:enable Metrics/BlockLength
 
       def current_level_assigns
         if client.project?

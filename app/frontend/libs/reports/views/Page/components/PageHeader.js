@@ -10,9 +10,8 @@ export default class PageHeader extends Component {
   }
 
   changeName = (val) => {
-    const { model } = this.props
-    model.name = val
-    this.forceUpdate()
+    const { renamePage, model } = this.props
+    renamePage(model.id, val)
   }
 
   addDisplayLogic = () => {
@@ -38,7 +37,7 @@ export default class PageHeader extends Component {
           >
             <MenuItem onSelect={this.addDisplayLogic}>
               <span className={`icon fa fa-eye ${styles.icon}`} />
-                Add Display Logic...
+              Add Display Logic...
             </MenuItem>
           </DropdownButton>
         </div>

@@ -5,10 +5,10 @@ import styles from './PageEditor.scss'
 import LeftSide from './LeftSide'
 import RightSide from './RightSide'
 
-const PageEditor = () => (
+const PageEditor = props => (
   <div className={styles.main}>
     <FixedHeader />
-    <LeftSide />
+    <LeftSide {...props} />
     <RightSide />
     <PropertyPanel />
   </div>

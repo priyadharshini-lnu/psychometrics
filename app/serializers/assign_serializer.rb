@@ -25,7 +25,8 @@ class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
-             :type, :occupations, :innovation_styles, :expiry_date, :meta_data
+             :type, :occupations, :innovation_styles, :expiry_date, :meta_data,
+             :current_element, :current_page, :seedrandom, :reset_count, :highlights
 
   has_one :user, serializer: UserSerializer
 
@@ -40,6 +41,14 @@ class AssignSerializer < ActiveModel::Serializer
   # TODO: (atanych): Do we still need this?
   def hris
     {}
+  end
+
+  def highlights
+    ids = [object.assessment_id]
+    ids += object.assessment.resources.map { |r| r['assessmentId'] } if object.assessment.resources
+    Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
+      HighlightSerializer.new(h)
+    end
   end
 
   def relationship

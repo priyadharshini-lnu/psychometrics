@@ -29,10 +29,15 @@ class ChoicesInput extends Component {
     onChange && onChange(val)
   }
 
-  change = (e) => {
-    if (!e.currentTarget.value.match(/\D/)) {
-      let value = parseInt(e.currentTarget.value, 10)
-      if (_.isNaN(value)) {
+  change = ({ currentTarget }) => {
+    if (currentTarget.value === '-' && this.getMinValue() < 0) {
+      return this.updateModel(-1)
+    }
+
+    // eslint-disable-next-line eqeqeq
+    if (currentTarget.value == parseInt(currentTarget.value, 10)) {
+      let value = parseInt(currentTarget.value, 10)
+      if (_.isNaN(value) || value < this.getMinValue()) {
         value = this.getMinValue()
       } else {
         value = value < this.getMaxValue() ? value : this.getMaxValue()

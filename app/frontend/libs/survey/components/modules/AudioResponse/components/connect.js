@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { getI18n } from 'libs/survey/core/preview/FlowProcessor/selectors'
+import { markQuestionInProgress, removeQuestionInProgress } from 'libs/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
   ({ preview }) => ({
@@ -7,5 +8,8 @@ export default connect(
     mediaUrl: preview.mediaUrl,
     I18n: getI18n(preview),
   }),
-  {},
+  {
+    markQuestionInProgress,
+    removeQuestionInProgress,
+  },
 )

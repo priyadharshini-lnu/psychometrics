@@ -29,7 +29,7 @@ class Page extends Component {
     const { layout } = staticContent
     return cs({
       [styles.sideStaticContent]: (layout === LEFT || layout === RIGHT),
-      [styles.leftStaticContent]: (layout === LEFT),
+      [styles.rightStaticContent]: (layout === RIGHT),
     })
   }
 
@@ -70,45 +70,22 @@ class Page extends Component {
     )
   }
 
-  renderProgressBar () {
-    const { progress } = this.props
-    if (progress || progress === 0) {
-      return (
-        <div className={styles.progressBarContainer}>
-          <div className={cs('progress', styles.progress)}>
-            <div
-              className={cs('progress-bar', styles.progressBar)}
-              style={{ width: `${progress}%`, minWidth: '2em' }}
-            />
-          </div>
-          <div className={styles.progressPercentage}>{`${progress}%`}</div>
-        </div>
-      )
-    }
-    return null
-  }
-
   render () {
     const {
       page, questions, errors, nextPage, preview, prevPage, hasPrevPage,
       block: { props: { staticContent } },
       preview: {
-        enableProgress, ignoreValidation, readOnly, type,
+        ignoreValidation, readOnly, type,
       },
     } = this.props
 
     if (!page) { return }
     return (
       <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}>
-        <div className={styles.logo}>
-          {/* <img src={Logo} /> */}
-        </div>
-
         {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
-        {type !== 'preview_block' && enableProgress && this.renderProgressBar()}
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent />}
-          <div>
+          <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
             {!ignoreValidation && errors && this.renderErrors(page)}
             <QuestionList readOnly={readOnly} page={page} questions={questions} />
           </div>

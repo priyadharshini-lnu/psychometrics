@@ -1,31 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Highlighter from 'web-highlighter'
-import { HIGHLIGHT_COLORS } from 'views/Block/components/StaticContent/settings'
 import Palette from './Palette'
 import styles from './StaticContent.scss'
 
-const highlighter = new Highlighter({ style: { className: styles.highlightWrap } })
+const DEFAULT_COLOR = '#c1c4fc'
 
 const HighlightList = ({
-  highlights, contentRef, selection, updateMetaData, preview, staticContent,
+  highlight, contentRef, selection, updateHighlight,
 }) => {
-  const [currentColor, setCurrentColor] = useState(HIGHLIGHT_COLORS[0])
-  const [currentHighlight, setCurrentHighlight] = useState(null)
+  const [currentHighlightId, setCurrentHighlightId] = useState(null)
+  const highlighter = useRef(new Highlighter({ style: { className: styles.highlightWrap } }))
 
   useEffect(() => {
-    highlighter.setOption({ $root: contentRef.current })
+    highlighter.current.setOption({ $root: contentRef.current })
 
-    highlights.forEach((h) => {
-      if (!staticContent.value.includes(h.text)) return
-      const source = highlighter.fromStore(h.startMeta, h.endMeta, h.text, h.id, h.color)
+    highlight.data.forEach((h) => {
+      const source = highlighter.current.fromStore(h.startMeta, h.endMeta, h.text, h.id, h.color)
       initHighlight(source)
     })
 
     return () => {
-      highlighter.dispose()
-      window.getSelection().empty()
+      highlighter.current.dispose()
+      window.getSelection().empty && window.getSelection().empty()
     }
-  }, [highlights])
+  }, [])
 
   useEffect(() => {
     if (!selection) return
@@ -33,59 +31,72 @@ const HighlightList = ({
     if (!contentRef.current.contains(selection.startContainer)) selection.setStart(contentRef.current.firstChild, 0)
     if (!contentRef.current.contains(selection.endContainer)) selection.setEnd(contentRef.current.lastChild, 0)
 
-    const source = highlighter.fromRange(selection)
-    initHighlight(source)
-    setCurrentHighlight(source.id)
-    saveHighlight({ ...source, color: currentColor })
+    const source = highlighter.current.fromRange(selection)
+    // on FF browser sometimes we face the issue when source is null.
+    // More details about this bug: https://tte.atlassian.net/browse/LH-649
+    if (source) {
+      initHighlight(source)
+      setCurrentHighlightId(source.id)
+
+      updateHighlight(highlight, [...highlight.data, {
+        ...source,
+        color: DEFAULT_COLOR,
+        notStored: true,
+      }], { notStored: true })
+    }
   }, [selection])
 
-  const initHighlight = source => source && highlighter.getDoms(source.id).forEach((d) => {
+  const initHighlight = source => source && highlighter.current.getDoms(source.id).forEach((d) => {
     d.style.backgroundColor = getHighlightColor(source)
     d.onclick = handleHighlightClick
   })
 
   const handleHighlightClick = ({ target: { dataset: { highlightId } } }) => {
-    setCurrentHighlight(highlightId)
-    setCurrentColor(highlights.find(h => h.id === highlightId).color)
+    setCurrentHighlightId(highlightId)
   }
 
   const getHighlightColor = (source) => {
-    const { color } = highlights.find(h => h.id === source.id) || { color: currentColor }
+    const { color } = highlight.data.find(h => h.id === source.id) || { color: DEFAULT_COLOR }
     return color
   }
 
-  const saveHighlight = (source) => {
-    updateMetaData(preview, 'highlights', [...highlights, source])
+  const removeHighlight = (sourceId) => {
+    highlighter.current.remove(sourceId)
+    setCurrentHighlightId(null)
+    const filteredHighlight = highlight.data.filter(h => h.id !== sourceId)
+    updateHighlight(highlight, filteredHighlight)
+
+    refreshColors(filteredHighlight)
   }
 
-  const removeHighlight = (sourceId) => {
-    highlighter.remove(sourceId)
-    setCurrentHighlight(null)
-    const filteredHighlight = highlights.filter(h => h.id !== sourceId)
-    updateMetaData(preview, 'highlights', filteredHighlight)
+  const refreshColors = (highlights) => {
+    highlights.forEach((h) => {
+      highlighter.current.getDoms(h.id).forEach((d) => {
+        d.style.backgroundColor = h.color
+      })
+    })
   }
 
   const updateHighlightColor = (color, sourceId) => {
-    highlighter.getDoms(sourceId).forEach((d) => {
+    highlighter.current.getDoms(sourceId).forEach((d) => {
       d.style.backgroundColor = color
     })
 
-    const updatedHighlight = highlights.map(h => (h.id === sourceId ? { ...h, color } : h))
-    setCurrentColor(color)
-    updateMetaData(preview, 'highlights', updatedHighlight)
+    const updatedHighlight = highlight.data.map(h => (h.id === sourceId ? { ...h, color, notStored: false } : h))
+    updateHighlight(highlight, updatedHighlight)
   }
 
+  const currentHighlight = highlight.data.find(h => h.id === currentHighlightId)
   return (
     <>
       {currentHighlight && (
         <Palette
           currentHighlight={currentHighlight}
-          highlighter={highlighter}
-          currentColor={currentColor}
+          highlighter={highlighter.current}
           removeHighlight={removeHighlight}
           updateHighlightColor={updateHighlightColor}
           contentRef={contentRef}
-          setCurrentHighlight={setCurrentHighlight}
+          setCurrentHighlightId={setCurrentHighlightId}
         />
       )}
     </>

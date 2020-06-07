@@ -47,6 +47,8 @@ class ResponseSummary extends Component {
     const { module, module: { props } } = this.props
     const assessment = _.find(AppStore.assessments, { id: module.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
+    if (!dimensionId) { return null }
+
     if (ResultStore.realResults) {
       this.occupationData = ResultStore.results[module.assessment_id].getOccupationByRank(props.topPosition)
     } else {

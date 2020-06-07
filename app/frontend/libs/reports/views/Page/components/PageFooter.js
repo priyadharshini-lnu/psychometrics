@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PageListDispatcher from 'rb/dispatchers/PageListDispatcher'
+import PageModel from 'rb/models/Page'
+import ScrollDispatcher from 'rb/dispatchers/ScrollDispatcher'
 import styles from './Page.scss'
 
 class PageFooter extends Component {
@@ -9,8 +10,14 @@ class PageFooter extends Component {
   }
 
   addPage = () => {
-    const { model } = this.props
-    PageListDispatcher.addPageAfter(model)
+    const { report, model, addPage } = this.props
+    const index = _.findIndex(report.builder.pages, p => p === model.id)
+    const page = new PageModel({ position: model.position + 1 })
+    addPage(page, index + 1)
+
+    setTimeout(() => {
+      ScrollDispatcher.scroll(page.id)
+    }, 100)
   }
 
   render () {

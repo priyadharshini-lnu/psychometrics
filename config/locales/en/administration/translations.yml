@@ -4,5 +4,8 @@ en:
       assessments:
         new:
           header: Import Translations
+      reports:
+        new:
+          header: Import Translations
       import:
         successfully: 'Translations was successfully imported'

@@ -5,9 +5,7 @@ import {
   Upload, Button, Progress,
 } from 'antd'
 import { UploadOutlined } from '@ant-design/icons'
-import mime from 'mime-types'
 import api from 'middleware/api'
-import styles from './FileUpload.scss'
 import ErrorList from './ErrorList'
 import FileDetails from './FileDetails'
 import FileValidation from './FileValidation'
@@ -25,6 +23,8 @@ export default function FileUpload ({
   onSuccessUpload,
   onRemoveFile,
   readOnly,
+  markQuestionInProgress,
+  removeQuestionInProgress,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -34,24 +34,23 @@ export default function FileUpload ({
     }
   }, [])
 
-  const saveFile = async () => {
+  const saveFile = async (file) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVING } })
-    if (!validateFile()) { return }
+    if (!validateFile(file)) { return }
     if (fakeUpload) {
       return dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     }
-    uploadFile(model.id)
+    uploadFile(model.id, file)
   }
 
-  const allowedMimeTypes = () => {
+  const allowedFileTypes = () => {
     const { props: { allowedFileTypes } } = model
-    return allowedFileTypes.map(fileType => mime.lookup(fileType))
+    return _.includes(allowedFileTypes, 'jpg') ? [...allowedFileTypes, 'jpeg'] : allowedFileTypes
   }
 
-  const validateFile = () => {
-    const { file } = state
+  const validateFile = (file) => {
     const { props: { maxFileSize } } = model
-    const errorCodes = FileValidation.run(file, allowedMimeTypes(), maxFileSize)
+    const errorCodes = FileValidation.run(file, allowedFileTypes(), maxFileSize)
 
     const valid = _.isEmpty(errorCodes)
 
@@ -62,19 +61,25 @@ export default function FileUpload ({
     return valid
   }
 
-  const uploadFile = (id) => {
-    const { file } = state
+  const handleSuccessfulUpload = (media) => {
+    removeQuestionInProgress(model.id)
+    onSuccessUpload && onSuccessUpload(media)
+  }
+
+  const uploadFile = (id, file) => {
     const urls = {
       mediaUploadUrl: `${mediaUrl}/upload_media_url?question_id=${id}`,
       callbackUrl: `${mediaUrl}/upload_callback`,
     }
+    markQuestionInProgress(id, UPLOAD_STATES.SAVING)
     FileUploader.run({
-      urls, file, dispatch, onSuccessUpload,
+      urls, file, dispatch, onSuccessUpload: handleSuccessfulUpload,
     })
   }
 
   const handleFileChange = ({ file }) => {
     dispatch({ type: SET_FILE, payload: { file: file.originFileObj } })
+    saveFile(file.originFileObj)
   }
 
   const removeFile = () => {
@@ -90,19 +95,20 @@ export default function FileUpload ({
   }
 
   const {
-    uploadState, file, percent, errorCodes, errorMessage,
+    uploadState, file, percent, errorCodes, errorMessages,
   } = state
   const answer = result.answers[0]
   const showProgress = uploadState === UPLOAD_STATES.SAVING
   const showError = uploadState === UPLOAD_STATES.ERROR
+  const fileExtension = _.map(allowedFileTypes(), extension => `.${extension}`)
 
   return (
-    <div className="col-md-8">
-      {showError && <ErrorList errorCodes={errorCodes} errorMessage={errorMessage} errorProps={model.props} />}
+    <div>
+      {showError && <ErrorList errorCodes={errorCodes} errorMessages={errorMessages} errorProps={model.props} />}
       {uploadState !== UPLOAD_STATES.SAVED && (
       <>
         <Upload
-          accept={_.join(allowedMimeTypes(), ',')}
+          accept={_.join(fileExtension, ',')}
           customRequest={() => {}}
           fileList={[]}
           onChange={handleFileChange}
@@ -116,20 +122,12 @@ export default function FileUpload ({
           {'   '}
           <span>{file && file.name}</span>
         </Upload>
-        <Button
-          type="primary"
-          onClick={saveFile}
-          disabled={!file}
-          className={styles.saveFileBtn}
-        >
-          {showProgress ? ' Uploading ' : ' Start Upload '}
-        </Button>
         {showProgress && (
           <Progress
             type="circle"
             percent={percent}
             width={32}
-            className={styles.progressBar}
+            className="mtm"
           />
         )}
       </>

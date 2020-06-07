@@ -1,15 +1,16 @@
 import React from 'react'
 import _ from 'lodash'
 import ResultStore from 'rb/store/ResultStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import I18nStore from 'rb/store/I18nStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import styles from '../styles.scss'
 
 const VALUES = [[2.69, 3.51, 2.7], [2.3, 3.24, 2.52], [2.03, 3.8, 2.19]]
 
-export default function Question ({ model, filters }) {
+function Question ({ model, filters, questions }) {
   const findQuestion = () => _.find(
-    AssessmentStore.questions[model.assessment_id], question => question.id === model.props.questionId,
+    questions, question => question.id === model.props.questionId,
   )
 
   const findQuestionChoices = () => {
@@ -89,3 +90,7 @@ export default function Question ({ model, filters }) {
     </div>
   )
 }
+
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Question)

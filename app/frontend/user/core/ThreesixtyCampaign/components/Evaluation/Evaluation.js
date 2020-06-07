@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import './styles.scss'
+import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
+import ResourcesTabs from '../ResourcesTabs'
 
 const { Content } = Layout
 
@@ -32,13 +34,19 @@ export default function Evaluation ({
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
+  preview: {
+    enableProgress,
+    type,
+  },
   preview,
   saveResults,
+  block,
+  progress,
 }) {
   const assessmentRef = React.createRef()
   const {
     edit, step, approve_evaluation, lang,
-  } = qs.parse(location.search)
+  } = qs.parse(location.search.substr(1))
 
   useEffect(() => {
     fetchAssessment(params.campaignId, params.id, {
@@ -76,10 +84,10 @@ export default function Evaluation ({
           trigger={['click']}
           overlay={StatusMenu}
         >
-          <div>
+          <Button>
             {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
             <DownOutlined />
-          </div>
+          </Button>
         </Dropdown>
       )
     }
@@ -128,37 +136,49 @@ export default function Evaluation ({
 
   return (
     <Layout>
-      <Content className="fluid-container">
-        <PageHeader
-          className="page-header"
-          backIcon={(
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back to tasks
-            </div>
-          )}
-          title={title()}
-          onBack={handleBackButtonClick}
-          extra={(<Timer preview={preview} saveResults={saveResults} />)}
-        >
-          <div className="evaluation-container">
-            <Row justify="end">
+      <div className="page-header-wrap">
+        <Content className="fluid-container">
+          <PageHeader
+            className="page-header"
+            backIcon={(
+              <div>
+                <ArrowLeftOutlined />
+                {' '}
+                Back to tasks
+              </div>
+            )}
+            title={title()}
+            onBack={handleBackButtonClick}
+            extra={[
+              type !== 'preview_block' && enableProgress
+                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+              <Timer key="2" preview={preview} saveResults={saveResults} />,
+            ]}
+          />
+        </Content>
+      </div>
+      <Content className={
+          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) }, 'main-container')
+        }
+      >
+        <div className="evaluation-container">
+          <Row type="flex" justify="end" className="mtm mrm">
+            <Col flex="none">
+              <StatusDropdown />
+            </Col>
+            {availableTranslations && availableTranslations.length > 0 && (
               <Col flex="none">
-                <StatusDropdown />
+                <div className="mlm">
+                  <Language
+                    selectedLanguage={selectedLanguage}
+                    availableTranslations={availableTranslations || []}
+                  />
+                </div>
               </Col>
-              {availableTranslations && availableTranslations.length > 0 && (
-                <Col flex="none">
-                  <div className="mlm">
-                    <Language
-                      selectedLanguage={selectedLanguage}
-                      availableTranslations={availableTranslations || []}
-                    />
-                  </div>
-                </Col>
-              )}
-            </Row>
-            {!error && (
+            )}
+          </Row>
+          {!error && (
+            <ResourcesTabs assessment={assessment}>
               <div className={selectedLanguage ? selectedLanguage.direction : ''}>
                 <PassAssessment
                   ref={assessmentRef}
@@ -171,13 +191,13 @@ export default function Evaluation ({
                   dashboardUrl={`/campaigns/${params.campaignId}`}
                   locales={translations}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
-                  approveEvaluation={approve_evaluation}
+                  notAnEndPage={approve_evaluation || edit === 'true'}
                   rstore={store}
                 />
               </div>
-            )}
-          </div>
-        </PageHeader>
+            </ResourcesTabs>
+          )}
+        </div>
       </Content>
     </Layout>
   )

@@ -1,19 +1,19 @@
 import { connect } from 'react-redux'
-import { updateMetaData } from 'core/preview/FlowProcessor/actions'
-import { getCurrentBlock, getI18n } from 'core/preview/FlowProcessor/selectors'
+import { updateHighlight } from 'core/preview/FlowProcessor/actions'
+import { getCurrentBlock, getI18n, getHighlightByType } from 'core/preview/FlowProcessor/selectors'
 
 export default connect(
-  ({ preview, preview: { initialized, metaData } }) => {
+  ({ preview, preview: { initialized } }) => {
     if (!initialized) return
     const block = getCurrentBlock(preview)
     return {
       preview,
       block,
-      highlights: (metaData[block.id] && metaData[block.id].highlights) || [],
+      highlight: getHighlightByType({ preview }, block.id, 'Block'),
       I18n: getI18n(preview),
     }
   },
   {
-    updateMetaData,
+    updateHighlight,
   },
 )

@@ -52,11 +52,18 @@
   }
 
   .pulsRing {
-    background-image: url('./images/ring.png');
     height: 100%;
     width: 100%;
     background-size: contain;
     position: absolute;
+  }
+
+  .lowAudio {
+    background-image: url('./images/grey-ring.png');
+  }
+
+  .highAudio {
+    background-image: url('./images/green-ring.png');
   }
 
   .recordingTime {
