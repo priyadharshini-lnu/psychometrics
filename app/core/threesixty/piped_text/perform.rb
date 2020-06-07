@@ -8,7 +8,7 @@ module Threesixty
           key: 'u',
           name: 'user',
           class_name: 'Threesixty::PipedText::Branches::User',
-          required_context: %i[threesixty_campaign]
+          required_context: %i[user]
         },
         {
           key: 'p',

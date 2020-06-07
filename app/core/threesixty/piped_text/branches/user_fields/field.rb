@@ -38,6 +38,10 @@ module Threesixty
           def last_name
             user.last_name
           end
+
+          def user
+            context[:user]
+          end
         end
       end
     end
