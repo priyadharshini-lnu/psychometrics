@@ -64,20 +64,10 @@ module Administration
         # Regenerates PDF file
         #
         def regenerate
-          if resource.report.hogan?
-            @report_generatable = true
-            resource.update_column(:generating, true)
-            Hogan::LoadResultsJob.
-              perform_later(resource.assign, membership.membership_with_result, membership.project)
-          else
-            status = AssignsReports::GenerateReport.call!(resource, current_user)
-            @report_generatable = status == AssignsReports::GenerateReport::ALL_SUCCESSFULL
-            unless @report_generatable
-              assessment_ids = Reports::IncompleteAssignsQuery.new(resource.report, resource.assign).query.
-                               pluck(:assessment_id)
-              @incomplete_assessment_names = Assessment.where(id: assessment_ids).pluck(:name).join(', ')
-            end
-          end
+          result = AssignsReports::RegenerateReport.call!(resource, current_user, membership)
+          @report_generatable = result[:report_generatable]
+          @incomplete_assessment_names = result[:incomplete_assessment_names]
+
           render :regenerate, format: [:js]
         end
 

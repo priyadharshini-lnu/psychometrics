@@ -33,43 +33,47 @@
 #  is_anonym              :boolean          default(FALSE)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :client do
     sequence(:name) { |i| "Client #{i}" }
 
     factory :tenancy do
-      parent nil
+      transient do
+        with_license { true }
+      end
+
+      parent { nil }
       sequence(:name) { |i| "Client Tenancy #{i}" }
       sequence(:number) { |i| "Number #{i}" }
       year { Time.now.year }
-      country 'Barbados'
+      country { 'Barbados' }
       association :project_manager, factory: :superadmin
       association :account_manager, factory: :superadmin
-      after(:create) do |tenancy, _evaluator|
-        create :license, client: tenancy
+      after(:create) do |tenancy, evaluator|
+        create :license, client: tenancy if evaluator.with_license
       end
     end
 
     # applicable_levels
     trait :project_level do
-      applicable_level :project
+      applicable_level { :project }
     end
 
     trait :campaign_level do
-      applicable_level :campaign
+      applicable_level { :campaign }
     end
 
     trait :sub_campaign_level do
-      applicable_level :sub_campaign
+      applicable_level { :sub_campaign }
     end
 
     trait :_end_level do
-      end_level true
+      end_level { true }
     end
 
     trait :with_reports do
       transient do
-        with_assessments nil
+        with_assessments { nil }
       end
 
       after(:create) do |client, evaluator|
@@ -91,7 +95,7 @@ FactoryGirl.define do
     factory :project, parent: :project_base, traits: %i[project_level _end_level]
 
     factory :campaign_base, traits: [:with_reports] do
-      end_level true
+      end_level { true }
       association :parent, factory: %i[project_base sub_campaign_level]
       sequence(:name) { |i| "Campaign #{i}" }
     end
@@ -104,7 +108,7 @@ FactoryGirl.define do
     factory :sub_campaign do
       association :parent, factory: :campaign_base
       sequence(:name) { |i| "SubCampaign #{i}" }
-      end_level true
+      end_level { true }
     end
   end
 end

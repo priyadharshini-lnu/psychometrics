@@ -2,33 +2,26 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import store from 'rb/store/PropertyPanelStore'
 import { Properties } from 'rb/components/modules'
-import Action from 'rb/undo'
+import ModuleModel from 'rb/models/Module'
 import styles from './PropertyPanel.scss'
+import ColorPickerModal from './ColorPickerModal'
 
 const { $ } = window
 
 class PropertyPanel extends Component {
-  storeListener = null
+  state = {
+    popupOpen: false,
+  }
 
   componentDidMount () {
-    this.storeListener = store.addListener('change', () => this.forceUpdate())
-    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
-      store.popupOpened()
+    $(this.inspector).on('show.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = this.inspector.scrollTop
+      this.setState({ popupOpen: true })
     })
-    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}`, () => {
-      store.popupClosed()
+    $(this.inspector).on('hide.bs.dropdown', `.${styles.dropdownWrapper}, .color-picker`, () => {
+      this.scrollTop = 0
+      this.setState({ popupOpen: false })
     })
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
-  changeType = (type, props = {}) => {
-    if (store.question.type === type) { return }
-    Action('QuestionChangeType', store.question, { oldType: store.question.type, newType: type })
-    store.question.changeType(type, props)
-    store.update()
   }
 
   layoutHandler = (method) => {
@@ -37,16 +30,26 @@ class PropertyPanel extends Component {
     this.forceUpdate()
   }
 
+  showOnAllPages = () => {
+    const { module } = this.props
+    const model = new ModuleModel(module, { id: module.page_id })
+    model.props.showOnAllPages = !model.props.showOnAllPages
+    model.update()
+  }
+
   renderCustomProperties () {
-    const { model } = store
-    const type = store.type === 'Module' ? store.model.type : store.type
+    const { selected, module, page } = this.props
+    if ((!module && !page) || !selected) { return null }
+    const type = selected.type === 'Module' ? module.type : selected.type
     const View = Properties[`${type}Properties`]
     if (!View) { return }
-    return (<View model={model} />)
+    const model = new ModuleModel(module, { id: module.page_id })
+    return (<View model={model || page} />)
   }
 
   renderLayout () {
-    const { model } = store
+    const { module } = this.props
+    if (!module) { return null }
     return (
       <div className={styles.layout}>
         Layout
@@ -69,7 +72,7 @@ class PropertyPanel extends Component {
             <label>
               <input
                 type="checkbox"
-                checked={model.props.onTop || false}
+                checked={module.props.onTop || false}
                 onChange={e => this.layoutHandler('alwaysOnTop', e)}
               />
               Always On Top
@@ -79,7 +82,7 @@ class PropertyPanel extends Component {
             <label>
               <input
                 type="checkbox"
-                checked={model.props.onBottom || false}
+                checked={module.props.onBottom || false}
                 onChange={e => this.layoutHandler('alwaysOnBottom', e)}
               />
               Always On Bottom
@@ -89,8 +92,8 @@ class PropertyPanel extends Component {
             <label>
               <input
                 type="checkbox"
-                checked={model.props.showOnAllPages || false}
-                onChange={e => this.layoutHandler('showOnAllPages', e)}
+                checked={module.props.showOnAllPages || false}
+                onChange={() => this.showOnAllPages()}
               />
               Show On All Pages
             </label>
@@ -103,17 +106,28 @@ class PropertyPanel extends Component {
   }
 
   render () {
+    const { selected } = this.props
+    const { popupOpen } = this.state
     const inspectorClasses = [styles.inspector]
-    if (store.popupOpen) {
+    let style = {}
+    if (popupOpen) {
       inspectorClasses.push(styles.dropdownOpen)
+      if (this.scrollTop > 0) {
+        style = {
+          marginTop: -this.scrollTop,
+        }
+      }
     }
     return (
-      <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }}>
-        <div className={styles.main}>
-          {this.renderCustomProperties()}
-          {store.type === 'Module' && this.renderLayout()}
+      <>
+        <div className={inspectorClasses.join(' ')} ref={(ref) => { this.inspector = ref }} style={style}>
+          <div className={styles.main}>
+            {this.renderCustomProperties()}
+            {selected.type === 'Module' && this.renderLayout()}
+          </div>
         </div>
-      </div>
+        <ColorPickerModal />
+      </>
     )
   }
 }

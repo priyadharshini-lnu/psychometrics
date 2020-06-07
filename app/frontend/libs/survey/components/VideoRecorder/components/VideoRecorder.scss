@@ -1,5 +1,6 @@
 .recorder {
   margin-top: 25px;
+  position: relative;
 
   :global {
     .video-js {
@@ -28,6 +29,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 6px;
+        z-index: 1;
         background-color: initial;
 
         .tte-status-text {
@@ -278,5 +280,20 @@
 .progress {
   .progressBar {
     height: 6px;
+  }
+}
+
+.canvas {
+  top: 0;
+  position: absolute;
+}
+
+:global {
+  .staticBlockQuestionList {
+    .vjs-time-control {
+      &.tte-remaining-time {
+        left: 4em !important;
+      }
+    }
   }
 }

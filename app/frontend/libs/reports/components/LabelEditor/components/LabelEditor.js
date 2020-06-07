@@ -29,6 +29,7 @@
 
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import styles from './LabelEditor.scss'
 
 export class LabelEditor extends Component {
@@ -84,11 +85,11 @@ export class LabelEditor extends Component {
   }
 
   renderText () {
-    const { styles: style, value } = this.props
+    const { styles: style, value, readOnly } = this.props
     const overider = style || ''
     return (
       <span
-        className={`${styles.editable} ${overider}`}
+        className={cs({ [styles.editable]: !readOnly }, overider)}
         onClick={this.edit}
       >
         {value}

@@ -5,6 +5,10 @@ MoneyRails.configure do |config|
   #
   config.default_currency = Settings.default_currency.downcase.to_sym
 
+  Money.locale_backend = :currency
+
+  Money.rounding_mode = BigDecimal::ROUND_HALF_EVEN
+
   # Set default bank object
   #
   # Example:

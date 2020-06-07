@@ -5,7 +5,7 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
                :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :current_element, :current_page, :seedrandom
+               :current_element, :current_page, :seedrandom, :assessment_extra, :assessment_id
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
     attribute :need_confirm
@@ -26,6 +26,10 @@ module EndUser
 
     def hash_id
       object.encode_id
+    end
+
+    def assessment_id
+      object.assessment.id
     end
 
     def assessment_name
@@ -61,6 +65,10 @@ module EndUser
 
     def questions_count
       object.assessment.questions.count
+    end
+
+    def assessment_extra
+      object.assessment.extra
     end
 
     def timing

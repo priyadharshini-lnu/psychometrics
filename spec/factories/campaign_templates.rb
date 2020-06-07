@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :campaign_template do
-    name 'MyString'
+    name { 'MyString' }
     assessment
     report
   end

@@ -8,11 +8,14 @@ import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import routeUtils from 'utils/routeUtils'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
 
 const IN_PROGRESS = 'in_progress'
+const INTERRUPTED = 'interrupted'
+
 const ASSESSMENT_CATEGORY_ICONS = {
   psychometric: 'assessment',
   360: '360',
@@ -47,7 +50,7 @@ const ReportsMenu = reports => (
 
 const renderButtonContent = ({
   mindmill, mindmillUrl, url, status, assignedReports, needConfirm, assessmentCategory,
-}, setShowConfirm, loading, loadAssessment) => {
+}, setShowConfirm, loading, loadAssessmentOrCheckingWizard) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
@@ -56,7 +59,7 @@ const renderButtonContent = ({
     if (needConfirm) {
       setShowConfirm(true)
     } else {
-      loadAssessment(href)
+      loadAssessmentOrCheckingWizard({ mindmill, mindmillUrl, url })
     }
   }
 
@@ -64,7 +67,7 @@ const renderButtonContent = ({
     ? <a href={href} onClick={showPolicyConfirm}>{children}</a>
     : <Link to={href} onClick={showPolicyConfirm}>{children}</Link>)
 
-  if (status === IN_PROGRESS) {
+  if (status === IN_PROGRESS || status === INTERRUPTED) {
     return (
       <LinkTag>
         {loading ? <LoadingOutlined /> : <ContinueIcon />}
@@ -111,26 +114,29 @@ const renderButtonContent = ({
   )
 }
 
-export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
+export default function SingleAssign ({ campaign: assign, acceptPolicy, history }) {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const loadAssessment = (href) => {
+  const loadAssessment = ({ url, mindmill, mindmillUrl }) => {
+    const href = mindmill ? mindmillUrl : url
     setLoading(true)
     location.href = href
   }
+
+  const loadAssessmentOrCheckingWizard = () => {
+    if (isWizardRequired()) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
+    return loadAssessment(assign)
+  }
+
+  const isWizardRequired = () => assign.assessmentExtra.enableNetworkCheck === '1' || assign.assessmentExtra.enableAudioCheck === '1' || assign.assessmentExtra.enableVideoCheck === '1'
 
   const accept = () => {
     setShowConfirm(false)
     setLoading(true)
 
     acceptPolicy().then(() => {
-      const { url, mindmill, mindmillUrl } = assign
-      let href = url
-
-      if (mindmill) { href = mindmillUrl }
-
-      loadAssessment(href)
+      loadAssessmentOrCheckingWizard(assign)
     })
   }
   return (
@@ -167,7 +173,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
             </Row>
             <div className="divider" />
             <div className="button">
-              {renderButtonContent(assign, setShowConfirm, loading, loadAssessment)}
+              {renderButtonContent(assign, setShowConfirm, loading, loadAssessmentOrCheckingWizard)}
             </div>
           </div>
         </div>

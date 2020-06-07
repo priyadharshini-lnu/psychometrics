@@ -27,8 +27,8 @@ class License < ApplicationRecord
   validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :number, numericality: { greater_than_or_equal_to: 1 }
-  validates :number, numericality: { greater_than_or_equal_to: :used_number }, unless: :new_record?
   validates :report_family_id, presence: true
+  validate :used_number_validation
   validate :license_expire_validation
 
   scope :with_report_family, lambda { |report_family_id|
@@ -77,5 +77,9 @@ class License < ApplicationRecord
     if end_date && start_date
       errors.add(:end_date, :invalid) if end_date <= start_date
     end
+  end
+
+  def used_number_validation
+    errors.add(:used_number, :overused) if (number + overuse_number - used_number).negative?
   end
 end

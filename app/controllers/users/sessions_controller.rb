@@ -3,6 +3,7 @@
 module Users
   class SessionsController < Devise::SessionsController
     layout 'devise'
+    before_action :perform_browser_check, only: [:new]
     after_action :redirect_to_return_url, only: [:new]
 
     private
@@ -19,6 +20,12 @@ module Users
     def after_sign_in_path_for(resource)
       resource.memberships.join_user.find_by(client_id: @current_project)&.set_user_invited_for_current_project
       '/'
+    end
+
+    def perform_browser_check
+      @browser_detections = helpers.detect_browser(request.user_agent)
+
+      redirect_to upgrade_url unless @browser_detections.supported_browser?
     end
   end
 end

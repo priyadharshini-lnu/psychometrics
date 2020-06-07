@@ -1,5 +1,6 @@
 import React from 'react'
 import { Input, Button } from 'antd'
+import ChoicesInput from 'libs/survey/components/ChoicesInput'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { Question } from '../../interfaces'
 import styles from './PropertyPanelStyle.scss'
@@ -13,6 +14,7 @@ const PropertyPanel: React.FC<Props> = ({
   model: {
     props: {
       contactList,
+      maxLength,
     },
   },
 }) => {
@@ -26,8 +28,14 @@ const PropertyPanel: React.FC<Props> = ({
     model.changeArrayProps({ collection: 'contactList', i, val }, false)
   }
 
+  const changeMaxLength = (maxLength: number) => {
+    model.changeProps({ maxLength })
+  }
+
   return (
     <div className={styles.container}>
+      Max Length
+      <ChoicesInput minValue={0} maxValue={1000} value={maxLength || 0} onChange={changeMaxLength} />
       <div className={styles.label}>Contacts</div>
       {contactList.map((contact: string, i: number) => (
         <div key={i} className={styles.inputContainer}>

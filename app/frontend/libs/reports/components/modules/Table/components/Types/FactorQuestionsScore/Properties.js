@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import DataSource from 'rb/components/DataSourceMenu'
-import store from 'rb/store/PropertyPanelStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
 
@@ -11,24 +10,23 @@ class Properties extends Component {
   }
 
   update = () => {
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.update()
   }
 
   changeHeader = () => {
-    store.model.props.showHeader = !store.model.props.showHeader
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.showHeader = !model.props.showHeader
+    model.update()
   }
 
   render () {
-    const { model } = store
-    const { model: pmodel } = this.props
+    const { model } = this.props
     return (
       <div>
         <div className={styles.title}>Factor - Questions Mean Score Props</div>
-        <DataSource model={pmodel} onSelect={this.update} />
-        <PropertyFilter />
+        <DataSource model={model} onSelect={this.update} />
+        <PropertyFilter model={model} />
         <div className={styles.block}>
           <div className="margin-top-10">
             <label className={styles.inputLabel}>

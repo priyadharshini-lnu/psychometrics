@@ -27,6 +27,11 @@ export class Header extends Component {
     history.push(`/administration/assessments/${id}/scoring`)
   }
 
+  showResourceManager = () => {
+    const { history, match: { params: { id } } } = this.props
+    history.push(`/administration/assessments/${id}/resources`)
+  }
+
   openSearchPopup = () => {
     const { openCreateByTemplate } = this.props
     openCreateByTemplate({ entityName: 'Block' })
@@ -129,6 +134,11 @@ export class Header extends Component {
             </button>
           </li>
           <li>
+            <button onClick={this.showResourceManager} className={`btn btn-default ${styles.preview}`}>
+              Resource Manager
+            </button>
+          </li>
+          <li>
             <button onClick={this.showMappingNorms} className={`btn btn-default ${styles.preview}`}>
               Map norms
             </button>
@@ -143,7 +153,7 @@ export class Header extends Component {
                   rel="noopener noreferrer"
                   className={`btn btn-default ${styles.preview}`}
                 >
-                Reports
+                  Reports
                 </a>
               </span>
             </li>

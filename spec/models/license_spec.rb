@@ -19,10 +19,20 @@ RSpec.describe License, type: :model do
     it { should validate_numericality_of(:overuse_number).is_greater_than_or_equal_to(0) }
     it { should validate_numericality_of(:used_number).is_greater_than_or_equal_to(0) }
     it { should validate_numericality_of(:number).is_greater_than_or_equal_to(1) }
-    it do
-      allow(subject).to receive(:new_record?).and_return(false)
-      should validate_numericality_of(:number).is_greater_than_or_equal_to(subject.used_number)
+
+    it 'used_number should be in limit' do
+      license.number = 5
+      license.overuse_number = 5
+      license.used_number = 8
+      expect(license.valid?).to eq(true)
+
+      license.used_number = 11
+      expect(license.valid?).to eq(false)
+      expect(license.errors[:used_number]).to include(
+        "License used can't be more than the sum of license allocated and overuse limit."
+      )
     end
+
     it { should validate_presence_of(:report_family_id) }
     context '#license_expire_validation' do
       let(:license) { described_class.new(start_date: Date.today) }

@@ -1,20 +1,21 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import Select from 'react-select'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import PropertyPanelStore from 'rb/store/PropertyPanelStore'
 import Utils from 'rb/utils/Utils'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 
 class Question extends Component {
   getOptions () {
-    const { model } = this.props
-    const questions = _.map(AssessmentStore.questions[model.assessment_id], q => ({
+    const { model, questions } = this.props
+    const qstns = _.map(questions, q => ({
       value: q.id,
       label: `${q.name} ${(Utils.stripHTML(q.props.questionText) || '').substring(0, 24)}...`,
       type: q.type,
     }))
-    return model.filterQuestions(questions)
+    return model.filterQuestions(qstns)
   }
 
   onChange = (questions) => {
@@ -44,4 +45,6 @@ class Question extends Component {
   }
 }
 
-export default Question
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Question)

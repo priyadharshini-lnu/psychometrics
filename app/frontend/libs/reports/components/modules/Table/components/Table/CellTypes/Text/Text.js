@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import store from 'rb/store/PropertyPanelStore'
 import styles from './Text.scss'
 
 class TextCell extends Component {
@@ -22,18 +21,9 @@ class TextCell extends Component {
     }
   }
 
-  click = (e) => {
-    if (store.type === 'Module' && store.model.type === 'Table') {
-      e.stopPropagation()
-      // store.select('Cell', this.props.model)
-    }
-  }
-
   doubleClick = () => {
     const { model } = this.props
-    if (store.type === 'Module' && store.model.type === 'Table') {
-      this.setState({ edit: true, value: model.text || model.content })
-    }
+    this.setState({ edit: true, value: model.text || model.content })
   }
 
   blur = () => {

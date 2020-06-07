@@ -3,10 +3,13 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'rb/consts/DefaultProps'
 import ModuleConfigs from 'rb/consts/ModuleConfigs'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import Presets from 'rb/consts/Presets'
 import AppStore from 'rb/store/AppStore'
 import { HOGAN, MINDMILL } from 'rb/models/Assessment'
+import rstore from 'rb/store'
+import { UPDATE_MODULE } from 'rb/core/builder/module/actions'
+import Utils from 'libs/reports/utils/Utils'
 import TextConditionCollection from './TextConditionCollection'
 import CPIConditionCollection from './CPIConditionCollection'
 import InnovationStyleConditionCollection from './InnovationStyleConditionCollection'
@@ -14,14 +17,23 @@ import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
 
-const Module = function (attrs = {}, store) {
-  this.store = store
+const Module = function (attrs = {}, page) {
+  this.store = page
+  this.page = page
   this.id = attrs.id
+  this.isNew = attrs.isNew
+
+  if (!this.id) {
+    this.id = Utils.genId()
+    this.isNew = true
+  }
+
   this.assessment_id = attrs.assessment_id || (AppStore.assessments[0] && AppStore.assessments[0].id)
   this.type = attrs.type
   this.props = _.cloneDeep(DefaultProps[this.type] || {})
   this.moduleConfig = ModuleConfigs[this.type] || {}
-  this.removed = false
+  this.removed = attrs.removed || false
+  this.page_id = page.id
   _.extend(this.props, attrs.props)
   this.setRelevantFactorsData()
   if (this.props.textConditions) {
@@ -52,11 +64,12 @@ _.extend(Module.prototype, {
     }
     return {
       id: this.id,
-      page_id: typeof this.store.page.id === 'string' ? undefined : this.store.page.id,
+      page_id: this.page.isNew ? undefined : this.page_id,
       type: this.type,
       props,
       removed: this.removed,
       assessment_id: this.assessment_id,
+      isNew: this.isNew,
     }
   },
 
@@ -71,15 +84,15 @@ _.extend(Module.prototype, {
   },
 
   onPage (page) {
-    return this.store.page === page
+    return this.page_id === page.id
   },
 
   layout () {
-    return this.store.page.layoutManager
+    return this.page.layoutManager
   },
 
   clone () {
-    this.store.clone(this)
+    this.clone(this)
   },
 
   destroy () {
@@ -96,7 +109,7 @@ _.extend(Module.prototype, {
     }
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        const question = AssessmentStore.questions[this.assessment_id][this.props.source.id]
+        const question = getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
         return question && question.type
       default:
         return _.result(this.props, 'source.type')
@@ -106,7 +119,7 @@ _.extend(Module.prototype, {
   getSourceModel () {
     switch (_.result(this.props, 'source.type')) {
       case 'Question':
-        return AssessmentStore.questions[this.assessment_id][this.props.source.id]
+        return getQuestions(rstore.getState().report, this.assessment_id)[this.props.source.id]
       case 'DataSheet':
         return this.props.source.columns
       case 'EmbeddedData':
@@ -127,11 +140,11 @@ _.extend(Module.prototype, {
   },
 
   update () {
-    this.sync()
-    this.store.update()
+    rstore.dispatch({ type: UPDATE_MODULE, module: this.toJSON() })
   },
 
   sync () {
+    // look up calls and remove unused
     // Socket.socket().perform('module_update', this)
   },
 

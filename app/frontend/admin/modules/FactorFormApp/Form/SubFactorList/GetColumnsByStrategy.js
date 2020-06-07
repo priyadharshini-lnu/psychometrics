@@ -1,10 +1,11 @@
 import React from 'react'
 import { Button, InputNumber, Select } from 'antd'
+import { DeleteOutlined } from '@ant-design/icons'
 
 export default {
   run: (factor, onChange, onRemove, errors) => getColumns(onChange, onRemove, errors).filter(
     c => !c.scoringStrategies
-        || c.scoringStrategies.includes(factor.scoring_strategy),
+      || c.scoringStrategies.includes(factor.scoring_strategy),
   ),
 }
 const { Option } = Select
@@ -14,14 +15,11 @@ const getColumns = (onChange, onRemove, errors) => [
   {
     dataIndex: 'icon',
     scoringStrategies: ['sub_factors_conditional_average'],
-    render: (text, record, index) => (
-      <i key={index} className="fa fa-bars" />
-    ),
   },
   {
     title: 'Name',
     dataIndex: 'name',
-    render: (text, record) => {
+    render: (record) => {
       const error = errors.find(([id]) => id === record.sub_factor_id)
       return (
         <>
@@ -39,9 +37,9 @@ const getColumns = (onChange, onRemove, errors) => [
     title: 'Predicate',
     dataIndex: 'predicate',
     scoringStrategies: ['sub_factors_conditional_average'],
-    render: (text, record) => (
+    render: record => (
       <Select
-        defaultValue="equal_to"
+        style={{ width: '60px' }}
         value={record.predicate}
         size="small"
         onChange={predicate => onChange({ ...record, predicate })}
@@ -58,7 +56,7 @@ const getColumns = (onChange, onRemove, errors) => [
     title: 'Weight',
     dataIndex: 'weight',
     scoringStrategies: ['sub_factors_conditional_average', 'sub_factors_average'],
-    render: (text, record) => (
+    render: record => (
       <InputNumber
         value={record.weight}
         size="small"
@@ -73,7 +71,7 @@ const getColumns = (onChange, onRemove, errors) => [
     title: 'Value',
     dataIndex: 'value',
     scoringStrategies: ['sub_factors_conditional_average'],
-    render: (text, record) => (
+    render: record => (
       <InputNumber
         value={record.value}
         size="small"
@@ -86,13 +84,14 @@ const getColumns = (onChange, onRemove, errors) => [
   {
     title: 'Actions',
     dataIndex: 'operation',
-    render: (text, record) => (
+    render: record => (
       <Button
         type="link"
-        icon="delete"
         size="small"
         onClick={() => onRemove(record)}
-      />
+      >
+        <DeleteOutlined />
+      </Button>
     ),
   },
 ]

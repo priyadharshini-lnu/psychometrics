@@ -13,7 +13,7 @@ const swatchSource = {
   },
 
   endDrag (props, monitor) {
-    const { id: droppedId, originalIndex } = monitor.getItem()
+    const { id: droppedId } = monitor.getItem()
     const didDrop = monitor.didDrop()
     const dropResult = monitor.getDropResult()
     props.onChange()
@@ -23,7 +23,7 @@ const swatchSource = {
       return
     }
     if (!didDrop) {
-      props.moveSwatch(droppedId, originalIndex)
+      props.moveSwatch(droppedId, droppedId)
     }
   },
 }
@@ -38,8 +38,7 @@ const swatchTarget = {
     const { id: overId } = props
 
     if (draggedId !== overId) {
-      const { index: overIndex } = props.findSwatch(overId)
-      props.moveSwatch(draggedId, overIndex)
+      props.moveSwatch(draggedId, overId)
     }
   },
 }

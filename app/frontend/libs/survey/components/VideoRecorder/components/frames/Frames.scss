@@ -1,0 +1,23 @@
+.box {
+  svg {
+    position: absolute;
+    width: 46px;
+    height: 46px;
+  }
+  .topLeft {
+    left: 0;
+    top: 0;
+  }
+  .topRight {
+    right: 0;
+    top: 0;
+  }
+  .bottomRight {
+    right: 0;
+    bottom: 6px;
+  }
+  .bottomLeft {
+    left: 0;
+    bottom: 6px;
+  }
+}

@@ -1,7 +1,8 @@
 /* eslint-disable guard-for-in */
 /* eslint-disable no-restricted-syntax */
 import _ from 'lodash'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import store from 'rb/store'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import PromptStore from 'rb/store/PromptStore'
 import Utils from 'rb/utils/Utils'
 
@@ -53,7 +54,7 @@ export const HotSpotBehaviour = (model, label, question, collectionName) => {
 
 export const changeLabel = (model, label, collectionName = 'choicesTexts') => {
   const assessmentId = model.assessment_id
-  const question = AssessmentStore.questions[assessmentId][model.props.source.id]
+  const question = getQuestions(store.getState().report, assessmentId)[model.props.source.id]
   switch (question.type) {
     case 'HotSpot':
       HotSpotBehaviour(label, question, collectionName)

@@ -17,13 +17,18 @@ export class AudioResponse extends React.Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, markQuestionInProgress, removeQuestionInProgress } = this.props
     return (
       <div className="position-relative">
         <div className={textEntryStyles.questionText}>
           <TextEditor model={model} value={model.props.questionText} onChange={this.changeQuestionText} />
         </div>
-        <AudioRecorder model={model} fakeUpload />
+        <AudioRecorder
+          model={model}
+          fakeUpload
+          markQuestionInProgress={markQuestionInProgress}
+          removeQuestionInProgress={removeQuestionInProgress}
+        />
       </div>
     )
   }

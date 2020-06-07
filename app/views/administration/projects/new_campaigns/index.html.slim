@@ -1,0 +1,7 @@
+div#campaigns-container
+
+javascript:
+  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
+
+= stylesheet_packs_with_chunks_tag 'admin/campaign'
+= javascript_packs_with_chunks_tag 'admin/campaign'

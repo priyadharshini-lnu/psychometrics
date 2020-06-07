@@ -5,7 +5,7 @@
     "experimentalDecorators":true,
     "lib": [
       "es6",
-      "dom"
+      "dom",
     ],
     "module":"commonjs",
     "moduleResolution":"node",

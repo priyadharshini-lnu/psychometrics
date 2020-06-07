@@ -37,7 +37,7 @@ module Exports
             # Draws results
             #
             current_level_assigns.find_each(batch_size: 100) do |assign|
-              normed_results.keys.each do |factor_id|
+              normed_results.each_key do |factor_id|
                 normed_results[factor_id] = assign.scoring&.dig(factor_id.to_s, 'norm_score')
               end
 

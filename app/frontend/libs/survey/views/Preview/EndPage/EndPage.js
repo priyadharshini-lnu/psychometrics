@@ -28,9 +28,11 @@ export class EndPage extends Component {
   }
 
   render () {
-    let message = `You have now completed the survey and your response has been recorded.
-      Thank you for taking the time to share your feedback.`
-    const { flowElement, dashboardUrl, isAnonymousAssessment } = this.props
+    const {
+      flowElement, dashboardUrl, isAnonymousAssessment, I18n,
+    } = this.props
+    let message = I18n.t('assessments.messages.finish')
+
     if (flowElement && flowElement.type === 'EndOfAssessment') {
       if (flowElement.props.messageType === 'Custom') {
         // eslint-disable-next-line prefer-destructuring
@@ -47,7 +49,7 @@ export class EndPage extends Component {
         </div>
         {!isAnonymousAssessment && (
           <div className={styles.end}>
-            <a href={dashboardUrl}>Go to dashboard</a>
+            <a href={dashboardUrl}>{I18n.t('assessments.actions.goto_dashboard')}</a>
           </div>
         )}
         {this.renderUniqueId()}

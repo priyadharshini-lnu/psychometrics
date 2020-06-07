@@ -33,6 +33,7 @@ export class ConditionalTextModal extends Component {
     if (newModule.props.basedOn === 'occupation') { newModule.textConditions = [] }
     const { module, close } = this.props
     module.textConditions = newModule.textConditions
+    module.update()
     close()
   }
 
@@ -86,6 +87,7 @@ export class ConditionalTextModal extends Component {
     if (!props.topPosition) { props.topPosition = 1 }
     const assessment = _.find(AppStore.assessments, { id: module.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
+    if (!dimensionId) { return null }
     const max = props.basedOn === 'factor'
       ? AppStore.subfactors[dimensionId].length
       : AppStore.occupations[dimensionId].length

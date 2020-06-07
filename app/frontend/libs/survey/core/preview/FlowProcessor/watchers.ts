@@ -12,11 +12,13 @@ import {
   saveResults,
   setNotDirtyResults,
   setLocalResults,
+  clearInProgressQuestion,
 } from './actions'
 import {
   getPrevPage,
   pageQuestions,
   pageQuestionsWithoutHidden,
+  getCurrentBlock,
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
@@ -42,6 +44,7 @@ function* genPrevPage () {
   const prev = getPrevPage(state.preview)
   yield put(changeElement(prev.element, prev.page))
   yield put(removePrevPage())
+  yield put(clearInProgressQuestion())
 }
 
 function* genSavePrevPages () {
@@ -59,10 +62,12 @@ function* genUpdateResultsAsNotDirty () {
 }
 
 function* genSaveResults () {
+  yield put(clearInProgressQuestion())
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const prevPage = getPrevPage(state.preview)
-    yield put(saveResults(state.preview, prevPage?.questionIds || []))
+    const currentBlock = getCurrentBlock(state.preview)
+    yield put(saveResults(state.preview, prevPage?.questionIds || [], currentBlock.id))
   }
 }
 
@@ -70,7 +75,8 @@ function* genFetchLocalResults () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const { preview: { dbResult } } = state
-    const data = getItem(`result_${dbResult.id}`, `${dbResult.id}${dbResult.user_id}`)
+    const resetCount = dbResult.reset_count || 0
+    const data = getItem(`result_${dbResult.id}_${resetCount}`, `${dbResult.id}${dbResult.user_id}`)
     if (data) {
       yield put(setLocalResults(data))
     }
@@ -81,7 +87,8 @@ function* genSaveResultsLocal () {
   const state = yield select()
   if (state.preview.type === 'pass_assessment') {
     const { preview: { results, dbResult } } = state
-    setItem(`result_${dbResult.id}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
+    const resetCount = dbResult.reset_count || 0
+    setItem(`result_${dbResult.id}_${resetCount}`, results, `${dbResult.id}${dbResult.user_id}`, TWENTY_FOUR_HOURS)
   }
 }
 

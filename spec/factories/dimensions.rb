@@ -13,7 +13,7 @@
 #  owner_id      :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :dimension do
     sequence(:name) { |i| "dimension #{i}" }
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { Progress } from 'antd'
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
-import ButtonColor from 'constants/buttonColor'
 import Watchman from 'libs/survey/store/StoreWatchman'
 import styles from '../AudioRecorderStyle.scss'
 import MediaButtons from '../MediaButtons'
@@ -23,15 +22,17 @@ const PlayerControl: React.FC<Props> = ({
   playerState, percent, uploadState, discardRecording, saveRecording, playAudio, pauseAudio, readOnly,
 }) => (
   <div className={styles.controls}>
-    {!readOnly && <ColoredButton
-      color={ButtonColor.GREY}
+    {!readOnly && (
+    <ColoredButton
+      color="grey"
       type="primary"
       icon={<DeleteOutlined />}
       className={styles.deleteBtn}
       onClick={discardRecording}
     >
       {Watchman.I18n().t('assessments.video_response.delete')}
-    </ColoredButton>}
+    </ColoredButton>
+    )}
 
     {playerState === PLAYER_STATE.PLAYING && <MediaButtons.PauseButton onClick={pauseAudio} />}
     {playerState === PLAYER_STATE.PAUSED && <MediaButtons.PlayButton onClick={playAudio} />}
@@ -39,7 +40,7 @@ const PlayerControl: React.FC<Props> = ({
     {uploadState !== UPLOAD_STATES.SAVED
         && (
           <ColoredButton
-            color={ButtonColor.GREEN}
+            color="green"
             type="primary"
             icon={<CheckOutlined />}
             className={styles.saveBtn}
@@ -51,10 +52,10 @@ const PlayerControl: React.FC<Props> = ({
           </ColoredButton>
         )}
 
-   {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
+    {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
     <div className={styles.savedTextContainer}>
       <CheckOutlined className={styles.icon} />
-        <span className={styles.savedText}>{Watchman.I18n().t('assessments.video_response.saved')}</span>
+      <span className={styles.savedText}>{Watchman.I18n().t('assessments.video_response.saved')}</span>
     </div>
     )}
 

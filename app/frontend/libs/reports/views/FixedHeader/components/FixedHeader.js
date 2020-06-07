@@ -5,13 +5,20 @@ import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
 import headerStore from 'rb/store/HeaderStore'
 import AppStore from 'rb/store/AppStore'
 import I18nStore from 'rb/store/I18nStore'
+import NotificationDispatcher from 'rb/dispatchers/NotificationDispatcher'
+import Module from 'rb/models/Module'
+import { getModule } from 'libs/reports/core/builder/selectors'
+import store from 'libs/reports/store'
+import schema from 'libs/reports/store/schema'
+import { INIT } from 'libs/reports/core/builder/actions'
+import { normalize } from 'normalizr'
 import styles from './FixedHeader.scss'
 
 const { $ } = window
 
-export class HomeView extends Component {
+export class FixedHeader extends Component {
   componentDidMount () {
-    $(document).on('scroll', this.bodyScroll)
+    $(document).on('scroll', _.debounce(e => this.bodyScroll(e), 200))
     $(document).on('keydown', this.bodyKeyDown)
     this.listener = AppStore.addListener('change', () => this.forceUpdate())
   }
@@ -23,17 +30,22 @@ export class HomeView extends Component {
   }
 
   bodyScroll = (e) => {
+    const { updateCurrentPage } = this.props
     headerStore.offset = $(this.menu).offset().top
-    HeaderDispatcher.updatePage($(e.currentTarget).scrollTop())
+    updateCurrentPage($(e.currentTarget).scrollTop())
   }
 
   bodyKeyDown = (e) => {
-    const { richEditorOpened } = this.props
+    const {
+      richEditorOpened, removeModule, selected, unselectModules,
+    } = this.props
     if (e.target.nodeName === 'INPUT') { return }
     if (e.target.nodeName === 'TEXTAREA') { return }
     if (richEditorOpened) { return }
 
     if (e.keyCode === 8 || e.keyCode === 46) {
+      unselectModules()
+      selected.moduleId && removeModule(selected.moduleId)
       HeaderDispatcher.backspace()
     }
 
@@ -47,29 +59,40 @@ export class HomeView extends Component {
     }
   }
 
+  addModule = (type) => {
+    const { report, addModule, currentPage } = this.props
+    const module = new Module({ type }, currentPage)
+
+    const last = getModule(report, _.last(currentPage.modules))
+    if (last) {
+      module.props.position.top = Math.min(last.props.position.top + last.props.position.height, 1100 - 200)
+      module.props.position.left = last.props.position.left
+    }
+    if (last && last.props.position.top === module.props.position.top) {
+      module.props.position.top = 120
+      module.props.position.left += 20
+    }
+    addModule(currentPage.id, module)
+  }
+
   addText = () => {
-    const $menu = $(this.menu)
-    HeaderDispatcher.addModule('Text', $menu.offset().top)
+    this.addModule('Text')
   }
 
   addImage = () => {
-    const $menu = $(this.menu)
-    HeaderDispatcher.addModule('Image', $menu.offset().top)
+    this.addModule('Image')
   }
 
   addShape = () => {
-    const $menu = $(this.menu)
-    HeaderDispatcher.addModule('Shape', $menu.offset().top)
+    this.addModule('Shape')
   }
 
   addGraph = () => {
-    const $menu = $(this.menu)
-    HeaderDispatcher.addModule('Graph', $menu.offset().top)
+    this.addModule('Graph')
   }
 
   addTable = () => {
-    const $menu = $(this.menu)
-    HeaderDispatcher.addModule('Table', $menu.offset().top)
+    this.addModule('Table')
   }
 
 
@@ -79,10 +102,19 @@ export class HomeView extends Component {
   }
 
   save = (e) => {
+    const { save, report } = this.props
     const target = e.currentTarget
     target.setAttribute('disabled', 'disabled')
-    AppStore.save(() => {
+
+    save(report).then(({ response: { data } }) => {
       target.removeAttribute('disabled')
+      const normalizedData = normalize(data, schema)
+      AppStore.init(data.data)
+      store.dispatch({ type: INIT, data: normalizedData })
+      NotificationDispatcher.notify({ message: 'Report successfully saved' })
+    }).catch(() => {
+      target.removeAttribute('disabled')
+      NotificationDispatcher.notify({ level: 'error', message: 'Something went wrong. Contact your administrator.' })
     })
   }
 
@@ -155,7 +187,7 @@ export class HomeView extends Component {
             <div className={`${styles.set} ${styles.rightSet}`}>
               <button onClick={this.save} className={`btn btn-success ${styles.saveButton}`}>
                 <i className="fa fa-save" />
-            Save
+                Save
               </button>
               <div className="dropdown">
                 <button
@@ -166,7 +198,7 @@ export class HomeView extends Component {
                   aria-expanded="true"
                 >
                   <span className="fa fa-gear" />
-                      Report Options
+                  Report Options
                   <span className="caret" />
                 </button>
                 <ul className="dropdown-menu">
@@ -208,4 +240,4 @@ export class HomeView extends Component {
   }
 }
 
-export default HomeView
+export default FixedHeader

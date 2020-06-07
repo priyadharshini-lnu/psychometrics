@@ -11,6 +11,7 @@ module Assigns
       transaction do
         remove_reports if assign_with_result.completed?
         reset_assign
+        remove_media_responses
       end
 
       broadcast :ok
@@ -19,6 +20,10 @@ module Assigns
     private
 
     attr_reader :assign_with_result, :original_or_self
+
+    def remove_media_responses
+      MediaResponse.where(assign_id: assign_with_result.id).destroy_all
+    end
 
     def reset_assign
       assign_with_result.update_attributes(
@@ -35,8 +40,10 @@ module Assigns
         expiry_date: nil,
         last_activity_at: nil,
         meta_data: {},
+        additional_time: nil,
         current_element: nil,
-        current_page: nil
+        current_page: nil,
+        reset_count: assign_with_result.reset_count + 1
       )
     end
 

@@ -104,8 +104,8 @@ class User < ApplicationRecord
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
   has_many :api_keys, inverse_of: :user
-  has_many :users_assessments, inverse_of: :user
-  has_many :assessments, through: :users_assessments
+  has_many :users_campaigns_assessments, inverse_of: :subject, foreign_key: :subject_id
+  has_many :assessments, through: :users_campaigns_assessments
   has_many :users_reports, inverse_of: :user
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
@@ -174,7 +174,7 @@ class User < ApplicationRecord
     super(invited_by, options)
 
     if is?(:superadmin, :client_admin, :project_admin)
-      InvitationMailer.invite_superadmin(id, @raw_invitation_token).deliver_later
+      InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
     end
@@ -244,8 +244,7 @@ class User < ApplicationRecord
             email.eq(warden_conditions[:email]&.downcase) &
             clients.subdomain.eq(subdomain) &
             clients.disabled.not_eq(true)
-        end .
-          first
+        end.first
       else
         enabled.
           identified.

@@ -33,28 +33,28 @@
 #  is_anonym              :boolean          default(FALSE)
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :membership do
     user
     client factory: :project
-    role Membership::MEMBER_ROLE
+    role { Membership::MEMBER_ROLE }
 
     factory :client_admin_membership do
       association :user, factory: :user
       association :grants, factory: :membership_grants, data: User::DEFAULT_ADMIN_GRANTS
       client factory: :tenancy
-      role Membership::CLIENT_ADMIN_ROLE
+      role { Membership::CLIENT_ADMIN_ROLE }
     end
 
     factory :project_admin_membership do
       association :user, factory: :user
       association :grants, factory: :membership_grants, data: User::DEFAULT_PROJECT_ADMIN_GRANTS
       client factory: %i[project sub_campaign_level]
-      role Membership::PROJECT_ADMIN_ROLE
+      role { Membership::PROJECT_ADMIN_ROLE }
     end
 
     factory :manager_membership do
-      role Membership::MANAGER_ROLE
+      role { Membership::MANAGER_ROLE }
     end
 
     trait :for_campaign do

@@ -1,15 +1,16 @@
 import _ from 'lodash'
 import React from 'react'
 import AppStore from 'rb/store/AppStore'
-import AssessmentStore from 'rb/store/AssessmentStore'
 import I18nStore from 'rb/store/I18nStore'
 import Utils from 'rb/utils'
 import ResultStore from 'rb/store/ResultStore'
+import { connect } from 'react-redux'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import styles from '../styles.scss'
 
-const Question = ({ model }) => {
+const Question = ({ model, questions }) => {
   if (!model.props.filter) return null
-  const question = _.find(AssessmentStore.questions[model.assessment_id], q => q.id === model.props.questionId)
+  const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
   const { fontSize, fontFamily } = model.props.style
   const style = {
@@ -28,7 +29,7 @@ const Question = ({ model }) => {
           </tr>
         </thead>
         {model.props.filter.map(filterId => (
-          <FilterTable key={filterId} filterId={filterId} model={model} />
+          <FilterTable key={filterId} filterId={filterId} model={model} questions={questions} />
         ))}
       </table>
     </div>
@@ -37,9 +38,9 @@ const Question = ({ model }) => {
 
 const MOCK_RESULTS = ['First answer', 'Second answer']
 
-function FilterTable ({ filterId, model }) {
+function FilterTable ({ filterId, model, questions }) {
   const filter = AppStore.report.filters.find(f => f.id === filterId)
-  const question = _.find(AssessmentStore.questions[model.assessment_id], q => q.id === model.props.questionId)
+  const question = _.find(questions, q => q.id === model.props.questionId)
   if (!question) return null
 
   const getResults = () => {
@@ -71,4 +72,6 @@ function FilterTable ({ filterId, model }) {
   )
 }
 
-export default Question
+export default connect((state, { model }) => ({
+  questions: getQuestions(state.report, model.assessment_id),
+}), {})(Question)

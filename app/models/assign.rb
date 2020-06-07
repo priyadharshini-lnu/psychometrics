@@ -49,6 +49,7 @@ class Assign < ApplicationRecord
   has_many :reports, through: :assigns_reports, dependent: :destroy
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
+  has_many :media_responses
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
@@ -56,7 +57,7 @@ class Assign < ApplicationRecord
   validate :relevant_membership, if: -> { membership.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
-  enum status: %i[not_started in_progress completed]
+  enum status: %i[not_started in_progress completed interrupted]
   enum role: %i[member manager admin]
 
   scope :mindmill, lambda {
@@ -99,7 +100,8 @@ class Assign < ApplicationRecord
   end
 
   def set_expiry_date
-    self.expiry_date = assessment.extra['timer']&.second&.from_now
+    time = status_in_database == 'interrupted' ? additional_time : assessment.extra['timer']
+    self.expiry_date = time.second&.from_now if time
   end
 
   def set_last_activity_at

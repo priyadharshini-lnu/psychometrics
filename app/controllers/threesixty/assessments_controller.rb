@@ -9,8 +9,10 @@ module Threesixty
       piped_text_context = {
         evaluator: participant.evaluator,
         subject: participant.subject,
-        threesixty_campaign: @campaign
+        threesixty_campaign: @campaign,
+        answers: participant.users_result&.answers || {}
       }
+
       assessment = @campaign.assessment
       authorize [:threesixty, assessment]
       render json: assessment, serializer: ::AssessmentSerializer, include: '**', piped_text_context: piped_text_context

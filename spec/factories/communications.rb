@@ -19,7 +19,7 @@
 #  owner_id          :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :communication do
     sequence(:subject) { 'Test subject' }
     sequence(:body) { '<p> Test body </p>' }

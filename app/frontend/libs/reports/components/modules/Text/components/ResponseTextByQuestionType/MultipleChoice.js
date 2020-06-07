@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import I18nStore from 'rb/store/I18nStore'
-import styles from '../Text.scss'
+import store from 'rb/store/PropertyPanelStore'
+import Formats from './formats'
 
 export default class MultipleChoice extends Component {
   static propTypes = {
@@ -9,6 +10,15 @@ export default class MultipleChoice extends Component {
     question: PropTypes.object.isRequired,
     result: PropTypes.any,
     isReal: PropTypes.bool,
+    preview: PropTypes.bool,
+  }
+
+  componentDidMount () {
+    this.listener = store.addListener('change', () => this.forceUpdate())
+  }
+
+  componentWillUnmount () {
+    this.listener.remove()
   }
 
   getValues () {
@@ -31,45 +41,53 @@ export default class MultipleChoice extends Component {
     )
   }
 
+  getDescriptionList () {
+    const { result, question } = this.props
+
+    if (!result) {
+      return _.times(question.props.choices, i => I18nStore.tQuestion(
+        question, `descriptionTexts${i + 1}`, { choice: i },
+      ))
+    }
+
+    let results = result.filter(r => r.value !== undefined)
+    if (question.type === 'RankOrder') {
+      results = _.sortBy(results, r => parseInt(r.value, 10))
+    }
+
+    return results.map(
+      r => I18nStore.tQuestion(question, `descriptionTexts${r.index + 1}`, { choice: r.index }),
+    )
+  }
+
+  update = () => {
+    const { model } = this.props
+    model.update()
+    this.forceUpdate()
+  }
+
   render () {
     const {
-      model: {
-        props: {
-          format,
-          styled,
-        },
-      },
+      model,
+      model: { props: { format } },
       isReal,
       result,
+      preview,
     } = this.props
     if (isReal && !result) { return null }
 
     const values = this.getValues()
-    if (!format || format === 'CommaSeparated') {
-      return <div>{values.join(', ')}</div>
-    } if (format === 'BulletedList') {
-      return (
-        <ul className={styled && styles.styledList}>
-          {values.map((v, i) => (
-            <li key={i}>
-              <div className={styles.listItemBullet}>●</div>
-              <div className={styles.listItemText}>{v}</div>
-            </li>
-          ))}
-        </ul>
-      )
-    } if (format === 'NumberedList') {
-      return (
-        <ol className={styled && styles.styledList}>
-          {values.map((v, i) => (
-            <li key={i}>
-              <div className={styles.listItemNumber}>{i + 1}</div>
-              <div className={styles.listItemText}>{v}</div>
-            </li>
-          ))}
-        </ol>
-      )
-    }
-    return null
+    const descriptionList = this.getDescriptionList()
+
+    const FormatComponent = Formats[format] || Formats.CommaSeparated
+    return (
+      <FormatComponent
+        update={this.update}
+        model={model}
+        values={values}
+        descriptionList={descriptionList}
+        preview={preview}
+      />
+    )
   }
 }

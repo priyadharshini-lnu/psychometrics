@@ -1,5 +1,6 @@
 import _ from 'lodash'
-import store from 'rb/store/AssessmentStore'
+import store from 'rb/store'
+import { getQuestions } from 'libs/reports/core/builder/selectors'
 import ResultStore from 'rb/store/ResultStore'
 import ResultManager from './ResultManager'
 import BaseResolver from './BaseResolver'
@@ -32,7 +33,7 @@ export default class QuestionResolver extends BaseResolver {
 
   getAnswers () {
     const assessment = ResultManager.getAssessmentByFilter(this.condition.filterId)
-    const question = store.questions[assessment.id][this.condition.subject]
+    const question = getQuestions(store.getState().report, assessment.id)[this.condition.subject]
     const qResults = this.results.questions[this.condition.subject]
     if (qResults) {
       return QuestionTypesAnswers[question.type](qResults[0], this.condition.answer)

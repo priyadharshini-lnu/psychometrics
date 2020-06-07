@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
 import { LibraryStore } from 'libs/library'
 import LibraryTransport from 'rb/cable/LibraryChannel'
 import Socket from 'rb/cable'
@@ -18,8 +17,9 @@ const TYPE_OPTIONS = [
 
 class Properties extends Component {
   componentWillMount () {
-    const type = store.model.props.sourceType
-    store.model.props.sourceType = type || 'SimpleImage'
+    const { model } = this.props
+    const type = model.props.sourceType
+    model.props.sourceType = type || 'SimpleImage'
   }
 
   componentDidMount () {
@@ -28,14 +28,15 @@ class Properties extends Component {
   }
 
   update = () => {
-    store.model.update()
-    this.forceUpdate()
+    const { model } = this.props
+    model.update()
   }
 
   changeUrl = (e) => {
+    const { model } = this.props
     const val = e.currentTarget.value
-    store.model.props.url = val
-    store.model.update()
+    model.props.url = val
+    model.update()
   }
 
   openLibrary = () => {
@@ -43,21 +44,23 @@ class Properties extends Component {
   }
 
   onSelectGraphic = (item) => {
-    store.model.props.url = item.file
-    this.forceUpdate()
+    const { model } = this.props
+    model.props.url = item.file
+    this.update()
   }
 
   changeSourceType = (obj) => {
-    store.model.props.sourceType = obj.value
-    if (store.model.props.sourceType === 'ConditionalImage') {
-      store.model.props.url = null
+    const { model } = this.props
+    model.props.sourceType = obj.value
+    if (model.props.sourceType === 'ConditionalImage') {
+      model.props.url = null
     }
     this.update()
   }
 
   openConditionModal = () => {
-    const { openConditionalImage } = this.props
-    openConditionalImage({ model: store.model })
+    const { model, openConditionalImage } = this.props
+    openConditionalImage({ model })
   }
 
   changeAssessment = (assessmentId) => {
@@ -86,14 +89,14 @@ class Properties extends Component {
         <div className="margin-top-10 margin-bottom-10">
           <Select
             name="form-field-name"
-            value={getValue(TYPE_OPTIONS, store.model.props.sourceType)}
+            value={getValue(TYPE_OPTIONS, model.props.sourceType)}
             options={TYPE_OPTIONS}
             getOptionValue={opt => opt.value}
             autoFocus={false}
             clearable={false}
             onChange={this.changeSourceType}
           />
-          {store.model.props.sourceType === 'ConditionalImage'
+          {model.props.sourceType === 'ConditionalImage'
             && (
             <div
               style={{ width: '100%' }}
@@ -104,7 +107,7 @@ class Properties extends Component {
             </div>
             )}
           {
-            store.model.props.sourceType === 'SimpleImage'
+            model.props.sourceType === 'SimpleImage'
             && (
             <div>
               <div className={styles.block}>

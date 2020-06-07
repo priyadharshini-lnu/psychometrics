@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :datasheet do
-    project nil
-    columns ''
+    project { nil }
+    columns { '' }
   end
 end

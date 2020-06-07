@@ -4,7 +4,7 @@ import Foundation from 'rb/components/Foundation'
 import styles from './Graph.scss'
 import Charts from './Charts'
 
-class Text extends Component {
+class Graph extends Component {
   static propTypes = {
     module: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
@@ -44,4 +44,4 @@ class Text extends Component {
   }
 }
 
-export default Text
+export default Graph

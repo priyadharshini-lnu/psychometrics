@@ -111,4 +111,25 @@ module AdministrationHelper
       action: status_active ? 'Deactivate' : 'Activate'
     }
   end
+
+  def roles_dropdown(user)
+    available_roles = {
+      super_admin: 'Users::SuperAdmin',
+      client_admin: 'client_admin',
+      project_admin: 'project_admin',
+      regular: 'member'
+    }
+
+    access_level = {
+      super_admin: %i[super_admin client_admin project_admin regular],
+      client_admin: %i[project_admin regular],
+      project_admin: %i[regular]
+    }.with_indifferent_access
+
+    user_roles = user.memberships.pluck(:role)
+    user_roles << :super_admin if user.is?(:superadmin)
+    user_access = access_level.slice(*user_roles).values.flatten.uniq
+
+    user_access.map { |role| [I18n.t("activerecord.attributes.user.roles.#{role}"), available_roles[role]] }
+  end
 end

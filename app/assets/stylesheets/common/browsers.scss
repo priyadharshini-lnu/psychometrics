@@ -1,0 +1,92 @@
+.unsupported-browsers {
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px #00000029;
+
+  display: grid;
+  row-gap: 25px;
+  justify-items: center;
+
+  .message {
+    color: #393939;
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .instruction {
+    color: #9F9F9F;
+    font-size: 13px;
+  }
+
+  ul.browsers {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: grid;
+    grid-row-gap: 1ch;
+    grid-column-gap: 1ch;
+
+    li {
+      display: grid;
+      grid-template-areas: "icon name";
+      column-gap: 5px;
+      font-size: 13px;
+
+      .icon {
+        grid-area: icon;
+      }
+
+      .name {
+        grid-area: name;
+        color: #9F9F9F;
+        align-self: center;
+
+        a {
+          color: #6973F0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .unsupported-browsers {
+    padding: 20px 10px;
+    margin: 20px 0;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 411px) {
+  .unsupported-browsers {
+    padding: 20px 20px;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 736px) {
+  .unsupported-browsers {
+    padding: 20px 30px;
+
+    ul.browsers {
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .unsupported-browsers {
+    padding: 50px 60px;
+  }
+}

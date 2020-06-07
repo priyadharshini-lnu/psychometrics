@@ -41,6 +41,24 @@ module Threesixty
       end
     end
 
+    def system_checks
+      respond_to do |format|
+        format.html { render :show }
+        format.json do
+          assessment = Assessment.find(params[:assessment_id])
+
+          entity =
+            if assessment.threesixty?
+              Threesixty::Participant.find(params[:id])
+            else
+              Assign.find(params[:id])
+            end
+
+          render json: entity, serializer: ::EndUser::SystemChecksSerializer
+        end
+      end
+    end
+
     def show
       respond_to do |format|
         format.html {}

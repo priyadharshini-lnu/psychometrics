@@ -63,6 +63,8 @@ en:
           disable: Disable Client
           enable: Enable Client
           create_admin: Create Client Admin
+        in_progress:
+          deleting: Deleting
         confirmations:
           disable:
             title:
@@ -95,13 +97,5 @@ en:
           delete:
             title:
               Delete <strong>%{name}</strong> ?
-            body:
-              0:
-                <p>Are you sure you want to delete?</p>
-                <p>All Campaigns, Sub-campaigns and users will also be deleted</p>
-              1:
-                <p>Are you sure you want to delete?</p>
-                <p>All Sub-campaigns and users will also be deleted</p>
-              2:
-                <p>Are you sure you want to delete?</p>
-                <p>All users will also be deleted</p>
+            body: >
+              <p>Are you sure you want to delete this Campaign Template?</p>
