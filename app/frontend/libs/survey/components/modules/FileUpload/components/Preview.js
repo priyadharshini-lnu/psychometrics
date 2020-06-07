@@ -22,7 +22,7 @@ export class Preview extends Component {
 
   renderFileUploadBlock () {
     const {
-      model, mediaUrl, type, readOnly,
+      model, mediaUrl, type, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const preview = type === 'preview_assessment'
 
@@ -34,6 +34,8 @@ export class Preview extends Component {
         fakeUpload={preview}
         onSuccessUpload={this.successUpload}
         onRemoveFile={this.removeFile}
+        markQuestionInProgress={markQuestionInProgress}
+        removeQuestionInProgress={removeQuestionInProgress}
       />
     )
   }

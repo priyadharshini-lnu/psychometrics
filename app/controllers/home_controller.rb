@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:identify]
+  skip_before_action :authenticate_user!, only: %I[identify upgrade]
 
   def survey_instructions
     render layout: 'users_new'
@@ -31,6 +31,16 @@ class HomeController < ApplicationController
     redirect_url = params.fetch(:redirect_url) { root_path }
     redirect_to(redirect_url)
   end
+
+  # Browser upgrade notification
+  # rubocop:disable Style/AndOr
+  def upgrade
+    @browser_detections = helpers.detect_browser(request.user_agent)
+    redirect_to root_path and return if @browser_detections.supported_browser?
+
+    render layout: 'devise'
+  end
+  # rubocop:enable Style/AndOr
 
   private
 

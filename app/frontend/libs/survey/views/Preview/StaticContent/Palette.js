@@ -4,6 +4,7 @@ import styles from './StaticContent.scss'
 
 const LEFT_SHIFT = 20
 const TOP_SHIFT = 45
+const MAX_WIDTH = 180
 
 const Palette = ({
   removeHighlight,
@@ -41,10 +42,16 @@ const Palette = ({
 
   const getPosition = () => {
     const [dom] = highlighter.getDoms(currentHighlight.id)
-    const left = dom.offsetLeft - LEFT_SHIFT
+    let left = dom.offsetLeft - LEFT_SHIFT
+
+    if (contentRef.current.clientWidth - MAX_WIDTH < left) {
+      left = contentRef.current.clientWidth - MAX_WIDTH
+    }
+
     const top = dom.offsetTop - contentRef.current.scrollTop - TOP_SHIFT
-    return { left: `${left}px`, top: `${Math.max(0, top)}px` }
+    return { left: `${left < 0 ? 0 : left}px`, top: `${Math.max(0, top)}px` }
   }
+
   return (
     <div
       className={styles.paletteTip}

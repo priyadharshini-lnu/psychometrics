@@ -13,8 +13,20 @@ module Threesixty
     enum report_release_status: { waiting: 0, released: 1, on_hold: 2 }, _prefix: :report_status
     enum evaluation_status: { in_progress: 0, completed: 1 }, _prefix: :evaluation_status
 
+    after_update :remove_report_pdf, if: proc { evaluation_status_changed? && evaluation_status_completed? }
+
     def evaluators
       participants.includes(:relationship, :subject, :evaluator).where(campaign_id: campaign_id)
+    end
+
+    # Removing report here to generate a new report on completion because
+    # it's possible that a report was generated previously by admin and few evaluations are done after that.
+    def remove_report_pdf
+      report = user.users_reports.find_by!(campaign_id: campaign_id)
+      if report.pdf_exists?
+        report.remove_pdf!
+        report.save
+      end
     end
   end
 end

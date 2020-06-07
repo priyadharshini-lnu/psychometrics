@@ -3,13 +3,14 @@ import {
   Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
+import ResourcesTabs from '../ResourcesTabs'
 
 const { Content } = Layout
 
@@ -36,7 +37,7 @@ export default function Assign ({
   progress,
 }) {
   useEffect(() => {
-    const { edit } = qs.parse(location.search)
+    const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.assignId, edit)
   }, [])
   // TODO: Fix by creating a setting for list of rtl languages
@@ -67,9 +68,15 @@ export default function Assign ({
           />
         </Content>
       </div>
-      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+      <Content
+        className={
+          cs('fluid-container',
+            { 'has-static-content': _.get(block, ['props', 'staticContent']) },
+            'main-container')
+        }
+      >
         {availableTranslations && availableTranslations.length > 0 && (
-          <Row type="flex" justify="end" className="mtm mrm">
+          <Row type="flex" justify="end" className="mtm mrm lang-row">
             <Col>
               <Language
                 assignId={assignId}
@@ -81,17 +88,19 @@ export default function Assign ({
         )}
         <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
           {loaded && !error && (
-            <PassAssessment
-              id="pass_assessment"
-              type="pass_assessment"
-              data={assessment}
-              result={results}
-              locales={translations}
-              dashboardUrl="/assessment_completed"
-              resultsUrl={`/assigns/${results.id}`}
-              selectedLocale={selectedLanguage && selectedLanguage.code}
-              rstore={store}
-            />
+            <ResourcesTabs assessment={assessment}>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl="/assessment_completed"
+                resultsUrl={`/assigns/${results.id}`}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+              />
+            </ResourcesTabs>
           )}
         </div>
       </Content>

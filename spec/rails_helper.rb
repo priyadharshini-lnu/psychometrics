@@ -25,8 +25,8 @@ end
 
 ActiveRecord::Migration.maintain_test_schema!
 Psychometrics::Application.load_tasks
-# Needs for able to stub methods inside FactoryGirl
-FactoryGirl::SyntaxRunner.class_eval do
+# Needs for able to stub methods inside FactoryBot
+FactoryBot::SyntaxRunner.class_eval do
   include RSpec::Mocks::ExampleMethods
 end
 
@@ -34,7 +34,7 @@ RSpec.configure do |config|
   config.color = true
   config.include Features::Helpers, type: :feature
   config.include AbstractController::Translation
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers
   config.include Rectify::RSpec::Helpers
   config.include(Wisper::RSpec::BroadcastMatcher)
@@ -54,6 +54,10 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :deletion, { except: %w[data_geos] }
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.clean
+  end
+
+  config.before(:all) do
+    FactoryBot.reload
   end
 
   config.after(:suite) do

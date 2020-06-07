@@ -23,7 +23,7 @@ export default class LogicElement extends Component {
   }
 
   render () {
-    const { conditions } = this.props
+    const { conditions, questions } = this.props
     return (
       <div className={css.conditionPreviews}>
         {conditions.map((list, i) => (
@@ -32,6 +32,7 @@ export default class LogicElement extends Component {
             <ConditionListPreview
               conditions={list.conditions}
               oneCondition={conditions.length === 1}
+              questions={questions}
             />
           </div>
         ))}

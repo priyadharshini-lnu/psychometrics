@@ -83,6 +83,7 @@ const ModuleConfigs = {
     },
     randomization: false,
     defaultValue: true,
+    defaultDescription: 'Click to edit description',
   },
 
   SideBySide: {

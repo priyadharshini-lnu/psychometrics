@@ -19,7 +19,7 @@
 #  status            :integer
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :report do
     sequence(:name) { |i| "report #{i}" }
     extra { { icon_color: '#845EC2' } }

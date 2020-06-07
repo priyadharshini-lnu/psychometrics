@@ -1,0 +1,165 @@
+import React, { useReducer, useRef, useEffect } from 'react'
+import {
+  Button, Card, Col,
+} from 'antd'
+import { CheckOutlined, RightOutlined } from '@ant-design/icons'
+import * as faceapi from 'face-api.js'
+import { browserName } from 'react-device-detect'
+import ColoredButton from 'components/ColoredButton'
+import { Config } from 'user/core/checkingWizard/interfaces'
+import _ from 'lodash'
+import InitVideo from './InitVideo'
+import styles from './styles.scss'
+import Progress from '../Progress'
+import CheckList from '../CheckList'
+import reducer, {
+  initialState, updateAccess, updateFaceDetection, failFaceDetectionByTimeout,
+} from './reducer'
+import { CheckListStatus } from '../interfaces'
+
+
+const { I18n } = window
+
+
+interface Props {
+  nextStep: () => void
+  config: Config
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let player: any = null
+
+const VideoCheck: React.FC<Props> = ({ nextStep }) => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+
+  useEffect(() => {
+    if (!videoRef.current) return
+
+    player = InitVideo.run(videoRef.current)
+    player.on('error', () => {
+      dispatch(updateAccess(CheckListStatus.Failed))
+    })
+    faceapi.nets.tinyFaceDetector.loadFromUri('/face-api/models')
+    player.on('deviceReady', () => {
+      player.record().start()
+    })
+    player.on('startRecord', () => {
+      track()
+    })
+    player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
+  }, [])
+
+  const requestAccess = () => {
+    if (!videoRef.current) return
+
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(() => {
+        dispatch(updateAccess(CheckListStatus.Done))
+        player.record().getDevice()
+      })
+      .catch(() => {
+        dispatch(updateAccess(CheckListStatus.Failed))
+      })
+  }
+
+  const track = async () => {
+    if (!videoRef.current) return
+
+    const options = new faceapi.TinyFaceDetectorOptions()
+    const detections = await faceapi.detectSingleFace(videoRef.current, options)
+    if (detections) {
+      dispatch(updateFaceDetection(CheckListStatus.Done))
+      player.record().stop()
+    } else {
+      setTimeout(() => track(), 500)
+    }
+  }
+
+  const rerun = () => {
+    requestAccess()
+    if (state.access === CheckListStatus.Failed) return
+
+    dispatch(updateFaceDetection(CheckListStatus.InProgress))
+    player.record().start()
+  }
+
+  return (
+    <>
+      <Col className={styles.container} lg={16} xs={24} sm={24}>
+        <Card className={styles.card}>
+          <div className={styles.title}>{I18n.t('checking_wizard.video_check.title')}</div>
+          <div className="position-relative">
+            <video ref={videoRef} className={styles.video} />
+            {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access) && (
+            <div className={styles.videoOverlap}>
+              <div className={styles.iconContainer}>
+                <span className={styles.icon} />
+              </div>
+              <div className={styles.allowTitle}>
+                {I18n.t('checking_wizard.video_check.allow_title')}
+              </div>
+              {state.access === CheckListStatus.InProgress && (
+              <ColoredButton type="primary" className={styles.allowButton} color="green" onClick={requestAccess}>
+                <CheckOutlined />
+                {I18n.t('checking_wizard.video_check.allow')}
+              </ColoredButton>
+              )}
+              {state.access === CheckListStatus.Failed && (
+              <ColoredButton type="primary" className={styles.allowButton} color="green" onClick={requestAccess}>
+                <a
+                  href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${browserName}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {I18n.t('checking_wizard.video_check.access_help')}
+                </a>
+              </ColoredButton>
+              )}
+            </div>
+            )}
+          </div>
+        </Card>
+      </Col>
+      <Col className={styles.container} lg={8} xs={24} sm={24}>
+        <Card className={styles.card}>
+          <Progress percent={30} title={I18n.t('checking_wizard.video_check.processing')} />
+          <CheckList
+            className="mt24"
+            dataSource={[
+              { name: I18n.t('checking_wizard.video_check.access'), status: state.access },
+              { name: I18n.t('checking_wizard.video_check.face_detection'), status: state.faceDetection },
+              // { name: I18n.t('checking_wizard.video_check.ambient_light'), status: state.ambientLight },
+            ]}
+          />
+          {state.access !== CheckListStatus.Failed && state.faceDetection !== CheckListStatus.Failed ? (
+            <Button
+              type="primary"
+              className={styles.continueButton}
+              onClick={nextStep}
+              disabled={state.access !== CheckListStatus.Done || state.faceDetection !== CheckListStatus.Done}
+            >
+              {I18n.t('checking_wizard.video_check.continue')}
+              <RightOutlined />
+            </Button>
+          )
+            : (
+              <Button
+                type="primary"
+                className={styles.continueButton}
+                onClick={rerun}
+              >
+                {I18n.t('checking_wizard.video_check.run_again')}
+                <RightOutlined />
+              </Button>
+            )
+          }
+        </Card>
+      </Col>
+    </>
+  )
+}
+
+export default VideoCheck

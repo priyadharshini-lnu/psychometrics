@@ -6,7 +6,7 @@ describe AssignsReports::GenerateReport do
   let(:user) { double('User') }
 
   it 'return :none_successfull if there were no report generated' do
-    assigns_reports = build_list(:assigns_report, 2)
+    assigns_reports = create_list(:assigns_report, 2, :licensed)
     allow(Reports::IsGeneratable).to receive(:call!).and_return(false)
 
     result = described_class.call!(assigns_reports, user)

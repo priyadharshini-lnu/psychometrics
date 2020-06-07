@@ -3,7 +3,7 @@ import {
   Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
-import qs from 'query-string'
+import qs from 'qs'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import PassAssessment from 'libs/survey/containers/AssessmentContainer'
@@ -12,6 +12,7 @@ import cs from 'classnames'
 import Language from '../common/Language'
 import store from '../../../../store'
 import Timer from '../Timer'
+import ResourcesTabs from '../ResourcesTabs'
 
 const { Content } = Layout
 
@@ -45,7 +46,7 @@ export default function Evaluation ({
   const assessmentRef = React.createRef()
   const {
     edit, step, approve_evaluation, lang,
-  } = qs.parse(location.search)
+  } = qs.parse(location.search.substr(1))
 
   useEffect(() => {
     fetchAssessment(params.campaignId, params.id, {
@@ -156,7 +157,10 @@ export default function Evaluation ({
           />
         </Content>
       </div>
-      <Content className={cs('fluid-container', _.get(block, ['props', 'staticContent']) && 'has-static-content')}>
+      <Content className={
+          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) }, 'main-container')
+        }
+      >
         <div className="evaluation-container">
           <Row type="flex" justify="end" className="mtm mrm">
             <Col flex="none">
@@ -174,22 +178,24 @@ export default function Evaluation ({
             )}
           </Row>
           {!error && (
-            <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-              <PassAssessment
-                ref={assessmentRef}
-                id="pass_assessment"
-                type={approve_evaluation ? 'view_results' : 'pass_assessment'}
-                isThreesixty="true"
-                resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                data={assessment}
-                result={results}
-                dashboardUrl={`/campaigns/${params.campaignId}`}
-                locales={translations}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                notAnEndPage={approve_evaluation || edit === 'true'}
-                rstore={store}
-              />
-            </div>
+            <ResourcesTabs assessment={assessment}>
+              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                <PassAssessment
+                  ref={assessmentRef}
+                  id="pass_assessment"
+                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                  isThreesixty="true"
+                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                  data={assessment}
+                  result={results}
+                  dashboardUrl={`/campaigns/${params.campaignId}`}
+                  locales={translations}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  notAnEndPage={approve_evaluation || edit === 'true'}
+                  rstore={store}
+                />
+              </div>
+            </ResourcesTabs>
           )}
         </div>
       </Content>

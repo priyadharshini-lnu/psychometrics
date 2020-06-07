@@ -24,6 +24,20 @@ en:
       saved: 'Saved'
       saving: 'Saving...'
       retry: 'Retry'
+      selected: 'Selected'
+      use_this: 'Use This'
+      retake: 'Retake'
+      tracker:
+        frame: 'Please make sure that your face aligns with the frame'
+        ready: 'Press the Record button when ready to record'
+        forward: 'You are too far away from the screen. Please move a bit closer'
+        backward: 'You are too close to the screen. Please move a bit back'
       media_recorder:
         success: 'Please allow to use camera and microphone to record audio and Video'
         failure: "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording"
+    messages:
+      finish: "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+    actions:
+      goto_dashboard: Go To Dashboard
+    wait: 'Wait'
+    proceed: 'Proceed Anyway'

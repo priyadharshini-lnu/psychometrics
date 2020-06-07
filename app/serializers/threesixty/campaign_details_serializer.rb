@@ -17,6 +17,7 @@ module Threesixty
         Threesixty::Participant.
           where(subject_id: user_id, manager_nomination_status: :approved, campaign_id: object.campaign_id).
           actual_by_options(object.option).
+          joins(:users_result).
           count
       else
         UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).

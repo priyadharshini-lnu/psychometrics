@@ -59,6 +59,19 @@ export interface LogicInterface {
   conditions?: object[]
 }
 
+export interface InProgressQuestion {
+  questionId: number,
+  progressState: string,
+}
+
+export interface Highlight {
+  id: string,
+  assessmentId?: number,
+  data: object,
+  resourceId: number,
+  resourceType: string,
+}
+
 export interface DefaultState{
   type: string
   resultsUrl?: string
@@ -92,9 +105,13 @@ export interface DefaultState{
   subjectDataSheet: { [key: string]: {} }[]
   relationships: []
   relationship: string | null
-  locales: any,
-  agileAssetsUrl?: string,
-  agileAssignUrl?: string,
+  locales: any
+  agileAssetsUrl?: string
+  agileAssignUrl?: string
+  inProgressQuestions: InProgressQuestion[],
+  highlights: {
+    [id: string]: Highlight
+  },
 }
 
 export interface I18nInterface {
@@ -107,5 +124,6 @@ export interface I18nInterface {
 declare global {
   interface Window {
     I18n: any;
+    SomApi: any;
   }
 }

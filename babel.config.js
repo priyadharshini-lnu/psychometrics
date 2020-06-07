@@ -91,7 +91,7 @@ module.exports = function (api) {
         },
       ],
     ].filter(Boolean),
-    ignore: [/node_modules\/(?!survey-ui|reports-ui|query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js)/],
+    ignore: [/node_modules\/(?!survey-ui|reports-ui|query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/],
     sourceMaps: true,
     // test: ['app/frontend', 'node_modules/survey-ui'],
     // ignore: [/node_modules\/(?!survey-ui)/],

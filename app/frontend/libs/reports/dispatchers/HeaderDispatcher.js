@@ -16,17 +16,6 @@ _.extend(Dispatcher.prototype, {
   backspace () {
     pageListStore.removeAll()
   },
-
-  updatePage (scrollTop) {
-    const page = Math.round(scrollTop / (appStore.report.props.sizes.height + VERTICAL_SPACE_BETWEEN_PAGES))
-    if (pageListStore.current === page) {
-      return
-    }
-
-    pageListStore.current = page < pageListStore.list.length - 1 ? page : pageListStore.list.length - 1
-    pageListStore.update()
-  },
-
 })
 
 export default new Dispatcher()

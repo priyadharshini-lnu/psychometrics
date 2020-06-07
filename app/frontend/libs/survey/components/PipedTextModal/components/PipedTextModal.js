@@ -18,7 +18,7 @@ export class PipedTextModal extends Component {
   }
 
   render () {
-    const { dataSheetColumns, close } = this.props
+    const { dataSheetColumns, close, questions } = this.props
     return (
       <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
@@ -39,7 +39,7 @@ export class PipedTextModal extends Component {
                         insert={value => this.insert(value)}
                         key={field.name}
                         field={field}
-                        context={{ datasheetFields: dataSheetColumns }}
+                        context={{ datasheetFields: dataSheetColumns, questions }}
                       />
                     )
                   })}

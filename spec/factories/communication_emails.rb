@@ -11,7 +11,7 @@
 #  updated_at       :datetime         not null
 #
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :communication_email do
     membership
     communication { create(:communication) }

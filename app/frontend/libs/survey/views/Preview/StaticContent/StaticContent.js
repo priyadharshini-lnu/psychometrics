@@ -5,14 +5,16 @@ import {
   FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
 } from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
+import { useAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
 import styles from './StaticContent.scss'
 import HighlightList from './HighlightList'
 
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlights, updateMetaData, updateMetaDataLocally, I18n,
+  block, block: { props: { staticContent } }, preview, highlight, updateHighlight,
+  I18n, containerRef,
 }) => {
   const contentRef = useRef(null)
-
+  useAudioPlayer(contentRef)
   const [selection, setSelection] = useState(null)
 
   const handleMouseUp = () => {
@@ -31,6 +33,7 @@ const StaticContent = ({
 
   return (
     <div
+      ref={containerRef}
       className={cs(styles.container, getStaticContentClasses())}
     >
       <div
@@ -38,11 +41,10 @@ const StaticContent = ({
         style={GetBackgroundStyles.run(staticContent)}
       >
         <HighlightList
-          highlights={highlights}
+          highlight={highlight}
           contentRef={contentRef}
           selection={selection}
-          updateMetaData={updateMetaData}
-          updateMetaDataLocally={updateMetaDataLocally}
+          updateHighlight={updateHighlight}
           preview={preview}
           staticContent={staticContent}
         />

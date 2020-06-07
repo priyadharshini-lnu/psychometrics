@@ -14,10 +14,10 @@ module Errors
 
     private
 
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     def default_message
       "<b>#{user.decorate.display_name}</b> in <b>#{client.decorate.display_name}</b> has not enough licenses for <b>#{report.decorate.display_name}</b> report.".html_safe
     end
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
   end
 end

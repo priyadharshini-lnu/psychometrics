@@ -6,9 +6,8 @@ import { getI18n } from 'libs/survey/core/preview/FlowProcessor/selectors'
 import styles from './FileUpload.scss'
 
 function ErrorList ({
-  errorCodes, errorMessage, errorProps, I18n,
+  errorCodes, errorMessages, errorProps, I18n,
 }) {
-  let errorMessages = null
   if (!_.isEmpty(errorCodes)) {
     errorMessages = (
       <ul className={styles.errorsList}>
@@ -18,7 +17,7 @@ function ErrorList ({
       </ul>
     )
   } else {
-    errorMessages = <ul><li>{errorMessage}</li></ul>
+    errorMessages = <ul><li>{errorMessages}</li></ul>
   }
 
   return (
@@ -28,7 +27,7 @@ function ErrorList ({
 
 ErrorList.propTypes = {
   errorCodes: PropTypes.array,
-  errorMessage: PropTypes.string,
+  errorMessages: PropTypes.string,
   errorProps: PropTypes.object,
 }
 

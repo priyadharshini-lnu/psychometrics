@@ -23,7 +23,7 @@ export class Preview extends Component {
 
   renderAudioResponseBlock () {
     const {
-      model, type, mediaUrl, readOnly,
+      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
     } = this.props
     const preview = type === 'preview_assessment'
 
@@ -35,6 +35,8 @@ export class Preview extends Component {
         readOnly={readOnly}
         onSuccessUpload={this.successUpload}
         onRecordingDiscard={this.onRecordingDiscard}
+        markQuestionInProgress={markQuestionInProgress}
+        removeQuestionInProgress={removeQuestionInProgress}
       />
     )
   }

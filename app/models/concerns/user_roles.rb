@@ -11,8 +11,8 @@ module UserRoles
 
     USER_ROLES = {
       superadmin: SUPER_ADMIN_ROLE,
-      regular: REGULAR_ROLE,
-      admin: ADMIN_ROLE
+      admin: ADMIN_ROLE,
+      regular: REGULAR_ROLE
     }.freeze
 
     USER_ROLES_SCOPES = {

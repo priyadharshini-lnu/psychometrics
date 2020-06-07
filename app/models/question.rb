@@ -44,6 +44,8 @@ class Question < ApplicationRecord
 
   enum view: %i[assessments templates blocks]
 
+  EMAIL_QUESTION_FIELDS = %w[to cc bcc subject message].freeze
+
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :ams, lambda {
@@ -56,7 +58,7 @@ class Question < ApplicationRecord
  THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
        '(CASE WHEN blocks.template_id IS NOT NULL
  THEN templates_questions.position ELSE questions.position END) AS reposition']
-    end .
+    end.
       joining { template.outer }.
       joining { block }.
       where.has { (template.disabled == false) | (template.id == nil) }.
@@ -156,5 +158,9 @@ class Question < ApplicationRecord
 
   def detect_specified_scoring
     factors_scorings.detect { |fs| !fs.props.blank? }&.props || []
+  end
+
+  def of_sub_type?(*types)
+    types.include?(props['type'])
   end
 end

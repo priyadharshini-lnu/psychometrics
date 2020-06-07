@@ -11,8 +11,13 @@ en:
               preserve_user_access: 'Apply access settings only for the newly added report'
             multiple_report_message: The report has data from multiple assessments. To provide an access to the user to
               download the results you should assign all assessments linked to the report.
+          edit_form:
+            submit: Add
+            additional_time_label: Additional Time, min
           new:
             header: Assign Assessment and Reports
+          edit:
+            header: Add Additional Time
           index:
             title: '%{name} - Assessments and Reporting'
             add_assessments: Add Assessments
@@ -21,6 +26,8 @@ en:
             successfully: Successfully Updated
           reset:
             successfully: Result data was successfully reseted
+          update_additional_time:
+            successfully: Additional time was successfully added
           list:
             uniq_id: Uniq ID
             assessment_name: 'Assessment Name'
@@ -37,6 +44,7 @@ en:
             tooltips:
               delete: Detach Assessment
               reset: Reset result
+              additional_time: Add additional time
               assigns_report:
                 add_user_access: Add user access
                 remove_user_access: Remove user access

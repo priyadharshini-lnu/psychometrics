@@ -14,7 +14,9 @@ interface Props {
   readOnly?: boolean
 }
 
-const Message: React.FC<Props> = ({ model, message, isAnswer, readOnly }) => {
+const Message: React.FC<Props> = ({
+  model, message, isAnswer, readOnly,
+}) => {
   const deleteMessage = (): void => {
     model.result.answer(model.result.answers.filter(r => r.index !== message.position))
   }

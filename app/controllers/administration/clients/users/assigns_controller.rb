@@ -7,7 +7,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: %i[destroy reset]
+        before_action :set_resource, only: %i[destroy reset update_additional_time]
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
@@ -73,6 +73,20 @@ module Administration
           Assigns::Reset.call(resource)
         end
 
+        def edit
+          @form = Assigns::AdditionalTimeForm.new
+        end
+
+        def update_additional_time
+          @form = Assigns::AdditionalTimeForm.from_params(update_additional_time_params)
+
+          if @form.valid?
+            Assigns::AddAdditionalTime.call(resource, @form.additional_time * 60)
+          else
+            render :edit
+          end
+        end
+
         def reports
           @_resources = client.reports.joins(:assessments_reports).
                         where(assessments_reports: { assessment_id: params[:assessment_id] }).distinct
@@ -120,6 +134,10 @@ module Administration
 
         def resource_params
           params.require(:resource).permit(:assessment_id, :user_access, report_ids: [])
+        end
+
+        def update_additional_time_params
+          params.require(:resource).permit(:additional_time)
         end
 
         def pundit_authorize

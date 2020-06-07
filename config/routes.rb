@@ -48,6 +48,11 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
     end
+    resources :projects do
+      scope module: :projects do
+        resources :new_campaigns
+      end
+    end
     ### CLIENTS
     resources :clients do
       member do
@@ -64,9 +69,10 @@ Rails.application.routes.draw do
         resources :users do
           # user_id means membership_id in this case
           scope module: :users do
-            resources :assigns, only: %i[index new create destroy] do
+            resources :assigns, only: %i[index new create edit destroy] do
               get :reports, on: :collection
               put :reset, on: :member
+              put :update_additional_time, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
@@ -158,6 +164,9 @@ Rails.application.routes.draw do
                 end
               end
             end
+
+            resources :new_campaigns
+
             resources :threesixty_campaigns, concerns: :client_editable do
               member do
                 get :export_results
@@ -220,7 +229,6 @@ Rails.application.routes.draw do
             member do
               get :upload_media_url
               put :upload_callback
-              post :upload_media_dev
               delete :remove_media
             end
           end
@@ -297,6 +305,9 @@ Rails.application.routes.draw do
         put :save
         patch :toggle_archive
         get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
+        get :resources, to: 'assessments#show', constraints: { all: /.*/ }
+        get :assessments
+        get :questions
       end
 
       scope module: 'assessments' do
@@ -563,11 +574,14 @@ Rails.application.routes.draw do
       member do
         get :upload_media_url
         put :upload_callback
-        post :upload_media_dev
         delete :remove_media
+        put :complete_multipart_upload
+        put :mark_as_user_selected_take
         put :update_meta_data
       end
     end
+
+    resources :highlights, only: %i[update]
 
     scope module: :threesixty do
       resources :campaigns, only: %i[show index] do
@@ -593,8 +607,9 @@ Rails.application.routes.draw do
           member do
             get :upload_media_url
             put :upload_callback
-            post :upload_media_dev
             delete :remove_media
+            put :complete_multipart_upload
+            put :mark_as_user_selected_take
             put :update_meta_data
           end
         end
@@ -602,12 +617,13 @@ Rails.application.routes.draw do
           post :change_locale
         end
       end
+      get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
     end
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
           get :pass
-          get :results
+          get :redirect
         end
       end
     end
@@ -615,7 +631,6 @@ Rails.application.routes.draw do
       resources :assigns, only: [] do
         member do
           get :redirect
-          get :results
           put :pass
         end
       end
@@ -647,6 +662,7 @@ Rails.application.routes.draw do
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'identify', to: 'home#identify'
     get 'assessment_completed', to: 'home#assessment_completed'
+    get 'upgrade', to: 'home#upgrade'
     root to: 'threesixty/campaigns#index'
   end
 

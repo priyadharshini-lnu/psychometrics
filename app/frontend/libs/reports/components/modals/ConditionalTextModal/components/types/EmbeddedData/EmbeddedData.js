@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import AssessmentStore from 'rb/store/AssessmentStore'
+import { connect } from 'react-redux'
+import { getEmbeddedData } from 'libs/reports/core/builder/selectors'
 import styles from '../../Condition.scss'
 import embeddedStyles from './EmbeddedData.scss'
 
 export class EmbeddedData extends Component {
   static propTypes = {
-    model: PropTypes.object.isRequired,
     condition: PropTypes.object.isRequired,
   }
 
@@ -35,8 +35,7 @@ export class EmbeddedData extends Component {
   }
 
   render () {
-    const { condition, model } = this.props
-    const assessmentId = model.module.assessment_id
+    const { condition, embeddedData } = this.props
     return (
       <div className={styles.questionDock}>
         <select
@@ -45,7 +44,7 @@ export class EmbeddedData extends Component {
           onChange={this.changeKey}
         >
           {!condition.props.key && <option />}
-          {_.map(AssessmentStore.embeddedData[assessmentId], embeddedData => (
+          {_.map(embeddedData, embeddedData => (
             <option key={embeddedData.value} value={embeddedData.value}>{embeddedData.value}</option>
           ))}
         </select>
@@ -79,4 +78,6 @@ export class EmbeddedData extends Component {
   }
 }
 
-export default EmbeddedData
+export default connect((state, { model }) => ({
+  embeddedData: getEmbeddedData(state.report, model.module.assessment_id),
+}), {})(EmbeddedData)

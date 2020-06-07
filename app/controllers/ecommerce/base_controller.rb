@@ -31,6 +31,7 @@ module Ecommerce
 
     def authenticate_user!
       redirect_to(new_ecommerce_session_path) && return unless user_signed_in?
+
       super
     end
   end

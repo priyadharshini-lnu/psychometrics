@@ -2,15 +2,18 @@ import React, { useState } from 'react'
 import { Input } from 'antd'
 import _ from 'lodash'
 import Watchman from 'store/StoreWatchman'
-import styles from '../EmailStyle.scss'
+import styles from '../commonStyles.scss'
 import ContactSelect from './ContactSelect'
-import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
+import {
+  TO_TYPE, CC_TYPE, BCC_TYPE, ViewEnum,
+} from '../constants'
 import { ContactType } from '../interfaces/Email'
 import { Question } from '../interfaces'
 
 interface Props {
   model: Question
   readOnly?: boolean
+  setView: (view: ViewEnum) => void
 }
 
 interface ContactProps {
@@ -21,6 +24,8 @@ interface ContactProps {
 const { TextArea } = Input
 
 const Form: React.FC<Props> = ({ model, readOnly }) => {
+  const { answers: { message } } = model.result
+  const { maxLength } = model.props
   const defaultContactProps: ContactProps[] = [
     { type: TO_TYPE, visible: true },
     { type: CC_TYPE, visible: !_.isEmpty(model.result.answers[CC_TYPE]) },
@@ -36,6 +41,8 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
   const handleTestChange = (key: string, value: string): void => {
     model.result.answer({ ...model.result.answers, [key]: value })
   }
+
+  const remainingLength = (maxLength || 0) - (message?.length || 0)
 
   return (
     <div className={styles.emailForm}>
@@ -54,11 +61,19 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
         <div>{Watchman.I18n().t('threesixty.question.email_type.message')}</div>
         <TextArea
           className={styles.message}
-          value={model.result.answers.message}
+          value={message}
           rows={7}
           onChange={({ target: { value } }): void => handleTestChange('message', value)}
           disabled={readOnly}
+          maxLength={maxLength}
         />
+        {maxLength
+         && (
+         <small>
+           {Watchman.I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
+         </small>
+         )
+         }
       </div>
     </div>
   )

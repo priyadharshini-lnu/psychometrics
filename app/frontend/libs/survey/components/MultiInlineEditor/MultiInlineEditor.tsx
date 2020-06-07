@@ -13,7 +13,9 @@ interface Props {
 
 const ESC_CODE = 27
 
-const MultiInlineEditor: React.FC<Props> = ({ value, onChange, width, readOnly }) => {
+const MultiInlineEditor: React.FC<Props> = ({
+  value, onChange, width, readOnly,
+}) => {
   const [edit, setEdit] = useState<boolean>(false)
   const [text, setText] = useState<string>(value)
 

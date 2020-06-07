@@ -19,6 +19,7 @@ export class ConditionalImageModal extends Component {
     const { model: newModule } = this.state
     const { model, close } = this.props
     model.props = newModule.props
+    model.update()
     close()
   }
 

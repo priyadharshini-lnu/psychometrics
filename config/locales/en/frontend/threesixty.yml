@@ -135,3 +135,7 @@ en:
         bcc: Bcc
         subject: Subject
         message: Your Message
+        max_length_warning: "%{x} characters remaining"
+        edit: "Edit"
+        send: "Send"
+        successful_message: "You have successfully sent the email"

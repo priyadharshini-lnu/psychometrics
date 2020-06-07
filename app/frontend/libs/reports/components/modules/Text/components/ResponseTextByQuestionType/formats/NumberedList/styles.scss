@@ -1,0 +1,31 @@
+.numberContainer {
+  width: 15%;
+  max-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .number {
+    display: flex;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    font-size: 1em;
+    line-height: 1em;
+    background-color: #00d3d0;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+  }
+}
+
+.text {
+  flex: 1;
+  padding: 1em 0;
+
+  .description {
+    font-size: 11px;
+    color: #777777;
+    font-weight: normal;
+  }
+}

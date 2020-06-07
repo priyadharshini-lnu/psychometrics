@@ -105,7 +105,7 @@ export class ConditionCollection extends Component {
 
     return (
       <div>
-      Then show the following text:
+        Then show the following text:
         <textarea
           ref={(ref) => { this.textarea = ref }}
           className="form-control"
@@ -124,11 +124,11 @@ export class ConditionCollection extends Component {
           </div>
           <div className={styles.row}>
             <div className={styles.block} style={{ position: 'relative' }}>
-            Background Color
+              Background Color
               <ColorPicker color={backgroundColor} onChange={this.changeBg} onComplete={this.update} />
             </div>
             <div className={styles.block} style={{ position: 'relative' }}>
-            Border Color
+              Border Color
               <ColorPicker color={borderColor} onChange={this.changeBorder} onComplete={this.update} />
             </div>
           </div>

@@ -10,6 +10,8 @@ en:
           successfully: 'Campaign %{name} was successfully created.'
         update:
           successfully: "Campaign '%{name}' was successfully updated."
+        destroy:
+          successfully: "Campaign '%{name}' was deleted successfully."
       projects:
         threesixty_campaigns:
           base:
@@ -46,6 +48,7 @@ en:
             header: '%{name} - Edit license'
           destroy:
             successfully: 'Client Tenancy %{name} was successfully deleted.'
+            error: Can't delete %{name} because some dependent associations of subjects or evaluators exist.
           copy:
             successfully: 'Client Tenancy %{name} was successfully copied.'
             error: 'Client Tenancy %{name} was not copied.'
@@ -100,10 +103,11 @@ en:
                     <p>Are you sure you want to unarchive?</p>
               delete:
                 title:
-                  Delete <strong>%{name}</strong> ?
+                  Delete <strong>%{name}</strong>?
                 body:
                   <p>Are you sure you want to delete?</p>
-                  <p>All Sub-campaigns and users will also be deleted</p>
+                  <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p>
+                  <p>Please type <strong>%{name}</strong> to confirm.</p>
           statistics:
             index:
               title: Statistics

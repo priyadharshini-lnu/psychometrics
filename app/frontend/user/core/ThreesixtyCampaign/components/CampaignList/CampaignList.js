@@ -44,6 +44,7 @@ export default function CampaignList ({
                     downloadReport={downloadReport}
                     loginHogan={loginHogan}
                     acceptPolicy={acceptPolicy}
+                    history={history}
                   />
                 )
               })}

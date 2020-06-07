@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
+import { initAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
 import styles from './Question.scss'
 
 class Question extends Component {
@@ -9,6 +10,10 @@ class Question extends Component {
     model: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     readOnly: PropTypes.bool,
+  }
+
+  componentDidMount () {
+    initAudioPlayer(this.question)
   }
 
   update = () => {

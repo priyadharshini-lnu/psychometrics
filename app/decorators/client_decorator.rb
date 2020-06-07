@@ -131,7 +131,7 @@ class ClientDecorator < BaseDecorator
     object.reports.map do |report|
       h.
         content_tag(:span, report.decorate.display_name, class: 'text-nowrap')
-    end .join(', ').html_safe
+    end.join(', ').html_safe
   end
 
   def array_reports

@@ -1,5 +1,6 @@
 import PageListView from './components/PageListView'
 import styles from './components/PageListView.scss'
+import connect from './connect'
 
 export { styles }
-export default PageListView
+export default connect(PageListView)

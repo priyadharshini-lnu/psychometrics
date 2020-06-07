@@ -44,7 +44,7 @@ module UsersResults
           participant = @threesixty_campaign.
                         participants.
                         find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
-          participant.update_attributes(evaluator_nomination_status: :completed)
+          participant.update_attributes(evaluator_nomination_status: :completed, users_result_id: users_result.id)
           if participant.relationship_id == Relationship.manager_relationship.id
             participant.update_attributes(manager_evaluation_status: :approved)
           end

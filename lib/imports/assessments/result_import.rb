@@ -104,7 +104,7 @@ module Imports
 
           # Parse answers
           data.each do |key, value|
-            next unless key =~ /qid/
+            next unless /qid/.match?(key)
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
@@ -184,7 +184,7 @@ module Imports
                joining do
           dimension.assessments.alias('assessments').
             on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
-        end .
+        end.
                where(name: norm_name).
                pluck(:id)
         { id: norm.try(:first), type: norm_type }

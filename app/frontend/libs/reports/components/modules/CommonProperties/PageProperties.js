@@ -1,41 +1,58 @@
 import React, { Component } from 'react'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
-import store from 'rb/store/PropertyPanelStore'
-import PageList from 'rb/store/PageList'
-import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
+import Module from 'rb/models/Module'
+import connect from './connect'
 
 class PageProperties extends Component {
-  removePage () {
-    PageList.removePage(store.model)
+  removePage = () => {
+    const { page, removePage } = this.props
+    removePage(page.id)
   }
 
-  copyPage () {
-    ClipboardDispatcher.copyPage(store.model)
+  copyPage = () => {
+    const { page, copyPage } = this.props
+    copyPage(page.id)
   }
 
-  pastePage () {
-    ClipboardDispatcher.pastePage(store.model)
+  pastePage = () => {
+    const { page, pastePage, bufferPage } = this.props
+    if (!bufferPage) {
+      // eslint-disable-next-line no-alert
+      return alert('Nothing to paste')
+    }
+    const modules = bufferPage.modules.map((m) => {
+      const data = JSON.parse(JSON.stringify(m))
+      data.id = null
+      return new Module(data, page)
+    })
+    // eslint-disable-next-line no-alert
+    if (page.modules.length && !confirm('Are u sure? This action will replace modules on page.')) {
+      return
+    }
+    pastePage(page.id, modules)
   }
 
   render () {
-    const { model } = store
+    const { page } = this.props
+    if (!page) { return }
+
     return (
       <div>
         <div className={styles.title}>Page Options</div>
         <hr className={styles.divider} />
-        <div>{model.name}</div>
+        <div>{page.name}</div>
         <div style={{ textAlign: 'center' }}>
-          {PageList.list.length > 1 && <button onClick={this.removePage} className="btn btn-default">Remove</button>}
+          <button onClick={this.removePage} className="btn btn-default">Remove</button>
         </div>
 
         <div>Clipboard: </div>
         <div style={{ textAlign: 'center' }}>
-          {PageList.list.length > 1 && <button onClick={this.copyPage} className="btn btn-default">Copy</button>}
-          {PageList.list.length > 1 && <button onClick={this.pastePage} className="btn btn-default">Paste</button>}
+          <button onClick={this.copyPage} className="btn btn-default">Copy</button>
+          <button onClick={this.pastePage} className="btn btn-default">Paste</button>
         </div>
       </div>
     )
   }
 }
 
-export default PageProperties
+export default connect(PageProperties)

@@ -1,7 +1,7 @@
 import React from 'react'
 import MultiInlineEditor from '../../../../../../MultiInlineEditor'
 import styles from './EmailStyle.scss'
-import commonStyles from '../EmailStyle.scss'
+import commonStyles from '../commonStyles.scss'
 
 interface Props {
   title: string

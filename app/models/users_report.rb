@@ -15,4 +15,8 @@ class UsersReport < ApplicationRecord
   end
 
   enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
+
+  def pdf_exists?
+    pdf.file.present?
+  end
 end

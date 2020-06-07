@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe Administration::Clients::RegistrationCodes::Update do
-  let(:registration_code) { build_stubbed(:registration_code) }
+  let(:registration_code) { create(:registration_code) }
 
   before do
     @form = Administration::Clients::RegistrationCodes::SaveForm.from_params(

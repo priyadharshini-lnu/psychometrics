@@ -31,6 +31,7 @@ export class ConditionalTextModal extends Component {
     const { module: newModule } = this.state
     const { module, close } = this.props
     module.textConditions = newModule.textConditions
+    module.update()
     close()
   }
 

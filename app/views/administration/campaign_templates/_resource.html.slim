@@ -16,5 +16,6 @@ tr id=dom_id(resource)
                 remote: true,
                 class: 'btn btn-default btn-rounded btn-sm',
                 method: :delete,
-                data: { confirm: 'Are you sure?', toggle: 'tooltip', title: t('.tooltips.delete') })
+                data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip',
+                  title: t('.tooltips.delete'), disable_with: t('.in_progress.deleting') })
         span.fa.fa-times

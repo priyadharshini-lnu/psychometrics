@@ -1,9 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
+import { setIn } from 'libs/reports/utils/immutable'
+import { INIT, PASTE_PAGE } from '../actions'
 import {
-  INIT,
-} from '../actions'
+  UPDATE_MODULE, REMOVE_MODULE,
+} from './actions'
+import {
+  ADD_MODULE,
+} from '../page/actions'
 
 export const defaultState = {}
 
@@ -14,6 +19,17 @@ const HANDLERS = {
     }
     return state
   },
+  [UPDATE_MODULE]: (state, { module }) => setIn(state, module.id, module),
+  [ADD_MODULE]: (state, { module }) => setIn(state, module.id, module.toJSON()),
+  [REMOVE_MODULE]: (state, { id }) => setIn(state, [id, 'removed'], true),
+  [PASTE_PAGE]: (state, { modules }) => ({
+    ...state,
+    ...modules.reduce((acc, m) => {
+      acc[m.id] = m.toJSON()
+      return acc
+    }, {}),
+  }),
+
 }
 
 export default createReducer(HANDLERS, defaultState)

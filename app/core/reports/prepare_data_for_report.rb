@@ -5,11 +5,11 @@ module Reports
     attr_reader :project, :membership, :users_report, :report, :locale, :evaluator, :current_user
 
     def initialize(args)
-      @project     = args[:project]
-      @membership  = args[:membership]
+      @project      = args[:project]
+      @membership   = args[:membership]
       @users_report = args[:users_report]
-      @report      = args[:report] || @users_report.report
-      @locale      = args[:locale]
+      @report       = args[:report] || @users_report.report
+      @locale       = args[:locale]
       @current_user = args[:current_user]
     end
 
