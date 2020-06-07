@@ -188,7 +188,7 @@ class VideoRecorder extends Component {
   }
 
   initRecorder () {
-          const { maxDuration, model, markQuestionInProgress } = this.props
+    const { maxDuration, model, markQuestionInProgress } = this.props
 
     this.setState({
       recordingState: 'initialized',
