@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import DndProvider from 'components/DnD/DnDProvider'
 import DndElement from 'components/DnD/DnDElement'
 import utils from 'libs/survey/utils'
 import styles from './ResourceManager.scss'
@@ -27,27 +26,25 @@ export default function ResourceManager (props) {
     <div className="col-md-12">
       <div className="panel panel-default">
         <Header {...props} />
-        <DndProvider>
-          <div className={styles.resourceWrapper}>
-            {list.map((resource, index) => (
-              <DndElement
-                className={styles.dragable}
-                iconClass={styles.iconHandler}
-                strategy="index"
-                uniqField="id"
-                element={resource}
-                list={list}
-                onDrag={onDrag}
-              >
-                <Resource
-                  index={index}
-                  resource={resource}
-                  {...props}
-                />
-              </DndElement>
-            ))}
-          </div>
-        </DndProvider>
+        <div className={styles.resourceWrapper}>
+          {list.map((resource, index) => (
+            <DndElement
+              className={styles.dragable}
+              iconClass={styles.iconHandler}
+              strategy="index"
+              uniqField="id"
+              element={resource}
+              list={list}
+              onDrag={onDrag}
+            >
+              <Resource
+                index={index}
+                resource={resource}
+                {...props}
+              />
+            </DndElement>
+          ))}
+        </div>
       </div>
       <div className="clearfix" />
     </div>

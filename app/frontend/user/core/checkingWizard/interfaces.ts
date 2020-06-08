@@ -3,7 +3,7 @@ export interface Config {
     upload: number,
     download: number,
   },
-  somapiToken: string
+  speedOfMeApiToken: string
 }
 
 export interface Checks {

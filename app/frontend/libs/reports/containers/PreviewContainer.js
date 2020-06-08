@@ -6,7 +6,10 @@ import Preview from 'rb/views/Preview'
 import I18nStore from 'rb/store/I18nStore'
 import store from 'rb/store/PreviewStore'
 import 'rb/styles/core.scss'
+import { normalize } from 'normalizr'
 import rstore from '../store'
+import { init } from '../core/builder/actions'
+import schema from '../store/schema'
 
 class PreviewContainer extends Component {
   componentDidMount () {
@@ -19,8 +22,10 @@ class PreviewContainer extends Component {
       I18nStore.locales = JSON.parse(locales)
     }
     const { user, campaign } = parent.dataset
-
-    store.init(JSON.parse(data), results ? JSON.parse(results) : null, user, campaign)
+    const parsedData = JSON.parse(data)
+    const normalizedData = normalize(parsedData, schema)
+    store.init(parsedData, results ? JSON.parse(results) : null, user, campaign)
+    rstore.dispatch(init(normalizedData))
   }
 
   render () {

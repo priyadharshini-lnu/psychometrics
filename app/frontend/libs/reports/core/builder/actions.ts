@@ -40,6 +40,7 @@ interface SetPagePositions { type: typeof SET_PAGE_POSITIONS, order: number[] }
 interface CopyPage { type: typeof COPY_PAGE, pageId: number }
 interface PastePage { type: typeof PASTE_PAGE, pageId: number, modules: ModuleInterface[] }
 
+export const init = data => ({ type: INIT, data })
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
 export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR })
 

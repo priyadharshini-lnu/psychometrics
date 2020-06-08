@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import RouteList from 'components/RouteList'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 import Watchman from 'store/StoreWatchman'
+import DnDProvider from 'components/DnD/DnDProvider'
 import store from '../store'
 import routes from './routes'
 
@@ -35,9 +36,11 @@ class AppContainer extends Component {
     return (
       <div className="row">
         <Provider store={store}>
-          <Router>
-            <RouteList routes={routes} urlPrefix="/administration" />
-          </Router>
+          <DnDProvider>
+            <Router>
+              <RouteList routes={routes} urlPrefix="/administration" />
+            </Router>
+          </DnDProvider>
         </Provider>
       </div>
     )

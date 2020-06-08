@@ -15,8 +15,9 @@ const loadElements = children => _.map(children, item => ({
   elements: loadElements(item.children),
 }))
 
-export const addElementBelow = (element) => {
-  const newElement = new FlowElement({}, element, element.parent.elements.length)
+export const addElementBelow = (element, index) => {
+  const path = _.take(element.path, element.path.length - 1)
+  const newElement = new FlowElement({}, path.length && path, index + 1)
   return ({ type: ADD_ELEMENT, element, newElement })
 }
 
@@ -27,7 +28,7 @@ export const duplicateElement = (element) => {
 }
 
 export const addNew = (parent) => {
-  const element = new FlowElement({}, parent, parent.elements.length)
+  const element = new FlowElement({}, parent.path, parent.elements.length)
   return ({ type: ADD_NEW_ELEMENT, element })
 }
 

@@ -134,14 +134,14 @@ const PASSES = {
 }
 
 const InProgressView: React.FC<ViewProps> = ({
-  nextStep, measures, resetMetrics, updateMetrics, config: { network, somapiToken },
+  nextStep, measures, resetMetrics, updateMetrics, config: { network, speedOfMeApiToken },
 }) => {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     resetMetrics()
 
-    SomApi.account = somapiToken
+    SomApi.account = speedOfMeApiToken
     SomApi.domainName = location.hostname
     SomApi.onTestCompleted = (data: Metrics) => {
       updateMetrics(data)

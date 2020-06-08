@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export default {
   run: (file, allowedFileTypes, maxFileSize) => {
     const errorCodes = []
@@ -5,7 +7,7 @@ export default {
       errorCodes.push('EntityTooLarge')
     }
 
-    const extension = file.name.split('.').pop()
+    const extension = _.toLower(file.name.split('.').pop())
     if (!_.includes(allowedFileTypes, extension)) {
       errorCodes.push('WrongFileType')
     }
