@@ -123,7 +123,7 @@ class AssignsController < ApplicationController
   private
 
   def set_assign
-    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+    @assign = policy_scope(Assign).where.not(status: %i[completed interrupted]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end
