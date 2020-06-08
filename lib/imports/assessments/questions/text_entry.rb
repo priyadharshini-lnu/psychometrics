@@ -15,18 +15,29 @@ module Imports
         def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank? || data.all?(&:blank?)
 
-          answers = if question.of_sub_type?('Email')
-                      build_email_answers(data)
-                    elsif question.of_sub_type?('Chat')
-                      build_chat_answers(data)
-                    else
-                      build_other_answers(data, question, use_scoring)
+          answers = case question.props['type']
+                      when 'Email'
+                        build_email_answers(data)
+                      when 'Chat'
+                        build_chat_answers(data)
+                      when 'SingleLine'
+                        build_single_line_answer(data)
+                      else
+                        build_other_answers(data, question, use_scoring)
                     end
 
           {
             answers: answers,
             question_id: question.id
           }
+        end
+
+        def self.build_single_line_answer(data)
+          data.each_with_object([]) do |answer, formatted_answers|
+            formatted_answers << {
+              value: answer
+            }
+          end
         end
 
         def self.build_email_answers(data)
@@ -63,6 +74,7 @@ module Imports
               value: use_scoring && factors_scoring[value] || value
             }
           end
+          answers
         end
       end
     end
