@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, Input } from 'antd'
 import Utils from 'libs/survey/utils/Utils'
-import { DnDProvider, DnDElement } from 'components/DnD'
+import { DnDElement } from 'components/DnD'
 import styles from '../../../FormStyle.scss'
 import { Question } from '../../../interfaces'
 import { FormType } from '../../../interfaces/Question'
@@ -65,34 +65,32 @@ const OptionList: React.FC<Props> = ({
   }
 
   return (
-    <DnDProvider>
-      <Menu className={styles.optionList}>
-        {options.map((option, i) => (
-          <DnDElement
-            key={option.id}
-            uniqField="id"
-            strategy="index"
-            wrapper={Item}
-            onDrag={setOptions}
-            list={options}
-            element={option}
-            additionalWrapper
-            onEndDrag={updateOptionList}
-          >
-            <Option
-              option={option.text}
-              i={i}
-              removeOption={removeOption}
-            />
-          </DnDElement>
-        ))}
-        <Divider />
-        <div className={styles.menuInputContainer}>
-          <Input value={text} onChange={({ target: { value } }): void => setText(value)} className={styles.menuInput} />
-          <a className="ant-dropdown-link" onClick={addOption}>Add</a>
-        </div>
-      </Menu>
-    </DnDProvider>
+    <Menu className={styles.optionList}>
+      {options.map((option, i) => (
+        <DnDElement
+          key={option.id}
+          uniqField="id"
+          strategy="index"
+          wrapper={Item}
+          onDrag={setOptions}
+          list={options}
+          element={option}
+          additionalWrapper
+          onEndDrag={updateOptionList}
+        >
+          <Option
+            option={option.text}
+            i={i}
+            removeOption={removeOption}
+          />
+        </DnDElement>
+      ))}
+      <Divider />
+      <div className={styles.menuInputContainer}>
+        <Input value={text} onChange={({ target: { value } }): void => setText(value)} className={styles.menuInput} />
+        <a className="ant-dropdown-link" onClick={addOption}>Add</a>
+      </div>
+    </Menu>
   )
 }
 export default OptionList

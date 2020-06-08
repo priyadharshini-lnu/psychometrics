@@ -1,6 +1,4 @@
 import React from 'react'
-import { DndProvider } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
 import _ from 'lodash'
 import Message from './Message'
 import styles from '../ChatStyle.scss'
@@ -33,21 +31,19 @@ const MessageList: React.FC<Props> = ({
     setMessageListState(value)
   }
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div className={styles.messageList}>
-        {_.sortBy(messageList, 'position').map((message: MessageInterface, i: number) => (
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          <Message
-            key={i}
-            message={message}
-            moveMessage={moveMessage}
-            messageList={messageList}
-            updateMessageList={updateMessageList}
-          />
-        ))}
-      </div>
-    </DndProvider>
+    <div className={styles.messageList}>
+      {_.sortBy(messageList, 'position').map((message: MessageInterface, i: number) => (
+        // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+        // @ts-ignore
+        <Message
+          key={i}
+          message={message}
+          moveMessage={moveMessage}
+          messageList={messageList}
+          updateMessageList={updateMessageList}
+        />
+      ))}
+    </div>
   )
 }
 
