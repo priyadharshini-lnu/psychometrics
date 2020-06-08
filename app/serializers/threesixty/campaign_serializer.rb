@@ -50,7 +50,8 @@ module Threesixty
         {
           name: instruction.name,
           content: Threesixty::PipedText::Perform.call!(instruction.content,
-                                                        threesixty_campaign: object.campaign.threesixty_campaign)
+                                                        threesixty_campaign: object.campaign.threesixty_campaign,
+                                                        user: current_user)
         }
       end
     end

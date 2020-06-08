@@ -2,6 +2,34 @@ import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
 
 const FIELDS = [
   {
+    branch: 'User',
+    supportedTypes: [
+      'welcome_message',
+    ],
+    fields: [
+      {
+        name: 'Full Name',
+        type: 'link',
+        value: '{{u://Field/Name}}',
+      },
+      {
+        name: 'Email',
+        type: 'link',
+        value: '{{u://Field/Email}}',
+      },
+      {
+        name: 'First Name',
+        type: 'link',
+        value: '{{u://Field/FirstName}}',
+      },
+      {
+        name: 'Last Name',
+        type: 'link',
+        value: '{{u://Field/LastName}}',
+      },
+    ],
+  },
+  {
     branch: 'Recipient',
     supportedTypes: [
       'subject_invite',
