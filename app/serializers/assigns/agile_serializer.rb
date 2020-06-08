@@ -32,7 +32,7 @@ module Assigns
     end
 
     def attributes(*_)
-      Hash[super.to_a.map { |k, v| [k.to_s.camelcase(:lower), v] }]
+      super.transform_keys { |k| k.to_s.camelcase(:lower) }
     end
   end
 end
