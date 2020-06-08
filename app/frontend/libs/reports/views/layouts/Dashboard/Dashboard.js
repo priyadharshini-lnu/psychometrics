@@ -63,13 +63,15 @@ export class Dashboard extends Component {
   }
 
   render () {
+    const { reportLoaded } = this.props
+
     return (
       <div>
         <div>
           <Header />
           <div style={{ position: 'relative' }}>
             <div className={`${styles.mainContainer}`}>
-              {!AppStore.loaded && this.loading()}
+              {!AppStore.loaded && !reportLoaded && this.loading()}
               {/* disable error notification popup */}
               {/* {AppStore.disabled && this.overlay()} */}
               <PageEditor />

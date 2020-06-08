@@ -36,7 +36,9 @@ const FILTER_QUESTION_TYPES = [
 ]
 
 export const getQuestions = (state: any, assessmentId: number) => {
-  const blocks = denormalize(state.builder.assessments[assessmentId].blocks, [blocksSchema], state.builder)
+  const assessment = state.builder.assessments[assessmentId]
+  if (!assessment) { return {} }
+  const blocks = denormalize(assessment.blocks, [blocksSchema], state.builder)
   return _.reduce(blocks, (acc, block) => {
     const questions = _.filter(block.questions, q => !_.includes(
       FILTER_QUESTION_TYPES, q.type,
