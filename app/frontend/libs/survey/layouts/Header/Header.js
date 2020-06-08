@@ -115,7 +115,7 @@ export class Header extends Component {
                 onChange={this.updateTimer}
                 placeholder="Set timer"
                 defaultOpenValue={moment.utc(0)}
-                className="mls mrl"
+                className="mhs"
                 dropdownClassName="assessment-timer"
               />
             </li>
