@@ -19,7 +19,7 @@ require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 
 const { $ } = window
-const UPLOAD_CHUNK_SIZE = 5.1
+const UPLOAD_CHUNK_SIZE = 5.5
 
 class VideoRecorder extends Component {
   constructor (props) {
