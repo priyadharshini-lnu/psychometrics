@@ -27,7 +27,7 @@ const HANDLERS = {
   }), {}),
   [PASTE_PAGE]: (state, { pageId, modules }) => setIn(state, [pageId, 'modules'], _.map(modules, 'id')),
   [PASTE_MODULE]: (state, { pageId, module }) => updateIn(
-    state, [pageId, 'modules'], modules => modules.concat([module.id]),
+    state, [pageId, 'modules'], modules => [...modules, module.id],
   ),
 }
 
