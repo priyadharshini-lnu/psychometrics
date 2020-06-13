@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { updateIn, setIn } from 'utils/immutable'
 import {
-  INIT, ADD_PAGE, SET_PAGE_POSITIONS, PASTE_PAGE,
+  INIT, ADD_PAGE, SET_PAGE_POSITIONS, PASTE_PAGE, PASTE_MODULE,
 } from '../actions'
 import { ADD_MODULE, REMOVE_PAGE, RENAME_PAGE } from './actions'
 
@@ -26,6 +26,9 @@ const HANDLERS = {
     ...pages, [page.id]: setIn(page, 'position', _.indexOf(order, page.id) + 1),
   }), {}),
   [PASTE_PAGE]: (state, { pageId, modules }) => setIn(state, [pageId, 'modules'], _.map(modules, 'id')),
+  [PASTE_MODULE]: (state, { pageId, module }) => updateIn(
+    state, [pageId, 'modules'], modules => modules.concat([module.id]),
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)
