@@ -6,6 +6,8 @@ import AppStore from 'rb/store/AppStore'
 import styles from './ConditionalTextModal.scss'
 import ConditionCollection from './ConditionCollection'
 
+const { $ } = window
+
 const {
   Header, Body, Footer, Title,
 } = Modal
@@ -17,7 +19,6 @@ export class ConditionalTextModal extends Component {
       module: _.cloneDeep(props.module),
     }
   }
-
 
   getBtnLabel (type) {
     switch (type) {
@@ -54,6 +55,10 @@ export class ConditionalTextModal extends Component {
     this.forceUpdate()
   }
 
+  removeIndex () {
+    $(".modal[tabindex='-1']").removeAttr('tabindex')
+  }
+
   renderCollections () {
     const { module } = this.state
     if (module.textConditions.length) {
@@ -70,7 +75,7 @@ export class ConditionalTextModal extends Component {
     const { close } = this.props
     const { module } = this.state
     return (
-      <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
+      <Modal onEntered={this.removeIndex} show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
           <Title>
             Conditional

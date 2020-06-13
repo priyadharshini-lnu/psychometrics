@@ -5,6 +5,8 @@ import CPIConditionCollection from 'rb/models/CPIConditionCollection'
 import styles from './CPIFactorConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 
+const { $ } = window
+
 const {
   Header, Body, Footer, Title,
 } = Modal
@@ -40,6 +42,10 @@ export class ConditionalTextModal extends Component {
     this.forceUpdate()
   }
 
+  removeIndex () {
+    $(".modal[tabindex='-1']").removeAttr('tabindex')
+  }
+
   renderCollections () {
     const { module } = this.state
     if (module.textConditions.length) {
@@ -55,7 +61,7 @@ export class ConditionalTextModal extends Component {
   render () {
     const { close } = this.props
     return (
-      <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
+      <Modal onEntered={this.removeIndex} show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
           <Title>Factor Conditions</Title>
         </Header>

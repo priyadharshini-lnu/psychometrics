@@ -1,14 +1,19 @@
 .popover {
-    position: fixed;
-    left: 50%;
-    top: 100px;
-    z-index: 1001;
-  }
-  .cover {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background-color: rgba($color: #666666, $alpha: 0.5);
-  }
+  position: fixed;
+  left: 50%;
+  top: 100px;
+  z-index: 10100;
+}
+.cover {
+  position: fixed;
+  z-index: 10000;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba($color: #666666, $alpha: 0.5);
+}
+
+.picker {
+  z-index: 10100;
+}
