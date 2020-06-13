@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
-import HeaderDispatcher from 'rb/dispatchers/HeaderDispatcher'
-import ClipboardDispatcher from 'rb/dispatchers/ClipboardDispatcher'
 import headerStore from 'rb/store/HeaderStore'
 import AppStore from 'rb/store/AppStore'
 import I18nStore from 'rb/store/I18nStore'
@@ -38,6 +36,7 @@ export class FixedHeader extends Component {
   bodyKeyDown = (e) => {
     const {
       richEditorOpened, removeModule, selected, unselectModules,
+      copyModule, pasteModule, currentPage, bufferedModule, selectModule,
     } = this.props
     if (e.target.nodeName === 'INPUT') { return }
     if (e.target.nodeName === 'TEXTAREA') { return }
@@ -46,16 +45,21 @@ export class FixedHeader extends Component {
     if (e.keyCode === 8 || e.keyCode === 46) {
       unselectModules()
       selected.moduleId && removeModule(selected.moduleId)
-      HeaderDispatcher.backspace()
     }
 
     if ((e.ctrlKey || e.metaKey) && e.keyCode === 67) {
-      ClipboardDispatcher.copy()
+      if (selected.moduleId) {
+        copyModule(selected.moduleId)
+      }
     }
 
     if ((e.ctrlKey || e.metaKey) && e.keyCode === 86) {
-      const $menu = $(this.menu)
-      ClipboardDispatcher.paste($menu.offset().top)
+      if (bufferedModule) {
+        const module = new Module({ ..._.cloneDeep(bufferedModule), id: null }, currentPage)
+        module.shift()
+        pasteModule(currentPage.id, module)
+        selectModule('Module', module.id)
+      }
     }
   }
 

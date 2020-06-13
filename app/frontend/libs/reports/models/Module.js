@@ -269,6 +269,12 @@ _.extend(Module.prototype, {
     return this.props.source && this.props.source.type === DATA_SHEET
   },
 
+  shift () {
+    const { position: { left, top } } = this.props
+    this.props.position.left = left + 20
+    this.props.position.top = top + 20
+  },
+
   setRelevantFactorsData () {
     const factors = _.get(this.props, 'source.factors')
     if (factors) {
