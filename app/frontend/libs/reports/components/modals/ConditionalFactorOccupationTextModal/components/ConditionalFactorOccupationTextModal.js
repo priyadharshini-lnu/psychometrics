@@ -7,6 +7,8 @@ import styles from './CPIFactorConditionModal.scss'
 import ConditionCollection from './ConditionCollection'
 import DefaultValues from './DefaultValues'
 
+const { $ } = window
+
 const {
   Header, Body, Footer, Title,
 } = Modal
@@ -67,6 +69,10 @@ export class ConditionalTextModal extends Component {
     const { module: { props } } = this.state
     const fieldNames = DefaultValues.fieldNames[props.basedOn]
     return _.map(fieldNames, (value, key) => <option value={key} key={value}>{value}</option>)
+  }
+
+  removeIndex () {
+    $(".modal[tabindex='-1']").removeAttr('tabindex')
   }
 
   renderCollections () {
@@ -132,7 +138,7 @@ export class ConditionalTextModal extends Component {
     const { module: { props } } = this.state
     const { close } = this.props
     return (
-      <Modal show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
+      <Modal onEntered={this.removeIndex} show keyboard={false} bsSize="lg" dialogClassName={styles.modal}>
         <Header>
           <Title>Conditional Subfactor / Occupation Text</Title>
         </Header>

@@ -5,7 +5,7 @@ import { setIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
-  UPDATE_PAGE_POSITIONS, COPY_PAGE,
+  UPDATE_PAGE_POSITIONS, COPY_PAGE, COPY_MODULE,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
@@ -44,6 +44,7 @@ export const defaultState = {
   },
   buffer: {
     sourceId: null,
+    moduleId: null,
   },
 }
 
@@ -87,6 +88,7 @@ const HANDLERS = {
     return { ...state, pages }
   },
   [COPY_PAGE]: (state, { pageId }) => setIn(state, ['buffer', 'sourceId'], pageId),
+  [COPY_MODULE]: (state, { moduleId }) => setIn(state, ['buffer', 'moduleId'], moduleId),
 }
 
 export default createReducer(HANDLERS, defaultState)

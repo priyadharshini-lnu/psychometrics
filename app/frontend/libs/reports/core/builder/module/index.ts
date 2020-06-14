@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/reduxUtils'
 import { setIn } from 'libs/reports/utils/immutable'
-import { INIT, PASTE_PAGE } from '../actions'
+import { INIT, PASTE_PAGE, PASTE_MODULE } from '../actions'
 import {
   UPDATE_MODULE, REMOVE_MODULE,
 } from './actions'
@@ -29,7 +29,7 @@ const HANDLERS = {
       return acc
     }, {}),
   }),
-
+  [PASTE_MODULE]: (state, { module }) => setIn(state, module.id, module.toJSON()),
 }
 
 export default createReducer(HANDLERS, defaultState)

@@ -29,6 +29,7 @@ export const getPages = (state: any, ids: number[]): PageInterface[] => denormal
 export const getPage = (state: any, id: number): PageInterface => _.first(denormalize([id], [pages], state))
 
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]
+export const getBufferedModule = (state: any): ModuleInterface => state.modules[state.builder.buffer.moduleId]
 
 const FILTER_QUESTION_TYPES = [
   'PageBreak',

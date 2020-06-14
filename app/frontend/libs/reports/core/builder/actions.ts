@@ -20,6 +20,8 @@ export const UPDATE_PAGE_POSITIONS = 'report/UPDATE_PAGE_POSITIONS'
 export const SET_PAGE_POSITIONS = 'report/SET_PAGE_POSITIONS'
 export const COPY_PAGE = 'report/COPY_PAGE'
 export const PASTE_PAGE = 'report/PASTE_PAGE'
+export const COPY_MODULE = 'report/COPY_MODULE'
+export const PASTE_MODULE = 'report/PASTE_MODULE'
 
 enum SelectedTypes {
   'Module',
@@ -39,6 +41,8 @@ interface UpdatePagePositions { type: typeof UPDATE_PAGE_POSITIONS, pageId: numb
 interface SetPagePositions { type: typeof SET_PAGE_POSITIONS, order: number[] }
 interface CopyPage { type: typeof COPY_PAGE, pageId: number }
 interface PastePage { type: typeof PASTE_PAGE, pageId: number, modules: ModuleInterface[] }
+interface CopyModule { type: typeof COPY_MODULE, moduleId: number }
+interface PasteModule { type: typeof PASTE_MODULE, pageId: number, module: ModuleInterface }
 
 export const init = data => ({ type: INIT, data })
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
@@ -47,6 +51,11 @@ export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR
 export const copyPage = (pageId: number): CopyPage => ({ type: COPY_PAGE, pageId })
 export const pastePage = (pageId: number, modules: ModuleInterface[]): PastePage => ({
   type: PASTE_PAGE, pageId, modules,
+})
+
+export const copyModule = (moduleId: number): CopyModule => ({ type: COPY_MODULE, moduleId })
+export const pasteModule = (pageId: number, module: ModuleInterface): PasteModule => ({
+  type: PASTE_MODULE, pageId, module,
 })
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
