@@ -64,15 +64,15 @@ class PreviewContainer extends Component {
     const Content = connect(({ preview: { type, dbResult } }) => ({ type, dbResult }), {})(
       ({ type, dbResult }) => {
         const direction = _.get(dbResult || {}, ['selected_locale', 'direction'], 'ltr')
-          return (
-            <ConfigProvider direction={ direction}>
-              <div className={direction}>
-                <div className="row">
-                  {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-                  <AssessmentPreview />
-                </div>
+        return (
+          <ConfigProvider direction={direction}>
+            <div className={direction}>
+              <div className="row">
+                {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+                <AssessmentPreview />
               </div>
-            </ConfigProvider>
+            </div>
+          </ConfigProvider>
         )
       },
     )

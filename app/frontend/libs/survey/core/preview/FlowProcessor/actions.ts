@@ -118,7 +118,7 @@ interface Opts {
 }
 
 export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
-  const { preview, preview: { dbResult: { assessment_id} } } = getState()
+  const { preview, preview: { dbResult: { assessment_id } } } = getState()
 
   const payload = {
     id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
