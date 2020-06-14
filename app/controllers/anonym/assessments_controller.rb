@@ -26,6 +26,10 @@ module Anonym
       @assign = Assign.find_or_create_by!(assessment_id: @resource.id, membership_id: @current_membership.id).
                 assign_with_result
 
+      if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
+        @assign.update(selected_locale: params[:lang])
+      end
+
       update_anonym_cookie(assign: @assign.slice(:id, :assessment_id, :status, :started_at, :completed_at, :step))
     end
 

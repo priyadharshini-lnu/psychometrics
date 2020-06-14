@@ -19,7 +19,6 @@ class PreviewContainer extends Component {
       agileAssetsUrl, agileAssignUrl,
     } = parent.dataset
     this.langPartial = langPartial
-    this.selectedLocale = selectedLocale || document.body.dataset.locale
     Watchman.set(rstore)
     rstore.dispatch({
       type: INIT,
@@ -27,7 +26,7 @@ class PreviewContainer extends Component {
         ...JSON.parse(data),
         type,
         locales: JSON.parse(locales),
-        locale: this.selectedLocale,
+        locale: selectedLocale || document.body.dataset.locale,
         readOnly: type === 'view_results',
         isAnonymousAssessment: isAnonymousAssessment === 'true',
         isThreesixty: isThreesixty === 'true',
@@ -62,22 +61,25 @@ class PreviewContainer extends Component {
   }
 
   render () {
-    const Content = connect(({ preview }) => ({ type: preview.type }), {})(
-      ({ type }) => (
-        <div className="row">
-          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-          <AssessmentPreview />
-        </div>
-      ),
+    const Content = connect(({ preview: { type, dbResult } }) => ({ type, dbResult }), {})(
+      ({ type, dbResult }) => {
+        const direction = _.get(dbResult || {}, ['selected_locale', 'direction'], 'ltr')
+          return (
+            <ConfigProvider direction={ direction}>
+              <div className={direction}>
+                <div className="row">
+                  {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+                  <AssessmentPreview />
+                </div>
+              </div>
+            </ConfigProvider>
+        )
+      },
     )
 
     return (
       <Provider store={rstore}>
-        <ConfigProvider direction={this.selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-          <div className={this.selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
-            <Content />
-          </div>
-        </ConfigProvider>
+        <Content />
       </Provider>
     )
   }
