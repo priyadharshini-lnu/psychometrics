@@ -8,6 +8,7 @@ import Watchman from 'store/StoreWatchman'
 import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
+import { ConfigProvider } from 'antd'
 import rstore from '../store'
 
 class PreviewContainer extends Component {
@@ -18,7 +19,7 @@ class PreviewContainer extends Component {
       agileAssetsUrl, agileAssignUrl,
     } = parent.dataset
     this.langPartial = langPartial
-
+    this.selectedLocale = selectedLocale || document.body.dataset.locale
     Watchman.set(rstore)
     rstore.dispatch({
       type: INIT,
@@ -26,7 +27,7 @@ class PreviewContainer extends Component {
         ...JSON.parse(data),
         type,
         locales: JSON.parse(locales),
-        locale: selectedLocale || document.body.dataset.locale,
+        locale: this.selectedLocale,
         readOnly: type === 'view_results',
         isAnonymousAssessment: isAnonymousAssessment === 'true',
         isThreesixty: isThreesixty === 'true',
@@ -72,7 +73,11 @@ class PreviewContainer extends Component {
 
     return (
       <Provider store={rstore}>
-        <Content />
+        <ConfigProvider direction={this.selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+          <div className={this.selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+            <Content />
+          </div>
+        </ConfigProvider>
       </Provider>
     )
   }

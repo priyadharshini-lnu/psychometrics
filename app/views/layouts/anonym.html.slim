@@ -7,7 +7,8 @@ html
     title = Settings.project_name
     = csrf_meta_tags
     = jquery_include_tag :google
-    = stylesheet_link_tag     'application', media: 'all'
+    = stylesheet_link_tag :administration
+    = stylesheet_pack_tag 'vendors'
     = javascript_include_tag  'application'
     = javascript_include_tag  'anonym'
     = render 'layouts/custom_styles'

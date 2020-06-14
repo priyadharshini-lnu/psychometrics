@@ -118,8 +118,10 @@ interface Opts {
 }
 
 export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
-  const { preview, threeSixtyCampaign: { assign: { assessment }, evaluation } } = getState()
+  const { preview, threeSixtyCampaign } = getState()
+  if (!threeSixtyCampaign) { return }
 
+  const { assign: { assessment }, evaluation } = threeSixtyCampaign
   const payload = {
     id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
   }

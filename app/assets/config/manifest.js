@@ -3,3 +3,4 @@
 //= link_directory ../stylesheets .css
 //= link administration/alert.mp3
 //= link administration/fail.mp3
+//= link anonym.js
