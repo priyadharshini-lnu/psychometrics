@@ -13,6 +13,11 @@ export const getModules = (state: any, ids: number[]): ModuleInterface[] => deno
 
 export const getModule = (state: any, id: number): ModuleInterface => state.modules[id]
 
+export const getRenderModules = (state: any, id: number) => {
+  const { pages, currentPage } = state.builder
+  const index = _.indexOf(pages, currentPage)
+  return _.includes([pages[index - 1], pages[index], pages[index + 1]], id)
+}
 
 export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
   state.modules, m => m.props.showOnAllPages && !m.removed,
