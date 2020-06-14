@@ -118,7 +118,7 @@ interface Opts {
 }
 
 export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
-  const { preview, threeSixtyCampaign: { assign: { assessment }, evaluation } } = getState()
+  const { preview, preview: { dbResult: { assessment_id } } } = getState()
 
   const payload = {
     id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
@@ -140,7 +140,7 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
         data,
         resource_type: highlight.resourceType,
         resource_id: highlight.resourceId,
-        assessment_id: opts.assessmentId || assessment.id || evaluation.assessment.id,
+        assessment_id: opts.assessmentId || assessment_id,
       },
       decamelize: false,
     },
