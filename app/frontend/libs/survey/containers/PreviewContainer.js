@@ -4,7 +4,7 @@ import { Provider, connect } from 'react-redux'
 import ReactDOM from 'react-dom'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import Watchman from 'store/StoreWatchman'
+import { setStore } from 'store/StoreWatchman'
 import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
@@ -19,7 +19,7 @@ class PreviewContainer extends Component {
     } = parent.dataset
     this.langPartial = langPartial
 
-    Watchman.set(rstore)
+    setStore(rstore)
     rstore.dispatch({
       type: INIT,
       data: {

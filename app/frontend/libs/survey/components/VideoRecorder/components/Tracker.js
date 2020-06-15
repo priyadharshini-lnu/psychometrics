@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { isEqual, debounce } from 'lodash'
 import cs from 'classnames'
 import * as faceapi from 'face-api.js'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 import { Overlay } from './Overlay'
 import styles from './Tracker.scss'
 
@@ -13,10 +13,10 @@ const FACE_TO_HEAD_RATIO = 0.3 // Assume Head is 30% bigger than the face
 
 class Tracker extends Component {
   messages = {
-    frame: Watchman.I18n().t('assessments.video_response.tracker.frame'),
-    ready: Watchman.I18n().t('assessments.video_response.tracker.ready'),
-    forward: Watchman.I18n().t('assessments.video_response.tracker.forward'),
-    backward: Watchman.I18n().t('assessments.video_response.tracker.backward'),
+    frame: I18n().t('assessments.video_response.tracker.frame'),
+    ready: I18n().t('assessments.video_response.tracker.ready'),
+    forward: I18n().t('assessments.video_response.tracker.forward'),
+    backward: I18n().t('assessments.video_response.tracker.backward'),
   }
 
   constructor (props) {

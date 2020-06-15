@@ -5,7 +5,7 @@ import 'styles/core.scss'
 import { BrowserRouter as Router } from 'react-router-dom'
 import RouteList from 'components/RouteList'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
-import Watchman from 'store/StoreWatchman'
+import { setStore } from 'store/StoreWatchman'
 import DnDProvider from 'components/DnD/DnDProvider'
 import store from '../store'
 import routes from './routes'
@@ -18,7 +18,7 @@ class AppContainer extends Component {
   storeListener = null
 
   componentDidMount () {
-    Watchman.set(store)
+    setStore(store)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
     this.redoListener = UndoRedoDispatcher.addListener('redo', this.update)
   }

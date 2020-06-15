@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 
 const LeastHotSpot = function ({ minValue }) {
   this.minValue = +minValue
@@ -11,7 +11,7 @@ _.extend(LeastHotSpot.prototype, {
     if (compactAnswers.length < this.minValue) {
       return {
         type: 'LeastHotSpot',
-        message: Watchman.I18n().t('validations.least_hotspot', { min: this.minValue }),
+        message: I18n().t('validations.least_hotspot', { min: this.minValue }),
       }
     }
   },

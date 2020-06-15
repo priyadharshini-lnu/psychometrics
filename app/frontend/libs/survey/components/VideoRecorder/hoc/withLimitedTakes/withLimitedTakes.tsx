@@ -5,7 +5,7 @@ import { CheckOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
 import RecordButton from 'components/AudioRecorder/MediaButtons/RecordButton'
 import { InProgressQuestion } from 'core/preview/FlowProcessor/interfaces'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 import MultipleTakeButtons from './MultipleTakeButtons'
 import styles from './styles.scss'
 
@@ -114,7 +114,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
           {showRetakes && (
           <div onClick={() => setCurrentTakeNo(completedTakes + 1)} className={styles.retakeBtn}>
             <RecordButton className={styles.recordBtnContainer} recordButtonClass={styles.recordBtn} />
-            {Watchman.I18n().t('assessments.video_response.retake')}
+            {I18n().t('assessments.video_response.retake')}
           </div>
           )}
         </div>
@@ -128,7 +128,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
               onClick={() => handleUserSelectedTake(currentTakeDetails.media_id)}
             >
               <CheckOutlined />
-              {Watchman.I18n().t('assessments.video_response.use_this')}
+              {I18n().t('assessments.video_response.use_this')}
             </ColoredButton>
             )}
           {completedTakes > 1 && currentTakeIsSelected
@@ -136,7 +136,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
             <div className={styles.inUse}>
               <CheckOutlined />
               {' '}
-              {Watchman.I18n().t('assessments.video_response.selected')}
+              {I18n().t('assessments.video_response.selected')}
             </div>
             )}
         </div>

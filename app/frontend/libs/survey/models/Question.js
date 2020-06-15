@@ -6,7 +6,7 @@ import Utils from 'utils'
 import { EventEmitter } from 'fbemitter'
 import DefaultProps from 'constants/DefaultProps'
 import Action from 'undo'
-import Watchman from 'store/StoreWatchman'
+import { getStore } from 'store/StoreWatchman'
 import Condition from './QuestionCondition'
 import Comment from './Comment'
 import Result from './Preview/Result'
@@ -275,11 +275,11 @@ _.extend(Question.prototype, {
     // this.store.update()
 
     // NOTE: @fedor the next dispatches it's a hack to update ui. should be removed later
-    Watchman.get().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    getStore().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   updateDefaultProps () {
-    Watchman.get().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
+    getStore().dispatch({ type: 'builder/assessment/question/UPDATE_QUESTION', question: this })
   },
 
   sync () {

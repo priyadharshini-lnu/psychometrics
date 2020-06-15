@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import { SendOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import { Question } from '../interfaces'
@@ -41,7 +41,7 @@ const Preview: React.FC<Props> = ({ model, readOnly }) => {
             onClick={() => setView(ViewEnum.Sent)}
             icon={<SendOutlined />}
           >
-            {Watchman.I18n().t('threesixty.question.email_type.send')}
+            {I18n().t('threesixty.question.email_type.send')}
           </Button>
         </div>
       )}

@@ -2,7 +2,7 @@
 /* eslint-disable no-control-regex */
 /* eslint-disable no-useless-escape */
 import _ from 'lodash'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 
 const defaultPatterns = {
   // Matches any digit(s) (i.e. 0-9)
@@ -32,22 +32,22 @@ _.extend(Content.prototype, {
     switch (this.type) {
       case 'Email':
         if (!defaultPatterns.email.test(answers[0].value)) {
-          message = Watchman.I18n().t('validations.email')
+          message = I18n().t('validations.email')
         }
         break
       case 'Number':
         if (!defaultPatterns.number.test(answers[0].value)) {
-          message = Watchman.I18n().t('validations.number')
+          message = I18n().t('validations.number')
         }
         break
       case 'Text':
         if (defaultPatterns.digits.test(answers[0].value)) {
-          message = Watchman.I18n().t('validations.text')
+          message = I18n().t('validations.text')
         }
         break
       case 'Date':
         if (!defaultPatterns.date1.test(answers[0].value)) {
-          message = Watchman.I18n().t('validations.date')
+          message = I18n().t('validations.date')
         }
         break
       default:
