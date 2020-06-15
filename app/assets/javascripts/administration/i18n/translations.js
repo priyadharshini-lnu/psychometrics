@@ -5173,6 +5173,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "التسجيل",
         "submit": "Register",
         "tabs": {
@@ -5685,7 +5686,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
@@ -11961,6 +11963,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "we need your current password to confirm your changes"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Sign up",
         "submit": "Register",
         "tabs": {
@@ -12469,7 +12472,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
@@ -18742,6 +18746,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "kami memerlukan kata laluan anda yang kini untuk mengesahkan perubahan anda"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Daftar",
         "submit": "Register",
         "tabs": {
@@ -19250,7 +19255,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
