@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 
 const MustSelect = function ({ minValue, maxValue }, question) {
   this.question = question
@@ -12,7 +12,7 @@ _.extend(MustSelect.prototype, {
     if (answers.length < this.minValue || answers.length > this.maxValue) {
       return {
         type: 'MustSelect',
-        message: Watchman.I18n().t('validations.must_select', { min: this.minValue, max: this.maxValue }),
+        message: I18n().t('validations.must_select', { min: this.minValue, max: this.maxValue }),
       }
     }
   },

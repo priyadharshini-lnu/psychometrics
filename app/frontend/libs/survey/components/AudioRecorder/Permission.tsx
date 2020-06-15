@@ -1,7 +1,7 @@
 import React from 'react'
 import { message } from 'antd'
 import { AudioFilled, CheckOutlined } from '@ant-design/icons'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import cs from 'classnames'
 import ColoredButton from 'components/ColoredButton/index'
 import styles from './PermissionStyle.scss'
@@ -16,7 +16,7 @@ const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(onAllow)
       .catch(() => {
-        message.info(Watchman.I18n().t('assessments.audio_response.permission_denied_message'))
+        message.info(I18n().t('assessments.audio_response.permission_denied_message'))
       })
   }
 
@@ -25,7 +25,7 @@ const Permission: React.FC<Props> = ({ onAllow, readOnly }) => {
       <div className={styles.iconContainer}>
         <AudioFilled className={cs([styles.icon, 'mtl'])} />
       </div>
-      <div className="mtl">{Watchman.I18n().t('assessments.audio_response.permission_text')}</div>
+      <div className="mtl">{I18n().t('assessments.audio_response.permission_text')}</div>
       <ColoredButton
         color="green"
         type="primary"

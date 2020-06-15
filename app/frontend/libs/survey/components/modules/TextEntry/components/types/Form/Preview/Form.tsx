@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import React from 'react'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import styles from '../FormStyle.scss'
 import commonStyles from '../../../TextEntry.scss'
 import inputs from './inputs'
@@ -38,7 +38,7 @@ const Form: React.FC<Props> = ({
       {_.map(choicesIds, (i: number) => (
         <li className={styles.listItem} key={i}>
           <span className={styles.previewLabel}>
-            {Watchman.I18n().tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
+            {I18n().tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                 || moduleConfig.defaultChoiceText(i + 1)}
           </span>
           <div className={styles.inputContainer}>

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 
 const CharacterRange = function ({ minLength, maxLength }) {
   this.minLength = +minLength
@@ -11,7 +11,7 @@ _.extend(CharacterRange.prototype, {
     if (answers[0].value.length < this.minLength || answers[0].value.length > this.maxLength) {
       return {
         type: 'CharacterRange',
-        message: Watchman.I18n().t('validations.character_range', { min: this.minLength, max: this.maxLength }),
+        message: I18n().t('validations.character_range', { min: this.minLength, max: this.maxLength }),
       }
     }
   },

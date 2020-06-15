@@ -4,7 +4,7 @@ import BlockCenter from 'layouts/BlockCenter'
 import UndoRedoDispatcher from 'dispatchers/UndoRedoDispatcher'
 
 import { Provider } from 'react-redux'
-import Watchman from 'store/StoreWatchman'
+import { setStore } from 'store/StoreWatchman'
 import store from '../store'
 
 class BlockCenterContainer extends Component {
@@ -13,7 +13,7 @@ class BlockCenterContainer extends Component {
   redoListener = null
 
   componentDidMount () {
-    Watchman.set(store)
+    setStore(store)
     this.undoListener = UndoRedoDispatcher.addListener('undo', this.update)
     this.redoListener = UndoRedoDispatcher.addListener('redo', this.update)
   }

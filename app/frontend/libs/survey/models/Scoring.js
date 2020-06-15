@@ -2,7 +2,7 @@
 /* eslint-disable prefer-rest-params */
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
-import Watchman from 'store/StoreWatchman'
+import { getStore } from 'store/StoreWatchman'
 
 import ScoringModules from './ScoringModules'
 
@@ -33,9 +33,9 @@ _.extend(Scoring.prototype, {
 
   update () {
     if (this.type === 'recoding') {
-      Watchman.get().dispatch({ type: 'builder/factors/UPDATE_RECODING', model: this })
+      getStore().dispatch({ type: 'builder/factors/UPDATE_RECODING', model: this })
     } else {
-      Watchman.get().dispatch({ type: 'builder/factors/UPDATE_SCORING', model: this })
+      getStore().dispatch({ type: 'builder/factors/UPDATE_SCORING', model: this })
     }
   },
 

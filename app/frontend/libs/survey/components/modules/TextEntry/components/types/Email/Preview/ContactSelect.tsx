@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from 'antd'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import styles from '../commonStyles.scss'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
 import { ContactType } from '../interfaces/Email'
@@ -25,14 +25,14 @@ const ContactSelect: React.FC<Props> = ({
   return (
     <div className={styles.contactSelect}>
       <div className={styles.selectLabel}>
-        <div>{Watchman.I18n().t(`threesixty.question.email_type.${type}`)}</div>
+        <div>{I18n().t(`threesixty.question.email_type.${type}`)}</div>
         {type === TO_TYPE && (
         <div>
           <a className={styles.copy} onClick={(): void => toggleCopyField(CC_TYPE)}>
-            {Watchman.I18n().t(`threesixty.question.email_type.${CC_TYPE}`)}
+            {I18n().t(`threesixty.question.email_type.${CC_TYPE}`)}
           </a>
           <a className={styles.copy} onClick={(): void => toggleCopyField(BCC_TYPE)}>
-            {Watchman.I18n().t(`threesixty.question.email_type.${BCC_TYPE}`)}
+            {I18n().t(`threesixty.question.email_type.${BCC_TYPE}`)}
           </a>
         </div>
         )}
@@ -45,7 +45,7 @@ const ContactSelect: React.FC<Props> = ({
         disabled={readOnly}
       >
         {contactList?.filter(Boolean).map((contact, i) => (
-          <Option key={i} value={contact}>{Watchman.I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
+          <Option key={i} value={contact}>{I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
         ))}
       </Select>
     </div>

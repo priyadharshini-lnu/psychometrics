@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import AssessmentPreview from 'layouts/AssessmentPreview'
 import Header from 'layouts/AssessmentPreview/Header'
-import Watchman from 'store/StoreWatchman'
+import { setStore } from 'store/StoreWatchman'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
 
@@ -40,7 +40,7 @@ class AssessmentContainer extends Component {
       },
       result: dbResult,
     })
-    Watchman.set(rstore)
+    setStore(rstore)
   }
 
   componentWillUnmount () {

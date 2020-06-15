@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Input } from 'antd'
 import _ from 'lodash'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import styles from '../commonStyles.scss'
 import ContactSelect from './ContactSelect'
 import {
@@ -50,7 +50,7 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
         <ContactSelect key={i} model={model} toggleCopyField={toggleCopyField} type={type} readOnly={readOnly} />
       ))}
       <div className={styles.subject}>
-        <div>{Watchman.I18n().t('threesixty.question.email_type.subject')}</div>
+        <div>{I18n().t('threesixty.question.email_type.subject')}</div>
         <Input
           value={model.result.answers.subject}
           onChange={({ target: { value } }): void => handleTestChange('subject', value)}
@@ -58,7 +58,7 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
         />
       </div>
       <div>
-        <div>{Watchman.I18n().t('threesixty.question.email_type.message')}</div>
+        <div>{I18n().t('threesixty.question.email_type.message')}</div>
         <TextArea
           className={styles.message}
           value={message}
@@ -70,7 +70,7 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
         {maxLength
          && (
          <small>
-           {Watchman.I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
+           {I18n().t('threesixty.question.email_type.max_length_warning', { x: remainingLength })}
          </small>
          )
          }

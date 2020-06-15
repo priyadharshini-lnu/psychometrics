@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
-import Watchman from 'libs/survey/store/StoreWatchman'
+import { I18n } from 'libs/survey/store/StoreWatchman'
 import axios from 'axios'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
@@ -395,13 +395,13 @@ class VideoRecorder extends Component {
             >
               <span className="mrs mls fa fa-trash-o" area-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
-                { Watchman.I18n().t('assessments.video_response.discard') }
+                { I18n().t('assessments.video_response.discard') }
               </span>
             </button>
           )}
           {recordingState === 'saving' && (
             <span className="vjs-control-text" aria-live="polite">
-              { Watchman.I18n().t('assessments.video_response.saving') }
+              { I18n().t('assessments.video_response.saving') }
             </span>
           )}
         </div>
@@ -433,8 +433,8 @@ class VideoRecorder extends Component {
         </div>
         <div className={styles.permText}>
           {hasMediaRecorder
-            ? Watchman.I18n().t('assessments.video_response.media_recorder.success')
-            : Watchman.I18n().t('assessments.video_response.media_recorder.failure')}
+            ? I18n().t('assessments.video_response.media_recorder.success')
+            : I18n().t('assessments.video_response.media_recorder.failure')}
         </div>
 
         { hasMediaRecorder && (
@@ -445,7 +445,7 @@ class VideoRecorder extends Component {
             disabled={readOnly}
           >
             <span className="mrs mls fa fa-check" aria-hidden="true" />
-            { Watchman.I18n().t('assessments.video_response.device') }
+            { I18n().t('assessments.video_response.device') }
           </button>
         )}
       </div>

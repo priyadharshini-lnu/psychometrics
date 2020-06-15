@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select as BaseSelect } from 'antd'
-import Watchman from 'store/StoreWatchman'
+import { I18n } from 'store/StoreWatchman'
 import styles from '../../FormStyle.scss'
 import { Question } from '../../interfaces'
 
@@ -32,7 +32,7 @@ const Select: React.FC<Props> = ({
       >
         {optionList?.map((option: string, i: number) => (
           <Option key={i} value={option}>
-            {Watchman.I18n().tQuestion(model, `formOptionText${index}_${i}`, { typeIndex: index, i })}
+            {I18n().tQuestion(model, `formOptionText${index}_${i}`, { typeIndex: index, i })}
           </Option>
         ))}
       </BaseSelect>
