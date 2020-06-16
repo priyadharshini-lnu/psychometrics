@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress,
+  Layout, PageHeader, Row, Col, Progress, ConfigProvider,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -84,23 +84,25 @@ export default function Assign ({
             </Col>
           </Row>
         )}
-        <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-          {loaded && !error && (
-            <ResourcesTabs assessment={assessment}>
-              <PassAssessment
-                id="pass_assessment"
-                type="pass_assessment"
-                data={assessment}
-                result={results}
-                locales={translations}
-                dashboardUrl="/assessment_completed"
-                resultsUrl={`/assigns/${results.id}`}
-                selectedLocale={selectedLanguage && selectedLanguage.code}
-                rstore={store}
-              />
-            </ResourcesTabs>
-          )}
-        </div>
+        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
+            {loaded && !error && (
+              <ResourcesTabs assessment={assessment}>
+                <PassAssessment
+                  id="pass_assessment"
+                  type="pass_assessment"
+                  data={assessment}
+                  result={results}
+                  locales={translations}
+                  dashboardUrl="/assessment_completed"
+                  resultsUrl={`/assigns/${results.id}`}
+                  selectedLocale={selectedLanguage && selectedLanguage.code}
+                  rstore={store}
+                />
+              </ResourcesTabs>
+            )}
+          </div>
+        </ConfigProvider>
       </Content>
     </Layout>
   )

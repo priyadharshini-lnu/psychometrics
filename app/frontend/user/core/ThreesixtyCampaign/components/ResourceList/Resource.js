@@ -4,7 +4,9 @@ import './styles.scss'
 import HighlightList from 'libs/survey/views/Preview/StaticContent/HighlightList'
 import connect from './connect'
 
-function Resource ({ resource, highlight, updateHighlight }) {
+function Resource ({
+  resource, highlight, updateHighlight, translations,
+}) {
   const contentRef = useRef(null)
   const [selection, setSelection] = useState(null)
 
@@ -29,7 +31,9 @@ function Resource ({ resource, highlight, updateHighlight }) {
         className="resource-content"
         onMouseUp={handleMouseUp}
         ref={contentRef}
-        dangerouslySetInnerHTML={{ __html: resource.props.questionText }}
+        dangerouslySetInnerHTML={{
+          __html: _.get(translations, [resource.id, 'questionText']) || resource.props.questionText,
+        }}
       />
     </>
   )

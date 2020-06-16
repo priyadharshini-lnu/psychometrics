@@ -54,9 +54,11 @@ class AssignsController < ApplicationController
   end
 
   def assessment
+    @selected_locale = @assign.selected_locale || user_locale
     render json: @assign.assessment,
            serializer: AssessmentSerializer,
            include: '**',
+           selected_locale: @selected_locale,
            piped_text_context: build_piped_context
   end
 

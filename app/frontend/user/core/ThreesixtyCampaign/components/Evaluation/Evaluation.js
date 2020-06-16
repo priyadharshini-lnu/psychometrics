@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider,
 } from 'antd'
 import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -178,24 +178,26 @@ export default function Evaluation ({
             )}
           </Row>
           {!error && (
-            <ResourcesTabs assessment={assessment}>
-              <div className={selectedLanguage ? selectedLanguage.direction : ''}>
-                <PassAssessment
-                  ref={assessmentRef}
-                  id="pass_assessment"
-                  type={approve_evaluation ? 'view_results' : 'pass_assessment'}
-                  isThreesixty="true"
-                  resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
-                  data={assessment}
-                  result={results}
-                  dashboardUrl={`/campaigns/${params.campaignId}`}
-                  locales={translations}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  notAnEndPage={approve_evaluation || edit === 'true'}
-                  rstore={store}
-                />
-              </div>
-            </ResourcesTabs>
+            <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+              <ResourcesTabs assessment={assessment}>
+                <div className={selectedLanguage ? selectedLanguage.direction : ''}>
+                  <PassAssessment
+                    ref={assessmentRef}
+                    id="pass_assessment"
+                    type={approve_evaluation ? 'view_results' : 'pass_assessment'}
+                    isThreesixty="true"
+                    resultsUrl={`/campaigns/${params.campaignId}/users_results/${id}`}
+                    data={assessment}
+                    result={results}
+                    dashboardUrl={`/campaigns/${params.campaignId}`}
+                    locales={translations}
+                    selectedLocale={selectedLanguage && selectedLanguage.code}
+                    notAnEndPage={approve_evaluation || edit === 'true'}
+                    rstore={store}
+                  />
+                </div>
+              </ResourcesTabs>
+            </ConfigProvider>
           )}
         </div>
       </Content>
