@@ -122,7 +122,7 @@ module Imports
               p "#{question.type} - #{e}"
               next
             end
-            parsed_value = parser.build_answers(values, question, scoring)
+            parsed_value = parser.build_answers(values, question, scoring, assign)
             new_results[qid] = parsed_value if parsed_value
           end
           assign.results = new_results

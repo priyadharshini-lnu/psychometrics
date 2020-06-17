@@ -12,7 +12,7 @@ module Imports
         #     "value": 'Value'
         #   }, ...]
 
-        def self.build_answers(data, question, use_scoring = false)
+        def self.build_answers(data, question, use_scoring = false, _assign)
           return nil if data.compact.blank? || data.all?(&:blank?)
 
           answers = case question.props['type']

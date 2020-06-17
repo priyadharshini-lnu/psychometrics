@@ -5,7 +5,7 @@ module Imports
     module Questions
       class MatrixTable
         # Parse RESULT data for XLSX
-        def self.build_answers(data, question, use_scoring = false)
+        def self.build_answers(data, question, use_scoring = false, _assign)
           return nil if data.compact.blank?
 
           answers = []

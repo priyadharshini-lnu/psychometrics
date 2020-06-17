@@ -5,7 +5,7 @@ module Exports
     class BaseAssessmentResultsExport < BaseCommand
       QUESTIONS = %w[ConstantSum GapAnalysis GraphicSlider HotSpot
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
-                     RankOrder SideBySide Slider TextEntry Timing].freeze
+                     RankOrder SideBySide Slider TextEntry Timing FileUpload AudioResponse VideoResponse].freeze
 
       private_attr_accessor :assessment
 
@@ -26,8 +26,9 @@ module Exports
               user_results = []
               if result.results
                 all_questions.each do |question|
-                  answers = result.results[question.id.to_s].try(:[], 'answers')
                   next unless QUESTIONS.include?(question.type)
+
+                  answers = result.results[question.id.to_s].try(:[], 'answers')
 
                   parser = "Exports::Assessments::Questions::#{question.type}".constantize
                   user_results << parser.result(answers, question, @scoring, @export_with_labels)
