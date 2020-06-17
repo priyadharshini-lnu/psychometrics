@@ -161,7 +161,9 @@ const HANDLERS = {
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
   [SAVE_RESULTS]: (state, { response: { expired, currentBlock } }) => {
-    const blocks = setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
+    const blocks = currentBlock
+      ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
+      : state.blocks
     const end = expired || state.end
     return end ? {
       ...state, end, blocks, currentElement: null, currentPage: null,
