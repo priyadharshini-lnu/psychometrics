@@ -6,6 +6,10 @@ module Administration
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
+    def show?
+      @user.is?(:superadmin, :client_admin, :project_admin)
+    end
+
     def manage_first_level?
       @user.is?(:superadmin)
     end

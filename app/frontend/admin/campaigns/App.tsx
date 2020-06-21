@@ -4,8 +4,8 @@ import store, { history } from 'admin/store'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import RouteList from 'components/RouteList'
-import routes from '../routes'
-import settings from '../settings'
+import routes from './routes'
+import settings from './settings'
 
 const App: React.FC<void> = () => (
   <div className="ms" style={{ background: 'white' }}>

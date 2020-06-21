@@ -7,7 +7,7 @@ import { TableConfig } from 'admin/filterAndPagination/interfaces'
 import { EllipsisOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
-import { Campaign } from 'admin/core/campaigns/list'
+import { Campaign } from 'admin/campaigns/core/list'
 import styles from './styles.scss'
 
 const { Column } = Table

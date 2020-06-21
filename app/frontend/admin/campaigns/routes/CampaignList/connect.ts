@@ -2,9 +2,9 @@ import { connect } from 'react-redux'
 import {
   fetch,
   get as getCampaign,
-} from 'admin/core/campaigns/list'
+} from 'admin/campaigns/core/list'
 
-import { get as getTotal } from 'admin/core/campaigns/total'
+import { get as getTotal } from 'admin/campaigns/core/total'
 
 export default connect(
   state => ({

@@ -50,7 +50,11 @@ Rails.application.routes.draw do
     end
     resources :projects do
       scope module: :projects do
-        resources :new_campaigns
+        resources :new_campaigns do
+          member do
+            get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
+          end
+        end
       end
     end
     ### CLIENTS

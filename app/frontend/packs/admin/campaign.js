@@ -1,4 +1,4 @@
-import CampaignList from 'admin/core/campaigns/components/App'
+import CampaignList from 'admin/campaigns/App'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import 'admin/styles/ant.less'

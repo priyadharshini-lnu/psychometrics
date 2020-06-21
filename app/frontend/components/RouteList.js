@@ -28,6 +28,7 @@ export default function RouteList ({ routes, urlPrefix }) {
             />
           )
         }
+
         return (
           <Route
             path={`${urlPrefix}${route.path}`}

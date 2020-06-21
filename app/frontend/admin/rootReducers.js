@@ -22,7 +22,7 @@ import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates
 import campaignDetails from './core/threeSixtyCampaign/campaignDetails'
 import mailHistories from './core/threeSixtyCampaign/mailHistories'
 import users from './core/threeSixtyCampaign/users'
-import campaignReducers from './core/campaigns/reducers'
+import campaignReducers from './campaigns/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
