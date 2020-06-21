@@ -6,7 +6,7 @@ module Exports
       class AudioResponse < Base
         def self.result(answers, question, _scoring = false, _export_with_labels = false)
           if answers.present?
-            answers = file_upload_answers(answers[0])
+            answers = audio_response_answers(answers[0])
             Utility::Array.ensure_size(answers, question_header_size(question))
           end
         end
