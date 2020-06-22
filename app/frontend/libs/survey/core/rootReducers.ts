@@ -3,10 +3,14 @@ import builder from './builder'
 import temp from './temp'
 import preview from './preview'
 
-export default combineReducers({
+const rootReducers = combineReducers({
   survey: combineReducers({
     builder: combineReducers(builder),
     temp: combineReducers(temp),
   }),
   preview,
 })
+
+export type AppState = ReturnType<typeof rootReducers>
+
+export default rootReducers

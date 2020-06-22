@@ -6,7 +6,6 @@ import { setIn, updateIn } from 'utils/immutable'
 import InitPages from './commands/InitPages'
 import NormalizeTree from './commands/NormalizeTree'
 import InitLinearElements from './commands/InitLinearElements'
-import { DefaultState, InProgressQuestion } from './interfaces'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
@@ -16,6 +15,12 @@ import {
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
 } from './consts'
+import {
+  DefaultState, AddPrevPage, ShowErrors, ShowPage,
+  ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
+  SetDirtyResults, SetNotDirtyResults, SetLocalResults,
+  InProgressQuestion,
+} from './interfaces'
 
 const { I18n } = window
 
@@ -118,24 +123,26 @@ const HANDLERS = {
       highlights: _.keyBy(highlights, 'id'),
     }
   },
-  [SET_LOCAL_RESULTS]: (state, { data }) => {
+  [SET_LOCAL_RESULTS]: (state, { data }: SetLocalResults) => {
     const results = _.reduce(data, (acc, result, key) => (
       acc[key] || (!state.questions[key]) ? acc : setIn(acc, key, result)
     ), state.results)
     return setIn(state, 'results', results)
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
-  [SHOW_ERRORS]: (state, { errors }) => setIn(state, ['errors'], errors),
+  [SHOW_ERRORS]: (state, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
   [EMPTY_ERRORS]: state => setIn(state, ['errors'], null),
-  [CHANGE_ELEMENT]: (state, { id, page }) => ({ ...state, currentPage: page || 0, currentElement: id }),
-  [SHOW_PAGE]: (state, { page }) => ({ ...state, currentPage: page }),
-  [ADD_PREV_PAGE]: (state, { page }) => ({ ...state, prevPages: [...state.prevPages, page] }),
+  [CHANGE_ELEMENT]: (state, { id, page }: ChangeElement) => ({ ...state, currentPage: page || 0, currentElement: id }),
+  [SHOW_PAGE]: (state, { page }: ShowPage) => ({ ...state, currentPage: page }),
+  [ADD_PREV_PAGE]: (state, { page }: AddPrevPage) => ({ ...state, prevPages: [...state.prevPages, page] }),
   [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: state => ({ ...state, end: true }),
-  [SET_EMBEDDED_DATA]: (state, { data }) => setIn(state, 'embeddedData', { ...state.embeddedData, ...data }),
-  [HIDE_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], true),
-  [SHOW_QUESTION]: (state, { id }) => setIn(state, ['questions', id, 'hidden'], false),
-  [SET_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
+  [SET_EMBEDDED_DATA]: (state, { data }: SetEmbeddedData) => setIn(
+    state, 'embeddedData', { ...state.embeddedData, ...data },
+  ),
+  [HIDE_QUESTION]: (state, { id }: HideQuestion) => setIn(state, ['questions', id, 'hidden'], true),
+  [SHOW_QUESTION]: (state, { id }: ShowQuestion) => setIn(state, ['questions', id, 'hidden'], false),
+  [SET_DIRTY_RESULTS]: (state, { questionIds: ids }: SetDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
       return setIn(state.results, [id, 'dirty'], true)
@@ -145,7 +152,7 @@ const HANDLERS = {
       results: { ...state.results, ...results },
     }
   },
-  [SET_NOT_DIRTY_RESULTS]: (state, { questionIds: ids }) => {
+  [SET_NOT_DIRTY_RESULTS]: (state, { questionIds: ids }: SetNotDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
       return ({ ...results, [id]: _.omit(state.results[id], 'dirty') })
