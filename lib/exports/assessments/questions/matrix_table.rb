@@ -5,7 +5,7 @@ module Exports
     module Questions
       class MatrixTable < Base
         # Parse RESULT data for XLSX
-        def self.result(answers, question, scoring = false, export_with_labels = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
           parsed_result = []
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
@@ -37,8 +37,14 @@ module Exports
                                  question.props.dig('scalePointsTexts', a['scale'])
                                end.join(',')
             end
+            add_not_applicable_result(parsed_result, not_applicable)
           end
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
+        end
+
+        def self.add_not_applicable_result(parsed_result, not_applicable)
+          parsed_result[not_applicable.keys[0].to_i] = '_NA_' if not_applicable
+          parsed_result
         end
 
         def self.question_id_and_choice_headers(question)

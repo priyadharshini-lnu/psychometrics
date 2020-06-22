@@ -9,6 +9,7 @@ module Imports
           return nil if data.compact.blank?
 
           answers = []
+          not_applicable = {}
           if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             answers = []
             index = 0
@@ -29,6 +30,8 @@ module Imports
             factors_scoring = question.detect_specified_scoring.
                               each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale']; }
             data.each_with_index do |scales, choice|
+              next not_applicable[choice.to_s] = true if scales == '_NA_'
+
               scales.to_s.split(',').each do |scale|
                 answers << {
                   scale: use_scoring && factors_scoring["#{choice}-#{scale}"] || scale.to_i - 1,
@@ -41,7 +44,8 @@ module Imports
 
           {
             answers: answers,
-            question_id: question.id
+            question_id: question.id,
+            not_applicable: not_applicable
           }
         end
       end
