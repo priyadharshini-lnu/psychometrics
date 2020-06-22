@@ -29,6 +29,7 @@ const ModuleConfigs = {
       MultiLine: ['MinLength', 'MaxLength', 'CharacterRange'],
       EssayTextBox: ['MinLength', 'MaxLength', 'CharacterRange'],
       Password: ['MinLength', 'MaxLength', 'CharacterRange'],
+      Email: ['MinLength', 'MaxLength', 'CharacterRange'],
     },
     randomization: true,
     defaultValue: true,

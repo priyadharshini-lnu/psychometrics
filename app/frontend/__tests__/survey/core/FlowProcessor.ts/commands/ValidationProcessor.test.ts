@@ -4,8 +4,9 @@ import DefaultProps from 'libs/survey/constants/DefaultProps'
 jest.mock('libs/survey/store/StoreWatchman', () => {
   return {
     I18n: () => ({
-      t: (t) => t
-    })
+      t: (t) => t,
+      lookup: (code) => code,
+    }),
   }
 })
 
@@ -37,20 +38,20 @@ test('empty validations should return empty array', () => {
 
 test('required validation should return an error', () => {
   expect(ValidationProcessor.run([multipleChoice], {})).toStrictEqual({
-    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+    1: [{ message: 'validations.required', type: 'forceRequired' }],
   })
 })
 
 test('required validation should return an error', () => {
   expect(ValidationProcessor.run([multipleChoice, textEntry], { 2: { answers: [{ value: 'test' }] } })).toStrictEqual({
-    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+    1: [{ message: 'validations.required', type: 'forceRequired' }],
     2: [{ message: 'validations.min_length', type: 'MinLength' }],
   })
 })
 
 test('required return an error only required validation', () => {
   expect(ValidationProcessor.run([multipleChoice, textEntry], { 2: { answers: [{ value: 'test test' }] } })).toStrictEqual({
-    1: [{ message: 'validations.please_answer_question', type: 'forceRequired' }],
+    1: [{ message: 'validations.required', type: 'forceRequired' }],
   })
 })
 

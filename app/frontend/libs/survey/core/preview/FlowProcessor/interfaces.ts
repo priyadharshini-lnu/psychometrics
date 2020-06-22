@@ -116,9 +116,20 @@ export interface DefaultState{
 
 export interface I18nInterface {
   t (code: string, data?: any): string
+  lookup(code: string): string
   tQuestion (question: any, field: string, extraData?: any): string
   tBlock (block: any, key: string, path: string[]): string
   tCustomValidation (question: Question): string
+}
+
+export interface QuestionErrors {
+  [question_id: number]: QuestionError
+}
+
+export interface QuestionError {
+  type: string
+  message: string
+  field?: string
 }
 
 declare global {

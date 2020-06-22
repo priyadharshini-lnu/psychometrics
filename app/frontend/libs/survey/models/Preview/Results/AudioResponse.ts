@@ -10,11 +10,8 @@ interface Result {
 export default class AudioResponse {
   result: Result
 
-  AudioResponse: boolean
-
   constructor (result: Result) {
     this.result = result
-    this.AudioResponse = true
   }
 
   meta = (data: object): void => {

@@ -6,7 +6,7 @@ import { setIn, updateIn } from 'utils/immutable'
 import InitPages from './commands/InitPages'
 import NormalizeTree from './commands/NormalizeTree'
 import InitLinearElements from './commands/InitLinearElements'
-import { DefaultState, InProgressQuestion } from './interfaces'
+import { DefaultState, InProgressQuestion, QuestionError } from './interfaces'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
@@ -15,6 +15,7 @@ import {
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
+  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
 } from './consts'
 
 const { I18n } = window
@@ -39,7 +40,7 @@ const defaultState: DefaultState = {
   prevPages: [], // [{element, page}, {element, page} ...]
   currentElement: null,
   currentPage: 0,
-  errors: null,
+  errors: {},
   end: false,
   dashboardUrl: '/',
   mediaUrl: null,
@@ -126,7 +127,13 @@ const HANDLERS = {
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
   [SHOW_ERRORS]: (state, { errors }) => setIn(state, ['errors'], errors),
-  [EMPTY_ERRORS]: state => setIn(state, ['errors'], null),
+  [EMPTY_ERRORS]: state => setIn(state, ['errors'], defaultState.errors),
+  [ADD_QUESTION_ERROR]: (state, { questionId, errors }: { questionId: number, errors: QuestionError}) => (
+    setIn(state, ['errors', questionId], errors)
+  ),
+  [REMOVE_QUESTION_ERROR]: (state, { questionId }: { questionId: number}) => (
+    setIn(state, ['errors'], _.omit(state.errors, [questionId]))
+  ),
   [CHANGE_ELEMENT]: (state, { id, page }) => ({ ...state, currentPage: page || 0, currentElement: id }),
   [SHOW_PAGE]: (state, { page }) => ({ ...state, currentPage: page }),
   [ADD_PREV_PAGE]: (state, { page }) => ({ ...state, prevPages: [...state.prevPages, page] }),

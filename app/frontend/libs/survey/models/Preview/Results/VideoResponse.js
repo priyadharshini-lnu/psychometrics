@@ -2,7 +2,6 @@ import _ from 'lodash'
 
 const VideoResponse = function (result) {
   this.result = result
-  this.videoResponse = true
 }
 
 _.extend(VideoResponse.prototype, {

@@ -1,6 +1,7 @@
 import { ContactType } from './Email'
 
 export default interface Question {
+  id: number
   props: QuestionProps
   changeProps: (value: object) => void
   changeArrayProps: ({ collection, i, val }: {collection: string, i: number, val: string }, undo: boolean) => void
@@ -17,6 +18,7 @@ interface QuestionProps {
 interface Result {
   answer: (...args) => void
   answers: Answer
+  validate(): []
 }
 
 interface Answer {

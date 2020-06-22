@@ -522,11 +522,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -534,7 +549,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -543,8 +559,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "email": "البريد الإلكتروني غير صحيح",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -554,10 +569,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "must_rank_between": " يرجى وضع قيمة من %{min} إلى %{max} لكل عنصر. لا يجب أن تتكرر القيم.",
     "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
     "number": "يجب أن تحتوي الإجابة على أرقام",
-    "please_answer_question": "الرجاء الإجابة على هذا السؤال",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
+    "required": "الرجاء الإجابة على هذا السؤال",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
     "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
   }
@@ -1082,11 +1095,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -1094,7 +1122,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -1103,8 +1132,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "email": "Your response must be a valid email",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -1114,10 +1142,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
-    "please_answer_question": "Please answer this question",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
+    "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
   }
@@ -1642,11 +1668,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -1654,7 +1695,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -1663,8 +1705,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "email": "Your response must be a valid email",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -1674,10 +1715,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
-    "please_answer_question": "Please answer this question",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
+    "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
   }

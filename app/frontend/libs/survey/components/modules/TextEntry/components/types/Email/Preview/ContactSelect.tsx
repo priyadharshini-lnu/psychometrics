@@ -1,5 +1,5 @@
 import React from 'react'
-import { Select } from 'antd'
+import { Select, Form } from 'antd'
 import Watchman from 'store/StoreWatchman'
 import styles from '../commonStyles.scss'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
@@ -11,12 +11,13 @@ interface Props {
   type: ContactType
   toggleCopyField: (type: 'cc' | 'bcc') => void
   readOnly?: boolean
+  error: { validateStatus: 'error', help: string } | {}
 }
 
 const { Option } = Select
 
 const ContactSelect: React.FC<Props> = ({
-  model, model: { props: { contactList } }, type, toggleCopyField, readOnly,
+  model, model: { props: { contactList } }, type, toggleCopyField, readOnly, error,
 }) => {
   const handleChange = (value: ContactType[]): void => {
     model.result.answer({ ...model.result.answers, [type]: value })
@@ -37,17 +38,19 @@ const ContactSelect: React.FC<Props> = ({
         </div>
         )}
       </div>
-      <Select
-        className={styles.select}
-        mode="multiple"
-        value={model.result.answers[type]}
-        onChange={handleChange}
-        disabled={readOnly}
-      >
-        {contactList?.filter(Boolean).map((contact, i) => (
-          <Option key={i} value={contact}>{Watchman.I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
-        ))}
-      </Select>
+      <Form.Item {...error}>
+        <Select
+          className={styles.select}
+          mode="multiple"
+          value={model.result.answers[type]}
+          onChange={handleChange}
+          disabled={readOnly}
+        >
+          {contactList?.filter(Boolean).map((contact, i) => (
+            <Option key={i} value={contact}>{Watchman.I18n().tQuestion(model, `contact${i}`, { index: i })}</Option>
+          ))}
+        </Select>
+      </Form.Item>
     </div>
   )
 }

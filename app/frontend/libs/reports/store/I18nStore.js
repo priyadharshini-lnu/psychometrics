@@ -64,6 +64,10 @@ const I18nStore = function () {
 I18nStore.prototype = new EventEmitter()
 
 _.extend(I18nStore.prototype, {
+  lookup (code) {
+    return I18n.lookup(code)
+  },
+
   t (code, data) {
     return I18n.t(code, data)
   },

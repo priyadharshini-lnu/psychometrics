@@ -15,24 +15,33 @@ en:
     range: 'Please answer at least %{min} and no more than %{max} choice(s).'
     must_select: 'Please select from %{min} to %{max} choices'
     each_group_contains: 'Each group needs to contain not less than %{min} and not more than %{max} items'
-    please_answer_question: 'Please answer this question'
-    please_record_and_save_video_first: 'Please record and save the video before you continue'
-    please_record_and_save_audio_first: 'Please record and save the audio before you continue'
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
+    required: 'Please answer this question'
     file_upload:
-      required: 'Please upload the file'
       EntityTooLarge: 'File size should be less than %{maxFileSize} MB'
       WrongFileType: 'File type should be one of the following %{allowedFileTypes}'
     FileUpload:
       in_progress:
         SAVING: 'File upload is in progress'
+      required: 'Please upload the file'
     AudioResponse:
       in_progress:
         SAVING: 'Recorded audio upload is in progress'
         RECORDING: 'Audio recording is in progress'
         RECORDED: 'Audio is recorded but not saved'
+      required: 'Please record and save the audio before you continue'
     VideoResponse:
       in_progress:
         saving: 'Recorded video upload is in progress'
         recording: 'Video recording is in progress'
         recorded: 'Video is recorded but not saved'
+      required: 'Please record and save the video before you continue'
+    TextEntry:
+      Email:
+        to:
+          required: "To field is required"
+        subject:
+          min_length: "Subject field should have minimum of 10 characters"
+        min_length: 'Email message entered must be at least %{min} characters.'
+        max_length: 'Email message entered must be no more than %{max} characters.'
+        character_range: 'Email message entered must be at least %{min} and no more than %{max} characters.'

@@ -16,9 +16,10 @@ import {
   MARK_QUESTION_IN_PROGRESS,
   REMOVE_QUESTION_IN_PROGRESS,
   CLEAR_IN_PROGRESS_QUESTION,
+  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
 } from './consts'
 import { getCurrentBlock } from './selectors'
-import { Highlight } from './interfaces'
+import { Highlight, QuestionError } from './interfaces'
 
 export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
@@ -54,6 +55,11 @@ export const removePrevPage = () => ({ type: REMOVE_PREV_PAGE })
 export const showErrors = errors => ({ type: SHOW_ERRORS, errors })
 
 export const emptyErrors = () => ({ type: EMPTY_ERRORS })
+
+export const addQuestionError = (questionId: number, errors: QuestionError[]) => (
+  { type: ADD_QUESTION_ERROR, questionId, errors })
+
+export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
 export const showPage = page => ({ type: SHOW_PAGE, page })
 
