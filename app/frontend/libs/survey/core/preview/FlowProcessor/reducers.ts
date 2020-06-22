@@ -14,12 +14,13 @@ import {
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
+  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, SetLocalResults,
-  InProgressQuestion,
+  InProgressQuestion, QuestionError,
 } from './interfaces'
 
 const { I18n } = window
@@ -44,7 +45,7 @@ const defaultState: DefaultState = {
   prevPages: [], // [{element, page}, {element, page} ...]
   currentElement: null,
   currentPage: 0,
-  errors: null,
+  errors: {},
   end: false,
   dashboardUrl: '/',
   mediaUrl: null,
@@ -131,10 +132,16 @@ const HANDLERS = {
   },
   [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
   [SHOW_ERRORS]: (state, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
-  [EMPTY_ERRORS]: state => setIn(state, ['errors'], null),
+  [EMPTY_ERRORS]: state => setIn(state, ['errors'], defaultState.errors),
   [CHANGE_ELEMENT]: (state, { id, page }: ChangeElement) => ({ ...state, currentPage: page || 0, currentElement: id }),
   [SHOW_PAGE]: (state, { page }: ShowPage) => ({ ...state, currentPage: page }),
   [ADD_PREV_PAGE]: (state, { page }: AddPrevPage) => ({ ...state, prevPages: [...state.prevPages, page] }),
+  [ADD_QUESTION_ERROR]: (state, { questionId, errors }: { questionId: number, errors: QuestionError}) => (
+    setIn(state, ['errors', questionId], errors)
+  ),
+  [REMOVE_QUESTION_ERROR]: (state, { questionId }: { questionId: number}) => (
+    setIn(state, ['errors'], _.omit(state.errors, [questionId]))
+  ),
   [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: state => ({ ...state, end: true }),
   [SET_EMBEDDED_DATA]: (state, { data }: SetEmbeddedData) => setIn(

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { initAudioPlayer } from 'libs/survey/hooks/useAudioPlayer'
+import { isEmailTextEntryQuestion } from 'libs/survey/utils/question'
 import styles from './Question.scss'
 
 class Question extends Component {
@@ -53,6 +54,7 @@ class Question extends Component {
       display: hidden ? 'none' : 'flex',
       overflow: 'auto',
     }
+
     return (
       <div
         style={stylesProps}
@@ -61,7 +63,7 @@ class Question extends Component {
         className={`${styles.question}`}
       >
         <div className={styles.content}>
-          {!model.valid && this.renderError()}
+          {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
           <div className={styles.contentOuter}>
             {this.renderPreview()}
           </div>

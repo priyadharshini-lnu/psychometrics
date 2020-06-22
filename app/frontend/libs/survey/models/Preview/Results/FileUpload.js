@@ -2,7 +2,6 @@ import _ from 'lodash'
 
 const FileUpload = function (result) {
   this.result = result
-  this.fileUpload = true
 }
 
 _.extend(FileUpload.prototype, {

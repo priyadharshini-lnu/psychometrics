@@ -71,6 +71,7 @@ const CheckingWizard: React.FC<Props> = ({
   const onFinish = () => {
     if (url) {
       location.href = url
+      return
     }
 
     routeUtils.moveTo(history, '', `/campaigns/${campaignId}/evaluations/${id}`)

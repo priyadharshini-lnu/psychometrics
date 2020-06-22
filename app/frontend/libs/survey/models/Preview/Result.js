@@ -3,6 +3,8 @@ import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
 import { getStore, I18n } from 'store/StoreWatchman'
+import RequiredValidation from 'models/Validations/Required'
+import { isEmailTextEntryQuestion } from 'utils/question'
 import Results from './Results'
 
 const Result = function (question, answers = null, notApplicable = null) {
@@ -20,35 +22,29 @@ Result.prototype = new EventEmitter()
 _.extend(Result.prototype, {
 
   validate () {
-    const errors = []
+    let errors = []
     if (_.isBoolean(this.notApplicable) && this.notApplicable) {
       return errors
     }
 
-    if (this.question.requiredValidation
-      && this.question.requiredValidation.enabled
-      && this.question.requiredValidation.type === 'Force') {
-      if (!this.moduleResult.requiredValidation()) {
-        if (this.moduleResult.videoResponse) {
-          errors.push({
-            type: 'forceRequired', message: I18n().t('validations.please_record_and_save_video_first'),
-          })
-        } else if (this.moduleResult.audioResponse) {
-          errors.push({
-            type: 'forceRequired', message: I18n().t('validations.please_record_and_save_audio_first'),
-          })
-        } else if (this.moduleResult.fileUpload) {
-          errors.push({ type: 'forceRequired', message: I18n().t('validations.file_upload.required') })
-        } else {
-          errors.push({ type: 'forceRequired', message: I18n().t('validations.please_answer_question') })
-        }
-      }
+    if (this.requiredValidationEnabled()) {
+      const Validation = RequiredValidation[this.question.type] || RequiredValidation.Default
+      errors = errors.concat(Validation.run(this.moduleResult))
     }
 
     const res = this.processValidation()
-    if (res) { errors.push(res) }
+    if (res) {
+      if (isEmailTextEntryQuestion(this.question)) { res.field = 'message' }
+      errors.push(res)
+    }
 
     return errors
+  },
+
+  requiredValidationEnabled () {
+    return this.question.requiredValidation
+      && this.question.requiredValidation.enabled
+      && this.question.requiredValidation.type === 'Force'
   },
 
   processValidation () {

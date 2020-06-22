@@ -208,6 +208,9 @@ export const getI18n = ({ locales }): I18nInterface => ({
   t (code: string, data: any): string {
     return I18n.t(code, data)
   },
+  lookup (code: string): string {
+    return I18n.lookup(code)
+  },
   tQuestion (question: any, field: string, extraData: any): string {
     question.isNeedToAddLtrManually = false
     question.isAnyArabicTranslateExist = true

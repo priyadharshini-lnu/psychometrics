@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
-import store from 'rb/store/PropertyPanelStore'
 import { Properties } from 'rb/components/modules'
 import ModuleModel from 'rb/models/Module'
+import LayoutManager from 'rb/models/LayoutManager'
 import styles from './PropertyPanel.scss'
 import ColorPickerModal from './ColorPickerModal'
 
@@ -25,9 +25,12 @@ class PropertyPanel extends Component {
   }
 
   layoutHandler = (method) => {
-    const layout = store.model.layout()
-    layout[method](store.model)
-    this.forceUpdate()
+    const { module } = this.props
+    const model = new ModuleModel(module, { id: module.page_id })
+
+    const layout = new LayoutManager({})
+    layout[method](model)
+    model.update()
   }
 
   showOnAllPages = () => {

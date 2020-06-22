@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Input } from 'antd'
+import { Input, Form } from 'antd'
 import _ from 'lodash'
 import { I18n } from 'store/StoreWatchman'
+import { QuestionError } from 'libs/survey/core/preview/FlowProcessor/interfaces'
 import styles from '../commonStyles.scss'
 import ContactSelect from './ContactSelect'
 import {
@@ -14,6 +15,7 @@ interface Props {
   model: Question
   readOnly?: boolean
   setView: (view: ViewEnum) => void
+  errors: QuestionError[]
 }
 
 interface ContactProps {
@@ -23,7 +25,7 @@ interface ContactProps {
 
 const { TextArea } = Input
 
-const Form: React.FC<Props> = ({ model, readOnly }) => {
+const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
   const { answers: { message } } = model.result
   const { maxLength } = model.props
   const defaultContactProps: ContactProps[] = [
@@ -42,31 +44,51 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
     model.result.answer({ ...model.result.answers, [key]: value })
   }
 
+  const validationProps = (field: string): { validateStatus: 'error', help: string } | {} => {
+    const error = _.find(errors, { field })
+    if (error && error.message) {
+      return { validateStatus: 'error', help: error.message }
+    }
+
+    return {}
+  }
+
   const remainingLength = (maxLength || 0) - (message?.length || 0)
 
   return (
     <div className={styles.emailForm}>
       {contactProps.filter(({ visible }) => visible).map(({ type }, i) => (
-        <ContactSelect key={i} model={model} toggleCopyField={toggleCopyField} type={type} readOnly={readOnly} />
+        <ContactSelect
+          error={validationProps(type)}
+          key={i}
+          model={model}
+          toggleCopyField={toggleCopyField}
+          type={type}
+          readOnly={readOnly}
+        />
       ))}
       <div className={styles.subject}>
         <div>{I18n().t('threesixty.question.email_type.subject')}</div>
-        <Input
-          value={model.result.answers.subject}
-          onChange={({ target: { value } }): void => handleTestChange('subject', value)}
-          disabled={readOnly}
-        />
+        <Form.Item {...validationProps('subject')}>
+          <Input
+            value={model.result.answers.subject}
+            onChange={({ target: { value } }): void => handleTestChange('subject', value)}
+            disabled={readOnly}
+          />
+        </Form.Item>
       </div>
       <div>
         <div>{I18n().t('threesixty.question.email_type.message')}</div>
-        <TextArea
-          className={styles.message}
-          value={message}
-          rows={7}
-          onChange={({ target: { value } }): void => handleTestChange('message', value)}
-          disabled={readOnly}
-          maxLength={maxLength}
-        />
+        <Form.Item {...validationProps('message')}>
+          <TextArea
+            className={styles.message}
+            value={message}
+            rows={7}
+            onChange={({ target: { value } }): void => handleTestChange('message', value)}
+            disabled={readOnly}
+            maxLength={maxLength}
+          />
+        </Form.Item>
         {maxLength
          && (
          <small>
@@ -79,4 +101,4 @@ const Form: React.FC<Props> = ({ model, readOnly }) => {
   )
 }
 
-export default Form
+export default EmailForm

@@ -27,6 +27,8 @@ _.extend(TextEntry.prototype, {
     if (this.result.question.props.type === 'Form') {
       return _.compact(_.map(this.result.answers, 'value')).length === this.result.question.props.choices
     }
+    if (this.result.question.props.type === 'Email') { return false }
+
     return _.compact(_.map(this.result.answers, 'value')).length
   },
 

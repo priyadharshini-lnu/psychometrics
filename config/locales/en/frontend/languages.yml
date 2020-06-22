@@ -43,7 +43,8 @@ en:
     pt: 'Portuguese'
     ro: 'Romanian'
     ru: 'Russian'
-    sr: 'Serbian'
+    'sr-Cyrl': Serbian Cyrillic
+    'sr-Latn': Serbian Latin
     sk: 'Slovak'
     sl: 'Slovenian'
     sw: 'Swahili'

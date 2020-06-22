@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import store from 'rb/store/PageList'
 import Page from 'rb/views/Page'
-import PageModel from 'rb/models/Page'
 import LabelEditor from 'rb/components/LabelEditor'
 import styles from './PageListView.scss'
 
@@ -37,17 +36,13 @@ export class PageListView extends Component {
         <div className={styles.reportName}>
           <LabelEditor value={report.name || ''} onChange={this.changeName} width={650} />
         </div>
-        {_.map(pages, (model) => {
-          const page = new PageModel(model, report.completed_assessments)
-          return !page.removed && page.visible && (
-            <Page
-              key={page.id}
-              model={page}
-              moduleIds={model.modules}
-              renderModules={page.renderModules}
-            />
-          )
-        })}
+        {_.map(pages, model => !model.removed && (
+          <Page
+            key={model.id}
+            model={model}
+            moduleIds={model.modules}
+          />
+        ))}
       </div>
     )
   }

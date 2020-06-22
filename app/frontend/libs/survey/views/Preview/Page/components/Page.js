@@ -86,7 +86,7 @@ class Page extends Component {
         <div className={this.getQuestionContainerClasses()}>
           {staticContent && <StaticContent />}
           <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
-            {!ignoreValidation && errors && this.renderErrors(page)}
+            {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
             <QuestionList readOnly={readOnly} page={page} questions={questions} />
           </div>
         </div>

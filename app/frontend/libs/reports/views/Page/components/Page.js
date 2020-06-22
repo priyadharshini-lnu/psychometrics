@@ -4,10 +4,12 @@ import { Modules } from 'rb/components/modules'
 import panelStore from 'rb/store/PropertyPanelStore'
 import ModuleModel from 'rb/models/Module'
 import RichEditorStore from 'rb/store/RichEditorStore'
+import PageModel from 'rb/models/Page'
 import styles from './Page.scss'
 import Header from './PageHeader'
 import Footer from './PageFooter'
 import DisplayLogic from './DisplayLogic/DisplayLogic'
+import Module from './Module'
 
 class Page extends Component {
   storeListener = null
@@ -18,24 +20,11 @@ class Page extends Component {
     renderModules: PropTypes.bool,
   }
 
-  componentDidMount () {
-    const { model: { modules } } = this.props
-    this.storeListener = modules.addListener('change', () => this.forceUpdate())
-  }
-
-  componentWillUnmount () {
-    this.storeListener.remove()
-  }
-
   renderModuleType = (module, i) => {
     const { model: page } = this.props
-    if (!module.type) { return null }
-    if (module.props.showOnAllPages) { return null }
-    const model = new ModuleModel(module, page)
-    const View = Modules[module.type]
 
     // NOTE: @fedor temporary kept update for connects
-    return !model.removed && <View key={i} module={model} page={page} update={{}} />
+    return <Module key={i} moduleId={module.id} page={page} />
   }
 
   renderShadowModule = (module, i) => {
@@ -55,9 +44,11 @@ class Page extends Component {
 
   render () {
     const {
-      report: { builder }, modules, model = {}, renderModules, showOnAllPages,
+      report, report: { builder }, modules, model = {}, showOnAllPages,
+      renderMoudles,
     } = this.props
     const selected = panelStore.model === model
+    const page = new PageModel(model, report.completed_assessments)
 
     const style = {
       ...builder.props.sizes,
@@ -69,10 +60,10 @@ class Page extends Component {
           style={{ width: builder.props.sizes.width }}
         >
           <Header {...this.props} />
-          {model.displayLogic && <DisplayLogic {...this.props} />}
+          {page.displayLogic && <DisplayLogic {...this.props} model={page} />}
           <div className={styles.pageContent} style={style}>
-            {renderModules && modules.map(this.renderModuleType)}
-            {renderModules && showOnAllPages.map(this.renderShadowModule)}
+            {renderMoudles && modules.map(this.renderModuleType)}
+            {renderMoudles && showOnAllPages.map(this.renderShadowModule)}
           </div>
         </div>
         <Footer {...this.props} />

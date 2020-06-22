@@ -2,10 +2,11 @@
 import React, { useRef, useState } from 'react'
 import './styles.scss'
 import HighlightList from 'libs/survey/views/Preview/StaticContent/HighlightList'
+import withCopyProtection from 'components/hocs/withCopyProtection'
 import connect from './connect'
 
 function Resource ({
-  resource, highlight, updateHighlight, translations,
+  resource, highlight, updateHighlight, translations, containerRef,
 }) {
   const contentRef = useRef(null)
   const [selection, setSelection] = useState(null)
@@ -18,7 +19,7 @@ function Resource ({
   }
 
   return (
-    <>
+    <div ref={containerRef} className="resource-content">
       <HighlightList
         highlight={highlight}
         contentRef={contentRef}
@@ -35,8 +36,8 @@ function Resource ({
           __html: _.get(translations, [resource.id, 'questionText']) || resource.props.questionText,
         }}
       />
-    </>
+    </div>
   )
 }
 
-export default connect(Resource)
+export default withCopyProtection(connect(Resource))

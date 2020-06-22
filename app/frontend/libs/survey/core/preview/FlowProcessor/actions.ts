@@ -16,6 +16,7 @@ import {
   MARK_QUESTION_IN_PROGRESS,
   REMOVE_QUESTION_IN_PROGRESS,
   CLEAR_IN_PROGRESS_QUESTION,
+  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
 } from './consts'
 import {
   NextPage, PrevPage, AddPrevPage, RemovePrevPage,
@@ -23,7 +24,7 @@ import {
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, ToggleHiddenQuestions,
   ToggleIgnoreValidation, Reset, SetLocalResults, SaveResults,
-  Highlight,
+  Highlight, QuestionError,
 } from './interfaces'
 import { getCurrentBlock } from './selectors'
 
@@ -63,6 +64,10 @@ export const showErrors = (errors): ShowErrors => ({ type: SHOW_ERRORS, errors }
 export const emptyErrors = (): EmptyErrors => ({ type: EMPTY_ERRORS })
 
 export const showPage = (page): ShowPage => ({ type: SHOW_PAGE, page })
+export const addQuestionError = (questionId: number, errors: QuestionError[]) => (
+  { type: ADD_QUESTION_ERROR, questionId, errors })
+
+export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
 export const showEnd = (): ShowEnd => ({ type: SHOW_END })
 
@@ -125,7 +130,7 @@ interface Opts {
 }
 
 export const updateHighlight = (highlight: Highlight, data: object, opts: Opts = {}) => (dispatch, getState) => {
-  const { preview, threeSixtyCampaign: { assign: { assessment }, evaluation } } = getState()
+  const { preview, preview: { dbResult: { assessment_id } } } = getState()
 
   const payload = {
     id: highlight.id, data, resourceType: highlight.resourceType, resourceId: highlight.resourceId,
@@ -147,7 +152,7 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
         data,
         resource_type: highlight.resourceType,
         resource_id: highlight.resourceId,
-        assessment_id: opts.assessmentId || assessment.id || evaluation.assessment.id,
+        assessment_id: opts.assessmentId || assessment_id,
       },
       decamelize: false,
     },

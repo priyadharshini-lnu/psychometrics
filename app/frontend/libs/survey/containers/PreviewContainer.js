@@ -8,6 +8,7 @@ import { setStore } from 'store/StoreWatchman'
 import 'styles/ant.less'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'libs/survey/core/preview/FlowProcessor/consts'
+import { ConfigProvider } from 'antd'
 import rstore from '../store'
 
 class PreviewContainer extends Component {
@@ -61,13 +62,20 @@ class PreviewContainer extends Component {
   }
 
   render () {
-    const Content = connect(({ preview }) => ({ type: preview.type }), {})(
-      ({ type }) => (
-        <div className="row">
-          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-          <AssessmentPreview />
-        </div>
-      ),
+    const Content = connect(({ preview: { type, dbResult } }) => ({ type, dbResult }), {})(
+      ({ type, dbResult }) => {
+        const direction = _.get(dbResult || {}, ['selected_locale', 'direction'], 'ltr')
+        return (
+          <ConfigProvider direction={direction}>
+            <div className={direction}>
+              <div className="row">
+                {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+                <AssessmentPreview />
+              </div>
+            </div>
+          </ConfigProvider>
+        )
+      },
     )
 
     return (
