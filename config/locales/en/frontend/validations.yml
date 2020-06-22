@@ -19,6 +19,7 @@ en:
     please_record_and_save_video_first: 'Please record and save the video before you continue'
     please_record_and_save_audio_first: 'Please record and save the audio before you continue'
     actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
+    blank: cant't be blank
     file_upload:
       required: 'Please upload the file'
       EntityTooLarge: 'File size should be less than %{maxFileSize} MB'

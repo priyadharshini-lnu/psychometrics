@@ -51,6 +51,9 @@ Rails.application.routes.draw do
     resources :projects do
       scope module: :projects do
         resources :new_campaigns do
+          collection do
+            get :templates_and_assessment
+          end
           member do
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
@@ -312,6 +315,7 @@ Rails.application.routes.draw do
         get :resources, to: 'assessments#show', constraints: { all: /.*/ }
         get :assessments
         get :questions
+        get :factors
       end
 
       scope module: 'assessments' do

@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
-                                        preview export toggle_archive questions]
+                                        preview export toggle_archive questions factors]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -128,6 +128,10 @@ class Administration::AssessmentsController < Administration::BaseController
         headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       end
     end
+  end
+
+  def factors
+    render json: resource.dimension.all_factors.as_json(only: %i[id name])
   end
 
   private

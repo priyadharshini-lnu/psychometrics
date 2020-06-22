@@ -20,7 +20,7 @@ describe Threesixty::Campaigns::Create do
       expect(Threesixty::Campaigns::CreateFromAssessmentAndReport).to receive(:call!).
         and_return(threesixty_campaign)
       form.assessment_id = create(:assessment).id
-      form.type = Threesixty::Campaign::PREVIOUS_360
+      form.threesixty_type = Threesixty::Campaign::PREVIOUS_360
 
       described_class.call!(project, form)
     end
@@ -30,7 +30,7 @@ describe Threesixty::Campaigns::Create do
       expect(Threesixty::Campaigns::CreateFromAssessmentAndReport).to receive(:call!).
         and_return(threesixty_campaign)
       form.campaign_template_id = create(:campaign_template).id
-      form.type = Threesixty::Campaign::STANDARD_360
+      form.threesixty_type = Threesixty::Campaign::STANDARD_360
 
       described_class.call!(project, form)
     end

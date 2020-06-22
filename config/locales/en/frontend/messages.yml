@@ -1,0 +1,5 @@
+en:
+  frontend:
+    campaign:
+      create_success: 'Campaign created successfully'
+      update_success: 'Campaign updated successfully'

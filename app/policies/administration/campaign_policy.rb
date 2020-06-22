@@ -73,6 +73,10 @@ module Administration
       view_additional_fields?
     end
 
+    def templates_and_assessment?
+      index?
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)

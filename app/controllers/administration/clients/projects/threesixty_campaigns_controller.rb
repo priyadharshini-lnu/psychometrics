@@ -38,6 +38,7 @@ module Administration
         def index
           @filter_term = params.dig(:q, :filterable_fields)
           @_filter_form = project.project_campaigns.
+                          where(type: 'threesixty').
                           includes(
                             :threesixty_campaign,
                             threesixty_campaign: %i[assessment report]
@@ -151,7 +152,8 @@ module Administration
         end
 
         def set_campaign_template_and_assessments
-          @assessments = project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
+          @assessments = project.project_campaigns.where(type: 'threesixty').
+                         map(&:threesixty_campaign).map(&:assessment)
           @campaign_templates = CampaignTemplate.all
         end
       end

@@ -5173,6 +5173,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "التسجيل",
         "submit": "Register",
         "tabs": {
@@ -5434,6 +5435,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "campaign": {
+      "create_success": "Campaign created successfully",
+      "update_success": "Campaign updated successfully"
     }
   },
   "helpers": {
@@ -6750,6 +6757,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "cant't be blank",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
@@ -11961,6 +11969,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "we need your current password to confirm your changes"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Sign up",
         "submit": "Register",
         "tabs": {
@@ -12218,6 +12227,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "campaign": {
+      "create_success": "Campaign created successfully",
+      "update_success": "Campaign updated successfully"
     }
   },
   "helpers": {
@@ -13531,6 +13546,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "cant't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
@@ -18742,6 +18758,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "kami memerlukan kata laluan anda yang kini untuk mengesahkan perubahan anda"
       },
       "new": {
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Daftar",
         "submit": "Register",
         "tabs": {
@@ -18999,6 +19016,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "campaign": {
+      "create_success": "Campaign created successfully",
+      "update_success": "Campaign updated successfully"
     }
   },
   "helpers": {
@@ -20312,6 +20335,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "cant't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",

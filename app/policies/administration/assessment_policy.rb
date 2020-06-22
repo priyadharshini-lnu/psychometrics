@@ -102,6 +102,10 @@ module Administration
         super
     end
 
+    def factors?
+      index?
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super

@@ -2,13 +2,23 @@ import React, { useEffect } from 'react'
 import {
   Dropdown, Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
 } from 'antd'
+import { Link } from 'react-router-dom'
 import withEnhancedTable from 'admin/core/hoc/withEnhancedTable'
 import { TableConfig } from 'admin/filterAndPagination/interfaces'
 import { EllipsisOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import { Campaign } from 'admin/campaigns/core/list'
+import Modals from 'admin/components/Modals/'
 import styles from './styles.scss'
+import CreateCampaignDropdown from './CreateCampaignDropdown'
+import CommonCampaignFormModal from '../CampaignList/CommonCampaignFormModal'
+import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
+
+const MODALS = {
+  CommonCampaignFormModal,
+  ThreesixtyCampaignFormModal,
+}
 
 const { Column } = Table
 const { Search } = Input
@@ -29,6 +39,7 @@ interface Props {
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
+  openModal(name: string, data?: { projectId: string, campaign: object }): void
 }
 
 const CampaignList: React.FC<Props> = ({
@@ -46,6 +57,7 @@ const CampaignList: React.FC<Props> = ({
   onTableChange,
   getSortOrder,
   changePage,
+  openModal,
 }) => {
   useEffect(() => {
     fetch(projectId, tableConfig)
@@ -72,7 +84,7 @@ const CampaignList: React.FC<Props> = ({
             onChange={handleStatusChange}
           >
             <Option value="All" key="All">All</Option>
-            {_.map(STATUSES, val => <Option value={val} key={val}>{_.capitalize(val)}</Option>)}
+            {_.map(STATUSES, (val: string) => <Option value={val} key={val}>{_.capitalize(val)}</Option>)}
           </Select>
           <Search
             placeholder="Search"
@@ -80,6 +92,9 @@ const CampaignList: React.FC<Props> = ({
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
+          <div className={styles.newCampaignButton}>
+            <CreateCampaignDropdown openModal={openModal} projectId={projectId} />
+          </div>
         </div>
       </Row>
       <Row>
@@ -94,10 +109,14 @@ const CampaignList: React.FC<Props> = ({
             />
             <Column
               title="Name"
-              dataIndex="name"
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
+              render={({ name, id }) => (
+                <Link to={`/administration/projects/${projectId}/new_campaigns/${id}`}>
+                  {name}
+                </Link>
+              )}
             />
             <Column
               title="Type"
@@ -117,9 +136,13 @@ const CampaignList: React.FC<Props> = ({
             <Column
               title="Action"
               key="action"
-              render={() => (
+              render={campaign => (
                 <Dropdown
-                  overlay={() => <ActionsMenu />}
+                  overlay={() => (
+                    <ActionsMenu
+                      onEdit={() => openModal('CommonCampaignFormModal', { projectId, campaign })}
+                    />
+                  )}
                   trigger={['click']}
                 >
                   <a>
@@ -140,6 +163,7 @@ const CampaignList: React.FC<Props> = ({
           hideOnSinglePage
         />
       </div>
+      <Modals modals={MODALS} />
     </div>
   )
 }
@@ -178,22 +202,28 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => (
   </>
 )
 
-const ActionsMenu: React.FC<{}> = () => {
-  const handleOnSelect = () => {}
-
-  return (
-    <Menu onSelect={handleOnSelect}>
-      <Menu.Item key="edit">
-        Edit
-      </Menu.Item>
-      <Menu.Item key="copy">
-        Copy
-      </Menu.Item>
-      <Menu.Item key="delete">
-        Delete
-      </Menu.Item>
-    </Menu>
-  )
+interface ActionMenuProps {
+  onEdit(): void
 }
+
+const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit }) => (
+  <Menu>
+    <Menu.Item key="edit">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={onEdit}
+      >
+          Edit
+      </div>
+    </Menu.Item>
+    <Menu.Item key="copy">
+        Copy
+    </Menu.Item>
+    <Menu.Item key="delete">
+        Delete
+    </Menu.Item>
+  </Menu>
+)
 
 export default withEnhancedTable(CampaignList, 'tableName', { maintainHistory: true })

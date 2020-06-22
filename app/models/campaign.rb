@@ -24,7 +24,7 @@ class Campaign < ApplicationRecord
   has_many :assessments, through: :campaigns_assessments
 
   delegate :client, to: :project
-  THREESIXTY = :threesixty
+  THREESIXTY = 'threesixty'
 
   enum type: %i[common threesixty]
   enum status: { active: 0, closed: 1 }
