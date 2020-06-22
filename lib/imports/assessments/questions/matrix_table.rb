@@ -30,7 +30,7 @@ module Imports
             factors_scoring = question.detect_specified_scoring.
                               each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale']; }
             data.each_with_index do |scales, choice|
-              next not_applicable[choice.to_s] = true if scales == '_NA_'
+              next not_applicable[choice.to_s] = true if scales == '_NA_' || question.props['notApplicableLabel']
 
               scales.to_s.split(',').each do |scale|
                 answers << {

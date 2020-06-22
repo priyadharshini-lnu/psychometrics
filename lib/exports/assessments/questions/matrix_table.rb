@@ -37,13 +37,17 @@ module Exports
                                  question.props.dig('scalePointsTexts', a['scale'])
                                end.join(',')
             end
-            add_not_applicable_result(parsed_result, not_applicable)
+            add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
           end
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
-        def self.add_not_applicable_result(parsed_result, not_applicable)
-          parsed_result[not_applicable.keys[0].to_i] = '_NA_' if not_applicable
+        def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
+          if not_applicable && export_with_labels
+            parsed_result[not_applicable.keys[0].to_i] = question.props['notApplicableLabel']
+          elsif not_applicable
+            parsed_result[not_applicable.keys[0].to_i] = '_NA_'
+          end
           parsed_result
         end
 
