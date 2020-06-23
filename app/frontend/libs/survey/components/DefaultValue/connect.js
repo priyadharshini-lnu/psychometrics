@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/temp/modals'
 import { selectQuestion } from 'core/builder/assessment/question/selectors'
 import QuestionSerializer from 'models/QuestionSerializer'
 

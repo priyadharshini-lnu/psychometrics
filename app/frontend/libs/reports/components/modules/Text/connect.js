@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/temp/modals'
 import { openRichEditor, closeRichEditor } from 'libs/reports/core/builder/actions'
 import { getQuestions } from 'libs/reports/core/builder/selectors'
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import PropertyPanel from 'libs/survey/views/PropertyPanel/components/PropertyPanel'
 import { changeType, addSkipLogic, addNote } from 'libs/survey/core/builder/assessment/question/actions'
-import { openModal } from 'admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/temp/modals'
 
 export default connect(
   ({ survey }) => ({

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/temp/modals'
 import { allQuestions } from 'core/builder/assessment/selectors'
 import { removeNormRule } from 'libs/survey/core/builder/assessment/actions'
 

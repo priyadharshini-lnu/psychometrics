@@ -1,4 +1,4 @@
-import admin from 'admin/modules'
+import admin from 'modules/admin/modules'
 
 export default {
   admin,

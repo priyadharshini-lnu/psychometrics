@@ -1,4 +1,4 @@
-import modals from 'admin/core/temp/modals'
+import modals from 'modules/admin/core/temp/modals'
 import colorPicker from './colorPicker'
 import socket from './socket'
 

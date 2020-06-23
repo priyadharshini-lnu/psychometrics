@@ -27,7 +27,7 @@
       ]
     },
     "typeRoots": [
-      "app/frontend/type_definitions",
+      "app/frontend/typings",
       "./node_modules/@types"
     ]
   },

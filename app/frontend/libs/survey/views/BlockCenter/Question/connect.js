@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { selectQuestion, unselectQuestion } from 'libs/survey/core/builder/assessment/actions'
-import { openModal } from 'admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/temp/modals'
 import { moduleConfig } from 'libs/survey/core/builder/assessment/question/selectors'
 import {
   addSkipLogic, renameQuestion, saveAsTemplate, unlinkTemplate, addComment, addNote, removeComment,
