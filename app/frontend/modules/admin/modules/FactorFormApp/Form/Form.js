@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {
   Form as AntForm, Checkbox,
 } from 'antd'
-import BaseForm from 'modules/admin/sharedComponents/Form'
+import BaseForm from 'modules/admin/components/Form'
 import HiddenInputList from './HiddenInputList'
 import SubFactorList from './SubFactorList'
 import FIELDS from './fields'
