@@ -5,8 +5,8 @@ import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
-import rootSagas from '../rootSagas'
-import rootReducers from '../rootReducers'
+import rootSagas from '../core/rootSagas'
+import rootReducers from '../core/rootReducers'
 
 export const history = createBrowserHistory()
 

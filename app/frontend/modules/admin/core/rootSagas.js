@@ -1,0 +1,27 @@
+import { all } from 'redux-saga/effects'
+import filterAndPaginationWatcher from 'modules/admin/filterAndPagination/watchers'
+import { watchers as subjects } from '../modules/threeSixtyCampaign/core/subjects'
+import { watchers as evaluators } from '../modules/threeSixtyCampaign/core/evaluators'
+import participantOptions from '../modules/threeSixtyCampaign/core/participantOptions/watchers'
+import reportOptions from '../modules/threeSixtyCampaign/core/reportOptions/watchers'
+import { watchers as threeSixtyCampaign } from '../modules/threeSixtyCampaign/core'
+import { watchers as subjectImportWatcher } from '../modules/threeSixtyCampaign/core/subjects/import'
+import { watchers as messageOptionWatchers } from '../modules/threeSixtyCampaign/core/messageOptions'
+import { watchers as emailScheduleWatchers } from '../modules/threeSixtyCampaign/core/emailSchedules'
+// eslint-disable-next-line max-len
+import { watchers as recipientCriteriaWatchers } from '../modules/threeSixtyCampaign/core/emailSchedules/recipientCriteria'
+
+export default function* () {
+  yield all([
+    ...subjects,
+    ...subjectImportWatcher,
+    ...evaluators,
+    ...participantOptions,
+    ...reportOptions,
+    ...threeSixtyCampaign,
+    ...messageOptionWatchers,
+    ...emailScheduleWatchers,
+    ...recipientCriteriaWatchers,
+    ...filterAndPaginationWatcher,
+  ])
+}

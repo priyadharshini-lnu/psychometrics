@@ -1,0 +1,24 @@
+import { connect } from 'react-redux'
+import { fetchManagers } from 'modules/admin/modules/threeSixtyCampaign/core/managers'
+import { openModal } from 'modules/admin/core/temp/modals'
+import routeUtils from 'utils/routeUtils'
+import { removeUser } from 'modules/admin/modules/threeSixtyCampaign/core'
+import {
+  edit as editUser,
+} from 'modules/admin/modules/threeSixtyCampaign/core/users'
+
+export default connect(
+  ({
+    threeSixtyCampaign: {
+      managers: { list, total },
+    },
+  }) => ({
+    managers: list, total, page: routeUtils.getPage(), searchTerm: routeUtils.getSearchTerm(),
+  }),
+  dispatch => ({
+    fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),
+    openModal: (name, data) => dispatch(openModal(name, data)),
+    editUser: user => dispatch(editUser(user)),
+    removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
+  }),
+)
