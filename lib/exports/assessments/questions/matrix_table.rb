@@ -13,33 +13,48 @@ module Exports
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
           if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
-            question.props['choices'].to_i.times do |choice|
-              question.props['scalePoints'].to_i.times do |scale|
-                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
-                                 try(:[], 'value')
-              end
-            end
+            multi_scale_answers(answers, question, export_with_labels, not_applicable)
           else
-            # Create hash for scoring
-            # hash['1-2'] = 100
-            # Where 1 - choice, 2 - scale, 100 - scoring value
-            factors_scoring = question.detect_specified_scoring.
-                              each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value']; }
-
-            question.props['choices'].to_i.times do |choice|
-              parsed_result << (answers || []).
-                               select { |a| a['choice'] == choice && a['value'] == true }.
-                               map do |a|
-                                 next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
-
-                                 next a['scale'] + 1 unless export_with_labels
-
-                                 question.props.dig('scalePointsTexts', a['scale'])
-                               end.join(',')
-            end
-            add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
+            single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
           end
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
+        end
+
+        def self.single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
+          # Create hash for scoring
+          # hash['1-2'] = 100
+          # Where 1 - choice, 2 - scale, 100 - scoring value
+
+          factors_scoring = question.detect_specified_scoring.
+                            each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value']; }
+
+          question.props['choices'].to_i.times do |choice|
+            parsed_result << (answers || []).
+                             select { |a| a['choice'] == choice && a['value'] == true }.
+                             map do |a|
+                               next factors_scoring["#{a['choice']}-#{a['scale']}"] if scoring
+
+                               next a['scale'] + 1 unless export_with_labels
+
+                               question.props.dig('scalePointsTexts', a['scale'])
+                             end.join(',')
+          end
+          add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
+        end
+
+        def self.multi_scale_answers(answers, question, export_with_labels, not_applicable)
+          question.props['choices'].to_i.times do |choice|
+            question.props['scalePoints'].to_i.times do |scale|
+              parsed_result << if not_applicable && not_applicable.keys[0].to_i == choice && export_with_labels
+                                 question.props['notApplicableLabel']
+                               elsif not_applicable && not_applicable.keys[0].to_i == choice
+                                 '_NA_'
+                               else
+                                 (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
+                               try(:[], 'value')
+                               end
+            end
+          end
         end
 
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)

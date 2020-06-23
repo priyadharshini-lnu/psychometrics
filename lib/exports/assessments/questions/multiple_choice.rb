@@ -11,7 +11,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [1]
-        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           if answers.present?

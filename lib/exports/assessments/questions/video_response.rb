@@ -4,7 +4,7 @@ module Exports
   module Assessments
     module Questions
       class VideoResponse < Base
-        def self.result(answers, question, _scoring = false, _export_with_labels = false)
+        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
           if answers.present?
             answers = video_response_answers(answers)
             Utility::Array.ensure_size(answers, question_header_size(question))

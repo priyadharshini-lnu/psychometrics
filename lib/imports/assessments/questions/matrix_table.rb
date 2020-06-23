@@ -15,12 +15,17 @@ module Imports
             index = 0
             question.props['choices'].to_i.times do |choice|
               question.props['scalePoints'].to_i.times do |scale|
-                answers << {
-                  scale: scale,
-                  value: data[index],
-                  choice: choice
-                }
-                index += 1
+                if not_applicable_data?(question, data[index])
+                  index += 1
+                  next not_applicable[choice.to_s] = true
+                else
+                  answers << {
+                    scale: scale,
+                    value: data[index],
+                    choice: choice
+                  }
+                  index += 1
+                end
               end
             end
           else
@@ -30,7 +35,7 @@ module Imports
             factors_scoring = question.detect_specified_scoring.
                               each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['value']}"] = s['scale']; }
             data.each_with_index do |scales, choice|
-              next not_applicable[choice.to_s] = true if scales == '_NA_' || question.props['notApplicableLabel']
+              next not_applicable[choice.to_s] = true if not_applicable_data?(question, scales)
 
               scales.to_s.split(',').each do |scale|
                 answers << {
@@ -47,6 +52,10 @@ module Imports
             question_id: question.id,
             not_applicable: not_applicable
           }
+        end
+
+        def self.not_applicable_data?(question, value)
+          ['_NA_', question.props['notApplicableLabel']].include?(value)
         end
       end
     end
