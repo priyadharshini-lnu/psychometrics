@@ -89,7 +89,7 @@ const CheckingWizard: React.FC<Props> = ({
     }
   }
 
-  const CurrentCheck = getSteps()[current].component
+  const CurrentCheck = getSteps()[current]?.component
 
   const getHeaderClassNames = () => {
     const steps = getSteps()
@@ -121,7 +121,7 @@ const CheckingWizard: React.FC<Props> = ({
           <Row justify="center">
             <Col xs={24} xl={20}>
               <Row gutter={12} className="m16">
-                <CurrentCheck nextStep={nextStep} config={config} />
+                {CurrentCheck && <CurrentCheck nextStep={nextStep} config={config} />}
               </Row>
             </Col>
 

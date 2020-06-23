@@ -25,7 +25,7 @@ export const updateAccess = (status: CheckListStatus): AppActions => ({
 
 export const updateFaceDetection = (status: CheckListStatus): AppActions => ({
   type: UPDATE_FACE_DETECTION,
-  payload: { status1: status },
+  payload: { status },
 })
 export const failFaceDetectionByTimeout = (): AppActions => ({
   type: FACE_DETECTION_FAILED_BY_TIMEOUT,
@@ -44,7 +44,7 @@ interface FailFaceDetectionByTimeout {
 interface UpdateFaceDetectionAction {
   type: typeof UPDATE_FACE_DETECTION
   payload: {
-    status1: CheckListStatus
+    status: CheckListStatus
   }
 }
 
@@ -52,9 +52,9 @@ type AppActions = UpdateAccessAction | UpdateFaceDetectionAction | FailFaceDetec
 
 const HANDLERS = {
   [UPDATE_ACCESS]: (state: State, { payload: { status } }: UpdateAccessAction): State => ({ ...state, access: status }),
-  [UPDATE_FACE_DETECTION]: (state: State, { payload: { status1 } }: UpdateFaceDetectionAction): State => ({
+  [UPDATE_FACE_DETECTION]: (state: State, { payload: { status } }: UpdateFaceDetectionAction): State => ({
     ...state,
-    faceDetection: status1,
+    faceDetection: status,
   }),
   [FACE_DETECTION_FAILED_BY_TIMEOUT]: (state: State): State => {
     if (state.faceDetection === CheckListStatus.InProgress) return { ...state, faceDetection: CheckListStatus.Failed }

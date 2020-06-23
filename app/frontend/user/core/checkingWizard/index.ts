@@ -4,6 +4,7 @@ import { Config, Checks } from './interfaces'
 interface State {
  checks: Checks
  config: Config
+ preSignedUrl: string | null
 }
 
 export const defaultState: State = {
@@ -19,9 +20,11 @@ export const defaultState: State = {
     },
     speedOfMeApiToken: '',
   },
+  preSignedUrl: null,
 }
 
 export const FETCH = 'temp/checkingWizard/FETCH'
+export const PRE_SIGN_URL = 'temp/checkingWizard/PRE_SIGN_URL'
 
 export const fetch = (assessmentId: number, id: number) => ({
   type: FETCH,
@@ -32,9 +35,19 @@ export const fetch = (assessmentId: number, id: number) => ({
     },
 })
 
+export const preSignUrl = () => ({
+  type: PRE_SIGN_URL,
+  request:
+    {
+      method: 'get',
+      url: '/transcribe/pre_sign_url',
+    },
+})
+
 
 const HANDLERS = {
   [FETCH]: (state: State, { response }) => ({ ...state, ...response }),
+  [PRE_SIGN_URL]: (state: State, { response: { url } }) => ({ ...state, preSignedUrl: url }),
 }
 
 

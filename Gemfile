@@ -121,6 +121,7 @@ gem 'baby_squeel', '~> 1.3.1'
 gem 'deep_cloneable', '~> 2.4.0'
 
 gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sigv4', '~> 1'
 gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'carrierwave_direct'

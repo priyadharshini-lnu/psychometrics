@@ -108,7 +108,7 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
               </ColoredButton>
               )}
               {state.access === CheckListStatus.Failed && (
-              <ColoredButton type="primary" className={styles.allowButton} color="green" onClick={requestAccess}>
+              <ColoredButton type="primary" className={styles.allowButton} color="green">
                 <a
                   href={`https://www.google.com/search?q=allow+camera+and+microphone+access+on+${browserName}`}
                   target="_blank"

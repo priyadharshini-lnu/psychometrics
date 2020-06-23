@@ -590,6 +590,7 @@ Rails.application.routes.draw do
     end
 
     resources :highlights, only: %i[update]
+    get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
     scope module: :threesixty do
       resources :campaigns, only: %i[show index] do

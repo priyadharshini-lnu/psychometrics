@@ -96,14 +96,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -673,14 +674,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -1247,14 +1249,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
