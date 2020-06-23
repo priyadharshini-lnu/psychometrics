@@ -1,0 +1,42 @@
+import { connect } from 'react-redux'
+import {
+  fetchNomination,
+  removeNomination,
+  addNomination,
+  updateForm,
+  updateStatus,
+  showForm,
+  hideForm,
+  requestApproval,
+  sendEvaluatorReminder,
+  updateAllNominationStatus,
+} from 'modules/user/modules/threesixtyCampaign/core/nomination'
+import { searchEvaluators } from 'modules/user/core/temp/autocomplete'
+import {
+  requirementsSelector,
+  allowedRelationshipsForNewNominations,
+} from 'modules/user/modules/threesixtyCampaign/core/nomination/selectors'
+
+const mapStateToProps = state => ({
+  nomination: state.threeSixtyCampaign.nomination,
+  instructions: state.threeSixtyCampaign.nomination.instructions,
+  requirements: requirementsSelector(state.threeSixtyCampaign),
+  autocomplete: state.threeSixtyCampaign.temp.autocomplete,
+  allowedRelationshipsForNewNominations: allowedRelationshipsForNewNominations(state.threeSixtyCampaign),
+})
+
+const mapDispatchToProps = {
+  fetchNomination,
+  removeNomination,
+  addNomination,
+  searchEvaluators,
+  updateForm,
+  updateStatus,
+  showForm,
+  hideForm,
+  requestApproval,
+  sendEvaluatorReminder,
+  updateAllNominationStatus,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)

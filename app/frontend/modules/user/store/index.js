@@ -4,8 +4,8 @@ import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
-import rootReducers from '../rootReducers'
-import rootSagas from '../rootSagas'
+import rootReducers from '../core/rootReducers'
+import rootSagas from '../core/rootSagas'
 
 const sagaMiddleware = createSagaMiddleware()
 

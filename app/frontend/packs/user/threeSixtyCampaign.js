@@ -1,4 +1,4 @@
-import ThreesixtyCampaign from 'modules/user/core/ThreesixtyCampaign/components/App'
+import ThreesixtyCampaign from 'modules/user/modules/threesixtyCampaign/App'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import 'modules/user/styles/ant.less'
