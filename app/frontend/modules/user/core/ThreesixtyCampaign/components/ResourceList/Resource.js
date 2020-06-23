@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
 import './styles.scss'
-import HighlightList from 'libs/survey/views/Preview/StaticContent/HighlightList'
+import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
 import withCopyProtection from 'components/hocs/withCopyProtection'
 import connect from './connect'
 

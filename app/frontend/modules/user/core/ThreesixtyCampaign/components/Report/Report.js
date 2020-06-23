@@ -6,7 +6,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
-import ReportPreview from 'libs/reports/report'
+import ReportPreview from 'modules/reports/report'
 
 const { Title } = Typography
 const { Content } = Layout

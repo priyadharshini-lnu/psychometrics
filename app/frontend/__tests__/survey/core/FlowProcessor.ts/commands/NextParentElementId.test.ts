@@ -1,4 +1,4 @@
-import GetNextParentElementId from 'libs/survey/core/preview/FlowProcessor/commands/GetNextParentElementId'
+import GetNextParentElementId from 'modules/survey/core/preview/FlowProcessor/commands/GetNextParentElementId'
 
 test('next parent element should return valid id', () => {
   expect(GetNextParentElementId.run('0/0/0')).toStrictEqual('0/1')

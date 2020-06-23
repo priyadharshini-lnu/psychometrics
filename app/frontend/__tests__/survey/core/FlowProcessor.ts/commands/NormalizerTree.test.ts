@@ -1,5 +1,5 @@
 
-import NormalizeTree from 'libs/survey/core/preview/FlowProcessor/commands/NormalizeTree'
+import NormalizeTree from 'modules/survey/core/preview/FlowProcessor/commands/NormalizeTree'
 
 test('normalize empty tree to empty list', () => {
   const tree = []

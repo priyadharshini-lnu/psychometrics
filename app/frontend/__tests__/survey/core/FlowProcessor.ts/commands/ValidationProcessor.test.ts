@@ -1,7 +1,7 @@
-import ValidationProcessor from 'libs/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
-import DefaultProps from 'libs/survey/constants/DefaultProps'
+import ValidationProcessor from 'modules/survey/core/preview/FlowProcessor/commands/ValidationProcessor'
+import DefaultProps from 'modules/survey/constants/DefaultProps'
 
-jest.mock('libs/survey/store/StoreWatchman', () => {
+jest.mock('modules/survey/store/StoreWatchman', () => {
   return {
     I18n: () => ({
       t: (t) => t,

@@ -3,7 +3,7 @@ import logger from 'redux-logger'
 import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
-import flowMiddleware from 'libs/survey/core/preview/FlowProcessor/middleware'
+import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
 import rootReducers from '../rootReducers'
 import rootSagas from '../rootSagas'
 

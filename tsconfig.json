@@ -23,7 +23,7 @@
     "paths": {
       "*": [
         "app/frontend/*",
-        "app/frontend/libs/survey*"
+        "app/frontend/modules/survey*"
       ]
     },
     "typeRoots": [
@@ -39,7 +39,7 @@
   ],
   "include": [
     "app/frontend",
-    "app/frontend/libs/survey",
+    "app/frontend/modules/survey",
   ],
   "compileOnSave":false
 }

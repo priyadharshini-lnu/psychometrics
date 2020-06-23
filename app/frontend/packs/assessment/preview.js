@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import PreviewAssessment from 'libs/survey/containers/PreviewContainer'
+import PreviewAssessment from 'modules/survey/containers/PreviewContainer'
 
 const ID = window.assessmentPreviewDomElementId || 'psychometrics_preview'
 ReactDOM.render(<PreviewAssessment />, document.getElementById(ID))
