@@ -11,9 +11,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [1, ...]
-        def self.result(results, question, _scoring = false, _export_with_labels = false)
-          answers = results[question.id.to_s].try(:[], 'answers')
-
+        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
           increase = %w[TextBox].include?(question.props['type']) ? 0 : 1
           answers = (answers || []).sort_by { |a| a['index'] }.map do |a|
             a['value'].is_a?(Numeric) ? a['value'] + increase : ''

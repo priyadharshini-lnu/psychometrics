@@ -11,8 +11,7 @@ module Exports
         #   }]
         # TO
         #   ['Like or On/Dislike/Neutral or OFF']
-        def self.result(results, question, _scoring = false, _export_with_labels = false)
-          answers = results[question.id.to_s].try(:[], 'answers')
+        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
           parsed_result = []
           question.props['regions'].size.times do |r|
             answer = (answers || []).detect { |a| a['region'] == r }

@@ -5,18 +5,13 @@ module Exports
     module Questions
       class MatrixTable < Base
         # Parse RESULT data for XLSX
-
-        # IF: answer can contain any data (string, number and etc.)
-        # THEN: we collect results for each choiceID and scaleID
-        # =>    example: [1,2,3,4]
-        # ELSE: we collect results grouped by choiceID and joined ','
-        # =>    example: ['1,2', '3,4']
-        def self.result(results, question, scoring = false, export_with_labels = false)
-          answers = results[question.id.to_s].try(:[], 'answers')
-          not_applicable = results[question.id.to_s].try(:[], 'not_applicable')
-
+        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
           parsed_result = []
-
+          # IF: answer can contain any data (string, number and etc.)
+          # THEN: we collect results for each choiceID and scaleID
+          # =>    example: [1,2,3,4]
+          # ELSE: we collect results grouped by choiceID and joined ','
+          # =>    example: ['1,2', '3,4']
           if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
             multi_scale_answers(answers, question, export_with_labels, not_applicable)
           else
