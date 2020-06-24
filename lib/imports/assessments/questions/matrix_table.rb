@@ -10,7 +10,7 @@ module Imports
 
           answers = []
           not_applicable = {}
-          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
+          if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
             answers = []
             index = 0
             question.props['choices'].to_i.times do |choice|

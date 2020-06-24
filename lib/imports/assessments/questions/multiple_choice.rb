@@ -21,7 +21,7 @@ module Imports
           not_applicable = false
 
           data.each do |values|
-            next not_applicable = true if values == '_NA_'
+            next not_applicable = true if not_applicable_data?(question, values)
 
             values.to_s.split(',').each do |index|
               answers << {
@@ -36,6 +36,10 @@ module Imports
             question_id: question.id,
             not_applicable: not_applicable
           }
+        end
+
+        def self.not_applicable_data?(question, value)
+          ['_NA_', question.props['notApplicableLabel']].include?(value)
         end
       end
     end

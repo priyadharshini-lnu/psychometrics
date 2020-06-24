@@ -22,6 +22,8 @@ module Exports
 
               question.props.dig('choicesTexts', answer['index'])
             end.join(',')
+          elsif not_applicable && export_with_labels
+            question.props['notApplicableLabel']
           elsif not_applicable
             '_NA_'
           end

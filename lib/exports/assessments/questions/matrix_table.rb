@@ -6,17 +6,17 @@ module Exports
       class MatrixTable < Base
         # Parse RESULT data for XLSX
         def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
-          parsed_result = []
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
           # =>    example: [1,2,3,4]
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
-          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
-            multi_scale_answers(answers, question, export_with_labels, not_applicable)
-          else
-            single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
-          end
+
+          parsed_result = if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
+                            multi_scale_answers(answers, question, export_with_labels, not_applicable)
+                          else
+                            single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
+                          end
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -24,7 +24,7 @@ module Exports
           # Create hash for scoring
           # hash['1-2'] = 100
           # Where 1 - choice, 2 - scale, 100 - scoring value
-
+          parsed_result = []
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum["#{s['choice']}-#{s['scale']}"] = s['value']; }
 
@@ -43,6 +43,7 @@ module Exports
         end
 
         def self.multi_scale_answers(answers, question, export_with_labels, not_applicable)
+          parsed_result = []
           question.props['choices'].to_i.times do |choice|
             question.props['scalePoints'].to_i.times do |scale|
               parsed_result << if not_applicable && not_applicable.keys[0].to_i == choice && export_with_labels
@@ -55,6 +56,7 @@ module Exports
                                end
             end
           end
+          parsed_result
         end
 
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
@@ -69,7 +71,7 @@ module Exports
         def self.question_id_and_choice_headers(question)
           question_id_header = []
           question_choices_header = []
-          if %w[RankOrder ConstantSum TextEntry].include?(question.props['type'])
+          if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
             question.props['choices'].to_i.times do |c|
               question.props['scalePoints'].to_i.times do |s|
                 question_id_header << "QID#{question.id}_#{c + 1}_#{s + 1}"
