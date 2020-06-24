@@ -17,7 +17,7 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
-        def self.result(answers, question, scoring = false, export_with_labels = false, _not_applicable)
+        def self.result(results, question, scoring = false, export_with_labels = false)
           parsed_result = []
           # Create hash for scoring
           # hash['1-2-3'] = 100
@@ -31,7 +31,9 @@ module Exports
           end
           question.props['scalePoints'].to_i.times do |scale|
             question.props['choices'].to_i.times do |choice|
-              values = (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
+              values = (results[question.id.to_s].try(:[], 'answers') || []).
+                       detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
+
               column_data = question.props['columnsData'][scale]
               parsed_result << '' && next unless values
 

@@ -4,8 +4,8 @@ module Exports
   module Assessments
     module Questions
       class AudioResponse < Base
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
-          if answers.present?
+        def self.result(results, question, _scoring = false, _export_with_labels = false)
+          if (answers = results[question.id.to_s].try(:[], 'answers').presence)
             answers = audio_response_answers(answers[0])
             Utility::Array.ensure_size(answers, question_header_size(question))
           end

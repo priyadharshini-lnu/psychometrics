@@ -11,7 +11,9 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(answers, question, scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(results, question, scoring = false, _export_with_labels = false)
+          answers = results[question.id.to_s].try(:[], 'answers')
+
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           required_size = question.props['choices'].to_i

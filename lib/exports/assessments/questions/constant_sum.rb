@@ -11,8 +11,8 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
-          answers = (answers || []).map { |a| a['value'] }
+        def self.result(results, question, _scoring = false, _export_with_labels = false)
+          answers = (results[question.id.to_s].try(:[], 'answers') || []).map { |a| a['value'] }
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 

@@ -13,7 +13,9 @@ module Exports
         # TO:
         #      G1         G2      Groups items rank
         #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
-        def self.result(answers, question, scoring = false, export_with_labels = false, _not_applicable)
+        def self.result(results, question, scoring = false, export_with_labels = false)
+          answers = results[question.id.to_s].try(:[], 'answers')
+
           parsed_result = []
 
           factors_scoring = question.detect_specified_scoring.

@@ -7,7 +7,9 @@ module Exports
         FIELDS = %w[browser version os screen java flash userAgent].freeze
 
         # Parse RESULT data for XLSX
-        def self.result(answers, _question, _scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(results, _question, _scoring = false, _export_with_labels = false)
+          answers = results[question.id.to_s].try(:[], 'answers')
+
           FIELDS.map { |field| answers.try(:[], field) unless answers.blank? }
         end
 

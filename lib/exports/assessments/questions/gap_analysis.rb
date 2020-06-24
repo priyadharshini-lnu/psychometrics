@@ -12,8 +12,8 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
-          answers = (answers || []).map do |answer|
+        def self.result(results, question, _scoring = false, _export_with_labels = false)
+          answers = (results[question.id.to_s].try(:[], 'answers') || []).map do |answer|
             [
               (answer['scale'] + 1),
               answer['values'].map { |v| v + 1 }.join(',')
