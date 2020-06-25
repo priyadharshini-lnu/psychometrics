@@ -1,7 +1,7 @@
 import React from 'react'
 import { Dropdown, Table } from 'antd'
 import { CheckOutlined, EllipsisOutlined } from '@ant-design/icons'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import ActionsMenu from '../ActionsMenu'
 import styles from './EvaluatorTable.scss'
 

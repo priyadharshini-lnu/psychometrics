@@ -8,7 +8,7 @@ import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'

@@ -1,4 +1,4 @@
-import withSkeleton from 'modules/admin/core/hoc/withSkeleton'
+import withSkeleton from 'modules/admin/hoc/withSkeleton'
 import RecipientCriteriaList from './RecipientCriteriaList'
 import connect from './connect'
 

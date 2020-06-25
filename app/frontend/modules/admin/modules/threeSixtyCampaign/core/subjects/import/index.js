@@ -2,13 +2,15 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
 import { message } from 'antd'
 import _ from 'lodash'
-import { closeModal } from 'modules/admin/core/temp/modals'
+import { closeModal } from 'modules/admin/core/ui/modals'
 import { genFetchSubjects } from '../index'
 
 export const IMPORT = 'threeSixty/subjects/IMPORT'
 export const IMPORT_FAILURE = 'threeSixty/subjects/IMPORT_FAILURE'
 export const IMPORT_SUCCESS = 'threeSixty/subjects/IMPORT_SUCCESS'
 export const CLEAR_IMPORT_DATA = 'threeSixty/subjects/CLEAR_IMPORT_DATA'
+
+export const get = state => _.get(state, ['threeSixtyCampaign', 'subjects', 'import'])
 
 export const importFile = (campaignId, data) => ({
   type: IMPORT,

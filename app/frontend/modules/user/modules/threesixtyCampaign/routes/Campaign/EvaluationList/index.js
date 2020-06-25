@@ -7,7 +7,7 @@ import {
 import {
   CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import { STATUSES } from 'constants/userResult'
 import connect from './connect'
 import styles from './styles.scss'

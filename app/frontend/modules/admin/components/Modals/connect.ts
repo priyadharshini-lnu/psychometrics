@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getCurrent, getData, closeModal } from 'modules/admin/core/temp/modals'
+import { getCurrent, getData, closeModal } from 'modules/admin/core/ui/modals'
 
 export default connect(
   state => ({

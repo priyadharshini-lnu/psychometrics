@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'modules/admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/ui/modals'
 import { saveDisplayLogic } from 'modules/survey/core/builder/assessment/question/actions'
 import LogicModel from 'modules/survey/models/logic/LogicElement'
 

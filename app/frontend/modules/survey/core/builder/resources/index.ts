@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import {
   select, takeEvery, put,

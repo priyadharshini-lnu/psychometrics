@@ -1,6 +1,6 @@
 import React from 'react'
 import { Switch } from 'antd'
-import { CATEGORIES } from 'constants/emailTemplate'
+import { CATEGORIES } from 'modules/admin/constants/emailTemplate'
 import styles from './styles.scss'
 import ReminderRules from './ReminderRules'
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { selectBlock, questionsWithoutDeleted } from 'modules/survey/core/builder/assessment/selectors'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import { renameBlock } from 'modules/survey/core/builder/assessment/block/actions'
 import BlockSerializer from 'modules/survey/models/BlockSerializer'
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { SELF_EVALUATIONS_VALUES } from 'constants/emailCriteria'
+import { SELF_EVALUATIONS_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function SelfEvaluation ({ value, update, merge }) {
   useEffect(() => {

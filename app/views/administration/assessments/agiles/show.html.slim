@@ -1,10 +1,9 @@
 = javascript_pack_tag 'vendors'
-= javascript_pack_tag 'admin/miniApps'
-= stylesheet_pack_tag 'admin/miniApps'
+= stylesheet_pack_tag 'admin/agileConfigBuilder'
 
-div style="background-color: white; margin: 5px 10px"
-  = react_component('AgileConfigBuilder',
-      { assessmentId: resource.id, config: resource.agile_config, translations: resource.agile_translations })
+div style="background-color: white; margin: 5px 10px" id='agile-config-builder'
 
 javascript:
-  window.reactRails.mountComponents('admin', 'AgileConfigBuilder')
+  window.__PROPS__ = #{{ assessmentId: resource.id, config: resource.agile_config, translations: resource.agile_translations }.to_json.html_safe}
+
+= javascript_pack_tag 'admin/agileConfigBuilder'

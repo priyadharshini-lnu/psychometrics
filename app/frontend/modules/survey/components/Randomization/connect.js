@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'modules/admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/ui/modals'
 import { selectQuestion } from 'core/builder/assessment/question/selectors'
 import { selectBlock } from 'core/builder/assessment/selectors'
 import { updateBlockProps } from 'core/builder/assessment/block/actions'

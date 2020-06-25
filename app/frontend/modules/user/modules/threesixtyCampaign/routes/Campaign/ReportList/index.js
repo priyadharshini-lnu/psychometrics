@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import ConfirmationModal from 'components/ConfirmationModal'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import connect from './connect'
 import './styles.scss'
 

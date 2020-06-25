@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select, DatePicker } from 'antd'
-import { INVITATION_VALUES } from 'constants/emailCriteria'
+import { INVITATION_VALUES } from 'modules/admin/constants/emailCriteria'
 import styles from './styles.scss'
 
 export default function Invitation ({

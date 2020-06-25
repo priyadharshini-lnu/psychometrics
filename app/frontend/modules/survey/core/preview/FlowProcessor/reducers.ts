@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { normalize } from 'normalizr'
 import { setIn, updateIn } from 'utils/immutable'
 import InitPages from './commands/InitPages'

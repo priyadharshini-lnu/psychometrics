@@ -2,7 +2,7 @@ import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import React, { useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import styles from './styles.scss'
 import settings from '../../../../settings'
 

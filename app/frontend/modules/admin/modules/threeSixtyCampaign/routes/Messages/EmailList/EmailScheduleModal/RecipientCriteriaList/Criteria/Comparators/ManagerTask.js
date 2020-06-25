@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { MANAGER_TASK_VALUES } from 'constants/emailCriteria'
+import { MANAGER_TASK_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function ManagerTask ({ value, update, merge }) {
   useEffect(() => {

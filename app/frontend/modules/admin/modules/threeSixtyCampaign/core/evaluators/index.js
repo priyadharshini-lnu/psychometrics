@@ -1,6 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
-import { closeModal } from 'modules/admin/core/temp/modals'
+import { closeModal } from 'modules/admin/core/ui/modals'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'
@@ -8,6 +8,9 @@ export const CREATE_ALL_EVALUATORS_FAILURE = 'threeSixty/evaluators/CREATE_ALL_E
 const FILL_EVALUATORS = 'threeSixty/evaluators/FILL_EVALUATORS'
 const FETCH_EVALUATORS = 'threeSixty/evaluators/FETCH_EVALUATORS'
 export const IMPORT = 'threeSixty/evaluators/IMPORT'
+
+export const get = state => _.get(state, ['threeSixtyCampaign', 'evaluators'])
+export const getForm = state => _.get(get(state), ['form'])
 
 export const defaultState = {
   list: [],

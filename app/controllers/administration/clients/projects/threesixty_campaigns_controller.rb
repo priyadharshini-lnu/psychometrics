@@ -29,9 +29,7 @@ module Administration
                 }
               }
             },
-            temp: {
-              currentUser: serialized_current_user
-            }
+            currentUser: serialized_current_user
           }
         end
 

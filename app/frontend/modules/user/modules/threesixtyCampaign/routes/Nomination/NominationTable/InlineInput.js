@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Input, Button, Form, AutoComplete,
 } from 'antd'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 
 export default function InlineInput ({
   relationship, handleAddNomination, searchEvaluators, hideForm,

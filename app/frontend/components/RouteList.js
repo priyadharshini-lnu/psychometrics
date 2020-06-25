@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect, Switch } from 'react-router-dom'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import _ from 'lodash'
 
 const flattenRoutes = routes => _.flatten(

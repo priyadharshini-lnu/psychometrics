@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import { selectedQuestion } from 'core/builder/assessment/selectors'
 import { changeType, addSkipLogic, addNote } from 'modules/survey/core/builder/assessment/question/actions'
 import { addPageBreak, copyQuestion } from 'modules/survey/core/builder/assessment/block/actions'

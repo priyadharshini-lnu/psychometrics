@@ -1,7 +1,7 @@
 import axios from 'axios'
 import queryString from 'qs'
 import humps from 'humps'
-import { LOADING, LOADING_COMPLETE } from 'modules/admin/core/temp/request'
+import { LOADING, LOADING_COMPLETE } from 'modules/admin/core/request'
 import { setIn } from 'utils/immutable'
 
 const debounceTimers = {}

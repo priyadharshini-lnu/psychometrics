@@ -4,7 +4,7 @@ import {
   Modal, Button, Input, message, Switch,
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
-import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
+import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
 import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
 import Editor from 'components/Editor'
 import cs from 'classnames'

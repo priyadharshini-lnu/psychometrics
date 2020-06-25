@@ -3,7 +3,7 @@ import {
   Table, Dropdown, Menu, Tag, message,
 } from 'antd'
 import { EllipsisOutlined } from '@ant-design/icons'
-import { STATUSES } from 'constants/mailHistory'
+import { STATUSES } from 'modules/admin/constants/mailHistory'
 import styles from './styles.scss'
 import Pagination from '../../../components/Pagination'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'

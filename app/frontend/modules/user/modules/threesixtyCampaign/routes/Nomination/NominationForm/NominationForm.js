@@ -5,8 +5,8 @@ import {
 } from 'antd'
 import { TeamOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons'
 import './styles.scss'
-import userPresenter from 'presenters/userPresenter'
-import { relationshipWithoutSelf } from 'utils/relationship'
+import userPresenter from 'presenters/user'
+import { relationshipWithoutSelf } from 'core/relationship'
 
 const { Title } = Typography
 const { Option } = Select

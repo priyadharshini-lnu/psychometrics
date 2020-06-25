@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { FETCH, FetchAction } from '../list'
 
 const defaultState = 0

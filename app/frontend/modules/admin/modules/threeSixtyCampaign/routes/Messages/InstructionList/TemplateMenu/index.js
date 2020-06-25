@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import settings from 'modules/admin/modules/threeSixtyCampaign/settings'
 
 export default function TemplateMenu ({ history, instructionTemplates, selectedId }) {

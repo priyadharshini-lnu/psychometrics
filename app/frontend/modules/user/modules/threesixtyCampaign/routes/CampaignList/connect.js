@@ -1,10 +1,11 @@
 import { connect } from 'react-redux'
 import { downloadReport } from 'modules/user/modules/threesixtyCampaign/core/report'
+import { get as getCurrentUser } from 'core/currentUser'
 import { fetchCampaigns, loginHogan, acceptPolicy } from '../../core/campaigns'
 
 const mapStateToProps = state => ({
   campaigns: state.threeSixtyCampaign.campaigns,
-  currentUser: state.threeSixtyCampaign.temp.currentUser,
+  currentUser: getCurrentUser(state),
 })
 
 const mapDispatchToProps = {

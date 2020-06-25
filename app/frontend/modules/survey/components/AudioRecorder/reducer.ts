@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE } from './constants'
 
 export interface State {

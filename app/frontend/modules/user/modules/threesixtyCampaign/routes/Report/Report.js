@@ -4,8 +4,8 @@ import {
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import './styles.scss'
-import userPresenter from 'presenters/userPresenter'
-import statusPresenter from 'presenters/statusPresenter'
+import userPresenter from 'presenters/user'
+import statusPresenter from 'presenters/status'
 import ReportPreview from 'modules/reports/report'
 
 const { Title } = Typography

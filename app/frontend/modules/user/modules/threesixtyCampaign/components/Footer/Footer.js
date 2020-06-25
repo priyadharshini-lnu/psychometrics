@@ -1,8 +1,8 @@
 import React from 'react'
 import { Layout } from 'antd'
 import './styles.scss'
-import lighthouseLogo from 'modules/user/assets/lighthouseLogo.svg'
-import tteLogo from 'modules/user/assets/tteLogo.svg'
+import lighthouseLogo from 'modules/user/assets/images/lighthouseLogo.svg'
+import tteLogo from 'modules/user/assets/images/tteLogo.svg'
 import _ from 'lodash'
 
 export default function Footer ({ isFrame, privacyText, privacyPageLink }) {

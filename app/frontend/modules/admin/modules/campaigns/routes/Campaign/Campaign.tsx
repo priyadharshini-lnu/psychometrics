@@ -1,5 +1,5 @@
 import React from 'react'
-import { TableConfig } from 'modules/admin/filterAndPagination/interfaces'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import RouteList from 'components/RouteList'
 import TopMenu from './TopMenu'
 import settings from '../../settings'

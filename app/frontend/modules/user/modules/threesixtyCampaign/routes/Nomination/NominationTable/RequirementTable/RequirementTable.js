@@ -6,9 +6,9 @@ import {
   DownOutlined, CheckOutlined, SyncOutlined, CloseOutlined, PlusOutlined,
 } from '@ant-design/icons'
 import _ from 'lodash'
-import userPresenter from 'presenters/userPresenter'
-import statusPresenter from 'presenters/statusPresenter'
-import conditionPresenter from 'presenters/conditionPresenter'
+import userPresenter from 'presenters/user'
+import statusPresenter from 'presenters/status'
+import conditionPresenter from 'presenters/condition'
 import './styles.scss'
 import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
 import InlineInput from '../InlineInput'

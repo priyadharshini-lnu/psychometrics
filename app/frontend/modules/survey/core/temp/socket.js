@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'

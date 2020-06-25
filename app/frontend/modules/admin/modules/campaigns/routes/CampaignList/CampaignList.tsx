@@ -3,8 +3,8 @@ import {
   Dropdown, Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
 } from 'antd'
 import { Link } from 'react-router-dom'
-import withEnhancedTable from 'modules/admin/core/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/filterAndPagination/interfaces'
+import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { EllipsisOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'

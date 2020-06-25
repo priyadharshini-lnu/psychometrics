@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import { renameReport, selectModule } from 'modules/reports/core/builder/actions'
 import { getPages } from 'modules/reports/core/builder/selectors'
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form as AntForm, Select, Button } from 'antd'
 import _ from 'lodash'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import UserAutocomplete from '../../../shared/UserAutocomplete'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }

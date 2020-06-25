@@ -1,6 +1,11 @@
+import _ from 'lodash'
+
 export const EDIT = 'threeSixty/user/EDIT'
 export const UPDATE_FIELD = 'threeSixty/user/UPDATE_FIELD'
 export const SAVE = 'threeSixty/user/SAVE'
+
+export const get = state => _.get(state, ['threeSixtyCampaign', 'users'])
+export const getUserUnderEdit = state => _.get(get(state), ['userUnderEdit'])
 
 export const edit = user => ({
   type: EDIT,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { TASKS_VALUES } from 'constants/emailCriteria'
+import { TASKS_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function Task ({ value, update, merge }) {
   useEffect(() => {

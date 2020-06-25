@@ -4,10 +4,11 @@ import {
 } from 'modules/user/modules/threesixtyCampaign/core/assign'
 import { saveResults } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
+import { get as getConfig } from 'modules/user/core/config'
 
 const mapStateToProps = state => ({
   assign: state.threeSixtyCampaign.assign,
-  isFrame: state.extras.isFrame,
+  isFrame: getConfig(state).isFrame,
   preview: state.preview,
   progress: state.preview.initialized && getProgress(state.preview),
 })

@@ -1,17 +1,24 @@
 import { connect } from 'react-redux'
-import { closeModal } from 'modules/admin/core/temp/modals'
-import { IMPORT, importFile, clearImportData } from 'modules/admin/modules/threeSixtyCampaign/core/subjects/import'
+import { closeModal, getCurrent } from 'modules/admin/core/ui/modals'
+import {
+  IMPORT,
+  importFile,
+  clearImportData,
+  get as getImport,
+} from 'modules/admin/modules/threeSixtyCampaign/core/subjects/import'
+import { isRequestInProgress } from 'modules/admin/core/request'
 
 export default connect(
-  ({
-    temp: { modals: { current }, request: { loading, name: requestName } },
-    threeSixtyCampaign: { subjects: { import: { errors, existingSubjectsWhosePasswordNotChanged } } },
-  }) => ({
-    current,
-    importInProgress: requestName === IMPORT && loading,
-    errors,
-    existingSubjectsWhosePasswordNotChanged,
-  }),
+  (state) => {
+    const { errors, existingSubjectsWhosePasswordNotChanged } = getImport(state)
+
+    return {
+      current: getCurrent(state),
+      importInProgress: isRequestInProgress(state, IMPORT),
+      errors,
+      existingSubjectsWhosePasswordNotChanged,
+    }
+  },
   {
     closeModal,
     importFile,

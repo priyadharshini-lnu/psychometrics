@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import {
   createBlock, removeBlock, addQuestion, cloneBlock, renameBlock,
   saveAsTemplate, unlinkTemplate, updateBlockProps,

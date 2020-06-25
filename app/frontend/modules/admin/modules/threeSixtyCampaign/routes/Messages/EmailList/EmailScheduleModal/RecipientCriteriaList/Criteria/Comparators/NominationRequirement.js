@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { NOMINATION_REQUIREMENTS_VALUES } from 'constants/emailCriteria'
+import { NOMINATION_REQUIREMENTS_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function NominationRequirement ({ value, update, merge }) {
   useEffect(() => {

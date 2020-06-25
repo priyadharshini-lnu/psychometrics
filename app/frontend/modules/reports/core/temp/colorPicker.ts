@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 
 export const OPEN = 'report/temp/colorPicker/OPEN'
 export const CLOSE = 'report/temp/colorPicker/CLOSE'

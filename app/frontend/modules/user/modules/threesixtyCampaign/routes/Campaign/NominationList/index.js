@@ -6,7 +6,7 @@ import {
 import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import './styles.scss'
 import connect from './connect'
 

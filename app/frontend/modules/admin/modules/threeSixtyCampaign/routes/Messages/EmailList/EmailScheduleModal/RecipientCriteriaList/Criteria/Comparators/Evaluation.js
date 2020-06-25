@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { EVALUATIONS_VALUES } from 'constants/emailCriteria'
+import { EVALUATIONS_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function Evaluation ({ value, update, merge }) {
   useEffect(() => {

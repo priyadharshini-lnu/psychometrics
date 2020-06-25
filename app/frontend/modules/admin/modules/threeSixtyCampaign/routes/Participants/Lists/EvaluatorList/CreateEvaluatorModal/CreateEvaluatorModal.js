@@ -6,9 +6,9 @@ import {
 import { CheckOutlined } from '@ant-design/icons'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
-import spreadSheetUtils from 'utils/spreadSheet'
+import spreadSheetUtils from 'modules/admin/utils/spreadSheet'
 import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
-import { relationshipWithoutSelf } from 'utils/relationship'
+import { relationshipWithoutSelf } from 'core/relationship'
 import Form from './Form'
 
 const tableFields = [

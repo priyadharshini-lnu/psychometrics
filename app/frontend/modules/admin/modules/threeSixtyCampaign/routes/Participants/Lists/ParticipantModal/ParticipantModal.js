@@ -3,7 +3,7 @@ import {
   Modal, Button, Tabs, Row, Col, Avatar,
 } from 'antd'
 
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import styles from './styles.scss'
 import EvaluatorList from './EvaluatorList'
 import EvaluationList from './EvaluationList'

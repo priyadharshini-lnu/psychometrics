@@ -1,5 +1,5 @@
 import { getIn, setIn } from 'utils/immutable'
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import Question from 'models/Question'
 import QuestionSerializer from 'models/QuestionSerializer'
 import {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal } from 'modules/admin/core/temp/modals'
+import { closeModal, getCurrent, getData } from 'modules/admin/core/ui/modals'
 import {
   fetchSingle,
   fetchSchedulableTemplate,
@@ -7,18 +7,14 @@ import {
   update,
   updateField,
   changeSelected,
+  get as getEmailSchedules,
 } from 'modules/admin/modules/threeSixtyCampaign/core/emailSchedules'
 
 export default connect(
-  ({
-    temp: {
-      modals: { current, data },
-    },
-    threeSixtyCampaign: { emailSchedules },
-  }) => ({
-    current,
-    emailSchedules,
-    data: data.EmailScheduleModal,
+  state => ({
+    current: getCurrent(state),
+    emailSchedules: getEmailSchedules(state),
+    data: getData(state).EmailScheduleModal,
   }),
   {
     fetchSingle,

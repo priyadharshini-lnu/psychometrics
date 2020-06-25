@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,

@@ -2,11 +2,13 @@ import { connect } from 'react-redux'
 import {
   logout,
   changeLocale,
-} from 'core/temp/currentUser'
+} from 'core/currentUser'
+import { getLogo } from 'modules/user/modules/threesixtyCampaign/core/project'
+import { get as getConfig } from 'modules/user/core/config'
 
 const mapStateToProps = state => ({
-  logo: state.threeSixtyCampaign.temp.project.logo,
-  isFrame: state.extras.isFrame,
+  logo: getLogo(state),
+  isFrame: getConfig(state).isFrame,
 })
 
 const mapDispatchToProps = {

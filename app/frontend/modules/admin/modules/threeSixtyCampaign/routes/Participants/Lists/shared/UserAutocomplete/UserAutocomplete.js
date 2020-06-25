@@ -1,6 +1,6 @@
 import React from 'react'
 import { AutoComplete, Input } from 'antd'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 
 export default function UserAutocomplete ({
   users, search, onSelect, url, placeholder, source, value, onChange,

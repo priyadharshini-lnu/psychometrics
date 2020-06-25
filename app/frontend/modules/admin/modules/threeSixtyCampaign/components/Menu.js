@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
 import { UserOutlined, MailOutlined, PieChartOutlined } from '@ant-design/icons'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import settings from '../settings'
 
 const MyMenu = ({ history, routes }) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select, Input } from 'antd'
-import { STRING_COMPARATOR } from 'constants/emailCriteria'
+import { STRING_COMPARATOR } from 'modules/admin/constants/emailCriteria'
 import styles from '../styles.scss'
 
 export default function String ({ comparator, value, update }) {

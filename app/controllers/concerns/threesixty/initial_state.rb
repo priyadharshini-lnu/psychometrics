@@ -14,15 +14,13 @@ module Threesixty::InitialState
 
     @init_state = {
       threeSixtyCampaign: {
-        temp: {
-          project: {
-            logo: logo,
-            privacyText: @current_project.privacy_link&.text,
-            privacyPageLink: @current_project.privacy_link&.link
-          },
-          currentUser: serialized_current_user
+        project: {
+          logo: logo,
+          privacyText: @current_project.privacy_link&.text,
+          privacyPageLink: @current_project.privacy_link&.link
         }
       },
+      currentUser: serialized_current_user,
       extras: {
         isFrame: use_iframe?
       }

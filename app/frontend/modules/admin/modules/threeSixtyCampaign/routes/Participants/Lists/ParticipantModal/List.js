@@ -3,7 +3,7 @@ import {
   Select, Table,
 } from 'antd'
 import { DeleteOutlined } from '@ant-design/icons'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import { ASSIGN_TYPES } from 'constants/relationship'
 import Confirmation from './Confirmation'
 

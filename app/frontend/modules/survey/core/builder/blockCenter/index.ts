@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { denormalize } from 'normalizr'
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'

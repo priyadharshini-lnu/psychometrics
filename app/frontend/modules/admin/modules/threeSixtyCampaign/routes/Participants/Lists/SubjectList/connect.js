@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
-import routeUtils from 'utils/routeUtils'
+import { openModal } from 'modules/admin/core/ui/modals'
+import routeUtils from 'utils/route'
 
 import {
   fetchSubjects, update, remove, downloadReport,

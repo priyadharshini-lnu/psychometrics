@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux'
-import currentUser from 'core/temp/currentUser'
+import currentUser from 'core/currentUser'
 import { connectRouter } from 'connected-react-router'
-import tables from 'modules/admin/filterAndPagination/reducers'
+import tables from 'modules/admin/core/filterAndPagination/reducers'
 import campaignReducers from '../modules/campaigns/core'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
 import managers from '../modules/threeSixtyCampaign/core/managers'
 import participantOptions from '../modules/threeSixtyCampaign/core/participantOptions/reducers'
 import reportOptions from '../modules/threeSixtyCampaign/core/reportOptions/reducers'
-import modals from './temp/modals'
-import autocomplete from './temp/autocomplete'
-import request from './temp/request'
-import datasheetFields from './project/datasheetFields'
+import modals from './ui/modals'
+import autocomplete from './ui/autocomplete'
+import request from './request'
+import datasheetFields from '../modules/threeSixtyCampaign/core/datasheetFields'
 import participants from '../modules/threeSixtyCampaign/core/participants'
 import relationships from '../modules/threeSixtyCampaign/core/relationships'
 import selectedParticipantTab from '../modules/threeSixtyCampaign/core/selectedParticipantTab'
@@ -47,12 +47,12 @@ const createRootReducer = history => combineReducers({
     datasheetFields,
     relationships,
   }),
-  temp: combineReducers({
+  ui: combineReducers({
     modals,
     autocomplete,
-    request,
-    currentUser,
   }),
+  currentUser,
+  request,
   tables,
   campaigns: campaignReducers,
 })

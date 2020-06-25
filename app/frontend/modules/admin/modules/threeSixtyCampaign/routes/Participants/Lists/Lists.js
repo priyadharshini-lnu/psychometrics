@@ -1,6 +1,6 @@
 import React from 'react'
 import { Radio, Divider } from 'antd'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import RouteList from 'components/RouteList'
 import _ from 'lodash'
 // eslint-disable-next-line max-len

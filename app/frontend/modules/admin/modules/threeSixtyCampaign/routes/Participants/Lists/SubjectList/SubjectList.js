@@ -4,7 +4,7 @@ import {
   Table, Dropdown, Row, Col,
 } from 'antd'
 import { UserOutlined, EllipsisOutlined } from '@ant-design/icons'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import UserEditModal from 'modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from 'modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
 import styles from './SubjectList.scss'

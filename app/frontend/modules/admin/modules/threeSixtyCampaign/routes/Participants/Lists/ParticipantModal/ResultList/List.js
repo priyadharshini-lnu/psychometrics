@@ -2,7 +2,7 @@
 import React from 'react'
 import { Table } from 'antd'
 import { DeleteOutlined, EyeOutlined } from '@ant-design/icons'
-import userPresenter from 'presenters/userPresenter'
+import userPresenter from 'presenters/user'
 import { ASSIGN_TYPES } from 'constants/relationship'
 import { StatusSelect, RelationSelect } from '../List'
 import Confirmation from '../Confirmation'

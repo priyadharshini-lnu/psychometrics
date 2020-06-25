@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { getUserId } from 'modules/admin/core/temp/modals'
+import { getUserId } from 'modules/admin/core/ui/modals'
 import { setIn } from 'utils/immutable'
 import _ from 'lodash'
 

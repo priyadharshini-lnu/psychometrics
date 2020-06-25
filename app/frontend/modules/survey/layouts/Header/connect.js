@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import {
   toggleEnableBack, toggleEnableProgress, saveAssessment, updateExtra,
 } from 'modules/survey/core/builder/assessment/actions'

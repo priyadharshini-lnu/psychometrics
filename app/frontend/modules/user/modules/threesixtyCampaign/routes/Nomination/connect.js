@@ -11,7 +11,7 @@ import {
   sendEvaluatorReminder,
   updateAllNominationStatus,
 } from 'modules/user/modules/threesixtyCampaign/core/nomination'
-import { searchEvaluators } from 'modules/user/core/temp/autocomplete'
+import { get as getAutocomplete, searchEvaluators } from 'modules/user/core/ui/autocomplete'
 import {
   requirementsSelector,
   allowedRelationshipsForNewNominations,
@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
   nomination: state.threeSixtyCampaign.nomination,
   instructions: state.threeSixtyCampaign.nomination.instructions,
   requirements: requirementsSelector(state.threeSixtyCampaign),
-  autocomplete: state.threeSixtyCampaign.temp.autocomplete,
+  autocomplete: getAutocomplete(state),
   allowedRelationshipsForNewNominations: allowedRelationshipsForNewNominations(state.threeSixtyCampaign),
 })
 

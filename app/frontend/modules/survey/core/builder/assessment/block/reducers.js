@@ -1,5 +1,5 @@
 import { setIn } from 'utils/immutable'
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import { INIT, EMPTY_TRASH } from '../actions'
 import {

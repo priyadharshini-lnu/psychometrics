@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { getIn, setIn, updateIn } from 'utils/immutable'
 import schema from 'store/schema'
 import { denormalize } from 'normalizr'

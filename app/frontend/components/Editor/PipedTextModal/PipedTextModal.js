@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Modal, Button, List, Card,
 } from 'antd'
-import { CONSOLIDATED_EMAIL_NAMES } from 'constants/emailTemplate'
+import { CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
 import FIELDS from './fields'
 import types from './types'
 

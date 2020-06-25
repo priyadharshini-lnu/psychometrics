@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import RouteList from 'components/RouteList'
 import settings from '../../settings'
 

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import shuffle from 'utils/shuffle'
+import array from 'utils/array'
 import seedrandom from 'seedrandom'
 import { PageInterface } from '../interfaces'
 
@@ -19,7 +19,7 @@ const RandomizeBlockQuestions = {
     }, [])
 
     const questionIds = _.flatten(pages.map(p => p.questions))
-    const shuffledQuestionIds = shuffle(questionIds, seedrandom(seed))
+    const shuffledQuestionIds = array.shuffle(questionIds, seedrandom(seed))
 
     switch (randomization.type) {
       case 'All':

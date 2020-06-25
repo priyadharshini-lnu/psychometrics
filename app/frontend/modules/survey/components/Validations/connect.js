@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import { changeValidation } from 'modules/survey/core/builder/assessment/question/actions'
 
 export default connect(

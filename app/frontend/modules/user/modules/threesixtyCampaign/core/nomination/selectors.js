@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
-import { relationshipWithoutSelf } from 'utils/relationship'
+import { relationshipWithoutSelf } from 'core/relationship'
 
 export const getConditions = state => state.nomination.requirements.conditions || []
 export const getEvaluators = state => state.nomination.evaluators

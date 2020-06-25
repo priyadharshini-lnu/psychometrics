@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { UPLOAD_STATES } from './constants'
 
 export const initialState = {

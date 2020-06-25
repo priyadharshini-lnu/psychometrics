@@ -1,29 +1,23 @@
 import { connect } from 'react-redux'
-import { closeModal } from 'modules/admin/core/temp/modals'
-import { search } from 'modules/admin/core/temp/autocomplete'
+import { closeModal, getCurrent } from 'modules/admin/core/ui/modals'
+import { search, get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
 import {
-  createAll, fillSubjects, clearForm, CREATE_ALL,
+  createAll, fillSubjects, clearForm, CREATE_ALL, getForm,
 } from 'modules/admin/modules/threeSixtyCampaign/core/subjects'
+import { isRequestInProgress } from 'modules/admin/core/request'
 
 export default connect(
-  ({
-    threeSixtyCampaign: {
-      subjects: {
-        form: { attrs, errors },
-      },
-    },
-    temp: {
-      modals: { current },
-      autocomplete: { users = [] },
-      request: { loading, name: requestName },
-    },
-  }) => ({
-    errors,
-    current,
-    autocompletedUsers: users,
-    subjects: attrs,
-    creationInProgress: loading && requestName === CREATE_ALL,
-  }),
+  (state) => {
+    const form = getForm(state)
+
+    return {
+      errors: form.errors,
+      current: getCurrent(state),
+      autocompletedUsers: getAutocomplete(state).users || [],
+      subjects: form.attrs,
+      creationInProgress: isRequestInProgress(state, CREATE_ALL),
+    }
+  },
   {
     closeModal,
     search,

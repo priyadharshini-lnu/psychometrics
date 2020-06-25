@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import AppStore from 'rb/store/AppStore'
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'modules/admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/ui/modals'
 import styles from './AliasModal.scss'
 
 const {

@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import { Checks, Config } from 'modules/user/modules/threesixtyCampaign/core/checkingWizard/interfaces'
 import styles from './styles.scss'
 import SystemCheck from './SystemCheck'

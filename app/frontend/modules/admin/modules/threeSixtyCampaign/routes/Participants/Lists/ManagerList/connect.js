@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { fetchManagers } from 'modules/admin/modules/threeSixtyCampaign/core/managers'
-import { openModal } from 'modules/admin/core/temp/modals'
-import routeUtils from 'utils/routeUtils'
+import { openModal } from 'modules/admin/core/ui/modals'
+import routeUtils from 'utils/route'
 import { removeUser } from 'modules/admin/modules/threeSixtyCampaign/core'
 import {
   edit as editUser,

@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 
 export const SELECT = 'survey/temp/hotSpot/SELECT'
 

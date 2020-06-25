@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/reduxUtils'
+import { createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, ADD_PAGE, SET_PAGE_POSITIONS, PASTE_PAGE, PASTE_MODULE,

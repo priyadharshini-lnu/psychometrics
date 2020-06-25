@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { fetchEvaluators } from 'modules/admin/modules/threeSixtyCampaign/core/evaluators'
-import { openModal } from 'modules/admin/core/temp/modals'
+import { openModal } from 'modules/admin/core/ui/modals'
 import { removeUser } from 'modules/admin/modules/threeSixtyCampaign/core'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 import {
   edit as editUser,
 } from 'modules/admin/modules/threeSixtyCampaign/core/users'

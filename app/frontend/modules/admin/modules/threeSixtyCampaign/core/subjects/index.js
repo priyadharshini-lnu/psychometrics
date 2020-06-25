@@ -1,6 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
-import { closeModal } from 'modules/admin/core/temp/modals'
+import { closeModal } from 'modules/admin/core/ui/modals'
 import _ from 'lodash'
 import importReducer from './import'
 
@@ -12,6 +12,9 @@ export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
 export const DOWNLOAD_REPORT = 'threeSixty/subjects/DOWNLOAD_REPORT'
+
+export const get = state => _.get(state, ['threeSixtyCampaign', 'subjects'])
+export const getForm = state => _.get(get(state), ['form'])
 
 export const defaultState = {
   list: [],

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { closeModal, getData } from 'modules/admin/core/temp/modals'
+import { closeModal, getData } from 'modules/admin/core/ui/modals'
 import { getTree } from 'modules/survey/core/builder/flow/selectors'
 import {
   addElementBelow, duplicateElement, addNew, updateTree, removeElement, reset,

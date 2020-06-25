@@ -5,7 +5,7 @@ import { Menu } from 'antd'
 import {
   UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined,
 } from '@ant-design/icons'
-import routeUtils from 'utils/routeUtils'
+import routeUtils from 'utils/route'
 
 interface Props extends Attributes {
   prefix?: string

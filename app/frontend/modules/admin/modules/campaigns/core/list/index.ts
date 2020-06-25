@@ -1,6 +1,6 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/reduxUtils'
-import { TableConfig } from 'modules/admin/filterAndPagination/interfaces'
+import { createReducer } from 'utils/redux'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
 export interface Campaign {
   id: number

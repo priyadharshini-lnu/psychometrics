@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Select } from 'antd'
-import { EVALUATOR_TYPE_VALUES } from 'constants/emailCriteria'
+import { EVALUATOR_TYPE_VALUES } from 'modules/admin/constants/emailCriteria'
 
 export default function EvaluatorType ({ value, update, merge }) {
   useEffect(() => {

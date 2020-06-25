@@ -1,13 +1,12 @@
 import { connect } from 'react-redux'
 import { fetchAllByUserId as fetchParticipants } from 'modules/admin/modules/threeSixtyCampaign/core/participants'
-import { closeModal } from 'modules/admin/core/temp/modals'
+import { closeModal, getCurrent, getData } from 'modules/admin/core/ui/modals'
 import { fetchRelationships } from 'modules/admin/modules/threeSixtyCampaign/core/relationships'
 
 export default connect(
-  ({
-    temp: {
-      modals: { data, current },
-    },
-  }) => ({ ...data.ParticipantModal, current }),
+  state => ({
+    ...getData(state).ParticipantModal,
+    current: getCurrent(state),
+  }),
   { fetchParticipants, fetchRelationships, closeModal },
 )

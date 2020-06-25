@@ -1,7 +1,7 @@
 import {
   takeLatest, takeEvery, put, select, delay,
 } from 'redux-saga/effects'
-import { get as getDatasheetField } from 'modules/admin/core/project/datasheetFields/index'
+import { get as getDatasheetField } from 'modules/admin/modules/threeSixtyCampaign/core/datasheetFields'
 import { getCurrentCampaignId } from '../campaignDetails'
 
 import {
