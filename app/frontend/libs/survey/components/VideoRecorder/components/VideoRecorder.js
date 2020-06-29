@@ -251,7 +251,9 @@ class VideoRecorder extends Component {
         this.player.controlBar.currentTimeDisplay.addClass('show')
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
 
-        if (trackingEnabled && this.tracker) this.tracker.startTracking()
+        setTimeout(() => {
+          if (trackingEnabled && this.tracker) this.tracker.startTracking()
+        }, 2000)
       })
 
       this.player.on('finishRecord', async () => {
@@ -436,9 +438,9 @@ class VideoRecorder extends Component {
             ? Watchman.I18n().t('assessments.video_response.media_recorder.success')
             : Watchman.I18n().t('assessments.video_response.media_recorder.failure')}
         </div>
-
+        <div style={{ clear: 'both' }} />
         { hasMediaRecorder && (
-          <button
+          <a
             id="btn-allow-record"
             className={cs('btn-default', styles.btnAllowRecord)}
             onClick={this.allowRecording}
@@ -446,7 +448,7 @@ class VideoRecorder extends Component {
           >
             <span className="mrs mls fa fa-check" aria-hidden="true" />
             { Watchman.I18n().t('assessments.video_response.device') }
-          </button>
+          </a>
         )}
       </div>
     )
