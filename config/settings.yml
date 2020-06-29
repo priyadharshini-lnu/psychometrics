@@ -26,6 +26,7 @@ browser_requirements:
       edge: ">= 16"
       safari: ">= 11.1"
       opera: ">= 54"
+      ie: ">= 11"
     preferred:
       chrome: ">= 67"
       firefox: ">= 54"
@@ -72,6 +73,7 @@ browser_requirements:
         firefox: ">= 54"
         edge: ">= 16"
         opera: ">= 54"
+        ie: ">= 11"
       preferred:
         chrome: ">= 67"
         firefox: ">= 54"
