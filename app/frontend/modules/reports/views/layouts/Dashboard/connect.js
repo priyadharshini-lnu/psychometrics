@@ -5,7 +5,7 @@ export default connect(
   ({ report }) => ({
     reportLoaded: report.builder.loaded,
     disabled: report.disabled,
-    socketInitialized: report.temp.socket.initialized,
+    socketInitialized: report.ui.socket.initialized,
   }),
   {
     subscribeSocket,

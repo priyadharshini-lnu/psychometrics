@@ -9,6 +9,6 @@ export default combineReducers({
     builder,
     pages,
     modules,
-    temp: combineReducers(temp),
+    ui: combineReducers(temp),
   }),
 })

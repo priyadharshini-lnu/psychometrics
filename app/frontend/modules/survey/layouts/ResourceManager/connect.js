@@ -9,7 +9,7 @@ export default connect(
   ({ survey }) => ({
     assessmentId: survey.builder.assessment.id,
     loaded: survey.builder.assessment.loaded,
-    socketInitialized: survey.temp.socket.initialized,
+    socketInitialized: survey.ui.socket.initialized,
     ...survey.builder.resources,
   }),
   {

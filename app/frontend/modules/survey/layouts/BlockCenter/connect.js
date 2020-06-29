@@ -6,7 +6,7 @@ export default connect(
   ({ survey }) => ({
     loaded: survey.builder.assessment.loaded,
     disabled: survey.builder.assessment.disabled,
-    socketInitialized: survey.temp.socket.initialized,
+    socketInitialized: survey.ui.socket.initialized,
     block: selectBlock(survey.builder, survey.builder.assessment.id),
   }),
   {

@@ -71,7 +71,7 @@ const createSocketChannel = (channel, data) => eventChannel((emit) => {
 
 function* genSubsribeSocket ({ channel, data }) {
   const { report } = yield select()
-  if (report.temp.socket.initialized) { return }
+  if (report.ui.socket.initialized) { return }
   const socketChannel = yield call(createSocketChannel, channel, data)
 
   while (true) {

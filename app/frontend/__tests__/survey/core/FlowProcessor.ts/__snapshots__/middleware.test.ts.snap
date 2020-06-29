@@ -391,7 +391,7 @@ Object {
         "resources": Array [],
       },
     },
-    "temp": Object {
+    "ui": Object {
       "hotSpot": Object {
         "shapeIndex": null,
       },
@@ -488,7 +488,7 @@ Object {
         "resources": Array [],
       },
     },
-    "temp": Object {
+    "ui": Object {
       "hotSpot": Object {
         "shapeIndex": null,
       },

@@ -6,7 +6,7 @@ import preview from './preview'
 const rootReducers = combineReducers({
   survey: combineReducers({
     builder: combineReducers(builder),
-    temp: combineReducers(temp),
+    ui: combineReducers(temp),
   }),
   preview,
 })

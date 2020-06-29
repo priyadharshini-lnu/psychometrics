@@ -32,9 +32,10 @@ class ConditionList extends Component {
   render () {
     const { model, questions } = this.props
     const { conditions } = model
+    model.conditions = conditions.map(c => new RuleCondition(c))
     return (
       <div>
-        {_.map(conditions, (condition, i) => (
+        {_.map(model.conditions, (condition, i) => (
           <Condition
             key={i}
             model={model}

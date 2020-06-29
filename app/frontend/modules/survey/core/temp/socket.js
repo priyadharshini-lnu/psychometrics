@@ -71,7 +71,7 @@ const createSocketChannel = (channel, data) => eventChannel((emit) => {
 
 function* genSubsribeSocket ({ channel, data }) {
   const { survey } = yield select()
-  if (survey.temp.socket.initialized) { return }
+  if (survey.ui.socket.initialized) { return }
   const socketChannel = yield call(createSocketChannel, channel, data)
 
   while (true) {

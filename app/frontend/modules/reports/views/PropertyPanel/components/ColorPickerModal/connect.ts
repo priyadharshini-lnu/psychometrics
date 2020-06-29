@@ -3,10 +3,10 @@ import { close, changeColor } from '../../../../core/temp/colorPicker'
 
 export default connect(
   state => ({
-    color: state.report.temp.colorPicker.color,
-    isOpen: state.report.temp.colorPicker.isOpen,
-    onComplete: state.report.temp.colorPicker.onComplete,
-    onChange: state.report.temp.colorPicker.onChange,
+    color: state.report.ui.colorPicker.color,
+    isOpen: state.report.ui.colorPicker.isOpen,
+    onComplete: state.report.ui.colorPicker.onComplete,
+    onChange: state.report.ui.colorPicker.onChange,
   }),
   {
     closePicker: close,
