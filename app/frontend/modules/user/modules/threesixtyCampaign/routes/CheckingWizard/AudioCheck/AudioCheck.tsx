@@ -1,22 +1,30 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useRef } from 'react'
 import _ from 'lodash'
 import {
   Button, Card, Col,
 } from 'antd'
 import { browserName } from 'react-device-detect'
 import { Config } from 'modules/user/modules/threesixtyCampaign/core/checkingWizard/interfaces'
+import { AudioLevel } from 'hooks/useAudioMetrics/interfaces'
+import { RECORDER_STATES } from 'modules/survey/components/AudioRecorder/constants'
 import { CheckOutlined, RightOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
 import transcribe, { closeSocket as closeSpeechDetectionSocket } from 'libs/amazon-transcribe-websocket-static/lib/main'
+import useAudioMetrics from 'hooks/useAudioMetrics'
+import RecorderCore from 'modules/survey/components/AudioRecorder/Recorder/Core'
+import DynamicAudioIcon from 'components/DynamicAudioIcon'
 import styles from './styles.scss'
 import Progress from '../Progress'
 import CheckList from '../CheckList'
 import { CheckListStatus } from '../interfaces'
 import reducer, {
-  initialState, updateAccess, updateSpeechDetection, State,
+  initialState, updateAccess, updateSpeechDetection, State, updateTranscriptionMessage,
 } from './reducer'
 
-const SPEECH_DETECTION_TIME_FRAME = 60000
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const { $ } = window as any
+
+const SPEECH_DETECTION_TIME_FRAME = 10000
 
 const { I18n } = window
 
@@ -26,26 +34,42 @@ interface Props {
   preSignUrl: () => void
   config: Config
   preSignedUrl: string
+  transcribeSupportedLocales: string[]
 }
 
-
-const AudioCheck: React.FC<Props> = ({ nextStep, preSignUrl, preSignedUrl }) => {
+const AudioCheck: React.FC<Props> = ({
+  nextStep, preSignUrl, preSignedUrl, transcribeSupportedLocales,
+}) => {
   useEffect(() => {
     preSignUrl()
+    initRecorder()
   },
   [])
   const [state, dispatch] = useReducer(reducer, initialState)
+  const recorderRef = useRef<RecorderCore>()
+  const [{ level, pulse }, { updatePulse, resetMetrics }] = useAudioMetrics(recorderRef)
+
+
+  const initRecorder = (): void => {
+    recorderRef.current = new RecorderCore({ onUpdateRecordTime: () => null })
+  }
 
   const requestAccess = () => {
     const speechDetectionTimer = setTimeout(() => {
       dispatch(updateSpeechDetection(CheckListStatus.Failed))
       closeSpeechDetectionSocket()
+      recorderRef.current?.stop()
+      resetMetrics()
     }, SPEECH_DETECTION_TIME_FRAME)
 
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then((stream) => {
+        $(window).on(RECORDER_STATES.RECORDING, updatePulse)
+        recorderRef.current?.start()
         dispatch(updateAccess(CheckListStatus.Done))
         transcribe(preSignedUrl, stream, (t: string) => handleTranscriptionResults(t, speechDetectionTimer), () => {
+          recorderRef.current?.stop()
+          resetMetrics()
           dispatch(updateSpeechDetection(CheckListStatus.Failed))
           clearInterval(speechDetectionTimer)
         })
@@ -56,12 +80,15 @@ const AudioCheck: React.FC<Props> = ({ nextStep, preSignUrl, preSignedUrl }) => 
   }
 
   const handleTranscriptionResults = (transcription, speechDetectionTimer) => {
-    const testMessage = sanitize(I18n.t('checking_wizard.audio_check.test_message'))
+    const testMessage = sanitize(getTranscriptionMessage(transcribeSupportedLocales))
     const input = sanitize(transcription)
+    dispatch(updateTranscriptionMessage(transcription))
     if (input.includes(testMessage)) {
       clearInterval(speechDetectionTimer)
       dispatch(updateSpeechDetection(CheckListStatus.Done))
       closeSpeechDetectionSocket()
+      recorderRef.current?.stop()
+      resetMetrics()
     }
   }
   const sanitize = (text: string): string => _.toLower(text.replace(/[.,\s]/g, ''))
@@ -70,6 +97,7 @@ const AudioCheck: React.FC<Props> = ({ nextStep, preSignUrl, preSignedUrl }) => 
     requestAccess()
     if (state.access === CheckListStatus.Failed) return
 
+    dispatch(updateTranscriptionMessage(''))
     dispatch(updateSpeechDetection(CheckListStatus.InProgress))
   }
 
@@ -83,9 +111,21 @@ const AudioCheck: React.FC<Props> = ({ nextStep, preSignUrl, preSignedUrl }) => 
     <>
       <Col className={styles.container} lg={16} xs={24} sm={24}>
         {_.includes([CheckListStatus.InProgress, CheckListStatus.Failed], state.access)
-         && <IntroCard requestAccess={requestAccess} state={state} preSignedUrl={preSignedUrl} />}
+         && (
+         <IntroCard
+           level={level}
+           transcribeSupportedLocales={transcribeSupportedLocales}
+           pulse={pulse}
+           requestAccess={requestAccess}
+           state={state}
+           preSignedUrl={preSignedUrl}
+         />
+         )}
         {state.access === CheckListStatus.Done && (
         <RecordCard
+          pulse={pulse}
+          transcribeSupportedLocales={transcribeSupportedLocales}
+          level={level}
           state={state}
           requestAccess={requestAccess}
           preSignedUrl={preSignedUrl}
@@ -137,6 +177,9 @@ interface CardProps {
   requestAccess: () => void
   state: State
   preSignedUrl: string
+  transcribeSupportedLocales: string[]
+  level: AudioLevel
+  pulse: number
 }
 
 const IntroCard: React.FC<CardProps> = ({ requestAccess, state, preSignedUrl }) => (
@@ -177,14 +220,28 @@ const IntroCard: React.FC<CardProps> = ({ requestAccess, state, preSignedUrl }) 
 )
 
 
-const RecordCard: React.FC<CardProps> = () => (
+const RecordCard: React.FC<CardProps> = ({
+  level, pulse, state, transcribeSupportedLocales,
+}) => (
   <Card className={styles.card}>
     <div className={styles.title}>{I18n.t('checking_wizard.audio_check.record_title')}</div>
     <div className={styles.audio}>
       <div className={styles.quote}>&quot;</div>
       <div className={styles.testMessage}>
-        {I18n.t('checking_wizard.audio_check.test_message')}
+        {getTranscriptionMessage(transcribeSupportedLocales)}
+      </div>
+      <DynamicAudioIcon level={level} pulse={pulse} />
+      <div className={styles.testMessage}>
+        {state.transcriptionMessage}
       </div>
     </div>
   </Card>
 )
+
+const getTranscriptionMessage = (transcribeSupportedLocales: string[]) => {
+  if (transcribeSupportedLocales.includes(I18n.locale)) {
+    return I18n.t('checking_wizard.audio_check.test_message')
+  }
+
+  return I18n.t('checking_wizard.audio_check.test_message', { locale: 'en' })
+}

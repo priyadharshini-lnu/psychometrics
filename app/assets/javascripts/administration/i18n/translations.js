@@ -4826,7 +4826,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
       "speech_detection": "Speech detection",
-      "test_message": "great to speak with you",
+      "test_message": "arabic",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {

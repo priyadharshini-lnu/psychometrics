@@ -8,7 +8,6 @@ export interface State {
   lastPauseTime: number
   uploadState: string
   playerState: string
-  audioPulse: number
   errorCodes: Array<string>
   percent: number
   recordingTime: number
@@ -21,7 +20,6 @@ export const initialState = {
   lastPauseTime: 0,
   uploadState: UPLOAD_STATES.READY,
   playerState: PLAYER_STATE.PAUSED,
-  audioPulse: 0.7,
   errorCodes: [],
   percent: 0,
   recordingTime: 0,
@@ -43,7 +41,6 @@ interface SetUploadStateAction { type: typeof SET_UPLOAD_STATE, payload: { uploa
 interface SetFileAction { type: typeof SET_FILE, payload: { file: Blob } }
 interface SetErrorsAction { type: typeof SET_ERRORS, payload: { errorCodes: Array<string> } }
 interface SetPercentAction { type: typeof SET_PERCENTAGE, payload: { percent: number } }
-interface UpdateAudioPulseAction { type: typeof SET_AUDIO_PULSE, payload: { audioPulse: number } }
 interface SetPlayerStateAction { type: typeof SET_PLAYER_STATE, payload: { playerState: string } }
 interface SetRecordingTime { type: typeof SET_RECORDING_TIME, payload: { recordingTime: number } }
 interface RemoveFile { type: typeof REMOVE_FILE }
@@ -53,7 +50,7 @@ interface RemoveRecordingAction {
 }
 
 export type Action = SetRecordStateAction | SetUploadStateAction | SetFileAction | SetErrorsAction |
-  SetPercentAction | UpdateAudioPulseAction | SetPlayerStateAction | SetRecordingTime | RemoveFile
+  SetPercentAction | SetPlayerStateAction | SetRecordingTime | RemoveFile
 
 export const setRecordingState = (recordingState: string): SetRecordStateAction => ({
   type: SET_RECORDER_STATES,
@@ -68,11 +65,6 @@ export const setUploadState = (uploadState: string): SetUploadStateAction => ({
 export const setFile = (file: Blob): SetFileAction => ({
   type: SET_FILE,
   payload: { file },
-})
-
-export const setAudioPulse = (audioPulse: number): UpdateAudioPulseAction => ({
-  type: SET_AUDIO_PULSE,
-  payload: { audioPulse },
 })
 
 export const setPlayerState = (playerState: string): SetPlayerStateAction => ({
@@ -113,8 +105,6 @@ const HANDLERS = {
   [SET_ERRORS]: (state: State, { payload: { errorCodes } }: SetErrorsAction): State => (
     { ...state, errorCodes, recordingState: UPLOAD_STATES.ERROR }),
   [SET_PERCENTAGE]: (state: State, { payload: { percent } }: SetPercentAction): State => ({ ...state, percent }),
-  [SET_AUDIO_PULSE]: (state: State, { payload: { audioPulse } }: UpdateAudioPulseAction): State => (
-    { ...state, audioPulse }),
   [SET_PLAYER_STATE]: (state: State, { payload: { playerState } }: SetPlayerStateAction): State => (
     { ...state, playerState }),
   [SET_RECORDING_TIME]: (state: State, { payload: { recordingTime } }: SetRecordingTime): State => (

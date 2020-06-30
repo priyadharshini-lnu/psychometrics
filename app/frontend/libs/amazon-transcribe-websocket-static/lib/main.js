@@ -16,6 +16,7 @@ let socket;
 let micStream;
 
 const transcribe = (url, stream, onTranscribe, onError) => {
+    transcription = ''
     streamAudioToWebSocket(url, stream, onTranscribe, onError)
 }
 export default transcribe
@@ -58,8 +59,6 @@ function wireSocketEvents(onTranscribe, onError) {
             handleEventStreamMessage(messageBody, onTranscribe);
         }
         else {
-            console.log('message', message)
-            transcribeException = true;
             onError()
         }
     };

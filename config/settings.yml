@@ -1054,3 +1054,9 @@ checking_wizard:
   network:
     upload: <%= ENV.fetch('MIN_NETWORK_UPLOAD', 4).to_i %>
     download: <%= ENV.fetch('MIN_NETWORK_DOWNLOAD', 8).to_i %>
+  audio:
+    # https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe.html
+    supported_locales:
+      - en
+      - fr
+      - es

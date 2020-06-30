@@ -20,26 +20,6 @@
     margin-right: 12px;
   }
 
-  .recordingIndicatorContainer {
-    height: 9.375em;
-    width: 9.375em;
-    line-height: 9.375em;
-    color: #8e8e8e;
-    position: relative;
-    margin-bottom: 1em;
-  }
-
-  .recordingIndicatorContainer {
-    height: 9.375em;
-    width: 9.375em;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 9.375em;
-    color: #8e8e8e;
-    position: relative;
-    margin-bottom: 1em;
-  }
-
   .savedTextContainer {
     color: #009C37;
     display: inline-block;
@@ -51,34 +31,11 @@
     margin-left: 3px;
   }
 
-  .pulsRing {
-    height: 100%;
-    width: 100%;
-    background-size: contain;
-    position: absolute;
-  }
-
-  .lowAudio {
-    background-image: url('./images/grey-ring.png');
-  }
-
-  .highAudio {
-    background-image: url('./images/green-ring.png');
-  }
-
   .recordingTime {
     margin-bottom: 10px;
     font-weight: bold;
   }
 
-  .microphoneImg {
-    position: absolute;
-    width: 25px;
-    height: 40px;
-    bottom: 44px;
-    left: 52px;
-    color: #fff;
-  }
 }
 
 .recorderContainer.RECORDED {
