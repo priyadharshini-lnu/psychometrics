@@ -12,6 +12,9 @@
   display: flex;
   flex-direction: column;
 
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+
   .message {
     color: #393939;
     font-weight: bold;
@@ -21,16 +24,25 @@
   ul.browsers {
     padding: 0;
     margin: 0;
-    display: flex;
     list-style: none;
-    flex-flow: row wrap;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    -ms-flex-direction: row;
 
     li {
-      display: flex;
       width: 160px;
+      font-size: 13px;
+
+      display: flex;
       align-items: center;
 
-      font-size: 13px;
+      display: -ms-flexbox;
+      -ms-flex-align: center;
 
       .icon {
         padding: 5px;
@@ -60,6 +72,7 @@
 @media screen and (min-width: 1024px) {
   .browser-detections {
     ul.browsers {
+      -ms-flex-pack: start;
       justify-content: flex-start;
     }
   }

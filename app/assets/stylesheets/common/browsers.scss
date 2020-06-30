@@ -25,15 +25,25 @@
     list-style: none;
 
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
 
-    li {
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    -ms-flex-direction: row;
+    -ms-flex-pack: distribute;
+
+    li.browser {
       width: 160px;
       height: 60px;
+      font-size: 13px;
+
       display: flex;
       align-items: center;
-      font-size: 13px;
+
+      display: -ms-flexbox;
+      -ms-flex-align: center;
 
       .icon {
         padding: 5px;
