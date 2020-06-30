@@ -537,6 +537,10 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    get 'users/sign_up/success', to: 'users/registrations#success'
+  end
+
   devise_for :users,
              path: 'users',
              as: :devise,

@@ -79,6 +79,7 @@ module Administration
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, :two_factor_enabled, :strong_password_enabled,
+                                         :login_box_position, :secondary_logo, :remove_secondary_logo,
                                          privacy_link_attributes: %i[id text link _destroy])
       end
 

@@ -43,6 +43,12 @@
                   = f.input_field :background_color, class: 'form-control'
                   span.input-group-addon
                     i
+          = f.input :login_box_position,
+            as: :radio_buttons,
+            collection: Client::LOGIN_BOX_POSITIONS.map { |position| [position.to_s.capitalize, position] },
+            checked: resource.login_box_position,
+            item_wrapper_class: 'radio-inline'
+          = f.input :secondary_logo, hint: (f.input(:remove_secondary_logo, as: :boolean) + image_tag(f.object.secondary_logo.url(:thumb), :class => 'thumb') if f.object.secondary_logo.present?)
 
   .modal-footer
     .btn-group

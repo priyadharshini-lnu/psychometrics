@@ -322,12 +322,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -696,7 +696,8 @@ CREATE TABLE public.clients (
     hogan_group_name character varying,
     privacy_consent boolean,
     two_factor_enabled boolean DEFAULT false,
-    strong_password_enabled boolean DEFAULT false
+    strong_password_enabled boolean DEFAULT false,
+    secondary_logo character varying
 );
 
 
@@ -2719,7 +2720,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2890,7 +2893,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3112,12 +3117,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb
+    last_activity_at timestamp without time zone
 );
 
 
@@ -7024,6 +7029,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200519155451'),
 ('20200524174421'),
 ('20200525102435'),
-('20200531072928');
+('20200531072928'),
+('20200624204627');
 
 

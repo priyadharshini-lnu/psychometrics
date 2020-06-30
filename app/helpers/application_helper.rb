@@ -13,6 +13,10 @@ module ApplicationHelper
     params[:lang] || I18n.locale
   end
 
+  def namespace_name
+    @current_client ? 'users' : 'administration'
+  end
+
   def detect_browser(user_agent)
     browser = Browser.new(user_agent)
     platform = browser.platform.id

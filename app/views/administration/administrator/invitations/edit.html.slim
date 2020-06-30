@@ -1,32 +1,36 @@
-.container
-  .row
-    .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-      /! Nav tabs
-      .formTabs
-        h1 = t('.title')
-      /! Tab panes
-      .content
-        p.instructionalText = t('.description')
-        = simple_form_for(resource, as: resource_name, url: administration_invitation_path, html: {method: :put, class: 'form-horizontal'}) do |f|
-          div.clearfix
-            == flash_messages
-            = devise_error_messages!
-            = f.hidden_field :invitation_token
-            = f.full_error :invitation_token
-          .loginFormContent
-            .passwordFormGroup
-              label for="password2" = t('.password_label')
-              .input-group
-                = f.input_field :password, placeholder: t('.password_label'), class: 'form-control'
-              = f.error :password
-            .passwordFormGroup
-              label for="passwordConfirm" = t('.confirm_password_label')
-              .input-group
-                = f.input_field :password_confirmation, placeholder: t('.confirm_password_label'), class: 'form-control'
-              = f.error :password_confirmation
-            span.clear &nbsp;
-            .resetPasswordButton
-              .input-group.pull-left
-                button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
-            .clearfix
-    .clearfix
+div class=([@current_project&.login_box_position || 'right', 'box', 'devise', namespace_name].compact.join(' '))
+  - if @browser_detections && !@browser_detections.preferred_browser?
+    = render 'browser_detections'
+
+  .panel.panel-default.session
+    .panel-body
+      .message.pvl
+        h1.mvm = t('.title')
+        .instruction = t('.instruction')
+
+      = simple_form_for(resource, as: resource_name, url: administration_invitation_path, html: { method: :put }) do |f|
+        div.clearfix
+          == flash_messages
+          = devise_error_messages!
+          = f.hidden_field :invitation_token
+          = f.full_error :invitation_token
+
+        = form_group_for f, :password, class: 'mbm' do
+          .password.input-group
+            span#password.input-group-addon
+              i.icon-lock
+            = f.input_field :password, placeholder: t('.password_label'), autofocus: true, class: 'form-control input-lg'
+
+        = form_group_for f, :password_confirmation, class: 'mbm' do
+          .password.input-group
+            span#password.input-group-addon
+              i.icon-lock
+            = f.input_field :password_confirmation, placeholder: t('.confirm_password_label'), autofocus: true, class: 'form-control input-lg'
+
+        .actions.pvm
+          button.btn.btn-primary type="submit"
+            = t('.submit')
+            span class="fa fa-chevron-right mlm"
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

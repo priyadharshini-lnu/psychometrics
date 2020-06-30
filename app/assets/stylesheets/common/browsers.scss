@@ -59,10 +59,8 @@
   }
 }
 
-@media screen and (min-width: 411px) {
+@media screen and (min-width: 640px) {
   .unsupported-browsers {
-    padding: 20px 20px;
-
     ul.browsers {
       justify-content: flex-start;
     }
@@ -71,15 +69,13 @@
 
 @media screen and (min-width: 736px) {
   .unsupported-browsers {
-    padding: 20px 30px;
-
     ul.browsers {
       justify-content: space-around;
     }
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .unsupported-browsers {
     padding: 50px 60px;
   }

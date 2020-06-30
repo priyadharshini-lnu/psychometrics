@@ -1,0 +1,231 @@
+//custom styles
+.mainContent { background: #ebebeb; }
+.mainContent .panel-heading .title { margin: 5px 0 0 0; float: left; }
+.mainContent .panel-heading .title i { font-size: 20px; margin-right: 10px; }
+.report-holder { margin: 40px auto 0; padding: 0; }
+.report-holder .panel-body { overflow-x: auto; overflow-y: hidden; }
+.assessment-holder { margin: 16px auto 0; padding: 0; max-width: 1170px;}
+.assessment-holder .progress-bar { background-color: #64984b; }
+.assessment-holder .assessment-box {
+  padding: 25px 0;
+  .progress {
+    margin: 0 auto 60px auto;
+    max-width: 400px;
+  }
+}
+
+.mobile-device .report-holder .panel-body { display: none; }
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 6px 15px;
+  transition: border-color .1s ease-in-out,box-shadow .1s ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  background: transparent url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='18' height='18' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='gray'/></g></svg>") no-repeat;
+  background-position: right 5px top 50%;
+}
+.custom-select:hover {
+  border: 1px solid #00B4A9;
+  box-shadow: 0 2px 0px 0 rgba(0, 180, 169, 0.05);
+}
+.custom-select:focus {
+  border: 1px solid #00B4A9;
+  box-shadow: 0 3px 0px 0 rgba(0, 180, 169, 0.1);
+  outline: none;
+}
+select::-ms-expand {
+  display:none;
+}
+
+.banner {
+  background-color: rgba(67, 173, 165, 0.7);
+  height: 150px;
+}
+
+h1.welcomeText {
+  font-size: 20px;
+  color: #444444;
+  text-align: left;
+  text-transform: none;
+}
+
+h3.assessmentTitles {
+  font-size: 20px;
+  color: #444444;
+  padding: 10px 0;
+}
+
+.navbar-nav > li > a {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.navbar-nav .open .dropdown-menu {
+  position: absolute;
+  background: #fff;
+  margin-top: 0;
+  border: 1px solid #D9DEE4;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  right: 0;
+  left: auto;
+  width: 220px;
+}
+
+.dropdown-menu li a {
+  width: 100%;
+  padding: 12px 20px;
+}
+
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dashboard-holder {
+  min-height: 300px;
+  .panel-heading {
+    overflow-x: auto !important;
+  }
+
+  .panel-default > .panel-heading {
+    padding: 5px;
+    border: none;
+    background: #fff;
+  }
+
+  .panel-default > .panel-heading + .panel-collapse > .panel-body {
+    border: none;
+  }
+  .well { margin-bottom: 0; }
+  .table-responsive {
+    border: 0;
+  }
+}
+
+.assign {
+  position: relative;
+  &.loading {
+    .panel-heading, .panel-collapse {
+      opacity: 0.3;
+    }
+    .loading {
+      top: 0;
+      z-index: 1000;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('/loaders/default.gif') no-repeat center center !important;
+    }
+  }
+}
+
+hr.divider {
+  margin: 0 25px;
+  color: #e5e5e5;
+}
+
+.table-borderless tbody tr td,
+.table-borderless tbody tr th,
+.table-borderless thead tr th,
+.table-borderless thead tr td,
+.table-borderless tfoot tr th,
+.table-borderless tfoot tr td {
+  border: none;
+}
+
+th {
+  text-transform: uppercase;
+  color: #7d8fa2;
+  letter-spacing: 2px;
+  font-weight: 300;
+  font-size: 14px;
+}
+td {
+  color: #283747;
+  font-weight: 600;
+  font-size: 14px;
+}
+td a {
+  color: #ffa94c;
+  font-weight: 400;
+  font-size: 14px;
+}
+td a:hover, td a:active, td a:focus {
+  color: #e0933f;
+  text-decoration: none;
+}
+
+.table.rowPadding tbody tr td, .table.rowPadding th {
+  padding: 15px 0;
+}
+@media screen and (max-width: 767px) {
+  .table.rowPadding tbody tr td, .table.rowPadding th {
+    padding: 8px 15px;
+    white-space: nowrap;
+  }
+}
+
+.progress {
+  border: 1px solid #cccccc;
+  background: transparent;
+}
+
+.well {
+  font-size: 14px;
+}
+.table {
+  margin-bottom: 0;
+}
+
+hr.modal {
+  color: #a8a8a8;
+  padding: 0 15px;
+}
+
+.quantitySelector {
+  background: #fff;
+  border: 1px solid #AAAEAF;
+  border-radius: 3px;
+  padding: 5px;
+  width: 150px;
+}
+
+.coursePreview {
+  margin: 20px 0;
+}
+@media screen and (max-width: 767px) {
+  .coursePreview {
+    padding: 10px;
+  }
+}
+
+.courseThumbnail {
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.75);
+}
+
+.word-break-all {
+  word-break: break-all;
+}
+
+// TODO: Render react component ThreesixtyCampaign/components/Footer/Footer.js when react_rails gem is merged
+// And remove this duplicate style
+footer.lighthouse_footer {
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.10);
+  padding: 0;
+
+  .footer-wrapper {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+      max-height: 50px;
+    }
+  }
+}
