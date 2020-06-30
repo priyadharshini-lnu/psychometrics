@@ -10,19 +10,17 @@ module Threesixty::InitialState
   end
 
   def set_init_state
-    logo = FileTest.exist?("#{Rails.public_path}#{@current_project.logo.url}") ? @current_project.logo.url : nil
-
     @init_state = {
       threeSixtyCampaign: {
         project: {
-          logo: logo,
+          logo: @current_project.logo.url,
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
+        },
+        currentUser: serialized_current_user,
+        extras: {
+          isFrame: use_iframe?
         }
-      },
-      currentUser: serialized_current_user,
-      extras: {
-        isFrame: use_iframe?
       }
     }
   end

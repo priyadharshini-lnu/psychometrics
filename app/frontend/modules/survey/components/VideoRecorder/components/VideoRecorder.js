@@ -251,7 +251,9 @@ class VideoRecorder extends Component {
         this.player.controlBar.currentTimeDisplay.addClass('show')
         this.player.controlBar.currentTimeDisplay.removeClass('hide')
 
-        if (trackingEnabled && this.tracker) this.tracker.startTracking()
+        setTimeout(() => {
+          if (trackingEnabled && this.tracker) this.tracker.startTracking()
+        }, 2000)
       })
 
       this.player.on('finishRecord', async () => {

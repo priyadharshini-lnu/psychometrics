@@ -9,6 +9,7 @@ module Anonym
     protect_from_forgery with: :exception
 
     prepend_before_action :set_assessments_client
+    before_action :perform_browser_check, only: [:pass]
     before_action :authenticate_anonymous_user!, only: [:pass]
     before_action :set_client, only: [:pass]
     before_action :set_assessment, only: [:pass]
@@ -36,6 +37,12 @@ module Anonym
     def error; end
 
     private
+
+    def perform_browser_check
+      @browser_detections = helpers.detect_browser(request.user_agent)
+
+      redirect_to upgrade_url unless @browser_detections.supported_browser?
+    end
 
     def set_assessments_client
       @assessments_client = ::AssessmentsClient.find_by assessment_key: params[:assessment_key]
