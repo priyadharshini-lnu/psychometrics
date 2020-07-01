@@ -4,6 +4,8 @@ module Exports
   module Assessments
     module Questions
       class FileUpload < Base
+        include ImportExportConst
+
         def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
           if answers.present?
             answers = file_upload_answers(answers[0])
@@ -21,7 +23,7 @@ module Exports
         def self.question_id_and_choice_headers(question)
           question_id_header = []
           question_choices_header = []
-          MediaResponse::IMPORT_EXPORT_FIELDS.each do |file_upload_field|
+          IMPORT_EXPORT_FIELDS.each do |file_upload_field|
             question_id_header << "QID#{question.id}_#{file_upload_field}"
             question_choices_header << file_upload_field
           end

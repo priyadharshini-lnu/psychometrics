@@ -4,6 +4,7 @@ module Imports
   module Assessments
     module Questions
       class MatrixTable
+        include ImportExportConst
         # Parse RESULT data for XLSX
         def self.build_answers(data, question, use_scoring = false, _assign)
           return nil if data.compact.blank?
@@ -55,7 +56,7 @@ module Imports
         end
 
         def self.not_applicable_data?(question, value)
-          ['_NA_', question.props['notApplicableLabel']].include?(value)
+          [NOT_APPLICABLE_PLACEHOLDER, question.props['notApplicableLabel']].include?(value)
         end
       end
     end

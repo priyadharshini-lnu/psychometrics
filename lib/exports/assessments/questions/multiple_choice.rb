@@ -4,6 +4,7 @@ module Exports
   module Assessments
     module Questions
       class MultipleChoice < Base
+        include ImportExportConst
         # FROM:
         #   [{
         #     "index": 0,
@@ -22,10 +23,8 @@ module Exports
 
               question.props.dig('choicesTexts', answer['index'])
             end.join(',')
-          elsif not_applicable && export_with_labels
-            question.props['notApplicableLabel']
           elsif not_applicable
-            '_NA_'
+            export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
           end
         end
 

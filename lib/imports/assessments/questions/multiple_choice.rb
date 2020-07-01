@@ -39,7 +39,7 @@ module Imports
         end
 
         def self.not_applicable_data?(question, value)
-          ['_NA_', question.props['notApplicableLabel']].include?(value)
+          [NOT_APPLICABLE_PLACEHOLDER, question.props['notApplicableLabel']].include?(value)
         end
       end
     end

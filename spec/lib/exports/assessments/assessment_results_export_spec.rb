@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+# require_dependency Rails.root.join('lib', 'import_export_const')
+# require 'lib/import_export_const.rb'
 
 describe Exports::Assessments::AssessmentResultsExport do
   let(:client) { create(:tenancy) }
@@ -117,7 +119,7 @@ describe Exports::Assessments::AssessmentResultsExport do
 
         expected_first_row = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status']
 
-        Question::EMAIL_QUESTION_FIELDS.each do |email_field|
+        ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
           expected_first_row << "QID#{question.id}_#{email_field}"
         end
 
@@ -132,7 +134,7 @@ describe Exports::Assessments::AssessmentResultsExport do
         actual_second_row = xlsx.sheet(0).row(2)
         expected_second_row = [nil] * 7
 
-        Question::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
+        ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
 
         expect(actual_second_row).to eq(expected_second_row)
       end
@@ -145,7 +147,9 @@ describe Exports::Assessments::AssessmentResultsExport do
         actual_third_row = xlsx.sheet(0).row(3)
         expected_third_row = [nil] * 7
 
-        Question::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_third_row << question.props['questionText'] }
+        ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
+          expected_third_row << question.props['questionText']
+        end
 
         expect(actual_third_row).to eq(expected_third_row)
       end

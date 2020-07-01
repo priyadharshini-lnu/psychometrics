@@ -4,6 +4,7 @@ module Exports
   module Assessments
     module Questions
       class MatrixTable < Base
+        include ImportExportConst
         # Parse RESULT data for XLSX
         def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
           # IF: answer can contain any data (string, number and etc.)
@@ -46,10 +47,8 @@ module Exports
           parsed_result = []
           question.props['choices'].to_i.times do |choice|
             question.props['scalePoints'].to_i.times do |scale|
-              parsed_result << if not_applicable && not_applicable.keys[0].to_i == choice && export_with_labels
-                                 question.props['notApplicableLabel']
-                               elsif not_applicable && not_applicable.keys[0].to_i == choice
-                                 '_NA_'
+              parsed_result << if not_applicable && not_applicable.keys[0].to_i == choice
+                                 export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
                                else
                                  (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
                                try(:[], 'value')
@@ -60,11 +59,13 @@ module Exports
         end
 
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
-          if not_applicable && export_with_labels
-            parsed_result[not_applicable.keys[0].to_i] = question.props['notApplicableLabel']
-          elsif not_applicable
-            parsed_result[not_applicable.keys[0].to_i] = '_NA_'
-          end
+          return parsed_result unless not_applicable
+
+          parsed_result[not_applicable.keys[0].to_i] = if export_with_labels
+                                                         question.props['notApplicableLabel']
+                                                       else
+                                                         NOT_APPLICABLE_PLACEHOLDER
+                                                       end
           parsed_result
         end
 
