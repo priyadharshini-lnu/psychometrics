@@ -4,6 +4,7 @@ module Imports
   module Assessments
     module Questions
       class TextEntry
+        include ImportExportConst
         # FROM:
         #   ['Value']
         # TO:
@@ -42,8 +43,8 @@ module Imports
 
         def self.build_email_answers(data)
           answers = {}
-          Question::EMAIL_QUESTION_FIELDS.each_with_index do |email_field, index|
-            answers[email_field] = if Question::EMAIL_QUESTION_TEXT_FIELDS.include?(email_field)
+          EMAIL_QUESTION_FIELDS.each_with_index do |email_field, index|
+            answers[email_field] = if EMAIL_QUESTION_TEXT_FIELDS.include?(email_field)
                                      data[index]
                                    else
                                      data[index] && data[index].split(', ')

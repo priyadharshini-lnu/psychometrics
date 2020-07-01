@@ -4,6 +4,7 @@ module Exports
   module Assessments
     module Questions
       class MultipleChoice < Base
+        include ImportExportConst
         # FROM:
         #   [{
         #     "index": 0,
@@ -11,16 +12,20 @@ module Exports
         #   }, ...]
         # TO:
         #   [1]
-        def self.result(answers, question, scoring = false, export_with_labels = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          (answers || []).map do |answer|
-            next factors_scoring[answer['index']] if scoring
+          if answers.present?
+            (answers || []).map do |answer|
+              next factors_scoring[answer['index']] if scoring
 
-            next answer['index'] + 1 unless export_with_labels
+              next answer['index'] + 1 unless export_with_labels
 
-            question.props.dig('choicesTexts', answer['index'])
-          end.join(',')
+              question.props.dig('choicesTexts', answer['index'])
+            end.join(',')
+          elsif not_applicable
+            export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
+          end
         end
 
         def self.result_label(answers, question)

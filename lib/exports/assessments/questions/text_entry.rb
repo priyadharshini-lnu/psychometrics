@@ -4,6 +4,7 @@ module Exports
   module Assessments
     module Questions
       class TextEntry < Base
+        include ImportExportConst
         # FROM:
         #   [{
         #     "index": 0,
@@ -12,7 +13,7 @@ module Exports
         # TO:
         #   ['Value']
 
-        def self.result(answers, question, scoring = false, _export_with_labels = false)
+        def self.result(answers, question, scoring = false, _export_with_labels = false, _not_applicable)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
           answers = retrieve_answers(answers, question, scoring)
@@ -31,7 +32,7 @@ module Exports
         end
 
         def self.email_type_answers(answers)
-          Question::EMAIL_QUESTION_FIELDS.each_with_object([]) do |email_field, data|
+          EMAIL_QUESTION_FIELDS.each_with_object([]) do |email_field, data|
             data << (answers[email_field].is_a?(Array) ? answers[email_field].join(', ') : answers[email_field])
           end
         end
@@ -57,7 +58,7 @@ module Exports
               question_choices_header << question.props.dig('choicesTexts', c)
             end
           elsif question.of_sub_type?('Email')
-            Question::EMAIL_QUESTION_FIELDS.each do |email_field|
+            EMAIL_QUESTION_FIELDS.each do |email_field|
               question_id_header << "QID#{question.id}_#{email_field}"
               question_choices_header << email_field
             end

@@ -5,8 +5,6 @@ require 'carrierwave/storage/fog'
 class MediaResponse < ApplicationRecord
   include EncodableId
 
-  IMPORT_EXPORT_FIELDS = %w[file_upload_url media_id].freeze
-
   mount_uploader :asset, MediaResponseUploader
 
   belongs_to :users_assessment
