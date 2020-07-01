@@ -4,6 +4,8 @@ module Imports
   module Assessments
     module Questions
       class MultipleChoice
+        include ImportExportConst
+
         # FROM:
         #   ['1,2']
         # TO:
