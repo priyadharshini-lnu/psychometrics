@@ -239,7 +239,7 @@ const RecordCard: React.FC<CardProps> = ({
 )
 
 const getTranscriptionMessage = (transcribeSupportedLocales: string[]) => {
-  if (transcribeSupportedLocales.includes(I18n.locale)) {
+  if (_.includes(transcribeSupportedLocales, I18n.locale)) {
     return I18n.t('checking_wizard.audio_check.test_message')
   }
 
