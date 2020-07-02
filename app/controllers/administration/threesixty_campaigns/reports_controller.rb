@@ -11,10 +11,12 @@ module Administration
       append_before_action :pundit_authorize
 
       def show
-        @users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
-        set_available_translations(@users_report.report)
+        @campaigns_users_report = CampaignsUsersReport.find_by!(
+          campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
+        )
+        set_available_translations(@campaigns_users_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
-          users_report: @users_report,
+          campaigns_users_report: @campaigns_users_report,
           locale: user_locale,
           current_user: current_user
         )
@@ -26,12 +28,14 @@ module Administration
       end
 
       def download
-        users_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
+        campaigns_users_report = CampaignsUsersReport.find_by!(
+          campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
+        )
         options = { lang: params[:lang] }
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(
-              threesixty_campaign, current_user, resource, users_report, options
+              threesixty_campaign, current_user, resource, campaigns_users_report, options
             )
             render json: { success: true }
           end
@@ -39,7 +43,7 @@ module Administration
             add_cookie_for_file_download
 
             pdf_file = ::Threesixty::Reports::ExportReport.call!(
-              current_user, threesixty_campaign, @_resource, users_report, options
+              current_user, threesixty_campaign, @_resource, campaigns_users_report, options
             )
             send_file pdf_file, type: 'application/pdf'
           end

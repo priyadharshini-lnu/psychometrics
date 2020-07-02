@@ -65,10 +65,12 @@ module Administration
       end
 
       def preview_report
-        user_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
+        campaigns_users_report = CampaignsUsersReport.find_by!(
+          campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
+        )
 
         @data = ::Reports::PrepareDataForReport.call!(
-          users_report: user_report,
+          campaign_user_report: campaigns_users_report,
           locale: user_locale,
           current_user: current_user
         )

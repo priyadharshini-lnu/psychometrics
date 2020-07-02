@@ -63,8 +63,8 @@ describe ::UsersResults::UpdateUsersResult do
                                                   answers: {},
                                                   step: 3)
     end
-    let(:users_report) do
-      create(:users_report, user: subject_user,
+    let(:campaigns_users_report) do
+      create(:campaigns_users_report, user: subject_user,
                                                   campaign: campaign,
                                                   report: report)
     end
@@ -98,10 +98,11 @@ describe ::UsersResults::UpdateUsersResult do
 
       context 'report is enabled' do
         it 'sets generating status' do
-          expect { subject }.to change { users_report.reload.generating? }.from(false).to(true)
+          expect { subject }.to change { campaigns_users_report.reload.generating? }.from(false).to(true)
         end
         it 'sends to generate report' do
-          expect(::UsersReports::GeneratePdfJob).to receive(:perform_later).with(users_report, subject_user)
+          expect(::CamapaignsUsersReports::GeneratePdfJob).to receive(:perform_later).
+            with(campaigns_users_report, subject_user)
           subject
         end
       end
@@ -110,10 +111,11 @@ describe ::UsersResults::UpdateUsersResult do
         before(:each) { report.update_column(:disabled, true) }
         it 'dont sets generating status' do
           subject
-          expect(users_report.reload.generating?).to be_falsy
+          expect(campaigns_users_report.reload.generating?).to be_falsy
         end
         it 'dont sends to generate report' do
-          expect(::UsersReports::GeneratePdfJob).not_to receive(:perform_later).with(users_report, subject_user)
+          expect(::CamapaignsUsersReports::GeneratePdfJob).not_to receive(:perform_later).
+            with(campaigns_users_report, subject_user)
           subject
         end
       end
