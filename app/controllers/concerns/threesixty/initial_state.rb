@@ -17,11 +17,11 @@ module Threesixty::InitialState
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
         },
-        currentUser: serialized_current_user,
         extras: {
           isFrame: use_iframe?
         }
-      }
+      },
+      currentUser: serialized_current_user
     }
   end
 

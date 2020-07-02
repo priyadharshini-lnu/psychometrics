@@ -1,4 +1,6 @@
 import { createReducer } from 'utils/redux'
+import _ from 'lodash'
+import Cookies from 'js-cookie'
 import { Config, Checks } from './interfaces'
 
 interface State {
@@ -46,7 +48,12 @@ export const preSignUrl = () => ({
 
 
 const HANDLERS = {
-  [FETCH]: (state: State, { response }) => ({ ...state, ...response }),
+  [FETCH]: (state: State, { response }) => {
+    const checks = _.reduce(response.checks, (result, value, key) => (
+      { ...result, [key]: value && !Cookies.get(`checking_wizard.${key}`) }
+    ), {})
+    return { ...state, ...response, checks }
+  },
   [PRE_SIGN_URL]: (state: State, { response: { url } }) => ({ ...state, preSignedUrl: url }),
 }
 

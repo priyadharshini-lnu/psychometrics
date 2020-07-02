@@ -25,7 +25,7 @@ export const getApprovalNominations = createSelector(
 
 export const getUserEvaluations = createSelector(
   getCurrentUser,
-  getEvaluations,
+  ({ threeSixtyCampaign }) => getEvaluations(threeSixtyCampaign),
   (user, evaluations) => _.filter(evaluations, { evaluatorId: user && user.id }),
 )
 

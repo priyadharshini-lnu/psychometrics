@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import _ from 'lodash'
 import {
   PageHeader, Row, Steps, Result, Button, Layout, Col,
 } from 'antd'
@@ -6,6 +7,7 @@ import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
 import routeUtils from 'utils/route'
 import { Checks, Config } from 'modules/user/modules/threesixtyCampaign/core/checkingWizard/interfaces'
+import Cookies from 'js-cookie'
 import styles from './styles.scss'
 import SystemCheck from './SystemCheck'
 import NetworkCheck from './NetworkCheck'
@@ -81,6 +83,7 @@ const CheckingWizard: React.FC<Props> = ({
 
   const nextStep = () => {
     const steps = getSteps()
+    Cookies.set(`checking_wizard.${steps[current].key}`, true, { expires: 4 / 24 })
 
     if (current < steps.length - 1) {
       setCurrent(current + 1)
@@ -97,6 +100,10 @@ const CheckingWizard: React.FC<Props> = ({
     if (steps.length === 3) return cs('page-header', 'page-header-wrap', 'pb0', styles.header, styles.header66)
 
     return cs('page-header', 'page-header-wrap', 'pb0', styles.header, styles.header100)
+  }
+
+  if (_.every(checks, check => check === false)) {
+    return null
   }
 
   return finish ? <Finish onFinish={onFinish} /> : (

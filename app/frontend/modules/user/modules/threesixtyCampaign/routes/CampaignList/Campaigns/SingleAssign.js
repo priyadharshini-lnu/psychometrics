@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import routeUtils from 'utils/route'
+import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
@@ -125,11 +126,9 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
   }
 
   const loadAssessmentOrCheckingWizard = () => {
-    if (isWizardRequired()) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
+    if (WizardIsRequired.run(assign.assessmentExtra)) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
     return loadAssessment(assign)
   }
-
-  const isWizardRequired = () => assign.assessmentExtra.enableNetworkCheck === '1' || assign.assessmentExtra.enableAudioCheck === '1' || assign.assessmentExtra.enableVideoCheck === '1'
 
   const accept = () => {
     setShowConfirm(false)

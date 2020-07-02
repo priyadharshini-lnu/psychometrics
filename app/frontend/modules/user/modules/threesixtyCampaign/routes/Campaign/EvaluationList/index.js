@@ -8,6 +8,7 @@ import {
   CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
+import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import { STATUSES } from 'constants/userResult'
 import connect from './connect'
 import styles from './styles.scss'
@@ -66,12 +67,8 @@ function EvaluationList ({
       && !isEvaluationCompleted(item)
   )
 
-  const isWizardRequired = item => item.assessmentExtra.enableNetworkCheck === '1'
-    || item.assessmentExtra.enableAudioCheck === '1'
-    || item.assessmentExtra.enableVideoCheck === '1'
-
   const getPath = (item) => {
-    if (isWizardRequired(item)) return `/system_checks/${item.assessmentId}/${item.id}`
+    if (WizardIsRequired.run(item.assessmentExtra)) return `/system_checks/${item.assessmentId}/${item.id}`
     return `/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${isEvaluationCompleted(item)}`
   }
 
