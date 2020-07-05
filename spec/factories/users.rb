@@ -74,6 +74,11 @@ FactoryBot.define do
       memberships { memberships_options.map { |opts| association(:membership, opts) } }
     end
 
+    trait :with_project_membership do
+      memberships { memberships_options.map { |opts| association(:membership, opts) } }
+      project { memberships.first.client }
+    end
+
     trait :skip_validate do
       to_create { |instance| instance.save(validate: false) }
     end

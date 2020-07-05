@@ -15,7 +15,11 @@ RSpec.describe Administration::ClientsController, type: :controller do
       get :index
       expect(response.status).to eq(200)
       expect(assigns(:_resources).count).to eq(3)
-      expect(assigns(:_resources)).to include(client)
+      expect(assigns(:_resources)).to include(
+        client,
+        client_membership.client,
+        project_membership.client.parent
+      )
     end
   end
 
