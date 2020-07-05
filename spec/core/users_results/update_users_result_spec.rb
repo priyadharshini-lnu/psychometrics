@@ -101,7 +101,7 @@ describe ::UsersResults::UpdateUsersResult do
           expect { subject }.to change { campaigns_users_report.reload.generating? }.from(false).to(true)
         end
         it 'sends to generate report' do
-          expect(::CamapaignsUsersReports::GeneratePdfJob).to receive(:perform_later).
+          expect(::CampaignsUsersReports::GeneratePdfJob).to receive(:perform_later).
             with(campaigns_users_report, subject_user)
           subject
         end
@@ -114,7 +114,7 @@ describe ::UsersResults::UpdateUsersResult do
           expect(campaigns_users_report.reload.generating?).to be_falsy
         end
         it 'dont sends to generate report' do
-          expect(::CamapaignsUsersReports::GeneratePdfJob).not_to receive(:perform_later).
+          expect(::CampaignsUsersReports::GeneratePdfJob).not_to receive(:perform_later).
             with(campaigns_users_report, subject_user)
           subject
         end

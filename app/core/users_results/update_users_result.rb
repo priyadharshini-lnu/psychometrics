@@ -68,7 +68,7 @@ module UsersResults
 
       # Sets status to generating and sends to generate report
       campaigns_users_report.generating!
-      ::CamapaignsUsersReports::GeneratePdfJob.perform_later(campaigns_users_report, subject_user)
+      ::CampaignsUsersReports::GeneratePdfJob.perform_later(campaigns_users_report, subject_user)
     end
 
     def send_necessary_emails

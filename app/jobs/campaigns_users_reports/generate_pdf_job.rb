@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CamapaignsUsersReports
+module CampaignsUsersReports
   class GeneratePdfJob < ApplicationJob
     queue_as :reports
 
