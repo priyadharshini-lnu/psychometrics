@@ -5,9 +5,21 @@ import {
 import cs from 'classnames'
 import styles from './styles.scss'
 
-export default function Expandable ({
+interface Props {
+  label: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  value: any
+  actionable?: React.ReactNode
+  children?: React.ReactNode
+  type?: 'checkbox' | 'switch'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onOptionChanged: (value: any) => void
+}
+
+
+const Expandable: React.FC<Props> = ({
   label, value, onOptionChanged, actionable, children, type,
-}) {
+}) => {
   const renderExpandableBlock = () => {
     if (!value || !children) return null
     return <div className={cs({ [styles.checkboxContainer]: type === 'checkbox' })}>{children}</div>
@@ -54,3 +66,5 @@ export default function Expandable ({
     </div>
   )
 }
+
+export default Expandable

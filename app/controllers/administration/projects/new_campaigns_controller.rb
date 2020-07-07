@@ -6,6 +6,7 @@ module Administration
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :init_breadcrumbs
+      before_action :set_campaign, only: %i[show update]
 
       def index
         @init_state = {}
@@ -28,7 +29,12 @@ module Administration
       def show
         authorize(Campaign, nil)
 
-        render :index
+        respond_to do |format|
+          format.html { render :index }
+          format.json do
+            render json: Administration::Campaigns::CampaignSerializer.new(@campaign)
+          end
+        end
       end
 
       def create
@@ -40,10 +46,9 @@ module Administration
       end
 
       def update
-        form = ::Campaigns::Form.from_params(params)
+        form = ::Campaigns::Form.from_params(@campaign.attributes.merge(campaign_params))
         if form.valid?
-          campaign = Campaign.find(params[:id])
-          campaign.update!(form.attributes)
+          @campaign.update!(form.attributes)
           render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -70,6 +75,10 @@ module Administration
         authorize @campaign || Campaign
       end
 
+      def set_campaign
+        @campaign = policy_scope(Campaign).find_by(project_id: params[:project_id], id: params[:id])
+      end
+
       def create_common_campaign
         form = ::Campaigns::Form.from_params(params)
         if form.valid?
@@ -88,6 +97,10 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def campaign_params
+        params[:new_campaign].permit(:name, :status, :type, options: {})
       end
     end
   end

@@ -504,7 +504,8 @@ CREATE TABLE public.campaigns (
     type integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    options jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -6971,6 +6972,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200624204627'),
 ('20200701104517'),
 ('20200701144435'),
-('20200701154607');
+('20200701154607'),
+('20200705132139');
 
 

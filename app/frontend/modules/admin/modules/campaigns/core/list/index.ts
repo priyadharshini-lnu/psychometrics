@@ -1,20 +1,7 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-
-export interface Campaign {
-  id: number
-  name: string
-  type: string
-  assessments: Entity[]
-  reports: Entity[]
-}
-
-export interface Entity {
-  name: string
-  iconColor: string
-  iconUrl: string
-}
+import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 
 const defaultState = []
 

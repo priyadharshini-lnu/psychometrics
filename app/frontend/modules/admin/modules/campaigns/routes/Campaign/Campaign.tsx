@@ -20,7 +20,7 @@ const Campaign: React.FC<Props> = ({
 }) => (
   <div>
     <TopMenu prefix={`${settings.urlPrefix}/${campaignId}`} />
-    <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/${campaignId}`} />
+    <RouteList routes={routes} urlPrefix={`${settings.urlPrefix}/:campaignId`} />
   </div>
 )
 

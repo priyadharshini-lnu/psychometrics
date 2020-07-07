@@ -1,6 +1,6 @@
 import React from 'react'
-import OptionSection from 'modules/admin/modules/threeSixtyCampaign/components/Options/Section'
-import ExpandableOption from 'modules/admin/modules/threeSixtyCampaign/components/Options/Expandable'
+import OptionSection from 'modules/admin/components/Options/Section'
+import ExpandableOption from 'modules/admin/components/Options/Expandable'
 
 export default function GlobalSection ({
   options,

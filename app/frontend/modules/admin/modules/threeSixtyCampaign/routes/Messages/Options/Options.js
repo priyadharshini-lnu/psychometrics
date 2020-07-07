@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import OptionSection from 'modules/admin/modules/threeSixtyCampaign/components/Options/Section'
-import Option from 'modules/admin/modules/threeSixtyCampaign/components/Options/Expandable'
+import OptionSection from 'modules/admin/components/Options/Section'
+import Option from 'modules/admin/components/Options/Expandable'
 
 import styles from './styles.scss'
 
