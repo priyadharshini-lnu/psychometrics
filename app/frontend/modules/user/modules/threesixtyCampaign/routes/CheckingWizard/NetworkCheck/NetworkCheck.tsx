@@ -150,7 +150,7 @@ const InProgressView: React.FC<ViewProps> = ({
 
     SomApi.onProgress = updateProgress
     SomApi.config = {
-      sustainTime: 1,
+      sustainTime: 2,
       testServerEnabled: false,
       uploadTestEnabled: true,
       progress: {
