@@ -60,7 +60,6 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       dispatch(updateAccess(CheckListStatus.Done))
       player.record().getDevice()
     } catch (e) {
-      console.error(e)
       dispatch(updateAccess(CheckListStatus.Failed))
     }
   }
