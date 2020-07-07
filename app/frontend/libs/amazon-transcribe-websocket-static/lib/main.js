@@ -57,8 +57,7 @@ function wireSocketEvents(onTranscribe, onError) {
         let messageBody = JSON.parse(String.fromCharCode.apply(String, messageWrapper.body));
         if (messageWrapper.headers[":message-type"].value === "event") {
             handleEventStreamMessage(messageBody, onTranscribe);
-        }
-        else {
+        } else {
             onError()
         }
     };

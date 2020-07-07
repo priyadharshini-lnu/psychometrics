@@ -24,7 +24,7 @@ stream-transcription-websocket?language-code=#{get_locale}&media-encoding=pcm&sa
         http_method: 'GET',
         url: url,
         protocol: 'wss',
-        expires_in: 600
+        expires_in: 300
       )
 
       broadcast :ok, url
