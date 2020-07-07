@@ -46,23 +46,23 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
       player.record().start()
     })
     player.on('startRecord', () => {
-      track()
+      setTimeout(() => track(), 1000)
     })
     player.on('finishRecord', () => dispatch(failFaceDetectionByTimeout()))
   }, [])
 
-  const requestAccess = () => {
+  const requestAccess = async () => {
     if (!videoRef.current) return
 
 
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(() => {
-        dispatch(updateAccess(CheckListStatus.Done))
-        player.record().getDevice()
-      })
-      .catch(() => {
-        dispatch(updateAccess(CheckListStatus.Failed))
-      })
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: true })
+      dispatch(updateAccess(CheckListStatus.Done))
+      player.record().getDevice()
+    } catch (e) {
+      console.error(e)
+      dispatch(updateAccess(CheckListStatus.Failed))
+    }
   }
 
   const track = async () => {
@@ -72,14 +72,14 @@ const VideoCheck: React.FC<Props> = ({ nextStep }) => {
     const detections = await faceapi.detectSingleFace(videoRef.current, options)
     if (detections) {
       dispatch(updateFaceDetection(CheckListStatus.Done))
-      player.record().stop()
+      setTimeout(() => player.record().stop(), 500)
     } else {
       setTimeout(() => track(), 500)
     }
   }
 
-  const rerun = () => {
-    requestAccess()
+  const rerun = async () => {
+    await requestAccess()
     if (state.access === CheckListStatus.Failed) return
 
     dispatch(updateFaceDetection(CheckListStatus.InProgress))
