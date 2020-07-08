@@ -38,7 +38,7 @@ module Administration
       end
 
       def create
-        if params[:type] == ::Campaign::THREESIXTY
+        if resource_params[:type] == ::Campaign::THREESIXTY
           create_threesixty_campaign
         else
           create_common_campaign
@@ -80,7 +80,7 @@ module Administration
       end
 
       def create_common_campaign
-        form = ::Campaigns::Form.from_params(params)
+        form = ::Campaigns::Form.from_params(resource_params)
         if form.valid?
           campaign = Campaign.create!(form.attributes.merge(project_id: project.id))
           render json: campaign, serializer: Administration::Campaigns::CampaignSerializer
@@ -90,7 +90,7 @@ module Administration
       end
 
       def create_threesixty_campaign
-        form = ::Threesixty::Campaigns::CreateForm.from_params(params)
+        form = ::Threesixty::Campaigns::CreateForm.from_params(resource_params)
         if form.valid?
           threesixty_campaign = ::Threesixty::Campaigns::Create.call!(project, form)
           render json: threesixty_campaign.campaign, serializer: Administration::Campaigns::CampaignSerializer
@@ -100,7 +100,7 @@ module Administration
       end
 
       def campaign_params
-        params[:new_campaign].permit(:name, :status, :type, options: {})
+        resource_params.permit(:name, :status, :type, options: {})
       end
     end
   end

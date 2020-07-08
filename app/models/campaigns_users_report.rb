@@ -8,6 +8,8 @@ class CampaignsUsersReport < ApplicationRecord
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
 
+  delegate :client, to: :campaign
+
   mount_uploader :pdf, PdfUploader
 
   def threesixty_subject

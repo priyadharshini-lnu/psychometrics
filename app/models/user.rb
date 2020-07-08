@@ -180,6 +180,10 @@ class User < ApplicationRecord
     end
   end
 
+  def tenancy
+    project.parent
+  end
+
   private
 
   def generate_invitation_token

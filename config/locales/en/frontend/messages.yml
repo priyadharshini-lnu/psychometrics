@@ -1,5 +1,5 @@
 en:
   frontend:
-    campaign:
-      create_success: 'Campaign created successfully'
-      update_success: 'Campaign updated successfully'
+    resource:
+      create_success: '%{resourceName} created successfully'
+      update_success: '%{resourceName} updated successfully'

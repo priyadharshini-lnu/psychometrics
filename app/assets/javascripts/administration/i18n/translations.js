@@ -205,6 +205,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -5454,9 +5462,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "frontend": {
-    "campaign": {
-      "create_success": "Campaign created successfully",
-      "update_success": "Campaign updated successfully"
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -5730,6 +5742,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {
@@ -7033,6 +7048,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -12278,9 +12301,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "frontend": {
-    "campaign": {
-      "create_success": "Campaign created successfully",
-      "update_success": "Campaign updated successfully"
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -12554,6 +12581,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {
@@ -13854,6 +13884,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -19099,9 +19137,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "frontend": {
-    "campaign": {
-      "create_success": "Campaign created successfully",
-      "update_success": "Campaign updated successfully"
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -19375,6 +19417,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {

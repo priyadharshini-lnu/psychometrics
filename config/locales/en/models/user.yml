@@ -1,4 +1,12 @@
 en:
+  activemodel:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: User with this email id already exists in the campaign
+              user_exists_in_project: User with this email id already exists in the project
   activerecord:
     models:
       user: Users

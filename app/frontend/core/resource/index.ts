@@ -1,25 +1,49 @@
-export const fetch = (resourceName: string, resourceBaseUrl: string, resourceId: number) => ({
-  type: `resource/${resourceName}/FETCH`,
+import _ from 'lodash'
+
+export const fetch = (
+  requestScope: string | undefined,
+  resourceName: string,
+  resourceBaseUrl: string,
+  resourceId: number,
+) => ({
+  type: getActionType(requestScope, resourceName, 'FETCH'),
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'GET',
   },
 })
 
-export const create = (resourceName: string, resourceBaseUrl: string, body: object) => ({
-  type: `resource/${resourceName}/CREATE`,
+export const create = (
+  requestScope: string | undefined,
+  resourceName: string,
+  resourceBaseUrl: string,
+  data: object,
+) => ({
+  type: getActionType(requestScope, resourceName, 'CREATE'),
   request: {
     url: resourceBaseUrl,
     method: 'POST',
-    body,
+    body: { resource: data },
   },
 })
 
-export const update = (resourceName: string, resourceBaseUrl: string, resourceId: number, body: object) => ({
-  type: `resource/${resourceName}/UPDATE`,
+export const update = (
+  requestScope: string | undefined,
+  resourceName: string,
+  resourceBaseUrl: string,
+  resourceId: number,
+  data: object,
+) => ({
+  type: getActionType(requestScope, resourceName, 'UPDATE'),
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'PUT',
-    body,
+    body: { resource: data },
   },
 })
+
+const getActionType = (requestScope: string | undefined, resourceName: string, actionName: string) => (
+  _.join(
+    _.compact(['resource', requestScope, resourceName, actionName]), '/',
+  )
+)

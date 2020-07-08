@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement } from 'react'
-import { Form, message } from 'antd'
+import { Form, message, Alert } from 'antd'
 import { FormInstance } from 'antd/lib/form/util'
 import { FormProps } from 'antd/lib/form'
 import _ from 'lodash'
@@ -9,6 +9,7 @@ import { Resource } from './interfaces'
 
 interface Props {
   resourceName: string
+  requestScope?: string
   defaultRequest: Request
   resource?: Resource
   resourceId?: number
@@ -23,13 +24,17 @@ interface Props {
     fields: FieldData[],
     setFields(fields: object): void
   }
-  children({ form: FormInstance, status: string }): ReactElement
+  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
 }
 
 interface Request {
   fetchResource(): void
   createResource(values: object): void
   updateResource(values: object): void
+}
+
+interface Error {
+  [key: string]: string[]
 }
 
 const { I18n } = window
@@ -51,6 +56,7 @@ const ResourceForm: React.FC<Props> = ({
   const [form] = Form.useForm()
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
+  const [baseErrors, setBaseErrors] = useState<string[]>()
 
   const store = {
     fields: (storeManager && storeManager.fields) || fields,
@@ -77,6 +83,8 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const isEdit = () => !!resource || !!resourceId
+  const operation = () => (isEdit() ? 'update' : 'create')
+  const readableResourceName = (): string => _.capitalize(resourceName)
 
   const makeRequest = (name: string, ...args) => {
     const requestFunction = (request && request[name]) || defaultRequest[name]
@@ -112,18 +120,22 @@ const ResourceForm: React.FC<Props> = ({
       .then((response: object) => {
         handleStatusChange(Status.SaveSuccessful)
         if (showSuccessMessages) {
-          message.info(I18n.t(`frontend.${resourceName}.${isEdit() ? 'update' : 'create'}_success`))
+          let messageText = I18n.lookup(`frontend.${resourceName}.${operation()}_success`)
+          messageText = messageText
+            || I18n.t(`frontend.resource.${operation()}_success`, { resourceName: readableResourceName() })
+          message.info(messageText)
         }
         onSuccessfulSubmission && onSuccessfulSubmission(response)
       })
-      .catch((errors: Error[]) => {
+      .catch((errors: Error) => {
         onFailedSubmission && onFailedSubmission(values, errors)
+        setBaseErrors(errors.base)
         handleStatusChange(Status.SaveFailed)
         handleErrors(errors)
       })
   }
 
-  const handleErrors = (errors: Error[]) => {
+  const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     _.each(errors, (error: string | string[], name: string) => {
       const field: FieldData = _.find(store.fields, { name })
@@ -149,7 +161,17 @@ const ResourceForm: React.FC<Props> = ({
       layout="vertical"
       {...formProps || {}}
     >
-      {children({ form: store.form, status })}
+      {baseErrors
+        && (
+        <Alert
+          message={false}
+          description={_.join(_.castArray(baseErrors), ',')}
+          type="error"
+          className="mbm"
+          showIcon
+        />
+        )}
+      {children({ form: store.form, status, isEdit: isEdit() })}
     </Form>
   )
 }

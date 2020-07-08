@@ -21,7 +21,7 @@ export const update = (id: number, projectId: number, body: Partial<Campaign>) =
   request: {
     method: 'put',
     url: `/administration/projects/${projectId}/new_campaigns/${id}`,
-    body,
+    body: { resource: body },
   },
 })
 

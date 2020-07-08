@@ -13,7 +13,8 @@ import { Resource } from '../ResourceForm/interfaces'
 
 interface Props {
   resourceName: string
-  children({ form: FormInstance, status: string }): ReactElement
+  requestScope?: string
+  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
   close(): void
   title?: string
   resource?: Resource

@@ -22,6 +22,7 @@ class Campaign < ApplicationRecord
   has_many :reports, through: :campaigns_reports
   has_many :campaigns_assessments
   has_many :assessments, through: :campaigns_assessments
+  has_many :users, through: :campaigns_users
 
   delegate :client, to: :project
   THREESIXTY = 'threesixty'

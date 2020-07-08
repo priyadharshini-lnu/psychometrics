@@ -226,4 +226,4 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit }) => (
   </Menu>
 )
 
-export default withEnhancedTable(CampaignList, 'tableName', { maintainHistory: true })
+export default withEnhancedTable(CampaignList, 'campaignList', { maintainHistory: true })

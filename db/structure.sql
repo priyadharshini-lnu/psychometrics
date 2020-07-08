@@ -643,7 +643,8 @@ CREATE TABLE public.campaigns_users_reports (
     status integer DEFAULT 0,
     pdf character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_access boolean DEFAULT false
 );
 
 
@@ -5586,10 +5587,10 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
--- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+-- Name: sub_eval_campaign_assessment; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.users_campaigns_assessments USING btree (subject_id, evaluator_id, campaign_id);
+CREATE UNIQUE INDEX sub_eval_campaign_assessment ON public.users_campaigns_assessments USING btree (subject_id, evaluator_id, campaign_id, assessment_id);
 
 
 --
@@ -6973,6 +6974,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
+('20200702112737'),
+('20200705114339'),
 ('20200705132139');
 
 

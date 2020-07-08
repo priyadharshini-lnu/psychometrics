@@ -49,12 +49,19 @@ Rails.application.routes.draw do
       end
     end
     resources :projects do
+      resources :new_campaigns, only: [], constraints: proc { |request| request.format == :json } do
+        scope module: :campaigns do
+          resources :users
+        end
+      end
+
       scope module: :projects do
         resources :new_campaigns do
           collection do
             get :templates_and_assessment
           end
           member do
+            get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
         end

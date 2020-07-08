@@ -10,11 +10,11 @@ import settings from './settings'
 const App: React.FC<void> = () => (
   <div className="ms" style={{ background: 'white' }}>
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Router>
+      <Router>
+        <ConnectedRouter history={history}>
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-        </Router>
-      </ConnectedRouter>
+        </ConnectedRouter>
+      </Router>
     </Provider>
   </div>
 )

@@ -1,0 +1,6 @@
+en:
+  frontend:
+    login: 'Login'
+    edit: 'Edit'
+    delete: 'Delete'
+    change_password: 'Change password'
