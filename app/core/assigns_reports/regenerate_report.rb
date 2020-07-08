@@ -4,10 +4,10 @@ module AssignsReports
   class RegenerateReport < BaseCommand
     private_attr_reader :assign_report, :current_user, :membership
 
-    def initialize(assign_report, current_user, membership)
+    def initialize(assign_report, current_user, membership = nil)
       @assign_report = assign_report
       @current_user = current_user
-      @membership = membership
+      @membership = membership || assign_report.assign.membership
     end
 
     def call

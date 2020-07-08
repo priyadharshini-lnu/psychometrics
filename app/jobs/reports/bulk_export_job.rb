@@ -6,9 +6,8 @@ module Reports
 
     def perform(report_ids, current_user, client = nil)
       assigns_reports = ::AssignsReports::BulkExportWithOptions.new(report_ids, client).query
-      assigns_reports.update_all(generating: true)
-      assigns_reports.find_each do |assigns_report|
-        ::Reports::ExportJob.perform_later(assigns_report, current_user)
+      assigns_reports.includes(assign: :membership).find_each do |assigns_report|
+        AssignsReports::RegenerateReport.call!(assigns_report, current_user)
       end
     end
   end
