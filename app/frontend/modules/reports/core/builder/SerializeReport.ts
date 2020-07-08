@@ -7,7 +7,7 @@ const serializePage = page => ({
   props: page.props,
   position: page.position,
   removed: page.removed,
-  display_logic: page.displayLogic,
+  display_logic: page.display_logic,
   modules: [],
 })
 
