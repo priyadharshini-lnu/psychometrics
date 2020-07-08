@@ -4,11 +4,9 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
   let(:current_user) { create(:user, :with_project_membership) }
-  let(:subdomain) { current_user.project.subdomain }
 
   before(:each) do
-    sign_in(current_user)
-    request.host = "#{subdomain}.lvh.me"
+    login_as(user: current_user)
   end
 
   after(:each) { sign_out(current_user) }

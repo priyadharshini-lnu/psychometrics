@@ -1,29 +1,32 @@
 # frozen_string_literal: true
 
 module ControllerMacros
-  def login_user
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-      sign_in create(:user)
+  def login_as(role: nil, user: nil)
+    if role
+      user = create_user_of_role(role)
+      sing_in_user(user)
+    elsif user
+      sing_in_user(user)
     end
   end
 
-  def login_superadmin
-    let(:controller_superadmin) { create(:superadmin) }
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:administration]
-      sign_in controller_superadmin
-    end
-    after(:each) do
-      @request.env.delete('devise.mapping')
-      sign_out controller_superadmin
-    end
+  private
+
+  def sing_in_user(user)
+    request.host = "#{user.project.subdomain}.lvh.me" if user.project
+    sign_in(user)
   end
 
-  def login_client_admin
-    before(:each) do
-      @request.env['devise.mapping'] = Devise.mappings[:administration]
-      sign_in create(:client_admin)
+  def create_user_of_role(role)
+    case role
+      when :superadmin
+        create(:superadmin)
+      when :admin
+        create(:client_admin)
+      when :manager
+        create(:manager)
+      when :regular
+        create(:user, :with_project_membershi)
     end
   end
 end
