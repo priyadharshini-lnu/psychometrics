@@ -6,6 +6,7 @@ import PageModel from 'modules/reports/models/Page'
 import {
   INIT,
   UPDATE_PAGE_POSITIONS,
+  ADD_PAGE,
   addPage,
   setPagePositions,
 } from './actions'
@@ -25,5 +26,6 @@ function* genSetPagePositions () {
 
 export const watchers = [
   takeEvery(INIT, genInitDefaultPage),
+  takeEvery(ADD_PAGE, genSetPagePositions),
   takeEvery(UPDATE_PAGE_POSITIONS, genSetPagePositions),
 ]
