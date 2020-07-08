@@ -4,7 +4,7 @@ import {
   getModules, getModulesShowOnAll, getQuestions, getRenderModules,
 } from 'modules/reports/core/builder/selectors'
 import { addPage, unselectModules, selectModule } from 'modules/reports/core/builder/actions'
-import { renamePage } from 'modules/reports/core/builder/page/actions'
+import { renamePage, removeDisplayLogic } from 'modules/reports/core/builder/page/actions'
 
 export default connect(
   (state, props) => ({
@@ -20,5 +20,6 @@ export default connect(
     unselectModules,
     selectModule,
     openDisplayLogic: data => openModal('displayLogic', data),
+    removeDisplayLogic,
   },
 )

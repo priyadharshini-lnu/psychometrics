@@ -4,8 +4,11 @@ import { createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, ADD_PAGE, SET_PAGE_POSITIONS, PASTE_PAGE, PASTE_MODULE,
+
 } from '../actions'
-import { ADD_MODULE, REMOVE_PAGE, RENAME_PAGE } from './actions'
+import {
+  ADD_MODULE, REMOVE_PAGE, RENAME_PAGE, SAVE_DISPLAY_LOGIC, REMOVE_DISPLAY_LOGIC,
+} from './actions'
 
 export const defaultState = {}
 
@@ -29,6 +32,8 @@ const HANDLERS = {
   [PASTE_MODULE]: (state, { pageId, module }) => updateIn(
     state, [pageId, 'modules'], modules => [...modules, module.id],
   ),
+  [SAVE_DISPLAY_LOGIC]: (state, { id, displayLogic }) => setIn(state, [id, 'display_logic'], displayLogic),
+  [REMOVE_DISPLAY_LOGIC]: (state, { id }) => setIn(state, [id, 'display_logic'], null),
 }
 
 export default createReducer(HANDLERS, defaultState)

@@ -3,7 +3,6 @@ import { Modal } from 'react-bootstrap'
 import LogicElement from 'rb/components/LogicElement'
 import LogicElementModel from 'rb/models/logic/LogicElement'
 import FillingValidator from 'rb/components/LogicElement/FillingValidator'
-import PageList from 'rb/store/PageList'
 import styles from './DisplayLogic.scss'
 
 const {
@@ -19,10 +18,9 @@ export default class DisplayLogic extends Component {
   }
 
   save = () => {
-    const { model, close } = this.props
+    const { model, close, saveDisplayLogic } = this.props
     const { displayLogic } = this.state
-    model.displayLogic = _.cloneDeep(displayLogic)
-    PageList.update()
+    saveDisplayLogic(model.id, displayLogic)
     close()
   }
 

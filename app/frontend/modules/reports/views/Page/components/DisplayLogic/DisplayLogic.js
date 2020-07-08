@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import PageList from 'rb/store/PageList'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 import styles from './DisplayLogic.scss'
 import LogicPreview from './LogicPreview'
@@ -16,9 +15,8 @@ export default class DisplayLogic extends Component {
   }
 
   removeDisplayLogic = () => {
-    const { model } = this.props
-    model.displayLogic = null // TODO: ¯\_(ツ)_/¯ update to redux
-    PageList.update()
+    const { removeDisplayLogic, model } = this.props
+    removeDisplayLogic(model.id)
   }
 
   render () {

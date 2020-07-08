@@ -53,6 +53,7 @@ class Page extends Component {
     const style = {
       ...builder.props.sizes,
     }
+
     return (
       <div className={styles.page} name={model.id} onClick={this.selectPage}>
         <div
