@@ -4,8 +4,8 @@ module  MediaResponses
   class FindOrCreateMediaResponse < BaseCommand
     private_attr_reader :media_record, :assign, :question
 
-    def initialize(media_id, assign, question)
-      @media_record = MediaResponse.find_by_id(media_id)
+    def initialize(media_record, assign, question)
+      @media_record = media_record
       @assign       = assign
       @question     = question
     end

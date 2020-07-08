@@ -14,19 +14,21 @@ module Imports
         end
 
         def self.video_answers(data, assign, question)
-          decoded_media_ids = decode_media_ids(data[1])
+          decoded_media_ids = decode_media_ids(data[2])
           answers = []
 
-          decoded_media_ids.each_with_index do |media_id, index|
+          MediaResponse.where(id: decoded_media_ids).
+            order(:created_at).each_with_index do |media_record, index|
             answer = {}
-            media_record = MediaResponses::FindOrCreateMediaResponse.call!(media_id, assign, question)
+            media_record_to_import = MediaResponses::FindOrCreateMediaResponse.
+                                     call!(media_record, assign, question)
 
-            next unless media_record
+            next unless media_record_to_import
 
-            answer['value'] = media_record.asset.url
+            answer['value'] = media_record_to_import.asset.url
             answer['take_no'] = index + 1
-            answer['media_id'] = media_record.id
-            answer['user_selected'] = media_record.user_selected
+            answer['media_id'] = media_record_to_import.id
+            answer['user_selected'] = media_record_to_import.user_selected
             answers << answer
           end
           answers
@@ -37,7 +39,7 @@ module Imports
           media_ids.split(', ').each do |media_id|
             decoded_media_ids << MediaResponse.decode_id(media_id)
           end
-          decoded_media_ids
+          decoded_media_ids.flatten
         end
       end
     end
