@@ -17,7 +17,7 @@ class Properties extends Component {
   changeBorder = (color) => {
     const { model } = this.props
     model.props.style.borderColor = color.rgb
-    this.forceUpdate()
+    model.update()
   }
 
   complete = () => {
@@ -64,7 +64,7 @@ class Properties extends Component {
     const { model } = this.props
     model.assessment_id = assessmentId
     clearAfterAssessmentChange(model)
-    this.forceUpdate()
+    model.update()
   }
 
   render () {

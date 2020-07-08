@@ -83,6 +83,7 @@ export const save = (report: any) => {
       url: `/administration/reports/${report.builder.id}/builders`,
       body: builder,
       decamelize: false,
+      camelize: false,
     },
   }
 }
