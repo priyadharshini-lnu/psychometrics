@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 
-# rubocop:disable Metrics/BlockLength
 describe Campaigns::Users::Create do
   let(:form) do
     Campaigns::Users::CreateForm.new(
@@ -77,4 +76,3 @@ describe Campaigns::Users::Create do
     end
   end
 end
-# rubocop:enable Metrics/BlockLength
