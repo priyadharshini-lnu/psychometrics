@@ -6,7 +6,7 @@ describe UsersController, type: :controller do
   let(:current_user) { create(:user, :with_project_membership) }
 
   before(:each) do
-    login_as(user: current_user)
+    login_user(current_user)
   end
 
   after(:each) { sign_out(current_user) }
