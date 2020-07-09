@@ -21,6 +21,7 @@ export default combineReducers({
     report,
     campaigns,
     assign,
+    project,
   }),
   ui: combineReducers({
     autocomplete,

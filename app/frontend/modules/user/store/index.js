@@ -23,7 +23,6 @@ if (__DEV__) {
   }
 }
 
-
 const store = createStore(
   rootReducers,
   __INITIAL_STATE__,

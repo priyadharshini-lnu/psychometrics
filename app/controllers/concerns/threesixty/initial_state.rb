@@ -13,6 +13,7 @@ module Threesixty::InitialState
     @init_state = {
       threeSixtyCampaign: {
         project: {
+          name: @current_project.name,
           logo: @current_project.logo.url,
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link

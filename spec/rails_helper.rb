@@ -13,6 +13,7 @@ require 'features/helpers'
 require 'wisper/rspec/matchers'
 require 'rectify/rspec'
 require 'capybara_config'
+require 'rspec/mocks'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 

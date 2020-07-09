@@ -5,12 +5,55 @@
     padding: 0;
 
     .footer-wrapper {
-      padding: 16px 24px;
+      padding: 15px 25px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      img {
-        max-height: 50px;
+
+      .content {
+        width: 100%;
+        display: grid;
+        column-gap: 5px;
+        grid-template-rows: 60px;
+        grid-template-columns: 90px 1fr 90px;
+        grid-template-areas: "left links right";
+
+        align-items: center;
+
+        display: -ms-grid;
+        -ms-grid-rows: 60px;
+        -ms-grid-columns: 90px 1fr 90px;
+
+        .tte-logo {
+          -ms-grid-column: 1;
+          grid-area: left;
+        }
+
+        .links {
+          -ms-grid-column: 2;
+          grid-area: links;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          a {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+          }
+        }
+
+        .partner-logo {
+          -ms-grid-column: 3;
+          grid-area: right;
+        }
+
+        .tte-logo, .partner-logo {
+          img {
+            max-height: 52px;
+          }
+        }
       }
     }
   }
