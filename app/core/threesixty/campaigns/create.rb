@@ -33,13 +33,13 @@ module Threesixty
       private
 
       def assessment
-        return campaign_template.assessment if form.type == Threesixty::Campaign::STANDARD_360
-        return Assessment.find(form.assessment_id) if form.type == Threesixty::Campaign::PREVIOUS_360
+        return campaign_template.assessment if form.threesixty_type == Threesixty::Campaign::STANDARD_360
+        return Assessment.find(form.assessment_id) if form.threesixty_type == Threesixty::Campaign::PREVIOUS_360
       end
 
       def report
-        return campaign_template.report if form.type == Threesixty::Campaign::STANDARD_360
-        return assessment.reports.first if form.type == Threesixty::Campaign::PREVIOUS_360
+        return campaign_template.report if form.threesixty_type == Threesixty::Campaign::STANDARD_360
+        return assessment.reports.first if form.threesixty_type == Threesixty::Campaign::PREVIOUS_360
       end
 
       def campaign_template

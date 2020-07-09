@@ -13,7 +13,7 @@ module Imports
         #     "value": 0,  - Rank in Group
         #     "choice": 0  - Item ID
         #   }, ...]
-        def self.build_answers(data, question, use_scoring = false)
+        def self.build_answers(data, question, use_scoring = false, _assign)
           return nil if data.compact.blank?
 
           answers = []

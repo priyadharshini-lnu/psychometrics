@@ -1,8 +1,8 @@
-import ThreesixtyCampaign from 'user/core/ThreesixtyCampaign/components/App'
+import ThreesixtyCampaign from 'modules/user/modules/threesixtyCampaign/App'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import 'user/styles/ant.less'
-import 'user/styles/global.scss'
+import 'modules/user/styles/ant.less'
+import 'modules/user/styles/global.scss'
 
 ReactDOM.render(<ThreesixtyCampaign />, document.getElementById('three-sixty-container'))
 

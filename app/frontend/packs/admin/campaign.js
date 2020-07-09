@@ -1,10 +1,10 @@
-import CampaignList from 'admin/core/campaigns/components/App'
+import CampaignsApp from 'modules/admin/modules/campaigns/App'
 import ReactDOM from 'react-dom'
 import React from 'react'
-import 'admin/styles/ant.less'
-import 'admin/assets/scss/common.scss'
+import 'modules/admin/styles/ant.less'
+import 'modules/admin/styles/common.scss'
 
-ReactDOM.render(<CampaignList />, document.getElementById('campaigns-container'))
+ReactDOM.render(<CampaignsApp />, document.getElementById('campaigns-container'))
 
 if (__DEV__) {
   if (module.hot) {

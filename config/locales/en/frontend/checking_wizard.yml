@@ -39,16 +39,17 @@ en:
       run_again: Run again
       access_help: "Click here for help."
     audio_check:
-      title: We need to ensure your system can record audio.
+      title: "We need to ensure your system can record audio."
       allow_title: Please allow to use microphone to record audio
-      speak_and_repeat: Please speak and repeat the following sentence 3 times.
-      test_message: Hi, Its great to speak with you
+      record_title: Please speak and repeat the following sentence 3 times.
+      test_message: "great to speak with you"
       allow: Allow
       processing: Processing
       access: Access
       speech_detection: Speech detection
       continue: Continue
       run_again: Run again
+      access_help: "Click here for help."
     success:
       title: You have successfully completed all checks.
       start: Start assessment

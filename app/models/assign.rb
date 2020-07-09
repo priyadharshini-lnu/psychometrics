@@ -24,6 +24,8 @@
 #  expiry_date       :datetime
 #
 class Assign < ApplicationRecord
+  include EncodableId
+
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
   belongs_to :evaluator, class_name: 'User'
@@ -158,6 +160,10 @@ class Assign < ApplicationRecord
     original_assign || self
   end
 
+  def project_id
+    assign_with_result.membership.client_id
+  end
+
   def threesixty_subject
     Threesixty::Subject.find_by(user_id: subject_id, campaign_id: campaign_id)
   end
@@ -214,23 +220,6 @@ class Assign < ApplicationRecord
   def relevant_reports
     if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
       errors.add(:reports)
-    end
-  end
-
-  class << self
-    def encode_id(id)
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
-      hashids.encode(id)
-    end
-
-    def decode_id(id)
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
-      hashids.decode(id)
-    end
-
-    def find_by_encoded_id(hash_id)
-      decoded_id = decode_id(hash_id).try(:first)
-      find(decoded_id)
     end
   end
 end

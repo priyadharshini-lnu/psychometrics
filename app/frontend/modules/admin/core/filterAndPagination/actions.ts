@@ -1,0 +1,52 @@
+import { TableConfig } from './interfaces'
+
+export const INIT_TABLE = 'INIT_TABLE'
+export const CHANGE_FILTER = 'modules/admin/CHANGE_FILTER'
+export const CHANGE_PAGE = 'modules/admin/CHANGE_PAGE'
+export const REMOVE_FILTER = 'modules/admin/REMOVE_FILTER'
+export const CHANGE_SORT = 'modules/admin/CHANGE_SORT'
+export const SET_TABLE_CONFIG = 'modules/admin/SET_TABLE_CONFIG'
+
+export const initTable = (tableName: string, maintainHistory = false) => ({
+  type: INIT_TABLE,
+  payload: { tableName, maintainHistory },
+})
+
+export const changeFilter = (tableName: string, filterName: string, filterValue: string) => ({
+  type: CHANGE_FILTER,
+  payload: { tableName, filterName, filterValue },
+})
+
+export const removeFilter = (tableName: string, filterName: string) => ({
+  type: REMOVE_FILTER,
+  payload: { tableName, filterName },
+})
+
+export const changePage = (tableName: string, pageNumber: number) => ({
+  type: CHANGE_PAGE,
+  payload: { tableName, pageNumber },
+})
+
+export const changeSort = (tableName: string, columnName: string, order: string) => ({
+  type: CHANGE_SORT,
+  payload: { tableName, columnName, order },
+})
+
+export const setTableConfigFromUrl = (tableConfig: TableConfig) => ({
+  type: SET_TABLE_CONFIG,
+  payload: { tableConfig },
+})
+
+export type changeFilterType = typeof changeFilter
+export type removeFilterType = typeof removeFilter
+export type changePageType = typeof changePage
+export type changeSortType = typeof changeSort
+export type initTableType = typeof initTable
+
+export type InitTableReturnType = ReturnType<typeof initTable>
+export type ChangeFilterReturnType = ReturnType<typeof changeFilter>
+export type ChangeSortReturnType = ReturnType<typeof changeSort>
+export type RemoveFilterReturnType = ReturnType<typeof removeFilter>
+export type ChangePageReturnType = ReturnType<typeof changePage>
+export type ActionsReturnType = ChangeFilterReturnType | ChangeSortReturnType |
+  RemoveFilterReturnType | ChangePageReturnType

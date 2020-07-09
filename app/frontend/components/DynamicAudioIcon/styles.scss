@@ -1,0 +1,40 @@
+.container {
+  text-align: center;
+
+  .recordingIndicatorContainer {
+    height: 9.375em;
+    width: 9.375em;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 9.375em;
+    color: #8e8e8e;
+    position: relative;
+    margin-bottom: 1em;
+  }
+
+  .pulsRing {
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    position: absolute;
+  }
+
+  .lowAudio {
+    background-image: url('./images/grey-ring.png');
+  }
+
+  .highAudio {
+    background-image: url('./images/green-ring.png');
+  }
+
+  .microphoneImg {
+    position: absolute;
+    width: 25px;
+    height: 40px;
+    bottom: 44px;
+    left: 52px;
+    color: #fff;
+  }
+}
+
+

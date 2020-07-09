@@ -45,6 +45,20 @@ prevent bundle secure warnings with
 7. Install redis.
      For mac follow simple steps: `brew update`, `brew install redis`. For more information check redis-doc [here](https://redis.io/topics/quickstart)
 
+### Run PSQL through docker (optional)
+> Due to supporting old PSQL version (11) on production we have to use the same version locally
+
+```
+docker run -d --name psy_postgres -e POSTGRES_HOST_AUTH_METHOD=trust -v /Users/<your_name>/psql_data/psy:/var/lib/postgresql/data -p 54321:5432 postgres:11
+```
+now you can connect `psql -h localhost -p 54321 -U postgres`
+
+When docker container is stopped, use this command
+
+```
+docker start psy_postgres
+```
+
 # Run the application locally
 
 0. Create a Super user to login (optional):

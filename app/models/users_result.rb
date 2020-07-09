@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersResult < ApplicationRecord
+  include EncodableId
+
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :assessment
@@ -25,17 +27,5 @@ class UsersResult < ApplicationRecord
     return false unless expiry_date
 
     expiry_date < Time.current
-  end
-
-  class << self
-    def encode_id(id)
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
-      hashids.encode(id)
-    end
-
-    def decode_id(id)
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
-      hashids.decode(id)
-    end
   end
 end

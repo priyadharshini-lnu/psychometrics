@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class HighlightsController < ApplicationController
+  include AuthenticateAnonymousUser
+  prepend_before_action :authenticate_anonymous_user!
+
   before_action :set_highlight
   append_before_action :pundit_authorize
 

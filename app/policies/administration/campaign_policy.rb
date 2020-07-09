@@ -6,6 +6,10 @@ module Administration
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
+    def show?
+      @user.is?(:superadmin, :client_admin, :project_admin)
+    end
+
     def manage_first_level?
       @user.is?(:superadmin)
     end
@@ -67,6 +71,10 @@ module Administration
 
     def edit_additional_fields?
       view_additional_fields?
+    end
+
+    def templates_and_assessment?
+      index?
     end
 
     class Scope < Scope

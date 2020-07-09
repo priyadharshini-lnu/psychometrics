@@ -1,7 +1,7 @@
 module.exports = {
   roots: [
     '<rootDir>/app/frontend',
-    '<rootDir>/app/frontend/libs/survey',
+    '<rootDir>/app/frontend/modules/survey',
   ],
   testEnvironment: 'jsdom',
   testMatch: [
@@ -15,8 +15,8 @@ module.exports = {
   moduleDirectories: [
     'node_modules',
     'app/frontend',
-    'app/frontend/libs/survey',
-    'app/frontend/libs/reports',
+    'app/frontend/modules/survey',
+    'app/frontend/modules/reports',
   ],
   globals: {
     window: {},

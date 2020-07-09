@@ -1,0 +1,242 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import _ from 'lodash'
+import { createSelector } from 'reselect'
+import { denormalize } from 'normalizr'
+import genUUID from 'uuid/v4'
+import { question } from '../../../store/schema'
+import GetNextElementId from './commands/GetNextElementId'
+import GetNextParentElementId from './commands/GetNextParentElementId'
+import {
+  Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
+  I18nInterface, Highlight,
+} from './interfaces'
+
+let { I18n } = window
+if (I18n) {
+  I18n.fallbacks = true
+} else {
+  I18n = {
+    t (code: string): string {
+      return code
+    },
+  }
+}
+
+export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
+
+export const getQuestion = (state, id): Question => state.questions[id]
+export const getCurrentBlock = (state): Block => {
+  const { blockId } = getCurrentPage(state)
+  return state.blocks[blockId]
+}
+export const getErrors = (state): {[qId: number]: []} => state.errors
+export const getResults = (state): ResultsInterface => state.results
+
+export const currentPage = (state): number => state.currentPage
+
+export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
+export const getCurrentElement = (state): BlockElementInterface => state.normalizedTree[state.currentElement]
+
+export const getElementIdByBlockId = (state, blockId): string => _.findKey(
+  state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
+)
+
+export const getCurrentPage = (state): PageInterface => {
+  const block = getCurrentElement(state).props.current
+  const pages = state.allPages[block]
+  return pages[state.currentPage]
+}
+
+export const getNextPage = (state): PageInterface => {
+  const block = getCurrentElement(state).props.current
+  const pages = state.allPages[block]
+  return pages[state.currentPage + 1]
+}
+
+export const getNextElementId = (state, element: string | null = null): string | null => {
+  let id: string | null = GetNextElementId.run(element || state.currentElement)
+  if (state.normalizedTree[id]) {
+    return id
+  }
+
+  // eslint-disable-next-line no-cond-assign
+  while (id = GetNextParentElementId.run(id)) {
+    if (state.normalizedTree[id]) {
+      return id
+    }
+  }
+  return null
+}
+
+export const getChildOrNextElementId = (state, element: string | null = null): string |null => {
+  const id = `${element || state.currentElement}/0`
+  if (state.normalizedTree[id]) {
+    return id
+  }
+  return getNextElementId(state, id)
+}
+
+export const pageQuestions = createSelector(
+  state => state,
+  getCurrentPage,
+  (state, page) => getQuestions(state, page.questions),
+)
+
+export const pageQuestionsWithoutHidden = createSelector(pageQuestions, questions => questions.filter(q => !q.hidden))
+
+export const getQuestionErrors = createSelector(
+  getQuestion,
+  getErrors,
+  (question, errors) => (errors && errors[question.id]) || [],
+)
+
+export const pageErrors = (state): {[qId: number]: []} => state.errors
+
+export const getSkipLogicSelector = createSelector(getCurrentPage, page => page.skipLogic)
+export const getDisplayLogicSelector = createSelector(
+  pageQuestions,
+  questions => questions[0] && questions[0].display_logic,
+)
+
+export const getQuestionResults = createSelector(
+  getQuestion,
+  getResults,
+  (question, results) => results[question.id] || {},
+)
+
+export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} => _.last(state.prevPages)
+
+export const getBlockIds = (state): string[] => _.reduce(
+  state.normalizedTree, (ids, el) => (el.type === 'Block' ? [...ids, el.props.current] : ids), [],
+)
+
+export const getPrevBlockIds = (state): string[] => {
+  let ids: string[] = []
+  let path: string | null = '0'
+  while (path) {
+    const el = state.normalizedTree[path]
+    if (!el || path === state.currentElement) {
+      return state.currentPage > 0 ? [...ids, el.props.current] : ids
+    }
+    ids = el.type === 'Block' ? [...ids, el.props.current] : ids
+    path = getChildOrNextElementId(state, path)
+  }
+  return ids
+}
+
+const pagesQuestions = (pages: PageInterface[]): number => _.flatten(_.map(pages, 'questions')).length
+
+export const getQuestionsCount = (state, blockIds: string[]): number => _.sumBy(
+  blockIds, id => pagesQuestions(state.allPages[id]),
+)
+
+export const lookForEndOfAssessment = (el: string, state): string | null => {
+  let path = GetNextElementId.run(el)
+  while (path) {
+    const element = state.normalizedTree[path]
+    if (!element) { return null }
+    if (element.type === 'EndOfAssessment') {
+      return path
+    }
+    path = GetNextElementId.run(path)
+  }
+  return null
+}
+
+export const getPossibleBlocks = (state): string[] => {
+  let ids: string[] = []
+  let path: string | null = state.currentElement
+  const maybeTopEnd: string | null = lookForEndOfAssessment('0', state)
+  const maybeEnd: string | null = lookForEndOfAssessment(state.currentElement || '', state)
+  while (path) {
+    const el = state.normalizedTree[path]
+    if (!el) { return ids }
+    if (el.type === 'Block' && path === state.currentElement
+           && state.currentPage < state.allPages[el.props.current].length) {
+      ids = [...ids, el.props.current]
+      path = getChildOrNextElementId(state, path)
+      // eslint-disable-next-line no-continue
+      continue
+    }
+    ids = el.type === 'Block' ? [...ids, el.props.current] : ids
+    if ((maybeTopEnd === path) || (maybeEnd === path)) {
+      return ids
+    }
+    path = getChildOrNextElementId(state, path)
+  }
+  return ids
+}
+
+export const getPrevQuestionsCount = (state): number => {
+  const blockIds = getPrevBlockIds(state)
+  if (state.currentPage > 0) {
+    const [last, ...ids] = _.reverse(blockIds)
+    const count = getQuestionsCount(state, ids)
+    return count + pagesQuestions(_.take(state.allPages[last], state.currentPage))
+  }
+  return getQuestionsCount(state, blockIds)
+}
+
+export const getPossibleQuestionsCount = (state): number => {
+  const blockIds = getPossibleBlocks(state)
+  const [current, ...ids] = blockIds
+  if (!current) { return 0 }
+
+  const count = getQuestionsCount(state, ids)
+  const currentPage = state.allPages[current]
+  return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
+}
+
+export const getProgress = (state): number => {
+  const prevQuestions = getPrevQuestionsCount(state)
+  const possibleQuestionsCount = getPossibleQuestionsCount(state)
+  return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0
+}
+
+export const getHighlightByType = ({ preview },
+  id: number,
+  type: string): object => _.find(preview.highlights,
+  (h: Highlight) => h.resourceId === id && h.resourceType === type) || {
+  id: genUUID(),
+  data: [],
+  resourceId: id,
+  resourceType: type,
+}
+
+export const getI18n = ({ locales }): I18nInterface => ({
+  t (code: string, data: any): string {
+    return I18n.t(code, data)
+  },
+  lookup (code: string): string {
+    return I18n.lookup(code)
+  },
+  tQuestion (question: any, field: string, extraData: any): string {
+    question.isNeedToAddLtrManually = false
+    question.isAnyArabicTranslateExist = true
+
+    if (locales && locales.question && locales.question[question.id]) {
+      if (locales.question[question.id][field]) {
+        question.isNeedToAddLtrManually = false
+        question.isAnyArabicTranslateExist = true
+        return locales.question[question.id][field]
+      }
+    }
+    if (question.id) {
+      question.isNeedToAddLtrManually = true
+    }
+    return question.tDefault(field, extraData)
+  },
+  tBlock (block: Block, key: string, path: string[]): string {
+    const propsPath = path || [key]
+    return _.get(locales, ['block', block.id, key]) || _.get(block, ['props', ...propsPath])
+  },
+  tCustomValidation (question: any): string {
+    if (locales && locales.question && locales.question[question.id]) {
+      if (locales.question[question.id].customValidationText) {
+        return locales.question[question.id].customValidationText
+      }
+    }
+    return question.validation.message
+  },
+})

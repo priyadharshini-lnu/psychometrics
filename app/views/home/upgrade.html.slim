@@ -1,36 +1,35 @@
-.row
-  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .unsupported-browsers
-      .icon = image_tag("browsers/not_supported.svg")
-      .message = t('browsers.support.message')
-      .instruction = t('browsers.support.instruction')
-      ul.browsers
-        li.browser
-          .icon = image_tag("browsers/chrome.svg")
-          .name
-            = t('browsers.chrome')
-            - if @browser_detections.name == 'Chrome'
-              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.chrome'), target: '_blank')
-            - else
-              .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.chrome'), target: '_blank')
-        li.browser
-          .icon = image_tag("browsers/firefox.svg")
-          .name
-            = t('browsers.firefox')
-            - if @browser_detections.name == 'Firefox'
-              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.firefox'), target: '_blank')
-            - else
-              .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.firefox'), target: '_blank')
-        li.browser
-          .icon = image_tag("browsers/edge.svg")
-          .name
-            = t('browsers.edge')
-            - if @browser_detections.name == 'Edge'
-              .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.edge'), target: '_blank')
-            - else
-              .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.edge'), target: '_blank')
-        li.browser
-          .icon = image_tag("browsers/safari.svg")
-          .name
-            = t('browsers.safari')
-            .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.safari'), target: '_blank')
+div class=(['center', 'box', 'devise', 'upgrade'].compact.join(' '))
+  .unsupported-browsers
+    .icon = image_tag("browsers/not_supported.svg")
+    .message = t('browsers.support.message')
+    .instruction = t('browsers.support.instruction')
+    ul.browsers
+      li.browser
+        .icon = image_tag("browsers/chrome.svg")
+        .name
+          = t('browsers.chrome')
+          - if @browser_detections.name == 'Chrome'
+            .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.chrome'), target: '_blank')
+          - else
+            .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.chrome'), target: '_blank')
+      li.browser
+        .icon = image_tag("browsers/firefox.svg")
+        .name
+          = t('browsers.firefox')
+          - if @browser_detections.name == 'Firefox'
+            .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.firefox'), target: '_blank')
+          - else
+            .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.firefox'), target: '_blank')
+      li.browser
+        .icon = image_tag("browsers/edge.svg")
+        .name
+          = t('browsers.edge')
+          - if @browser_detections.name == 'Edge'
+            .upgrade = link_to(t('browsers.upgrade.instruction'), t('browsers.download.edge'), target: '_blank')
+          - else
+            .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.edge'), target: '_blank')
+      li.browser
+        .icon = image_tag("browsers/safari.svg")
+        .name
+          = t('browsers.safari')
+          .upgrade = link_to(t('browsers.download.instruction'), t('browsers.download.safari'), target: '_blank')

@@ -1,4 +1,4 @@
-import InitLinearElements from 'libs/survey/core/preview/FlowProcessor/commands/InitLinearElements'
+import InitLinearElements from 'modules/survey/core/preview/FlowProcessor/commands/InitLinearElements'
 import _ from 'lodash'
 
 const question = (id, data = {}) => ({ id, ...data })

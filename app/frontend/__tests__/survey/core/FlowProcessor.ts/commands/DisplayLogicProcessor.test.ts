@@ -1,5 +1,5 @@
-import DisplayLogicProcessor from 'libs/survey/core/preview/FlowProcessor/commands/DisplayLogicProcessor'
-import DefaultProps from 'libs/survey/constants/DefaultProps'
+import DisplayLogicProcessor from 'modules/survey/core/preview/FlowProcessor/commands/DisplayLogicProcessor'
+import DefaultProps from 'modules/survey/constants/DefaultProps'
 
 const question = (id, data = {}) => ({ id, ...data })
 

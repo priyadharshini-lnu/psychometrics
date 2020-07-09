@@ -79,8 +79,7 @@ module.exports = function (api) {
         {
           root: ['./app/frontend'],
           alias: {
-            ab: './node_modules/survey-ui/src',
-            rb: './app/frontend/libs/reports',
+            rb: './app/frontend/modules/reports',
           },
         },
       ],
@@ -91,7 +90,7 @@ module.exports = function (api) {
         },
       ],
     ].filter(Boolean),
-    ignore: [/node_modules\/(?!survey-ui|reports-ui|query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/],
+    ignore: [/node_modules\/(?!query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/],
     sourceMaps: true,
     // test: ['app/frontend', 'node_modules/survey-ui'],
     // ignore: [/node_modules\/(?!survey-ui)/],

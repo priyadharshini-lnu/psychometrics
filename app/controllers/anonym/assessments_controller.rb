@@ -9,6 +9,7 @@ module Anonym
     protect_from_forgery with: :exception
 
     prepend_before_action :set_assessments_client
+    before_action :perform_browser_check, only: [:pass]
     before_action :authenticate_anonymous_user!, only: [:pass]
     before_action :set_client, only: [:pass]
     before_action :set_assessment, only: [:pass]
@@ -26,12 +27,22 @@ module Anonym
       @assign = Assign.find_or_create_by!(assessment_id: @resource.id, membership_id: @current_membership.id).
                 assign_with_result
 
+      if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
+        @assign.update(selected_locale: params[:lang])
+      end
+
       update_anonym_cookie(assign: @assign.slice(:id, :assessment_id, :status, :started_at, :completed_at, :step))
     end
 
     def error; end
 
     private
+
+    def perform_browser_check
+      @browser_detections = helpers.detect_browser(request.user_agent)
+
+      redirect_to upgrade_url unless @browser_detections.supported_browser?
+    end
 
     def set_assessments_client
       @assessments_client = ::AssessmentsClient.find_by assessment_key: params[:assessment_key]

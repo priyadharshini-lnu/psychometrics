@@ -1,0 +1,79 @@
+.upgrade-message {
+  padding: 15px;
+}
+
+.browser-detections {
+  padding: 15px 25px;
+  margin: 15px 0;
+  background: #FFF;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px #00000029;
+
+  display: flex;
+  flex-direction: column;
+
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+
+  .message {
+    color: #393939;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  ul.browsers {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    -ms-flex-direction: row;
+
+    li {
+      width: 160px;
+      font-size: 13px;
+
+      display: flex;
+      align-items: center;
+
+      display: -ms-flexbox;
+      -ms-flex-align: center;
+
+      .icon {
+        padding: 5px;
+      }
+
+      .name {
+        padding: 5px;
+        color: #9F9F9F;
+        text-align: left;
+
+        a {
+          color: #6973F0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  .browser-detections {
+    ul.browsers {
+      justify-content: space-around;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .browser-detections {
+    ul.browsers {
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+    }
+  }
+}

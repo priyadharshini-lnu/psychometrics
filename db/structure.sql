@@ -322,12 +322,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -504,7 +504,8 @@ CREATE TABLE public.campaigns (
     type integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    status integer DEFAULT 0
+    status integer DEFAULT 0,
+    options jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -639,9 +640,11 @@ CREATE TABLE public.campaigns_users_reports (
     report_id bigint,
     user_id bigint,
     campaign_id bigint,
-    user_access boolean DEFAULT false NOT NULL,
     status integer DEFAULT 0,
-    pdf character varying
+    pdf character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_access boolean DEFAULT false
 );
 
 
@@ -696,7 +699,8 @@ CREATE TABLE public.clients (
     hogan_group_name character varying,
     privacy_consent boolean,
     two_factor_enabled boolean DEFAULT false,
-    strong_password_enabled boolean DEFAULT false
+    strong_password_enabled boolean DEFAULT false,
+    secondary_logo character varying
 );
 
 
@@ -807,7 +811,8 @@ CREATE TABLE public.communication_emails (
     communication_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    sent_at timestamp without time zone
+    sent_at timestamp without time zone,
+    campaigns_user_id bigint
 );
 
 
@@ -1430,7 +1435,8 @@ CREATE TABLE public.hogan_credentials (
     encrypted_password_iv character varying NOT NULL,
     participant_id character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    campaigns_user_id bigint
 );
 
 
@@ -2719,7 +2725,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2890,7 +2898,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3058,41 +3068,6 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: users_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.users_reports (
-    id bigint NOT NULL,
-    report_id bigint,
-    user_id bigint,
-    campaign_id bigint,
-    status integer DEFAULT 0,
-    pdf character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: users_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.users_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: users_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.users_reports_id_seq OWNED BY public.users_reports.id;
-
-
---
 -- Name: users_results; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3112,12 +3087,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
-    last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb
+    last_activity_at timestamp without time zone
 );
 
 
@@ -3698,13 +3673,6 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 ALTER TABLE ONLY public.users_campaigns_assessments ALTER COLUMN id SET DEFAULT nextval('public.users_campaigns_assessments_id_seq'::regclass);
-
-
---
--- Name: users_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_reports ALTER COLUMN id SET DEFAULT nextval('public.users_reports_id_seq'::regclass);
 
 
 --
@@ -4379,14 +4347,6 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: users_reports users_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.users_reports
-    ADD CONSTRAINT users_reports_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_results users_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4703,6 +4663,13 @@ CREATE INDEX index_clients_reports_on_report_id ON public.clients_reports USING 
 
 
 --
+-- Name: index_communication_emails_on_campaigns_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_campaigns_user_id ON public.communication_emails USING btree (campaigns_user_id);
+
+
+--
 -- Name: index_communication_emails_on_communication_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4959,6 +4926,13 @@ CREATE INDEX index_highlights_on_user_id ON public.highlights USING btree (user_
 --
 
 CREATE INDEX index_hogan_assessment_settings_on_assessment_id ON public.hogan_assessment_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_hogan_credentials_on_campaigns_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_credentials_on_campaigns_user_id ON public.hogan_credentials USING btree (campaigns_user_id);
 
 
 --
@@ -5578,27 +5552,6 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
--- Name: index_users_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_reports_on_campaign_id ON public.users_reports USING btree (campaign_id);
-
-
---
--- Name: index_users_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_reports_on_report_id ON public.users_reports USING btree (report_id);
-
-
---
--- Name: index_users_reports_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_reports_on_user_id ON public.users_reports USING btree (user_id);
-
-
---
 -- Name: index_users_results_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5634,10 +5587,10 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
--- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+-- Name: sub_eval_campaign_assessment; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.users_campaigns_assessments USING btree (subject_id, evaluator_id, campaign_id);
+CREATE UNIQUE INDEX sub_eval_campaign_assessment ON public.users_campaigns_assessments USING btree (subject_id, evaluator_id, campaign_id, assessment_id);
 
 
 --
@@ -5746,10 +5699,10 @@ ALTER TABLE ONLY public.licenses
 
 
 --
--- Name: users_reports fk_rails_1a6f653d96; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: campaigns_users_reports fk_rails_1a6f653d96; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.users_reports
+ALTER TABLE ONLY public.campaigns_users_reports
     ADD CONSTRAINT fk_rails_1a6f653d96 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
@@ -5794,10 +5747,10 @@ ALTER TABLE ONLY public.campaigns_assessments
 
 
 --
--- Name: users_reports fk_rails_28ab0c4f85; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: campaigns_users_reports fk_rails_28ab0c4f85; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.users_reports
+ALTER TABLE ONLY public.campaigns_users_reports
     ADD CONSTRAINT fk_rails_28ab0c4f85 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
@@ -5847,14 +5800,6 @@ ALTER TABLE ONLY public.api_keys
 
 ALTER TABLE ONLY public.ecommerce_purchases
     ADD CONSTRAINT fk_rails_3546ed727a FOREIGN KEY (order_id) REFERENCES public.ecommerce_orders(id) ON DELETE CASCADE;
-
-
---
--- Name: campaigns_users_reports fk_rails_371f8eeaa1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaigns_users_reports
-    ADD CONSTRAINT fk_rails_371f8eeaa1 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -5951,6 +5896,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.datasheets
     ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: hogan_credentials fk_rails_4dbec9c614; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_credentials
+    ADD CONSTRAINT fk_rails_4dbec9c614 FOREIGN KEY (campaigns_user_id) REFERENCES public.campaigns_users(id) ON DELETE CASCADE;
 
 
 --
@@ -6354,10 +6307,10 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: campaigns_users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.users_reports
+ALTER TABLE ONLY public.campaigns_users_reports
     ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
 
 
@@ -6367,14 +6320,6 @@ ALTER TABLE ONLY public.users_reports
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_c3b6c6c33d FOREIGN KEY (registration_code_id) REFERENCES public.registration_codes(id);
-
-
---
--- Name: campaigns_users_reports fk_rails_c98f513384; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaigns_users_reports
-    ADD CONSTRAINT fk_rails_c98f513384 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
 
 
 --
@@ -6546,6 +6491,14 @@ ALTER TABLE ONLY public.threesixty_email_histories
 
 
 --
+-- Name: communication_emails fk_rails_def9fc1a96; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_def9fc1a96 FOREIGN KEY (campaigns_user_id) REFERENCES public.campaigns_users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6599,14 +6552,6 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_ef32d4a334 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE RESTRICT;
-
-
---
--- Name: campaigns_users_reports fk_rails_efaddb5e90; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaigns_users_reports
-    ADD CONSTRAINT fk_rails_efaddb5e90 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -7024,6 +6969,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200519155451'),
 ('20200524174421'),
 ('20200525102435'),
-('20200531072928');
+('20200531072928'),
+('20200624204627'),
+('20200701104517'),
+('20200701144435'),
+('20200701154607'),
+('20200702112737'),
+('20200705114339'),
+('20200705132139');
 
 

@@ -1,34 +1,29 @@
-.row
-  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .registrationForm
-      /! Nav tabs
-      ul.nav.nav-tabs.formTabs
-        li.active
-          a aria-controls="signIn" data-toggle="tab" href="#login" role="tab"  Admin Login
-      /! Tab panes
-      .tab-content
-        #login.tab-pane.fade.in.active role="tabpanel"
-          = simple_form_for(resource, as: resource_name, url: administration_session_path, html: {class: 'form-horizontal'}) do |f|
-            div.clearfix
-              == flash_messages
-            .loginFormContent
-              .usernameFormGroup
-                label for="username"
-                  | Email Address
-                .input-group
-                  = f.input_field :email, placeholder: 'you@youremail.com', class: 'form-control input-lg'
-              .passwordFormGroup
-                label for="password"
-                  | Password
-                .input-group
-                  = f.input_field :password, placeholder: t('.password_placeholder'), class: 'form-control input-lg'
-              span.clear &nbsp;
-              .signInButton
-                .input-group.pull-left
-                  button.btn.btn-primary.signIn type="submit" value="Submit"
-                    | Login
-                .forgotPassword.pull-right
-                  p
-                    = link_to t('.forgot_password'), new_administration_password_path
-              .clearfix
-    .clearfix
+div class=(['center', 'box', 'devise', namespace_name].compact.join(' '))
+  .panel.panel-default.session
+    .panel-body
+      .message.pvl
+        h1.mvm
+          bdi = t('.title')
+        .instruction
+          bdi = t('.instruction')
+      = simple_form_for(resource, as: resource_name, url: administration_session_path) do |f|
+        div.clearfix
+          == flash_messages
+        .username.input-group.mbm
+          span#username.input-group-addon
+            i.icon-user
+          = f.input_field :email, placeholder: 'Email Address', class: 'form-control input-lg'
+        .password.input-group.mbm
+          span#password.input-group-addon
+            i.icon-lock
+          = f.input_field :password, placeholder: t('.password_placeholder'), class: 'form-control input-lg'
+        .actions.justified.mvm
+          div
+            button.btn.btn-primary.text-uppercase type="submit" value="Submit"
+              = 'Login'
+              span class="fa fa-chevron-right mlm"
+          div
+            = link_to t('.forgot_password'), new_administration_password_path
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

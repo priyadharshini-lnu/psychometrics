@@ -1,4 +1,4 @@
-import Occupation from 'libs/reports/models/Occupation'
+import Occupation from 'modules/reports/models/Occupation'
 
 export default {
   "id": 190,

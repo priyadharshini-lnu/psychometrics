@@ -54,9 +54,11 @@ class AssignsController < ApplicationController
   end
 
   def assessment
+    @selected_locale = @assign.selected_locale || user_locale
     render json: @assign.assessment,
            serializer: AssessmentSerializer,
            include: '**',
+           selected_locale: @selected_locale,
            piped_text_context: build_piped_context
   end
 
@@ -123,7 +125,7 @@ class AssignsController < ApplicationController
   private
 
   def set_assign
-    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+    @assign = policy_scope(Assign).where.not(status: %i[completed interrupted]).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path
   end

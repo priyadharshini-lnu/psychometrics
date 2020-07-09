@@ -1,0 +1,12 @@
+div class=([@current_project&.login_box_position || 'right', 'box', 'devise'].compact.join(' '))
+  .panel.panel-default
+    .panel-heading
+      = render partial: 'devise/shared/header', locals: { banner: 'devise/registration_successful.svg', banner_class: 'registration-success' }
+
+    .panel-body
+      .message.pvl
+        h1.mvm = t('.title')
+        .instruction = t('.instruction')
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:api_keys).inverse_of(:user) }
   it { should have_many(:users_campaigns_assessments).inverse_of(:subject) }
   it { should have_many(:assessments).through(:users_campaigns_assessments) }
-  it { should have_many(:users_reports).inverse_of(:user) }
+  it { should have_many(:campaigns_users_reports).inverse_of(:user) }
 
   describe '#send_two_factor_authentication_code' do
     it 'enqueues sending the two factor code' do

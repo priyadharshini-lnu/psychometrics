@@ -5,11 +5,11 @@ module Threesixty
     class DownloadJob < ApplicationJob
       queue_as :reports
 
-      def perform(threesixty_campaign, current_user, subject, users_report, options = {})
+      def perform(threesixty_campaign, current_user, subject, campaigns_users_report, options = {})
         @threesixty_campaign = threesixty_campaign
         @current_user = current_user
         @subject = subject
-        @users_report = users_report
+        @campaigns_users_report = campaigns_users_report
         @options = options
 
         save_report
@@ -22,15 +22,15 @@ module Threesixty
 
       private
 
-      attr_reader :threesixty_campaign, :current_user, :subject, :users_report, :pdf_file, :s3_obj, :options
+      attr_reader :threesixty_campaign, :current_user, :subject, :campaigns_users_report, :pdf_file, :s3_obj, :options
 
       # Generates PDF file and placed it into TMP folder
       #
       def save_report
-        if !users_report.pdf_exists? || !subject.evaluation_status_completed?
+        if !campaigns_users_report.pdf_exists? || !subject.evaluation_status_completed?
           @pdf_file = ::Threesixty::Reports::ExportReport.
-                      call!(current_user, threesixty_campaign, subject, users_report, options)
-          users_report.update!(pdf: File.open(pdf_file))
+                      call!(current_user, threesixty_campaign, subject, campaigns_users_report, options)
+          campaigns_users_report.update!(pdf: File.open(pdf_file))
         end
       end
 
@@ -47,7 +47,8 @@ module Threesixty
                                      type: 'success',
                                      message: I18n.t('jobs.threesixty.reports.download.message'),
                                      description: I18n.t(
-                                       'jobs.threesixty.reports.download.description', url: users_report.pdf.url
+                                       'jobs.threesixty.reports.download.description',
+                                       url: campaigns_users_report.pdf.url
                                      )
       end
 

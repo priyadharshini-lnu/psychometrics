@@ -1,5 +1,5 @@
 tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource)) id=dom_id(resource)
-  - if show_id
+  - if !defined?(show_id) || show_id
     td = resource.id
   td = link_to resource.decorate.display_name, administration_client_users_path(resource)
   td

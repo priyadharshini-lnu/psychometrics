@@ -1,4 +1,4 @@
-import GetNextElementId from 'libs/survey/core/preview/FlowProcessor/commands/GetNextElementId'
+import GetNextElementId from 'modules/survey/core/preview/FlowProcessor/commands/GetNextElementId'
 
 test('next element should return valid id', () => {
   expect(GetNextElementId.run('0/0/0')).toStrictEqual('0/0/1')

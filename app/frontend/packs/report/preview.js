@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReportPreview from 'libs/reports/preview'
+import ReportPreview from 'modules/reports/preview'
 
 const ID = window.reportPreviewDomElementId || 'report_preview'
 ReactDOM.render(<ReportPreview />, document.getElementById(ID))

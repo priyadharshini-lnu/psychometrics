@@ -205,6 +205,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -630,7 +638,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "invitations": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To create a new password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Create password"
@@ -648,9 +656,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "sessions": {
         "new": {
           "forgot_password": "Forgot your password?",
-          "password_placeholder": "Enter your password",
+          "instruction": "Please login with your personal account information",
+          "password_placeholder": "Password",
           "submit": "Login",
-          "title": "<strong>Welcome</strong>, Please login"
+          "title": "Welcome back!"
         }
       },
       "shared": {
@@ -889,6 +898,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -3687,6 +3697,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -4816,14 +4827,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "arabic",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -5072,8 +5084,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "invitations": {
       "edit": {
         "confirm_password_label": "Confirm Password",
-        "description": "To create a new password, please enter your new password in the boxes below.",
         "header": "Set your password",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "password_label": "Password",
         "submit": "Set New Password",
         "submit_button": "Set my password",
@@ -5145,7 +5157,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "change_my_password": "تغيير كلمة مروري",
         "change_your_password": "تغيير كلمة مرورك",
         "confirm_new_password": "تأكيد كلمة المرور الجديدة",
-        "description": "To create a new password, please enter your new password in the boxes below.",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "new_password": "كلمة المرور الجديدة",
         "submit": "Submit",
         "title": "Create Password"
@@ -5173,19 +5185,29 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
       },
       "new": {
+        "code": "Registration Code",
+        "instruction": "Fill in the details below to register and create a new account",
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "التسجيل",
         "submit": "Register",
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
         },
-        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service and Privacy Policy</a>",
+        "title": "Register Now"
       },
       "signed_up": "مرحباً! لقد قمت بالتسجيل بنجاح.",
       "signed_up_but_inactive": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك لم يتم تفعيله بعد.",
       "signed_up_but_locked": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك مغلق.",
       "signed_up_but_unconfirmed": "تم إرسال رسالة بها رابط التأكيد إلى عنوان بريدك الإلكتروني. الرجاء اتباع الرابط لتفعيل حسابك.",
-      "success": "Signup successful. Please check your email for further instructions.",
+      "success": {
+        "actions": {
+          "sign_in": "Sign In"
+        },
+        "instruction": "Please check your email for further instructions",
+        "title": "Signup successful"
+      },
       "update_needs_confirmation": "لقد قمت بتحديث حسابك بنجاح، ولكن نحتاج إلى تأكيد عنوان بريدك الإلكتروني الجديد. الرجاء التحقق من بريدك الإلكتروني واتباع رابط التأكيد لتأكيد عنوان بريدك الإلكتروني الجديد.",
       "updated": "تم تحديث حسابك بنجاح.",
       "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
@@ -5193,16 +5215,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "sessions": {
       "already_signed_out": "تم تسجيل الخروج بنجاح.",
       "new": {
-        "email_label": "Email Address",
         "forgot_password": "Forgot password?",
+        "instruction": "Please login with your personal account information",
         "keep_sign_in": "Yes, Keep me signed in",
-        "password_placeholder": "Enter your password",
+        "password_placeholder": "Password",
         "sign_in": "تسجيل الدخول",
         "submit": "Login",
         "tabs": {
           "register": "Register",
           "sign_in": "Login"
-        }
+        },
+        "title": "Welcome Back!"
       },
       "signed_in": "تم تسجيل الدخول بنجاح.",
       "signed_out": "تم تسجيل الخروج بنجاح."
@@ -5223,18 +5246,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt": "Please enter the OTP, you have received at your registered email address.",
-      "attempt_failed": "Incorrect OTP. Please try again.",
-      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
-      "contact_administrator": "Please contact your system administrator.",
+      "attempt": "Please enter the OTP, you have received at your registered email address",
+      "attempt_failed": "Incorrect OTP! Please try again",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address",
+      "contact_administrator": "Please contact your system administrator",
       "email": {
         "otp": {
           "subject": "Your One-Time Password"
         }
       },
-      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP",
       "otp": "Code",
-      "success": "Login with Two Factor Authentication successful."
+      "submit": "Verify",
+      "success": "Login with Two Factor Authentication successful",
+      "title": "One-Time Password"
     },
     "unlocks": {
       "new": {
@@ -5434,6 +5459,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -5685,7 +5720,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
@@ -5706,6 +5742,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {
@@ -6156,9 +6195,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -6735,11 +6776,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -6747,17 +6803,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -6767,10 +6824,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "must_rank_between": " يرجى وضع قيمة من %{min} إلى %{max} لكل عنصر. لا يجب أن تتكرر القيم.",
     "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
     "number": "يجب أن تحتوي الإجابة على أرقام",
-    "please_answer_question": "الرجاء الإجابة على هذا السؤال",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
+    "required": "الرجاء الإجابة على هذا السؤال",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
     "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
   },
@@ -6993,6 +7048,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -7418,7 +7481,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "invitations": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To create a new password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Create password"
@@ -7436,9 +7499,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "sessions": {
         "new": {
           "forgot_password": "Forgot your password?",
-          "password_placeholder": "Enter your password",
+          "instruction": "Please login with your personal account information",
+          "password_placeholder": "Password",
           "submit": "Login",
-          "title": "<strong>Welcome</strong>, Please login"
+          "title": "Welcome back!"
         }
       },
       "shared": {
@@ -7677,6 +7741,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -10475,6 +10540,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -11604,14 +11670,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -11860,8 +11927,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "invitations": {
       "edit": {
         "confirm_password_label": "Confirm Password",
-        "description": "To create a new password, please enter your new password in the boxes below.",
         "header": "Set your password",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "password_label": "Password",
         "submit": "Set New Password",
         "submit_button": "Set my password",
@@ -11933,7 +12000,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "change_my_password": "Change my password",
         "change_your_password": "Change your password",
         "confirm_new_password": "Confirm new password",
-        "description": "To create a new password, please enter your new password in the boxes below.",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "new_password": "New password",
         "submit": "Submit",
         "title": "Create Password"
@@ -11961,19 +12028,29 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "we need your current password to confirm your changes"
       },
       "new": {
+        "code": "Registration Code",
+        "instruction": "Fill in the details below to register and create a new account",
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Sign up",
         "submit": "Register",
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
         },
-        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service and Privacy Policy</a>",
+        "title": "Register Now"
       },
       "signed_up": "Welcome! You have signed up successfully.",
       "signed_up_but_inactive": "You have signed up successfully. However, we could not sign you in because your account is not yet activated.",
       "signed_up_but_locked": "You have signed up successfully. However, we could not sign you in because your account is locked.",
       "signed_up_but_unconfirmed": "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.",
-      "success": "Signup successful. Please check your email for further instructions.",
+      "success": {
+        "actions": {
+          "sign_in": "Sign In"
+        },
+        "instruction": "Please check your email for further instructions",
+        "title": "Signup successful"
+      },
       "update_needs_confirmation": "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.",
       "updated": "Your account has been updated successfully.",
       "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
@@ -11981,16 +12058,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "sessions": {
       "already_signed_out": "Signed out successfully.",
       "new": {
-        "email_label": "Email Address",
         "forgot_password": "Forgot password?",
+        "instruction": "Please login with your personal account information",
         "keep_sign_in": "Yes, Keep me signed in",
-        "password_placeholder": "Enter your password",
+        "password_placeholder": "Password",
         "sign_in": "Log in",
         "submit": "Login",
         "tabs": {
           "register": "Register",
           "sign_in": "Login"
-        }
+        },
+        "title": "Welcome Back!"
       },
       "signed_in": "Signed in successfully.",
       "signed_out": "Signed out successfully."
@@ -12011,18 +12089,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt": "Please enter the OTP, you have received at your registered email address.",
-      "attempt_failed": "Incorrect OTP. Please try again.",
-      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
-      "contact_administrator": "Please contact your system administrator.",
+      "attempt": "Please enter the OTP, you have received at your registered email address",
+      "attempt_failed": "Incorrect OTP! Please try again",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address",
+      "contact_administrator": "Please contact your system administrator",
       "email": {
         "otp": {
           "subject": "Your One-Time Password"
         }
       },
-      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP",
       "otp": "Code",
-      "success": "Login with Two Factor Authentication successful."
+      "submit": "Verify",
+      "success": "Login with Two Factor Authentication successful",
+      "title": "One-Time Password"
     },
     "unlocks": {
       "new": {
@@ -12218,6 +12298,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -12469,7 +12559,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
@@ -12490,6 +12581,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {
@@ -12940,9 +13034,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -13516,11 +13612,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -13528,17 +13639,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -13548,10 +13660,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
-    "please_answer_question": "Please answer this question",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
+    "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
   },
@@ -13774,6 +13884,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            }
+          }
         }
       }
     },
@@ -14199,7 +14317,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "invitations": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To create a new password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Create password"
@@ -14217,9 +14335,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "sessions": {
         "new": {
           "forgot_password": "Forgot your password?",
-          "password_placeholder": "Enter your password",
+          "instruction": "Please login with your personal account information",
+          "password_placeholder": "Password",
           "submit": "Login",
-          "title": "<strong>Welcome</strong>, Please login"
+          "title": "Welcome back!"
         }
       },
       "shared": {
@@ -14458,6 +14577,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -17256,6 +17376,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "innovation_styles_factors": "Factors",
       "libraries": "Media Library",
       "licenses": "Licenses",
+      "new_campaign": "New Campaign",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -18385,14 +18506,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -18641,8 +18763,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "invitations": {
       "edit": {
         "confirm_password_label": "Confirm Password",
-        "description": "To create a new password, please enter your new password in the boxes below.",
         "header": "Set your password",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "password_label": "Password",
         "submit": "Set New Password",
         "submit_button": "Set my password",
@@ -18714,7 +18836,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "change_my_password": "Tukar kata laluan saya",
         "change_your_password": "Tukar kata laluan anda",
         "confirm_new_password": "Sahkan kata laluan baru",
-        "description": "To create a new password, please enter your new password in the boxes below.",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
         "new_password": "Kata laluan baru",
         "submit": "Submit",
         "title": "Create Password"
@@ -18742,19 +18864,29 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "we_need_your_current_password_to_confirm_your_changes": "kami memerlukan kata laluan anda yang kini untuk mengesahkan perubahan anda"
       },
       "new": {
+        "code": "Registration Code",
+        "instruction": "Fill in the details below to register and create a new account",
+        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Daftar",
         "submit": "Register",
         "tabs": {
           "register": "Register",
           "sign_in": "Sign In"
         },
-        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service</a> and <a href=\"%{privacy_url}\">Privacy Policy</a>"
+        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service and Privacy Policy</a>",
+        "title": "Register Now"
       },
       "signed_up": "Selamat datang! Anda telah berjaya mendaftar.",
       "signed_up_but_inactive": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda belum diaktifkan.",
       "signed_up_but_locked": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda telah dikunci.",
       "signed_up_but_unconfirmed": "Sebuah mesej dengan pautan pengesahan telah dihantar ke alamat e-mel anda. Sila ikuti pautan tersebut untuk mengaktifkan akaun anda.",
-      "success": "Signup successful. Please check your email for further instructions.",
+      "success": {
+        "actions": {
+          "sign_in": "Sign In"
+        },
+        "instruction": "Please check your email for further instructions",
+        "title": "Signup successful"
+      },
       "update_needs_confirmation": "Anda telah mengemas kini akaun anda dengan berjaya, tetapi kami perlu mengesahkan alamat e-mel anda yang baharu. Sila periksa e-mel anda dan ikuti pautan pengesahan untuk mengesahkan alamat e-mel anda yang baharu.",
       "updated": "Akaun anda telah berjaya dikemaskinikan.",
       "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
@@ -18762,16 +18894,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "sessions": {
       "already_signed_out": "Berjaya dilog keluar.",
       "new": {
-        "email_label": "Email Address",
         "forgot_password": "Forgot password?",
+        "instruction": "Please login with your personal account information",
         "keep_sign_in": "Yes, Keep me signed in",
-        "password_placeholder": "Enter your password",
+        "password_placeholder": "Password",
         "sign_in": "Log masuk",
         "submit": "Login",
         "tabs": {
           "register": "Register",
           "sign_in": "Login"
-        }
+        },
+        "title": "Welcome Back!"
       },
       "signed_in": "Berjaya dilog masuk.",
       "signed_out": "Berjaya dilog keluar."
@@ -18792,18 +18925,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "two_factor_authentication": {
-      "attempt": "Please enter the OTP, you have received at your registered email address.",
-      "attempt_failed": "Incorrect OTP. Please try again.",
-      "code_has_been_sent": "Your new OTP has been sent to your registered email address.",
-      "contact_administrator": "Please contact your system administrator.",
+      "attempt": "Please enter the OTP, you have received at your registered email address",
+      "attempt_failed": "Incorrect OTP! Please try again",
+      "code_has_been_sent": "Your new OTP has been sent to your registered email address",
+      "contact_administrator": "Please contact your system administrator",
       "email": {
         "otp": {
           "subject": "Your One-Time Password"
         }
       },
-      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP.",
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP",
       "otp": "Code",
-      "success": "Login with Two Factor Authentication successful."
+      "submit": "Verify",
+      "success": "Login with Two Factor Authentication successful",
+      "title": "One-Time Password"
     },
     "unlocks": {
       "new": {
@@ -18999,6 +19134,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "update": {
         "notice": "%{resource_name} was successfully updated."
       }
+    }
+  },
+  "frontend": {
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
     }
   },
   "helpers": {
@@ -19250,7 +19395,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
-    "sr": "Serbian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
     "sv": "Swedish",
     "sw": "Swahili",
     "ta": "Tamil",
@@ -19271,6 +19417,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "notifications": "Notifications",
       "profile": "Profile"
     }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
   },
   "loading": "Processing...",
   "mailer": {
@@ -19721,9 +19870,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -20297,11 +20448,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "RECORDED": "Audio is recorded but not saved",
         "RECORDING": "Audio recording is in progress",
         "SAVING": "Recorded audio upload is in progress"
-      }
+      },
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
         "SAVING": "File upload is in progress"
+      },
+      "required": "Please upload the file"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
+        "subject": {
+          "min_length": "Subject field should have minimum of 10 characters"
+        },
+        "to": {
+          "required": "To field is required"
+        }
       }
     },
     "VideoResponse": {
@@ -20309,17 +20475,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "recorded": "Video is recorded but not saved",
         "recording": "Video recording is in progress",
         "saving": "Recorded video upload is in progress"
-      }
+      },
+      "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "file_upload": {
       "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}",
-      "required": "Please upload the file"
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -20329,10 +20496,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
-    "please_answer_question": "Please answer this question",
-    "please_record_and_save_audio_first": "Please record and save the audio before you continue",
-    "please_record_and_save_video_first": "Please record and save the video before you continue",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
+    "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
   },

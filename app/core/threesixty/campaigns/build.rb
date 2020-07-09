@@ -13,6 +13,7 @@ module Threesixty
       def call
         campaign = project.project_campaigns.build(name: form.name)
         campaign.type = ::Campaign::THREESIXTY
+        campaign.status = form.status
 
         threesixty_campaign = campaign.build_threesixty_campaign
         threesixty_campaign.build_option(participants: Threesixty::Option::DEFAULT_PARTICIPANTS,

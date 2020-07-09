@@ -1,32 +1,58 @@
-.row
-  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .registrationForm
+div class=([@current_project&.login_box_position || 'right', 'box', 'devise', namespace_name].compact.join(' '))
+  .panel.panel-default
+    .panel-heading
+      = render partial: 'devise/shared/header', locals: { banner: @current_project&.logo&.url }
+
+    .panel-body
       /! Nav tabs
-      ul.nav.nav-tabs.formTabs
+      ul.nav.nav-tabs
         li
           = link_to t('.tabs.sign_in'), new_user_session_path
         li.active
           = link_to t('.tabs.register'), new_user_registration_path
       /! Tab panes
       .tab-content
-        #register.tab-pane.fade.in.active role="tabpanel"
+        .tab-pane.fade.in.active role="tabpanel"
+          .message.pvl
+            h1.mvm
+              dbi = t('.title')
+            .instruction
+              bdi = t('.instruction')
           = simple_form_for(@form, as: resource_name, url: user_registration_path, wrapper: :registration_form) do |f|
             = f.error_notification message: f.object.errors[:base].to_sentence
-            .loginFormContent
-              .firstNameFormGroup
-                = f.input :first_name
-              .lastNameFormGroup
-                = f.input :last_name
-              .usernameFormGroup
-                = f.input :email
-              .registrationCodeFormGroup
-                = f.input :registration_code, as: :string,
-                     placeholder: 'Enter the registration code', maxlength: 32, input_html: { value: @form.context.code }
-              .signInButton
-                .input-group
-                  .col-xs-12
-                    button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
-              .col-xs-12
-                p = raw t('.terms_notice', terms_url: Settings.terms_url, privacy_url: Settings.privacy_url)
-              .clearfix
-    .clearfix
+            .col-xs-6.phn.prs.mbm
+              = form_group_for f, :first_name do
+                .firstname.input-group
+                  span#firstname.input-group-addon
+                    i.icon-user
+                  = f.input_field :first_name, placeholder: 'First Name', class: 'form-control input-lg'
+
+            .col-xs-6.phn.pls.mbm
+              = form_group_for f, :last_name do
+                .lastname.input-group
+                  span#lastname.input-group-addon
+                    i.icon-user
+                  = f.input_field :last_name, placeholder: 'Last Name', class: 'form-control input-lg'
+
+            = form_group_for f, :email do
+              .username.input-group
+                span#username.input-group-addon
+                  i.icon-email
+                = f.input_field :email, placeholder: 'Email Address', class: 'form-control input-lg'
+            span.help-block.small.mbm = t('.privacy_notice')
+
+            = form_group_for f, :registration_code do
+              .registrationCode.input-group
+                span#registrationCode.input-group-addon
+                  i.icon-otp
+                = f.input_field :registration_code, as: :string, placeholder: t('.code'), maxlength: 32, value: @form.context.code,
+                  class: 'form-control input-lg'
+            span.help-block = raw t('.terms_notice', terms_url: 'https://thetalententerprise.com/privacy-statement/')
+
+            .actions.mvm
+              button.btn.btn-primary.text-uppercase type="submit" value="Submit"
+                = t('.submit')
+                span class="fa fa-chevron-right mlm"
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

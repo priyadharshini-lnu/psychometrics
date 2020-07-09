@@ -1,7 +1,5 @@
 import _ from 'lodash'
-import {
-  shuffle
-} from 'utils/shuffle'
+import array from 'utils/array'
 import seedrandom from 'seedrandom'
 
 describe('seedrandom', () => {
@@ -16,16 +14,16 @@ describe('seedrandom', () => {
   test('shuffe with the same seed should return the same result', () => {
     const arr = [1, 2, 3, 4, 5]
 
-    const arr1 = shuffle(arr, seedrandom('test'))
-    const arr2 = shuffle(arr, seedrandom('test'))
+    const arr1 = array.shuffle(arr, seedrandom('test'))
+    const arr2 = array.shuffle(arr, seedrandom('test'))
     expect(arr1).toStrictEqual(arr2)
   })
 
   test('shuffe with a different seed the same seed should return the same result', () => {
     const arr = [1, 2, 3, 4, 5]
 
-    const arr1 = shuffle(arr, seedrandom('test'))
-    const arr2 = shuffle(arr, seedrandom('test'))
+    const arr1 = array.shuffle(arr, seedrandom('test'))
+    const arr2 = array.shuffle(arr, seedrandom('test'))
     expect(arr1).toStrictEqual(arr2)
   })
 })

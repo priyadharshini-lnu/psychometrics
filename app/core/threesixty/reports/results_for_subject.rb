@@ -4,10 +4,10 @@ module Threesixty::Reports
   class ResultsForSubject < BaseCommand
     attr_reader :campaign, :subject, :report, :locale, :current_user
 
-    def initialize(users_report, current_user)
-      @campaign = users_report.campaign
+    def initialize(campaigns_users_report, current_user)
+      @campaign = campaigns_users_report.campaign
       @current_user = current_user
-      @subject = Threesixty::Subject.find_by(campaign_id: campaign.id, user_id: users_report.user_id)
+      @subject = Threesixty::Subject.find_by(campaign_id: campaign.id, user_id: campaigns_users_report.user_id)
     end
 
     def call

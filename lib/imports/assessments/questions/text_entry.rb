@@ -4,6 +4,7 @@ module Imports
   module Assessments
     module Questions
       class TextEntry
+        include ImportExportConst
         # FROM:
         #   ['Value']
         # TO:
@@ -12,15 +13,18 @@ module Imports
         #     "value": 'Value'
         #   }, ...]
 
-        def self.build_answers(data, question, use_scoring = false)
+        def self.build_answers(data, question, use_scoring = false, _assign)
           return nil if data.compact.blank? || data.all?(&:blank?)
 
-          answers = if question.of_sub_type?('Email')
-                      build_email_answers(data)
-                    elsif question.of_sub_type?('Chat')
-                      build_chat_answers(data)
-                    else
-                      build_other_answers(data, question, use_scoring)
+          answers = case question.props['type']
+                      when 'Email'
+                        build_email_answers(data)
+                      when 'Chat'
+                        build_chat_answers(data)
+                      when 'SingleLine'
+                        build_single_line_answer(data)
+                      else
+                        build_other_answers(data, question, use_scoring)
                     end
 
           {
@@ -29,10 +33,22 @@ module Imports
           }
         end
 
+        def self.build_single_line_answer(data)
+          data.each_with_object([]) do |answer, formatted_answers|
+            formatted_answers << {
+              value: answer
+            }
+          end
+        end
+
         def self.build_email_answers(data)
           answers = {}
-          Question::EMAIL_QUESTION_FIELDS.each_with_index do |email_field, index|
-            answers[email_field] = data[index].include?(', ') ? data[index].split(', ') : data[index]
+          EMAIL_QUESTION_FIELDS.each_with_index do |email_field, index|
+            answers[email_field] = if EMAIL_QUESTION_TEXT_FIELDS.include?(email_field)
+                                     data[index]
+                                   else
+                                     data[index] && data[index].split(', ')
+                                   end
           end
           answers
         end
@@ -59,6 +75,7 @@ module Imports
               value: use_scoring && factors_scoring[value] || value
             }
           end
+          answers
         end
       end
     end

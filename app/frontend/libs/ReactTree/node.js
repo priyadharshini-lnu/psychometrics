@@ -36,7 +36,7 @@ export default class UITreeNode extends Component {
 
       return (
         <div className="children" style={childrenStyles}>
-          {index.children.map((child) => {
+          {index.children.map((child, i) => {
             const childIndex = tree.getIndex(child)
 
             return (
@@ -44,6 +44,7 @@ export default class UITreeNode extends Component {
                 tree={tree}
                 index={childIndex}
                 key={childIndex.id}
+                order={i}
                 dragging={dragging}
                 paddingLeft={this.props.paddingLeft}
                 onCollapse={this.props.onCollapse}
@@ -59,7 +60,7 @@ export default class UITreeNode extends Component {
   };
 
   render () {
-    const { tree, index, dragging } = this.props
+    const { tree, index, dragging, order } = this.props
     const { node } = index
     const styles = {}
 
@@ -76,7 +77,7 @@ export default class UITreeNode extends Component {
           onMouseDown={this.handleMouseDown}
         >
           {this.renderCollapse()}
-          {tree.renderNode(node)}
+          {tree.renderNode(node, order)}
         </div>
         {node.collapsed ? null : this.renderChildren()}
       </div>

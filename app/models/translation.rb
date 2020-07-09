@@ -41,6 +41,15 @@ class Translation < ApplicationRecord
       results
     end
 
+    def to_hash_for_questions(question_ids, locale)
+      results = {}
+      where(translateable_type: 'Question', translateable_id: question_ids, locale: locale).find_each do |t|
+        results[t.translateable_type.underscore] ||= {}
+        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+      end
+      results
+    end
+
     def available_translation_for_assessment(assessment_id)
       for_assessment(assessment_id).group(:locale).pluck(:locale)
     end

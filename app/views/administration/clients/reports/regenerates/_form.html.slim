@@ -2,7 +2,7 @@
   .modal-body
     .form-inputs.clearfix
       = f.input :report_ids, as: :select,
-                             collection: client.decorate.reports_for_select.not_external,
+                             collection: client.decorate.reports_for_select,
                              class: 'form-control',
                              include_blank: false,
                              include_hidden: false,

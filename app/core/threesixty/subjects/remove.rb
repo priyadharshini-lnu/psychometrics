@@ -14,7 +14,7 @@ module Threesixty
       end
 
       def call
-        subject.users_reports.where(campaign_id: campaign.id).each(&:destroy!)
+        subject.campaigns_users_reports.where(campaign_id: campaign.id).each(&:destroy!)
         subject.evaluated_results.where(campaign_id: campaign.id).each(&:destroy!)
         subject.participants.where(campaign_id: campaign.id).each(&:destroy!)
 

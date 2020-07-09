@@ -11,9 +11,10 @@ aws:
     accelerated: <%= ENV.fetch('AWS_S3_ACCELERATION_ENABLED', 'false') == 'true' %>
 hashids_length:
   anonym: 8
-  assign_id: 6
+  default: 6
 features:
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
+  new_campaign: <%= ENV.fetch('NEW_CAMPAIGN_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
@@ -26,22 +27,23 @@ browser_requirements:
       edge: ">= 16"
       safari: ">= 11.1"
       opera: ">= 54"
+      ie: ">= 11"
     preferred:
-      chrome: ">= 67"
-      firefox: ">= 54"
-      edge: ">= 16"
+      chrome: ">= 75"
+      firefox: ">= 60"
+      edge: ">= 18"
   platforms:
     ios:
       supported:
-        chrome: ">= 67"
-        safari: ">= 11.1"
+        chrome: ">= 75"
+        safari: ">= 12.1"
       preferred:
-        safari: ">= 11.1"
+        safari: ">= 12.1"
     android:
       supported:
         chrome: ">= 67"
       preferred:
-        chrome: ">= 67"
+        chrome: ">= 75"
     mac:
       supported:
         chrome: ">= 67"
@@ -50,32 +52,33 @@ browser_requirements:
         safari: ">= 11.1"
         opera: ">= 54"
       preferred:
-        chrome: ">= 67"
-        firefox: ">= 54"
-        edge: ">= 16"
+        chrome: ">= 75"
+        firefox: ">= 60"
+        edge: ">= 18"
     linux:
       supported:
         chrome: ">= 67"
         firefox: ">= 54"
         opera: ">= 54"
       preferred:
-        chrome: ">= 67"
-        firefox: ">= 54"
+        chrome: ">= 75"
+        firefox: ">= 60"
     chrome_os:
       supported:
         chrome: ">= 67"
       preferred:
-        chrome: ">= 67"
+        chrome: ">= 75"
     windows:
       supported:
         chrome: ">= 67"
         firefox: ">= 54"
         edge: ">= 16"
         opera: ">= 54"
+        ie: ">= 11"
       preferred:
-        chrome: ">= 67"
-        firefox: ">= 54"
-        edge: ">= 16"
+        chrome: ">= 75"
+        firefox: ">= 60"
+        edge: ">= 18"
 languages:
   - es
   - fr
@@ -1051,3 +1054,9 @@ checking_wizard:
   network:
     upload: <%= ENV.fetch('MIN_NETWORK_UPLOAD', 4).to_i %>
     download: <%= ENV.fetch('MIN_NETWORK_DOWNLOAD', 8).to_i %>
+  audio:
+    # https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe.html
+    supported_locales:
+      - en
+      - fr
+      - es
