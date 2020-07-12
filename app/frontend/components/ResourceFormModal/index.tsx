@@ -26,7 +26,8 @@ interface Props {
     form: FormInstance
   }
   modalProps: ModalProps
-  formProps: FormProps
+  formProps?: FormProps
+  transformValues?(values: object): object
 }
 
 const ResourceFormModal: React.FC<Props> = (props) => {

@@ -19,6 +19,7 @@ interface Props {
   formProps?: FormProps
   onStatusChange?(value: string): object
   onSuccessfulSubmission?(response: object): void
+  transformValues?(values: object): object
   storeManager?: {
     form: FormInstance,
     fields: FieldData[],
@@ -52,6 +53,7 @@ const ResourceForm: React.FC<Props> = ({
   onStatusChange,
   storeManager,
   children,
+  transformValues,
 }: Props) => {
   const [form] = Form.useForm()
   const [status, setStatus] = useState<string | null>(null)
@@ -115,6 +117,9 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const handleSave = async (values: object) => {
+    if (transformValues) {
+      values = transformValues(values)
+    }
     handleStatusChange(Status.Saving)
     saveRequest(values)
       .then((response: object) => {

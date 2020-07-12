@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2226,7 +2240,8 @@ CREATE TABLE public.registration_codes (
     end_date timestamp without time zone,
     disabled boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id integer
 );
 
 
@@ -2725,9 +2740,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2898,9 +2911,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -5559,13 +5570,6 @@ CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING 
 
 
 --
--- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
-
-
---
 -- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5633,13 +5637,6 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 --
 
 CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (email, COALESCE(project_id, 0));
-
-
---
--- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_results_subject_evaluator_campaign ON public.users_results USING btree (subject_id, evaluator_id, campaign_id);
 
 
 --
@@ -6971,11 +6968,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200525102435'),
 ('20200531072928'),
 ('20200624204627'),
+('20200701101758'),
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
 ('20200702112737'),
 ('20200705114339'),
-('20200705132139');
-
-
+('20200705132139'),
+('20200712100454');

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "export_pdf": "node ./lib/raster.js",
-    "lint": "eslint --ext .js,.ts app/frontend/ --max-warnings=0 --cache",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --cache",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -126,6 +126,7 @@
     "react-bootstrap": "^0.32.4",
     "react-color": "^2.17.3",
     "react-contenteditable": "^2.0.1",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-device-detect": "^1.12.1",
     "react-dnd": "^9.4.0",
     "react-dnd-html5-backend": "^9.4.0",
