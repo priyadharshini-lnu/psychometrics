@@ -11,14 +11,23 @@ module Administration
                 includes(:creator, :modifier).
                 ransack(params[:filters]).result
 
-        serialized_users = ActiveModelSerializers::SerializableResource.new(
-          users.page(params[:page]), each_serializer: Administration::Campaigns::UserSerializer
-        )
+        respond_to do |format|
+          format.csv do
+            headers['Content-Disposition'] = 'attachment; filename="users.csv"'
+            headers['Content-Type'] ||= 'text/csv'
+            render :index, locals: { users: users, resource_class: resource_class }
+          end
+          format.json do
+            serialized_users = ActiveModelSerializers::SerializableResource.new(
+              users.page(params[:page]), each_serializer: Administration::Campaigns::UserSerializer
+            )
 
-        render json: {
-          list: serialized_users,
-          total: users.count
-        }
+            render json: {
+              list: serialized_users,
+              total: users.count
+            }
+          end
+        end
       end
 
       def create

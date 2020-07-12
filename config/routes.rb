@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       end
     end
     resources :projects do
-      resources :new_campaigns, only: [], constraints: proc { |request| request.format == :json } do
+      resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
           resources :registration_codes
           resources :users
