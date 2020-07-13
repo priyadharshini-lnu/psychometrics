@@ -1,5 +1,5 @@
 import mime from 'mime-types'
-import { sanitize } from 'utils/sanitizeFileName'
+import sanitize from 'utils/sanitizeFileName'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
 
