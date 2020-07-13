@@ -29,9 +29,12 @@ module Threesixty
           campaigns = ::Campaign.where(id: subject_campaigns | evaluator_campaigns)
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
-          json = @single_assigns.uniq.map do |assign|
-            ::EndUser::AssignSerializer.new(assign).to_h
-          end
+          user_campaigns = UsersCampaignsAssessment.where(evaluator_id: current_user.id).pluck(:campaign_id)
+          common_campaigns = ::Campaign.where(id: user_campaigns)
+
+          json = @single_assigns.uniq.map { |assign| ::EndUser::AssignSerializer.new(assign).to_h }
+          json.concat(common_campaigns.map { |campaign| ::EndUser::CampaignSerializer.new(campaign).to_h })
+
           json.concat(threesixty_projects.map do |campaign|
                         Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
                       end)
