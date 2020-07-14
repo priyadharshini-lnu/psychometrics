@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
-import { setIn } from 'modules/reports/utils/immutable'
+import { setIn } from 'utils/immutable'
 import { INIT, PASTE_PAGE, PASTE_MODULE } from '../actions'
 import {
   UPDATE_MODULE, REMOVE_MODULE,

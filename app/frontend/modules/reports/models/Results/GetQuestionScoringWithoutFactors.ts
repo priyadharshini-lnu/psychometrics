@@ -1,12 +1,11 @@
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 
+import { ScoringData } from 'modules/reports/models/Results/interfaces/ResultScoring'
 import AppStore from '../../store/AppStore'
-import { QuestionScoringObject } from './interfaces/ScoringByQuestion'
 import ResultScoring from './interfaces/ResultScoring'
 import QuestionScoringWithoutFactorsObject, { QuestionScoring } from './interfaces/QuestionScoringWithoutFactorsObject'
 import Scoring from '../Scoring'
-
 
 export default {
   run: (
@@ -19,7 +18,7 @@ export default {
 
     const result = _.reduce(questionScoring, (
       result: QuestionScoringWithoutFactorsObject,
-      questions: QuestionScoringObject,
+      questions: ScoringData,
       factorId: string,
     ) => _.reduce(questions, (result: QuestionScoringWithoutFactorsObject, value: Scoring[], id: string) => {
       if (!assessmentQuestions[id]) return result

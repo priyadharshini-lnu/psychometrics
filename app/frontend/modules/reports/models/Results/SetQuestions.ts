@@ -3,7 +3,7 @@ import { QuestionScoringObject, RawResult } from './interfaces'
 import { QuestionsResult } from './interfaces/RawResult'
 
 export default {
-  run: (rawResults: RawResult[]): QuestionScoringObject => _.reduce(
+  run: (rawResults: RawResult[]) => _.reduce(
     rawResults,
     (result: QuestionScoringObject, data: RawResult) => _.reduce(data.results, (
       result: QuestionScoringObject,
@@ -14,5 +14,5 @@ export default {
       return { ...result, [questionId]: [...questionsData, questionsResults.answers] }
     }, result),
     {},
-  ),
+  ) as QuestionScoringObject,
 }

@@ -40,11 +40,13 @@ function* genPrevPage () {
   // set current page questions results as dirty
   const state = yield select()
   const questions = pageQuestions(state.preview)
-  yield put(setDirtyResults(_.map(questions, 'id')))
   const prev = getPrevPage(state.preview)
-  yield put(changeElement(prev.element, prev.page))
-  yield put(removePrevPage())
-  yield put(clearInProgressQuestion())
+  if (prev) {
+    yield put(setDirtyResults(_.map(questions, 'id')))
+    yield put(changeElement(prev.element, prev.page))
+    yield put(removePrevPage())
+    yield put(clearInProgressQuestion())
+  }
 }
 
 function* genSavePrevPages () {

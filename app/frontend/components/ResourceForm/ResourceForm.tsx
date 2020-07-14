@@ -106,7 +106,7 @@ const ResourceForm: React.FC<Props> = ({
   const formValuesToField = (formValues = {}) => {
     const newFields: FieldData[] = []
     _.each(formValues, (value, name: string) => {
-      const field: FieldData = _.find(store.fields, { name })
+      const field = _.find(store.fields, { name })
       let newField: FieldData = { name, value }
       if (field) {
         newField = { ...field, value }
@@ -143,7 +143,7 @@ const ResourceForm: React.FC<Props> = ({
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     _.each(errors, (error: string | string[], name: string) => {
-      const field: FieldData = _.find(store.fields, { name })
+      const field = _.find(store.fields, { name })
       const errors: string[] = _.castArray(error)
       let newField: FieldData = { name, errors }
       if (field) {

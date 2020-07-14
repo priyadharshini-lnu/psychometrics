@@ -40,7 +40,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
 
   const completedTakes = result.answers.length
 
-  const currentTakeDetails: Answer = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo)
+  const currentTakeDetails: Answer = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo) as Answer
 
   const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !!currentTakeDetails
 

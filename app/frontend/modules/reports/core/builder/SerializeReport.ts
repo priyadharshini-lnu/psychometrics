@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { getModules, getPages } from './selectors'
+import PageInterface from '../interfaces/Page'
 
 const serializePage = page => ({
   id: page.isNew ? undefined : page.id,
@@ -31,15 +32,21 @@ const serializeModule = (module) => {
 
 const SerializeReport = {
   run (state) {
-    const report = {
+    const report: {
+      id: number,
+      name: string,
+      props: object,
+      data_sheet_columns: string[],
+      filters: object[],
+      pages?: object[]
+    } = {
       id: state.builder.id,
       name: state.builder.name,
-      pages: [],
       props: state.builder.props,
       data_sheet_columns: state.builder.data_sheet_columns,
       filters: state.builder.filters,
     }
-    report.pages = _.map(getPages(state, state.builder.pages), (page) => {
+    report.pages = _.map<PageInterface, object>(getPages(state, state.builder.pages), (page) => {
       const data = serializePage(page)
       const modules = _.map(getModules(state, page.modules), module => serializeModule(module))
       return { ...data, modules }
@@ -47,6 +54,5 @@ const SerializeReport = {
     return report
   },
 }
-
 
 export default SerializeReport
