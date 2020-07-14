@@ -15,7 +15,7 @@ interface Props {
     id: number
   }
   fetchByAssessmentId(id: number): Promise<{ response: Assessment[] }>
-  fetchTemplatesAndAssessments(projectId: number): Promise<TemplatAndAssesmentResponse>
+  fetchTemplatesAndAssessments(projectId: number): Promise<TemplateAndAssessmentResponse>
 }
 
 interface Factor {
@@ -26,7 +26,7 @@ interface Factor {
 interface CampaignTemplate {
   id: number
   name: string
-  assessment_id: number
+  assessmentId: number
 }
 
 interface Assessment {
@@ -34,7 +34,7 @@ interface Assessment {
   name: string
 }
 
-interface TemplatAndAssesmentResponse{
+interface TemplateAndAssessmentResponse{
   response: {
     templates: CampaignTemplate[]
     assessments: Assessment[]
@@ -50,22 +50,22 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const [factors, setFactors] = useState<Factor[]>([])
-  const [campaignTemplates, setcampaignTemplates] = useState<CampaignTemplate[]>([])
-  const [asessments, setAsessments] = useState<Assessment[]>([])
+  const [campaignTemplates, setCampaignTemplates] = useState<CampaignTemplate[]>([])
+  const [assessments, setAssessments] = useState<Assessment[]>([])
 
   useEffect(() => {
     fetchTemplatesAndAssessments(projectId).then(
-      ({ response: { templates, assessments } }: TemplatAndAssesmentResponse) => {
-        setcampaignTemplates(templates)
-        setAsessments(assessments)
+      ({ response: { templates, assessments } }: TemplateAndAssessmentResponse) => {
+        setCampaignTemplates(templates)
+        setAssessments(assessments)
       },
     )
   }, [])
 
   const handleCampaignTemplateChange = (campaignTemplateId: number) => {
-    const { assessmentId } = _.find(campaignTemplates,
+    const campaignTemplate = _.find(campaignTemplates,
       (campaignTemplate: CampaignTemplate) => campaignTemplate.id === campaignTemplateId)
-    handleAssessmentChange(assessmentId)
+    if (campaignTemplate) { handleAssessmentChange(campaignTemplate.assessmentId) }
   }
 
   const handleAssessmentChange = (assessmentId: number) => {
@@ -144,8 +144,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
               rules={[{ required: true }]}
             >
               <Select onChange={handleAssessmentChange}>
-                {_.map(asessments, (asessment: Assessment) => (
-                  <Option key={asessment.id} value={asessment.id}>{asessment.name}</Option>))}
+                {_.map(assessments, (assessment: Assessment) => (
+                  <Option key={assessment.id} value={assessment.id}>{assessment.name}</Option>))}
               </Select>
             </Form.Item>
           )}

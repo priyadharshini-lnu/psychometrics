@@ -26,7 +26,7 @@ export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
 export const getSelected = (state: any) => state.selected
 
 export const getPages = (state: any, ids: number[]): PageInterface[] => denormalize(ids, [page], state)
-export const getPage = (state: any, id: number): PageInterface => _.first(denormalize([id], [pages], state))
+export const getPage = (state: any, id: number): PageInterface => _.first(denormalize([id], [pages], state)) as PageInterface
 
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]
 export const getBufferedModule = (state: any): ModuleInterface => state.modules[state.builder.buffer.moduleId]
@@ -55,7 +55,7 @@ export const getQuestions = (state: any, assessmentId: number) => {
 
 
 export const getEmbeddedData = (state: any, assessmentId: number) => {
-  const parse = elements => _.reduce(elements, (acc, element) => {
+  const parse = elements => _.reduce(elements, (acc: any, element) => {
     if (element.type === 'EmbeddedData') {
       _.map(element.props.storage, (el) => {
         acc = [...acc, { name: el.key, value: el.key, label: el.key }]

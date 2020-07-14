@@ -15,10 +15,10 @@ const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/optio
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
-  const active = _.find(ROUTES, (key => location.pathname.includes(key)))
+  const active = _.find(ROUTES, (key => location.pathname.includes(key))) as string
 
   return (
-    <Menu className="mbm" onSelect={onClick} selectedKeys={active} mode="horizontal">
+    <Menu className="mbm" onSelect={onClick} selectedKeys={[active]} mode="horizontal">
       <Menu.Item key="/users">
         <UserOutlined />
         Users

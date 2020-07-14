@@ -38,7 +38,7 @@ export const currentPage = (state): number => state.currentPage
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]
 export const getCurrentElement = (state): BlockElementInterface => state.normalizedTree[state.currentElement]
 
-export const getElementIdByBlockId = (state, blockId): string => _.findKey(
+export const getElementIdByBlockId = (state, blockId) => _.findKey(
   state.normalizedTree, el => el.props && el.props.current === `${blockId}`,
 )
 
@@ -105,7 +105,8 @@ export const getQuestionResults = createSelector(
   (question, results) => results[question.id] || {},
 )
 
-export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} => _.last(state.prevPages)
+export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} | undefined =>
+   _.last(state.prevPages)
 
 export const getBlockIds = (state): string[] => _.reduce(
   state.normalizedTree, (ids, el) => (el.type === 'Block' ? [...ids, el.props.current] : ids), [],
