@@ -105,8 +105,9 @@ export const getQuestionResults = createSelector(
   (question, results) => results[question.id] || {},
 )
 
-export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} | undefined =>
-   _.last(state.prevPages)
+export const getPrevPage = (state): {element: string; page: number, questionIds: number[]} | undefined => (
+  _.last(state.prevPages)
+)
 
 export const getBlockIds = (state): string[] => _.reduce(
   state.normalizedTree, (ids, el) => (el.type === 'Block' ? [...ids, el.props.current] : ids), [],

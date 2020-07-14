@@ -26,7 +26,9 @@ export const getModulesShowOnAll = (state: any): ModuleInterface[] => _.filter(
 export const getSelected = (state: any) => state.selected
 
 export const getPages = (state: any, ids: number[]): PageInterface[] => denormalize(ids, [page], state)
-export const getPage = (state: any, id: number): PageInterface => _.first(denormalize([id], [pages], state)) as PageInterface
+export const getPage = (state: any, id: number): PageInterface => (
+  _.first(denormalize([id], [pages], state)) as PageInterface
+)
 
 export const getCurrentPage = (state: any): number => state.pages[state.builder.currentPage]
 export const getBufferedModule = (state: any): ModuleInterface => state.modules[state.builder.buffer.moduleId]
