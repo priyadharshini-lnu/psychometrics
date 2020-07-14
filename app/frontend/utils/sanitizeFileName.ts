@@ -9,7 +9,8 @@ const DEFAULT_FILE_NAME = 'file'
 const sanitize = (fileName: string, replacement = '_'): string => {
   replacement = _.trim(replacement).replace(ILLEGAL_CHARS_REGEX, '_')
 
-  let sanitizedFileName = _.trim(fileName).replace(ILLEGAL_CHARS_REGEX, replacement)
+  let sanitizedFileName = _.trim(fileName)
+    .replace(ILLEGAL_CHARS_REGEX, replacement)
     .replace(CONTROL_CHARS_RANGE, replacement)
 
   const index = sanitizedFileName.lastIndexOf('.')
