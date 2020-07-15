@@ -1,0 +1,6 @@
+en:
+  campaign_assessment:
+    column:
+      assessment_name: Assessment name
+      norm: Norm
+      universal_link: Universal link

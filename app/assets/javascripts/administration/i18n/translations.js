@@ -4824,6 +4824,29 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip exiting user"
+      },
+      "report": "Report"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -4897,6 +4920,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "id": "Id"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -5462,10 +5492,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
     "change_password": "Change password",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
@@ -11667,6 +11699,29 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip exiting user"
+      },
+      "report": "Report"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -11740,6 +11795,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "id": "Id"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -12301,10 +12363,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
     "change_password": "Change password",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
@@ -18503,6 +18567,29 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip exiting user"
+      },
+      "report": "Report"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -18576,6 +18663,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "id": "Id"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -19137,10 +19231,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
     "change_password": "Change password",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"

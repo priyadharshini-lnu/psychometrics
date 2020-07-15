@@ -8,7 +8,7 @@ module Administration
       before_action :ensure_project
 
       def project
-        @project ||= policy_scope(Client).find(params[:project_id])
+        @project ||= policy_scope(Client).find(params[:project_id] || campaign.project_id)
       end
 
       def client

@@ -4,3 +4,10 @@ en:
     edit: 'Edit'
     delete: 'Delete'
     change_password: 'Change password'
+    manage: Manage
+    activate: Activate
+  common:
+    column:
+      id: Id
+      category: Category
+      action: Action

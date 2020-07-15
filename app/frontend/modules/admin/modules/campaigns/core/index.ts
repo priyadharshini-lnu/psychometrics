@@ -4,6 +4,8 @@ import total from './total'
 import registrationCodes from './registrationCodes'
 import users from './users'
 import current from './current'
+import reports from './reports'
+import assessments from './assessments'
 
 export default combineReducers({
   list,
@@ -11,4 +13,6 @@ export default combineReducers({
   registrationCodes,
   users,
   current,
+  reports,
+  assessments,
 })

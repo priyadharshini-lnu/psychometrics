@@ -22,17 +22,17 @@ describe Licenses::Use do
   it 'returns error when there are no licenses present' do
     allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([])
 
-    response = described_class.call(campaign, user, report)
-
-    expect(response[:error]).to eq("'#{client.name}' does not have enough licenses for '#{report.name}'")
+    expect { described_class.call(campaign, user, report) }.to raise_error(
+      Licenses::NotEnoughError, "'#{client.name}' does not have enough licenses for '#{report.name}'"
+    )
   end
 
   it 'returns error if license is present but they are expired' do
     expired_license = create(:license, client: client, start_date: 3.days.ago, end_date: 2.days.ago, number: 2)
     allow_any_instance_of(Licenses::FetchQuery).to receive(:query).and_return([expired_license])
 
-    response = described_class.call(campaign, user, report)
-
-    expect(response[:error]).to eq("'#{client.name}' does not have enough licenses for '#{report.name}'")
+    expect { described_class.call(campaign, user, report) }.to raise_error(
+      Licenses::NotEnoughError, "'#{client.name}' does not have enough licenses for '#{report.name}'"
+    )
   end
 end

@@ -3,6 +3,7 @@ import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 
 export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'
+export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_REPORTS'
 
 const defaultState = {}
 
@@ -22,6 +23,14 @@ export const update = (id: number, projectId: number, body: Partial<Campaign>) =
     method: 'put',
     url: `/administration/projects/${projectId}/new_campaigns/${id}`,
     body: { resource: body },
+  },
+})
+
+export const fetchAssessmentAndReports = (campaignId: string) => ({
+  type: FETCH_ASSESSMENTS_AND_REPORTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/reports/assessments_and_reports`,
   },
 })
 

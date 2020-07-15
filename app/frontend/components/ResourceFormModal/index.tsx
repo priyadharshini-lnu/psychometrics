@@ -28,6 +28,7 @@ interface Props {
   modalProps: ModalProps
   formProps?: FormProps
   transformValues?(values: object): object
+  scrollToFirstError?: boolean
 }
 
 const ResourceFormModal: React.FC<Props> = (props) => {
@@ -60,7 +61,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const getTitle = () => {
     if (title) { return title }
 
-    return `${isEdit() ? 'Edit' : 'Create'} ${readableResourceName()}`
+    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName()}`
   }
 
   const renderTitle = () => {
@@ -94,7 +95,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
           disabled={resourceStatus === ResourceStatus.Saving}
         >
           {saveButtonIcon()}
-          {isEdit() ? 'Update' : 'Create'}
+          {isEdit() ? 'Update' : 'Add'}
         </Button>,
       ]}
       {...modalProps || {}}

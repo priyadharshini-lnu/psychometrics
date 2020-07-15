@@ -18,10 +18,9 @@ module Campaigns
           add_reports_and_assessments
           send_invite_email
         end
-
-        return broadcast :ok, user if @error.nil?
-
-        broadcast :error, { base: @error }
+        broadcast :ok, user
+      rescue Licenses::NotEnoughError => e
+        broadcast :error, { base: e.message }
       end
 
       private
@@ -51,19 +50,9 @@ module Campaigns
             campaigns_user,
             campaigns_report.report,
             user_access: campaigns_report.user_access,
-            operation: form.operation
+            operation: form.operation,
+            use_license: use_new_license?(campaigns_report.report)
           )
-          add_license(campaigns_report.report)
-        end
-      end
-
-      def add_license(report)
-        if use_new_license?(report)
-          response = Licenses::Use.call(campaign, user, report)
-          if response[:error]
-            @error = response[:error]
-            raise ActiveRecord::Rollback
-          end
         end
       end
 

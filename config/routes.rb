@@ -48,6 +48,18 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
     end
+
+    resources :new_campaigns, only: [] do
+      scope module: :campaigns do
+        resources :reports, only: [:create] do
+          collection do
+            get :report_families
+            get :assessments_and_reports
+          end
+        end
+      end
+    end
+
     resources :projects do
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
@@ -63,6 +75,7 @@ Rails.application.routes.draw do
           end
 
           member do
+            # get 'assessments_and_reports'
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end

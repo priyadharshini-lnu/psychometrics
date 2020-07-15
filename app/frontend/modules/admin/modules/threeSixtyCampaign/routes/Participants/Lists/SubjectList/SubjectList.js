@@ -3,7 +3,7 @@ import _ from 'lodash'
 import {
   Table, Dropdown, Row, Col,
 } from 'antd'
-import { UserOutlined, EllipsisOutlined } from '@ant-design/icons'
+import { UserOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import UserEditModal from 'modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from 'modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
@@ -137,7 +137,7 @@ export default function SubjectList ({
                   trigger={['click']}
                 >
                   <div className={styles.actions}>
-                    <EllipsisOutlined />
+                    <MoreOutlined />
                   </div>
                 </Dropdown>
               )}

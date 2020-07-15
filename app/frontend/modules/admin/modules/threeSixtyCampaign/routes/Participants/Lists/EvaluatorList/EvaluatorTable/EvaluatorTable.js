@@ -1,6 +1,6 @@
 import React from 'react'
 import { Dropdown, Table } from 'antd'
-import { CheckOutlined, EllipsisOutlined } from '@ant-design/icons'
+import { CheckOutlined, MoreOutlined } from '@ant-design/icons'
 import userPresenter from 'presenters/user'
 import ActionsMenu from '../ActionsMenu'
 import styles from './EvaluatorTable.scss'
@@ -72,7 +72,7 @@ export default function EvaluatorTable ({
             trigger={['click']}
           >
             <div className={styles.actions}>
-              <EllipsisOutlined />
+              <MoreOutlined />
             </div>
           </Dropdown>
         )}

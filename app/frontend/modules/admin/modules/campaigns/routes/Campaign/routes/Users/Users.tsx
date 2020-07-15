@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { AppstoreOutlined, PlusOutlined, EllipsisOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, PlusOutlined, MoreOutlined } from '@ant-design/icons'
 import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
@@ -173,7 +173,7 @@ const UserList: React.FC<Props> = ({
                   trigger={['click']}
                 >
                   <a>
-                    <EllipsisOutlined />
+                    <MoreOutlined />
                   </a>
                 </Dropdown>
               )}

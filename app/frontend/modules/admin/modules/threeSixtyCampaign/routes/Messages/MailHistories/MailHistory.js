@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Table, Dropdown, Menu, Tag, message,
 } from 'antd'
-import { EllipsisOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '@ant-design/icons'
 import { STATUSES } from 'modules/admin/constants/mailHistory'
 import styles from './styles.scss'
 import Pagination from '../../../components/Pagination'
@@ -140,7 +140,7 @@ const ActionMenu = ({
       placement="bottomCenter"
     >
       <a>
-        <EllipsisOutlined />
+        <MoreOutlined />
       </a>
     </Dropdown>
   )

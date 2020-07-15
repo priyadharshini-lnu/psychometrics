@@ -4,6 +4,7 @@ import { FormInstance } from 'antd/lib/form/util'
 import { FormProps } from 'antd/lib/form'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
+import { scrollIntoView } from 'scroll-js'
 import { Status } from './constants'
 import { Resource } from './interfaces'
 
@@ -26,6 +27,7 @@ interface Props {
     setFields(fields: object): void
   }
   children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+  scrollToFirstError?: boolean
 }
 
 interface Request {
@@ -54,7 +56,9 @@ const ResourceForm: React.FC<Props> = ({
   storeManager,
   children,
   transformValues,
+  scrollToFirstError,
 }: Props) => {
+  const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
@@ -79,6 +83,16 @@ const ResourceForm: React.FC<Props> = ({
       })
     }
   }, [])
+
+  useEffect(() => {
+    if (baseErrorRef.current && scrollToFirstError && !_.isEmpty(baseErrors)) {
+      let element = document.getElementsByClassName('ant-modal-wrap')[0]
+      // eslint-disable-next-line prefer-destructuring
+      if (!element) { element = document.getElementsByClassName('resourceForm')[0] }
+
+      scrollIntoView(baseErrorRef.current, element, { behavior: 'smooth' })
+    }
+  }, [baseErrors])
 
   const validateMessages = {
     required: I18n.t('validations.blank'),
@@ -120,6 +134,7 @@ const ResourceForm: React.FC<Props> = ({
     if (transformValues) {
       values = transformValues(values)
     }
+    setBaseErrors([])
     handleStatusChange(Status.Saving)
     saveRequest(values)
       .then((response: object) => {
@@ -163,18 +178,22 @@ const ResourceForm: React.FC<Props> = ({
       onFieldsChange={(_, allFields) => {
         store.setFields(allFields)
       }}
+      scrollToFirstError={scrollToFirstError}
       layout="vertical"
       {...formProps || {}}
+      className="resourceForm"
     >
       {baseErrors
         && (
-        <Alert
-          message={false}
-          description={_.join(_.castArray(baseErrors), ',')}
-          type="error"
-          className="mbm"
-          showIcon
-        />
+          <div ref={baseErrorRef}>
+            <Alert
+              message={false}
+              description={_.join(_.castArray(baseErrors), ',')}
+              type="error"
+              className="mbm"
+              showIcon
+            />
+          </div>
         )}
       {children({ form: store.form, status, isEdit: isEdit() })}
     </Form>

@@ -61,6 +61,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -521,7 +523,8 @@ CREATE TABLE public.campaigns_assessments (
     key_generated_at timestamp without time zone,
     key_expires_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    norm_id bigint
 );
 
 
@@ -1800,7 +1803,8 @@ CREATE TABLE public.norms (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     dimension_id integer,
-    owner_id integer
+    owner_id integer,
+    norm_type integer DEFAULT 0
 );
 
 
@@ -4524,6 +4528,13 @@ CREATE INDEX index_campaigns_assessments_on_campaign_id ON public.campaigns_asse
 
 
 --
+-- Name: index_campaigns_assessments_on_norm_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaigns_assessments_on_norm_id ON public.campaigns_assessments USING btree (norm_id);
+
+
+--
 -- Name: index_campaigns_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5955,6 +5966,14 @@ ALTER TABLE ONLY public.users_campaigns_assessments
 
 
 --
+-- Name: campaigns_assessments fk_rails_60f414e63f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaigns_assessments
+    ADD CONSTRAINT fk_rails_60f414e63f FOREIGN KEY (norm_id) REFERENCES public.norms(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: communications fk_rails_639c49fe3d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6987,6 +7006,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200525102435'),
 ('20200531072928'),
 ('20200624204627'),
+('20200630075308'),
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
@@ -6995,6 +7015,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200705132139'),
 ('20200707220715'),
 ('20200709155934'),
-('20200712100454');
+('20200712100454'),
+('20200712101935');
 
 

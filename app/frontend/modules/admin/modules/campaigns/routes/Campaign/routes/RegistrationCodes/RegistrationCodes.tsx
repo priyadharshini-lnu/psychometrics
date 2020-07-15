@@ -3,7 +3,7 @@ import {
   Dropdown, Table, Button, Menu, Row, Col, Pagination, message, Popconfirm,
 } from 'antd'
 import {
-  CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, EllipsisOutlined,
+  CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined,
 } from '@ant-design/icons'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
@@ -152,7 +152,7 @@ const RegistrationCodes: React.FC<Props> = ({
                     trigger={['click']}
                   >
                     <Button type="link">
-                      <EllipsisOutlined />
+                      <MoreOutlined />
                     </Button>
                   </Dropdown>
                   <Popconfirm

@@ -5,7 +5,7 @@ import {
 import { Link } from 'react-router-dom'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { EllipsisOutlined, AppstoreOutlined } from '@ant-design/icons'
+import { MoreOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
@@ -146,7 +146,7 @@ const CampaignList: React.FC<Props> = ({
                   trigger={['click']}
                 >
                   <a>
-                    <EllipsisOutlined />
+                    <MoreOutlined />
                   </a>
                 </Dropdown>
               )}
