@@ -10,7 +10,7 @@ class CampaignsUsersReport < ApplicationRecord
 
   delegate :client, to: :campaign
 
-  mount_uploader :pdf, PdfUploader
+  mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
 
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)

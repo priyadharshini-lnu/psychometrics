@@ -58,6 +58,7 @@ function wireSocketEvents(onTranscribe, onError) {
         if (messageWrapper.headers[":message-type"].value === "event") {
             handleEventStreamMessage(messageBody, onTranscribe);
         } else {
+            console.error('messageWrapper', messageWrapper)
             onError()
         }
     };

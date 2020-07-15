@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Hogan
+  # deprecated
   class AssignAndLoadResultsJob < ApplicationJob
     queue_as :default
 

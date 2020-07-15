@@ -111,7 +111,7 @@ class User < ApplicationRecord
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
   has_many :campaigns_users
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
-
+  has_one :hogan_credential
   has_many  :available_client_admin_reports,
             through: :client_admin_clients,
             source: :available_reports,
