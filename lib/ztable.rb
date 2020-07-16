@@ -105,9 +105,9 @@ class Ztable
 
   def self.percentile_calculation_two(zscore)
     y_zscore = MIN_Y_VALUE
-    x_zscore = MAX_X_VALUE
+    # x_zscore = MAX_X_VALUE
 
-    return 0.5000 if zscore == 0
+    return 0.5000 if zscore.zero?
 
     if zscore > 0.0
       return 1.0 if zscore > MAX_Y_VALUE
@@ -122,16 +122,16 @@ class Ztable
       y_zscore = (zscore * 10).ceil / 10
     end
 
-    x_zscore = (((zscore % y_zscore) * 10000.0).round / 10000.0).abs
+    x_zscore = (((zscore % y_zscore) * 10_000.0).round / 10_000.0).abs
 
     z100 = x_zscore.is_a?(Numeric) ? zscore.abs : x_zscore
-    z10 = y_zscore == 0 ? '0.0' : y_zscore.round(1).to_s
+    z10 = y_zscore.zero? ? '0.0' : y_zscore.round(1).to_s
 
     puts "z100: #{z100} - z10: #{z10}"
     column = ZTABLE['Z'].index(z100)
     percentile = ZTABLE[z10][column]
 
-    percentile = Math.round((1 - percentile) * 10000) / 10000 if zscore > 0
+    percentile = Math.round((1 - percentile) * 10_000.0) / 10_000.0 if zscore.positive?
 
     percentile
   end

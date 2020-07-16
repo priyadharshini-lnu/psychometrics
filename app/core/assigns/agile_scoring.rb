@@ -4,7 +4,7 @@ module Assigns
   class AgileScoring < BaseCommand
     private_attr_accessor :assign
 
-    def initialize(asssign)
+    def initialize(assign)
       @assign = assign
     end
 
