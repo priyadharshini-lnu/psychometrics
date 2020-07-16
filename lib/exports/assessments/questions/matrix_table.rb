@@ -47,7 +47,7 @@ module Exports
           parsed_result = []
           question.props['choices'].to_i.times do |choice|
             question.props['scalePoints'].to_i.times do |scale|
-              parsed_result << if not_applicable && not_applicable.keys[0].to_i == choice
+              parsed_result << if not_applicable && not_applicable[choice.to_s]
                                  export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
                                else
                                  (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
@@ -61,11 +61,13 @@ module Exports
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
           return parsed_result unless not_applicable
 
-          parsed_result[not_applicable.keys[0].to_i] = if export_with_labels
-                                                         question.props['notApplicableLabel']
-                                                       else
-                                                         NOT_APPLICABLE_PLACEHOLDER
-                                                       end
+          not_applicable.each_key do |key|
+            parsed_result[key.to_i] = if export_with_labels
+                                        question.props['notApplicableLabel']
+                                      else
+                                        NOT_APPLICABLE_PLACEHOLDER
+                                      end
+          end
           parsed_result
         end
 
