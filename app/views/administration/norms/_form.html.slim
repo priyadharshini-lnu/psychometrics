@@ -7,6 +7,7 @@
       - if current_user.is?(:superadmin)
         = f.association :owner, collection: policy_scope(Client).tenancies.not_archived, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
       = f.association :dimension, collection: policy_scope(Dimension).all, include_blank: true, input_html: { data: { live_search: true } }
+      = f.input :norm_type, disabled: !resource.new_record?
 
   .modal-footer
     .btn-group

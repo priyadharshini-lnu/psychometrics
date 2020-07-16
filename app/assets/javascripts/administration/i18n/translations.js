@@ -5919,6 +5919,23 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "nominations": {
     "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
   },
+  "norms": {
+    "percentile": {
+      "columns": {
+        "mean": "Mean",
+        "name": "Name",
+        "standard_deviation": "Standard Deviation"
+      },
+      "messages": {
+        "failure": "Error: %{error}.",
+        "success": "Norm for Factor '%{factorName}' updated successfully."
+      },
+      "values": {
+        "empty": "Empty",
+        "required": "%{title} is required"
+      }
+    }
+  },
   "number": {
     "currency": {
       "format": {
@@ -12758,6 +12775,23 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "nominations": {
     "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
   },
+  "norms": {
+    "percentile": {
+      "columns": {
+        "mean": "Mean",
+        "name": "Name",
+        "standard_deviation": "Standard Deviation"
+      },
+      "messages": {
+        "failure": "Error: %{error}.",
+        "success": "Norm for Factor '%{factorName}' updated successfully."
+      },
+      "values": {
+        "empty": "Empty",
+        "required": "%{title} is required"
+      }
+    }
+  },
   "number": {
     "currency": {
       "format": {
@@ -19593,6 +19627,23 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "no": "No",
   "nominations": {
     "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
+  },
+  "norms": {
+    "percentile": {
+      "columns": {
+        "mean": "Mean",
+        "name": "Name",
+        "standard_deviation": "Standard Deviation"
+      },
+      "messages": {
+        "failure": "Error: %{error}.",
+        "success": "Norm for Factor '%{factorName}' updated successfully."
+      },
+      "values": {
+        "empty": "Empty",
+        "required": "%{title} is required"
+      }
+    }
   },
   "number": {
     "currency": {

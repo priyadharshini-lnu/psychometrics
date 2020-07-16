@@ -70,9 +70,11 @@ class Factor < ApplicationRecord
   }
 
   scope :with_norm_type, lambda { |type, norm_id|
-    joins("LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id
-            and factors_norms.type = '#{type}'
-            and factors_norms.norm_id = '#{norm_id}'")
+    sql = 'LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id '
+    sql += "and factors_norms.type = '#{type}' " unless type.blank?
+    sql += "and factors_norms.norm_id = '#{norm_id}'"
+
+    joins(sql)
   }
   scope :roots, -> { where(parent_id: nil) }
   scope :no_roots, -> { where.not(parent_id: nil) }

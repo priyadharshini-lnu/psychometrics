@@ -6,6 +6,10 @@ FactoryBot.define do
     dimension
     association :owner, factory: :tenancy
 
+    trait :percentile do
+      norm_type { :percentile }
+    end
+
     transient do
       with_factors_norm { true }
       factors_norm_count { 5 }
