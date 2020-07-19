@@ -33,6 +33,7 @@ class SingleAnswerPreview extends Component {
     return (
       <li className={`${styles.listItem} ${styles.liButton} ${checked ? styles.buttonActive : ''}`}>
         <label className={`${styles.label} ${styles.labelButton}`}>
+          <span className={cs('fa fa-check', styles.checkIcon)} />
           <input
             disabled={readOnly}
             className={styles.input}
