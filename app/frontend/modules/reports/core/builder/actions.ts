@@ -22,6 +22,7 @@ export const COPY_PAGE = 'report/COPY_PAGE'
 export const PASTE_PAGE = 'report/PASTE_PAGE'
 export const COPY_MODULE = 'report/COPY_MODULE'
 export const PASTE_MODULE = 'report/PASTE_MODULE'
+export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
 
 enum SelectedTypes {
   'Module',
@@ -43,6 +44,7 @@ interface CopyPage { type: typeof COPY_PAGE, pageId: number }
 interface PastePage { type: typeof PASTE_PAGE, pageId: number, modules: ModuleInterface[] }
 interface CopyModule { type: typeof COPY_MODULE, moduleId: number }
 interface PasteModule { type: typeof PASTE_MODULE, pageId: number, module: ModuleInterface }
+interface SaveDataSheet { type: typeof SAVE_DATA_SHEET, data: object[] }
 
 export const init = data => ({ type: INIT, data })
 export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
@@ -57,6 +59,8 @@ export const copyModule = (moduleId: number): CopyModule => ({ type: COPY_MODULE
 export const pasteModule = (pageId: number, module: ModuleInterface): PasteModule => ({
   type: PASTE_MODULE, pageId, module,
 })
+
+export const saveDataSheet = (data: object[]): SaveDataSheet => ({ type: SAVE_DATA_SHEET, data })
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
 export const updateCurrentPage = (offset: number): UpdateCurrentPage => ({ type: UPDATE_CURRENT_PAGE, offset })

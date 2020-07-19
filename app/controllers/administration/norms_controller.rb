@@ -94,17 +94,28 @@ class Administration::NormsController < Administration::BaseController
   def editor
     add_breadcrumb resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
-    @filter_data = NormEditorForm.new(editor_params)
-    scope = Factor.where(dimension_id: resource.dimension_id).
-            with_norm_type(@filter_data.norm_type, resource.id)
+
+    editor_form_params = editor_params
+    unless resource.percentile?
+      editor_form_params[:norm_type] = 'eti' unless editor_params[:norm_type] == 'yti'
+    end
+
+    @filter_data = NormEditorForm.new(editor_form_params)
+    scope = Factor.where(dimension_id: resource.dimension_id).with_norm_type(@filter_data.norm_type, resource.id)
     @_resources = FactorsNorm.structured_hash(scope)
-    respond_to do |format|
-      format.js
-      format.html
+
+    if resource.percentile?
+      render :percentile_editor
+    else
+      render :five_scale_editor
     end
   end
 
   private
+
+  def five_scale_editor; end
+
+  def percentile_editor; end
 
   def set_resource_class
     @_resource_class ||= Norm # rubocop:disable Naming/MemoizedInstanceVariableName
@@ -116,7 +127,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id, :owner_id)
+    params.require(:resource).permit(:name, :dimension_id, :owner_id, :norm_type)
   end
 
   def editor_params

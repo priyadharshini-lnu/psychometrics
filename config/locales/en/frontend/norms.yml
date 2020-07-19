@@ -1,0 +1,14 @@
+
+en:
+  norms:
+    percentile:
+      columns:
+        name: 'Name'
+        mean: 'Mean'
+        standard_deviation: 'Standard Deviation'
+      values:
+        empty: 'Empty'
+        required: '%{title} is required'
+      messages:
+        success: "Norm for Factor '%{factorName}' updated successfully."
+        failure: "Error: %{error}."

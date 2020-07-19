@@ -45,9 +45,10 @@ export default class DataSheetModal extends Component {
   }
 
   save = () => {
-    const { close } = this.props
+    const { close, saveDataSheet } = this.props
     const { columns } = this.state
     AppStore.report.dataSheetColumns = _.cloneDeep(columns)
+    saveDataSheet(_.cloneDeep(columns))
     close()
   }
 

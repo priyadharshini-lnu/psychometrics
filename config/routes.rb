@@ -494,6 +494,7 @@ Rails.application.routes.draw do
     resources :libraries
 
     put '/factors_norms/update', to: 'factors_norms#update'
+    put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
 
     resources :communications, only: %i[index new create destroy show] do
       member do
