@@ -1,8 +1,10 @@
 en:
   shared:
+    terms_conditions_privacy: 'Terms, Conditions and Privacy Statement'
     password_reset:
-      title: 'Forgotten Password'
+      title: 'Forgot Password?'
       description: "Please enter your email address in the box below and click 'Reset Password'."
+      instruction: Enter the email associated with your account
       submit: 'Reset Password'
       email_label: 'Email Address'
     filters:

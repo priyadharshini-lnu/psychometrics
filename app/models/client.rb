@@ -42,8 +42,12 @@ class Client < ApplicationRecord
     sub_campaign: 3
   }.freeze
 
+  LOGIN_BOX_POSITIONS = %i[right center left].freeze
+
   has_ancestry cache_depth: true
-  store :design, accessors: [:background_color]
+  store :design, accessors: %i[background_color login_box_position]
+
+  after_initialize :initialize_login_box_position, if: :new_record?
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
@@ -142,6 +146,7 @@ class Client < ApplicationRecord
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
+  mount_uploader :secondary_logo, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -297,6 +302,10 @@ class Client < ApplicationRecord
     if operator.is?(:project_admin)
       errors.add(:base) if root?
     end
+  end
+
+  def initialize_login_box_position
+    self.login_box_position = LOGIN_BOX_POSITIONS[0]
   end
 end
 # rubocop:enable Metrics/ClassLength

@@ -13,7 +13,7 @@
 [class^="icon-"], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -25,24 +25,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-agile:before {
-  content: "\e906";
-}
 .icon-360:before {
   content: "\e900";
 }
-.icon-case_study:before {
+.icon-agile:before {
   content: "\e901";
 }
-.icon-hogan:before {
+.icon-assessment:before {
   content: "\e902";
 }
-.icon-mindmill:before {
+.icon-case_study:before {
   content: "\e903";
 }
-.icon-survey:before {
+.icon-email:before {
   content: "\e904";
 }
-.icon-assessment:before {
+.icon-hogan:before {
   content: "\e905";
+}
+.icon-lock:before {
+  content: "\e906";
+}
+.icon-mindmill:before {
+  content: "\e907";
+}
+.icon-otp:before {
+  content: "\e908";
+}
+.icon-survey:before {
+  content: "\e909";
+}
+.icon-user:before {
+  content: "\e90a";
 }

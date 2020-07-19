@@ -13,6 +13,7 @@ require 'features/helpers'
 require 'wisper/rspec/matchers'
 require 'rectify/rspec'
 require 'capybara_config'
+require 'rspec/mocks'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
@@ -40,8 +41,9 @@ RSpec.configure do |config|
   config.include(Wisper::RSpec::BroadcastMatcher)
   # Sign in helper for controller
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.extend ControllerMacros, type: :controller
+  config.include ControllerMacros, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.render_views
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

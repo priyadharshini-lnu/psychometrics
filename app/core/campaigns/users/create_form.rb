@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+
+module Campaigns
+  module Users
+    class CreateForm < Rectify::Form
+      mimic :user
+
+      attribute :first_name, String
+      attribute :last_name, String
+      attribute :email, String
+      attribute :operation, String
+
+      validates :first_name, :last_name, :email, presence: true
+      validates :email, format: { with: Devise.email_regexp }
+      validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
+      validate :user_exists_in_project, if: -> { operation == 'skip_existing' }
+      validate :user_exists_in_campaign
+
+      def user_exists_in_project
+        errors.add(:email, :user_exists_in_project) if User.exists?(project_id: campaign.project_id, email: email)
+      end
+
+      def user_exists_in_campaign
+        errors.add(:email, :user_exists_in_campaign) if campaign.users.exists?(email: email)
+      end
+
+      private
+
+      def campaign
+        context.campaign
+      end
+    end
+  end
+end

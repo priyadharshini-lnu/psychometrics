@@ -22,7 +22,7 @@ module Users
           end
           on(:ok) do |_resource|
             flash[:notice] = t('devise.registrations.success')
-            redirect_to new_user_session_path
+            redirect_to users_sign_up_success_path
           end
         end
       else

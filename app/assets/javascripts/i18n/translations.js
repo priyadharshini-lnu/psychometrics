@@ -96,14 +96,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "arabic",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -341,9 +342,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -553,6 +556,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
     "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
@@ -672,14 +676,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -917,9 +922,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -1126,6 +1133,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
@@ -1245,14 +1253,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
+      "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
       "continue": "Continue",
       "processing": "Processing",
+      "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
-      "speak_and_repeat": "Please speak and repeat the following sentence 3 times.",
       "speech_detection": "Speech detection",
-      "test_message": "Hi, Its great to speak with you",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
@@ -1490,9 +1499,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
+      "instruction": "Enter the email associated with your account",
       "submit": "Reset Password",
-      "title": "Forgotten Password"
+      "title": "Forgot Password?"
     },
+    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -1699,6 +1710,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "required": "Please record and save the video before you continue"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
+    "blank": "can't be blank",
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (mm/dd/yyyy)",
     "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",

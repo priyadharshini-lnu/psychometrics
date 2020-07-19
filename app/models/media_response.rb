@@ -3,6 +3,8 @@
 require 'carrierwave/storage/fog'
 
 class MediaResponse < ApplicationRecord
+  include EncodableId
+
   mount_uploader :asset, MediaResponseUploader
 
   belongs_to :users_assessment

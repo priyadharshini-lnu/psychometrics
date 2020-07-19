@@ -49,8 +49,22 @@ Rails.application.routes.draw do
       end
     end
     resources :projects do
+      resources :new_campaigns, only: [], constraints: proc { |request| request.format == :json } do
+        scope module: :campaigns do
+          resources :users
+        end
+      end
+
       scope module: :projects do
-        resources :new_campaigns
+        resources :new_campaigns do
+          collection do
+            get :templates_and_assessment
+          end
+          member do
+            get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
+            get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
+          end
+        end
       end
     end
     ### CLIENTS
@@ -308,6 +322,7 @@ Rails.application.routes.draw do
         get :resources, to: 'assessments#show', constraints: { all: /.*/ }
         get :assessments
         get :questions
+        get :factors
       end
 
       scope module: 'assessments' do
@@ -464,6 +479,7 @@ Rails.application.routes.draw do
     resources :libraries
 
     put '/factors_norms/update', to: 'factors_norms#update'
+    put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
 
     resources :communications, only: %i[index new create destroy show] do
       member do
@@ -529,6 +545,10 @@ Rails.application.routes.draw do
     end
   end
 
+  devise_scope :user do
+    get 'users/sign_up/success', to: 'users/registrations#success'
+  end
+
   devise_for :users,
              path: 'users',
              as: :devise,
@@ -582,6 +602,7 @@ Rails.application.routes.draw do
     end
 
     resources :highlights, only: %i[update]
+    get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
     scope module: :threesixty do
       resources :campaigns, only: %i[show index] do

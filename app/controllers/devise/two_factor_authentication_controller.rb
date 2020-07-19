@@ -6,12 +6,8 @@ class Devise::TwoFactorAuthenticationController < DeviseController
   prepend_before_action :authenticate_scope!
   before_action :prepare_and_validate, :handle_two_factor_authentication
 
-  def show
-    flash[:notice] = flash[:resent] || I18n.t('devise.two_factor_authentication.attempt')
-  end
-
   def update
-    render :show && return if params[:code].nil?
+    render :show && return if params[:code].blank?
 
     if resource.authenticate_otp(params[:code])
       after_two_factor_success_for(resource)

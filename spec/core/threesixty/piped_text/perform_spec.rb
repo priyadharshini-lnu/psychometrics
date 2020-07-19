@@ -40,6 +40,11 @@ describe Threesixty::PipedText::Perform do
     end
 
     it do
+      response = described_class.call!('{{u://Field/Name}} ss', user: user)
+      expect(response).to match('Vasiliy Pupkin ss')
+    end
+
+    it do
       response = described_class.call!('{{dash://Url?v=444&c=de}} ss', recipient: user, threesixty_campaign: 'ddd')
       expect(response).to match(%r{/users/invitation/accept})
     end
@@ -87,7 +92,7 @@ describe Threesixty::PipedText::Perform do
         ' data="https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>')
     end
 
-    it 'empty if error occure' do
+    it 'empty if error occurs' do
       response = described_class.call!('{{d://Current?f=%--}}')
       expect { response.call }.to raise_error(Exception)
       expect(response).to eq(Time.now.strftime(''))

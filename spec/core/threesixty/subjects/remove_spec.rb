@@ -9,11 +9,11 @@ describe Threesixty::Subjects::Remove do
   let(:subject) { create(:threesixty_subject, campaign: campaign) }
   let(:super_admin) { create(:superadmin) }
 
-  it 'deletes users_report' do
-    user_report = create(:users_report, user_id: subject.user_id, campaign_id: campaign.id)
+  it 'deletes campaigns_users_report' do
+    campaigns_users_report = create(:campaigns_users_report, user_id: subject.user_id, campaign_id: campaign.id)
     Threesixty::Subjects::Remove.call!(threesixty_campaign: threesixty_campaign, subject: subject)
 
-    expect(UsersReport.find_by(id: user_report.id)).to be_nil
+    expect(CampaignsUsersReport.find_by(id: campaigns_users_report.id)).to be_nil
   end
 
   it 'delete evaluation_results' do

@@ -1,27 +1,39 @@
-.row
-  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    .formTabs
-      h1 = t('.title')
-    .content
-      p.instructionalText = t('.description')
+div class=([@current_project&.login_box_position || 'right', 'box', 'devise'].compact.join(' '))
+  .panel.panel-default.session
+    .panel-heading
+      = render partial: 'devise/shared/header', locals: { banner: @current_project&.logo&.url }
+
+    .panel-body
+      .message.pvl
+        h1.mvm = t('.title')
+        .instruction = t('.instruction')
+
       = simple_form_for(resource, as: resource_name, url: user_password_path, html: { method: :put }) do |f|
-        .loginFormContent
+        div.clearfix
           == flash_messages
-          = f.error_notification
-          = f.input :reset_password_token, as: :hidden
-          = f.full_error :reset_password_token
-          .passwordFormGroup
-            = f.label :password
-            .input-group
-              = f.input_field :password, autofocus: true, class: 'form-control input-lg', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-            = f.error :password
-          .passwordFormGroup
-            = f.label :password_confirmation
-            .input-group
-              = f.input_field :password_confirmation, class: 'form-control input-lg'
-            = f.error :password_confirmation
-          span.clear &nbsp;
-          .resetPasswordButton
-            .input-group.pull-left
-              button.btn.btn-primary.signIn type="submit" = t('.submit')
-          .clearfix
+
+        = f.error_notification
+        = f.input :reset_password_token, as: :hidden
+        = f.full_error :reset_password_token
+
+        = form_group_for f, :password do
+          .password.input-group
+            span#password.input-group-addon
+              i.icon-lock
+            = f.input_field :password, autofocus: true, class: 'form-control input-lg'
+        - if @minimum_password_length
+          span.help-block.small = "#{@minimum_password_length} characters minimum"
+
+        = form_group_for f, :password_confirmation, class: 'mvm' do
+          .passwordConfirmation.input-group
+            span#passwordConfirmation.input-group-addon
+              i.icon-lock
+            = f.input_field :password_confirmation, class: 'form-control input-lg'
+
+        .actions.pvm
+          button.btn.btn-primary.signIn type="submit"
+            = t('.submit')
+            span class="fa fa-chevron-right mlm"
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

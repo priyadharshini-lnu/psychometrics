@@ -7,7 +7,6 @@ class NormEditorForm < BaseForm
 
   def initialize(data)
     super(data)
-    @norm_type = 'eti' unless @norm_type == 'yti'
     @factor_type = 'factors' unless @factor_type == 'sub_factors'
   end
 end

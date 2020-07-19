@@ -1,8 +1,9 @@
 import axios from 'axios'
 import queryString from 'qs'
 import humps from 'humps'
-import { LOADING, LOADING_COMPLETE } from 'admin/core/temp/request'
+import { LOADING, LOADING_COMPLETE } from 'modules/admin/core/request'
 import { setIn } from 'utils/immutable'
+import _ from 'lodash'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -19,8 +20,8 @@ const bodyFromTableConfig = (tableConfig) => {
   if (!tableConfig) { return {} }
 
   const data = { filters: tableConfig.filters || {}, page: tableConfig.page }
-  if (!tableConfig.sort) return data
-  return setIn(data, ['filters', 's'], `${tableConfig.sort.columnName} ${tableConfig.sort.order}`)
+  if (_.isEmpty(tableConfig.sort)) return data
+  return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
 
 const buildOptions = ({ options: options = {} }) => ({

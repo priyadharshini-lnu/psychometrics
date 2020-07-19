@@ -3,15 +3,15 @@
   border-radius: 5px;
   box-shadow: 0px 3px 6px #00000029;
 
-  display: grid;
-  row-gap: 25px;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
   .message {
     color: #393939;
     font-weight: 500;
     font-size: 22px;
-    text-align: center;
   }
 
   .instruction {
@@ -24,24 +24,35 @@
     margin: 0;
     list-style: none;
 
-    display: grid;
-    grid-row-gap: 1ch;
-    grid-column-gap: 1ch;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
 
-    li {
-      display: grid;
-      grid-template-areas: "icon name";
-      column-gap: 5px;
+    display: -ms-flexbox;
+    -ms-flex-wrap: wrap;
+    -ms-flex-direction: row;
+    -ms-flex-pack: distribute;
+
+    li.browser {
+      width: 160px;
+      height: 60px;
       font-size: 13px;
 
+      display: flex;
+      align-items: center;
+
+      display: -ms-flexbox;
+      -ms-flex-align: center;
+
       .icon {
-        grid-area: icon;
+        padding: 5px;
       }
 
       .name {
-        grid-area: name;
+        padding: 5px;
         color: #9F9F9F;
-        align-self: center;
+        text-align: left;
 
         a {
           color: #6973F0;
@@ -55,37 +66,26 @@
   .unsupported-browsers {
     padding: 20px 10px;
     margin: 20px 0;
-
-    ul.browsers {
-      grid-template-rows: 1fr 1fr 1fr;
-      grid-template-columns: 1fr;
-    }
   }
 }
 
-@media screen and (min-width: 411px) {
+@media screen and (min-width: 640px) {
   .unsupported-browsers {
-    padding: 20px 20px;
-
     ul.browsers {
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+      justify-content: flex-start;
     }
   }
 }
 
 @media screen and (min-width: 736px) {
   .unsupported-browsers {
-    padding: 20px 30px;
-
     ul.browsers {
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+      justify-content: space-around;
     }
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .unsupported-browsers {
     padding: 50px 60px;
   }

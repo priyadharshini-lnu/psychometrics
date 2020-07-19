@@ -1,6 +1,6 @@
-import ElementProcessor from 'libs/survey/core/preview/FlowProcessor/commands/ElementProcessor'
-import { getNextElementId } from 'libs/survey/core/preview/FlowProcessor/selectors'
-import DefaultProps from 'libs/survey/constants/DefaultProps'
+import ElementProcessor from 'modules/survey/core/preview/FlowProcessor/commands/ElementProcessor'
+import { getNextElementId } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import DefaultProps from 'modules/survey/constants/DefaultProps'
 
 const state = {
   blocks: {1: {}, 2:{}, 3:{}, 4: {}, 5: {}},

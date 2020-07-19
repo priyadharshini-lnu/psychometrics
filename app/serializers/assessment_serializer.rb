@@ -22,7 +22,7 @@
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
              :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks, :timer_duration,
-             :resources_content
+             :resources_content, :resources_translations
 
   def blocks
     object.blocks.
@@ -51,6 +51,13 @@ class AssessmentSerializer < ActiveModel::Serializer
 
     questions = Question.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
     questions.map { |q| QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context]) }
+  end
+
+  def resources_translations
+    ids = object.resources&.map { |r| r['questionId'] }
+    return {} unless ids
+
+    Translation.to_hash_for_questions(ids, @instance_options[:selected_locale])
   end
 
   def data_sheet_columns

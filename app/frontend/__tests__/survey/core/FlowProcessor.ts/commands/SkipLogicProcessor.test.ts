@@ -1,6 +1,6 @@
-import SkipLogicProcessor from 'libs/survey/core/preview/FlowProcessor/commands/SkipLogicProcessor'
-import InitPages from 'libs/survey/core/preview/FlowProcessor/commands/InitPages'
-import DefaultProps from 'libs/survey/constants/DefaultProps'
+import SkipLogicProcessor from 'modules/survey/core/preview/FlowProcessor/commands/SkipLogicProcessor'
+import InitPages from 'modules/survey/core/preview/FlowProcessor/commands/InitPages'
+import DefaultProps from 'modules/survey/constants/DefaultProps'
 
 const question = (id, data = {}) => ({ id, ...data })
 

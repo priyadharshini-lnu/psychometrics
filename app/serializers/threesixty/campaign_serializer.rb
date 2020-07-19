@@ -8,7 +8,7 @@ module Threesixty
                :managed_subjects, :is_subject, :status
 
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
-    has_many :reports, serializer: UsersReportSerializer
+    has_many :reports, serializer: CampaignsUsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
 
     def managed_subjects
@@ -50,7 +50,8 @@ module Threesixty
         {
           name: instruction.name,
           content: Threesixty::PipedText::Perform.call!(instruction.content,
-                                                        threesixty_campaign: object.campaign.threesixty_campaign)
+                                                        threesixty_campaign: object.campaign.threesixty_campaign,
+                                                        user: current_user)
         }
       end
     end

@@ -5,6 +5,12 @@ module Threesixty
     class Perform < BaseCommand
       BRANCHES = [
         {
+          key: 'u',
+          name: 'user',
+          class_name: 'Threesixty::PipedText::Branches::User',
+          required_context: %i[user]
+        },
+        {
           key: 'p',
           name: 'recipient',
           class_name: 'Threesixty::PipedText::Branches::Recipient',

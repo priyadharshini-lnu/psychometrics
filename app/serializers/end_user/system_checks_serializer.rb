@@ -3,7 +3,7 @@
 module EndUser
   class SystemChecksSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :url, :checks, :id, :config
+    attributes :url, :checks, :id, :config, :transcribe_supported_locales
     attribute :campaign_id, if: -> { object.assessment.threesixty? }
     attribute :url, unless: -> { object.assessment.threesixty? }
 
@@ -13,6 +13,10 @@ module EndUser
 
     def campaign_id
       object.campaign.threesixty_campaign.id
+    end
+
+    def transcribe_supported_locales
+      Settings.checking_wizard.audio.supported_locales
     end
 
     def checks

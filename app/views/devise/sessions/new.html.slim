@@ -1,36 +1,42 @@
-.row
-  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
-    - if @browser_detections && !@browser_detections.preferred_browser?
-      = render 'browser_detections'
-    .registrationForm
+div class=([@current_project&.login_box_position || 'right', 'box', 'devise', namespace_name].compact.join(' '))
+  - if @browser_detections && !@browser_detections.preferred_browser?
+    = render 'browser_detections'
+  .panel.panel-default.session
+    .panel-heading
+      = render partial: 'devise/shared/header', locals: { banner: @current_project&.logo&.url }
+
+    .panel-body
       /! Nav tabs
-      ul.nav.nav-tabs.formTabs
+      ul.nav.nav-tabs
         li.active
           = link_to t('.tabs.sign_in'), new_user_session_path
         li
           = link_to t('.tabs.register'), new_user_registration_path
       /! Tab panes
       .tab-content
-        #login.tab-pane.fade.in.active role="tabpanel"
+        .tab-pane.fade.in.active role="tabpanel"
+          .message.pbl
+            h1.mvm
+              bdi = t('.title')
+            .instruction
+              bdi = t('.instruction')
           = simple_form_for(resource, as: resource_name, url: user_session_path) do |f|
             div.clearfix
               == flash_messages
-            .loginFormContent
-              .usernameFormGroup
-                label for="username" = t('.email_label')
-                .input-group
-                  = f.input_field :email, placeholder: 'email@domain.com', class: 'form-control input-lg'
-              .passwordFormGroup
-                = f.label :password
-                .input-group
-                  = f.input_field :password, aria_describedby: "basic-addon2", class: 'form-control input-lg', placeholder: t('.password_placeholder')
-              span.clear &nbsp;
-              .signInButton
-                .input-group.pull-left
-                  button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
-                - if devise_mapping.recoverable?
-                  .forgotPassword.pull-right
-                    p
-                      = link_to t('.forgot_password'), new_password_path(resource_name)
-              .clearfix
-    .clearfix
+            .username.input-group.mbm
+              span#username.input-group-addon
+                i.icon-user
+              = f.input_field :email, placeholder: 'Email Address', class: 'form-control input-lg'
+            .password.input-group.mbm
+              span#password.input-group-addon
+                i.icon-lock
+              = f.input_field :password, placeholder: t('.password_placeholder'), class: 'form-control input-lg'
+            .actions.justified.mvm
+              button.btn.btn-primary.text-uppercase type="submit" value="Submit"
+                = t('.submit')
+                span class="fa fa-chevron-right mlm"
+              - if devise_mapping.recoverable?
+                bdi = link_to t('.forgot_password'), new_password_path(resource_name)
+
+    .panel-footer
+      = render partial: 'devise/shared/footer'

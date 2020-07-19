@@ -11,7 +11,7 @@
 if User.all.empty?
   Users::SuperAdmin.create(
     email: 'superadmin@example.com',
-    password: 'password',
+    password: 'Password@32',
     first_name: 'Jon',
     last_name: 'Snow'
   )

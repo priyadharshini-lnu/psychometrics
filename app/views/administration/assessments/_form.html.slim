@@ -36,7 +36,7 @@
         = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan' }
         .clearfix
           = f.input :enable_video_check, as: :boolean
-          = f.input :enable_audio_check, as: :boolean, disabled: true
+          = f.input :enable_audio_check, as: :boolean
           = f.input :enable_network_check, as: :boolean
         = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer

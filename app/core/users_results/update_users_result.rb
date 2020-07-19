@@ -57,18 +57,18 @@ module UsersResults
     # Sends to generate PDF report
     #
     def generate_360_report
-      users_report = subject_user.
-                     users_reports.
-                     joins(:report).
-                     find_by(campaign_id: threesixty_campaign.campaign_id,
+      campaigns_users_report = subject_user.
+                               campaigns_users_reports.
+                               joins(:report).
+                               find_by(campaign_id: threesixty_campaign.campaign_id,
                              report_id: threesixty_campaign.report_id,
                              reports: { disabled: false })
 
-      return unless users_report
+      return unless campaigns_users_report
 
       # Sets status to generating and sends to generate report
-      users_report.generating!
-      ::UsersReports::GeneratePdfJob.perform_later(users_report, subject_user)
+      campaigns_users_report.generating!
+      ::CampaignsUsersReports::GeneratePdfJob.perform_later(campaigns_users_report, subject_user)
     end
 
     def send_necessary_emails

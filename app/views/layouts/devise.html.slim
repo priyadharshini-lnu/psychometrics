@@ -7,20 +7,9 @@ html.body-full-height style=device_html_style
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
     = jquery_include_tag :google
-    = stylesheet_link_tag    'devise', media: 'all'
+    = stylesheet_link_tag 'devise', media: 'all'
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
   body
-    header
-      .container-fluid
-        .row
-          .col-xs-6
-            - if @current_project&.logo&.url
-              = link_to image_tag(@current_project.logo.url), root_path, class: 'clientLogo'
-          .col-xs-6.hidden-xs
-            h1.pageTitle
-          .col-sm-1.hidden-xs
-    .vertical-center
-      .container
-        = yield
-    = render '/layouts/footer'
+    .main#devise
+      = yield

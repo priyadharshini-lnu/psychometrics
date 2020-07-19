@@ -69,7 +69,7 @@ module Threesixty
       end
 
       def create_users_report(user)
-        ::UsersReport.find_or_create_by(user: user,
+        ::CampaignsUsersReport.find_or_create_by(user: user,
                                         report: threesixty_campaign.report,
                                         campaign: threesixty_campaign.campaign)
       end

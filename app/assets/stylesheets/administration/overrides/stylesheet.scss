@@ -49,3 +49,10 @@ body { overflow-x: initial; height: 100%; }
     padding-right: 0 !important;
   }
 }
+
+.radio {
+  &.radio-inline {
+    float: none;
+    width: auto;
+  }
+}

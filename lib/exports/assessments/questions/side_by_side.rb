@@ -17,7 +17,7 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
-        def self.result(answers, question, scoring = false, export_with_labels = false)
+        def self.result(answers, question, scoring = false, export_with_labels = false, _not_applicable)
           parsed_result = []
           # Create hash for scoring
           # hash['1-2-3'] = 100

@@ -1,4 +1,4 @@
-import Filter from 'libs/reports/models/Filter'
+import Filter from 'modules/reports/models/Filter'
 
 export default [
   new Filter({

@@ -28,7 +28,7 @@ class FactorsNorm < ApplicationRecord
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
-  validates :type, :factor, :norm, presence: true
+  validates :factor, :norm, presence: true
   validates :type, inclusion: { in: NORM_TYPES }, allow_nil: true
   validate :scoring_valid
   validate :score_from_less_than_score_to

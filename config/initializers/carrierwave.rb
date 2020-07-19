@@ -6,6 +6,7 @@ if Rails.env.test?
     config.storage = :file
   end
 else
+  # rubocop:disable Metrics/BlockLength
   CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
@@ -19,6 +20,7 @@ else
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
     config.use_action_status = true
+    config.validate_unique_filename = false
     config.fog_aws_accelerate = Settings.aws.s3.accelerated
     config.asset_host =
       if Settings.file_host.present?
@@ -34,4 +36,5 @@ else
         "https://#{domain}"
       end
   end
+  # rubocop:enable Metrics/BlockLength
 end

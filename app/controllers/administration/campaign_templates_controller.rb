@@ -14,6 +14,7 @@ module Administration
       respond_to do |format|
         format.html
         format.js { render :index, formats: [:js] }
+        format.json { render json: @_resources }
       end
     end
 

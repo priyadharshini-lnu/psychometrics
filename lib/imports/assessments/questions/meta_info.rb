@@ -4,7 +4,7 @@ module Imports
   module Assessments
     module Questions
       class MetaInfo
-        def self.build_answers(values, question, _use_scoring = false)
+        def self.build_answers(values, question, _use_scoring = false, _assign)
           return nil if values.compact.blank?
 
           {

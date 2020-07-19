@@ -12,18 +12,17 @@ module Threesixty::InitialState
   def set_init_state
     @init_state = {
       threeSixtyCampaign: {
-        temp: {
-          project: {
-            logo: @current_project.logo.url,
-            privacyText: @current_project.privacy_link&.text,
-            privacyPageLink: @current_project.privacy_link&.link
-          },
-          currentUser: serialized_current_user
+        project: {
+          name: @current_project.name,
+          logo: @current_project.logo.url,
+          privacyText: @current_project.privacy_link&.text,
+          privacyPageLink: @current_project.privacy_link&.link
+        },
+        extras: {
+          isFrame: use_iframe?
         }
       },
-      extras: {
-        isFrame: use_iframe?
-      }
+      currentUser: serialized_current_user
     }
   end
 
