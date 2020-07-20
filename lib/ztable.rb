@@ -3,6 +3,7 @@
 class Ztable
   ZTABLE = HashWithIndifferentAccess.new({
     'Z': [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09],
+    # 'Z':    [0.09,    0.08,    0.07,    0.06,    0.05,    0.04,    0.03,    0.02,    0.01,    0],
     '-3.9': [0.00005, 0.00005, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00003, 0.00003],
     '-3.8': [0.00007, 0.00007, 0.00007, 0.00006, 0.00006, 0.00006, 0.00006, 0.00005, 0.00005, 0.00005],
     '-3.7': [0.00011, 0.00010, 0.00010, 0.00010, 0.00009, 0.00009, 0.00008, 0.00008, 0.00008, 0.00008],
@@ -90,22 +91,8 @@ class Ztable
   MIN_X_VALUE = 0.00
   MAX_X_VALUE = 0.09
 
-  def self.percentile_calculation_one(zscore)
-    fl = (zscore.abs * 100).floor / 100.0
-    cl = (zscore.abs * 100).ceil / 100.0
-    low_value = ZTABLE[fl]
-    high_value = ZTABLE[cl]
-
-    return 0.0 if low_value.nil? || high_value.nil?
-
-    weight = (zscore.abs - fl.abs) * 100.0
-    value = (low_value + (high_value - low_value) * weight).round(4)
-    zscore < 0.0 ? (1.0 - value) : value
-  end
-
-  def self.percentile_calculation_two(zscore)
+  def self.percentile(zscore)
     y_zscore = MIN_Y_VALUE
-    # x_zscore = MAX_X_VALUE
 
     return 0.5000 if zscore.zero?
 
@@ -114,24 +101,25 @@ class Ztable
 
       zscore = (zscore * 100.0).floor / 100.0
       y_zscore = (zscore * 10.0).floor / 10.0
-      y_zscore = -y_zscore
+      # y_zscore = -y_zscore
     else
       return 0.0 if zscore < MIN_Y_VALUE
 
-      zscore = (zscore * 100).ceil / 100
-      y_zscore = (zscore * 10).ceil / 10
+      zscore = (zscore * 100.0).ceil / 100.0
+      y_zscore = (zscore * 10.0).ceil / 10.0
     end
 
-    x_zscore = (((zscore % y_zscore) * 10_000.0).round / 10_000.0).abs
+    x_zscore = (((zscore % y_zscore) * 100.0).round / 100.0).abs
 
-    z100 = x_zscore.is_a?(Numeric) ? zscore.abs : x_zscore
+    z100 = x_zscore.is_a?(Numeric) ? x_zscore : zscore.abs
     z10 = y_zscore.zero? ? '0.0' : y_zscore.round(1).to_s
 
-    puts "z100: #{z100} - z10: #{z10}"
+    # puts "zscore: #{zscore}, y_zscore: #{y_zscore}, x_zscore: #{x_zscore}, z100: #{z100}, z10: #{z10}"
+
     column = ZTABLE['Z'].index(z100)
     percentile = ZTABLE[z10][column]
 
-    percentile = Math.round((1 - percentile) * 10_000.0) / 10_000.0 if zscore.positive?
+    # percentile = (((1.0 - percentile) * 10_000.0) / 10_000.0).round(4) if zscore > 0
 
     percentile
   end

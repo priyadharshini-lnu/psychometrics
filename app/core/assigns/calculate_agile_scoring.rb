@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Assigns
-  class AgileScoring < BaseCommand
+  class CalculateAgileScoring < BaseCommand
     private_attr_accessor :assign
 
     def initialize(assign)
