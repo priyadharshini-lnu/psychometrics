@@ -51,6 +51,12 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
+        resources :registration_codes do
+          member do
+            get :download_qrcode
+          end
+        end
+
         resources :reports, only: [:create] do
           collection do
             get :report_families

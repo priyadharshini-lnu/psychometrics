@@ -5,7 +5,7 @@ module Administration
     class RegistrationCodesController < Administration::Projects::BaseController
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
-      before_action :set_resource, only: %i[update destroy]
+      before_action :set_resource, only: %i[update destroy download_qrcode]
 
       def index
         @_filter_form = campaign.registration_codes.ransack(params[:filters])

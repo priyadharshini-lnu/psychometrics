@@ -25,21 +25,21 @@ export const CREATE = 'resource/campaigns/registrationCodes/CREATE'
 export const UPDATE = 'resource/campaigns/registrationCodes/UPDATE'
 export const DESTROY = 'resource/campaigns/registrationCodes/DESTROY'
 
-export const fetch = (projectId: string, campaignId: string, tableConfig: TableConfig) => ({
+export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
   type: FETCH,
   request: {
     method: 'get',
     debounce: 500,
     tableConfig,
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/registration_codes`,
+    url: `/administration/new_campaigns/${campaignId}/registration_codes`,
   },
 })
 
-export const destroy = (projectId: string, campaignId: string, id: number) => ({
+export const destroy = (campaignId: string, id: number) => ({
   type: DESTROY,
   request: {
     method: 'delete',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/registration_codes/${id}`,
+    url: `/administration/new_campaigns/${campaignId}/registration_codes/${id}`,
   },
 })
 

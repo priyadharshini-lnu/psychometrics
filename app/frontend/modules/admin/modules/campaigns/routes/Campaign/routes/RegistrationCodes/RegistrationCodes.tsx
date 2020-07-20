@@ -22,8 +22,8 @@ const MODALS = {
 const { Column } = Table
 
 interface Props {
-  fetch(projectId: string, campaignId: string, tableConfig: TableConfig): void
-  destroy(projectId: string, campaignId: string, id: number): void
+  fetch(campaignId: string, tableConfig: TableConfig): void
+  destroy(campaignId: string, id: number): void
   list: RegistrationCode[],
   total: number,
   match: {
@@ -36,7 +36,7 @@ interface Props {
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
-  openModal(name: string, data?: { projectId: string, campaignId: string, code?: RegistrationCode }): void
+  openModal(name: string, data?: { campaignId: string, code?: RegistrationCode }): void
 }
 
 const RegistrationCodes: React.FC<Props> = ({
@@ -55,7 +55,7 @@ const RegistrationCodes: React.FC<Props> = ({
   destroy,
 }) => {
   useEffect(() => {
-    fetch(projectId, campaignId, tableConfig)
+    fetch(campaignId, tableConfig)
   }, [tableConfig])
 
   return (
@@ -67,7 +67,7 @@ const RegistrationCodes: React.FC<Props> = ({
         </Col>
         <div className="float-r">
           <div>
-            <Button type="primary" onClick={() => openModal('CodeModal', { projectId, campaignId })}>
+            <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
               <PlusOutlined />
               <span>Add Code</span>
             </Button>
@@ -125,6 +125,7 @@ const RegistrationCodes: React.FC<Props> = ({
                     overlay={() => (
                       QRCodeMenu({
                         projectId,
+                        campaignId,
                         code,
                       }) as React.ReactElement
                     )}
@@ -138,7 +139,6 @@ const RegistrationCodes: React.FC<Props> = ({
                     overlay={() => (
                       ActionsMenu({
                         onEdit: () => openModal('CodeModal', {
-                          projectId,
                           campaignId,
                           code: {
                             ...code,
@@ -157,7 +157,7 @@ const RegistrationCodes: React.FC<Props> = ({
                   </Dropdown>
                   <Popconfirm
                     title="Are you sure?"
-                    onConfirm={() => destroy(projectId, campaignId, code.id)}
+                    onConfirm={() => destroy(campaignId, code.id)}
                     okText="Yes"
                     cancelText="No"
                   >
@@ -190,19 +190,22 @@ interface ActionMenuProps {
 }
 
 interface QRCodeMenuProps {
-  projectId: string,
+  projectId: string
+  campaignId: string
   code: RegistrationCode
+
 }
 
 const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
   code: { id },
-  projectId,
+  campaignId,
 }) => (
   <Menu>
     <Menu.Item key="png">
       <a
         download
-        href={`/administration/clients/${projectId}/registration_codes/${id}/download_qrcode.png?type=PNG`}
+        // eslint-disable-next-line max-len
+        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.png?type=PNG`}
       >
         <DownloadOutlined />
         {' '}
@@ -212,7 +215,8 @@ const QRCodeMenu: React.FC<QRCodeMenuProps> = ({
     <Menu.Item key="svg">
       <a
         download
-        href={`/administration/clients/${projectId}/registration_codes/${id}/download_qrcode.svg?type=SVG`}
+        // eslint-disable-next-line max-len
+        href={`/administration/new_campaigns/${campaignId}/registration_codes/${id}/download_qrcode.svg?type=SVG`}
       >
         <DownloadOutlined />
         {' '}

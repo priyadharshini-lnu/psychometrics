@@ -6,7 +6,6 @@ import {
 import styles from './styles.scss'
 
 interface Props {
-  projectId: number
   campaignId: number
   close(): void
   code?: {
@@ -17,7 +16,6 @@ interface Props {
 }
 
 const CodeFormModal: React.FC<Props> = ({
-  projectId,
   campaignId,
   close,
   code,
@@ -34,7 +32,7 @@ const CodeFormModal: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="registrationCodes"
       requestScope="campaigns"
-      resourceBaseUrl={`/administration/projects/${projectId}/new_campaigns/${campaignId}/registration_codes`}
+      resourceBaseUrl={`/administration/new_campaigns/${campaignId}/registration_codes`}
       resource={code}
       showSuccessMessages
       close={close}
