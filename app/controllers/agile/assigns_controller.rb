@@ -18,7 +18,7 @@ class Agile::AssignsController < ApplicationController
   def set_init_state
     init_state = super
     @init_state = super.merge(
-      extras: init_state[:extras].merge(agileAssetsUrl: Settings.agile_config.asset_url)
+      config: init_state[:config].merge(agileAssetsUrl: Settings.agile_config.asset_url)
     )
   end
 

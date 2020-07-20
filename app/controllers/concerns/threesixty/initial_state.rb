@@ -15,12 +15,13 @@ module Threesixty::InitialState
         project: {
           name: @current_project.name,
           logo: @current_project.logo.url,
+          secondaryLogo: @current_project.secondary_logo.url,
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
-        },
-        extras: {
-          isFrame: use_iframe?
         }
+      },
+      config: {
+        isFrame: use_iframe?
       },
       currentUser: serialized_current_user
     }
