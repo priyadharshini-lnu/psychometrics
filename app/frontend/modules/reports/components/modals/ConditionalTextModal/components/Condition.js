@@ -92,6 +92,8 @@ class Condition extends Component {
     const { condition, model } = this.props
     const assessmentId = model.module.assessment_id
     const { category } = AppStore.getAssessmentById(assessmentId)
+    if (!SOURCE_TYPES[category]) { return null }
+
     const options = SOURCE_TYPES[category].filter(o => o.condition)
     return (
       <select
