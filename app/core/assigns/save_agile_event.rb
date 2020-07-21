@@ -30,8 +30,12 @@ module Assigns
       end
       if form.event == ASSESSMENT_COMPLETE_EVENT
         assign.update(status: :completed, completed_at: Time.now)
-        ::Assigns::CalculateAgileScoring.call(assign)
-        ::Assigns::GenerateReport.call(assign, current_user)
+        ::Assigns::CalculateAgileScoring.call(assign) do
+          on(:ok) do |scoring|
+            assign.update(scoring: scoring)
+            ::Assigns::GenerateReport.call(assign, current_user)
+          end
+        end
       end
     end
   end
