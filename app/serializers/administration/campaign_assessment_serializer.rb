@@ -2,10 +2,14 @@
 
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :enable_universal_links
+    attributes :id, :assessment_id, :name, :category, :norm_name, :enable_universal_links, :universal_link
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
+
+    def universal_link
+      assessment.decorate.anonym_link_for_campaign(object.campaign) if object.enable_universal_links
+    end
 
     private
 

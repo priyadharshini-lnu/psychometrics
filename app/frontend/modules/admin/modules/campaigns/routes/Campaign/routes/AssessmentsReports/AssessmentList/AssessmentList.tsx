@@ -18,7 +18,10 @@ interface Props {
       campaignId: string
     }
   }
-  openModal(name: string, data?: { projectId: number, campaignId: number, campaignAssessmentId: number }): void
+  openModal(name: string, data?: {
+    projectId: number, campaignId: number, campaignAssessmentId: number, universalLink?: string
+  }): void
+  activateUniversalLink(campaignId: string, id: number): void
 }
 
 const AssessmentList: React.FC<RouteComponentProps & Props> = ({
@@ -27,6 +30,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   },
   match: { params: { projectId, campaignId } },
   openModal,
+  activateUniversalLink,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -67,20 +71,25 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
-            render={({ enableUniversalLinks, id }) => {
+            render={({ enableUniversalLinks, universalLink, id }) => {
               if (enableUniversalLinks) {
                 return (
                   <a
                     onClick={
-                      () => openModal('ManageUniversalLinkModal',
-                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                    }
+                        () => openModal('UniversalLinkModal',
+                          {
+                            projectId: parsedProjectId,
+                            campaignId: parsedCampaignId,
+                            campaignAssessmentId: id,
+                            universalLink,
+                          })
+                      }
                   >
                     {I18n.t('frontend.manage')}
                   </a>
                 )
               }
-              return <a onClick={() => {}}>{I18n.t('frontend.activate')}</a>
+              return <a onClick={() => activateUniversalLink(campaignId, id)}>{I18n.t('frontend.activate')}</a>
             }}
           />
           <Column

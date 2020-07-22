@@ -54,6 +54,18 @@ class AssessmentDecorator < BaseDecorator
     h.anonym_assessment_pass_url(options)
   end
 
+  def anonym_link_for_campaign(campaign)
+    campaign_assessment = campaign.campaigns_assessments.find_by(assessment_id: object.id)
+
+    options = {
+      assessment_key: campaign_assessment.assessment_key,
+      domain: Settings.domain,
+      subdomain: campaign.project.subdomain
+    }
+
+    h.anonym_assessment_pass_url(options)
+  end
+
   def universal_link_regeneration_confirmation
     {
       title: I18n.t('administration.clients.assessments.resource.confirmations.universal_links.regeneration.title'),

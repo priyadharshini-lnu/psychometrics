@@ -620,7 +620,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -1727,7 +1727,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -6507,7 +6507,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -6818,6 +6818,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
   },
   "validations": {
     "AudioResponse": {
@@ -7512,7 +7518,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -8619,7 +8625,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -13395,7 +13401,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -13703,6 +13709,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
   },
   "validations": {
     "AudioResponse": {
@@ -14397,7 +14409,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -15504,7 +15516,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -20280,7 +20292,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -20588,6 +20600,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
   },
   "validations": {
     "AudioResponse": {

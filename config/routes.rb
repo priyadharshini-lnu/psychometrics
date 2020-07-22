@@ -63,6 +63,11 @@ Rails.application.routes.draw do
             get :assessments_and_reports
           end
         end
+        resources :universal_links, only: %i[show update destroy] do
+          member do
+            post :activate
+          end
+        end
       end
     end
 

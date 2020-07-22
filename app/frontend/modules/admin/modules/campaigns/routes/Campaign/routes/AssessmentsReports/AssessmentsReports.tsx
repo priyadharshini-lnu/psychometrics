@@ -6,10 +6,12 @@ import Modals from 'modules/admin/components/Modals/'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from './AddReportModal'
+import UniversalLinkModal from './UniversalLinkModal'
 import styles from './styles.scss'
 
 const MODALS = {
   AddReportModal,
+  UniversalLinkModal,
 }
 
 interface Props {
