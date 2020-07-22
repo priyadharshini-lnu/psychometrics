@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CampaignsUsersReportPolicy < BasePolicy
+class UserReportPolicy < BasePolicy
   def show?
     check_user_report
   end

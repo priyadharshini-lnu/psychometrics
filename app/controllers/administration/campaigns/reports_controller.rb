@@ -17,11 +17,11 @@ module Administration
 
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaigns_reports.includes(:report),
+          campaign.campaign_reports.includes(:report),
           each_serializer: Administration::CampaignReportSerializer
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaigns_assessments.includes(:assessment, :norm),
+          campaign.campaign_assessments.includes(:assessment, :norm),
           each_serializer: Administration::CampaignAssessmentSerializer
         )
 
@@ -42,7 +42,7 @@ module Administration
       private
 
       def resource_class
-        CampaignsReport
+        CampaignReport
       end
     end
   end

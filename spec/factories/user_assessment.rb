@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :users_campaigns_assessment do
+  factory :user_assessment do
     campaign
     evaluator { create(:user) }
     subject { create(:user) }

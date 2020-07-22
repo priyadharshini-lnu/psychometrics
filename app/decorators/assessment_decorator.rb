@@ -55,7 +55,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def anonym_link_for_campaign(campaign)
-    campaign_assessment = campaign.campaigns_assessments.find_by(assessment_id: object.id)
+    campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: object.id)
 
     options = {
       assessment_key: campaign_assessment.assessment_key,

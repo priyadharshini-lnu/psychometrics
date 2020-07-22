@@ -26,7 +26,7 @@ module Threesixty
     end
 
     def user_id
-      instance_options[:campaigns_users_report].user_id
+      instance_options[:user_report].user_id
     end
 
     def total_evaluators_for_assessment

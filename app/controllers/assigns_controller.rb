@@ -151,8 +151,8 @@ class AssignsController < ApplicationController
     Report.multiple.where(id: reports_ids).ids
   end
 
-  def current_campaigns_user
-    CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  def current_campaign_user
+    CampaignUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
   end
 
   def build_piped_context

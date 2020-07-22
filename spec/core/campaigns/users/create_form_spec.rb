@@ -37,7 +37,7 @@ describe Campaigns::Users::CreateForm do
 
   it 'gives error if user with the email is already present in the campaign' do
     user = create(:user, user_attributes)
-    create(:campaigns_user, campaign: campaign, user: user)
+    create(:campaign_user, campaign: campaign, user: user)
     form = described_class.new(attributes).with_context(campaign: campaign)
 
     expect(form.valid?).to eq(false)

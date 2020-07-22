@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UsersCampaignsAssessment < ApplicationRecord
+class UserAssessment < ApplicationRecord
   belongs_to :user
   belongs_to :assessment
   belongs_to :campaign

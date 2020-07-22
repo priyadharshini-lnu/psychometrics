@@ -36,6 +36,6 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def set_user_campaign
-    @user_assessment = UsersCampaignsAssessment.find(params[:id])
+    @user_assessment = UserAssessment.find(params[:id])
   end
 end

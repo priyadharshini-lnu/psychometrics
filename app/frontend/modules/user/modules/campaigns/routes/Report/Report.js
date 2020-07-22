@@ -29,8 +29,8 @@ export default function Report ({
     updateStatus(params.campaignId, params.id, status)
   }
 
-  const requestDownloadReport = (campaignId, usersReportId) => {
-    downloadReport(campaignId, usersReportId, defaultLanguage.code)
+  const requestDownloadReport = (campaignId, userReportId) => {
+    downloadReport(campaignId, userReportId, defaultLanguage.code)
       .then(({ response }) => {
         if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class CampaignsReportPolicy < BasePolicy
+  class CampaignReportPolicy < BasePolicy
     def report_families?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
     end

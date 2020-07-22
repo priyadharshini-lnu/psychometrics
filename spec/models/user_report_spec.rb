@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe CampaignsUsersReport, type: :model do
-  it { should belong_to(:user).inverse_of(:campaigns_users_reports) }
+RSpec.describe UserReport, type: :model do
+  it { should belong_to(:user).inverse_of(:user_reports) }
   it { should belong_to(:report) }
   it { should belong_to(:campaign) }
 

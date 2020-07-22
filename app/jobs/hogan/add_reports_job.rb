@@ -4,11 +4,11 @@ module Hogan
   class AddReportsJob < ApplicationJob
     queue_as :default
 
-    private_attr_reader :user_result, :reports, :credentials, :project, :users_campaigns_assessment
+    private_attr_reader :user_result, :reports, :credentials, :project, :user_assessment
 
-    def perform(users_campaigns_assessment, reports, credentials, project)
-      @users_campaigns_assessment = users_campaigns_assessment
-      @user_result = users_campaigns_assessment.users_result
+    def perform(user_assessment, reports, credentials, project)
+      @user_assessment = user_assessment
+      @user_result = user_assessment.users_result
       @reports = reports
       @credentials = credentials
       @project = project
@@ -31,7 +31,7 @@ module Hogan
 
     def load_results
       reports.each do |report|
-        Hogan::FetchResults.call!(users_campaigns_assessment, report, credentials, project) if report.hogan?
+        Hogan::FetchResults.call!(user_assessment, report, credentials, project) if report.hogan?
       end
     end
   end

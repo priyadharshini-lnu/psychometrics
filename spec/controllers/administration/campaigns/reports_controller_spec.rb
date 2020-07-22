@@ -38,8 +38,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
   describe 'assessments_and_reports' do
     it 'returns reports and assessments' do
-      create(:campaigns_report, campaign: campaign, report: report, report_family: report_family)
-      create(:campaigns_assessment, campaign: campaign, assessment: assessment)
+      create(:campaign_report, campaign: campaign, report: report, report_family: report_family)
+      create(:campaign_assessment, campaign: campaign, assessment: assessment)
 
       get :assessments_and_reports, params: { project_id: campaign.project_id, new_campaign_id: campaign.id }
 

@@ -13,7 +13,7 @@ module Assessments
       def call
         return broadcast(:invalid) if assessment.external?
 
-        campaign_assessment = campaign.campaigns_assessments.find_by(assessment_id: assessment.id)
+        campaign_assessment = campaign.campaign_assessments.find_by(assessment_id: assessment.id)
         campaign_assessment.update!(
           assessment_key: generate_random_key,
           key_generated_at: Time.now

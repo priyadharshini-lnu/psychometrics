@@ -10,7 +10,7 @@ class UsersResult < ApplicationRecord
   has_one :participant, class_name: 'Threesixty::Participant'
   has_many :media_responses
   enum status: { not_started: 0, in_progress: 1, completed: 2 }
-  has_one :users_campaigns_assessment
+  has_one :user_assessment
 
   scope :actual_by_options, lambda { |options|
     where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')

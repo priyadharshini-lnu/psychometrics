@@ -14,7 +14,7 @@ class EndUser::UsersController < ApplicationController
       format.json do
         subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
         evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
-        user_campaigns = current_user.campaigns_users.pluck(:campaign_id) | subject_campaigns | evaluator_campaigns
+        user_campaigns = current_user.campaign_users.pluck(:campaign_id) | subject_campaigns | evaluator_campaigns
 
         campaigns = ::Campaign.where(id: user_campaigns, status: %i[active closed]).group_by(&:type)
 

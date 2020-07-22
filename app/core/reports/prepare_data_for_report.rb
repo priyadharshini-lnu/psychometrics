@@ -2,13 +2,13 @@
 
 module Reports
   class PrepareDataForReport < BaseCommand
-    attr_reader :project, :membership, :campaigns_users_report, :report, :locale, :evaluator, :current_user
+    attr_reader :project, :membership, :user_report, :report, :locale, :evaluator, :current_user
 
     def initialize(args)
       @project      = args[:project]
       @membership   = args[:membership]
-      @campaigns_users_report = args[:campaigns_users_report]
-      @report = args[:report] || @campaigns_users_report.report
+      @user_report = args[:user_report]
+      @report = args[:report] || @user_report.report
       @locale = args[:locale]
       @current_user = args[:current_user]
     end
@@ -17,11 +17,11 @@ module Reports
       translations = Translation.to_hash_for_report(report.id, report.assessment_ids, locale)
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       piped_text_context = {
-        subject: campaigns_users_report&.user,
-        threesixty_campaign: campaigns_users_report&.threesixty_campaign
+        subject: user_report&.user,
+        threesixty_campaign: user_report&.threesixty_campaign
       }
       broadcast :ok,
-                user: Reports::UserSerializer.new(campaigns_users_report&.user || membership.user).to_json,
+                user: Reports::UserSerializer.new(user_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(report, piped_text_context: piped_text_context, membership: membership).
                   to_json(include: '**'),
@@ -32,7 +32,7 @@ module Reports
 
     def serialize_results
       if report.category_threesixty?
-        Threesixty::Reports::ResultsForSubject.call!(campaigns_users_report, current_user)
+        Threesixty::Reports::ResultsForSubject.call!(user_report, current_user)
       else
         lookup_results.group_by { |result| result.object.assessment_id }
       end
@@ -41,8 +41,8 @@ module Reports
     def campaign_details
       return {} unless report.category_threesixty?
 
-      Threesixty::CampaignDetailsSerializer.new(campaigns_users_report.threesixty_campaign,
-                                                campaigns_users_report: campaigns_users_report).to_h
+      Threesixty::CampaignDetailsSerializer.new(user_report.threesixty_campaign,
+                                                user_report: user_report).to_h
     end
 
     def lookup_results

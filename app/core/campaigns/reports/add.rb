@@ -13,7 +13,7 @@ module Campaigns
       def call
         transaction do
           reports.each do |report|
-            create_campaigns_report(report)
+            create_campaign_report(report)
           end
         end
         broadcast :ok, nil
@@ -23,15 +23,15 @@ module Campaigns
 
       private
 
-      def create_campaigns_report(report)
+      def create_campaign_report(report)
         return if existing_report_ids.include?(report.id)
 
-        campaign.campaigns_reports.create!(
+        campaign.campaign_reports.create!(
           report: report, user_access: user_access_for(report), report_family_id: form.report_family_id
         )
 
         report.assessments.each do |assessment|
-          campaign.campaigns_assessments.find_or_create_by!(assessment: assessment)
+          campaign.campaign_assessments.find_or_create_by!(assessment: assessment)
         end
 
         return if form.operation == 'skip_existing'
@@ -40,13 +40,13 @@ module Campaigns
       end
 
       def add_user_report(report)
-        campaign.campaigns_users.each do |campaigns_user|
+        campaign.campaign_users.each do |campaign_user|
           Campaigns::Users::AddReport.call!(
-            campaigns_user,
+            campaign_user,
             report,
             user_access: user_access_for(report),
             operation: form.operation,
-            use_license: use_new_license?(campaigns_user.user, report)
+            use_license: use_new_license?(campaign_user.user, report)
           )
         end
       end
@@ -58,7 +58,7 @@ module Campaigns
       end
 
       def existing_report_ids
-        @existing_report_ids ||= campaign.campaigns_reports.pluck(:report_id)
+        @existing_report_ids ||= campaign.campaign_reports.pluck(:report_id)
       end
 
       def reports

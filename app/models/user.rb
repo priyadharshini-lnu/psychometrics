@@ -104,12 +104,12 @@ class User < ApplicationRecord
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
   has_many :api_keys, inverse_of: :user
-  has_many :users_campaigns_assessments, inverse_of: :subject, foreign_key: :subject_id
-  has_many :assessments, through: :users_campaigns_assessments
-  has_many :campaigns_users_reports, inverse_of: :user
+  has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id
+  has_many :assessments, through: :user_assessments
+  has_many :user_reports, inverse_of: :user
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
-  has_many :campaigns_users
+  has_many :campaign_users
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
   has_one :hogan_credential
   has_many  :available_client_admin_reports,

@@ -4,9 +4,9 @@ module Hogan
   class FetchResultsJob < ApplicationJob
     queue_as :external_results
 
-    def perform(users_campaigns_assessment, credentials, project)
-      users_campaigns_assessment.assessment.reports.select(&:hogan?).each do |report|
-        Hogan::FetchResults.call!(users_campaigns_assessment, report, credentials, project)
+    def perform(user_assessment, credentials, project)
+      user_assessment.assessment.reports.select(&:hogan?).each do |report|
+        Hogan::FetchResults.call!(user_assessment, report, credentials, project)
       end
     end
   end

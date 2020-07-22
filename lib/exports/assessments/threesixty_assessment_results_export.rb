@@ -19,7 +19,7 @@ module Exports
       end
 
       def results
-        threesixty_participants = BabySqueel[:users_campaigns_assessments]
+        threesixty_participants = BabySqueel[:user_assessments]
         UsersResult.joining do
           [
             subject,

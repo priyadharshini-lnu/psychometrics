@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :campaigns_assessment do
+  factory :campaign_report do
     campaign
-    assessment
+    report
   end
 end

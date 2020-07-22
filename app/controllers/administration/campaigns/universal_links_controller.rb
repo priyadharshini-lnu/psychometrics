@@ -36,7 +36,7 @@ module Administration
       end
 
       def resource_class
-        CampaignsAssessment
+        CampaignAssessment
       end
 
       def pundit_authorize

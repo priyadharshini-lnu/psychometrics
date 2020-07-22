@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-class CampaignsUsersReport < ApplicationRecord
-  belongs_to :user, inverse_of: :campaigns_users_reports
+class UserReport < ApplicationRecord
+  belongs_to :user, inverse_of: :user_reports
   belongs_to :report
   belongs_to :norm
   belongs_to :campaign

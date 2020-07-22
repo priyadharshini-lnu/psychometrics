@@ -21,11 +21,11 @@ describe Threesixty::Campaigns::Reset do
       expect(Threesixty::Participant.where(id: participants.map(&:id))).to_not exist
     end
 
-    it 'deletes associated campaigns_users' do
-      campaigns_users = create_list(:campaigns_user, 2, campaign: threesixty_campaign.campaign)
+    it 'deletes associated campaign_users' do
+      campaign_users = create_list(:campaign_user, 2, campaign: threesixty_campaign.campaign)
       ::Threesixty::Campaigns::Reset.call!(threesixty_campaign: threesixty_campaign)
 
-      expect(CampaignsUser.where(id: campaigns_users.map(&:id))).to_not exist
+      expect(CampaignUser.where(id: campaign_users.map(&:id))).to_not exist
     end
 
     it 'deletes associated subjects' do

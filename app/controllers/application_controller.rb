@@ -92,8 +92,8 @@ class ApplicationController < ::BaseController
     @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
 
     unless @current_membership
-      campaigns_user = current_user.campaigns_users.includes(:project).find { |cu| cu.project == @current_project }
-      return if campaigns_user
+      campaign_user = current_user.campaign_users.includes(:project).find { |cu| cu.project == @current_project }
+      return if campaign_user
     end
 
     current_user.current_membership = @current_membership

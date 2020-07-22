@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CampaignsUsersReportSerializer < ActiveModel::Serializer
+class UserReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject
 
   attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
@@ -23,7 +23,7 @@ class CampaignsUsersReportSerializer < ActiveModel::Serializer
 
   def campaign
     Threesixty::CampaignDetailsSerializer.new(
-      instance_options[:threesixty_campaign], campaigns_users_report: object
+      instance_options[:threesixty_campaign], user_report: object
     ).to_h
   end
 

@@ -3,16 +3,16 @@
 module Hogan
   class FetchResults < BaseCommand
     private_attr_reader :user_result, :report, :hogan_group_name, :hogan_assessment_id, :hogan_report_id,
-                        :hogan_norm_id, :hogan_participant_id, :users_campaigns_assessment
+                        :hogan_norm_id, :hogan_participant_id, :user_assessment
 
-    def initialize(users_campaigns_assessment, report, credentials, project)
-      @users_campaigns_assessment = users_campaigns_assessment
-      @user_result = users_campaigns_assessment.users_result
+    def initialize(user_assessment, report, credentials, project)
+      @user_assessment = user_assessment
+      @user_result = user_assessment.users_result
       @report = report
 
       # Hogan settings
       @hogan_group_name = project.hogan_group_name
-      @hogan_assessment_id = users_campaigns_assessment.assessment.hogan_assessment_setting.hogan_assessment_id
+      @hogan_assessment_id = user_assessment.assessment.hogan_assessment_setting.hogan_assessment_id
       @hogan_report_id = report.hogan_report_setting.hogan_report_id
       @hogan_norm_id = report.hogan_report_setting.hogan_norm_id
       @hogan_participant_id = credentials.participant_id
@@ -23,9 +23,9 @@ module Hogan
 
       return broadcast(:not_completed) if participant_report.report.blank?
 
-      CampaignsUsersReport.
+      UserReport.
         find_by(
-          campaign_id: users_campaigns_assessment.campaign_id,
+          campaign_id: user_assessment.campaign_id,
           report_id: report.id,
           user_id: user_result.evaluator_id
         ).

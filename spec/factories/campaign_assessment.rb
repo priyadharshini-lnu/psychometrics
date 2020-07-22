@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :campaigns_users_report do
-    user
+  factory :campaign_assessment do
     campaign
-    report
+    assessment
   end
 end

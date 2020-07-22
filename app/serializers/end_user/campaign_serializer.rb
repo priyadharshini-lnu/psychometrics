@@ -8,7 +8,7 @@ module EndUser
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
 
     def user_assessments
-      UsersCampaignsAssessment.where(evaluator_id: current_user.id, campaign_id: object.id)
+      UserAssessment.where(evaluator_id: current_user.id, campaign_id: object.id)
     end
 
     def instructions

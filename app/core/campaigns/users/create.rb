@@ -3,7 +3,7 @@
 module Campaigns
   module Users
     class Create < BaseCommand
-      private_attr_reader :form, :campaign, :current_user, :project, :user, :campaigns_user
+      private_attr_reader :form, :campaign, :current_user, :project, :user, :campaign_user
 
       def initialize(form, campaign, current_user)
         @form = form
@@ -14,7 +14,7 @@ module Campaigns
 
       def call
         transaction do
-          create_campaigns_user
+          create_campaign_user
           add_reports_and_assessments
           send_invite_email
         end
@@ -29,7 +29,7 @@ module Campaigns
         @existing_user_in_project ||= User.find_by(project_id: campaign.project_id, email: form.email)
       end
 
-      def create_campaigns_user
+      def create_campaign_user
         if existing_user_in_project
           @user = existing_user_in_project
         else
@@ -41,17 +41,17 @@ module Campaigns
           )
           @user = User.create!(user_attributes)
         end
-        @campaigns_user = campaign.campaigns_users.create(user: user)
+        @campaign_user = campaign.campaign_users.create(user: user)
       end
 
       def add_reports_and_assessments
-        campaign.campaigns_reports.includes(:report).map do |campaigns_report|
+        campaign.campaign_reports.includes(:report).map do |campaign_report|
           Campaigns::Users::AddReport.call!(
-            campaigns_user,
-            campaigns_report.report,
-            user_access: campaigns_report.user_access,
+            campaign_user,
+            campaign_report.report,
+            user_access: campaign_report.user_access,
             operation: form.operation,
-            use_license: use_new_license?(campaigns_report.report)
+            use_license: use_new_license?(campaign_report.report)
           )
         end
       end
