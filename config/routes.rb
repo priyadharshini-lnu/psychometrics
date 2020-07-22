@@ -630,8 +630,20 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
     get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
+    scope module: :end_user do
+      resources :campaigns, only: %i[show]
+      get :dashboard, to: 'users#dashboard'
+
+      resources :user_assessments do
+        member do
+          get :assessment
+          get :pass
+        end
+      end
+    end
+
     scope module: :threesixty do
-      resources :campaigns, only: %i[show index] do
+      resources :threesixty_campaigns, only: %i[show index], controller: :campaigns, as: :campaigns do
         resources :nominations do
           post :search_evaluators
           get :request_approval
@@ -666,6 +678,7 @@ Rails.application.routes.draw do
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
     end
+
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
@@ -707,10 +720,10 @@ Rails.application.routes.draw do
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
-    get 'identify', to: 'home#identify'
+    get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed', to: 'home#assessment_completed'
     get 'upgrade', to: 'home#upgrade'
-    root to: 'threesixty/campaigns#index'
+    root to: 'end_user/users#dashboard'
   end
 
   get 'media_players/audio', to: 'media_players#audio'

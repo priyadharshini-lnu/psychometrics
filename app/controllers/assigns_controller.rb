@@ -46,7 +46,7 @@ class AssignsController < ApplicationController
     @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @selected_locale)
 
     respond_to do |format|
-      format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
+      format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
         render json: @assign, serializer: AssignSerializer
       end

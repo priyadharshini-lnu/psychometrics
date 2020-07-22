@@ -2,7 +2,7 @@
 
 module Threesixty
   class AssessmentsController < ApplicationController
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_campaign
 
     def index

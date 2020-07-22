@@ -4,7 +4,7 @@ module Threesixty
   class ReportsController < ApplicationController
     include AuthenticateByToken
     include ::Threesixty::InitialState
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_campaigns_users_report
     prepend_before_action :authenticate_by_token!, only: %i[show]
@@ -12,7 +12,7 @@ module Threesixty
 
     def index
       respond_to do |format|
-        format.html { render 'threesixty/campaigns/show' }
+        format.html { render 'end_user/users/dashboard' }
       end
     end
 
@@ -20,7 +20,7 @@ module Threesixty
       authorize @campaigns_users_report
       @campaigns_users_report.threesixty_subject.evaluation_status_completed!
       respond_to do |format|
-        format.html { render 'threesixty/campaigns/show' }
+        format.html { render 'end_user/users/dashboard' }
         format.json do
           results = Threesixty::Reports::ResultsForSubject.call!(@campaigns_users_report, current_user)
           piped_text_context = {

@@ -3088,13 +3088,13 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    campaign_id integer,
     external_results jsonb DEFAULT '{}'::jsonb
 );
 
@@ -7015,5 +7015,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200709155934'),
 ('20200712100454'),
 ('20200712101935');
-
-

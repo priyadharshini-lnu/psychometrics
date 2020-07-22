@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { Form, Input, Select } from 'antd'
-import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'modules/admin/constants/campaign'
+import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
 import { TYPES as THREESIXTY_TYPES } from 'modules/admin/constants/threesixtyCampaign'
 
 import _ from 'lodash'

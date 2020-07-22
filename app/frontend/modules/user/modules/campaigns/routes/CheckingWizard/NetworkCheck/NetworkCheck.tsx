@@ -1,0 +1,210 @@
+import _ from 'lodash'
+import React, { useEffect, useState } from 'react'
+import { Card, Col, Button } from 'antd'
+import { Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
+import { RightOutlined } from '@ant-design/icons'
+import cardStyles from '../CardStyles.scss'
+import styles from './styles.scss'
+import CheckList from '../CheckList'
+import { CheckListStatus } from '../interfaces'
+import Progress from '../Progress'
+
+interface Props {
+  nextStep: () => void
+  config: Config
+}
+
+const { I18n, SomApi } = window
+
+const NetworkCheck: React.FC<Props> = ({ nextStep, config }) => {
+  const [download, setDownload] = useState(null)
+  const [upload, setUpload] = useState(null)
+  const [status, setStatus] = useState('new')
+
+  const updateMetrics = (metrics) => {
+    setDownload(metrics.download)
+    setUpload(metrics.upload)
+    if (metrics.download < config.network.download || metrics.upload < config.network.upload) {
+      setStatus('failed')
+    }
+  }
+
+  const resetMetrics = () => {
+    setDownload(null)
+    setUpload(null)
+  }
+
+  const View = VIEWS[status]
+
+  return (
+    <Col
+      className={cardStyles.container}
+      lg={{ span: 8, offset: 8 }}
+      xs={24}
+      sm={{ span: 16, offset: 4 }}
+    >
+      <Card className={cardStyles.card}>
+        <View
+          nextStep={nextStep}
+          measures={{ download, upload }}
+          resetMetrics={resetMetrics}
+          updateMetrics={updateMetrics}
+          updateStatus={setStatus}
+          config={config}
+        />
+      </Card>
+    </Col>
+  )
+}
+
+export default NetworkCheck
+
+
+interface ViewProps {
+    nextStep: () => void
+    updateMetrics: (data: Metrics) => void
+    resetMetrics: () => void
+    updateStatus: (status: string) => void
+    measures: Metrics
+    config: Config
+}
+
+interface Metrics {
+  download: number | null
+  upload: number | null
+}
+
+const NewView: React.FC<ViewProps> = ({ updateStatus }) => (
+  <>
+    <span className={styles.icon} />
+    <div className={cardStyles.title}>{I18n.t('checking_wizard.network_check.title')}</div>
+    <div>
+      <Button type="primary" className={cardStyles.button} onClick={() => updateStatus('in_progress')}>
+        {I18n.t('checking_wizard.network_check.continue')}
+        <RightOutlined />
+      </Button>
+    </div>
+  </>
+)
+
+const getCheckListStatus = (value: number | null, threshold: number): CheckListStatus => {
+  if (value === null) return CheckListStatus.InProgress
+  if (value < threshold) return CheckListStatus.Failed
+
+  return CheckListStatus.Done
+}
+
+const FailedView: React.FC<ViewProps> = ({ measures, updateStatus, config: { network } }) => (
+  <>
+    <span className={styles.icon} />
+    <div className={cardStyles.title}>{I18n.t('checking_wizard.network_check.please_check_connection')}</div>
+    <small>{I18n.t('checking_wizard.network_check.run_again_title')}</small>
+    <CheckList
+      className="mt16"
+      dataSource={[
+        {
+          name: I18n.t('checking_wizard.network_check.download'),
+          status: getCheckListStatus(measures.download, network.download),
+        },
+        {
+          name: I18n.t('checking_wizard.network_check.upload'),
+          status: getCheckListStatus(measures.upload, network.upload),
+        },
+      ]}
+    />
+    <div>
+      <Button type="primary" className={cardStyles.button} onClick={() => updateStatus('in_progress')}>
+        {I18n.t('checking_wizard.network_check.run_again')}
+        <RightOutlined />
+      </Button>
+    </div>
+  </>
+)
+
+interface Progress {
+  type: 'upload' | 'download' | 'latency'
+  pass: number
+  percentDone: number
+}
+
+
+const PASSES = {
+  download: 7,
+  upload: 4,
+}
+
+const InProgressView: React.FC<ViewProps> = ({
+  nextStep, measures, resetMetrics, updateMetrics, config: { network, speedOfMeApiToken },
+}) => {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    resetMetrics()
+
+    SomApi.account = speedOfMeApiToken
+    SomApi.domainName = location.hostname
+    SomApi.onTestCompleted = (data: Metrics) => {
+      updateMetrics(data)
+      setProgress(100)
+    }
+
+    SomApi.onProgress = updateProgress
+    SomApi.config = {
+      sustainTime: 2,
+      testServerEnabled: false,
+      uploadTestEnabled: true,
+      progress: {
+        enabled: true,
+      },
+    }
+
+    SomApi.startTest()
+  }, [])
+
+  const updateProgress = ({ pass, type, percentDone }: Progress) => {
+    if (type === 'latency') return
+
+    const currentPass = type === 'download' ? pass : PASSES.download + pass
+    const allPasses = PASSES.download + PASSES.upload
+    const percentForStep = 100 / allPasses
+    const currentProgress = (currentPass - 1) * percentForStep + percentForStep * percentDone / 100
+    setProgress(_.round(currentProgress))
+  }
+
+  return (
+    <>
+      <Progress percent={progress} title={I18n.t('checking_wizard.network_check.processing')} />
+      <CheckList
+        className="mt16"
+        dataSource={[
+          {
+            name: I18n.t('checking_wizard.network_check.download'),
+            status: getCheckListStatus(measures.download, network.download),
+          },
+          {
+            name: I18n.t('checking_wizard.network_check.upload'),
+            status: getCheckListStatus(measures.upload, network.upload),
+          },
+        ]}
+      />
+      <div className="mt24">
+        <Button
+          disabled={measures.upload === null && measures.download === null}
+          type="primary"
+          className={cardStyles.button}
+          onClick={nextStep}
+        >
+          {I18n.t('checking_wizard.network_check.continue')}
+          <RightOutlined />
+        </Button>
+      </div>
+    </>
+  )
+}
+
+
+const VIEWS = {
+  new: NewView,
+  failed: FailedView,
+  in_progress: InProgressView,
+}

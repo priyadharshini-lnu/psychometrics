@@ -16,7 +16,8 @@ class Campaign < ApplicationRecord
   has_many :participants, class_name: 'Threesixty::Participant', dependent: :restrict_with_error
   has_many :campaigns_users_reports, dependent: :destroy
   has_many :campaigns_users, dependent: :destroy
-  has_many :instruction_templates, -> { enabled }
+  has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
+                                                     class_name: 'Threesixty::InstructionTemplate'
   has_many :users_results, dependent: :destroy
   has_many :campaigns_reports
   has_many :reports, through: :campaigns_reports
@@ -29,7 +30,7 @@ class Campaign < ApplicationRecord
   THREESIXTY = 'threesixty'
 
   enum type: %i[common threesixty]
-  enum status: { active: 0, closed: 1 }
+  enum status: { active: 0, closed: 1, inactive: 2, archived: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
     parent.table[:status]

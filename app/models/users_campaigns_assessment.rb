@@ -9,4 +9,6 @@ class UsersCampaignsAssessment < ApplicationRecord
   belongs_to :evaluator, class_name: 'User'
   belongs_to :relationship
   belongs_to :users_result
+
+  alias result users_result
 end
