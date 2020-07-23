@@ -104,10 +104,11 @@ class Administration::NormsController < Administration::BaseController
     scope = Factor.where(dimension_id: resource.dimension_id).with_norm_type(@filter_data.norm_type, resource.id)
     @_resources = FactorsNorm.structured_hash(scope)
 
-    if resource.percentile?
-      render :percentile_editor
-    else
-      render :five_scale_editor
+    respond_to do |format|
+      format.js { render 'five_scale_editor.js.erb' }
+      format.html do
+        render(resource.percentile? ? :percentile_editor : :five_scale_editor)
+      end
     end
   end
 
