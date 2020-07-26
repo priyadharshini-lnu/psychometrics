@@ -30,6 +30,8 @@ class Norm < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
 
+  enum norm_type: { five_scale: 0, percentile: 1 }
+
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

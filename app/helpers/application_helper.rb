@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def random_background
-    "background-image: url('/assets/#{randomized_background_image}');"
+    "background-image: url('#{image_path(randomized_background_image)}');"
   end
 
   def randomized_background_image
