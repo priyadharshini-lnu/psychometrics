@@ -46,27 +46,25 @@ module Assigns
           props = factor_norm&.props&.first
 
           next if props.blank?
-          zscore = (factor_score - props['mean'].to_f) / props['standard_deviation'].to_f
 
+          zscore = (factor_score - props['mean'].to_f) / props['standard_deviation'].to_f
           normed_score = Ztable.percentile(zscore)
-          puts "factor_score: #{factor_score}, zscore: #{zscore}, normed_score: #{normed_score}"
 
           original_score['factor_score'] = factor_score
           original_score['zscore'] = zscore
           original_score['normed_score'] = normed_score
 
-          original_score.delete('blocks')
+          # TODO: Refactor - delete 'blocks' key once this is solid
+          # original_score.delete('blocks')
         end
       end
     end
 
     def calculate_block_score(block, results)
-      puts "Block: #{block}"
       block_factors = block.dig('scoring')
       questions = block.dig('questions')
 
       block_factors&.each do |item|
-        puts "item: #{item}"
         # Count correct answers in this block
         correct_answer_count = count_correct_answers(questions, results)
 
@@ -100,10 +98,7 @@ module Assigns
     end
 
     def get_factors_norm(factor_id)
-      # norm.factors_norms.find { |fn| fn.factor_id == factor_id }
-
-      # TODO: delete this and uncomment above line
-      factor = norm.factor_norms[rand(norm.factors.size)]
+      norm.factors_norms.find { |fn| fn.factor_id == factor_id }
     end
   end
 end
