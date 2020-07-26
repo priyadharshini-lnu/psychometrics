@@ -16,39 +16,22 @@ module Assigns
       @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
 
       calculate
-      # TODO: Refactor - we could as well update assign here?
       broadcast(:ok, scoring)
     end
 
     private
 
     def calculate
-      %i[extend_with_block_count extend_with_norm_score].inject { |_, method| send(method) }
+      extend_with_block_counts
+      extend_with_norm_score
     end
 
     def extend_with_block_counts
-      agile_config = agile.config
-      groups = agile_config['groups'].reject { |group| group['id'] == 'intro-group' }
       results = assign.results.map { |hash| hash['answers'] }.reduce(&:merge)
 
-      groups.each do |group|
+      agile.config['groups'].each do |group|
         group['scenes'].select { |s| s['type'] == 'AssessmentScene' }.each do |assessment|
-          assessment.dig('data', 'blocks').each do |block|
-            # factor = norm.factors.find_by(id: block['factor_id'])
-            factor = norm.factors[rand(norm.factors.size)] # TODO: refactor
-            questions = block.dig('questions')
-
-            # Count correct answers in this block
-            correct_answer_count = count_answers(questions, results)
-
-            scoring[factor.id]['blocks'] << {
-              block['id'] => {
-                count: correct_answer_count,
-                # TODO: Refactor: should have a default item score?
-                item_score: block['item_score'] || 1
-              }
-            }
-          end
+          assessment.dig('data', 'blocks').each { |block| calculate_block_score(block, results) }
         end
       end
     end
@@ -57,10 +40,13 @@ module Assigns
       scoring.tap do |original_scores|
         original_scores.each do |factor_id, original_score|
           blocks = original_score['blocks'].flat_map(&:values)
-          factor_score = blocks.reduce(0) { |sum, hash| sum + (hash[:count] * hash[:item_score]) }
+          factor_score = blocks.sum { |hash| hash[:count] * hash[:item_score] }
 
-          props = norm.factors_norms.find_by(norm_id: norm.id, factor_id: factor_id).props.first
-          zscore = (factor_score - props['mean'].to_i) / props['standard_deviation'].to_i
+          factor_norm = get_factors_norm(factor_id)
+          props = factor_norm&.props&.first
+
+          next if props.blank?
+          zscore = (factor_score - props['mean'].to_f) / props['standard_deviation'].to_f
 
           normed_score = Ztable.percentile(zscore)
           puts "factor_score: #{factor_score}, zscore: #{zscore}, normed_score: #{normed_score}"
@@ -74,12 +60,32 @@ module Assigns
       end
     end
 
-    def count_answers(questions, results)
+    def calculate_block_score(block, results)
+      puts "Block: #{block}"
+      block_factors = block.dig('scoring')
+      questions = block.dig('questions')
+
+      block_factors&.each do |item|
+        puts "item: #{item}"
+        # Count correct answers in this block
+        correct_answer_count = count_correct_answers(questions, results)
+
+        scoring[item['factorId']]['blocks'] << {
+          block['id'] => {
+            count: correct_answer_count,
+            # TODO: Refactor: should have a default item score?
+            item_score: item['itemScore'] || 1
+          }
+        }
+      end
+    end
+
+    def count_correct_answers(questions, results)
       questions.count do |question|
         question_result = results[question['id']]
 
-        # TODO: Refactor - can a question be skipped in the assessment?
-        # Only way this could end-up being nil is in that scenario
+        # We have maxItems in config, which indicates how many questions inside a block would be shown to user.
+        # Also questions are randomised with a limited duration, so only some questions might be answered
         next unless question_result
 
         result = question_result['answers']
@@ -91,6 +97,13 @@ module Assigns
 
         (result & answer).any?
       end
+    end
+
+    def get_factors_norm(factor_id)
+      # norm.factors_norms.find { |fn| fn.factor_id == factor_id }
+
+      # TODO: delete this and uncomment above line
+      factor = norm.factor_norms[rand(norm.factors.size)]
     end
   end
 end
