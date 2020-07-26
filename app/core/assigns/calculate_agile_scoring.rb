@@ -11,12 +11,13 @@ module Assigns
 
     def call
       return broadcast(:invalid) unless assign.completed?
+      return broadcast(:invalid) if assign.norm_data.blank?
 
-      @norm = Norm.includes(:factors_norms, :factors).find_by(id: assign.norm_data['id'] || 120)
+      @norm = Norm.includes(:factors_norms, :factors).find_by(id: assign.norm_data['id'])
       @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
 
       calculate
-      broadcast(:ok, scoring)
+      broadcast(:ok, assign.update(scoring: scoring))
     end
 
     private
@@ -82,8 +83,9 @@ module Assigns
       questions.count do |question|
         question_result = results[question['id']]
 
-        # We have maxItems in config, which indicates how many questions inside a block would be shown to user.
-        # Also questions are randomised with a limited duration, so only some questions might be answered
+        # We have maxItems in config, which indicates how many questions inside a block
+        # would be shown to user. Also questions are randomised with a limited duration,
+        # so only some questions might be answered
         next unless question_result
 
         result = question_result['answers']

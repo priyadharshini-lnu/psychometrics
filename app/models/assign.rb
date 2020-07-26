@@ -174,6 +174,10 @@ class Assign < ApplicationRecord
     expiry_date < Time.current
   end
 
+  def complete!
+    update(status: :completed, completed_at: Time.now)
+  end
+
   private
 
   def send_completion_email
