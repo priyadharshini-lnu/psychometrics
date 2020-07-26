@@ -10,6 +10,10 @@ describe Assigns::CalculateInnovationStyles do
   let(:factor3) { create(:factor, dimension: dimension) }
   let(:agile) { create(:agile, assessment: assign.assessment) }
 
+  # let(:config) {
+  #   {}
+  # }
+
   context '.call' do
     xit 'calculates agile score' do
       # TODO

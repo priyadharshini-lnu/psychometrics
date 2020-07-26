@@ -14,7 +14,7 @@ module Assigns
       results << form.attributes
       completed_groups = assign.meta_data['completed_groups'] || []
       completed_groups << form.group_id
-      norm_data = assign.norm_data || { id: assign.agile.config['normId'], type: 'agile' }
+      norm_data = assign.norm_data || { id: assign&.agile&.config&.dig('normId'), type: 'agile' }
 
       assign.update!(
         results: results,
