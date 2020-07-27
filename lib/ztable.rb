@@ -3,7 +3,6 @@
 class Ztable
   ZTABLE = HashWithIndifferentAccess.new({
     'Z': [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09],
-    # 'Z':    [0.09,    0.08,    0.07,    0.06,    0.05,    0.04,    0.03,    0.02,    0.01,    0],
     '-3.9': [0.00005, 0.00005, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00003, 0.00003],
     '-3.8': [0.00007, 0.00007, 0.00007, 0.00006, 0.00006, 0.00006, 0.00006, 0.00005, 0.00005, 0.00005],
     '-3.7': [0.00011, 0.00010, 0.00010, 0.00010, 0.00009, 0.00009, 0.00008, 0.00008, 0.00008, 0.00008],
@@ -101,7 +100,6 @@ class Ztable
 
       zscore = (zscore * 100.0).floor / 100.0
       y_zscore = (zscore * 10.0).floor / 10.0
-      # y_zscore = -y_zscore
     else
       return 0.0 if zscore < MIN_Y_VALUE
 
@@ -114,12 +112,8 @@ class Ztable
     z100 = x_zscore.is_a?(Numeric) ? x_zscore : zscore.abs
     z10 = y_zscore.zero? ? '0.0' : y_zscore.round(1).to_s
 
-    # puts "zscore: #{zscore}, y_zscore: #{y_zscore}, x_zscore: #{x_zscore}, z100: #{z100}, z10: #{z10}"
-
     column = ZTABLE['Z'].index(z100)
     percentile = ZTABLE[z10][column]
-
-    # percentile = (((1.0 - percentile) * 10_000.0) / 10_000.0).round(4) if zscore > 0
 
     percentile
   end

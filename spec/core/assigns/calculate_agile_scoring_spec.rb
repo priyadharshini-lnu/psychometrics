@@ -3,9 +3,7 @@
 require 'rails_helper'
 
 describe Assigns::CalculateAgileScoring do
-  before(:all) do
-    @assign = FactoryBot.create(:assign)
-    @agile = FactoryBot.create(:agile, assessment: @assign.assessment)
+  def setup_data(complete = false)
     @norm = FactoryBot.create(:norm, :percentile)
 
     config = {
@@ -72,14 +70,45 @@ describe Assigns::CalculateAgileScoring do
       }
     ]
 
-    @agile.update(config: config)
-    @assign.update(results: results, norm_data: { id: @norm.id })
-    @assign.complete!
+    @assign = FactoryBot.create(:assign, results: results)
+    @agile = FactoryBot.create(:agile, assessment: @assign.assessment, config: config)
+
+    if complete
+      @assign.update_column(:norm_data, { id: @norm.id, type: 'percentile' })
+      @assign.complete!
+    end
   end
 
-  before(:context) { described_class.call!(@assign) }
+  describe 'it broadcasts :invalid when assign is incomplete' do
+    before(:all) do
+      setup_data
+    end
 
-  context '.call' do
+    subject { described_class.call(@assign) }
+
+    it 'broadcasts :invalid' do
+      expect { subject }.to broadcast(:invalid)
+    end
+
+    it 'dont broadcast :ok' do
+      expect { subject }.not_to broadcast(:ok)
+    end
+
+    it 'dont make transaction' do
+      expect_any_instance_of(described_class).not_to receive(:calculate)
+      subject
+    end
+  end
+
+  describe 'it broadcasts :ok when assign is complete' do
+    before(:context) do
+      setup_data(true)
+    end
+
+    subject { described_class.call(@assign) }
+
+    it { expect { subject }.to broadcast(:ok) }
+
     it 'calculates and saves agile score' do
       expect(@assign.scoring).to be
     end

@@ -175,7 +175,8 @@ class Assign < ApplicationRecord
   end
 
   def complete!
-    update(status: :completed, completed_at: Time.now)
+    # Validations and Callbacks are skipped
+    update_columns(status: :completed, completed_at: Time.now)
   end
 
   private
