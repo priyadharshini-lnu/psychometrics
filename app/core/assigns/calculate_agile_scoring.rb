@@ -48,15 +48,12 @@ module Assigns
 
           next if props.blank?
 
-          zscore = (factor_score - props['mean'].to_f) / props['standard_deviation'].to_f
+          zscore = (factor_score - props['mean']) / props['standard_deviation']
           normed_score = Ztable.percentile(zscore)
 
           original_score['factor_score'] = factor_score
           original_score['zscore'] = zscore
           original_score['normed_score'] = normed_score
-
-          # TODO: Refactor - delete 'blocks' key once this is solid
-          # original_score.delete('blocks')
         end
       end
     end
