@@ -1,4 +1,5 @@
 import mime from 'mime-types'
+import sanitize from 'utils/sanitizeFileName'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
 
@@ -25,7 +26,7 @@ const uploadFile = (data, context) => {
   fd.append('x-amz-credential', data['x-amz-credential'])
   fd.append('x-amz-date', data['x-amz-date'])
   fd.append('x-amz-signature', data['x-amz-signature'])
-  fd.append('file', file, fileName || file.name)
+  fd.append('file', file, fileName || sanitize(file.name))
 
   $.ajax({
     method: 'POST',
@@ -50,7 +51,7 @@ const onUploadDone = (media, data, context) => {
     urls, file, fileName, dispatch, onSuccessUpload,
   } = context
   const mediaId = data.media_id
-  const assetKey = data.key.replace('${filename}', fileName || file.name)
+  const assetKey = data.key.replace('${filename}', fileName || sanitize(file.name))
   $.ajax({
     method: 'PUT',
     url: urls.callbackUrl,
