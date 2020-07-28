@@ -66,6 +66,7 @@ const ReportList: React.FC<RouteComponentProps & Props> = ({
                     projectId,
                     campaignId,
                     campaignReportId: report.id,
+                    reportId: report.reportId,
                   }) as React.ReactElement
               )}
               trigger={['click']}
@@ -84,10 +85,11 @@ const ReportList: React.FC<RouteComponentProps & Props> = ({
 interface ActionMenuProps {
   projectId: string
   campaignId: string
+  reportId: string
   campaignReportId: string
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = () => (
+const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, reportId }) => (
   <Menu>
     <Menu.Item key="edit">
       <div
@@ -95,6 +97,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = () => (
         tabIndex={-1}
       >
           Edit
+      </div>
+    </Menu.Item>
+    <Menu.Item key="export">
+      <div
+        role="button"
+        tabIndex={-1}
+      >
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`/administration/new_campaigns/${campaignId}/reports/${reportId}/export.xlsx`}
+        >
+         Export Data
+        </a>
       </div>
     </Menu.Item>
   </Menu>

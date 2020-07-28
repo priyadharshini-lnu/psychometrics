@@ -62,6 +62,9 @@ Rails.application.routes.draw do
             get :report_families
             get :assessments_and_reports
           end
+          member do
+            get :export
+          end
         end
         resources :universal_links, only: %i[show update destroy] do
           member do

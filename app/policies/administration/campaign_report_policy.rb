@@ -9,5 +9,9 @@ module Administration
     def assessments_and_reports?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
     end
+
+    def export?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
   end
 end

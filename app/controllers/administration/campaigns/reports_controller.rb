@@ -15,6 +15,16 @@ module Administration
         end
       end
 
+      def export
+        report = Report.find(params[:id])
+        campaign = Campaign.find(params[:new_campaign_id])
+        xlsx = Reports::ExportData.call!(report, campaign)
+
+        respond_to do |format|
+          format.xlsx { send_data xlsx.to_stream.read, filename: "report-#{report.id}-data.xlsx" }
+        end
+      end
+
       def assessments_and_reports
         reports = ActiveModelSerializers::SerializableResource.new(
           campaign.campaign_reports.includes(:report),
