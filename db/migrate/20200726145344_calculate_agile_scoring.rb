@@ -2,7 +2,7 @@
 
 class CalculateAgileScoring < ActiveRecord::Migration[5.1]
   def change
-    Assign.agile.find_each do |assign|
+    Assign.agile.complete.find_each do |assign|
       norm_id = assign.agile&.config&.dig('normId')
       assign.update_column(:norm_data, { id: norm_id, type: 'agile' }) if norm_id
     end

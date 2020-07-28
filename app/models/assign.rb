@@ -78,6 +78,9 @@ class Assign < ApplicationRecord
   scope :agile, lambda {
     joins(:assessment).where.has { |assigns| assigns.assessment.category.eq(Assessment::CATEGORIES[:agile]) }
   }
+  scope :complete, lambda {
+    where(status: 'completed')
+  }
 
   attribute :user_access, :boolean, default: false
 
