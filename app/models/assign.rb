@@ -175,7 +175,7 @@ class Assign < ApplicationRecord
   end
 
   def complete!
-    norm_data = { id: agile.config&.dig('normId'), type: 'agile' } rescue nil
+    norm_data = { id: agile&.config&.dig('normId'), type: 'agile' }
 
     # Validations and Callbacks are skipped
     update_columns(status: :completed, completed_at: Time.now, norm_data: norm_data)

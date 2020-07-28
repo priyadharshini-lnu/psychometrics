@@ -11,7 +11,7 @@ module Assigns
 
     def call
       return broadcast(:invalid) unless assign.completed?
-      return broadcast(:invalid) if assign.norm_data.blank?
+      return broadcast(:invalid) if assign.norm_data.blank? || assign.norm_data.dig('id').nil?
 
       @norm = Norm.includes(:factors_norms, :factors).find_by(id: assign.norm_data['id'])
       @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
