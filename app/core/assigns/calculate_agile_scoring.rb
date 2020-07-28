@@ -29,6 +29,7 @@ module Assigns
 
     def extend_with_block_counts
       return if assign.results.blank?
+
       results = assign.results.map { |hash| hash['answers'] }.reduce(&:merge)
 
       agile.config['groups'].each do |group|
