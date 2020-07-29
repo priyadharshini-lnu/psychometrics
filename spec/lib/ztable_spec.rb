@@ -13,7 +13,7 @@ describe Ztable do
     it 'returns 1.0 if zscore is greater than max' do
       percentile = described_class.percentile(4)
 
-      expect(percentile).to eq(1)
+      expect(percentile).to eq(99.997)
     end
 
     it 'returns 0.0 if zscore is less then min' do
@@ -25,7 +25,7 @@ describe Ztable do
     it 'returns percentile for a zscore within range' do
       percentile = described_class.percentile(0.1388)
 
-      expect(percentile).to eq(0.55172)
+      expect(percentile).to eq(55.567)
     end
 
     # TODO: spec other edge cases
