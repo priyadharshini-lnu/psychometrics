@@ -7,7 +7,7 @@ describe Ztable do
     it 'returns 0.5 if zscore is zero' do
       percentile = described_class.percentile(0) # 10 Kb
 
-      expect(percentile).to eq(0.5)
+      expect(percentile).to eq(50.0)
     end
 
     it 'returns 1.0 if zscore is greater than max' do

@@ -85,13 +85,16 @@ class Ztable
     '3.9': [0.99995, 0.99995, 0.99996, 0.99996, 0.99996, 0.99996, 0.99996, 0.99996, 0.99997, 0.99997]
   }).freeze
 
-  MIN_Y_VALUE = -3.99
-  MAX_Y_VALUE = 3.99
+  MIN_Y_VALUE = -3.9
+  MAX_Y_VALUE = 3.9
+
+  MIN_X_VALUE = 0.00
+  MAX_X_VALUE = 0.09
 
   def self.percentile(zscore)
     return (0.5 * 100).round(5) if zscore.zero?
-    return 0.0 if zscore < MIN_Y_VALUE
-    return (ZTABLE[MAX_Y_VALUE.to_s].last * 100).round(5) if zscore > MAX_Y_VALUE
+    return 0.0 if zscore < MIN_Y_VALUE + MIN_X_VALUE
+    return (ZTABLE[MAX_Y_VALUE.to_s].last * 100).round(5) if zscore > MAX_Y_VALUE + MAX_X_VALUE
 
     y_zscore = zscore.negative? ? zscore.ceil(1) : zscore.floor(1)
     x_zscore = (zscore - y_zscore).round(2).abs
