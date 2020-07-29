@@ -96,7 +96,7 @@ class Ztable
     return 0.0 if zscore < MIN_Y_VALUE
     return (ZTABLE[MAX_Y_VALUE.to_s].last * 100).round(5) if zscore > MAX_Y_VALUE
 
-    y_zscore = zscore < 0 ? zscore.ceil(1) : zscore.floor(1)
+    y_zscore = zscore.negative? ? zscore.ceil(1) : zscore.floor(1)
     x_zscore = (zscore - y_zscore).round(2).abs
     column = ZTABLE['Z'].index(x_zscore)
     percentile = ZTABLE[y_zscore.to_s][column] * 100
