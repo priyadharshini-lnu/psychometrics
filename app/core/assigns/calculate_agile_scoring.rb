@@ -90,8 +90,6 @@ module Assigns
         result = [question_result['answers']]
         answer = question['answers']
 
-        # TODO: Refactor - since the assumption is that
-        # the answers will be available with the question
         next unless answer
 
         (result & answer).any?

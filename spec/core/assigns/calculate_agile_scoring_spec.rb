@@ -120,7 +120,7 @@ describe Assigns::CalculateAgileScoring do
       factors.each { |id| expect(scoring).to include(id.to_s) }
     end
 
-    it 'count correct answers properly' do
+    it 'counts correct answers properly' do
       scoring = @assign.scoring
       block = scoring[@factor_id.to_s]['blocks'].first
       count = block.values.first['count']

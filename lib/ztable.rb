@@ -104,7 +104,7 @@ class Ztable
       return 0.0 if zscore < MIN_Y_VALUE
 
       zscore = (zscore * 100.0).ceil / 100.0
-      y_zscore = (zscore * 10.0).ceil / 10.0
+      y_zscore = (zscore * 100.0).ceil / 100.0
     end
 
     x_zscore = (((zscore % y_zscore) * 100.0).round / 100.0).abs
