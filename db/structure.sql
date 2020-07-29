@@ -61,8 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -665,7 +663,8 @@ CREATE TABLE public.clients (
     privacy_consent boolean,
     two_factor_enabled boolean DEFAULT false,
     strong_password_enabled boolean DEFAULT false,
-    secondary_logo character varying
+    secondary_logo character varying,
+    enable_live_chat boolean DEFAULT false NOT NULL
 );
 
 
@@ -7001,6 +7000,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200709155934'),
 ('20200712100454'),
 ('20200712101935'),
-('20200716130505');
+('20200716130505'),
+('20200726145344'),
+('20200729181439');
 
 
