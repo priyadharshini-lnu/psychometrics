@@ -61,8 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -3096,7 +3094,9 @@ CREATE TABLE public.users_results (
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    external_results jsonb DEFAULT '{}'::jsonb
+    external_results jsonb DEFAULT '{}'::jsonb,
+    innovation_styles jsonb DEFAULT '[]'::jsonb,
+    norm_type character varying
 );
 
 
@@ -5647,13 +5647,6 @@ CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (em
 
 
 --
--- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_results_subject_evaluator_campaign ON public.users_results USING btree (subject_id, evaluator_id, campaign_id);
-
-
---
 -- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7001,6 +6994,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200709155934'),
 ('20200712100454'),
 ('20200712101935'),
-('20200716130505');
+('20200716130505'),
+('20200723074036'),
+('20200723074255'),
+('20200727190907');
 
 

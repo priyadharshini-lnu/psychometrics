@@ -4,3 +4,16 @@ en:
       assessment_name: Assessment name
       norm: Norm
       universal_link: Universal link
+    modals:
+      import_raw:
+        title: Import Raw Results data
+        success_msg: Import successfully uploaded
+        upload: Upload
+        cancel: Cancel
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+      import_scoring:
+        title: Import Scoring Results data
+        success_msg: Import successfully uploaded
+        upload: Upload
+        cancel: Cancel
+        body: Refer to the Export functionality to extract a template that can be used to Import here.

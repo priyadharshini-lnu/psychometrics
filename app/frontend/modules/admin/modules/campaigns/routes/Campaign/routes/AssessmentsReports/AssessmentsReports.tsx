@@ -7,11 +7,15 @@ import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from './AddReportModal'
 import UniversalLinkModal from './UniversalLinkModal'
+import ImportRawModal from './ImportRawModal'
+import ImportScoringModal from './ImportScoringModal'
 import styles from './styles.scss'
 
 const MODALS = {
   AddReportModal,
   UniversalLinkModal,
+  ImportRawModal,
+  ImportScoringModal,
 }
 
 interface Props {

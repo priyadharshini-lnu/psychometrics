@@ -21,7 +21,6 @@ module Factors
     has_many :factors_sub_factors, serializer: FactorsSubFactorSerializer
 
     def icon
-      # binding.pry
       object.icon.url
     end
 
