@@ -556,6 +556,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -620,7 +627,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -1727,7 +1734,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -4829,6 +4836,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "assessment_name": "Assessment name",
       "norm": "Norm",
       "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      }
     }
   },
   "campaign_report": {
@@ -5494,6 +5517,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "frontend": {
     "activate": "Activate",
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -6507,7 +6531,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -7454,6 +7478,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -7518,7 +7549,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -8625,7 +8656,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -11727,6 +11758,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "assessment_name": "Assessment name",
       "norm": "Norm",
       "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      }
     }
   },
   "campaign_report": {
@@ -12388,6 +12435,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "frontend": {
     "activate": "Activate",
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -13401,7 +13449,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -14345,6 +14393,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -14409,7 +14464,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -15516,7 +15571,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -18618,6 +18673,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "assessment_name": "Assessment name",
       "norm": "Norm",
       "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "cancel": "Cancel",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      }
     }
   },
   "campaign_report": {
@@ -19279,6 +19350,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "frontend": {
     "activate": "Activate",
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -20292,7 +20364,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",

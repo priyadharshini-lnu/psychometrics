@@ -71,6 +71,15 @@ Rails.application.routes.draw do
             post :activate
           end
         end
+        resources :assessments, only: [:create] do
+          member do
+            get :export_raw_results
+            get :export_scoring_results
+            get :export_normed_results
+            get :export_external_results
+            post :import_results
+          end
+        end
       end
     end
 
