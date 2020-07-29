@@ -92,7 +92,7 @@ class Ztable
   MAX_X_VALUE = 0.09
 
   def self.percentile(zscore)
-    return 0.5 if zscore.zero?
+    return (0.5 * 100).round(5) if zscore.zero?
     return 0.0 if zscore < MIN_Y_VALUE
     return (ZTABLE[MAX_Y_VALUE.to_s].last * 100).round(5) if zscore > MAX_Y_VALUE
 
