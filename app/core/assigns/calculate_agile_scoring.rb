@@ -51,7 +51,7 @@ module Assigns
           next if props.blank?
 
           zscore = ((factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f).round(5)
-          normed_score = Ztable.percentile(zscore) * 100
+          normed_score = Ztable.percentile(zscore)
 
           original_score['factor_score'] = factor_score
           original_score['zscore'] = zscore
