@@ -50,8 +50,8 @@ module Assigns
 
           next if props.blank?
 
-          zscore = (factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f
-          normed_score = Ztable.percentile(zscore)
+          zscore = ((factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f).round(5)
+          normed_score = Ztable.percentile(zscore) * 100
 
           original_score['factor_score'] = factor_score
           original_score['zscore'] = zscore
@@ -87,7 +87,7 @@ module Assigns
         # so only some questions might be answered
         next unless question_result
 
-        result = question_result['answers']
+        result = [question_result['answers']]
         answer = question['answers']
 
         # TODO: Refactor - since the assumption is that

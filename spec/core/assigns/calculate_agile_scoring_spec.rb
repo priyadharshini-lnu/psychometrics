@@ -5,6 +5,7 @@ require 'rails_helper'
 describe Assigns::CalculateAgileScoring do
   def setup_data(complete = false)
     @norm = FactoryBot.create(:norm, :percentile)
+    @factor_id = @norm.factors.first.id
 
     config = {
       'normId': @norm.id,
@@ -21,7 +22,7 @@ describe Assigns::CalculateAgileScoring do
                     'id': 'ed-1-ass-block-1',
                     'scoring': [
                       {
-                        'factorId': @norm.factors.first.id,
+                        'factorId': @factor_id,
                         'itemScore': 1
                       }
                     ],
@@ -115,8 +116,16 @@ describe Assigns::CalculateAgileScoring do
 
     it 'add scoring for all factors' do
       scoring = @assign.scoring
-      factors = @norm.factors.map(&:id)
+      factors = @norm.factors.pluck(:id)
       factors.each { |id| expect(scoring).to include(id.to_s) }
+    end
+
+    it 'count correct answers properly' do
+      scoring = @assign.scoring
+      block = scoring[@factor_id.to_s]['blocks'].first
+      count = block.values.first['count']
+
+      expect(count).to eq(2)
     end
 
     it 'adds factor score' do

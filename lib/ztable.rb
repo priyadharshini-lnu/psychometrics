@@ -115,6 +115,6 @@ class Ztable
     column = ZTABLE['Z'].index(z100)
     percentile = ZTABLE[z10][column]
 
-    percentile
+    percentile.round(5)
   end
 end
