@@ -92,11 +92,12 @@ class Ztable
   MAX_X_VALUE = 0.09
 
   def self.percentile(zscore)
+    zscore = zscore.round(2)
     zscore = zscore.clamp(MIN_Y_VALUE - MAX_X_VALUE, MAX_Y_VALUE + MAX_X_VALUE)
-    return (0.5 * 100).round(5) if zscore.zero?
+    return 50.0 if zscore.zero?
 
-    y_zscore = zscore.negative? ? zscore.ceil(1) : zscore.floor(1)
-    x_zscore = (zscore - y_zscore).round(2).abs
+    y_zscore = zscore.truncate(1)
+    x_zscore = (zscore - y_zscore).truncate(2).abs
     column = ZTABLE['Z'].index(x_zscore)
     percentile = ZTABLE[y_zscore.to_s][column] * 100
     percentile.round(5)
