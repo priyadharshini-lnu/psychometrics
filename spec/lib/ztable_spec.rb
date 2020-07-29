@@ -19,7 +19,7 @@ describe Ztable do
     it 'returns 0.0 if zscore is less then min' do
       percentile = described_class.percentile(-4)
 
-      expect(percentile).to eq(0)
+      expect(percentile).to eq(0.003)
     end
 
     it 'returns percentile for a zscore within range' do
