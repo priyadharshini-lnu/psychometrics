@@ -6,15 +6,11 @@ module ApplicationHelper
   RANDOM_BACKGROUND_IMAGES_COUNT = 7
 
   def device_html_style
-    @current_project ? project_background : random_background
+    @current_project && @current_project&.background&.url ? project_background : random_background
   end
 
   def project_background
-    if @current_project&.background&.url
-      "background-image: url('#{@current_project.background.url}');"
-    elsif @current_project&.background_color
-      "background: #{@current_project.background_color};"
-    end
+    "background-image: url('#{@current_project.background.url}');"
   end
 
   def random_background
