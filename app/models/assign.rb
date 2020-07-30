@@ -180,13 +180,6 @@ class Assign < ApplicationRecord
     expiry_date < Time.current
   end
 
-  def complete!
-    norm_data = { id: agile&.config&.dig('normId'), type: 'agile' }
-
-    # Validations and Callbacks are skipped
-    update_columns(status: :completed, completed_at: Time.now, norm_data: norm_data)
-  end
-
   private
 
   def send_completion_email

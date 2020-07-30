@@ -75,8 +75,8 @@ describe Assigns::CalculateAgileScoring do
     @agile = FactoryBot.create(:agile, assessment: @assign.assessment, config: config)
 
     if complete
-      @assign.update_column(:norm_data, { id: @norm.id, type: 'percentile' })
-      @assign.complete!
+      norm_data = { id: @norm.id, type: 'percentile' }
+      @assign.update_columns(status: :completed, completed_at: Time.now, norm_data: norm_data)
     end
   end
 
