@@ -2,7 +2,7 @@
 
 module UsersResults
   class UpdateUsersResult < BaseCommand
-    def initialize(form, users_result, threesixty_campaign)
+    def initialize(form, users_result, threesixty_campaign = nil)
       @form = form
       @users_result = users_result
       @subject_user = users_result.subject
@@ -15,8 +15,12 @@ module UsersResults
 
       update_users_result
       if users_result.completed?
-        generate_360_report
-        send_necessary_emails
+        if users_result.campaign.common?
+          generate_report
+        else
+          generate_360_report
+          send_necessary_emails
+        end
       end
 
       broadcast(:ok)
@@ -69,6 +73,10 @@ module UsersResults
       # Sets status to generating and sends to generate report
       user_report.generating!
       ::UserReports::GeneratePdfJob.perform_later(user_report, subject_user)
+    end
+
+    def generate_report
+      # UserAssessment::GenerateReport.call(assign, current_user)
     end
 
     def send_necessary_emails

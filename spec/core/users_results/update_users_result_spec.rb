@@ -32,7 +32,10 @@ describe ::UsersResults::UpdateUsersResult do
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
     allow_any_instance_of(described_class).to receive(:generate_360_report)
+    allow(threesixty_campaign).to receive(:'threesixty?').and_return(true)
+    allow(threesixty_campaign).to receive(:'common?').and_return(false)
     allow(users_result).to receive(:'completed?').and_return(true)
+    allow(users_result).to receive(:campaign).and_return(threesixty_campaign)
     allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
 
     expect(Threesixty::Emails::Send).to receive(:call!).
@@ -58,6 +61,7 @@ describe ::UsersResults::UpdateUsersResult do
     let(:evaluator_user)  { evaluator_membership.user }
     let!(:users_result)   do
       create(:users_result, assessment: assessment,
+                                                  campaign: campaign,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
                                                   answers: {},

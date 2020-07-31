@@ -32,13 +32,13 @@ export default function Campaign ({
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
                 )}
-                <div className="cards">
-                  {campaign.userAssessments.map((assessment) => {
-                    const Assessment = Assessments[assessment.type]
+                <Row type="flex" gutter={12} className="cards">
+                  {campaign.userAssessments.map((userAssessment) => {
+                    const Assessment = Assessments[userAssessment.type]
 
-                    return <Assessment history={history} campaign={assessment} />
+                    return <Assessment history={history} userAssessment={userAssessment} />
                   })}
-                </div>
+                </Row>
               </>
             </div>
           </Col>

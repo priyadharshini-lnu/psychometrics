@@ -647,6 +647,16 @@ Rails.application.routes.draw do
       get :dashboard, to: 'users#dashboard'
 
       resources :user_assessments do
+        resources :users_results, only: %i[update] do
+          member do
+            get :upload_media_url
+            put :upload_callback
+            delete :remove_media
+            put :complete_multipart_upload
+            put :mark_as_user_selected_take
+            put :update_meta_data
+          end
+        end
         member do
           get :assessment
           get :pass
@@ -674,16 +684,7 @@ Rails.application.routes.draw do
           get :download, on: :member
         end
         resources :assessments, only: %i[index]
-        resources :users_results, only: %i[update] do
-          member do
-            get :upload_media_url
-            put :upload_callback
-            delete :remove_media
-            put :complete_multipart_upload
-            put :mark_as_user_selected_take
-            put :update_meta_data
-          end
-        end
+
         collection do
           post :change_locale
         end

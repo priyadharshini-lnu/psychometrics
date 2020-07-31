@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-module Threesixty
+module EndUser
   class UsersResultsController < ApplicationController
     # append_before_action :pundit_authorize
     before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
                                              complete_multipart_upload mark_as_user_selected_take]
+    before_action :set_user_assessment, only: %i[update]
 
     def update
-      campaign = Threesixty::Campaign.find(params[:campaign_id])
-
+      @threesixty_campaign = @user_assessment.campaign.threesixty? && @user_assessment.campaign.threesixty_campaign
       assign_params = ::UsersResults::ExtendResourceParams.call!(
         resource_params.to_h,
         params[:question_ids],
@@ -16,11 +16,11 @@ module Threesixty
       )
 
       form = ::UsersResults::UpdatingForm.from_params(assign_params)
-      ::UsersResults::UpdateUsersResult.call(form, @users_result, campaign)
+      ::UsersResults::UpdateUsersResult.call(form, @users_result, @threesixty_campaign)
 
       render json: @users_result,
-      serializer: UsersResultUpdateSerializer,
-      current_block_id: params[:current_block_id], campaign: campaign
+             serializer: UsersResultUpdateSerializer,
+             current_block_id: params[:current_block_id]
     end
 
     def update_meta_data
@@ -73,10 +73,14 @@ module Threesixty
                       else
                         UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
                       end
-      authorize [:threesixty, @users_result]
+      authorize [:end_user, @users_result]
     end
 
     private
+
+    def set_user_assessment
+      @user_assessment = UserAssessment.find(params[:id])
+    end
 
     def resource_params
       params[:resource].permit(

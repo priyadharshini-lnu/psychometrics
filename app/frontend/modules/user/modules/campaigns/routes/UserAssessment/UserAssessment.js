@@ -16,11 +16,12 @@ const { Content } = Layout
 
 export default function UserAssessment ({
   userAssessment: {
-    id: userAssessmentId,
     loaded, error, assessment, results,
     results: {
+      user_assessment_id: userAssessmentId,
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
+      campaign_id: campaignId,
       translations,
     },
   }, fetchAssessment,
@@ -64,7 +65,7 @@ export default function UserAssessment ({
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
               <Timer key="2" preview={preview} saveResults={saveResults} />,
             ]}
-            onBack={() => history.push('/campaigns')}
+            onBack={() => history.push(`/campaigns/${campaignId}`)}
           />
         </Content>
       </div>
@@ -95,7 +96,7 @@ export default function UserAssessment ({
                   result={results}
                   locales={translations}
                   dashboardUrl="/assessment_completed"
-                  resultsUrl={`/assigns/${results.id}`}
+                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
                   rstore={store}
                 />

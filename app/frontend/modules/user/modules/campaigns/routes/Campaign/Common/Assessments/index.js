@@ -1,7 +1,7 @@
-import SingleAssign from './SingleAssign'
+import InternalAssessment from './InternalAssessment'
 import Hogan from './Hogan'
 
 export default {
-  single_assign: SingleAssign,
+  user_assessment: InternalAssessment,
   hogan: Hogan,
 }

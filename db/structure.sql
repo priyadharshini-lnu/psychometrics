@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -2690,9 +2704,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2863,9 +2875,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -2941,7 +2951,8 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint
+    users_result_id bigint,
+    selected_locale character varying
 );
 
 
@@ -3087,13 +3098,13 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    campaign_id integer,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying
@@ -5570,13 +5581,6 @@ CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING 
 
 
 --
--- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
-
-
---
 -- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6984,6 +6988,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200531072928'),
 ('20200624204627'),
 ('20200630075308'),
+('20200701101758'),
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
@@ -6995,8 +7000,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200712100454'),
 ('20200712101935'),
 ('20200716130505'),
+('20200730091354'),
 ('20200723074036'),
 ('20200723074255'),
 ('20200727190907');
-
-
