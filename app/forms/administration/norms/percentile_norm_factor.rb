@@ -3,8 +3,8 @@
 module Administration
   module Norms
     class PercentileNormFactor < Rectify::Form
-      attribute :norm_id, Integer
-      attribute :factor_id, Integer
+      attribute :norm_id, Float
+      attribute :factor_id, Float
       attribute :norm_type, String
       attribute :field_value, String
       attribute :field_name, String

@@ -24,5 +24,11 @@ FactoryBot.define do
         { level: level, score_from: from, score_to: to }
       end
     end
+
+    trait :percentile do
+      props do
+        [{ mean: rand(1.0..5.0).round(1), standard_deviation: rand(1.0..5.0).round(1) }]
+      end
+    end
   end
 end
