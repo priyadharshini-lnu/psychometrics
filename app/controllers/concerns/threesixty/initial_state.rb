@@ -23,7 +23,12 @@ module Threesixty::InitialState
       config: {
         isFrame: use_iframe?
       },
-      currentUser: serialized_current_user
+      currentUser: serialized_current_user,
+      liveChat: {
+        url: Settings.live_chat.base_url,
+        token: Settings.live_chat.token,
+        enabled: @current_project.enable_live_chat
+      }
     }
   end
 
