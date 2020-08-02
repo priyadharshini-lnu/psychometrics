@@ -10,33 +10,6 @@ html
         locale: '#{I18n.locale}'
       }
 
-    - if @current_project.enable_live_chat?
-      javascript:
-        (function(d,t) {
-          const { liveChat: config, currentUser: user } = #{@init_state.to_json.html_safe};
-          var BASE_URL = config.url;  // Settings/ENV CHATWOOT_BASE_URL
-          var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-          g.src= BASE_URL + "/packs/js/sdk.js";
-          s.parentNode.insertBefore(g,s);
-          g.onload=function(){
-            window.chatwootSDK.run({
-              websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
-              baseUrl: BASE_URL
-            })
-            var userId = user.id;
-            if (localStorage.chatwootUserId !== userId) {
-              window.$chatwoot.reset()
-              localStorage.chatwootUserId = userId
-            }
-            setTimeout(function(){
-              window.$chatwoot.setUser(userId, {
-                email: user.email,
-                name: user.fullName,
-              })
-            }, 1000)
-          }
-        })(document,"script");
-
     = csrf_meta_tags
     = jquery_include_tag :google
     = render 'layouts/custom_styles'
@@ -58,3 +31,30 @@ html
     = yield
     #notification-center-container
     = javascript_pack_tag 'notificationCenter'
+
+  - if @current_project.enable_live_chat?
+    javascript:
+      (function(d,t) {
+        const { liveChat: config, currentUser: user } = #{@init_state.to_json.html_safe};
+        var BASE_URL = config.url;  // Settings/ENV CHATWOOT_BASE_URL
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src= BASE_URL + "/packs/js/sdk.js";
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
+            baseUrl: BASE_URL
+          })
+          var userId = user.id;
+          if (localStorage.chatwootUserId !== userId) {
+            window.$chatwoot.reset()
+            localStorage.chatwootUserId = userId
+          }
+          setTimeout(function(){
+            window.$chatwoot.setUser(userId, {
+              email: user.email,
+              name: user.fullName,
+            })
+          }, 1000)
+        }
+      })(document,"script");
