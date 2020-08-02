@@ -90,6 +90,7 @@ Rails.application.routes.draw do
           resources :users do
             member do
               patch :toggle_status
+              get :reset_password
             end
           end
         end

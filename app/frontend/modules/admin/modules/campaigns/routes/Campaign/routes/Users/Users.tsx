@@ -29,6 +29,7 @@ interface Props {
   fetch(projectId: string, campaignId: string, tableConfig: TableConfig): void
   remove(projectId: string, campaignId: string, id: number): void
   toggleStatus(projectId: string, campaignId: string, id: number): void
+  resetPassword(projectId: string, campaignId: string, id: number): void
   users: UserState
   match: {
     params: {
@@ -65,6 +66,7 @@ const UserList: React.FC<Props> = ({
   openModal,
   remove,
   toggleStatus,
+  resetPassword,
 }) => {
   useEffect(() => {
     fetch(projectId, campaignId, tableConfig)
@@ -190,6 +192,7 @@ const UserList: React.FC<Props> = ({
                   overlay={() => (
                     ActionsMenu({
                       onEdit: () => openModal('UserFormModal', { projectId, campaignId, user }),
+                      resetPassword: () => resetPassword(projectId, campaignId, user.id),
                       projectId,
                       campaignId,
                       userId: user.id,
@@ -224,6 +227,7 @@ const UserList: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
+  resetPassword(projectId: string, campaignId: string, id: number): void
   projectId: string
   campaignId: string
   userId: number
@@ -232,11 +236,16 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, remove, projectId, campaignId, userId, email,
+  onEdit, resetPassword, remove, projectId, campaignId, userId, email,
 }) => {
   const handleDelete = () => {
     remove(projectId, campaignId, userId)
   }
+
+  const handleChangePassword = () => {
+    resetPassword(projectId, campaignId, userId)
+  }
+
   return (
     <Menu>
       <Menu.Item key="edit">
@@ -256,7 +265,20 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </a>
       </Menu.Item>
       <Menu.Item key="changePassword">
-        {I18n.t('frontend.change_password')}
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => Modal.confirm({
+            title: 'Confirm',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Change password',
+            okText: 'Ok',
+            cancelText: 'Cancel',
+            onOk: () => { handleChangePassword() },
+          })}
+        >
+          {I18n.t('frontend.change_password')}
+        </div>
       </Menu.Item>
       <Menu.Item key="delete">
         <div
