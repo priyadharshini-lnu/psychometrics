@@ -50,7 +50,7 @@ const ReportsMenu = reports => (
 )
 
 const renderButtonContent = ({
-  mindmill, mindmillUrl, url, status, assignedReports, needConfirm, assessmentCategory,
+  mindmill, mindmillUrl, url, status, userReports, needConfirm, assessmentCategory,
 }, setShowConfirm, loading, loadAssessmentOrCheckingWizard) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
@@ -79,7 +79,7 @@ const renderButtonContent = ({
   }
 
   if (status === 'completed') {
-    if (!assignedReports.length || assessmentCategory === 'agile') {
+    if (!userReports.length || assessmentCategory === 'agile') {
       return (
         <a>
           <CheckOutlined />
@@ -88,11 +88,11 @@ const renderButtonContent = ({
         </a>
       )
     }
-    if (assignedReports.length > 1) {
+    if (userReports.length > 1) {
       return (
         <Dropdown
           trigger={['click']}
-          overlay={() => ReportsMenu(assignedReports)}
+          overlay={() => ReportsMenu(userReports)}
         >
           <div className="dropdown">
             <DownloadOutlined />
@@ -101,8 +101,8 @@ const renderButtonContent = ({
           </div>
         </Dropdown>
       )
-    } if (assignedReports.length === 1) {
-      const report = assignedReports[0]
+    } if (userReports.length === 1) {
+      const report = userReports[0]
       return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
     }
   }
@@ -115,7 +115,7 @@ const renderButtonContent = ({
   )
 }
 
-export default function SingleAssign ({ campaign: assign, acceptPolicy, history }) {
+export default function InternalAssessment ({ userAssessment, acceptPolicy, history }) {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -126,8 +126,10 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
   }
 
   const loadAssessmentOrCheckingWizard = () => {
-    if (WizardIsRequired.run(assign.assessmentExtra)) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
-    return loadAssessment(assign)
+    if (WizardIsRequired.run(userAssessment.assessmentExtra)) {
+      return routeUtils.moveTo(history, '', `/system_checks/${userAssessment.assessmentId}/${userAssessment.id}`)
+    }
+    return loadAssessment(userAssessment)
   }
 
   const accept = () => {
@@ -135,7 +137,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
     setLoading(true)
 
     acceptPolicy().then(() => {
-      loadAssessmentOrCheckingWizard(assign)
+      loadAssessmentOrCheckingWizard(userAssessment)
     })
   }
   return (
@@ -147,12 +149,12 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
           <div className="cover">
             <div className="caption">
               <div className="icon">
-                <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[assign.assessmentCategory]}`} />
+                <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
               </div>
             </div>
             <div className="card-progress">
               <Progress
-                percent={assign.completionPercent || 0}
+                percent={userAssessment.completionPercent || 0}
               />
             </div>
           </div>
@@ -161,23 +163,23 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
         <div className="card-body">
           <div className="card-content">
             <div className="card-title">
-              {assign.assessmentName}
+              {userAssessment.assessmentName}
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">
                 <ClockCircleOutlined />
                 {' '}
-                {assign.timing}
+                {userAssessment.timing}
               </Col>
             </Row>
             <div className="divider" />
             <div className="button">
-              {renderButtonContent(assign, setShowConfirm, loading, loadAssessmentOrCheckingWizard)}
+              {renderButtonContent(userAssessment, setShowConfirm, loading, loadAssessmentOrCheckingWizard)}
             </div>
           </div>
         </div>
       </Card>
-      {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
+      {userAssessment.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
     </Col>
   )
 }

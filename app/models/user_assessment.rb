@@ -10,5 +10,9 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result
 
+  def completed?
+    users_result&.completed?
+  end
+
   alias result users_result
 end

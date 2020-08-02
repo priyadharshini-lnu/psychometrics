@@ -21,6 +21,7 @@ export default function Evaluation ({
     loaded, error, assessment, results,
     results: {
       id,
+      user_assessment_id: userAssessmentId,
       subject,
       user,
       is_self: isSelf,
@@ -186,7 +187,7 @@ export default function Evaluation ({
                     id="pass_assessment"
                     type={approve_evaluation ? 'view_results' : 'pass_assessment'}
                     isThreesixty="true"
-                    resultsUrl={`/threesixty_campaigns/${params.campaignId}/users_results/${id}`}
+                    resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
                     data={assessment}
                     result={results}
                     dashboardUrl={`/threesixty_campaigns/${params.campaignId}`}

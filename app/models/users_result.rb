@@ -10,9 +10,8 @@ class UsersResult < ApplicationRecord
   has_one :participant, class_name: 'Threesixty::Participant'
   belongs_to :campaign
   belongs_to :norm
-
   has_many :media_responses
-  has_one :user_assessment
+  has_many :user_assessments
 
   enum status: { not_started: 0, in_progress: 1, completed: 2 }
 

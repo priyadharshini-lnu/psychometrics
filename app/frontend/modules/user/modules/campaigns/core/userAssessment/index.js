@@ -1,4 +1,4 @@
-// import { takeLatest } from 'redux-saga/effects'
+import { takeLatest, put } from 'redux-saga/effects'
 
 const FETCH = 'userAssessment/FETCH'
 const FETCH_FAILURE = 'userAssessment/FETCH_FAILURE'
@@ -15,10 +15,10 @@ export const fetchAssessment = (userAssessmentId, isEdit) => ({
   isEdit,
 })
 
-export const fetchUserAssessment = (assignId, isEdit) => ({
+export const fetchUserAssessment = (userAssessmentId, isEdit) => ({
   type: FETCH,
   request: {
-    url: `/user_assessments/${assignId}`,
+    url: `/user_assessments/${userAssessmentId}`,
     camelize: false,
     body: { edit: isEdit, cache: new Date().valueOf() },
   },
@@ -37,17 +37,17 @@ export const defaultState = {
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, results: action.response, loaded: true }),
   [FETCH_FAILURE]: state => ({ ...state, loaded: true, error: true }),
-  [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response, loaded: true }),
+  [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
 }
 export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }
 
-// function* genFetchResult ({ requestAction: { userAssessmentId, isEdit } }) {
-//   fetch result
-// }
+function* genFetchResult ({ requestAction: { userAssessmentId, isEdit } }) {
+  yield put(fetchUserAssessment(userAssessmentId, isEdit))
+}
 
 export const watchers = [
-  // takeLatest(FETCH_ASSESSMENT, genFetchResult),
+  takeLatest(FETCH_ASSESSMENT, genFetchResult),
 ]

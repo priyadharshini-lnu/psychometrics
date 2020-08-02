@@ -4,9 +4,13 @@ module EndUser
   class UserAssessmentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :assessment_extra, :assessment_id
+               :assessment_extra, :assessment_id, :status, :user_reports
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
+
+    def status
+      object.users_result&.status
+    end
 
     def url
       object.assessment.agile? ? agile_assign_path(object) : pass_user_assessment_path(object)
@@ -15,7 +19,7 @@ module EndUser
     def type
       return 'hogan' if object.assessment.hogan?
 
-      'single_assign'
+      'user_assessment'
     end
 
     def user_id
@@ -75,6 +79,10 @@ module EndUser
 
     def assessment_category
       object.assessment.category
+    end
+
+    def user_reports
+      []
     end
   end
 end

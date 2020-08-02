@@ -5,13 +5,17 @@ class UsersResultSerializer < ActiveModel::Serializer
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
-             :subject_datasheet, :highlights
+             :subject_datasheet, :highlights, :user_assessment_id
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
+
+  def user_assessment_id
+    participant&.id
+  end
 
   def available_translations
     ::Translation.available_translation_for_assessment(object.assessment_id)
