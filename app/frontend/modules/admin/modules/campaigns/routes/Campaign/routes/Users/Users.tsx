@@ -274,11 +274,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           role="button"
           tabIndex={-1}
           onClick={() => Modal.confirm({
-            title: `Change password ${userPresenter.getFullName({ firstName, lastName })} ?`,
+            title: I18n.t('frontend.campaign.users.change_password_confirmation_title',
+              {
+                full_name: userPresenter.getFullName({ firstName, lastName }),
+              }),
             icon: <ExclamationCircleOutlined />,
-            content: 'Are you sure you want to send instructions with link to change password?',
-            okText: 'Yes',
-            cancelText: 'No',
+            content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
+            okText: I18n.t('yes'),
+            cancelText: I18n.t('no'),
             onOk: () => { handleChangePassword() },
           })}
         >
