@@ -12,6 +12,7 @@ import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
 
 import User from 'modules/admin/modules/campaigns/interfaces/user'
+import userPresenter from 'presenters/user'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
 import ToolsDropdown from './ToolsDropdown'
@@ -198,6 +199,8 @@ const UserList: React.FC<Props> = ({
                       userId: user.id,
                       email: user.email,
                       remove: () => remove(projectId, campaignId, user.id),
+                      firstName: user.firstName,
+                      lastName: user.lastName,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -233,10 +236,12 @@ interface ActionMenuProps {
   userId: number
   email: string
   remove(projectId: string, campaignId: string, id: number): void
+  firstName: string
+  lastName: string
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, projectId, campaignId, userId, email,
+  onEdit, resetPassword, remove, projectId, campaignId, userId, firstName, lastName,
 }) => {
   const handleDelete = () => {
     remove(projectId, campaignId, userId)
@@ -269,11 +274,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           role="button"
           tabIndex={-1}
           onClick={() => Modal.confirm({
-            title: 'Confirm',
+            title: `Change password ${userPresenter.getFullName({ firstName, lastName })} ?`,
             icon: <ExclamationCircleOutlined />,
-            content: 'Change password',
-            okText: 'Ok',
-            cancelText: 'Cancel',
+            content: 'Are you sure you want to send instructions with link to change password?',
+            okText: 'Yes',
+            cancelText: 'No',
             onOk: () => { handleChangePassword() },
           })}
         >
