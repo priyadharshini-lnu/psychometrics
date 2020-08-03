@@ -6,7 +6,7 @@ import tteLogo from 'modules/user/assets/images/tteLogo.svg'
 import { isNull } from 'lodash'
 
 export default function Footer ({
-  isFrame, privacyText, privacyPageLink, projectLogo, projectName,
+  isFrame, privacyText, privacyPageLink, secondaryLogo, projectName,
 }) {
   if (isFrame) return isFrame
 
@@ -29,9 +29,9 @@ export default function Footer ({
               )}
             </div>
             <div className="partner-logo">
-              {isNull(projectLogo)
-                ? <img src={lighthouseLogo} alt="Lighthouse" />
-                : <img src={projectLogo} alt={projectName} />
+              {secondaryLogo
+                ? <img src={secondaryLogo} alt={projectName} />
+                : <img src={lighthouseLogo} alt="Lighthouse" />
               }
             </div>
           </div>

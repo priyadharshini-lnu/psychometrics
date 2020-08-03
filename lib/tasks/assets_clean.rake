@@ -4,7 +4,7 @@ Rake::Task['assets:clean'].enhance do
   if ENV.fetch('CLEAN_NODE_MODULES', '') == 'enabled'
     Rails.logger.info 'Deleting node_modules'
     exclude_folders = ['puppeteer']
-    Dir['node_modules/**'].each do |f|
+    Dir.glob('node_modules/*', File::FNM_DOTMATCH).tap { |a| a.shift(2) }.each do |f|
       if exclude_folders.include?(f.gsub('node_modules/', ''))
         system("cd #{f} && yarn install")
       else

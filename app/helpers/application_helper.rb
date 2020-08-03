@@ -12,8 +12,10 @@ module ApplicationHelper
   def project_background
     if @current_project&.background&.url
       "background-image: url('#{@current_project.background.url}');"
-    elsif @current_project&.background_color
+    elsif @current_project&.background_color.present?
       "background: #{@current_project.background_color};"
+    else
+      random_background
     end
   end
 
