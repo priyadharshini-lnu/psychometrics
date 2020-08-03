@@ -3,7 +3,7 @@ import { EventEmitter } from 'fbemitter'
 import { perform } from 'rb/core/temp/socket'
 import I18nStore from 'rb/store/I18nStore'
 import {
-  PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY,
+  PSYCHOMETRIC, HOGAN, MINDMILL, THREESIXTY, AGILE,
 } from 'rb/models/Assessment'
 import Filter from './Filter'
 
@@ -22,6 +22,11 @@ export const SOURCE_TYPES = {
     { value: 'Factor', label: 'Factors', condition: true },
   ],
   [THREESIXTY]: [
+    { value: 'Question', label: 'Question', condition: false },
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [AGILE]: [
     { value: 'Question', label: 'Question', condition: false },
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },
