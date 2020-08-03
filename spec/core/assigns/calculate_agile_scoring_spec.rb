@@ -130,7 +130,7 @@ describe Assigns::CalculateAgileScoring do
 
     it 'adds factor score' do
       factor_score = @assign.scoring.first.last
-      expect(factor_score).to include('factor_score')
+      expect(factor_score).to include('score')
     end
 
     it 'adds zscore' do
@@ -140,7 +140,7 @@ describe Assigns::CalculateAgileScoring do
 
     it 'adds normed score' do
       factor_score = @assign.scoring.first.last
-      expect(factor_score).to include('normed_score')
+      expect(factor_score).to include('norm_score')
     end
   end
 end
