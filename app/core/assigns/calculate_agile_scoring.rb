@@ -71,7 +71,6 @@ module Assigns
         scoring[item['factorId']]['blocks'] << {
           block['id'] => {
             count: correct_answer_count,
-            # TODO: Refactor: should have a default item score?
             item_score: item['itemScore'] || 1
           }
         }
@@ -98,6 +97,18 @@ module Assigns
 
     def get_factors_norm(factor_id)
       norm.factors_norms.find { |fn| fn.factor_id == factor_id }
+    end
+
+    def get_factor(factor_id)
+      norm.factors.find { |f| f.id == factor_id }
+    end
+
+    def strategy_questions
+      # TODO
+    end
+
+    def strategy_sub_factors_average
+      # TODO
     end
   end
 end
