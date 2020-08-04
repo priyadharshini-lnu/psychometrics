@@ -26,6 +26,7 @@
             = p.input :text, label: t('.privacy_text')
             = p.input :link, as: :string, label: t('.privacy_link')
         = f.input :two_factor_enabled, label: t('.2fa_enable')
+        = f.input :enable_live_chat, label: t('.enable_live_chat')
       .clearfix
       -if policy(:client).design?
         .well

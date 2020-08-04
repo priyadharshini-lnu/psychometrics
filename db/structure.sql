@@ -677,7 +677,8 @@ CREATE TABLE public.clients (
     privacy_consent boolean,
     two_factor_enabled boolean DEFAULT false,
     strong_password_enabled boolean DEFAULT false,
-    secondary_logo character varying
+    secondary_logo character varying,
+    enable_live_chat boolean DEFAULT false NOT NULL
 );
 
 
@@ -7003,4 +7004,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200730091354'),
 ('20200723074036'),
 ('20200723074255'),
-('20200727190907');
+('20200727190907'),
+('20200729181439');
