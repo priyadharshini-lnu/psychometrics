@@ -11,7 +11,7 @@ module Users
 
     def create
       @form = Users::RegisterForm.from_params(sign_up_params).
-              with_context(project: @current_project)
+              with_context(project: @current_project, code: sign_up_params[:registration_code])
 
       if @form.valid?
         Users::Register.call(@form, @current_project) do
