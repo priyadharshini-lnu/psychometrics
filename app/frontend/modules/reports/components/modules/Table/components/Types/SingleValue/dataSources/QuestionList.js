@@ -2,10 +2,12 @@ import _ from 'lodash'
 import Select from 'react-select'
 import React from 'react'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
+import connect from './connect'
 
 const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 
-export default function QuestionList ({ model, onChange, questions }) {
+function QuestionList ({ model, onChange, getQuestions }) {
+  const questions = getQuestions(model.assessment_id)
   const findQuestion = id => _.find(questions, question => question.id === id)
 
   const onChangeQuestion = ({ id }) => {
@@ -51,7 +53,7 @@ export default function QuestionList ({ model, onChange, questions }) {
             getOptionValue={opt => opt.value}
             isClearable={false}
             isMulti
-            onChange={choices => onChange('questionChoiceIds', choices.map(ch => ch.value))}
+            onChange={choices => onChange('questionChoiceIds', (choices || []).map(ch => ch.value))}
             placeholder="All Responses"
           />
         </div>
@@ -59,3 +61,5 @@ export default function QuestionList ({ model, onChange, questions }) {
     </div>
   )
 }
+
+export default connect(QuestionList)
