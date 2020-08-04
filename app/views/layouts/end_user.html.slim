@@ -35,7 +35,9 @@ html
   - if @current_project.enable_live_chat?
     javascript:
       (function(d,t) {
-        const { liveChat: config, currentUser: user } = #{@init_state.to_json.html_safe};
+        var state = #{@init_state.to_json.html_safe};
+        var config = state.liveChat;
+        var user = state.currentUser;
         var BASE_URL = config.url;  // Settings/ENV CHATWOOT_BASE_URL
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src= BASE_URL + "/packs/js/sdk.js";
@@ -45,7 +47,7 @@ html
             websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
             baseUrl: BASE_URL
           })
-          var userId = user.id;
+          var userId = String(user.id);
           if (localStorage.chatwootUserId !== userId) {
             window.$chatwoot.reset()
             localStorage.chatwootUserId = userId
@@ -53,7 +55,7 @@ html
           setTimeout(function(){
             window.$chatwoot.setUser(userId, {
               email: user.email,
-              name: user.fullName,
+              name: user.fullName
             })
           }, 1000)
         }
