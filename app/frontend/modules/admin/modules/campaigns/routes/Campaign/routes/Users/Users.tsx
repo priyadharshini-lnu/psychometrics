@@ -241,14 +241,24 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, projectId, campaignId, userId, firstName, lastName,
+  onEdit, resetPassword, remove, projectId, campaignId, userId, firstName, lastName, email,
 }) => {
   const handleDelete = () => {
     remove(projectId, campaignId, userId)
   }
 
   const handleChangePassword = () => {
-    resetPassword(projectId, campaignId, userId)
+    Modal.confirm({
+      title: I18n.t('frontend.campaign.users.change_password_confirmation_title',
+        {
+          full_name: userPresenter.getFullName({ firstName, lastName }),
+        }),
+      icon: <ExclamationCircleOutlined />,
+      content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
+      okText: I18n.t('yes'),
+      cancelText: I18n.t('no'),
+      onOk: () => { resetPassword(projectId, campaignId, userId) },
+    })
   }
 
   return (
@@ -273,17 +283,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
-          onClick={() => Modal.confirm({
-            title: I18n.t('frontend.campaign.users.change_password_confirmation_title',
-              {
-                full_name: userPresenter.getFullName({ firstName, lastName }),
-              }),
-            icon: <ExclamationCircleOutlined />,
-            content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
-            okText: I18n.t('yes'),
-            cancelText: I18n.t('no'),
-            onOk: () => { handleChangePassword() },
-          })}
+          onClick={() => handleChangePassword()}
         >
           {I18n.t('frontend.change_password')}
         </div>
