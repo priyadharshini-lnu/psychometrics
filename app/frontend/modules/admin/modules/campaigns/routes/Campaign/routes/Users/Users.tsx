@@ -28,9 +28,9 @@ const { I18n } = window
 
 interface Props {
   fetch(projectId: string, campaignId: string, tableConfig: TableConfig): void
-  remove(projectId: string, campaignId: string, id: number): void
-  toggleStatus(projectId: string, campaignId: string, id: number): void
-  resetPassword(projectId: string, campaignId: string, id: number): void
+  remove(campaignId: string, id: number): void
+  toggleStatus(campaignId: string, id: number): void
+  resetPassword(campaignId: string, id: number): void
   users: UserState
   match: {
     params: {
@@ -133,7 +133,7 @@ const UserList: React.FC<Props> = ({
                     checked={active}
                     onChange={
                       () => {
-                        toggleStatus(projectId, campaignId, id)
+                        toggleStatus(campaignId, id)
                       }
                   }
                   />
@@ -193,12 +193,12 @@ const UserList: React.FC<Props> = ({
                   overlay={() => (
                     ActionsMenu({
                       onEdit: () => openModal('UserFormModal', { projectId, campaignId, user }),
-                      resetPassword: () => resetPassword(projectId, campaignId, user.id),
+                      resetPassword: () => resetPassword(campaignId, user.id),
                       projectId,
                       campaignId,
                       userId: user.id,
                       email: user.email,
-                      remove: () => remove(projectId, campaignId, user.id),
+                      remove: () => remove(campaignId, user.id),
                       firstName: user.firstName,
                       lastName: user.lastName,
                     }) as React.ReactElement
@@ -235,7 +235,7 @@ interface ActionMenuProps {
   campaignId: string
   userId: number
   email: string
-  remove(projectId: string, campaignId: string, id: number): void
+  remove(campaignId: string, id: number): void
   firstName: string
   lastName: string
 }
@@ -244,7 +244,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   onEdit, resetPassword, remove, projectId, campaignId, userId, firstName, lastName, email,
 }) => {
   const handleDelete = () => {
-    remove(projectId, campaignId, userId)
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      content: I18n.t('frontend.campaign.users.remove', { email }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => { remove(campaignId, userId) },
+    })
   }
 
   const handleChangePassword = () => {
@@ -292,14 +299,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
-          onClick={() => Modal.confirm({
-            title: I18n.t('common.text.confirm'),
-            icon: <ExclamationCircleOutlined />,
-            content: I18n.t('frontend.campaign.users.remove', { email }),
-            okText: I18n.t('common.text.ok'),
-            cancelText: I18n.t('common.text.cancel'),
-            onOk: () => { handleDelete() },
-          })}
+          onClick={() => handleDelete()}
         >
           {I18n.t('common.actions.remove')}
         </div>

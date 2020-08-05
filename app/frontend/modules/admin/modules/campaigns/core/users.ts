@@ -34,27 +34,27 @@ export const fetch = (projectId: string, campaignId: string, tableConfig: TableC
   },
 })
 
-export const remove = (projectId: string, campaignId: string, id: number) => ({
+export const remove = (campaignId: string, id: number) => ({
   type: REMOVE,
   request: {
     method: 'delete',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}`,
+    url: `/administration/new_campaigns/${campaignId}/users/${id}`,
   },
 })
 
-export const toggleStatus = (projectId: string, campaignId: string, id: number) => ({
+export const toggleStatus = (campaignId: string, id: number) => ({
   type: TOGGLE_STATUS,
   request: {
     method: 'patch',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/toggle_status`,
+    url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
   },
 })
 
-export const resetPassword = (projectId: string, campaignId: string, id: number) => ({
+export const resetPassword = (campaignId: string, id: number) => ({
   type: RESET_PASSWORD,
   request: {
     method: 'get',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/reset_password`,
+    url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
 
