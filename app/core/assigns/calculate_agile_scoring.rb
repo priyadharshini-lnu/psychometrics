@@ -13,7 +13,7 @@ module Assigns
       return broadcast(:invalid) unless assign.completed?
       return broadcast(:invalid) if assign.norm_data.blank? || assign.norm_data.dig('id').nil?
 
-      @norm = Norm.includes(:factors_norms, :factors).find_by(id: assign.norm_data['id'])
+      @norm = Norm.includes(:factors_norms, factors: :sub_factors).find_by(id: assign.norm_data['id'])
       @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
 
       calculate
@@ -43,7 +43,7 @@ module Assigns
       scoring.tap do |original_scores|
         original_scores.each do |factor_id, original_score|
           blocks = original_score['blocks'].flat_map(&:values)
-          factor_score = blocks.sum { |hash| hash[:count] * hash[:item_score] }
+          factor_score = blocks.sum { |hash| hash[:score] * hash[:item_score] }
 
           factor_norm = get_factors_norm(factor_id)
           props = factor_norm&.props&.first
@@ -65,19 +65,33 @@ module Assigns
       questions = block.dig('questions')
 
       block_factors&.each do |item|
-        # Count correct answers in this block
-        correct_answer_count = count_correct_answers(questions, results)
+        factor = get_factor(item['factorId'])
+
+        # Calculate score for this block by factor strategy
+        score = if factor.questions_strategy?
+                  by_questions_strategy(questions, results)
+                elsif factor.sub_factors_average_strategy?
+                  by_sub_factors_average_strategy(questions, results, factor)
+                end
 
         scoring[item['factorId']]['blocks'] << {
           block['id'] => {
-            count: correct_answer_count,
+            score: score,
             item_score: item['itemScore'] || 1
           }
         }
       end
     end
 
-    def count_correct_answers(questions, results)
+    def get_factors_norm(factor_id)
+      norm.factors_norms.find { |fn| fn.factor_id == factor_id }
+    end
+
+    def get_factor(factor_id)
+      norm.factors.find { |f| f.id == factor_id }
+    end
+
+    def by_questions_strategy(questions, results)
       questions.count do |question|
         question_result = results[question['id']]
 
@@ -95,20 +109,8 @@ module Assigns
       end
     end
 
-    def get_factors_norm(factor_id)
-      norm.factors_norms.find { |fn| fn.factor_id == factor_id }
-    end
-
-    def get_factor(factor_id)
-      norm.factors.find { |f| f.id == factor_id }
-    end
-
-    def strategy_questions
-      # TODO
-    end
-
-    def strategy_sub_factors_average
-      # TODO
+    def by_sub_factors_average_strategy(questions, results, factor)
+      sub_factors = factor.sub_factors.map(:id)
     end
   end
 end

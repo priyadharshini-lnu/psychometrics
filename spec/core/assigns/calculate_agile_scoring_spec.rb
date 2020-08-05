@@ -123,9 +123,9 @@ describe Assigns::CalculateAgileScoring do
     it 'counts correct answers properly' do
       scoring = @assign.scoring
       block = scoring[@factor_id.to_s]['blocks'].first
-      count = block.values.first['count']
+      score = block.values.first['score']
 
-      expect(count).to eq(2)
+      expect(score).to eq(2)
     end
 
     it 'adds factor score' do
