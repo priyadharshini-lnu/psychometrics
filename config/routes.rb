@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #
   namespace :administration do
     get 'dashboard', to: 'home#index'
+    post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
 

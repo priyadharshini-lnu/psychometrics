@@ -5,7 +5,6 @@ module Administration
     class NewCampaignsController < Administration::Projects::BaseController
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
-      before_action :init_breadcrumbs
       before_action :set_campaign, only: %i[show update assessments_and_reports]
 
       def index
@@ -64,12 +63,6 @@ module Administration
       end
 
       private
-
-      def init_breadcrumbs
-        add_breadcrumb t('administration.breadcrumbs.clients'), %i[administration root]
-        add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
-        add_breadcrumb project.decorate.display_name, administration_project_new_campaigns_path(project)
-      end
 
       def pundit_authorize
         authorize @campaign || Campaign

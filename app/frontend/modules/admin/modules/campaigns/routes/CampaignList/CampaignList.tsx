@@ -14,11 +14,14 @@ import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from '../CampaignList/CommonCampaignFormModal'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
+import Breadcrumb from '../../components/Breadcrumb'
 
 const MODALS = {
   CommonCampaignFormModal,
   ThreesixtyCampaignFormModal,
 }
+
+const { I18n } = window
 
 const { Column } = Table
 const { Search } = Input
@@ -71,6 +74,23 @@ const CampaignList: React.FC<Props> = ({
 
   return (
     <div>
+      <Breadcrumb
+        request={{
+          fields: ['project', 'client'],
+          data: {
+            projectId: parseInt(projectId, 10),
+          },
+        }}
+        crumbs={[{
+          link: () => '/administration',
+          label: () => I18n.t('administration.clients.tenancies'),
+        }, {
+          link: state => `/administration/clients/${state.client.id}/projects`,
+          label: state => state.client.name,
+        }, {
+          label: state => state.project.name,
+        }]}
+      />
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />

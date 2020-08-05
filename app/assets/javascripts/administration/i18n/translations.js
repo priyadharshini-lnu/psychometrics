@@ -854,6 +854,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
+      },
+      "top_sidebar_without_breadcrumbs": {
+        "search": "Search...",
+        "sign_out_message": {
+          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
+          "title": "Log <strong>Out</strong> ?"
+        }
       }
     },
     "blocks": {
@@ -2651,6 +2658,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
@@ -7789,6 +7797,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
+      },
+      "top_sidebar_without_breadcrumbs": {
+        "search": "Search...",
+        "sign_out_message": {
+          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
+          "title": "Log <strong>Out</strong> ?"
+        }
       }
     },
     "blocks": {
@@ -9586,6 +9601,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
@@ -14717,6 +14733,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
+      },
+      "top_sidebar_without_breadcrumbs": {
+        "search": "Search...",
+        "sign_out_message": {
+          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
+          "title": "Log <strong>Out</strong> ?"
+        }
       }
     },
     "blocks": {
@@ -16514,6 +16537,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."

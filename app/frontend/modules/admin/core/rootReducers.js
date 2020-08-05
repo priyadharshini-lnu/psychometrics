@@ -10,6 +10,7 @@ import participantOptions from '../modules/threeSixtyCampaign/core/participantOp
 import reportOptions from '../modules/threeSixtyCampaign/core/reportOptions/reducers'
 import modals from './ui/modals'
 import autocomplete from './ui/autocomplete'
+import breadcrumbs from './ui/breadcrumbs'
 import request from './request'
 import datasheetFields from '../modules/threeSixtyCampaign/core/datasheetFields'
 import participants from '../modules/threeSixtyCampaign/core/participants'
@@ -50,6 +51,7 @@ const createRootReducer = history => combineReducers({
   ui: combineReducers({
     modals,
     autocomplete,
+    breadcrumbs,
   }),
   currentUser,
   request,
