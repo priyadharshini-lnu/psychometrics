@@ -22,6 +22,7 @@ export const CREATE = 'resource/campaigns/user/CREATE'
 export const UPDATE = 'resource/campaigns/user/UPDATE'
 export const REMOVE = 'resource/campaigns/user/REMOVE'
 export const TOGGLE_STATUS = 'resource/campaigns/user/TOGGLE_STATUS'
+export const RESET_PASSWORD = 'resource/campaigns/user/RESET_PASSWORD'
 
 export const fetch = (projectId: string, campaignId: string, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -33,19 +34,27 @@ export const fetch = (projectId: string, campaignId: string, tableConfig: TableC
   },
 })
 
-export const remove = (projectId: string, campaignId: string, id: number) => ({
+export const remove = (campaignId: string, id: number) => ({
   type: REMOVE,
   request: {
     method: 'delete',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}`,
+    url: `/administration/new_campaigns/${campaignId}/users/${id}`,
   },
 })
 
-export const toggleStatus = (projectId: string, campaignId: string, id: number) => ({
+export const toggleStatus = (campaignId: string, id: number) => ({
   type: TOGGLE_STATUS,
   request: {
     method: 'patch',
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}/toggle_status`,
+    url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
+  },
+})
+
+export const resetPassword = (campaignId: string, id: number) => ({
+  type: RESET_PASSWORD,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
 

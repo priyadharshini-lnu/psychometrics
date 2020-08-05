@@ -234,21 +234,37 @@ class User < ApplicationRecord
       %w[all users administration]
     end
 
+    def find_user_with_membership(project, subdomain, warden_conditions)
+      Users::Regular.enabled.identified.joins(:clients).
+        where.has do
+        project_id.eq(project.id) &
+          email.eq(warden_conditions[:email]&.downcase) &
+          clients.subdomain.eq(subdomain) &
+          clients.disabled.not_eq(true)
+      end.first
+    end
+
+    def find_user_for_new_campaign(project, warden_conditions)
+      Users::Regular.enabled.identified.
+        where.has do
+        project_id.eq(project.id) &
+          email.eq(warden_conditions[:email]&.downcase)
+      end.first
+    end
+
     # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
       # Cut from Subdomain part of expected Subdomain
       subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
-        Users::Regular.enabled.
-          identified.
-          joins(:clients).
-          where.has do
-          project_id.eq(project.id) &
-            email.eq(warden_conditions[:email]&.downcase) &
-            clients.subdomain.eq(subdomain) &
-            clients.disabled.not_eq(true)
-        end.first
+        membership = Membership.join_user.find_by(users: { email: warden_conditions[:email]&.downcase },
+          client_id: project.id)
+        if membership
+          find_user_with_membership(project, subdomain, warden_conditions)
+        else
+          find_user_for_new_campaign(project, warden_conditions)
+        end
       else
         enabled.
           identified.

@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class UsersController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update spoof destroy toggle_status]
+      before_action :set_resource, only: %i[update spoof destroy toggle_status reset_password]
 
       def index
         users = campaign.
@@ -69,6 +69,11 @@ module Administration
           campaign_user: campaign_user
         )
         render json: resource.id
+      end
+
+      def reset_password
+        resource.send_reset_password_instructions
+        render json: :ok
       end
 
       def spoof

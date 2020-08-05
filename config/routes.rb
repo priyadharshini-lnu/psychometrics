@@ -81,6 +81,12 @@ Rails.application.routes.draw do
             post :import_results
           end
         end
+        resources :users do
+          member do
+            patch :toggle_status
+            get :reset_password
+          end
+        end
       end
     end
 
@@ -88,11 +94,7 @@ Rails.application.routes.draw do
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
           resources :registration_codes
-          resources :users do
-            member do
-              patch :toggle_status
-            end
-          end
+          resources :users
         end
       end
 

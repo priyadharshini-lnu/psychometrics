@@ -4963,7 +4963,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "ok": "Ok",
+      "false": "No",
+      "true": "Yes"
     }
   },
   "confirmation": {
@@ -5534,7 +5536,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?"
       }
     },
     "change_password": "Change password",
@@ -11906,7 +11910,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "ok": "Ok",
+      "false": "No",
+      "true": "Yes"
     }
   },
   "confirmation": {
@@ -12473,7 +12479,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?"
       }
     },
     "change_password": "Change password",
@@ -18842,7 +18850,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "ok": "Ok",
+      "false": "No",
+      "true": "Yes"
     }
   },
   "confirmation": {
@@ -19409,7 +19419,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?"
       }
     },
     "change_password": "Change password",

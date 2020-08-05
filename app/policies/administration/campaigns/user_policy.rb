@@ -7,6 +7,10 @@ module Administration
         @user.is?(:superadmin, :client_admin, :project_admin)
       end
 
+      def reset_password?
+        update? && !@record.is_anonym?
+      end
+
       def spoof?
         @user.is?(:superadmin)
       end
