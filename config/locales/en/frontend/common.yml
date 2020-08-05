@@ -11,3 +11,9 @@ en:
       id: Id
       category: Category
       action: Action
+    actions:
+      remove: Remove
+    text:
+      ok: Ok
+      confirm: Confirm
+      cancel: Cancel

@@ -4944,10 +4944,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "clear_filter": "Clear Filter",
   "common": {
+    "actions": {
+      "remove": "Remove"
+    },
     "column": {
       "action": "Action",
       "category": "Category",
       "id": "Id"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -5516,6 +5524,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "campaign": {
+      "users": {
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
     "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
@@ -11866,10 +11879,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "clear_filter": "Clear Filter",
   "common": {
+    "actions": {
+      "remove": "Remove"
+    },
     "column": {
       "action": "Action",
       "category": "Category",
       "id": "Id"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -12434,6 +12455,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "campaign": {
+      "users": {
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
     "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
@@ -18781,10 +18807,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "clear_filter": "Clear Filter",
   "common": {
+    "actions": {
+      "remove": "Remove"
+    },
     "column": {
       "action": "Action",
       "category": "Category",
       "id": "Id"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -19349,6 +19383,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "campaign": {
+      "users": {
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
     "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",

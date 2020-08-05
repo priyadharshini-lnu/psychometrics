@@ -3,12 +3,12 @@
 module Administration
   module Campaigns
     class UsersController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update spoof]
+      before_action :set_resource, only: %i[update spoof destroy toggle_status]
 
       def index
         users = campaign.
                 users.
-                includes(:creator, :modifier).
+                includes(:creator, :modifier, :campaign_users).
                 ransack(params[:filters]).result
 
         respond_to do |format|
@@ -19,7 +19,9 @@ module Administration
           end
           format.json do
             serialized_users = ActiveModelSerializers::SerializableResource.new(
-              users.page(params[:page]), each_serializer: Administration::Campaigns::UserSerializer
+              users.page(params[:page]),
+              each_serializer: Administration::Campaigns::UserSerializer,
+              campaign_id: campaign.id
             )
 
             render json: {
@@ -34,7 +36,9 @@ module Administration
         form = ::Campaigns::Users::CreateForm.from_params(resource_params).with_context(campaign: campaign)
         if form.valid?
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
-            on(:ok) { |user| return render json: user, serializer: Administration::Campaigns::UserSerializer }
+            on(:ok) do |user|
+              return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
+            end
             on(:error) { |errors| return render json: { errors: errors }, status: 422 }
           end
         else
@@ -50,6 +54,21 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def toggle_status
+        resource.campaign_users.find_by(campaign_id: params[:new_campaign_id]).toggle!(:active)
+        render json: resource,
+        serializer: Administration::Campaigns::UserSerializer,
+        campaign_id: params[:new_campaign_id]
+      end
+
+      def destroy
+        campaign_user = resource.campaign_users.find_by(campaign_id: params[:new_campaign_id])
+        ::CampaignUsers::Remove.call!(
+          campaign_user: campaign_user
+        )
+        render json: resource.id
       end
 
       def spoof

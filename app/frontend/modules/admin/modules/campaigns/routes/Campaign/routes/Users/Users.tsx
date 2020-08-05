@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { AppstoreOutlined, PlusOutlined, MoreOutlined } from '@ant-design/icons'
+import {
+  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
+} from '@ant-design/icons'
 import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
+
 import User from 'modules/admin/modules/campaigns/interfaces/user'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
@@ -24,6 +27,8 @@ const { I18n } = window
 
 interface Props {
   fetch(projectId: string, campaignId: string, tableConfig: TableConfig): void
+  remove(projectId: string, campaignId: string, id: number): void
+  toggleStatus(projectId: string, campaignId: string, id: number): void
   users: UserState
   match: {
     params: {
@@ -58,6 +63,8 @@ const UserList: React.FC<Props> = ({
   getSortOrder,
   changePage,
   openModal,
+  remove,
+  toggleStatus,
 }) => {
   useEffect(() => {
     fetch(projectId, campaignId, tableConfig)
@@ -111,6 +118,24 @@ const UserList: React.FC<Props> = ({
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
+            />
+            <Column
+              title="Active"
+              key="enable"
+              render={
+                ({
+                  active, id,
+                }) => (
+                  <Switch
+                    checked={active}
+                    onChange={
+                      () => {
+                        toggleStatus(projectId, campaignId, id)
+                      }
+                  }
+                  />
+                )
+              }
             />
             <Column
               title="First Name"
@@ -168,6 +193,8 @@ const UserList: React.FC<Props> = ({
                       projectId,
                       campaignId,
                       userId: user.id,
+                      email: user.email,
+                      remove: () => remove(projectId, campaignId, user.id),
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -199,36 +226,56 @@ interface ActionMenuProps {
   onEdit(): void
   projectId: string
   campaignId: string
-  userId: string
+  userId: number
+  email: string
+  remove(projectId: string, campaignId: string, id: number): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, projectId, campaignId, userId,
-}) => (
-  <Menu>
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-        onClick={onEdit}
-      >
-        Edit
-      </div>
-    </Menu.Item>
-    <Menu.Item key="loginAs">
-      <a
-        href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
-      >
-        {I18n.t('frontend.login')}
-      </a>
-    </Menu.Item>
-    <Menu.Item key="changePassword">
-      {I18n.t('frontend.change_password')}
-    </Menu.Item>
-    <Menu.Item key="delete">
-      {I18n.t('frontend.delete')}
-    </Menu.Item>
-  </Menu>
-)
+  onEdit, remove, projectId, campaignId, userId, email,
+}) => {
+  const handleDelete = () => {
+    remove(projectId, campaignId, userId)
+  }
+  return (
+    <Menu>
+      <Menu.Item key="edit">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={onEdit}
+        >
+          {I18n.t('frontend.edit')}
+        </div>
+      </Menu.Item>
+      <Menu.Item key="loginAs">
+        <a
+          href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userId}/spoof`}
+        >
+          {I18n.t('frontend.login')}
+        </a>
+      </Menu.Item>
+      <Menu.Item key="changePassword">
+        {I18n.t('frontend.change_password')}
+      </Menu.Item>
+      <Menu.Item key="delete">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => Modal.confirm({
+            title: I18n.t('common.text.confirm'),
+            icon: <ExclamationCircleOutlined />,
+            content: I18n.t('frontend.campaign.users.remove', { email }),
+            okText: I18n.t('common.text.ok'),
+            cancelText: I18n.t('common.text.cancel'),
+            onOk: () => { handleDelete() },
+          })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
+      </Menu.Item>
+    </Menu>
+  )
+}
 
 export default withEnhancedTable(UserList, 'usersList', { maintainHistory: true })

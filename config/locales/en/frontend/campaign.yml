@@ -1,3 +1,6 @@
 en:
   frontend:
     closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
+    campaign:
+      users:
+        remove: 'Are you sure you want to remove user with email %{email} from this campaing?'
