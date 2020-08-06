@@ -4844,17 +4844,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
       }
     }
   },
@@ -4959,6 +4964,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "clear_filter": "Clear Filter",
   "common": {
     "actions": {
+      "cancel": "Cancel",
       "remove": "Remove"
     },
     "column": {
@@ -11807,17 +11813,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
       }
     }
   },
@@ -11922,6 +11933,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "clear_filter": "Clear Filter",
   "common": {
     "actions": {
+      "cancel": "Cancel",
       "remove": "Remove"
     },
     "column": {
@@ -18763,17 +18775,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "cancel": "Cancel",
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
       }
     }
   },
@@ -18878,6 +18895,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "clear_filter": "Clear Filter",
   "common": {
     "actions": {
+      "cancel": "Cancel",
       "remove": "Remove"
     },
     "column": {

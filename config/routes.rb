@@ -87,6 +87,8 @@ Rails.application.routes.draw do
             get :export_normed_results
             get :export_external_results
             post :import_results
+            get :norms
+            post :update_norm
           end
         end
       end

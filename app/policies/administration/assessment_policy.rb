@@ -71,6 +71,14 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
+    def update_norm?
+      assessments?
+    end
+
+    def norms?
+      assessments?
+    end
+
     def can_configure_universal_links?
       !@record.external? && @user.is?(:superadmin)
     end

@@ -2,7 +2,7 @@
 
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :enable_universal_links, :universal_link
+    attributes :id, :assessment_id, :name, :category, :norm_name, :norm_type, :enable_universal_links, :universal_link
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true

@@ -9,6 +9,7 @@ import AddReportModal from './AddReportModal'
 import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
+import UpdateNormModal from './UpdateNormModal'
 import ImportScoringModal from './ImportScoringModal'
 import styles from './styles.scss'
 
@@ -17,6 +18,7 @@ const MODALS = {
   UniversalLinkModal,
   ImportRawModal,
   ImportScoringModal,
+  UpdateNormModal,
 }
 
 interface Props {

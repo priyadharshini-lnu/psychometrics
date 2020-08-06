@@ -56,10 +56,29 @@ module Administration
         end
       end
 
+      def update_norm
+        campaign_assessment.update!(norm_id: params[:norm_id], norm_type: params[:norm_type])
+
+        CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
+
+        render json: {
+          norm_name: campaign_assessment.norm.name,
+          norm_type: campaign_assessment.norm_type
+        }
+      end
+
+      def norms
+        render json: assessment.norms
+      end
+
       private
 
       def assessment
         resource
+      end
+
+      def campaign_assessment
+        CampaignAssessment.find_by(assessment: assessment, campaign: campaign)
       end
 
       def results_params

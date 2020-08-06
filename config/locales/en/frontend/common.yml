@@ -18,6 +18,7 @@ en:
       status: Status
     actions:
       remove: Remove
+      cancel: Cancel
     model:
       campaigns: Campaigns
       assessments: Assessments

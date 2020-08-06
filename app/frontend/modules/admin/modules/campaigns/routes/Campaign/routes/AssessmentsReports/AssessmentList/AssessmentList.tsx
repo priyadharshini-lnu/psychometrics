@@ -57,14 +57,14 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
-            render={({ normName, id }) => (
+            render={({ normName, normType, id }) => (
               <a
                 onClick={
-                  () => openModal('ChangeNormModal',
+                  () => openModal('UpdateNormModal',
                     { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                 }
               >
-                {normName || 'Default'}
+                {normName ? `${normName}, ${normType}` : 'Default'}
               </a>
             )}
           />

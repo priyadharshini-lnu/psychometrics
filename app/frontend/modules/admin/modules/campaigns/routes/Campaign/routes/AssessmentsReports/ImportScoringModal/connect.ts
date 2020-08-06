@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { importScoringResults, IMPORT_SCORING_RESULTS } from 'modules/admin/modules/campaigns/core/assessments'
+import { importScoringResults, IMPORT_SCORING_RESULTS } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
 export default connect(

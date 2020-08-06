@@ -30,7 +30,7 @@ const ImportScoringModal: React.FC<Props> = ({
       visible
       onCancel={close}
       footer={[
-        <Button key="back" onClick={close}>{I18n.t('campaign_assessment.modals.import_scoring.cancel')}</Button>,
+        <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
         <Button
           key="submit"
           onClick={() => {

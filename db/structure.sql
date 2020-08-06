@@ -475,7 +475,8 @@ CREATE TABLE public.campaign_assessments (
     key_expires_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    norm_id bigint
+    norm_id bigint,
+    norm_type character varying
 );
 
 
@@ -2694,9 +2695,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2867,9 +2866,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -7022,6 +7019,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200727190907'),
 ('20200728071304'),
 ('20200729181439'),
-('20200730091354');
+('20200730091354'),
+('20200802191402');
 
 
