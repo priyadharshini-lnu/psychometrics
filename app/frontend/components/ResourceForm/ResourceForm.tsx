@@ -183,7 +183,7 @@ const ResourceForm: React.FC<Props> = ({
       {...formProps || {}}
       className="resourceForm"
     >
-      {baseErrors
+      {!_.isEmpty(baseErrors)
         && (
           <div ref={baseErrorRef}>
             <Alert

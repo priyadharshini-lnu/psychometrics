@@ -7,12 +7,21 @@ en:
     manage: Manage
     activate: Activate
   common:
+    text:
+      default: 'Default'
+      response: Response
     column:
       id: Id
       category: Category
       action: Action
+      created_at: Created at
+      status: Status
     actions:
       remove: Remove
+    model:
+      campaigns: Campaigns
+      assessments: Assessments
+      reports: Reports
     text:
       ok: Ok
       confirm: Confirm

@@ -44,6 +44,7 @@ module Campaigns
           Campaigns::Users::AddReport.call!(
             campaign_user,
             report,
+            report_family_id: form.report_family_id,
             user_access: user_access_for(report),
             operation: form.operation,
             use_license: use_new_license?(campaign_user.user, report)

@@ -20,7 +20,6 @@ const operationsOption = {
 }
 
 const UserFormModal: React.FC<Props> = ({
-  projectId,
   campaignId,
   close,
   user,
@@ -28,7 +27,7 @@ const UserFormModal: React.FC<Props> = ({
   <ResourceFormModal
     resourceName="user"
     requestScope="campaigns"
-    resourceBaseUrl={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users`}
+    resourceBaseUrl={`/administration/new_campaigns/${campaignId}/users`}
     resource={user}
     showSuccessMessages
     close={close}

@@ -12,6 +12,7 @@ import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
 
 import User from 'modules/admin/modules/campaigns/interfaces/user'
+import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/user'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
@@ -27,7 +28,7 @@ const { Option } = Select
 const { I18n } = window
 
 interface Props {
-  fetch(projectId: string, campaignId: string, tableConfig: TableConfig): void
+  fetch(campaignId: string, tableConfig: TableConfig): void
   remove(campaignId: string, id: number): void
   toggleStatus(campaignId: string, id: number): void
   resetPassword(campaignId: string, id: number): void
@@ -44,7 +45,7 @@ interface Props {
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
   changePage(page: number): void
-  openModal(name: string, data?: { projectId: string, campaignId: string, user?: User }): void
+  openModal(name: string, data?: { campaignId: string, user?: User }): void
 }
 
 const UserList: React.FC<Props> = ({
@@ -70,7 +71,7 @@ const UserList: React.FC<Props> = ({
   resetPassword,
 }) => {
   useEffect(() => {
-    fetch(projectId, campaignId, tableConfig)
+    fetch(campaignId, tableConfig)
   }, [tableConfig])
 
   const handleUserTypeFilterChange = (value: string): void => {
@@ -105,7 +106,7 @@ const UserList: React.FC<Props> = ({
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
           <div className={styles.newUserButton}>
-            <Button type="primary" onClick={() => openModal('UserFormModal', { projectId, campaignId })}>
+            <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
               <PlusOutlined />
               <span>Add User</span>
             </Button>
@@ -117,10 +118,14 @@ const UserList: React.FC<Props> = ({
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
               title="Id"
-              dataIndex="id"
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
+              render={({ id }) => (
+                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${id}`}>
+                  {id}
+                </Link>
+              )}
             />
             <Column
               title="Active"
@@ -192,7 +197,7 @@ const UserList: React.FC<Props> = ({
                 <Dropdown
                   overlay={() => (
                     ActionsMenu({
-                      onEdit: () => openModal('UserFormModal', { projectId, campaignId, user }),
+                      onEdit: () => openModal('UserFormModal', { campaignId, user }),
                       resetPassword: () => resetPassword(campaignId, user.id),
                       projectId,
                       campaignId,
@@ -230,18 +235,18 @@ const UserList: React.FC<Props> = ({
 
 interface ActionMenuProps {
   onEdit(): void
-  resetPassword(projectId: string, campaignId: string, id: number): void
+  resetPassword(): void
   projectId: string
   campaignId: string
   userId: number
   email: string
-  remove(campaignId: string, id: number): void
+  remove(): void
   firstName: string
   lastName: string
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, projectId, campaignId, userId, firstName, lastName, email,
+  onEdit, resetPassword, remove, campaignId, projectId, userId, firstName, lastName, email,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -250,7 +255,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       content: I18n.t('frontend.campaign.users.remove', { email }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: () => { remove(campaignId, userId) },
+      onOk: remove,
     })
   }
 
@@ -264,7 +269,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
       okText: I18n.t('yes'),
       cancelText: I18n.t('no'),
-      onOk: () => { resetPassword(projectId, campaignId, userId) },
+      onOk: resetPassword,
     })
   }
 

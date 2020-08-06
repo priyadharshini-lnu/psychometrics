@@ -6,6 +6,7 @@ import Modals from 'modules/admin/components/Modals/'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from './AddReportModal'
+import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
 import ImportScoringModal from './ImportScoringModal'
@@ -26,7 +27,7 @@ interface Props {
       campaignId: string
     }
   },
-  openModal(name: string, data?: { campaignId: number }): void
+  openModal(name: string, data?: { campaignId: number, strategy: Strategies }): void
 }
 
 const AssessmentsReports: React.FC<Props> = ({
@@ -49,7 +50,9 @@ const AssessmentsReports: React.FC<Props> = ({
           <div className={styles.newReportButton}>
             <Button
               type="primary"
-              onClick={() => openModal('AddReportModal', { campaignId: parsedCampaignId })}
+              onClick={
+                () => openModal('AddReportModal', { campaignId: parsedCampaignId, strategy: Strategies.MULTIPLE })
+              }
             >
               <PlusOutlined />
               <span>Add Report</span>

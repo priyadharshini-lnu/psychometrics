@@ -7,6 +7,7 @@ class UsersResult < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :assessment
+  belongs_to :norm
   has_one :participant, class_name: 'Threesixty::Participant'
   belongs_to :campaign
   belongs_to :norm

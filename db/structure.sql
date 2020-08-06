@@ -61,6 +61,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -320,12 +322,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -2980,7 +2982,8 @@ CREATE TABLE public.user_reports (
     pdf character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    user_access boolean DEFAULT false
+    user_access boolean DEFAULT false,
+    report_family_id bigint
 );
 
 
@@ -3091,12 +3094,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying
@@ -5482,6 +5485,13 @@ CREATE INDEX index_user_reports_on_campaign_id ON public.user_reports USING btre
 
 
 --
+-- Name: index_user_reports_on_report_family_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reports_on_report_family_id ON public.user_reports USING btree (report_family_id);
+
+
+--
 -- Name: index_user_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5703,6 +5713,14 @@ ALTER TABLE ONLY public.assessments_reports
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT fk_rails_120ca138e4 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_reports fk_rails_12e9be82ff; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_12e9be82ff FOREIGN KEY (report_family_id) REFERENCES public.report_families(id) ON DELETE RESTRICT;
 
 
 --
@@ -7002,6 +7020,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200723074255'),
 ('20200727142806'),
 ('20200727190907'),
+('20200728071304'),
 ('20200729181439'),
 ('20200730091354');
 

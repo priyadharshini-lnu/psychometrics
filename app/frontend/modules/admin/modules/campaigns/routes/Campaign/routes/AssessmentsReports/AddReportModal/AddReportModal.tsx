@@ -4,12 +4,15 @@ import {
   Form, Select, Table, Checkbox,
 } from 'antd'
 import _ from 'lodash'
+import { Strategies } from './interfaces'
 
 const { Column } = Table
 const { Option } = Select
 const { I18n } = window
 interface Props {
   campaignId: string
+  userId?: number
+  strategy: Strategies
   close(): void
   fetchReportFamilies(campaignId: string): Promise<{ response: ReportFamily[] }>
 }
@@ -25,14 +28,29 @@ interface Report {
   name: string
 }
 
-const operationsOption = ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response']
+const OPTIONS_BY_STRATEGY = {
+  [Strategies.SINGLE]: ({ campaignId, userId }) => ({
+    requestScope: 'userReport',
+    resourceBaseUrl: `/administration/new_campaigns/${campaignId}/users/${userId}/user_reports`,
+    operationsOption: ['add_with_existing_response', 'add_and_allow_new_response'],
+  }),
+  [Strategies.MULTIPLE]: ({ campaignId }) => ({
+    requestScope: 'campaigns',
+    resourceBaseUrl: `/administration/new_campaigns/${campaignId}/reports`,
+    operationsOption: ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response'],
+  }),
+}
 
 const AddReportModal: React.FC<Props> = ({
   campaignId,
+  userId,
+  strategy,
   close,
   fetchReportFamilies,
 }) => {
   const [reportFamilies, setReportFamilies] = useState<ReportFamily[]>([])
+
+  const { requestScope, resourceBaseUrl, operationsOption } = OPTIONS_BY_STRATEGY[strategy]({ campaignId, userId })
 
   useEffect(() => {
     fetchReportFamilies(campaignId).then(
@@ -43,8 +61,7 @@ const AddReportModal: React.FC<Props> = ({
   }, [])
 
   const reportForSelection = (reportFamilyId: number) => {
-    const reportFamily = _.find(reportFamilies,
-      (reportFamily: ReportFamily) => reportFamily.id === reportFamilyId)
+    const reportFamily = _.find(reportFamilies, (reportFamily: ReportFamily) => reportFamily.id === reportFamilyId)
 
     return reportFamily?.reports || []
   }
@@ -62,13 +79,13 @@ const AddReportModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="report"
-      requestScope="campaigns"
-      resourceBaseUrl={`/administration/new_campaigns/${campaignId}/reports`}
+      requestScope={requestScope}
+      resourceBaseUrl={resourceBaseUrl}
       showSuccessMessages
       close={close}
       scrollToFirstError
       modalProps={{ width: 620 }}
-      formProps={{ initialValues: { operation: 'skip_existing' } }}
+      formProps={{ initialValues: { operation: operationsOption[0] } }}
       transformValues={transformValues}
     >
       {({ form }) => (

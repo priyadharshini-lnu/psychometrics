@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
+import { AnyAction } from 'redux'
 
 export interface User {
   id: number
@@ -16,21 +17,31 @@ const defaultState = {
 }
 
 export const get = (state): User[] => _.get(state, ['campaigns', 'users'])
+export const getCurrent = (state): User[] => _.get(get(state), ['current'])
 
 export const FETCH = 'campaigns/FETCH_USERS'
 export const CREATE = 'resource/campaigns/user/CREATE'
 export const UPDATE = 'resource/campaigns/user/UPDATE'
-export const REMOVE = 'resource/campaigns/user/REMOVE'
-export const TOGGLE_STATUS = 'resource/campaigns/user/TOGGLE_STATUS'
-export const RESET_PASSWORD = 'resource/campaigns/user/RESET_PASSWORD'
+export const FETCH_SINGLE = 'campaigns/users/FETCH_SINGLE'
+export const REMOVE = 'campaigns/user/REMOVE'
+export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
+export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 
-export const fetch = (projectId: string, campaignId: string, tableConfig: TableConfig) => ({
+export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
   type: FETCH,
   request: {
     method: 'get',
     debounce: 500,
     tableConfig,
-    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/users`,
+    url: `/administration/new_campaigns/${campaignId}/users`,
+  },
+})
+
+export const fetchSingle = (campaignId: number, id: number) => ({
+  type: FETCH_SINGLE,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/users/${id}`,
   },
 })
 
@@ -64,13 +75,27 @@ export interface FetchAction {
     total: 0
   }
 }
+
+export interface UserDetails {
+  id: number
+  fullName: string
+  email: string
+  disabled: boolean
+  campaigns: { id: number, name: string }[]
+  createdAt: string
+  lastSignInAt: string
+}
+
 export interface State {
   list: User[]
   total: number
+  current: UserDetails
 }
 
 const HANDLERS = {
   [FETCH]: (_, { response }: FetchAction) => response,
+  [FETCH_SINGLE]: (_state, { response }: AnyAction) => (
+    { current: _.omit(response, ['userAssessments', 'userReport']) }),
   [CREATE]: (state: State, { response }: { response: User }) => (setIn(state, ['list'], [response, ...state.list])),
   [UPDATE]: (state: State, { response }: { response: User }) => (
     updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {

@@ -21,6 +21,16 @@ const shuffle = (array: any[], rnd = Math.random): any[] => {
   return result
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const joinJSXElements = (arr: any[], sep: string) => {
+  if (arr.length === 0) {
+    return []
+  }
+
+  return arr.slice(1).reduce((xs, x) => xs.concat([sep, x]), [arr[0]])
+}
+
 export default {
   shuffle,
+  joinJSXElements,
 }

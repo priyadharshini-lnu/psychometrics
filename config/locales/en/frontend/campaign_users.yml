@@ -1,0 +1,8 @@
+en:
+  campaign_users:
+    details:
+      last_login: Last login
+      not_logged_in_yet: Not logged in yet
+      completion_status: Completion status
+    actions:
+      add_report: Add report

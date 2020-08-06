@@ -15,8 +15,10 @@ module Campaigns
 
       def call
         Licenses::Use.call(campaign, user, report) if options[:use_license]
-        user_report = UserReport.create_with(user_access: options[:user_access]).
-                      find_or_create_by!(campaign: campaign, report: report, user: user)
+        user_report = UserReport.create_with(
+          user_access: options[:user_access],
+          report_family_id: options[:report_family_id]
+        ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
         user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment) }
         generate_report_pdf(user_report)

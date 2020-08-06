@@ -116,6 +116,7 @@ class User < ApplicationRecord
             through: :client_admin_clients,
             source: :available_reports,
             class_name: 'Report'
+  has_many :campaigns, through: :campaign_users
 
   accepts_nested_attributes_for :memberships
 

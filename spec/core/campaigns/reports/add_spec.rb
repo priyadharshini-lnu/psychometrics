@@ -59,6 +59,7 @@ describe Campaigns::Reports::Add do
     expect(Campaigns::Users::AddReport).to receive(:call!).with(
       campaign_user,
       report,
+      report_family_id: nil,
       user_access: true,
       operation: form.operation,
       use_license: true

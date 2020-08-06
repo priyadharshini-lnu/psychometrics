@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class UsersController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update spoof destroy toggle_status reset_password]
+      before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password]
 
       def index
         users = campaign.
@@ -30,6 +30,10 @@ module Administration
             }
           end
         end
+      end
+
+      def show
+        render json: resource, serializer: Administration::UserDetailSerializer
       end
 
       def create
@@ -60,7 +64,7 @@ module Administration
         resource.campaign_users.find_by(campaign_id: params[:new_campaign_id]).toggle!(:active)
         render json: resource,
         serializer: Administration::Campaigns::UserSerializer,
-        campaign_id: params[:new_campaign_id]
+        campaign_id: campaign.id
       end
 
       def destroy
@@ -91,6 +95,10 @@ module Administration
 
       def resource_class
         User
+      end
+
+      def campaign_user
+        @campaign_user ||= resource.campaigns_users.find_by(campaign: campaign)
       end
     end
   end

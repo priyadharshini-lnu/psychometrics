@@ -17,3 +17,13 @@
     line-height: 25px;
   }
 }
+
+:global {
+  .horizontalLabels {
+    .ant-form-item {
+      flex-direction: row-reverse !important;
+      align-items: flex-end;
+      margin-bottom: 0px;
+    }
+  }
+}

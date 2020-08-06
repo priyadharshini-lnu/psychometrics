@@ -22,6 +22,7 @@ interface Props {
   resourceBaseUrl?: string
   showSuccessMessages?: boolean
   onSuccessfulSubmission?(response: object): void
+  request?: Partial<Request>
   storeManager?: {
     form: FormInstance
   }
@@ -29,6 +30,12 @@ interface Props {
   formProps?: FormProps
   transformValues?(values: object): object
   scrollToFirstError?: boolean
+}
+
+interface Request {
+  fetchResource(): void
+  createResource(values: object): void
+  updateResource(values: object): void
 }
 
 const ResourceFormModal: React.FC<Props> = (props) => {

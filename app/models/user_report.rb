@@ -5,6 +5,7 @@ class UserReport < ApplicationRecord
   belongs_to :report
   belongs_to :norm
   belongs_to :campaign
+  belongs_to :report_family
   has_one :project, through: :campaign
   has_one :threesixty_campaign, through: :campaign
 

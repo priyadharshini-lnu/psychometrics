@@ -854,13 +854,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
-      },
-      "top_sidebar_without_breadcrumbs": {
-        "search": "Search...",
-        "sign_out_message": {
-          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
-          "title": "Log <strong>Out</strong> ?"
-        }
       }
     },
     "blocks": {
@@ -2112,6 +2105,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -4674,7 +4668,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
+      "extend_time": "Extend time",
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -4878,6 +4874,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "report": "Report"
     }
   },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -4958,14 +4964,19 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "column": {
       "action": "Action",
       "category": "Category",
-      "id": "Id"
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
     },
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok",
-      "false": "No",
-      "true": "Yes"
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -5536,9 +5547,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?"
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },
     "change_password": "Change password",
@@ -6165,6 +6176,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -7801,13 +7817,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
-      },
-      "top_sidebar_without_breadcrumbs": {
-        "search": "Search...",
-        "sign_out_message": {
-          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
-          "title": "Log <strong>Out</strong> ?"
-        }
       }
     },
     "blocks": {
@@ -9059,6 +9068,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -11621,7 +11631,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -11825,6 +11837,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "report": "Report"
     }
   },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -11905,14 +11927,19 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "column": {
       "action": "Action",
       "category": "Category",
-      "id": "Id"
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
     },
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok",
-      "false": "No",
-      "true": "Yes"
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -12479,9 +12506,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?"
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },
     "change_password": "Change password",
@@ -13108,6 +13135,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -14741,13 +14773,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
           "title": "Log <strong>Out</strong> ?"
         }
-      },
-      "top_sidebar_without_breadcrumbs": {
-        "search": "Search...",
-        "sign_out_message": {
-          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
-          "title": "Log <strong>Out</strong> ?"
-        }
       }
     },
     "blocks": {
@@ -15999,6 +16024,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -18561,7 +18587,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -18765,6 +18793,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "report": "Report"
     }
   },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -18845,14 +18883,19 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "column": {
       "action": "Action",
       "category": "Category",
-      "id": "Id"
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
     },
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok",
-      "false": "No",
-      "true": "Yes"
+      "ok": "Ok"
     }
   },
   "confirmation": {
@@ -19419,9 +19462,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?",
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?"
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },
     "change_password": "Change password",
@@ -20048,6 +20091,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",

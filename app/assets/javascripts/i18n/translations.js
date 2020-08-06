@@ -20,7 +20,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
+      "extend_time": "Extend time",
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -214,6 +216,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -600,7 +607,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -794,6 +803,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -1177,7 +1191,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
       "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
@@ -1371,6 +1387,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
