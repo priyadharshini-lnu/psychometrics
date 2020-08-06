@@ -15,7 +15,9 @@ module Assigns
       return broadcast(:invalid) if assign.results.blank?
 
       @results = assign.results.map { |hash| hash['answers'] }.reduce(&:merge)
-      @norm = Norm.includes(:factors_norms, factors: :sub_factors).find_by(id: assign.norm_data['id'])
+      @norm = Norm.
+              includes(:factors_norms, factors: %i[sub_factors factors_sub_factors]).
+              find_by(id: assign.norm_data['id'])
 
       # { factor_id => {"blocks" => [] }, ... }
       @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
@@ -33,6 +35,11 @@ module Assigns
 
     def get_factor(factor_id)
       norm.factors.find { |f| f.id == factor_id }
+    end
+
+    def get_factors_sub_factor(factor_id, sub_factor_id)
+      factor = get_factor(factor_id)
+      factor.factors_sub_factors.find { |f| f.id == sub_factor_id }
     end
 
     def calculate
@@ -56,7 +63,7 @@ module Assigns
 
             scoring[scoring_factor['factorId']]['blocks'] << block
             if factor.sub_factors_average_strategy?
-              scoring[scoring_factor['factorId']]['subFactorIds'] = factor.sub_factors.pluck(:id)
+              scoring[scoring_factor['factorId']]['sub_factors'] = factor.sub_factors.pluck(:id)
             end
           end
         end
@@ -72,6 +79,16 @@ module Assigns
       end
     end
 
+    def prepare_sub_factors(factor, sub_factor_ids)
+      # { factor_id => <score>, ... }
+      sub_factor_scores = Hash[sub_factor_ids.zip(sub_factor_ids.map { |id| { 'score': scoring[id]['score'] } })]
+      sub_factor_scores.tap do |sub_factors|
+        sub_factors.each do |sub_factor_id, _|
+          sub_factors[sub_factor_id]['weight'] = get_factors_sub_factor(factor.id, sub_factor_id).weight
+        end
+      end
+    end
+
     def calculate_factor_score(factor, data)
       score = if factor.questions_strategy?
                 extend_blocks_with_scores(data[:blocks])
@@ -80,7 +97,30 @@ module Assigns
                 block_scores = data['blocks'].map { |block| block['score'] }
                 block_scores.sum { |block_score| block_score * item_score }
               elsif factor.sub_factors_average_strategy?
-                100
+                sub_factor_ids = data.dig('sub_factors')
+
+                nil if sub_factor_ids.blank?
+
+                # { factor_id => <score>, ... }
+                sub_factor_scores = prepare_sub_factors(factor, sub_factor_ids)
+
+                sub_factor_scores.select { |_, sub_factor_score| sub_factor_score.nil? }.tap do |unscored_factors|
+                  unscored_factors.each do |factor_id, _|
+                    factor = get_factor(factor_id)
+                    factor_score = calculate_factor_score(factor, data)
+                    scoring[factor_id]['score'] = factor_score
+                    unscored_factors[factor_id]['score'] = factor_score
+                  end
+                end
+
+                score_data = sub_factor_scores.each_with_object(sum: 0, count: 0) do |(_, config), memo|
+                  weight = config['weight'] || 1
+
+                  memo['sum'] += config['score'] * weight
+                  memo['count'] += weight
+                end
+
+                score_data['sum'] / score_data['count'].to_f
               end
       score
     end
