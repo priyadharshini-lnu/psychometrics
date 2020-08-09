@@ -29,6 +29,30 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  describe 'toggle_status' do
+    it 'toggles user status' do
+      put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['active']).to eq(false)
+    end
+  end
+
+  describe 'it removes campaign user and dependant data' do
+    it 'removes campaign user and dependant data' do
+      campaign_user = create(:campaign_user)
+      create(
+        :user_assessment, campaign: campaign_user.campaign, assessment: assessment, subject: campaign_user.user, 
+        evaluator: campaign_user.user
+      )
+      expect do
+        delete :destroy, params: { new_campaign_id: campaign_user.campaign_id, id: campaign_user.user_id }
+      end.to change(CampaignUser, :count).by(-1).
+        and change(UserAssessment, :count).by(-1)
+      parsed_response = response.body
+      expect(parsed_response).to eq(campaign_user.user_id.to_s)
+    end
+  end
+
   private
 
   def check_user_response(user_response)
