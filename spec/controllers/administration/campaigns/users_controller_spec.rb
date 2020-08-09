@@ -29,7 +29,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
-  describe 'toggle_status' do
+  describe '[PUT] /administration/new_campaigns/:campaign_id/users/:id/toggle_status' do
     it 'toggles user status' do
       put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }
       parsed_response = JSON.parse(response.body)
@@ -37,7 +37,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
-  describe 'it removes campaign user and dependant data' do
+  describe '[DELETE] /administration/new_campaigns/:campaign_id/users/:id' do
     it 'removes campaign user and dependant data' do
       campaign_user = create(:campaign_user)
       expect do
@@ -47,7 +47,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
-  describe 'reset_password' do
+  describe '[GET] /administration/new_campaigns/:campaign_id/users/:id/reset_password' do
     it 'sends email to user to reset password' do
       get :reset_password, params: { new_campaign_id: campaign.id, id: user.id }
       expect(ActionMailer::Base.deliveries.count(1))
