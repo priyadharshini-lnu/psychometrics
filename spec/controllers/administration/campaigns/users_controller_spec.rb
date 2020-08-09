@@ -29,6 +29,33 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  describe 'PUT toggle_status' do
+    it 'toggles user status' do
+      put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['active']).to eq(false)
+    end
+  end
+
+  describe 'DELETE' do
+    it 'removes campaign user and dependant data' do
+      campaign_user = create(:campaign_user)
+      expect do
+        delete :destroy, params: { new_campaign_id: campaign_user.campaign_id, id: campaign_user.user_id }
+      end.to change(CampaignUser, :count).by(-1)
+      expect(response.body).to eq(campaign_user.user_id.to_s)
+    end
+  end
+
+  describe 'GET reset_password' do
+    it 'sends email to user to reset password' do
+      get :reset_password, params: { new_campaign_id: campaign.id, id: user.id }
+      expect(ActionMailer::Base.deliveries.count(1))
+      expect(ActionMailer::Base.deliveries.first.subject).to eq('Reset password instructions')
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   private
 
   def check_user_response(user_response)
