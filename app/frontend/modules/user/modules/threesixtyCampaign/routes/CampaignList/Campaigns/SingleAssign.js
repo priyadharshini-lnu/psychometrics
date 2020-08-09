@@ -50,7 +50,7 @@ const ReportsMenu = reports => (
 )
 
 const renderButtonContent = ({
-  mindmill, mindmillUrl, url, status, assignedReports, needConfirm, assessmentCategory,
+  mindmill, mindmillUrl, url, status, assignedReports, needConfirm,
 }, setShowConfirm, loading, loadAssessmentOrCheckingWizard) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
@@ -79,7 +79,7 @@ const renderButtonContent = ({
   }
 
   if (status === 'completed') {
-    if (!assignedReports.length || assessmentCategory === 'agile') {
+    if (!assignedReports.length) {
       return (
         <a>
           <CheckOutlined />
