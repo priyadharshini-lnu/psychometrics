@@ -2,7 +2,7 @@ import React, { useState, ReactElement } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
-import { FormInstance } from 'rc-field-form'
+import { FormInstance } from 'antd/lib/form/util'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { FormProps } from 'antd/lib/form'
@@ -19,7 +19,7 @@ interface Props {
   title?: string
   resource?: Resource
   resourceId?: number
-  resourceBaseUrl?: string
+  resourceBaseUrl: string
   showSuccessMessages?: boolean
   onSuccessfulSubmission?(response: object): void
   request?: Partial<Request>

@@ -14,7 +14,7 @@ import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import config from './config'
 
-export default combineReducers({
+const rootReducer = combineReducers({
   campaigns: combineReducers({
     campaign,
     nomination,
@@ -35,3 +35,7 @@ export default combineReducers({
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
 })
+
+export type RootState = ReturnType<typeof rootReducer>
+
+export default rootReducer

@@ -13,6 +13,7 @@ import SystemCheck from './SystemCheck'
 import NetworkCheck from './NetworkCheck'
 import VideoCheck from './VideoCheck'
 import AudioCheck from './AudioCheck'
+import { PropsFromRedux } from './connect'
 
 const { Step } = Steps
 const { I18n } = window
@@ -47,7 +48,7 @@ const STEPS = [
 ]
 
 
-interface Props {
+interface OwnProps {
   checks: Checks
   config: Config
   url?: string
@@ -55,14 +56,18 @@ interface Props {
   campaignId?: number
   id?: number
   match: { params: { assessmentId: string, id: string } }
-  fetch: (assessmentId: string, id: string) => void
 }
+
+type Props = OwnProps & PropsFromRedux
 
 const CheckingWizard: React.FC<Props> = ({
   url, checks, config, fetch, match: { params }, history, campaignId, id,
 }) => {
+  const parsedAssessmentId = parseInt(params.assessmentId, 10)
+  const parsedId = parseInt(params.id, 10)
+
   useEffect(() => {
-    fetch(params.assessmentId, params.id)
+    fetch(parsedAssessmentId, parsedId)
   }, [])
 
   const [current, setCurrent] = useState(0)

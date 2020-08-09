@@ -4,7 +4,7 @@ import pages from './builder/page'
 import modules from './builder/module'
 import temp from './temp'
 
-export default combineReducers({
+const rootReducer = combineReducers({
   report: combineReducers({
     builder,
     pages,
@@ -12,3 +12,7 @@ export default combineReducers({
     ui: combineReducers(temp),
   }),
 })
+
+export type RootState = ReturnType<typeof rootReducer>
+
+export default rootReducer

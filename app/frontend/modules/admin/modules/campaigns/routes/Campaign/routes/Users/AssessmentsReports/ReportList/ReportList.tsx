@@ -3,14 +3,13 @@ import {
   Table, Menu, Row, Col, Dropdown, Switch,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import { State as ReportState } from 'modules/admin/modules/campaigns/core/reports'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { PropsFromRedux } from './connect'
 
 const { Column } = Table
 const { I18n } = window
 
-interface Props {
-  reports: ReportState
+interface OwnProps {
   match: {
     params: {
       projectId: string
@@ -19,7 +18,9 @@ interface Props {
   }
 }
 
-const ReportList: React.FC<RouteComponentProps & Props> = ({
+export type Props = RouteComponentProps & OwnProps & PropsFromRedux
+
+const ReportList: React.FC<Props> = ({
   reports: {
     list,
   },

@@ -1,6 +1,7 @@
 import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import Cookies from 'js-cookie'
+import ApiAction from 'interfaces/ApiAction'
 import { Config, Checks } from './interfaces'
 
 interface State {
@@ -28,7 +29,7 @@ export const defaultState: State = {
 export const FETCH = 'temp/checkingWizard/FETCH'
 export const PRE_SIGN_URL = 'temp/checkingWizard/PRE_SIGN_URL'
 
-export const fetch = (assessmentId: number, id: number) => ({
+export const fetch = (assessmentId: number, id: number): ApiAction<State> => ({
   type: FETCH,
   request:
     {

@@ -15,7 +15,7 @@ const defaultState = {
   list: [],
 }
 
-export const get = (state): Assessment[] => _.get(state, ['campaigns', 'assessments'])
+export const get = (state): State => _.get(state, ['campaigns', 'assessments'])
 export const getSingle = (state, id): Assessment | null => state.campaigns.assessments.list
   .find(assessment => assessment.id === id)
 

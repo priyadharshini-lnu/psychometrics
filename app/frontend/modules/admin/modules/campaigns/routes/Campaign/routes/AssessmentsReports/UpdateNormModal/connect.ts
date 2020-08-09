@@ -1,9 +1,10 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { fetchNorms, updateNorm } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
+import { OwnProps } from './UpdateNormModal'
 
-export default connect(
-  (state, props) => ({
+const connecter = connect(
+  (state, props: OwnProps) => ({
     assessment: getSingle(state, props.campaignAssessmentId),
   }),
   {
@@ -11,3 +12,7 @@ export default connect(
     updateNorm,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

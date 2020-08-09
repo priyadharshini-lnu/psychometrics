@@ -7,7 +7,7 @@ const defaultState = {
   list: [],
 }
 
-export const get = (state): UserReport[] => _.get(state, ['campaigns', 'userReports'])
+export const get = (state): State => _.get(state, ['campaigns', 'userReports'])
 
 export const CREATE = 'resource/userReport/report/CREATE'
 

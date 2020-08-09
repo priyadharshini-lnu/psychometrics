@@ -17,7 +17,7 @@ const defaultState = {
 }
 
 export const get = (state): User[] => _.get(state, ['campaigns', 'users'])
-export const getCurrent = (state): User[] => _.get(get(state), ['current'])
+export const getCurrent = (state): UserDetails => _.get(get(state), ['current'])
 
 export const FETCH = 'campaigns/FETCH_USERS'
 export const CREATE = 'resource/campaigns/user/CREATE'

@@ -6,6 +6,7 @@ import {
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
+import { PropsFromRedux } from './connect'
 
 const { I18n } = window
 const { Option } = Select
@@ -16,14 +17,15 @@ interface FormAttrs {
   apply: boolean
 }
 
-interface Props {
+export interface OwnProps {
   close(): void
-  fetchNorms(campaignId: number, assessmentId: number): void
-  updateNorm(campaignId: number, assessmentId: number, body: FormAttrs): void
+  campaignAssessmentId: number,
   campaignId: number
   assessment: Assessment
   loading: boolean
 }
+
+export type Props = OwnProps & PropsFromRedux
 
 const UpdateNormModal: React.FC<Props> = ({
   close, fetchNorms, campaignId, loading, assessment, updateNorm,

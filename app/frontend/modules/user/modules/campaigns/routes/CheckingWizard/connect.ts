@@ -1,7 +1,8 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
+import { RootState } from 'modules/user/core/rootReducers'
 import { fetch } from '../../core/checkingWizard'
 
-export default connect(({ checkingWizard }) => ({
+const connecter = connect(({ checkingWizard }: RootState) => ({
   checks: checkingWizard.checks,
   config: checkingWizard.config,
   campaignId: checkingWizard.campaignId,
@@ -10,3 +11,7 @@ export default connect(({ checkingWizard }) => ({
 }), {
   fetch,
 })
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

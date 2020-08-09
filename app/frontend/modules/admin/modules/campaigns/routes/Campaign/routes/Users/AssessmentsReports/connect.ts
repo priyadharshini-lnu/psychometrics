@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { getStatusesCount } from 'modules/admin/modules/campaigns/core/userAssessments'
 import {
   fetchSingle as fetchSingleUser,
@@ -6,7 +6,7 @@ import {
 } from 'modules/admin/modules/campaigns/core/users'
 import { openModal } from 'modules/admin/core/ui/modals'
 
-export default connect(
+const connecter = connect(
   state => ({
     user: getCurrentUser(state),
     assessmentStatuses: getStatusesCount(state),
@@ -16,3 +16,7 @@ export default connect(
     openModal,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

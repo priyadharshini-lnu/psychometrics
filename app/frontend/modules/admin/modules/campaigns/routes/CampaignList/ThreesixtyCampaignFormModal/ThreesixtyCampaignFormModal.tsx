@@ -3,43 +3,23 @@ import ResourceFormModal from 'components/ResourceFormModal'
 import { Form, Input, Select } from 'antd'
 import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
 import { TYPES as THREESIXTY_TYPES } from 'modules/admin/constants/threesixtyCampaign'
+import { CampaignTemplate, Assessment } from 'modules/admin/modules/campaigns/core/list'
+import { Factor } from 'modules/admin/modules/campaigns/core/factors'
 
 import _ from 'lodash'
+import { PropsFromRedux } from './connect'
 
 const { Option } = Select
 
-interface Props {
+interface OwnProps {
   projectId: number
   close(): void
   campaign: {
     id: number
   }
-  fetchByAssessmentId(id: number): Promise<{ response: Assessment[] }>
-  fetchTemplatesAndAssessments(projectId: number): Promise<TemplateAndAssessmentResponse>
 }
 
-interface Factor {
-  id: number
-  name: string
-}
-
-interface CampaignTemplate {
-  id: number
-  name: string
-  assessmentId: number
-}
-
-interface Assessment {
-  id: number
-  name: string
-}
-
-interface TemplateAndAssessmentResponse{
-  response: {
-    templates: CampaignTemplate[]
-    assessments: Assessment[]
-  }
-}
+type Props = OwnProps & PropsFromRedux
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   projectId,
@@ -55,7 +35,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
 
   useEffect(() => {
     fetchTemplatesAndAssessments(projectId).then(
-      ({ response: { templates, assessments } }: TemplateAndAssessmentResponse) => {
+      ({ response: { templates, assessments } }) => {
         setCampaignTemplates(templates)
         setAssessments(assessments)
       },
@@ -71,7 +51,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   const handleAssessmentChange = (assessmentId: number) => {
     fetchByAssessmentId(assessmentId).then(({ response }) => {
       setFactors(response)
-      form.setFieldsValue({ factors: _.map(response, (factor: Factor) => factor.id) })
+      form.setFieldsValue({ factors: _.map(response, factor => factor.id) })
     })
   }
 

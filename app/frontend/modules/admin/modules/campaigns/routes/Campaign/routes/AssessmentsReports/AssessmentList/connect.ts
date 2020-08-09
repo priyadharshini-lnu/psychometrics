@@ -1,9 +1,9 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { get as getAssessments } from 'modules/admin/modules/campaigns/core/assessments'
 import { activateUniversalLink } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from 'modules/admin/core/ui/modals'
 
-export default connect(
+const connecter = connect(
   state => ({
     assessments: getAssessments(state),
   }),
@@ -12,3 +12,7 @@ export default connect(
     activateUniversalLink,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

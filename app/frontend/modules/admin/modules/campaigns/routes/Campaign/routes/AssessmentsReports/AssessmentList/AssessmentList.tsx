@@ -3,28 +3,24 @@ import {
   Table, Menu, Row, Col, Dropdown,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import { State as AssessmentState } from 'modules/admin/modules/campaigns/core/assessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
+import { PropsFromRedux } from './connect'
 
 const { Column } = Table
 const { I18n } = window
 
-interface Props {
-  assessments: AssessmentState
+interface OwnProps {
   match: {
     params: {
       projectId: string
       campaignId: string
     }
   }
-  openModal(name: string, data?: {
-    projectId: number, campaignId: number, campaignAssessmentId: number, universalLink?: string
-  }): void
-  activateUniversalLink(campaignId: string, id: number): void
 }
+type Props = RouteComponentProps & OwnProps & PropsFromRedux
 
-const AssessmentList: React.FC<RouteComponentProps & Props> = ({
+const AssessmentList: React.FC<Props> = ({
   assessments: {
     list,
   },

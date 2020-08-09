@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import ApiAction from 'interfaces/ApiAction'
 
 const defaultState = []
 
@@ -22,7 +23,23 @@ export const fetch = (projectId: string, tableConfig: TableConfig) => ({
   },
 })
 
-export const fetchTemplatesAndAssessments = projectId => ({
+export interface TemplateAndAssessment{
+  templates: CampaignTemplate[]
+  assessments: Assessment[]
+}
+
+export interface CampaignTemplate {
+  id: number
+  name: string
+  assessmentId: number
+}
+
+export interface Assessment {
+  id: number
+  name: string
+}
+
+export const fetchTemplatesAndAssessments = (projectId): ApiAction<TemplateAndAssessment> => ({
   type: FETCH_TEMPLATES_AND_ASSESSMENTS,
   request: {
     method: 'get',

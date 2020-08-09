@@ -59,4 +59,6 @@ const createRootReducer = history => combineReducers({
   campaigns: campaignReducers,
 })
 
+export type RootState = ReturnType<ReturnType<typeof createRootReducer>>
+
 export default createRootReducer

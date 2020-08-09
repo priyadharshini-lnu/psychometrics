@@ -5,7 +5,7 @@ import styles from './styles.scss'
 
 interface Crumb {
   link?: (state: State) => string
-  label: (state: State) => string
+  label: (state: State) => string | undefined
 }
 
 interface Props {

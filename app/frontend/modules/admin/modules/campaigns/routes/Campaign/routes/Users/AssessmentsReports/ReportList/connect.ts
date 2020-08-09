@@ -1,10 +1,14 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { get as getReports } from 'modules/admin/modules/campaigns/core/userReports'
 
-export default connect(
+const connecter = connect(
   state => ({
     reports: getReports(state),
   }),
   {
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

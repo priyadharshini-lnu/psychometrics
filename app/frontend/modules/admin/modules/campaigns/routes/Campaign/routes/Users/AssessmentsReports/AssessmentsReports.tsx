@@ -4,7 +4,6 @@ import {
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import Modals from 'modules/admin/components/Modals/'
-import { UserDetails } from 'modules/admin/modules/campaigns/core/users'
 import _ from 'lodash'
 import array from 'utils/array'
 import ReportList from './ReportList'
@@ -12,6 +11,7 @@ import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/AddReportModal'
 import { Strategies } from '../../AssessmentsReports/AddReportModal/interfaces'
 import styles from './styles.scss'
+import { PropsFromRedux } from './connect'
 
 const { I18n } = window
 
@@ -19,10 +19,7 @@ const MODALS = {
   AddReportModal,
 }
 
-interface Props {
-  fetchSingleUser(campaignId: number, id: number): void
-  user: UserDetails,
-  assessmentStatuses: object,
+interface OwnProps {
   match: {
     params: {
       projectId: string, campaignId: string, id: string,
@@ -30,6 +27,7 @@ interface Props {
   },
   openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void
 }
+export type Props = OwnProps & PropsFromRedux
 
 const AssessmentsReports: React.FC<Props> = ({
   user,

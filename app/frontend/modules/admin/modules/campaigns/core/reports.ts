@@ -8,7 +8,7 @@ const defaultState = {
   selectedId: [],
 }
 
-export const get = (state): Report[] => _.get(state, ['campaigns', 'reports'])
+export const get = (state): State => _.get(state, ['campaigns', 'reports'])
 
 export const CREATE = 'resource/campaigns/report/CREATE'
 

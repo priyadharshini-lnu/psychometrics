@@ -1,34 +1,21 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { Form, message, Alert } from 'antd'
-import { FormInstance } from 'antd/lib/form/util'
-import { FormProps } from 'antd/lib/form'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
 import { scrollIntoView } from 'scroll-js'
+import { FormProps } from 'antd/lib/form'
+import { FormInstance } from 'antd/lib/form/util'
 import { Status } from './constants'
+import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
 
-interface Props {
-  resourceName: string
-  requestScope?: string
-  defaultRequest: Request
-  resource?: Resource
-  resourceId?: number
-  request?: Partial<Request>
-  showSuccessMessages?: boolean
-  onFailedSubmission?(values: object, errors: object): void
-  formProps?: FormProps
-  onStatusChange?(value: string): object
-  onSuccessfulSubmission?(response: object): void
-  transformValues?(values: object): object
-  storeManager?: {
-    form: FormInstance,
-    fields: FieldData[],
-    setFields(fields: object): void
-  }
-  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
-  scrollToFirstError?: boolean
+type Props = PropsFromRedux & OwnProps
+
+interface Error {
+  [key: string]: string[]
 }
+
+const { I18n } = window
 
 interface Request {
   fetchResource(): void
@@ -36,11 +23,28 @@ interface Request {
   updateResource(values: object): void
 }
 
-interface Error {
-  [key: string]: string[]
-}
 
-const { I18n } = window
+export type OwnProps = {
+  resourceName: string
+  resourceBaseUrl: string,
+  requestScope?: string
+  resource?: Resource
+  resourceId?: number
+  request?: Partial<Request>
+  showSuccessMessages?: boolean
+  onFailedSubmission?(values: object, errors: object): void
+  formProps?: FormProps
+  onStatusChange?(value: string): void
+  onSuccessfulSubmission?(response: object): void
+  transformValues?(values: object): object
+  storeManager?: {
+    form?: FormInstance,
+    fields?: FieldData[],
+    setFields?(fields: object): void
+  }
+  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+  scrollToFirstError?: boolean
+}
 
 const ResourceForm: React.FC<Props> = ({
   resource,
