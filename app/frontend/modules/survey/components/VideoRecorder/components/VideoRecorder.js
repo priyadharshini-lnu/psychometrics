@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
-import { I18n } from 'modules/survey/store/StoreWatchman'
 import axios from 'axios'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
@@ -377,7 +376,7 @@ class VideoRecorder extends Component {
   }
 
   addStatusTextControl () {
-    this.statusText = new StatusText(this.player, { text: 'Start Recording' })
+    this.statusText = new StatusText(this.player, { text: I18n.t('assessments.video_response.start_recording') })
     this.player.getChild('controlBar').addChild(this.statusText)
   }
 
@@ -397,13 +396,13 @@ class VideoRecorder extends Component {
             >
               <span className="mrs mls fa fa-trash-o" area-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
-                { I18n().t('assessments.video_response.discard') }
+                { I18n.t('assessments.video_response.discard') }
               </span>
             </button>
           )}
           {recordingState === 'saving' && (
             <span className="vjs-control-text" aria-live="polite">
-              { I18n().t('assessments.video_response.saving') }
+              { I18n.t('assessments.video_response.saving') }
             </span>
           )}
         </div>
@@ -435,8 +434,8 @@ class VideoRecorder extends Component {
         </div>
         <div className={styles.permText}>
           {hasMediaRecorder
-            ? I18n().t('assessments.video_response.media_recorder.success')
-            : I18n().t('assessments.video_response.media_recorder.failure')}
+            ? I18n.t('assessments.video_response.media_recorder.success')
+            : I18n.t('assessments.video_response.media_recorder.failure')}
         </div>
 
         { hasMediaRecorder && (
@@ -447,7 +446,7 @@ class VideoRecorder extends Component {
             disabled={readOnly}
           >
             <span className="mrs mls fa fa-check" aria-hidden="true" />
-            { I18n().t('assessments.video_response.device') }
+            { I18n.t('assessments.video_response.device') }
           </button>
         )}
       </div>

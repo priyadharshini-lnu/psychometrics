@@ -10,7 +10,33 @@ ar:
       agile: AGILE
     pickgrouprank:
       items: 'العبارات'
+    audio_response:
+      permission_text: 'يرجى السماح باستخدام الميكروفون لتسجيل الصوت'
+      permission_denied_message: 'يرجى تمكين الميكروفون في متصفحك لتسجيل الإجابة'
+    video_response:
+      device: 'السماح'
+      delete: 'حذف'
+      discard: 'تجاهل'
+      save: 'حفظ'
+      saved: 'تم الحفظ'
+      saving: 'يتم الحفظ...'
+      retry: 'أعد المحاولة'
+      selected: 'تم الاختيار'
+      use_this: 'استخدم ذلك'
+      retake: 'أعد مرة أخرى'
+      start_recording: 'ابدأ التسجيل'
+      tracker:
+        frame: 'يرجى التأكد من أن وجهك في وضع مناسب مع الإطار'
+        ready: 'اضغط على زر التسجيل عندما تكون جاهزًا'
+        forward: 'اضغط على زر التسجيل عندما تكون جاهزًا'
+        backward: 'أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.'
+      media_recorder:
+        success: 'يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو'
+        failure: 'هذا المستعرض لا يدعم خاصية "تسجيل الفيديو". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.'
+      file_upload:
+        select_file: 'اختر الملف'
     messages:
       finish: 'لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة'
     actions:
       goto_dashboard: 'الذهاب إلى الصفحة الرئيسية'
+
