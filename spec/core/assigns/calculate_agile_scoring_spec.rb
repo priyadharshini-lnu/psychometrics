@@ -71,8 +71,8 @@ describe Assigns::CalculateAgileScoring do
       }
     ]
 
-    @assign = FactoryBot.create(:assign, results: results)
-    @agile = FactoryBot.create(:agile, assessment: @assign.assessment, config: config)
+    @assign = create(:assign, results: results)
+    @agile = create(:agile, assessment: @assign.assessment, config: config)
 
     if complete
       norm_data = { id: @norm.id, type: 'percentile' }
@@ -94,7 +94,7 @@ describe Assigns::CalculateAgileScoring do
     {
       'id': "block-of-#{scoring_factor}",
       'scoring': get_scoring(scoring_factor),
-      'questions': get_questions(num_questions, scoring_factor)
+      'questions': get_questions(scoring_factor, num_questions)
     }
   end
 

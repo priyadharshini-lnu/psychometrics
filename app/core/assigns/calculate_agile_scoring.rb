@@ -107,6 +107,23 @@ module Assigns
       end
     end
 
+    def by_questions_strategy(data)
+      extend_blocks_with_scores(data['blocks'])
+
+      item_score = data['itemScore'] || 1
+      block_scores = data['blocks'].map { |block| block['score'] }
+      block_scores.sum { |block_score| block_score * item_score }
+    end
+
+    def extend_blocks_with_scores(blocks)
+      blocks.tap do |original_blocks|
+        original_blocks.each do |block|
+          questions = block.dig('questions')
+          block['score'] = count_correct_answers(questions)
+        end
+      end
+    end
+
     def count_correct_answers(questions)
       questions.count do |question|
         question_result = results[question['id']]
@@ -122,23 +139,6 @@ module Assigns
         next unless answer
 
         (result & answer).any?
-      end
-    end
-
-    def by_questions_strategy(data)
-      extend_blocks_with_scores(data['blocks'])
-
-      item_score = data['itemScore'] || 1
-      block_scores = data['blocks'].map { |block| block['score'] }
-      block_scores.sum { |block_score| block_score * item_score }
-    end
-
-    def extend_blocks_with_scores(blocks)
-      blocks.tap do |original_blocks|
-        original_blocks.each do |block|
-          questions = block.dig('questions')
-          block['score'] = count_correct_answers(questions)
-        end
       end
     end
 
