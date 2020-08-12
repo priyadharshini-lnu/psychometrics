@@ -134,9 +134,8 @@ describe Assigns::CalculateAgileScoring do
     results
   end
 
-  def feed_in_wrong_answers(results)
+  def feed_in_wrong_answers(results, step = 3)
     answers = results['answers'].to_a
-    step = 3
 
     indices = (step - 1).step(answers.size - 1, step).to_a
     indices.each do |index|
@@ -184,7 +183,7 @@ describe Assigns::CalculateAgileScoring do
       'groups': [{ 'id': 'group-1', 'scenes': [prepare_scene(@factor_ids)] }]
     }
 
-    answers = prepare_answers(@norm.factors.pluck(:id))
+    answers = prepare_answers(@factor_ids)
     results = [feed_in_wrong_answers(answers)]
 
     @assign = create(:assign, results: results)
