@@ -154,7 +154,7 @@ module Assigns
 
     def prepare_sub_factors(factor, sub_factor_ids)
       # { factor_id => <score>, ... }
-      sub_factor_scores = Hash[sub_factor_ids.zip(sub_factor_ids.map { |id| { 'score': scoring[id]['score'] } })]
+      sub_factor_scores = scoring.slice(*sub_factor_ids)
       sub_factor_scores.tap do |sub_factors|
         sub_factors.each do |sub_factor_id, score_hash|
           score_hash[:weight] = get_factors_sub_factor(factor.id, sub_factor_id).weight
