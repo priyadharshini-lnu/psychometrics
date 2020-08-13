@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
 import {
-  Layout, Typography, PageHeader, Alert,
+  Layout, PageHeader, Alert,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -12,7 +12,6 @@ import NominationTable from './NominationTable/NominationTable'
 import NameModal from './NominationForm/NameModal'
 import './styles.scss'
 
-const { Paragraph } = Typography
 const { Content } = Layout
 
 export default function Nominations (props) {
@@ -84,21 +83,9 @@ export default function Nominations (props) {
               showIcon
             />
             )}
-            {instruction ? (
+            {instruction && (
               <div className="content">
                 <div dangerouslySetInnerHTML={{ __html: instruction.content }} />
-              </div>
-            ) : (
-              <div className="content">
-                <Paragraph>
-                  Please nominate all your evaluators from whom you wish to recieve feedback. And then complete your Self assessment.
-                </Paragraph>
-                <Paragraph>
-                  Please ensure you select a minimun of three evaluators from each of the groups. Your nominations will be approved by your Line Manager, before the requests for feedback are send directly to the Evaluators. We encourage you to discuss and agree your evaluators with your Line Manager before entering them on the system.
-                </Paragraph>
-                <Paragraph>
-                  If you have any questions, please contact us.
-                </Paragraph>
               </div>
             )}
             {canNominate && (
