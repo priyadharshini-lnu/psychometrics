@@ -5,6 +5,8 @@ export const IMPORT_RAW_RESULTS = 'campaigns/assessments/IMPORT_RAW_RESULTS'
 export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESULTS'
 export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
 export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
+export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
+
 
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
@@ -43,6 +45,14 @@ export const importRawResults = (campaignId: number, assessmentId: number, body:
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/import_results`,
     body,
     loader: true,
+  },
+})
+
+export const rescoreResponses = (campaignId: number, assessmentId: number) => ({
+  type: RESCORE_RESPONSES,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/rescore_responses`,
   },
 })
 

@@ -1,6 +1,6 @@
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getAssessments } from 'modules/admin/modules/campaigns/core/assessments'
-import { activateUniversalLink } from 'modules/admin/modules/campaigns/core/assessments/actions'
+import { activateUniversalLink, rescoreResponses } from 'modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from 'modules/admin/core/ui/modals'
 
 const connecter = connect(
@@ -10,6 +10,7 @@ const connecter = connect(
   {
     openModal,
     activateUniversalLink,
+    rescoreResponses,
   },
 )
 

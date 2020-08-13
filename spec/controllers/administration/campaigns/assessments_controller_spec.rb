@@ -65,4 +65,18 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       expect(parsed_response).to eq('norm_type' => 'ETI', 'norm_name' => 'Norm')
     end
   end
+
+  describe 'POST rescore_responses' do
+    it 'schedules RecomputeResultsJob' do
+      expect(::CampaignAssessments::RecomputeResultsJob).to receive(:perform_later).
+        with(campaign_assessment, current_user)
+
+      post :rescore_responses, params: {
+        id: assessment.id,
+        new_campaign_id: campaign.id
+      }
+
+      expect(response).to have_http_status(:success)
+    end
+  end
 end

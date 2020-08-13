@@ -89,6 +89,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            post :rescore_responses
           end
         end
       end

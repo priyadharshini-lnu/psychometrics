@@ -43,6 +43,11 @@ module Administration
         end
       end
 
+      def rescore_responses
+        CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user)
+        render json: :ok
+      end
+
       def import_results
         import = ::Imports::Assessments::ResultImportUserResult.new(import_params)
         import.importer = current_user
