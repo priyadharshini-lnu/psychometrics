@@ -33,7 +33,7 @@ enum SelectedTypes {
 interface OpenRichEditor { type: typeof OPEN_RICH_EDITOR }
 interface CloseRichEditor { type: typeof CLOSE_RICH_EDITOR }
 interface RenameReport { type: typeof RENAME_REPORT, name: string }
-interface UpdateCurrentPage { type: typeof UPDATE_CURRENT_PAGE, offset: number }
+interface UpdateCurrentPage { type: typeof UPDATE_CURRENT_PAGE, offset: number, pages: {number: PageInterface} }
 interface AddPage { type: typeof ADD_PAGE, page: PageInterface, index?: number }
 interface SelectModule { type: typeof SELECT_MODULE, moduleType: SelectedTypes, id: number }
 interface UnselectModules { type: typeof UNSELECT_MODULES }
@@ -63,7 +63,9 @@ export const pasteModule = (pageId: number, module: ModuleInterface): PasteModul
 export const saveDataSheet = (data: object[]): SaveDataSheet => ({ type: SAVE_DATA_SHEET, data })
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
-export const updateCurrentPage = (offset: number): UpdateCurrentPage => ({ type: UPDATE_CURRENT_PAGE, offset })
+export const updateCurrentPage = (offset: number, pages: {number: PageInterface}): UpdateCurrentPage => ({
+  type: UPDATE_CURRENT_PAGE, offset, pages,
+})
 export const updatePagePositions = (pageId, newIndex): UpdatePagePositions => ({
   type: UPDATE_PAGE_POSITIONS, pageId, newIndex,
 })

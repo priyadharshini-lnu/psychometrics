@@ -20,6 +20,7 @@ function Pagination ({
         pageSize={settings.pageLimit}
         total={total}
         onChange={handleOnChange}
+        showSizeChanger={false}
         hideOnSinglePage
       />
     </div>

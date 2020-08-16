@@ -643,7 +643,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "user_dashboard_button": "User Dashboard"
     },
     "messages": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      "finish": "Thank you for your time. \nYour responses have now been recorded."
     },
     "page": {
       "back": "Back",
@@ -1231,7 +1231,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "user_dashboard_button": "User Dashboard"
     },
     "messages": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      "finish": "Thank you for your time. \nYour responses have now been recorded."
     },
     "page": {
       "back": "Back",

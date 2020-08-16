@@ -41,7 +41,7 @@ en:
     file_upload:
       select_file: 'Select file'
     messages:
-      finish: "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      finish: "Thank you for your time. \nYour responses have now been recorded."
     actions:
       goto_dashboard: Go To Dashboard
       rescore: Rescore

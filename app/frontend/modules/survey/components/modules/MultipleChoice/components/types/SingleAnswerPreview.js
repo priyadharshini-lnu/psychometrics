@@ -70,10 +70,10 @@ class SingleAnswerPreview extends Component {
                   value={i}
                   checked={checked}
                 />
-                <span>
+                <div className={styles.optionDescription}>
                   {I18n.tQuestion(model, `choicesTexts${i + 1}`, { choice: i })
                     || moduleConfig.defaultChoiceText(i + 1)}
-                </span>
+                </div>
               </label>
             </li>
           )

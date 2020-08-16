@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :agile do
     config {}
+    assessment
   end
 end
