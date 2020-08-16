@@ -82,6 +82,7 @@ module Imports
     # Parse file
     # Return array of new Users
     #
+    # rubocop:disable Metrics/AbcSize
     def load_imported_items
       self.client = policy_scope(::Client).find(client_id)
       raise 'Invalid client' unless client
@@ -94,6 +95,7 @@ module Imports
         attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
 
         memberships_attributes = {
+          disabled: row[header.index(HEADER_IMPORT_DATA[:active])] == 'No',
           role: Membership::MEMBER_ROLE,
           hris_data: {}
         }
@@ -125,6 +127,7 @@ module Imports
       end
       [nil]
     end
+    # rubocop:enable Metrics/AbcSize
 
     def open_spreadsheet
       case File.extname(file.original_filename)
