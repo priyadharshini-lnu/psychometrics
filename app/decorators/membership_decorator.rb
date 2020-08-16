@@ -96,6 +96,14 @@ class MembershipDecorator < BaseDecorator
     end
   end
 
+  def status_text
+    if object.membership_disabled
+      I18n.t('no')
+    else
+      I18n.t('yes')
+    end
+  end
+
   def toggle_status_text
     if object.membership_disabled
       I18n.t('administration.enable')
