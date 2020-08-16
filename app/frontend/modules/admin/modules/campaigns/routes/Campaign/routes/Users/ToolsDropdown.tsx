@@ -5,25 +5,23 @@ import {
 import { ToolOutlined, DownOutlined } from '@ant-design/icons'
 
 const menu = ({
-  campaignId, projectId,
+  campaignId,
 }) => (
   <Menu>
     <Menu.Item key="1">
-      <a href={`/administration/projects/${projectId}/new_campaigns/${campaignId}/users.csv`}>Export Users</a>
+      <a href={`/administration/new_campaigns/${campaignId}/users.csv`}>Export Users</a>
     </Menu.Item>
   </Menu>
 )
 
 interface Props {
   campaignId: number
-  projectId: number
 }
 
-const ToolsDropdown: React.FC<Props> = ({ campaignId, projectId }) => (
+const ToolsDropdown: React.FC<Props> = ({ campaignId }) => (
   <Dropdown
     overlay={menu({
       campaignId,
-      projectId,
     })}
     className="mrm"
     trigger={['click']}

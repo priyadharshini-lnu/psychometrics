@@ -24,7 +24,7 @@
 }
 
 .retakeBtn {
-  width: 100px;
+  display: inline-block;
   border: 1px solid #dedbdb;
   margin: auto;
   border-radius: 5px;
@@ -38,4 +38,14 @@
 
 .recordBtn {
   padding: 8px !important;
+}
+
+:global {
+  .userSelectedContainer {
+    text-align: right !important;
+  }
+
+  .rtl .userSelectedContainer {
+    text-align: left !important;
+  }
 }

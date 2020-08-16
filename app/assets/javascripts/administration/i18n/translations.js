@@ -6903,6 +6903,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "regenerate_link": "Regenerate Link",
     "svg": "SVG"
   },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
+  },
   "validations": {
     "AudioResponse": {
       "in_progress": {
@@ -13869,6 +13878,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "regenerate_link": "Regenerate Link",
     "svg": "SVG"
   },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
+  },
   "validations": {
     "AudioResponse": {
       "in_progress": {
@@ -20834,6 +20852,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "png": "PNG",
     "regenerate_link": "Regenerate Link",
     "svg": "SVG"
+  },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
   },
   "validations": {
     "AudioResponse": {

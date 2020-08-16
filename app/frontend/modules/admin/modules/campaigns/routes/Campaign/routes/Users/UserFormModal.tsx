@@ -3,7 +3,9 @@ import ResourceFormModal from 'components/ResourceFormModal'
 import { Form, Input, Select } from 'antd'
 import _ from 'lodash'
 
+const { I18n } = window
 const { Option } = Select
+
 interface Props {
   projectId: string
   campaignId: string
@@ -13,11 +15,7 @@ interface Props {
   }
 }
 
-const operationsOption = {
-  skip_existing: 'Skip exiting user',
-  add_with_existing_response: 'Add user with exiting response',
-  add_and_allow_new_response: 'Add user and allow new response',
-}
+const operationsOption = ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response']
 
 const UserFormModal: React.FC<Props> = ({
   campaignId,
@@ -68,8 +66,13 @@ const UserFormModal: React.FC<Props> = ({
             rules={[{ required: true }]}
           >
             <Select>
-              {_.map(operationsOption, (value: string, key: string) => (
-                <Option key={key} value={key}>{value}</Option>
+              {_.map(operationsOption, operation => (
+                <Option
+                  key={operation}
+                  value={operation}
+                >
+                  {I18n.t(`user.form.operation_options.${operation}`)}
+                </Option>
               ))}
             </Select>
           </Form.Item>

@@ -9,13 +9,13 @@ module EndUser
 
     def update
       @threesixty_campaign = @user_assessment.campaign.threesixty? && @user_assessment.campaign.threesixty_campaign
-      assign_params = ::UsersResults::ExtendResourceParams.call!(
+      result_params = ::UsersResults::ExtendResourceParams.call!(
         resource_params.to_h,
         params[:question_ids],
         @users_result
       )
 
-      form = ::UsersResults::UpdatingForm.from_params(assign_params)
+      form = ::UsersResults::UpdatingForm.from_params(result_params)
       ::UsersResults::UpdateUsersResult.call(form, @users_result, @threesixty_campaign)
 
       render json: @users_result,
@@ -69,7 +69,7 @@ module EndUser
 
     def set_user_result
       @users_result = if current_user.superadmin?
-                        UsersResult.find_by!(id: params[:id])
+                        user_assessment.users_result.find_by!(id: params[:id])
                       else
                         UsersResult.find_by!(id: params[:id], evaluator_id: current_user.id)
                       end
@@ -79,7 +79,7 @@ module EndUser
     private
 
     def set_user_assessment
-      @user_assessment = UserAssessment.find(params[:id])
+      @user_assessment = UserAssessment.find_by(id: params[:user_assessment_id])
     end
 
     def resource_params

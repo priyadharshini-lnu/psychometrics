@@ -88,7 +88,7 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown projectId={parseInt(projectId, 10)} campaignId={parseInt(campaignId, 10)} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}

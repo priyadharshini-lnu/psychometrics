@@ -118,7 +118,7 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
           </div>
           )}
         </div>
-        <div className="text-align-r">
+        <div className="userSelectedContainer">
           {completedTakes > 1 && !currentTakeIsSelected
             && (
             <ColoredButton

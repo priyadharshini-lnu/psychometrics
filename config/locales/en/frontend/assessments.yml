@@ -28,6 +28,8 @@ en:
       use_this: 'Use This'
       retake: 'Retake'
       start_recording: 'Start recording'
+      status:
+        recording: 'Recording'
       tracker:
         frame: 'Please make sure that your face aligns with the frame'
         ready: 'Press the Record button when ready to record'
