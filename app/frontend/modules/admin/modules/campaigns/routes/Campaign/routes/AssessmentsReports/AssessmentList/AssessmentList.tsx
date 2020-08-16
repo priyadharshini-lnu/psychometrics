@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown,
+  Table, Menu, Row, Col, Dropdown, message,
 } from 'antd'
+
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
@@ -27,6 +28,7 @@ const AssessmentList: React.FC<Props> = ({
   match: { params: { projectId, campaignId } },
   openModal,
   activateUniversalLink,
+  rescoreResponses,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -91,11 +93,16 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={({ id, category }) => (
+            render={({ id, category, name }) => (
               <Dropdown
                 overlay={() => (
                     ActionsMenu({
-                      id, category, campaignId: parsedCampaignId, openModal,
+                      id,
+                      name,
+                      category,
+                      campaignId: parsedCampaignId,
+                      openModal,
+                      rescoreResponses: () => rescoreResponses(parsedCampaignId, id),
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -114,16 +121,22 @@ const AssessmentList: React.FC<Props> = ({
 
 interface ActionMenuProps {
   id: number
+  name: string
   campaignId: number
   category: string
   openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
+  rescoreResponses(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, id, openModal, category,
+  campaignId, name, id, openModal, category, rescoreResponses,
 }) => {
   const isExternal = () => ['hogan', 'mindmill'].includes(category)
   const isInternal = () => !isExternal()
+  const handleRescoreResponse = () => {
+    rescoreResponses()
+    message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+  }
 
   return (
     <Menu>
@@ -202,6 +215,15 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
       </Menu.ItemGroup>
       )}
+      <Menu.ItemGroup key="rescore">
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.actions.rescore_response.title')}
+          </a>
+        </Menu.Item>
+      </Menu.ItemGroup>
     </Menu>
   )
 }

@@ -4843,6 +4843,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
@@ -11825,6 +11831,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
@@ -18800,6 +18812,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",

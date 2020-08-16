@@ -71,6 +71,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
+    def rescore_responses?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
+
     def update_norm?
       assessments?
     end
