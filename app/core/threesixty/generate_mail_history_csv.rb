@@ -31,6 +31,8 @@ module Threesixty
     end
 
     def recipient_data(user, email_history)
+      return [] unless user
+
       [
         user.id,
         user.first_name,
@@ -42,6 +44,8 @@ module Threesixty
 
     def subject_data(email_history)
       subject = email_history.subject
+      return [] unless subject
+
       [
         relationship_hash[email_history.meta['relationship_id']],
         subject.first_name,

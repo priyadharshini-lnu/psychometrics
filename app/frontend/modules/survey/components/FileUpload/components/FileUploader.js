@@ -26,7 +26,7 @@ const uploadFile = (data, context) => {
   fd.append('x-amz-credential', data['x-amz-credential'])
   fd.append('x-amz-date', data['x-amz-date'])
   fd.append('x-amz-signature', data['x-amz-signature'])
-  fd.append('file', file, fileName || file.name)
+  fd.append('file', file, fileName || sanitize(file.name))
 
   $.ajax({
     method: 'POST',

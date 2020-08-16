@@ -10,6 +10,7 @@ import { getCurrentPage, getBufferedModule } from 'modules/reports/core/builder/
 export default connect(
   state => ({
     report: state.report,
+    pages: state.report.pages,
     currentPage: state.report.builder.loaded && getCurrentPage(state.report),
     richEditorOpened: state.report.builder.richEditorOpened,
     selected: state.report.builder.selected,

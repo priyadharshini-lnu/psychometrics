@@ -1,5 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
-import queryString from 'qs'
+import qs from 'qs'
 
 const routeUtils = {
   getBasePath (prefix) {
@@ -13,15 +13,14 @@ const routeUtils = {
     const route = _.find(routes, route => location.pathname.includes(route.path))
     return route ? route.path : null
   },
-  getCurrentPage () {
-    const getParams = queryString.parse(location.search)
-    return parseInt(getParams.page, 10) || 1
-  },
   getPage () {
-    return parseInt(queryString.parse(location.search).page, 10) || 1
+    return parseInt(this.parsedQueryString().page, 10) || 1
   },
   getSearchTerm () {
-    return queryString.parse(location.search).search || null
+    return this.parsedQueryString().search || null
+  },
+  parsedQueryString () {
+    return qs.parse(location.search.substr(1))
   },
 }
 

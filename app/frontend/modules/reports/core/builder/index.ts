@@ -69,9 +69,10 @@ const HANDLERS = {
   [OPEN_RICH_EDITOR]: state => ({ ...state, richEditorOpened: true }),
   [CLOSE_RICH_EDITOR]: state => ({ ...state, richEditorOpened: false }),
   [RENAME_REPORT]: (state, { name }) => setIn(state, 'name', name),
-  [UPDATE_CURRENT_PAGE]: (state, { offset }) => {
+  [UPDATE_CURRENT_PAGE]: (state, { offset, pages }) => {
     const index = Math.round(offset / (state.props.sizes.height + VERTICAL_SPACE_BETWEEN_PAGES))
-    const page = state.pages[index]
+    const page = _.filter(state.pages, p => !pages[p].removed)[index]
+    if (!page) { return state }
     return setIn(state, 'currentPage', page)
   },
   [ADD_PAGE]: (state, { page, index }) => ({

@@ -19,8 +19,12 @@ FactoryBot.define do
       if evaluator.with_factors_norm
         evaluator.factors_norm_count.times do
           factor = create(:factor, dimension: norm.dimension)
-          FactorsNorm::NORM_TYPES.each do |type|
-            create(:factors_norm, type: type, norm: norm, factor: factor)
+          if norm.percentile?
+            create(:factors_norm, :percentile, norm: norm, factor: factor)
+          else
+            FactorsNorm::NORM_TYPES.each do |type|
+              create(:factors_norm, type: type, norm: norm, factor: factor)
+            end
           end
         end
       end

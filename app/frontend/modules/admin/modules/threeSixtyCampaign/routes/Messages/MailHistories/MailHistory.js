@@ -81,7 +81,11 @@ export default function MailHistory ({
     <div className="mtl">
       <Table rowKey={record => record.id} dataSource={list} columns={columns} pagination={false} />
       <div className="pm">
-        <Pagination total={total} onChange={page => fetch(campaignId, page)} path="/messages/mail_histories" />
+        <Pagination
+          total={total}
+          onChange={page => fetch(campaignId, page)}
+          path="/messages/mail_histories"
+        />
       </div>
       <EmailScheduleModal match={match} onSave={() => fetch(campaignId, page)} />
     </div>
