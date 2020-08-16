@@ -52,11 +52,11 @@ html
             window.$chatwoot.reset()
             localStorage.chatwootUserId = userId
           }
-          setTimeout(function(){
+          window.addEventListener('chatwoot:ready', function () {
             window.$chatwoot.setUser(userId, {
               email: user.email,
               name: user.fullName
             })
-          }, 1000)
+          });
         }
       })(document,"script");
