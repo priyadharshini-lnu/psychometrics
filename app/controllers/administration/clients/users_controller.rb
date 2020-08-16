@@ -6,7 +6,9 @@ module Administration
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
+      before_action :set_resource, only: %i[
+        show edit update destroy toggle_status toggle_membership_user_status sidebar spoof reset_password
+      ]
       before_action :skip_authorization, only: [:sidebar]
       append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
@@ -139,9 +141,21 @@ module Administration
         redirect_to redirect_url
       end
 
-      # Change resources's status to active/disabled
-      #
       def toggle_status
+        resource.toggle!(:disabled)
+        # Reload with join_user
+        @_resource = policy_scope(resource_class).join_user.find(params[:id])
+        respond_to do |format|
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
+          format.js
+        end
+      end
+
+      def toggle_membership_user_status
         resource.user.toggle!(:disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])

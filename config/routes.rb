@@ -100,6 +100,7 @@ Rails.application.routes.draw do
 
           member do
             patch :toggle_status
+            patch :toggle_membership_user_status
             get :sidebar
             get :reset_password
             get :spoof

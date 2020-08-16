@@ -1,8 +1,11 @@
 tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td.nowrap = resource.user.id
   td.text-center
-    = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
+    = link_to({ action: :toggle_membership_user_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_user_status_confirmation })
       = resource.user.decorate.status
+  td.text-center
+    = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
+      = resource.decorate.status
   td = resource.first_name
   td = resource.last_name
   td = resource.email
