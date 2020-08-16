@@ -18,7 +18,6 @@ interface OwnProps {
       campaignId: string
     }
   }
-  rescoreResponses(campaignId: string, id: number): void
 }
 type Props = RouteComponentProps & OwnProps & PropsFromRedux
 
@@ -103,7 +102,7 @@ const AssessmentList: React.FC<Props> = ({
                       category,
                       campaignId: parsedCampaignId,
                       openModal,
-                      rescoreResponses: () => rescoreResponses(campaignId, id),
+                      rescoreResponses: () => rescoreResponses(parsedCampaignId, id),
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -134,6 +133,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 }) => {
   const isExternal = () => ['hogan', 'mindmill'].includes(category)
   const isInternal = () => !isExternal()
+  const handleRescoreResponse = () => {
+    rescoreResponses()
+    message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+  }
 
   return (
     <Menu>
@@ -215,10 +218,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       <Menu.ItemGroup key="rescore">
         <Menu.Item key="rescoring">
           <a
-            onClick={() => {
-              rescoreResponses()
-              message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
-            }}
+            onClick={handleRescoreResponse}
           >
             {I18n.t('campaign_assessment.actions.rescore_response.title')}
           </a>
