@@ -252,6 +252,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     Modal.confirm({
       title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
       content: I18n.t('frontend.campaign.users.remove', { email }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
@@ -266,6 +268,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           full_name: userPresenter.getFullName({ firstName, lastName }),
         }),
       icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
       content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
       okText: I18n.t('yes'),
       cancelText: I18n.t('no'),
