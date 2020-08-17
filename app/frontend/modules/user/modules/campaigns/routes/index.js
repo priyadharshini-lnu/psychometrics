@@ -67,7 +67,7 @@ const routes = [
     exact: true,
   },
   {
-    path: '/campaigns/:campaignId/reports/:id',
+    path: '/threesixty_campaigns/:campaignId/reports/:id',
     sidebar: ReportSidebar,
     main: Report,
     exact: true,
