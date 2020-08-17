@@ -4890,7 +4890,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "operation_options": {
         "add_and_allow_new_response": "Add report to existing user and allow new response",
         "add_with_existing_response": "Add report to existing user and keep existing response",
-        "skip_existing": "Skip exiting user"
+        "skip_existing": "Skip existing user"
       },
       "report": "Report"
     }
@@ -4981,7 +4981,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
-      "remove": "Remove"
+      "remove": "Remove",
+      "reset": "Reset"
     },
     "column": {
       "action": "Action",
@@ -11888,7 +11889,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "operation_options": {
         "add_and_allow_new_response": "Add report to existing user and allow new response",
         "add_with_existing_response": "Add report to existing user and keep existing response",
-        "skip_existing": "Skip exiting user"
+        "skip_existing": "Skip existing user"
       },
       "report": "Report"
     }
@@ -11979,7 +11980,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
-      "remove": "Remove"
+      "remove": "Remove",
+      "reset": "Reset"
     },
     "column": {
       "action": "Action",
@@ -18879,7 +18881,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "operation_options": {
         "add_and_allow_new_response": "Add report to existing user and allow new response",
         "add_with_existing_response": "Add report to existing user and keep existing response",
-        "skip_existing": "Skip exiting user"
+        "skip_existing": "Skip existing user"
       },
       "report": "Report"
     }
@@ -18970,7 +18972,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
-      "remove": "Remove"
+      "remove": "Remove",
+      "reset": "Reset"
     },
     "column": {
       "action": "Action",

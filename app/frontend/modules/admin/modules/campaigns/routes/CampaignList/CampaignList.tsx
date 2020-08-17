@@ -10,6 +10,7 @@ import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
+import array from 'utils/array'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from '../CampaignList/CommonCampaignFormModal'
@@ -132,10 +133,8 @@ const CampaignList: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${id}`}>
-                  {name}
-                </Link>
+              render={({ name, isThreesixty, campaignUrl }) => (
+                isThreesixty ? <a href={campaignUrl}>{name}</a> : <Link to={campaignUrl}>{name}</Link>
               )}
             />
             <Column
@@ -200,9 +199,9 @@ interface ResourcesProps {
   type: string
 }
 
-const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => (
-  <>
-    {resources.map((resource: Resource) => (
+const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => {
+  const tags = () => (
+    resources.map((resource: Resource) => (
       <Tooltip placement="top" title={resource.name} key={resource.id}>
         <a href={`/administration/${type}/${resource.id}`} target="_blank" rel="noopener noreferrer">
           {resource.iconUrl ? (
@@ -218,9 +217,15 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => (
           )}
         </a>
       </Tooltip>
-    ))}
-  </>
-)
+    ))
+  )
+
+  return (
+    <>
+      {array.joinJSXElements(tags(), ' ')}
+    </>
+  )
+}
 
 interface ActionMenuProps {
   onEdit(): void

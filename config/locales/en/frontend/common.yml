@@ -16,6 +16,7 @@ en:
     actions:
       remove: Remove
       cancel: Cancel
+      reset: Reset
     model:
       campaigns: Campaigns
       assessments: Assessments

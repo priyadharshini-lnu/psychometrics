@@ -18,7 +18,7 @@ module Administration
       def export
         report = Report.find(params[:id])
         campaign = Campaign.find(params[:new_campaign_id])
-        xlsx = Reports::ExportData.call!(report, campaign)
+        xlsx = ::Reports::ExportData.call!(report, campaign)
 
         respond_to do |format|
           format.xlsx { send_data xlsx.to_stream.read, filename: "report-#{report.id}-data.xlsx" }

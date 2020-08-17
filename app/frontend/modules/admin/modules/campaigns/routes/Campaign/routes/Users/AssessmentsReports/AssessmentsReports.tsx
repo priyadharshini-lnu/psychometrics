@@ -82,7 +82,7 @@ const AssessmentsReports: React.FC<Props> = ({
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
               {_.map(assessmentStatuses, (value, status) => (
-                <Tag key={status} color={statusToColor[status]}>{`${value} in ${_.capitalize(status)}`}</Tag>
+                <Tag key={status} color={statusToColor[status]}>{`${value} ${_.capitalize(status)}`}</Tag>
               ))}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>

@@ -8,6 +8,6 @@ en:
       report: Report
       operation: Operation
       operation_options:
-        skip_existing: Skip exiting user
+        skip_existing: Skip existing user
         add_with_existing_response: Add report to existing user and keep existing response
         add_and_allow_new_response: Add report to existing user and allow new response
