@@ -13,7 +13,7 @@ module Threesixty
         format.html { render :show }
         format.json do
           @single_assigns = policy_scope(Assign).
-                            includes(:single_reports, original_assign: [:single_reports]).
+                            includes(:single_reports, original_assign: %i[membership single_reports]).
                             joining { original_assign.outer.membership.outer.client.outer }.
                             joins(
                               'LEFT OUTER JOIN "assessments_clients"
@@ -30,8 +30,10 @@ module Threesixty
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
           json = @single_assigns.uniq.map do |assign|
+            next if assign.original_assign&.membership&.disabled?
+
             ::EndUser::AssignSerializer.new(assign).to_h
-          end
+          end.compact
           json.concat(threesixty_projects.map do |campaign|
                         Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
                       end)
