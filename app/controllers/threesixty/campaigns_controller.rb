@@ -30,7 +30,7 @@ module Threesixty
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
           json = @single_assigns.uniq.map do |assign|
-            next if assign.original_assign&.membership&.disabled?
+            next if assign.original_assigns.all? { |a| a.membership&.disabled? }
 
             ::EndUser::AssignSerializer.new(assign).to_h
           end.compact
