@@ -33,7 +33,7 @@ class Administration::UserPolicy < Administration::BasePolicy
     false
   end
 
-  def toggle_membership_user_status?
+  def toggle_membership_status?
     toggle_status?
   end
 

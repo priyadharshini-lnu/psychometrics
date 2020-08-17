@@ -128,5 +128,5 @@ en:
           destroy:
             successfully: "%{name} was successfully detached"
     memberships:
-      toggle_membership_user_status:
+      toggle_membership_status:
         successfully: Membership of %{name} was successfully updated.
