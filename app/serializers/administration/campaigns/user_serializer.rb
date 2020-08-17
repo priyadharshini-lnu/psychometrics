@@ -3,7 +3,8 @@
 module Administration
   module Campaigns
     class UserSerializer < ActiveModel::Serializer
-      attributes :id, :first_name, :last_name, :email, :created_by, :created_at, :updated_by, :updated_at, :active
+      attributes :id, :first_name, :last_name, :email, :created_by, :created_at, :updated_by, :updated_at,
+                 :active, :completion_status
 
       def created_at
         I18n.l object.created_at, format: :short
@@ -19,6 +20,14 @@ module Administration
 
       def updated_by
         object.modifier&.email
+      end
+
+      def completion_status
+        return 'not_started' if object.user_assessments.empty?
+        return 'not_started' if object.user_assessments.all? { |a| !a.users_result || a.users_result.not_started? }
+        return 'completed' if object.user_assessments.all? { |a| a.users_result&.completed? }
+
+        'in_progress'
       end
 
       def active

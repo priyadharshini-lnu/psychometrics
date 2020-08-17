@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -47,6 +47,8 @@ interface Props {
   changePage(page: number): void
   openModal(name: string, data?: { campaignId: string, user?: User }): void
 }
+
+const statusToColor = { not_started: 'gray', in_progress: 'orange', completed: 'green' }
 
 const UserList: React.FC<Props> = ({
   fetch,
@@ -189,6 +191,19 @@ const UserList: React.FC<Props> = ({
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="updated_by"
+            />
+            <Column
+              title="Completion Status"
+              key="completionStatus"
+              sorter
+              sortOrder={getSortOrder('completionStatus')}
+              render={user => (
+                <Tag
+                  color={statusToColor[user.completionStatus]}
+                >
+                  {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
+                </Tag>
+              )}
             />
             <Column
               title="Action"

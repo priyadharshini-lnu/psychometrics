@@ -8,7 +8,7 @@ module Administration
       def index
         users = campaign.
                 users.
-                includes(:creator, :modifier, :campaign_users).
+                includes(:creator, :modifier, :campaign_users, user_assessments: :users_result).
                 ransack(params[:filters]).result
 
         respond_to do |format|

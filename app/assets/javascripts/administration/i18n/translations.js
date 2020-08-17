@@ -4740,6 +4740,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "saving": "يتم الحفظ...",
       "selected": "تم الاختيار",
       "start_recording": "ابدأ التسجيل",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.",
         "forward": "اضغط على زر التسجيل عندما تكون جاهزًا",
@@ -5570,6 +5573,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "users": {
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
         "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
         "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },
@@ -11730,6 +11738,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -12556,6 +12567,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "users": {
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
         "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
         "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },
@@ -18713,6 +18729,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -19539,6 +19558,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "users": {
         "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
         "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
         "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
       }
     },

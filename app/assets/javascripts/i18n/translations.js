@@ -92,6 +92,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "saving": "يتم الحفظ...",
       "selected": "تم الاختيار",
       "start_recording": "ابدأ التسجيل",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.",
         "forward": "اضغط على زر التسجيل عندما تكون جاهزًا",
@@ -683,6 +686,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -1271,6 +1277,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
