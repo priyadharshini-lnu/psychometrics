@@ -2,15 +2,26 @@
 
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :status
+    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type
 
     delegate :name, :category, to: :assessment
-    delegate :name, to: :norm, prefix: true, allow_nil: true
 
     def status
       return :not_started if user_result.nil?
 
       user_result.status
+    end
+
+    def norms
+      object.assessment.norms.map { |n| NormSerializer.new(n).to_h }
+    end
+
+    def norm_name
+      user_result&.norm&.name
+    end
+
+    def norm_type
+      user_result&.norm_type
     end
 
     private

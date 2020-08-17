@@ -11,23 +11,15 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   let!(:norm) { create(:norm, name: 'Norm', dimension: dimension) }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
+  let(:user) { create(:user) }
+  let(:users_result) { create(:users_result, subject: user, campaign: campaign, assessment: assessment) }
+  let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign, users_result: users_result) }
+  let!(:user_report) { create(:user_report, user: user, campaign: campaign, report: report, status: :prepared) }
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
-  describe '[GET] /new_campaigns/:id/assessments/:id/norms' do
-    it 'success' do
-      get :norms, params: {
-        id: assessment.id,
-        new_campaign_id: campaign.id
-      }
-      parsed_response = JSON.parse(response.body)
-
-      expect(parsed_response).to eq(['id' => norm.id, 'name' => 'Norm'])
-    end
-  end
-
-  describe '[POST] /new_campaigns/:id/assessments/:id/update_norm' do
+  describe '[POST] update_norm' do
     it 'with apply = false' do
       expect(::CampaignAssessments::RecomputeResultsJob).to_not receive(:perform_later)
 

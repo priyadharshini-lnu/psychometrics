@@ -66,18 +66,6 @@ export const importScoringResults = (campaignId: number, assessmentId: number, b
   },
 })
 
-export const fetchNorms = (campaignId: number, assessmentId: number) => ({
-  type: FETCH_NORMS,
-  request: {
-    method: 'get',
-    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/norms`,
-    body: {
-      id: assessmentId,
-    },
-  },
-})
-
-
 export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
   type: UPDATE_NORM,
   request: {

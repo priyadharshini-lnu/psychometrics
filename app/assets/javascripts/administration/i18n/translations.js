@@ -4995,7 +4995,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
     }
   },
   "confirmation": {
@@ -11983,7 +11985,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
     }
   },
   "confirmation": {
@@ -18964,7 +18968,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
-      "ok": "Ok"
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
     }
   },
   "confirmation": {

@@ -1,3 +1,5 @@
+import Norm from './Norm'
+
 export default interface UserAssessment {
   id: number
   name: string
@@ -5,4 +7,5 @@ export default interface UserAssessment {
   assessmentId: number
   normName: string
   status: string
+  norms?: Norm[]
 }

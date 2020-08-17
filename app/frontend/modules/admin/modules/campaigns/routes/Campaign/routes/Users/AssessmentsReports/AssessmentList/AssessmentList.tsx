@@ -16,20 +16,27 @@ interface Props {
     params: {
       projectId: string
       campaignId: string
+      id: string
     }
   }
-  openModal(name: string, data?: { projectId: number, campaignId: number, campaignAssessmentId: number }): void
+  openModal(name: string, data?: {
+     projectId: number
+     userId: number
+     campaignId: number
+     campaignAssessmentId: number
+  }): void
 }
 
 const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   assessments: {
     list,
   },
-  match: { params: { projectId, campaignId } },
+  match: { params: { projectId, campaignId, id } },
   openModal,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
+  const parsedUserId = parseInt(id, 10)
 
   return (
     <Row>
@@ -53,14 +60,19 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
-            render={({ normName, id }) => (
+            render={({ normName, normType, id }) => (
               <a
                 onClick={
-                  () => openModal('ChangeNormModal',
-                    { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                  () => openModal('UpdateNormModal',
+                    {
+                      projectId: parsedProjectId,
+                      campaignId: parsedCampaignId,
+                      campaignAssessmentId: id,
+                      userId: parsedUserId,
+                    })
                 }
               >
-                {normName || I18n.t('common.text.default')}
+                {normName ? `${normName}, ${normType}` : I18n.t('common.text.default')}
               </a>
             )}
           />

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Form, Checkbox, Select, Radio,
+  Modal, Button, Form, Select, Radio,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -21,6 +21,7 @@ export interface OwnProps {
   close(): void
   campaignAssessmentId: number,
   campaignId: number
+  userId: number
   assessment: Assessment
   loading: boolean
 }
@@ -28,14 +29,14 @@ export interface OwnProps {
 export type Props = OwnProps & PropsFromRedux
 
 const UpdateNormModal: React.FC<Props> = ({
-  close, campaignId, loading, assessment, updateNorm,
+  close, campaignId, loading, assessment, updateNorm, campaignAssessmentId,
 }) => {
   const [form] = Form.useForm()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_fields, setFields] = useState({})
 
   const handleUpdate = (params) => {
-    updateNorm(campaignId, assessment.id, params)
+    updateNorm(campaignId, campaignAssessmentId, params)
     close()
   }
   return (
@@ -88,9 +89,6 @@ const UpdateNormModal: React.FC<Props> = ({
             ETI
             </Radio>
           </Radio.Group>
-        </Form.Item>
-        <Form.Item name="apply" valuePropName="checked">
-          <Checkbox>{I18n.t('campaign_assessment.modals.update_norm.apply')}</Checkbox>
         </Form.Item>
       </Form>
     </Modal>

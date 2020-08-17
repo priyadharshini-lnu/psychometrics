@@ -14,6 +14,8 @@ module CampaignAssessments
 
       results.find_each do |res|
         ::UsersResults::Recompute.call!(res, norm_data)
+        res.norm_id = campaign_assessment.norm_id
+        res.norm_type = campaign_assessment.norm_type
         res.save!
       end
 

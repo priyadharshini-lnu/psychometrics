@@ -7,9 +7,6 @@ en:
     manage: Manage
     activate: Activate
   common:
-    text:
-      default: 'Default'
-      response: Response
     column:
       id: Id
       category: Category
@@ -27,3 +24,5 @@ en:
       ok: Ok
       confirm: Confirm
       cancel: Cancel
+      default: 'Default'
+      response: Response

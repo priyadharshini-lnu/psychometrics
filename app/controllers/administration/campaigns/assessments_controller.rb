@@ -72,10 +72,6 @@ module Administration
         }
       end
 
-      def norms
-        render json: assessment.norms
-      end
-
       private
 
       def assessment

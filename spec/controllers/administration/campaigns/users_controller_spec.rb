@@ -86,6 +86,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'name' => assessment.name,
       'category' => assessment.category,
       'norm_name' => nil,
+      'norms' => [],
+      'norm_type' => nil,
       'status' => 'not_started'
     })
   end

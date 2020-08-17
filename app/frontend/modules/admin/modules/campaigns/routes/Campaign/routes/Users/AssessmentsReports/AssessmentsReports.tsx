@@ -9,6 +9,7 @@ import array from 'utils/array'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/AddReportModal'
+import UpdateNormModal from '../AssessmentsReports/UpdateNormModal'
 import { Strategies } from '../../AssessmentsReports/AddReportModal/interfaces'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -17,6 +18,7 @@ const { I18n } = window
 
 const MODALS = {
   AddReportModal,
+  UpdateNormModal,
 }
 
 interface OwnProps {

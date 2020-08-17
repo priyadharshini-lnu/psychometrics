@@ -9,5 +9,5 @@ export default interface Assessment {
   normType: string
   enableUniversalLinks: boolean
   universalLink: string | null
-  norms?: null | Norm[]
+  norms?: Norm[]
 }

@@ -1,6 +1,5 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { updateNorm } from 'modules/admin/modules/campaigns/core/assessments/actions'
-import { getSingle } from 'modules/admin/modules/campaigns/core/assessments'
+import { getSingle, updateNorm } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { OwnProps } from './UpdateNormModal'
 
 const connecter = connect(
