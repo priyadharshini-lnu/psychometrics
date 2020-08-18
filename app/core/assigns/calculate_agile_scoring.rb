@@ -4,9 +4,10 @@ module Assigns
   class CalculateAgileScoring < BaseCommand
     private_attr_accessor :assign, :agile, :norm, :results, :scoring
 
-    def initialize(assign)
+    def initialize(assign, skip_cleanup = false)
       @assign = assign
       @agile = assign.assessment.agile
+      @skip_cleanup = skip_cleanup
     end
 
     def call
@@ -16,11 +17,11 @@ module Assigns
 
       @results = assign.results.map { |hash| hash['answers'] }.reduce(&:merge)
       @norm = Norm.
-              includes(:factors_norms, factors: %i[sub_factors factors_sub_factors]).
+              includes(:factors_norms, dimension: [factors: %i[sub_factors factors_sub_factors]]).
               find_by(id: assign.norm_data['id'])
 
       # { factor_id => {"blocks" => [] }, ... }
-      @scoring = Hash[norm.factors.map(&:id).product([blocks: []])].with_indifferent_access
+      @scoring = Hash[norm.dimension.factors.map(&:id).product([blocks: []])].with_indifferent_access
 
       calculate
       broadcast(:ok, assign.update(scoring: scoring))
@@ -33,7 +34,7 @@ module Assigns
     end
 
     def get_factor(factor_id)
-      norm.factors.find { |f| f.id == factor_id }
+      norm.dimension.factors.find { |f| f.id == factor_id }
     end
 
     def get_factors_sub_factor(factor_id, sub_factor_id)
@@ -42,34 +43,34 @@ module Assigns
     end
 
     def calculate
-      prepare_scoring_with_blocks
-      extend_with_factor_scores
-      extend_with_norm_score
+      extend_scoring_with_blocks
+      extend_scoring_with_factor_scores
+      extend_scoring_with_norm_score
+      clean unless @skip_cleanup
     end
 
     # { factor_id => {"blocks" => [{id: 'block-1', scoring: [{ factorId, itemScore }], questions => [...]}] }, ... }
-    def prepare_scoring_with_blocks
+    def extend_scoring_with_blocks
       assessments = agile.config['groups'].map do |group|
         group['scenes'].select { |s| s['type'] == 'AssessmentScene' }
       end.flatten
 
-      assessments.each do |assessment|
-        blocks = assessment.dig('data', 'blocks')
-        blocks.each do |block|
-          block_scoring_factors = block.dig('scoring')
-          block_scoring_factors&.each do |scoring_factor|
-            factor = get_factor(scoring_factor['factorId'])
+      blocks = assessments.map { |assessment| assessment.dig('data', 'blocks') }.flatten
+      scoring.tap do |original_scoring|
+        original_scoring.each do |factor_id, _|
+          factor = get_factor(factor_id)
 
-            scoring[scoring_factor['factorId']]['blocks'] << block
-            if factor.sub_factors_average_strategy?
-              scoring[scoring_factor['factorId']]['sub_factors'] = factor.sub_factors.pluck(:id)
-            end
+          factor_blocks = blocks.select do |block|
+            block['scoring'].detect { |s| s['factorId'] == factor_id }
           end
+
+          scoring[factor_id]['blocks'] = factor_blocks
+          scoring[factor_id]['sub_factors'] = factor.sub_factors.pluck(:id) if factor.sub_factors_average_strategy?
         end
       end
     end
 
-    def extend_with_factor_scores
+    def extend_scoring_with_factor_scores
       scoring.tap do |original_scoring|
         original_scoring.each do |factor_id, data|
           factor = get_factor(factor_id)
@@ -89,20 +90,59 @@ module Assigns
       score
     end
 
-    def extend_with_norm_score
+    def extend_scoring_with_norm_score
       scoring.tap do |original_scores|
         original_scores.each do |factor_id, original_score|
-          factor_norm = get_factors_norm(factor_id)
-          props = factor_norm&.props&.first
+          calculate_zscore(factor_id, original_score)
+        end
+      end
+    end
 
-          next if props.blank?
+    def calculate_zscore(factor_id, scoring_hash)
+      factor_norm = get_factors_norm(factor_id)
+      props = factor_norm&.props&.first
 
-          factor_score = original_score['score']
-          zscore = ((factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f).round(5)
-          norm_score = Ztable.percentile(zscore)
+      # If the props are blank (no mean and standard deviation),
+      # and if the factor has sub_factors, then we take the weighted average of the
+      # zscores of sub-factors (like `by_sub_factors_average_strategy` strategy)
+      if props.blank?
+        calculate_weighted_zscore(factor_id, scoring_hash)
+      else
+        calculate_norm_zscore(props, scoring_hash)
+      end
+    end
 
-          original_score['zscore'] = zscore
-          original_score['norm_score'] = norm_score
+    def calculate_norm_zscore(props, scoring_hash)
+      factor_score = scoring_hash['score']
+      zscore = ((factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f).round(5)
+      norm_score = Ztable.percentile(zscore)
+
+      scoring_hash['zscore'] = zscore
+      scoring_hash['norm_score'] = norm_score
+    end
+
+    def calculate_weighted_zscore(factor_id, scoring_hash)
+      sub_factor_ids = scoring[factor_id].dig('sub_factors')
+      sub_factor_scores = prepare_sub_factors(get_factor(factor_id), sub_factor_ids)
+
+      zscores = sub_factor_scores.map { |_, score_hash| score_hash['zscore'] }
+      # Make sure that the zscores are calculated for all sub-factors of this factor
+      if zscores.all?
+        zscore = weighted_average(sub_factor_scores, :zscore)
+        norm_score = Ztable.percentile(zscore)
+
+        scoring_hash['zscore'] = zscore
+        scoring_hash['norm_score'] = norm_score
+      else
+        sub_factor_ids.each { |sub_factor_id| calculate_zscore(sub_factor_id, scoring[sub_factor_id]) }
+        calculate_weighted_zscore(factor_id, scoring_hash)
+      end
+    end
+
+    def clean
+      scoring.tap do |original_scores|
+        original_scores.each do |_, scoring_hash|
+          scoring_hash.delete('blocks')
         end
       end
     end
@@ -149,7 +189,7 @@ module Assigns
 
       # { factor_id => <score>, ... }
       sub_factor_scores = prepare_sub_factors(factor, sub_factor_ids)
-      calculate_average(calculate_sub_factor_scores(sub_factor_scores))
+      weighted_average(calculate_sub_factor_scores(sub_factor_scores))
     end
 
     def prepare_sub_factors(factor, sub_factor_ids)
@@ -177,11 +217,11 @@ module Assigns
       sub_factor_scores
     end
 
-    def calculate_average(scores)
+    def weighted_average(scores, key = :score)
       total = scores.each_with_object(sum: 0, count: 0) do |(_, config), memo|
         weight = config[:weight] || 1
 
-        memo[:sum] += config[:score] * weight
+        memo[:sum] += config[key] * weight
         memo[:count] += weight
       end
 

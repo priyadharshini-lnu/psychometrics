@@ -29,7 +29,7 @@ describe Assigns::CalculateAgileScoring do
       setup_data(true)
     end
 
-    subject { described_class.call(@assign) }
+    subject { described_class.call(@assign, true) }
 
     it { expect { subject }.to broadcast(:ok) }
 
