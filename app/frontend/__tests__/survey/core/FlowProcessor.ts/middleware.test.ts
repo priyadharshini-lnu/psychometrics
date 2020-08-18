@@ -12,7 +12,7 @@ import assessmentWithDisplayLogic from './seeds/assessmentWithDisplayLogic'
 import assessmentWithSkipLogic from './seeds/assessmentWithSkipLogic'
 
 describe('initializing base assessment', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
 
   test('middleware should call next if is not NEXT_PAGE', () => {
     const flow = middleware(store)
@@ -45,7 +45,7 @@ describe('initializing base assessment', () => {
 
 
 describe('initializing base assessment from not the first step', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
 
   test('init action should init assessment from element 2', () => {
     const flow = middleware(store)
@@ -64,7 +64,7 @@ describe('initializing base assessment from not the first step', () => {
 })
 
 describe('initializing base assessment from question with display logic', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
 
   test('init action should init assessment from element 2/0 page 2 and skip it to next as it does not have questions', () => {
     const flow = middleware(store)
@@ -79,7 +79,7 @@ describe('initializing base assessment from question with display logic', () => 
 
 
 describe('initializing base assessment from question with display logic', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
 
   test('init action should init assessment from element 2/0 page 2 and show only second quesion', () => {
     const flow = middleware(store)
@@ -100,7 +100,7 @@ describe('initializing base assessment from question with display logic', () => 
 })
 
 describe('assessment with invalid display logic should skip page without question', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   const data = _.cloneDeep(assessmentWithDisplayLogic)
@@ -127,7 +127,7 @@ describe('assessment with invalid display logic should skip page without questio
 
 
 describe('assessment with invalid display logic condition', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithDisplayLogic, result: {} })
@@ -153,7 +153,7 @@ describe('assessment with invalid display logic condition', () => {
 
 
 describe('assessment with valid display logic condition', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithDisplayLogic, result: {} })
@@ -174,7 +174,7 @@ describe('assessment with valid display logic condition', () => {
 
 
 describe('assessment with valid invalid skip logic condition', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
@@ -189,7 +189,7 @@ describe('assessment with valid invalid skip logic condition', () => {
 
 
 describe('assessment with valid valid skip logic condition', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
@@ -205,7 +205,7 @@ describe('assessment with valid valid skip logic condition', () => {
 })
 
 describe('assessment with valid valid skip logic condition', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
   store.dispatch({ type: INIT, data: assessmentWithSkipLogic, result: {} })
@@ -222,10 +222,10 @@ describe('assessment with valid valid skip logic condition', () => {
 
 
 describe('assessment with valid valid skip logic to end of assessment condition ', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
-  const data = _.cloneDeep(assessmentWithSkipLogic)
+  const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.blocks[0].questions[0].skip_logic[0].destination = 'EndOfAssessment'
   store.dispatch({ type: INIT, data, result: {} })
   flow(next)({ type: NEXT_PAGE }) // initial from saga
@@ -240,10 +240,10 @@ describe('assessment with valid valid skip logic to end of assessment condition 
 
 
 describe('assessment with valid valid skip to specific block', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
-  const data = _.cloneDeep(assessmentWithSkipLogic)
+  const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.blocks[0].questions[0].skip_logic[0].destination = 'SpecificBlock'
   data.blocks[0].questions[0].skip_logic[0].destinationBlock = 3
   store.dispatch({ type: INIT, data, result: {} })
@@ -260,10 +260,10 @@ describe('assessment with valid valid skip to specific block', () => {
 
 
 describe('assessment with valid valid skip to specific block not in linear should be ignored', () => {
-  const store = createStore(reducers)
+  const store: any = createStore(reducers)
   const next = jest.fn()
   const flow = middleware(store)
-  const data = _.cloneDeep(assessmentWithSkipLogic)
+  const data: any = _.cloneDeep(assessmentWithSkipLogic)
   data.flow.elements = [
     { type: 'Block', props: { current: '1' }, elements: [] },
     { type: 'Block', props: { current: '2' }, elements: [] },

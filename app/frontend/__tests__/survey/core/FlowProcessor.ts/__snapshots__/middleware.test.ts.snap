@@ -340,7 +340,7 @@ Object {
     "relationship": undefined,
     "relationships": undefined,
     "results": Object {},
-    "resultsUrl": undefined,
+    "resultsUrl": "/assigns/1",
     "subjectDataSheet": undefined,
     "timerDuration": undefined,
     "type": "preview_assessment",

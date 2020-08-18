@@ -9,7 +9,7 @@ const { I18n } = window
 
 interface EditableTableProps {
   factors: Factor[]
-  onSave(data: NormFields): Promise<void>
+  onSave(data: NormFields): Promise<unknown>
 }
 
 interface Factor {

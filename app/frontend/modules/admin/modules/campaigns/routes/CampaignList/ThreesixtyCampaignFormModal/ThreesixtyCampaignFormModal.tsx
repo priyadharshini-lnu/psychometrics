@@ -1,45 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { Form, Input, Select } from 'antd'
-import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'modules/admin/constants/campaign'
+import { STATUSES, TYPES as CAMPAIGN_TYPES } from 'constants/campaign'
 import { TYPES as THREESIXTY_TYPES } from 'modules/admin/constants/threesixtyCampaign'
+import { CampaignTemplate, Assessment } from 'modules/admin/modules/campaigns/core/list'
+import { Factor } from 'modules/admin/modules/campaigns/core/factors'
 
 import _ from 'lodash'
+import { PropsFromRedux } from './connect'
 
 const { Option } = Select
 
-interface Props {
+interface OwnProps {
   projectId: number
   close(): void
   campaign: {
     id: number
   }
-  fetchByAssessmentId(id: number): Promise<{ response: Assessment[] }>
-  fetchTemplatesAndAssessments(projectId: number): Promise<TemplatAndAssesmentResponse>
 }
 
-interface Factor {
-  id: number
-  name: string
-}
-
-interface CampaignTemplate {
-  id: number
-  name: string
-  assessment_id: number
-}
-
-interface Assessment {
-  id: number
-  name: string
-}
-
-interface TemplatAndAssesmentResponse{
-  response: {
-    templates: CampaignTemplate[]
-    assessments: Assessment[]
-  }
-}
+type Props = OwnProps & PropsFromRedux
 
 const ThreesixtyCampaignFormModal: React.FC<Props> = ({
   projectId,
@@ -50,28 +30,28 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
 }) => {
   const [form] = Form.useForm()
   const [factors, setFactors] = useState<Factor[]>([])
-  const [campaignTemplates, setcampaignTemplates] = useState<CampaignTemplate[]>([])
-  const [asessments, setAsessments] = useState<Assessment[]>([])
+  const [campaignTemplates, setCampaignTemplates] = useState<CampaignTemplate[]>([])
+  const [assessments, setAssessments] = useState<Assessment[]>([])
 
   useEffect(() => {
     fetchTemplatesAndAssessments(projectId).then(
-      ({ response: { templates, assessments } }: TemplatAndAssesmentResponse) => {
-        setcampaignTemplates(templates)
-        setAsessments(assessments)
+      ({ response: { templates, assessments } }) => {
+        setCampaignTemplates(templates)
+        setAssessments(assessments)
       },
     )
   }, [])
 
   const handleCampaignTemplateChange = (campaignTemplateId: number) => {
-    const { assessmentId } = _.find(campaignTemplates,
+    const campaignTemplate = _.find(campaignTemplates,
       (campaignTemplate: CampaignTemplate) => campaignTemplate.id === campaignTemplateId)
-    handleAssessmentChange(assessmentId)
+    if (campaignTemplate) { handleAssessmentChange(campaignTemplate.assessmentId) }
   }
 
   const handleAssessmentChange = (assessmentId: number) => {
     fetchByAssessmentId(assessmentId).then(({ response }) => {
       setFactors(response)
-      form.setFieldsValue({ factors: _.map(response, (factor: Factor) => factor.id) })
+      form.setFieldsValue({ factors: _.map(response, factor => factor.id) })
     })
   }
 
@@ -144,8 +124,8 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
               rules={[{ required: true }]}
             >
               <Select onChange={handleAssessmentChange}>
-                {_.map(asessments, (asessment: Assessment) => (
-                  <Option key={asessment.id} value={asessment.id}>{asessment.name}</Option>))}
+                {_.map(assessments, (assessment: Assessment) => (
+                  <Option key={assessment.id} value={assessment.id}>{assessment.name}</Option>))}
               </Select>
             </Form.Item>
           )}

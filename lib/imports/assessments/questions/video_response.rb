@@ -20,8 +20,12 @@ module Imports
           MediaResponse.where(id: decoded_media_ids).
             order(:created_at).each_with_index do |media_record, index|
             answer = {}
-            media_record_to_import = MediaResponses::FindOrCreateMediaResponse.
-                                     call!(media_record, assign, question)
+            media_record_to_import =
+              if assign.is_a?(Assign)
+                MediaResponses::FindOrCreateMediaResponse.call!(media_record, assign, question)
+              else
+                MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
+              end
 
             next unless media_record_to_import
 

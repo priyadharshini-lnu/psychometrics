@@ -1,6 +1,7 @@
 en:
   administration:
     clients:
+      tenancies: Client Tenancies
       tooltips: &default_tooltips
         copy: Copy Campaign
         edit: Edit Campaign

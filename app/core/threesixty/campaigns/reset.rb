@@ -8,7 +8,7 @@ module Threesixty
       ASSOCIATIONS_TO_REMOVE = %i[
         nomination_requirements
         participants
-        campaigns_users
+        campaign_users
         subjects
         evaluators
       ].freeze

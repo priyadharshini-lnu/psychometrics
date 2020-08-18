@@ -1,12 +1,13 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { fetch, create, update } from 'core/resource'
+import { OwnProps } from './ResourceForm'
 
-export default connect(
+const connecter = connect(
   () => ({}),
   (dispatch, {
     resourceName, resourceBaseUrl, resource, resourceId, requestScope,
-  }) => {
-    const id = resourceId || (resource && resource.id)
+  }: OwnProps) => {
+    const id = resourceId || (resource && resource.id) as number
 
     return {
       defaultRequest: {
@@ -17,3 +18,7 @@ export default connect(
     }
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

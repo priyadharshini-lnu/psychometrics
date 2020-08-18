@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Hogan
+  # deprecated
   class LoadResults < BaseCommand
     def initialize(assign, report, membership, project)
       @membership = membership

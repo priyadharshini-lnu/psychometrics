@@ -8,11 +8,11 @@ describe Threesixty::Campaigns::RemoveUser do
   let(:subject) { create(:threesixty_subject, campaign: campaign) }
   let(:user) { subject.user }
 
-  it 'deletes campaigns_users_report' do
-    campaigns_users_report = create(:campaigns_users_report, user_id: user.id, campaign_id: campaign.id)
+  it 'deletes user_report' do
+    user_report = create(:user_report, user_id: user.id, campaign_id: campaign.id)
     Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
 
-    expect(CampaignsUsersReport.find_by(id: campaigns_users_report.id)).to be_nil
+    expect(UserReport.find_by(id: user_report.id)).to be_nil
   end
 
   it 'deletes evaluation_results' do
@@ -30,10 +30,10 @@ describe Threesixty::Campaigns::RemoveUser do
   end
 
   it 'deletes campaign_user' do
-    campaigns_user = create(:campaigns_user, user_id: user.id, campaign_id: campaign.id)
+    campaign_user = create(:campaign_user, user_id: user.id, campaign_id: campaign.id)
     Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
 
-    expect(CampaignsUser.find_by(id: campaigns_user.id)).to be_nil
+    expect(CampaignUser.find_by(id: campaign_user.id)).to be_nil
   end
 
   it 'deletes subject record for the user' do

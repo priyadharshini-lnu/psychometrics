@@ -34,7 +34,7 @@ const ModuleConfigs = {
     randomization: true,
     defaultValue: true,
     scoring: true,
-    scoringFilteredModules: ['Form'],
+    scoringFilteredModules: ['Form', 'Chat', 'Email'],
   },
 
   MatrixTable: {

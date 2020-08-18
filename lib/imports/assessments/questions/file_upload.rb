@@ -8,7 +8,12 @@ module Imports
           return nil if data.compact.blank?
 
           media_record = MediaResponse.find_by_encoded_id(data[1])
-          media_record_to_import = MediaResponses::FindOrCreateMediaResponse.call!(media_record, assign, question)
+          media_record_to_import =
+            if assign.is_a?(Assign)
+              MediaResponses::FindOrCreateMediaResponse.call!(media_record, assign, question)
+            else
+              MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
+            end
 
           return unless media_record_to_import
 

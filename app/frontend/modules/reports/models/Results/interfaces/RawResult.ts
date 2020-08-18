@@ -12,6 +12,7 @@ export default interface RawResult {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   external_scoring: any
   data_sheet: object
+  subject_datasheet: object
 }
 
 export interface ScoringResult {

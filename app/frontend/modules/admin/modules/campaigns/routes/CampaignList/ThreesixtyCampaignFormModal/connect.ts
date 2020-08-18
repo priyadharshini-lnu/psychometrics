@@ -1,8 +1,8 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { fetchTemplatesAndAssessments } from 'modules/admin/modules/campaigns/core/list/index'
 import { fetchByAssessmentId } from 'modules/admin/modules/campaigns/core/factors'
 
-export default connect(
+const connecter = connect(
   () => ({
   }),
   {
@@ -10,3 +10,7 @@ export default connect(
     fetchByAssessmentId,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

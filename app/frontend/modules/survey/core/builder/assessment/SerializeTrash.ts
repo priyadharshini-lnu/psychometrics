@@ -14,7 +14,7 @@ interface AssessmentInterface {
 }
 
 const SerializeTrash = {
-  run (items: any): [] {
+  run (items: any): any {
     return _.reduce(items, (trash, item) => {
       if (item.model.isNew) { return trash }
       const deletedItem = item.type === 'block'

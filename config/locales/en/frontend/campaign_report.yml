@@ -1,0 +1,13 @@
+en:
+  campaign_report:
+    column:
+      report_name: Report name
+      report_bundle: Report Bundle
+      user_access: User Access
+    form:
+      report: Report
+      operation: Operation
+      operation_options:
+        skip_existing: Skip existing user
+        add_with_existing_response: Add report to existing user and keep existing response
+        add_and_allow_new_response: Add report to existing user and allow new response

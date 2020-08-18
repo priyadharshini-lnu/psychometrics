@@ -43,7 +43,7 @@ export const prevPage = (preview): PrevPage => {
     return { type: PREV_PAGE }
   }
   // TODO (atanych): Is used the same endpoint as for `saveResults` with empty resource to update last_activity_at field
-  const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
+  const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
 
   return {
     type: PREV_PAGE,
@@ -95,7 +95,7 @@ export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION
 export const saveResults = (preview, questionIds, currentBlockId?): SaveResults => {
   const data = {
     resource: {
-      [preview.isThreesixty ? 'answers' : 'results']: _.omitBy(preview.results, 'dirty'),
+      [preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers']: _.omitBy(preview.results, 'dirty'),
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
@@ -104,7 +104,7 @@ export const saveResults = (preview, questionIds, currentBlockId?): SaveResults 
     question_ids: questionIds,
     current_block_id: currentBlockId,
   }
-  const url = preview.isThreesixty ? preview.resultsUrl : `/assigns/${preview.dbResult.id}`
+  const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
   if (preview.end) {
     const normData = NormResolver.run(preview.normRules, preview.hrisData, preview.questions, preview.results)
     if (preview.isThreesixty) {

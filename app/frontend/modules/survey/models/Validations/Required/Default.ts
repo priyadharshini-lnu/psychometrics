@@ -11,7 +11,6 @@ const DefaultValidation = {
   run (moduleResult: ModuleResult) {
     const errors: QuestionError[] = []
     const { result: { question } } = moduleResult
-    debugger
     if (!moduleResult.requiredValidation()) {
       const validationMessage = I18n().lookup(`${getValidationKey(question)}.required`)
         || I18n().t('validations.required')

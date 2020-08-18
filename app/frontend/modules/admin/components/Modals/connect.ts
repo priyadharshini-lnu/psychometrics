@@ -1,7 +1,7 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { getCurrent, getData, closeModal } from 'modules/admin/core/ui/modals'
 
-export default connect(
+const connecter = connect(
   state => ({
     current: getCurrent(state),
     data: getData(state),
@@ -10,3 +10,7 @@ export default connect(
     closeModal,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

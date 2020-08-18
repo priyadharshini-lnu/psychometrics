@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Hogan
+  # deprecated
   class LoadResultsJob < ApplicationJob
     queue_as :external_results
     retry_on StandardError, wait: ->(executions) { executions * 1.minutes }, attempts: 3

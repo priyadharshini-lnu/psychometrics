@@ -1,12 +1,11 @@
 import React from 'react'
 import _ from 'lodash'
+import { PropsFromRedux } from './connect'
 
-interface Props {
+interface OwnProps {
   modals: { [name: string]: React.FC<PassedModalProps> }
-  current: string[]
-  data: { [name: string]: object }
-  closeModal(name: string): void
 }
+type Props = OwnProps & PropsFromRedux
 
 interface PassedModalProps {
   close(): void

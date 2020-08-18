@@ -21,4 +21,10 @@ module EncodableId
       find(decoded_id)
     end
   end
+
+  included do
+    def encoded_id
+      self.class.encode_id(id)
+    end
+  end
 end

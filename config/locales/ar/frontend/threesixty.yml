@@ -33,3 +33,16 @@ ar:
     select_relationnship: Select Relationship
     user_name_input_placeholder: type name or email...
     as_my: as my
+    question:
+      chat_type:
+        input_placeholder: 'اكتب رسالتك...'
+      email_type:
+        to: 'إلى'
+        cc: 'نسخة إلى'
+        bcc: 'نسخة مخفية الوجهة'
+        subject: 'الموضوع'
+        message: رسالتك
+        max_length_warning: "%{x} characters remaining"
+        edit: 'تعديل'
+        send: 'إرسال'
+        successful_message: 'لقد قمت بإرسال البريد الإلكتروني بنجاح'

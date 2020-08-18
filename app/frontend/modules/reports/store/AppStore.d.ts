@@ -10,7 +10,8 @@ declare class AppStore {
 
   mapFactors: object
 
-  assessments: object
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  assessments: { [key: string]: any}[]
 
   innovationStyles: object
 

@@ -14,7 +14,7 @@ module Threesixty
         participants = evaluators.map do |evaluator|
           ActiveRecord::Base.transaction do
             evaluator_user = fetch_or_create_evaluator_user(evaluator)
-            create_campaigns_user(evaluator_user)
+            create_campaign_user(evaluator_user)
             threesixty_evaluator = create_evaluator(evaluator_user)
             create_membership(evaluator_user)
             participant = create_participant(evaluator, evaluator_user)
@@ -48,8 +48,8 @@ module Threesixty
         user
       end
 
-      def create_campaigns_user(evaluator_user)
-        CampaignsUser.find_or_create_by!(user: evaluator_user, campaign: threesixty_campaign.campaign)
+      def create_campaign_user(evaluator_user)
+        CampaignUser.find_or_create_by!(user: evaluator_user, campaign: threesixty_campaign.campaign)
       end
 
       def create_evaluator(evaluator_user)

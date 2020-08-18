@@ -15,6 +15,7 @@ en:
           privacy_link: Privacy link
           enable_privacy_links: Enable privacy link
           other_settings: Other Settings
+          enable_live_chat: Enable Live Chat
         list: &list
           id: Id
           number: Number

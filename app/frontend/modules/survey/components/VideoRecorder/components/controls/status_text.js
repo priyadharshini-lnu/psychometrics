@@ -51,7 +51,7 @@ class StatusText extends videojs.getComponent('Component') {
     this.contentEl.parentElement.classList.add('default')
     this.contentEl.parentElement.classList.remove('hide')
 
-    this.updateTextContent('Start Recording')
+    this.updateTextContent(I18n.t('assessments.video_response.start_recording'))
   }
 
   updateContent (event, detail) {

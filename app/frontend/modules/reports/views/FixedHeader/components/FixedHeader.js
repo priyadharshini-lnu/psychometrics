@@ -28,9 +28,9 @@ export class FixedHeader extends Component {
   }
 
   bodyScroll = (e) => {
-    const { updateCurrentPage } = this.props
+    const { updateCurrentPage, pages } = this.props
     headerStore.offset = $(this.menu).offset().top
-    updateCurrentPage($(e.currentTarget).scrollTop())
+    updateCurrentPage($(e.currentTarget).scrollTop(), pages)
   }
 
   bodyKeyDown = (e) => {

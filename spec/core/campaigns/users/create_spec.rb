@@ -24,16 +24,16 @@ describe Campaigns::Users::Create do
     end.to_not(change { User.count })
   end
 
-  it 'create campaigns_user record' do
+  it 'create campaign_user record' do
     user = described_class.call!(form, campaign, current_user)
-    campaigns_user = user.campaigns_users.find_by(campaign: campaign)
+    campaign_user = user.campaign_users.find_by(campaign: campaign)
 
-    expect(campaigns_user).to be_present
+    expect(campaign_user).to be_present
   end
 
   context 'add report and license usage' do
     let(:report) { create(:report) }
-    let!(:campaigns_reports) { create_list(:campaigns_report, 2, report: report, campaign: campaign) }
+    let!(:campaign_reports) { create_list(:campaign_report, 2, report: report, campaign: campaign) }
     let(:report_family) { report.report_families.first }
     let!(:license) do
       create(
@@ -45,7 +45,7 @@ describe Campaigns::Users::Create do
       )
     end
 
-    it 'call Campaigns::Users::AddReport for each campaigns_report' do
+    it 'call Campaigns::Users::AddReport for each campaign_report' do
       expect(Campaigns::Users::AddReport).to receive(:call!).twice
 
       described_class.call!(form, campaign, current_user)

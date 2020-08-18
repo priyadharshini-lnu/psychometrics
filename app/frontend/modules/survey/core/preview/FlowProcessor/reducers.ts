@@ -92,9 +92,7 @@ const HANDLERS = {
       relationship: result.relationship,
       isAnonymousAssessment: data.isAnonymousAssessment,
       readOnly: data.readOnly,
-      mediaUrl: data.isThreesixty
-        ? `/campaigns/${result.campaign_id}/users_results/${result.id}`
-        : `/assigns/${result.id}`,
+      mediaUrl: data.resultsUrl,
       resultsUrl: data.resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,

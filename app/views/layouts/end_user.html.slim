@@ -1,0 +1,62 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = @current_project&.name
+    javascript:
+      window.I18n = {
+        locale: '#{I18n.locale}'
+      }
+
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = render 'layouts/custom_styles'
+    = javascript_include_tag :threesixty
+    = javascript_include_tag '//speedof.me/api/api.js'
+
+    = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
+    = stylesheet_pack_tag 'vendors'
+    = javascript_pack_tag 'shim'
+    = stylesheet_pack_tag 'survey'
+    = javascript_pack_tag 'survey'
+    = stylesheet_pack_tag 'reports'
+    = javascript_pack_tag 'reports'
+    = javascript_pack_tag 'vendors'
+    = render 'layouts/favicons'
+
+
+  body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
+    = yield
+    #notification-center-container
+    = javascript_pack_tag 'notificationCenter'
+
+  - if @current_project.enable_live_chat?
+    javascript:
+      (function(d,t) {
+        var state = #{@init_state.to_json.html_safe};
+        var config = state.liveChat;
+        var user = state.currentUser;
+        var BASE_URL = config.url;  // Settings/ENV CHATWOOT_BASE_URL
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src= BASE_URL + "/packs/js/sdk.js";
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: config.token, // Settings/ENV CHATWOOT_TOKEN
+            baseUrl: BASE_URL
+          })
+          var userId = String(user.id);
+          if (localStorage.chatwootUserId !== userId) {
+            window.$chatwoot.reset()
+            localStorage.chatwootUserId = userId
+          }
+          window.addEventListener('chatwoot:ready', function () {
+            window.$chatwoot.setUser(userId, {
+              email: user.email,
+              name: user.fullName
+            })
+          });
+        }
+      })(document,"script");

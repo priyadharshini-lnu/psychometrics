@@ -43,6 +43,7 @@ const assessmentWithEmbededData = {
   norm_rules: [],
   enable_back: false,
   enable_progress: true,
+  resultsUrl: '/assigns/1',
   blocks: [
     {
       id: 1,

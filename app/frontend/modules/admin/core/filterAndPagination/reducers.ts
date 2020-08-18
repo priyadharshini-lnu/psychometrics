@@ -40,28 +40,28 @@ const HANDLERS = {
     })
   ),
   [CHANGE_FILTER]: (state: State,
-    { payload: { tableName, filterName, filterValue } }: ChangeFilterReturnType): State => (
+    { payload: { tableName, filterName, filterValue } }: ChangeFilterReturnType) => (
     updateIn(
       state,
       [tableName, 'filters'],
       filters => ({ ...filters, [filterName]: filterValue }),
     )
   ),
-  [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber } }: ChangePageReturnType): State => (
+  [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber } }: ChangePageReturnType) => (
     updateIn(
       state,
       [tableName, 'page'],
       () => pageNumber,
     )
   ),
-  [CHANGE_SORT]: (state: State, { payload: { tableName, columnName, order } }: ChangeSortReturnType): State => (
+  [CHANGE_SORT]: (state: State, { payload: { tableName, columnName, order } }: ChangeSortReturnType) => (
     updateIn(
       state,
       [tableName, 'sort'],
       () => ({ columnName, order }),
     )
   ),
-  [REMOVE_FILTER]: (state: State, { payload: { tableName, filterName } }: RemoveFilterReturnType): State => (
+  [REMOVE_FILTER]: (state: State, { payload: { tableName, filterName } }: RemoveFilterReturnType) => (
     updateIn(
       state,
       [tableName, 'filters'],

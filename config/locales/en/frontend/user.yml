@@ -1,0 +1,7 @@
+en:
+  user:
+    form:
+      operation_options:
+        skip_existing: 'Skip existing user'
+        add_with_existing_response: 'Add user with existing response'
+        add_and_allow_new_response: 'Add user and allow new response'

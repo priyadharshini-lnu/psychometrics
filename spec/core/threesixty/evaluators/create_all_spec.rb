@@ -9,13 +9,13 @@ describe Threesixty::Evaluators::CreateAll do
   let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
   let!(:subject_1) do
     user = create(:user, project: project, email: 'fedor@gmail.com')
-    create(:campaigns_user, user: user, campaign: campaign)
+    create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
   end
   let!(:relationship) { create(:relationship, name: 'peer', campaign: campaign) }
   let!(:subject_2) do
     user = create(:user, project: project, email: 'ivan@gmail.com')
-    create(:campaigns_user, user: user, campaign: campaign)
+    create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
   end
   let(:params) do

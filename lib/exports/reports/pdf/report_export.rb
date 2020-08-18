@@ -7,7 +7,7 @@ module Exports
         attr_accessor :output
 
         def initialize(current_user, report, user, client, opts = {})
-          @campaigns_users_report = opts[:campaigns_users_report]
+          @user_report = opts[:user_report]
           @current_user = current_user
           @report = report
           @user = user
@@ -26,7 +26,7 @@ module Exports
 
         private
 
-        attr_reader :current_user, :report, :user, :client, :opts, :url, :campaigns_users_report
+        attr_reader :current_user, :report, :user, :client, :opts, :url, :user_report
 
         def generate_report
           args = {
@@ -65,7 +65,7 @@ module Exports
             lang: opts[:lang] || report.default_language || I18n.locale,
             port: Settings.port,
             protocol: Settings.protocol,
-            users_report_id: campaigns_users_report ? campaigns_users_report.id : nil
+            user_report_id: user_report ? user_report.id : nil
           }
 
           @url =

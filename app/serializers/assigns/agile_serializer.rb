@@ -11,7 +11,7 @@ module Assigns
     end
 
     def groups
-      config['groups']
+      Agiles::ScrubConfig.call(config.dup)
     end
 
     def assets

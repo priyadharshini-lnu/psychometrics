@@ -34,8 +34,9 @@ interface MoveItem {
 }
 
 interface Strategy {
+  collectList:
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  collectList: (list: any[], uniqField: string | undefined, dragItem: MoveItem, hoverItem: MoveItem) => any[]
+  (list: any[], uniqField: string | undefined, dragItem: MoveItem, hoverItem: MoveItem) => any[] | undefined
 }
 
 interface Strategies {

@@ -14,21 +14,24 @@ class Campaign < ApplicationRecord
   has_many :subjects, class_name: 'Threesixty::Subject', dependent: :restrict_with_error
   has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :restrict_with_error
   has_many :participants, class_name: 'Threesixty::Participant', dependent: :restrict_with_error
-  has_many :campaigns_users_reports, dependent: :destroy
-  has_many :campaigns_users, dependent: :destroy
+  has_many :user_reports, dependent: :destroy
+  has_many :campaign_users, dependent: :destroy
   has_many :instruction_templates, -> { enabled }
+  has_many :instruction_templates, -> { enabled }, foreign_key: :threesixty_campaign_id,
+                                                     class_name: 'Threesixty::InstructionTemplate'
   has_many :users_results, dependent: :destroy
-  has_many :campaigns_reports
-  has_many :reports, through: :campaigns_reports
-  has_many :campaigns_assessments
-  has_many :assessments, through: :campaigns_assessments
-  has_many :users, through: :campaigns_users
+  has_many :campaign_reports
+  has_many :reports, through: :campaign_reports
+  has_many :campaign_assessments
+  has_many :assessments, through: :campaign_assessments
+  has_many :users, through: :campaign_users
+  has_many :registration_codes
 
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
 
   enum type: %i[common threesixty]
-  enum status: { active: 0, closed: 1 }
+  enum status: { active: 0, closed: 1, inactive: 2, archived: 3 }
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
     parent.table[:status]

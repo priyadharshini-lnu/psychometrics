@@ -8,7 +8,7 @@ module Threesixty
                :managed_subjects, :is_subject, :status
 
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
-    has_many :reports, serializer: CampaignsUsersReportSerializer
+    has_many :reports, serializer: UserReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
 
     def managed_subjects

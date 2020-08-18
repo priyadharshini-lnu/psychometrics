@@ -1,22 +1,10 @@
 import React from 'react'
-import NormFields from 'modules/admin/modules/NormEditor/interfaces/NormFields'
-import connect from './connect'
+import connect, { PropsFromRedux } from './connect'
 import EditableTable from './NormFactors/EditableTable'
 import styles from './styles.scss'
+import { OwnProps, Factor } from './interfaces'
 
-interface NormEditorProps {
-  norm_id: string
-  factors: Factor[]
-  saveNorm(data: NormFields): Promise<void>
-}
-
-interface Factor {
-  id: number
-  name: string
-  factors_norms_props: { mean: number, standard_deviation: number }[]
-}
-
-const NormEditor: React.FC<NormEditorProps> = ({
+const NormEditor: React.FC<OwnProps & PropsFromRedux> = ({
   factors, saveNorm,
 }) => {
   const prepareFactors = (factors: Factor[]) => factors.map((factor) => {

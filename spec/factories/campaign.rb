@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :campaign do
+    name { Faker::Name.name }
     project { create(:project) }
   end
 end

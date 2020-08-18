@@ -1,0 +1,28 @@
+en:
+  campaign_assessment:
+    column:
+      assessment_name: Assessment name
+      norm: Norm
+      universal_link: Universal link
+    modals:
+      import_raw:
+        title: Import Raw Results data
+        success_msg: Import successfully uploaded
+        upload: Upload
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+      import_scoring:
+        title: Import Scoring Results data
+        success_msg: Import successfully uploaded
+        upload: Upload
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+      update_norm:
+        title: Update Norm
+        select_norm: Select Norm
+        type: Norm Type
+        apply: Apply this change to existing users in this campaign
+        update: Update
+    actions:
+      rescore_response:
+        title: Rescore Responses
+        message: 'Rescoring scheduled for assessment %{name}'
+

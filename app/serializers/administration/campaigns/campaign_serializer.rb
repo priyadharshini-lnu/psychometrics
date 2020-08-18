@@ -3,10 +3,34 @@
 module Administration
   module Campaigns
     class CampaignSerializer < ActiveModel::Serializer
-      attributes :id, :name, :type, :status, :options
+      include Rails.application.routes.url_helpers
+
+      attributes :id, :name, :type, :status, :options, :campaign_url, :is_threesixty
 
       has_many :assessments, serializer: AssessmentSerializer
       has_many :reports, serializer: ReportSerializer
+
+      def campaign_url
+        if object.threesixty?
+          return administration_client_project_threesixty_campaign_path(
+            project.parent_id,
+            project,
+            object.threesixty_campaign.id
+          )
+        end
+
+        administration_project_new_campaign_path(project, object)
+      end
+
+      def is_threesixty # rubocop:disable Naming/PredicateName
+        object.threesixty?
+      end
+
+      private
+
+      def project
+        object.project
+      end
     end
   end
 end

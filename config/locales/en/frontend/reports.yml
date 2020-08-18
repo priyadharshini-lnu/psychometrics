@@ -95,4 +95,7 @@ en:
         scoring_category: 'Scoring Category'
       video_response:
         no_results: 'No videos recorded'
-
+    actions:
+      view: View Report
+      download: Download report
+      add: Add Report

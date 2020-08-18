@@ -21,6 +21,10 @@ module Administration
         @record.common? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
 
+      def export_external_results?
+        !@record.common? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
+      end
+
       def export_hogan_results?
         @record.hogan? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end

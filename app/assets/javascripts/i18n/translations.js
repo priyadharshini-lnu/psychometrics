@@ -20,11 +20,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
+      "extend_time": "Extend time",
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
-      "permission_text": "Please allow to use microphone to record audio"
+      "permission_denied_message": "يرجى تمكين الميكروفون في متصفحك لتسجيل الإجابة",
+      "permission_text": "يرجى السماح باستخدام الميكروفون لتسجيل الصوت"
     },
     "categories": {
       "360": "360 Campaign",
@@ -37,6 +39,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "decorator": {
       "no_description": "Description is empty"
+    },
+    "file_upload": {
+      "select_file": "Select file"
     },
     "index": {
       "managers_assessments_button": "Action Planning",
@@ -70,26 +75,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "video_response": {
-      "delete": "Delete",
-      "device": "Allow",
-      "discard": "Discard",
+      "delete": "حذف",
+      "device": "السماح",
+      "discard": "تجاهل",
+      "file_upload": {
+        "select_file": "اختر الملف"
+      },
       "media_recorder": {
-        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
-        "success": "Please allow to use camera and microphone to record audio and Video"
+        "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
+        "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
       },
-      "retake": "Retake",
-      "retry": "Retry",
-      "save": "Save",
-      "saved": "Saved",
-      "saving": "Saving...",
-      "selected": "Selected",
+      "retake": "أعد مرة أخرى",
+      "retry": "أعد المحاولة",
+      "save": "حفظ",
+      "saved": "تم الحفظ",
+      "saving": "يتم الحفظ...",
+      "selected": "تم الاختيار",
+      "start_recording": "ابدأ التسجيل",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
-        "backward": "You are too close to the screen. Please move a bit back",
-        "forward": "You are too far away from the screen. Please move a bit closer",
-        "frame": "Please make sure that your face aligns with the frame",
-        "ready": "Press the Record button when ready to record"
+        "backward": "أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.",
+        "forward": "اضغط على زر التسجيل عندما تكون جاهزًا",
+        "frame": "يرجى التأكد من أن وجهك في وضع مناسب مع الإطار",
+        "ready": "اضغط على زر التسجيل عندما تكون جاهزًا"
       },
-      "use_this": "Use This"
+      "use_this": "استخدم ذلك"
     },
     "wait": "Wait"
   },
@@ -214,6 +226,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -478,18 +495,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "processing_report": "Processing Report",
     "question": {
       "chat_type": {
-        "input_placeholder": "Write your Message..."
+        "input_placeholder": "اكتب رسالتك..."
       },
       "email_type": {
-        "bcc": "Bcc",
-        "cc": "Cc",
-        "edit": "Edit",
+        "bcc": "نسخة مخفية الوجهة",
+        "cc": "نسخة إلى",
+        "edit": "تعديل",
         "max_length_warning": "%{x} characters remaining",
-        "message": "Your Message",
-        "send": "Send",
-        "subject": "Subject",
-        "successful_message": "You have successfully sent the email",
-        "to": "To"
+        "message": "رسالتك",
+        "send": "إرسال",
+        "subject": "الموضوع",
+        "successful_message": "لقد قمت بإرسال البريد الإلكتروني بنجاح",
+        "to": "إلى"
       }
     },
     "remind_all": "Remind All",
@@ -522,38 +539,38 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "validations": {
     "AudioResponse": {
       "in_progress": {
-        "RECORDED": "Audio is recorded but not saved",
-        "RECORDING": "Audio recording is in progress",
-        "SAVING": "Recorded audio upload is in progress"
+        "RECORDED": "تم تسجيل الصوت ولكن لم يتم حفظه",
+        "RECORDING": "يتم التسجيل الصوتي",
+        "SAVING": "يتم تحميل التسجيل الصوتي"
       },
-      "required": "Please record and save the audio before you continue"
+      "required": "يرجى تسجيل الصوت وحفظه قبل المتابعة"
     },
     "FileUpload": {
       "in_progress": {
-        "SAVING": "File upload is in progress"
+        "SAVING": "يتم تحميل الملف"
       },
-      "required": "Please upload the file"
+      "required": "الرجاء رفع الملف"
     },
     "TextEntry": {
       "Email": {
-        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
-        "max_length": "Email message entered must be no more than %{max} characters.",
-        "min_length": "Email message entered must be at least %{min} characters.",
+        "character_range": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل وألا تزيد عن %{max} حرف.",
+        "max_length": "يجب ألا يزيد عدد أحرف رسالة البريد الإلكتروني التي تم إدخالها عن {max}% حرف.",
+        "min_length": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل.",
         "subject": {
-          "min_length": "Subject field should have minimum of 10 characters"
+          "min_length": "يجب أن تحتوي خانة \"الموضوع\" على 10 أحرف على الأقل."
         },
         "to": {
-          "required": "To field is required"
+          "required": "يجب تعبئة الخانة \"إلى\""
         }
       }
     },
     "VideoResponse": {
       "in_progress": {
-        "recorded": "Video is recorded but not saved",
-        "recording": "Video recording is in progress",
-        "saving": "Recorded video upload is in progress"
+        "recorded": "تم تسجيل الفيديو ولكن لم يتم حفظه",
+        "recording": "يتم تسجيل الفيديو",
+        "saving": "يتم تحميل الفيديو المسجل"
       },
-      "required": "Please record and save the video before you continue"
+      "required": "يرجى تسجيل الفيديو وحفظه قبل المتابعة"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "blank": "can't be blank",
@@ -562,8 +579,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "file_upload": {
-      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
+      "EntityTooLarge": "يجب أن يكون حجم الملف أقل من %{maxFileSize} ميجابايت",
+      "WrongFileType": "يجب أن يكون نوع الملف واحدًا من الأنواع التالية %{allowedFileTypes}"
     },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -600,10 +617,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
@@ -618,13 +637,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "decorator": {
       "no_description": "Description is empty"
     },
+    "file_upload": {
+      "select_file": "Select file"
+    },
     "index": {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
     "messages": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      "finish": "Thank you for your time. \nYour responses have now been recorded."
     },
     "page": {
       "back": "Back",
@@ -663,6 +685,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "saved": "Saved",
       "saving": "Saving...",
       "selected": "Selected",
+      "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -794,6 +820,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -1177,10 +1208,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
@@ -1195,13 +1228,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "decorator": {
       "no_description": "Description is empty"
     },
+    "file_upload": {
+      "select_file": "Select file"
+    },
     "index": {
       "managers_assessments_button": "Action Planning",
       "managers_dashboard_button": "Managers Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
     "messages": {
-      "finish": "You have now completed the survey and your response has been recorded.\n Thank you for taking the time to share your feedback."
+      "finish": "Thank you for your time. \nYour responses have now been recorded."
     },
     "page": {
       "back": "Back",
@@ -1240,6 +1276,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "saved": "Saved",
       "saving": "Saving...",
       "selected": "Selected",
+      "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -1371,6 +1411,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "zh-TW": "Chinese Traditional"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",

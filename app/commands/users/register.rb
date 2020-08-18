@@ -9,7 +9,7 @@ module Users
 
     def call
       registration_code = project.project_registration_codes.find_by(code: form.registration_code)
-      client = registration_code.end_level
+      client = registration_code.end_level || registration_code.project
       transaction do
         @user = create_user
         Administration::Clients::CreateUser.call(user, [client]) do
