@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, ConfigProvider,
+  Layout, PageHeader, Row, Col, Progress, ConfigProvider, Affix,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -43,31 +43,33 @@ export default function Assign ({
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
-      <div className="page-header-wrap">
-        <Content className="fluid-container">
-          <PageHeader
-            className="page-header"
-            backIcon={!isFrame && (
-              <div>
-                <ArrowLeftOutlined />
-                {' '}
-                Back
-              </div>
-            )}
-            title={(
-              <div>
-                {assessment.name}
-              </div>
-            )}
-            extra={[
-              type !== 'preview_block' && enableProgress
-                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} saveResults={saveResults} />,
-            ]}
-            onBack={() => history.push('/dashboard')}
-          />
-        </Content>
-      </div>
+      <Affix offsetTop={0}>
+        <div className="page-header-wrap">
+          <Content className="fluid-container">
+            <PageHeader
+              className="page-header"
+              backIcon={!isFrame && (
+                <div>
+                  <ArrowLeftOutlined />
+                  {' '}
+                  Back
+                </div>
+              )}
+              title={(
+                <div>
+                  {assessment.name}
+                </div>
+              )}
+              extra={[
+                type !== 'preview_block' && enableProgress
+                  && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+                <Timer key="2" preview={preview} saveResults={saveResults} />,
+              ]}
+              onBack={() => history.push('/dashboard')}
+            />
+          </Content>
+        </div>
+      </Affix>
       <Content
         className={
           cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
