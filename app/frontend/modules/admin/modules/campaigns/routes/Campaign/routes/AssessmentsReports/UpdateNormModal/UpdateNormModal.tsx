@@ -62,7 +62,7 @@ const UpdateNormModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ normType: 'YTI' }}
+        initialValues={{ normType: assessment.normType, normId: assessment.normId }}
         onFieldsChange={(_, allFields) => {
           setFields(allFields)
         }}

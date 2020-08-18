@@ -25,7 +25,7 @@ module Administration
       end
 
       def export_normed_results
-        results = Assessments::Export::NormedResult.call!(assessment, campaign)
+        results = ::Assessments::Export::NormedResult.call!(assessment, campaign)
         respond_to do |format|
           format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-normed-results.xlsx" }
         end
@@ -34,9 +34,9 @@ module Administration
       def export_external_results
         result =
           if assessment.mindmill?
-            Assessments::Export::Mindmill.call!(assessment, campaign)
+            ::Assessments::Export::Mindmill.call!(assessment, campaign)
           else
-            Assessments::Export::Hogan.call!(assessment, campaign)
+            ::Assessments::Export::Hogan.call!(assessment, campaign)
           end
         respond_to do |format|
           format.xlsx { send_data result.to_stream.read, filename: "assessment-#{assessment.id}-external-results.xlsx" }

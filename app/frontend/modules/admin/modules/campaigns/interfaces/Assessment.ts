@@ -5,6 +5,7 @@ export default interface Assessment {
   name: string
   category: string
   assessmentId: number
+  normId: number
   normName: string
   normType: string
   enableUniversalLinks: boolean

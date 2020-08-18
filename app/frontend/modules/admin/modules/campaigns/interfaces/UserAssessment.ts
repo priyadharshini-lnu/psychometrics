@@ -5,7 +5,9 @@ export default interface UserAssessment {
   name: string
   category: string
   assessmentId: number
+  normId: number
   normName: string
+  normType: string
   status: string
   norms?: Norm[]
 }

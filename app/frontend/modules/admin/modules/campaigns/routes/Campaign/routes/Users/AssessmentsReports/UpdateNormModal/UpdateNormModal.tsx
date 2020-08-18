@@ -4,7 +4,7 @@ import {
   Modal, Button, Form, Select, Radio,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
 import { PropsFromRedux } from './connect'
 
@@ -22,7 +22,7 @@ export interface OwnProps {
   campaignAssessmentId: number,
   campaignId: number
   userId: number
-  assessment: Assessment
+  assessment: UserAssessment
   loading: boolean
 }
 
@@ -63,7 +63,7 @@ const UpdateNormModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ normType: 'YTI' }}
+        initialValues={{ normType: assessment.normType, normId: assessment.normId }}
         onFieldsChange={(_, allFields) => {
           setFields(allFields)
         }}
