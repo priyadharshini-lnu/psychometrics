@@ -25,6 +25,7 @@ const ReportList: React.FC<Props> = ({
     list,
   },
   match: { params: { projectId, campaignId } },
+  openModal,
 }) => (
   <Row>
     <Col span={24}>
@@ -68,6 +69,7 @@ const ReportList: React.FC<Props> = ({
                     campaignId,
                     campaignReportId: report.id,
                     reportId: report.reportId,
+                    openModal,
                   }) as React.ReactElement
               )}
               trigger={['click']}
@@ -78,6 +80,7 @@ const ReportList: React.FC<Props> = ({
             </Dropdown>
           )}
         />
+
       </Table>
     </Col>
   </Row>
@@ -88,9 +91,12 @@ interface ActionMenuProps {
   campaignId: string
   reportId: string
   campaignReportId: string
+  openModal(name: string, data?: { campaignId: string, campaignReportId: string }): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, reportId }) => (
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  campaignId, reportId, campaignReportId, openModal,
+}) => (
   <Menu>
     <Menu.Item key="edit">
       <div
@@ -112,6 +118,15 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, reportId }) => (
         >
          Export Data
         </a>
+      </div>
+    </Menu.Item>
+    <Menu.Item key="delete">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+      >
+        {I18n.t('common.actions.remove')}
       </div>
     </Menu.Item>
   </Menu>
