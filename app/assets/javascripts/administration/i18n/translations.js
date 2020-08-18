@@ -4895,6 +4895,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      }
     }
   },
   "campaign_users": {
@@ -5009,6 +5015,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
       "ok": "Ok",
       "response": "Response"
@@ -11901,6 +11908,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      }
     }
   },
   "campaign_users": {
@@ -12015,6 +12028,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
       "ok": "Ok",
       "response": "Response"
@@ -18900,6 +18914,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      }
     }
   },
   "campaign_users": {
@@ -19014,6 +19034,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
       "ok": "Ok",
       "response": "Response"

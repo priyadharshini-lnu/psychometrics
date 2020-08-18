@@ -14,11 +14,14 @@ export const get = (state): State => _.get(state, ['campaigns', 'reports'])
 export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 
-export const remove = (campaignId: string, id: number) => ({
+export const remove = (campaignId: string, campaignReportId: number, value: boolean) => ({
   type: REMOVE,
   request: {
     method: 'delete',
-    url: `/administration/new_campaigns/${campaignId}/reports/${id}`,
+    url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}`,
+    body: {
+      remove_user_reports: value,
+    },
   },
 })
 

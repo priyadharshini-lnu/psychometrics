@@ -18,8 +18,8 @@ module Administration
       end
 
       def destroy
-        ::Campaigns::Reports::Remove.call!(
-          campaign_report: resource
+        ::CampaignReports::Remove.call!(
+          campaign_report: resource, remove_user_reports: params[:remove_user_reports]
         )
         render json: resource.id
       end
