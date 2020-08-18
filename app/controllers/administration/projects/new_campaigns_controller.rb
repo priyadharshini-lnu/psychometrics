@@ -3,6 +3,10 @@
 module Administration
   module Projects
     class NewCampaignsController < Administration::Projects::BaseController
+      include ::Administration::CampaignInitialState
+
+      initial_state_for %i[index show]
+
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :set_campaign, only: %i[show update assessments_and_reports]

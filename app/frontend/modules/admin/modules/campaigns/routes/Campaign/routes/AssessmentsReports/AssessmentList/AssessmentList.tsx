@@ -6,6 +6,9 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
+import AssessmentPolicy from 'modules/admin/modules/campaigns/policies/Assessment'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
+import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -19,6 +22,7 @@ interface OwnProps {
     }
   }
 }
+
 type Props = RouteComponentProps & OwnProps & PropsFromRedux
 
 const AssessmentList: React.FC<Props> = ({
@@ -26,6 +30,7 @@ const AssessmentList: React.FC<Props> = ({
     list,
   },
   match: { params: { projectId, campaignId } },
+  currentUser,
   openModal,
   activateUniversalLink,
   rescoreResponses,
@@ -93,16 +98,15 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={({ id, category, name }) => (
+            render={assessment => (
               <Dropdown
                 overlay={() => (
                     ActionsMenu({
-                      id,
-                      name,
-                      category,
+                      assessment,
+                      currentUser,
                       campaignId: parsedCampaignId,
                       openModal,
-                      rescoreResponses: () => rescoreResponses(parsedCampaignId, id),
+                      rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -120,19 +124,18 @@ const AssessmentList: React.FC<Props> = ({
 }
 
 interface ActionMenuProps {
-  id: number
-  name: string
   campaignId: number
-  category: string
+  assessment: Assessment
+  currentUser: User
   openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, name, id, openModal, category, rescoreResponses,
+  campaignId, assessment, openModal, rescoreResponses, currentUser,
 }) => {
-  const isExternal = () => ['hogan', 'mindmill'].includes(category)
-  const isInternal = () => !isExternal()
+  const { id, name } = assessment
+
   const handleRescoreResponse = () => {
     rescoreResponses()
     message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
@@ -141,7 +144,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {isInternal() && (
+        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
         <Menu.Item key="export_raw_labels">
           <a
             target="_blank"
@@ -152,7 +155,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {isInternal() && (
+        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
         <Menu.Item key="export_raw">
           <a
             target="_blank"
@@ -163,7 +166,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {isInternal() && (
+        {AssessmentPolicy.exportScoringResults(currentUser, assessment) && (
         <Menu.Item key="export_scoring">
           <a
             target="_blank"
@@ -174,7 +177,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {isInternal() && (
+        {AssessmentPolicy.exportNormedResults(currentUser, assessment) && (
         <Menu.Item key="export_normed">
           <a
             target="_blank"
@@ -185,7 +188,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {isExternal() && (
+        {AssessmentPolicy.exportExternalResults(currentUser, assessment) && (
         <Menu.Item key="export_external">
           <a
             target="_blank"
@@ -197,7 +200,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
         )}
       </Menu.ItemGroup>
-      {isInternal() && (
+      {AssessmentPolicy.importResults(currentUser, assessment) && (
       <Menu.ItemGroup key="import" title="Import">
         <Menu.Item key="import_raw">
           <a

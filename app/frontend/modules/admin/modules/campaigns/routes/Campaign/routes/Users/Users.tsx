@@ -11,7 +11,7 @@ import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
 
-import User from 'modules/admin/modules/campaigns/interfaces/user'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/user'
 import styles from './styles.scss'

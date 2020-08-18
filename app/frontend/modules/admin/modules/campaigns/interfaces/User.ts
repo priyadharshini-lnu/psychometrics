@@ -4,4 +4,6 @@ export default interface User {
   lastName: string
   email: string
   active: boolean
+  role: string
+  grants: object
 }
