@@ -9,6 +9,7 @@ import { get as getConfig } from 'modules/user/core/config'
 const mapStateToProps = state => ({
   logo: getLogo(state),
   isFrame: getConfig(state).isFrame,
+  isAnonym: state.preview.isAnonymousAssessment,
 })
 
 const mapDispatchToProps = {

@@ -12,6 +12,7 @@ import report from '../modules/campaigns/core/report'
 import checkingWizard from '../modules/campaigns/core/checkingWizard'
 import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
+import anonym from '../modules/campaigns/core/anonym'
 import config from './config'
 
 const rootReducer = combineReducers({
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   ui: combineReducers({
     autocomplete,
   }),
+  anonym,
   project,
   currentUser,
   config,

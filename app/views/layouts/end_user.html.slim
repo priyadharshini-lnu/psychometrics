@@ -32,7 +32,7 @@ html
     #notification-center-container
     = javascript_pack_tag 'notificationCenter'
 
-  - if @current_project.enable_live_chat?
+  - if @current_project&.enable_live_chat?
     javascript:
       (function(d,t) {
         var state = #{@init_state.to_json.html_safe};

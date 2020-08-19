@@ -4649,6 +4649,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -4664,7 +4665,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -11656,6 +11658,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -11671,7 +11674,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -18653,6 +18657,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -18668,7 +18673,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {

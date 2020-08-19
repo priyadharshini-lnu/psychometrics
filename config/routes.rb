@@ -662,6 +662,9 @@ Rails.application.routes.draw do
     scope module: :end_user do
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
+      get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
+      get 'anonym/error', to: 'anonyms#error'
+      get 'anonym/:assessment_key/assessment', to: 'anonyms#assessment', as: :anonym_assessment
 
       resources :user_assessments do
         resources :users_results, only: %i[update] do

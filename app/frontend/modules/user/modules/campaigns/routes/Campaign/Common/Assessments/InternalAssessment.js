@@ -119,7 +119,9 @@ export default function InternalAssessment ({ userAssessment, acceptPolicy, hist
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const loadAssessment = ({ url, mindmill, mindmillUrl }) => {
+  const loadAssessment = ({
+    url, mindmill, mindmillUrl,
+  }) => {
     const href = mindmill ? mindmillUrl : url
     setLoading(true)
     location.href = href

@@ -6,6 +6,9 @@ module EndUser
     before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
                                              complete_multipart_upload mark_as_user_selected_take]
     before_action :set_user_assessment, only: %i[update]
+    prepend_before_action :authenticate_anonymous_user!, only: %i[update upload_media_url
+                                                                  remove_media update_meta_data
+                                                                  complete_multipart_upload]
 
     def update
       @threesixty_campaign = @user_assessment.campaign.threesixty? && @user_assessment.campaign.threesixty_campaign

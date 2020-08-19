@@ -4,7 +4,8 @@ import { watchers as currentUser } from 'core/currentUser'
 import { watchers as evaluation } from '../modules/campaigns/core/evaluation'
 import { watchers as assign } from '../modules/campaigns/core/assign'
 import { watchers as userAssessment } from '../modules/campaigns/core/userAssessment'
+import { watchers as anonym } from '../modules/campaigns/core/anonym'
 
 export default function* () {
-  yield all([...evaluation, ...currentUser, ...assign, ...flow, ...userAssessment])
+  yield all([...evaluation, ...currentUser, ...assign, ...flow, ...userAssessment, ...anonym])
 }

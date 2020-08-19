@@ -17,7 +17,6 @@ class AssessmentContainer extends Component {
     } = this.props
 
     this.langPartial = langPartial
-    this.type = type
 
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
@@ -68,11 +67,11 @@ class AssessmentContainer extends Component {
   }
 
   render () {
-    const { disabled, selectedLocale } = this.props
+    const { disabled, selectedLocale, type } = this.props
     return (
       <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="ant-row">
-          {this.type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
           {disabled && this.overlay()}
           <AssessmentPreview />
         </div>
