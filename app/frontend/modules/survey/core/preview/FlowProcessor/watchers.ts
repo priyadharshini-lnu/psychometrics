@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
 import {
-  select, takeEvery, put, debounce,
+  select, takeEvery, takeLatest, put, debounce,
 } from 'redux-saga/effects'
 import { getItem, setItem } from 'utils/storage'
 import {
@@ -19,11 +19,13 @@ import {
   pageQuestions,
   pageQuestionsWithoutHidden,
   getCurrentBlock,
+  getQuestion,
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
-  REMOVE_PREV_PAGE, ANSWER,
+  REMOVE_PREV_PAGE, ANSWER, MARK_ASSESSMENT_TIMED_OUT,
 } from './consts'
+import { InProgressQuestion } from './interfaces'
 
 const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
@@ -94,6 +96,16 @@ function* genSaveResultsLocal () {
   }
 }
 
+function* genSaveResultsIfNoVideoQuestionInProgress () {
+  const state = yield select()
+  const inProgressVideoQuestion = _.find((state.preview.inProgressQuestions as InProgressQuestion[]),
+    q => getQuestion(state.preview, q.questionId).type === 'VideoResponse')
+
+  if (state.preview.assessmentTimedOut && !inProgressVideoQuestion) {
+    yield genSaveResults()
+  }
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
@@ -103,5 +115,6 @@ export const watchers = [
   takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),
   takeEvery(ADD_PREV_PAGE, genSavePrevPages),
   takeEvery(REMOVE_PREV_PAGE, genSavePrevPages),
+  takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
 ]

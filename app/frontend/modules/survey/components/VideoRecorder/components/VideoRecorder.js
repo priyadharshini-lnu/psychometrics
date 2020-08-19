@@ -48,6 +48,18 @@ class VideoRecorder extends Component {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    const { isAssessmentTimedOut } = this.props
+    const { recordingState } = this.state
+    if (prevProps.isAssessmentTimedOut === isAssessmentTimedOut || !isAssessmentTimedOut) {
+      return
+    }
+
+    if (recordingState === 'recording') {
+      return this.stopRecording()
+    }
+  }
+
   // destroy player on unmount
   componentWillUnmount () {
     if (this.player) {

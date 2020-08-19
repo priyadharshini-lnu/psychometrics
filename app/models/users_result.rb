@@ -30,6 +30,12 @@ class UsersResult < ApplicationRecord
     expiry_date < Time.current
   end
 
+  def extra_time_buffer_expired?
+    return false unless expiry_date
+
+    expiry_date.advance(minutes: 5) < Time.current
+  end
+
   def user
     evaluator
   end

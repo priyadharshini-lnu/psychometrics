@@ -17,6 +17,7 @@ import {
   REMOVE_QUESTION_IN_PROGRESS,
   CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
+  MARK_ASSESSMENT_TIMED_OUT,
 } from './consts'
 import {
   NextPage, PrevPage, AddPrevPage, RemovePrevPage,
@@ -91,6 +92,8 @@ export const markQuestionInProgress = (questionId, progressState) => (
 export const removeQuestionInProgress = (questionId, progressState) => (
   { type: REMOVE_QUESTION_IN_PROGRESS, questionId, progressState })
 export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION })
+
+export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSESSMENT_TIMED_OUT, questionId })
 
 export const saveResults = (preview, questionIds, currentBlockId?): SaveResults => {
   const data = {
