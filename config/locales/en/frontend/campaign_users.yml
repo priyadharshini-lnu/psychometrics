@@ -6,3 +6,10 @@ en:
       completion_status: Completion status
     actions:
       add_report: Add report
+    modals:
+      remove: Are you sure you want to remove user with email %{email} from this campaing?
+      change_password:
+        title: Change password %{name}?
+        content: Are you sure you want to send instructions with link to change password?
+        successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
+        

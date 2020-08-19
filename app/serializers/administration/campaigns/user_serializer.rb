@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class UserSerializer < ActiveModel::Serializer
       attributes :id, :first_name, :last_name, :email, :created_by, :created_at, :updated_by, :updated_at,
-                 :active, :completion_status
+                 :active, :completion_status, :full_name
 
       def created_at
         I18n.l object.created_at, format: :short
@@ -20,6 +20,10 @@ module Administration
 
       def updated_by
         object.modifier&.email
+      end
+
+      def full_name
+        object.decorate.full_name
       end
 
       def completion_status

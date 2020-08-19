@@ -3,9 +3,6 @@ en:
     closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
     campaign:
       users:
-        remove: 'Are you sure you want to remove user with email %{email} from this campaing?'
-        change_password_confirmation_content: Are you sure you want to send instructions with link to change password?
-        change_password_confirmation_title: Change password %{full_name}?
         completion_statuses:
           not_started: Not Started
           completed: Completed

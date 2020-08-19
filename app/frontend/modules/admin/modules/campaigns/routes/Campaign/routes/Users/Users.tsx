@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -13,7 +13,6 @@ import Modals from 'modules/admin/components/Modals/'
 
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
-import userPresenter from 'presenters/user'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
 import ToolsDropdown from './ToolsDropdown'
@@ -219,8 +218,7 @@ const UserList: React.FC<Props> = ({
                       userId: user.id,
                       email: user.email,
                       remove: () => remove(campaignId, user.id),
-                      firstName: user.firstName,
-                      lastName: user.lastName,
+                      fullName: user.fullName,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -256,12 +254,11 @@ interface ActionMenuProps {
   userId: number
   email: string
   remove(): void
-  firstName: string
-  lastName: string
+  fullName: string
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, campaignId, projectId, userId, firstName, lastName, email,
+  onEdit, resetPassword, remove, campaignId, projectId, userId, email, fullName,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -269,26 +266,31 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('frontend.campaign.users.remove', { email }),
+      content: I18n.t('campaign_users.modals.remove', { email }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: remove,
     })
   }
 
+  const resetPasswordAndShowMessage = () => {
+    resetPassword()
+    message.success(I18n.t('campaign_users.modals.change_password.successfully', { name: fullName }))
+  }
+
   const handleChangePassword = () => {
     Modal.confirm({
-      title: I18n.t('frontend.campaign.users.change_password_confirmation_title',
+      title: I18n.t('campaign_users.modals.change_password.title',
         {
-          full_name: userPresenter.getFullName({ firstName, lastName }),
+          name: fullName,
         }),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
+      content: I18n.t('campaign_users.modals.change_password.content'),
       okText: I18n.t('yes'),
       cancelText: I18n.t('no'),
-      onOk: resetPassword,
+      onOk: resetPasswordAndShowMessage,
     })
   }
 

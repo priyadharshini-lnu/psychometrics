@@ -4903,6 +4903,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "completion_status": "Completion status",
       "last_login": "Last login",
       "not_logged_in_yet": "Not logged in yet"
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -5572,14 +5580,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
@@ -11902,6 +11907,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "completion_status": "Completion status",
       "last_login": "Last login",
       "not_logged_in_yet": "Not logged in yet"
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -12567,14 +12580,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
@@ -18894,6 +18904,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "completion_status": "Completion status",
       "last_login": "Last login",
       "not_logged_in_yet": "Not logged in yet"
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -19559,14 +19577,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "activate": "Activate",
     "campaign": {
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
