@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Modal, Checkbox } from 'antd'
 import { PropsFromRedux } from './connect'
 
@@ -7,7 +7,7 @@ const { I18n } = window
 export interface OwnProps {
   close(): void
   campaignReportId: number
-  campaignId: string
+  campaignId: number
 }
 
 export type Props = OwnProps & PropsFromRedux
@@ -15,14 +15,10 @@ export type Props = OwnProps & PropsFromRedux
 const RemoveReportModal: React.FC<Props> = ({
   close, campaignId, remove, campaignReportId,
 }) => {
-  let value = false
-
-  const onOptionChanged = (checked) => {
-    value = checked
-  }
+  const [removeUserReports, setRemoveUserReports] = useState(false)
 
   const handleRemoveReport = () => {
-    remove(campaignId, campaignReportId, value)
+    remove(campaignId, campaignReportId, removeUserReports)
     close()
   }
 
@@ -36,7 +32,7 @@ const RemoveReportModal: React.FC<Props> = ({
       onCancel={close}
       onOk={handleRemoveReport}
     >
-      <Checkbox onChange={e => onOptionChanged(e.target.checked)}>
+      <Checkbox checked={removeUserReports} onChange={() => setRemoveUserReports(!removeUserReports)}>
         {I18n.t('campaign_report.modals.remove.apply')}
       </Checkbox>
     </Modal>

@@ -26,72 +26,76 @@ const ReportList: React.FC<Props> = ({
   },
   match: { params: { projectId, campaignId } },
   openModal,
-}) => (
-  <Row>
-    <Col span={24}>
-      <Table
-        className="mtm"
-        rowKey="id"
-        dataSource={list}
-        pagination={false}
-        rowSelection={{ type: 'checkbox' }}
-      >
-        <Column
-          title={I18n.t('common.column.id')}
-          dataIndex="reportId"
-          key="reportId"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.report_name')}
-          key="name"
-          dataIndex="name"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.report_bundle')}
-          key="reportFamilyName"
-          dataIndex="reportFamilyName"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.user_access')}
-          key="userAccess"
-          render={({ userAccess }) => (
-            <Switch checked={userAccess} onChange={() => {}} />
-          )}
-        />
-        <Column
-          title={I18n.t('common.column.action')}
-          key="action"
-          render={report => (
-            <Dropdown
-              overlay={() => (
-                  ActionsMenu({
-                    projectId,
-                    campaignId,
-                    campaignReportId: report.id,
-                    reportId: report.reportId,
-                    openModal,
-                  }) as React.ReactElement
-              )}
-              trigger={['click']}
-            >
-              <a>
-                <MoreOutlined />
-              </a>
-            </Dropdown>
-          )}
-        />
+}) => {
+  const parsedCampaignId = parseInt(campaignId, 10)
 
-      </Table>
-    </Col>
-  </Row>
-)
+  return (
+    <Row>
+      <Col span={24}>
+        <Table
+          className="mtm"
+          rowKey="id"
+          dataSource={list}
+          pagination={false}
+          rowSelection={{ type: 'checkbox' }}
+        >
+          <Column
+            title={I18n.t('common.column.id')}
+            dataIndex="reportId"
+            key="reportId"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.report_name')}
+            key="name"
+            dataIndex="name"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.report_bundle')}
+            key="reportFamilyName"
+            dataIndex="reportFamilyName"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.user_access')}
+            key="userAccess"
+            render={({ userAccess }) => (
+              <Switch checked={userAccess} onChange={() => {}} />
+            )}
+          />
+          <Column
+            title={I18n.t('common.column.action')}
+            key="action"
+            render={report => (
+              <Dropdown
+                overlay={() => (
+                    ActionsMenu({
+                      projectId,
+                      campaignId: parsedCampaignId,
+                      campaignReportId: report.id,
+                      reportId: report.reportId,
+                      openModal,
+                    }) as React.ReactElement
+                )}
+                trigger={['click']}
+              >
+                <a>
+                  <MoreOutlined />
+                </a>
+              </Dropdown>
+            )}
+          />
+
+        </Table>
+      </Col>
+    </Row>
+  )
+}
 
 interface ActionMenuProps {
   projectId: string
-  campaignId: string
+  campaignId: number
   reportId: string
-  campaignReportId: string
-  openModal(name: string, data?: { campaignId: string, campaignReportId: string }): void
+  campaignReportId: number
+  openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
