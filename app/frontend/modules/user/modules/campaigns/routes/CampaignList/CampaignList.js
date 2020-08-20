@@ -16,7 +16,7 @@ export default function CampaignList ({
   }, [])
 
   useEffect(() => {
-    if (campaigns.length === 1) {
+    if (campaigns.length === 1 && _.includes(['threesixty', 'common'], campaigns[0].type)) {
       history.push(`/${campaigns[0].type === 'threesixty' ? 'threesixty_' : ''}campaigns/${campaigns[0].id}`)
     }
   }, [campaigns])
