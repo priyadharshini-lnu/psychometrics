@@ -8,11 +8,14 @@ import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
 import Tracker from './Tracker'
+
+axiosRetry(axios, { retries: 0 })
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -90,12 +93,12 @@ class VideoRecorder extends Component {
     if (answer) {
       const mediaId = answer.media_id
       if (mediaId) {
-        $.ajax({
+        axios({
           method: 'DELETE',
           url: `${mediaUrl}/remove_media`,
           headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
           data: { media_id: mediaId },
-        }).done(() => {
+        }).then(() => {
           onDeleteMedia && onDeleteMedia()
           this.resetRecorder()
         })
@@ -126,7 +129,13 @@ class VideoRecorder extends Component {
     const uploadResp = axios.put(
       urlDetails,
       blob,
-      { onUploadProgress: e => this.setProgress(e, batchNumber) },
+      {
+        onUploadProgress: e => this.setProgress(e, batchNumber),
+        'axios-retry': {
+          retries: 3,
+          retryDelay: retryCount => retryCount * 3000,
+        },
+      },
     )
 
     if (!this.promisesArray) { this.promisesArray = [] }
