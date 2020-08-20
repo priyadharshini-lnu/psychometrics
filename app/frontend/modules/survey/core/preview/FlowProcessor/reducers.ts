@@ -63,6 +63,8 @@ const defaultState: DefaultState = {
 const HANDLERS = {
   [INIT]: (state, { data, result }) => {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
+    const resultsUrl = data.resultsUrl || `/assigns/${result.id}`
+
     let { elements } = data.flow
     if (elements.length === 0) {
       elements = InitLinearElements.run(data.blocks)
@@ -93,8 +95,8 @@ const HANDLERS = {
       relationship: result.relationship,
       isAnonymousAssessment: data.isAnonymousAssessment,
       readOnly: data.readOnly,
-      mediaUrl: data.resultsUrl,
-      resultsUrl: data.resultsUrl,
+      mediaUrl: resultsUrl,
+      resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
       allPages: InitPages.run(data, result.id || Date.now()),

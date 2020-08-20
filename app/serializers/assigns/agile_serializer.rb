@@ -11,7 +11,7 @@ module Assigns
     end
 
     def groups
-      Agiles::ScrubConfig.call(config.dup)
+      Agiles::ScrubConfig.call!(config.dup)
     end
 
     def assets

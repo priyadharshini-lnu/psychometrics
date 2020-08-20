@@ -96,9 +96,11 @@ export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION
 export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSESSMENT_TIMED_OUT, questionId })
 
 export const saveResults = (preview, questionIds, currentBlockId?): SaveResults => {
+  const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
+
   const data = {
     resource: {
-      [preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers']: _.omitBy(preview.results, 'dirty'),
+      [answerKey]: _.omitBy(preview.results, 'dirty'),
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,

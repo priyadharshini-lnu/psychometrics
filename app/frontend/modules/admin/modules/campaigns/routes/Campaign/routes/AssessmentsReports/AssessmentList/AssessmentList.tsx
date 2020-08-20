@@ -69,7 +69,11 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
-            render={({ enableUniversalLinks, universalLink, id }) => {
+            render={({
+              internal, enableUniversalLinks, universalLink, id,
+            }) => {
+              if (!internal) { return null }
+
               if (enableUniversalLinks) {
                 return (
                   <a

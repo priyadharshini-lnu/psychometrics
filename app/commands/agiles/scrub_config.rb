@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Agiles
-  class ScrubConfig < Rectify::Command
+  class ScrubConfig < BaseCommand
     private_attr_accessor :config
 
     def initialize(config)
