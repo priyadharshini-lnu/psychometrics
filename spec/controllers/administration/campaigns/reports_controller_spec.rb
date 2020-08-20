@@ -81,13 +81,14 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
     assessment_response = parsed_response['assessments'].first
     expect(assessment_response.keys).to eq(
-      %w[id assessment_id name category norm_name norm_type enable_universal_links universal_link norms]
+      %w[id assessment_id name category norm_name norm_type enable_universal_links universal_link norms internal]
     )
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
       'norm_name' => nil,
-      'norm_type' => nil
+      'norm_type' => nil,
+      'internal' => assessment.common?
     })
   end
 end
