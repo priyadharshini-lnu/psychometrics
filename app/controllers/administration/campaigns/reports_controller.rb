@@ -3,6 +3,8 @@
 module Administration
   module Campaigns
     class ReportsController < Administration::Projects::BaseController
+      before_action :set_resource, only: :destroy
+
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
         if form.valid?
@@ -13,6 +15,13 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def destroy
+        ::CampaignReports::Remove.call!(
+          campaign_report: resource, remove_user_reports: params[:remove_user_reports]
+        )
+        render json: resource.id
       end
 
       def export

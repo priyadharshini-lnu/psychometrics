@@ -48,6 +48,19 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'DELETE' do
+    it 'removes campaign_report' do
+      campaign_report = create(:campaign_report, report: report, campaign: campaign)
+      expect do
+        delete :destroy, params: {
+          new_campaign_id: campaign.id,
+          id: campaign_report.id
+        }
+      end.to change(CampaignReport, :count).by(-1)
+      expect(response.body).to eq(campaign_report.id.to_s)
+    end
+  end
+
   describe 'report_families' do
     it 'returns report families' do
       report_family = campaign.client.report_families.first

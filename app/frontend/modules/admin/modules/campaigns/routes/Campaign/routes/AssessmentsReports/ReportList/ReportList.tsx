@@ -25,72 +25,82 @@ const ReportList: React.FC<Props> = ({
     list,
   },
   match: { params: { projectId, campaignId } },
-}) => (
-  <Row>
-    <Col span={24}>
-      <Table
-        className="mtm"
-        rowKey="id"
-        dataSource={list}
-        pagination={false}
-        rowSelection={{ type: 'checkbox' }}
-      >
-        <Column
-          title={I18n.t('common.column.id')}
-          dataIndex="reportId"
-          key="reportId"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.report_name')}
-          key="name"
-          dataIndex="name"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.report_bundle')}
-          key="reportFamilyName"
-          dataIndex="reportFamilyName"
-        />
-        <Column
-          title={I18n.t('campaign_report.column.user_access')}
-          key="userAccess"
-          render={({ userAccess }) => (
-            <Switch checked={userAccess} onChange={() => {}} />
-          )}
-        />
-        <Column
-          title={I18n.t('common.column.action')}
-          key="action"
-          render={report => (
-            <Dropdown
-              overlay={() => (
-                  ActionsMenu({
-                    projectId,
-                    campaignId,
-                    campaignReportId: report.id,
-                    reportId: report.reportId,
-                  }) as React.ReactElement
-              )}
-              trigger={['click']}
-            >
-              <a>
-                <MoreOutlined />
-              </a>
-            </Dropdown>
-          )}
-        />
-      </Table>
-    </Col>
-  </Row>
-)
+  openModal,
+}) => {
+  const parsedCampaignId = parseInt(campaignId, 10)
+
+  return (
+    <Row>
+      <Col span={24}>
+        <Table
+          className="mtm"
+          rowKey="id"
+          dataSource={list}
+          pagination={false}
+          rowSelection={{ type: 'checkbox' }}
+        >
+          <Column
+            title={I18n.t('common.column.id')}
+            dataIndex="reportId"
+            key="reportId"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.report_name')}
+            key="name"
+            dataIndex="name"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.report_bundle')}
+            key="reportFamilyName"
+            dataIndex="reportFamilyName"
+          />
+          <Column
+            title={I18n.t('campaign_report.column.user_access')}
+            key="userAccess"
+            render={({ userAccess }) => (
+              <Switch checked={userAccess} onChange={() => {}} />
+            )}
+          />
+          <Column
+            title={I18n.t('common.column.action')}
+            key="action"
+            render={report => (
+              <Dropdown
+                overlay={() => (
+                    ActionsMenu({
+                      projectId,
+                      campaignId: parsedCampaignId,
+                      campaignReportId: report.id,
+                      reportId: report.reportId,
+                      openModal,
+                    }) as React.ReactElement
+                )}
+                trigger={['click']}
+              >
+                <a>
+                  <MoreOutlined />
+                </a>
+              </Dropdown>
+            )}
+          />
+
+        </Table>
+      </Col>
+    </Row>
+  )
+}
 
 interface ActionMenuProps {
   projectId: string
-  campaignId: string
+  campaignId: number
   reportId: string
-  campaignReportId: string
+  campaignReportId: number
+  openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, reportId }) => (
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  campaignId, reportId, campaignReportId, openModal,
+}) => (
   <Menu>
     <Menu.Item key="edit">
       <div
@@ -112,6 +122,15 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, reportId }) => (
         >
          Export Data
         </a>
+      </div>
+    </Menu.Item>
+    <Menu.Item key="delete">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={() => openModal('RemoveReportModal', { campaignId, campaignReportId })}
+      >
+        {I18n.t('common.actions.remove')}
       </div>
     </Menu.Item>
   </Menu>

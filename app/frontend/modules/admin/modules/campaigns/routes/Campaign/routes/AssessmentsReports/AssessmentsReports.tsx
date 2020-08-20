@@ -11,6 +11,8 @@ import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
 import UpdateNormModal from './UpdateNormModal'
 import ImportScoringModal from './ImportScoringModal'
+import RemoveReportModal from './RemoveReportModal'
+
 import styles from './styles.scss'
 
 const MODALS = {
@@ -19,6 +21,7 @@ const MODALS = {
   ImportRawModal,
   ImportScoringModal,
   UpdateNormModal,
+  RemoveReportModal,
 }
 
 interface Props {

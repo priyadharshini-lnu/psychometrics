@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
+import { updateIn } from 'utils/immutable'
 import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 
 const defaultState = {
@@ -11,6 +12,18 @@ const defaultState = {
 export const get = (state): State => _.get(state, ['campaigns', 'reports'])
 
 export const CREATE = 'resource/campaigns/report/CREATE'
+export const REMOVE = 'resource/campaigns/report/REMOVE'
+
+export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/reports/${campaignReportId}`,
+    body: {
+      remove_user_reports: removeUserReports,
+    },
+  },
+})
 
 export interface FetchAction {
   response: {
@@ -25,6 +38,11 @@ export interface State {
 const HANDLERS = {
   [FETCH_ASSESSMENTS_AND_REPORTS]: (_, { response }: FetchAction) => ({ list: response.reports }),
   [CREATE]: (_, { response }: FetchAction) => ({ list: response.reports }),
+  [REMOVE]: (state: State, { response }: { response: number }) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.filter(
+      reports, (report: Report) => report.id !== response,
+    ))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)

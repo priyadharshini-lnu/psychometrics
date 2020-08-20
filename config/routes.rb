@@ -58,7 +58,7 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :reports, only: [:create] do
+        resources :reports, only: %i[create destroy] do
           collection do
             get :report_families
             get :assessments_and_reports
