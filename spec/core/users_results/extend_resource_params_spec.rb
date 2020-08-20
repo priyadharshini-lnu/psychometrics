@@ -19,7 +19,8 @@ describe ::UsersResults::ExtendResourceParams do
         '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true },
         '2' => { 'answers' => [{ 'index' => 1, 'value' => 0 }], 'question_id' => 2, 'not_applicable' => nil }
       },
-      'step' => 1
+      'step' => 1,
+      status: 'in_progress'
     }
   end
 
@@ -36,7 +37,8 @@ describe ::UsersResults::ExtendResourceParams do
         }
       },
       'step' => 1,
-      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15)
+      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
+      status: 'in_progress'
     )
   end
 
@@ -48,14 +50,16 @@ describe ::UsersResults::ExtendResourceParams do
         '2' => { 'answers' => [{ 'index' => 1, 'value' => 0 }], 'question_id' => 2, 'not_applicable' => nil }
       },
       'step' => 1,
-      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15)
+      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
+      status: 'in_progress'
     )
   end
 
   it 'blank resource_params' do
     allow(Time).to receive(:current).and_return(Time.local(2019, 10, 8, 0, 1, 15))
     expect(::UsersResults::ExtendResourceParams.call!({}, nil, users_result)).to eq(
-      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15)
+      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
+      status: nil
     )
   end
 end

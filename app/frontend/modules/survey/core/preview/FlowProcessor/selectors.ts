@@ -33,6 +33,8 @@ export const getCurrentBlock = (state): Block => {
 export const getErrors = (state): {[qId: number]: []} => state.errors
 export const getResults = (state): ResultsInterface => state.results
 
+export const isAssessmentTimedOut = (state): boolean => state.assessmentTimedOut
+
 export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import { getI18n, isAssessmentTimedOut } from 'modules/survey/core/preview/FlowProcessor/selectors'
 import { markQuestionInProgress, removeQuestionInProgress } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { saveCurrentPage } from 'core/preview/FlowProcessor/actions'
 
@@ -8,6 +8,7 @@ export default connect(
     type: preview.type,
     mediaUrl: preview.mediaUrl,
     I18n: getI18n(preview),
+    isAssessmentTimedOut: isAssessmentTimedOut(preview),
   }),
   {
     markQuestionInProgress,
