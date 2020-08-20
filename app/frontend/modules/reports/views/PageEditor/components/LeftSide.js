@@ -43,6 +43,12 @@ class PageEditor extends Component {
     }
   }
 
+  click = (page) => {
+    const { unselectModules, selectModule } = this.props
+    unselectModules()
+    selectModule('Page', page)
+  }
+
   componentWillUnmoun () {
     this.storeListener.remove()
   }
@@ -64,6 +70,7 @@ class PageEditor extends Component {
               number={i + 1}
               active={currentPage === page.id ? styles.active : ''}
               onChange={this.change}
+              onClick={() => this.click(page)}
             />
           )
         })}
