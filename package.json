@@ -43,7 +43,7 @@
     "@babel/register": "^7.6.0",
     "@babel/runtime": "^7.3.4",
     "@rails/webpacker": "^4.0.2",
-    "@thetalententerprise/interactive-assessments": "1.0.8",
+    "@thetalententerprise/interactive-assessments": "1.1.0",
     "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^2.19.2",
     "@typescript-eslint/parser": "^2.19.2",
