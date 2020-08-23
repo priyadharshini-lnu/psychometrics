@@ -4755,6 +4755,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "wait": "Wait"
   },
+  "assessments_reports": {
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    }
+  },
   "assigns": {
     "assign": {
       "accept_privacy_modal": {
@@ -11768,6 +11774,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "wait": "Wait"
   },
+  "assessments_reports": {
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    }
+  },
   "assigns": {
     "assign": {
       "accept_privacy_modal": {
@@ -18773,6 +18785,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "use_this": "Use This"
     },
     "wait": "Wait"
+  },
+  "assessments_reports": {
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    }
   },
   "assigns": {
     "assign": {
