@@ -43,7 +43,7 @@
     "@babel/register": "^7.6.0",
     "@babel/runtime": "^7.3.4",
     "@rails/webpacker": "^4.0.2",
-    "@thetalententerprise/interactive-assessments": "1.0.8",
+    "@thetalententerprise/interactive-assessments": "1.1.0-beta",
     "@types/lodash": "^4.14.157",
     "@types/lodash.set": "^4.3.6",
     "@types/react-redux": "^7.1.9",
