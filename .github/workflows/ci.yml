@@ -5,7 +5,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 35
     env:
       RAILS_ENV: test
       REDIS_HOST: localhost
