@@ -22,7 +22,6 @@ describe ::UsersResults::UpdateUsersResult do
 
     it 'dont make transaction' do
       expect_any_instance_of(described_class).not_to receive(:update_users_result)
-      expect_any_instance_of(described_class).not_to receive(:generate_360_report)
       subject
     end
   end
@@ -31,7 +30,6 @@ describe ::UsersResults::UpdateUsersResult do
     form = double('form', 'invalid?': false)
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
-    allow_any_instance_of(described_class).to receive(:generate_360_report)
     allow(threesixty_campaign).to receive(:'threesixty?').and_return(true)
     allow(threesixty_campaign).to receive(:'common?').and_return(false)
     allow(users_result).to receive(:'completed?').and_return(true)
@@ -100,27 +98,11 @@ describe ::UsersResults::UpdateUsersResult do
       before { allow(users_result).to receive(:'completed?').and_return(true) }
       subject { described_class.call(form, users_result, threesixty_campaign) }
 
-      context 'report is enabled' do
-        it 'sets generating status' do
-          expect { subject }.to change { user_report.reload.generating? }.from(false).to(true)
-        end
-        it 'sends to generate report' do
-          expect(::UserReports::GeneratePdfJob).to receive(:perform_later).
-            with(user_report, subject_user)
-          subject
-        end
-      end
-
       context 'report is disabled' do
         before(:each) { report.update_column(:disabled, true) }
         it 'dont sets generating status' do
           subject
           expect(user_report.reload.generating?).to be_falsy
-        end
-        it 'dont sends to generate report' do
-          expect(::UserReports::GeneratePdfJob).not_to receive(:perform_later).
-            with(user_report, subject_user)
-          subject
         end
       end
     end

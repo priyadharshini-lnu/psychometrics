@@ -3,6 +3,11 @@
 module Administration
   module Campaigns
     class UserReportsController < Administration::Projects::BaseController
+      include AuthenticateByToken
+
+      prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
+      before_action :set_resource, only: %i[show download pdf_preview]
+
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
         if form.valid?
@@ -12,6 +17,43 @@ module Administration
           end
         else
           render json: { errors: form.errors.messages }, status: 422
+        end
+      end
+
+      def show
+        @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
+        @selected_locale = params[:lang] || resource.report.default_language
+
+        respond_to do |format|
+          format.html { render 'administration/projects/new_campaigns/index' }
+
+          format.json do
+            render json: resource, report: resource.report,
+                  results: UserReports::GroupedResultsByAssessment.call!(resource),
+                  piped_text_context: {},
+                  user_results: resource.user_results,
+                  include: '**'
+          end
+        end
+      end
+
+      # This action is used to generate pdf by puppeter
+      def pdf_preview
+        selected_locale = params[:lang] || resource.report.default_language
+
+        @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+
+        render 'shared/preview_report', layout: 'pdf'
+      end
+
+      def download
+        options = { lang: params[:lang] }
+        respond_to do |format|
+          format.pdf do
+            file_path = ::UserReports::GeneratePdf.call!(resource, current_user, options)
+
+            send_file file_path, type: 'application/pdf'
+          end
         end
       end
 

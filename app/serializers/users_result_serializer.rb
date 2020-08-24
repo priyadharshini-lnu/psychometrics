@@ -7,7 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
              :subject_datasheet, :highlights, :user_assessment_id
 
-  attribute :relationship, if: -> { object.assessment.threesixty? }
+  attribute :relationship
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
@@ -55,7 +55,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def as_manager
-    object.evaluator_id != current_user.id
+    object.evaluator_id != current_user&.id
   end
 
   def user
@@ -71,7 +71,9 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def relationship
-    participant&.relationship&.name
+    return participant&.relationship&.name if object.assessment.threesixty?
+
+    'Self'
   end
 
   def data_sheet

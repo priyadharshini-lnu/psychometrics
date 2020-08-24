@@ -4,6 +4,7 @@ import humps from 'humps'
 import { LOADING, LOADING_COMPLETE } from 'modules/admin/core/request'
 import { setIn } from 'utils/immutable'
 import _ from 'lodash'
+import fileDownload from 'js-file-download'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -40,7 +41,7 @@ const apiMiddleware = () => next => (action) => {
   const {
     request,
     request: {
-      method: method = 'get', body = {}, loader, camelize = true, decamelize = true,
+      method: method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
@@ -58,14 +59,17 @@ const apiMiddleware = () => next => (action) => {
       url: buildUrl(request),
       data: (body instanceof FormData || !decamelize) ? body : humps.decamelizeKeys(body),
       ...buildOptions(request),
-      responseType: 'json',
+      responseType: responseType || 'json',
       withCredentials: true,
     })
-    .then(({ data }) => next({
-      type: SUCCESS,
-      response: camelize ? humps.camelizeKeys(data) : data,
-      requestAction: action,
-    }))
+    .then(({ data, headers }) => {
+      if (responseType === 'blob') { downloadFile(data, headers) }
+      next({
+        type: SUCCESS,
+        response: camelize ? humps.camelizeKeys(data) : data,
+        requestAction: action,
+      })
+    })
     .catch((error) => {
       const errors = humps.camelizeKeys(error.response.data.errors)
       next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
@@ -82,6 +86,18 @@ const apiMiddleware = () => next => (action) => {
   if (debounceTimers[action.type]) clearTimeout(debounceTimers[action.type])
   debounceTimers[action.type] = setTimeout(processApi, request.debounce)
   return debounceTimers[action.type]
+}
+
+const downloadFile = (data, headers) => {
+  const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/
+  const matches = filenameRegex.exec(headers['content-disposition'])
+  let fileName = 'file_without_name'
+
+  if (matches != null && matches[1]) {
+    fileName = matches[1].replace(/['"]/g, '')
+  }
+
+  fileDownload(data, fileName)
 }
 
 export default apiMiddleware

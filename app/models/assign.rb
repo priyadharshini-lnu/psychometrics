@@ -158,6 +158,10 @@ class Assign < ApplicationRecord
     nil
   end
 
+  def norm_id
+    norm_data&.dig('id')
+  end
+
   def assign_with_result
     project_assign || self
   end

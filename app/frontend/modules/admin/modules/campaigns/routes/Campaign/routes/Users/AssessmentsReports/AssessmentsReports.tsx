@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import {
   Row, Col, Button, PageHeader, Descriptions, Switch, Tag,
 } from 'antd'
@@ -22,14 +23,16 @@ const MODALS = {
 }
 
 interface OwnProps {
-  match: {
-    params: {
-      projectId: string, campaignId: string, id: string,
-    }
-  },
-  openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void
+  openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void,
 }
-export type Props = OwnProps & PropsFromRedux
+
+interface Params {
+  projectId: string
+  campaignId: string
+  id: string
+}
+
+export type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
 
 const AssessmentsReports: React.FC<Props> = ({
   user,
@@ -37,6 +40,7 @@ const AssessmentsReports: React.FC<Props> = ({
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
+  history,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
@@ -66,7 +70,7 @@ const AssessmentsReports: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <PageHeader
           ghost={false}
-          onBack={() => window.history.back()}
+          onBack={() => history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/`)}
           title={user.fullName}
           subTitle={user.email}
           extra={[

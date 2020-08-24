@@ -67,6 +67,12 @@ Rails.application.routes.draw do
             get :export
           end
         end
+        resources :user_reports do
+          member do
+            get :pdf_preview
+            get :download
+          end
+        end
         resources :users do
           resources :user_reports
           member do

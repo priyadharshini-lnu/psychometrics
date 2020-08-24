@@ -91,10 +91,10 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def result_completed_at
-    return if assigns.blank?
+    return if results.blank?
 
-    dates = assigns.map do |assign|
-      assign&.completed_at&.to_date
+    dates = results.map do |result|
+      result&.completed_at&.to_date
     end.compact.sort
 
     return '' if dates.empty?
@@ -110,22 +110,21 @@ class ReportSerializer < ActiveModel::Serializer
 
   # Used for Piped Text
   def norm_used
-    norms = Norm.where(id: assigns.map { |assign| assign.norm_data&.dig('id') }.compact).index_by(&:id)
+    norms = Norm.where(id: results.map(&:norm_id).compact).index_by(&:id)
 
-    assigns.each_with_object({}) do |assign, acc|
-      norm_id = assign.norm_data&.dig('id')
-      next unless norm_id
+    results.each_with_object({}) do |result, acc|
+      next unless result.norm_id
 
-      acc[assign.assessment_id] = norms[norm_id.to_i]&.decorate&.display_name
+      acc[result.assessment_id] = norms[result.norm_id]&.decorate&.display_name
     end
   end
 
   # Used for Piped Text
   def result_locale
-    assigns.each_with_object({}) do |assign, acc|
-      locale = assign.selected_locale || I18n.default_locale
+    results.each_with_object({}) do |result, acc|
+      locale = result.selected_locale || I18n.default_locale
 
-      acc[assign.assessment_id] = I18n.t("languages.#{locale}")
+      acc[result.assessment_id] = I18n.t("languages.#{locale}")
     end
   end
 
@@ -186,5 +185,15 @@ class ReportSerializer < ActiveModel::Serializer
       { id: 'Peer', name: 'Peer' },
       { id: 'DirectReport', name: 'Direct Report' }
     ]
+  end
+
+  private
+
+  def results
+    user_results || assigns
+  end
+
+  def user_results
+    @instance_options[:user_results]
   end
 end

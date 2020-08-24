@@ -10,7 +10,7 @@ class UserReportSerializer < ActiveModel::Serializer
   has_one :options, serializer: Threesixty::CampaignOptionsSerializer
 
   def campaign_id
-    object.campaign.threesixty_campaign.id
+    object.campaign.threesixty_campaign&.id
   end
 
   def is_self # rubocop:disable Naming/PredicateName

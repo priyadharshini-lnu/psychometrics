@@ -9,16 +9,17 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
   let(:assessment) { create(:assessment) }
   let(:report) { create(:report, assessments: [assessment]) }
-  let(:report_family) { report.report_families.first }
-  let!(:license) do
-    create(:license, report_family: report_family, client: campaign.client, start_date: 2.days.ago,
-      end_date: 2.days.since)
-  end
+  let(:user_report) { create(:user_report, report: report, user: campaign_user.user) }
 
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
   describe 'create' do
+    let(:report_family) { report.report_families.first }
+    let!(:license) do
+      create(:license, report_family: report_family, client: campaign.client, start_date: 2.days.ago,
+        end_date: 2.days.since)
+    end
     it 'returns error if wrong params are passed' do
       put :create, params: {
         new_campaign_id: campaign.id,
@@ -43,6 +44,42 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       parsed_response = JSON.parse(response.body)
       check_report_response(parsed_response['user_reports'].first)
       check_assessment_response(parsed_response['user_assessments'].first)
+    end
+  end
+
+  describe 'GET show' do
+    it 'renders on html request' do
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :html
+
+      expect(response).to render_template('administration/projects/new_campaigns/index')
+    end
+
+    it 'renders json response' do
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      parsed_reponse = JSON.parse(response.body)
+
+      expect(parsed_reponse.keys).to include('report', 'results', 'status', 'user')
+    end
+  end
+
+  describe 'GET pdf_preview' do
+    it 'renders appropriate view' do
+      get :pdf_preview, params: { new_campaign_id: campaign.id, id: user_report.id }
+
+      expect(response).to render_template('layouts/pdf')
+      expect(response).to render_template('shared/preview_report')
+    end
+  end
+
+  describe 'GET download' do
+    it 'sends pdf file for download' do
+      file_path = 'tmp/reports/user.pdf'
+
+      expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path)
+      expect(controller).to receive(:send_file).with(file_path, type: 'application/pdf')
+
+      get :download, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :pdf
     end
   end
 

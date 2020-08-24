@@ -3,7 +3,7 @@ import {
   Table, Menu, Row, Col, Dropdown, Switch,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -24,9 +24,10 @@ const ReportList: React.FC<Props> = ({
   reports: {
     list,
   },
-  match: { params: { campaignId } },
+  match: { params: { campaignId, projectId } },
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
+  const parsedProjectId = parseInt(projectId, 10)
 
   return (
     <Row>
@@ -67,6 +68,7 @@ const ReportList: React.FC<Props> = ({
               <Dropdown
                 overlay={() => (
                     ActionsMenu({
+                      projectId: parsedProjectId,
                       campaignId: parsedCampaignId,
                       userReportId: userReport.id,
                     }) as React.ReactElement
@@ -86,27 +88,26 @@ const ReportList: React.FC<Props> = ({
 }
 
 interface ActionMenuProps {
+  projectId: number
   campaignId: number
   userReportId: number
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = () => (
+const ActionsMenu: React.FC<ActionMenuProps> = ({ campaignId, userReportId, projectId }) => (
   <Menu>
     <Menu.Item key="viewReport">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
+      <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
         {I18n.t('reports.actions.view')}
-      </div>
+      </Link>
     </Menu.Item>
     <Menu.Item key="downloadReport">
-      <div
-        role="button"
-        tabIndex={-1}
+      <a
+        href={`/administration/new_campaigns/${campaignId}/user_reports/${userReportId}/download.pdf`}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         {I18n.t('reports.actions.download')}
-      </div>
+      </a>
     </Menu.Item>
     <Menu.Item key="remove">
       <div

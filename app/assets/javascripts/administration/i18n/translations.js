@@ -5023,6 +5023,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "confirm": "Confirm",
       "continue": "Continue",
       "default": "Default",
+      "download": "Download",
       "ok": "Ok",
       "response": "Response"
     }
@@ -6948,6 +6949,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "skip_existing": "Skip existing user"
       }
     }
+  },
+  "user_reports": {
+    "preview_report": "Preview Report"
   },
   "validations": {
     "AudioResponse": {
@@ -12042,6 +12046,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "confirm": "Confirm",
       "continue": "Continue",
       "default": "Default",
+      "download": "Download",
       "ok": "Ok",
       "response": "Response"
     }
@@ -13960,6 +13965,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "skip_existing": "Skip existing user"
       }
     }
+  },
+  "user_reports": {
+    "preview_report": "Preview Report"
   },
   "validations": {
     "AudioResponse": {
@@ -19054,6 +19062,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "confirm": "Confirm",
       "continue": "Continue",
       "default": "Default",
+      "download": "Download",
       "ok": "Ok",
       "response": "Response"
     }
@@ -20972,6 +20981,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "skip_existing": "Skip existing user"
       }
     }
+  },
+  "user_reports": {
+    "preview_report": "Preview Report"
   },
   "validations": {
     "AudioResponse": {

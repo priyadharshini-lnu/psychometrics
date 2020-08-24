@@ -10,6 +10,8 @@ class UserAssessment < ApplicationRecord
   belongs_to :relationship
   belongs_to :users_result
 
+  delegate :selected_locale, to: :user_result
+
   def completed?
     users_result&.completed?
   end

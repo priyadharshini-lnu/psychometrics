@@ -3133,7 +3133,8 @@ CREATE TABLE public.users_results (
     last_activity_at timestamp without time zone,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
-    norm_type character varying
+    norm_type character varying,
+    selected_locale character varying
 );
 
 
@@ -7101,6 +7102,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200729181439'),
 ('20200730091354'),
 ('20200802191402'),
+('20200816155957'),
 ('20200823090240'),
 ('20200823094516');
 
