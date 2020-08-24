@@ -5,10 +5,10 @@ import {
 import {
   nextPage, prevPage,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
-import { AppState } from 'modules/survey/core/rootReducers'
+import { RootState } from 'modules/survey/core/rootReducers'
 
 export default connect(
-  ({ preview, preview: { initialized } }: AppState) => ({
+  ({ preview, preview: { initialized } }: RootState) => ({
     preview,
     hasPrevPage: initialized && getPrevPage(preview),
     page: initialized && getCurrentPage(preview),

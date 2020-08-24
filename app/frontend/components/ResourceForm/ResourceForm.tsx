@@ -1,31 +1,21 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { Form, message, Alert } from 'antd'
-import { FormInstance } from 'antd/lib/form/util'
-import { FormProps } from 'antd/lib/form'
 import _ from 'lodash'
 import { FieldData } from 'rc-field-form/lib/interface'
+import { scrollIntoView } from 'scroll-js'
+import { FormProps } from 'antd/lib/form'
+import { FormInstance } from 'antd/lib/form/util'
 import { Status } from './constants'
+import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
 
-interface Props {
-  resourceName: string
-  requestScope?: string
-  defaultRequest: Request
-  resource?: Resource
-  resourceId?: number
-  request?: Partial<Request>
-  showSuccessMessages?: boolean
-  onFailedSubmission?(values: object, errors: object): void
-  formProps?: FormProps
-  onStatusChange?(value: string): object
-  onSuccessfulSubmission?(response: object): void
-  storeManager?: {
-    form: FormInstance,
-    fields: FieldData[],
-    setFields(fields: object): void
-  }
-  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+type Props = PropsFromRedux & OwnProps
+
+interface Error {
+  [key: string]: string[]
 }
+
+const { I18n } = window
 
 interface Request {
   fetchResource(): void
@@ -33,11 +23,28 @@ interface Request {
   updateResource(values: object): void
 }
 
-interface Error {
-  [key: string]: string[]
-}
 
-const { I18n } = window
+export type OwnProps = {
+  resourceName: string
+  resourceBaseUrl: string,
+  requestScope?: string
+  resource?: Resource
+  resourceId?: number
+  request?: Partial<Request>
+  showSuccessMessages?: boolean
+  onFailedSubmission?(values: object, errors: object): void
+  formProps?: FormProps
+  onStatusChange?(value: string): void
+  onSuccessfulSubmission?(response: object): void
+  transformValues?(values: object): object
+  storeManager?: {
+    form?: FormInstance,
+    fields?: FieldData[],
+    setFields?(fields: object): void
+  }
+  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+  scrollToFirstError?: boolean
+}
 
 const ResourceForm: React.FC<Props> = ({
   resource,
@@ -52,7 +59,10 @@ const ResourceForm: React.FC<Props> = ({
   onStatusChange,
   storeManager,
   children,
+  transformValues,
+  scrollToFirstError,
 }: Props) => {
+  const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
   const [status, setStatus] = useState<string | null>(null)
   const [fields, setFields] = useState<FieldData[] | []>([])
@@ -77,6 +87,16 @@ const ResourceForm: React.FC<Props> = ({
       })
     }
   }, [])
+
+  useEffect(() => {
+    if (baseErrorRef.current && scrollToFirstError && !_.isEmpty(baseErrors)) {
+      let element = document.getElementsByClassName('ant-modal-wrap')[0]
+      // eslint-disable-next-line prefer-destructuring
+      if (!element) { element = document.getElementsByClassName('resourceForm')[0] }
+
+      scrollIntoView(baseErrorRef.current, element, { behavior: 'smooth' })
+    }
+  }, [baseErrors])
 
   const validateMessages = {
     required: I18n.t('validations.blank'),
@@ -104,7 +124,7 @@ const ResourceForm: React.FC<Props> = ({
   const formValuesToField = (formValues = {}) => {
     const newFields: FieldData[] = []
     _.each(formValues, (value, name: string) => {
-      const field: FieldData = _.find(store.fields, { name })
+      const field = _.find(store.fields, { name })
       let newField: FieldData = { name, value }
       if (field) {
         newField = { ...field, value }
@@ -115,6 +135,10 @@ const ResourceForm: React.FC<Props> = ({
   }
 
   const handleSave = async (values: object) => {
+    if (transformValues) {
+      values = transformValues(values)
+    }
+    setBaseErrors([])
     handleStatusChange(Status.Saving)
     saveRequest(values)
       .then((response: object) => {
@@ -138,7 +162,7 @@ const ResourceForm: React.FC<Props> = ({
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     _.each(errors, (error: string | string[], name: string) => {
-      const field: FieldData = _.find(store.fields, { name })
+      const field = _.find(store.fields, { name })
       const errors: string[] = _.castArray(error)
       let newField: FieldData = { name, errors }
       if (field) {
@@ -158,18 +182,22 @@ const ResourceForm: React.FC<Props> = ({
       onFieldsChange={(_, allFields) => {
         store.setFields(allFields)
       }}
+      scrollToFirstError={scrollToFirstError}
       layout="vertical"
       {...formProps || {}}
+      className="resourceForm"
     >
-      {baseErrors
+      {!_.isEmpty(baseErrors)
         && (
-        <Alert
-          message={false}
-          description={_.join(_.castArray(baseErrors), ',')}
-          type="error"
-          className="mbm"
-          showIcon
-        />
+          <div ref={baseErrorRef}>
+            <Alert
+              message={false}
+              description={_.join(_.castArray(baseErrors), ',')}
+              type="error"
+              className="mbm"
+              showIcon
+            />
+          </div>
         )}
       {children({ form: store.form, status, isEdit: isEdit() })}
     </Form>

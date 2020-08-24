@@ -104,18 +104,19 @@ class User < ApplicationRecord
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
   has_many :api_keys, inverse_of: :user
-  has_many :users_campaigns_assessments, inverse_of: :subject, foreign_key: :subject_id
-  has_many :assessments, through: :users_campaigns_assessments
-  has_many :campaigns_users_reports, inverse_of: :user
+  has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id
+  has_many :assessments, through: :user_assessments
+  has_many :user_reports, inverse_of: :user
   has_many :evaluated_results, foreign_key: 'subject_id', class_name: 'UsersResult'
   has_many :evaluation_results, foreign_key: 'evaluator_id', class_name: 'UsersResult'
-  has_many :campaigns_users
+  has_many :campaign_users
   has_many :reminder_histories, class_name: 'Threesixty::ReminderHistory', dependent: :delete_all
-
+  has_one :hogan_credential
   has_many  :available_client_admin_reports,
             through: :client_admin_clients,
             source: :available_reports,
             class_name: 'Report'
+  has_many :campaigns, through: :campaign_users
 
   accepts_nested_attributes_for :memberships
 
@@ -234,21 +235,37 @@ class User < ApplicationRecord
       %w[all users administration]
     end
 
+    def find_user_with_membership(project, subdomain, warden_conditions)
+      Users::Regular.enabled.identified.joins(:clients).
+        where.has do
+        project_id.eq(project.id) &
+          email.eq(warden_conditions[:email]&.downcase) &
+          clients.subdomain.eq(subdomain) &
+          clients.disabled.not_eq(true)
+      end.first
+    end
+
+    def find_user_for_new_campaign(project, warden_conditions)
+      Users::Regular.enabled.identified.
+        where.has do
+        project_id.eq(project.id) &
+          email.eq(warden_conditions[:email]&.downcase)
+      end.first
+    end
+
     # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
       # Cut from Subdomain part of expected Subdomain
       subdomain = warden_conditions[:subdomain]&.gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
-        Users::Regular.enabled.
-          identified.
-          joins(:clients).
-          where.has do
-          project_id.eq(project.id) &
-            email.eq(warden_conditions[:email]&.downcase) &
-            clients.subdomain.eq(subdomain) &
-            clients.disabled.not_eq(true)
-        end.first
+        membership = Membership.join_user.find_by(users: { email: warden_conditions[:email]&.downcase },
+          client_id: project.id)
+        if membership
+          find_user_with_membership(project, subdomain, warden_conditions)
+        else
+          find_user_for_new_campaign(project, warden_conditions)
+        end
       else
         enabled.
           identified.

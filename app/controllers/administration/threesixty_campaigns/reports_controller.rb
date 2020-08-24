@@ -11,12 +11,12 @@ module Administration
       append_before_action :pundit_authorize
 
       def show
-        @campaigns_users_report = CampaignsUsersReport.find_by!(
+        @user_report = UserReport.find_by!(
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
-        set_available_translations(@campaigns_users_report.report)
+        set_available_translations(@user_report.report)
         @data = ::Reports::PrepareDataForReport.call!(
-          campaigns_users_report: @campaigns_users_report,
+          user_report: @user_report,
           locale: user_locale,
           current_user: current_user
         )
@@ -28,14 +28,14 @@ module Administration
       end
 
       def download
-        campaigns_users_report = CampaignsUsersReport.find_by!(
+        user_report = UserReport.find_by!(
           campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id
         )
         options = { lang: params[:lang] }
         respond_to do |format|
           format.json do
             ::Threesixty::Reports::DownloadJob.perform_later(
-              threesixty_campaign, current_user, resource, campaigns_users_report, options
+              threesixty_campaign, current_user, resource, user_report, options
             )
             render json: { success: true }
           end
@@ -43,7 +43,7 @@ module Administration
             add_cookie_for_file_download
 
             pdf_file = ::Threesixty::Reports::ExportReport.call!(
-              current_user, threesixty_campaign, @_resource, campaigns_users_report, options
+              current_user, threesixty_campaign, @_resource, user_report, options
             )
             send_file pdf_file, type: 'application/pdf'
           end

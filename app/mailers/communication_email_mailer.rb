@@ -22,7 +22,7 @@ class CommunicationEmailMailer < ApplicationMailer
     @entity ||= if @communication_email.membership_id
                   Membership.join_user.find(@communication_email.membership_id)
                 else
-                  @communication_email.campaigns_user
+                  @communication_email.campaign_user
                 end
   end
 

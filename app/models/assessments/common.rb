@@ -2,7 +2,7 @@
 
 module Assessments
   class Common < Assessment
-    validates :name, :dimension, presence: true
+    validates :name, presence: true
     validates :name, length: { maximum: 150 }, allow_blank: true
     validates :owner, presence: true, allow_nil: true
     validate :check_owner

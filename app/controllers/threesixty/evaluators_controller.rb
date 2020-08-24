@@ -2,7 +2,7 @@
 
 module Threesixty
   class EvaluatorsController < ApplicationController
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_subject
     before_action :set_nomination, only: %i[update_status update]

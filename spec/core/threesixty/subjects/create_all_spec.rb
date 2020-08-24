@@ -11,7 +11,7 @@ describe Threesixty::Subjects::CreateAll do
     allow(Licenses::CreateThreesixtySubject).to receive(:use).and_return(true)
 
     user = create(:user, project: project, email: 'fedor@gmail.com')
-    create(:campaigns_user, user: user, campaign: campaign)
+    create(:campaign_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
     create(:relationship, name: 'Self')
   end

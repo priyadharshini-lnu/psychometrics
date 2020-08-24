@@ -101,8 +101,10 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
       }
       if (skipResult.type === SPECIFIC_BLOCK && preview.linear) {
         const element = getElementIdByBlockId(preview, skipResult.blockId)
-        dispatch(changeElement(element))
-        processDisplayLogic()
+        if (element) {
+          dispatch(changeElement(element))
+          processDisplayLogic()
+        }
         return
       }
     }

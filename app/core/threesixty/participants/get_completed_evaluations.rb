@@ -20,7 +20,7 @@ module Threesixty
           actual_by_options(option).
           where(evaluator_id: user_ids).
           group(:evaluator_id).
-          select('evaluator_id, count(users_results.id) as completed_evaluations_count')
+          select('users_results.evaluator_id, count(users_results.id) as completed_evaluations_count')
 
         user_results = user_results.where('subject_id != evaluator_id') if exclude_self_evaluations
 

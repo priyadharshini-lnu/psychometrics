@@ -3,45 +3,10 @@
 module Threesixty
   class CampaignsController < ApplicationController
     include ::Threesixty::InitialState
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_locale
     before_action :set_campaign, only: [:show]
-    initial_state_for %i[index show]
-
-    def index
-      respond_to do |format|
-        format.html { render :show }
-        format.json do
-          @single_assigns = policy_scope(Assign).
-                            includes(:single_reports, original_assign: %i[membership single_reports]).
-                            joining { original_assign.outer.membership.outer.client.outer }.
-                            joins(
-                              'LEFT OUTER JOIN "assessments_clients"
-                               ON "assessments_clients"."client_id" = "clients"."id"
-                               AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"'
-                            ).
-                            order('assessments_clients.position ASC').
-                            preload(:assessment)
-
-          subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
-          evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
-
-          campaigns = ::Campaign.where(id: subject_campaigns | evaluator_campaigns)
-          threesixty_projects = campaigns.map(&:threesixty_campaign)
-
-          json = @single_assigns.uniq.map do |assign|
-            next if assign.original_assigns.all? { |a| a.membership&.disabled? }
-
-            ::EndUser::AssignSerializer.new(assign).to_h
-          end.compact
-          json.concat(threesixty_projects.map do |campaign|
-                        Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h
-                      end)
-
-          render json: json
-        end
-      end
-    end
+    initial_state_for %i[show]
 
     def system_checks
       respond_to do |format|

@@ -27,8 +27,10 @@ const Footer: React.FC<Props> = ({ messageList, updateMessageList }) => {
     const text = messageForm.text.trim()
     if (!text) return
 
-    const maxPosition: number = _.maxBy(messageList, 'position').position
-    updateMessageList([...messageList, { ...messageForm, text, position: maxPosition + 1 }])
+    const maxPosition = _.maxBy(messageList, 'position')?.position
+    if (maxPosition) {
+      updateMessageList([...messageList, { ...messageForm, text, position: maxPosition + 1 }])
+    }
     setMessageForm({ ...messageForm, text: '' })
   }
 

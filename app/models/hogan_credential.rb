@@ -2,7 +2,7 @@
 
 class HoganCredential < ApplicationRecord
   belongs_to :membership
-  belongs_to :campaigns_user
+  belongs_to :user
 
   validates :encrypted_password, presence: true
   validates :participant_id, presence: true

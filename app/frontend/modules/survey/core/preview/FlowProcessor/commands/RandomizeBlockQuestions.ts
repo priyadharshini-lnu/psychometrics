@@ -11,12 +11,12 @@ const RandomizeBlockQuestions = {
   ): PageInterface[] {
     if (!randomization) { return pages }
 
-    const randomize = (unordered): PageInterface[] => pages.reduce((res, page) => {
+    const randomize = unordered => pages.reduce((res, page) => {
       if (!unordered.length) return res
       const p = { ...page, questions: _.take(unordered, page.questions.length) }
       unordered = _.drop(unordered, page.questions.length)
       return [...res, p]
-    }, [])
+    }, []) as PageInterface[]
 
     const questionIds = _.flatten(pages.map(p => p.questions))
     const shuffledQuestionIds = array.shuffle(questionIds, seedrandom(seed))

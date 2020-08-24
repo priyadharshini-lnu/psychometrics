@@ -1,0 +1,17 @@
+.newReportButton {
+  display: inline-block;
+  margin-left: 5px
+}
+.tableDivider {
+  margin-top: 50px;
+}
+
+:global {
+  .horizontalLabels {
+    .ant-form-item {
+      flex-direction: row-reverse !important;
+      align-items: flex-end;
+      margin-bottom: 0px;
+    }
+  }
+}

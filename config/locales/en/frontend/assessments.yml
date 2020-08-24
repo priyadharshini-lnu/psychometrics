@@ -12,7 +12,7 @@ en:
       items: Items
     audio_response:
       permission_text: Please allow to use microphone to record audio
-      permission_denied_message: Please enable microphone permission in your borwser to record the answer
+      permission_denied_message: Please enable microphone permission in your browser to record the answer
     page:
       next: 'Next'
       back: 'Back'
@@ -27,6 +27,9 @@ en:
       selected: 'Selected'
       use_this: 'Use This'
       retake: 'Retake'
+      start_recording: 'Start recording'
+      status:
+        recording: 'Recording'
       tracker:
         frame: 'Please make sure that your face aligns with the frame'
         ready: 'Press the Record button when ready to record'
@@ -35,9 +38,13 @@ en:
       media_recorder:
         success: 'Please allow to use camera and microphone to record audio and Video'
         failure: "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording"
+    file_upload:
+      select_file: 'Select file'
     messages:
       finish: "Thank you for your time. \nYour responses have now been recorded."
     actions:
       goto_dashboard: Go To Dashboard
+      rescore: Rescore
+      extend_time: Extend time
     wait: 'Wait'
     proceed: 'Proceed Anyway'

@@ -3,9 +3,9 @@ import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 
 export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'
+export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_REPORTS'
 
 const defaultState = {}
-
 
 export const fetch = (id: number, projectId: number) => ({
   type: FETCH,
@@ -14,7 +14,6 @@ export const fetch = (id: number, projectId: number) => ({
     url: `/administration/projects/${projectId}/new_campaigns/${id}`,
   },
 })
-
 
 export const update = (id: number, projectId: number, body: Partial<Campaign>) => ({
   type: UPDATE,
@@ -25,10 +24,17 @@ export const update = (id: number, projectId: number, body: Partial<Campaign>) =
   },
 })
 
+export const fetchAssessmentAndReports = (campaignId: string) => ({
+  type: FETCH_ASSESSMENTS_AND_REPORTS,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/reports/assessments_and_reports`,
+  },
+})
+
 export interface FetchAction {
   response: Campaign
 }
-
 
 const HANDLERS = {
   [FETCH]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),

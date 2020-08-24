@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   #
   namespace :administration do
     get 'dashboard', to: 'home#index'
+    post 'breadcrumbs', to: 'breadcrumbs#index'
 
     resource :profiles, only: %i[update edit]
 
@@ -48,10 +49,62 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
     end
+
+    resources :new_campaigns, only: [] do
+      scope module: :campaigns do
+        resources :registration_codes do
+          member do
+            get :download_qrcode
+          end
+        end
+
+        resources :reports, only: [:create] do
+          collection do
+            get :report_families
+            get :assessments_and_reports
+          end
+          member do
+            get :export
+          end
+        end
+        resources :users do
+          resources :user_reports
+          member do
+            patch :toggle_status
+            get :reset_password
+          end
+        end
+
+        resources :universal_links, only: %i[show update destroy] do
+          member do
+            post :activate
+          end
+        end
+        resources :assessments, only: [:create] do
+          member do
+            get :export_raw_results
+            get :export_scoring_results
+            get :export_normed_results
+            get :export_external_results
+            post :import_results
+            get :norms
+            post :update_norm
+            post :rescore_responses
+            post :update_norm
+          end
+        end
+        resources :user_assessments, only: [] do
+          member do
+            post :update_norm
+          end
+        end
+      end
+    end
+
     resources :projects do
-      resources :new_campaigns, only: [], constraints: proc { |request| request.format == :json } do
+      resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
-          resources :users
+          resources :registration_codes
         end
       end
 
@@ -60,7 +113,9 @@ Rails.application.routes.draw do
           collection do
             get :templates_and_assessment
           end
+
           member do
+            # get 'assessments_and_reports'
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
@@ -605,8 +660,30 @@ Rails.application.routes.draw do
     resources :highlights, only: %i[update]
     get 'transcribe/pre_sign_url', to: 'transcribe#pre_sign_url'
 
+    scope module: :end_user do
+      resources :campaigns, only: %i[show]
+      get :dashboard, to: 'users#dashboard'
+
+      resources :user_assessments do
+        resources :users_results, only: %i[update] do
+          member do
+            get :upload_media_url
+            put :upload_callback
+            delete :remove_media
+            put :complete_multipart_upload
+            put :mark_as_user_selected_take
+            put :update_meta_data
+          end
+        end
+        member do
+          get :assessment
+          get :pass
+        end
+      end
+    end
+
     scope module: :threesixty do
-      resources :campaigns, only: %i[show index] do
+      resources :threesixty_campaigns, only: %i[show index], controller: :campaigns, as: :campaigns do
         resources :nominations do
           post :search_evaluators
           get :request_approval
@@ -625,22 +702,14 @@ Rails.application.routes.draw do
           get :download, on: :member
         end
         resources :assessments, only: %i[index]
-        resources :users_results, only: %i[update] do
-          member do
-            get :upload_media_url
-            put :upload_callback
-            delete :remove_media
-            put :complete_multipart_upload
-            put :mark_as_user_selected_take
-            put :update_meta_data
-          end
-        end
+
         collection do
           post :change_locale
         end
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
     end
+
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
@@ -682,10 +751,10 @@ Rails.application.routes.draw do
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
-    get 'identify', to: 'home#identify'
+    get 'identify', to: 'home#identify', as: :identify
     get 'assessment_completed', to: 'home#assessment_completed'
     get 'upgrade', to: 'home#upgrade'
-    root to: 'threesixty/campaigns#index'
+    root to: 'end_user/users#dashboard'
   end
 
   get 'media_players/audio', to: 'media_players#audio'

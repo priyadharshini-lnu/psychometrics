@@ -9,7 +9,8 @@ import settings from './settings'
 
 const App: React.FC<void> = () => (
   <div className="ms" style={{ background: 'white' }}>
-    <Provider store={store}>
+    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+    <Provider store={store as any}>
       <Router>
         <ConnectedRouter history={history}>
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />

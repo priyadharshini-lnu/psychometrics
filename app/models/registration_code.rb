@@ -3,5 +3,6 @@
 class RegistrationCode < ApplicationRecord
   belongs_to :end_level, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
+  belongs_to :campaign
   has_many :license_usages, dependent: :nullify
 end

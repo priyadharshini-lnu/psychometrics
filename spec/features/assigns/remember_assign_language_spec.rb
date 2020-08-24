@@ -35,7 +35,7 @@ feature 'Incomplete assessment should continue in the same language' do
   end
 
   scenario 'resume assessment after changing assessment language', js: true do
-    visit dashboard_url
+    # visit dashboard_url
 
     # commented as no longer valid spec
     # expect(page).to have_text(assessment.name)

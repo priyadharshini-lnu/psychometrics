@@ -5,7 +5,7 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     env:
       RAILS_ENV: test
       REDIS_HOST: localhost
@@ -70,7 +70,7 @@ jobs:
           bundle exec rubocop
       - name: Setup Database
         run: |
-          cp config/database.ci.yml config/database.yml
+          cp config/database.yml.sample config/database.yml
           cp config/application.yml.sample  config/application.yml
           bundle exec rake db:create
           bundle exec rake db:structure:load

@@ -21,7 +21,8 @@ module Licenses
         return broadcast :ok, license_usage
       end
 
-      broadcast :error, I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
+      raise Licenses::NotEnoughError,
+            I18n.t('licenses.not_enough_license', client_name: client.name, report_name: report.name)
     end
   end
 end

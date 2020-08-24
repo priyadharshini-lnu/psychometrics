@@ -5,20 +5,24 @@ import {
 import { Link } from 'react-router-dom'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
-import { EllipsisOutlined, AppstoreOutlined } from '@ant-design/icons'
+import { MoreOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
+import array from 'utils/array'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import CommonCampaignFormModal from '../CampaignList/CommonCampaignFormModal'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
+import Breadcrumb from '../../components/Breadcrumb'
 
 const MODALS = {
   CommonCampaignFormModal,
   ThreesixtyCampaignFormModal,
 }
+
+const { I18n } = window
 
 const { Column } = Table
 const { Search } = Input
@@ -71,6 +75,23 @@ const CampaignList: React.FC<Props> = ({
 
   return (
     <div>
+      <Breadcrumb
+        request={{
+          fields: ['project', 'client'],
+          data: {
+            projectId: parseInt(projectId, 10),
+          },
+        }}
+        crumbs={[{
+          link: () => '/administration',
+          label: () => I18n.t('administration.clients.tenancies'),
+        }, {
+          link: state => `/administration/clients/${state.client.id}/projects`,
+          label: state => state.client.name,
+        }, {
+          label: state => state.project.name,
+        }]}
+      />
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
@@ -112,10 +133,8 @@ const CampaignList: React.FC<Props> = ({
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, id }) => (
-                <Link to={`/administration/projects/${projectId}/new_campaigns/${id}`}>
-                  {name}
-                </Link>
+              render={({ name, isThreesixty, campaignUrl }) => (
+                isThreesixty ? <a href={campaignUrl}>{name}</a> : <Link to={campaignUrl}>{name}</Link>
               )}
             />
             <Column
@@ -146,7 +165,7 @@ const CampaignList: React.FC<Props> = ({
                   trigger={['click']}
                 >
                   <a>
-                    <EllipsisOutlined />
+                    <MoreOutlined />
                   </a>
                 </Dropdown>
               )}
@@ -180,9 +199,9 @@ interface ResourcesProps {
   type: string
 }
 
-const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => (
-  <>
-    {resources.map((resource: Resource) => (
+const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => {
+  const tags = () => (
+    resources.map((resource: Resource) => (
       <Tooltip placement="top" title={resource.name} key={resource.id}>
         <a href={`/administration/${type}/${resource.id}`} target="_blank" rel="noopener noreferrer">
           {resource.iconUrl ? (
@@ -198,9 +217,15 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => (
           )}
         </a>
       </Tooltip>
-    ))}
-  </>
-)
+    ))
+  )
+
+  return (
+    <>
+      {array.joinJSXElements(tags(), ' ')}
+    </>
+  )
+}
 
 interface ActionMenuProps {
   onEdit(): void

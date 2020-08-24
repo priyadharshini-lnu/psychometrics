@@ -80,7 +80,7 @@ module Administration
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                                          :login_box_position, :secondary_logo, :remove_secondary_logo,
-                                         privacy_link_attributes: %i[id text link _destroy])
+                                         :enable_live_chat, privacy_link_attributes: %i[id text link _destroy])
       end
 
       def set_privacy_link_enabled

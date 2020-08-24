@@ -1,8 +1,14 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { curry } from 'lodash'
 import NormFields from 'modules/admin/modules/NormEditor/interfaces/NormFields'
 import { savePercentileNorm } from './core/norm'
+import { OwnProps } from './interfaces'
 
-export default connect(null, (dispatch, ownProps) => ({
+const connecter = connect(null, (dispatch, ownProps: OwnProps) => ({
   saveNorm: curry((normId: number, data: NormFields) => dispatch(savePercentileNorm(normId, data)))(ownProps.normId),
 }))
+
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter

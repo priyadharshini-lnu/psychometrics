@@ -119,19 +119,19 @@ module Facades
       def fetch_projects(user)
         return Client.none if form.client_id.blank?
 
-        client_policy_scope(user).projects_of(form.client_id)
+        client_policy_scope(user).projects_of(form.client_id).enabled
       end
 
       def fetch_campaigns(user)
         return Client.none if form.project_id.blank?
 
-        client_policy_scope(user).campaigns_of(form.project_id)
+        client_policy_scope(user).campaigns_of(form.project_id).enabled
       end
 
       def fetch_sub_campaigns(user)
         return Client.none if form.campaign_id.blank?
 
-        client_policy_scope(user).sub_campaigns_of(form.campaign_id)
+        client_policy_scope(user).sub_campaigns_of(form.campaign_id).enabled
       end
 
       def client_policy_scope(user)

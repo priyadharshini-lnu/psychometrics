@@ -18,7 +18,7 @@ const MultipleTakeButtons: React.FC<Props> = ({
   <Space>
     {_.times(maxTakes, (index: number) => {
       const takeNo = index + 1
-      const answer: Answer = _.find(answers, ({ take_no }) => take_no === takeNo)
+      const answer = _.find(answers, ({ take_no }) => take_no === takeNo)
       if (!answer && takeNo !== currentTakeNo) {
         return <Button key={takeNo} className={styles.unusedTake} disabled>&nbsp;</Button>
       }

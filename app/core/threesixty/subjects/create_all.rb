@@ -15,7 +15,7 @@ module Threesixty
           result = subjects.map do |subject|
             ActiveRecord::Base.transaction do
               subject_user = fetch_or_create_subject_user(subject)
-              create_campaigns_user(subject_user)
+              create_campaign_user(subject_user)
               create_membership(subject_user)
               create_users_report(subject_user)
               create_subject(subject_user)
@@ -38,8 +38,8 @@ module Threesixty
         end
       end
 
-      def create_campaigns_user(user)
-        CampaignsUser.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
+      def create_campaign_user(user)
+        CampaignUser.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
       end
 
       def create_subject(user)
@@ -69,7 +69,7 @@ module Threesixty
       end
 
       def create_users_report(user)
-        ::CampaignsUsersReport.find_or_create_by(user: user,
+        ::UserReport.find_or_create_by(user: user,
                                         report: threesixty_campaign.report,
                                         campaign: threesixty_campaign.campaign)
       end

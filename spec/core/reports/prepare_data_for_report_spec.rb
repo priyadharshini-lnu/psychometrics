@@ -43,8 +43,8 @@ describe Reports::PrepareDataForReport do
     let(:evaluator_1) { create(:user) }
     let(:evaluator_2) { create(:user) }
     let(:evaluator_3) { create(:user) }
-    let(:campaigns_users_report) do
-      create(:campaigns_users_report, report: threesixty_campaign.report,
+    let(:user_report) do
+      create(:user_report, report: threesixty_campaign.report,
                                 campaign: threesixty_campaign.campaign, user_id: subject.user_id)
     end
 
@@ -66,7 +66,7 @@ describe Reports::PrepareDataForReport do
         project: project,
         subject: subject,
         report: threesixty_campaign.report,
-        campaigns_users_report: campaigns_users_report,
+        user_report: user_report,
         current_user: evaluator_1
       }
       results = described_class.new(args).serialize_results

@@ -556,6 +556,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -2098,6 +2105,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -2644,6 +2652,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
@@ -4659,11 +4668,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية"
+      "extend_time": "Extend time",
+      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
-      "permission_text": "Please allow to use microphone to record audio"
+      "permission_denied_message": "يرجى تمكين الميكروفون في متصفحك لتسجيل الإجابة",
+      "permission_text": "يرجى السماح باستخدام الميكروفون لتسجيل الصوت"
     },
     "categories": {
       "360": "360 Campaign",
@@ -4676,6 +4687,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "decorator": {
       "no_description": "Description is empty"
+    },
+    "file_upload": {
+      "select_file": "Select file"
     },
     "index": {
       "managers_assessments_button": "Action Planning",
@@ -4709,26 +4723,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "video_response": {
-      "delete": "Delete",
-      "device": "Allow",
-      "discard": "Discard",
+      "delete": "حذف",
+      "device": "السماح",
+      "discard": "تجاهل",
+      "file_upload": {
+        "select_file": "اختر الملف"
+      },
       "media_recorder": {
-        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
-        "success": "Please allow to use camera and microphone to record audio and Video"
+        "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
+        "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
       },
-      "retake": "Retake",
-      "retry": "Retry",
-      "save": "Save",
-      "saved": "Saved",
-      "saving": "Saving...",
-      "selected": "Selected",
+      "retake": "أعد مرة أخرى",
+      "retry": "أعد المحاولة",
+      "save": "حفظ",
+      "saved": "تم الحفظ",
+      "saving": "يتم الحفظ...",
+      "selected": "تم الاختيار",
+      "start_recording": "ابدأ التسجيل",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
-        "backward": "You are too close to the screen. Please move a bit back",
-        "forward": "You are too far away from the screen. Please move a bit closer",
-        "frame": "Please make sure that your face aligns with the frame",
-        "ready": "Press the Record button when ready to record"
+        "backward": "أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.",
+        "forward": "اضغط على زر التسجيل عندما تكون جاهزًا",
+        "frame": "يرجى التأكد من أن وجهك في وضع مناسب مع الإطار",
+        "ready": "اضغط على زر التسجيل عندما تكون جاهزًا"
       },
-      "use_this": "Use This"
+      "use_this": "استخدم ذلك"
     },
     "wait": "Wait"
   },
@@ -4824,6 +4845,66 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
+      }
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip existing user"
+      },
+      "report": "Report"
+    }
+  },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -4897,6 +4978,32 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -5462,10 +5569,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
+    "campaign": {
+      "users": {
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
@@ -6085,6 +6207,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -6722,18 +6849,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "processing_report": "Processing Report",
     "question": {
       "chat_type": {
-        "input_placeholder": "Write your Message..."
+        "input_placeholder": "اكتب رسالتك..."
       },
       "email_type": {
-        "bcc": "Bcc",
-        "cc": "Cc",
-        "edit": "Edit",
+        "bcc": "نسخة مخفية الوجهة",
+        "cc": "نسخة إلى",
+        "edit": "تعديل",
         "max_length_warning": "%{x} characters remaining",
-        "message": "Your Message",
-        "send": "Send",
-        "subject": "Subject",
-        "successful_message": "You have successfully sent the email",
-        "to": "To"
+        "message": "رسالتك",
+        "send": "إرسال",
+        "subject": "الموضوع",
+        "successful_message": "لقد قمت بإرسال البريد الإلكتروني بنجاح",
+        "to": "إلى"
       }
     },
     "remind_all": "Remind All",
@@ -6788,41 +6915,56 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "pm": "pm"
   },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
+  },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
+  },
   "validations": {
     "AudioResponse": {
       "in_progress": {
-        "RECORDED": "Audio is recorded but not saved",
-        "RECORDING": "Audio recording is in progress",
-        "SAVING": "Recorded audio upload is in progress"
+        "RECORDED": "تم تسجيل الصوت ولكن لم يتم حفظه",
+        "RECORDING": "يتم التسجيل الصوتي",
+        "SAVING": "يتم تحميل التسجيل الصوتي"
       },
-      "required": "Please record and save the audio before you continue"
+      "required": "يرجى تسجيل الصوت وحفظه قبل المتابعة"
     },
     "FileUpload": {
       "in_progress": {
-        "SAVING": "File upload is in progress"
+        "SAVING": "يتم تحميل الملف"
       },
-      "required": "Please upload the file"
+      "required": "الرجاء رفع الملف"
     },
     "TextEntry": {
       "Email": {
-        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
-        "max_length": "Email message entered must be no more than %{max} characters.",
-        "min_length": "Email message entered must be at least %{min} characters.",
+        "character_range": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل وألا تزيد عن %{max} حرف.",
+        "max_length": "يجب ألا يزيد عدد أحرف رسالة البريد الإلكتروني التي تم إدخالها عن {max}% حرف.",
+        "min_length": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل.",
         "subject": {
-          "min_length": "Subject field should have minimum of 10 characters"
+          "min_length": "يجب أن تحتوي خانة \"الموضوع\" على 10 أحرف على الأقل."
         },
         "to": {
-          "required": "To field is required"
+          "required": "يجب تعبئة الخانة \"إلى\""
         }
       }
     },
     "VideoResponse": {
       "in_progress": {
-        "recorded": "Video is recorded but not saved",
-        "recording": "Video recording is in progress",
-        "saving": "Recorded video upload is in progress"
+        "recorded": "تم تسجيل الفيديو ولكن لم يتم حفظه",
+        "recording": "يتم تسجيل الفيديو",
+        "saving": "يتم تحميل الفيديو المسجل"
       },
-      "required": "Please record and save the video before you continue"
+      "required": "يرجى تسجيل الفيديو وحفظه قبل المتابعة"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "blank": "can't be blank",
@@ -6831,8 +6973,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
     "email": "البريد الإلكتروني غير صحيح",
     "file_upload": {
-      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
+      "EntityTooLarge": "يجب أن يكون حجم الملف أقل من %{maxFileSize} ميجابايت",
+      "WrongFileType": "يجب أن يكون نوع الملف واحدًا من الأنواع التالية %{allowedFileTypes}"
     },
     "issue": " الخطأ",
     "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
@@ -7417,6 +7559,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -8959,6 +9108,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -9505,6 +9655,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
@@ -11520,10 +11671,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
@@ -11537,6 +11690,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "decorator": {
       "no_description": "Description is empty"
+    },
+    "file_upload": {
+      "select_file": "Select file"
     },
     "index": {
       "managers_assessments_button": "Action Planning",
@@ -11583,6 +11739,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "saved": "Saved",
       "saving": "Saving...",
       "selected": "Selected",
+      "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -11685,6 +11845,66 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
+      }
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip existing user"
+      },
+      "report": "Report"
+    }
+  },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -11758,6 +11978,32 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -12319,10 +12565,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
+    "campaign": {
+      "users": {
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
@@ -12942,6 +13203,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -13642,6 +13908,21 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "pm": "pm"
   },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
+  },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
+  },
   "validations": {
     "AudioResponse": {
       "in_progress": {
@@ -14271,6 +14552,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "not_started": "New"
+        }
       }
     },
     "errors": {
@@ -15813,6 +16101,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "sub_campaign": "Sub-Campaign End Level"
           },
           "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
           "enable_privacy_links": "Enable privacy link",
           "other_settings": "Other Settings",
           "privacy_link": "Privacy link",
@@ -16359,6 +16648,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully updated."
         }
       },
+      "tenancies": "Client Tenancies",
       "threesixty_campaigns": {
         "create": {
           "successfully": "Campaign %{name} was successfully created."
@@ -18374,10 +18664,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "assessments": {
     "actions": {
-      "goto_dashboard": "Go To Dashboard"
+      "extend_time": "Extend time",
+      "goto_dashboard": "Go To Dashboard",
+      "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your borwser to record the answer",
+      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
       "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
@@ -18391,6 +18683,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "decorator": {
       "no_description": "Description is empty"
+    },
+    "file_upload": {
+      "select_file": "Select file"
     },
     "index": {
       "managers_assessments_button": "Action Planning",
@@ -18437,6 +18732,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "saved": "Saved",
       "saving": "Saving...",
       "selected": "Selected",
+      "start_recording": "Start recording",
+      "status": {
+        "recording": "Recording"
+      },
       "tracker": {
         "backward": "You are too close to the screen. Please move a bit back",
         "forward": "You are too far away from the screen. Please move a bit closer",
@@ -18539,6 +18838,66 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign_assessment": {
+    "actions": {
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      }
+    },
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
+      }
+    }
+  },
+  "campaign_report": {
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip existing user"
+      },
+      "report": "Report"
+    }
+  },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report"
+    },
+    "details": {
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "not_logged_in_yet": "Not logged in yet"
+    }
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -18612,6 +18971,32 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "page_title": "CKEditor Files Manager"
   },
   "clear_filter": "Clear Filter",
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "default": "Default",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
   "confirmation": {
     "default_body": "Are you sure?",
     "default_title": "Confirmation"
@@ -19173,10 +19558,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "frontend": {
+    "activate": "Activate",
+    "campaign": {
+      "users": {
+        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
+        "change_password_confirmation_title": "Change password %{full_name}?",
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started"
+        },
+        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+      }
+    },
     "change_password": "Change password",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
+    "manage": "Manage",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
@@ -19796,6 +20196,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "value": "value"
   },
   "reports": {
+    "actions": {
+      "add": "Add Report",
+      "download": "Download report",
+      "view": "View Report"
+    },
     "modules": {
       "common": {
         "almost_always": "Almost Always",
@@ -20495,6 +20900,21 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "short_date": "%-d %b %Y"
     },
     "pm": "pm"
+  },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
+  },
+  "user": {
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    }
   },
   "validations": {
     "AudioResponse": {

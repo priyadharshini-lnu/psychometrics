@@ -12,9 +12,10 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
   /! END SIGN OUT
 /! END X-NAVIGATION VERTICAL
 /! START BREADCRUMB
-ul.breadcrumb
-  - if content_for? :breadcrumbs
-    = yield :breadcrumbs
-  - else
-    = render_breadcrumbs tag: :li, separator: ''
+- if breadcrumbs.present?
+  ul.breadcrumb
+    - if content_for? :breadcrumbs
+      = yield :breadcrumbs
+    - else
+      = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB

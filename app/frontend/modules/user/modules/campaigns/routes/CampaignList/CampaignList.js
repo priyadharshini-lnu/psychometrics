@@ -1,0 +1,57 @@
+/* eslint-disable max-len */
+import React, { useEffect } from 'react'
+import {
+  Layout, Row, PageHeader, Col,
+} from 'antd'
+import Campaigns from './Campaigns'
+import './styles.scss'
+
+const { Content } = Layout
+
+export default function CampaignList ({
+  campaigns, fetchCampaigns, downloadReport, history, loginHogan, acceptPolicy, currentUser,
+}) {
+  useEffect(() => {
+    fetchCampaigns()
+  }, [])
+
+  useEffect(() => {
+    if (campaigns.length === 1 && _.includes(['threesixty', 'common'], campaigns[0].type)) {
+      history.push(`/${campaigns[0].type === 'threesixty' ? 'threesixty_' : ''}campaigns/${campaigns[0].id}`)
+    }
+  }, [campaigns])
+  return (
+    <Layout>
+      <Content className="fluid-container">
+        <Row justify="center">
+          <Col xs={24} xl={20}>
+            <PageHeader
+              className="page-header"
+              backIcon={null}
+              title={(
+                <div className="title-with-dash">
+                  {I18n.t('threesixty.dashboard_title', { name: currentUser.firstName })}
+                </div>
+              )}
+            />
+            <Row type="flex" gutter={12} className="cards">
+              {campaigns.map((campaign) => {
+                const Component = Campaigns[campaign.type]
+                return (
+                  <Component
+                    key={campaign.id}
+                    campaign={campaign}
+                    downloadReport={downloadReport}
+                    loginHogan={loginHogan}
+                    acceptPolicy={acceptPolicy}
+                    history={history}
+                  />
+                )
+              })}
+            </Row>
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
+  )
+}

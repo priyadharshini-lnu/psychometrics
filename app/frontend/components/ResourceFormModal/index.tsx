@@ -2,7 +2,7 @@ import React, { useState, ReactElement } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
-import { FormInstance } from 'rc-field-form'
+import { FormInstance } from 'antd/lib/form/util'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { FormProps } from 'antd/lib/form'
@@ -19,14 +19,23 @@ interface Props {
   title?: string
   resource?: Resource
   resourceId?: number
-  resourceBaseUrl?: string
+  resourceBaseUrl: string
   showSuccessMessages?: boolean
   onSuccessfulSubmission?(response: object): void
+  request?: Partial<Request>
   storeManager?: {
     form: FormInstance
   }
   modalProps: ModalProps
-  formProps: FormProps
+  formProps?: FormProps
+  transformValues?(values: object): object
+  scrollToFirstError?: boolean
+}
+
+interface Request {
+  fetchResource(): void
+  createResource(values: object): void
+  updateResource(values: object): void
 }
 
 const ResourceFormModal: React.FC<Props> = (props) => {
@@ -59,7 +68,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const getTitle = () => {
     if (title) { return title }
 
-    return `${isEdit() ? 'Edit' : 'Create'} ${readableResourceName()}`
+    return `${isEdit() ? 'Edit' : 'Add'} ${readableResourceName()}`
   }
 
   const renderTitle = () => {
@@ -93,7 +102,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
           disabled={resourceStatus === ResourceStatus.Saving}
         >
           {saveButtonIcon()}
-          {isEdit() ? 'Update' : 'Create'}
+          {isEdit() ? 'Update' : 'Add'}
         </Button>,
       ]}
       {...modalProps || {}}

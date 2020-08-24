@@ -7,13 +7,15 @@ import PropTypes from 'prop-types'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
-import { I18n } from 'modules/survey/store/StoreWatchman'
 import axios from 'axios'
+import axiosRetry from 'axios-retry'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
 import Tracker from './Tracker'
+
+axiosRetry(axios, { retries: 0 })
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -49,6 +51,18 @@ class VideoRecorder extends Component {
     }
   }
 
+  componentDidUpdate (prevProps) {
+    const { isAssessmentTimedOut } = this.props
+    const { recordingState } = this.state
+    if (prevProps.isAssessmentTimedOut === isAssessmentTimedOut || !isAssessmentTimedOut) {
+      return
+    }
+
+    if (recordingState === 'recording') {
+      return this.stopRecording()
+    }
+  }
+
   // destroy player on unmount
   componentWillUnmount () {
     if (this.player) {
@@ -79,12 +93,12 @@ class VideoRecorder extends Component {
     if (answer) {
       const mediaId = answer.media_id
       if (mediaId) {
-        $.ajax({
+        axios({
           method: 'DELETE',
           url: `${mediaUrl}/remove_media`,
           headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
           data: { media_id: mediaId },
-        }).done(() => {
+        }).then(() => {
           onDeleteMedia && onDeleteMedia()
           this.resetRecorder()
         })
@@ -115,7 +129,13 @@ class VideoRecorder extends Component {
     const uploadResp = axios.put(
       urlDetails,
       blob,
-      { onUploadProgress: e => this.setProgress(e, batchNumber) },
+      {
+        onUploadProgress: e => this.setProgress(e, batchNumber),
+        'axios-retry': {
+          retries: 3,
+          retryDelay: retryCount => retryCount * 3000,
+        },
+      },
     )
 
     if (!this.promisesArray) { this.promisesArray = [] }
@@ -377,7 +397,7 @@ class VideoRecorder extends Component {
   }
 
   addStatusTextControl () {
-    this.statusText = new StatusText(this.player, { text: 'Start Recording' })
+    this.statusText = new StatusText(this.player, { text: I18n.t('assessments.video_response.start_recording') })
     this.player.getChild('controlBar').addChild(this.statusText)
   }
 
@@ -397,13 +417,13 @@ class VideoRecorder extends Component {
             >
               <span className="mrs mls fa fa-trash-o" area-hidden="true" />
               <span className="vjs-control-text" aria-live="polite">
-                { I18n().t('assessments.video_response.discard') }
+                { I18n.t('assessments.video_response.discard') }
               </span>
             </button>
           )}
           {recordingState === 'saving' && (
             <span className="vjs-control-text" aria-live="polite">
-              { I18n().t('assessments.video_response.saving') }
+              { I18n.t('assessments.video_response.saving') }
             </span>
           )}
         </div>
@@ -435,8 +455,8 @@ class VideoRecorder extends Component {
         </div>
         <div className={styles.permText}>
           {hasMediaRecorder
-            ? I18n().t('assessments.video_response.media_recorder.success')
-            : I18n().t('assessments.video_response.media_recorder.failure')}
+            ? I18n.t('assessments.video_response.media_recorder.success')
+            : I18n.t('assessments.video_response.media_recorder.failure')}
         </div>
 
         { hasMediaRecorder && (
@@ -447,7 +467,7 @@ class VideoRecorder extends Component {
             disabled={readOnly}
           >
             <span className="mrs mls fa fa-check" aria-hidden="true" />
-            { I18n().t('assessments.video_response.device') }
+            { I18n.t('assessments.video_response.device') }
           </button>
         )}
       </div>

@@ -11,7 +11,7 @@ module Threesixty
     end
 
     def query
-      CampaignsUsersReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids)
+      UserReport.where(campaign_id: @campaign.campaign_id, user_id: user_ids)
     end
 
     private

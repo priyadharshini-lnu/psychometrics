@@ -1,6 +1,11 @@
 en:
   activerecord:
     attributes:
+      users_result:
+        statuses:
+          not_started: 'New'
+          in_progress: 'Resume'
+          completed: 'Completed'
       threesixty:
         users_result:
           statuses:

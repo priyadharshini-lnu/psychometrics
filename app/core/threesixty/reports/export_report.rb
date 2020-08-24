@@ -5,13 +5,13 @@ module Threesixty
     class ExportReport < BaseCommand
       attr_accessor :output
 
-      def initialize(current_user, threesixty_campaign, subject, campaigns_users_report, opts = {})
+      def initialize(current_user, threesixty_campaign, subject, user_report, opts = {})
         @current_user = current_user
         @threesixty_campaign = threesixty_campaign
         @report = threesixty_campaign.report
         @subject = subject
         @user = subject.user
-        @campaigns_users_report = campaigns_users_report
+        @user_report = user_report
         @opts = opts
       end
 
@@ -25,7 +25,7 @@ module Threesixty
 
       private
 
-      attr_reader :current_user, :threesixty_campaign, :report, :subject, :user, :campaigns_users_report, :opts, :url
+      attr_reader :current_user, :threesixty_campaign, :report, :subject, :user, :user_report, :opts, :url
 
       def export_report
         args = {
@@ -96,7 +96,7 @@ module Threesixty
           domain: Settings.domain,
           subdomain: threesixty_campaign.campaign.project.subdomain,
           campaign_id: threesixty_campaign.id,
-          id: campaigns_users_report.id
+          id: user_report.id
         )
 
         Rails.

@@ -4,3 +4,26 @@ en:
     edit: 'Edit'
     delete: 'Delete'
     change_password: 'Change password'
+    manage: Manage
+    activate: Activate
+  common:
+    column:
+      id: Id
+      category: Category
+      action: Action
+      created_at: Created at
+      status: Status
+    actions:
+      remove: Remove
+      cancel: Cancel
+      reset: Reset
+    model:
+      campaigns: Campaigns
+      assessments: Assessments
+      reports: Reports
+    text:
+      ok: Ok
+      confirm: Confirm
+      cancel: Cancel
+      default: 'Default'
+      response: Response

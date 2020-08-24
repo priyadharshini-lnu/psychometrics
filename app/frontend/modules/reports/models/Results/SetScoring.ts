@@ -1,8 +1,8 @@
 import _ from 'lodash'
+import { setIn } from 'utils/immutable'
 import AppStore from '../../store/AppStore'
 import Scoring from '../Scoring'
 import { RawResult, ResultScoring, Factor } from './interfaces'
-import { setIn } from '../../utils/immutable'
 
 export default {
   run: (rawResults: RawResult[], dimensionId: number): ResultScoring => _.reduce(
@@ -12,7 +12,7 @@ export default {
   ),
 }
 
-const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionId: number): ResultScoring => _.reduce(
+const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionId: number) => _.reduce(
   AppStore.mapFactors[dimensionId],
   (result: ResultScoring, factor: Factor, factorId: number) => {
     const scoringResults = _.get(data, ['scoring', factorId])
@@ -30,4 +30,4 @@ const extendScoringByData = (scoring: ResultScoring, data: RawResult, dimensionI
     return setIn(result, [factorId, 'results'], [...factorResults, scoring])
   },
   scoring,
-)
+) as ResultScoring

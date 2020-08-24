@@ -5,7 +5,7 @@ module Threesixty
     include ::Threesixty::InitialState
     include ::Threesixty::SetAssessmentLocale
 
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_evaluation, except: [:deny]
     initial_state_for [:show]
@@ -13,7 +13,7 @@ module Threesixty
     def show
       params[:approve_evaluation] ? authorize(@participant, :approve_evaluation?) : authorize(@participant)
       respond_to do |format|
-        format.html { render 'threesixty/campaigns/show' }
+        format.html { render 'end_user/users/dashboard' }
         format.json do
           @users_result = UsersResult.find_or_create_by(campaign_id: @campaign.campaign_id,
                                                         subject_id: @participant.subject_id,

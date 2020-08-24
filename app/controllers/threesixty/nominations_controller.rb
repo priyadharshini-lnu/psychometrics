@@ -3,7 +3,7 @@
 module Threesixty
   class NominationsController < ApplicationController
     include ::Threesixty::InitialState
-    layout 'layouts/threesixty_campaign'
+    layout 'layouts/end_user'
     before_action :set_campaign
     before_action :set_subject
     initial_state_for [:show]
@@ -11,7 +11,7 @@ module Threesixty
     def show
       authorize @subject
       respond_to do |format|
-        format.html { render 'threesixty/campaigns/show' }
+        format.html { render 'end_user/users/dashboard' }
         format.json do
           render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
         end

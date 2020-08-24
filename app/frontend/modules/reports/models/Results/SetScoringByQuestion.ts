@@ -1,9 +1,9 @@
 import _ from 'lodash'
+import { setIn } from 'utils/immutable'
 import AppStore from '../../store/AppStore'
 import Scoring from '../Scoring'
 import { ScoringResult } from './interfaces/RawResult'
 import { ScoringByQuestion, RawResult, Factor } from './interfaces'
-import { setIn } from '../../utils/immutable'
 
 export default {
   run: (rawResults: RawResult[], dimensionId: number): ScoringByQuestion => _.reduce(
@@ -21,7 +21,7 @@ export default {
         return _.reduce(
           scoringResults.results,
           (result: ScoringByQuestion, obj: ScoringResult): ScoringByQuestion => {
-            const scoringByQuestion = _.get(result, [factorId, obj.question_id]) || []
+            const scoringByQuestion = (_.get(result, [factorId, obj.question_id]) || []) as object[]
             return setIn(
               result,
               [factorId, obj.question_id],

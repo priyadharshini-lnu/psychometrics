@@ -1,0 +1,33 @@
+@import 'modules/user/styles/variables';
+
+:export { green: $main-color; warning: $warning-color; danger: $red }
+
+:global(.ant-statistic) {
+  &.timer {
+    display: inline-block;
+    background-color: $main-color;
+    padding: 8px 12px !important;
+    border-radius: 4px;
+    margin-left: 12px;
+    * {
+      color: #ffffff;
+      font-size: 18px !important;
+    }
+  }
+}
+:global(.ant-notification-notice) {
+  &.notification75, &.notification90 {
+    :global {
+      .ant-notification-notice-message, .ant-notification-close-x, .anticon.ant-notification-notice-icon-warning {
+        color: white;
+        font-weight: bold;
+      }
+    }
+  }
+  &.notification75 {
+    background-color: $warning-color;
+  }
+  &.notification90 {
+    background-color: $red;
+  }
+}

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Hogan
+  # deprecated
   class PassAssessment < Rectify::Command
     def initialize(assign, membership, project)
       @assign = assign

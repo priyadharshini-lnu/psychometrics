@@ -59,7 +59,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
 
     const handleTableChange = (_pagination, _filter, sorter: SorterProps) => {
       const { columnKey, order } = sorter
-      let newOrder: string
+      let newOrder: string | undefined
 
       // order is not returned by antd if we toggle the sort order of allready selected column
       if (order) {
@@ -68,7 +68,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
         newOrder = tableConfig.sort.order === 'asc' ? 'desc' : 'asc'
       }
 
-      changeSort(tableName, columnKey, newOrder)
+      if (newOrder) { changeSort(tableName, columnKey, newOrder) }
     }
 
     const getSortOrder = (column: string): false | 'ascend' | 'descend' => {
@@ -82,7 +82,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
       result[key] = _.curry(func)(tableName)
 
       return result
-    }, {})
+    }, {} as typeof tableFunctions)
 
     const { maintainHistory } = options
 

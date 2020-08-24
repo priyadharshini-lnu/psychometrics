@@ -46,7 +46,7 @@ class AssignsController < ApplicationController
     @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @selected_locale)
 
     respond_to do |format|
-      format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
+      format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
       format.json do
         render json: @assign, serializer: AssignSerializer
       end
@@ -151,8 +151,8 @@ class AssignsController < ApplicationController
     Report.multiple.where(id: reports_ids).ids
   end
 
-  def current_campaigns_user
-    CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  def current_campaign_user
+    CampaignUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
   end
 
   def build_piped_context
