@@ -8,12 +8,13 @@ export default function QuestionList ({ block, questions }) {
   return (
     <div className={styles.main}>
       <FlipMove style={{ position: 'initial' }}>
-        {questions.map((question) => {
-          if (question.type === 'PageBreak') {
-            return <PageBreak block={block} model={question} key={question.id} />
-          }
-          return <Question model={question} block={block} key={question.id} />
-        })}
+        {questions.map(question => (
+          <div key={question.id}>
+            {question.type === 'PageBreak'
+              ? <PageBreak block={block} model={question} key={question.id} />
+              : <Question model={question} block={block} />}
+          </div>
+        ))}
       </FlipMove>
     </div>
   )
