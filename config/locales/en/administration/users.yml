@@ -93,6 +93,10 @@ en:
                 Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?
               body: >
                 <p>Are you sure you want to delete?</p>
+            toggle_status:
+              title: <strong>%{status}</strong> %{name}'s Membership?
+              body: >
+                <p>Are you sure you want to %{status} this Membership?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
@@ -123,3 +127,6 @@ en:
         assigns:
           destroy:
             successfully: "%{name} was successfully detached"
+    memberships:
+      toggle_membership_status:
+        successfully: Membership of %{name} was successfully updated.

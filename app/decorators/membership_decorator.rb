@@ -49,7 +49,7 @@ class MembershipDecorator < BaseDecorator
   end
 
   def toggle_status_confirmation
-    status = object.membership_disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
+    status = object.user.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
       title: I18n.t(
         'administration.users.resource.confirmations.toggle_status.title',
@@ -58,6 +58,21 @@ class MembershipDecorator < BaseDecorator
       ),
       body: I18n.t(
         'administration.users.resource.confirmations.toggle_status.body',
+        status: status.downcase
+      )
+    }.to_json
+  end
+
+  def toggle_membership_status_confirmation
+    status = object.membership_disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
+    {
+      title: I18n.t(
+        'administration.users.resource.confirmations.membership.toggle_status.title',
+        status: status,
+        name: display_name
+      ),
+      body: I18n.t(
+        'administration.users.resource.confirmations.membership.toggle_status.body',
         status: status.downcase
       )
     }.to_json
@@ -93,6 +108,14 @@ class MembershipDecorator < BaseDecorator
       h.content_tag(:i, '', class: 'fa fa-times')
     else
       h.content_tag(:i, '', class: 'fa fa-check')
+    end
+  end
+
+  def status_text
+    if object.membership_disabled
+      I18n.t('no')
+    else
+      I18n.t('yes')
     end
   end
 
