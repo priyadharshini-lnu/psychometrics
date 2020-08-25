@@ -1210,10 +1210,10 @@
     node-fetch "~2.1.2"
     seedrandom "2.4.3"
 
-"@thetalententerprise/interactive-assessments@1.1.0-beta.3":
-  version "1.1.0-beta.3"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.1.0-beta.3/d43a7e9006603f5102dd316ccae9619075e65f7ddf0b6fe4bc586cbd1bcd8511#9a25bdfaee9e592b9cc21dab767bb30b475dbfd3"
-  integrity sha512-qWdTGFjPiktFq+LHs7axzjoRItJMDlMUaRiCJRnf7xQa3YAIPuARj8uiYauGnllX0VAveFbubpLBKoRm4Z0DcQ==
+"@thetalententerprise/interactive-assessments@1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.1.0/1b7f86389ff23063abb520a86d6fbaad3becfbbe0b067a2d0f14dd47b369c6ed#c57fc28eb9ed263095d2eba2c464eb3c5239fb57"
+  integrity sha512-uu/Cp9vYBH6LzanEcrZQOwbuKY8ekb6rNStC36hQGFvSZKii6Ng/ENst2i8473ezkJBa53ZosWQjZ89w8wbAhw==
 
 "@types/asap@^2.0.0":
   version "2.0.0"
