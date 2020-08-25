@@ -12,6 +12,7 @@ import ImportRawModal from './ImportRawModal'
 import UpdateNormModal from './UpdateNormModal'
 import ImportScoringModal from './ImportScoringModal'
 import RemoveReportModal from './RemoveReportModal'
+import ToggleUserAccessModal from './ToggleUserAccessModal'
 
 import styles from './styles.scss'
 
@@ -22,6 +23,7 @@ const MODALS = {
   ImportScoringModal,
   UpdateNormModal,
   RemoveReportModal,
+  ToggleUserAccessModal,
 }
 
 interface Props {

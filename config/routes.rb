@@ -65,6 +65,7 @@ Rails.application.routes.draw do
           end
           member do
             get :export
+            patch :toggle_user_access
           end
         end
         resources :user_reports do

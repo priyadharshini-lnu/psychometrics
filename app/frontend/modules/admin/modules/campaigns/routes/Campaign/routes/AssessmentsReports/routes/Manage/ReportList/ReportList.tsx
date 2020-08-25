@@ -16,6 +16,7 @@ interface OwnProps {
       campaignId: string
     }
   }
+  openModal(name: string, data?: { campaignId: number, campaignReportId: number }): void
 }
 
 type Props = RouteComponentProps & OwnProps & PropsFromRedux
@@ -57,8 +58,12 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_report.column.user_access')}
             key="userAccess"
-            render={({ userAccess }) => (
-              <Switch checked={userAccess} onChange={() => {}} />
+            render={({ userAccess, id }) => (
+              <Switch
+                checked={userAccess}
+                onChange={() => openModal('ToggleUserAccessModal',
+                  { campaignId, campaignReportId: id })}
+              />
             )}
           />
           <Column

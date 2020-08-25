@@ -15,3 +15,6 @@ en:
       remove:
         title: Remove Report
         apply: Apply this changes to existing users in this campaign.
+      user_access:
+        title: Enable User Access
+        apply: Apply this changes to existing users in this campaign.

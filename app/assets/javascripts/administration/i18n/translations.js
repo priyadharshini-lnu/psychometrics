@@ -4906,6 +4906,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "remove": {
         "apply": "Apply this changes to existing users in this campaign.",
         "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Enable User Access"
       }
     }
   },
@@ -11929,6 +11933,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "remove": {
         "apply": "Apply this changes to existing users in this campaign.",
         "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Enable User Access"
       }
     }
   },
@@ -18945,6 +18953,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "remove": {
         "apply": "Apply this changes to existing users in this campaign.",
         "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Enable User Access"
       }
     }
   },

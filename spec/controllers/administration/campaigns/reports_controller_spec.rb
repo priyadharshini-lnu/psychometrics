@@ -36,6 +36,19 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'toggle_user_access' do
+    let(:campaign_report) { create :campaign_report, campaign: campaign, report: report, user_access: false }
+
+    it 'toggles campaign_report user_access column value' do
+      put :toggle_user_access, params: {
+        new_campaign_id: campaign_report.campaign_id,
+        id: campaign_report.id
+      }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['user_access']).to be_truthy
+    end
+  end
+
   describe 'assessments_and_reports' do
     it 'returns reports and assessments' do
       create(:campaign_report, campaign: campaign, report: report, report_family: report_family)
