@@ -510,7 +510,7 @@ CREATE TABLE public.campaign_assessments (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     norm_type character varying,
-    campaign_assessment_groups_id bigint
+    campaign_assessment_group_id bigint
 );
 
 
@@ -2976,8 +2976,7 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint,
-    selected_locale character varying
+    users_result_id bigint
 );
 
 
@@ -4580,10 +4579,10 @@ CREATE INDEX index_campaign_assessments_on_assessment_id ON public.campaign_asse
 
 
 --
--- Name: index_campaign_assessments_on_campaign_assessment_groups_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_campaign_assessments_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_campaign_assessments_on_campaign_assessment_groups_id ON public.campaign_assessments USING btree (campaign_assessment_groups_id);
+CREATE INDEX index_campaign_assessments_on_campaign_assessment_group_id ON public.campaign_assessments USING btree (campaign_assessment_group_id);
 
 
 --
@@ -6353,14 +6352,6 @@ ALTER TABLE ONLY public.dimensions
 
 
 --
--- Name: campaign_assessments fk_rails_b0890f24d2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_b0890f24d2 FOREIGN KEY (campaign_assessment_groups_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
-
-
---
 -- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6438,6 +6429,14 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.threesixty_email_histories
     ADD CONSTRAINT fk_rails_c9b5f538f9 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_assessments fk_rails_cabfb7f2da; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessments
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --

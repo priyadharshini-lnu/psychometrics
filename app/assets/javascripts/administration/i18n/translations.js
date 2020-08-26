@@ -4756,9 +4756,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "wait": "Wait"
   },
   "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
     "menu": {
       "manage": "Manage",
       "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
     }
   },
   "assigns": {
@@ -5598,6 +5611,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
       "users": {
         "completion_statuses": {
@@ -5613,10 +5631,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {
@@ -11783,9 +11803,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "wait": "Wait"
   },
   "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
     "menu": {
       "manage": "Manage",
       "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
     }
   },
   "assigns": {
@@ -12621,6 +12654,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
       "users": {
         "completion_statuses": {
@@ -12636,10 +12674,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {
@@ -18803,9 +18843,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "wait": "Wait"
   },
   "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
     "menu": {
       "manage": "Manage",
       "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
     }
   },
   "assigns": {
@@ -19641,6 +19694,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
       "users": {
         "completion_statuses": {
@@ -19656,10 +19714,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {

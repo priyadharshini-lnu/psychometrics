@@ -1,0 +1,46 @@
+.container {
+  border: 1px solid #DBDBDB;
+  box-sizing: border-box;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 12px 0px 8px 24px;
+
+  .id {
+    font-size: 15px;
+    color: #A9A9A9;
+    margin-right: 12px;
+    margin-left: 4px;
+  }
+
+  .title {
+    color: rgba(0, 0, 0, 0.85);
+    flex: 1;
+  }
+
+  .icon {
+    margin-left: 12px;
+    cursor: pointer;
+  }
+
+  .switch {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .noneFound {
+    text-align: center;
+
+    .noneFoundIcon {
+      background-image: url("./no_assessments.png");
+      height: 51px;
+      width: 51px;
+      display: inline-block;
+    }
+    .noneFoundDesc {
+      display: inline-block;
+      color: #9A9A9A;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+  }
+}

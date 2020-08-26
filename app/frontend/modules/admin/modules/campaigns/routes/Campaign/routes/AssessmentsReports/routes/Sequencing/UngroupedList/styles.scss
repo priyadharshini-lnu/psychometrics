@@ -1,0 +1,25 @@
+.container {
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin: 12px 24px 0px 24px;
+  .title {
+    color: rgba(0, 0, 0, 0.85);
+  }
+
+  .noneFound {
+    text-align: center;
+    .noneFoundIcon {
+      background-image: url("../GroupList/Group/no_assessments.png");
+      height: 51px;
+      width: 51px;
+      display: inline-block;
+    }
+    .noneFoundDesc {
+      display: inline-block;
+      color: #9A9A9A;
+      font-size: 14px;
+      margin-top: 12px;
+    }
+  }
+}

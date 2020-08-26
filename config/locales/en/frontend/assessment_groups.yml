@@ -1,0 +1,5 @@
+en:
+  frontend:
+    assessment_groups:
+      update_success: 'The group is successfully updated'
+      create_success: 'The group is successfully created'

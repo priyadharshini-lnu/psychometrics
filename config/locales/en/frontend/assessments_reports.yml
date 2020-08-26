@@ -3,3 +3,14 @@ en:
     menu:
       manage: Manage
       sequencing: Sequencing
+    sequencing:
+      add_group: Add Group
+      ungrouped_assessments: Ungrouped Assessments
+      no_assessments: Drag and drop the assessments from the ungrouped assessments
+      no_ungrouped_assessments: Drag and drop the assessments to the ungrouped assessments
+      no_groups_title: You have no group in sequencing
+      no_groups_description: Please create new group sequencing with below button
+    add_group_form:
+      name: Name
+      previous_group_required: Previous group should be completed before
+      previous_assessments_required: Assessments should be completed in order

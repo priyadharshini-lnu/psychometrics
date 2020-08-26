@@ -105,6 +105,8 @@ Rails.application.routes.draw do
             post :update_norm
           end
         end
+        resources :campaign_assessment_groups, only: %i[index create update destroy] do
+        end
       end
     end
 

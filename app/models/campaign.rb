@@ -23,6 +23,7 @@ class Campaign < ApplicationRecord
   has_many :campaign_reports
   has_many :reports, through: :campaign_reports
   has_many :campaign_assessments
+  has_many :campaign_assessment_groups
   has_many :assessments, through: :campaign_assessments
   has_many :users, through: :campaign_users
   has_many :registration_codes
