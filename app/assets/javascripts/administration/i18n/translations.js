@@ -4933,6 +4933,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "details": {
       "completion_status": "Completion status",
       "last_login": "Last login",
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
       "not_logged_in_yet": "Not logged in yet"
     },
     "modals": {
@@ -11980,6 +11986,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "details": {
       "completion_status": "Completion status",
       "last_login": "Last login",
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
       "not_logged_in_yet": "Not logged in yet"
     },
     "modals": {
@@ -19020,6 +19032,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "details": {
       "completion_status": "Completion status",
       "last_login": "Last login",
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
       "not_logged_in_yet": "Not logged in yet"
     },
     "modals": {

@@ -3,6 +3,7 @@ import { getStatusesCount } from 'modules/admin/modules/campaigns/core/userAsses
 import {
   fetchSingle as fetchSingleUser,
   getCurrent as getCurrentUser,
+  remove,
 } from 'modules/admin/modules/campaigns/core/users'
 import { openModal } from 'modules/admin/core/ui/modals'
 
@@ -14,6 +15,7 @@ const connecter = connect(
   {
     fetchSingleUser,
     openModal,
+    remove,
   },
 )
 

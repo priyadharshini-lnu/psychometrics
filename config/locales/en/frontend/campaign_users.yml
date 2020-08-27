@@ -4,6 +4,10 @@ en:
       last_login: Last login
       not_logged_in_yet: Not logged in yet
       completion_status: Completion status
+      modals:
+        remove:
+          title: Are you sure you want to remove this user from campaing %{campaignName}?
+          successfully: User with email %{email} removed successfully
     actions:
       add_report: Add report
     modals:

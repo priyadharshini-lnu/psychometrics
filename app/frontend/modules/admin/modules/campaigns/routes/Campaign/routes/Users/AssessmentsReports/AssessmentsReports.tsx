@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import {
-  Row, Col, Button, PageHeader, Descriptions, Switch, Tag,
+  Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message,
 } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import Modals from 'modules/admin/components/Modals/'
 import _ from 'lodash'
 import array from 'utils/array'
@@ -40,6 +40,7 @@ const AssessmentsReports: React.FC<Props> = ({
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
+  remove,
   history,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -65,6 +66,25 @@ const AssessmentsReports: React.FC<Props> = ({
     return array.joinJSXElements(campaigns, ', ')
   }
 
+  const campaignName = _.find(user.campaigns, { id: parsedCampaignId })?.name
+
+  const handleDelete = () => {
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('campaign_users.details.modals.remove.title', { campaignName }),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        remove(campaignId, parsedUserId)
+        history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users`)
+        message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
+      },
+    })
+  }
+
   return (
     <div>
       <Row justify="space-between" className="pm">
@@ -74,7 +94,9 @@ const AssessmentsReports: React.FC<Props> = ({
           title={user.fullName}
           subTitle={user.email}
           extra={[
-            <Button key="3">{I18n.t('common.actions.remove')}</Button>,
+            <Button key="3" onClick={() => handleDelete()}>
+              {I18n.t('common.actions.remove') }
+            </Button>,
           ]}
         >
           <Descriptions size="small" column={3}>
