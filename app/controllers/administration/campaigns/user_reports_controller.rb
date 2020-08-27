@@ -61,11 +61,11 @@ module Administration
 
       def user_assessments_and_reports
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign_user.user_assessments.includes(:assessment, :users_result),
+          campaign_user.user_assessments.where(campaign: campaign).includes(:assessment, :users_result),
           each_serializer: Administration::UserAssessmentSerializer
         )
         reports = ActiveModelSerializers::SerializableResource.new(
-          campaign_user.user_reports.includes(:report, :report_family),
+          campaign_user.user_reports.where(campaign: campaign).includes(:report, :report_family),
           each_serializer: Administration::UserReportSerializer
         )
         { user_assessments: assessments, user_reports: reports }

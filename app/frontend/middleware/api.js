@@ -64,7 +64,7 @@ const apiMiddleware = () => next => (action) => {
     })
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
-      next({
+      return next({
         type: SUCCESS,
         response: camelize ? humps.camelizeKeys(data) : data,
         requestAction: action,

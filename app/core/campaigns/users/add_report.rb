@@ -32,7 +32,7 @@ module Campaigns
 
       def add_assessment_to_user(assessment)
         user_assessment = UserAssessment.create_with(
-          users_result_id: user_result_id(assessment.id)
+          users_result_id: user_result(assessment.id).id
         ).find_or_create_by!(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -48,23 +48,39 @@ module Campaigns
         user_assessment
       end
 
-      def user_result_id(assessment_id)
-        return nil if options[:operation] == 'add_and_allow_new_response'
+      def user_result(assessment_id)
+        return create_new_user_result(assessment_id) if options[:operation] == 'add_and_allow_new_response'
 
-        campaign_user.evaluation_results.find_by(assessment_id: assessment_id)&.id
+        user_result = campaign_user.evaluation_results.find_by(assessment_id: assessment_id)
+
+        return user_result if user_result
+
+        create_new_user_result(assessment_id)
+      end
+
+      def create_new_user_result(assessment_id)
+        UsersResult.create(
+          assessment_id: assessment_id,
+          subject_id: campaign_user.user_id,
+          evaluator_id: campaign_user.user_id,
+          campaign_id: campaign.id,
+          answers: {}
+        )
       end
 
       def generate_report_pdf(user_report)
         assessment_ids = user_report.report.assessments.pluck(:id)
 
-        incomplete_assessment = UserAssessment.exists?(
-          assessment_id: assessment_ids,
-          subject_id: user.id,
-          evaluator_id: user.id,
-          users_result_id: nil
-        )
+        incomplete_assessment = UsersResult.joins(:user_assessments).
+                                where(
+                                  assessment_id: assessment_ids,
+                                  user_assessments: {
+                                    campaign_id: campaign.id, subject_id: user.id, evaluator_id: user.id
+                                  }
+                                ).
+                                where.not(status: :completed)
 
-        ::UserReports::GeneratePdfJob.perform_later(user_report, user) unless incomplete_assessment
+        ::UserReports::GeneratePdfJob.perform_later(user_report, user) unless incomplete_assessment.exists?
       end
     end
   end

@@ -33,7 +33,7 @@ module Administration
       end
 
       def show
-        render json: resource, serializer: Administration::UserDetailSerializer
+        render json: resource, serializer: Administration::UserDetailSerializer, campaign: campaign
       end
 
       def create

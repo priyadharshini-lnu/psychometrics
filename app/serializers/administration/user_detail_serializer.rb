@@ -25,11 +25,17 @@ module Administration
     end
 
     def user_assessments
-      object.user_assessments.includes(:assessment, :users_result)
+      object.user_assessments.where(campaign: campaign).includes(:assessment, :users_result)
     end
 
     def user_reports
-      object.user_reports.includes(:report, :report_family)
+      object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+    end
+
+    private
+
+    def campaign
+      @instance_options[:campaign]
     end
   end
 end
