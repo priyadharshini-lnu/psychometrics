@@ -1,16 +1,17 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown,
+  Table, Menu, Row, Col, Dropdown, message,
 } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
+import { PropsFromRedux } from './connect'
 
 const { Column } = Table
 const { I18n } = window
 
-interface Props {
+interface OwnProps {
   assessments: UserAssessmentState
   match: {
     params: {
@@ -27,12 +28,15 @@ interface Props {
   }): void
 }
 
+type Props = RouteComponentProps & OwnProps & PropsFromRedux
+
 const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   assessments: {
     list,
   },
   match: { params: { projectId, campaignId, id } },
   openModal,
+  rescoreResponse,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -83,7 +87,10 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
             render={({ id }) => (
               <Dropdown
                 overlay={() => (
-                  ActionsMenu({ id }) as React.ReactElement
+                  ActionsMenu({
+                    id,
+                    rescoreResponse: () => rescoreResponse(parsedCampaignId, id),
+                  }) as React.ReactElement
                 )}
                 trigger={['click']}
               >
@@ -101,46 +108,57 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
 
 interface ActionMenuProps {
   id: number
+  rescoreResponse(): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = () => (
-  <Menu>
-    <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-      <Menu.Item key="reset">
+const ActionsMenu: React.FC<ActionMenuProps> = ({
+  rescoreResponse,
+}) => {
+  const handleRescoreResponse = () => {
+    rescoreResponse()
+    message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+  }
+
+  return (
+    <Menu>
+      <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
+        <Menu.Item key="reset">
+          <div
+            role="button"
+            tabIndex={-1}
+          >
+            {I18n.t('common.actions.reset')}
+          </div>
+        </Menu.Item>
+        <Menu.Item key="rescore">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('assessments.actions.rescore')}
+          </div>
+        </Menu.Item>
+      </Menu.ItemGroup>
+      <Menu.Divider />
+      <Menu.Item key="remove">
         <div
           role="button"
           tabIndex={-1}
         >
-          {I18n.t('common.actions.reset')}
+          {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>
-      <Menu.Item key="rescore">
+      <Menu.Item key="extend">
         <div
           role="button"
           tabIndex={-1}
         >
-          {I18n.t('assessments.actions.rescore')}
+          {I18n.t('assessments.actions.extend_time')}
         </div>
       </Menu.Item>
-    </Menu.ItemGroup>
-    <Menu.Divider />
-    <Menu.Item key="remove">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
-        {I18n.t('common.actions.remove')}
-      </div>
-    </Menu.Item>
-    <Menu.Item key="extend">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
-        {I18n.t('assessments.actions.extend_time')}
-      </div>
-    </Menu.Item>
-  </Menu>
-)
+    </Menu>
+  )
+}
 
 export default withRouter(AssessmentList)

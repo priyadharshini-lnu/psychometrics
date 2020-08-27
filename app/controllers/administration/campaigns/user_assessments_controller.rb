@@ -17,6 +17,15 @@ module Administration
         render json: { norm_name: user_result.norm.name, norm_type: user_result.norm_type }
       end
 
+      def rescore_response
+        user_result = resource.users_result
+
+        ::UsersResults::Recompute.call!(user_result)
+        ::UsersResults::RegenerateReports.call!(user_result, campaign, current_user)
+
+        render json: :ok
+      end
+
       private
 
       def assessment

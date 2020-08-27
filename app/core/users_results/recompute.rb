@@ -4,9 +4,12 @@ module UsersResults
   class Recompute < BaseCommand
     private_attr_reader :user_result, :norm_data
 
-    def initialize(user_result, norm_data)
+    def initialize(user_result, norm_data = nil)
       @user_result = user_result
-      @norm_data = norm_data
+      @norm_data = norm_data || {
+        'id' => user_result.norm_id,
+        'type' => user_result.norm_type
+      }
     end
 
     def call

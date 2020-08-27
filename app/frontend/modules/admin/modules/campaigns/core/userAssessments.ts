@@ -9,6 +9,7 @@ const defaultState = {
 }
 
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
+const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -26,6 +27,14 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_norm`,
     body: { ...body, campaignAssessmentId },
+  },
+})
+
+export const rescoreResponse = (campaignId: number, campaignAssessmentId: number) => ({
+  type: RESCORE_RESPONSE,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/rescore_response`,
   },
 })
 

@@ -218,15 +218,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         </Menu.Item>
       </Menu.ItemGroup>
       )}
-      <Menu.ItemGroup key="rescore">
-        <Menu.Item key="rescoring">
-          <a
-            onClick={handleRescoreResponse}
-          >
-            {I18n.t('campaign_assessment.actions.rescore_response.title')}
-          </a>
-        </Menu.Item>
-      </Menu.ItemGroup>
+      <Menu.Divider />
+      <Menu.Item key="rescoring">
+        <a
+          onClick={handleRescoreResponse}
+        >
+          {I18n.t('campaign_assessment.actions.rescore_response.title')}
+        </a>
+      </Menu.Item>
     </Menu>
   )
 }

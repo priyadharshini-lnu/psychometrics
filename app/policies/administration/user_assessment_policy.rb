@@ -7,5 +7,9 @@ module Administration
     def update_norm?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
+
+    def rescore_response?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
   end
 end

@@ -38,4 +38,16 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     expect(users_result.norm_id).to eq(norm.id)
     expect(users_result.norm_type).to eq('ETI')
   end
+
+  it '[POST] rescore_responses' do
+    expect(::UsersResults::Recompute).to receive(:call!)
+    expect(::UserReports::GeneratePdfJob).to receive(:perform_now)
+
+    post :rescore_response, params: {
+      id: user_assessment.id,
+      new_campaign_id: campaign.id
+    }
+
+    expect(response).to have_http_status(:success)
+  end
 end
