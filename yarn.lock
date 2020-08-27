@@ -5161,9 +5161,10 @@ fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
 
-froala-editor@3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.0.6.tgz#26c1c20acf2f7b3681699c8185a94e804a713dcc"
+froala-editor@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/froala-editor/-/froala-editor-3.2.0.tgz#e9641bca6185d514d31ef86c8f3eec5d6e87df91"
+  integrity sha512-wCdXREGW1jIomIgyHFpjKIwL8vi2M7gwQc9K8rlGZH+0/WlyX7XJ8rRpsh8x/2A37X3RfrQR+sgeHUpUuutWLQ==
 
 from2@^2.1.0:
   version "2.3.0"
@@ -9785,12 +9786,13 @@ react-flip-move@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-3.0.4.tgz#261f66101fbc305f9b7b28959c5cf8236413ca74"
   integrity sha512-HyUVv9g3t/BS7Yz9HgrtYSWyRNdR2F81nkj+C5iRY675AwlqCLB5JU9mnZWg0cdVz7IM4iquoyZx70vzZv3Z8Q==
 
-react-froala-wysiwyg@^3.0.6:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-3.0.6.tgz#e7bafc0a842d02f57fe434a85d07a02678fd9b7a"
+react-froala-wysiwyg@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-froala-wysiwyg/-/react-froala-wysiwyg-3.2.0.tgz#6cabacc33f64c7b65c6699a99fa2a0d89c5a0829"
+  integrity sha512-Y9fx+O2HFYatzy/Ru+n+pAoIG0HLxIXjvqEpjpzA7DA01inFPrbfdfeTkFAjHDeiJtCFf7MmWEu/+n/QtjDURA==
   dependencies:
     create-react-class "^15.5.2"
-    froala-editor "3.0.6"
+    froala-editor "3.2.0"
 
 react-google-recaptcha@^2.0.0-rc.1:
   version "2.0.1"
