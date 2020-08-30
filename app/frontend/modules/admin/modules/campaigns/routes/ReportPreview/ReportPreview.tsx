@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
+import cs from 'classnames'
 import {
   Layout, Button, Row, Col, PageHeader, Spin, Space,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import Report from 'modules/reports/report'
-import './styles'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import { RouteComponentProps } from 'react-router-dom'
 import { PropsFromRedux } from './connect'
+import styles from './styles.scss'
 
 const { Content } = Layout
 const { I18n } = window
@@ -21,7 +23,7 @@ type Props = PropsFromRedux & RouteComponentProps<Params>
 
 export default function ReportPreview ({
   userReport,
-  match: { params: { projectId, campaignId, id } }, fetchReport, download, downloadInProgress, history,
+  match: { params: { campaignId, id } }, fetchReport, download, downloadInProgress,
 }: Props) {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedId = parseInt(id, 10)
@@ -31,12 +33,6 @@ export default function ReportPreview ({
   }, [])
 
   const reportIsLoaded = (): boolean => !!userReport && userReport.loaded
-
-  const handleOnBackClick = () => {
-    reportIsLoaded()
-      ? history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/${userReport.user.id}`)
-      : window.history.back()
-  }
 
   const renderReportPreview = () => {
     if (!reportIsLoaded()) { return null }
@@ -62,7 +58,36 @@ export default function ReportPreview ({
 
   return (
     <Layout>
-      <Content className="fluid-container">
+      <Content className={cs('fluid-container', styles.container)}>
+        <Breadcrumb
+          request={{
+            fields: ['project', 'campaign', 'client'],
+            data: {
+              campaignId: parsedCampaignId,
+            },
+          }}
+          crumbs={[{
+            link: () => '/administration',
+            label: () => I18n.t('administration.clients.tenancies'),
+          }, {
+            link: state => `/administration/clients/${state.client.id}/projects`,
+            label: state => state.client.name,
+          }, {
+            link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+            label: state => state.project.name,
+          }, {
+            link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+            label: state => state.campaign?.name,
+          }, {
+            link: state => (reportIsLoaded()
+              // eslint-disable-next-line max-len
+              ? `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/users/${userReport.user.id}`
+              : ''),
+            label: () => (reportIsLoaded() ? userReport.user.email : ''),
+          }, {
+            label: () => (reportIsLoaded() ? userReport.report.name : ''),
+          }]}
+        />
         <PageHeader
           ghost={false}
           title={(
@@ -86,7 +111,6 @@ export default function ReportPreview ({
               {I18n.t('common.text.download')}
             </Button>,
           ]}
-          onBack={handleOnBackClick}
         >
           <Row justify="center">
             <Col lg={12} md={18} sm={24}>

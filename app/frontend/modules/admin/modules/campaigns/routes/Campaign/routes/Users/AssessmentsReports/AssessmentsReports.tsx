@@ -7,6 +7,7 @@ import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import Modals from 'modules/admin/components/Modals/'
 import _ from 'lodash'
 import array from 'utils/array'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
 import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/routes/Manage/AddReportModal'
@@ -87,10 +88,32 @@ const AssessmentsReports: React.FC<Props> = ({
 
   return (
     <div>
+      <Breadcrumb
+        request={{
+          fields: ['project', 'campaign', 'client'],
+          data: {
+            campaignId: parsedCampaignId,
+          },
+        }}
+        crumbs={[{
+          link: () => '/administration',
+          label: () => I18n.t('administration.clients.tenancies'),
+        }, {
+          link: state => `/administration/clients/${state.client.id}/projects`,
+          label: state => state.client.name,
+        }, {
+          link: state => `/administration/projects/${state.project.id}/new_campaigns`,
+          label: state => state.project.name,
+        }, {
+          link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}`,
+          label: state => state.campaign?.name,
+        }, {
+          label: () => user.email,
+        }]}
+      />
       <Row justify="space-between" className="pm">
         <PageHeader
           ghost={false}
-          onBack={() => history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users/`)}
           title={user.fullName}
           subTitle={user.email}
           extra={[

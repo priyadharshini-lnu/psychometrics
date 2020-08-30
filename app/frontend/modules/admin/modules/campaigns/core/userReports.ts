@@ -49,9 +49,11 @@ interface UserReportDetails {
   loaded: boolean
   user: {
     id: number
+    email: string
   }
   report: {
     default_language: string,
+    name: string,
     locales: object,
   }
   results: object[],
