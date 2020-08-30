@@ -113,7 +113,7 @@ module Facades
       private
 
       def fetch_owners(user)
-        client_policy_scope(user).roots
+        client_policy_scope(user).roots.ordered_by_name
       end
 
       def fetch_projects(user)

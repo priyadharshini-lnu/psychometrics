@@ -6,7 +6,10 @@
     .form-inputs.clearfix
       = f.input :name
       - if current_user.is?(:superadmin)
-        = f.association :owner, collection: policy_scope(Client).roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
+        = f.association :owner,
+                        collection: policy_scope(Client).roots.order(:name),
+                        include_blank: t('administration.tte'),
+                        input_html: { data: { live_search: true } }
       = f.input :description
       - unless f.object.folder?
         = f.input :file
