@@ -36,7 +36,7 @@ module EndUser
             init_result(result)
           end
 
-          @selected_locale = @user_assessment.selected_locale || user_locale
+          @selected_locale = user_result.selected_locale || user_locale
           @user_assessment.update(users_result_id: user_result.id)
 
           render json: user_result, serializer: UsersResultSerializer,

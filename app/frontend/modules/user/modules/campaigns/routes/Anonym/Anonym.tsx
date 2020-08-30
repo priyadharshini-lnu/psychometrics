@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Row, Col, ConfigProvider, Progress, PageHeader,
+  Layout, Row, Col, ConfigProvider, PageHeader,
 } from 'antd'
 import qs from 'qs'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
@@ -61,11 +61,8 @@ const Anonym: React.FC<Props> = ({
   },
   fetchAssessment,
   match: { params },
-  preview, preview: {
-    enableProgress,
-  },
+  preview,
   saveResults,
-  progress,
   block,
 }) => {
   const assessmentRef = React.createRef()
@@ -101,8 +98,6 @@ const Anonym: React.FC<Props> = ({
             className="page-header"
             title={assessment.name}
             extra={[
-              enableProgress
-                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
               <Timer key="2" preview={preview} saveResults={saveResults} />,
             ]}
           />

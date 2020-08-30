@@ -4,7 +4,7 @@ module EndUser
   class UserAssessmentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :assessment_extra, :assessment_id, :status, :user_reports
+               :assessment_extra, :assessment_id, :status, :user_reports, :completion_percent
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
 
@@ -62,7 +62,16 @@ module EndUser
     end
 
     def completion_percent
-      object.assessment.decorate.completion_percent
+      result = object.users_result
+      return 100 if result.completed?
+
+      answered = result.answers&.size || 0
+      total = object.assessment.questions&.size
+      return 0 if total.nil? || total.zero?
+
+      progress = (100 * answered) / total
+      99 if progress > 99
+      progress
     end
 
     def questions_count
