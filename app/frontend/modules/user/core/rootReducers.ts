@@ -28,7 +28,6 @@ const rootReducer = combineReducers({
   ui: combineReducers({
     autocomplete,
   }),
-  project,
   currentUser,
   config,
   preview,

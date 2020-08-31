@@ -11,7 +11,7 @@ module Threesixty::InitialState
 
   def set_init_state
     @init_state = {
-      threeSixtyCampaign: {
+      campaigns: {
         project: {
           name: @current_project.name,
           logo: @current_project.logo.url,
