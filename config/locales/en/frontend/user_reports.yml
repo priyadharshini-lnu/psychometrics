@@ -1,3 +1,7 @@
 en:
   user_reports:
     preview_report: Preview Report
+    modals:
+      remove:
+        content: Are you sure you want to remove report %{userReportName}?
+        successfully: '%{userReportName} report removed successfully'

@@ -3088,6 +3088,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -3606,7 +3607,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -6981,6 +6982,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "user_reports": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
     "preview_report": "Preview Report"
   },
   "validations": {
@@ -10144,6 +10151,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -10662,7 +10670,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -14027,6 +14035,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "user_reports": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
     "preview_report": "Preview Report"
   },
   "validations": {
@@ -17190,6 +17204,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -17708,7 +17723,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -21073,6 +21088,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "user_reports": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
     "preview_report": "Preview Report"
   },
   "validations": {

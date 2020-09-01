@@ -6,7 +6,7 @@ module Administration
       include AuthenticateByToken
 
       prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
-      before_action :set_resource, only: %i[show download pdf_preview]
+      before_action :set_resource, only: %i[show destroy download pdf_preview]
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -18,6 +18,11 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def destroy
+        resource.destroy!
+        render json: resource.id
       end
 
       def show
