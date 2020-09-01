@@ -4923,7 +4923,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "user_access": {
         "apply": "Apply this changes to existing users in this campaign.",
-        "title": "Enable User Access"
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
       }
     }
   },
@@ -11983,7 +11986,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "user_access": {
         "apply": "Apply this changes to existing users in this campaign.",
-        "title": "Enable User Access"
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
       }
     }
   },
@@ -19036,7 +19042,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "user_access": {
         "apply": "Apply this changes to existing users in this campaign.",
-        "title": "Enable User Access"
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
       }
     }
   },

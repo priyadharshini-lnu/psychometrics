@@ -62,7 +62,7 @@ const ReportList: React.FC<Props> = ({
               <Switch
                 checked={userAccess}
                 onChange={() => openModal('ToggleUserAccessModal',
-                  { campaignId, campaignReportId: id })}
+                  { campaignId, campaignReportId: id, userAccess })}
               />
             )}
           />

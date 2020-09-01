@@ -8,12 +8,13 @@ export interface OwnProps {
   close(): void
   campaignReportId: number
   campaignId: number
+  userAccess: boolean
 }
 
 export type Props = OwnProps & PropsFromRedux
 
 const ToggleUserAccessModal: React.FC<Props> = ({
-  close, campaignId, toggleUserAccess, campaignReportId,
+  close, campaignId, toggleUserAccess, campaignReportId, userAccess,
 }) => {
   const [userReportsUserAccess, setUserReportsUserAccess] = useState(false)
 
@@ -22,10 +23,15 @@ const ToggleUserAccessModal: React.FC<Props> = ({
     close()
   }
 
+  const modalTitle = () => (
+    userAccess ? I18n.t('campaign_report.modals.user_access.title.disable')
+      : I18n.t('campaign_report.modals.user_access.title.enable')
+  )
+
   return (
     <Modal
       width={650}
-      title={I18n.t('campaign_report.modals.user_access.title')}
+      title={modalTitle()}
       visible
       centered
       okText={I18n.t('common.text.continue')}
