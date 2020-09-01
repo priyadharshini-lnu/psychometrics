@@ -40,7 +40,6 @@ const FILTER_QUESTION_TYPES = [
   'Captcha',
   'FileUpload',
   'AudioResponse',
-  'VideoResponse',
 ]
 
 export const getQuestions = (state: any, assessmentId: number) => {
