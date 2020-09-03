@@ -53,11 +53,12 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number) => ({
+export const toggleStatus = (campaignId: string, id: number, value: boolean, body) => ({
   type: TOGGLE_STATUS,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
+    body: { ...body, id, value },
   },
 })
 
@@ -68,6 +69,20 @@ export const resetPassword = (campaignId: string, id: number) => ({
     url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
+
+export interface UpdateAction {
+  response: {
+    active: boolean
+  },
+  requestAction: {
+    request: {
+      body: {
+        id: number
+        value: boolean
+      }
+    }
+  }
+}
 
 export interface FetchAction {
   response: {
@@ -109,13 +124,14 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS]: (state: State, { response }: { response: User }) => (
-    updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
-      if (user.id === response.id) { return response }
+  [TOGGLE_STATUS]: (state, { response, requestAction: { request } }: UpdateAction) => {
+    const users = state.list.map((user: User) => {
+      if (user.id !== request.body.id) return user
 
-      return user
-    }))
-  ),
+      return { ...user, ...response }
+    })
+    return setIn(state, ['list'], users)
+  },
 }
 
 export default createReducer(HANDLERS, defaultState)
