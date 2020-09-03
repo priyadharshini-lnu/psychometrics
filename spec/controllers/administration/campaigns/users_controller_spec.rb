@@ -65,7 +65,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'email' => user.email,
       'created_at' => I18n.l(user.created_at, format: :short),
       'last_sign_in_at' => nil,
-      'campaigns' => [campaign.slice('name', 'id')]
+      'campaigns' => [campaign.slice('name', 'id')],
+      'active' => campaign_user.active
     })
   end
 

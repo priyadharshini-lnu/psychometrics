@@ -2,7 +2,7 @@
 
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
-    attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns
+    attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :active, :campaigns
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
 
@@ -30,6 +30,10 @@ module Administration
 
     def user_reports
       object.user_reports.where(campaign: campaign).includes(:report, :report_family)
+    end
+
+    def active
+      object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign]&.id }&.active
     end
 
     private

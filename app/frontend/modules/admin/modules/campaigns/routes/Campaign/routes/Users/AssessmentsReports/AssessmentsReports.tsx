@@ -25,6 +25,7 @@ const MODALS = {
 
 interface OwnProps {
   openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void,
+  toggleStatus(campaignId: string, id: number): void
 }
 
 interface Params {
@@ -41,6 +42,7 @@ const AssessmentsReports: React.FC<Props> = ({
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
+  toggleStatus,
   remove,
   history,
 }) => {
@@ -124,7 +126,14 @@ const AssessmentsReports: React.FC<Props> = ({
         >
           <Descriptions size="small" column={3}>
             <Descriptions.Item label={I18n.t('common.column.status')}>
-              <Switch checked={user.disabled} />
+              <Switch
+                checked={user.active}
+                onChange={
+                  () => {
+                    toggleStatus(campaignId, parsedUserId)
+                  }
+              }
+              />
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}

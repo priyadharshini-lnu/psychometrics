@@ -4,6 +4,7 @@ import {
   fetchSingle as fetchSingleUser,
   getCurrent as getCurrentUser,
   remove,
+  toggleStatus,
 } from 'modules/admin/modules/campaigns/core/users'
 import { openModal } from 'modules/admin/core/ui/modals'
 
@@ -15,6 +16,7 @@ const connecter = connect(
   {
     fetchSingleUser,
     openModal,
+    toggleStatus,
     remove,
   },
 )

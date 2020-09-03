@@ -53,12 +53,12 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number, value: boolean, body) => ({
+export const toggleStatus = (campaignId: string, id: number, body) => ({
   type: TOGGLE_STATUS,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
-    body: { ...body, id, value },
+    body: { ...body, id },
   },
 })
 
@@ -69,20 +69,6 @@ export const resetPassword = (campaignId: string, id: number) => ({
     url: `/administration/new_campaigns/${campaignId}/users/${id}/reset_password`,
   },
 })
-
-export interface UpdateAction {
-  response: {
-    active: boolean
-  },
-  requestAction: {
-    request: {
-      body: {
-        id: number
-        value: boolean
-      }
-    }
-  }
-}
 
 export interface FetchAction {
   response: {
@@ -95,10 +81,23 @@ export interface UserDetails {
   id: number
   fullName: string
   email: string
-  disabled: boolean
+  active: boolean
   campaigns: { id: number, name: string }[]
   createdAt: string
   lastSignInAt: string
+}
+
+export interface ToggleStatusAction {
+  response: {
+    active: boolean
+  },
+  requestAction: {
+    request: {
+      body: {
+        id: number
+      }
+    }
+  }
 }
 
 export interface State {
@@ -124,13 +123,16 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS]: (state, { response, requestAction: { request } }: UpdateAction) => {
-    const users = state.list.map((user: User) => {
-      if (user.id !== request.body.id) return user
+  [TOGGLE_STATUS]: (state, { response, requestAction: { request } }: ToggleStatusAction) => {
+    if (state.list) {
+      const users = state.list.map((user: User) => {
+        if (user.id !== request.body.id) return user
 
-      return { ...user, ...response }
-    })
-    return setIn(state, ['list'], users)
+        return { ...user, ...response }
+      })
+      return setIn(state, ['list'], users)
+    }
+    return setIn(state, ['current', 'active'], response.active)
   },
 }
 
