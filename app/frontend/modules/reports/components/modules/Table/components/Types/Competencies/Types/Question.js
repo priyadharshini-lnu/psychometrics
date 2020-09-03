@@ -8,6 +8,7 @@ import { getQuestions } from 'modules/reports/core/builder/selectors'
 import styles from '../styles.scss'
 import MilestoneTd from './MilestoneTd'
 import buildFakeData from '../buildFakeData'
+import Legend from '../Legend'
 
 const FILTER_ROW_HEIGHT = 24
 const DESC_COLUMN_WIDTH = 29
@@ -60,6 +61,8 @@ function Question ({ filters, model, questions }) {
     milestones, mainHeaderColor, secondHeaderColor,
   } = model.props
   if (!filters.length) return null
+  const filterIdsHavingResults = new Set()
+  const filtersHavingResults = () => filters.filter(f => filterIdsHavingResults.has(f.id))
 
   const question = findQuestion()
 
@@ -68,7 +71,7 @@ function Question ({ filters, model, questions }) {
   const questionChoices = findQuestionChoices()
 
   const milestoneColumnWidth = (100 - DESC_COLUMN_WIDTH) / milestones.length
-  const descStyle = { minHeight: `${FILTER_ROW_HEIGHT * filters.length}px` }
+  const getDescStyle = results => ({ minHeight: `${FILTER_ROW_HEIGHT * results.length}px` })
   const { fontSize, fontFamily } = model.props.style
   const style = {
     fontSize,
@@ -76,59 +79,66 @@ function Question ({ filters, model, questions }) {
   }
 
   return (
-    <div className={styles.table} style={style}>
-      <table>
-        <thead>
-          <tr>
-            <td
-              rowSpan={2}
-              className={cs(styles.label, styles.competencyLabel)}
-              style={{ color: mainHeaderColor }}
-            >
-              {I18nStore.t('reports.modules.single_value_cluster.questions')}
-            </td>
-            <td
-              colSpan={milestones.length}
-              className={cs(styles.label, styles.questionLabel)}
-              style={{ color: mainHeaderColor }}
-            >
-              {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
-            </td>
-          </tr>
-          <tr>
-            {milestones.map(m => (
+    [
+      <div className={styles.table} style={style}>
+        <table>
+          <thead>
+            <tr>
               <td
-                key={m.id}
-                className={cs(styles.label, styles.milestoneLabel)}
-                style={{ borderBottomColor: m.color, color: secondHeaderColor }}
-                width={`${milestoneColumnWidth}%`}
+                rowSpan={2}
+                className={cs(styles.label, styles.competencyLabel)}
+                style={{ color: mainHeaderColor }}
               >
-                {m.name}
+                {I18nStore.t('reports.modules.single_value_cluster.questions')}
               </td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {questionChoices.map(questionChoice => (
-            <tr key={questionChoice.id}>
-              <td>
-                <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
+              <td
+                colSpan={milestones.length}
+                className={cs(styles.label, styles.questionLabel)}
+                style={{ color: mainHeaderColor }}
+              >
+                {I18nStore.t('reports.modules.single_value_cluster.developmental_rating')}
               </td>
-              {milestones.map((m, i) => (
-                <MilestoneTd
-                  filters={filters}
-                  milestoneIndex={i}
-                  results={enhanceFiltersByValue(question, questionChoice)}
+            </tr>
+            <tr>
+              {milestones.map(m => (
+                <td
                   key={m.id}
-                  milestone={m}
-                  model={model}
-                />
+                  className={cs(styles.label, styles.milestoneLabel)}
+                  style={{ borderBottomColor: m.color, color: secondHeaderColor }}
+                  width={`${milestoneColumnWidth}%`}
+                >
+                  {m.name}
+                </td>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {questionChoices.map((questionChoice) => {
+              const results = enhanceFiltersByValue(question, questionChoice).filter(r => r.value > 0)
+              results.forEach(r => filterIdsHavingResults.add(r.id))
+              const descStyle = getDescStyle(results)
+              return (
+                <tr key={questionChoice.id}>
+                  <td>
+                    <div className={styles.description} style={descStyle}>{questionChoice.name}</div>
+                  </td>
+                  {milestones.map((m, i) => (
+                    <MilestoneTd
+                      filters={results}
+                      milestoneIndex={i}
+                      key={m.id}
+                      milestone={m}
+                      model={model}
+                    />
+                  ))}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>,
+      <Legend filters={filtersHavingResults()} model={model} />,
+    ]
   )
 }
 
