@@ -1,11 +1,11 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { getSortedAssessments } from 'modules/admin/modules/campaigns/core/assessmentGroups'
+import { updateAssessment, attachAssessmentToGroup } from 'modules/admin/modules/campaigns/core/assessmentGroups'
 
 const connecter = connect(
-  state => ({
-    assessments: getSortedAssessments(state, null),
-  }),
+  () => ({}),
   {
+    updateAssessment,
+    attachAssessmentToGroup,
   },
 )
 

@@ -5,11 +5,14 @@ export interface CampaignAssessmentGroup {
   campaignId: number
   previousAssessmentsRequired: boolean
   previousGroupRequired: boolean
-  assessments: Assessment[]
+  assessments: CampaignAssessment[]
 }
 
-export interface Assessment {
+export interface CampaignAssessment {
   id: number
+  assessmentId: number
+  campaignAssessmentGroupId: number
   name: string
   position: number
+  campaignId: number
 }

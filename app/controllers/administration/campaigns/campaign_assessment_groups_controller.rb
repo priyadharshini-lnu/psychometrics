@@ -8,7 +8,7 @@ module Administration
 
       def index
         render json: campaign,
-         serializer: Administration::CampaignAssessmentGroups::WithUngroupedAssessmentsSerializer
+         serializer: Administration::CampaignAssessmentGroups::GroupsAndAssessmentsSerializer
       end
 
       def create
@@ -22,7 +22,8 @@ module Administration
       end
 
       def destroy
-        resource.delete
+        ::CampaignAssessmentGroups::Destroy.call!(campaign, resource)
+
         render json: params[:id]
       end
 
@@ -30,7 +31,7 @@ module Administration
 
       def resource_params
         (params[:resource] || params[:campaign_assessment_group]).
-          permit(:name, :previous_assessments_required, :previous_group_required)
+          permit(:name, :previous_assessments_required, :previous_group_required, :position)
       end
 
       def resource_class

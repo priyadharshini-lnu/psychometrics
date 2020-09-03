@@ -6,20 +6,4 @@
   .title {
     color: rgba(0, 0, 0, 0.85);
   }
-
-  .noneFound {
-    text-align: center;
-    .noneFoundIcon {
-      background-image: url("../GroupList/Group/no_assessments.png");
-      height: 51px;
-      width: 51px;
-      display: inline-block;
-    }
-    .noneFoundDesc {
-      display: inline-block;
-      color: #9A9A9A;
-      font-size: 14px;
-      margin-top: 12px;
-    }
-  }
 }

@@ -15,6 +15,7 @@
   .title {
     color: rgba(0, 0, 0, 0.85);
     flex: 1;
+    cursor: all-scroll;
   }
 
   .icon {
@@ -25,22 +26,5 @@
   .switch {
     font-size: 13px;
     margin-bottom: 8px;
-  }
-
-  .noneFound {
-    text-align: center;
-
-    .noneFoundIcon {
-      background-image: url("./no_assessments.png");
-      height: 51px;
-      width: 51px;
-      display: inline-block;
-    }
-    .noneFoundDesc {
-      display: inline-block;
-      color: #9A9A9A;
-      font-size: 14px;
-      margin-top: 12px;
-    }
   }
 }

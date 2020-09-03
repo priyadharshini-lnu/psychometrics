@@ -35,6 +35,7 @@ export const update = (
   data: object,
 ) => ({
   type: getActionType(requestScope, resourceName, 'UPDATE'),
+  id: resourceId,
   request: {
     url: `${resourceBaseUrl}/${resourceId}`,
     method: 'PUT',

@@ -3,8 +3,14 @@
 module Administration
   module CampaignAssessmentGroups
     class CampaignAssessmentSerializer < ActiveModel::Serializer
-      attributes :id, :name, :position
-      delegate :id, :name, to: :assessment
+      attributes :id, :name, :position, :campaign_id, :assessment_id, :campaign_assessment_group_id
+      delegate :name, to: :assessment
+
+      def assessment_id
+        assessment.id
+      end
+
+      private
 
       def assessment
         object.assessment

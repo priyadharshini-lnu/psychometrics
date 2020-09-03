@@ -108,6 +108,11 @@ Rails.application.routes.draw do
         end
         resources :campaign_assessment_groups, only: %i[index create update destroy] do
         end
+        resources :campaign_assessments, only: %i[update] do
+          member do
+            post :attach_to_group
+          end
+        end
       end
     end
 
