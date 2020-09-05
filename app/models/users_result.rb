@@ -14,7 +14,7 @@ class UsersResult < ApplicationRecord
   has_many :media_responses
   has_many :user_assessments
 
-  enum status: { not_started: 0, in_progress: 1, completed: 2 }
+  enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
 
   scope :actual_by_options, lambda { |options|
     where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
@@ -32,5 +32,9 @@ class UsersResult < ApplicationRecord
 
   def user
     evaluator
+  end
+
+  def user_id
+    evaluator_id
   end
 end

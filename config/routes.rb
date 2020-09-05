@@ -97,13 +97,13 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             post :rescore_responses
-            post :update_norm
           end
         end
         resources :user_assessments, only: [] do
           member do
             post :update_norm
             post :rescore_response
+            post :update_additional_time
           end
         end
         resources :campaign_assessment_groups, only: %i[index create update destroy] do

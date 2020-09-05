@@ -12,6 +12,7 @@ import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/routes/Manage/AddReportModal'
 import UpdateNormModal from '../../AssessmentsReports/routes/Manage/UpdateNormModal'
+import UpdateTimeModal from './UpdateTimeModal'
 import { Strategies } from '../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -21,6 +22,7 @@ const { I18n } = window
 const MODALS = {
   AddReportModal,
   UpdateNormModal,
+  UpdateTimeModal,
 }
 
 interface OwnProps {

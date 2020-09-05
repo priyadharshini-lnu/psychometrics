@@ -6,6 +6,7 @@ en:
     login: 'Login'
     edit: 'Edit'
     delete: 'Delete'
+    update: 'Update'
     change_password: 'Change password'
     manage: Manage
     activate: Activate

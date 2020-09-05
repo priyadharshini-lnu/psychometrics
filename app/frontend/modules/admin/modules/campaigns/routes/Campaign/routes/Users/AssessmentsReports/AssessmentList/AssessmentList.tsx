@@ -5,7 +5,10 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
 import _ from 'lodash'
+import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -37,6 +40,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
+  currentUser,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -82,14 +86,23 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           />
 
           <Column
+            title={I18n.t('common.column.status')}
+            key="status"
+            render={({ status }) => I18n.t(`campaign_assessment.statuses.${status}`)}
+          />
+          <Column
             title={I18n.t('common.column.action')}
             key="action"
-            render={({ id }) => (
+            render={assessment => (
               <Dropdown
                 overlay={() => (
                   ActionsMenu({
-                    id,
-                    rescoreResponse: () => rescoreResponse(parsedCampaignId, id),
+                    rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
+                    openModal,
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    assessment,
+                    currentUser,
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -107,12 +120,16 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
 }
 
 interface ActionMenuProps {
-  id: number
+  assessment: UserAssessment
+  userId: number
+  campaignId: number
+  currentUser: User
   rescoreResponse(): void
+  openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser,
 }) => {
   const handleRescoreResponse = () => {
     rescoreResponse()
@@ -149,14 +166,17 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           {I18n.t('common.actions.remove')}
         </div>
       </Menu.Item>
-      <Menu.Item key="extend">
-        <div
-          role="button"
-          tabIndex={-1}
-        >
-          {I18n.t('assessments.actions.extend_time')}
-        </div>
-      </Menu.Item>
+      {UserAssessmentPolicy.updateAdditionalTime(currentUser, assessment) ? (
+        <Menu.Item key="extend">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('UpdateTimeModal', { campaignId, userId, campaignAssessmentId: assessment.id })}
+          >
+            {I18n.t('assessments.actions.extend_time')}
+          </div>
+        </Menu.Item>
+      ) : null}
     </Menu>
   )
 }

@@ -3,7 +3,13 @@ en:
     column:
       assessment_name: Assessment name
       norm: Norm
+      status: Status
       universal_link: Universal link
+    statuses:
+      not_started: Not Started
+      in_progress: In Progress
+      completed: Completed
+      interrupted: Interrupted
     modals:
       import_raw:
         title: Import Raw Results data
@@ -21,6 +27,9 @@ en:
         type: Norm Type
         apply: Apply this change to existing users in this campaign
         update: Update
+      update_time:
+        title: Extend Time
+        additional_time: Time (min)
     actions:
       rescore_response:
         title: Rescore Responses

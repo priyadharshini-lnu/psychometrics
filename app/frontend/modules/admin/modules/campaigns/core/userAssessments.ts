@@ -9,6 +9,7 @@ const defaultState = {
 }
 
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
+const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
@@ -27,6 +28,17 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_norm`,
     body: { ...body, campaignAssessmentId },
+  },
+})
+
+
+export const updateAdditionalTime = (campaignId: number, campaignAssessmentId: number, additionalTime: number) => ({
+  type: UPDATE_ADDITIONAL_TIME,
+  campaignAssessmentId,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/update_additional_time`,
+    body: { additionalTime },
   },
 })
 
@@ -58,6 +70,12 @@ export interface FetchAction {
     userAssessments: UserAssessment[],
   },
 }
+export interface UpdateAdditionalTimeAction {
+  requestAction: {
+    campaignAssessmentId: number
+  }
+  response: object
+}
 
 export interface State {
   list: UserAssessment[]
@@ -66,6 +84,19 @@ export interface State {
 const HANDLERS = {
   [FETCH_SINGLE]: (_, { response }: FetchAction) => ({ list: response.userAssessments }),
   [CREATE_REPORT]: (_, { response }: FetchAction) => ({ list: response.userAssessments }),
+  [UPDATE_ADDITIONAL_TIME]: (state, {
+    requestAction: {
+      campaignAssessmentId,
+    },
+    response,
+  }: UpdateAdditionalTimeAction) => {
+    const list = state.list.map((assessment: UserAssessment) => {
+      if (assessment.id !== campaignAssessmentId) return assessment
+
+      return { ...assessment, ...response }
+    })
+    return { ...state, list }
+  },
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormAction) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== request.body.campaignAssessmentId) return assessment

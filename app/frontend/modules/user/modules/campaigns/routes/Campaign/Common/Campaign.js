@@ -36,7 +36,7 @@ export default function Campaign ({
                   {campaign.userAssessments.map((userAssessment) => {
                     const Assessment = Assessments[userAssessment.type]
 
-                    return <Assessment history={history} userAssessment={userAssessment} />
+                    return <Assessment key={userAssessment.id} history={history} userAssessment={userAssessment} />
                   })}
                 </Row>
               </>

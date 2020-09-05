@@ -17,6 +17,11 @@ module Administration
         render json: { norm_name: user_result.norm.name, norm_type: user_result.norm_type }
       end
 
+      def update_additional_time
+        ::UsersResults::AddAdditionalTime.call!(resource.users_result, params[:additional_time] * 60)
+        render json: resource, serializer: UserAssessmentSerializer
+      end
+
       def rescore_response
         user_result = resource.users_result
 

@@ -105,7 +105,9 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   def check_assessment_response(assessment_response)
-    expect(assessment_response.keys).to eq(%w[id assessment_id name category norm_name status norms norm_type norm_id])
+    expect(assessment_response.keys).to eq(
+      %w[id assessment_id name category norm_name status norms norm_type norm_id additional_time is_expired]
+    )
     expect(assessment_response).to include({
       'assessment_id' => assessment.id,
       'name' => assessment.name,

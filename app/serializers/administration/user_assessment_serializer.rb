@@ -2,7 +2,8 @@
 
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id
+    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
+               :additional_time, :is_expired
 
     delegate :name, :category, to: :assessment
 
@@ -26,6 +27,14 @@ module Administration
 
     def norm_id
       user_result&.norm_id
+    end
+
+    def additional_time
+      user_result&.additional_time
+    end
+
+    def is_expired # rubocop:disable Naming/PredicateName
+      user_result&.expired?
     end
 
     private

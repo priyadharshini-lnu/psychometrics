@@ -18,7 +18,7 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def show
     user_result = @user_assessment.users_result
-    user_result.update(status: :in_progress, last_activity_at: DateTime.current)
+    user_result.update(last_activity_at: DateTime.current)
 
     @selected_locale = @user_assessment.selected_locale || user_locale
 
@@ -30,7 +30,7 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def pass
-    @user_assessment.users_result.update(selected_locale: params[:lang]) if params[:lang]
+    UserAssessments::Pass.call!(@user_assessment, params[:lang])
 
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }

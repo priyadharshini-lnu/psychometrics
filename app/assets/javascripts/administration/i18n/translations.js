@@ -4877,6 +4877,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -4898,7 +4899,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started"
     }
   },
   "campaign_report": {
@@ -5646,6 +5657,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
     },
+    "update": "Update",
     "yes": "Yes"
   },
   "helpers": {
@@ -11940,6 +11952,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -11961,7 +11974,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started"
     }
   },
   "campaign_report": {
@@ -12705,6 +12728,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
     },
+    "update": "Update",
     "yes": "Yes"
   },
   "helpers": {
@@ -18996,6 +19020,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -19017,7 +19042,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started"
     }
   },
   "campaign_report": {
@@ -19761,6 +19796,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
     },
+    "update": "Update",
     "yes": "Yes"
   },
   "helpers": {
