@@ -62,7 +62,7 @@ export default function Factor ({ model, filters }) {
   }
 
   return (
-    [
+    <>
       <div className={styles.table} style={style}>
         <table>
           <thead>
@@ -130,8 +130,8 @@ export default function Factor ({ model, filters }) {
             })}
           </tbody>
         </table>
-      </div>,
-      <Legend filters={filtersHavingResults()} model={model} />,
-    ]
+      </div>
+      <Legend filters={filtersHavingResults()} model={model} />
+    </>
   )
 }

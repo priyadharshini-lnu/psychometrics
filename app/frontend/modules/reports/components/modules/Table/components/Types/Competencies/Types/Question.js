@@ -79,7 +79,7 @@ function Question ({ filters, model, questions }) {
   }
 
   return (
-    [
+    <>
       <div className={styles.table} style={style}>
         <table>
           <thead>
@@ -136,9 +136,9 @@ function Question ({ filters, model, questions }) {
             })}
           </tbody>
         </table>
-      </div>,
-      <Legend filters={filtersHavingResults()} model={model} />,
-    ]
+      </div>
+      <Legend filters={filtersHavingResults()} model={model} />
+    </>
   )
 }
 
