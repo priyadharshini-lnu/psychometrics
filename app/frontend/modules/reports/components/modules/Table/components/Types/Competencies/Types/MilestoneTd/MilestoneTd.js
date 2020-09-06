@@ -6,10 +6,10 @@ import styles from './styles.scss'
 import FilterAvatar from '../../FilterAvatar'
 
 export default function MilestoneTd ({
-  milestoneIndex, milestone: { min, max }, results, model, filters,
+  milestoneIndex, milestone: { min, max }, model, filters,
 }) {
   const { showLines } = model.props
-  const filteredResults = results.filter(
+  const filteredResults = filters.filter(
     r => ((milestoneIndex === 0 && r.value >= parseFloat(min))
       || r.value > parseFloat(min)) && r.value <= parseFloat(max),
   )

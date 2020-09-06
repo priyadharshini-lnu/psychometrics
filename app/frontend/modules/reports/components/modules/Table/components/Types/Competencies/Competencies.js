@@ -1,6 +1,5 @@
 import React from 'react'
 import Types from './Types'
-import Legend from './Legend'
 import lookupAndEnhanceFilters from './lookupAndEnhanceFilters'
 
 export default function Competencies ({ model }) {
@@ -10,7 +9,6 @@ export default function Competencies ({ model }) {
   return (
     <div>
       <Type model={model} filters={filters} />
-      <Legend filters={filters} model={model} />
     </div>
   )
 }
