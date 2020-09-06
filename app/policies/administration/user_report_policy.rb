@@ -21,5 +21,9 @@ module Administration
     def regenerate?
       show?
     end
+
+    def toggle_user_access?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
   end
 end

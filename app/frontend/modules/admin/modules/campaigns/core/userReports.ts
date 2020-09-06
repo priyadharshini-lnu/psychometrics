@@ -27,6 +27,7 @@ export const DOWNLOAD = 'userReports/DOWNLOAD'
 export const SELECT_RECORDS = 'userReports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'userReports/REGENERATE_REPORTS'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
+export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 
 export const fetchSingle = (campaignId: number, id: number) => ({
   type: FETCH_SINGLE,
@@ -68,6 +69,14 @@ export const remove = (campaignId: number, id: number) => ({
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}`,
+  },
+})
+
+export const toggleUserAccess = (campaignId: number, id: number) => ({
+  type: TOGGLE_USER_ACCESS,
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/toggle_user_access`,
   },
 })
 
@@ -124,6 +133,13 @@ const HANDLERS = {
     updateIn(state, ['list'], (userReports: UserReport[]) => _.filter(
       userReports, (report: UserReport) => report.id !== response,
     ))
+  ),
+  [TOGGLE_USER_ACCESS]: (state: State, { response }: { response: UserReport }) => (
+    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (report: UserReport) => {
+      if (report.id === response.id) { return response }
+
+      return report
+    }))
   ),
 }
 

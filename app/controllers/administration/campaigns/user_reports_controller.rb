@@ -6,7 +6,7 @@ module Administration
       include AuthenticateByToken
 
       prepend_before_action :authenticate_by_token!, only: %i[pdf_preview]
-      before_action :set_resource, only: %i[show destroy download pdf_preview]
+      before_action :set_resource, only: %i[show destroy download pdf_preview toggle_user_access]
 
       def create
         form = ::Campaigns::UserReports::AddForm.from_params(resource_params)
@@ -67,6 +67,11 @@ module Administration
         ::UserReports::GenerateAndSavePdfJob.perform_later(user_report_ids, current_user)
 
         head :ok
+      end
+
+      def toggle_user_access
+        resource.toggle!(:user_access)
+        render json: resource, serializer: Administration::UserReportSerializer
       end
 
       private
