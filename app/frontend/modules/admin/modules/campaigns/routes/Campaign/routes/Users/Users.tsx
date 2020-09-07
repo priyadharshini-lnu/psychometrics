@@ -269,7 +269,10 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       content: I18n.t('campaign_users.modals.remove', { email }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: remove,
+      onOk: () => {
+        remove()
+        message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email }))
+      },
     })
   }
 
