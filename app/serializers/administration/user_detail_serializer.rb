@@ -33,7 +33,7 @@ module Administration
     end
 
     def active
-      object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign]&.id }&.active
+      object.campaign_users.find { |cu| cu.campaign_id == campaign.id }&.active
     end
 
     private

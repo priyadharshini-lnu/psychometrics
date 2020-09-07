@@ -25,6 +25,7 @@ export const UPDATE = 'resource/campaigns/user/UPDATE'
 export const FETCH_SINGLE = 'campaigns/users/FETCH_SINGLE'
 export const REMOVE = 'campaigns/user/REMOVE'
 export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
+export const TOGGLE_STATUS_REQUEST = 'campaigns/user/TOGGLE_STATUS_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 
 export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
@@ -55,10 +56,11 @@ export const remove = (campaignId: string, id: number) => ({
 
 export const toggleStatus = (campaignId: string, id: number, body) => ({
   type: TOGGLE_STATUS,
+  id,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
-    body: { ...body, id },
+    body,
   },
 })
 
@@ -88,14 +90,10 @@ export interface UserDetails {
 }
 
 export interface ToggleStatusAction {
-  response: {
-    active: boolean
-  },
-  requestAction: {
-    request: {
-      body: {
-        id: number
-      }
+  id: number,
+  request: {
+    body: {
+      active: boolean
     }
   }
 }
@@ -123,16 +121,16 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS]: (state, { response, requestAction: { request } }: ToggleStatusAction) => {
+  [TOGGLE_STATUS_REQUEST]: (state, { request: { body }, id }: ToggleStatusAction) => {
     if (state.list) {
       const users = state.list.map((user: User) => {
-        if (user.id !== request.body.id) return user
+        if (user.id !== id) return user
 
-        return { ...user, ...response }
+        return { ...user, ...body }
       })
       return setIn(state, ['list'], users)
     }
-    return setIn(state, ['current', 'active'], response.active)
+    return setIn(state, ['current', 'active'], body.active)
   },
 }
 
