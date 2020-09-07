@@ -71,7 +71,7 @@ module Administration
 
       def toggle_user_access
         resource.toggle!(:user_access)
-        render json: resource, serializer: Administration::UserReportSerializer
+        head :ok
       end
 
       private

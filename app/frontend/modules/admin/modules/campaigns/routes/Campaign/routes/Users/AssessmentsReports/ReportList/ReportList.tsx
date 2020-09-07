@@ -69,7 +69,7 @@ const ReportList: React.FC<Props> = ({
               <Switch
                 checked={userAccess}
                 onChange={() => {
-                  toggleUserAccess(parsedCampaignId, id)
+                  toggleUserAccess(parsedCampaignId, id, { userAccess: !userAccess })
                 }}
               />
             )}
