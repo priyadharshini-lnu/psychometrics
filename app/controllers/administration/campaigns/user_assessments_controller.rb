@@ -9,10 +9,7 @@ module Administration
       def update_norm
         user_result = resource.users_result
 
-        ::UsersResults::Recompute.call!(user_result, 'id' => params[:norm_id], 'type' => params[:norm_type])
-        ::UsersResults::RegenerateReports.call!(user_result, campaign, current_user)
-
-        user_result.update!(norm_id: params[:norm_id], norm_type: params[:norm_type])
+        ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id, :norm_type))
 
         render json: { norm_name: user_result.norm.name, norm_type: user_result.norm_type }
       end
@@ -25,8 +22,7 @@ module Administration
       def rescore_response
         user_result = resource.users_result
 
-        ::UsersResults::Recompute.call!(user_result)
-        ::UsersResults::RegenerateReports.call!(user_result, campaign, current_user)
+        ::UsersResults::Recompute.call!(user_result, current_user)
 
         render json: :ok
       end

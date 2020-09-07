@@ -17,5 +17,9 @@ module Administration
     def toggle_user_access?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
+
+    def regenerate?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
   end
 end

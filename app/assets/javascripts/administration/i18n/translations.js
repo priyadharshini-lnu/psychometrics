@@ -6997,13 +6997,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
     "modals": {
       "remove": {
         "content": "Are you sure you want to remove report %{userReportName}?",
         "successfully": "%{userReportName} report removed successfully"
       }
     },
-    "preview_report": "Preview Report"
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {
@@ -14065,13 +14076,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
     "modals": {
       "remove": {
         "content": "Are you sure you want to remove report %{userReportName}?",
         "successfully": "%{userReportName} report removed successfully"
       }
     },
-    "preview_report": "Preview Report"
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {
@@ -21133,13 +21155,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
     "modals": {
       "remove": {
         "content": "Are you sure you want to remove report %{userReportName}?",
         "successfully": "%{userReportName} report removed successfully"
       }
     },
-    "preview_report": "Preview Report"
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {

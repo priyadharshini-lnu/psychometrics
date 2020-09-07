@@ -44,6 +44,14 @@ module UserReports
     end
 
     def report_preview_url
+      if current_user.is?(:regular)
+        report_preview_user_url
+      else
+        report_preview_admin_url
+      end
+    end
+
+    def report_preview_admin_url
       params = {
         host: Settings.domain,
         user_token: current_user.authentication_token,
@@ -55,6 +63,20 @@ module UserReports
       }
 
       pdf_preview_administration_new_campaign_user_report_url(params)
+    end
+
+    def report_preview_user_url
+      params = {
+        host: Settings.domain,
+        subdomain: current_user.project.subdomain,
+        user_token: current_user.authentication_token,
+        lang: options[:lang] || report.default_language || I18n.locale,
+        port: Settings.port,
+        protocol: Settings.protocol,
+        id: user_report.id
+      }
+
+      pdf_preview_user_report_url(params)
     end
 
     def report_file_name

@@ -27,6 +27,7 @@ const ReportList: React.FC<Props> = ({
   },
   match: { params: { projectId, campaignId } },
   openModal,
+  selectRecords,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -38,7 +39,7 @@ const ReportList: React.FC<Props> = ({
           rowKey="id"
           dataSource={list}
           pagination={false}
-          rowSelection={{ type: 'checkbox' }}
+          rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
         >
           <Column
             title={I18n.t('common.column.id')}

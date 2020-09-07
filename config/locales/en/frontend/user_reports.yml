@@ -5,3 +5,11 @@ en:
       remove:
         content: Are you sure you want to remove report %{userReportName}?
         successfully: '%{userReportName} report removed successfully'
+    messages:
+      regenerate_successful: Report regeneration job scheduled successfully
+    actions:
+      regenerate: Regenerate
+    statuses:
+      prepared: Available
+      not_prepared: Not Available
+      generating: Generating

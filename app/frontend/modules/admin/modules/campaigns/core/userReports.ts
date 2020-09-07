@@ -8,6 +8,7 @@ import { FETCH_SINGLE as FETCH_SINGLE_USER } from './users'
 
 const defaultState = {
   list: [],
+  selectedIds: [],
   current: {
     user: {},
     options: { reports: { approval: {} } },
@@ -18,10 +19,13 @@ const defaultState = {
 
 export const get = (state: RootState): State => _.get(state, ['campaigns', 'userReports'])
 export const getCurrent = (state: RootState): UserReportDetails => _.get(get(state), ['current'])
+export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
 
 export const CREATE = 'resource/userReport/report/CREATE'
 export const FETCH_SINGLE = 'userReports/FETCH_SINGLE'
 export const DOWNLOAD = 'userReports/DOWNLOAD'
+export const SELECT_RECORDS = 'userReports/SELECT_RECORDS'
+export const REGENERATE_REPORTS = 'userReports/REGENERATE_REPORTS'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 
 export const fetchSingle = (campaignId: number, id: number) => ({
@@ -40,6 +44,24 @@ export const download = (campaignId: number, id: number) => ({
     loader: true,
   },
 })
+
+export const selectRecords = (ids: number[]) => ({
+  type: SELECT_RECORDS,
+  payload: { ids },
+})
+
+export const regenerateReports = (campaignId: number, ids: number[]) => ({
+  type: REGENERATE_REPORTS,
+  ids,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/regenerate`,
+    body: { ids },
+    loader: true,
+  },
+})
+
+type SelectRecordsAction = ReturnType<typeof selectRecords>
 
 export const remove = (campaignId: number, id: number) => ({
   type: REMOVE,
@@ -73,6 +95,7 @@ interface UserReportDetails {
 export interface State {
   list: UserReport[],
   current: UserReportDetails,
+  selectedIds: number[]
 }
 
 const HANDLERS = {
@@ -88,6 +111,15 @@ const HANDLERS = {
     },
   }),
   [CREATE]: (_, { response }: FetchAction) => ({ list: response.userReports }),
+  [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsAction) => ({ ...state, selectedIds: ids }),
+  [REGENERATE_REPORTS]: (state: State, { requestAction: { ids } }) => (
+    updateIn(state, ['list'],
+      (userReports: UserReport[]) => userReports.map((userReport) => {
+        if (_.includes(ids, userReport.id)) { return { ...userReport, status: 'generating' } }
+
+        return userReport
+      }))
+  ),
   [REMOVE]: (state: State, { response }: { response: number }) => (
     updateIn(state, ['list'], (userReports: UserReport[]) => _.filter(
       userReports, (report: UserReport) => report.id !== response,

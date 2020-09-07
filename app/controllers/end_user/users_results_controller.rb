@@ -11,7 +11,6 @@ module EndUser
                                                                   complete_multipart_upload]
 
     def update
-      @threesixty_campaign = @user_assessment.campaign.threesixty? && @user_assessment.campaign.threesixty_campaign
       result_params = ::UsersResults::ExtendResourceParams.call!(
         resource_params.to_h,
         params[:question_ids],
@@ -19,7 +18,7 @@ module EndUser
       )
 
       form = ::UsersResults::UpdatingForm.from_params(result_params)
-      ::UsersResults::UpdateUsersResult.call(form, @users_result, @threesixty_campaign)
+      ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
       render json: @users_result,
              serializer: UsersResultUpdateSerializer,

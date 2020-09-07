@@ -75,7 +75,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'report_id' => report.id,
       'name' => report.name,
       'user_access' => user_report.user_access,
-      'report_family_name' => report_family.name
+      'report_family_name' => report_family.name,
+      'status' => 'not_prepared'
     })
   end
 

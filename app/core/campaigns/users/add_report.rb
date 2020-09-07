@@ -63,24 +63,12 @@ module Campaigns
           assessment_id: assessment_id,
           subject_id: campaign_user.user_id,
           evaluator_id: campaign_user.user_id,
-          campaign_id: campaign.id,
           answers: {}
         )
       end
 
       def generate_report_pdf(user_report)
-        assessment_ids = user_report.report.assessments.pluck(:id)
-
-        incomplete_assessment = UsersResult.joins(:user_assessments).
-                                where(
-                                  assessment_id: assessment_ids,
-                                  user_assessments: {
-                                    campaign_id: campaign.id, subject_id: user.id, evaluator_id: user.id
-                                  }
-                                ).
-                                where.not(status: :completed)
-
-        ::UserReports::GeneratePdfJob.perform_later(user_report, user) unless incomplete_assessment.exists?
+        ::UserReports::GenerateAndSavePdfJob.perform_later(user_report, user)
       end
     end
   end

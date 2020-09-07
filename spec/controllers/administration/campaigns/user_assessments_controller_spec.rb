@@ -40,9 +40,6 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
   after(:each) { sign_out(current_user) }
 
   it '[POST] update_norm' do
-    expect(::UsersResults::Recompute).to receive(:call!)
-    expect(::UserReports::GeneratePdfJob).to receive(:perform_now)
-
     post :update_norm, params: {
       id: user_assessment.id,
       new_campaign_id: campaign.id,
@@ -79,7 +76,6 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
 
   it '[POST] rescore_responses' do
     expect(::UsersResults::Recompute).to receive(:call!)
-    expect(::UserReports::GeneratePdfJob).to receive(:perform_now)
 
     post :rescore_response, params: {
       id: user_assessment.id,

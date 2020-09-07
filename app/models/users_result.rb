@@ -11,6 +11,7 @@ class UsersResult < ApplicationRecord
   has_one :participant, class_name: 'Threesixty::Participant'
   belongs_to :campaign
   belongs_to :norm
+  has_one :threesixty_campaign, through: :campaign
   has_many :media_responses
   has_many :user_assessments
 
@@ -36,5 +37,13 @@ class UsersResult < ApplicationRecord
 
   def user_id
     evaluator_id
+  end
+
+  def user_reports
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_ids)
+  end
+
+  def campaign_ids
+    user_assessments.pluck(:campaign_id)
   end
 end

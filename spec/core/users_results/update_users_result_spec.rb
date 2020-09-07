@@ -3,11 +3,13 @@
 require 'rails_helper'
 
 describe ::UsersResults::UpdateUsersResult do
-  let(:users_result) { double('users_result', subject: 'subject', evaluator: 'evaluator') }
-  let(:evaluator_user) { double('user', id: 1) }
   let(:threesixty_campaign) { double('threesixty_campaign', id: 1) }
+  let(:users_result) do
+    double('users_result', subject: 'subject', evaluator: 'evaluator', threesixty_campaign: threesixty_campaign)
+  end
+  let(:evaluator_user) { double('user', id: 1) }
 
-  subject { described_class.call(form, users_result, threesixty_campaign) }
+  subject { described_class.call(form, users_result, evaluator_user) }
 
   context 'form is invalid' do
     let(:form) { double('form', 'invalid?': true) }
@@ -30,10 +32,7 @@ describe ::UsersResults::UpdateUsersResult do
     form = double('form', 'invalid?': false)
     threesixty_subject = double
     allow_any_instance_of(described_class).to receive(:update_users_result)
-    allow(threesixty_campaign).to receive(:'threesixty?').and_return(true)
-    allow(threesixty_campaign).to receive(:'common?').and_return(false)
     allow(users_result).to receive(:'completed?').and_return(true)
-    allow(users_result).to receive(:campaign).and_return(threesixty_campaign)
     allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
 
     expect(Threesixty::Emails::Send).to receive(:call!).
@@ -43,7 +42,7 @@ describe ::UsersResults::UpdateUsersResult do
     expect(Threesixty::Emails::Send).to receive(:call!).
       with('approve_report', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
-    described_class.call(form, users_result, threesixty_campaign)
+    described_class.call(form, users_result, evaluator_user)
   end
 
   context '360 campaign' do
@@ -70,13 +69,17 @@ describe ::UsersResults::UpdateUsersResult do
                                                   campaign: campaign,
                                                   report: report)
     end
-    let(:form)            { double('form', 'invalid?': false, attributes_with_values: {}) }
+    let(:form) { double('form', 'invalid?': false, attributes_with_values: {}) }
+    let!(:participant) do
+      create(:threesixty_participant,
+             subject: subject_user, evaluator: evaluator_user, campaign: campaign, relationship: create(:relationship))
+    end
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
 
     context '#update_assign' do
-      after { described_class.call(form, users_result, threesixty_campaign) }
+      after { described_class.call(form, users_result, evaluator_user) }
       subject { users_result }
 
       it { is_expected.to receive(:assign_attributes).with(form.attributes_with_values) }
@@ -91,19 +94,6 @@ describe ::UsersResults::UpdateUsersResult do
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject, {}) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }
-      end
-    end
-
-    context '#generate_report' do
-      before { allow(users_result).to receive(:'completed?').and_return(true) }
-      subject { described_class.call(form, users_result, threesixty_campaign) }
-
-      context 'report is disabled' do
-        before(:each) { report.update_column(:disabled, true) }
-        it 'dont sets generating status' do
-          subject
-          expect(user_report.reload.generating?).to be_falsy
-        end
       end
     end
   end

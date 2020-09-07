@@ -25,6 +25,7 @@ class UserReport < ApplicationRecord
 
   def user_results
     UsersResult.joins(:user_assessments).
-      where(assessment_id: report.assessment_ids, subject_id: user_id, user_assessments: { campaign_id: campaign_id })
+      where(assessment_id: report.assessment_ids, subject_id: user_id, evaluator_id: user_id,
+        user_assessments: { campaign_id: campaign_id })
   end
 end

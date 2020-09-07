@@ -7,8 +7,8 @@ module Administration
 
       attributes :id, :name, :type, :status, :options, :campaign_url, :is_threesixty
 
-      has_many :assessments, serializer: AssessmentSerializer
-      has_many :reports, serializer: ReportSerializer
+      has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
+      has_many :reports, serializer: Administration::Campaigns::ReportSerializer
 
       def campaign_url
         if object.threesixty?

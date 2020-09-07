@@ -2,12 +2,14 @@
 
 module UsersResults
   class UpdateUsersResult < BaseCommand
-    def initialize(form, users_result, threesixty_campaign = nil)
+    private_attr_reader :form, :users_result, :subject_user, :current_user
+
+    def initialize(form, users_result, current_user)
       @form = form
       @users_result = users_result
       @subject_user = users_result.subject
       @evaluator_user = users_result.evaluator
-      @threesixty_campaign = threesixty_campaign
+      @current_user = current_user
     end
 
     def call
@@ -15,10 +17,10 @@ module UsersResults
 
       update_users_result
       if users_result.completed?
-        if users_result.campaign.common?
-          generate_report
-        else
+        if threesixty_campaign
           send_necessary_emails
+        else
+          generate_report
         end
       end
 
@@ -26,8 +28,6 @@ module UsersResults
     end
 
     private
-
-    attr_reader :form, :users_result, :subject_user, :threesixty_campaign
 
     # Sets new data to the users_result
     #   and increases the step of users_result
@@ -43,8 +43,8 @@ module UsersResults
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result, {})
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
-        if users_result.campaign.threesixty?
-          participant = @threesixty_campaign.
+        if threesixty_campaign
+          participant = threesixty_campaign.
                         participants.
                         find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
           participant.update_attributes(evaluator_nomination_status: :completed, users_result_id: users_result.id)
@@ -58,7 +58,7 @@ module UsersResults
     end
 
     def generate_report
-      # UserAssessment::GenerateReport.call(assign, current_user)
+      ::UsersResults::GenerateReports.call!(users_result, current_user)
     end
 
     def send_necessary_emails
@@ -72,6 +72,10 @@ module UsersResults
       Threesixty::Emails::Send.call!(
         Threesixty::Emails::Name::APPROVE_REPORT, threesixty_campaign: threesixty_campaign, subject: subject
       )
+    end
+
+    def threesixty_campaign
+      users_result.threesixty_campaign
     end
   end
 end

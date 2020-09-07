@@ -17,5 +17,9 @@ module Administration
     def download?
       show?
     end
+
+    def regenerate?
+      show?
+    end
   end
 end

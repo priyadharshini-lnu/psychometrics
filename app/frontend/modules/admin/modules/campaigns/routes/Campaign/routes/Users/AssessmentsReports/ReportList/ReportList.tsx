@@ -24,6 +24,7 @@ const ReportList: React.FC<Props> = ({
   reports: {
     list,
   },
+  selectRecords,
   match: { params: { campaignId, projectId } },
   remove,
 }) => {
@@ -38,7 +39,7 @@ const ReportList: React.FC<Props> = ({
           rowKey="id"
           dataSource={list}
           pagination={false}
-          rowSelection={{ type: 'checkbox' }}
+          rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
         >
           <Column
             title={I18n.t('common.column.id')}
@@ -54,6 +55,11 @@ const ReportList: React.FC<Props> = ({
             title={I18n.t('campaign_report.column.report_bundle')}
             key="reportFamilyName"
             dataIndex="reportFamilyName"
+          />
+          <Column
+            title={I18n.t('common.column.status')}
+            key="status"
+            render={({ status }) => I18n.t(`user_reports.statuses.${status}`)}
           />
           <Column
             title={I18n.t('campaign_report.column.user_access')}

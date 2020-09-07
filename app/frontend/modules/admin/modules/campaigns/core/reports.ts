@@ -2,18 +2,22 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { updateIn } from 'utils/immutable'
+import { RootState } from 'modules/admin/core/rootReducers'
 import { FETCH_ASSESSMENTS_AND_REPORTS } from './current'
 
 const defaultState = {
   list: [],
-  selectedId: [],
+  selectedIds: [],
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'reports'])
+export const getSelectedIds = (state: RootState) => _.get(get(state), 'selectedIds')
 
 export const CREATE = 'resource/campaigns/report/CREATE'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
+export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
+export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -37,6 +41,22 @@ export const toggleUserAccess = (campaignId: number, campaignReportId: number, t
   },
 })
 
+export const selectRecords = (ids: number[]) => ({
+  type: SELECT_RECORDS,
+  payload: { ids },
+})
+
+type SelectRecordsAction = ReturnType<typeof selectRecords>
+
+export const regenerateReports = (campaignId: number, ids: number[]) => ({
+  type: REGENERATE_REPORTS,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/reports/regenerate`,
+    body: { ids },
+    loader: true,
+  },
+})
 
 export interface FetchAction {
   response: {
@@ -45,7 +65,8 @@ export interface FetchAction {
 }
 
 export interface State {
-  list: Report[]
+  list: Report[],
+  selectedIds: number[]
 }
 
 const HANDLERS = {
@@ -63,6 +84,7 @@ const HANDLERS = {
       return report
     }))
   ),
+  [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsAction) => ({ ...state, selectedIds: ids }),
 }
 
 export default createReducer(HANDLERS, defaultState)

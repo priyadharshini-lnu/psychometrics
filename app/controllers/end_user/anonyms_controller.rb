@@ -29,7 +29,6 @@ module EndUser
         format.json do
           user_result = UsersResult.find_or_create_by(
             assessment_id: @campaign_assessment.assessment_id,
-            campaign_id: @campaign_assessment.campaign_id,
             subject_id: @current_user.id,
             evaluator_id: @current_user.id
           ) do |result|

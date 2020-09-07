@@ -63,6 +63,13 @@ module Administration
           each_serializer: Administration::ReportFamilySerializer
       end
 
+      def regenerate
+        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
+        ::CampaignReports::GenerateAndSavePdfJob.perform_later(campaign_reports, current_user)
+
+        head :ok
+      end
+
       private
 
       def resource_class

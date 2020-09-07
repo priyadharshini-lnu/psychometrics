@@ -62,6 +62,7 @@ Rails.application.routes.draw do
           collection do
             get :report_families
             get :assessments_and_reports
+            post :regenerate
           end
           member do
             get :export
@@ -72,6 +73,9 @@ Rails.application.routes.draw do
           member do
             get :pdf_preview
             get :download
+          end
+          collection do
+            post :regenerate
           end
         end
         resources :users do
@@ -680,6 +684,12 @@ Rails.application.routes.draw do
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
       get 'anonym/:assessment_key/assessment', to: 'anonyms#assessment', as: :anonym_assessment
+
+      resources :user_reports do
+        member do
+          post :pdf_preview
+        end
+      end
 
       resources :user_assessments do
         resources :users_results, only: %i[update] do

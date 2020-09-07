@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import {
-  Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message,
+  Row, Col, Button, PageHeader, Descriptions, Switch, Tag, Modal, message, Space,
 } from 'antd'
 import { PlusOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import Modals from 'modules/admin/components/Modals/'
@@ -44,6 +44,9 @@ const AssessmentsReports: React.FC<Props> = ({
   match: { params: { projectId, campaignId, id } },
   openModal,
   remove,
+  selectedIds,
+  regenerateReports,
+  regenerateInProgress,
   history,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -85,6 +88,12 @@ const AssessmentsReports: React.FC<Props> = ({
         history.push(`/administration/projects/${projectId}/new_campaigns/${campaignId}/users`)
         message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: user.email }))
       },
+    })
+  }
+
+  const handleRegenerateReports = () => {
+    regenerateReports(parsedCampaignId, selectedIds).then(() => {
+      message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
 
@@ -149,17 +158,27 @@ const AssessmentsReports: React.FC<Props> = ({
         </Col>
         <div>
           <div className={styles.newReportButton}>
-            <Button
-              type="primary"
-              onClick={() => openModal('AddReportModal', {
-                campaignId: parsedCampaignId,
-                userId: parsedUserId,
-                strategy: Strategies.SINGLE,
-              })}
-            >
-              <PlusOutlined />
-              <span>{I18n.t('reports.actions.add')}</span>
-            </Button>
+            <Space>
+              <Button
+                type="default"
+                onClick={handleRegenerateReports}
+                disabled={_.isEmpty(selectedIds) || regenerateInProgress}
+                loading={regenerateInProgress}
+              >
+                <span>{I18n.t('user_reports.actions.regenerate')}</span>
+              </Button>
+              <Button
+                type="primary"
+                onClick={() => openModal('AddReportModal', {
+                  campaignId: parsedCampaignId,
+                  userId: parsedUserId,
+                  strategy: Strategies.SINGLE,
+                })}
+              >
+                <PlusOutlined />
+                <span>{I18n.t('reports.actions.add')}</span>
+              </Button>
+            </Space>
           </div>
         </div>
       </Row>

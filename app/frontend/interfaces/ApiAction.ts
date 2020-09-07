@@ -2,7 +2,7 @@ import { AnyAction } from 'redux'
 
 export default interface ApiAction<T> extends AnyAction {
   request: {
-    method: string
+    method?: string
     url: string
     loader?: boolean
     camelize?: boolean

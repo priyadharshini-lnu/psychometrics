@@ -37,32 +37,16 @@ describe Campaigns::Users::AddReport do
     end.to_not(change { UserAssessment.count })
   end
 
-  it 'calls UserReports::GeneratePdfJob if assessment added to users are already completed' do
+  it 'calls UserReports::GenerateAndSavePdfJob' do
     create(
       :user_assessment,
       assessment_id: report.assessments.first.id,
       campaign: campaign_user.campaign,
       subject: campaign_user.user,
       evaluator: campaign_user.user,
-      relationship: Relationship.self_relationship,
-      users_result: create(:users_result, assessment_id: report.assessments.first.id, status: :completed)
+      relationship: Relationship.self_relationship
     )
-    expect(UserReports::GeneratePdfJob).to receive(:perform_later)
-
-    described_class.call!(campaign_user, report)
-  end
-
-  it "doesn't calls UserReports::GeneratePdfJob if assessment added to users is not completed" do
-    create(
-      :user_assessment,
-      assessment_id: report.assessments.first.id,
-      campaign: campaign_user.campaign,
-      subject: campaign_user.user,
-      evaluator: campaign_user.user,
-      relationship: Relationship.self_relationship,
-      users_result: create(:users_result, assessment_id: report.assessments.first.id, status: :in_progress)
-    )
-    expect(UserReports::GeneratePdfJob).to_not receive(:perform_later)
+    expect(UserReports::GenerateAndSavePdfJob).to receive(:perform_later)
 
     described_class.call!(campaign_user, report)
   end

@@ -38,12 +38,9 @@ describe CampaignAssessments::RecomputeResultsJob do
 
   it do
     expect(::UsersResults::Recompute).to receive(:call!).
-      with(completed_user_result, 'id' => norm.id, 'type' => 'ETI')
+      with(completed_user_result, current_user, 'id' => norm.id, 'type' => 'ETI')
     expect(::UsersResults::Recompute).to_not receive(:call!).
-      with(uncompleted_user_result, 'id' => norm.id, 'type' => 'ETI')
-
-    expect(::UserReports::GeneratePdfJob).to receive(:perform_now).
-      with(prepared_user_report, current_user)
+      with(uncompleted_user_result, current_user, 'id' => norm.id, 'type' => 'ETI')
 
     CampaignAssessments::RecomputeResultsJob.perform_now(campaign_assessment, current_user)
   end
