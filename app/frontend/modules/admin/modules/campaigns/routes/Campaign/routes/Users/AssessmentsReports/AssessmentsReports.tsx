@@ -25,7 +25,7 @@ const MODALS = {
 
 interface OwnProps {
   openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void,
-  toggleStatus(campaignId: string, id: number, body: object): void
+  toggleStatus(campaignId: string, id: number, updateInListing: boolean, body: object): void
 }
 
 interface Params {
@@ -130,7 +130,7 @@ const AssessmentsReports: React.FC<Props> = ({
                 checked={user.active}
                 onChange={
                   () => {
-                    toggleStatus(campaignId, parsedUserId, { active: !user.active })
+                    toggleStatus(campaignId, parsedUserId, false, { active: !user.active })
                   }
               }
               />

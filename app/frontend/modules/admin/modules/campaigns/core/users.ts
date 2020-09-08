@@ -54,9 +54,10 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number, body) => ({
+export const toggleStatus = (campaignId: string, id: number, updateInListing: boolean, body) => ({
   type: TOGGLE_STATUS,
   id,
+  updateInListing,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
@@ -91,6 +92,7 @@ export interface UserDetails {
 
 export interface ToggleStatusAction {
   id: number,
+  updateInListing: boolean,
   request: {
     body: {
       active: boolean
@@ -121,8 +123,8 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS_REQUEST]: (state, { request: { body }, id }: ToggleStatusAction) => {
-    if (state.list) {
+  [TOGGLE_STATUS_REQUEST]: (state, { request: { body }, id, updateInListing }: ToggleStatusAction) => {
+    if (updateInListing) {
       const users = state.list.map((user: User) => {
         if (user.id !== id) return user
 
