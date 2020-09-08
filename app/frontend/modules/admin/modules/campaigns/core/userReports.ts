@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
-import { updateIn, setIn } from 'utils/immutable'
+import { updateIn } from 'utils/immutable'
 import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import humps from 'humps'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -74,13 +74,12 @@ export const remove = (campaignId: number, id: number) => ({
   },
 })
 
-export const toggleUserAccess = (campaignId: number, id: number, body: object) => ({
+export const toggleUserAccess = (campaignId: number, id: number) => ({
   type: TOGGLE_USER_ACCESS,
   id,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/toggle_user_access`,
-    body,
   },
 })
 
@@ -88,13 +87,6 @@ export interface FetchAction {
   response: {
     userReports: UserReport[],
   },
-}
-
-export interface ToggleUserAccessAction {
-  id: number
-  request: {
-    body: object
-  }
 }
 
 interface UserReportDetails {
@@ -145,14 +137,13 @@ const HANDLERS = {
       userReports, (report: UserReport) => report.id !== response,
     ))
   ),
-  [TOGGLE_USER_ACCESS_REQUEST]: (state, { request: { body }, id }: ToggleUserAccessAction) => {
-    const reports = state.list.map((report: UserReport) => {
-      if (report.id !== id) return report
+  [TOGGLE_USER_ACCESS_REQUEST]: (state: State, { id }: { id: number }) => (
+    updateIn(state, ['list'], (userReports: UserReport[]) => _.map(userReports, (userReport: UserReport) => {
+      if (userReport.id !== id) return userReport
 
-      return { ...report, ...body }
-    })
-    return setIn(state, ['list'], reports)
-  },
+      return { ...userReport, userAccess: !userReport.userAccess }
+    }))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)
