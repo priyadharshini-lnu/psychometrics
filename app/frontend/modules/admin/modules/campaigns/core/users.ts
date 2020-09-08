@@ -9,6 +9,7 @@ export interface User {
   firstName: string
   lastName: string
   email: string
+  active: boolean
 }
 
 const defaultState = {
@@ -54,14 +55,13 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number, updateInListing: boolean, body) => ({
+export const toggleStatus = (campaignId: string, id: number, options: { updateInListing: boolean }) => ({
   type: TOGGLE_STATUS,
   id,
-  updateInListing,
+  options,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
-    body,
   },
 })
 
@@ -90,16 +90,6 @@ export interface UserDetails {
   lastSignInAt: string
 }
 
-export interface ToggleStatusAction {
-  id: number,
-  updateInListing: boolean,
-  request: {
-    body: {
-      active: boolean
-    }
-  }
-}
-
 export interface State {
   list: User[]
   total: number
@@ -123,16 +113,16 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS_REQUEST]: (state, { request: { body }, id, updateInListing }: ToggleStatusAction) => {
-    if (updateInListing) {
-      const users = state.list.map((user: User) => {
+
+  [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: { id: number, options: { updateInListing: boolean } }) => {
+    if (options.updateInListing) {
+      return updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
         if (user.id !== id) return user
 
-        return { ...user, ...body }
-      })
-      return setIn(state, ['list'], users)
+        return { ...user, active: !user.active }
+      }))
     }
-    return setIn(state, ['current', 'active'], body.active)
+    return setIn(state, ['current', 'active'], !state.current.active)
   },
 }
 
