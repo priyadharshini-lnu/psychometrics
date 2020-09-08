@@ -27,6 +27,7 @@ const ReportList: React.FC<Props> = ({
   selectRecords,
   match: { params: { campaignId, projectId } },
   remove,
+  toggleUserAccess,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedProjectId = parseInt(projectId, 10)
@@ -64,8 +65,13 @@ const ReportList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_report.column.user_access')}
             key="userAccess"
-            render={({ userAccess }) => (
-              <Switch checked={userAccess} onChange={() => { }} />
+            render={({ userAccess, id }) => (
+              <Switch
+                checked={userAccess}
+                onChange={() => {
+                  toggleUserAccess(parsedCampaignId, id)
+                }}
+              />
             )}
           />
           <Column

@@ -92,6 +92,13 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     end
   end
 
+  describe 'PATCH toggle_user_access' do
+    it 'toggles user_report status' do
+      patch :toggle_user_access, params: { new_campaign_id: campaign.id, id: user_report.id }
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   private
 
   def check_report_response(report_response)

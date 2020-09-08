@@ -73,6 +73,7 @@ Rails.application.routes.draw do
           member do
             get :pdf_preview
             get :download
+            patch :toggle_user_access
           end
           collection do
             post :regenerate

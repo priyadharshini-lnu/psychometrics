@@ -1,5 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { get as getReports, remove, selectRecords } from 'modules/admin/modules/campaigns/core/userReports'
+import {
+  get as getReports, remove, toggleUserAccess, selectRecords,
+} from 'modules/admin/modules/campaigns/core/userReports'
 import { RootState } from 'modules/admin/core/rootReducers'
 
 const connecter = connect(
@@ -9,6 +11,7 @@ const connecter = connect(
   {
     selectRecords,
     remove,
+    toggleUserAccess,
   },
 )
 
