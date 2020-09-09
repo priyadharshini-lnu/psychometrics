@@ -62,9 +62,7 @@ module Administration
 
       def toggle_status
         resource.campaign_users.find_by(campaign_id: params[:new_campaign_id]).toggle!(:active)
-        render json: resource,
-        serializer: Administration::Campaigns::UserSerializer,
-        campaign_id: campaign.id
+        head :ok
       end
 
       def destroy

@@ -32,8 +32,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   describe 'PUT toggle_status' do
     it 'toggles user status' do
       put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }
-      parsed_response = JSON.parse(response.body)
-      expect(parsed_response['active']).to eq(false)
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -65,7 +64,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'email' => user.email,
       'created_at' => I18n.l(user.created_at, format: :short),
       'last_sign_in_at' => nil,
-      'campaigns' => [campaign.slice('name', 'id')]
+      'campaigns' => [campaign.slice('name', 'id')],
+      'active' => campaign_user.active
     })
   end
 

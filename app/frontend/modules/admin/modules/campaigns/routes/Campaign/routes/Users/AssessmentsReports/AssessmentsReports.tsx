@@ -43,6 +43,7 @@ const AssessmentsReports: React.FC<Props> = ({
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
+  toggleStatus,
   remove,
   selectedIds,
   regenerateReports,
@@ -135,7 +136,14 @@ const AssessmentsReports: React.FC<Props> = ({
         >
           <Descriptions size="small" column={3}>
             <Descriptions.Item label={I18n.t('common.column.status')}>
-              <Switch checked={user.disabled} />
+              <Switch
+                checked={user.active}
+                onChange={
+                  () => {
+                    toggleStatus(campaignId, parsedUserId, { updateInListing: false })
+                  }
+              }
+              />
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}

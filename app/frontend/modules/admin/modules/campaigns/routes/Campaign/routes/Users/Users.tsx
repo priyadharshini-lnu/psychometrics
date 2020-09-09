@@ -29,7 +29,7 @@ const { I18n } = window
 interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   remove(campaignId: string, id: number): void
-  toggleStatus(campaignId: string, id: number): void
+  toggleStatus(campaignId: string, id: number, options: { updateInListing: boolean }): void
   resetPassword(campaignId: string, id: number): void
   users: UserState
   match: {
@@ -139,7 +139,7 @@ const UserList: React.FC<Props> = ({
                     checked={active}
                     onChange={
                       () => {
-                        toggleStatus(campaignId, id)
+                        toggleStatus(campaignId, id, { updateInListing: true })
                       }
                   }
                   />

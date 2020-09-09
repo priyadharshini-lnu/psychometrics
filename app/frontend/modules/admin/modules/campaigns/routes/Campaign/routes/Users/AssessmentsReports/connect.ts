@@ -4,6 +4,7 @@ import {
   fetchSingle as fetchSingleUser,
   getCurrent as getCurrentUser,
   remove,
+  toggleStatus,
 } from 'modules/admin/modules/campaigns/core/users'
 import { regenerateReports, getSelectedIds, REGENERATE_REPORTS } from 'modules/admin/modules/campaigns/core/userReports'
 import { openModal } from 'modules/admin/core/ui/modals'
@@ -20,6 +21,7 @@ const connecter = connect(
   {
     fetchSingleUser,
     openModal,
+    toggleStatus,
     remove,
     regenerateReports,
   },

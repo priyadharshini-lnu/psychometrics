@@ -9,6 +9,7 @@ export interface User {
   firstName: string
   lastName: string
   email: string
+  active: boolean
 }
 
 const defaultState = {
@@ -25,6 +26,7 @@ export const UPDATE = 'resource/campaigns/user/UPDATE'
 export const FETCH_SINGLE = 'campaigns/users/FETCH_SINGLE'
 export const REMOVE = 'campaigns/user/REMOVE'
 export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
+export const TOGGLE_STATUS_REQUEST = 'campaigns/user/TOGGLE_STATUS_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 
 export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
@@ -53,8 +55,10 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export const toggleStatus = (campaignId: string, id: number) => ({
+export const toggleStatus = (campaignId: string, id: number, options: { updateInListing: boolean }) => ({
   type: TOGGLE_STATUS,
+  id,
+  options,
   request: {
     method: 'patch',
     url: `/administration/new_campaigns/${campaignId}/users/${id}/toggle_status`,
@@ -80,7 +84,7 @@ export interface UserDetails {
   id: number
   fullName: string
   email: string
-  disabled: boolean
+  active: boolean
   campaigns: { id: number, name: string }[]
   createdAt: string
   lastSignInAt: string
@@ -109,13 +113,17 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS]: (state: State, { response }: { response: User }) => (
-    updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
-      if (user.id === response.id) { return response }
 
-      return user
-    }))
-  ),
+  [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: { id: number, options: { updateInListing: boolean } }) => {
+    if (options.updateInListing) {
+      return updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
+        if (user.id !== id) return user
+
+        return { ...user, active: !user.active }
+      }))
+    }
+    return setIn(state, ['current', 'active'], !state.current.active)
+  },
 }
 
 export default createReducer(HANDLERS, defaultState)
