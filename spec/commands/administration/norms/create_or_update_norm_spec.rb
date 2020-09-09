@@ -25,7 +25,7 @@ describe Administration::Norms::CreateOrUpdateNorm do
       factors_norm = subject[:ok]
       props = factors_norm.props[0]
 
-      expect(props['mean']).to eql('2.0')
+      expect(props['mean']).to eql(2.0)
     end
   end
 end

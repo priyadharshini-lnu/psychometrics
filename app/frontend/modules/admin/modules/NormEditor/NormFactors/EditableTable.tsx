@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Table, message } from 'antd'
 import NormFields from '../interfaces/NormFields'
 import { EditableRow } from './EditableRow'
@@ -23,6 +23,8 @@ const EditableTable: React.FC<EditableTableProps> = ({
   factors,
   onSave,
 }) => {
+  const elRef = useRef<HTMLDivElement>(null)
+
   const [columns] = useState([
     {
       title: I18n.t('norms.percentile.columns.name'),
@@ -46,13 +48,13 @@ const EditableTable: React.FC<EditableTableProps> = ({
     setDataSource(factors)
   }, [factors])
 
-  const handleSave = (field: string, row: Factor) => {
+  const handleSave = async (field: string, row: Factor) => {
     const newData = [...dataSource]
     const index = newData.findIndex(item => row.key === item.key)
     const item = newData[index]
     newData.splice(index, 1, { ...item, ...row })
 
-    if (item[field] === row[field]) return
+    if (item[field] === row[field]) return Promise.resolve(false)
 
     const data = {
       factorId: row.key,
@@ -60,12 +62,52 @@ const EditableTable: React.FC<EditableTableProps> = ({
       fieldValue: row[field],
     }
 
-    onSave(data).then(() => {
+    return onSave(data).then(() => {
       setDataSource(newData)
       message.info(I18n.t('norms.percentile.messages.success', { factorName: row.name }))
+
+      return Promise.resolve(true)
     }).catch((errors) => {
       message.error(I18n.t('norms.percentile.messages.failure', { error: errors[0] }))
+
+      return Promise.resolve(false)
     })
+  }
+
+  const nextEditableField = (field: string) => {
+    const fields = ['mean', 'standard_deviation']
+    const index = fields.indexOf(field)
+    const nextIndex = (index + 1) % fields.length
+
+    return { nextIndex, editableField: fields[nextIndex] }
+  }
+
+  const editNextColumn = (rowKey: string, field: string, direction: string) => {
+    const el = elRef.current
+
+    if (!el) return
+
+    const { nextIndex, editableField } = nextEditableField(field)
+    let row = el.querySelector(`[data-row-key='${rowKey}'`)
+
+    if (!row) return
+    switch (nextIndex) {
+      case 0:
+        if (direction === 'next') row = row.nextElementSibling
+        break
+      case 1:
+        if (direction === 'prev') row = row.previousElementSibling
+        break
+      default:
+    }
+
+    if (row) {
+      const nextElement = row.querySelector(`td[data-name='${editableField}']`)
+      if (nextElement) {
+        const field: HTMLElement = nextElement.children[0] as HTMLElement
+        field.click()
+      }
+    }
   }
 
   const components = {
@@ -86,12 +128,13 @@ const EditableTable: React.FC<EditableTableProps> = ({
         dataIndex: col.dataIndex,
         title: col.title,
         handleSave,
+        editNextColumn,
       }),
     }
   })
 
   return (
-    <div>
+    <div ref={elRef}>
       <Table
         components={components}
         rowClassName={() => 'editable-row'}
