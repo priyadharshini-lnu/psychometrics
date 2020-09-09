@@ -53,15 +53,23 @@
   }
 }
 
+.labels {
+  .firstColumn {
+    border-color: transparent;
+  }
+  .lastColumn {
+    border-color: transparent;
+  }
+}
+
 .labelItems {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
   span {
-    flex-basis: 0;
-    flex-grow: 1;
-    padding: 0 16px;
+    padding: 16px 5px 0px 5px;
     &:first-child {
       text-align: left;
       padding-left: 0;
@@ -72,6 +80,7 @@
     }
   }
 }
+
 .contentRow {
   .row {
   min-height: 40px;
@@ -104,10 +113,6 @@
   .firstColumn {
     border-right: transparent;
   }
-  span {
-    flex: 1;
-  }
-
   .totalCeil {
     opacity: 0;
   }
@@ -116,16 +121,6 @@
 .header {
   margin-top: 5px;
 }
-
-.labels {
-  .firstColumn {
-    border-color: transparent;
-  }
-  .lastColumn {
-    border-color: transparent;
-  }
-}
-
 
 .barOuterContainer {
   width: 100%;
@@ -177,9 +172,24 @@
     span {
       &:first-child {
         text-align: right;
+        padding-right: 0;
+        padding-left: 5px;
       }
       &:last-child {
         text-align: left;
+        padding-left: 0;
+        padding-right: 5px;
+      }
+    }
+  }
+
+  .gridLines {
+    span {
+      &:first-child {
+        text-align: center;
+      }
+      &:last-child {
+        text-align: center;
       }
     }
   }
@@ -192,5 +202,10 @@
         }
       }
     }
+  }
+
+  .totalCeil {
+    margin-left: 0;
+    margin-right: 5px;
   }
 }
