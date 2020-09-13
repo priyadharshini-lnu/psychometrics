@@ -9,7 +9,7 @@ export default function FilterAvatar ({ filter, fontSize, showLabel }) {
     fontSize: fontSizeStr,
     height: heightStr,
     width: heightStr,
-    lineHeight: `${fontSize * 3}em`,
+    lineHeight: heightStr,
   }
   if (!showLabel) {
     style.color = '#ffffff00'

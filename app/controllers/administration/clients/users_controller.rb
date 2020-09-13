@@ -139,10 +139,23 @@ module Administration
         redirect_to redirect_url
       end
 
-      # Change resources's status to active/disabled
-      #
       def toggle_status
         resource.user.toggle!(:disabled)
+        # Reload with join_user
+        @_resource = policy_scope(resource_class).join_user.find(params[:id])
+        respond_to do |format|
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
+          format.js
+        end
+      end
+
+      def toggle_membership_status
+        @_resource = policy_scope(resource_class).find(params[:id])
+        resource.toggle!(:disabled)
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
         respond_to do |format|

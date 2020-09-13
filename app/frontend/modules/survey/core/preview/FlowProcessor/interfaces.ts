@@ -123,6 +123,7 @@ export interface DefaultState {
   highlights: {
     [id: string]: Highlight
   },
+  assessmentTimedOut: boolean,
 }
 
 export interface I18nInterface {

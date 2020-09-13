@@ -11,7 +11,7 @@ const TIMER_STATES = {
   90: styles.danger,
 }
 
-const Timer = ({ preview, preview: { expiryDate, timerDuration }, saveResults }) => {
+const Timer = ({ preview, preview: { expiryDate, timerDuration }, onFinish }) => {
   useEffect(() => {
     if (!timerDuration) return
     const remainingTime = (new Date(expiryDate) - new Date())
@@ -53,7 +53,7 @@ const Timer = ({ preview, preview: { expiryDate, timerDuration }, saveResults })
     expiryDate ? (
       <Countdown
         value={new Date(expiryDate)}
-        onFinish={() => saveResults(preview)}
+        onFinish={() => onFinish(preview)}
         prefix={<ClockCircleOutlined className="mrs" />}
         className={styles.timer}
         style={style}

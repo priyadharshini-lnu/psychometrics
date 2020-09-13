@@ -18,6 +18,7 @@ en:
     actions: Actions
     created_by: Created By
     modified_by: Modified By
+    membership: Membership
     clients_hierarchy: Project > Campaign > Sub Campaign
     meta_title: Administration panel
     active: Active

@@ -35,7 +35,7 @@ export class Preview extends Component {
 
   renderVideoRecorder () {
     const {
-      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
+      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress, isAssessmentTimedOut,
     } = this.props
     const { result } = model
     const { VideoRecorderComponent } = this
@@ -55,6 +55,7 @@ export class Preview extends Component {
           onDeleteMedia={this.deleteMedia}
           markQuestionInProgress={markQuestionInProgress}
           removeQuestionInProgress={removeQuestionInProgress}
+          isAssessmentTimedOut={isAssessmentTimedOut}
         />
       </div>
     )

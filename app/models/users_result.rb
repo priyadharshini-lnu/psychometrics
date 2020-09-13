@@ -46,4 +46,10 @@ class UsersResult < ApplicationRecord
   def campaign_ids
     user_assessments.pluck(:campaign_id)
   end
+
+  def extra_time_buffer_expired?
+    return false unless expiry_date
+
+    expiry_date.advance(minutes: 5) < Time.current
+  end
 end

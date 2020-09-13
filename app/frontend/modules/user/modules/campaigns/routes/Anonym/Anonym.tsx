@@ -14,10 +14,11 @@ import store from '../../../../store'
 import Timer from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 import Confirm from './Confirm'
+import { PropsFromRedux } from './connect'
 
 const { Content } = Layout
 
-interface Props {
+interface OwnProps {
   anonym: {
     loaded: boolean
     error: boolean
@@ -45,6 +46,8 @@ interface Props {
   saveResults: (assessmentId: string, { step: number, lang: string }) => void
 }
 
+type Props = PropsFromRedux & OwnProps
+
 const Anonym: React.FC<Props> = ({
   anonym: {
     loaded, error, assessment, results,
@@ -62,7 +65,7 @@ const Anonym: React.FC<Props> = ({
   fetchAssessment,
   match: { params },
   preview,
-  saveResults,
+  markAssessmentTimedOut,
   block,
 }) => {
   const assessmentRef = React.createRef()
@@ -98,7 +101,7 @@ const Anonym: React.FC<Props> = ({
             className="page-header"
             title={assessment.name}
             extra={[
-              <Timer key="2" preview={preview} saveResults={saveResults} />,
+              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
             ]}
           />
         </Content>

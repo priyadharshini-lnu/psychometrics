@@ -61,6 +61,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -1791,6 +1793,38 @@ ALTER SEQUENCE public.memberships_id_seq OWNED BY public.memberships.id;
 
 
 --
+-- Name: mindmill_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.mindmill_credentials (
+    id bigint NOT NULL,
+    users_result_id bigint,
+    user_name character varying,
+    encrypted_password character varying,
+    encrypted_password_iv character varying
+);
+
+
+--
+-- Name: mindmill_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.mindmill_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: mindmill_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.mindmill_credentials_id_seq OWNED BY public.mindmill_credentials.id;
+
+
+--
 -- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2976,7 +3010,8 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint
+    users_result_id bigint,
+    selected_locale character varying
 );
 
 
@@ -3477,6 +3512,13 @@ ALTER TABLE ONLY public.membership_grants ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.memberships ALTER COLUMN id SET DEFAULT nextval('public.memberships_id_seq'::regclass);
+
+
+--
+-- Name: mindmill_credentials id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mindmill_credentials ALTER COLUMN id SET DEFAULT nextval('public.mindmill_credentials_id_seq'::regclass);
 
 
 --
@@ -4113,6 +4155,14 @@ ALTER TABLE ONLY public.membership_grants
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT memberships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: mindmill_credentials mindmill_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mindmill_credentials
+    ADD CONSTRAINT mindmill_credentials_pkey PRIMARY KEY (id);
 
 
 --
@@ -5133,6 +5183,13 @@ CREATE INDEX index_memberships_on_hris ON public.memberships USING gin (hris);
 
 
 --
+-- Name: index_mindmill_credentials_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_mindmill_credentials_on_users_result_id ON public.mindmill_credentials USING btree (users_result_id);
+
+
+--
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5750,6 +5807,14 @@ ALTER TABLE ONLY public.campaign_users
 
 ALTER TABLE ONLY public.assigns
     ADD CONSTRAINT fk_rails_05e55ff955 FOREIGN KEY (project_assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: mindmill_credentials fk_rails_086b8723a8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.mindmill_credentials
+    ADD CONSTRAINT fk_rails_086b8723a8 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -7106,6 +7171,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200823090240'),
 ('20200823094516'),
 ('20200826053004'),
-('20200830120330');
+('20200830120330'),
+('20200908070555');
 
 

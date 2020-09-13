@@ -184,6 +184,12 @@ class Assign < ApplicationRecord
     expiry_date < Time.current
   end
 
+  def extra_time_buffer_expired?
+    return false unless expiry_date
+
+    expiry_date.advance(minutes: 5) < Time.current
+  end
+
   private
 
   def send_completion_email

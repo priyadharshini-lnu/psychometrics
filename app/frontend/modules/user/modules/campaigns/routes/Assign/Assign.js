@@ -32,7 +32,7 @@ export default function Assign ({
     type,
   },
   preview,
-  saveResults,
+  markAssessmentTimedOut,
   block,
   progress,
 }) {
@@ -63,7 +63,7 @@ export default function Assign ({
               extra={[
                 type !== 'preview_block' && enableProgress
                   && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-                <Timer key="2" preview={preview} saveResults={saveResults} />,
+                <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
               ]}
               onBack={() => history.push('/dashboard')}
             />

@@ -9,8 +9,13 @@ development:
 
 test:
   <<: *default
-  database: psychometrics_test
+  host: localhost
+  username: postgres
+  password: postgres
+  database: ci_test
 
 production:
   <<: *default
-  database: psychometrics_production
+  url: <%= ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL'] %>
+  prepared_statements: false
+  advisory_locks: false

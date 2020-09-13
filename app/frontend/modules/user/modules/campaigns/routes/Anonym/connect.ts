@@ -1,17 +1,21 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   fetchAssessment,
 } from 'modules/user/modules/campaigns/core/anonym'
-import { saveResults } from 'core/preview/FlowProcessor/actions'
+import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
+import { RootState } from 'modules/user/core/rootReducers'
 
-const mapStateToProps = state => ({
-  preview: state.preview,
-  anonym: state.anonym,
-})
+const connecter = connect(
+  (state: RootState) => ({
+    preview: state.preview,
+    anonym: state.anonym,
+  }),
+  {
+    fetchAssessment,
+    markAssessmentTimedOut,
+  },
+)
 
-const mapDispatchToProps = {
-  fetchAssessment,
-  saveResults,
-}
+export type PropsFromRedux = ConnectedProps<typeof connecter>
 
-export default connect(mapStateToProps, mapDispatchToProps)
+export default connecter
