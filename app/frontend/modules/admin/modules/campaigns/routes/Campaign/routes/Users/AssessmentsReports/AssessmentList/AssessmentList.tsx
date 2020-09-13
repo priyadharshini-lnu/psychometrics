@@ -1,8 +1,8 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message,
+  Table, Menu, Row, Col, Dropdown, message, Modal,
 } from 'antd'
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
@@ -40,6 +40,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
+  remove,
   currentUser,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
@@ -103,6 +104,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     userId: parsedUserId,
                     assessment,
                     currentUser,
+                    remove: () => remove(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -125,15 +127,32 @@ interface ActionMenuProps {
   campaignId: number
   currentUser: User
   rescoreResponse(): void
+  remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove,
 }) => {
   const handleRescoreResponse = () => {
     rescoreResponse()
     message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+  }
+
+  const handleDelete = () => {
+    Modal.confirm({
+      title: 'remove assessment?',
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: 'Are you sure you want to remove this assessment?',
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        remove()
+        message.success(I18n.t('user_reports.modals.remove.successfully'))
+      },
+    })
   }
 
   return (
@@ -162,6 +181,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
+          onClick={handleDelete}
         >
           {I18n.t('common.actions.remove')}
         </div>

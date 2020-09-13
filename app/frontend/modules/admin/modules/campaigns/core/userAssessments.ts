@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
+import { updateIn } from 'utils/immutable'
 import { FETCH_SINGLE } from './users'
 import { CREATE as CREATE_REPORT } from './userReports'
 
@@ -11,6 +12,7 @@ const defaultState = {
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
+const REMOVE = 'campaigns/userAssessments//REMOVE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -47,6 +49,14 @@ export const rescoreResponse = (campaignId: number, campaignAssessmentId: number
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/rescore_response`,
+  },
+})
+
+export const remove = (campaignId: number, campaignAssessmentId: number) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}`,
   },
 })
 
@@ -97,6 +107,11 @@ const HANDLERS = {
     })
     return { ...state, list }
   },
+  [REMOVE]: (state: State, { response }: { response: number }) => (
+    updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.filter(
+      userAssessments, (userAssessment: UserAssessment) => userAssessment.id !== response,
+    ))
+  ),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormAction) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== request.body.campaignAssessmentId) return assessment

@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
-               :additional_time, :is_expired
+               :additional_time, :is_expired, :user_reports_ids
 
     delegate :name, :category, to: :assessment
 
@@ -11,6 +11,14 @@ module Administration
       return :not_started if user_result.nil?
 
       user_result.status
+    end
+
+    def user_reports_ids
+      report_ids = object.assessment.reports.ids
+      UserReport.where(
+        'report_id IN (?) and user_id = (?) and campaign_id = (?)',
+        report_ids, object.subject_id, object.campaign_id
+      ).ids
     end
 
     def norms

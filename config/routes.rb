@@ -104,7 +104,7 @@ Rails.application.routes.draw do
             post :rescore_responses
           end
         end
-        resources :user_assessments, only: [] do
+        resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
             post :rescore_response
