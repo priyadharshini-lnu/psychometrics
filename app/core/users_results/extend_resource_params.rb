@@ -11,9 +11,10 @@ module UsersResults
     end
 
     def call
-      return broadcast :ok, status: :completed if users_result.expired?
+      return broadcast :ok, status: :completed if users_result.extra_time_buffer_expired?
 
       params = resource_params.merge('last_activity_at' => Time.current)
+      params[:status] = users_result.expired? ? :completed : params[:status]
 
       return broadcast :ok, params unless params[answers_key.to_s]
 

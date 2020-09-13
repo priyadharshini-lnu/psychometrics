@@ -18,7 +18,11 @@ class EndUser::UsersController < ApplicationController
 
         campaigns = ::Campaign.where(id: user_campaigns, status: %i[active closed]).group_by(&:type)
 
-        json = @single_assigns.uniq.map { |assign| ::EndUser::AssignSerializer.new(assign).to_h }
+        json = @single_assigns.uniq.map do |assign|
+          next if assign.original_assigns.all? { |a| a.membership&.disabled? }
+
+          ::EndUser::AssignSerializer.new(assign).to_h
+        end.compact
 
         json.concat(serializer_campaign(campaigns['common'], ::EndUser::CampaignSerializer)) if campaigns['common']
 
@@ -45,7 +49,7 @@ class EndUser::UsersController < ApplicationController
     return @single_assigns unless @current_membership
 
     @single_assigns = policy_scope(Assign).
-                      includes(:single_reports, original_assign: [:single_reports]).
+                      includes(:single_reports, original_assign: %i[membership single_reports]).
                       joining { original_assign.outer.membership.outer.client.outer }.
                       joins(
                         'LEFT OUTER JOIN "assessments_clients"

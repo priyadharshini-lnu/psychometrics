@@ -1210,10 +1210,10 @@
     node-fetch "~2.1.2"
     seedrandom "2.4.3"
 
-"@thetalententerprise/interactive-assessments@1.0.8":
-  version "1.0.8"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.0.8/acfcb37a782ca2b337b3f62fb3b39f862a357e4c4d374cffb83c3947ff0ad6e1#2fd8a0deaf44ff1753b3c69bde490dfb43804913"
-  integrity sha512-kgb+vRWbxuiXdqvAgO06SN3gkTgt5RFXnzEw9ujxxfeTDcts0GEEKCxXmZSr7nQWnNJq1SuLsVnj4dj1U67mDA==
+"@thetalententerprise/interactive-assessments@1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.1.0/1b7f86389ff23063abb520a86d6fbaad3becfbbe0b067a2d0f14dd47b369c6ed#c57fc28eb9ed263095d2eba2c464eb3c5239fb57"
+  integrity sha512-uu/Cp9vYBH6LzanEcrZQOwbuKY8ekb6rNStC36hQGFvSZKii6Ng/ENst2i8473ezkJBa53ZosWQjZ89w8wbAhw==
 
 "@types/asap@^2.0.0":
   version "2.0.0"
@@ -2039,6 +2039,13 @@ aws-sign2@~0.7.0:
 aws4@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
+
+axios-retry@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/axios-retry/-/axios-retry-3.1.8.tgz#ffcfed757e1fab8cbf832f8505bb0e0af47c520c"
+  integrity sha512-yPw5Y4Bg6Dgmhm35KaJFtlh23s1TecW0HsUerK4/IS1UKl0gtN2aJqdEKtVomiOS/bDo5w4P3sqgki/M10eF8Q==
+  dependencies:
+    is-retry-allowed "^1.1.0"
 
 axios@^0.18.1:
   version "0.18.1"
@@ -6161,6 +6168,11 @@ is-regex@^1.0.4:
 is-resolvable@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-resolvable/-/is-resolvable-1.1.0.tgz#fb18f87ce1feb925169c9a407c19318a3206ed88"
+
+is-retry-allowed@^1.1.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/is-retry-allowed/-/is-retry-allowed-1.2.0.tgz#d778488bd0a4666a3be8a1482b9f2baafedea8b4"
+  integrity sha512-RUbUeKwvm3XG2VYamhJL1xFktgjvPzL0Hq8C+6yrWIswDy3BIXGqCxhxkc30N9jqK311gVU137K8Ei55/zVJRg==
 
 is-stream@^1.0.1, is-stream@^1.1.0:
   version "1.1.0"

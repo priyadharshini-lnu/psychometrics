@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import AppStore from 'rb/store/AppStore'
-import { PSYCHOMETRIC } from 'rb/models/Assessment'
+import { PSYCHOMETRIC, AGILE } from 'rb/models/Assessment'
 import { DATA_SHEET } from 'rb/models/Module'
 import localStyles from './Scoring.scss'
 import styles from '../../Condition.scss'
@@ -17,7 +17,7 @@ export class Scoring extends Component {
     if (condition.type === DATA_SHEET) {
       return AppStore.report.dataSheetColumns.map(column => ({ id: column.name, name: column.name }))
     }
-    if (assessment.category === PSYCHOMETRIC) {
+    if (assessment.category === PSYCHOMETRIC || assessment.category === AGILE) {
       return AppStore.factors[assessment.dimensionId]
     }
 

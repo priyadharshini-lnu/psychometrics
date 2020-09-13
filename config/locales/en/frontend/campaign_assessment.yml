@@ -10,6 +10,7 @@ en:
       in_progress: In Progress
       completed: Completed
       interrupted: Interrupted
+      universal_link: Universal link
     modals:
       import_raw:
         title: Import Raw Results data

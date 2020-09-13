@@ -1515,6 +1515,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -1819,6 +1823,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -3017,6 +3025,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -3625,6 +3637,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -3677,6 +3690,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -4607,6 +4623,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -4909,7 +4929,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "completed": "Completed",
       "in_progress": "In Progress",
       "interrupted": "Interrupted",
-      "not_started": "Not Started"
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
@@ -5915,6 +5936,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -6410,7 +6432,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -8604,6 +8626,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -8908,6 +8934,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -10106,6 +10136,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -10714,6 +10748,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -10766,6 +10801,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -11696,6 +11734,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -11995,7 +12037,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "completed": "Completed",
       "in_progress": "In Progress",
       "interrupted": "Interrupted",
-      "not_started": "Not Started"
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
@@ -12997,6 +13040,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -13492,7 +13536,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -15683,6 +15727,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -15987,6 +16035,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -17185,6 +17237,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -17793,6 +17849,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -17845,6 +17902,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -18775,6 +18835,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -19074,7 +19138,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "completed": "Completed",
       "in_progress": "In Progress",
       "interrupted": "Interrupted",
-      "not_started": "Not Started"
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
@@ -20076,6 +20141,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -20571,7 +20637,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {

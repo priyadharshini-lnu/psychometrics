@@ -220,6 +220,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -365,7 +366,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -816,6 +817,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -961,7 +963,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {
@@ -1409,6 +1411,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "sw": "Swahili",
     "ta": "Tamil",
     "th": "Thai",
+    "tl": "Tagalog",
     "tr": "Turkish",
     "uk": "Ukrainian",
     "ur": "Urdu",
@@ -1554,7 +1557,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "subjects": {

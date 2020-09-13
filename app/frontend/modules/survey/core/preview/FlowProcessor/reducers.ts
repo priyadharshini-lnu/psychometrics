@@ -14,7 +14,7 @@ import {
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
-  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
+  ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -57,11 +57,14 @@ const defaultState: DefaultState = {
   locales: null,
   inProgressQuestions: [],
   highlights: {},
+  assessmentTimedOut: false,
 }
 
 const HANDLERS = {
   [INIT]: (state, { data, result }) => {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
+    const resultsUrl = data.resultsUrl || `/assigns/${result.id}`
+
     let { elements } = data.flow
     if (elements.length === 0) {
       elements = InitLinearElements.run(data.blocks)
@@ -92,8 +95,8 @@ const HANDLERS = {
       relationship: result.relationship,
       isAnonymousAssessment: data.isAnonymousAssessment,
       readOnly: data.readOnly,
-      mediaUrl: data.resultsUrl,
-      resultsUrl: data.resultsUrl,
+      mediaUrl: resultsUrl,
+      resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
       allPages: InitPages.run(data, result.id || Date.now()),
@@ -201,6 +204,7 @@ const HANDLERS = {
     return { ...state, inProgressQuestions }
   },
   [CLEAR_IN_PROGRESS_QUESTION]: state => ({ ...state, inProgressQuestions: [] }),
+  [MARK_ASSESSMENT_TIMED_OUT]: state => ({ ...state, assessmentTimedOut: true }),
 }
 
 export default createReducer(HANDLERS, defaultState)

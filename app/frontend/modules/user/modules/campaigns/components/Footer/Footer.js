@@ -16,7 +16,7 @@ export default function Footer ({
         <div className="footer-wrapper">
           <div className="content">
             <div className="tte-logo">
-              <img src={tteLogo} alt="The Talent Enterprise" />
+              <img src={tteLogo} alt="The Talent Enterprise" height="52" />
             </div>
             <div className="links">
               <a href="https://thetalententerprise.com/privacy-statement/" target="_blank" rel="noopener noreferrer">
@@ -30,8 +30,8 @@ export default function Footer ({
             </div>
             <div className="partner-logo">
               {secondaryLogo
-                ? <img src={secondaryLogo} alt={projectName} />
-                : <img src={lighthouseLogo} alt="Lighthouse" />
+                ? <img src={secondaryLogo} alt={projectName} height="52" />
+                : <img src={lighthouseLogo} alt="Lighthouse" height="52" />
               }
             </div>
           </div>
