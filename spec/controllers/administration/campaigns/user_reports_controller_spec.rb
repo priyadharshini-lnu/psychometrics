@@ -102,13 +102,15 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   private
 
   def check_report_response(report_response)
-    expect(report_response.keys).to eq(%w[id report_id name user_access report_family_name status])
+    expect(report_response.keys).to eq(%w[id report_id name user_access report_family_name status internal report_url])
     expect(report_response).to include({
       'report_id' => report.id,
       'name' => report.name,
       'user_access' => false,
       'report_family_name' => report_family.name,
-      'status' => 'not_prepared'
+      'status' => 'not_prepared',
+      'internal' => true,
+      'report_url' => nil
     })
   end
 

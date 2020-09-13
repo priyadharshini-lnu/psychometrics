@@ -16,10 +16,28 @@ module UserReports
 
         user_report.update(status: :generating)
 
-        pdf_file_path = UserReports::GeneratePdf.call!(user_report, current_user, options)
+        report = user_report.report
 
-        File.open(pdf_file_path) { |file| user_report.update!(status: :prepared, pdf: file) }
+        generate_mindminl_report(user_report) if report.mindmill?
+        generate_hogan_report(user_report) if report.hogan?
+        generate_internal_report(user_report) if report.provider_internal?
       end
+
+      broadcast :ok
+    end
+
+    def generate_internal_report(user_report)
+      pdf_file_path = UserReports::GeneratePdf.call!(user_report, current_user, options)
+
+      File.open(pdf_file_path) { |file| user_report.update!(status: :prepared, pdf: file) }
+    end
+
+    def generate_mindminl_report(user_report)
+      Mindmill::LoadResultsJob.perform_later(user_report.user_results.first, current_user)
+    end
+
+    def generate_hogan_report(user_report)
+      # TODO: Fill this after hogan assessment flow. Hogan::FetchResult command can be used with some changes
     end
   end
 end

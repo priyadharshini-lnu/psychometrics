@@ -76,7 +76,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'name' => report.name,
       'user_access' => user_report.user_access,
       'report_family_name' => report_family.name,
-      'status' => 'not_prepared'
+      'status' => 'not_prepared',
+      'internal' => true,
+      'report_url' => nil
     })
   end
 

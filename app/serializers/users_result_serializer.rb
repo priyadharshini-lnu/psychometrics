@@ -5,7 +5,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
-             :subject_datasheet, :highlights, :user_assessment_id
+             :subject_datasheet, :highlights, :user_assessment_id, :external_scoring
 
   attribute :relationship
 
@@ -84,13 +84,6 @@ class UsersResultSerializer < ActiveModel::Serializer
     data_sheet_row_data(object.subject.email)
   end
 
-  def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
-
-    raise "Not supported hogan type #{type}"
-  end
-
   def participant
     @participant ||= instance_options[:participant]
   end
@@ -101,6 +94,23 @@ class UsersResultSerializer < ActiveModel::Serializer
     Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
       HighlightSerializer.new(h)
     end
+  end
+
+  def external_scoring
+    return object.external_results if object.assessment.mindmill?
+
+    if object.assessment.hogan?
+      score = object.external_results&.hogan_score&.dig('participant', 'assessment', 'score') || {}
+      if score.present?
+        return score.each_with_object({}) do |v, res|
+          scales = Array.wrap(v['scales']['scale'])
+          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
+            inner_res[factor['id']] = factor['__content__'].to_f
+          end
+        end
+      end
+    end
+    {}
   end
 
   private
@@ -122,5 +132,12 @@ class UsersResultSerializer < ActiveModel::Serializer
           joins(:datasheet).
           find_by(datasheets: { project_id: campaign.project.id }, email: email)
     row&.data || {}
+  end
+
+  def normalize_hogan_type(type)
+    return 'Raw' if type == 'RAW'
+    return 'Percentile' if type == 'percentile'
+
+    raise "Not supported hogan type #{type}"
   end
 end

@@ -693,6 +693,13 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :mindmill_user_assessments, only: [] do
+        member do
+          get :pass
+          get :redirect
+        end
+      end
+
       resources :user_assessments do
         resources :users_results, only: %i[update] do
           member do

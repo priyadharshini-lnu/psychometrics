@@ -86,6 +86,8 @@ const ReportList: React.FC<Props> = ({
                       userReportId: userReport.id,
                       userReportName: userReport.name,
                       remove: () => remove(parsedCampaignId, userReport.id),
+                      internal: userReport.internal,
+                      reportUrl: userReport.reportUrl,
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -107,11 +109,13 @@ interface ActionMenuProps {
   campaignId: number
   userReportId: number
   userReportName: string
+  internal: boolean
+  reportUrl: string
   remove(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, userReportId, projectId, userReportName, remove,
+  campaignId, userReportId, projectId, userReportName, remove, internal, reportUrl,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -129,22 +133,42 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     })
   }
 
-  return (
-    <Menu>
+  const viewReportMenu = () => {
+    if (!internal && !reportUrl) return null
+
+    if (!internal && reportUrl) {
+      return (
+        <Menu.Item key="downloadReport">
+          <a href={reportUrl} target="_blank" rel="noopener noreferrer">{I18n.t('reports.actions.download')}</a>
+        </Menu.Item>
+      )
+    }
+
+    return (
       <Menu.Item key="viewReport">
         <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/user_reports/${userReportId}`}>
           {I18n.t('reports.actions.view')}
         </Link>
       </Menu.Item>
+    )
+  }
+
+  return (
+    <Menu>
+      {viewReportMenu()}
+      {internal && (
       <Menu.Item key="downloadReport">
         <a
-          href={`/administration/new_campaigns/${campaignId}/user_reports/${userReportId}/download.pdf`}
+          href={internal
+            ? `/administration/new_campaigns/${campaignId}/user_reports/${userReportId}/download.pdf`
+            : reportUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
           {I18n.t('reports.actions.download')}
         </a>
       </Menu.Item>
+      )}
       <Menu.Item key="remove">
         <div
           role="button"
