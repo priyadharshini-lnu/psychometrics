@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import {
   fetchAssessment,
 } from 'modules/user/modules/campaigns/core/userAssessment'
-import { saveResults } from 'core/preview/FlowProcessor/actions'
 import { markAssessmentTimedOut } from 'core/preview/FlowProcessor/actions'
 import { getProgress } from 'core/preview/FlowProcessor/selectors'
 import { get as getConfig } from 'modules/user/core/config'
@@ -16,7 +15,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchAssessment,
-  saveResults,
   markAssessmentTimedOut,
 }
 

@@ -13,7 +13,7 @@ const connecter = connect(
   {
     fetchAssessment,
     markAssessmentTimedOut,
-  }
+  },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
