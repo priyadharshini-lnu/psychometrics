@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message,
+  Table, Menu, Row, Col, Dropdown, message, Modal,
 } from 'antd'
 
-import { MoreOutlined } from '@ant-design/icons'
+import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import AssessmentPolicy from 'modules/admin/modules/campaigns/policies/Assessment'
@@ -34,6 +34,7 @@ const AssessmentList: React.FC<Props> = ({
   openModal,
   activateUniversalLink,
   rescoreResponses,
+  remove,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -107,6 +108,7 @@ const AssessmentList: React.FC<Props> = ({
                       campaignId: parsedCampaignId,
                       openModal,
                       rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
+                      remove: () => remove(parsedCampaignId, assessment.id),
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -129,16 +131,33 @@ interface ActionMenuProps {
   currentUser: User
   openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
+  remove(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, currentUser,
+  campaignId, assessment, openModal, rescoreResponses, currentUser, remove,
 }) => {
   const { id, name } = assessment
 
   const handleRescoreResponse = () => {
     rescoreResponses()
     message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+  }
+
+  const handleDelete = () => {
+    Modal.confirm({
+      title: 'remove assessment?',
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: 'Are you sure you want to remove this assessment?',
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        remove()
+        message.success(I18n.t('user_reports.modals.remove.successfully'))
+      },
+    })
   }
 
   return (
@@ -225,6 +244,16 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         >
           {I18n.t('campaign_assessment.actions.rescore_response.title')}
         </a>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="remove">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={handleDelete}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
       </Menu.Item>
     </Menu>
   )

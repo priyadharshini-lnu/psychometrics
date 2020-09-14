@@ -48,6 +48,11 @@ module Administration
         render json: :ok
       end
 
+      def destroy
+        CampaignAssessments::Remove.call!(campaign_assessment, campaign)
+        render json: resource.id
+      end
+
       def import_results
         import = ::Imports::Assessments::ResultImportUserResult.new(import_params)
         import.importer = current_user

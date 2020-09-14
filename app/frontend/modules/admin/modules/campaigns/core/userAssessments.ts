@@ -12,7 +12,7 @@ const defaultState = {
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
-const REMOVE = 'campaigns/userAssessments//REMOVE'
+const REMOVE = 'campaigns/userAssessments/REMOVE'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
