@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
-  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined,
+  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined, ToolOutlined,
 } from '@ant-design/icons'
 import routeUtils from 'utils/route'
 
@@ -34,6 +34,10 @@ const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
       <Menu.Item key="/options">
         <SettingOutlined />
         Options
+      </Menu.Item>
+      <Menu.Item key="/campaign_options">
+        <ToolOutlined />
+        Campaign Options
       </Menu.Item>
     </Menu>
   )

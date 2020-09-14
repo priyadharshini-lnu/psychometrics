@@ -61,8 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -73,7 +71,8 @@ CREATE TABLE public.agile_events (
     session_id character varying,
     event character varying,
     data json DEFAULT '{}'::json,
-    created_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    users_result_id bigint
 );
 
 
@@ -536,6 +535,41 @@ ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_asses
 
 
 --
+-- Name: campaign_options; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_options (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    time_zone character varying,
+    fixed_time boolean DEFAULT false,
+    fixed_time_duration integer,
+    instructions text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_options_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_options_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_options_id_seq OWNED BY public.campaign_options.id;
+
+
+--
 -- Name: campaign_reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -704,7 +738,8 @@ CREATE TABLE public.clients (
     two_factor_enabled boolean DEFAULT false,
     strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
-    enable_live_chat boolean DEFAULT false NOT NULL
+    enable_live_chat boolean DEFAULT false NOT NULL,
+    migrated boolean DEFAULT false
 );
 
 
@@ -1461,6 +1496,38 @@ CREATE SEQUENCE public.hogan_credentials_id_seq
 --
 
 ALTER SEQUENCE public.hogan_credentials_id_seq OWNED BY public.hogan_credentials.id;
+
+
+--
+-- Name: hogan_groups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.hogan_groups (
+    id bigint NOT NULL,
+    name character varying,
+    campaign_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.hogan_groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.hogan_groups_id_seq OWNED BY public.hogan_groups.id;
 
 
 --
@@ -2763,7 +2830,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2934,7 +3003,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3010,8 +3081,7 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint,
-    selected_locale character varying
+    users_result_id bigint
 );
 
 
@@ -3048,7 +3118,8 @@ CREATE TABLE public.user_reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_access boolean DEFAULT false,
-    report_family_id bigint
+    report_family_id bigint,
+    pdf_id bigint
 );
 
 
@@ -3169,7 +3240,8 @@ CREATE TABLE public.users_results (
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
     selected_locale character varying,
-    additional_time integer
+    additional_time integer,
+    reset_count integer DEFAULT 0
 );
 
 
@@ -3274,6 +3346,13 @@ ALTER TABLE ONLY public.campaign_assessment_groups ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessments_id_seq'::regclass);
+
+
+--
+-- Name: campaign_options id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options ALTER COLUMN id SET DEFAULT nextval('public.campaign_options_id_seq'::regclass);
 
 
 --
@@ -3449,6 +3528,13 @@ ALTER TABLE ONLY public.hogan_assessment_settings ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('public.hogan_credentials_id_seq'::regclass);
+
+
+--
+-- Name: hogan_groups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_groups ALTER COLUMN id SET DEFAULT nextval('public.hogan_groups_id_seq'::regclass);
 
 
 --
@@ -3878,6 +3964,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: campaign_options campaign_options_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options
+    ADD CONSTRAINT campaign_options_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: campaign_reports campaign_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4083,6 +4177,14 @@ ALTER TABLE ONLY public.hogan_assessment_settings
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_groups hogan_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_groups
+    ADD CONSTRAINT hogan_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -4483,6 +4585,13 @@ CREATE INDEX index_agile_events_on_assign_id ON public.agile_events USING btree 
 
 
 --
+-- Name: index_agile_events_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING btree (users_result_id);
+
+
+--
 -- Name: index_agiles_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4648,6 +4757,13 @@ CREATE INDEX index_campaign_assessments_on_campaign_id ON public.campaign_assess
 --
 
 CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessments USING btree (norm_id);
+
+
+--
+-- Name: index_campaign_options_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_options_on_campaign_id ON public.campaign_options USING btree (campaign_id);
 
 
 --
@@ -5047,6 +5163,13 @@ CREATE INDEX index_hogan_credentials_on_membership_id ON public.hogan_credential
 --
 
 CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USING btree (user_id);
+
+
+--
+-- Name: index_hogan_groups_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_groups_on_campaign_id ON public.hogan_groups USING btree (campaign_id);
 
 
 --
@@ -5603,6 +5726,13 @@ CREATE INDEX index_user_reports_on_campaign_id ON public.user_reports USING btre
 
 
 --
+-- Name: index_user_reports_on_pdf_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_reports_on_pdf_id ON public.user_reports USING btree (pdf_id);
+
+
+--
 -- Name: index_user_reports_on_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5970,6 +6100,14 @@ ALTER TABLE ONLY public.ecommerce_purchases
 
 
 --
+-- Name: agile_events fk_rails_37e3f56836; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
+
+
+--
 -- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6154,6 +6292,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: user_reports fk_rails_765e169f96; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_reports
+    ADD CONSTRAINT fk_rails_765e169f96 FOREIGN KEY (pdf_id) REFERENCES public.assigns_reports(id);
+
+
+--
 -- Name: users_results fk_rails_773500ba49; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6199,6 +6345,14 @@ ALTER TABLE ONLY public.reports_modules
 
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: hogan_groups fk_rails_810fc98ecc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.hogan_groups
+    ADD CONSTRAINT fk_rails_810fc98ecc FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -6786,6 +6940,14 @@ ALTER TABLE ONLY public.agile_events
 
 
 --
+-- Name: campaign_options fk_rails_f8a1a37b68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options
+    ADD CONSTRAINT fk_rails_f8a1a37b68 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7172,6 +7334,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200823094516'),
 ('20200826053004'),
 ('20200830120330'),
-('20200908070555');
+('20200903100939'),
+('20200903113133'),
+('20200908070555'),
+('20200909073506'),
+('20200913050839'),
+('20200913071803'),
+('20200914055928');
 
 

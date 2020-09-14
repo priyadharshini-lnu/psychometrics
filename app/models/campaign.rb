@@ -9,6 +9,8 @@ class Campaign < ApplicationRecord
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :datasheet, through: :project
+  has_one :campaign_options
+
   has_many :relationships, dependent: :destroy
   has_many :license_usages, inverse_of: :campaign
   has_many :subjects, class_name: 'Threesixty::Subject', dependent: :restrict_with_error

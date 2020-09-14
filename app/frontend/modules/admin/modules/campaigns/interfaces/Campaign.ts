@@ -5,6 +5,7 @@ export default interface Campaign {
   assessments: Entity[]
   reports: Entity[]
   options: Options
+  campaignOptions: CampaignOptions
 }
 
 export interface Entity {
@@ -15,4 +16,9 @@ export interface Entity {
 
 export interface Options {
   enableAssessmentsInSequentialOrder?: boolean
+}
+
+export interface CampaignOptions {
+  fixedTime: boolean
+  fixedTimeDuration?: number
 }
