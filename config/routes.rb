@@ -63,6 +63,7 @@ Rails.application.routes.draw do
             get :report_families
             get :assessments_and_reports
             post :regenerate
+            post :bulk_download
           end
           member do
             get :export

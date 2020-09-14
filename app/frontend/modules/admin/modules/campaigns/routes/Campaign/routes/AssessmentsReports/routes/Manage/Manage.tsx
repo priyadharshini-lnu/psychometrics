@@ -44,6 +44,8 @@ const Manage: React.FC<Props> = ({
   selectedIds,
   regenerateReports,
   regenerateInProgress,
+  bulkDownload,
+  bulkDownloadInProgress,
 }) => {
   useEffect(() => {
     fetchAssessmentAndReports(campaignId)
@@ -53,6 +55,12 @@ const Manage: React.FC<Props> = ({
   const handleRegenerateReports = () => {
     regenerateReports(parsedCampaignId, selectedIds).then(() => {
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
+    })
+  }
+
+  const handleBulkDownload = () => {
+    bulkDownload(parsedCampaignId, selectedIds).then(() => {
+      message.success(I18n.t('campaign_report.messages.bulk_download_successful'))
     })
   }
 
@@ -67,12 +75,22 @@ const Manage: React.FC<Props> = ({
             <Space>
               <Button
                 type="default"
+                onClick={handleBulkDownload}
+                disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
+                loading={bulkDownloadInProgress}
+              >
+                <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
+              </Button>
+
+              <Button
+                type="default"
                 onClick={handleRegenerateReports}
                 disabled={_.isEmpty(selectedIds) || regenerateInProgress}
                 loading={regenerateInProgress}
               >
                 <span>{I18n.t('user_reports.actions.regenerate')}</span>
               </Button>
+
               <Button
                 type="primary"
                 onClick={

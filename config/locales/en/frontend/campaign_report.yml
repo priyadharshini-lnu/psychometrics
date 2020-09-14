@@ -1,5 +1,9 @@
 en:
   campaign_report:
+    actions:
+      bulk_download: Bulk Download
+    messages:
+      bulk_download_successful: Bulk report download job scheduled successfully
     column:
       report_name: Report name
       report_bundle: Report Bundle

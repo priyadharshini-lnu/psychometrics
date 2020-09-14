@@ -4934,6 +4934,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -4947,6 +4950,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
@@ -12042,6 +12048,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -12055,6 +12064,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
@@ -19143,6 +19155,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -19156,6 +19171,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
