@@ -7,6 +7,10 @@ module Administration
 
       attributes :id, :name, :type, :status, :options, :campaign_url, :is_threesixty
 
+      has_one :campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer do |_|
+        object.campaign_options.nil? ? CampaignOptions.new(campaign_id: object.id) : object.campaign_options
+      end
+
       has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
       has_many :reports, serializer: Administration::Campaigns::ReportSerializer
 

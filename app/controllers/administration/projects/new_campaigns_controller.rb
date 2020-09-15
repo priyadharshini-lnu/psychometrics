@@ -19,7 +19,7 @@ module Administration
           format.json do
             campaigns = project.project_campaigns.ransack(params[:filters]).
                         result.
-                        includes(:reports, :assessments, :project, :threesixty_campaign)
+                        includes(:reports, :assessments, :project, :threesixty_campaign, :campaign_options)
             serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
               campaigns.page(params[:page]), each_serializer: Administration::Campaigns::CampaignSerializer
             )
