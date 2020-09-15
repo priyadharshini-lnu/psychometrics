@@ -4,6 +4,7 @@ import I18nStore from 'rb/store/I18nStore'
 import Utils from 'rb/utils'
 import ResultStore from 'rb/store/ResultStore'
 import styles from '../styles.scss'
+import { GAP_TYPES } from '../Properties'
 
 const MOCK_POSITIVE_FACTORS = [
   {
@@ -80,7 +81,6 @@ export default class Factor extends Component {
     const scoringLeft = _.get(ResultStore, ['results', model.assessment_id, 'resultsByFilter', left.id, 'scoring'])
     const scoringRight = _.get(ResultStore, ['results', model.assessment_id, 'resultsByFilter', right.id, 'scoring'])
     if (!scoringLeft || !scoringRight) return [[], []]
-
     let factors = _.reduce(
       scoringLeft,
       (result, factor) => {
@@ -106,24 +106,32 @@ export default class Factor extends Component {
   }
 
   render () {
-    const { filters } = this.props
+    const { filters, model } = this.props
 
+    const gapType = _.get(model, ['props', 'gapType'], 0)
+    const showPositive = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.POSITIVE
+    const showNegative = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.NEGATIVE
+    const showTitle = gapType === GAP_TYPES.ALL
     const [positive, negative] = this.getResults()
     return (
       <div className={styles.table}>
         <div className={styles.table}>
+          {showPositive && (
           <Table
-            title={I18nStore.t('reports.modules.gap_assessment.positive_gap')}
+            title={showTitle && I18nStore.t('reports.modules.gap_assessment.positive_gap')}
             emptyText={I18nStore.t('reports.modules.gap_assessment.no_positive_gaps')}
             filters={filters}
             factors={positive}
           />
+          )}
+          {showNegative && (
           <Table
-            title={I18nStore.t('reports.modules.gap_assessment.negative_gap')}
+            title={showTitle && I18nStore.t('reports.modules.gap_assessment.negative_gap')}
             emptyText={I18nStore.t('reports.modules.gap_assessment.no_negative_gaps')}
             filters={filters}
             factors={negative}
           />
+          )}
         </div>
       </div>
     )
@@ -136,11 +144,13 @@ function Table ({
   return (
     <table>
       <thead>
+        {title && (
         <tr>
           <td className={styles.label} colSpan={6}>
             {title}
           </td>
         </tr>
+        )}
         <tr>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.rank')}</td>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.item')}</td>

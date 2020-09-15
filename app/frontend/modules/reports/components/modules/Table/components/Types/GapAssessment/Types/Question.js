@@ -7,6 +7,7 @@ import I18nStore from 'rb/store/I18nStore'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import styles from '../styles.scss'
+import { GAP_TYPES } from '../Properties'
 
 const MOCK_POSITIVE_ROWS = [
   {
@@ -77,7 +78,8 @@ function Question ({
     const questionMap = questions
 
     let results = _.flatMap(questionScoringLeft,
-      (questionResults, factorId) => _.map(questionResults, (res, questionId) => {
+      (questionResults, factorId) => _(questionResults).map((res, questionId) => {
+        if (isNaN(Number(questionId))) return null
         const leftMean = _.meanBy(res, r => r.getValue())
         const rightMean = _.meanBy(questionScoringRight[factorId][questionId], r => r.getValue())
         const row = { left: _.round(leftMean, 2), right: _.round(rightMean, 2) }
@@ -86,30 +88,38 @@ function Question ({
           factorName: I18nStore.tFactor(factorMap[factorId], 'name'),
           questionName: Utils.stripHTML(_.get(questionMap[questionId], 'props.questionText')),
           factor: factorMap[factorId],
-          diff: row.left - row.right,
+          diff: _.round(row.left - row.right, 2),
         }
-      }))
+      }).reject(_.isNull).value())
     results = _.sortBy(results, d => -d.diff)
     const positive = _.take(_.takeWhile(results, d => d.diff > 0), 5)
     const negative = _.take(_.takeRightWhile(results, d => d.diff < 0), 5)
     return [positive, negative]
   }
 
+  const gapType = _.get(model, ['props', 'gapType'], 0)
+  const showPositive = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.POSITIVE
+  const showNegative = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.NEGATIVE
+  const showTitle = gapType === GAP_TYPES.ALL
   const [positive, negative] = getResults()
   return (
     <div className={styles.table}>
+      {showPositive && (
       <Table
-        title={I18nStore.t('reports.modules.gap_assessment.positive_gap')}
+        title={showTitle && I18nStore.t('reports.modules.gap_assessment.positive_gap')}
         emptyText={I18nStore.t('reports.modules.gap_assessment.no_positive_gaps')}
         filters={filters}
         rows={positive}
       />
+      )}
+      {showNegative && (
       <Table
-        title={I18nStore.t('reports.modules.gap_assessment.negative_gap')}
+        title={showTitle && I18nStore.t('reports.modules.gap_assessment.negative_gap')}
         emptyText={I18nStore.t('reports.modules.gap_assessment.no_negative_gaps')}
         filters={filters}
         rows={negative}
       />
+      )}
     </div>
   )
 }
@@ -120,11 +130,13 @@ function Table ({
   return (
     <table>
       <thead>
+        {title && (
         <tr>
           <td className={styles.label} colSpan={6}>
             {title}
           </td>
         </tr>
+        )}
         <tr>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.rank')}</td>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.scoring_category')}</td>
