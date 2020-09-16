@@ -6,6 +6,7 @@ import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
+import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
@@ -37,11 +38,13 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   assessments: {
     list,
   },
+
   match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
   remove,
   currentUser,
+  reports,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -102,9 +105,13 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     openModal,
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
+                    userReportIds: assessment.userReportsIds,
                     assessment,
+                    assessmentName: assessment.name,
                     currentUser,
-                    remove: () => remove(parsedCampaignId, assessment.id),
+                    reports,
+                    remove: () => remove(parsedCampaignId,
+                      assessment.id, { userReportsIds: assessment.userReportsIds }),
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -125,32 +132,60 @@ interface ActionMenuProps {
   assessment: UserAssessment
   userId: number
   campaignId: number
+  assessmentName: string
   currentUser: User
+  reports: UserReport[]
+  userReportIds: number[]
   rescoreResponse(): void
   remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove, reports,
+  userReportIds, assessmentName,
 }) => {
   const handleRescoreResponse = () => {
     rescoreResponse()
     message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
   }
 
+  const reportNames = () => {
+    const names: string[] = []
+    _.each(reports, (report) => {
+      if (userReportIds.includes(report.id)) {
+        names.push(report.name)
+      }
+    })
+    return names
+  }
+
   const handleDelete = () => {
     Modal.confirm({
-      title: 'remove assessment?',
+      title: I18n.t('user_assessments.modals.remove.title', { name: assessmentName }),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: 'Are you sure you want to remove this assessment?',
+      content: (
+        <>
+          <p>
+            {I18n.t('user_assessments.modals.remove.content')}
+            :
+          </p>
+          <ul>
+            {reportNames().map(name => (
+              <li>
+                {name}
+              </li>
+            ))}
+          </ul>
+        </>
+      ),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         remove()
-        message.success(I18n.t('user_reports.modals.remove.successfully'))
+        message.success(I18n.t('user_assessments.modals.remove.successfully', { name: assessmentName }))
       },
     })
   }

@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
+import { takeEvery, put } from 'redux-saga/effects'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { updateIn } from 'utils/immutable'
+import { AnyAction } from 'redux'
 import { FETCH_SINGLE } from './users'
-import { CREATE as CREATE_REPORT } from './userReports'
+import { CREATE as CREATE_REPORT, removeReportByIds } from './userReports'
 
 const defaultState = {
   list: [],
@@ -52,8 +54,9 @@ export const rescoreResponse = (campaignId: number, campaignAssessmentId: number
   },
 })
 
-export const remove = (campaignId: number, campaignAssessmentId: number) => ({
+export const remove = (campaignId: number, campaignAssessmentId: number, options: { userReportsIds: number[] }) => ({
   type: REMOVE,
+  options,
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}`,
@@ -123,3 +126,11 @@ const HANDLERS = {
 }
 
 export default createReducer(HANDLERS, defaultState)
+
+function* removeUserReports ({ requestAction: { options } }: AnyAction) {
+  yield put(removeReportByIds(options.userReportsIds))
+}
+
+export const watchers = [
+  takeEvery(REMOVE, removeUserReports),
+]

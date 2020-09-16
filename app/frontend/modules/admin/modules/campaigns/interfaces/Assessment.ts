@@ -11,4 +11,5 @@ export default interface Assessment {
   enableUniversalLinks: boolean
   universalLink: string | null
   norms?: Norm[]
+  userReportsIds: number[]
 }

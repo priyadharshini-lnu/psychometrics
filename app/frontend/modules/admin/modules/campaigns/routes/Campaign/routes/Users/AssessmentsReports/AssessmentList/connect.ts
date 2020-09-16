@@ -6,6 +6,7 @@ import { RootState } from 'modules/admin/core/rootReducers.ts'
 const connecter = connect(
   (state: RootState) => ({
     assessments: getAssessments(state),
+    reports: state.campaigns.userReports.list,
     currentUser: state.currentUser,
   }),
   {

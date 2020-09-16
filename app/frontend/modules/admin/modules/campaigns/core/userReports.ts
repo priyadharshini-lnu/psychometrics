@@ -29,7 +29,7 @@ export const REGENERATE_REPORTS = 'userReports/REGENERATE_REPORTS'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const TOGGLE_USER_ACCESS_REQUEST = 'resource/campaigns/report/TOGGLE_USER_ACCESS_REQUEST'
-
+export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 
 export const fetchSingle = (campaignId: number, id: number) => ({
   type: FETCH_SINGLE,
@@ -51,6 +51,11 @@ export const download = (campaignId: number, id: number) => ({
 export const selectRecords = (ids: number[]) => ({
   type: SELECT_RECORDS,
   payload: { ids },
+})
+
+export const removeReportByIds = (ids: number[]) => ({
+  type: REMOVE_REPORT_BY_IDS,
+  ids,
 })
 
 export const regenerateReports = (campaignId: number, ids: number[]) => ({
@@ -143,6 +148,11 @@ const HANDLERS = {
 
       return { ...userReport, userAccess: !userReport.userAccess }
     }))
+  ),
+  [REMOVE_REPORT_BY_IDS]: (state: State, { ids }: { ids: number[] }) => (
+    updateIn(state, ['list'], (userReports: UserReport[]) => _.filter(
+      userReports, (report: UserReport) => !ids.includes(report.id),
+    ))
   ),
 }
 

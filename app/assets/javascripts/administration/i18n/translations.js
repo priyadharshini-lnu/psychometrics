@@ -7018,6 +7018,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     }
   },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
+    }
+  },
   "user_reports": {
     "actions": {
       "regenerate": "Regenerate"
@@ -14119,6 +14128,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     }
   },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
+    }
+  },
   "user_reports": {
     "actions": {
       "regenerate": "Regenerate"
@@ -21217,6 +21235,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
+      }
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
       }
     }
   },
