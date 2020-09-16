@@ -56,8 +56,9 @@ export const rescoreResponses = (campaignId: number, assessmentId: number) => ({
   },
 })
 
-export const remove = (campaignId: number, assessmentId: number) => ({
+export const remove = (campaignId: number, assessmentId: number, options: { reportIds: number[] }) => ({
   type: REMOVE,
+  options,
   request: {
     method: 'delete',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}`,

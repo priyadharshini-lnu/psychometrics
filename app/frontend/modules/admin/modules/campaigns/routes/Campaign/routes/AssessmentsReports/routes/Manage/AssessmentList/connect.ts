@@ -10,6 +10,7 @@ const connecter = connect(
   (state: RootState) => ({
     assessments: getAssessments(state),
     currentUser: state.currentUser,
+    reports: state.campaigns.reports.list,
   }),
   {
     openModal,

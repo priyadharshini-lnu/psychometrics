@@ -3,7 +3,7 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_type, :norm_id, :enable_universal_links,
-               :universal_link, :norms
+               :universal_link, :norms, :campaign_reports_ids
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
@@ -14,6 +14,13 @@ module Administration
 
     def norms
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
+    end
+
+    def campaign_reports_ids
+      report_ids = assessment.reports.ids
+      CampaignReport.where(
+        'report_id IN (?) and campaign_id = (?)', report_ids, object.campaign_id
+      ).ids
     end
 
     private

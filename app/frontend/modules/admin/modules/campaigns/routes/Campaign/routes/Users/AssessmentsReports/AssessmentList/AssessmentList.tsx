@@ -147,7 +147,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 }) => {
   const handleRescoreResponse = () => {
     rescoreResponse()
-    message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
   const reportNames = () => {
@@ -174,7 +174,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </p>
           <ul>
             {reportNames().map(name => (
-              <li>
+              <li key={name}>
                 {name}
               </li>
             ))}

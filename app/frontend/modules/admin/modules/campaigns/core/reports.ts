@@ -18,6 +18,7 @@ export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
+export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -44,6 +45,11 @@ export const toggleUserAccess = (campaignId: number, campaignReportId: number, t
 export const selectRecords = (ids: number[]) => ({
   type: SELECT_RECORDS,
   payload: { ids },
+})
+
+export const removeReportByIds = (ids: number[]) => ({
+  type: REMOVE_REPORT_BY_IDS,
+  ids,
 })
 
 type SelectRecordsAction = ReturnType<typeof selectRecords>
@@ -85,6 +91,11 @@ const HANDLERS = {
     }))
   ),
   [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsAction) => ({ ...state, selectedIds: ids }),
+  [REMOVE_REPORT_BY_IDS]: (state: State, { ids }: { ids: number[] }) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.filter(
+      reports, (report: Report) => !ids.includes(report.id),
+    ))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)
