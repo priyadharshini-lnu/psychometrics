@@ -14,6 +14,7 @@ export interface Entity {
 }
 
 export interface CampaignOptions {
+  timeZone: string
   fixedTime: boolean
   fixedTimeDuration?: number
 }
