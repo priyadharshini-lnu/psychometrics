@@ -7,7 +7,7 @@ import {
 
 export default connect(
   state => ({
-    ...getCampaignOptions(state),
+    options: getCampaignOptions(state),
   }),
   {
     fetch,

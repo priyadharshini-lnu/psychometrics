@@ -4,18 +4,13 @@ export default interface Campaign {
   type: string
   assessments: Entity[]
   reports: Entity[]
-  options: Options
-  campaignOptions: CampaignOptions
+  options: CampaignOptions
 }
 
 export interface Entity {
   name: string
   iconColor: string
   iconUrl: string
-}
-
-export interface Options {
-  enableAssessmentsInSequentialOrder?: boolean
 }
 
 export interface CampaignOptions {

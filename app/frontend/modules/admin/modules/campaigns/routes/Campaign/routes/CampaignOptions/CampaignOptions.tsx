@@ -24,7 +24,7 @@ const CampaignOptions: React.FC<Props> = ({
   }, [])
 
   const parametersForSwitch = name => ({
-    value: [name],
+    value: (options || {})[name],
     onOptionChanged: (value) => {
       update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, [name]: value })
     },

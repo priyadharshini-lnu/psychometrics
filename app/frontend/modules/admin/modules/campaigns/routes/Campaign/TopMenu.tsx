@@ -3,14 +3,14 @@ import _ from 'lodash'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
-  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined, ToolOutlined,
+  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined,
 } from '@ant-design/icons'
 import routeUtils from 'utils/route'
 
 interface Props extends Attributes {
   prefix?: string
 }
-const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options', '/campaign_options']
+const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options']
 
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
@@ -34,10 +34,6 @@ const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
       <Menu.Item key="/options">
         <SettingOutlined />
         Options
-      </Menu.Item>
-      <Menu.Item key="/campaign_options">
-        <ToolOutlined />
-        Campaign Options
       </Menu.Item>
     </Menu>
   )
