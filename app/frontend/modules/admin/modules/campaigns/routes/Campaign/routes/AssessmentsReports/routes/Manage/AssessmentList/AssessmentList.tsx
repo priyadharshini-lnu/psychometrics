@@ -109,7 +109,6 @@ const AssessmentList: React.FC<Props> = ({
                       currentUser,
                       reports,
                       campaignId: parsedCampaignId,
-                      reportIds: assessment.campaignReportsIds,
                       openModal,
                       rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
                       remove: () => remove(parsedCampaignId, assessment.id,
@@ -135,16 +134,15 @@ interface ActionMenuProps {
   assessment: Assessment
   currentUser: User
   reports: Report[]
-  reportIds: number[]
   openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
   remove(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, currentUser, remove, reports, reportIds,
+  campaignId, assessment, openModal, rescoreResponses, currentUser, remove, reports,
 }) => {
-  const { id, name } = assessment
+  const { id, name, campaignReportsIds } = assessment
 
   const handleRescoreResponse = () => {
     rescoreResponses()
@@ -154,7 +152,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const reportNames = () => {
     const names: string[] = []
     _.each(reports, (report) => {
-      if (reportIds.includes(report.id)) {
+      if (campaignReportsIds.includes(report.id)) {
         names.push(report.name)
       }
     })
@@ -175,7 +173,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </p>
           <ul>
             {reportNames().map(name => (
-              <li>
+              <li key={name}>
                 {name}
               </li>
             ))}

@@ -105,9 +105,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     openModal,
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
-                    userReportIds: assessment.userReportsIds,
                     assessment,
-                    assessmentName: assessment.name,
                     currentUser,
                     reports,
                     remove: () => remove(parsedCampaignId,
@@ -132,10 +130,8 @@ interface ActionMenuProps {
   assessment: UserAssessment
   userId: number
   campaignId: number
-  assessmentName: string
   currentUser: User
   reports: UserReport[]
-  userReportIds: number[]
   rescoreResponse(): void
   remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
@@ -143,8 +139,9 @@ interface ActionMenuProps {
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove, reports,
-  userReportIds, assessmentName,
 }) => {
+  const { name, userReportsIds } = assessment
+
   const handleRescoreResponse = () => {
     rescoreResponse()
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
@@ -153,7 +150,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const reportNames = () => {
     const names: string[] = []
     _.each(reports, (report) => {
-      if (userReportIds.includes(report.id)) {
+      if (userReportsIds.includes(report.id)) {
         names.push(report.name)
       }
     })
@@ -162,7 +159,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   const handleDelete = () => {
     Modal.confirm({
-      title: I18n.t('user_assessments.modals.remove.title', { name: assessmentName }),
+      title: I18n.t('user_assessments.modals.remove.title', { name }),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
@@ -185,7 +182,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {
         remove()
-        message.success(I18n.t('user_assessments.modals.remove.successfully', { name: assessmentName }))
+        message.success(I18n.t('user_assessments.modals.remove.successfully', { name }))
       },
     })
   }
