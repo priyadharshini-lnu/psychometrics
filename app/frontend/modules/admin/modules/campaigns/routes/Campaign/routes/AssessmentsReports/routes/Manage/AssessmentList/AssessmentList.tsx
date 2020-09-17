@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Table, Menu, Row, Col, Dropdown, message, Modal,
+  Table, Menu, Row, Col, Dropdown, message,
 } from 'antd'
 
-import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
+import { MoreOutlined } from '@ant-design/icons'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import AssessmentPolicy from 'modules/admin/modules/campaigns/policies/Assessment'
@@ -36,7 +36,6 @@ const AssessmentList: React.FC<Props> = ({
   openModal,
   activateUniversalLink,
   rescoreResponses,
-  remove,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -111,8 +110,6 @@ const AssessmentList: React.FC<Props> = ({
                       campaignId: parsedCampaignId,
                       openModal,
                       rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
-                      remove: () => remove(parsedCampaignId, assessment.id,
-                        { reportIds: assessment.campaignReportsIds }),
                     }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -134,59 +131,19 @@ interface ActionMenuProps {
   assessment: Assessment
   currentUser: User
   reports: Report[]
-  openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
+  openModal(name: string, data?: { projectId?: number, assessment?: Assessment,
+    campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
-  remove(): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  campaignId, assessment, openModal, rescoreResponses, currentUser, remove, reports,
+  campaignId, assessment, openModal, rescoreResponses, currentUser,
 }) => {
-  const { id, name, campaignReportsIds } = assessment
+  const { id, name } = assessment
 
   const handleRescoreResponse = () => {
     rescoreResponses()
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
-  }
-
-  const reportNames = () => {
-    const names: string[] = []
-    _.each(reports, (report) => {
-      if (campaignReportsIds.includes(report.id)) {
-        names.push(report.name)
-      }
-    })
-    return names
-  }
-
-  const handleDelete = () => {
-    Modal.confirm({
-      title: I18n.t('campaign_assessment.modals.remove.title', { name }),
-      icon: <ExclamationCircleOutlined />,
-      centered: true,
-      width: 650,
-      content: (
-        <>
-          <p>
-            {I18n.t('campaign_assessment.modals.remove.content')}
-            :
-          </p>
-          <ul>
-            {reportNames().map(name => (
-              <li key={name}>
-                {name}
-              </li>
-            ))}
-          </ul>
-        </>
-      ),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
-      onOk: () => {
-        remove()
-        message.success(I18n.t('campaign_assessment.modals.remove.successfully', { name }))
-      },
-    })
   }
 
   return (
@@ -279,7 +236,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
-          onClick={handleDelete}
+          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
         >
           {I18n.t('common.actions.remove')}
         </div>
