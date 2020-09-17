@@ -52,7 +52,6 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
-        resources :campaign_options
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -136,7 +135,8 @@ Rails.application.routes.draw do
           end
 
           member do
-            # get 'assessments_and_reports'
+            get :fetch_campaign_options
+            put :update_campaign_options
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end

@@ -10,7 +10,7 @@ import routeUtils from 'utils/route'
 interface Props extends Attributes {
   prefix?: string
 }
-const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options']
+const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options', '/campaign_options']
 
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)

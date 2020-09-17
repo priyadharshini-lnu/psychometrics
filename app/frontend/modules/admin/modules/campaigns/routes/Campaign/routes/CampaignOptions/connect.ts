@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
-import { fetch, update } from 'modules/admin/modules/campaigns/core/current'
-import { RootState } from 'modules/admin/core/rootReducers'
+import {
+  fetch,
+  update,
+  get as getCampaignOptions,
+} from 'modules/admin/modules/campaigns/core/campaignOptions'
 
 export default connect(
-  ({ campaigns: { current: { options } } }: RootState) => ({
-    options,
+  state => ({
+    ...getCampaignOptions(state),
   }),
   {
     fetch,

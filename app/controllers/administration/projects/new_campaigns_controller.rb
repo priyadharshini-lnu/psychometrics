@@ -9,7 +9,9 @@ module Administration
 
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
-      before_action :set_campaign, only: %i[show update assessments_and_reports]
+      before_action :set_campaign, only: %i[
+        show update assessments_and_reports fetch_campaign_options update_campaign_options
+      ]
 
       def index
         @init_state = {}
@@ -68,6 +70,24 @@ module Administration
           serializer: Administration::Campaigns::TemplatesAndAssementsSerializer
       end
 
+      def fetch_campaign_options
+        campaign_options = @campaign.campaign_options
+
+        render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
+      end
+
+      def update_campaign_options
+        campaign_options = @campaign.campaign_options
+        form = ::Campaigns::CampaignOptions::Form.from_params(campaign_options.attributes.merge(campaign_params))
+
+        if form.valid?
+          campaign_options.update_attributes(campaign_options_params)
+          render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
+        else
+          render json: { errors: form.errors.messages }, status: 422
+        end
+      end
+
       private
 
       def pundit_authorize
@@ -100,6 +120,10 @@ module Administration
 
       def campaign_params
         resource_params.permit(:name, :status, :type, options: {})
+      end
+
+      def campaign_options_params
+        resource_params.permit(:fixed_time, :fixed_time_duration)
       end
     end
   end

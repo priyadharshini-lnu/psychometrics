@@ -2,6 +2,7 @@ import Users from './Users'
 import AssessmentsReports from './AssessmentsReports'
 import RegistrationCodes from './RegistrationCodes'
 import Options from './Options'
+import CampaignOptions from './CampaignOptions'
 
 const routes = [
   { redirect: true, from: '/', to: '/users' },
@@ -10,6 +11,7 @@ const routes = [
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/registration_codes', component: RegistrationCodes },
   { path: '/options', component: Options },
+  { path: '/campaign_options', component: CampaignOptions },
 ]
 
 export default routes

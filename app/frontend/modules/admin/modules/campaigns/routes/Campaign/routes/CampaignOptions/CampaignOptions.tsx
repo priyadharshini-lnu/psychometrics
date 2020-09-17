@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
-import Campaign, { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import styles from './styles.scss'
 
 interface Props {
   options: ICampaignOptions
-  fetch: (projectId: number, id: number) => void
-  update: (projectId: number, id: number, data: Partial<Campaign>) => void
+  fetch: (projectId: number, campaignId: number) => void
+  update: (projectId: number, campaginId: number, data: Partial<ICampaignOptions>) => void
   match: {
     params: {
       projectId: string,
@@ -17,16 +17,16 @@ interface Props {
 }
 
 const CampaignOptions: React.FC<Props> = ({
-  options, update, fetch, match: { params: { projectId, campaignId } },
+  options, fetch, update, match: { params: { projectId, campaignId } },
 }) => {
   useEffect(() => {
-    fetch(parseInt(campaignId, 10), parseInt(projectId, 10))
+    fetch(parseInt(projectId, 10), parseInt(campaignId, 10))
   }, [])
 
   const parametersForSwitch = name => ({
-    value: (options || {})[name],
+    value: [name],
     onOptionChanged: (value) => {
-      update(parseInt(campaignId, 10), parseInt(projectId, 10), { campaignOptions: { ...options, [name]: value } })
+      update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, [name]: value })
     },
   })
 
@@ -34,8 +34,8 @@ const CampaignOptions: React.FC<Props> = ({
     <div className={styles.container}>
       <Section>
         <Option
-          label="Enable assessments in sequential order when the previous one is completed"
-          {...parametersForSwitch('enableAssessmentsInSequentialOrder')}
+          label="Fixed Time"
+          {...parametersForSwitch('fixedTime')}
         />
 
       </Section>

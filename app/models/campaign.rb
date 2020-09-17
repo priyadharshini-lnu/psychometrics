@@ -5,6 +5,8 @@ class Campaign < ApplicationRecord
 
   self.inheritance_column = :_type_disabled
 
+  after_create_commit :ensure_campaign_options
+
   belongs_to :project, class_name: 'Client'
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
@@ -42,5 +44,13 @@ class Campaign < ApplicationRecord
 
   def can_destroy?
     [subjects.exists?, evaluators.exists?, participants.exists?].none?
+  end
+
+  private
+
+  def ensure_campaign_options
+    return if campaign_options.present?
+
+    create_campaign_options!
   end
 end

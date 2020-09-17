@@ -77,6 +77,14 @@ module Administration
       index?
     end
 
+    def fetch_campaign_options?
+      index?
+    end
+
+    def update_campaign_options?
+      index?
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
