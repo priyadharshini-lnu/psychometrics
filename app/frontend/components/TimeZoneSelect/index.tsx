@@ -29,7 +29,7 @@ moment.tz
   }, '')
 
 const TimeZoneSelect = ({ value, onChange, ...props }) => {
-  const [selectedTimeZone, setSelectedTimeZone] = useState('')
+  const [selectedTimeZone, setSelectedTimeZone] = useState(value || Intl.DateTimeFormat().resolvedOptions().timeZone)
 
   const handleChange = (tz) => {
     setSelectedTimeZone(tz)
@@ -38,7 +38,7 @@ const TimeZoneSelect = ({ value, onChange, ...props }) => {
 
   return (
     <Select
-      defaultValue={value || selectedTimeZone}
+      defaultValue={selectedTimeZone}
       onChange={handleChange}
       {...props}
     >

@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class CampaignOptionsSerializer < ActiveModel::Serializer
-      attributes :campaign_id, :fixed_time, :time_zone, :fixed_time_duration, :instructions
+      attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions
     end
   end
 end

@@ -78,7 +78,7 @@ module Administration
 
       def update_campaign_options
         campaign_options = @campaign.campaign_options
-        form = ::Campaigns::CampaignOptions::Form.from_params(campaign_options.attributes.merge(campaign_params))
+        form = ::Campaigns::CampaignOptions::Form.from_params(campaign_options.attributes.merge(campaign_options_params))
 
         if form.valid?
           campaign_options.update_attributes(campaign_options_params)
@@ -123,7 +123,7 @@ module Administration
       end
 
       def campaign_options_params
-        resource_params.permit(:fixed_time, :fixed_time_duration)
+        resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions)
       end
     end
   end

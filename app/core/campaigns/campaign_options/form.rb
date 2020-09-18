@@ -11,7 +11,7 @@ module Campaigns
 
       validates :campaign_id, presence: true
       validates :fixed_time_duration, numericality: { only_integer: true }, allow_nil: true
-      validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all(&:name) }, allow_nil: true
+      validates :time_zone, inclusion: { in: ActiveSupport::TimeZone::MAPPING.values }, allow_nil: true
     end
   end
 end
