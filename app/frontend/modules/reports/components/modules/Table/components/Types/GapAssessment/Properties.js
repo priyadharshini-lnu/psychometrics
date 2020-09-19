@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Select from 'react-select'
-
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFilter from 'rb/components/PropertyFilter'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
