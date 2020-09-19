@@ -90,9 +90,11 @@ function Question ({
           'resultsByFilter',
           filter.id,
           'rawResults',
-        ], []).map(r => _.get(r, ['results', choice.questionId, 'answers']))
-        const value = _.meanBy(_.compact(results), (result) => {
-          const choiceAnswers = result.filter(a => a.choice === choice.id)
+        ], []).map((r) => {
+          const answers = _.get(r, ['results', choice.questionId, 'answers'], [])
+          return answers.filter(a => a.choice === choice.id)
+        }).filter(r => r.length)
+        const value = _.meanBy(_.compact(results), (choiceAnswers) => {
           factor = _.find(factorMap, f => f.question_ids.includes(choice.questionId))
           return _.meanBy(choiceAnswers, (a) => {
             if (a.values) {
@@ -192,9 +194,9 @@ function TBody ({ rows, emptyText }) {
           <td>{i + 1}</td>
           <td>{row.factorName}</td>
           <td>{row.questionName}</td>
-          <td>{row.left}</td>
-          <td>{row.right}</td>
-          <td>{row.diff}</td>
+          <td>{row.left.toFixed(2)}</td>
+          <td>{row.right.toFixed(2)}</td>
+          <td>{row.diff.toFixed(2)}</td>
         </tr>
       ))}
     </tbody>

@@ -86,10 +86,11 @@ export default class QuestionHighestLowest extends Component {
           'resultsByFilter',
           module.props.filter,
           'rawResults',
-        ], []).map(r => _.get(r, ['results', choice.questionId, 'answers']))
-
-        const value = _.meanBy(_.compact(results), (result) => {
-          const choiceAnswers = result.filter(a => a.choice === choice.choice)
+        ], []).map((r) => {
+          const answers = _.get(r, ['results', choice.questionId, 'answers'], [])
+          return answers.filter(a => a.choice === choice.choice)
+        }).filter(r => r.length)
+        const value = _.meanBy(_.compact(results), (choiceAnswers) => {
           factor = _.find(factorMap, f => f.question_ids.includes(choice.questionId))
           return _.meanBy(choiceAnswers, (a) => {
             if (a.values) {
@@ -121,13 +122,15 @@ export default class QuestionHighestLowest extends Component {
           <Text model={{ text: i + 1 }} />
           <Text model={{ text: factorName }} />
           <td>{Utils.stripHTML(question.name)}</td>
-          <Text model={{ value }} />
+          <Text model={{ value: value.toFixed(2) }} />
         </tr>
       )
     })
   }
 
   render () {
+    const { module: { props: { filter: filterId } } } = this.props
+    const filter = _.find(AppStore.report.filters, { id: filterId })
     this.prepareRows()
     if (_.isEmpty(this.topData)) {
       return <div>There are no assessment responses that matches the filter to show highest/lowest question table</div>
@@ -143,7 +146,7 @@ export default class QuestionHighestLowest extends Component {
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.rank')}</td>
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.scoring_category')}</td>
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.item')}</td>
-              <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.average')}</td>
+              <td className={styles.label}>{I18nStore.tFilterName(filter)}</td>
             </tr>
             {this.renderScores(this.topData)}
             <tr>
@@ -153,7 +156,7 @@ export default class QuestionHighestLowest extends Component {
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.rank')}</td>
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.scoring_category')}</td>
               <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.item')}</td>
-              <td className={styles.label}>{I18nStore.t('reports.modules.highest_lowest.average')}</td>
+              <td className={styles.label}>{I18nStore.tFilterName(filter)}</td>
             </tr>
             {this.renderScores(this.bottomData)}
           </tbody>
