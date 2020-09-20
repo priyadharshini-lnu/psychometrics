@@ -5,6 +5,8 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import styles from './styles.scss'
 
+const { I18n } = window
+
 interface Props {
   options: ICampaignOptions
   fetch: (projectId: number, campaignId: number) => void
@@ -40,14 +42,15 @@ const CampaignOptions: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
+      <TimeZoneSelect
+        label={I18n.t('administration.time_zone')}
+        {...parametersForSelect('timeZone')}
+      />
+
       <Section>
         <Option
           label="Fixed Time"
           {...parametersForSwitch('fixedTime')}
-        />
-        <TimeZoneSelect
-          label="TimeZone"
-          {...parametersForSelect('timeZone')}
         />
       </Section>
     </div>

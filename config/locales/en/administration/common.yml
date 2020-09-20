@@ -30,6 +30,7 @@ en:
     no_data_found: No data found
     updated: Successfully updated
     created: Successfully created
+    time_zone: Time Zone
     genders:
       male: Male
       female: Female

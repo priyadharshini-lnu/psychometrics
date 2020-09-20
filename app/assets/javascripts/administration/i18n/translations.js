@@ -4524,6 +4524,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
@@ -11635,6 +11636,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
@@ -18736,6 +18738,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
