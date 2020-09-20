@@ -7,4 +7,8 @@ class CampaignUser < ApplicationRecord
   has_many :evaluation_results, through: :user
   has_many :user_assessments, through: :user
   has_many :user_reports, through: :user
+
+  def disabled
+    !active
+  end
 end

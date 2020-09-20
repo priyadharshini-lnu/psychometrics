@@ -211,6 +211,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -4916,6 +4919,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
@@ -5068,6 +5072,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -5685,6 +5690,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "update_success": "%{resourceName} updated successfully"
     },
     "update": "Update",
+    "upload": "Upload",
     "yes": "Yes"
   },
   "helpers": {
@@ -7016,12 +7022,29 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "import": "Import Users"
     }
   },
   "user_reports": {
@@ -7328,6 +7351,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -12030,6 +12056,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
@@ -12182,6 +12209,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -12795,6 +12823,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "update_success": "%{resourceName} updated successfully"
     },
     "update": "Update",
+    "upload": "Upload",
     "yes": "Yes"
   },
   "helpers": {
@@ -14123,12 +14152,29 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "import": "Import Users"
     }
   },
   "user_reports": {
@@ -14435,6 +14481,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -19137,6 +19186,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
@@ -19289,6 +19339,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -19902,6 +19953,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "update_success": "%{resourceName} updated successfully"
     },
     "update": "Update",
+    "upload": "Upload",
     "yes": "Yes"
   },
   "helpers": {
@@ -21230,12 +21282,29 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "import": "Import Users"
     }
   },
   "user_reports": {

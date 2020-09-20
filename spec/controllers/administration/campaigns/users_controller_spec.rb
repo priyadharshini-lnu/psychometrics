@@ -29,6 +29,19 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  describe 'import' do
+    it 'run action successfully' do
+      file = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/users_export.csv'), 'text/csv')
+      post :import, params: {
+        new_campaign_id: campaign.id,
+        operation: 'add_with_existing_response',
+        import_data: file
+      }
+      expect(campaign.users.exists?(email: 'vlad@gmail.com')).to be_truthy
+      expect(campaign.users.exists?(email: 'fedor@gmail.com')).to be_truthy
+    end
+  end
+
   describe 'PUT toggle_status' do
     it 'toggles user status' do
       put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }

@@ -28,6 +28,7 @@ en:
         type: Norm Type
         apply: Apply this change to existing users in this campaign
         update: Update
+        success_msg: Norms successfully uploaded
       update_time:
         title: Extend Time
         additional_time: Time (min)
