@@ -78,7 +78,9 @@ module Administration
 
       def update_campaign_options
         campaign_options = @campaign.campaign_options
-        form = ::Campaigns::CampaignOptions::Form.from_params(campaign_options.attributes.merge(campaign_options_params))
+
+        attributes = campaign_options.attributes.merge(campaign_options_params)
+        form = ::Campaigns::CampaignOptions::Form.from_params(attributes)
 
         if form.valid?
           campaign_options.update_attributes(campaign_options_params)
