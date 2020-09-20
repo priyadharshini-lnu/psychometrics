@@ -21,5 +21,9 @@ module Administration
     def regenerate?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
+
+    def bulk_download?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
   end
 end

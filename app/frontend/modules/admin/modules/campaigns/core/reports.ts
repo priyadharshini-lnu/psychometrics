@@ -19,6 +19,7 @@ export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
 export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
+export const BULK_DOWNLOAD = 'campaigns/reports/BULK_DOWNLOAD'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
   type: REMOVE,
@@ -59,6 +60,16 @@ export const regenerateReports = (campaignId: number, ids: number[]) => ({
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/reports/regenerate`,
+    body: { ids },
+    loader: true,
+  },
+})
+
+export const bulkDownload = (campaignId: number, ids: number[]) => ({
+  type: BULK_DOWNLOAD,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/reports/bulk_download`,
     body: { ids },
     loader: true,
   },

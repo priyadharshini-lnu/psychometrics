@@ -4937,6 +4937,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -4950,6 +4953,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
@@ -6317,13 +6323,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -6332,14 +6338,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
@@ -12057,6 +12063,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -12070,6 +12079,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
@@ -13433,13 +13445,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -13448,14 +13460,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
@@ -19170,6 +19182,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -19183,6 +19198,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
     },
     "modals": {
       "remove": {
@@ -20546,13 +20564,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -20561,14 +20579,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },

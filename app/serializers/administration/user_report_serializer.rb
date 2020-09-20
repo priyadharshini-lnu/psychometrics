@@ -2,10 +2,18 @@
 
 module Administration
   class UserReportSerializer < ActiveModel::Serializer
-    attributes :id, :report_id, :name, :user_access, :report_family_name, :status
+    attributes :id, :report_id, :name, :user_access, :report_family_name, :status, :internal, :report_url
 
-    delegate :name, to: :report
+    delegate :name, :mindmill, to: :report
     delegate :name, to: :report_family, prefix: true, allow_nil: true
+
+    def internal
+      report.provider_internal?
+    end
+
+    def report_url
+      object.pdf.url if report.mindmill?
+    end
 
     private
 

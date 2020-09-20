@@ -50,7 +50,7 @@ module EndUser
     end
 
     def mindmill_url
-      pass_mindmill_assign_path(object)
+      pass_mindmill_user_assessment_path(object)
     end
 
     def hogan

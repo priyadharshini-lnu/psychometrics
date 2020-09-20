@@ -7,6 +7,7 @@ import I18nStore from 'rb/store/I18nStore'
 import { connect } from 'react-redux'
 import { getQuestions } from 'modules/reports/core/builder/selectors'
 import styles from '../styles.scss'
+import { GAP_TYPES } from '../Properties'
 
 const MOCK_POSITIVE_ROWS = [
   {
@@ -46,70 +47,104 @@ const MOCK_POSITIVE_ROWS = [
   },
 ]
 const MOCK_NEGATIVE_ROWS = []
+const AVAILABLE_QUESTION_TYPES = ['MatrixTable', 'SideBySide']
 
 // TODO (atanych): I have copied and pasted from another file. Have to sort out when integrate real results
 function Question ({
   filters: [left, right], filters, model, questions,
 }) {
+  const findQuestions = () => _.filter(
+    questions, question => AVAILABLE_QUESTION_TYPES.includes(question.type),
+  )
+  const findQuestionChoices = () => {
+    const questions = findQuestions()
+    return _.flatMap(questions, question => _.times(question.props.choices, id => ({
+      questionId: question.id,
+      name: I18nStore.tQuestion(question, `choicesTexts${id + 1}`, { choice: id }),
+      id,
+    })))
+  }
+
   const getResults = () => {
+    if (!ResultStore.realResults && model.props.sourceType === 'Question') {
+      return [_.times(5, i => ({
+        questionName: MOCK_POSITIVE_ROWS[i].questionName,
+        left: MOCK_POSITIVE_ROWS[i].left,
+        right: MOCK_POSITIVE_ROWS[i].right,
+        diff: MOCK_POSITIVE_ROWS[i].diff,
+      })), []]
+    }
+
     if (!ResultStore.realResults) return [MOCK_POSITIVE_ROWS, MOCK_NEGATIVE_ROWS]
-
-    const questionScoringLeft = _.get(ResultStore, [
-      'results',
-      model.assessment_id,
-      'resultsByFilter',
-      left.id,
-      'questionScoring',
-    ])
-    const questionScoringRight = _.get(ResultStore, [
-      'results',
-      model.assessment_id,
-      'resultsByFilter',
-      right.id,
-      'questionScoring',
-    ])
-
-    if (!questionScoringLeft || !questionScoringRight) return [[], []]
 
     const assessment = AppStore.getAssessmentById(model.assessment_id)
     const dimensionId = assessment && assessment.dimensionId
     const factorMap = _.keyBy(AppStore.factors[dimensionId], f => f.id)
-    const questionMap = questions
+    const questionChoices = findQuestionChoices()
+    let results = questionChoices.map((choice) => {
+      let factor
+      const values = [left, right].map((filter) => {
+        const results = _.get(ResultStore, [
+          'results',
+          model.assessment_id,
+          'resultsByFilter',
+          filter.id,
+          'rawResults',
+        ], []).map((r) => {
+          const answers = _.get(r, ['results', choice.questionId, 'answers'], [])
+          return answers.filter(a => a.choice === choice.id)
+        }).filter(r => r.length)
+        const value = _.meanBy(_.compact(results), (choiceAnswers) => {
+          factor = _.find(factorMap, f => f.question_ids.includes(choice.questionId))
+          return _.meanBy(choiceAnswers, (a) => {
+            if (a.values) {
+              return _.meanBy(a.values, val => val.recode_value)
+            }
+            return a.recode_value
+          })
+        })
+        return _.round(value, 2) || 0
+      })
 
-    let results = _.flatMap(questionScoringLeft,
-      (questionResults, factorId) => _.map(questionResults, (res, questionId) => {
-        const leftMean = _.meanBy(res, r => r.getValue())
-        const rightMean = _.meanBy(questionScoringRight[factorId][questionId], r => r.getValue())
-        const row = { left: _.round(leftMean, 2), right: _.round(rightMean, 2) }
-        return {
-          ...row,
-          factorName: I18nStore.tFactor(factorMap[factorId], 'name'),
-          questionName: Utils.stripHTML(_.get(questionMap[questionId], 'props.questionText')),
-          factor: factorMap[factorId],
-          diff: row.left - row.right,
-        }
-      }))
+      const row = { left: values[0], right: values[1] }
+      return {
+        ...row,
+        factorName: factor.name,
+        questionName: Utils.stripHTML(choice.name),
+        factor,
+        diff: _.round(row.left - row.right, 2),
+      }
+    })
+
     results = _.sortBy(results, d => -d.diff)
     const positive = _.take(_.takeWhile(results, d => d.diff > 0), 5)
     const negative = _.take(_.takeRightWhile(results, d => d.diff < 0), 5)
     return [positive, negative]
   }
 
+  const gapType = _.get(model, ['props', 'gapType'], 0)
+  const showPositive = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.POSITIVE
+  const showNegative = gapType === GAP_TYPES.ALL || gapType === GAP_TYPES.NEGATIVE
+  const showTitle = gapType === GAP_TYPES.ALL
   const [positive, negative] = getResults()
   return (
     <div className={styles.table}>
+      {showPositive && (
       <Table
-        title={I18nStore.t('reports.modules.gap_assessment.positive_gap')}
+        title={showTitle && I18nStore.t('reports.modules.gap_assessment.positive_gap')}
         emptyText={I18nStore.t('reports.modules.gap_assessment.no_positive_gaps')}
         filters={filters}
         rows={positive}
       />
+      )}
+      {showNegative && (
       <Table
-        title={I18nStore.t('reports.modules.gap_assessment.negative_gap')}
+        title={showTitle && I18nStore.t('reports.modules.gap_assessment.negative_gap')}
         emptyText={I18nStore.t('reports.modules.gap_assessment.no_negative_gaps')}
         filters={filters}
         rows={negative}
       />
+      )}
     </div>
   )
 }
@@ -120,11 +155,13 @@ function Table ({
   return (
     <table>
       <thead>
+        {title && (
         <tr>
           <td className={styles.label} colSpan={6}>
             {title}
           </td>
         </tr>
+        )}
         <tr>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.rank')}</td>
           <td className={styles.label}>{I18nStore.t('reports.modules.gap_assessment.scoring_category')}</td>
@@ -157,9 +194,9 @@ function TBody ({ rows, emptyText }) {
           <td>{i + 1}</td>
           <td>{row.factorName}</td>
           <td>{row.questionName}</td>
-          <td>{row.left}</td>
-          <td>{row.right}</td>
-          <td>{row.diff}</td>
+          <td>{row.left.toFixed(2)}</td>
+          <td>{row.right.toFixed(2)}</td>
+          <td>{row.diff.toFixed(2)}</td>
         </tr>
       ))}
     </tbody>

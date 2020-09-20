@@ -23,4 +23,16 @@ describe ::UsersResults::GenerateReports do
 
     described_class.call!(user_result, user)
   end
+
+  it "doesn't generate report if user_report id is in exceptUserReportIds option" do
+    user_result = build(:users_result)
+    user_reports = create_list(:user_report, 2)
+    user = build(:user)
+
+    allow(user_result).to receive(:user_reports).and_return(user_reports)
+
+    expect(UserReports::GenerateAndSavePdfJob).to_not receive(:perform_later).with(user_reports[0], user)
+    expect(UserReports::GenerateAndSavePdfJob).to receive(:perform_later).with(user_reports[1], user)
+    described_class.call!(user_result, user, exceptUserReportIds: [user_reports[0].id])
+  end
 end

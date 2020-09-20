@@ -63,6 +63,7 @@ Rails.application.routes.draw do
             get :report_families
             get :assessments_and_reports
             post :regenerate
+            post :bulk_download
           end
           member do
             get :export
@@ -690,6 +691,13 @@ Rails.application.routes.draw do
       resources :user_reports do
         member do
           post :pdf_preview
+        end
+      end
+
+      resources :mindmill_user_assessments, only: [] do
+        member do
+          get :pass
+          get :redirect
         end
       end
 

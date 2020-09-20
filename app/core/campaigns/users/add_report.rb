@@ -32,7 +32,7 @@ module Campaigns
 
       def add_assessment_to_user(assessment)
         user_assessment = UserAssessment.create_with(
-          users_result_id: user_result(assessment.id).id
+          users_result_id: user_result(assessment).id
         ).find_or_create_by!(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -48,23 +48,32 @@ module Campaigns
         user_assessment
       end
 
-      def user_result(assessment_id)
-        return create_new_user_result(assessment_id) if options[:operation] == 'add_and_allow_new_response'
+      def user_result(assessment)
+        return create_new_user_result(assessment) if options[:operation] == 'add_and_allow_new_response'
 
-        user_result = campaign_user.evaluation_results.find_by(assessment_id: assessment_id)
+        user_result = campaign_user.evaluation_results.order(created_at: :desc).find_by(assessment_id: assessment.id)
 
         return user_result if user_result
 
-        create_new_user_result(assessment_id)
+        create_new_user_result(assessment)
       end
 
-      def create_new_user_result(assessment_id)
-        UsersResult.create(
-          assessment_id: assessment_id,
+      def create_new_user_result(assessment)
+        user_result = UsersResult.create(
+          assessment: assessment,
           subject_id: campaign_user.user_id,
           evaluator_id: campaign_user.user_id,
           answers: {}
         )
+
+        if assessment.mindmill?
+          user_result.create_mindmill_credential(
+            user_name: "#{Settings.assigns.mindmill_prefix}_#{user_result.id}",
+            password: SecureRandom.hex
+          )
+        end
+
+        user_result
       end
 
       def generate_report_pdf(user_report)
