@@ -2,16 +2,17 @@
 
 module CampaignAssessments
   class Remove < BaseCommand
-    private_attr_reader :campaign_assessment, :campaign, :assessment
+    private_attr_reader :campaign_assessment, :campaign, :assessment, :remove_user_assessments
 
-    def initialize(campaign_assessment, campaign)
+    def initialize(campaign_assessment, campaign, remove_user_assessments = false)
       @campaign_assessment = campaign_assessment
       @assessment = campaign_assessment.assessment
+      @remove_user_assessments = remove_user_assessments
       @campaign = campaign
     end
 
     def call
-      remove_user_assessments_and_reports
+      remove_user_assessments_and_reports if remove_user_assessments
       remove_campaign_assessment_and_report
     end
 
