@@ -26,14 +26,7 @@ const CampaignOptions: React.FC<Props> = ({
     fetch(parseInt(projectId, 10), parseInt(campaignId, 10))
   }, [])
 
-  const parametersForSwitch = name => ({
-    value: (options || {})[name],
-    onOptionChanged: (value) => {
-      update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, [name]: value })
-    },
-  })
-
-  const parametersForSelect = name => ({
+  const parametersForField = name => ({
     value: (options || {})[name],
     onChange: (value) => {
       update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, [name]: value })
@@ -44,13 +37,13 @@ const CampaignOptions: React.FC<Props> = ({
     <div className={styles.container}>
       <TimeZoneSelect
         label={I18n.t('administration.time_zone')}
-        {...parametersForSelect('timeZone')}
+        {...parametersForField('timeZone')}
       />
 
       <Section>
         <Option
           label="Fixed Time"
-          {...parametersForSwitch('fixedTime')}
+          {...parametersForField('fixedTime')}
         />
       </Section>
     </div>
