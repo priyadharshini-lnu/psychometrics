@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Checkbox } from 'antd'
+import { Modal, Checkbox, message } from 'antd'
 import _ from 'lodash'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import { PropsFromRedux } from './connect'
@@ -32,8 +32,9 @@ const RemoveAssessmentModal: React.FC<Props> = ({
     return names
   }
 
-  const handleRemoveReport = () => {
+  const handleRemoveAssessment = () => {
     remove(campaignId, campaignAssessmentId, { reportIds: campaignReportsIds, removeUserAssessments })
+    message.success(I18n.t('campaign_assessment.modals.remove.successfully', { name }))
     close()
   }
 
@@ -45,7 +46,7 @@ const RemoveAssessmentModal: React.FC<Props> = ({
       centered
       okText={I18n.t('common.text.continue')}
       onCancel={close}
-      onOk={handleRemoveReport}
+      onOk={handleRemoveAssessment}
     >
       <p>
         {I18n.t('campaign_assessment.modals.remove.content')}

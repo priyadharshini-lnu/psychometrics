@@ -13,6 +13,13 @@ class UserReport < ApplicationRecord
 
   mount_base64_uploader :pdf, PdfUploader, file_name: proc { 'report' }
 
+  scope :by_assessment_specific_to_user_and_campaign, lambda { |assessment, user_id, campaign_id|
+    where(
+      'report_id IN (?) and user_id = (?) and campaign_id = (?)',
+      assessment.reports.ids, user_id, campaign_id
+    )
+  }
+
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)
   end

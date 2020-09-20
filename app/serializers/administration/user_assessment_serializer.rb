@@ -14,10 +14,8 @@ module Administration
     end
 
     def user_reports_ids
-      report_ids = object.assessment.reports.ids
-      UserReport.where(
-        'report_id IN (?) and user_id = (?) and campaign_id = (?)',
-        report_ids, object.subject_id, object.campaign_id
+      UserReport.by_assessment_specific_to_user_and_campaign(
+        object.assessment, object.subject_id, object.campaign_id
       ).ids
     end
 

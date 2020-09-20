@@ -26,10 +26,7 @@ module CampaignAssessments
     end
 
     def remove_campaign_assessment_and_report
-      report_ids = assessment.reports.ids
-      CampaignReport.where(
-        'report_id IN (?) and campaign_id = (?)', report_ids, campaign.id
-      ).each(&:destroy!)
+      CampaignReport.by_specific_assessment_and_campaign(assessment, campaign.id).each(&:destroy!)
       campaign_assessment.destroy!
     end
   end

@@ -17,10 +17,7 @@ module Administration
     end
 
     def campaign_reports_ids
-      report_ids = assessment.reports.ids
-      CampaignReport.where(
-        'report_id IN (?) and campaign_id = (?)', report_ids, object.campaign_id
-      ).ids
+      CampaignReport.by_specific_assessment_and_campaign(assessment, object.campaign_id).ids
     end
 
     private
