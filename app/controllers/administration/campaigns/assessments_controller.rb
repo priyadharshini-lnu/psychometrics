@@ -49,7 +49,9 @@ module Administration
       end
 
       def destroy
-        CampaignAssessments::Remove.call!(campaign_assessment, campaign, params[:remove_user_assessments])
+        CampaignAssessments::Remove.call!(
+          campaign_assessment, campaign, remove_user_assessments: params[:remove_user_assessments]
+        )
         render json: resource.id
       end
 

@@ -117,7 +117,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         enable_universal_links
         universal_link
         norms
-        campaign_reports_ids
+        report_ids
       ]
     )
     expect(assessment_response).to include({

@@ -95,7 +95,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'additional_time' => nil,
       'is_expired' => false,
       'status' => 'not_started',
-      'user_reports_ids' => [user_report.id]
+      'report_ids' => [user_report.report_id]
     })
   end
 end

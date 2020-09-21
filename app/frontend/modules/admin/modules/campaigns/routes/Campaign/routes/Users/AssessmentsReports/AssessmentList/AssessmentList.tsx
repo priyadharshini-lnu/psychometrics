@@ -109,7 +109,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     currentUser,
                     reports,
                     remove: () => remove(parsedCampaignId,
-                      assessment.id, { userReportsIds: assessment.userReportsIds }),
+                      assessment.id, assessment.reportIds),
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -140,7 +140,7 @@ interface ActionMenuProps {
 const ActionsMenu: React.FC<ActionMenuProps> = ({
   rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove, reports,
 }) => {
-  const { name, userReportsIds } = assessment
+  const { name, reportIds } = assessment
 
   const handleRescoreResponse = () => {
     rescoreResponse()
@@ -148,13 +148,8 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   }
 
   const reportNames = () => {
-    const names: string[] = []
-    _.each(reports, (report) => {
-      if (userReportsIds.includes(report.id)) {
-        names.push(report.name)
-      }
-    })
-    return names
+    const names = reports.map(report => (reportIds.includes(report.reportId) ? report.name : ''))
+    return _.compact(names)
   }
 
   const handleDelete = () => {

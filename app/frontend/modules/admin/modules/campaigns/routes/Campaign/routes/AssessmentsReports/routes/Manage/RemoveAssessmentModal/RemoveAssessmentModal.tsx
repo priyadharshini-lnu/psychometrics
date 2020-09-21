@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Checkbox, message } from 'antd'
 import _ from 'lodash'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
@@ -11,6 +12,7 @@ export interface OwnProps {
   assessment: Assessment
   campaignId: number
   campaignAssessmentId: number
+  reports: Report[]
 }
 
 export type Props = OwnProps & PropsFromRedux
@@ -20,20 +22,15 @@ const RemoveAssessmentModal: React.FC<Props> = ({
 }) => {
   const [removeUserAssessments, setRemoveUserAssessments] = useState(false)
 
-  const { name, campaignReportsIds } = assessment
+  const { name, reportIds } = assessment
 
   const reportNames = () => {
-    const names: string[] = []
-    _.each(reports, (report) => {
-      if (campaignReportsIds.includes(report.id)) {
-        names.push(report.name)
-      }
-    })
-    return names
+    const names = reports.map(report => (reportIds.includes(report.reportId) ? report.name : ''))
+    return _.compact(names)
   }
 
   const handleRemoveAssessment = () => {
-    remove(campaignId, campaignAssessmentId, { reportIds: campaignReportsIds, removeUserAssessments })
+    remove(campaignId, campaignAssessmentId, { reportIds, removeUserAssessments })
     message.success(I18n.t('campaign_assessment.modals.remove.successfully', { name }))
     close()
   }

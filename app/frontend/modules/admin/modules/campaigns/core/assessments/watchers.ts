@@ -6,7 +6,7 @@ import { AnyAction } from 'redux'
 import {
   ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, REMOVE,
 } from './actions'
-import { removeReportByIds } from '../reports'
+import { removeCamapignReports } from '../reports'
 
 
 function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }: AnyAction) {
@@ -16,10 +16,6 @@ function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }
       campaignAssessmentId: response.id,
       universalLink: response.universalLink,
     }))
-}
-
-function* removeCamapignReports ({ requestAction: { options } }: AnyAction) {
-  yield put(removeReportByIds(options.reportIds))
 }
 
 export const watchers = [

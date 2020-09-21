@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
-               :additional_time, :is_expired, :user_reports_ids
+               :additional_time, :is_expired, :report_ids
 
     delegate :name, :category, to: :assessment
 
@@ -13,10 +13,8 @@ module Administration
       user_result.status
     end
 
-    def user_reports_ids
-      UserReport.by_assessment_specific_to_user_and_campaign(
-        object.assessment, object.subject_id, object.campaign_id
-      ).ids
+    def report_ids
+      assessment.report_ids
     end
 
     def norms

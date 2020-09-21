@@ -3,7 +3,7 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_type, :norm_id, :enable_universal_links,
-               :universal_link, :norms, :campaign_reports_ids
+               :universal_link, :norms, :report_ids
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
@@ -16,8 +16,8 @@ module Administration
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
     end
 
-    def campaign_reports_ids
-      CampaignReport.by_specific_assessment_and_campaign(assessment, object.campaign_id).ids
+    def report_ids
+      assessment.report_ids
     end
 
     private

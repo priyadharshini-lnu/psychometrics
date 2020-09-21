@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
+import { put } from 'redux-saga/effects'
 import { updateIn } from 'utils/immutable'
 import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import humps from 'humps'
 import { RootState } from 'modules/admin/core/rootReducers'
+import { AnyAction } from 'redux'
 import { FETCH_SINGLE as FETCH_SINGLE_USER } from './users'
 
 const defaultState = {
@@ -57,6 +59,10 @@ export const removeReportByIds = (ids: number[]) => ({
   type: REMOVE_REPORT_BY_IDS,
   ids,
 })
+
+export function* removeUserReports ({ requestAction: { reportIds } }: AnyAction) {
+  yield put(removeReportByIds(reportIds))
+}
 
 export const regenerateReports = (campaignId: number, ids: number[]) => ({
   type: REGENERATE_REPORTS,
@@ -151,7 +157,7 @@ const HANDLERS = {
   ),
   [REMOVE_REPORT_BY_IDS]: (state: State, { ids }: { ids: number[] }) => (
     updateIn(state, ['list'], (userReports: UserReport[]) => _.filter(
-      userReports, (report: UserReport) => !ids.includes(report.id),
+      userReports, (report: UserReport) => !ids.includes(report.reportId),
     ))
   ),
 }
