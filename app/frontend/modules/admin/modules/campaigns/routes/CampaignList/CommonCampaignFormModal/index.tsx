@@ -5,17 +5,16 @@ import {
   Form, Input, Select, DatePicker,
 } from 'antd'
 import _ from 'lodash'
-import moment from 'moment'
 
 const { Option } = Select
 
 interface Props {
   projectId: number
   close(): void
-  campaign: {
+  campaign?: {
     id: number,
-    startDate?,
-    endDate?,
+    startDate?: Date,
+    endDate?: Date,
   }
 }
 
@@ -36,8 +35,6 @@ interface Props {
 //   }
 // }
 
-const format = 'YYYY-MM-DD HH:mm:ss'
-
 const CommonCampaignFormModal: React.FC<Props> = ({
   projectId,
   close,
@@ -45,6 +42,13 @@ const CommonCampaignFormModal: React.FC<Props> = ({
 }) => {
   // eslint-disable-next-line no-console
   console.log('campaign: ', campaign)
+  // const transformValues = values => ({
+  //   ...values,
+  //   id: campaign && campaign.id,
+  //   startDate: values.startDate.format('YYYY-MM-DD HH:mm'),
+  //   endDate: values.endDate.format('YYYY-MM-DD HH:mm'),
+  // })
+
   return (
     <ResourceFormModal
       resourceName="campaign"
@@ -54,6 +58,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
       close={close}
       modalProps={{ width: 550 }}
       formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON } }}
+      // transformValues={transformValues}
     >
       {() => (
         <>
@@ -78,23 +83,13 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             name="startDate"
             label="Start Date"
           >
-            <DatePicker
-              value={moment(campaign.startDate, format)}
-              defaultPickerValue={moment(campaign.startDate, format)}
-              showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }}
-              format={format}
-            />
+            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
           </Form.Item>
           <Form.Item
             name="endDate"
             label="End Date"
           >
-            <DatePicker
-              value={moment(campaign.endDate, format)}
-              defaultPickerValue={moment(campaign.startDate, format)}
-              showTime={{ defaultValue: moment('00:00:00', 'HH:mm:ss') }}
-              format={format}
-            />
+            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
           </Form.Item>
           <Form.Item name="type" noStyle>
             <Input type="hidden" />
