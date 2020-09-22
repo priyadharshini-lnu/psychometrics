@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 import React, { useState } from 'react'
 import moment from 'moment'
 import { Form, TimePicker } from 'antd'

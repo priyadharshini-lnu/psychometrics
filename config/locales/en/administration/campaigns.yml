@@ -1,0 +1,6 @@
+en:
+  administration:
+    campaigns:
+      options:
+        fixed_time: Fixed Time
+        duration: ''

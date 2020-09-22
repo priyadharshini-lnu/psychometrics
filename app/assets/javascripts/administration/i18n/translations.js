@@ -1118,6 +1118,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "url": "Url"
     },
+    "campaigns": {
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time"
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
     "clients": {
@@ -8230,6 +8236,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "url": "Url"
     },
+    "campaigns": {
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time"
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
     "clients": {
@@ -15331,6 +15343,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Client Tenancy %{name} was successfully updated."
       },
       "url": "Url"
+    },
+    "campaigns": {
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time"
+      }
     },
     "choose": " - Choose - ",
     "clear": "Clear",
