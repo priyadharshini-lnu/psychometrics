@@ -178,8 +178,8 @@ const CampaignList: React.FC<Props> = ({
                         projectId,
                         campaign: {
                           ...campaign,
-                          startDate: moment(campaign.startDate),
-                          endDate: moment(campaign.endDate),
+                          startDate: campaign.startDate && moment(campaign.startDate),
+                          endDate: campaign.endDate && moment(campaign.endDate),
                         },
                       })}
                     />

@@ -43,13 +43,13 @@ const CampaignOptions: React.FC<Props> = ({
         />
 
         <Option
-          label={I18n.t('administration.campaigns.time_zone')}
+          label={I18n.t('administration.campaigns.options.fixed_time')}
           {...parametersForField('fixedTime')}
         />
 
         {options.fixedTime && (
           <DurationSelect
-            label={I18n.t('administration.campaigns.duration')}
+            label={I18n.t('administration.campaigns.options.duration')}
             style={{ marginLeft: 110 }}
             {...parametersForField('fixedTimeDuration')}
           />

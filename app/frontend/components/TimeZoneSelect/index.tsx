@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment-timezone'
 import { Form, Select } from 'antd'
 
@@ -158,12 +158,16 @@ zones
 
 const { Option } = Select
 const TimeZoneSelect = ({
-  value,
+  value = Intl.DateTimeFormat().resolvedOptions().timeZone,
   label,
   onChange,
   ...props
 }) => {
-  const [selectedTimeZone, setSelectedTimeZone] = useState(value || Intl.DateTimeFormat().resolvedOptions().timeZone)
+  const [selectedTimeZone, setSelectedTimeZone] = useState(value)
+
+  useEffect(() => {
+    setSelectedTimeZone(value)
+  }, [value])
 
   const handleChange = (tz) => {
     setSelectedTimeZone(tz)
@@ -174,7 +178,7 @@ const TimeZoneSelect = ({
     <Form.Item name="time_zone" label={label}>
       <Select
         showSearch
-        defaultValue={selectedTimeZone}
+        value={selectedTimeZone}
         onChange={handleChange}
         style={{ width: 240, marginLeft: 25 }}
         optionFilterProp="children"
