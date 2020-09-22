@@ -121,7 +121,7 @@ module Administration
       end
 
       def campaign_params
-        resource_params.permit(:name, :status, :type, options: {})
+        resource_params.permit(:name, :status, :type, :start_date, :end_date, options: {})
       end
 
       def campaign_options_params

@@ -7,6 +7,7 @@ import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { MoreOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
+import moment from 'moment'
 import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
@@ -136,6 +137,20 @@ const CampaignList: React.FC<Props> = ({
               render={({ name, isThreesixty, campaignUrl }) => (
                 isThreesixty ? <a href={campaignUrl}>{name}</a> : <Link to={campaignUrl}>{name}</Link>
               )}
+            />
+            <Column
+              title="Start Date"
+              key="startDate"
+              sorter
+              sortOrder={getSortOrder('startDate')}
+              render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')}
+            />
+            <Column
+              title="End Date"
+              key="endDate"
+              sorter
+              sortOrder={getSortOrder('endDate')}
+              render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')}
             />
             <Column
               title="Type"

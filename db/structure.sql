@@ -681,7 +681,9 @@ CREATE TABLE public.campaigns (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     status integer DEFAULT 0,
-    options jsonb DEFAULT '{}'::jsonb
+    options jsonb DEFAULT '{}'::jsonb,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone
 );
 
 
@@ -1496,38 +1498,6 @@ CREATE SEQUENCE public.hogan_credentials_id_seq
 --
 
 ALTER SEQUENCE public.hogan_credentials_id_seq OWNED BY public.hogan_credentials.id;
-
-
---
--- Name: hogan_groups; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.hogan_groups (
-    id bigint NOT NULL,
-    name character varying,
-    campaign_id bigint,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: hogan_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.hogan_groups_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: hogan_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.hogan_groups_id_seq OWNED BY public.hogan_groups.id;
 
 
 --
@@ -3119,7 +3089,7 @@ CREATE TABLE public.user_reports (
     updated_at timestamp without time zone NOT NULL,
     user_access boolean DEFAULT false,
     report_family_id bigint,
-    pdf_id bigint
+    pdf_path character varying
 );
 
 
@@ -3528,13 +3498,6 @@ ALTER TABLE ONLY public.hogan_assessment_settings ALTER COLUMN id SET DEFAULT ne
 --
 
 ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('public.hogan_credentials_id_seq'::regclass);
-
-
---
--- Name: hogan_groups id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_groups ALTER COLUMN id SET DEFAULT nextval('public.hogan_groups_id_seq'::regclass);
 
 
 --
@@ -4177,14 +4140,6 @@ ALTER TABLE ONLY public.hogan_assessment_settings
 
 ALTER TABLE ONLY public.hogan_credentials
     ADD CONSTRAINT hogan_credentials_pkey PRIMARY KEY (id);
-
-
---
--- Name: hogan_groups hogan_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_groups
-    ADD CONSTRAINT hogan_groups_pkey PRIMARY KEY (id);
 
 
 --
@@ -5166,13 +5121,6 @@ CREATE INDEX index_hogan_credentials_on_user_id ON public.hogan_credentials USIN
 
 
 --
--- Name: index_hogan_groups_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_hogan_groups_on_campaign_id ON public.hogan_groups USING btree (campaign_id);
-
-
---
 -- Name: index_hogan_report_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5723,13 +5671,6 @@ CREATE INDEX index_user_assessments_on_users_result_id ON public.user_assessment
 --
 
 CREATE INDEX index_user_reports_on_campaign_id ON public.user_reports USING btree (campaign_id);
-
-
---
--- Name: index_user_reports_on_pdf_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_reports_on_pdf_id ON public.user_reports USING btree (pdf_id);
 
 
 --
@@ -6292,14 +6233,6 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
--- Name: user_reports fk_rails_765e169f96; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_reports
-    ADD CONSTRAINT fk_rails_765e169f96 FOREIGN KEY (pdf_id) REFERENCES public.assigns_reports(id);
-
-
---
 -- Name: users_results fk_rails_773500ba49; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6345,14 +6278,6 @@ ALTER TABLE ONLY public.reports_modules
 
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
--- Name: hogan_groups fk_rails_810fc98ecc; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.hogan_groups
-    ADD CONSTRAINT fk_rails_810fc98ecc FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -7335,11 +7260,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200826053004'),
 ('20200830120330'),
 ('20200903100939'),
-('20200903113133'),
 ('20200908070555'),
 ('20200909073506'),
 ('20200913050839'),
 ('20200913071803'),
-('20200914055928');
+('20200914055928'),
+('20200922123931');
 
 
