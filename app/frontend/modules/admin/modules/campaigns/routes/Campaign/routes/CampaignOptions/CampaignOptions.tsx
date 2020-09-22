@@ -3,6 +3,7 @@ import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
 import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import DurationSelect from 'components/DurationSelect'
 import styles from './styles.scss'
 
 const { I18n } = window
@@ -35,16 +36,24 @@ const CampaignOptions: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <TimeZoneSelect
-        label={I18n.t('administration.time_zone')}
-        {...parametersForField('timeZone')}
-      />
-
       <Section>
+        <TimeZoneSelect
+          label={I18n.t('administration.time_zone')}
+          {...parametersForField('timeZone')}
+        />
+
         <Option
           label="Fixed Time"
           {...parametersForField('fixedTime')}
         />
+
+        {options.fixedTime && (
+          <DurationSelect
+            label=""
+            style={{ marginLeft: 110 }}
+            {...parametersForField('fixedTimeDuration')}
+          />
+        )}
       </Section>
     </div>
   )

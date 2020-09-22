@@ -176,7 +176,7 @@ const TimeZoneSelect = ({
         showSearch
         defaultValue={selectedTimeZone}
         onChange={handleChange}
-        style={{ width: 240 }}
+        style={{ width: 240, marginLeft: 25 }}
         optionFilterProp="children"
         filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         {...props}
