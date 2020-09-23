@@ -4891,12 +4891,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
-    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
@@ -4915,6 +4909,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
       },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
@@ -7045,6 +7048,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {
@@ -12028,12 +12040,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
-    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
@@ -12052,6 +12058,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
       },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
@@ -14175,6 +14190,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {
@@ -19158,12 +19182,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
-    },
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
@@ -19182,6 +19200,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "success_msg": "Import successfully uploaded",
         "title": "Import Scoring Results data",
         "upload": "Upload"
+      },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
       },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
@@ -21305,6 +21332,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {

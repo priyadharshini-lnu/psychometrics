@@ -15,6 +15,7 @@ import ImportRawModal from './ImportRawModal'
 import UpdateNormModal from './UpdateNormModal'
 import ImportScoringModal from './ImportScoringModal'
 import RemoveReportModal from './RemoveReportModal'
+import RemoveAssessmentModal from './RemoveAssessmentModal'
 import ToggleUserAccessModal from './ToggleUserAccessModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.scss'
@@ -27,6 +28,7 @@ const MODALS = {
   UpdateNormModal,
   RemoveReportModal,
   ToggleUserAccessModal,
+  RemoveAssessmentModal,
 }
 
 const { I18n } = window

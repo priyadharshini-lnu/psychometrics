@@ -1,0 +1,7 @@
+en:
+  user_assessments:
+    modals:
+      remove:
+        title: Remove assessment %{name}?
+        content: This action will remove these reports associated with the assessment
+        successfully: '%{name} assessment removed successfully.'

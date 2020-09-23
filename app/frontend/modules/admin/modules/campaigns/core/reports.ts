@@ -1,5 +1,7 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
+import { AnyAction } from 'redux'
+import { put } from 'redux-saga/effects'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { updateIn } from 'utils/immutable'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -18,6 +20,7 @@ export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const SELECT_RECORDS = 'campaigns/reports/SELECT_RECORDS'
 export const REGENERATE_REPORTS = 'campaigns/reports/REGENERATE_REPORTS'
+export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 export const BULK_DOWNLOAD = 'campaigns/reports/BULK_DOWNLOAD'
 
 export const remove = (campaignId: number, campaignReportId: number, removeUserReports: boolean) => ({
@@ -47,6 +50,11 @@ export const selectRecords = (ids: number[]) => ({
   payload: { ids },
 })
 
+export const removeReportByIds = (ids: number[]) => ({
+  type: REMOVE_REPORT_BY_IDS,
+  ids,
+})
+
 type SelectRecordsAction = ReturnType<typeof selectRecords>
 
 export const regenerateReports = (campaignId: number, ids: number[]) => ({
@@ -68,6 +76,10 @@ export const bulkDownload = (campaignId: number, ids: number[]) => ({
     loader: true,
   },
 })
+
+export function* genRemoveCamapignReports ({ requestAction: { reportIds } }: AnyAction) {
+  yield put(removeReportByIds(reportIds))
+}
 
 export interface FetchAction {
   response: {
@@ -96,6 +108,11 @@ const HANDLERS = {
     }))
   ),
   [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsAction) => ({ ...state, selectedIds: ids }),
+  [REMOVE_REPORT_BY_IDS]: (state: State, { ids }: { ids: number[] }) => (
+    updateIn(state, ['list'], (reports: Report[]) => _.filter(
+      reports, report => !ids.includes(report.reportId),
+    ))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)

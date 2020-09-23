@@ -25,7 +25,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       parsed_response = JSON.parse(response.body)
       check_user_response(parsed_response.except('user_assessments', 'user_reports'))
       check_report_response(parsed_response['user_reports'].first, user_report)
-      check_assessment_response(parsed_response['user_assessments'].first, user_assessment)
+      check_assessment_response(parsed_response['user_assessments'].first, user_assessment, user_report)
     end
   end
 
@@ -95,7 +95,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     })
   end
 
-  def check_assessment_response(assessment_response, user_assessment)
+  def check_assessment_response(assessment_response, user_assessment, user_report)
     expect(assessment_response).to eq({
       'id' => user_assessment.id,
       'assessment_id' => assessment.id,
@@ -107,7 +107,8 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norm_type' => nil,
       'additional_time' => nil,
       'is_expired' => false,
-      'status' => 'not_started'
+      'status' => 'not_started',
+      'report_ids' => [user_report.report_id]
     })
   end
 end

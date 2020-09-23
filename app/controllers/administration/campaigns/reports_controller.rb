@@ -45,7 +45,7 @@ module Administration
           each_serializer: Administration::CampaignReportSerializer
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaign_assessments.includes(:assessment, :norm),
+          campaign.campaign_assessments.includes(:norm, assessment: [:reports]),
           each_serializer: Administration::CampaignAssessmentSerializer
         )
 
