@@ -60,7 +60,7 @@ export const removeReportByIds = (ids: number[]) => ({
   ids,
 })
 
-export function* removeUserReports ({ requestAction: { reportIds } }: AnyAction) {
+export function* genRemoveUserReports ({ requestAction: { reportIds } }: AnyAction) {
   yield put(removeReportByIds(reportIds))
 }
 

@@ -4,7 +4,7 @@ import { takeEvery } from 'redux-saga/effects'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { updateIn } from 'utils/immutable'
 import { FETCH_SINGLE } from './users'
-import { CREATE as CREATE_REPORT, removeUserReports } from './userReports'
+import { CREATE as CREATE_REPORT, genRemoveUserReports } from './userReports'
 
 const defaultState = {
   list: [],
@@ -127,5 +127,5 @@ const HANDLERS = {
 export default createReducer(HANDLERS, defaultState)
 
 export const watchers = [
-  takeEvery(REMOVE, removeUserReports),
+  takeEvery(REMOVE, genRemoveUserReports),
 ]

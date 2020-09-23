@@ -77,7 +77,7 @@ export const bulkDownload = (campaignId: number, ids: number[]) => ({
   },
 })
 
-export function* removeCamapignReports ({ requestAction: { reportIds } }: AnyAction) {
+export function* genRemoveCamapignReports ({ requestAction: { reportIds } }: AnyAction) {
   yield put(removeReportByIds(reportIds))
 }
 

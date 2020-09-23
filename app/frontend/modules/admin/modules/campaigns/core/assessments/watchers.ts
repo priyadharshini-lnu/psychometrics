@@ -6,7 +6,7 @@ import { AnyAction } from 'redux'
 import {
   ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, REMOVE,
 } from './actions'
-import { removeCamapignReports } from '../reports'
+import { genRemoveCamapignReports } from '../reports'
 
 
 function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }: AnyAction) {
@@ -21,5 +21,5 @@ function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }
 export const watchers = [
   takeLatest(ACTIVATE_UNIVERSAL_LINK, genOpenUniversalLinkModal),
   takeLatest(REGENERATE_UNIVERSAL_LINK, genOpenUniversalLinkModal),
-  takeEvery(REMOVE, removeCamapignReports),
+  takeEvery(REMOVE, genRemoveCamapignReports),
 ]
