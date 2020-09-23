@@ -1,8 +1,11 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
+import { takeLatest, put, select } from 'redux-saga/effects'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 import { AnyAction } from 'redux'
+import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
+import ApiAction from 'interfaces/ApiAction'
 
 export interface User {
   id: number
@@ -24,10 +27,18 @@ export const FETCH = 'campaigns/FETCH_USERS'
 export const CREATE = 'resource/campaigns/user/CREATE'
 export const UPDATE = 'resource/campaigns/user/UPDATE'
 export const FETCH_SINGLE = 'campaigns/users/FETCH_SINGLE'
+export const IMPORT = 'campaigns/users/IMPORT'
 export const REMOVE = 'campaigns/user/REMOVE'
 export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
 export const TOGGLE_STATUS_REQUEST = 'campaigns/user/TOGGLE_STATUS_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
+
+
+export interface ShortUser {
+  firstName: string
+  lastName: string
+  email: string
+}
 
 export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -44,6 +55,19 @@ export const fetchSingle = (campaignId: number, id: number) => ({
   request: {
     method: 'get',
     url: `/administration/new_campaigns/${campaignId}/users/${id}`,
+  },
+})
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[]> => ({
+  type: IMPORT,
+  campaignId,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/users/import`,
+    body,
+    loader: true,
   },
 })
 
@@ -113,7 +137,6 @@ const HANDLERS = {
       users, (user: User) => user.id !== response,
     ))
   ),
-
   [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: { id: number, options: { updateInListing: boolean } }) => {
     if (options.updateInListing) {
       return updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
@@ -127,3 +150,13 @@ const HANDLERS = {
 }
 
 export default createReducer(HANDLERS, defaultState)
+
+
+function* genFetchUsers ({ requestAction }: AnyAction) {
+  const tables = yield select(getTables)
+  yield put(fetch(requestAction.campaignId, tables.usersList))
+}
+
+export const watchers = [
+  takeLatest(IMPORT, genFetchUsers),
+]

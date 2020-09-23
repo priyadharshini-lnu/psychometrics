@@ -1,0 +1,65 @@
+# frozen_string_literal: true
+
+module Campaigns
+  module Users
+    class ProcessImport < BaseCommand
+      private_attr_reader :campaign, :current_user, :rows, :operation
+      private_attr_accessor :users_those_pwd_not_changed
+
+      def initialize(campaign, current_user, rows, operation)
+        @campaign = campaign
+        @current_user = current_user
+        @rows = rows
+        @operation = operation
+        @users_those_pwd_not_changed = []
+      end
+
+      def call
+        transaction do
+          rows.each do |attrs|
+            user = campaign.users.find_by(email: attrs[:email])
+            if user
+              update_user!(user, attrs)
+            else
+              form = ::Campaigns::Users::CreateForm.new(attrs.merge(operation: operation))
+              ::Campaigns::Users::Create.call(form, campaign, current_user) do
+                on(:error) do |error|
+                  raise Licenses::NotEnoughError, error.inspect
+                end
+              end
+            end
+          end
+        end
+        broadcast :ok, users_those_pwd_not_changed
+      end
+
+      def update_user!(user, attrs)
+        pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
+        strong_attrs =
+          if pwd_to_be_not_changed
+            attrs.except(:password, :active)
+          else
+            attrs.except(:active)
+          end
+
+        attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id)
+        campaign.campaign_users.where(user_id: user.id).update_all(active: attrs[:active])
+        user.update!(attrs_to_update)
+        add_user_that_pwd_not_changed(user) if pwd_to_be_not_changed
+        user
+      end
+
+      def add_user_that_pwd_not_changed(user)
+        users_those_pwd_not_changed << {
+          email: user.email,
+          first_name: user.first_name,
+          last_name: user.last_name
+        }
+      end
+
+      def pwd_to_be_not_changed?(user, attrs)
+        attrs[:password].present? && user.encrypted_password.present?
+      end
+    end
+  end
+end

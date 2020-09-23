@@ -86,6 +86,9 @@ Rails.application.routes.draw do
             patch :toggle_status
             get :reset_password
           end
+          collection do
+            post :import
+          end
         end
 
         resources :universal_links, only: %i[show update destroy] do

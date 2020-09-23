@@ -85,5 +85,6 @@ export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_norm`,
     body: { ...body, id: assessmentId },
+    loader: true,
   },
 })

@@ -7,6 +7,7 @@ en:
     edit: 'Edit'
     delete: 'Delete'
     update: 'Update'
+    upload: 'Upload'
     change_password: 'Change password'
     manage: Manage
     activate: Activate
@@ -20,6 +21,7 @@ en:
     actions:
       remove: Remove
       cancel: Cancel
+      close: Close
       reset: Reset
     model:
       campaigns: Campaigns
