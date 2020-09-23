@@ -27,6 +27,12 @@ module Administration
         render json: :ok
       end
 
+      def reset
+        ::UsersResults::Reset.call!(resource)
+
+        render json: :ok
+      end
+
       private
 
       def assessment

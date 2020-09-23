@@ -34,12 +34,13 @@ describe UsersResults::Reset do
     create(:user_assessment, campaign: campaign, subject: user, assessment: assessment, users_result: users_result)
   end
   let!(:media_response) { create(:media_response, users_result: users_result) }
-  let!(:user_result1) do
+  let!(:multiple_assessment_user_result) do
     create(:users_result, status: :in_progress, subject: user1, assessment: assessment, campaign: campaign)
   end
-  let!(:media_response1) { create(:media_response, users_result: user_result1) }
+  let!(:media_response1) { create(:media_response, users_result: multiple_assessment_user_result) }
   let!(:user_assessments) do
-    create_list(:user_assessment, 2, subject: user1, assessment: assessment, users_result: user_result1)
+    create_list(:user_assessment, 2, subject: user1, assessment: assessment,
+      users_result: multiple_assessment_user_result)
   end
   let!(:user_report1) do
     create(:user_report, :with_pdf, report: report, user: user1, campaign: campaign, status: :prepared)

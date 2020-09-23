@@ -11,6 +11,7 @@ const defaultState = {
 const UPDATE_NORM = 'campaigns/userAssessments/UPDATE_NORM'
 const UPDATE_ADDITIONAL_TIME = 'campaigns/userAssessments/UPDATE_ADDITIONAL_TIME'
 const RESCORE_RESPONSE = 'campaigns/userAssessments/RESCORE_RESPONSE'
+const RESET = 'campaigns/userAssessments/RESET'
 
 export const get = (state): State => _.get(state, ['campaigns', 'userAssessments'])
 
@@ -47,6 +48,14 @@ export const rescoreResponse = (campaignId: number, campaignAssessmentId: number
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/rescore_response`,
+  },
+})
+
+export const reset = (campaignId: number, campaignAssessmentId: number) => ({
+  type: RESET,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/user_assessments/${campaignAssessmentId}/reset`,
   },
 })
 

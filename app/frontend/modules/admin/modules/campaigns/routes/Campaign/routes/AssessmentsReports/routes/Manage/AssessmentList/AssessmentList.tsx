@@ -138,7 +138,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   const handleRescoreResponse = () => {
     rescoreResponses()
-    message.info(I18n.t('campaign_assessment.actions.rescore_response.message', { name }))
+    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
   return (
@@ -223,7 +223,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <a
           onClick={handleRescoreResponse}
         >
-          {I18n.t('campaign_assessment.actions.rescore_response.title')}
+          {I18n.t('campaign_assessment.modals.rescore_response.title')}
         </a>
       </Menu.Item>
     </Menu>

@@ -72,10 +72,11 @@ module UsersResults
     end
 
     def remove_reports
-      UserReport.where(report_id: users_result.assessment.report_ids,
-        user_id: users_result.subject_id, campaign_id: users_result.campaign_id).each do |user_report|
-        user_report.update!(remove_pdf: true, status: :generating)
-      end
+      UserReport.where(
+        report_id: users_result.assessment.report_ids,
+        user_id: users_result.subject_id,
+        campaign_id: users_result.campaign_id
+      ).update(remove_pdf: true, status: :generating)
     end
   end
 end

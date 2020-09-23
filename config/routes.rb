@@ -112,6 +112,7 @@ Rails.application.routes.draw do
           member do
             post :update_norm
             post :rescore_response
+            post :reset
             post :update_additional_time
           end
         end
