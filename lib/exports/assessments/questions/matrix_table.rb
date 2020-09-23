@@ -61,7 +61,9 @@ module Exports
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
           return parsed_result unless not_applicable
 
-          not_applicable.each_key do |key|
+          not_applicable.each do |key, value|
+            next unless value
+
             parsed_result[key.to_i] = if export_with_labels
                                         question.props['notApplicableLabel']
                                       else
