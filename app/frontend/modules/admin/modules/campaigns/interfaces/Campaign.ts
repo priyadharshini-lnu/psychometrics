@@ -2,8 +2,9 @@ export default interface Campaign {
   id: number
   name: string
   type: string
-  startDate: Date,
-  endDate: Date,
+  status: string
+  startDate: Date
+  endDate: Date
   assessments: Entity[]
   reports: Entity[]
   options: CampaignOptions

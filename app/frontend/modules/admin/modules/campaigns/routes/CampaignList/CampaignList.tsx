@@ -153,6 +153,11 @@ const CampaignList: React.FC<Props> = ({
               render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')}
             />
             <Column
+              title="Status"
+              key="status"
+              render={({ status }) => _.capitalize(status)}
+            />
+            <Column
               title="Type"
               key="type"
               render={({ type }) => _.capitalize(type)}
