@@ -5,7 +5,7 @@ FactoryBot.define do
     name { Faker::Name.name }
     project { create(:project) }
     start_date { Time.now }
-    end_date { Time.now + 30.minutes }
+    end_date { 30.minutes.from_now }
     status { 'inactive' }
   end
 end

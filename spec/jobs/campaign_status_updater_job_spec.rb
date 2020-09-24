@@ -5,38 +5,19 @@ require 'rails_helper'
 RSpec.describe CampaignStatusUpdaterJob, type: :job do
   include ActiveJob::TestHelper
 
-  let(:campaign1) { create(:campaign) }
-  let(:campaign2) { create(:campaign) }
-  let(:connection) { double('Connection') }
+  subject(:job) { described_class.perform_later }
 
-  before do
-    attributes = {
-      status: 'active',
-      start_date: Time.now - 30.minutes,
-      end_date: Time.now
-    }
-    campaign2.update_attributes(attributes)
+  it 'queues the job' do
+    expect { job }.to change(ActiveJob::Base.queue_adapter.enqueued_jobs, :size).by(1)
   end
 
-  context '#perform' do
-    subject { described_class.perform_now }
+  it 'is in cron_tasks queue' do
+    expect(CampaignStatusUpdaterJob.new.queue_name).to eq('cron_tasks')
+  end
 
-    it 'runs the job' do
-      expect(ActiveRecord::Base).to receive(:connection) { connection }
-      expect(connection).to receive(:execute)
-      
-      subject
-    end
-
-    it 'updates status of matched records' do
-      # expect(campaign1.reload.status).to eq('active')
-      # expect(campaign2.reload.status).to eq('closed')
-
-      expect { subject }.to change { campaign1.reload.status }.from('inactive').to('active')
-      expect { subject }.to change { campaign2.reload.status }.from('active').to('closed')
-
-      subject
-    end
+  it 'executes perform' do
+    expect_any_instance_of(Campaigns::UpdateCampaignStatus).to receive(:call)
+    perform_enqueued_jobs { job }
   end
 
   after do
