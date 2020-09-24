@@ -24,14 +24,12 @@ describe Campaigns::UpdateCampaignStatus do
     end
 
     it 'activates campaigns that are due' do
-      puts "Campaign1: #{campaign1.attributes}"
       expect { subject }.to change { campaign1.reload.status }.from('inactive').to('active')
 
       subject
     end
 
     it 'closes campaigns that have ended' do
-      puts "Campaign2: #{campaign2.attributes}"
       expect { subject }.to change { campaign2.reload.status }.from('active').to('closed')
 
       subject

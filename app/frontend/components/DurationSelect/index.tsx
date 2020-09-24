@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { Form, TimePicker } from 'antd'
 
@@ -9,7 +9,11 @@ const DurationSelect = ({
   ...props
 }) => {
   const format = 'HH:mm'
-  const [duration, setDuration] = useState(value || 0)
+  const [duration, setDuration] = useState(0)
+
+  useEffect(() => {
+    setDuration(value)
+  }, [value])
 
   const handleChange = (_, timeString: string) => {
     const d = moment.duration(timeString).as('minutes')
@@ -27,7 +31,7 @@ const DurationSelect = ({
       <TimePicker
         format={format}
         onChange={handleChange}
-        value={moment(asFormattedString(duration), format)}
+        defaultValue={moment(asFormattedString(duration), format)}
         {...props}
       />
     </Form.Item>
