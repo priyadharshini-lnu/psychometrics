@@ -6,6 +6,7 @@ import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
+import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
@@ -37,11 +38,14 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   assessments: {
     list,
   },
+
   match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
   reset,
+  remove,
   currentUser,
+  reports,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -105,6 +109,9 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     userId: parsedUserId,
                     assessment,
                     currentUser,
+                    reports,
+                    remove: () => remove(parsedCampaignId,
+                      assessment.id, assessment.reportIds),
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -126,16 +133,23 @@ interface ActionMenuProps {
   userId: number
   campaignId: number
   currentUser: User
+  reports: UserReport[]
   rescoreResponse(): void
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   reset(campaignId: number, assessmentId: number): Promise<any>
+  remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove, reports,
 }) => {
-  const { name } = assessment
+  const { name, reportIds } = assessment
+
+  const reportNames = () => {
+    const names = reports.map(report => (reportIds.includes(report.reportId) ? report.name : ''))
+    return _.compact(names)
+  }
 
   const handleReset = () => {
     Modal.confirm({
@@ -157,6 +171,36 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   const handleRescoreResponse = () => {
     rescoreResponse()
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
+  }
+
+  const handleDelete = () => {
+    Modal.confirm({
+      title: I18n.t('user_assessments.modals.remove.title', { name }),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: (
+        <>
+          <p>
+            {I18n.t('user_assessments.modals.remove.content')}
+            :
+          </p>
+          <ul>
+            {reportNames().map(name => (
+              <li key={name}>
+                {name}
+              </li>
+            ))}
+          </ul>
+        </>
+      ),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        remove()
+        message.success(I18n.t('user_assessments.modals.remove.successfully', { name }))
+      },
+    })
   }
 
   return (
@@ -188,6 +232,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         <div
           role="button"
           tabIndex={-1}
+          onClick={handleDelete}
         >
           {I18n.t('common.actions.remove')}
         </div>

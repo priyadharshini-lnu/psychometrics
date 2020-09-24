@@ -13,4 +13,5 @@ export default interface UserAssessment {
   normType: string
   status: string
   norms?: Norm[]
+  reportIds: number[]
 }

@@ -71,4 +71,17 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'DELETE' do
+    it 'removes campaign_assessment' do
+      expect do
+        delete :destroy, params: {
+          new_campaign_id: campaign.id,
+          id: assessment.id
+        }
+      end.to change(CampaignAssessment, :count).by(-1)
+      expect(response.body).to eq(assessment.id.to_s)
+      expect(CampaignAssessment.find_by(id: campaign_assessment.id)).to be_nil
+    end
+  end
 end

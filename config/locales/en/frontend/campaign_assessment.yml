@@ -39,3 +39,7 @@ en:
       rescore_response:
         title: Rescore Responses
         message: 'Rescoring scheduled for assessment %{name}'
+      remove:
+        title: Remove assessment %{name}?
+        content: This action will remove these reports associated with the assessment
+        successfully: '%{name} assessment removed successfully.'

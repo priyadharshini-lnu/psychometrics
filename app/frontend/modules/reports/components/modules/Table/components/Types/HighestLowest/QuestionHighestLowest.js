@@ -88,7 +88,7 @@ export default class QuestionHighestLowest extends Component {
           'rawResults',
         ], []).map((r) => {
           const answers = _.get(r, ['results', choice.questionId, 'answers'], [])
-          return answers.filter(a => a.choice === choice.choice)
+          return answers.filter(a => a.choice === choice.choice && a.recode_value !== undefined)
         }).filter(r => r.length)
         const value = _.meanBy(_.compact(results), (choiceAnswers) => {
           factor = _.find(factorMap, f => f.question_ids.includes(choice.questionId))

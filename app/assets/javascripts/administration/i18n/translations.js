@@ -4910,6 +4910,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
       "rescore_response": {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
@@ -6872,6 +6877,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -6887,7 +6893,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
@@ -6968,6 +6973,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -7048,6 +7054,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {
@@ -12050,6 +12065,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
       "rescore_response": {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
@@ -14008,6 +14028,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -14023,7 +14044,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "main": "<h2>Help</h2> <p>need content for help modal</p>"
@@ -14101,6 +14121,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -14181,6 +14202,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {
@@ -19183,6 +19213,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
       "rescore_response": {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
@@ -21141,6 +21176,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -21156,7 +21192,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "main": "<h2>Help</h2> <p>need content for help modal</p>"
@@ -21234,6 +21269,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -21314,6 +21350,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "toolbar": {
       "export": "Export Users",
       "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "This action will remove these reports associated with the assessment",
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      }
     }
   },
   "user_reports": {

@@ -112,7 +112,7 @@ export const watchers = [
   debounce(200, ANSWER, genSaveResultsLocal),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
-  takeEvery(SHOW_PAGE, genUpdateResultsAsNotDirty),
+  takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeEvery(ADD_PREV_PAGE, genSavePrevPages),
   takeEvery(REMOVE_PREV_PAGE, genSavePrevPages),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),

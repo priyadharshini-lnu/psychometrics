@@ -9,6 +9,7 @@ import _ from 'lodash'
 import AssessmentPolicy from 'modules/admin/modules/campaigns/policies/Assessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { PropsFromRedux } from './connect'
 
 const { Column } = Table
@@ -31,6 +32,7 @@ const AssessmentList: React.FC<Props> = ({
   },
   match: { params: { projectId, campaignId } },
   currentUser,
+  reports,
   openModal,
   activateUniversalLink,
   rescoreResponses,
@@ -104,6 +106,7 @@ const AssessmentList: React.FC<Props> = ({
                     ActionsMenu({
                       assessment,
                       currentUser,
+                      reports,
                       campaignId: parsedCampaignId,
                       openModal,
                       rescoreResponses: () => rescoreResponses(parsedCampaignId, assessment.id),
@@ -127,7 +130,9 @@ interface ActionMenuProps {
   campaignId: number
   assessment: Assessment
   currentUser: User
-  openModal(name: string, data?: { projectId?: number, campaignId: number, campaignAssessmentId: number }): void
+  reports: Report[]
+  openModal(name: string, data?: { projectId?: number, assessment?: Assessment,
+    campaignId: number, campaignAssessmentId: number }): void
   rescoreResponses(): void
 }
 
@@ -225,6 +230,16 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
         >
           {I18n.t('campaign_assessment.modals.rescore_response.title')}
         </a>
+      </Menu.Item>
+      <Menu.Divider />
+      <Menu.Item key="remove">
+        <div
+          role="button"
+          tabIndex={-1}
+          onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+        >
+          {I18n.t('common.actions.remove')}
+        </div>
       </Menu.Item>
     </Menu>
   )

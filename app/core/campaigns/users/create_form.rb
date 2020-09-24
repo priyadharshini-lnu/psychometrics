@@ -8,8 +8,7 @@ module Campaigns
       attribute :first_name, String
       attribute :last_name, String
       attribute :email, String
-      attribute :operation, String
-      attribute :password, String
+      attribute :operation, String, default: 'add_and_allow_new_response'
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }

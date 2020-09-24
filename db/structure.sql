@@ -73,7 +73,8 @@ CREATE TABLE public.agile_events (
     session_id character varying,
     event character varying,
     data json DEFAULT '{}'::json,
-    created_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone NOT NULL,
+    users_result_id bigint
 );
 
 
@@ -704,7 +705,8 @@ CREATE TABLE public.clients (
     two_factor_enabled boolean DEFAULT false,
     strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
-    enable_live_chat boolean DEFAULT false NOT NULL
+    enable_live_chat boolean DEFAULT false NOT NULL,
+    migrated boolean DEFAULT false
 );
 
 
@@ -3010,8 +3012,7 @@ CREATE TABLE public.user_assessments (
     evaluator_id bigint,
     manager_evaluation_status integer DEFAULT 0,
     assessment_id bigint,
-    users_result_id bigint,
-    selected_locale character varying
+    users_result_id bigint
 );
 
 
@@ -3048,7 +3049,8 @@ CREATE TABLE public.user_reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_access boolean DEFAULT false,
-    report_family_id bigint
+    report_family_id bigint,
+    pdf_path character varying
 );
 
 
@@ -3116,7 +3118,8 @@ CREATE TABLE public.users (
     direct_otp character varying,
     direct_otp_sent_at timestamp without time zone,
     totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false
 );
 
 
@@ -3169,7 +3172,8 @@ CREATE TABLE public.users_results (
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
     selected_locale character varying,
-    additional_time integer
+    additional_time integer,
+    reset_count integer DEFAULT 0
 );
 
 
@@ -4480,6 +4484,13 @@ CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories
 --
 
 CREATE INDEX index_agile_events_on_assign_id ON public.agile_events USING btree (assign_id);
+
+
+--
+-- Name: index_agile_events_on_users_result_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_agile_events_on_users_result_id ON public.agile_events USING btree (users_result_id);
 
 
 --
@@ -5970,6 +5981,14 @@ ALTER TABLE ONLY public.ecommerce_purchases
 
 
 --
+-- Name: agile_events fk_rails_37e3f56836; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.agile_events
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
+
+
+--
 -- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7172,6 +7191,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200823094516'),
 ('20200826053004'),
 ('20200830120330'),
-('20200908070555');
+('20200903100939'),
+('20200908070555'),
+('20200909073506'),
+('20200913050839'),
+('20200913071803'),
+('20200923102431');
 
 
