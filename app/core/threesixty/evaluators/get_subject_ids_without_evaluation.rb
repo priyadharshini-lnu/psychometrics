@@ -16,6 +16,7 @@ module Threesixty
                                            evaluation_results.
                                            completed.
                                            actual_by_options(threesixty_campaign.option).
+                                           where(campaign_id: threesixty_campaign.campaign_id).
                                            pluck(:subject_id)
 
         all_subjects = threesixty_campaign.participants.where(evaluator_id: user.id).

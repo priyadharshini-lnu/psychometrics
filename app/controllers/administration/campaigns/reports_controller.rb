@@ -45,7 +45,7 @@ module Administration
           each_serializer: Administration::CampaignReportSerializer
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaign_assessments.includes(:assessment, :norm),
+          campaign.campaign_assessments.includes(:norm, assessment: [:reports]),
           each_serializer: Administration::CampaignAssessmentSerializer
         )
 
@@ -66,6 +66,13 @@ module Administration
       def regenerate
         campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
         ::CampaignReports::GenerateAndSavePdfJob.perform_later(campaign_reports, current_user)
+
+        head :ok
+      end
+
+      def bulk_download
+        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
+        ::CampaignReports::BulkDownloadJob.perform_later(campaign_reports, current_user)
 
         head :ok
       end

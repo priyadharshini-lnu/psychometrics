@@ -13,6 +13,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :client_admin, :project_admin)
   end
 
+  def import?
+    create?
+  end
+
   def create_superadmin?
     @user.is?(:superadmin)
   end
@@ -51,10 +55,6 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def export_completion_status?
     index?
-  end
-
-  def import?
-    create?
   end
 
   def spoof?

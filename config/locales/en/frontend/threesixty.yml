@@ -55,7 +55,8 @@ en:
     evaluate: Evaluate
     yourself: Yourself
     you: You
-    generate_report: 'Generate Report'
+    download_pdf: 'Download PDF'
+    report_for: 'Report for'
     download_report: Download Report
     download_reports: Download Reports
     processing_report: Processing Report

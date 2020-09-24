@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Button, Row, Col, PageHeader, message,
+  Layout, Button, PageHeader, message,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { DownloadOutlined } from '@ant-design/icons'
 import './styles.scss'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import ReportPreview from 'modules/reports/report'
 
-const { Title } = Typography
 const { Content } = Layout
 
 export default function Report ({
@@ -45,36 +44,25 @@ export default function Report ({
       <Content className="fluid-container">
         <PageHeader
           className="page-header"
-          backIcon={(
+          title={(
             <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back to tasks
+              {`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`}
+              <StatusItem
+                isSelf={isSelf}
+                managerApprovesReports={managerApprovesReports}
+                approvalStatus={approvalStatus}
+                handleStatusClick={handleStatusClick}
+              />
             </div>
           )}
           onBack={() => history.push(`/threesixty_campaigns/${params.campaignId}`)}
+          extra={[
+            <Button icon={<DownloadOutlined />} onClick={() => requestDownloadReport(params.campaignId, params.id)}>
+              {I18n.t('threesixty.download_pdf')}
+            </Button>,
+          ]}
         >
           <div className="main-container">
-            <Row type="flex" justify="space-between">
-              <Title level={4}>
-                Report for
-                {' '}
-                {userPresenter.getFullNameWithEmail(user)}
-              </Title>
-              <Col>
-                <StatusItem
-                  isSelf={isSelf}
-                  managerApprovesReports={managerApprovesReports}
-                  approvalStatus={approvalStatus}
-                  handleStatusClick={handleStatusClick}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Button onClick={() => requestDownloadReport(params.campaignId, params.id)}>
-                {I18n.t('threesixty.generate_report')}
-              </Button>
-            </Row>
             <ReportPreview
               id="threesixty-report"
               data={report}

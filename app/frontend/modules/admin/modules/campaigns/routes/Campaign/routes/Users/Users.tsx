@@ -15,10 +15,12 @@ import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
+import ImportUsersModal from './ImportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
 
 const MODALS = {
   UserFormModal,
+  ImportUsersModal,
 }
 
 const { Column } = Table
@@ -89,7 +91,7 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}

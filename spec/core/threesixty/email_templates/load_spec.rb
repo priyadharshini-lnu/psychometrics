@@ -32,7 +32,7 @@ describe Threesixty::EmailTemplates::Load do
 
       template_loader.call
 
-      expect(threesixty_campaign.email_templates).to have_attributes(email_templates_attributes)
+      expect(threesixty_campaign.email_templates).to psy_have_attributes(email_templates_attributes)
     end
   end
 end

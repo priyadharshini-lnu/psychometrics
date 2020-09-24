@@ -8,6 +8,7 @@ class Campaign < ApplicationRecord
   after_create_commit :ensure_campaign_options
 
   belongs_to :project, class_name: 'Client'
+
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :datasheet, through: :project

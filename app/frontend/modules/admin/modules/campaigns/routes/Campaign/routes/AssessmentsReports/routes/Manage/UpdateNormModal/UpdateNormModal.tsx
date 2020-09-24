@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Form, Checkbox, Select, Radio,
+  Modal, Button, Form, Checkbox, Select, Radio, message,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -36,8 +36,12 @@ const UpdateNormModal: React.FC<Props> = ({
 
   const handleUpdate = (params) => {
     updateNorm(campaignId, assessment.id, params)
-    close()
+      .then(() => {
+        message.info(I18n.t('campaign_assessment.modals.update_norm.success_msg'))
+        close()
+      })
   }
+
   return (
     <Modal
       width={650}

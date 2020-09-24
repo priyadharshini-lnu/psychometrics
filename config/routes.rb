@@ -63,6 +63,7 @@ Rails.application.routes.draw do
             get :report_families
             get :assessments_and_reports
             post :regenerate
+            post :bulk_download
           end
           member do
             get :export
@@ -85,6 +86,9 @@ Rails.application.routes.draw do
             patch :toggle_status
             get :reset_password
           end
+          collection do
+            post :import
+          end
         end
 
         resources :universal_links, only: %i[show update destroy] do
@@ -92,7 +96,7 @@ Rails.application.routes.draw do
             post :activate
           end
         end
-        resources :assessments, only: [:create] do
+        resources :assessments, only: %i[create destroy] do
           member do
             get :export_raw_results
             get :export_scoring_results
@@ -104,7 +108,7 @@ Rails.application.routes.draw do
             post :rescore_responses
           end
         end
-        resources :user_assessments, only: [] do
+        resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
             post :rescore_response

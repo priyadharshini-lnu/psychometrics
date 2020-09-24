@@ -19,6 +19,11 @@ module Administration
         render json: resource, serializer: UserAssessmentSerializer
       end
 
+      def destroy
+        UserAssessments::Remove.call!(resource, campaign)
+        render json: resource.id
+      end
+
       def rescore_response
         user_result = resource.users_result
 

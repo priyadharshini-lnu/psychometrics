@@ -14,7 +14,7 @@ module Api
       def index
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
         campaigns = user.memberships.includes(:client).where(client_id: project_campaign_ids).map(&:client)
-        render json: campaigns.map { |c| Api::V1::CampaignSerializer.new(c) }
+        render json: campaigns, each_serializer: Api::V1::CampaignSerializer
       end
 
       def create

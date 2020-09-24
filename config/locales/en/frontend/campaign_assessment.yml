@@ -28,11 +28,14 @@ en:
         type: Norm Type
         apply: Apply this change to existing users in this campaign
         update: Update
+        success_msg: Norms successfully uploaded
       update_time:
         title: Extend Time
         additional_time: Time (min)
-    actions:
       rescore_response:
         title: Rescore Responses
         message: 'Rescoring scheduled for assessment %{name}'
-
+      remove:
+        title: Remove assessment %{name}?
+        content: This action will remove these reports associated with the assessment
+        successfully: '%{name} assessment removed successfully.'

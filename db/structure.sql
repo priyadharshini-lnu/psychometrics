@@ -3157,7 +3157,8 @@ CREATE TABLE public.users (
     direct_otp character varying,
     direct_otp_sent_at timestamp without time zone,
     totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false
 );
 
 
@@ -7265,6 +7266,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200913050839'),
 ('20200913071803'),
 ('20200914055928'),
-('20200922123931');
+('20200922123931'),
+('20200923102431');
 
 
