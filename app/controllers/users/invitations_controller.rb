@@ -9,7 +9,9 @@ module Users
       super
       return unless current_user
 
-      current_user.memberships.find_by(client: @current_project).update_columns(already_invited: true)
+      # TODO: Remove membership related code after campaign migration
+      membership = current_user.memberships.find_by(client: @current_project)
+      (membership || current_user)&.update_columns(already_invited: true)
     end
   end
 end

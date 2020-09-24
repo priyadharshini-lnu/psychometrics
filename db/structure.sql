@@ -61,6 +61,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -532,41 +534,6 @@ CREATE SEQUENCE public.campaign_assessments_id_seq
 --
 
 ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_assessments.id;
-
-
---
--- Name: campaign_options; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.campaign_options (
-    id bigint NOT NULL,
-    campaign_id bigint,
-    time_zone character varying,
-    fixed_time boolean DEFAULT false,
-    fixed_time_duration integer,
-    instructions text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: campaign_options_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.campaign_options_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: campaign_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.campaign_options_id_seq OWNED BY public.campaign_options.id;
 
 
 --
@@ -2798,9 +2765,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2971,9 +2936,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -3155,7 +3118,8 @@ CREATE TABLE public.users (
     direct_otp character varying,
     direct_otp_sent_at timestamp without time zone,
     totp_timestamp timestamp without time zone,
-    settings jsonb DEFAULT '{}'::jsonb
+    settings jsonb DEFAULT '{}'::jsonb,
+    already_invited boolean DEFAULT false
 );
 
 
@@ -3314,13 +3278,6 @@ ALTER TABLE ONLY public.campaign_assessment_groups ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessments_id_seq'::regclass);
-
-
---
--- Name: campaign_options id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_options ALTER COLUMN id SET DEFAULT nextval('public.campaign_options_id_seq'::regclass);
 
 
 --
@@ -3922,14 +3879,6 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT campaign_assessments_pkey PRIMARY KEY (id);
-
-
---
--- Name: campaign_options campaign_options_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_options
-    ADD CONSTRAINT campaign_options_pkey PRIMARY KEY (id);
 
 
 --
@@ -4710,13 +4659,6 @@ CREATE INDEX index_campaign_assessments_on_campaign_id ON public.campaign_assess
 --
 
 CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessments USING btree (norm_id);
-
-
---
--- Name: index_campaign_options_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_campaign_options_on_campaign_id ON public.campaign_options USING btree (campaign_id);
 
 
 --
@@ -6863,14 +6805,6 @@ ALTER TABLE ONLY public.agile_events
 
 
 --
--- Name: campaign_options fk_rails_f8a1a37b68; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaign_options
-    ADD CONSTRAINT fk_rails_f8a1a37b68 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
-
-
---
 -- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7262,6 +7196,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200909073506'),
 ('20200913050839'),
 ('20200913071803'),
-('20200914055928');
+('20200923102431');
 
 
