@@ -50,7 +50,8 @@ module UsersResults
         meta_data: {},
         additional_time: nil,
         current_element: nil,
-        current_page: nil
+        current_page: nil,
+        reset_count: users_result.reset_count + 1
       )
       users_result.save
     end

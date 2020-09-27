@@ -68,7 +68,8 @@ describe UsersResults::Reset do
         and change { users_result.completed_at }.from(Time.now).to(nil).
         and change { users_result.step }.from(100).to(0).
         and change { users_result.expiry_date }.from(Time.now).to(nil).
-        and change { users_result.last_activity_at }.from(Time.now).to(nil)
+        and change { users_result.last_activity_at }.from(Time.now).to(nil).
+        and change { users_result.reset_count }.from(0).to(1)
     end
 
     it 'reset user_report data if assessment is completed' do
