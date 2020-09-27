@@ -9,7 +9,7 @@ const DurationSelect = ({
   ...props
 }) => {
   const format = 'HH:mm'
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState(value || 0)
 
   useEffect(() => {
     setDuration(value)
@@ -27,7 +27,7 @@ const DurationSelect = ({
   }
 
   return (
-    <Form.Item name="duration_select" label={label}>
+    <Form.Item label={label}>
       <TimePicker
         format={format}
         onChange={handleChange}

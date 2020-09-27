@@ -175,7 +175,7 @@ const TimeZoneSelect = ({
   }
 
   return (
-    <Form.Item name="time_zone" label={label}>
+    <Form.Item label={label}>
       <Select
         showSearch
         value={selectedTimeZone}
