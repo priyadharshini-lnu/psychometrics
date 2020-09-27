@@ -2,7 +2,7 @@
 
 class Agile::AssignsController < ApplicationController
   include ::Threesixty::InitialState
-  include AgileAssign
+  include AgileUserResult
 
   before_action :set_assign
   initial_state_for :show
@@ -13,13 +13,6 @@ class Agile::AssignsController < ApplicationController
 
   def set_assign
     @assign = policy_scope(Assign).find(params[:id])
-  end
-
-  def set_init_state
-    init_state = super
-    @init_state = super.merge(
-      config: init_state[:config].merge(agileAssetsUrl: Settings.agile_config.asset_url)
-    )
   end
 
   def pundit_authorize

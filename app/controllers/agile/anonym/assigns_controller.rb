@@ -2,7 +2,7 @@
 
 class Agile::Anonym::AssignsController < ActionController::Base
   include AuthenticateAnonymousUser
-  include AgileAssign
+  include AgileUserResult
 
   before_action :authenticate_anonymous_user!
   before_action :set_assign

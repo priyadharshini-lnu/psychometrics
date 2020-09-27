@@ -1,21 +1,8 @@
-import { takeLatest, put } from 'redux-saga/effects'
 import humps from 'humps'
+import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 
 const FETCH = 'anonym/FETCH'
 const FETCH_FAILURE = 'anonym/FETCH_FAILURE'
-
-const FETCH_ASSESSMENT = 'anonym/FETCH_ASSESSMENT'
-
-interface FetcgAssessment { type: typeof FETCH_ASSESSMENT, assessmentKey: string, request: object }
-
-export const fetchAssessment = (assessmentKey: string): FetcgAssessment => ({
-  type: FETCH_ASSESSMENT,
-  request: {
-    url: `/anonym/${assessmentKey}/assessment`,
-    camelize: false,
-  },
-  assessmentKey,
-})
 
 export const fetchResult = (assessmentKey: string) => ({
   type: FETCH,
@@ -26,51 +13,52 @@ export const fetchResult = (assessmentKey: string) => ({
   },
 })
 
+export interface Result {
+  id: number
+  campaign_id: number
+  user_assessment_id: number
+  selected_locale: { direction?: 'rtl' | 'ltr', code: string }
+  available_translations: string[]
+  translations: object
+  current_step: number
+  current_element: number
+  subject: object
+  user: object
+}
+
 interface State {
-  results: {
-    subject: object,
-    user: object,
-    participant: object,
-  },
-  assessment: object | null,
+  results: Result,
+  assessment?: Assessment,
   loaded: boolean,
   error: boolean,
 }
 
 export const defaultState: State = {
-  results: {
-    subject: {},
-    user: {},
-    participant: {},
-  },
-  assessment: null,
+  results: {} as Result,
   loaded: false,
   error: false,
 }
 
-const HANDLERS = {
-  [FETCH]: (state, { response }) => {
-    const { subject, user } = response
-    const results = { ...response, subject: humps.camelizeKeys(subject), user: humps.camelizeKeys(user) }
-    return { ...state, results, loaded: true }
-  },
-  [FETCH_FAILURE]: state => ({ ...state, loaded: true, error: true }),
-  [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
+interface FetchResponse {
+  response: {
+    assessment: Assessment
+    user_result: Result
+  }
 }
+
+const HANDLERS = {
+  [FETCH]: (state: State, { response }: FetchResponse) => {
+    const { assessment, user_result } = response
+
+    const results = { ...user_result, user: humps.camelizeKeys(user_result.user || {}) }
+    return {
+      ...state, assessment, results, loaded: true,
+    }
+  },
+  [FETCH_FAILURE]: (state: State) => ({ ...state, loaded: true, error: true }),
+}
+
 export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-function* genFetchEvaluation ({
-  requestAction: {
-    assessmentKey,
-  },
-}: any) {
-  yield put(fetchResult(assessmentKey))
-}
-
-export const watchers = [
-  takeLatest(FETCH_ASSESSMENT, genFetchEvaluation),
-]

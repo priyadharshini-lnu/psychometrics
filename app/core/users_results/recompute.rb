@@ -12,12 +12,14 @@ module UsersResults
     end
 
     def call
-      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data)
-      user_result.occupations = Assigns::CalculateOccupations.call!(user_result)
-      user_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(user_result)
       user_result.norm_id = norm_id if norm_id
       user_result.norm_type = norm_type if norm_type
-      user_result.save!
+
+      if user_result.assessment.agile?
+        compute_agile_assessment_scoring
+      else
+        compute_common_assessment_scoring
+      end
 
       ::UsersResults::GenerateReports.call!(user_result, current_user)
 
@@ -25,6 +27,17 @@ module UsersResults
     end
 
     private
+
+    def compute_common_assessment_scoring
+      user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result, norm_data)
+      user_result.occupations = Assigns::CalculateOccupations.call!(user_result)
+      user_result.innovation_styles = Assigns::CalculateInnovationStyles.call!(user_result)
+      user_result.save!
+    end
+
+    def compute_agile_assessment_scoring
+      ::UsersResults::CalculateAgileScoring.call!(user_result, current_user)
+    end
 
     def norm_data
       {

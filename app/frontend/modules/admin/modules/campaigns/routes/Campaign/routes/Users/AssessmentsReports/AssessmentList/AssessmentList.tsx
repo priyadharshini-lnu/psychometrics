@@ -84,7 +84,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     })
                 }
               >
-                {normName ? `${normName}, ${normType}` : I18n.t('common.text.default')}
+                {normName ? `${normName}, ${_.toUpper(normType)}` : I18n.t('common.text.default')}
               </a>
             )}
           />

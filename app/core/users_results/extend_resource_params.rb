@@ -16,21 +16,21 @@ module UsersResults
       params = resource_params.merge('last_activity_at' => Time.current)
       params[:status] = users_result.expired? ? :completed : params[:status]
 
-      return broadcast :ok, params unless params[answers_key.to_s]
+      return broadcast :ok, params unless params[answer_key.to_s]
 
-      params_answers = params[answers_key.to_s]
+      params_answers = params[answer_key.to_s]
 
-      answers = (users_result[answers_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
+      answers = (users_result[answer_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
 
       answers = add_duration(answers, question_ids, users_result.last_activity_at)
 
-      broadcast :ok, params.merge(answers_key.to_s => answers)
+      broadcast :ok, params.merge(answer_key.to_s => answers)
     end
 
     private
 
-    def answers_key
-      @answers_key ||= users_result.respond_to?(:answers) ? :answers : :results
+    def answer_key
+      @answer_key ||= users_result.answer_key
     end
 
     def add_duration(answers, question_ids, last_activity_at)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Assigns
+module UsersResults
   class AgileSerializer < ActiveModel::Serializer
-    attributes :groups, :locale, :completed_groups, :assets
+    attributes :id, :groups, :locale, :completed_groups, :assets
 
     delegate :config, :translations, to: :agile
 

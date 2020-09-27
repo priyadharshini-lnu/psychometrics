@@ -8,8 +8,8 @@ module CampaignAssessments
       @campaign_assessment = campaign_assessment
       @current_user = current_user
       norm_data = {
-        'id' => campaign_assessment.norm_id,
-        'type' => campaign_assessment.norm_type
+        norm_id: campaign_assessment.norm_id,
+        norm_type: campaign_assessment.norm_type
       }
 
       results.find_each do |res|

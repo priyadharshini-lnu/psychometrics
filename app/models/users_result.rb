@@ -15,6 +15,8 @@ class UsersResult < ApplicationRecord
   has_many :media_responses
   has_many :user_assessments
   has_one :mindmill_credential
+  has_one :agile, through: :assessment
+  has_many :agile_events
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
 
@@ -23,6 +25,7 @@ class UsersResult < ApplicationRecord
   }
 
   scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
+  scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }
 
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
@@ -62,5 +65,10 @@ class UsersResult < ApplicationRecord
     return false unless expiry_date
 
     expiry_date.advance(minutes: 5) < Time.current
+  end
+
+  # TODO: Remove all reference of answer_key after Assign model is removed
+  def answer_key
+    'answers'
   end
 end
