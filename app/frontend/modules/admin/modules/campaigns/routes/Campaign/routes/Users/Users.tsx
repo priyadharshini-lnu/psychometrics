@@ -131,7 +131,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Active"
+              title="Active?"
               key="enable"
               render={
                 ({
@@ -149,18 +149,9 @@ const UserList: React.FC<Props> = ({
               }
             />
             <Column
-              title="First Name"
-              key="firstName"
-              sorter
-              sortOrder={getSortOrder('firstName')}
-              dataIndex="firstName"
-            />
-            <Column
-              title="Last Name"
-              key="lastName"
-              sorter
-              sortOrder={getSortOrder('lastName')}
-              dataIndex="lastName"
+              title="Name"
+              key="fullName"
+              dataIndex="fullName"
             />
             <Column
               title="Email"
@@ -170,11 +161,14 @@ const UserList: React.FC<Props> = ({
               dataIndex="email"
             />
             <Column
-              title="Created At"
-              key="createdAt"
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-              dataIndex="createdAt"
+              title="Started At"
+              key="startedAt"
+              dataIndex="startedAt"
+            />
+            <Column
+              title="Completed At"
+              key="completedAt"
+              dataIndex="completedAt"
             />
             <Column
               title="Created By"
@@ -182,16 +176,16 @@ const UserList: React.FC<Props> = ({
               dataIndex="createdBy"
             />
             <Column
-              title="Updated At"
-              key="updatedAt"
-              dataIndex="updatedAt"
-            />
-            <Column
               title="Updated By"
               key="updated_by"
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="updated_by"
+            />
+            <Column
+              title="Completed Via"
+              key="completedVia"
+              dataIndex="completedVia"
             />
             <Column
               title="Completion Status"
