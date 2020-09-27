@@ -9,8 +9,6 @@ module Exports
 
       private_attr_accessor :assessment
 
-      # rubocop:disable Metrics/AbcSize
-      # rubocop:disable Metrics/BlockLength
       def get_xlsx_export_result
         Axlsx::Package.new do |package|
           package.use_shared_strings = true
@@ -26,20 +24,8 @@ module Exports
             results.
               find_each(batch_size: 100) do |result|
               user_results = []
-              # TODO: (atanych) remove after when we get rid of assigns
-              if result.respond_to?(:results) && result.results
-                all_questions.each do |question|
-                  next unless QUESTIONS.include?(question.type)
 
-                  answers = result.results[question.id.to_s].try(:[], 'answers')
-                  not_applicable = result.results[question.id.to_s].try(:[], 'not_applicable')
-
-                  parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                  user_results << parser.result(answers, question, @scoring, @export_with_labels, not_applicable)
-                end
-              end
-
-              if result.respond_to?(:answers) && result.answers
+              if result.answers
                 all_questions.each do |question|
                   next unless QUESTIONS.include?(question.type)
 
@@ -58,8 +44,6 @@ module Exports
           end
         end
       end
-      # rubocop:enable Metrics/AbcSize
-      # rubocop:enable Metrics/BlockLength
 
       private
 

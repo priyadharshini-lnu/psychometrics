@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-describe Assigns::CalculateAgileScoring do
-  describe 'it broadcasts :invalid when assign is incomplete' do
+describe UsersResults::CalculateAgileScoring do
+  describe 'it broadcasts :invalid when users_result is incomplete' do
     before(:all) do
       setup_data
     end
 
-    subject { described_class.call(@assign) }
+    subject { described_class.call(@users_result, @users_result.subject) }
 
     it 'broadcasts :invalid' do
       expect { subject }.to broadcast(:invalid)
@@ -24,27 +24,27 @@ describe Assigns::CalculateAgileScoring do
     end
   end
 
-  describe 'it broadcasts :ok when assign is complete' do
+  describe 'it broadcasts :ok when users_result is complete' do
     before(:context) do
       setup_data(true)
     end
 
-    subject { described_class.call(@assign, true) }
+    subject { described_class.call(@users_result, @users_result.subject, true) }
 
     it { expect { subject }.to broadcast(:ok) }
 
     it 'calculates and saves agile score' do
-      expect(@assign.scoring).to be
+      expect(@users_result.scoring).to be
     end
 
     it 'adds scoring for all factors' do
-      scoring = @assign.scoring
+      scoring = @users_result.scoring
       factors = @norm.factors.pluck(:id)
       factors.each { |id| expect(scoring).to include(id.to_s) }
     end
 
     it 'counts correct answers properly' do
-      scoring = @assign.scoring
+      scoring = @users_result.scoring
       factor = @factor_ids.first.to_s
       block = scoring[factor]['blocks'].first
       score = block['score']
@@ -53,17 +53,17 @@ describe Assigns::CalculateAgileScoring do
     end
 
     it 'adds factor score' do
-      factor_score = @assign.scoring.first.last
+      factor_score = @users_result.scoring.first.last
       expect(factor_score).to include('score')
     end
 
     it 'adds zscore' do
-      factor_score = @assign.scoring.first.last
+      factor_score = @users_result.scoring.first.last
       expect(factor_score).to include('zscore')
     end
 
     it 'adds normed score' do
-      factor_score = @assign.scoring.first.last
+      factor_score = @users_result.scoring.first.last
       expect(factor_score).to include('norm_score')
     end
   end
@@ -73,16 +73,16 @@ describe Assigns::CalculateAgileScoring do
       setup_data_for_average_strategy
     end
 
-    subject { described_class.call(@assign) }
+    subject { described_class.call(@users_result, @users_result.subject) }
 
     it { expect { subject }.to broadcast(:ok) }
 
     it 'calculates and saves agile score' do
-      expect(@assign.scoring).to be
+      expect(@users_result.scoring).to be
     end
 
     it 'calculates score by sub-factors average strategy' do
-      scoring = @assign.scoring
+      scoring = @users_result.scoring
 
       # sub_factor_scores: { sub_factor_id => { :score=>2, :weight=>1.0 }, ... }
       # (1.0 * 1 + 2.0 * 1 + 3.0 * 2 + 4.0 * 1) / (1.0 + 2.0 + 3.0 + 4.0) = 1.3
@@ -156,12 +156,13 @@ describe Assigns::CalculateAgileScoring do
     }
     results = [prepare_answers(@factor_ids)]
 
-    @assign = create(:assign, results: results)
-    @agile = create(:agile, assessment: @assign.assessment, config: config)
+    @users_result = create(:users_result, answers: results)
+    @agile = create(:agile, assessment: @users_result.assessment, config: config)
 
     if complete
-      norm_data = { id: @norm.id, type: 'percentile' }
-      @assign.update_columns(status: :completed, completed_at: Time.now, norm_data: norm_data)
+      @users_result.update_columns(
+        status: :completed, completed_at: Time.now, norm_id: @norm.id, norm_type: 'percentile'
+      )
     end
   end
 
@@ -186,10 +187,9 @@ describe Assigns::CalculateAgileScoring do
     answers = prepare_answers(@factor_ids)
     results = [feed_in_wrong_answers(answers)]
 
-    @assign = create(:assign, results: results)
-    @agile = create(:agile, assessment: @assign.assessment, config: config)
+    @users_result = create(:users_result, answers: results)
+    @agile = create(:agile, assessment: @users_result.assessment, config: config)
 
-    norm_data = { id: @norm.id, type: 'percentile' }
-    @assign.update_columns(status: :completed, completed_at: Time.now, norm_data: norm_data)
+    @users_result.update_columns(status: :completed, completed_at: Time.now, norm_id: @norm.id, norm_type: 'percentile')
   end
 end

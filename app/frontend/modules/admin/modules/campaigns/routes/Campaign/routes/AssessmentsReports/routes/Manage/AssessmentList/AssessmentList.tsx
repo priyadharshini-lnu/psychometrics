@@ -69,7 +69,7 @@ const AssessmentList: React.FC<Props> = ({
                     { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                 }
               >
-                {normName ? `${normName}, ${normType}` : 'Default'}
+                {normName ? `${normName}, ${_.toUpper(normType)}` : 'Default'}
               </a>
             )}
           />

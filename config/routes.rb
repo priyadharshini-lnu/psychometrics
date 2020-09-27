@@ -690,7 +690,6 @@ Rails.application.routes.draw do
       get :dashboard, to: 'users#dashboard'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
-      get 'anonym/:assessment_key/assessment', to: 'anonyms#assessment', as: :anonym_assessment
 
       resources :user_reports do
         member do
@@ -702,6 +701,13 @@ Rails.application.routes.draw do
         member do
           get :pass
           get :redirect
+        end
+      end
+
+      resources :agile_user_assessments, only: %i[show update] do
+        member do
+          post :events
+          put :set_language
         end
       end
 

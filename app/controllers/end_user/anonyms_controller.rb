@@ -8,18 +8,17 @@ module EndUser
     layout 'layouts/end_user'
 
     protect_from_forgery with: :exception
-
     before_action :set_campaign_assessment
-    before_action :perform_browser_check, only: [:show]
     before_action :authenticate_anonymous_user!, only: [:show]
-    before_action :set_client, only: [:show]
     before_action :find_or_create_anonymous_user, only: [:show]
-    before_action :find_or_create_user_assessment, only: [:show]
+    initial_state_for :show
+    before_action :perform_browser_check, only: [:show]
+    before_action :set_user_assessment_and_result, only: [:show]
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
     def show
-      redirect_to(action: 'error', reason: 'archived') && return if @campaign_assessment.assessment.archived?
+      redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
       redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
 
       @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
@@ -27,65 +26,54 @@ module EndUser
       respond_to do |format|
         format.html { render 'end_user/users/dashboard' }
         format.json do
-          user_result = UsersResult.find_or_create_by(
-            assessment_id: @campaign_assessment.assessment_id,
-            subject_id: @current_user.id,
-            evaluator_id: @current_user.id
-          ) do |result|
-            init_result(result)
+          if assessment.agile?
+            render json: {
+              assessment: { category: assessment.category },
+              user_result: { agileUserAssessmentUrl: agile_user_assessment_path(@user_assessment) }
+            }
+          else
+            render_assessment_and_result
           end
-
-          @selected_locale = user_result.selected_locale || user_locale
-          @user_assessment.update(users_result_id: user_result.id)
-
-          render json: user_result, serializer: UsersResultSerializer,
-                       campaign: @campaign_assessment.campaign, participant: @user_assessment,
-                       current_user: @current_user, locale: @selected_locale,
-                       piped_text_context: build_piped_context,
-                       include: '**'
         end
       end
-    end
-
-    def assessment
-      @selected_locale = params[:lang] || user_locale
-
-      render json: @campaign_assessment.assessment,
-             serializer: AssessmentSerializer,
-             include: '**',
-             selected_locale: @selected_locale,
-             piped_text_context: build_piped_context
     end
 
     def error; end
 
     private
 
-    def find_or_create_user_assessment
-      @user_assessment = UserAssessment.find_or_create_by(
-        assessment_id: @campaign_assessment.assessment_id,
+    def set_campaign_assessment
+      @campaign_assessment = ::CampaignAssessment.find_by assessment_key: params[:assessment_key]
+    end
+
+    def assessment
+      @assessment ||= @campaign_assessment.assessment
+    end
+
+    def set_user_assessment_and_result
+      @user_assessment = UserAssessment.find_by(
         campaign_id: @campaign_assessment.campaign_id,
-        subject_id: @current_user.id,
-        evaluator_id: @current_user.id
+        assessment_id: @campaign_assessment.assessment_id,
+        subject: @current_user,
+        evaluator: @current_user
       )
+      @user_result = @user_assessment.users_result
     end
 
-    def init_result(result)
-      result.assign_attributes(
-        assessment_id: @user_assessment.assessment_id,
-        status: :in_progress,
-        last_activity_at: DateTime.current,
-        expiry_date: @user_assessment.assessment.extra['timer']&.second&.from_now,
-        answers: {}
-      )
-    end
+    def render_assessment_and_result
+      @selected_locale = @user_result.selected_locale || user_locale
 
-    def build_piped_context
-      {
-        evaluator: current_user,
-        subject: current_user,
-        threesixty_campaign: {}
-      }
+      serialized_assessment = AssessmentSerializer.new(assessment, selected_locale: @selected_locale).
+                              to_hash(include: '**')
+
+      serialized_results = UsersResultSerializer.new(
+        @user_result, participant: @participant,
+        campaign: @campaign_assessment.campaign,
+        current_user: @current_user,
+        locale: @selected_locale
+      ).to_hash(include: '**')
+
+      render json: { assessment: serialized_assessment, user_result: serialized_results }
     end
 
     def perform_browser_check
@@ -94,40 +82,24 @@ module EndUser
       redirect_to upgrade_url unless @browser_detections.supported_browser?
     end
 
-    def set_campaign_assessment
-      @campaign_assessment = ::CampaignAssessment.find_by assessment_key: params[:assessment_key]
-    end
-
-    def set_client
-      @client = @campaign_assessment.campaign.client
-      @current_client = @client.parent
-    end
-
     def find_or_create_anonymous_user
-      @current_user = @anonymous_user || create_anonym_user
+      @current_user = @anonymous_user || Users::CreateAnonymCampaignUser.call!(@campaign_assessment)
       set_anonym_cookie(@current_user)
-    end
-
-    def create_anonym_user
-      Users::CreateAnonymCampaignUser.call!(@campaign_assessment.campaign)
     end
 
     def set_anonym_cookie(user)
       cookie_payload = user.slice(:first_name, :last_name, :role, :email, :is_anonym)
 
-      save_cookie(cookie_payload)
-    end
-
-    def save_cookie(payload, options = { expires: 1.hour.from_now }, name = ANONYM_COOKIE_KEY)
-      cookies[name] = options.merge(
-        value: payload.to_json,
+      cookies[ANONYM_COOKIE_KEY] = {
+        value: cookie_payload.to_json,
         domain: request.host,
-        path: '/'
-      )
+        path: '/',
+        expires: 1.hour.from_now
+      }
     end
 
-    def delete_anonym_user_cookie
-      cookies.delete(ANONYM_COOKIE_KEY, domain: request.fullpath)
+    def use_iframe?
+      false
     end
   end
 end

@@ -33,7 +33,6 @@ export default function Assign ({
   },
   preview,
   markAssessmentTimedOut,
-  block,
   progress,
 }) {
   useEffect(() => {
@@ -70,11 +69,7 @@ export default function Assign ({
           </Content>
         </div>
       </Affix>
-      <Content
-        className={
-          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
-        }
-      >
+      <Content className="fluid-container">
         {availableTranslations && availableTranslations.length > 0 && (
           <Row type="flex" justify="end" className="mtm mrm lang-row">
             <Col>

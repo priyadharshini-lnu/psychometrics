@@ -14,8 +14,6 @@ module Administration
       ]
 
       def index
-        @init_state = {}
-
         respond_to do |format|
           format.html
           format.json do

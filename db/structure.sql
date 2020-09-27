@@ -6046,7 +6046,7 @@ ALTER TABLE ONLY public.ecommerce_purchases
 --
 
 ALTER TABLE ONLY public.agile_events
-    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
