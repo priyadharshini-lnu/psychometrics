@@ -38,9 +38,9 @@ describe CampaignAssessments::RecomputeResultsJob do
 
   it do
     expect(::UsersResults::Recompute).to receive(:call!).
-      with(completed_user_result, current_user, 'id' => norm.id, 'type' => 'ETI')
+      with(completed_user_result, current_user, norm_id: norm.id, norm_type: 'ETI')
     expect(::UsersResults::Recompute).to_not receive(:call!).
-      with(uncompleted_user_result, current_user, 'id' => norm.id, 'type' => 'ETI')
+      with(uncompleted_user_result, current_user, norm_id: norm.id, norm_type: 'ETI')
 
     CampaignAssessments::RecomputeResultsJob.perform_now(campaign_assessment, current_user)
   end

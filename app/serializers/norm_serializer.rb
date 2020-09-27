@@ -15,5 +15,5 @@
 #
 
 class NormSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :norm_type
 end

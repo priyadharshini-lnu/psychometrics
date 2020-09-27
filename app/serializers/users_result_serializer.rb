@@ -27,7 +27,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
     translations['question'] = translations['question'].each_with_object({}) do |(question_id, question_details), acc|
       question_text = question_details['questionText']
-      question_text = Threesixty::PipedText::Perform.call!(question_text, instance_options[:piped_text_context])
+      question_text = Threesixty::PipedText::Perform.call!(question_text, piped_text_context)
       acc[question_id] = question_details.merge('questionText' => question_text)
     end
 
@@ -139,5 +139,9 @@ class UsersResultSerializer < ActiveModel::Serializer
     return 'Percentile' if type == 'percentile'
 
     raise "Not supported hogan type #{type}"
+  end
+
+  def piped_text_context
+    instance_options[:piped_text_context] || {}
   end
 end

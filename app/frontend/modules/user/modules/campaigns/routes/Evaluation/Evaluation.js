@@ -8,7 +8,6 @@ import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import './styles.scss'
-import cs from 'classnames'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -41,7 +40,6 @@ export default function Evaluation ({
   },
   preview,
   markAssessmentTimedOut,
-  block,
   progress,
 }) {
   const assessmentRef = React.createRef()
@@ -158,10 +156,7 @@ export default function Evaluation ({
           />
         </Content>
       </div>
-      <Content className={
-          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
-        }
-      >
+      <Content className="fluid-container">
         <div className="evaluation-container">
           <Row type="flex" justify="end" className="mtm mrm">
             <Col flex="none">

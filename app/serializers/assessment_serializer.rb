@@ -34,7 +34,7 @@ class AssessmentSerializer < ActiveModel::Serializer
       joining { template.outer }.
       includes(questions_ams: :comments).
       where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
-      BlockSerializer.new(block, piped_text_context: @instance_options[:piped_text_context])
+      BlockSerializer.new(block, piped_text_context: piped_text_context)
     end
   end
 
@@ -50,7 +50,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     return [] unless ids
 
     questions = Question.where(id: ids).order("position(id::text in '#{ids.join(',')}')")
-    questions.map { |q| QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context]) }
+    questions.map { |q| QuestionSerializer.new(q, piped_text_context: piped_text_context) }
   end
 
   def resources_translations
@@ -79,5 +79,11 @@ class AssessmentSerializer < ActiveModel::Serializer
 
   def timer_duration
     object.extra['timer']
+  end
+
+  private
+
+  def piped_text_context
+    instance_options[:piped_text_context] || {}
   end
 end

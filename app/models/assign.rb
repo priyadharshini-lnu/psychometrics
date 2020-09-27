@@ -190,6 +190,14 @@ class Assign < ApplicationRecord
     expiry_date.advance(minutes: 5) < Time.current
   end
 
+  def answer_key
+    'results'
+  end
+
+  def answers
+    results
+  end
+
   private
 
   def send_completion_email

@@ -1,17 +1,14 @@
 import { connect, ConnectedProps } from 'react-redux'
-import {
-  fetchResult,
-} from 'modules/user/modules/campaigns/core/anonym'
+import { get as getConfig } from 'modules/user/core/config'
 import { RootState } from 'modules/user/core/rootReducers'
-
+import { get as getCurrentUser } from 'core/currentUser'
 
 const connecter = connect(
   (state: RootState) => ({
-    anonym: state.anonym,
+    ...getConfig(state),
+    isAnonym: getCurrentUser(state).isAnonym,
   }),
-  {
-    fetchResult,
-  },
+  {},
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>

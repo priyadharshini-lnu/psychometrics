@@ -12,8 +12,6 @@ module Administration
       before_action :set_campaign, only: %i[show update assessments_and_reports]
 
       def index
-        @init_state = {}
-
         respond_to do |format|
           format.html
           format.json do

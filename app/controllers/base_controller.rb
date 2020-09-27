@@ -7,7 +7,7 @@ class BaseController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
-  prepend_before_action :authenticate_user!
+  prepend_before_action :authenticate_user!, unless: -> { try(:skip_authentication?) }
   before_action :detect_mobile
   before_action :set_raven_context
 

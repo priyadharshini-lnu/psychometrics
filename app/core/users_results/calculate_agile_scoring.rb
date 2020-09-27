@@ -1,30 +1,31 @@
 # frozen_string_literal: true
 
-module Assigns
+module UsersResults
   class CalculateAgileScoring < BaseCommand
-    private_attr_accessor :assign, :agile, :norm, :results, :scoring
+    private_attr_accessor :user_result, :agile, :norm, :results, :scoring, :current_user
 
-    def initialize(assign, skip_cleanup = false)
-      @assign = assign
-      @agile = assign.assessment.agile
+    def initialize(user_result, current_user, skip_cleanup = false)
+      @user_result = user_result
+      @agile = user_result.assessment.agile
+      @current_user = current_user
       @skip_cleanup = skip_cleanup
     end
 
     def call
-      return broadcast(:invalid) unless assign.completed?
-      return broadcast(:invalid) if assign.norm_data.blank? || assign.norm_data.dig('id').nil?
-      return broadcast(:invalid) if assign.results.blank?
+      return broadcast(:invalid) unless user_result.completed?
+      return broadcast(:invalid) if user_result.norm_type.nil? || user_result.norm_id.nil?
+      return broadcast(:invalid) if user_result.answers.blank?
 
-      @results = assign.results.map { |hash| hash['answers'] }.reduce(&:merge)
+      @results = user_result.answers.map { |hash| hash['answers'] }.reduce(&:merge)
       @norm = Norm.
               includes(:factors_norms, dimension: [factors: %i[sub_factors factors_sub_factors]]).
-              find_by(id: assign.norm_data['id'])
+              find_by(id: user_result.norm_id)
 
       # { factor_id => {"blocks" => [] }, ... }
       @scoring = Hash[norm.dimension.factors.map(&:id).product([blocks: []])].with_indifferent_access
 
       calculate
-      broadcast(:ok, assign.update(scoring: scoring))
+      broadcast(:ok, user_result.update(scoring: scoring))
     end
 
     private
@@ -47,6 +48,13 @@ module Assigns
       extend_scoring_with_factor_scores
       extend_scoring_with_norm_score
       clean unless @skip_cleanup
+      generate_report
+    end
+
+    def generate_report
+      return ::Assign::GenerateReport.call(user_result, current_user) if user_result.is_a?(Assign)
+
+      ::UsersResults::GenerateReports.call(user_result, current_user)
     end
 
     # { factor_id => {"blocks" => [{id: 'block-1', scoring: [{ factorId, itemScore }], questions => [...]}] }, ... }
