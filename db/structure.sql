@@ -38,6 +38,27 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
+-- Name: completed_via; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.completed_via AS ENUM (
+    'user',
+    'timed_out'
+);
+
+
+--
+-- Name: completion_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.completion_status AS ENUM (
+    'new',
+    'in_progress',
+    'completed'
+);
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -646,7 +667,11 @@ CREATE TABLE public.campaign_users (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    completed_via public.completed_via,
+    completion_status public.completion_status
 );
 
 
@@ -4751,6 +4776,20 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_completed_via; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completed_via ON public.campaign_users USING btree (completed_via);
+
+
+--
+-- Name: index_campaign_users_on_completion_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completion_status ON public.campaign_users USING btree (completion_status);
+
+
+--
 -- Name: index_campaign_users_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7267,6 +7306,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200913071803'),
 ('20200914055928'),
 ('20200922123931'),
-('20200923102431');
+('20200923102431'),
+('20200927105604');
 
 
