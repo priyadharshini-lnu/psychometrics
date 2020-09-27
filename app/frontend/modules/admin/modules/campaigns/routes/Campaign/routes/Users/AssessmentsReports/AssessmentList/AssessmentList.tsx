@@ -135,8 +135,7 @@ interface ActionMenuProps {
   currentUser: User
   reports: UserReport[]
   rescoreResponse(): void
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  reset(campaignId: number, assessmentId: number): Promise<any>
+  reset(campaignId: number, assessmentId: number): Promise<unknown>
   remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
