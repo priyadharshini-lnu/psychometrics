@@ -7,6 +7,7 @@ module Campaigns
       attribute :time_zone, String
       attribute :fixed_time, Hash[String => Boolean]
       attribute :fixed_time_duration, Integer
+      attribute :instructions_enabled, Hash[String => Boolean]
       attribute :instructions, String
 
       validates :campaign_id, presence: true

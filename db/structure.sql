@@ -544,6 +544,7 @@ CREATE TABLE public.campaign_options (
     time_zone character varying,
     fixed_time boolean DEFAULT false,
     fixed_time_duration integer,
+    instructions_enabled boolean DEFAULT false,
     instructions text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL

@@ -20,5 +20,6 @@ export interface CampaignOptions {
   timeZone?: string
   fixedTime: boolean
   fixedTimeDuration?: number
+  instructionsEnabled: boolean
   instructions?: string
 }

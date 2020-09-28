@@ -7,6 +7,7 @@ class CreateCampaignOptions < ActiveRecord::Migration[5.1]
       t.string :time_zone
       t.boolean :fixed_time, default: false
       t.integer :fixed_time_duration
+      t.boolean :instructions_enabled, default: false
       t.text :instructions
 
       t.timestamps

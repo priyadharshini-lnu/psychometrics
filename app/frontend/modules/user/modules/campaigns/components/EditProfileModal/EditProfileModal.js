@@ -8,7 +8,7 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import './styles.scss'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 
 export default function EditProfileModal ({
   user,

@@ -4,3 +4,5 @@ en:
       options:
         fixed_time: Fixed Time
         duration: ''
+        instructions:
+          enabled: Enable instructions

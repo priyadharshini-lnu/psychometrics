@@ -206,6 +206,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -1124,7 +1131,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "campaigns": {
       "options": {
         "duration": "",
-        "fixed_time": "Fixed Time"
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enabled": "Enable instructions"
+        }
       }
     },
     "choose": " - Choose - ",
@@ -7366,6 +7376,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -8284,7 +8301,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "campaigns": {
       "options": {
         "duration": "",
-        "fixed_time": "Fixed Time"
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enabled": "Enable instructions"
+        }
       }
     },
     "choose": " - Choose - ",
@@ -14516,6 +14536,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -15434,7 +15461,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "campaigns": {
       "options": {
         "duration": "",
-        "fixed_time": "Fixed Time"
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enabled": "Enable instructions"
+        }
       }
     },
     "choose": " - Choose - ",

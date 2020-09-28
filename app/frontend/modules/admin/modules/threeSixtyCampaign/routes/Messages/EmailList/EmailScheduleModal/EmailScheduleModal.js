@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 import { NAME, CONSOLIDATED_EMAIL_NAMES } from 'modules/admin/constants/emailTemplate'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 import Editor from 'components/Editor'
 import cs from 'classnames'
 import TitleBar from './TitleBar'
