@@ -9,7 +9,13 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
   }
 
   .fluid-container.common-campaign {
-    width: 1260px;
+    width: 100%;
+    padding: 20px;
+
+
+    @media(min-width: $screen-xl) {
+      width: $screen-xl;
+    }
 
     .campaign-header {
       display: flex;
@@ -34,6 +40,13 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         height: 100%;
         border-top-left-radius: 150px;
         padding-left: 12px;
+
+        @media(min-width: $screen-md) {
+          width: 50%;
+        }
+        @media(min-width: $screen-xl) {
+          width: 40%;
+        }
       }
       .right {
         background: #366377;
@@ -64,7 +77,8 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
             font-weight: bold;
           }
           .label {
-
+            min-width: 80px;
+            text-align: center;
           }
         }
       }
@@ -72,6 +86,31 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         width: 1px;
         height: 128px;
         background: #467082;
+      }
+
+      @media(max-width: $screen-md) {
+        min-height: 260px;
+        flex-direction: column;
+        border-radius: 10px 10px 10px 0;
+        align-items: flex-start;
+        .right-wrapper {
+          width: 100%;
+          flex: 1;
+          .item {
+            padding: 20px 10px;
+            .icon {
+              font-size: 24px;
+              margin-bottom: 0;
+            }
+            .number {
+              font-size: 1.5em;
+              font-weight: bold;
+            }
+          }
+        }
+        .divider {
+          height: 90px;
+        }
       }
     }
     .cards .card {

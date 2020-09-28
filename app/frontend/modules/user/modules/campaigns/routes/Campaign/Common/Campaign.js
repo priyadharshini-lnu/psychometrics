@@ -10,6 +10,7 @@ import {
 import { STATUSES } from 'constants/campaign'
 import './styles.scss'
 import cs from 'classnames'
+import { useMedia } from 'modules/user/rootHooks'
 import Assessments from './Assessments'
 
 const { Content } = Layout
@@ -34,6 +35,7 @@ export default function Campaign ({
   let prevGroup
   const groupAssessments = _.reduce(groups, (arr, group) => ([...arr, ...group.campaignAssessmentIds]), [])
   const ungrouped = _.filter(campaign.userAssessments, ua => !_.includes(groupAssessments, ua.assessmentId))
+  const isMD = useMedia('max-md')
 
   return (
     <Layout>
@@ -85,7 +87,7 @@ export default function Campaign ({
                   </div>
                 )}
                 <Row className="cards-container" gutter={16}>
-                  <Col xs={18} lg={18} xl={18} xxl={18}>
+                  <Col xs={24} lg={24} xl={18} xxl={18}>
                     <div className="panel-label">Assessments</div>
                     <Row gutter={[16, 16]}>
                       {groups.map((group) => {
@@ -95,6 +97,11 @@ export default function Campaign ({
                         if (size <= 2) {
                           colSize = size === 1 ? 8 : 16
                         }
+                        if (isMD) {
+                          if (size <= 2) {
+                            colSize = size === 1 ? 12 : 24
+                          }
+                        }
                         if (group.previousGroupRequired) {
                           prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
                         }
@@ -102,7 +109,7 @@ export default function Campaign ({
                         const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
                         if (!userAssessments.length) { return null }
                         return (
-                          <Col xs={24} lg={colSize} xl={colSize}>
+                          <Col xs={24} sm={colSize} lg={colSize} xl={colSize}>
                             <div className={cs('group')}>
                               <div className="group-title">{group.name}</div>
 
@@ -130,7 +137,7 @@ export default function Campaign ({
                         )
                       })}
                       {ungrouped.length && (
-                        <Col xs={24} lg={24} xl={24}>
+                        <Col xs={24} sm={24} lg={24} xl={24}>
                           <div className={cs('group')}>
                             <div className="group-title">{I18n.t('campaign.ungrouped')}</div>
 
@@ -154,7 +161,7 @@ export default function Campaign ({
                       )}
                     </Row>
                   </Col>
-                  <Col xs={6} lg={6} xl={6} xxl={6}>
+                  <Col xs={24} lg={24} xl={6} xxl={6}>
                     <div className="panel-label">Reports</div>
                     <List
                       bordered
