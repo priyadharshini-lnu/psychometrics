@@ -7,7 +7,6 @@ module Administration
 
       attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty
 
-      has_one :campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
       has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
       has_many :reports, serializer: Administration::Campaigns::ReportSerializer
 

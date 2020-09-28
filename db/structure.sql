@@ -38,27 +38,6 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
--- Name: completed_via; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.completed_via AS ENUM (
-    'user',
-    'timed_out'
-);
-
-
---
--- Name: completion_status; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.completion_status AS ENUM (
-    'new',
-    'in_progress',
-    'completed'
-);
-
-
---
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -670,8 +649,8 @@ CREATE TABLE public.campaign_users (
     active boolean DEFAULT true,
     started_at timestamp without time zone,
     completed_at timestamp without time zone,
-    completed_via public.completed_via,
-    completion_status public.completion_status
+    completed_via integer,
+    completion_status integer DEFAULT 0
 );
 
 
@@ -4776,6 +4755,13 @@ CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING 
 
 
 --
+-- Name: index_campaign_users_on_completed_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completed_at ON public.campaign_users USING btree (completed_at);
+
+
+--
 -- Name: index_campaign_users_on_completed_via; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4787,6 +4773,13 @@ CREATE INDEX index_campaign_users_on_completed_via ON public.campaign_users USIN
 --
 
 CREATE INDEX index_campaign_users_on_completion_status ON public.campaign_users USING btree (completion_status);
+
+
+--
+-- Name: index_campaign_users_on_started_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_started_at ON public.campaign_users USING btree (started_at);
 
 
 --
@@ -6085,7 +6078,7 @@ ALTER TABLE ONLY public.ecommerce_purchases
 --
 
 ALTER TABLE ONLY public.agile_events
-    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
 
 
 --

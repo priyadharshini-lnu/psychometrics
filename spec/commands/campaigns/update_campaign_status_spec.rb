@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Campaigns::UpdateCampaignStatus do
   context '.call' do
-    let(:campaign1) { create(:campaign) }
+    let(:campaign1) { create(:campaign, status: 'inactive', start_date: Time.now, end_date: 30.minutes.from_now) }
     let(:campaign2) { create(:campaign, status: 'active', start_date: 30.minutes.ago, end_date: Time.now) }
     let(:connection) { double('Connection') }
 

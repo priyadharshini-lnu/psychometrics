@@ -11,11 +11,11 @@ module Administration
       end
 
       attribute :started_at do
-        campaign_user&.started_at
+        campaign_user&.started_at && I18n.l(campaign_user&.started_at, format: :short)
       end
 
       attribute :completed_at do
-        campaign_user&.completed_at
+        campaign_user&.completed_at && I18n.l(campaign_user&.completed_at, format: :short)
       end
 
       attribute :completed_via do
