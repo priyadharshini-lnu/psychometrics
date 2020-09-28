@@ -4936,6 +4936,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
       },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
@@ -12104,6 +12109,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
       },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
@@ -19264,6 +19274,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "rescore_response": {
         "message": "Rescoring scheduled for assessment %{name}",
         "title": "Rescore Responses"
+      },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
       },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",

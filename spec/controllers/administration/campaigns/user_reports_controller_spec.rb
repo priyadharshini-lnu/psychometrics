@@ -118,7 +118,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
     expect(assessment_response.keys).to eq(
       %w[
         id assessment_id name category norm_name status norms norm_type norm_id
-        additional_time is_expired report_ids is_external
+        additional_time is_expired is_external report_ids
       ]
     )
     expect(assessment_response).to include({

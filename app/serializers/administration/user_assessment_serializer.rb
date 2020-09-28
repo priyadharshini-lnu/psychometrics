@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
-               :additional_time, :is_expired, :report_ids, :is_external
+               :additional_time, :is_expired, :is_external, :report_ids
 
     delegate :name, :category, to: :assessment
 
@@ -18,7 +18,7 @@ module Administration
     end
 
     def norms
-      object.assessment.norms.map { |n| NormSerializer.new(n).to_h }
+      assessment.norms.map { |n| NormSerializer.new(n).to_h }
     end
 
     def norm_name
