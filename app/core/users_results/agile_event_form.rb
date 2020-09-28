@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Assigns
+module UsersResults
   class AgileEventForm < Rectify::Form
     attribute :session_id, String
     attribute :event, String

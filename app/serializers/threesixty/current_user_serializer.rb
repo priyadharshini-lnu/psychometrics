@@ -2,7 +2,7 @@
 
 module Threesixty
   class CurrentUserSerializer < ActiveModel::Serializer
-    attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :is_super_admin
+    attributes :id, :is_manager, :email, :first_name, :last_name, :full_name, :is_super_admin, :is_anonym
 
     def is_manager # rubocop:disable Naming/PredicateName
       true

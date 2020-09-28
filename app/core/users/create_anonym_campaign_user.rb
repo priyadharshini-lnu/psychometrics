@@ -2,10 +2,11 @@
 
 module Users
   class CreateAnonymCampaignUser < BaseCommand
-    attr_reader :campaign
+    attr_reader :campaign, :assessment
 
-    def initialize(campaign)
-      @campaign = campaign
+    def initialize(campaign_assessment)
+      @campaign = campaign_assessment.campaign
+      @assessment = campaign_assessment.assessment
     end
 
     def call
@@ -24,7 +25,31 @@ module Users
         project: campaign.project
       )
       user.campaign_users.create(campaign: campaign)
+
+      add_assessment_to_user(user)
+
       broadcast :ok, user
+    end
+
+    private
+
+    def add_assessment_to_user(user)
+      users_result = UsersResult.create(
+        assessment: assessment,
+        subject: user,
+        evaluator: user,
+        status: :in_progress,
+        last_activity_at: DateTime.current,
+        expiry_date: assessment.extra['timer']&.second&.from_now,
+        answers: {}
+      )
+      UserAssessment.create(
+        assessment: assessment,
+        campaign: campaign,
+        subject: user,
+        evaluator: user,
+        users_result: users_result
+      )
     end
   end
 end

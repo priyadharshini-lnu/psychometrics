@@ -19,29 +19,27 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     .ant-card-hoverable:hover {
       border-color: rgba(34, 34, 34, 0.09);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
-    }    
-    .cover {
+    }
+    .internal-cover {
       position: relative;
       display: flex;
       align-items: center;
       flex-direction: column;
-      height: 72px;
-      background: $normal-color;
 
-
-      .caption {
+      .internal-caption {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
         padding: 12px;
 
-        .title {
+        .internal-title {
           margin-left: 5px;
           font-weight: bold;
           color: #646464;
         }
 
-        .icon {
+        .internal-icon {
           background: #646464;
           width: 36px;
           height: 36px;
@@ -56,6 +54,11 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
           }
           .icon-360 {
             font-size: 2.6rem;
+          }
+
+          &.hogan {
+            background: #646464;
+            color: #FFF;
           }
         }
 
@@ -72,23 +75,18 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         margin: 0 auto;
         padding: 6px 8px;
         background: #fff;
-        border-radius: 6px;
-        color: $gray-color;
+
       }
     }
 
     @for $i from 1 through 3 {
       &:nth-child(3n + #{$i}) {
-        .cover {
-          background: nth($colors, $i);
-
-          .caption .title {
+        .internal-cover {
+          .internal-caption .internal-title {
             color: nth($text-colors, $i);
           }
-          :global(.ant-progress-bg) {
-            background: nth($colors, $i);
-          }
-          .icon {
+
+          .internal-icon {
             background: nth($text-colors, $i);
             color: nth($colors, $i);
             svg {
@@ -105,11 +103,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
       right: 16px;
     }
 
-    .card-body {
-      padding: 12px;
-      margin-top: 16px;
-    }
-
     .card-content {
       display: flex;
       flex-direction: column;
@@ -119,14 +112,15 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
       }
 
       .card-title {
-        font-weight: bold;
+        color: #555;
+        font-weight: 600;
+        font-size: 16px;
         height: 60px;
       }
 
       .info-line {
         font-size: 12px;
         padding: 16px 0;
-        color: $gray-color;
         font-weight: bold;
         display: flex;
 
@@ -136,6 +130,7 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
           text-overflow: ellipsis;
           white-space: nowrap;
           flex: 1;
+          color: #999;
 
           i {
             font-size: 13px;
@@ -143,6 +138,13 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
           }
         }
       }
+
+      .card-progress {
+        .ant-progress-text {
+          color: #999;
+        }
+      }
+
 
       .divider {
         align-self: center;
@@ -153,7 +155,8 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
 
       .button {
         padding-top: 8px;
-
+        display: flex;
+        justify-content: flex-end;
         .icon {
           font-size: 20px;
         }
@@ -168,9 +171,13 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
           align-items: center;
 
           svg {
-            margin-right: 8px;
+            margin-left: 8px;
           }
         }
+        a.disabled {
+          color: #aaa !important;
+        }
+
       }
     }
   }

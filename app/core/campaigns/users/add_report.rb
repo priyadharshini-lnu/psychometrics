@@ -42,8 +42,7 @@ module Campaigns
         )
 
         if assessment.hogan? && user.hogan_credential
-          # TODO: Need to call Hogan::AssignAndLoadResultsJob when we start using user_result instead of assign
-          # https://tte.atlassian.net/browse/LH-824
+          Hogan::AddReportsJob.perform_later(user_assessment, [report], user.hogan_credential, user.project)
         end
         user_assessment
       end

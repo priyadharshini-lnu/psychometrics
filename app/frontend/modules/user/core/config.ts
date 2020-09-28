@@ -1,9 +1,11 @@
 import _ from 'lodash'
+import { RootState } from 'modules/user/core/rootReducers'
 
-export const get = state => _.get(state, ['config'])
+export const get = (state: RootState) => _.get(state, ['config'])
 
 export const defaultState = {
   isFrame: false,
+  agileAssetsUrl: '',
 }
 
 export default function reducer (state = defaultState) {

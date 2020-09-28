@@ -18,9 +18,8 @@ const UngroupedList: React.FC<PropsFromRedux> = ({ assessments }) => (
             text={I18n.t('assessments_reports.sequencing.no_ungrouped_assessments')}
           />
         )
-      }
+        }
     </div>
   </div>
 )
-
 export default UngroupedList

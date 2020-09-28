@@ -8,6 +8,7 @@ import UserAssessment from './UserAssessment'
 import AgileAssign from './AgileAssign'
 import CheckingWizard from './CheckingWizard'
 import Anonym from './Anonym'
+import AgileUserAssessment from './AgileUserAssessment'
 
 const routes = [
   {
@@ -70,6 +71,11 @@ const routes = [
   {
     path: '/user_assessments/:userAssessmentId/pass',
     main: UserAssessment,
+    exact: true,
+  },
+  {
+    path: '/agile_user_assessments/:userAssessmentId',
+    main: AgileUserAssessment,
     exact: true,
   },
   {

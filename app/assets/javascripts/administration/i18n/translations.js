@@ -206,6 +206,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -630,7 +637,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -1741,7 +1748,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -4890,6 +4897,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
+  },
   "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
@@ -5102,6 +5119,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -6711,7 +6729,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -7364,6 +7382,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -7788,7 +7813,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -8899,7 +8924,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -12045,6 +12070,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
+  },
   "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
@@ -12257,6 +12292,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -13862,7 +13898,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -14512,6 +14548,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -14936,7 +14979,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -16047,7 +16090,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -19193,6 +19236,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
+  },
   "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
@@ -19405,6 +19458,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -21010,7 +21064,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",

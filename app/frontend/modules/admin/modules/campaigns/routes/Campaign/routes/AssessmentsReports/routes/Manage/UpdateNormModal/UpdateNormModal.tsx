@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Form, Checkbox, Select, Radio, message,
+  Modal, Button, Form, Checkbox, Select, Radio, message, Alert,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -33,13 +33,21 @@ const UpdateNormModal: React.FC<Props> = ({
   const [form] = Form.useForm()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_fields, setFields] = useState({})
+  const [errors, setErrors] = useState([])
 
   const handleUpdate = (params) => {
     updateNorm(campaignId, assessment.id, params)
       .then(() => {
         message.info(I18n.t('campaign_assessment.modals.update_norm.success_msg'))
         close()
-      })
+      }).catch(setErrors)
+  }
+
+  const isFiveScaleNormSelected = () => {
+    const normId = form.getFieldValue('normId') || assessment.normId
+    const selectedNormType = _.find(assessment.norms, ({ id }) => id === normId)?.normType
+
+    return selectedNormType === 'five_scale'
   }
 
   return (
@@ -71,6 +79,14 @@ const UpdateNormModal: React.FC<Props> = ({
           setFields(allFields)
         }}
       >
+        {errors.length ? (
+          <Alert
+            message={false}
+            description={_.join(errors, '\n')}
+            type="error"
+            className="mbm"
+          />
+        ) : null}
         <Form.Item name="normId">
           <Select style={{ width: '100%' }} placeholder={I18n.t('campaign_assessment.modals.update_norm.select_norm')}>
             {_.map(assessment.norms || [], (norm: Norm) => (
@@ -83,16 +99,18 @@ const UpdateNormModal: React.FC<Props> = ({
             ))}
           </Select>
         </Form.Item>
+        {isFiveScaleNormSelected() && (
         <Form.Item name="normType">
           <Radio.Group>
-            <Radio value="YTI">
+            <Radio value="yti">
             YTI
             </Radio>
-            <Radio value="ETI">
+            <Radio value="eti">
             ETI
             </Radio>
           </Radio.Group>
         </Form.Item>
+        )}
         <Form.Item name="apply" valuePropName="checked">
           <Checkbox>{I18n.t('campaign_assessment.modals.update_norm.apply')}</Checkbox>
         </Form.Item>

@@ -13,7 +13,7 @@ module EndUser
     end
 
     def url
-      object.assessment.agile? ? agile_assign_path(object) : pass_user_assessment_path(object)
+      object.assessment.agile? ? agile_user_assessment_path(object) : pass_user_assessment_path(object)
     end
 
     def type
@@ -58,7 +58,7 @@ module EndUser
     end
 
     def hogan_url
-      pass_hogan_assign_path(object.id)
+      pass_hogan_user_assessment_path(object.id)
     end
 
     def completion_percent

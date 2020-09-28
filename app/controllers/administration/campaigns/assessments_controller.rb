@@ -69,14 +69,19 @@ module Administration
       end
 
       def update_norm
-        campaign_assessment.update!(norm_id: params[:norm_id], norm_type: params[:norm_type])
+        form = CampaignAssessments::UpdateNormForm.from_params(params)
+        if form.valid?
+          campaign_assessment.update!(form.attributes)
 
-        CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
+          CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
 
-        render json: {
-          norm_name: campaign_assessment.norm.name,
-          norm_type: campaign_assessment.norm_type
-        }
+          render json: {
+            norm_name: campaign_assessment.norm.name,
+            norm_type: campaign_assessment.norm_type
+          }
+        else
+          render json: { errors: form.errors.messages.values }, status: 422
+        end
       end
 
       private
