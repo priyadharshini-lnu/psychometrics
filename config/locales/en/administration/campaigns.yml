@@ -1,8 +1,28 @@
 en:
   administration:
     campaigns:
+      actions: Manage
+      form:
+        name: Name
+        status: Status
       options:
         fixed_time: Fixed Time
         duration: ''
         instructions:
-          enabled: Enable instructions
+          enable: Enable instructions
+      listing:
+        id: Id
+        name: Name
+        status: Status
+        type: Type
+        assessments: Assessments
+        reports: Reports
+      users:
+        id: Id
+        is_active: Active?
+        name: Name
+        email: Email
+        created_by: Created By
+        updated_by: Updated By
+        completed_via: Completed Via
+        completion_status: Status

@@ -637,7 +637,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -1129,12 +1129,35 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "url": "Url"
     },
     "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
       "options": {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enabled": "Enable instructions"
+          "enable": "Enable instructions"
         }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
       }
     },
     "choose": " - Choose - ",
@@ -1757,7 +1780,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -3219,6 +3242,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -6739,7 +6771,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -7823,7 +7855,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -8315,12 +8347,35 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "url": "Url"
     },
     "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
       "options": {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enabled": "Enable instructions"
+          "enable": "Enable instructions"
         }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
       }
     },
     "choose": " - Choose - ",
@@ -8943,7 +8998,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -10405,6 +10460,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -13918,7 +13982,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -14999,7 +15063,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Occupations",
+      "occupation": "Innovation Styles",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -15491,12 +15555,35 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "url": "Url"
     },
     "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
       "options": {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enabled": "Enable instructions"
+          "enable": "Enable instructions"
         }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
       }
     },
     "choose": " - Choose - ",
@@ -16119,7 +16206,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -17581,6 +17668,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -21094,7 +21190,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",

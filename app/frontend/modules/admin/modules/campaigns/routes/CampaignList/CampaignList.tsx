@@ -123,14 +123,14 @@ const CampaignList: React.FC<Props> = ({
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
-              title="Id"
+              title={I18n.t('administration.campaigns.listing.id')}
               dataIndex="id"
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
             />
             <Column
-              title="Name"
+              title={I18n.t('administration.campaigns.listing.name')}
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
@@ -139,41 +139,41 @@ const CampaignList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Start Date"
+              title={I18n.t('administration.dates.start')}
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
               render={({ startDate }) => (startDate ? moment(startDate).format('L LT') : ' - ')}
             />
             <Column
-              title="End Date"
+              title={I18n.t('administration.dates.end')}
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
               render={({ endDate }) => (endDate ? moment(endDate).format('L LT') : ' - ')}
             />
             <Column
-              title="Status"
+              title={I18n.t('administration.campaigns.listing.status')}
               key="status"
               render={({ status }) => _.capitalize(status)}
             />
             <Column
-              title="Type"
+              title={I18n.t('administration.campaigns.listing.type')}
               key="type"
               render={({ type }) => _.capitalize(type)}
             />
             <Column
-              title="Assessments"
+              title={I18n.t('administration.campaigns.listing.assessments')}
               key="assessments"
               render={({ assessments }) => <ResourcesTag resources={assessments} type="assessments" />}
             />
             <Column
-              title="Reports"
+              title={I18n.t('administration.campaigns.listing.reports')}
               key="reports"
               render={({ reports }) => <ResourcesTag resources={reports} type="reports" />}
             />
             <Column
-              title="Action"
+              title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={campaign => (
                 <Dropdown

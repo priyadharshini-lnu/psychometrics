@@ -8,6 +8,7 @@ import _ from 'lodash'
 import moment from 'moment'
 
 const { Option } = Select
+const { I18n } = window
 
 interface Props {
   projectId: number
@@ -55,14 +56,14 @@ const CommonCampaignFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label="Name"
+            label={I18n.t('administration.campaigns.form.name')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="status"
-            label="Status"
+            label={I18n.t('administration.campaigns.form.status')}
             required
           >
             <Select>
@@ -72,13 +73,13 @@ const CommonCampaignFormModal: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="startDate"
-            label="Start Date"
+            label={I18n.t('administration.dates.start')}
           >
             <DatePicker showTime format={format} disabledDate={disabledDate} disabledTime={disabledDateTime} />
           </Form.Item>
           <Form.Item
             name="endDate"
-            label="End Date"
+            label={I18n.t('administration.dates.end')}
           >
             <DatePicker showTime format={format} disabledDate={disabledDate} />
           </Form.Item>

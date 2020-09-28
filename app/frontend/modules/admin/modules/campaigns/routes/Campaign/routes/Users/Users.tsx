@@ -120,7 +120,7 @@ const UserList: React.FC<Props> = ({
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
-              title="Id"
+              title={I18n.t('administration.campaigns.users.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
@@ -131,7 +131,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Active?"
+              title={I18n.t('administration.campaigns.users.is_active')}
               key="enable"
               render={
                 ({
@@ -149,46 +149,46 @@ const UserList: React.FC<Props> = ({
               }
             />
             <Column
-              title="Name"
+              title={I18n.t('administration.campaigns.users.name')}
               key="fullName"
               dataIndex="fullName"
             />
             <Column
-              title="Email"
+              title={I18n.t('administration.campaigns.users.email')}
               key="email"
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="email"
             />
             <Column
-              title="Started At"
+              title={I18n.t('administration.dates.started')}
               key="startedAt"
               dataIndex="startedAt"
             />
             <Column
-              title="Completed At"
+              title={I18n.t('administration.dates.completed')}
               key="completedAt"
               dataIndex="completedAt"
             />
             <Column
-              title="Created By"
+              title={I18n.t('administration.campaigns.users.created_by')}
               key="createdBy"
               dataIndex="createdBy"
             />
             <Column
-              title="Updated By"
+              title={I18n.t('administration.campaigns.users.updated_by')}
               key="updated_by"
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="updated_by"
             />
             <Column
-              title="Completed Via"
+              title={I18n.t('administration.campaigns.users.completed_via')}
               key="completedVia"
               dataIndex="completedVia"
             />
             <Column
-              title="Completion Status"
+              title={I18n.t('administration.campaigns.users.completion_status')}
               key="completionStatus"
               sorter
               sortOrder={getSortOrder('completionStatus')}
@@ -201,7 +201,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Action"
+              title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={user => (
                 <Dropdown

@@ -65,7 +65,7 @@ const CampaignOptions: React.FC<Props> = ({
         )}
 
         <Option
-          label={I18n.t('administration.campaigns.options.instructions.enabled')}
+          label={I18n.t('administration.campaigns.options.instructions.enable')}
           {...parametersForField('instructionsEnabled')}
         />
 
@@ -76,7 +76,7 @@ const CampaignOptions: React.FC<Props> = ({
                 type={null}
                 details={null}
                 className={null}
-                content={instructions}
+                content={options.instructions}
                 handleContentChange={(value) => { updateInstructions(value) }}
               />
             </div>

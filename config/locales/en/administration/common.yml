@@ -87,3 +87,11 @@ en:
     imports_assessments_result_imports:
       new:
         header: New
+    dates:
+      start: Start Date
+      end: End Date
+      started: Started At
+      ended: Ended At
+      created: Created At
+      updated: Updated At
+      completed: Completed At
