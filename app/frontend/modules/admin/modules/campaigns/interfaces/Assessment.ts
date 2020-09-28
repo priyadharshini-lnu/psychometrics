@@ -10,6 +10,7 @@ export default interface Assessment {
   normName: string
   normType: string
   enableUniversalLinks: boolean
+  isExternal: boolean
   universalLink: string | null
   norms?: Norm[]
 }

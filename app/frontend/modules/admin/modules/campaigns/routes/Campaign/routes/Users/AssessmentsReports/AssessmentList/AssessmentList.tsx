@@ -72,21 +72,28 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
-            render={({ normName, normType, id }) => (
-              <a
-                onClick={
-                  () => openModal('UpdateNormModal',
-                    {
-                      projectId: parsedProjectId,
-                      campaignId: parsedCampaignId,
-                      campaignAssessmentId: id,
-                      userId: parsedUserId,
-                    })
-                }
-              >
-                {normName ? `${normName}, ${_.toUpper(normType)}` : I18n.t('common.text.default')}
-              </a>
-            )}
+            render={({
+              normName, normType, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              return (
+                <a
+                  onClick={
+                    () => openModal('UpdateNormModal',
+                      {
+                        projectId: parsedProjectId,
+                        campaignId: parsedCampaignId,
+                        campaignAssessmentId: id,
+                        userId: parsedUserId,
+                      })
+                  }
+                >
+                  {normName ? `${normName}, ${_.toUpper(normType)}` : I18n.t('common.text.default')}
+                </a>
+              )
+            }}
           />
 
           <Column

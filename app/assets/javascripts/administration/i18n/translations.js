@@ -206,6 +206,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
@@ -5097,6 +5104,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -7358,6 +7366,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
         },
         "user": {
           "attributes": {
@@ -12247,6 +12262,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -14501,6 +14517,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update_assessment": {
           "attributes": null
+        },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
         },
         "user": {
           "attributes": {
@@ -19390,6 +19413,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "continue": "Continue",
       "default": "Default",
       "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
