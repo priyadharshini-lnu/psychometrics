@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React, { useState } from 'react'
 import {
-  Row, Col, Card, Progress, Dropdown, Menu,
+  Row, Col, Card, Progress, Dropdown, Menu, Tag, Tooltip,
 } from 'antd'
 import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
@@ -13,6 +13,7 @@ import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import './styles.scss'
 import PrivacyModal from './PrivacyModal'
 import ContinueIcon from './ContinueIcon'
+import AssessmentCard from './AssessmentCard'
 
 const IN_PROGRESS = 'in_progress'
 const INTERRUPTED = 'interrupted'
@@ -51,7 +52,7 @@ const ReportsMenu = reports => (
 
 const renderButtonContent = ({
   mindmill, mindmillUrl, url, status, userReports, needConfirm, assessmentCategory,
-}, setShowConfirm, loading, loadAssessmentOrCheckingWizard) => {
+}, setShowConfirm, loading, loadAssessmentOrCheckingWizard, disabled) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
@@ -106,16 +107,27 @@ const renderButtonContent = ({
       return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
     }
   }
-  return (
+
+  return disabled ? (
+    <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
+      <a className="disabled">
+        {I18n.t('threesixty.begin')}
+        {' '}
+        {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      </a>
+    </Tooltip>
+  ) : (
     <a href={href} onClick={showPolicyConfirm}>
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
-      {' '}
       {I18n.t('threesixty.begin')}
+      {' '}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
     </a>
   )
 }
 
-export default function InternalAssessment ({ userAssessment, acceptPolicy, history }) {
+export default function InternalAssessment ({
+  userAssessment, acceptPolicy, history, size, disabled,
+}) {
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -142,22 +154,28 @@ export default function InternalAssessment ({ userAssessment, acceptPolicy, hist
       loadAssessmentOrCheckingWizard(userAssessment)
     })
   }
+
   return (
-    <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
+    <AssessmentCard size={size}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable
         cover={(
-          <div className="cover">
-            <div className="caption">
-              <div className="icon">
+          <div className="internal-cover">
+            <div className="internal-caption">
+              <div className="internal-icon">
                 <span className={`icon-${ASSESSMENT_CATEGORY_ICONS[userAssessment.assessmentCategory]}`} />
               </div>
-            </div>
-            <div className="card-progress">
-              <Progress
-                percent={userAssessment.completionPercent || 0}
-              />
+              {userAssessment.status !== 'completed' && (
+                <div>
+                  <Tag
+                    color={userAssessment.status === 'not_started' ? 'green' : 'blue'}
+                    style={{ background: 'transparent' }}
+                  >
+                    {I18n.t(`campaign.${userAssessment.status}`)}
+                  </Tag>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -174,14 +192,20 @@ export default function InternalAssessment ({ userAssessment, acceptPolicy, hist
                 {userAssessment.timing}
               </Col>
             </Row>
-            <div className="divider" />
+            <div className="card-progress">
+              <Progress
+                percent={userAssessment.completionPercent || 0}
+                strokeWidth={5}
+                strokeColor="#aaa"
+              />
+            </div>
             <div className="button">
-              {renderButtonContent(userAssessment, setShowConfirm, loading, loadAssessmentOrCheckingWizard)}
+              {renderButtonContent(userAssessment, setShowConfirm, loading, loadAssessmentOrCheckingWizard, disabled)}
             </div>
           </div>
         </div>
       </Card>
       {userAssessment.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
-    </Col>
+    </AssessmentCard>
   )
 }

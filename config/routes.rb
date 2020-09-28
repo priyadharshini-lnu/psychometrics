@@ -690,6 +690,13 @@ Rails.application.routes.draw do
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
 
+      resources :hogan_user_assessments, only: [] do
+        member do
+          get :redirect
+          put :pass
+        end
+      end
+
       resources :user_reports do
         member do
           post :pdf_preview
