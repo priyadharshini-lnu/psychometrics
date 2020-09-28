@@ -49,12 +49,20 @@ class UsersResult < ApplicationRecord
     UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_ids)
   end
 
+  def hogan_user_reports
+    hogan_reports = assessment.reports.select(&:hogan?)
+
+    return UserReport.none if hogan_reports.blank?
+
+    UserReport.where(report_id: hogan_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_ids)
+  end
+
   def mindmill_user_reports
-    mindmill_report = assessment.reports.find(&:mindmill?)
+    mindmill_reports = assessment.reports.select(&:mindmill?)
 
-    return UserReport.none unless mindmill_report
+    return UserReport.none if mindmill_reports.blank?
 
-    UserReport.where(report_id: mindmill_report.id, user_id: subject_id, campaign_id: campaign_ids)
+    UserReport.where(report_id: mindmill_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_ids)
   end
 
   def campaign_ids

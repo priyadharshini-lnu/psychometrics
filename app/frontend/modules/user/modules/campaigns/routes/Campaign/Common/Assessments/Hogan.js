@@ -2,49 +2,21 @@
 /* eslint-disable max-len */
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Card, Progress, Dropdown, Menu, Input,
+  Row, Col, Card, Progress, Input, Tag, Tooltip,
 } from 'antd'
 import {
-  DownloadOutlined, LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
+  LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
 } from '@ant-design/icons'
 import './styles.scss'
 import ContinueIcon from './ContinueIcon'
 import PrivacyModal from './PrivacyModal'
+import AssessmentCard from './AssessmentCard'
 
 const IN_PROGRESS = 'in_progress'
 
-const DownloadLink = ({ report, text }) => {
-  const reportUrl = report.externalReportUrl || report.pdfUrl
-  if (reportUrl) {
-    return (
-      <a href={reportUrl} onClick={e => e.stopPropagation()} target="_blank" disabled={report.generating}>
-        <DownloadOutlined />
-        {' '}
-        {text}
-      </a>
-    )
-  }
-  return (
-    <a disabled>
-      <DownloadOutlined />
-      {I18n.t('threesixty.processing_report')}
-    </a>
-  )
-}
-
-const ReportsMenu = reports => (
-  <Menu>
-    {reports.map(report => (
-      <Menu.Item key={report.id}>
-        <DownloadLink report={report} text={report.generating ? `${report.name} (${I18n.t('threesixty.processing')}..)` : report.name} />
-      </Menu.Item>
-    ))}
-  </Menu>
-)
-
 const renderButtonContent = ({
-  status, assignedReports, needConfirm,
-}, setShowConfirm, loading, loginHogan) => {
+  status, needConfirm,
+}, setShowConfirm, loading, loginHogan, disabled) => {
   const showPolicyConfirm = (e) => {
     e.preventDefault()
     if (needConfirm) {
@@ -65,23 +37,6 @@ const renderButtonContent = ({
   }
 
   if (status === 'completed') {
-    if (assignedReports.length > 1) {
-      return (
-        <Dropdown
-          trigger={['click']}
-          overlay={() => ReportsMenu(assignedReports)}
-        >
-          <div className="dropdown">
-            <DownloadOutlined />
-            {' '}
-            {I18n.t('threesixty.download_reports')}
-          </div>
-        </Dropdown>
-      )
-    } if (assignedReports.length === 1) {
-      const report = assignedReports[0]
-      return <DownloadLink report={report} text={report.generating ? I18n.t('threesixty.processing_report') : I18n.t('threesixty.download_report')} />
-    }
     return (
       <a>
         <CheckOutlined />
@@ -90,7 +45,15 @@ const renderButtonContent = ({
       </a>
     )
   }
-  return (
+  return disabled ? (
+    <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
+      <a href="#" className="disabled">
+        {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+        {' '}
+        {I18n.t('threesixty.begin')}
+      </a>
+    </Tooltip>
+  ) : (
     <a href="#" onClick={showPolicyConfirm}>
       {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
       {' '}
@@ -99,7 +62,9 @@ const renderButtonContent = ({
   )
 }
 
-export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
+export default function Hogan ({
+  userAssessment: assign, acceptPolicy, loginHogan, size, disabled,
+}) {
   const [hoganData, setHoganData] = useState(null)
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -128,21 +93,26 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
   }
 
   return (
-    <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
+    <AssessmentCard size={size}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable
         cover={(
-          <div className="cover">
-            <div className="caption">
-              <div className="icon">
+          <div className="internal-cover">
+            <div className="internal-caption">
+              <div className="internal-icon hogan">
                 <span className="icon-hogan" />
               </div>
-            </div>
-            <div className="card-progress">
-              <Progress
-                percent={assign.completionPercent || 0}
-              />
+              {assign.status !== 'completed' && (
+                <div>
+                  <Tag
+                    color={assign.status === 'not_started' ? 'green' : 'blue'}
+                    style={{ background: 'transparent' }}
+                  >
+                    {I18n.t(`campaign.${assign.status}`)}
+                  </Tag>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -159,9 +129,15 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
                 {assign.timing}
               </Col>
             </Row>
-            <div className="divider" />
+            <div className="card-progress">
+              <Progress
+                percent={assign.completionPercent || 0}
+                strokeWidth={5}
+                strokeColor="#aaa"
+              />
+            </div>
             <div className="button">
-              {renderButtonContent(assign, setShowConfirm, loading, onLoginHogan)}
+              {renderButtonContent(assign, setShowConfirm, loading, onLoginHogan, disabled)}
             </div>
           </div>
         </div>
@@ -180,6 +156,6 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
           <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} />
         </form>
       )}
-    </Col>
+    </AssessmentCard>
   )
 }

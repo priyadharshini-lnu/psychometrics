@@ -85,6 +85,17 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     expect(response).to have_http_status(:success)
   end
 
+  it '[POST] reset' do
+    expect(::UsersResults::Reset).to receive(:call!)
+
+    post :reset, params: {
+      id: user_assessment.id,
+      new_campaign_id: campaign.id
+    }
+
+    expect(response).to have_http_status(:success)
+  end
+
   describe 'DELETE' do
     it 'removes user_assessment' do
       expect do

@@ -32,6 +32,10 @@ en:
       update_time:
         title: Extend Time
         additional_time: Time (min)
+      reset:
+        title: Reset Result for assessment %{name}?
+        content: Are you sure you want to reset result?
+        successfully: Result data was successfully reseted.
       rescore_response:
         title: Rescore Responses
         message: 'Rescoring scheduled for assessment %{name}'

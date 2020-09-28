@@ -33,8 +33,8 @@ module Hogan
         group: project.hogan_group_name,
         credentials: credentials,
         assessment: user_result.assessment,
-        user_result: user_result.evaluator_id,
-        reports: user_result.assessment.reports
+        reports: user_result.hogan_user_reports,
+        user_id: user_result.evaluator_id
       )
     end
   end

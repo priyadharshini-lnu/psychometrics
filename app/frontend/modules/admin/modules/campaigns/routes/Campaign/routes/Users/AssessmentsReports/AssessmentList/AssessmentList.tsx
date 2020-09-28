@@ -42,6 +42,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   match: { params: { projectId, campaignId, id } },
   openModal,
   rescoreResponse,
+  reset,
   remove,
   currentUser,
   reports,
@@ -72,21 +73,28 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
-            render={({ normName, normType, id }) => (
-              <a
-                onClick={
-                  () => openModal('UpdateNormModal',
-                    {
-                      projectId: parsedProjectId,
-                      campaignId: parsedCampaignId,
-                      campaignAssessmentId: id,
-                      userId: parsedUserId,
-                    })
-                }
-              >
-                {normName ? `${normName}, ${_.toUpper(normType)}` : I18n.t('common.text.default')}
-              </a>
-            )}
+            render={({
+              normName, normType, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              return (
+                <a
+                  onClick={
+                    () => openModal('UpdateNormModal',
+                      {
+                        projectId: parsedProjectId,
+                        campaignId: parsedCampaignId,
+                        campaignAssessmentId: id,
+                        userId: parsedUserId,
+                      })
+                  }
+                >
+                  {normName ? `${normName}, ${_.toUpper(normType)}` : I18n.t('common.text.default')}
+                </a>
+              )
+            }}
           />
 
           <Column
@@ -103,6 +111,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                   ActionsMenu({
                     rescoreResponse: () => rescoreResponse(parsedCampaignId, assessment.id),
                     openModal,
+                    reset,
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,
                     assessment,
@@ -133,23 +142,41 @@ interface ActionMenuProps {
   currentUser: User
   reports: UserReport[]
   rescoreResponse(): void
+  reset(campaignId: number, assessmentId: number): Promise<unknown>
   remove(): void
   openModal(string, data?: { campaignId: number, userId: number, campaignAssessmentId: number }): void
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, remove, reports,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove, reports,
 }) => {
   const { name, reportIds } = assessment
-
-  const handleRescoreResponse = () => {
-    rescoreResponse()
-    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
-  }
 
   const reportNames = () => {
     const names = reports.map(report => (reportIds.includes(report.reportId) ? report.name : ''))
     return _.compact(names)
+  }
+
+  const handleReset = () => {
+    Modal.confirm({
+      title: I18n.t('campaign_assessment.modals.reset.title', { name }),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('campaign_assessment.modals.reset.content'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: () => {
+        reset(campaignId, assessment.id).then(() => {
+          message.success(I18n.t('campaign_assessment.modals.reset.successfully'))
+        })
+      },
+    })
+  }
+
+  const handleRescoreResponse = () => {
+    rescoreResponse()
+    message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
   const handleDelete = () => {
@@ -185,14 +212,17 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="response" title={I18n.t('common.text.response')}>
-        <Menu.Item key="reset">
-          <div
-            role="button"
-            tabIndex={-1}
-          >
-            {I18n.t('common.actions.reset')}
-          </div>
-        </Menu.Item>
+        {UserAssessmentPolicy.resetResults(currentUser, assessment) ? (
+          <Menu.Item key="reset">
+            <div
+              role="button"
+              tabIndex={-1}
+              onClick={handleReset}
+            >
+              {I18n.t('common.actions.reset')}
+            </div>
+          </Menu.Item>
+        ) : null }
         <Menu.Item key="rescore">
           <div
             role="button"

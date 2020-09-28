@@ -6,6 +6,7 @@ export default interface UserAssessment {
   category: string
   assessmentId: number
   isExpired: boolean
+  isExternal: boolean
   additionalTime: number | null
   normId: number
   normName: string

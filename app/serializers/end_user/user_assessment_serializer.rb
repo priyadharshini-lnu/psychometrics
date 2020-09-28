@@ -58,7 +58,7 @@ module EndUser
     end
 
     def hogan_url
-      pass_hogan_assign_path(object.id)
+      pass_hogan_user_assessment_path(object.id)
     end
 
     def completion_percent

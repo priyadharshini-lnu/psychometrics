@@ -107,6 +107,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "wait": "Wait"
   },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -540,6 +550,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "you": "You",
     "yourself": "Yourself"
   },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
+  },
   "validations": {
     "AudioResponse": {
       "in_progress": {
@@ -704,6 +734,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "use_this": "Use This"
     },
     "wait": "Wait"
+  },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
   },
   "checking_wizard": {
     "audio_check": {
@@ -1134,6 +1174,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "waiting": "Waiting",
     "you": "You",
     "yourself": "Yourself"
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {
@@ -1300,6 +1360,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "wait": "Wait"
   },
+  "campaign": {
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "new": "New",
+    "not_started": "New",
+    "ungrouped": "Ungrouped assessments",
+    "welcome_back": "Welcome Back"
+  },
   "checking_wizard": {
     "audio_check": {
       "access": "Access",
@@ -1729,6 +1799,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "waiting": "Waiting",
     "you": "You",
     "yourself": "Yourself"
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {

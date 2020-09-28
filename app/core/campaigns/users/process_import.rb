@@ -35,12 +35,8 @@ module Campaigns
 
       def update_user!(user, attrs)
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
-        strong_attrs =
-          if pwd_to_be_not_changed
-            attrs.except(:password, :active)
-          else
-            attrs.except(:active)
-          end
+        strong_attrs = attrs.except(:created_at, :active)
+        strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
 
         attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id)
         campaign.campaign_users.where(user_id: user.id).update_all(active: attrs[:active])

@@ -112,6 +112,7 @@ Rails.application.routes.draw do
           member do
             post :update_norm
             post :rescore_response
+            post :reset
             post :update_additional_time
           end
         end
@@ -690,6 +691,13 @@ Rails.application.routes.draw do
       get :dashboard, to: 'users#dashboard'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
+
+      resources :hogan_user_assessments, only: [] do
+        member do
+          get :redirect
+          put :pass
+        end
+      end
 
       resources :user_reports do
         member do

@@ -1,9 +1,19 @@
 en:
   frontend:
     closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
+
     campaign:
       users:
         completion_statuses:
           not_started: Not Started
           completed: Completed
           in_progress: In Progress
+  campaign:
+    welcome_back: 'Welcome Back'
+    new: 'New'
+    not_started: 'New'
+    in_progress: 'In Progress'
+    completed: 'Completed'
+    complete_all: Complete all related assessments
+    complete_prev: Complete all prev assessments
+    ungrouped: Ungrouped assessments

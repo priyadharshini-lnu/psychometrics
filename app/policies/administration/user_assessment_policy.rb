@@ -17,5 +17,11 @@ module Administration
     def rescore_response?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
+
+    def reset?
+      (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view)) &&
+        !record&.users_result&.not_started? &&
+        !record&.assessment&.external?
+    end
   end
 end

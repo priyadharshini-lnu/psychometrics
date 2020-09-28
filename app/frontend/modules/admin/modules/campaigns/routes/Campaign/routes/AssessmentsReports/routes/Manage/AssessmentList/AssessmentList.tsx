@@ -62,22 +62,34 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
-            render={({ normName, normType, id }) => (
-              <a
-                onClick={
-                  () => openModal('UpdateNormModal',
-                    { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
-                }
-              >
-                {normName ? `${normName}, ${_.toUpper(normType)}` : 'Default'}
-              </a>
-            )}
+            render={({
+              normName, normType, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              return (
+                <a
+                  onClick={
+                    () => openModal('UpdateNormModal',
+                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                  }
+                >
+                  {normName ? `${normName}, ${_.toUpper(normType)}` : 'Default'}
+                </a>
+              )
+            }}
           />
           <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
-            render={({ enableUniversalLinks, universalLink, id }) => {
-              if (enableUniversalLinks) {
+            render={({
+              enableUniversalLinks, universalLink, id, isExternal,
+            }) => {
+              if (isExternal) {
+                return I18n.t('common.text.na')
+              }
+              if (enableUniversalLinks && !isExternal) {
                 return (
                   <a
                     onClick={
