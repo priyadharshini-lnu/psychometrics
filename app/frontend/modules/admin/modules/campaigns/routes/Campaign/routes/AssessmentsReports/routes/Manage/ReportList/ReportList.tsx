@@ -108,14 +108,6 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   campaignId, reportId, campaignReportId, openModal,
 }) => (
   <Menu>
-    <Menu.Item key="edit">
-      <div
-        role="button"
-        tabIndex={-1}
-      >
-          Edit
-      </div>
-    </Menu.Item>
     <Menu.Item key="export">
       <div
         role="button"
