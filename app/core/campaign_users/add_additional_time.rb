@@ -11,7 +11,7 @@ module CampaignUsers
 
     def call
       broadcast :invalid unless campaign_user
-      broadcast :invalid unless additional_time || additional_time < 0
+      broadcast :invalid unless additional_time || additional_time.negative?
 
       transaction do
         remove_reports if campaign_user.completed_campaign?
