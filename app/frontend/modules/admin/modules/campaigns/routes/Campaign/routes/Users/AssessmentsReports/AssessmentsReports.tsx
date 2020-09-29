@@ -171,7 +171,8 @@ const AssessmentsReports: React.FC<Props> = ({
 
               {canExtendTime() && (
                 <Button
-                  type="primary"
+                  type="danger"
+                  size="small"
                   onClick={() => openModal('UpdateTimeModal', {
                     campaignId: parsedCampaignId,
                     userId: parsedUserId,

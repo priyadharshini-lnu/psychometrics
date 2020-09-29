@@ -45,7 +45,7 @@ module Administration
     def additional_time
       return nil unless campaign_user&.additional_time
 
-      return "#{campaign_user.additional_time} mins"
+      "#{campaign_user.additional_time} mins"
     end
 
     def campaigns
