@@ -49,7 +49,12 @@ interface Props {
   openModal(name: string, data?: { campaignId: string, user?: User }): void
 }
 
-const statusToColor = { not_started: 'gray', in_progress: 'orange', completed: 'green' }
+const statusToColor = {
+  not_started: 'gray',
+  in_progress: 'orange',
+  completed: 'green',
+  interrupted: 'red',
+}
 
 const UserList: React.FC<Props> = ({
   fetch,
