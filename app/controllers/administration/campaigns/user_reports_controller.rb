@@ -37,6 +37,7 @@ module Administration
                   results: UserReports::GroupedResultsByAssessment.call!(resource),
                   piped_text_context: {},
                   user_results: resource.user_results,
+                  serializer: ::UserReportSerializer,
                   include: '**'
           end
         end

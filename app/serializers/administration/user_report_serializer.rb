@@ -12,7 +12,7 @@ module Administration
     end
 
     def report_url
-      object.pdf.url if report.mindmill?
+      object.pdf.url
     end
 
     private
