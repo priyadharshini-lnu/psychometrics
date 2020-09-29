@@ -13,7 +13,7 @@ export interface User {
   lastName: string
   email: string
   active: boolean
-  additionalTime: number
+  additionalTime: number | null
 }
 
 const defaultState = {
@@ -34,7 +34,6 @@ export const TOGGLE_STATUS = 'campaigns/user/TOGGLE_STATUS'
 export const TOGGLE_STATUS_REQUEST = 'campaigns/user/TOGGLE_STATUS_REQUEST'
 export const RESET_PASSWORD = 'campaigns/user/RESET_PASSWORD'
 export const EXTEND_TIME = 'campaigns/user/EXTEND_TIME'
-
 
 export interface ShortUser {
   firstName: string
@@ -59,7 +58,6 @@ export const fetchSingle = (campaignId: number, id: number) => ({
     url: `/administration/new_campaigns/${campaignId}/users/${id}`,
   },
 })
-
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const importUsers = (campaignId: number, body: any): ApiAction<ShortUser[]> => ({
@@ -160,11 +158,11 @@ const HANDLERS = {
     }
     return setIn(state, ['current', 'active'], !state.current.active)
   },
+  // eslint-disable-next-line max-len
   [EXTEND_TIME]: (state: State, { response }: { response: User }) => (setIn(state, ['current', 'additionalTime'], response.additionalTime)),
 }
 
 export default createReducer(HANDLERS, defaultState)
-
 
 function* genFetchUsers ({ requestAction }: AnyAction) {
   const tables = yield select(getTables)
