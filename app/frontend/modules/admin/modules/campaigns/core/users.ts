@@ -123,6 +123,8 @@ export interface UserDetails {
   lastSignInAt: string
   completionStatus: string
   additionalTime: number
+  startedAt: string
+  completedAt: string
 }
 
 export interface State {

@@ -59,7 +59,12 @@ const AssessmentsReports: React.FC<Props> = ({
 
   if (!user) { return null }
 
-  const statusToColor = { new: 'blue', progress: 'orange', completed: 'green' }
+  const statusToColor = {
+    not_started: 'blue',
+    in_progress: 'orange',
+    completed: 'green',
+    interrupted: 'red',
+  }
 
   const userCampaigns = () => {
     const campaigns = user.campaigns.map((campaign) => {
@@ -151,7 +156,7 @@ const AssessmentsReports: React.FC<Props> = ({
               {userCampaigns()}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
-              <Tag key={status} color={statusToColor[status]}>
+              <Tag key={status} color={statusToColor[user.completionStatus]}>
                 {I18n.t(`campaign_users.details.statuses.${user.completionStatus}`)}
               </Tag>
             </Descriptions.Item>
@@ -177,6 +182,12 @@ const AssessmentsReports: React.FC<Props> = ({
                   <span>{I18n.t('campaign_users.actions.extend_time')}</span>
                 </Button>
               )}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
+              {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
+              {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
             </Descriptions.Item>
           </Descriptions>
         </PageHeader>

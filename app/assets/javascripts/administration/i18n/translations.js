@@ -5046,6 +5046,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "details": {
       "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -5054,7 +5055,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
+      "not_completed_yet": "Not completed yet",
       "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
       "statuses": {
         "completed": "Completed",
         "in_progress": "In Progress",
@@ -12270,6 +12274,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "details": {
       "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -12278,7 +12283,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
+      "not_completed_yet": "Not completed yet",
       "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
       "statuses": {
         "completed": "Completed",
         "in_progress": "In Progress",
@@ -19487,6 +19495,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "details": {
       "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -19495,7 +19504,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
+      "not_completed_yet": "Not completed yet",
       "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
       "statuses": {
         "completed": "Completed",
         "in_progress": "In Progress",
