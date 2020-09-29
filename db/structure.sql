@@ -651,7 +651,8 @@ CREATE TABLE public.campaign_users (
     started_at timestamp without time zone,
     completed_at timestamp without time zone,
     completed_via integer,
-    completion_status integer DEFAULT 0
+    completion_status integer DEFAULT 0,
+    additional_time integer
 );
 
 
@@ -7301,6 +7302,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200914055928'),
 ('20200922123931'),
 ('20200923102431'),
-('20200927105604');
+('20200927105604'),
+('20200929061648');
 
 

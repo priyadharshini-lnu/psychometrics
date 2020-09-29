@@ -5041,9 +5041,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
     },
     "details": {
+      "additional_time": "Additional Time",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -5052,7 +5054,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
-      "not_logged_in_yet": "Not logged in yet"
+      "not_logged_in_yet": "Not logged in yet",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
     },
     "modals": {
       "change_password": {
@@ -5742,6 +5750,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
         }
       }
@@ -12256,9 +12265,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
     },
     "details": {
+      "additional_time": "Additional Time",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -12267,7 +12278,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
-      "not_logged_in_yet": "Not logged in yet"
+      "not_logged_in_yet": "Not logged in yet",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
     },
     "modals": {
       "change_password": {
@@ -12953,6 +12970,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
         }
       }
@@ -19464,9 +19482,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
     },
     "details": {
+      "additional_time": "Additional Time",
       "completion_status": "Completion status",
       "last_login": "Last login",
       "modals": {
@@ -19475,7 +19495,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
         }
       },
-      "not_logged_in_yet": "Not logged in yet"
+      "not_logged_in_yet": "Not logged in yet",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
     },
     "modals": {
       "change_password": {
@@ -20161,6 +20187,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
         }
       }

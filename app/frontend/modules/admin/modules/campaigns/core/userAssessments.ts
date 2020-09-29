@@ -85,7 +85,6 @@ export interface UpdateNormAction {
   }
 }
 
-
 export interface FetchAction {
   response: {
     userAssessments: UserAssessment[],

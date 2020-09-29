@@ -8,6 +8,7 @@ en:
           not_started: Not Started
           completed: Completed
           in_progress: In Progress
+          interrupted: Interrupted
   campaign:
     welcome_back: 'Welcome Back'
     new: 'New'

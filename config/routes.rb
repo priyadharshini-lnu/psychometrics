@@ -85,6 +85,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             get :reset_password
+            post :extend_time
           end
           collection do
             post :import

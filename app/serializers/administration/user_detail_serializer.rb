@@ -2,7 +2,9 @@
 
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
-    attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :active, :campaigns
+    attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :active, :campaigns, :completion_status,
+               :additional_time
+
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
 
@@ -33,13 +35,25 @@ module Administration
     end
 
     def active
-      object.campaign_users.find { |cu| cu.campaign_id == campaign.id }.active
+      campaign_user.active
+    end
+
+    def completion_status
+      campaign_user&.completion_status
+    end
+
+    def additional_time
+      campaign_user&.additional_time
     end
 
     private
 
     def campaign
       @instance_options[:campaign]
+    end
+
+    def campaign_user
+      object.campaign_users.find { |cu| cu.campaign_id == campaign.id }
     end
   end
 end

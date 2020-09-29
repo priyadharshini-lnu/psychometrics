@@ -26,6 +26,10 @@ module Administration
         campaign_user&.completion_status
       end
 
+      attribute :additional_time do
+        campaign_user&.additional_time
+      end
+
       def created_at
         I18n.l object.created_at, format: :short
       end
