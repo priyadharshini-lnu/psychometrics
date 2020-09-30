@@ -44,7 +44,7 @@ module UsersResults
           question = questions_map[question_scoring.question_id].try(:first)
           scoring_class = "::Scoring::#{question.try(:type)}".safe_constantize
 
-          result = users_result.answers[question.&(:id).&(:to_s)]
+          result = users_result.answers[question&.id&.to_s]
           if scoring_class && result && question && !question_scoring.props.empty?
             scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value]
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
