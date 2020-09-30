@@ -61,8 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -859,13 +857,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
-    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL
+    stop_reminder boolean DEFAULT false NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -5789,14 +5787,6 @@ CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (em
 
 
 --
--- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.communications
-    ADD CONSTRAINT fk_rails_03e5799fcb FOREIGN KEY (end_level_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: threesixty_options fk_rails_0437d1f6f7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5985,7 +5975,7 @@ ALTER TABLE ONLY public.ecommerce_purchases
 --
 
 ALTER TABLE ONLY public.agile_events
-    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
 
 
 --
@@ -6322,14 +6312,6 @@ ALTER TABLE ONLY public.assigns_reports
 
 ALTER TABLE ONLY public.campaign_users
     ADD CONSTRAINT fk_rails_962f0dea91 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
-
-
---
--- Name: communications fk_rails_9635882d64; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.communications
-    ADD CONSTRAINT fk_rails_9635882d64 FOREIGN KEY (campaign_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -7196,7 +7178,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200909073506'),
 ('20200913050839'),
 ('20200913071803'),
-('20200914152341'),
-('20200923102431');
+('20200923102431'),
+('20200930103418');
 
 
