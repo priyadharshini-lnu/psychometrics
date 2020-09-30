@@ -20,7 +20,7 @@ module Campaigns
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
-        user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment) }
+        user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment, user_report) }
         generate_report_pdf(user_report)
 
         broadcast :ok,
@@ -30,7 +30,7 @@ module Campaigns
 
       private
 
-      def add_assessment_to_user(assessment)
+      def add_assessment_to_user(assessment, user_report)
         user_assessment = UserAssessment.create_with(
           users_result_id: user_result(assessment).id
         ).find_or_create_by!(
@@ -42,7 +42,8 @@ module Campaigns
         )
 
         if assessment.hogan? && user.hogan_credential
-          Hogan::AddReportsJob.perform_later(user_assessment, [report], user.hogan_credential, user.project)
+          Hogan::AddReportsJob.perform_later(user_assessment, [user_report],
+                                             user.hogan_credential, user.project)
         end
         user_assessment
       end
