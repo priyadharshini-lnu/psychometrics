@@ -108,6 +108,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "wait": "Wait"
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -115,7 +116,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {
@@ -736,6 +737,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "wait": "Wait"
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -743,7 +745,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {
@@ -1361,6 +1363,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "wait": "Wait"
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -1368,7 +1371,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {

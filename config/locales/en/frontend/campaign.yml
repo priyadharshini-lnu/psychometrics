@@ -10,7 +10,8 @@ en:
           in_progress: In Progress
           interrupted: Interrupted
   campaign:
-    welcome_back: 'Welcome Back'
+    welcome: 'Welcome'
+    begin: Begin Assessment
     new: 'New'
     not_started: 'New'
     in_progress: 'In Progress'

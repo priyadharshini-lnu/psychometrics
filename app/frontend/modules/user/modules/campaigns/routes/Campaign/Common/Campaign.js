@@ -12,6 +12,7 @@ import './styles.scss'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
 import Assessments from './Assessments'
+import InstructionsPanel from './InstructionsPanel'
 
 const { Content } = Layout
 
@@ -30,6 +31,14 @@ export default function Campaign ({
   history, campaign, campaign: { userReports, groups }, currentUser,
   loginHogan, acceptPolicy,
 }) {
+  const {
+    campaignOptions: {
+      instructionsEnabled,
+      instructions,
+      fixedTime,
+      fixedTimeDuration
+    }
+  } = campaign
   const camapaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   let prevGroup
@@ -47,7 +56,7 @@ export default function Campaign ({
                 <div className="campaign-header">
                   <div className="left">
                     <h2>
-                      {I18n.t('campaign.welcome_back')}
+                      {I18n.t('campaign.welcome')}
                       {' '}
                       {currentUser.fullName}
                       !
@@ -85,6 +94,9 @@ export default function Campaign ({
                   <div className="mbm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
+                )}
+                { instructionsEnabled && (
+                  <InstructionsPanel instructions={instructions} showBegin />
                 )}
                 <Row className="cards-container" gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>

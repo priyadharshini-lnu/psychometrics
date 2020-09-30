@@ -3,8 +3,9 @@
 module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :name, :type, :status, :groups
+    attributes :id, :name, :type, :status, :groups, :campaign_user
 
+    has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
@@ -19,6 +20,10 @@ module EndUser
 
     def user_reports
       object.user_reports.where(user_id: current_user.id, user_access: true)
+    end
+
+    def campaign_user
+      current_user.campaign_users.find_by(campaign_id: object.id)
     end
 
     def current_user

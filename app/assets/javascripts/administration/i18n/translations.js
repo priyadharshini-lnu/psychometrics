@@ -1158,6 +1158,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "is_active": "Active?",
         "name": "Name",
         "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
       }
     },
     "choose": " - Choose - ",
@@ -4940,6 +4945,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -4947,7 +4953,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "campaign_assessment": {
     "column": {
@@ -8389,6 +8395,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "is_active": "Active?",
         "name": "Name",
         "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
       }
     },
     "choose": " - Choose - ",
@@ -12168,6 +12179,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -12175,7 +12187,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "campaign_assessment": {
     "column": {
@@ -15610,6 +15622,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "is_active": "Active?",
         "name": "Name",
         "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
       }
     },
     "choose": " - Choose - ",
@@ -19389,6 +19406,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "campaign": {
+    "begin": "Begin Assessment",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -19396,7 +19414,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
-    "welcome_back": "Welcome Back"
+    "welcome": "Welcome"
   },
   "campaign_assessment": {
     "column": {

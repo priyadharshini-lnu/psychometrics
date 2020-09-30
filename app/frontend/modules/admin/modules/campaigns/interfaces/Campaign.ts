@@ -7,7 +7,6 @@ export default interface Campaign {
   endDate: Date
   assessments: Entity[]
   reports: Entity[]
-  options: CampaignOptions
 }
 
 export interface Entity {
