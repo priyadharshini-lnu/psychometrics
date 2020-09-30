@@ -80,7 +80,9 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'last_sign_in_at' => nil,
       'campaigns' => [campaign.slice('name', 'id')],
       'active' => campaign_user.active,
-      'additional_time' => campaign_user.additional_time
+      'additional_time' => campaign_user.additional_time,
+      'completed_at' => nil,
+      'started_at' => nil
     })
   end
 

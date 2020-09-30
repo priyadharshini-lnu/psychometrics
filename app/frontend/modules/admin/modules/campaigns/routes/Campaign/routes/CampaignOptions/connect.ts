@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   fetch,
   update,
   get as getCampaignOptions,
 } from 'modules/admin/modules/campaigns/core/campaignOptions'
 
-export default connect(
+const connecter = connect(
   state => ({
     options: getCampaignOptions(state),
   }),
@@ -14,3 +14,6 @@ export default connect(
     update,
   },
 )
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+export default connecter

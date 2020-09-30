@@ -26,3 +26,6 @@ en:
         updated_by: Updated By
         completed_via: Completed Via
         completion_status: Status
+      validations:
+        dates:
+          end: must be after the start date

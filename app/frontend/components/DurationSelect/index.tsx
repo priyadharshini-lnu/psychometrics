@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { Form, TimePicker } from 'antd'
 
-const DurationSelect = ({
+interface Props {
+  value: string
+  label?: string
+  className?: string
+  onChange(duration: number): void
+}
+
+const DurationSelect: React.FC<Props> = ({
   value,
   label = '',
   onChange,
@@ -31,7 +38,7 @@ const DurationSelect = ({
       <TimePicker
         format={format}
         onChange={handleChange}
-        defaultValue={moment(asFormattedString(duration), format)}
+        defaultValue={moment(asFormattedString(duration as number), format)}
         {...props}
       />
     </Form.Item>

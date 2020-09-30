@@ -141,8 +141,7 @@ const zones = [
 const options: Array<{ value: string, label: string }> = []
 
 zones
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  .reduce((obj: { [propName: string]: any }, entry: string) => {
+  .reduce((obj: { name: string, offset: number }[], entry: string) => {
     obj.push({
       name: entry,
       offset: moment.tz(entry).utcOffset(),
@@ -157,7 +156,14 @@ zones
   })
 
 const { Option } = Select
-const TimeZoneSelect = ({
+
+interface Props {
+  value: string
+  label?: string
+  onChange(zone: string): void
+}
+
+const TimeZoneSelect: React.FC<Props> = ({
   value = Intl.DateTimeFormat().resolvedOptions().timeZone,
   label,
   onChange,

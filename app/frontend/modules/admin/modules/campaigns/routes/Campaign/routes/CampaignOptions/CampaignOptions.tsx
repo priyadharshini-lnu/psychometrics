@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
 import TimeZoneSelect from 'components/TimeZoneSelect'
@@ -8,39 +9,40 @@ import Editor from 'components/Editor'
 import { Button } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
+import { PropsFromRedux } from './connect'
 
 const { I18n } = window
 
-interface Props {
+interface OwnProps {
   options: ICampaignOptions
-  fetch: (projectId: number, campaignId: number) => void
-  update: (projectId: number, campaginId: number, data: Partial<ICampaignOptions>) => void
-  match: {
-    params: {
-      projectId: string,
-      campaignId: string
-    }
-  }
 }
 
-const CampaignOptions: React.FC<Props> = ({
+interface Params {
+  projectId: string
+  campaignId: string
+}
+
+const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = ({
   options, fetch, update, match: { params: { projectId, campaignId } },
 }) => {
+  const parsedProjectId = parseInt(projectId, 10)
+  const parsedCampaignId = parseInt(campaignId, 10)
+
   const [instructions, updateInstructions] = useState(options.instructions)
 
   useEffect(() => {
-    fetch(parseInt(projectId, 10), parseInt(campaignId, 10))
+    fetch(parsedProjectId, parsedCampaignId)
   }, [])
 
   const parametersForField = name => ({
     value: (options || {})[name],
-    onChange: (value) => {
-      update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, [name]: value })
+    onChange: (value: string | number) => {
+      update(parsedProjectId, parsedCampaignId, { ...options, [name]: value })
     },
   })
 
   const saveInstructions = () => {
-    update(parseInt(projectId, 10), parseInt(campaignId, 10), { ...options, instructions })
+    update(parsedProjectId, parsedCampaignId, { ...options, instructions })
   }
 
   return (
@@ -59,7 +61,7 @@ const CampaignOptions: React.FC<Props> = ({
         {options.fixedTime && (
           <DurationSelect
             label={I18n.t('administration.campaigns.options.duration')}
-            style={{ marginLeft: 110 }}
+            className={styles.durationSelect}
             {...parametersForField('fixedTimeDuration')}
           />
         )}
