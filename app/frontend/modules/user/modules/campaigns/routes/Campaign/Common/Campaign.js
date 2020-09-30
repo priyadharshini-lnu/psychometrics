@@ -35,9 +35,7 @@ export default function Campaign ({
     campaignOptions: {
       instructionsEnabled,
       instructions,
-      fixedTime,
-      fixedTimeDuration
-    }
+    },
   } = campaign
   const camapaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
