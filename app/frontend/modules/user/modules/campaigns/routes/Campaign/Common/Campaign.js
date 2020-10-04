@@ -200,10 +200,8 @@ export default function Campaign ({
                               {item.status === 'prepared' && (
                                 <a
                                   href={item.pdfUrl}
-                                  onClick={e => e.stopPropagation()}
                                   rel="noopener noreferrer"
                                   target="_blank"
-                                  disabled={item.status !== 'prepared'}
                                 >
                                   <Button type="link" icon={<ArrowDownOutlined />} />
                                 </a>

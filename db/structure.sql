@@ -5884,14 +5884,6 @@ CREATE UNIQUE INDEX users_email_project_id_index ON public.users USING btree (em
 
 
 --
--- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.communications
-    ADD CONSTRAINT fk_rails_03e5799fcb FOREIGN KEY (end_level_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: threesixty_options fk_rails_0437d1f6f7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6417,14 +6409,6 @@ ALTER TABLE ONLY public.assigns_reports
 
 ALTER TABLE ONLY public.campaign_users
     ADD CONSTRAINT fk_rails_962f0dea91 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
-
-
---
--- Name: communications fk_rails_9635882d64; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.communications
-    ADD CONSTRAINT fk_rails_9635882d64 FOREIGN KEY (campaign_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -7303,6 +7287,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200922123931'),
 ('20200923102431'),
 ('20200927105604'),
-('20200929061648');
+('20200929061648'),
+('20200930103418');
 
 

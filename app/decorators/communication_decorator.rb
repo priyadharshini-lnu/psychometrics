@@ -14,6 +14,7 @@ class CommunicationDecorator < BaseDecorator
   end
 
   def projects
+    # TODO: (atanych) I don't understand this logic, but keeping as is for now
     object.project&.name.presence || object.client.children.pluck(:name).join(', ')
   end
 

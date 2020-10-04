@@ -66,7 +66,7 @@ module Campaigns
 
       def send_invite_email
         communication = Communication.new_users_recipients.order(created_at: :desc).find_by(campaign: campaign)
-        return communication.emails.create(campaign_user_id: id) if communication
+        return communication.emails.create(campaign_user_id: campaign_user.id) if communication
 
         if throught_registration?
           raw_token = ::Users::FindOrCreateInvitationToken.call!(user)

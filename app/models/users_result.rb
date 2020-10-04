@@ -27,6 +27,8 @@ class UsersResult < ApplicationRecord
   scope :mindmill, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:mindmill] }) }
   scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }
 
+  after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
@@ -78,5 +80,9 @@ class UsersResult < ApplicationRecord
   # TODO: Remove all reference of answer_key after Assign model is removed
   def answer_key
     'answers'
+  end
+
+  def send_completion_email
+    ::Communications::CompletionTypeJob.perform_later(self)
   end
 end

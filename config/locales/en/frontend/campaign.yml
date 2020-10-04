@@ -15,6 +15,7 @@ en:
     new: 'New'
     not_started: 'New'
     in_progress: 'In Progress'
+    interrupted: 'Interrupted'
     completed: 'Completed'
     complete_all: Complete all related assessments
     complete_prev: Complete all prev assessments

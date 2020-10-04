@@ -18,6 +18,7 @@ class CommunicationEmail < ApplicationRecord
 
   after_commit :delivery_email, on: :create
 
+  # I'm not certain this scope is used anymore
   scope :for_user, ->(user_id) { joins(:membership).where(memberships: { user_id: user_id }) }
   scope :sent, -> { where.not(sent_at: nil) }
 

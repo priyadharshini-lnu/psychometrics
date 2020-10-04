@@ -28,7 +28,7 @@ module Forms
       validates :owner_id, :owner, presence: true, allow_nil: true
 
       validates :project, presence: true, if: proc { project_id.present? }
-      validates :campaign, presence: true, if: proc { campaign_id.present? }
+      validates :campaign, presence: true, if: proc { campaign_id.present? || project&.migrated? }
       validates :sub_campaign, presence: true, if: proc { sub_campaign_id.present? }
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
       validates :assessment, presence: true, if: proc { assessment_id.present? }
@@ -85,6 +85,8 @@ module Forms
       end
 
       def campaign
+        return Campaign.find_by(id: campaign_id) if project&.migrated? && campaign_id
+
         Client.find_by(id: campaign_id)
       end
 

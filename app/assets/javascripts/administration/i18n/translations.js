@@ -4950,6 +4950,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
     "in_progress": "In Progress",
+    "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
@@ -5049,6 +5050,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "actions": {
       "add_report": "Add report",
       "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
       "additional_time": "Additional Time",
@@ -12184,6 +12188,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
     "in_progress": "In Progress",
+    "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
@@ -12283,6 +12288,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "actions": {
       "add_report": "Add report",
       "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
       "additional_time": "Additional Time",
@@ -19411,6 +19419,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
     "in_progress": "In Progress",
+    "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
     "ungrouped": "Ungrouped assessments",
@@ -19510,6 +19519,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "actions": {
       "add_report": "Add report",
       "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
       "additional_time": "Additional Time",

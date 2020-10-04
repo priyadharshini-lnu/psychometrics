@@ -2,6 +2,12 @@
 
 module Campaigns
   class UpdateCampaignStatus < Rectify::Command
+    attr_accessor :interval
+
+    def initialize(interval = '10 minutes')
+      @interval = interval
+    end
+
     def call
       ActiveRecord::Base.connection.execute(sql)
 
@@ -23,12 +29,12 @@ module Campaigns
       END
       WHERE
         start_date BETWEEN
-          (NOW() at time zone 'utc' - INTERVAL '10 minutes')
+          (NOW() at time zone 'utc' - INTERVAL '#{interval}')
           AND
           NOW() at time zone 'utc'
       OR
         end_date BETWEEN
-          (NOW() at time zone 'utc' - INTERVAL '10 minutes')
+          (NOW() at time zone 'utc' - INTERVAL '#{interval}')
           AND
           NOW() at time zone 'utc';
       SQL

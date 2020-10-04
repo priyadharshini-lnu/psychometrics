@@ -39,6 +39,7 @@ export type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
 
 const AssessmentsReports: React.FC<Props> = ({
   user,
+  assessmentStatuses,
   fetchSingleUser,
   match: { params: { projectId, campaignId, id } },
   openModal,
@@ -60,6 +61,7 @@ const AssessmentsReports: React.FC<Props> = ({
   if (!user) { return null }
 
   const statusToColor = {
+    new: 'blue',
     not_started: 'blue',
     in_progress: 'orange',
     completed: 'green',
@@ -154,6 +156,11 @@ const AssessmentsReports: React.FC<Props> = ({
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.assessments.progress')}>
+              {_.map(assessmentStatuses, (value, status) => (
+                <Tag key={status} color={statusToColor[status]}>{`${value} ${_.capitalize(status)}`}</Tag>
+              ))}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
               <Tag key={status} color={statusToColor[user.completionStatus]}>

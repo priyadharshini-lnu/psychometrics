@@ -27,3 +27,5 @@ en:
         title: Change password %{name}?
         content: Are you sure you want to send instructions with link to change password?
         successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
+    assessments:
+      progress: Progress
