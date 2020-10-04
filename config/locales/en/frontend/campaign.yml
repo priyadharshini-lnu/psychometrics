@@ -20,3 +20,6 @@ en:
     complete_all: Complete all related assessments
     complete_prev: Complete all prev assessments
     ungrouped: Ungrouped assessments
+    timer:
+      message: Time left to complete all activities
+      notification: "You have %{minutes} minutes and %{seconds} seconds to complete"

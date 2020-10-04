@@ -116,6 +116,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "ungrouped": "Ungrouped assessments",
     "welcome": "Welcome"
   },
@@ -539,9 +543,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -746,6 +747,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "ungrouped": "Ungrouped assessments",
     "welcome": "Welcome"
   },
@@ -1166,9 +1171,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -1373,6 +1375,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
     "ungrouped": "Ungrouped assessments",
     "welcome": "Welcome"
   },
@@ -1793,9 +1799,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",

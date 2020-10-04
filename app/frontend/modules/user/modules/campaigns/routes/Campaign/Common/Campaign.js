@@ -1,17 +1,15 @@
 /* eslint-disable react/no-danger */
-/* eslint-disable max-len */
 import React from 'react'
 import {
   Layout, Row, Col, Alert, List, Avatar, Button, Tag,
 } from 'antd'
-import {
-  FileAddOutlined, HistoryOutlined, CheckCircleOutlined, ArrowDownOutlined,
-} from '@ant-design/icons'
+import { ArrowDownOutlined } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
 import './styles.scss'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
 import Assessments from './Assessments'
+import Header from './Header'
 import InstructionsPanel from './InstructionsPanel'
 
 const { Content } = Layout
@@ -23,7 +21,10 @@ const prevAssessmentsCompleted = (userAssessments, userAssessment) => {
 
 const prevGroupIsCompleted = (campaign, group) => {
   if (!group) { return false }
-  const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
+  const userAssessments = _.filter(
+    campaign.userAssessments,
+    ua => _.includes(group.campaignAssessmentIds, ua.assessmentId),
+  )
   return _.every(userAssessments, ua => ua.status === 'completed')
 }
 
@@ -32,9 +33,12 @@ export default function Campaign ({
   loginHogan, acceptPolicy, beginCampaign,
 }) {
   const {
+    endDate,
     campaignOptions: {
       instructionsEnabled,
       instructions,
+      fixedTime,
+      fixedTimeDuration: duration,
     },
   } = campaign
   const camapaignClosed = campaign.status === STATUSES.CLOSED
@@ -45,8 +49,19 @@ export default function Campaign ({
   const isMD = useMedia('max-md')
   const hasStarted = !!campaignUser.startedAt
 
+  const timerOptions = {
+    expiryDate: endDate,
+    timerDuration: duration,
+    onFinish: onTimerFinish,
+  }
+
   const onBeginCampaign = () => {
     beginCampaign(campaign.id, campaignUser.id)
+  }
+
+  const onTimerFinish = () => {
+    // eslint-disable-next-line no-console
+    console.log('Timer complete.')
   }
 
   return (
@@ -56,43 +71,12 @@ export default function Campaign ({
           <Col xs={24} lg={22} xl={22} xxl={22}>
             <div className="main-content">
               <>
-                <div className="campaign-header">
-                  <div className="left">
-                    <h2>
-                      {I18n.t('campaign.welcome')}
-                      {' '}
-                      {currentUser.fullName}
-                      !
-                    </h2>
-                  </div>
-                  <div className="right-wrapper">
-                    <div className="right">
-                      <div className="item">
-                        <div className="icon">
-                          <FileAddOutlined />
-                        </div>
-                        <div className="number">{counters.not_started || 0}</div>
-                        <div className="label">{I18n.t('campaign.new')}</div>
-                      </div>
-                      <div className="divider" />
-                      <div className="item">
-                        <div className="icon">
-                          <HistoryOutlined />
-                        </div>
-                        <div className="number">{counters.in_progress || 0}</div>
-                        <div className="label">{I18n.t('campaign.in_progress')}</div>
-                      </div>
-                      <div className="divider" />
-                      <div className="item">
-                        <div className="icon">
-                          <CheckCircleOutlined />
-                        </div>
-                        <div className="number">{counters.completed || 0}</div>
-                        <div className="label">{I18n.t('campaign.completed')}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Header
+                  currentUser={currentUser}
+                  counters={counters}
+                  showTimer={!!fixedTime && hasStarted}
+                  timerOptions={timerOptions()}
+                />
                 {camapaignClosed && (
                   <div className="mbm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
@@ -125,7 +109,10 @@ export default function Campaign ({
                           prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
                         }
                         prevGroup = group
-                        const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
+                        const userAssessments = _.filter(
+                          campaign.userAssessments,
+                          ua => _.includes(group.campaignAssessmentIds, ua.assessmentId),
+                        )
                         if (!userAssessments.length) { return null }
                         return (
                           <Col xs={24} sm={colSize} lg={colSize} xl={colSize}>
