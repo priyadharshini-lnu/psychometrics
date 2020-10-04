@@ -7137,6 +7137,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "toolbar": {
       "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
       "import": "Import Users"
     }
   },
@@ -14369,6 +14370,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "toolbar": {
       "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
       "import": "Import Users"
     }
   },
@@ -21601,6 +21603,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "toolbar": {
       "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
       "import": "Import Users"
     }
   },

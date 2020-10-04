@@ -6,6 +6,15 @@ en:
           not_started: 'New'
           in_progress: 'Resume'
           completed: 'Completed'
+          interrupted: 'Interrupted'
+        result_id: Result ID 
+        name: Name
+        email: Email
+        completed_at: Completed At
+        started_at: Started At
+        assessment_name: Assessment Name
+        assessment_type: Assessment Type
+        status: Status
       threesixty:
         users_result:
           statuses:

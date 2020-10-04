@@ -13,6 +13,7 @@ en:
     toolbar:
       export: Export Users
       import: Import Users
+      export_completion_status: Export Completion Status
     form:
       operation_options:
         skip_existing: 'Skip existing user'
