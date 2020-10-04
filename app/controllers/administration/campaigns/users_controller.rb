@@ -37,6 +37,17 @@ module Administration
         end
       end
 
+      def export_completion_status
+        headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
+        headers['Content-Type'] ||= 'text/csv'
+        users_results = UsersResult.joins(:user_assessments).where(user_assessments: { campaign_id: campaign.id }).
+                        includes(:evaluator, :assessment)
+        render :export_completion_status, locals: {
+          users_results: users_results,
+          headers: UsersResultDecorator.export_headers
+        }
+      end
+
       def import
         import_data = ::Campaigns::Users::ParseImportData.call!(params[:import_data])
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).

@@ -15,6 +15,11 @@ const menu = ({
     <Menu.Item key="export">
       <a href={`/administration/new_campaigns/${campaignId}/users.csv`}>{I18n.t('user.toolbar.export')}</a>
     </Menu.Item>
+    <Menu.Item key="export_completion">
+      <a href={`/administration/new_campaigns/${campaignId}/users/export_completion_status.csv`}>
+        {I18n.t('user.toolbar.export_completion_status')}
+      </a>
+    </Menu.Item>
     <Menu.Item key="import">
       <a onClick={() => openModal('ImportUsersModal', { campaignId })}>{I18n.t('user.toolbar.import')}</a>
     </Menu.Item>

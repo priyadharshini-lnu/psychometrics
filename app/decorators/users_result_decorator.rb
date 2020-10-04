@@ -13,6 +13,14 @@ class UsersResultDecorator < BaseDecorator
     I18n.l(object.created_at, format: :date) if object.created_at
   end
 
+  def completed_at_with_time
+    object.completed_at.try(:strftime, '%D %r')
+  end
+
+  def started_at_with_time
+    object.created_at.try(:strftime, '%D %r')
+  end
+
   def display_name
     'UserResult'
   end
@@ -23,5 +31,18 @@ class UsersResultDecorator < BaseDecorator
 
   def status
     I18n.t("activerecord.attributes.users_result.statuses.#{object.status}")
+  end
+
+  def self.export_headers
+    [
+      UsersResult.human_attribute_name('result_id'),
+      User.human_attribute_name('name'),
+      User.human_attribute_name('email'),
+      UsersResult.human_attribute_name('assessment_type'),
+      UsersResult.human_attribute_name('assessment_name'),
+      UsersResult.human_attribute_name('started_at'),
+      UsersResult.human_attribute_name('completed_at'),
+      UsersResult.human_attribute_name('status')
+    ]
   end
 end

@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   let(:current_user) { create(:superadmin) }
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, email: 'tester@gmail.com') }
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
-  let(:assessment) { create(:assessment) }
+  let(:assessment) { create(:assessment, name: 'Test Assessment') }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
 
@@ -26,6 +26,26 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       check_user_response(parsed_response.except('user_assessments', 'user_reports'))
       check_report_response(parsed_response['user_reports'].first, user_report)
       check_assessment_response(parsed_response['user_assessments'].first, user_assessment, user_report)
+    end
+  end
+
+  describe 'export_completion_status' do
+    it 'check response' do
+      users_result = create(:users_result, evaluator: user, assessment: assessment)
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: assessment,
+             subject: user,
+             evaluator: user,
+             users_result: users_result)
+
+      get :export_completion_status, format: 'csv', params: { new_campaign_id: campaign.id }
+
+      parsed_response = CSV.parse(response.body)
+
+      expect(parsed_response.length).to eq(2)
+      expect(parsed_response.last[2]).to eq('tester@gmail.com')
+      expect(parsed_response.last[4]).to eq('Test Assessment')
     end
   end
 

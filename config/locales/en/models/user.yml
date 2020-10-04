@@ -17,6 +17,7 @@ en:
         id: ID
         first_name: First Name
         last_name: Last Name
+        name: Name
         email: Email Address
         current_password: Current password
         password: Password
