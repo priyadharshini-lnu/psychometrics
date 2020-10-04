@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class UsersController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password]
+      before_action :set_resource, only: %i[update spoof show destroy toggle_status reset_password extend_time]
 
       def index
         users = campaign.
@@ -103,6 +103,11 @@ module Administration
         redirect_to root_url(domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token)
       end
 
+      def extend_time
+        ::CampaignUsers::AddAdditionalTime.call!(campaign_user, params[:additional_time])
+        render json: resource, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
+      end
+
       private
 
       def pundit_authorize
@@ -114,7 +119,7 @@ module Administration
       end
 
       def campaign_user
-        @campaign_user ||= resource.campaigns_users.find_by(campaign: campaign)
+        @campaign_user ||= resource.campaign_users.find_by(campaign: campaign)
       end
     end
   end

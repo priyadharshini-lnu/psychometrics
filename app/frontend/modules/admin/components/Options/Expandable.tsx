@@ -13,12 +13,12 @@ interface Props {
   children?: React.ReactNode
   type?: 'checkbox' | 'switch'
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onOptionChanged: (value: any) => void
+  onChange: (value: any) => void
 }
 
 
 const Expandable: React.FC<Props> = ({
-  label, value, onOptionChanged, actionable, children, type,
+  label, value, onChange, actionable, children, type,
 }) => {
   const renderExpandableBlock = () => {
     if (!value || !children) return null
@@ -43,7 +43,7 @@ const Expandable: React.FC<Props> = ({
                     unCheckedChildren="Off"
                     defaultChecked
                     checked={value}
-                    onChange={onOptionChanged}
+                    onChange={onChange}
                   />
                 </div>
               </Col>
@@ -51,7 +51,7 @@ const Expandable: React.FC<Props> = ({
             <Col md={22} sm={21} xs={20}>
               {type === 'checkbox' && (
                 <Checkbox
-                  onChange={e => onOptionChanged(e.target.checked)}
+                  onChange={e => onChange(e.target.checked)}
                   checked={value}
                   className="mrs"
                 />

@@ -85,6 +85,7 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             get :reset_password
+            post :extend_time
           end
           collection do
             post :import
@@ -140,7 +141,8 @@ Rails.application.routes.draw do
           end
 
           member do
-            # get 'assessments_and_reports'
+            get :fetch_campaign_options
+            put :update_campaign_options
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end

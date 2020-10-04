@@ -5,6 +5,7 @@ import {
   getCurrent as getCurrentUser,
   remove,
   toggleStatus,
+  extendTime,
 } from 'modules/admin/modules/campaigns/core/users'
 import { regenerateReports, getSelectedIds, REGENERATE_REPORTS } from 'modules/admin/modules/campaigns/core/userReports'
 import { openModal } from 'modules/admin/core/ui/modals'
@@ -24,6 +25,7 @@ const connecter = connect(
     toggleStatus,
     remove,
     regenerateReports,
+    extendTime,
   },
 )
 

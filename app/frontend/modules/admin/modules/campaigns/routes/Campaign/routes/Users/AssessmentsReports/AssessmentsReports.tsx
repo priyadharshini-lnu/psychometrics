@@ -49,6 +49,7 @@ const AssessmentsReports: React.FC<Props> = ({
   regenerateReports,
   regenerateInProgress,
   history,
+  extendTime,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
@@ -59,7 +60,13 @@ const AssessmentsReports: React.FC<Props> = ({
 
   if (!user) { return null }
 
-  const statusToColor = { new: 'blue', progress: 'orange', completed: 'green' }
+  const statusToColor = {
+    new: 'blue',
+    not_started: 'blue',
+    in_progress: 'orange',
+    completed: 'green',
+    interrupted: 'red',
+  }
 
   const userCampaigns = () => {
     const campaigns = user.campaigns.map((campaign) => {
@@ -97,6 +104,8 @@ const AssessmentsReports: React.FC<Props> = ({
       message.success(I18n.t('user_reports.messages.regenerate_successful'))
     })
   }
+
+  const canExtendTime = () => (user.additionalTime === null || user.additionalTime === 0)
 
   return (
     <div>
@@ -148,16 +157,45 @@ const AssessmentsReports: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.model.campaigns')}>
               {userCampaigns()}
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
+            <Descriptions.Item label={I18n.t('campaign_users.assessments.progress')}>
               {_.map(assessmentStatuses, (value, status) => (
                 <Tag key={status} color={statusToColor[status]}>{`${value} ${_.capitalize(status)}`}</Tag>
               ))}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
+              <Tag key={status} color={statusToColor[user.completionStatus]}>
+                {I18n.t(`campaign_users.details.statuses.${user.completionStatus}`)}
+              </Tag>
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>
               {user.lastSignInAt || I18n.t('campaign_users.details.not_logged_in_yet')}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('common.column.created_at')}>
               {user.createdAt}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
+              {user.additionalTime}
+
+              {canExtendTime() && (
+                <Button
+                  type="danger"
+                  size="small"
+                  onClick={() => openModal('UpdateTimeModal', {
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    updateAdditionalTime: extendTime,
+                  })}
+                >
+                  <PlusOutlined />
+                  <span>{I18n.t('campaign_users.actions.extend_time')}</span>
+                </Button>
+              )}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
+              {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
+              {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
             </Descriptions.Item>
           </Descriptions>
         </PageHeader>

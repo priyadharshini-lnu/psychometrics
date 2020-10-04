@@ -14,6 +14,10 @@ module Administration
       def spoof?
         @user.is?(:superadmin)
       end
+
+      def extend_time?
+        index?
+      end
     end
   end
 end

@@ -535,6 +535,42 @@ ALTER SEQUENCE public.campaign_assessments_id_seq OWNED BY public.campaign_asses
 
 
 --
+-- Name: campaign_options; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_options (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    time_zone character varying,
+    fixed_time boolean DEFAULT false,
+    fixed_time_duration integer,
+    instructions_enabled boolean DEFAULT false,
+    instructions text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_options_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_options_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_options_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_options_id_seq OWNED BY public.campaign_options.id;
+
+
+--
 -- Name: campaign_reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -611,7 +647,12 @@ CREATE TABLE public.campaign_users (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id bigint,
-    active boolean DEFAULT true
+    active boolean DEFAULT true,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    completed_via integer,
+    completion_status integer DEFAULT 0,
+    additional_time integer
 );
 
 
@@ -646,7 +687,9 @@ CREATE TABLE public.campaigns (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     status integer DEFAULT 0,
-    options jsonb DEFAULT '{}'::jsonb
+    options jsonb DEFAULT '{}'::jsonb,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone
 );
 
 
@@ -857,13 +900,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
+    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL,
-    campaign_id bigint
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -2763,7 +2806,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2934,7 +2979,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3276,6 +3323,13 @@ ALTER TABLE ONLY public.campaign_assessment_groups ALTER COLUMN id SET DEFAULT n
 --
 
 ALTER TABLE ONLY public.campaign_assessments ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessments_id_seq'::regclass);
+
+
+--
+-- Name: campaign_options id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options ALTER COLUMN id SET DEFAULT nextval('public.campaign_options_id_seq'::regclass);
 
 
 --
@@ -3877,6 +3931,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT campaign_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_options campaign_options_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options
+    ADD CONSTRAINT campaign_options_pkey PRIMARY KEY (id);
 
 
 --
@@ -4660,6 +4722,13 @@ CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessment
 
 
 --
+-- Name: index_campaign_options_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_options_on_campaign_id ON public.campaign_options USING btree (campaign_id);
+
+
+--
 -- Name: index_campaign_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4685,6 +4754,34 @@ CREATE INDEX index_campaign_reports_on_report_id ON public.campaign_reports USIN
 --
 
 CREATE INDEX index_campaign_users_on_campaign_id ON public.campaign_users USING btree (campaign_id);
+
+
+--
+-- Name: index_campaign_users_on_completed_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completed_at ON public.campaign_users USING btree (completed_at);
+
+
+--
+-- Name: index_campaign_users_on_completed_via; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completed_via ON public.campaign_users USING btree (completed_via);
+
+
+--
+-- Name: index_campaign_users_on_completion_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_completion_status ON public.campaign_users USING btree (completion_status);
+
+
+--
+-- Name: index_campaign_users_on_started_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_users_on_started_at ON public.campaign_users USING btree (started_at);
 
 
 --
@@ -6787,6 +6884,14 @@ ALTER TABLE ONLY public.agile_events
 
 
 --
+-- Name: campaign_options fk_rails_f8a1a37b68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_options
+    ADD CONSTRAINT fk_rails_f8a1a37b68 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7178,7 +7283,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200909073506'),
 ('20200913050839'),
 ('20200913071803'),
+('20200914055928'),
+('20200922123931'),
 ('20200923102431'),
+('20200927105604'),
+('20200929061648'),
 ('20200930103418');
 
 

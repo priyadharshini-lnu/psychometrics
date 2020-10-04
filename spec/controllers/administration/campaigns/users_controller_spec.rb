@@ -75,10 +75,14 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'id' => user.id,
       'full_name' => user.decorate.full_name,
       'email' => user.email,
+      'completion_status' => 'not_started',
       'created_at' => I18n.l(user.created_at, format: :short),
       'last_sign_in_at' => nil,
       'campaigns' => [campaign.slice('name', 'id')],
-      'active' => campaign_user.active
+      'active' => campaign_user.active,
+      'additional_time' => campaign_user.additional_time,
+      'completed_at' => nil,
+      'started_at' => nil
     })
   end
 

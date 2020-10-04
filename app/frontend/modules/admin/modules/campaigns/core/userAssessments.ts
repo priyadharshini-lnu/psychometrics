@@ -25,7 +25,6 @@ const statusLabel = { not_started: 'new', in_progress: 'progress' }
 
 export const getStatusesCount = state => _.countBy(get(state).list, a => statusLabel[a.status] || a.status)
 
-
 export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
   type: UPDATE_NORM,
   request: {
@@ -34,7 +33,6 @@ export const updateNorm = (campaignId, campaignAssessmentId: number, body) => ({
     body: { ...body, campaignAssessmentId },
   },
 })
-
 
 export const updateAdditionalTime = (campaignId: number, campaignAssessmentId: number, additionalTime: number) => ({
   type: UPDATE_ADDITIONAL_TIME,
@@ -84,7 +82,6 @@ export interface UpdateNormAction {
     }
   }
 }
-
 
 export interface FetchAction {
   response: {

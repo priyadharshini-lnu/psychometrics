@@ -5,7 +5,7 @@ module Administration
     class CampaignSerializer < ActiveModel::Serializer
       include Rails.application.routes.url_helpers
 
-      attributes :id, :name, :type, :status, :options, :campaign_url, :is_threesixty
+      attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty
 
       has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
       has_many :reports, serializer: Administration::Campaigns::ReportSerializer
