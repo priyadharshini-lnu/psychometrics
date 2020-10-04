@@ -14,7 +14,7 @@ export default function InstructionsPanel ({
     <div className={styles.container}>
       <Collapse
         bordered={false}
-        defaultActiveKey={['1']}
+        defaultActiveKey={showBegin ? '1' : null}
         className={styles.customCollapse}
       >
         <Panel

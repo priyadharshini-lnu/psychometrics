@@ -736,6 +736,12 @@ Rails.application.routes.draw do
           get :pass
         end
       end
+
+      resources :campaign_users do
+        member do
+          post :begin_campaign
+        end
+      end
     end
 
     scope module: :threesixty do

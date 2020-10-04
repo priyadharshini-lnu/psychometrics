@@ -28,8 +28,8 @@ const prevGroupIsCompleted = (campaign, group) => {
 }
 
 export default function Campaign ({
-  history, campaign, campaign: { userReports, groups }, currentUser,
-  loginHogan, acceptPolicy,
+  history, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
+  loginHogan, acceptPolicy, beginCampaign,
 }) {
   const {
     campaignOptions: {
@@ -43,6 +43,11 @@ export default function Campaign ({
   const groupAssessments = _.reduce(groups, (arr, group) => ([...arr, ...group.campaignAssessmentIds]), [])
   const ungrouped = _.filter(campaign.userAssessments, ua => !_.includes(groupAssessments, ua.assessmentId))
   const isMD = useMedia('max-md')
+  const hasStarted = !!campaignUser.startedAt
+
+  const onBeginCampaign = () => {
+    beginCampaign(campaign.id, campaignUser.id)
+  }
 
   return (
     <Layout>
@@ -94,9 +99,13 @@ export default function Campaign ({
                   </div>
                 )}
                 { instructionsEnabled && (
-                  <InstructionsPanel instructions={instructions} showBegin />
+                  <InstructionsPanel
+                    instructions={instructions}
+                    showBegin={!hasStarted}
+                    onBegin={onBeginCampaign}
+                  />
                 )}
-                <Row className="cards-container" gutter={16}>
+                <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>
                     <div className="panel-label">Assessments</div>
                     <Row gutter={[16, 16]}>
