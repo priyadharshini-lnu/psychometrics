@@ -512,6 +512,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "locked_at": "تم القفل في",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "كلمة المرور",
         "password_confirmation": "تأكيد كلمة المرور",
         "remember_created_at": "تم إنشاء التذكير في",
@@ -568,9 +569,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -4946,6 +4956,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -5774,7 +5786,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -6612,6 +6623,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -6853,6 +6865,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -7755,6 +7768,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "locked_at": "Locked at",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "remember_created_at": "Remember created at",
@@ -7811,9 +7825,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -12186,6 +12209,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -13010,7 +13035,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -13848,6 +13872,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -14089,6 +14114,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -14988,6 +15014,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "locked_at": "Dikunci pada",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Kata laluan",
         "password_confirmation": "Pengesahan kata laluan",
         "remember_created_at": "Ingat dicipta pada",
@@ -15044,9 +15071,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -19419,6 +19455,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -20243,7 +20281,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
@@ -21081,6 +21118,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -21322,6 +21360,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",

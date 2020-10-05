@@ -3295,6 +3295,11 @@ concat-with-sourcemaps@*:
   dependencies:
     source-map "^0.6.1"
 
+conditional-wrap@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/conditional-wrap/-/conditional-wrap-1.0.2.tgz#a993fd402e7747d83d1e36c675175f89852c25e5"
+  integrity sha512-jaL1qJC7JImOXiWC4/OxrSMjbPSZG+tWj2VmUtdBOOQhJj0gbFoDCF2Y0F5xLgQUpg+CDSymssaTX+Vn+1yM3Q==
+
 connect-history-api-fallback@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"

@@ -20,7 +20,7 @@ module CampaignAssessments
     private
 
     def results
-      UsersResult.joins(:user_assessments).
+      UsersResult.joins(:user_assessment).
         where(
           assessment_id: campaign_assessment.assessment_id,
           user_assessments: { campaign_id: campaign_assessment.campaign_id },

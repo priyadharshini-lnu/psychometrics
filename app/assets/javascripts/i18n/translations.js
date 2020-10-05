@@ -109,6 +109,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -740,6 +742,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
@@ -1368,6 +1372,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "campaign": {
     "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",

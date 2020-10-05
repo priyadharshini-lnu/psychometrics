@@ -9,6 +9,7 @@ import videojs from 'videojs'
 import cs from 'classnames'
 import axios from 'axios'
 import axiosRetry from 'axios-retry'
+import humps from 'humps'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
@@ -39,9 +40,9 @@ class VideoRecorder extends Component {
   }
 
   componentDidMount () {
-    const { answer, recordingAllowed } = this.props
+    const { mediaResponse, recordingAllowed } = this.props
 
-    if (answer) {
+    if (mediaResponse) {
       this.initPlayer()
     } else {
       this.initRecorder()
@@ -87,11 +88,11 @@ class VideoRecorder extends Component {
 
   discardRecording = () => {
     const {
-      answer, onDeleteMedia, mediaUrl, removeQuestionInProgress, model,
+      mediaResponse, onDeleteMedia, mediaUrl, removeQuestionInProgress, model,
     } = this.props
     removeQuestionInProgress(model.id)
-    if (answer) {
-      const mediaId = answer.media_id
+    if (mediaResponse) {
+      const mediaId = mediaResponse.id
       if (mediaId) {
         axios({
           method: 'DELETE',
@@ -166,11 +167,11 @@ class VideoRecorder extends Component {
 
   // eslint-disable-next-line react/sort-comp
   initPlayer () {
-    const { answer } = this.props
+    const { mediaResponse } = this.props
 
     const options = {
       sources: [{
-        src: answer ? answer.value : undefined,
+        src: mediaResponse ? mediaResponse.url : undefined,
         type: 'video/mp4',
       }],
       preload: 'auto',
@@ -367,7 +368,8 @@ class VideoRecorder extends Component {
         headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
       },
     ).then(({ data }) => {
-      this.handleRecordingSaved(data)
+      const camelizedData = humps.camelizeKeys(data)
+      this.handleRecordingSaved(camelizedData)
       this.resetMultipartUpload()
     })
   }

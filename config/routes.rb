@@ -691,6 +691,7 @@ Rails.application.routes.draw do
     scope module: :end_user do
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
+      post :accept_privacy, to: 'users#accept_privacy'
       get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
       get 'anonym/error', to: 'anonyms#error'
 

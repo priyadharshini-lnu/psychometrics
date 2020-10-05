@@ -124,6 +124,16 @@ export interface DefaultState {
     [id: string]: Highlight
   },
   assessmentTimedOut: boolean,
+  mediaResponses: MediaResponse[] | [],
+}
+
+export interface MediaResponse {
+  id: number
+  questionId: number
+  filename: string
+  userSelected: boolean
+  url: string
+  createdAt: string
 }
 
 export interface I18nInterface {
