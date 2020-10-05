@@ -2,4 +2,5 @@
 
 class PrivacyConsent < ApplicationRecord
   belongs_to :membership
+  belongs_to :users
 end

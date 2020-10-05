@@ -30,7 +30,7 @@ export default function Campaign ({
   history, campaign, campaign: { userReports, groups }, currentUser,
   loginHogan, acceptPolicy,
 }) {
-  const camapaignClosed = campaign.status === STATUSES.CLOSED
+  const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   let prevGroup
   const groupAssessments = _.reduce(groups, (arr, group) => ([...arr, ...group.campaignAssessmentIds]), [])
@@ -81,8 +81,8 @@ export default function Campaign ({
                     </div>
                   </div>
                 </div>
-                {camapaignClosed && (
-                  <div className="mbm font-bold">
+                {campaignClosed && (
+                  <div className="mbm mtm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
                 )}
@@ -109,25 +109,30 @@ export default function Campaign ({
                         const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
                         if (!userAssessments.length) { return null }
                         return (
-                          <Col xs={24} sm={colSize} lg={colSize} xl={colSize}>
+                          <Col xs={24} sm={colSize} lg={colSize} xl={colSize} key={group.id}>
                             <div className={cs('group')}>
                               <div className="group-title">{group.name}</div>
 
                               <Row type="flex" gutter={[16, 16]} className="cards">
                                 {userAssessments.map((userAssessment) => {
                                   const Assessment = Assessments[userAssessment.type]
-                                  let isDisabled = prevCompleted
+                                  let isDisabled = campaignClosed || prevCompleted
                                   if (!isDisabled && group.previousAssessmentsRequired) {
                                     isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
                                   }
                                   return (
                                     <Assessment
+                                      key={userAssessment.id}
                                       history={history}
                                       userAssessment={userAssessment}
                                       size={size}
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
+                                      disabledReason={campaignClosed
+                                        ? I18n.t('campaign.campaign_closed_assessment_take_message')
+                                        : I18n.t('campaign.complete_prev')
+                                      }
                                     />
                                   )
                                 })}
@@ -146,12 +151,14 @@ export default function Campaign ({
                                 const Assessment = Assessments[userAssessment.type]
                                 return (
                                   <Assessment
+                                    key={userAssessment.id}
                                     history={history}
                                     userAssessment={userAssessment}
                                     size={3}
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
-                                    disabled={false}
+                                    disabled={campaignClosed}
+                                    disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />
                                 )
                               })}

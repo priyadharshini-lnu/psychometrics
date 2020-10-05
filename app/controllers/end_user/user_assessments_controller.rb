@@ -48,6 +48,10 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def set_user_assessment
-    @user_assessment = UserAssessment.find(params[:id])
+    @user_assessment = UserAssessment.joins(:campaign).find_by!(
+      id: params[:id],
+      evaluator_id: current_user.id,
+      campaigns: { status: :active }
+    )
   end
 end

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { reset as resetCampaign } from 'modules/user/modules/campaigns/core/campaign'
-import { loginHogan, acceptPolicy } from '../../../core/campaigns'
+import { loginHogan } from '../../../core/campaigns'
+import { acceptPolicy } from '../../../core/project'
 
 const mapStateToProps = state => ({
   loaded: state.campaigns.campaign.loaded,

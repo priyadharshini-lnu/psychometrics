@@ -14,9 +14,10 @@ class EndUser::UsersController < ApplicationController
       format.json do
         subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
         evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
-        user_campaigns = current_user.campaign_users.pluck(:campaign_id) | subject_campaigns | evaluator_campaigns
+        user_campaigns = current_user.campaign_users.where(active: true).pluck(:campaign_id) |
+                         subject_campaigns | evaluator_campaigns
 
-        campaigns = ::Campaign.where(id: user_campaigns, status: %i[active closed]).group_by(&:type)
+        campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.group_by(&:type)
 
         json = @single_assigns.uniq.map do |assign|
           next if assign.original_assigns.all? { |a| a.membership&.disabled? }
@@ -24,7 +25,7 @@ class EndUser::UsersController < ApplicationController
           ::EndUser::AssignSerializer.new(assign).to_h
         end.compact
 
-        json.concat(serializer_campaign(campaigns['common'], ::EndUser::CampaignSerializer)) if campaigns['common']
+        json.concat(serializer_campaign(campaigns['common'], ::EndUser::ShortCampaignSerializer)) if campaigns['common']
 
         if campaigns['threesixty']
           json.concat(serializer_campaign(campaigns['threesixty'].map(&:threesixty_campaign),
@@ -34,6 +35,11 @@ class EndUser::UsersController < ApplicationController
         render json: json
       end
     end
+  end
+
+  def accept_privacy
+    current_user.create_privacy_consent!
+    head :ok
   end
 
   private

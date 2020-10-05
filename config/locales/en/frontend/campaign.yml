@@ -1,7 +1,5 @@
 en:
   frontend:
-    closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
-
     campaign:
       users:
         completion_statuses:
@@ -19,3 +17,6 @@ en:
     complete_all: Complete all related assessments
     complete_prev: Complete all prev assessments
     ungrouped: Ungrouped assessments
+    closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
+    campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
+

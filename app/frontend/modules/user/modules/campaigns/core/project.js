@@ -1,5 +1,7 @@
 import _ from 'lodash'
 
+const ACCEPT_POLICY = 'project/ACCEPT_POLICY'
+
 export const defaultState = {
   logo: null,
   secondaryLogo: null,
@@ -11,6 +13,14 @@ export const privacyPageLink = state => _.get(get(state), ['privacyPageLink'])
 export const getLogo = state => _.get(get(state), ['logo'])
 export const getSecondaryLogo = state => _.get(get(state), ['secondaryLogo'])
 export const getName = state => _.get(get(state), ['name'])
+
+export const acceptPolicy = () => ({
+  type: ACCEPT_POLICY,
+  request: {
+    method: 'POST',
+    url: '/accept_privacy',
+  },
+})
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
