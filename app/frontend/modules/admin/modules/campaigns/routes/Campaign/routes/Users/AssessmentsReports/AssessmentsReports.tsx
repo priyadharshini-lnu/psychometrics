@@ -80,7 +80,9 @@ const AssessmentsReports: React.FC<Props> = ({
     return array.joinJSXElements(campaigns, ', ')
   }
 
+  const campaign = _.find(user.campaigns, { id: parsedCampaignId })
   const campaignName = _.find(user.campaigns, { id: parsedCampaignId })?.name
+  const isFixedTime = campaign?.campaignOptions.fixedTime || false
 
   const handleDelete = () => {
     Modal.confirm({
@@ -105,7 +107,7 @@ const AssessmentsReports: React.FC<Props> = ({
     })
   }
 
-  const canExtendTime = () => (user.additionalTime === null || user.additionalTime === 0)
+  const canExtendTime = () => (isFixedTime && (user.additionalTime === null || user.additionalTime === 0))
 
   return (
     <div>
@@ -173,30 +175,34 @@ const AssessmentsReports: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.column.created_at')}>
               {user.createdAt}
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
-              {user.additionalTime}
+            {isFixedTime && (
+              <>
+                <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
+                  {user.additionalTime}
 
-              {canExtendTime() && (
-                <Button
-                  type="danger"
-                  size="small"
-                  onClick={() => openModal('UpdateTimeModal', {
-                    campaignId: parsedCampaignId,
-                    userId: parsedUserId,
-                    updateAdditionalTime: extendTime,
-                  })}
-                >
-                  <PlusOutlined />
-                  <span>{I18n.t('campaign_users.actions.extend_time')}</span>
-                </Button>
-              )}
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
-              {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
-              {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
-            </Descriptions.Item>
+                  {canExtendTime() && (
+                    <Button
+                      type="danger"
+                      size="small"
+                      onClick={() => openModal('UpdateTimeModal', {
+                        campaignId: parsedCampaignId,
+                        userId: parsedUserId,
+                        updateAdditionalTime: extendTime,
+                      })}
+                    >
+                      <PlusOutlined />
+                      <span>{I18n.t('campaign_users.actions.extend_time')}</span>
+                    </Button>
+                  )}
+                </Descriptions.Item>
+                <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
+                  {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
+                </Descriptions.Item>
+                <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
+                  {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
+                </Descriptions.Item>
+              </>
+            )}
           </Descriptions>
         </PageHeader>
         <Col span={4} className="pls">
