@@ -6,36 +6,37 @@ module Exports
       class VideoResponse < Base
         include ImportExportConst
 
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
-          if answers.present?
-            answers = video_response_answers(answers)
-            Utility::Array.ensure_size(answers, question_header_size(question))
-          end
+        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+          media_responses = user_result.media_responses.where(question: question)
+          return Utility::Array.ensure_size([], question_header_size(question)) if media_responses.blank?
+
+          answers = video_response_answers(media_responses)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
-        def self.video_response_answers(answers)
+        def self.video_response_answers(media_responses)
           [
-            user_selected_url(answers),
-            all_takes_urls(answers),
-            all_takes_encoded_media_ids(answers)
+            user_selected_url(media_responses),
+            all_takes_urls(media_responses),
+            all_takes_encoded_media_ids(media_responses)
           ]
         end
 
-        def self.user_selected_url(answers)
-          answers.detect { |answer| answer['user_selected'] }.try(:[], 'value')
+        def self.user_selected_url(media_responses)
+          media_responses.find(&:user_selected?)&.asset&.url
         end
 
-        def self.all_takes_urls(answers)
-          answers.each_with_object([]) do |answer, data|
-            next if answer['user_selected']
+        def self.all_takes_urls(media_responses)
+          media_responses.each_with_object([]) do |media_response, data|
+            next if media_response.user_selected?
 
-            data << answer['value']
+            data << media_response&.asset&.url
           end.join("\r\n")
         end
 
-        def self.all_takes_encoded_media_ids(answers)
-          answers.each_with_object([]) do |answer, data|
-            data << MediaResponse.encode_id(answer['media_id'])
+        def self.all_takes_encoded_media_ids(media_responses)
+          media_responses.each_with_object([]) do |media_response, data|
+            data << media_response.encoded_id
           end.join(', ')
         end
 

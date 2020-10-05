@@ -29,11 +29,8 @@ module Exports
                 all_questions.each do |question|
                   next unless QUESTIONS.include?(question.type)
 
-                  answers = result.answers[question.id.to_s].try(:[], 'answers')
-                  not_applicable = result.answers[question.id.to_s].try(:[], 'not_applicable')
-
                   parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                  user_results << parser.result(answers, question, @scoring, @export_with_labels, not_applicable)
+                  user_results << parser.result(result, question, @scoring, @export_with_labels)
                 end
               end
 

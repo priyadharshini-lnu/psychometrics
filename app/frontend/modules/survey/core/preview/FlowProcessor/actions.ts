@@ -18,6 +18,9 @@ import {
   CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR,
   MARK_ASSESSMENT_TIMED_OUT,
+  ADD_MEDIA_RESPONSE,
+  REMOVE_MEDIA_RESPONSE,
+  MARK_MEDIA_RESPONSE_AS_SELECTED,
 } from './consts'
 import {
   NextPage, PrevPage, AddPrevPage, RemovePrevPage,
@@ -25,7 +28,7 @@ import {
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, ToggleHiddenQuestions,
   ToggleIgnoreValidation, Reset, SetLocalResults, SaveResults,
-  Highlight, QuestionError,
+  Highlight, QuestionError, MediaResponse,
 } from './interfaces'
 import { getCurrentBlock } from './selectors'
 
@@ -164,3 +167,18 @@ export const updateHighlight = (highlight: Highlight, data: object, opts: Opts =
     payload,
   })
 }
+
+export const addMediaResponse = (mediaResponse: MediaResponse) => ({
+  type: ADD_MEDIA_RESPONSE,
+  payload: { mediaResponse },
+})
+
+export const removeMediaResponse = (questionId: number) => ({
+  type: REMOVE_MEDIA_RESPONSE,
+  payload: { questionId },
+})
+
+export const markMediaResponseAsSelected = (mediaResponse: MediaResponse) => ({
+  type: MARK_MEDIA_RESPONSE_AS_SELECTED,
+  payload: { mediaResponse },
+})

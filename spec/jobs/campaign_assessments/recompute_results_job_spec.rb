@@ -15,7 +15,7 @@ describe CampaignAssessments::RecomputeResultsJob do
     create(:users_result,
            status: :completed,
            assessment: campaign_assessment.assessment,
-           user_assessments: [completed_user_assessment])
+           user_assessment: completed_user_assessment)
   end
 
   let(:uncompleted_user_assessment) do
@@ -26,7 +26,7 @@ describe CampaignAssessments::RecomputeResultsJob do
     create(:users_result,
            status: :in_progress,
            assessment: campaign_assessment.assessment,
-           user_assessments: [uncompleted_user_assessment])
+           user_assessment: uncompleted_user_assessment)
   end
 
   let!(:prepared_user_report) do

@@ -9,7 +9,7 @@ import GetNextElementId from './commands/GetNextElementId'
 import GetNextParentElementId from './commands/GetNextParentElementId'
 import {
   Question, Block, BlockElementInterface, ElementInterface, PageInterface, ResultsInterface,
-  I18nInterface, Highlight,
+  I18nInterface, Highlight, MediaResponse,
 } from './interfaces'
 
 let { I18n } = window
@@ -244,3 +244,14 @@ export const getI18n = ({ locales }): I18nInterface => ({
     return question.validation.message
   },
 })
+
+export const getMediaResponsesByQuestionId = createSelector(
+  (state: { mediaResponses: MediaResponse[] }, questionId: number) => (
+    _.filter(state.mediaResponses, ({ questionId: qid }) => qid === questionId)
+  ),
+  (mediaResponses: MediaResponse[]) => _.sortBy(mediaResponses, ({ createdAt }) => Date.parse(createdAt)),
+)
+
+export const getMediaResponseByQuestionId = (state, questionId: number) => (
+  getMediaResponsesByQuestionId(state, questionId)[0]
+)

@@ -32,7 +32,7 @@ class Assign < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :campaign
   has_one :agile, through: :assessment
-  has_many :agile_events
+  has_many :agile_events, dependent: :destroy
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
@@ -51,7 +51,7 @@ class Assign < ApplicationRecord
   has_many :reports, through: :assigns_reports, dependent: :destroy
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
-  has_many :media_responses
+  has_many :media_responses, dependent: :destroy
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true

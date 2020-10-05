@@ -53,7 +53,7 @@ module Campaigns
 
         user_result = campaign_user.evaluation_results.order(created_at: :desc).find_by(assessment_id: assessment.id)
 
-        return user_result if user_result
+        return UsersResults::Copy.call!(user_result) if user_result
 
         create_new_user_result(assessment)
       end

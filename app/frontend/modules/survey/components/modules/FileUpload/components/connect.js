@@ -1,15 +1,23 @@
 import { connect } from 'react-redux'
-import { getI18n } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import { markQuestionInProgress, removeQuestionInProgress } from 'modules/survey/core/preview/FlowProcessor/actions'
+import { getI18n, getMediaResponseByQuestionId } from 'modules/survey/core/preview/FlowProcessor/selectors'
+import {
+  markQuestionInProgress,
+  removeQuestionInProgress,
+  addMediaResponse,
+  removeMediaResponse,
+} from 'modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
-  ({ preview }) => ({
+  ({ preview }, { model }) => ({
     type: preview.type,
     mediaUrl: preview.mediaUrl,
     I18n: getI18n(preview),
+    mediaResponse: getMediaResponseByQuestionId(preview, model.id),
   }),
   {
     markQuestionInProgress,
     removeQuestionInProgress,
+    addMediaResponse,
+    removeMediaResponse,
   },
 )

@@ -3,28 +3,7 @@
 module Imports
   module Assessments
     module Questions
-      class AudioResponse
-        def self.build_answers(data, question, _use_scoring = false, assign)
-          return nil if data.compact.blank?
-
-          media_record = MediaResponse.find_by_encoded_id(data[1])
-          media_record_to_import =
-            if assign.is_a?(Assign)
-              MediaResponses::FindOrCreateMediaResponse.call!(media_record, assign, question)
-            else
-              MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
-            end
-          return unless media_record_to_import
-
-          {
-            answers: [{
-              value: media_record_to_import.asset.url,
-              file_name: media_record_to_import.filename,
-              media_id: media_record_to_import.id
-            }],
-            question_id: question.id
-          }
-        end
+      class AudioResponse < SingleMediaResponse
       end
     end
   end

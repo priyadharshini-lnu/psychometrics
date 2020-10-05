@@ -12,11 +12,11 @@ class UsersResult < ApplicationRecord
   belongs_to :campaign
   belongs_to :norm
   has_one :threesixty_campaign, through: :campaign
-  has_many :media_responses
-  has_many :user_assessments
-  has_one :mindmill_credential
+  has_many :media_responses, dependent: :destroy
+  has_one :user_assessment
+  has_one :mindmill_credential, dependent: :destroy
   has_one :agile, through: :assessment
-  has_many :agile_events
+  has_many :agile_events, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
 
@@ -48,7 +48,7 @@ class UsersResult < ApplicationRecord
   end
 
   def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: campaign_ids)
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: user_assessment.campaign_id)
   end
 
   def hogan_user_reports
@@ -64,11 +64,11 @@ class UsersResult < ApplicationRecord
 
     return UserReport.none if mindmill_reports.blank?
 
-    UserReport.where(report_id: mindmill_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_ids)
-  end
-
-  def campaign_ids
-    user_assessments.pluck(:campaign_id)
+    UserReport.where(
+      report_id: mindmill_reports.pluck(:id),
+      user_id: subject_id,
+      campaign_id: user_assessment.campaign_id
+    )
   end
 
   def extra_time_buffer_expired?
