@@ -54,6 +54,7 @@ module DataMigration
         create_campaign_reports(subject)
         create_campaign_assessments(subject)
         migrate_assigns(subject)
+        migrate_registration_codes(subject)
       end
 
       def create_campaign(subject)
@@ -256,6 +257,18 @@ module DataMigration
         end
 
         { pdf: pdf, pdf_path: pdf_path }
+      end
+
+      def migrate_registration_codes(subject)
+        campaign_id = out_stack[:campaigns].last
+        log('migrating registration codes of subject #{subject.id}...')
+
+        subject.registration_codes.each do |code|
+          RegistrationCode.create(code.attributes.except('id').merge(
+            'end_level_id' => nil,
+            'campaign_id' => campaign_id
+          ))
+        end
       end
     end
     # rubocop:enable Metrics/ClassLength
