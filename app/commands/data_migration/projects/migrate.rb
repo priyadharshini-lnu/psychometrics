@@ -261,13 +261,18 @@ module DataMigration
 
       def migrate_registration_codes(subject)
         campaign_id = out_stack[:campaigns].last
-        log('migrating registration codes of subject #{subject.id}...')
+        log("migrating registration codes of subject #{subject.id}...")
 
         subject.registration_codes.each do |code|
-          RegistrationCode.create(code.attributes.except('id').merge(
-            'end_level_id' => nil,
-            'campaign_id' => campaign_id
-          ))
+          RegistrationCode.create(
+            code.
+            attributes.
+            except('id').
+            merge(
+              'end_level_id' => nil,
+              'campaign_id' => campaign_id
+            )
+          )
         end
       end
     end
