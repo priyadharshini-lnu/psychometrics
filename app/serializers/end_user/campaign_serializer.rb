@@ -3,7 +3,7 @@
 module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :name, :type, :status, :groups, :campaign_user
+    attributes :id, :name, :type, :status, :start_date, :end_date, :groups, :campaign_user
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer

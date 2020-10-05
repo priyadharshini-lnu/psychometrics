@@ -28,7 +28,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
-  const [instructions, updateInstructions] = useState(options.instructions)
+  const [instructions, setInstructions] = useState(options.instructions)
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -78,8 +78,8 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
                 type={null}
                 details={null}
                 className={null}
-                content={options.instructions}
-                handleContentChange={(value) => { updateInstructions(value) }}
+                content={instructions || options.instructions}
+                handleContentChange={(value) => { setInstructions(value) }}
               />
             </div>
 

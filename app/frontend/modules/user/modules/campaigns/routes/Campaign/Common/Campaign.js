@@ -33,7 +33,7 @@ export default function Campaign ({
   loginHogan, acceptPolicy, beginCampaign,
 }) {
   const {
-    endDate,
+    campaignUser: { startedAt },
     campaignOptions: {
       instructionsEnabled,
       instructions,
@@ -50,8 +50,8 @@ export default function Campaign ({
   const hasStarted = !!campaignUser.startedAt
 
   const timerOptions = {
-    expiryDate: endDate,
-    timerDuration: duration,
+    startedAt,
+    duration,
     onFinish: onTimerFinish,
   }
 
@@ -75,7 +75,7 @@ export default function Campaign ({
                   currentUser={currentUser}
                   counters={counters}
                   showTimer={!!fixedTime && hasStarted}
-                  timerOptions={timerOptions()}
+                  timerOptions={timerOptions}
                 />
                 {camapaignClosed && (
                   <div className="mbm font-bold">

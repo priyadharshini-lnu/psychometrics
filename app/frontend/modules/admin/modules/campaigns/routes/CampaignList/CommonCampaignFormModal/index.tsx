@@ -19,6 +19,7 @@ interface Props {
     status: string,
     startDate?: Date,
     endDate?: Date,
+    isFixedTime: boolean,
   }
 }
 
@@ -45,7 +46,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   const [notice, setNotice] = useState(null)
 
   useEffect(() => {
-    if (campaign) setNotice(notices[campaign.status])
+    if (campaign && campaign.isFixedTime) setNotice(notices[campaign.status])
   }, [])
 
   const transformValues = values => ({
