@@ -178,16 +178,18 @@ const CampaignList: React.FC<Props> = ({
               render={campaign => (
                 <Dropdown
                   overlay={() => (
-                    <ActionsMenu
-                      onEdit={() => openModal('CommonCampaignFormModal', {
-                        projectId,
-                        campaign: {
-                          ...campaign,
-                          startDate: campaign.startDate && moment(campaign.startDate),
-                          endDate: campaign.endDate && moment(campaign.endDate),
-                        },
-                      })}
-                    />
+                    ActionsMenu({
+                      onEdit: () => {
+                        openModal('CommonCampaignFormModal', {
+                          projectId,
+                          campaign: {
+                            ...campaign,
+                            startDate: campaign.startDate && moment(campaign.startDate),
+                            endDate: campaign.endDate && moment(campaign.endDate),
+                          },
+                        })
+                      },
+                    }) as React.ReactElement
                   )}
                   trigger={['click']}
                 >

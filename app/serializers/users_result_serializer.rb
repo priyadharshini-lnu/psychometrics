@@ -12,6 +12,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
+  has_many :media_responses, serializer: MediaResponseSerializer
 
   def user_assessment_id
     participant&.id
@@ -111,6 +112,10 @@ class UsersResultSerializer < ActiveModel::Serializer
       end
     end
     {}
+  end
+
+  def media_responses
+    object.media_responses.order(:created_at)
   end
 
   private

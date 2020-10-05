@@ -17,12 +17,7 @@ module CampaignUsers
     end
 
     def remove_user_assessments_and_user_result
-      user.user_assessments.where(campaign_id: campaign.id).includes(
-        users_result: :user_assessments
-      ).each do |user_assessment|
-        user_assessment.users_result.destroy! if user_assessment.users_result&.user_assessments&.length == 1
-        user_assessment.destroy!
-      end
+      user.user_assessments.where(campaign_id: campaign.id).destroy_all
     end
   end
 end

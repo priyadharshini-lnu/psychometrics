@@ -61,6 +61,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -544,7 +546,6 @@ CREATE TABLE public.campaign_options (
     time_zone character varying,
     fixed_time boolean DEFAULT false,
     fixed_time_duration integer,
-    instructions_enabled boolean DEFAULT false,
     instructions text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -2026,7 +2027,8 @@ CREATE TABLE public.privacy_consents (
     id bigint NOT NULL,
     membership_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_id bigint
 );
 
 
@@ -2806,9 +2808,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -2979,9 +2979,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -5345,6 +5343,13 @@ CREATE INDEX index_privacy_consents_on_membership_id ON public.privacy_consents 
 
 
 --
+-- Name: index_privacy_consents_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_consents_on_user_id ON public.privacy_consents USING btree (user_id);
+
+
+--
 -- Name: index_privacy_links_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6072,7 +6077,7 @@ ALTER TABLE ONLY public.ecommerce_purchases
 --
 
 ALTER TABLE ONLY public.agile_events
-    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
 
 
 --
@@ -6345,6 +6350,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 ALTER TABLE ONLY public.user_assessments
     ADD CONSTRAINT fk_rails_892b304988 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: privacy_consents fk_rails_8a77231dc4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT fk_rails_8a77231dc4 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -7284,10 +7297,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200913050839'),
 ('20200913071803'),
 ('20200914055928'),
+('20200914152341'),
 ('20200922123931'),
 ('20200923102431'),
 ('20200927105604'),
 ('20200929061648'),
-('20200930103418');
+('20200930103418'),
+('20201004131024');
 
 

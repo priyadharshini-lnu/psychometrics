@@ -43,6 +43,8 @@ class Campaign < ApplicationRecord
     parent.table[:status]
   end
 
+  scope :visible_to_end_user, -> { where(status: %i[active closed]) }
+
   def can_destroy?
     [subjects.exists?, evaluators.exists?, participants.exists?].none?
   end

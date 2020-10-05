@@ -24,6 +24,14 @@ module Exports
         def self.question_header_size(question)
           question_id_and_choice_headers(question)[:question_id_header].size
         end
+
+        def self.get_answers(result, question)
+          result.answers[question.id.to_s].try(:[], 'answers')
+        end
+
+        def self.get_not_applicable(result, question)
+          result.answers[question.id.to_s].try(:[], 'not_applicable')
+        end
       end
     end
   end

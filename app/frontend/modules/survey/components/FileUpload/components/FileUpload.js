@@ -18,18 +18,18 @@ import { UPLOAD_STATES } from './constants'
 export default function FileUpload ({
   mediaUrl,
   model,
-  model: { result },
   fakeUpload,
   onSuccessUpload,
   onRemoveFile,
   readOnly,
   markQuestionInProgress,
   removeQuestionInProgress,
+  mediaResponse,
 }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    if (result && result.answers.length > 0) {
+    if (mediaResponse) {
       dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     }
   }, [])
@@ -84,20 +84,17 @@ export default function FileUpload ({
 
   const removeFile = () => {
     dispatch({ type: REMOVE_FILE })
-    if (result && result.answers.length > 0) {
-      const mediaId = result.answers[0].media_id
-      if (mediaId) {
-        api()(dispatch)(deleteFile(`${mediaUrl}/remove_media`, mediaId)).then(() => {
-          onRemoveFile && onRemoveFile()
-        })
-      }
+    if (mediaResponse) {
+      const { id } = mediaResponse
+      api()(dispatch)(deleteFile(`${mediaUrl}/remove_media`, id)).then(() => {
+        onRemoveFile && onRemoveFile()
+      })
     }
   }
 
   const {
     uploadState, file, percent, errorCodes, errorMessages,
   } = state
-  const answer = result.answers[0]
   const showProgress = uploadState === UPLOAD_STATES.SAVING
   const showError = uploadState === UPLOAD_STATES.ERROR
   const fileExtension = _.map(allowedFileTypes(), extension => `.${extension}`)
@@ -133,7 +130,7 @@ export default function FileUpload ({
       </>
       )}
       {uploadState === UPLOAD_STATES.SAVED
-        && <FileDetails localFile={file} savedFile={answer} removeFile={removeFile} readOnly={readOnly} /> }
+        && <FileDetails localFile={file} savedFile={mediaResponse} removeFile={removeFile} readOnly={readOnly} /> }
     </div>
   )
 }

@@ -8,7 +8,7 @@ export default function FileDetails ({
 }) {
   let fileDetails = null
   if (savedFile) {
-    fileDetails = { filename: savedFile.filename, url: savedFile.value }
+    fileDetails = { filename: savedFile.filename, url: savedFile.url }
   } else if (localFile) {
     fileDetails = { filename: localFile.name }
   } else {

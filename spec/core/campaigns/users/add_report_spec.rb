@@ -51,11 +51,19 @@ describe Campaigns::Users::AddReport do
     described_class.call!(campaign_user, report)
   end
 
-  it 'sets users_result_id if user have previously given the assessment and add_and_allow_new_response is not set' do
-    user_result = create(:users_result, evaluator: campaign_user.user, assessment_id: report.assessments.first.id)
-    result = described_class.call!(campaign_user, report)
+  it 'copies users_result if user have previously given the assessment and add_and_allow_new_response is not set' do
+    answers = { '1' => [{ 'value' => 10 }] }
+    existing_user_result = create(
+      :users_result,
+      evaluator: campaign_user.user,
+      assessment_id: report.assessments.first.id,
+      answers: answers
+    )
+    output = described_class.call!(campaign_user, report)
+    new_user_result = output[:user_assessments].first.users_result
 
-    expect(result[:user_assessments].first.users_result_id).to eq(user_result.id)
+    expect(new_user_result).to_not eq(existing_user_result)
+    expect(new_user_result.answers).to eq(answers)
   end
 
   it "create new user_result record if operation is set to 'add_and_allow_new_response'" do

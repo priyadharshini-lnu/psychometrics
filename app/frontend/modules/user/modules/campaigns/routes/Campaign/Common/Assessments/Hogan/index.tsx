@@ -1,77 +1,50 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable max-len */
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Card, Progress, Input, Tag, Tooltip,
+  Row, Col, Card, Progress, Input, Tag,
 } from 'antd'
-import {
-  LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
-} from '@ant-design/icons'
-import './styles.scss'
-import ContinueIcon from './ContinueIcon'
-import PrivacyModal from './PrivacyModal'
-import AssessmentCard from './AssessmentCard'
+import { ClockCircleOutlined } from '@ant-design/icons'
+import '../styles.scss'
+import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import { History } from 'history'
+import PrivacyModal from '../PrivacyModal'
+import AssessmentCard from '../AssessmentCard'
+import AssessmentActionBtn from './AssessmentActionBtn'
 
-const IN_PROGRESS = 'in_progress'
+const { I18n } = window
 
-const renderButtonContent = ({
-  status, needConfirm,
-}, setShowConfirm, loading, loginHogan, disabled) => {
-  const showPolicyConfirm = (e) => {
-    e.preventDefault()
-    if (needConfirm) {
-      setShowConfirm(true)
-    } else {
-      loginHogan()
-    }
-  }
-
-  if (status === IN_PROGRESS) {
-    return (
-      <a href="#" onClick={showPolicyConfirm}>
-        {loading ? <LoadingOutlined /> : <ContinueIcon />}
-        {' '}
-        {I18n.t('threesixty.continue')}
-      </a>
-    )
-  }
-
-  if (status === 'completed') {
-    return (
-      <a>
-        <CheckOutlined />
-        {' '}
-        {I18n.t('threesixty.completed')}
-      </a>
-    )
-  }
-  return disabled ? (
-    <Tooltip placement="topRight" title={I18n.t('campaign.complete_prev')}>
-      <a href="#" className="disabled">
-        {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
-        {' '}
-        {I18n.t('threesixty.begin')}
-      </a>
-    </Tooltip>
-  ) : (
-    <a href="#" onClick={showPolicyConfirm}>
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
-      {' '}
-      {I18n.t('threesixty.begin')}
-    </a>
-  )
+interface HoganData {
+  url: string
+  userId: string
+  password: string
+  uniqueId: string
+  firstName: string
+  lastName: string
+  directAssessmentId: string
+  displayInformedConsent: string
+  returnUrl: string
+  languageId: string
 }
 
-export default function Hogan ({
-  userAssessment: assign, acceptPolicy, loginHogan, size, disabled,
-}) {
-  const [hoganData, setHoganData] = useState(null)
+interface Props {
+  userAssessment: UserAssessment
+  acceptPolicy(): Promise<unknown>
+  history: History
+  size: number
+  disabled: boolean
+  disabledReason: string
+  loginHogan(url: string): Promise<{ response: HoganData }>
+}
+
+const Hogan: React.FC<Props> = ({
+  userAssessment, acceptPolicy, loginHogan, size, disabled, disabledReason,
+}) => {
+  const [hoganData, setHoganData] = useState<HoganData| null>(null)
   const [showConfirm, setShowConfirm] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const onLoginHogan = () => {
     setLoading(true)
-    loginHogan(assign.hoganUrl).then((data) => {
+    loginHogan(userAssessment.hoganUrl).then((data) => {
       setHoganData(data.response)
     })
   }
@@ -103,13 +76,13 @@ export default function Hogan ({
               <div className="internal-icon hogan">
                 <span className="icon-hogan" />
               </div>
-              {assign.status !== 'completed' && (
+              {userAssessment.status !== 'completed' && (
                 <div>
                   <Tag
-                    color={assign.status === 'not_started' ? 'green' : 'blue'}
+                    color={userAssessment.status === 'not_started' ? 'green' : 'blue'}
                     style={{ background: 'transparent' }}
                   >
-                    {I18n.t(`campaign.${assign.status}`)}
+                    {I18n.t(`campaign.${userAssessment.status}`)}
                   </Tag>
                 </div>
               )}
@@ -120,29 +93,37 @@ export default function Hogan ({
         <div className="card-body">
           <div className="card-content">
             <div className="card-title">
-              {assign.assessmentName}
+              {userAssessment.assessmentName}
             </div>
-            <Row type="flex" className="info-line">
+            <Row className="info-line">
               <Col className="info-block">
                 <ClockCircleOutlined />
                 {' '}
-                {assign.timing}
+                {userAssessment.timing}
               </Col>
             </Row>
             <div className="card-progress">
               <Progress
-                percent={assign.completionPercent || 0}
+                percent={userAssessment.completionPercent || 0}
                 strokeWidth={5}
                 strokeColor="#aaa"
               />
             </div>
             <div className="button">
-              {renderButtonContent(assign, setShowConfirm, loading, onLoginHogan, disabled)}
+              <AssessmentActionBtn
+                userAssessment={userAssessment}
+                setShowConfirm={setShowConfirm}
+                loading={loading}
+                loginHogan={onLoginHogan}
+                disabled={disabled}
+                disabledReason={disabledReason}
+              />
             </div>
           </div>
         </div>
       </Card>
-      {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
+      {userAssessment.needConfirm
+        && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
       {hoganData && (
         <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>
           <Input type="hidden" name="UserID" value={hoganData.userId} />
@@ -159,3 +140,5 @@ export default function Hogan ({
     </AssessmentCard>
   )
 }
+
+export default Hogan

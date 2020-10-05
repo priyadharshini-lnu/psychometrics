@@ -8,7 +8,7 @@ class UserAssessment < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :relationship
-  belongs_to :users_result
+  belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
 
   delegate :selected_locale, to: :users_result
