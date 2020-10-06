@@ -5,6 +5,8 @@ class CampaignAssessment < ApplicationRecord
   belongs_to :assessment
   belongs_to :norm
 
+  scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }
+
   before_create :set_position
 
   def expired?

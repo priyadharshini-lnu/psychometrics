@@ -6,7 +6,7 @@ module EndUser
                :campaign_id, :campaign_assessment_ids
 
     def campaign_assessment_ids
-      object.campaign_assessments.map(&:assessment_id)
+      object.campaign_assessments.order(:position).map(&:assessment_id)
     end
   end
 end

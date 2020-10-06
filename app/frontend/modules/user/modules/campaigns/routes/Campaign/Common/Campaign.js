@@ -33,8 +33,9 @@ export default function Campaign ({
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
   let prevGroup
-  const groupAssessments = _.reduce(groups, (arr, group) => ([...arr, ...group.campaignAssessmentIds]), [])
-  const ungrouped = _.filter(campaign.userAssessments, ua => !_.includes(groupAssessments, ua.assessmentId))
+  const ungrouped = _.compact(
+    campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
+  )
   const isMD = useMedia('max-md')
 
   return (
@@ -106,7 +107,10 @@ export default function Campaign ({
                           prevCompleted = !prevGroupIsCompleted(campaign, prevGroup)
                         }
                         prevGroup = group
-                        const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
+                        const userAssessments = _.compact(
+                          group.campaignAssessmentIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
+                        )
+
                         if (!userAssessments.length) { return null }
                         return (
                           <Col xs={24} sm={colSize} lg={colSize} xl={colSize} key={group.id}>
