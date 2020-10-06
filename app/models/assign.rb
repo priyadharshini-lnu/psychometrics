@@ -88,9 +88,9 @@ class Assign < ApplicationRecord
   after_create :set_project_assign
   before_save :notification_handler
   before_create :set_mindmill_prefix
-  before_update :set_started_at, if: proc { status_changed? && in_progress? }
-  before_update :set_expiry_date, if: proc { status_changed? && in_progress? && !expiry_date }
-  before_update :set_last_activity_at, if: proc { status_changed? && in_progress? }
+  before_update :set_started_at, if: proc { will_save_change_to_status? && in_progress? }
+  before_update :set_expiry_date, if: proc { will_save_change_to_status? && in_progress? && !expiry_date }
+  before_update :set_last_activity_at, if: proc { will_save_change_to_status? && in_progress? }
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
   after_update_commit ::Callbacks::Models::Assigns::UpdateStartedAtByParent.new
@@ -126,7 +126,7 @@ class Assign < ApplicationRecord
   mount_base64_uploader :mindmill_report, PrivateFileUploader, file_name: proc { 'mindmill_report' }
 
   def notification_handler
-    if status_changed?
+    if will_save_change_to_status?
       if in_progress?
         Notification.create(
           assessment_id: assessment_id,
