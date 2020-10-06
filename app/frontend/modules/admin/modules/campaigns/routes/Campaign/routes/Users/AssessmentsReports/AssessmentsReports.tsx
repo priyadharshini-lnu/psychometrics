@@ -82,7 +82,7 @@ const AssessmentsReports: React.FC<Props> = ({
 
   const campaign = _.find(user.campaigns, { id: parsedCampaignId })
   const campaignName = _.find(user.campaigns, { id: parsedCampaignId })?.name
-  const isFixedTime = campaign?.campaignOptions.fixedTime || false
+  const isFixedTime = campaign?.campaignOptions?.fixedTime || false
 
   const handleDelete = () => {
     Modal.confirm({

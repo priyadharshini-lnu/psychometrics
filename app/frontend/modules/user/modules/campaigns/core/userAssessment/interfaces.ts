@@ -15,6 +15,7 @@ export interface UserAssessment {
 }
 
 export interface AssessmentExtra {
+  timer: number | null
   enableNetworkCheck: string | null
   enableAudioCheck: string | null
   enableVideoCheck: string | null

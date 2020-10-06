@@ -22,7 +22,7 @@ export const declineEvaluation = (campaignId, evaluationId) => ({
   },
 })
 
-export const beginCampaign = (campaignId, campaignUserId) => ({
+export const beginCampaign = campaignUserId => ({
   type: BEGIN,
   request: {
     url: `/campaign_users/${campaignUserId}/begin_campaign`,

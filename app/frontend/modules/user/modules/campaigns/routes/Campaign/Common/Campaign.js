@@ -77,7 +77,7 @@ export default function Campaign ({
                   timerOptions={timerOptions}
                 />
                 {campaignClosed && (
-                  <div className="mbm font-bold">
+                  <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
                 )}

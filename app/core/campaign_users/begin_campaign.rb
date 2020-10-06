@@ -9,11 +9,7 @@ module CampaignUsers
     end
 
     def call
-      broadcast :invalid unless campaign_user
-
-      transaction do
-        campaign_user.update_attributes(attributes)
-      end
+      campaign_user.update_attributes(attributes)
 
       broadcast :ok
     end

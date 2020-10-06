@@ -105,7 +105,7 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
-  store :extra, accessors: %i[icon_color enable_video_check enable_audio_check enable_network_check],
+  store :extra, accessors: %i[timer icon_color enable_video_check enable_audio_check enable_network_check],
     coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
