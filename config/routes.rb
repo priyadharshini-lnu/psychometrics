@@ -704,7 +704,7 @@ Rails.application.routes.draw do
 
       resources :user_reports do
         member do
-          post :pdf_preview
+          get :pdf_preview
         end
       end
 
