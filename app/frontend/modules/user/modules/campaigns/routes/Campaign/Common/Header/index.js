@@ -5,7 +5,7 @@ import {
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 
 export default function Header ({
-  currentUser, counters, showTimer, timerOptions: { startedAt, duration },
+  currentUser, counters, showTimer, timerOptions: { startedAt, duration, onFinish },
 }) {
   const deadline = new Date().setMinutes(new Date(startedAt).getMinutes() + duration)
   return (
@@ -19,7 +19,11 @@ export default function Header ({
         </h2>
         {showTimer && (
           <div className="timer">
-            <Timer preview={{ expiryDate: deadline, timerDuration: duration }} background="white" />
+            <Timer
+              preview={{ expiryDate: deadline, timerDuration: duration }}
+              onFinish={onFinish}
+              background="white"
+            />
             <span className="mls">{I18n.t('campaign.timer.message')}</span>
           </div>
         )}

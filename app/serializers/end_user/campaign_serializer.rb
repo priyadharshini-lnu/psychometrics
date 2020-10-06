@@ -10,6 +10,16 @@ module EndUser
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
 
+    def status
+      return object.status unless object.fixed_time?
+      return object.status unless campaign_user.started_at
+
+      expected_end_time = campaign_user.started_at + object.fixed_time_duration.minutes
+      return 'closed' if expected_end_time < Time.now && object.status == 'active'
+
+      object.status
+    end
+
     def groups
       object.campaign_assessment_groups.order(:position)
     end

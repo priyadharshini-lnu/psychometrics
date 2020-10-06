@@ -29,8 +29,8 @@ const prevGroupIsCompleted = (campaign, group) => {
 }
 
 export default function Campaign ({
-  history, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
-  loginHogan, acceptPolicy, beginCampaign,
+  history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
+  loginHogan, acceptPolicy, beginCampaign, fetchCampaign,
 }) {
   const {
     campaignUser: { startedAt },
@@ -60,8 +60,7 @@ export default function Campaign ({
   }
 
   const onTimerFinish = () => {
-    // eslint-disable-next-line no-console
-    console.log('Timer complete.')
+    fetchCampaign(match.url)
   }
 
   return (
@@ -82,13 +81,12 @@ export default function Campaign ({
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
                 )}
-                { instructionsEnabled && (
-                  <InstructionsPanel
-                    instructions={instructions}
-                    showBegin={!hasStarted}
-                    onBegin={onBeginCampaign}
-                  />
-                )}
+                <InstructionsPanel
+                  instructionsEnabled={instructionsEnabled}
+                  instructions={instructions}
+                  showBegin={!hasStarted}
+                  onBegin={onBeginCampaign}
+                />
                 <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>
                     <div className="panel-label">Assessments</div>
