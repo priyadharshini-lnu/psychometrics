@@ -20,7 +20,7 @@ module Administration
       end
 
       def destroy
-        UserAssessments::Remove.call!(resource, campaign)
+        resource.destroy!
         render json: resource.id
       end
 

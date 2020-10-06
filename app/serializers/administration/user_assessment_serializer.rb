@@ -3,7 +3,7 @@
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
-               :additional_time, :is_expired, :is_external, :report_ids
+               :additional_time, :is_expired, :is_external
 
     delegate :name, :category, to: :assessment
 
@@ -11,10 +11,6 @@ module Administration
       return :not_started if user_result.nil?
 
       user_result.status
-    end
-
-    def report_ids
-      assessment.report_ids
     end
 
     def norms

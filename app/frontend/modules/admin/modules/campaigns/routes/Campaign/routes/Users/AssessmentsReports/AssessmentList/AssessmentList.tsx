@@ -6,7 +6,6 @@ import { MoreOutlined, ExclamationCircleOutlined } from '@ant-design/icons'
 import { State as UserAssessmentState } from 'modules/admin/modules/campaigns/core/userAssessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import UserAssessmentPolicy from 'modules/admin/modules/campaigns/policies/UserAssessment'
-import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import _ from 'lodash'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import User from 'modules/admin/modules/campaigns/interfaces/User'
@@ -45,7 +44,6 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
   reset,
   remove,
   currentUser,
-  reports,
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -116,9 +114,7 @@ const AssessmentList: React.FC<RouteComponentProps & Props> = ({
                     userId: parsedUserId,
                     assessment,
                     currentUser,
-                    reports,
-                    remove: () => remove(parsedCampaignId,
-                      assessment.id, assessment.reportIds),
+                    remove: () => remove(parsedCampaignId, assessment.id),
                   }) as React.ReactElement
                 )}
                 trigger={['click']}
@@ -140,7 +136,6 @@ interface ActionMenuProps {
   userId: number
   campaignId: number
   currentUser: User
-  reports: UserReport[]
   rescoreResponse(): void
   reset(campaignId: number, assessmentId: number): Promise<unknown>
   remove(): void
@@ -148,14 +143,9 @@ interface ActionMenuProps {
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove, reports,
+  rescoreResponse, openModal, campaignId, userId, assessment, currentUser, reset, remove,
 }) => {
-  const { name, reportIds } = assessment
-
-  const reportNames = () => {
-    const names = reports.map(report => (reportIds.includes(report.reportId) ? report.name : ''))
-    return _.compact(names)
-  }
+  const { name } = assessment
 
   const handleReset = () => {
     Modal.confirm({
@@ -181,25 +171,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   const handleDelete = () => {
     Modal.confirm({
-      title: I18n.t('user_assessments.modals.remove.title', { name }),
+      title: I18n.t('common.text.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: (
-        <>
-          <p>
-            {I18n.t('user_assessments.modals.remove.content')}
-            :
-          </p>
-          <ul>
-            {reportNames().map(name => (
-              <li key={name}>
-                {name}
-              </li>
-            ))}
-          </ul>
-        </>
-      ),
+      content: I18n.t('user_assessments.modals.remove.content', { name }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       onOk: () => {

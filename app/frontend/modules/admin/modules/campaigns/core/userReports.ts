@@ -1,11 +1,9 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
-import { put } from 'redux-saga/effects'
 import { updateIn } from 'utils/immutable'
 import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import humps from 'humps'
 import { RootState } from 'modules/admin/core/rootReducers'
-import { AnyAction } from 'redux'
 import { FETCH_SINGLE as FETCH_SINGLE_USER } from './users'
 
 const defaultState = {
@@ -31,7 +29,6 @@ export const REGENERATE_REPORTS = 'userReports/REGENERATE_REPORTS'
 export const REMOVE = 'resource/campaigns/report/REMOVE'
 export const TOGGLE_USER_ACCESS = 'resource/campaigns/report/TOGGLE_USER_ACCESS'
 export const TOGGLE_USER_ACCESS_REQUEST = 'resource/campaigns/report/TOGGLE_USER_ACCESS_REQUEST'
-export const REMOVE_REPORT_BY_IDS = 'resource/campaigns/report/REMOVE_REPORT_BY_IDS'
 
 export const fetchSingle = (campaignId: number, id: number) => ({
   type: FETCH_SINGLE,
@@ -55,14 +52,6 @@ export const selectRecords = (ids: number[]) => ({
   payload: { ids },
 })
 
-export const removeReportByIds = (ids: number[]) => ({
-  type: REMOVE_REPORT_BY_IDS,
-  ids,
-})
-
-export function* genRemoveUserReports ({ requestAction: { reportIds } }: AnyAction) {
-  yield put(removeReportByIds(reportIds))
-}
 
 export const regenerateReports = (campaignId: number, ids: number[]) => ({
   type: REGENERATE_REPORTS,
@@ -154,11 +143,6 @@ const HANDLERS = {
 
       return { ...userReport, userAccess: !userReport.userAccess }
     }))
-  ),
-  [REMOVE_REPORT_BY_IDS]: (state: State, { ids }: { ids: number[] }) => (
-    updateIn(state, ['list'], (userReports: UserReport[]) => _.filter(
-      userReports, (report: UserReport) => !ids.includes(report.reportId),
-    ))
   ),
 }
 

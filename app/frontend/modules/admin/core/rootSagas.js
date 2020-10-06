@@ -11,7 +11,6 @@ import { watchers as emailScheduleWatchers } from '../modules/threeSixtyCampaign
 // eslint-disable-next-line max-len
 import { watchers as recipientCriteriaWatchers } from '../modules/threeSixtyCampaign/core/emailSchedules/recipientCriteria'
 import { watchers as campaignAssessment } from '../modules/campaigns/core/assessments/watchers'
-import { watchers as userAssessment } from '../modules/campaigns/core/userAssessments'
 import { watchers as user } from '../modules/campaigns/core/users'
 
 
@@ -28,7 +27,6 @@ export default function* () {
     ...recipientCriteriaWatchers,
     ...filterAndPaginationWatcher,
     ...campaignAssessment,
-    ...userAssessment,
     ...user,
   ])
 }

@@ -4988,7 +4988,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -7155,9 +7154,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },
@@ -12239,7 +12237,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -14399,9 +14396,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },
@@ -19483,7 +19479,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -21643,9 +21638,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },

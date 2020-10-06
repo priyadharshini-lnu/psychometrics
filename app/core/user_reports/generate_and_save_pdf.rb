@@ -12,7 +12,7 @@ module UserReports
 
     def call
       user_reports.each do |user_report|
-        next if user_report.user_results.where.not(status: :completed).exists?
+        next if user_report.generatable?
 
         user_report.update(status: :generating)
 
