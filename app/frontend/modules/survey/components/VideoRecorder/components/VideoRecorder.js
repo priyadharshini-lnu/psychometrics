@@ -4,19 +4,18 @@
 /* eslint-disable import/no-unresolved */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Alert } from 'antd'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
-import axios from 'axios'
-import axiosRetry from 'axios-retry'
 import humps from 'humps'
+import { axiosWithRetry } from 'utils/network'
+import { unset, set } from 'lodash/fp'
 import styles from './VideoRecorder.scss'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
 import RemainingTime from './controls/remaining_time'
 import Tracker from './Tracker'
-
-axiosRetry(axios, { retries: 0 })
 
 require('!style-loader!css-loader!video.js/dist/video-js.css')
 require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
@@ -24,6 +23,7 @@ require('!style-loader!css-loader!videojs-record/dist/css/videojs.record.css')
 const { $ } = window
 const UPLOAD_CHUNK_SIZE = 5.5
 
+const axiosInstance = axiosWithRetry()
 class VideoRecorder extends Component {
   constructor (props) {
     super(props)
@@ -36,6 +36,7 @@ class VideoRecorder extends Component {
       key: 'player',
       trackingEnabled: !!fitInFrame,
       hasMediaRecorder: true,
+      errors: {},
     }
   }
 
@@ -50,6 +51,11 @@ class VideoRecorder extends Component {
         setTimeout(() => this.allowRecording(), 300)
       }
     }
+    if (!window.navigator.onLine) {
+      this.setOffline()
+    }
+    window.addEventListener('online', this.setOnline)
+    window.addEventListener('offline', this.setOffline)
   }
 
   componentDidUpdate (prevProps) {
@@ -69,7 +75,21 @@ class VideoRecorder extends Component {
     if (this.player) {
       this.player.dispose()
     }
+    window.removeEventListener('online', this.setOnline)
+    window.removeEventListener('offline', this.setOffline)
   }
+
+  setOnline = () => this.removeError('online')
+
+  setOffline = () => this.setError('online', I18n.t('assessments.video_response.offline_message'))
+
+  setError = (key, message) => this.setState(state => ({
+    errors: set(key, message, state.errors),
+  }))
+
+  removeError = key => this.setState(state => ({
+    errors: unset(key, state.errors),
+  }))
 
   startRecording = () => {
     this.player.record().start()
@@ -94,7 +114,7 @@ class VideoRecorder extends Component {
     if (mediaResponse) {
       const mediaId = mediaResponse.id
       if (mediaId) {
-        axios({
+        axiosInstance({
           method: 'DELETE',
           url: `${mediaUrl}/remove_media`,
           headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
@@ -109,11 +129,16 @@ class VideoRecorder extends Component {
     }
   }
 
-  getUploadUrl = (id) => {
+  getUploadUrl = async (id) => {
     const { mediaUrl } = this.props
-    $.get(`${mediaUrl}/upload_media_url?question_id=${id}`, (urlDetails) => {
-      this.urlDetails = urlDetails
-    })
+    try {
+      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url?question_id=${id}`)
+      this.urlDetails = response.data
+      this.removeError('uploadUrl')
+    } catch (error) {
+      this.stopRecording()
+      this.setError('uploadUrl', _.get(error, ['response', 'data', 'error'], error.message))
+    }
   }
 
   uploadFile = (urlDetails, batchNumber) => {
@@ -127,22 +152,25 @@ class VideoRecorder extends Component {
       this.setState({ percent: { ...percent, [batchNumber]: 0 } })
     }
 
-    const uploadResp = axios.put(
+    const uploadResp = axiosInstance.put(
       urlDetails,
       blob,
       {
         onUploadProgress: e => this.setProgress(e, batchNumber),
-        'axios-retry': {
-          retries: 3,
-          retryDelay: retryCount => retryCount * 3000,
-        },
       },
     )
 
     if (!this.promisesArray) { this.promisesArray = [] }
     this.promisesArray.push(uploadResp)
 
-    uploadResp.then(() => { batchForUpload.batchedBlobs = null })
+    uploadResp.then(() => {
+      batchForUpload.batchedBlobs = null
+      this.removeError('upload')
+    }).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.error(err)
+      this.setError('upload', err.message)
+    })
   }
 
   setProgress = (e, batchNumber) => {
@@ -280,17 +308,18 @@ class VideoRecorder extends Component {
       this.player.on('finishRecord', async () => {
         const { preview } = this.props
         const { trackingEnabled } = this.state
+        if (trackingEnabled && this.tracker) this.tracker.stopTracking()
         if (preview) {
           this.handleRecordingSaved()
-        } else {
+        } else if (this.urlDetails) {
           this.uploadLastPart()
           this.setState({ recordingState: 'saving' })
           markQuestionInProgress(model.id, 'saving')
+        } else {
+          return
         }
 
         this.player.trigger('statechanged', { status: 'recorded' })
-
-        if (trackingEnabled && this.tracker) this.tracker.stopTracking()
 
         if (!preview) {
           const resolvedArray = await Promise.all(this.promisesArray)
@@ -356,7 +385,7 @@ class VideoRecorder extends Component {
 
   completeMediaUpload = (uploadPartsArray) => {
     const { mediaUrl } = this.props
-    axios.put(
+    axiosInstance.put(
       `${mediaUrl}/complete_multipart_upload`,
       {
         parts: uploadPartsArray,
@@ -371,6 +400,10 @@ class VideoRecorder extends Component {
       const camelizedData = humps.camelizeKeys(data)
       this.handleRecordingSaved(camelizedData)
       this.resetMultipartUpload()
+    }).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error)
+      this.setError('complete', I18n.t('assessments.unknown_error'))
     })
   }
 
@@ -476,21 +509,37 @@ class VideoRecorder extends Component {
     )
   }
 
+  renderErrors () {
+    const { errors } = this.state
+    if (_.isEmpty(errors)) return null
+    return (
+      <Alert
+        className="mtm"
+        type="error"
+        message={(
+          <ul className={styles.errors}>
+            {_.map(errors, (message, key) => <li key={key}>{message}</li>)}
+          </ul>
+        )}
+      />
+    )
+  }
+
   render () {
     const {
       key, deviceReady, recordingState, trackingEnabled,
     } = this.state
     const {
-      fitInFrame, trackerOptions, recordingAllowed, disallowDiscard,
+      fitInFrame, trackerOptions, recordingAllowed, disallowDiscard, extraControls,
     } = this.props
     const showProgress = ['saving'].includes(recordingState)
-
     return (
       <div className={cs(styles.recorder, styles[recordingState])}>
         <div data-vjs-player key={key}>
           {!deviceReady && recordingState === 'initialized' && !recordingAllowed && this.renderPerm() }
           <video ref={(ref) => { this.video = ref }} className="video-js vjs-default-skin vjs-4-3" />
         </div>
+        { extraControls }
         { trackingEnabled
         && ['ready', 'recording', 'recorded'].includes(recordingState)
         && (
@@ -503,6 +552,7 @@ class VideoRecorder extends Component {
         )}
         {showProgress && this.renderProgress()}
         {(!disallowDiscard || recordingState === 'saving') && this.renderControls()}
+        {this.renderErrors()}
       </div>
     )
   }
@@ -514,6 +564,7 @@ VideoRecorder.propTypes = {
   onDeleteMedia: PropTypes.func,
   fitInFrame: PropTypes.string,
   trackerOptions: PropTypes.object,
+  extraControls: PropTypes.node,
 }
 
 export default VideoRecorder

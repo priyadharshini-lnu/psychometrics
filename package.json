@@ -157,6 +157,7 @@
     "redux-thunk": "^2.3.0",
     "remarkable": "^1.7.1",
     "reselect": "^4.0.0",
+    "retry-axios": "^2.2.1",
     "sass-loader": "^7.1.0",
     "scroll-js": "^3.1.0",
     "seedrandom": "^3.0.5",
