@@ -22,6 +22,13 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     end
   end
 
+  def export_results
+    results = ::Exports::Assessments::ThreesixtyAssessmentResultsExport.call!(resource.assessment)
+    respond_to do |format|
+      format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
+    end
+  end
+
   def reset_nominations
     ::Threesixty::Campaigns::ResetAllNominations.call(resource)
     render json: :ok

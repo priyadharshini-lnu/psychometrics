@@ -266,10 +266,6 @@ Rails.application.routes.draw do
             resources :new_campaigns
 
             resources :threesixty_campaigns, concerns: :client_editable do
-              member do
-                get :export_results
-              end
-
               collection do
                 get :factors
               end
@@ -383,10 +379,11 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get 'export_completion_status'
-        delete 'reset'
-        delete 'reset_nominations'
-        delete 'remove_user'
+        get :export_results
+        get :export_completion_status
+        delete :reset
+        delete :reset_nominations
+        delete :remove_user
       end
     end
 
