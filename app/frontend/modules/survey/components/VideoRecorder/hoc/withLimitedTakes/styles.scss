@@ -1,9 +1,34 @@
+@import 'modules/user/styles/variables';
+.takesContainer {
+  position: relative;
+}
 .retakeContainer {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin-top: 15px;
+}
+
+.overlayControls {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  :global(.ant-btn) {
+    color: $black;
+  }
+}
+
+.currentTakeNo {
+  text-align: end;
+  font-size: 6em;
+  color: rgba(255, 255, 255, 0.85);
+  mix-blend-mode: difference;
+  margin-top: -0.6em;
+  margin-inline-end: .2em;
 }
 
 .retakeContainer > div {
@@ -18,18 +43,39 @@
   background-color: #eee !important;
 }
 
+.recordIcon {
+  color: $red;
+  font-size: 1.7em;
+}
+
 .inUse {
   color: #00B4AA;
   font-size: 16px;
 }
+:global(.ant-btn-lg) {
+  &.retakeBtn {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: $black;
+    margin: auto;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    :global(.fa) {
+      color: $red;
+      font-size: 1.6em;
+      margin-inline-end: 4px;
+    }
+  }
+}
 
-.retakeBtn {
-  display: inline-block;
-  border: 1px solid #dedbdb;
-  margin: auto;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
+.selectedTakeBtn {
+  font-weight: bold !important;
+  background-color: $success-color !important;
+  span {
+    color: $white;
+  }
 }
 
 .recordBtnContainer {
@@ -38,6 +84,12 @@
 
 .recordBtn {
   padding: 8px !important;
+}
+
+.buttons {
+  label {
+    width: auto;
+  }
 }
 
 :global {

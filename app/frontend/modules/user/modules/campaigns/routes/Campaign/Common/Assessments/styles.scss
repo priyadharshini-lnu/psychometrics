@@ -176,6 +176,7 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         }
         a.disabled {
           color: #aaa !important;
+          pointer-events: none;
         }
 
       }

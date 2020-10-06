@@ -1,12 +1,11 @@
 import {
-  takeLatest, put, takeEvery,
+  takeLatest, put,
 } from 'redux-saga/effects'
 import { updateModal } from 'modules/admin/core/ui/modals'
 import { AnyAction } from 'redux'
 import {
-  ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, REMOVE,
+  ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK,
 } from './actions'
-import { genRemoveCamapignReports } from '../reports'
 
 
 function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }: AnyAction) {
@@ -21,5 +20,4 @@ function* genOpenUniversalLinkModal ({ response, requestAction: { campaignId } }
 export const watchers = [
   takeLatest(ACTIVATE_UNIVERSAL_LINK, genOpenUniversalLinkModal),
   takeLatest(REGENERATE_UNIVERSAL_LINK, genOpenUniversalLinkModal),
-  takeEvery(REMOVE, genRemoveCamapignReports),
 ]

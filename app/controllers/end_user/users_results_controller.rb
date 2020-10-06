@@ -31,7 +31,14 @@ module EndUser
     end
 
     def upload_media_url
-      render json: MediaResponses::GetUploadUrl.call!(@users_result, params[:question_id])
+      MediaResponses::GetUploadUrl.call(@users_result, params[:question_id]) do
+        on(:ok) { |data| render json: data }
+        on(:error) do |error|
+          render json: {
+            error: error
+          }, status: 400
+        end
+      end
     end
 
     def upload_callback

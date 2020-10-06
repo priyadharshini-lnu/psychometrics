@@ -103,13 +103,6 @@ module Administration
           end
         end
 
-        def export_results
-          results = ::Exports::Assessments::ThreesixtyAssessmentResultsExport.call!(resource.assessment)
-          respond_to do |format|
-            format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
-          end
-        end
-
         def i18n
           'clients.threesixty_campaigns'
         end

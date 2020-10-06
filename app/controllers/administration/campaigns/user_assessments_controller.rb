@@ -20,7 +20,7 @@ module Administration
       end
 
       def destroy
-        UserAssessments::Remove.call!(resource, campaign)
+        resource.destroy!
         render json: resource.id
       end
 
@@ -35,7 +35,7 @@ module Administration
       def reset
         ::UsersResults::Reset.call!(resource)
 
-        render json: :ok
+        render json: resource, serializer: UserAssessmentSerializer
       end
 
       private

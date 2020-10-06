@@ -14,12 +14,6 @@ describe CampaignAssessments::Remove do
   end
   let!(:user_report) { create(:user_report, report: report, user: campaign_user.user, campaign: campaign) }
 
-  it 'deletes campaign_report record' do
-    described_class.call!(campaign_assessment, campaign)
-
-    expect(CampaignReport.find_by(id: campaign_report.id)).to be_nil
-  end
-
   it 'deletes campaign_assessment record' do
     described_class.call!(campaign_assessment, campaign)
 
@@ -31,22 +25,12 @@ describe CampaignAssessments::Remove do
       described_class.call!(campaign_assessment, campaign, remove_user_assessments: true)
       expect(UserAssessment.find_by(id: user_assessment.id)).to be_nil
     end
-
-    it 'deletes user_report record' do
-      described_class.call!(campaign_assessment, campaign, remove_user_assessments: true)
-      expect(UserReport.find_by(id: user_report.id)).to be_nil
-    end
   end
 
   context 'if remove_user_assessments flag is false' do
     it 'doesnt deletes user_assessment record' do
       described_class.call!(campaign_assessment, campaign, remove_user_assessments: false)
       expect(UserAssessment.find_by(id: user_assessment.id)).to eq(user_assessment)
-    end
-
-    it 'doesnt deletes user_report record' do
-      described_class.call!(campaign_assessment, campaign, remove_user_assessments: false)
-      expect(UserReport.find_by(id: user_report.id)).to eq(user_report)
     end
   end
 end

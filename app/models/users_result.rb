@@ -56,7 +56,11 @@ class UsersResult < ApplicationRecord
 
     return UserReport.none if hogan_reports.blank?
 
-    UserReport.where(report_id: hogan_reports.pluck(:id), user_id: subject_id, campaign_id: campaign_ids)
+    UserReport.where(
+      report_id: hogan_reports.pluck(:id),
+      user_id: subject_id,
+      campaign_id: user_assessment.campaign_id
+    )
   end
 
   def mindmill_user_reports

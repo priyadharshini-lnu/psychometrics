@@ -353,6 +353,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "innovation_styles_factor": {
         "active": "Active",
         "created_at": "Created Date",
@@ -642,12 +650,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -4812,6 +4821,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "حذف",
       "device": "السماح",
@@ -4823,6 +4833,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
         "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "أعد مرة أخرى",
       "retry": "أعد المحاولة",
       "save": "حفظ",
@@ -4996,7 +5007,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -7160,9 +7170,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },
@@ -7612,6 +7621,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "innovation_styles_factor": {
         "active": "Active",
         "created_at": "Created Date",
@@ -7901,12 +7918,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -12071,6 +12089,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -12079,6 +12098,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -12095,7 +12115,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
   },
@@ -12252,7 +12272,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -14409,9 +14428,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },
@@ -14861,6 +14879,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
       },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
       "innovation_styles_factor": {
         "active": "Active",
         "created_at": "Created Date",
@@ -15150,12 +15176,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -19320,6 +19347,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -19328,6 +19356,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -19344,7 +19373,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
   },
@@ -19501,7 +19530,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "upload": "Upload"
       },
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
         "successfully": "%{name} assessment removed successfully.",
         "title": "Remove assessment %{name}?"
       },
@@ -21658,9 +21686,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "user_assessments": {
     "modals": {
       "remove": {
-        "content": "This action will remove these reports associated with the assessment",
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
       }
     }
   },

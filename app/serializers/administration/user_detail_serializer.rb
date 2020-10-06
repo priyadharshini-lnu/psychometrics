@@ -53,7 +53,7 @@ module Administration
     end
 
     def user_assessments
-      object.user_assessments.where(campaign: campaign).includes(:users_result, assessment: [:reports])
+      object.user_assessments.where(campaign: campaign).includes(:users_result, :assessment)
     end
 
     def user_reports

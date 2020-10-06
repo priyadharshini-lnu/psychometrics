@@ -117,7 +117,6 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         enable_universal_links
         universal_link
         norms
-        report_ids
         is_external
       ]
     )

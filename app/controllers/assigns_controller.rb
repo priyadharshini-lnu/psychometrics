@@ -84,14 +84,21 @@ class AssignsController < ApplicationController
   end
 
   def upload_media_url
-    render json: MediaResponses::GetUploadUrl.call!(@assign, params[:question_id])
+    MediaResponses::GetUploadUrl.call(@assign, params[:question_id]) do
+      on(:ok) { |data| render json: data }
+      on(:error) do |error|
+        render json: {
+          error: error
+        }, status: 400
+      end
+    end
   end
 
   def upload_callback
     media = MediaResponse.find(params[:media_id])
     media.asset_key = params[:asset_key]
     if media.save
-      render json: media.reload.as_json.merge(filename: media.filename)
+      render json: media.reload, serializer: MediaResponseSerializer
     else
       error_message = media.errors.messages.values.join(',')
       media.destroy
@@ -113,7 +120,7 @@ class AssignsController < ApplicationController
     media = @assign.media_responses.find_by!(id: params[:media_id])
     MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
-    render json: media.reload.as_json
+    render json: media.reload, serializer: MediaResponseSerializer
   end
 
   def mark_as_user_selected_take

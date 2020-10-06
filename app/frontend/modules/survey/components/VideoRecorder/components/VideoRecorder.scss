@@ -1,3 +1,5 @@
+@import 'modules/user/styles/variables';
+
 .recorder {
   margin-top: 25px;
   position: relative;
@@ -29,7 +31,7 @@
         align-items: center;
         justify-content: center;
         border-radius: 6px;
-        z-index: 1;
+        z-index: 2;
         background-color: initial;
 
         .tte-status-text {
@@ -325,6 +327,13 @@
 .canvas {
   top: 0;
   position: absolute;
+}
+
+ul.errors {
+  margin: 0;
+  li {
+    padding: 0;
+  }
 }
 
 :global {

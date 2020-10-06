@@ -24,8 +24,12 @@ class UserReport < ApplicationRecord
   end
 
   def user_results
-    UsersResult.joins(:user_assessment).
-      where(assessment_id: report.assessment_ids, subject_id: user_id, evaluator_id: user_id,
-        user_assessments: { campaign_id: campaign_id })
+    UserReports::GetUserResultsQuery.new(self).query
+  end
+
+  def generatable?
+    completed_assessment_ids = user_results.pluck(:assessment_id)
+
+    report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
   end
 end

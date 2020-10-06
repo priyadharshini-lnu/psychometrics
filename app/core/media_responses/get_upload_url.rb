@@ -9,14 +9,16 @@ module MediaResponses
 
     def call
       question = Question.find(question_id)
-
-      data = if question.type == 'VideoResponse'
-               MediaResponses::GetMultipartUploadUrls.call!(result, question_id)
-             else
-               MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id)
-             end
-
-      broadcast(:ok, data)
+      begin
+        data = if question.type == 'VideoResponse'
+                 MediaResponses::GetMultipartUploadUrls.call!(result, question_id)
+               else
+                 MediaResponses::GetSinglePresignedUploadUrl.call!(result, question_id)
+               end
+        broadcast(:ok, data)
+      rescue StandardError => e
+        broadcast(:error, e)
+      end
     end
 
     private

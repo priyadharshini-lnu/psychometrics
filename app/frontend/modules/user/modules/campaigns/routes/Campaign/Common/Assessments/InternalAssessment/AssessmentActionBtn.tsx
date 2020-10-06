@@ -71,7 +71,9 @@ const AssessmentActionBtn: React.FC<Props> = ({
       condition={disabled}
       wrap={children => (
         <Tooltip placement="topRight" title={disabledReason}>
-          {children}
+          <span>
+            {children}
+          </span>
         </Tooltip>
       )}
     >
