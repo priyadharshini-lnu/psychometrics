@@ -120,6 +120,14 @@ const HANDLERS = {
       userAssessments, (userAssessment: UserAssessment) => userAssessment.id !== response,
     ))
   ),
+  [RESET]: (state: State, { response }: { response: UserAssessment }) => (
+    updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.map(userAssessments,
+      (userAssessment: UserAssessment) => {
+        if (userAssessment.id === response.id) { return response }
+
+        return userAssessment
+      }))
+  ),
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormAction) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== request.body.campaignAssessmentId) return assessment

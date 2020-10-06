@@ -35,7 +35,7 @@ module Administration
       def reset
         ::UsersResults::Reset.call!(resource)
 
-        render json: :ok
+        render json: resource, serializer: UserAssessmentSerializer
       end
 
       private
