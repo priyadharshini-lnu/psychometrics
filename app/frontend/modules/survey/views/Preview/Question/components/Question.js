@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import Previews from 'components/modules/Previews'
 import QuestionSerializer from 'models/QuestionSerializer'
 import { initAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
@@ -64,7 +65,7 @@ class Question extends Component {
       >
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}
-          <div className={styles.contentOuter}>
+          <div className={cs(styles.contentOuter, 'fr-view')}>
             {this.renderPreview()}
           </div>
         </div>

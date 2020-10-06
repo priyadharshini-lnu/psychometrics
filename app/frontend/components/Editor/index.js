@@ -79,9 +79,13 @@ function Editor ({
     tableStyles: {
       'table-minimal-hr': 'Minimal',
       'table-full-width': 'Full Width',
+      'fr-dashed-borders': 'Dashed Borders',
+      'fr-alternate-rows': 'Alternate Rows',
     },
     tableCellStyles: {
       'table-cell-header': 'Header',
+      'fr-highlighted': 'Highlighted',
+      'fr-thick': 'Thick',
     },
     toolbarSticky: false,
     videoInsertButtons: ['videoByURL', '|', 'videoEmbed'],
