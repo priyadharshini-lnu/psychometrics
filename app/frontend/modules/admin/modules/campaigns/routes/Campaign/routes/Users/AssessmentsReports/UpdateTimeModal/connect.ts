@@ -1,12 +1,13 @@
 import { connect, ConnectedProps } from 'react-redux'
-import { getCurrent, extendTime } from 'modules/admin/modules/campaigns/core/users'
+import { getSingle, updateAdditionalTime } from 'modules/admin/modules/campaigns/core/userAssessments'
+import { OwnProps } from './UpdateTimeModal'
 
 const connecter = connect(
-  state => ({
-    assessment: getCurrent(state),
+  (state, props: OwnProps) => ({
+    assessment: getSingle(state, props.campaignAssessmentId),
   }),
   {
-    extendTime,
+    updateAdditionalTime,
   },
 )
 
