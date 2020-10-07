@@ -34,7 +34,7 @@ const StaticContent = ({
   return (
     <div
       ref={containerRef}
-      className={cs(styles.container, getStaticContentClasses())}
+      className={cs(styles.container, getStaticContentClasses(), 'fr-view')}
     >
       <div
         className={styles.box}
