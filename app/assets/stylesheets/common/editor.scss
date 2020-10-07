@@ -22,7 +22,9 @@ table.table-minimal-hr {
 table.table-full-width {
     width: 100%;
 }
-
+.fr-popup {
+    z-index: 999999 !important;
+}
 // Froala Audio Plugin
 .fr-audio {
     display: block;
