@@ -48,10 +48,20 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   return (
     <div className={styles.container}>
       <Section>
-        <TimeZoneSelect
-          label={I18n.t('administration.time_zone')}
-          {...parametersForField('timeZone')}
-        />
+        <div className="mbl">
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={2}>{I18n.t('administration.time_zone')}</Col>
+                <Col span={22}>
+                  <TimeZoneSelect
+                    {...parametersForField('timeZone')}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
 
         <Option
           label={I18n.t('administration.campaigns.options.fixed_time')}
@@ -59,11 +69,20 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
         />
 
         {options.fixedTime && (
-          <DurationSelect
-            label={I18n.t('administration.campaigns.options.duration')}
-            className={styles.durationSelect}
-            {...parametersForField('fixedTimeDuration')}
-          />
+          <div className="mbl">
+            <Row>
+              <Col span={24}>
+                <Row>
+                  <Col span={22} offset={2}>
+                    <DurationSelect
+                      className={styles.durationSelect}
+                      {...parametersForField('fixedTimeDuration')}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
         )}
 
         <Option

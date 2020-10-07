@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment-timezone'
-import { Row, Col, Select } from 'antd'
+import { Select } from 'antd'
 
 const zones = [
   'Pacific/Midway',
@@ -165,7 +165,6 @@ interface Props {
 
 const TimeZoneSelect: React.FC<Props> = ({
   value = Intl.DateTimeFormat().resolvedOptions().timeZone,
-  label,
   onChange,
   ...props
 }) => {
@@ -181,28 +180,17 @@ const TimeZoneSelect: React.FC<Props> = ({
   }
 
   return (
-    <div className="mbl">
-      <Row>
-        <Col span={24}>
-          <Row>
-            <Col span={2}>Time Zone</Col>
-            <Col span={22}>
-              <Select
-                showSearch
-                value={selectedTimeZone}
-                onChange={handleChange}
-                style={{ width: 240 }}
-                optionFilterProp="children"
-                filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-                {...props}
-              >
-                {options.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
-              </Select>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+    <Select
+      showSearch
+      value={selectedTimeZone}
+      onChange={handleChange}
+      style={{ width: 240 }}
+      optionFilterProp="children"
+      filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+      {...props}
+    >
+      {options.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
+    </Select>
   )
 }
 

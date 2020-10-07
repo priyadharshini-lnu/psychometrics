@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
-import { Row, Col, TimePicker } from 'antd'
+import { TimePicker } from 'antd'
 
 interface Props {
   value: string
@@ -11,7 +11,6 @@ interface Props {
 
 const DurationSelect: React.FC<Props> = ({
   value,
-  label = '',
   onChange,
   ...props
 }) => {
@@ -34,22 +33,12 @@ const DurationSelect: React.FC<Props> = ({
   }
 
   return (
-    <div className="mbl">
-      <Row>
-        <Col span={24}>
-          <Row>
-            <Col span={22} offset={2}>
-              <TimePicker
-                format={format}
-                onChange={handleChange}
-                defaultValue={moment(asFormattedString(duration as number), format)}
-                {...props}
-              />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+    <TimePicker
+      format={format}
+      onChange={handleChange}
+      defaultValue={moment(asFormattedString(duration as number), format)}
+      {...props}
+    />
   )
 }
 
