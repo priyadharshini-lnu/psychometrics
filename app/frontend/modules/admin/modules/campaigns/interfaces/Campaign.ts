@@ -1,5 +1,6 @@
 export default interface Campaign {
   id: number
+  projectId: number
   name: string
   type: string
   status: string

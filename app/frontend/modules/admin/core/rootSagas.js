@@ -12,6 +12,7 @@ import { watchers as emailScheduleWatchers } from '../modules/threeSixtyCampaign
 import { watchers as recipientCriteriaWatchers } from '../modules/threeSixtyCampaign/core/emailSchedules/recipientCriteria'
 import { watchers as campaignAssessment } from '../modules/campaigns/core/assessments/watchers'
 import { watchers as user } from '../modules/campaigns/core/users'
+import { watchers as campaign } from '../modules/campaigns/core/list'
 
 
 export default function* () {
@@ -28,5 +29,6 @@ export default function* () {
     ...filterAndPaginationWatcher,
     ...campaignAssessment,
     ...user,
+    ...campaign,
   ])
 }
