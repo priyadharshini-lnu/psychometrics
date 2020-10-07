@@ -73,6 +73,8 @@ class Report < ApplicationRecord
     end
   end
 
+  scope :assignable, -> { where(disabled: false, archived: false) }
+
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
   has_many :campaign_templates, dependent: :destroy
