@@ -61,8 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
 --
@@ -546,6 +544,7 @@ CREATE TABLE public.campaign_options (
     time_zone character varying,
     fixed_time boolean DEFAULT false,
     fixed_time_duration integer,
+    instructions_enabled boolean DEFAULT false,
     instructions text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -2808,7 +2807,9 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -2979,7 +2980,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -5427,13 +5430,6 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
--- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
-
-
---
 -- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6077,7 +6073,7 @@ ALTER TABLE ONLY public.ecommerce_purchases
 --
 
 ALTER TABLE ONLY public.agile_events
-    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_37e3f56836 FOREIGN KEY (users_result_id) REFERENCES public.users_results(id);
 
 
 --
@@ -7297,12 +7293,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200913050839'),
 ('20200913071803'),
 ('20200914055928'),
-('20200914152341'),
 ('20200922123931'),
 ('20200923102431'),
 ('20200927105604'),
 ('20200929061648'),
 ('20200930103418'),
-('20201004131024');
+('20201004131024'),
+('20201007061140');
 
 

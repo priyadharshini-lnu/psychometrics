@@ -264,15 +264,7 @@ module DataMigration
         log("migrating registration codes of subject #{subject.id}...")
 
         subject.registration_codes.each do |code|
-          RegistrationCode.create(
-            code.
-            attributes.
-            except('id').
-            merge(
-              'end_level_id' => nil,
-              'campaign_id' => campaign_id
-            )
-          )
+          RegistrationCode.update_attribute(:campaign_id, campaign_id)
         end
       end
     end
