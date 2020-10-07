@@ -1,0 +1,5 @@
+:global(.ant-layout-content) {
+  &.pageContent {
+    min-height: calc(100vh - 172px);
+  }
+}
