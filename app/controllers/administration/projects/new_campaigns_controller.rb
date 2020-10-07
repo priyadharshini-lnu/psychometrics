@@ -10,7 +10,7 @@ module Administration
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :set_campaign, only: %i[
-        show update assessments_and_reports fetch_campaign_options update_campaign_options
+        show update assessments_and_reports fetch_campaign_options update_campaign_options destroy
       ]
 
       def index
@@ -28,6 +28,13 @@ module Administration
               total: campaigns.count
             }, each_serializer: Administration::Campaigns::CampaignSerializer
           end
+        end
+      end
+
+      def destroy
+        ::Campaigns::Remove.call(@campaign) do
+          on(:ok) { render json: @campaign.id }
+          on(:error) { |errors| return render json: { errors: errors }, status: 422 }
         end
       end
 

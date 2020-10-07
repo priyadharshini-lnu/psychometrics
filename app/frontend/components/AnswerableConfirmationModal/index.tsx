@@ -4,15 +4,21 @@ import {
 } from 'antd'
 import { CheckOutlined } from '@ant-design/icons'
 
-export default function AnswerableConfirmationModal ({
-  confirmationTitle,
-  confirmationMessage,
-  requiredAnswer,
-  onConfirm,
-  onWrongAnswer,
-  onCancel,
-  children,
-}) {
+interface Props {
+  confirmationTitle?: string
+  confirmationMessage: string
+  requiredAnswer: string
+  onConfirm(): void
+  onWrongAnswer?(): void
+  onCancel(): void
+  children?: HTMLElement
+}
+
+const { I18n } = window
+
+const AnswerableConfirmationModal: React.FC<Props> = ({
+  confirmationTitle, confirmationMessage, requiredAnswer, onConfirm, onWrongAnswer, onCancel, children,
+}) => {
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState(null)
 
@@ -71,3 +77,5 @@ export default function AnswerableConfirmationModal ({
     </Modal>
   )
 }
+
+export default AnswerableConfirmationModal

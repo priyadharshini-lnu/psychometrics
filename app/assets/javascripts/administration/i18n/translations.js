@@ -5781,6 +5781,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "update_success": "The group is successfully updated"
     },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
         "completion_statuses": {
           "completed": "Completed",
@@ -13037,6 +13043,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "update_success": "The group is successfully updated"
     },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
         "completion_statuses": {
           "completed": "Completed",
@@ -20290,6 +20302,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "update_success": "The group is successfully updated"
     },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
         "completion_statuses": {
           "completed": "Completed",
