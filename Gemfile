@@ -172,7 +172,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print', '~> 1.8.0'
   gem 'byebug', platform: :mri
-  gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'factory_bot_rails', '~> 6.1.0'
   gem 'hirb'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
@@ -207,7 +207,7 @@ group :test do
   gem 'capybara', '~> 3.32.0'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls', '~> 0.8.23', require: false
-  gem 'database_cleaner', '~> 1.7.0'
+  gem 'database_cleaner', '~> 1.8.5'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'
