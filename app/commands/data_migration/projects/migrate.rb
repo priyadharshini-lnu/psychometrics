@@ -55,7 +55,6 @@ module DataMigration
         create_campaign_assessments(subject)
         migrate_assigns(subject)
         migrate_registration_codes(subject)
-        migrate_hogan_credentials(subject)
       end
 
       def create_campaign(subject)
@@ -184,7 +183,7 @@ module DataMigration
           embedded_data scoring status step current_element
           current_page seedrandom meta_data external_results
           selected_locale reset_count additional_time
-          completed_at expiry_date last_activity_at
+          completed_at expiry_date last_activity_at started_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
         attributes['campaign_id'] = subject.id

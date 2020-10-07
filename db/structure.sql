@@ -3219,7 +3219,8 @@ CREATE TABLE public.users_results (
     norm_type character varying,
     selected_locale character varying,
     additional_time integer,
-    reset_count integer DEFAULT 0
+    reset_count integer DEFAULT 0,
+    started_at timestamp without time zone
 );
 
 
@@ -7299,6 +7300,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200929061648'),
 ('20200930103418'),
 ('20201004131024'),
-('20201007061140');
+('20201007061140'),
+('20201007072553');
 
 
