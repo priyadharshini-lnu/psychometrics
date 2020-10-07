@@ -6,7 +6,7 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import DurationSelect from 'components/DurationSelect'
 import Editor from 'components/Editor'
-import { Button } from 'antd'
+import { Row, Col, Button } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -72,27 +72,30 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
         />
 
         {options.instructionsEnabled && (
-          <>
-            <div className={styles.content}>
-              <Editor
-                type={null}
-                details={null}
-                className={null}
-                content={instructions || options.instructions}
-                handleContentChange={(value) => { setInstructions(value) }}
-              />
-            </div>
-
-            <Button
-              type="primary"
-              size="large"
-              className="mtm"
-              onClick={saveInstructions}
-            >
-              <SaveOutlined />
-              Save
-            </Button>
-          </>
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={16} offset={2}>
+                  <Editor
+                    type={null}
+                    details={null}
+                    className={null}
+                    content={instructions || options.instructions}
+                    handleContentChange={(value) => { setInstructions(value) }}
+                  />
+                  <Button
+                    type="primary"
+                    size="large"
+                    className="mtm"
+                    onClick={saveInstructions}
+                  >
+                    <SaveOutlined />
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         )}
       </Section>
     </div>

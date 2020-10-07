@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment-timezone'
-import { Form, Select } from 'antd'
+import { Row, Col, Select } from 'antd'
 
 const zones = [
   'Pacific/Midway',
@@ -181,19 +181,28 @@ const TimeZoneSelect: React.FC<Props> = ({
   }
 
   return (
-    <Form.Item label={label}>
-      <Select
-        showSearch
-        value={selectedTimeZone}
-        onChange={handleChange}
-        style={{ width: 240, marginLeft: 25 }}
-        optionFilterProp="children"
-        filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-        {...props}
-      >
-        {options.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
-      </Select>
-    </Form.Item>
+    <div className="mbl">
+      <Row>
+        <Col span={24}>
+          <Row>
+            <Col span={2}>Time Zone</Col>
+            <Col span={22}>
+              <Select
+                showSearch
+                value={selectedTimeZone}
+                onChange={handleChange}
+                style={{ width: 240 }}
+                optionFilterProp="children"
+                filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                {...props}
+              >
+                {options.map(option => <Option key={option.value} value={option.value}>{option.label}</Option>)}
+              </Select>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </div>
   )
 }
 
