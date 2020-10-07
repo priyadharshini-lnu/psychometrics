@@ -50,14 +50,8 @@ export default function Campaign ({
   const isMD = useMedia('max-md')
   const hasStarted = !!campaignUser.startedAt
 
-  const timerOptions = {
-    startedAt,
-    duration,
-    onFinish: onTimerFinish,
-  }
-
   const onBeginCampaign = () => {
-    beginCampaign(campaign.id, campaignUser.id)
+    beginCampaign(campaignUser.id)
   }
 
   const onTimerFinish = () => {
@@ -75,7 +69,8 @@ export default function Campaign ({
                   currentUser={currentUser}
                   counters={counters}
                   showTimer={!!fixedTime && hasStarted}
-                  timerOptions={timerOptions}
+                  timerOptions={{ startedAt, duration }}
+                  onFinish={onTimerFinish}
                 />
                 {campaignClosed && (
                   <div className="mvm font-bold">

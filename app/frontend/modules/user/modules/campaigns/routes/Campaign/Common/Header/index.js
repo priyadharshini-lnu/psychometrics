@@ -5,9 +5,11 @@ import {
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 
 export default function Header ({
-  currentUser, counters, showTimer, timerOptions: { startedAt, duration, onFinish },
+  currentUser, counters, showTimer, timerOptions: { startedAt, duration }, onFinish,
 }) {
-  const deadline = new Date().setMinutes(new Date(startedAt).getMinutes() + duration)
+  const deadline = new Date(startedAt)
+  deadline.setMinutes(deadline.getMinutes() + duration)
+
   return (
     <div className="campaign-header">
       <div className="left">
