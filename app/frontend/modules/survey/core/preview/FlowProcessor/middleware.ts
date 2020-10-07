@@ -72,7 +72,7 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const questions = pageQuestionsWithoutHidden(preview)
-  const errors = ValidationProcessor.run(questions, preview.results)
+  const errors = ValidationProcessor.run(questions, preview.results, preview.mediaResponses)
 
   if (_.size(errors) > 0) {
     dispatch(showErrors(errors))

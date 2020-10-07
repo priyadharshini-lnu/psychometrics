@@ -11,10 +11,10 @@ class BuildMindmillResultsJob < ApplicationJob
     mindmill = Api::Mindmill.new(assign, current_membership, user_locale)
     mindmill.load_results
     mindmill.load_scores
-    raise StandardError, 'Unable to fetch mindmill report' unless mindmill.report && mindmill.scores
+    raise StandardError, 'Unable to fetch mindmill report' unless mindmill.scores
 
     normalised_scores = Imports::External::BaseExternalImport.build(:mindmill).process(mindmill.scores, assign)
-    report = "data:application/pdf;base64,#{mindmill.report}"
+    report = mindmill.report ? "data:application/pdf;base64,#{mindmill.report}" : nil
     assign.update(
       mindmill_report: report,
       external_results: normalised_scores,

@@ -30,7 +30,9 @@ module EndUser
     end
 
     def user_reports
-      object.user_reports.where(user_id: current_user.id, user_access: true)
+      object.user_reports.eager_load(:report).
+        where(user_id: current_user.id, user_access: true).
+        merge(Report.assignable)
     end
 
     def campaign_user

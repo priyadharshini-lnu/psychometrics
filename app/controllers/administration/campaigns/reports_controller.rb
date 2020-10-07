@@ -55,8 +55,8 @@ module Administration
       def report_families
         report_families = campaign.client.
                           report_families.
-                          includes(:reports).
-                          where(reports: { disabled: false }).
+                          eager_load(:reports).
+                          merge(Report.assignable).
                           references(:reports).
                           distinct
         render json: report_families,
