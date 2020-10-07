@@ -14,13 +14,15 @@ import Modals from 'modules/admin/components/Modals/'
 import array from 'utils/array'
 import styles from './styles.scss'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
-import CommonCampaignFormModal from '../CampaignList/CommonCampaignFormModal'
+import CommonCampaignFormModal from './CommonCampaignFormModal'
+import RemoveCampaignModal from './RemoveCampaignModal'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
 import Breadcrumb from '../../components/Breadcrumb'
 
 const MODALS = {
   CommonCampaignFormModal,
   ThreesixtyCampaignFormModal,
+  RemoveCampaignModal,
 }
 
 const { I18n } = window
@@ -189,6 +191,7 @@ const CampaignList: React.FC<Props> = ({
                           },
                         })
                       },
+                      onDelete: () => { openModal('RemoveCampaignModal', { projectId, campaign }) },
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -258,9 +261,10 @@ const ResourcesTag: React.FC<ResourcesProps> = ({ resources, type }) => {
 
 interface ActionMenuProps {
   onEdit(): void
+  onDelete(): void
 }
 
-const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit }) => (
+const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit, onDelete }) => (
   <Menu>
     <Menu.Item key="edit">
       <div
@@ -275,7 +279,13 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit }) => (
         Copy
     </Menu.Item>
     <Menu.Item key="delete">
+      <div
+        role="button"
+        tabIndex={-1}
+        onClick={onDelete}
+      >
         Delete
+      </div>
     </Menu.Item>
   </Menu>
 )

@@ -9,7 +9,6 @@ const { I18n } = window
 
 export interface OwnProps {
   close(): void
-  campaignAssessmentId: number
   campaignId: number
   userId: number
   loading: boolean
@@ -17,15 +16,15 @@ export interface OwnProps {
 
 export type Props = OwnProps & PropsFromRedux
 
-const UpdateTimeModal: React.FC<Props> = ({
-  close, campaignId, loading, updateAdditionalTime, campaignAssessmentId,
+const UpdateCampaignTimeModal: React.FC<Props> = ({
+  close, campaignId, loading, extendTime, userId,
 }) => {
   const [form] = Form.useForm()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_fields, setFields] = useState({})
 
   const handleUpdate = (params) => {
-    updateAdditionalTime(campaignId, campaignAssessmentId, params.additionalTime)
+    extendTime(campaignId, userId, params.additionalTime)
     close()
   }
   return (
@@ -64,4 +63,4 @@ const UpdateTimeModal: React.FC<Props> = ({
   )
 }
 
-export default UpdateTimeModal
+export default UpdateCampaignTimeModal

@@ -12,7 +12,7 @@ class Campaign < ApplicationRecord
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :datasheet, through: :project
-  has_one :campaign_options
+  has_one :campaign_options, dependent: :destroy
   delegate :fixed_time?, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions, to: :campaign_options
 
   has_many :relationships, dependent: :destroy
@@ -27,13 +27,13 @@ class Campaign < ApplicationRecord
                                                      class_name: 'Threesixty::InstructionTemplate'
   has_many :user_assessments, dependent: :destroy
   has_many :users_results, dependent: :destroy
-  has_many :campaign_reports
+  has_many :campaign_reports, dependent: :destroy
   has_many :reports, through: :campaign_reports
-  has_many :campaign_assessments
-  has_many :campaign_assessment_groups
+  has_many :campaign_assessments, dependent: :destroy
+  has_many :campaign_assessment_groups, dependent: :destroy
   has_many :assessments, through: :campaign_assessments
   has_many :users, through: :campaign_users
-  has_many :registration_codes
+  has_many :registration_codes, dependent: :destroy
 
   delegate :client, to: :project
   THREESIXTY = 'threesixty'
@@ -46,10 +46,6 @@ class Campaign < ApplicationRecord
   end
 
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
-
-  def can_destroy?
-    [subjects.exists?, evaluators.exists?, participants.exists?].none?
-  end
 
   private
 

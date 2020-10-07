@@ -7,6 +7,10 @@ en:
           completed: Completed
           in_progress: In Progress
           interrupted: Interrupted
+      actions:
+        remove:
+          confirmation: Enter current campaign name given below in text box to remove campaign
+          success: '%{campaignName} removed successfully.'
   campaign:
     welcome: 'Welcome'
     begin: Begin Assessment

@@ -12,7 +12,7 @@ import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/routes/Manage/AddReportModal'
 import UpdateNormModal from './UpdateNormModal'
-import UpdateTimeModal from './UpdateTimeModal'
+import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -22,7 +22,7 @@ const { I18n } = window
 const MODALS = {
   AddReportModal,
   UpdateNormModal,
-  UpdateTimeModal,
+  UpdateCampaignTimeModal,
 }
 
 interface OwnProps {
@@ -184,7 +184,7 @@ const AssessmentsReports: React.FC<Props> = ({
                     <Button
                       type="danger"
                       size="small"
-                      onClick={() => openModal('UpdateTimeModal', {
+                      onClick={() => openModal('UpdateCampaignTimeModal', {
                         campaignId: parsedCampaignId,
                         userId: parsedUserId,
                         updateAdditionalTime: extendTime,

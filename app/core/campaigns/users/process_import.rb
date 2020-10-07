@@ -21,7 +21,7 @@ module Campaigns
             if user
               update_user!(user, attrs)
             else
-              form = ::Campaigns::Users::CreateForm.new(attrs.merge(operation: operation))
+              form = ::Campaigns::Users::Import::CreateForm.new(attrs.merge(operation: operation))
               ::Campaigns::Users::Create.call(form, campaign, current_user) do
                 on(:error) do |error|
                   raise Licenses::NotEnoughError, error.inspect

@@ -90,7 +90,7 @@ export default function UserAssessment ({
                   data={assessment}
                   result={results}
                   locales={translations}
-                  dashboardUrl="/assessment_completed"
+                  dashboardUrl={`/campaigns/${campaignId}`}
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
                   rstore={store}

@@ -11,6 +11,7 @@ export const get = (state): Campaign[] => _.get(state, ['campaigns', 'list'])
 export const FETCH = 'campaigns/FETCH_CAMPAIGNS'
 export const CREATE = 'resource/campaign/CREATE'
 export const UPDATE = 'resource/campaign/UPDATE'
+export const REMOVE = 'resource/campaign/REMOVE'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
 
 export const fetch = (projectId: string, tableConfig: TableConfig) => ({
@@ -47,6 +48,13 @@ export const fetchTemplatesAndAssessments = (projectId): ApiAction<TemplateAndAs
   },
 })
 
+export const remove = (campaignId: number, projectId: number) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}`,
+  },
+})
 
 export interface FetchAction {
   response: {
@@ -54,6 +62,7 @@ export interface FetchAction {
     campaigns: Campaign[]
   }
 }
+
 
 const HANDLERS = {
   [FETCH]: (_, { response }: FetchAction) => response.campaigns,
@@ -64,6 +73,10 @@ const HANDLERS = {
 
       return campaign
     })
+  ),
+
+  [REMOVE]: (state: Campaign[], { response }: { response: number }) => (
+    state.filter(campaign => campaign.id !== response)
   ),
 }
 
