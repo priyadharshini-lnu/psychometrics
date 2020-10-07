@@ -16,7 +16,7 @@ export interface Question {
   type?: string
   display_logic?: object
   skip_logic?: object[]
-  required_validation?: object
+  required_validation?: { enabled: boolean, type: string }
   props?: any
   hidden?: boolean
 }
