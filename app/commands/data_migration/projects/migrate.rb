@@ -55,6 +55,7 @@ module DataMigration
         create_campaign_assessments(subject)
         migrate_assigns(subject)
         migrate_registration_codes(subject)
+        migrate_hogan_credentials(subject)
       end
 
       def create_campaign(subject)
@@ -91,7 +92,24 @@ module DataMigration
             active: !membership.disabled
           )
           campaign_user.save!
+
+          update_hogan_credential(membership)
+          update_privacy_consents(membership)
         end
+      end
+
+      def update_hogan_credential(membership)
+        log('updating hogan credentials...', logger.level + 1)
+        return unless membership.hogan_credential
+
+        membership.hogan_credential.update_attribute(:user_id, membership.user_id)
+      end
+
+      def update_privacy_consents(membership)
+        log('updating privacy consent...', logger.level + 1)
+        return unless membership.privacy_consents
+
+        membership.privacy_consents.each { |p| p.update_attribute(:user_id, membership.user_id) }
       end
 
       # Migrate ClientsReport
@@ -263,9 +281,7 @@ module DataMigration
         campaign_id = out_stack[:campaigns].last
         log("migrating registration codes of subject #{subject.id}...")
 
-        subject.registration_codes.each do |code|
-          RegistrationCode.update_attribute(:campaign_id, campaign_id)
-        end
+        subject.registration_codes.each { code.update_attribute(:campaign_id, campaign_id) }
       end
     end
     # rubocop:enable Metrics/ClassLength
