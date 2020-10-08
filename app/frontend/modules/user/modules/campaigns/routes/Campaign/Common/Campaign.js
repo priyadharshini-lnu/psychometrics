@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react'
 import {
-  Layout, Row, Col, Alert, List, Avatar, Button, Tag,
+  Layout, Row, Col, Alert, List, Avatar, Button, Tag, Result,
 } from 'antd'
 import { ArrowDownOutlined } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
@@ -43,6 +43,7 @@ export default function Campaign ({
   } = campaign
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
+  const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
   let prevGroup
   const ungrouped = _.compact(
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
@@ -72,6 +73,14 @@ export default function Campaign ({
                   timerOptions={{ startedAt, duration }}
                   onFinish={onTimerFinish}
                 />
+                {allAssessmentsComplete && (
+                  <Result
+                    status="success"
+                    title="Thank you for your time"
+                    subTitle="All activities are now complete."
+                    className="custom-result mvl"
+                  />
+                )}
                 {campaignClosed && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
