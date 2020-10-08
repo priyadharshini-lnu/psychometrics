@@ -51,7 +51,7 @@ const StaticContent = ({
         <div
           onMouseUp={handleMouseUp}
           ref={contentRef}
-          className={styles.content}
+          className={`${styles.content} highlight-container`}
           dangerouslySetInnerHTML={{ __html: innerHTML }}
         />
       </div>
