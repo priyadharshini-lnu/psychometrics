@@ -91,6 +91,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   private
 
   def check_user_response(user_response)
+    user_response['campaigns'] = user_response['campaigns'].map { |c| c.slice('name', 'id') }
     expect(user_response).to eq({
       'id' => user.id,
       'full_name' => user.decorate.full_name,
