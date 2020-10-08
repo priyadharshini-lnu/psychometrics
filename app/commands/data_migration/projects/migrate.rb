@@ -67,10 +67,8 @@ module DataMigration
         )
 
         campaign.name = [subject.parent.name, subject.name].join(' - ') if subject.sub_campaign?
-        campaign.status = if subject.archived?
+        campaign.status = if subject.disabled?
                             'archived'
-                          elsif subject.disabled?
-                            'inactive'
                           else
                             'active'
                           end
@@ -203,9 +201,11 @@ module DataMigration
       end
 
       def create_mindmill_credentials(assign, users_result)
+        return if assign.mindmill_prefix.blank?
+
         log("creating mindmill credentials for assign##{assign.id}", logger.level + 1)
         users_result.create_mindmill_credential({
-          user_name: "#{Settings.assigns.mindmill_prefix}#{assign.id}",
+          user_name: "#{assign.mindmill_prefix}#{assign.id}",
           password: 'default'
         })
       end
