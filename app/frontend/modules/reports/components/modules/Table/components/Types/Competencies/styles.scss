@@ -73,18 +73,21 @@
 .legend {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 10px;
 }
 
 .legendItem {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
+  margin-bottom: 0.4em;
 }
 
 .legendItemName {
   font-size: 80%;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 body:not([data-locale="ar"]) {

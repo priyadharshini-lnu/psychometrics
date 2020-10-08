@@ -42,7 +42,7 @@ export default function Factor ({ model, filters }) {
       return { ...filter, value }
     })
 
-    return _.sortBy(enhancedFilters, 'value')
+    return enhancedFilters
   }
 
   const {
