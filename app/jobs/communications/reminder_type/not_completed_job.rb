@@ -17,7 +17,8 @@ module Communications
       def fetch_campaign_users(communication)
         communication.selected_campaign_users.
           joins(user_assessments: :users_result).
-          where(user_assessments: { campaign_id: communication.campaign_id, users_results: { status: :completed } }).
+          where(user_assessments: { campaign_id: communication.campaign_id }).
+          where.not(user_assessments: { users_results: { status: :completed } }).
           distinct
       end
     end
