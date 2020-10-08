@@ -7,6 +7,7 @@ import Header from 'layouts/AssessmentPreview/Header'
 import { setStore } from 'store/StoreWatchman'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
+import 'utils/i18n'
 
 class AssessmentContainer extends Component {
   componentDidMount () {
