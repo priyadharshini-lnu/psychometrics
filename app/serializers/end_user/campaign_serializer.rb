@@ -16,7 +16,7 @@ module EndUser
       return object.status unless campaign_user.started_at
 
       expected_end_time = campaign_user.started_at + object.fixed_time_duration.minutes
-      return 'closed' if expected_end_time < Time.now && object.status == 'active'
+      return 'closed' if expected_end_time < Time.now && object.active?
 
       object.status
     end

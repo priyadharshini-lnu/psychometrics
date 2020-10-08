@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react'
 import ResourceFormModal from 'components/ResourceFormModal'
 import { STATUSES, TYPES } from 'constants/campaign'
 import {
-  Form, Input, Select, DatePicker, Typography, Space,
+  Form, Input, Select, DatePicker, Alert, Space,
 } from 'antd'
 import _ from 'lodash'
 import moment from 'moment'
 
 const { I18n } = window
 const { Option } = Select
-const { Text } = Typography
 
 interface Props {
   projectId: number
@@ -34,8 +33,8 @@ const disabledDateTime = () => ({
 })
 
 const notices = {
-  active: 'Note: Campaign status will automatically change to active on the selected start date & time',
-  inactive: 'Note: Campaign status will automatically change to closed on the selected end date & time',
+  active: 'Campaign status will automatically change to closed on the selected end date & time',
+  inactive: 'Campaign status will automatically change to active on the selected start date & time',
 }
 
 const CommonCampaignFormModal: React.FC<Props> = ({
@@ -102,7 +101,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             <DatePicker showTime format={format} disabledDate={disabledDate} />
           </Form.Item>
           <Space>
-            <Text mark strong>{notice}</Text>
+            {notice && <Alert message="Note" description={notice} type="warning" showIcon />}
           </Space>
           <Form.Item name="type" noStyle>
             <Input type="hidden" />
