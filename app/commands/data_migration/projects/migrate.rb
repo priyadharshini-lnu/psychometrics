@@ -273,7 +273,7 @@ module DataMigration
           pdf = assigns_report.read_attribute(:pdf)
         end
 
-        { pdf: pdf, pdf_path: pdf_path }
+        HashWithIndifferentAccess.new(pdf: pdf, pdf_path: pdf_path)
       end
 
       def migrate_registration_codes(subject)
