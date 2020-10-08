@@ -106,7 +106,7 @@ const Hogan: React.FC<Props> = ({
               <Progress
                 percent={userAssessment.completionPercent || 0}
                 strokeWidth={5}
-                strokeColor="#aaa"
+                strokeColor={userAssessment.status === 'completed' ? '#4eada7' : '#aaa'}
               />
             </div>
             <div className="button">
