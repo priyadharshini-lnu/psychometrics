@@ -145,7 +145,7 @@ export default function Campaign ({
                           </Col>
                         )
                       })}
-                      {ungrouped.length && (
+                      {!!ungrouped.length && (
                         <Col xs={24} sm={24} lg={24} xl={24}>
                           <div className={cs('group')}>
                             <div className="group-title">{I18n.t('campaign.ungrouped')}</div>
