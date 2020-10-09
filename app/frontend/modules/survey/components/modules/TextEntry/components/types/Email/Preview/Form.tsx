@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Input, Form } from 'antd'
 import _ from 'lodash'
 import { I18n } from 'store/StoreWatchman'
@@ -27,7 +27,7 @@ const { TextArea } = Input
 
 const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
   const { answers: { message } } = model.result
-  const { maxLength } = model.props
+  const { maxLength, contacts } = model.props
   const defaultContactProps: ContactProps[] = [
     { type: TO_TYPE, visible: true },
     { type: CC_TYPE, visible: !_.isEmpty(model.result.answers[CC_TYPE]) },
@@ -36,8 +36,32 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
 
   const [contactProps, setContactProps] = useState<ContactProps[]>(defaultContactProps)
 
+  useEffect(() => {
+    // Without timeout, the answers get sent to the server before next button is clicked.
+    // Reason needs to be investigated.
+    const timeout = setTimeout(() => {
+      if (_.isUndefined(model.result.answers.subject)) {
+        handleTestChange('subject', I18n().tQuestion(model, 'subject'))
+      }
+      [TO_TYPE, CC_TYPE, BCC_TYPE].forEach((type: ContactType) => {
+        if (_.isUndefined(model.result.answers[type])) {
+          const defaultContacts = _.get(contacts, type)
+          if (defaultContacts) {
+            model.result.answer({ ...model.result.answers, [type]: defaultContacts })
+            showCopyField(type)
+          }
+        }
+      })
+    }, 200)
+    return () => clearTimeout(timeout)
+  }, [])
+
   const toggleCopyField = (type: ContactType): void => {
     setContactProps(contactProps.map(p => (p.type === type ? { ...p, visible: !p.visible } : p)))
+  }
+
+  const showCopyField = (type: ContactType): void => {
+    setContactProps(contactProps.map(p => (p.type === type ? { ...p, visible: true } : p)))
   }
 
   const handleTestChange = (key: string, value: string): void => {
