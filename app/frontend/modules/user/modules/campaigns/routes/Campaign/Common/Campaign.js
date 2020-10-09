@@ -21,7 +21,7 @@ const prevAssessmentsCompleted = (userAssessments, userAssessment) => {
 }
 
 const prevGroupIsCompleted = (campaign, group) => {
-  if (!group) { return false }
+  if (!group) { return true }
   const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
   return _.every(userAssessments, ua => ua.status === 'completed')
 }
