@@ -11,6 +11,7 @@ import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
 import { ConfigProvider } from 'antd'
 import rstore from '../store'
+import 'utils/i18n'
 
 class PreviewContainer extends Component {
   componentDidMount () {
