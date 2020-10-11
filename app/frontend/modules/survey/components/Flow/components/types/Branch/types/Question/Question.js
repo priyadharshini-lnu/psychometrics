@@ -9,7 +9,7 @@ export class Question extends Component {
 
   changeQuestionCondition = (cond) => {
     const { condition } = this.props
-    condition.setData(cond)
+    Object.assign(condition, cond)
     this.forceUpdate()
   }
 
