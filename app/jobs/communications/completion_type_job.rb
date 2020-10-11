@@ -19,7 +19,10 @@ module Communications
 
     def perform_migrated(user_result, communications)
       communications = communications.select { |c| c.project&.migrated? }
-      campaign_user = CampaignUser.find_by(campaign_id: user_result.campaign_id, user_id: user_result.user_id)
+      campaign_user = CampaignUser.find_by(
+        campaign_id: user_result.user_assessment.campaign_id,
+        user_id: user_result.user_id
+      )
       communications.each do |communication|
         if communication.selected_campaign_users.include?(campaign_user)
           communication.emails.create(campaign_user_id: campaign_user.id)

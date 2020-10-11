@@ -5,8 +5,8 @@ import { AnyAction } from 'redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import ApiAction from 'interfaces/ApiAction'
+import * as t from 'io-ts'
 import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
-
 
 const defaultState = []
 
@@ -28,27 +28,31 @@ export const fetch = (projectId: string, tableConfig: TableConfig) => ({
   },
 })
 
-export interface TemplateAndAssessment{
-  templates: CampaignTemplate[]
-  assessments: Assessment[]
-}
+const CampaignTemplate = t.type({
+  id: t.number,
+  name: t.string,
+  assessmentId: t.number,
+})
+export type CampaignTemplate = t.TypeOf<typeof CampaignTemplate>
 
-export interface CampaignTemplate {
-  id: number
-  name: string
-  assessmentId: number
-}
+const Assessment = t.type({
+  id: t.number,
+  name: t.string,
+})
+export type Assessment = t.TypeOf<typeof Assessment>
 
-export interface Assessment {
-  id: number
-  name: string
-}
+const TemplateAndAssessment = t.type({
+  templates: t.array(CampaignTemplate),
+  assessments: t.array(Assessment),
+})
+export type TemplateAndAssessment = t.TypeOf<typeof TemplateAndAssessment>
 
 export const fetchTemplatesAndAssessments = (projectId): ApiAction<TemplateAndAssessment> => ({
   type: FETCH_TEMPLATES_AND_ASSESSMENTS,
   request: {
     method: 'get',
     url: `/administration/projects/${projectId}/new_campaigns/templates_and_assessment`,
+    typedResponse: TemplateAndAssessment,
   },
 })
 

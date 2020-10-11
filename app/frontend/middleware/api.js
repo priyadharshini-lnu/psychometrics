@@ -1,10 +1,12 @@
 import axios from 'axios'
 import queryString from 'qs'
 import humps from 'humps'
-import { LOADING, LOADING_COMPLETE } from 'modules/admin/core/request'
+import { LOADING, LOADING_COMPLETE, setResponseDataMismatched } from 'modules/admin/core/request'
 import { setIn } from 'utils/immutable'
 import _ from 'lodash'
 import fileDownload from 'js-file-download'
+import { isRight } from 'fp-ts/Either'
+import { PathReporter } from 'io-ts/PathReporter'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -41,7 +43,7 @@ const apiMiddleware = () => next => (action) => {
   const {
     request,
     request: {
-      method: method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType,
+      method: method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`
@@ -64,9 +66,15 @@ const apiMiddleware = () => next => (action) => {
     })
     .then(({ data, headers }) => {
       if (responseType === 'blob') { downloadFile(data, headers) }
+      const transformedData = camelize ? humps.camelizeKeys(data) : data
+      if (window.PsyGlobalState.realEnv !== 'production' && !validResponseData({
+        typedResponse, transformedData, requestName: SUCCESS, next,
+      })) {
+        return next({ type: FAILURE, errors: {} })
+      }
       return next({
         type: SUCCESS,
-        response: camelize ? humps.camelizeKeys(data) : data,
+        response: transformedData,
         requestAction: action,
       })
     })
@@ -98,6 +106,21 @@ const downloadFile = (data, headers) => {
   }
 
   fileDownload(data, fileName)
+}
+
+const validResponseData = ({
+  typedResponse, transformedData, requestName, next,
+}) => {
+  if (typedResponse) {
+    const decoded = typedResponse.decode(transformedData)
+    const dataIsValid = isRight(decoded)
+    if (!dataIsValid) {
+      const errors = PathReporter.report(typedResponse.decode(transformedData))
+      next(setResponseDataMismatched(requestName, errors, transformedData))
+      return false
+    }
+  }
+  return true
 }
 
 export default apiMiddleware

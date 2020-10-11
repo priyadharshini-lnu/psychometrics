@@ -6,6 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import HTML5Backend from 'react-dnd-html5-backend'
 import { DndProvider } from 'react-dnd'
 import RouteList from 'components/RouteList'
+import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
 import routes from './routes'
 import settings from './settings'
 
@@ -20,6 +21,7 @@ const App: React.FC<void> = () => (
           </ConnectedRouter>
         </Router>
       </DndProvider>
+      <IncorrectResponseErrorModal />
     </Provider>
   </div>
 )

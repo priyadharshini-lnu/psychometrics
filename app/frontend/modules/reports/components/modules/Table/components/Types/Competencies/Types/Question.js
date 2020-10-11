@@ -42,7 +42,7 @@ function Question ({ filters, model, questions }) {
       return { ...filter, value: _.round(value, 2) }
     })
 
-    return _.sortBy(enhancedFilters, 'value')
+    return enhancedFilters
   }
 
   const findQuestion = () => _.find(

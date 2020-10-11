@@ -71,8 +71,9 @@ module Administration
         templates = policy_scope(CampaignTemplate).all
         campaigns = project.project_campaigns.where(type: 'threesixty').includes(threesixty_campaign: :assessment)
 
-        render json: { templates: templates, campaigns: campaigns },
-          serializer: Administration::Campaigns::TemplatesAndAssementsSerializer
+        render json: Administration::Campaigns::TemplatesAndAssementsSerializer.new({
+          templates: templates, campaigns: campaigns
+        }).to_h
       end
 
       def fetch_campaign_options
