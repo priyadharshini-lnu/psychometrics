@@ -6,6 +6,8 @@ const LEFT_SHIFT = 20
 const TOP_SHIFT = 45
 const MAX_WIDTH = 180
 
+const { $ } = window
+
 const Palette = ({
   removeHighlight,
   updateHighlightColor,
@@ -42,13 +44,16 @@ const Palette = ({
 
   const getPosition = () => {
     const [dom] = highlighter.getDoms(currentHighlight.id)
-    let left = dom.offsetLeft - LEFT_SHIFT
+    const containerOffset = $(dom).parents('.highlight-container').offset()
+    const domOffset = $(dom).offset()
+    let left = domOffset.left - containerOffset.left - LEFT_SHIFT
+
 
     if (contentRef.current.clientWidth - MAX_WIDTH < left) {
       left = contentRef.current.clientWidth - MAX_WIDTH
     }
 
-    const top = dom.offsetTop - contentRef.current.scrollTop - TOP_SHIFT
+    const top = domOffset.top - containerOffset.top - contentRef.current.scrollTop - TOP_SHIFT
     return { left: `${left < 0 ? 0 : left}px`, top: `${Math.max(0, top)}px` }
   }
 
