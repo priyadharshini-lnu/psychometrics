@@ -547,7 +547,10 @@ CREATE TABLE public.campaign_options (
     instructions_enabled boolean DEFAULT false,
     instructions text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    proctoring_enabled boolean DEFAULT false,
+    identification integer DEFAULT 0,
+    rules jsonb DEFAULT '{"allow_voices": false, "custom_rules": "", "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb
 );
 
 
@@ -3219,7 +3222,8 @@ CREATE TABLE public.users_results (
     norm_type character varying,
     selected_locale character varying,
     additional_time integer,
-    reset_count integer DEFAULT 0
+    reset_count integer DEFAULT 0,
+    started_at timestamp without time zone
 );
 
 
@@ -5430,13 +5434,6 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
--- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
-
-
---
 -- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7305,6 +7302,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200927105604'),
 ('20200929061648'),
 ('20200930103418'),
-('20201004131024');
+('20201004131024'),
+('20201007061140'),
+('20201007072553'),
+('20201011102042');
 
 

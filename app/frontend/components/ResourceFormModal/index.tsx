@@ -30,6 +30,7 @@ interface Props {
   formProps?: FormProps
   transformValues?(values: object): object
   scrollToFirstError?: boolean
+  notifyValuesChange?(changedValues: object, allValues: object): void
 }
 
 interface Request {
@@ -40,7 +41,15 @@ interface Request {
 
 const ResourceFormModal: React.FC<Props> = (props) => {
   const {
-    title, resourceName, close, modalProps, resource, resourceId, onSuccessfulSubmission, storeManager,
+    title,
+    resourceName,
+    close,
+    modalProps,
+    resource,
+    resourceId,
+    onSuccessfulSubmission,
+    storeManager,
+    notifyValuesChange,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
@@ -112,6 +121,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
         storeManager={{ ...store, ...(storeManager || {}) }}
         onStatusChange={setResourceStatus}
         onSuccessfulSubmission={handleSuccessfulSubmission}
+        notifyValuesChange={notifyValuesChange}
       />
     </Modal>
   )
