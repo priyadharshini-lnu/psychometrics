@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Layout, Row, Col, ConfigProvider, PageHeader,
+  Layout, Row, Col, ConfigProvider, PageHeader, Progress,
 } from 'antd'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import './styles.scss'
@@ -35,6 +35,8 @@ const Common: React.FC<Props> = ({
     },
   },
   preview,
+  preview: { enableProgress },
+  progress,
   markAssessmentTimedOut,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
@@ -61,6 +63,8 @@ const Common: React.FC<Props> = ({
             className="page-header"
             title={assessment.name}
             extra={[
+              enableProgress
+                  && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
               <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
             ]}
           />
