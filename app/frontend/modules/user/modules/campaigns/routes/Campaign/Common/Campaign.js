@@ -1,17 +1,16 @@
 /* eslint-disable react/no-danger */
-/* eslint-disable max-len */
 import React from 'react'
 import {
-  Layout, Row, Col, Alert, List, Avatar, Button, Tag,
+  Layout, Row, Col, Alert, List, Avatar, Button, Tag, Result,
 } from 'antd'
-import {
-  FileAddOutlined, HistoryOutlined, CheckCircleOutlined, ArrowDownOutlined,
-} from '@ant-design/icons'
+import { ArrowDownOutlined } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
 import './styles.scss'
 import cs from 'classnames'
 import { useMedia } from 'modules/user/rootHooks'
 import Assessments from './Assessments'
+import Header from './Header'
+import InstructionsPanel from './InstructionsPanel'
 
 const { Content } = Layout
 
@@ -22,21 +21,43 @@ const prevAssessmentsCompleted = (userAssessments, userAssessment) => {
 
 const prevGroupIsCompleted = (campaign, group) => {
   if (!group) { return true }
-  const userAssessments = _.filter(campaign.userAssessments, ua => _.includes(group.campaignAssessmentIds, ua.assessmentId))
+  const userAssessments = _.filter(
+    campaign.userAssessments,
+    ua => _.includes(group.campaignAssessmentIds, ua.assessmentId),
+  )
   return _.every(userAssessments, ua => ua.status === 'completed')
 }
 
 export default function Campaign ({
-  history, campaign, campaign: { userReports, groups }, currentUser,
-  loginHogan, acceptPolicy,
+  history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
+  loginHogan, acceptPolicy, beginCampaign, fetchCampaign,
 }) {
+  const {
+    campaignUser: { startedAt },
+    campaignOptions: {
+      instructionsEnabled,
+      instructions,
+      fixedTime,
+      fixedTimeDuration: duration,
+    },
+  } = campaign
   const campaignClosed = campaign.status === STATUSES.CLOSED
   const counters = _.countBy(campaign.userAssessments, 'status')
+  const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
   let prevGroup
   const ungrouped = _.compact(
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const isMD = useMedia('max-md')
+  const hasStarted = !!campaignUser.startedAt
+
+  const onBeginCampaign = () => {
+    beginCampaign(campaignUser.id)
+  }
+
+  const onTimerFinish = () => {
+    fetchCampaign(match.url)
+  }
 
   return (
     <Layout>
@@ -45,49 +66,33 @@ export default function Campaign ({
           <Col xs={24} lg={22} xl={22} xxl={22}>
             <div className="main-content">
               <>
-                <div className="campaign-header">
-                  <div className="left">
-                    <h2>
-                      {I18n.t('campaign.welcome_back')}
-                      {' '}
-                      {currentUser.fullName}
-                      !
-                    </h2>
-                  </div>
-                  <div className="right-wrapper">
-                    <div className="right">
-                      <div className="item">
-                        <div className="icon">
-                          <FileAddOutlined />
-                        </div>
-                        <div className="number">{counters.not_started || 0}</div>
-                        <div className="label">{I18n.t('campaign.new')}</div>
-                      </div>
-                      <div className="divider" />
-                      <div className="item">
-                        <div className="icon">
-                          <HistoryOutlined />
-                        </div>
-                        <div className="number">{counters.in_progress || 0}</div>
-                        <div className="label">{I18n.t('campaign.in_progress')}</div>
-                      </div>
-                      <div className="divider" />
-                      <div className="item">
-                        <div className="icon">
-                          <CheckCircleOutlined />
-                        </div>
-                        <div className="number">{counters.completed || 0}</div>
-                        <div className="label">{I18n.t('campaign.completed')}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Header
+                  currentUser={currentUser}
+                  counters={counters}
+                  showTimer={!!fixedTime && hasStarted}
+                  timerOptions={{ startedAt, duration }}
+                  onFinish={onTimerFinish}
+                />
+                {allAssessmentsComplete && (
+                  <Result
+                    status="success"
+                    title="Thank you for your time"
+                    subTitle="All activities are now complete."
+                    className="custom-result mvl"
+                  />
+                )}
                 {campaignClosed && (
-                  <div className="mbm mtm font-bold">
+                  <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
                 )}
-                <Row className="cards-container" gutter={16}>
+                <InstructionsPanel
+                  instructionsEnabled={instructionsEnabled}
+                  instructions={instructions}
+                  showBegin={!hasStarted}
+                  onBegin={onBeginCampaign}
+                />
+                <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>
                     <div className="panel-label">Assessments</div>
                     <Row gutter={[16, 16]}>

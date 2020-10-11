@@ -49,7 +49,7 @@ module Administration
     end
 
     def campaigns
-      object.campaigns.map { |c| c.slice(:id, :name) }
+      object.campaigns.map { |c| c.slice(:id, :name, :campaign_options) }
     end
 
     def user_assessments

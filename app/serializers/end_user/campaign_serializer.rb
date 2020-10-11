@@ -3,11 +3,23 @@
 module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
-    attributes :id, :name, :type, :status, :groups, :ungrouped_assessments_ids
+    attributes :id, :name, :type, :status, :start_date, :end_date,
+               :groups, :campaign_user, :ungrouped_assessments_ids
 
+    has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
+
+    def status
+      return object.status unless object.fixed_time?
+      return object.status unless campaign_user.started_at
+
+      expected_end_time = campaign_user.started_at + object.fixed_time_duration.minutes
+      return 'closed' if expected_end_time < Time.now && object.active?
+
+      object.status
+    end
 
     def groups
       object.campaign_assessment_groups.order(:position)
@@ -21,6 +33,10 @@ module EndUser
       object.user_reports.eager_load(:report).
         where(user_id: current_user.id, user_access: true).
         merge(Report.assignable)
+    end
+
+    def campaign_user
+      current_user.campaign_users.find_by(campaign_id: object.id)
     end
 
     def current_user

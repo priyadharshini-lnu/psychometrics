@@ -118,7 +118,7 @@ export interface UserDetails {
   fullName: string
   email: string
   active: boolean
-  campaigns: { id: number, name: string }[]
+  campaigns: { id: number, name: string, campaignOptions: { fixedTime: boolean } }[]
   createdAt: string
   lastSignInAt: string
   completionStatus: string

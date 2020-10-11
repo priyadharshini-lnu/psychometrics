@@ -21,6 +21,6 @@ export default function Campaign ({
 
   const Campaign = TYPES[campaign.type]
   return (
-    <Campaign history={history} />
+    <Campaign history={history} match={match} />
   )
 }

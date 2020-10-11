@@ -8,6 +8,47 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     background: $bg-gray;
   }
 
+  .ant-result {
+    &.custom-result {
+      color: #fff;
+      display: grid;
+      padding: 15px;
+      background: #029c37;
+      border-radius: 10px;
+
+      align-items: center;
+      grid-template-columns: 72px auto;
+      grid-template-rows: 36px 36px;
+      grid-auto-flow: column;
+
+      .ant-result-icon {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+
+        margin: 0;
+
+        > .anticon {
+          color: inherit;
+          font-size: 45px;
+        }
+      }
+
+      .ant-result-title {
+        color: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        align-self: end;
+        justify-self: start;
+      }
+
+      .ant-result-subtitle {
+        color: inherit;
+        align-self: start;
+        justify-self: start;
+      }
+    }
+  }
+
   .fluid-container.common-campaign {
     width: 100%;
     padding: 20px;
@@ -33,6 +74,8 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
       .left {
         padding: 32px;
         flex: 1;
+
+        .timer { margin-top: 10px; }
       }
       .right-wrapper {
         background: #9ed8d7;
@@ -272,6 +315,7 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     .group-title {
       font-size: 16px;
       font-weight: bold;
+      margin-bottom: 10px;
     }
   }
 
@@ -330,6 +374,11 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
 
   .cards-container {
     margin-top: 32px;
+
+    &.disabled {
+      opacity: 0.7;
+      pointer-events: none;
+    }
   }
 
   .page-header {
@@ -430,7 +479,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .actions-btn {}
       }
 
       .status-icon {
@@ -530,8 +578,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     font-size: 20px;
     color: $light-black;
   }
-
-  .task_cards {}
 
   .group {
     margin-bottom: 16px;

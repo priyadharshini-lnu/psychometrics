@@ -8,7 +8,7 @@ export default interface Campaign {
   endDate: Date
   assessments: Entity[]
   reports: Entity[]
-  options: CampaignOptions
+  isFixedTime: boolean
 }
 
 export interface Entity {

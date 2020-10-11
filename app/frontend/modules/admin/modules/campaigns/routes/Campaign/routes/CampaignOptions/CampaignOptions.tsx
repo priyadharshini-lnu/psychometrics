@@ -6,7 +6,7 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import DurationSelect from 'components/DurationSelect'
 import Editor from 'components/Editor'
-import { Button } from 'antd'
+import { Row, Col, Button } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -28,7 +28,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
-  const [instructions, updateInstructions] = useState(options.instructions)
+  const [instructions, setInstructions] = useState(options.instructions)
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -48,10 +48,20 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   return (
     <div className={styles.container}>
       <Section>
-        <TimeZoneSelect
-          label={I18n.t('administration.time_zone')}
-          {...parametersForField('timeZone')}
-        />
+        <div className="mbl">
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={2}>{I18n.t('administration.time_zone')}</Col>
+                <Col span={22}>
+                  <TimeZoneSelect
+                    {...parametersForField('timeZone')}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
 
         <Option
           label={I18n.t('administration.campaigns.options.fixed_time')}
@@ -59,11 +69,20 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
         />
 
         {options.fixedTime && (
-          <DurationSelect
-            label={I18n.t('administration.campaigns.options.duration')}
-            className={styles.durationSelect}
-            {...parametersForField('fixedTimeDuration')}
-          />
+          <div className="mbl">
+            <Row>
+              <Col span={24}>
+                <Row>
+                  <Col span={22} offset={2}>
+                    <DurationSelect
+                      className={styles.durationSelect}
+                      {...parametersForField('fixedTimeDuration')}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
         )}
 
         <Option
@@ -72,27 +91,30 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
         />
 
         {options.instructionsEnabled && (
-          <>
-            <div className={styles.content}>
-              <Editor
-                type={null}
-                details={null}
-                className={null}
-                content={options.instructions}
-                handleContentChange={(value) => { updateInstructions(value) }}
-              />
-            </div>
-
-            <Button
-              type="primary"
-              size="large"
-              className="mtm"
-              onClick={saveInstructions}
-            >
-              <SaveOutlined />
-              Save
-            </Button>
-          </>
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={16} offset={2}>
+                  <Editor
+                    type={null}
+                    details={null}
+                    className={null}
+                    content={instructions || options.instructions}
+                    handleContentChange={(value) => { setInstructions(value) }}
+                  />
+                  <Button
+                    type="primary"
+                    size="large"
+                    className="mtm"
+                    onClick={saveInstructions}
+                  >
+                    <SaveOutlined />
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
         )}
       </Section>
     </div>
