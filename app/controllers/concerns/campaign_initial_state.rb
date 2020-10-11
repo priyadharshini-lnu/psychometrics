@@ -12,7 +12,7 @@ module CampaignInitialState
   def set_init_state
     current_membership = current_user.memberships.find do |m|
       (m.project_admin? && m.client_id == project.id) || (m.client_admin? && m.client_id == project.parent_id)
-    end || {}
+    end
     @init_state = {
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
                   new(current_user, current_membership: current_membership).
