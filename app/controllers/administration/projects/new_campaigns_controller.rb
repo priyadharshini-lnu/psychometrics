@@ -131,7 +131,8 @@ module Administration
       end
 
       def campaign_options_params
-        resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions)
+        resource_params.permit(:fixed_time, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions,
+                               :proctoring_enabled, :rules, :identification)
       end
     end
   end

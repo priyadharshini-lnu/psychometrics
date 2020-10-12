@@ -10,6 +10,10 @@ en:
         duration: ''
         instructions:
           enable: Enable instructions
+        proctoring:
+          enable: Enable Proctoring
+          rules: rules
+          identification: Identification
       listing:
         id: Id
         name: Name

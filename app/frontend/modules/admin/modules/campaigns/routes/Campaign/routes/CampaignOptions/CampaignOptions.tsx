@@ -6,7 +6,9 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import DurationSelect from 'components/DurationSelect'
 import Editor from 'components/Editor'
-import { Row, Col, Button } from 'antd'
+import {
+  Row, Col, Button, Radio,
+} from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -30,16 +32,21 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
 
   const [instructions, setInstructions] = useState(options.instructions)
 
+  const identifications = { passport: 'Passport', face: 'Face', face_and_passport: 'Face and Passport' }
+
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
   }, [])
 
   const parametersForField = name => ({
     value: (options || {})[name],
-    onChange: (value: string | number) => {
-      update(parsedProjectId, parsedCampaignId, { ...options, [name]: value })
-    },
+    onChange: (value: string | number) => update(parsedProjectId, parsedCampaignId, { ...options, [name]: value }),
   })
+
+  const saveIdentificationType = (e) => {
+    const { value } = e.target
+    update(parsedProjectId, parsedCampaignId, { ...options, identification: value })
+  }
 
   const saveInstructions = () => {
     update(parsedProjectId, parsedCampaignId, { ...options, instructions })
@@ -52,7 +59,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
           <Row>
             <Col span={24}>
               <Row>
-                <Col span={2}>{I18n.t('administration.time_zone')}</Col>
+                <Col span={2}><label>{I18n.t('administration.time_zone')}</label></Col>
                 <Col span={22}>
                   <TimeZoneSelect
                     {...parametersForField('timeZone')}
@@ -84,6 +91,32 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
             </Row>
           </div>
         )}
+
+        <Option
+          label={I18n.t('administration.campaigns.options.proctoring.enable')}
+          {...parametersForField('proctoringEnabled')}
+        />
+
+        <div className="mbl">
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={2}>
+                  <label>
+                    {I18n.t('administration.campaigns.options.proctoring.identification')}
+                  </label>
+                </Col>
+                <Col span={22}>
+                  <Radio.Group defaultValue="passport" buttonStyle="solid" onChange={saveIdentificationType}>
+                    {Object.entries(identifications).map(
+                      ([key, value]) => <Radio.Button key={key} value={key}>{value}</Radio.Button>,
+                    )}
+                  </Radio.Group>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
 
         <Option
           label={I18n.t('administration.campaigns.options.instructions.enable')}

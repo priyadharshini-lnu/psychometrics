@@ -1166,6 +1166,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "fixed_time": "Fixed Time",
         "instructions": {
           "enable": "Enable instructions"
+        },
+        "proctoring": {
+          "enable": "Enable Proctoring",
+          "identification": "Identification",
+          "rules": "rules"
         }
       },
       "users": {
@@ -8440,6 +8445,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "fixed_time": "Fixed Time",
         "instructions": {
           "enable": "Enable instructions"
+        },
+        "proctoring": {
+          "enable": "Enable Proctoring",
+          "identification": "Identification",
+          "rules": "rules"
         }
       },
       "users": {
@@ -15704,6 +15714,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "fixed_time": "Fixed Time",
         "instructions": {
           "enable": "Enable instructions"
+        },
+        "proctoring": {
+          "enable": "Enable Proctoring",
+          "identification": "Identification",
+          "rules": "rules"
         }
       },
       "users": {
