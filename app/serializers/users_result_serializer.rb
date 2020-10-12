@@ -5,7 +5,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
-             :subject_datasheet, :highlights, :user_assessment_id, :external_scoring
+             :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at
 
   attribute :relationship
 

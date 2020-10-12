@@ -15,7 +15,7 @@ module CampaignAssessmentGroups
         ca.update(position: max_position + 1)
         max_position += 1
       end
-      group.delete
+      group.destroy
 
       broadcast :ok
     end

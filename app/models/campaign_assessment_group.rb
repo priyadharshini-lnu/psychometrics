@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class CampaignAssessmentGroup < ApplicationRecord
-  has_many :campaign_assessments, dependent: :destroy
-  belongs_to :campaign, dependent: :destroy
+  has_many :campaign_assessments, dependent: :nullify
+  belongs_to :campaign
 
   before_create :set_position
 

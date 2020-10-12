@@ -54,6 +54,7 @@ module DataMigration
         create_campaign_reports(subject)
         create_campaign_assessments(subject)
         migrate_assigns(subject)
+        migrate_registration_codes(subject)
       end
 
       def create_campaign(subject)
@@ -66,10 +67,8 @@ module DataMigration
         )
 
         campaign.name = [subject.parent.name, subject.name].join(' - ') if subject.sub_campaign?
-        campaign.status = if subject.archived?
+        campaign.status = if subject.disabled?
                             'archived'
-                          elsif subject.disabled?
-                            'inactive'
                           else
                             'active'
                           end
@@ -90,7 +89,24 @@ module DataMigration
             active: !membership.disabled
           )
           campaign_user.save!
+
+          update_hogan_credential(membership)
+          update_privacy_consents(membership)
         end
+      end
+
+      def update_hogan_credential(membership)
+        log('updating hogan credentials...', logger.level + 1)
+        return unless membership.hogan_credential
+
+        membership.hogan_credential.update_attribute(:user_id, membership.user_id)
+      end
+
+      def update_privacy_consents(membership)
+        log('updating privacy consent...', logger.level + 1)
+        return unless membership.privacy_consents
+
+        membership.privacy_consents.each { |p| p.update_attribute(:user_id, membership.user_id) }
       end
 
       # Migrate ClientsReport
@@ -165,7 +181,7 @@ module DataMigration
           embedded_data scoring status step current_element
           current_page seedrandom meta_data external_results
           selected_locale reset_count additional_time
-          completed_at expiry_date last_activity_at
+          completed_at expiry_date last_activity_at started_at
         ]
         attributes = assign_with_result.attributes.slice(*attrs)
         attributes['campaign_id'] = subject.id
@@ -185,9 +201,11 @@ module DataMigration
       end
 
       def create_mindmill_credentials(assign, users_result)
+        return if assign.mindmill_prefix.blank?
+
         log("creating mindmill credentials for assign##{assign.id}", logger.level + 1)
         users_result.create_mindmill_credential({
-          user_name: "#{Settings.assigns.mindmill_prefix}#{assign.id}",
+          user_name: "#{assign.mindmill_prefix}#{assign.id}",
           password: 'default'
         })
       end
@@ -255,7 +273,14 @@ module DataMigration
           pdf = assigns_report.read_attribute(:pdf)
         end
 
-        { pdf: pdf, pdf_path: pdf_path }
+        HashWithIndifferentAccess.new(pdf: pdf, pdf_path: pdf_path)
+      end
+
+      def migrate_registration_codes(subject)
+        campaign_id = out_stack[:campaigns].last
+        log("migrating registration codes of subject #{subject.id}...")
+
+        subject.registration_codes.each { code.update_attribute(:campaign_id, campaign_id) }
       end
     end
     # rubocop:enable Metrics/ClassLength
