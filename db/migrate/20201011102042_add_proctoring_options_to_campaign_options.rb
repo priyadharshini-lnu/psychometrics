@@ -14,8 +14,7 @@ class AddProctoringOptionsToCampaignOptions < ActiveRecord::Migration[5.1]
       allow_to_use_human_assistant: false,
       allow_absence_in_frame: false,
       allow_voices: false,
-      allow_wrong_gaze_direction: false,
-      custom_rules: ''
+      allow_wrong_gaze_direction: false
     }
   end
 end

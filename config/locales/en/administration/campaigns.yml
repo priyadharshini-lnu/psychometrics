@@ -15,7 +15,6 @@ en:
           rules: Rules
           rule_types:
             allow_voices: Allow Voices
-            custom_rules: Custom Rules
             allow_to_use_books: Allow to use Books
             allow_to_use_excel: Allow to use Excel
             allow_to_use_paper: Allow to use Paper

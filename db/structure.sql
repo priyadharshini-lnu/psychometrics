@@ -550,7 +550,7 @@ CREATE TABLE public.campaign_options (
     updated_at timestamp without time zone NOT NULL,
     proctoring_enabled boolean DEFAULT false,
     identification integer DEFAULT 0,
-    rules jsonb DEFAULT '{"allow_voices": false, "custom_rules": "", "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb
+    rules jsonb DEFAULT '{"allow_voices": false, "allow_to_use_books": false, "allow_to_use_excel": false, "allow_to_use_paper": true, "allow_to_use_websites": false, "allow_absence_in_frame": false, "allow_to_use_calculator": true, "allow_to_use_messengers": false, "allow_wrong_gaze_direction": false, "allow_to_use_human_assistant": false}'::jsonb
 );
 
 
@@ -7304,7 +7304,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200930103418'),
 ('20201004131024'),
 ('20201007061140'),
-('20201007072553'),
 ('20201007072553'),
 ('20201011102042');
 
