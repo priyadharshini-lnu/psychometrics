@@ -10,6 +10,7 @@ import {
   Row, Col, Button, Radio,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
+import { snakeCase } from 'lodash'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
 
@@ -32,7 +33,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
 
   const [instructions, setInstructions] = useState(options.instructions)
 
-  const identifications = { passport: 'Passport', face: 'Face', face_and_passport: 'Face and Passport' }
+  const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
 
   useEffect(() => {
     fetch(parsedProjectId, parsedCampaignId)
@@ -41,6 +42,13 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   const parametersForField = name => ({
     value: (options || {})[name],
     onChange: (value: string | number) => update(parsedProjectId, parsedCampaignId, { ...options, [name]: value }),
+  })
+
+  const parametersForRules = name => ({
+    value: !!(options.rules || {})[name],
+    onChange: (value: boolean) => update(
+      parsedProjectId, parsedCampaignId, { ...options, rules: { ...options.rules, [name]: value } },
+    ),
   })
 
   const saveIdentificationType = (e) => {
@@ -99,6 +107,24 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
 
         <div className="mbl">
           <Row>
+            <Col span={2}>
+              <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
+            </Col>
+            <Col span={22}>
+              {Object.entries(options.rules || {}).map(
+                ([key]) => (
+                  <Option
+                    label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
+                    {...parametersForRules(key)}
+                  />
+                ),
+              )}
+            </Col>
+          </Row>
+        </div>
+
+        <div className="mbl">
+          <Row>
             <Col span={24}>
               <Row>
                 <Col span={2}>
@@ -109,7 +135,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
                 <Col span={22}>
                   <Radio.Group defaultValue="passport" buttonStyle="solid" onChange={saveIdentificationType}>
                     {Object.entries(identifications).map(
-                      ([key, value]) => <Radio.Button key={key} value={key}>{value}</Radio.Button>,
+                      ([key, value]) => <Radio.Button key={key} value={key}>{value as string}</Radio.Button>,
                     )}
                   </Radio.Group>
                 </Col>

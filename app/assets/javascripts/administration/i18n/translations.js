@@ -1170,7 +1170,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "proctoring": {
           "enable": "Enable Proctoring",
           "identification": "Identification",
-          "rules": "rules"
+          "identifications": {
+            "face": "Face",
+            "face_and_passport": "Face and Passport",
+            "passport": "Passport"
+          },
+          "rule_types": {
+            "allow_absence_in_frame": "Allow absense in frame",
+            "allow_to_use_books": "Allow to use Books",
+            "allow_to_use_calculator": "Allow to use calculator",
+            "allow_to_use_excel": "Allow to use Excel",
+            "allow_to_use_human_assistant": "Allow to use human assistant",
+            "allow_to_use_messengers": "Allow to use messengers",
+            "allow_to_use_paper": "Allow to use Paper",
+            "allow_to_use_websites": "Allow to use Websites",
+            "allow_voices": "Allow Voices",
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
+            "custom_rules": "Custom Rules"
+          },
+          "rules": "Rules"
         }
       },
       "users": {
@@ -8449,7 +8467,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "proctoring": {
           "enable": "Enable Proctoring",
           "identification": "Identification",
-          "rules": "rules"
+          "identifications": {
+            "face": "Face",
+            "face_and_passport": "Face and Passport",
+            "passport": "Passport"
+          },
+          "rule_types": {
+            "allow_absence_in_frame": "Allow absense in frame",
+            "allow_to_use_books": "Allow to use Books",
+            "allow_to_use_calculator": "Allow to use calculator",
+            "allow_to_use_excel": "Allow to use Excel",
+            "allow_to_use_human_assistant": "Allow to use human assistant",
+            "allow_to_use_messengers": "Allow to use messengers",
+            "allow_to_use_paper": "Allow to use Paper",
+            "allow_to_use_websites": "Allow to use Websites",
+            "allow_voices": "Allow Voices",
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
+            "custom_rules": "Custom Rules"
+          },
+          "rules": "Rules"
         }
       },
       "users": {
@@ -15718,7 +15754,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "proctoring": {
           "enable": "Enable Proctoring",
           "identification": "Identification",
-          "rules": "rules"
+          "identifications": {
+            "face": "Face",
+            "face_and_passport": "Face and Passport",
+            "passport": "Passport"
+          },
+          "rule_types": {
+            "allow_absence_in_frame": "Allow absense in frame",
+            "allow_to_use_books": "Allow to use Books",
+            "allow_to_use_calculator": "Allow to use calculator",
+            "allow_to_use_excel": "Allow to use Excel",
+            "allow_to_use_human_assistant": "Allow to use human assistant",
+            "allow_to_use_messengers": "Allow to use messengers",
+            "allow_to_use_paper": "Allow to use Paper",
+            "allow_to_use_websites": "Allow to use Websites",
+            "allow_voices": "Allow Voices",
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
+            "custom_rules": "Custom Rules"
+          },
+          "rules": "Rules"
         }
       },
       "users": {
