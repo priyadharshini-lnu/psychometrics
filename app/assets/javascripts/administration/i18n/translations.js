@@ -666,7 +666,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -5352,7 +5352,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "تم تسجيل الدخول بنجاح.",
       "signed_out": "تم تسجيل الخروج بنجاح."
@@ -7694,7 +7694,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -12377,7 +12377,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "Signed in successfully.",
       "signed_out": "Signed out successfully."
@@ -14711,7 +14711,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -19394,7 +19394,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "Berjaya dilog masuk.",
       "signed_out": "Berjaya dilog keluar."
