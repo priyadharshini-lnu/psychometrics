@@ -29,6 +29,7 @@ class AssignSerializer < ActiveModel::Serializer
              :current_element, :current_page, :seedrandom, :reset_count, :highlights
 
   has_one :user, serializer: UserSerializer
+  has_many :media_responses, serializer: MediaResponseSerializer
 
   def type
     'single_assign'

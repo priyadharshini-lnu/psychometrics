@@ -4,7 +4,7 @@ import {
   Modal, Button, Form, Select, Radio,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
+import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
 import { PropsFromRedux } from './connect'
 
@@ -22,7 +22,7 @@ export interface OwnProps {
   campaignAssessmentId: number,
   campaignId: number
   userId: number
-  assessment: Assessment
+  assessment: UserAssessment
   loading: boolean
 }
 
@@ -39,6 +39,15 @@ const UpdateNormModal: React.FC<Props> = ({
     updateNorm(campaignId, campaignAssessmentId, params)
     close()
   }
+
+  const isFiveScaleNormSelected = () => {
+    const normId = form.getFieldValue('normId') || assessment.normId
+    const selectedNormType = _.find(assessment.norms, ({ id }) => id === normId)?.normType
+
+    return selectedNormType === 'five_scale'
+  }
+
+
   return (
     <Modal
       width={650}
@@ -63,7 +72,7 @@ const UpdateNormModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ normType: 'YTI' }}
+        initialValues={{ normType: assessment.normType, normId: assessment.normId }}
         onFieldsChange={(_, allFields) => {
           setFields(allFields)
         }}
@@ -80,16 +89,18 @@ const UpdateNormModal: React.FC<Props> = ({
             ))}
           </Select>
         </Form.Item>
+        {isFiveScaleNormSelected() && (
         <Form.Item name="normType">
           <Radio.Group>
-            <Radio value="YTI">
+            <Radio value="yti">
             YTI
             </Radio>
-            <Radio value="ETI">
+            <Radio value="eti">
             ETI
             </Radio>
           </Radio.Group>
         </Form.Item>
+        )}
       </Form>
     </Modal>
   )

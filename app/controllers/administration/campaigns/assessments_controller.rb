@@ -25,7 +25,7 @@ module Administration
       end
 
       def export_normed_results
-        results = Assessments::Export::NormedResult.call!(assessment, campaign)
+        results = ::Assessments::Export::NormedResult.call!(assessment, campaign)
         respond_to do |format|
           format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-normed-results.xlsx" }
         end
@@ -34,9 +34,9 @@ module Administration
       def export_external_results
         result =
           if assessment.mindmill?
-            Assessments::Export::Mindmill.call!(assessment, campaign)
+            ::Assessments::Export::Mindmill.call!(assessment, campaign)
           else
-            Assessments::Export::Hogan.call!(assessment, campaign)
+            ::Assessments::Export::Hogan.call!(assessment, campaign)
           end
         respond_to do |format|
           format.xlsx { send_data result.to_stream.read, filename: "assessment-#{assessment.id}-external-results.xlsx" }
@@ -46,6 +46,13 @@ module Administration
       def rescore_responses
         CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user)
         render json: :ok
+      end
+
+      def destroy
+        CampaignAssessments::Remove.call!(
+          campaign_assessment, campaign, remove_user_assessments: params[:remove_user_assessments]
+        )
+        render json: resource.id
       end
 
       def import_results
@@ -62,14 +69,19 @@ module Administration
       end
 
       def update_norm
-        campaign_assessment.update!(norm_id: params[:norm_id], norm_type: params[:norm_type])
+        form = CampaignAssessments::UpdateNormForm.from_params(params)
+        if form.valid?
+          campaign_assessment.update!(form.attributes)
 
-        CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
+          CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
 
-        render json: {
-          norm_name: campaign_assessment.norm.name,
-          norm_type: campaign_assessment.norm_type
-        }
+          render json: {
+            norm_name: campaign_assessment.norm.name,
+            norm_type: campaign_assessment.norm_type
+          }
+        else
+          render json: { errors: form.errors.messages.values }, status: 422
+        end
       end
 
       private

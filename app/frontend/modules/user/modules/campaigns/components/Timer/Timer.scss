@@ -1,17 +1,33 @@
 @import 'modules/user/styles/variables';
 
-:export { green: $main-color; warning: $warning-color; danger: $red }
-
 :global(.ant-statistic) {
   &.timer {
     display: inline-block;
     background-color: $main-color;
     padding: 8px 12px !important;
     border-radius: 4px;
-    margin-left: 12px;
+
     * {
       color: #ffffff;
       font-size: 18px !important;
+    }
+  }
+  &.withBg {
+    background-color: $white;
+    * { color: $black; }
+
+    &.green {
+      background-color: $main-color;
+    }
+
+    &.warning {
+      background-color: $warning-color;
+      * { color: $white; }
+    }
+
+    &.danger {
+      background-color: $red;
+      * { color: $white }
     }
   }
 }

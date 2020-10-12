@@ -20,7 +20,7 @@ module Campaigns
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
-        user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment) }
+        user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment, user_report) }
         generate_report_pdf(user_report)
 
         broadcast :ok,
@@ -30,9 +30,9 @@ module Campaigns
 
       private
 
-      def add_assessment_to_user(assessment)
+      def add_assessment_to_user(assessment, user_report)
         user_assessment = UserAssessment.create_with(
-          users_result_id: user_result_id(assessment.id)
+          users_result_id: user_result(assessment).id
         ).find_or_create_by!(
           campaign: campaign,
           assessment_id: assessment.id,
@@ -42,29 +42,42 @@ module Campaigns
         )
 
         if assessment.hogan? && user.hogan_credential
-          # TODO: Need to call Hogan::AssignAndLoadResultsJob when we start using user_result instead of assign
-          # https://tte.atlassian.net/browse/LH-824
+          Hogan::AddReportsJob.perform_later(user_assessment, [user_report],
+                                             user.hogan_credential, user.project)
         end
         user_assessment
       end
 
-      def user_result_id(assessment_id)
-        return nil if options[:operation] == 'add_and_allow_new_response'
+      def user_result(assessment)
+        return create_new_user_result(assessment) if options[:operation] == 'add_and_allow_new_response'
 
-        campaign_user.evaluation_results.find_by(assessment_id: assessment_id)&.id
+        user_result = campaign_user.evaluation_results.order(created_at: :desc).find_by(assessment_id: assessment.id)
+
+        return UsersResults::Copy.call!(user_result) if user_result
+
+        create_new_user_result(assessment)
+      end
+
+      def create_new_user_result(assessment)
+        user_result = UsersResult.create(
+          assessment: assessment,
+          subject_id: campaign_user.user_id,
+          evaluator_id: campaign_user.user_id,
+          answers: {}
+        )
+
+        if assessment.mindmill?
+          user_result.create_mindmill_credential(
+            user_name: "#{Settings.assigns.mindmill_prefix}_#{user_result.id}",
+            password: SecureRandom.hex
+          )
+        end
+
+        user_result
       end
 
       def generate_report_pdf(user_report)
-        assessment_ids = user_report.report.assessments.pluck(:id)
-
-        incomplete_assessment = UserAssessment.exists?(
-          assessment_id: assessment_ids,
-          subject_id: user.id,
-          evaluator_id: user.id,
-          users_result_id: nil
-        )
-
-        ::UserReports::GeneratePdfJob.perform_later(user_report, user) unless incomplete_assessment
+        ::UserReports::GenerateAndSavePdfJob.perform_later(user_report, user)
       end
     end
   end

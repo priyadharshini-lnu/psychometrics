@@ -1,4 +1,4 @@
-export default interface Report {
+export default interface UserReport {
   id: number
   name: string
   reportId: number

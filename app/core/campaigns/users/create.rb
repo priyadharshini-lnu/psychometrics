@@ -5,7 +5,7 @@ module Campaigns
     class Create < BaseCommand
       private_attr_reader :form, :campaign, :current_user, :project, :user, :campaign_user
 
-      def initialize(form, campaign, current_user)
+      def initialize(form, campaign, current_user = nil)
         @form = form
         @campaign = campaign
         @project = campaign.project
@@ -66,7 +66,16 @@ module Campaigns
 
       def send_invite_email
         communication = Communication.new_users_recipients.order(created_at: :desc).find_by(campaign: campaign)
-        communication&.emails&.create(campaign_user_id: id)
+        return communication.emails.create(campaign_user_id: campaign_user.id) if communication
+
+        if throught_registration?
+          raw_token = ::Users::FindOrCreateInvitationToken.call!(user)
+          InvitationMailer.invite(user.id, user.project_id, raw_token).deliver_later
+        end
+      end
+
+      def throught_registration?
+        current_user.nil?
       end
     end
   end

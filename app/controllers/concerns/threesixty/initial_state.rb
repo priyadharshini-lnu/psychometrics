@@ -10,8 +10,10 @@ module Threesixty::InitialState
   end
 
   def set_init_state
+    @current_project ||= GetProjectBySubdomain.call!(request.subdomain)
+
     @init_state = {
-      threeSixtyCampaign: {
+      campaigns: {
         project: {
           name: @current_project.name,
           logo: @current_project.logo.url,
@@ -21,7 +23,8 @@ module Threesixty::InitialState
         }
       },
       config: {
-        isFrame: use_iframe?
+        isFrame: use_iframe?,
+        agileAssetsUrl: Settings.agile_config.asset_url
       },
       currentUser: serialized_current_user,
       liveChat: {

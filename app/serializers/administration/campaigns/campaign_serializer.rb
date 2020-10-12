@@ -5,10 +5,11 @@ module Administration
     class CampaignSerializer < ActiveModel::Serializer
       include Rails.application.routes.url_helpers
 
-      attributes :id, :name, :type, :status, :options, :campaign_url, :is_threesixty
+      attributes :id, :name, :start_date, :end_date, :type, :status, :campaign_url, :is_threesixty,
+                 :is_fixed_time, :project_id
 
-      has_many :assessments, serializer: AssessmentSerializer
-      has_many :reports, serializer: ReportSerializer
+      has_many :assessments, serializer: Administration::Campaigns::AssessmentSerializer
+      has_many :reports, serializer: Administration::Campaigns::ReportSerializer
 
       def campaign_url
         if object.threesixty?
@@ -24,6 +25,10 @@ module Administration
 
       def is_threesixty # rubocop:disable Naming/PredicateName
         object.threesixty?
+      end
+
+      def is_fixed_time # rubocop:disable Naming/PredicateName
+        object.campaign_options&.fixed_time
       end
 
       private

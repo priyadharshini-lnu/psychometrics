@@ -19,7 +19,7 @@ export default function SubjectSection ({
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: updateParticipantOptions([OBJECT_KEY, name]),
+    onChange: updateParticipantOptions([OBJECT_KEY, name]),
   })
 
   const parametersForDatasheet = name => ({
@@ -32,7 +32,7 @@ export default function SubjectSection ({
   const parametersForRelationships = relationship => ({
     value: options.canSelectRelationships && options.canSelectRelationships[relationship.id],
     label: relationship.name,
-    onOptionChanged: () => updateRelationship(OBJECT_KEY, relationship,
+    onChange: () => updateRelationship(OBJECT_KEY, relationship,
       !(options.canSelectRelationships && options.canSelectRelationships[relationship.id])),
   })
 

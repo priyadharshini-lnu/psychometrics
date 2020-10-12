@@ -1,0 +1,6 @@
+en:
+  user_assessments:
+    modals:
+      remove:
+        content: Are you sure you want to remove assessment '%{name}'?
+        successfully: '%{name} assessment removed successfully.'

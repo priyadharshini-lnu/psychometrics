@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import { getIn } from 'utils/immutable'
 import { takeLatest, put } from 'redux-saga/effects'
 
 const CHANGE_LOCALE = 'threeSixty/users/CHANGE_LOCALE'
@@ -7,6 +8,14 @@ const SYNC = 'threeSixty/user/SYNC'
 const SET_USER = 'threeSixty/user/SET_USER'
 
 export const get = state => _.get(state, ['currentUser'])
+
+export function isSuperAdmin (user) {
+  return user.role === 'Users::SuperAdmin'
+}
+
+export function hasGrant (user, scope, action) {
+  return getIn(user.grants, scope, []).includes(action)
+}
 
 export const defaultState = null
 

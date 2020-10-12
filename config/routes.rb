@@ -58,13 +58,26 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :reports, only: [:create] do
+        resources :reports, only: %i[create destroy] do
           collection do
             get :report_families
             get :assessments_and_reports
+            post :regenerate
+            post :bulk_download
           end
           member do
             get :export
+            patch :toggle_user_access
+          end
+        end
+        resources :user_reports do
+          member do
+            get :pdf_preview
+            get :download
+            patch :toggle_user_access
+          end
+          collection do
+            post :regenerate
           end
         end
         resources :users do
@@ -72,6 +85,11 @@ Rails.application.routes.draw do
           member do
             patch :toggle_status
             get :reset_password
+            post :extend_time
+          end
+          collection do
+            post :import
+            get :export_completion_status
           end
         end
 
@@ -80,7 +98,7 @@ Rails.application.routes.draw do
             post :activate
           end
         end
-        resources :assessments, only: [:create] do
+        resources :assessments, only: %i[create destroy] do
           member do
             get :export_raw_results
             get :export_scoring_results
@@ -90,12 +108,21 @@ Rails.application.routes.draw do
             get :norms
             post :update_norm
             post :rescore_responses
-            post :update_norm
           end
         end
-        resources :user_assessments, only: [] do
+        resources :user_assessments, only: [:destroy] do
           member do
             post :update_norm
+            post :rescore_response
+            post :reset
+            post :update_additional_time
+          end
+        end
+        resources :campaign_assessment_groups, only: %i[index create update destroy] do
+        end
+        resources :campaign_assessments, only: %i[update] do
+          member do
+            post :attach_to_group
           end
         end
       end
@@ -115,7 +142,8 @@ Rails.application.routes.draw do
           end
 
           member do
-            # get 'assessments_and_reports'
+            get :fetch_campaign_options
+            put :update_campaign_options
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
           end
@@ -238,10 +266,6 @@ Rails.application.routes.draw do
             resources :new_campaigns
 
             resources :threesixty_campaigns, concerns: :client_editable do
-              member do
-                get :export_results
-              end
-
               collection do
                 get :factors
               end
@@ -355,10 +379,11 @@ Rails.application.routes.draw do
         end
       end
       member do
-        get 'export_completion_status'
-        delete 'reset'
-        delete 'reset_nominations'
-        delete 'remove_user'
+        get :export_results
+        get :export_completion_status
+        delete :reset
+        delete :reset_nominations
+        delete :remove_user
       end
     end
 
@@ -663,6 +688,36 @@ Rails.application.routes.draw do
     scope module: :end_user do
       resources :campaigns, only: %i[show]
       get :dashboard, to: 'users#dashboard'
+      post :accept_privacy, to: 'users#accept_privacy'
+      get 'anonym/:assessment_key', to: 'anonyms#show', as: :anonym_pass
+      get 'anonym/error', to: 'anonyms#error'
+
+      resources :hogan_user_assessments, only: [] do
+        member do
+          get :redirect
+          put :pass
+        end
+      end
+
+      resources :user_reports do
+        member do
+          get :pdf_preview
+        end
+      end
+
+      resources :mindmill_user_assessments, only: [] do
+        member do
+          get :pass
+          get :redirect
+        end
+      end
+
+      resources :agile_user_assessments, only: %i[show update] do
+        member do
+          post :events
+          put :set_language
+        end
+      end
 
       resources :user_assessments do
         resources :users_results, only: %i[update] do
@@ -678,6 +733,12 @@ Rails.application.routes.draw do
         member do
           get :assessment
           get :pass
+        end
+      end
+
+      resources :campaign_users do
+        member do
+          post :begin_campaign
         end
       end
     end

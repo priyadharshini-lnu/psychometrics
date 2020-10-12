@@ -30,7 +30,7 @@ module Facades
       end
 
       def show_sub_campaigns?
-        show_campaigns? && form.campaign_id.present? && !form.campaign.end_level?
+        show_campaigns? && !form.project.migrated? && form.campaign_id.present? && !form.campaign.end_level?
       end
 
       def show_recipients?
@@ -113,7 +113,7 @@ module Facades
       private
 
       def fetch_owners(user)
-        client_policy_scope(user).roots
+        client_policy_scope(user).roots.order(:name)
       end
 
       def fetch_projects(user)
@@ -125,11 +125,13 @@ module Facades
       def fetch_campaigns(user)
         return Client.none if form.project_id.blank?
 
+        return form.project.project_campaigns.common if form.project.migrated?
+
         client_policy_scope(user).campaigns_of(form.project_id).enabled
       end
 
       def fetch_sub_campaigns(user)
-        return Client.none if form.campaign_id.blank?
+        return Client.none if form.campaign_id.blank? || form.project.migrated?
 
         client_policy_scope(user).sub_campaigns_of(form.campaign_id).enabled
       end
@@ -146,6 +148,8 @@ module Facades
 
       def fetch_memberships
         return User.none if form.end_level.blank? || !form.model.selected_recipients?
+
+        return form.campaign.users if form.project.migrated?
 
         ::Queries::Users::MembersSubtreeByClient.call(form.model.end_level)
       end

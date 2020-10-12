@@ -89,7 +89,7 @@ module Imports
               assessment_id: assessment.id
             )
 
-            UsersCampaignsAssessment.find_or_create_by(
+            UserAssessment.find_or_create_by(
               subject_id: user.id,
               evaluator_id: user.id,
               campaign_id: campaign.id,
@@ -146,8 +146,9 @@ module Imports
           if user_result.completed?
             ::UsersResults::Recompute.call!(
               user_result,
-              'id' => user_result.norm_id,
-              'type' => user_result.norm_type
+              user_result.user,
+              norm_id: user_result.norm_id,
+              norm_type: user_result.norm_type
             )
           end
           user_result

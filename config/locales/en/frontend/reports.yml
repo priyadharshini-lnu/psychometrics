@@ -39,10 +39,10 @@ en:
       gap_assessment:
         positive_gap: 'Positive Gaps'
         rank: 'Rank'
-        item: 'Item'
+        item: 'Indicator'
         gap: 'Gap'
         negative_gap: 'Negative Gaps'
-        scoring_category: 'Scoring Category'
+        scoring_category: 'Competency'
         no_negative_gaps: 'There are no Negative Gaps'
         no_positive_gaps: 'There are no Positive Gaps'
       single_value:
@@ -77,7 +77,6 @@ en:
       highest_lowest:
         highest_scores: 'Highest Scores'
         rank: 'Rank'
-        item: 'Item'
         first_name: 'First Name'
         last_name: 'Last Name'
         email: 'Email'
@@ -91,8 +90,8 @@ en:
         category: 'Category'
         result: 'Result'
         average: 'Average'
-        item: 'Item'
-        scoring_category: 'Scoring Category'
+        item: 'Indicator'
+        scoring_category: 'Competency'
       video_response:
         no_results: 'No videos recorded'
     actions:

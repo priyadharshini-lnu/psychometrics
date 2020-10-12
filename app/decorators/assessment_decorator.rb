@@ -63,7 +63,7 @@ class AssessmentDecorator < BaseDecorator
       subdomain: campaign.project.subdomain
     }
 
-    h.anonym_assessment_pass_url(options)
+    h.anonym_pass_url(options)
   end
 
   def universal_link_regeneration_confirmation

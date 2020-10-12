@@ -36,7 +36,7 @@ export default class extends Component {
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.labels}`}>
           <div className={styles.firstColumn} />
-          <div className={styles.labelItems}>
+          <div className={styles.labelItems} style={{ marginLeft: gridMargin, marginRight: gridMargin }}>
             {_.times(props.labels, i => (
               <LabelEditor
                 key={i}
@@ -50,7 +50,7 @@ export default class extends Component {
         </div>
         <div className={`${styles.row} ${styles.gridLines}`}>
           <div className={styles.firstColumn} />
-          <div className={styles.labelItems} style={{ marginLeft: gridMargin, marginRight: gridMargin }}>
+          <div className={styles.labelItems}>
             {_.times(props.gridLines + 1, i => (
               <span key={i}>
                 {props.minValue

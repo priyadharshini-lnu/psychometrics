@@ -15,6 +15,8 @@ class MediaResponse < ApplicationRecord
   validates :asset, filename_format: true
   validate :verify_multiple_take_limit, on: :create
 
+  before_create :set_user_selected
+
   def filename
     asset&.filename&.split('/')&.last
   end
@@ -34,5 +36,15 @@ class MediaResponse < ApplicationRecord
                             where(assign_id: assign&.id, users_result_id: users_result&.id).count
 
     errors.add(:base, :max_takes_limit_reached) if media_responses_count >= maximum_takes
+  end
+
+  def set_user_selected
+    return unless question.type == 'VideoResponse'
+
+    media_responses_exists = question.media_responses.where(
+      assign_id: assign&.id, users_result_id: users_result&.id
+    ).exists?
+
+    self.user_selected = true unless media_responses_exists
   end
 end

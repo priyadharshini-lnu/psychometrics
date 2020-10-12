@@ -8,7 +8,7 @@ module Campaigns
       attribute :first_name, String
       attribute :last_name, String
       attribute :email, String
-      attribute :operation, String
+      attribute :operation, String, default: 'add_and_allow_new_response'
 
       validates :first_name, :last_name, :email, presence: true
       validates :email, format: { with: Devise.email_regexp }
@@ -17,7 +17,9 @@ module Campaigns
       validate :user_exists_in_campaign
 
       def user_exists_in_project
-        errors.add(:email, :user_exists_in_project) if User.exists?(project_id: campaign.project_id, email: email)
+        if User.exists?(project_id: campaign.project_id, email: email) && !campaign.users.exists?(email: email)
+          errors.add(:email, :user_exists_in_project)
+        end
       end
 
       def user_exists_in_campaign

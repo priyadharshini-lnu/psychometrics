@@ -8,6 +8,8 @@ import reports from './reports'
 import assessments from './assessments'
 import userReports from './userReports'
 import userAssessments from './userAssessments'
+import assessmentGroups from './assessmentGroups'
+import campaignOptions from './campaignOptions'
 
 export default combineReducers({
   list,
@@ -19,4 +21,6 @@ export default combineReducers({
   assessments,
   userReports,
   userAssessments,
+  assessmentGroups,
+  campaignOptions,
 })

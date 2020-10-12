@@ -1,0 +1,124 @@
+import React, { useState, useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import Section from 'modules/admin/components/Options/Section'
+import Option from 'modules/admin/components/Options/Expandable'
+import TimeZoneSelect from 'components/TimeZoneSelect'
+import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import DurationSelect from 'components/DurationSelect'
+import Editor from 'components/Editor'
+import { Row, Col, Button } from 'antd'
+import { SaveOutlined } from '@ant-design/icons'
+import styles from './styles.scss'
+import { PropsFromRedux } from './connect'
+
+const { I18n } = window
+
+interface OwnProps {
+  options: ICampaignOptions
+}
+
+interface Params {
+  projectId: string
+  campaignId: string
+}
+
+const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = ({
+  options, fetch, update, match: { params: { projectId, campaignId } },
+}) => {
+  const parsedProjectId = parseInt(projectId, 10)
+  const parsedCampaignId = parseInt(campaignId, 10)
+
+  const [instructions, setInstructions] = useState(options.instructions)
+
+  useEffect(() => {
+    fetch(parsedProjectId, parsedCampaignId)
+  }, [])
+
+  const parametersForField = name => ({
+    value: (options || {})[name],
+    onChange: (value: string | number) => {
+      update(parsedProjectId, parsedCampaignId, { ...options, [name]: value })
+    },
+  })
+
+  const saveInstructions = () => {
+    update(parsedProjectId, parsedCampaignId, { ...options, instructions })
+  }
+
+  return (
+    <div className={styles.container}>
+      <Section>
+        <div className="mbl">
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={2}>{I18n.t('administration.time_zone')}</Col>
+                <Col span={22}>
+                  <TimeZoneSelect
+                    {...parametersForField('timeZone')}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+
+        <Option
+          label={I18n.t('administration.campaigns.options.fixed_time')}
+          {...parametersForField('fixedTime')}
+        />
+
+        {options.fixedTime && (
+          <div className="mbl">
+            <Row>
+              <Col span={24}>
+                <Row>
+                  <Col span={22} offset={2}>
+                    <DurationSelect
+                      className={styles.durationSelect}
+                      {...parametersForField('fixedTimeDuration')}
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+          </div>
+        )}
+
+        <Option
+          label={I18n.t('administration.campaigns.options.instructions.enable')}
+          {...parametersForField('instructionsEnabled')}
+        />
+
+        {options.instructionsEnabled && (
+          <Row>
+            <Col span={24}>
+              <Row>
+                <Col span={16} offset={2}>
+                  <Editor
+                    type={null}
+                    details={null}
+                    className={null}
+                    content={instructions || options.instructions}
+                    handleContentChange={(value) => { setInstructions(value) }}
+                  />
+                  <Button
+                    type="primary"
+                    size="large"
+                    className="mtm"
+                    onClick={saveInstructions}
+                  >
+                    <SaveOutlined />
+                    Save
+                  </Button>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        )}
+      </Section>
+    </div>
+  )
+}
+
+export default CampaignOptions

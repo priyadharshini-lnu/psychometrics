@@ -14,7 +14,7 @@ import EditProfileModal from '../EditProfileModal'
 const { SubMenu } = Menu
 
 function Navigation ({
-  changeLocale, logout, logo, isFrame,
+  changeLocale, logout, logo, isFrame, isAnonym,
 }) {
   if (isFrame) return null
 
@@ -55,17 +55,19 @@ function Navigation ({
               style={{ lineHeight: '79px', height: '79px' }}
               overflowedIndicator={<MenuOutlined className="overflow-menu-item align-right" />}
             >
-              <SubMenu
-                className="align-right"
-                title={(
-                  <span className="submenu-title-wrapper">
-                    <MenuOutlined className={styles.userIcon} />
-                  </span>
-                )}
-              >
-                <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
-                <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
-              </SubMenu>
+              {!isAnonym && (
+                <SubMenu
+                  className="align-right"
+                  title={(
+                    <span className="submenu-title-wrapper">
+                      <MenuOutlined className={styles.userIcon} />
+                    </span>
+                  )}
+                >
+                  <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
+                  <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
+                </SubMenu>
+              )}
               <Menu.Item key="app" className="align-right hidden">
                 <Dropdown overlay={() => langMenu()} trigger={['click']}>
                   <a>

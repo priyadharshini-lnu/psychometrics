@@ -1,12 +1,31 @@
 en:
   frontend:
-    closed_campaign_message: "This campaign is closed. You can't take any assessment within this campaign."
     campaign:
       users:
-        remove: 'Are you sure you want to remove user with email %{email} from this campaing?'
-        change_password_confirmation_content: Are you sure you want to send instructions with link to change password?
-        change_password_confirmation_title: Change password %{full_name}?
         completion_statuses:
           not_started: Not Started
           completed: Completed
           in_progress: In Progress
+          interrupted: Interrupted
+      actions:
+        remove:
+          confirmation: Enter current campaign name given below in text box to remove campaign
+          success: '%{campaignName} removed successfully.'
+  campaign:
+    welcome: 'Welcome'
+    begin: Begin Assessment
+    new: 'New'
+    not_started: 'New'
+    in_progress: 'In Progress'
+    interrupted: 'Interrupted'
+    completed: 'Completed'
+    complete_all: Complete all related assessments
+    complete_prev: Complete all prev assessments
+    ungrouped: Ungrouped assessments
+    closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
+    campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
+    instructions:
+      heading: Instructions to follow
+    timer:
+      message: Time left to complete all activities
+      notification: "You have %{minutes} minutes and %{seconds} seconds to complete"

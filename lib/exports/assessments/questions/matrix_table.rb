@@ -6,13 +6,14 @@ module Exports
       class MatrixTable < Base
         include ImportExportConst
         # Parse RESULT data for XLSX
-        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
+        def self.result(user_result, question, scoring = false, export_with_labels = false)
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
           # =>    example: [1,2,3,4]
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
-
+          not_applicable = get_not_applicable(user_result, question)
+          answers = get_answers(user_result, question)
           parsed_result = if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
                             multi_scale_answers(answers, question, export_with_labels, not_applicable)
                           else
@@ -47,7 +48,7 @@ module Exports
           parsed_result = []
           question.props['choices'].to_i.times do |choice|
             question.props['scalePoints'].to_i.times do |scale|
-              parsed_result << if not_applicable && not_applicable[choice.to_s]
+              parsed_result << if not_applicable && not_applicable[choice.to_s] == true
                                  export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
                                else
                                  (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
@@ -61,7 +62,9 @@ module Exports
         def self.add_not_applicable_result(parsed_result, export_with_labels, question, not_applicable)
           return parsed_result unless not_applicable
 
-          not_applicable.each_key do |key|
+          not_applicable.each do |key, value|
+            next unless value
+
             parsed_result[key.to_i] = if export_with_labels
                                         question.props['notApplicableLabel']
                                       else

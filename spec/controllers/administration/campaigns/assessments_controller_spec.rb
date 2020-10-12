@@ -28,16 +28,16 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         new_campaign_id: campaign.id,
         apply: false,
         norm_id: norm.id,
-        norm_type: 'ETI'
+        norm_type: 'eti'
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
       campaign_assessment.reload
 
-      expect(parsed_response).to eq('norm_type' => 'ETI', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
       expect(campaign_assessment.norm_id).to eq(norm.id)
-      expect(campaign_assessment.norm_type).to eq('ETI')
+      expect(campaign_assessment.norm_type).to eq('eti')
     end
 
     it 'with apply = true' do
@@ -49,12 +49,12 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         new_campaign_id: campaign.id,
         apply: true,
         norm_id: norm.id,
-        norm_type: 'ETI'
+        norm_type: 'eti'
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
-      expect(parsed_response).to eq('norm_type' => 'ETI', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
     end
   end
 
@@ -69,6 +69,19 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
       }
 
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'DELETE' do
+    it 'removes campaign_assessment' do
+      expect do
+        delete :destroy, params: {
+          new_campaign_id: campaign.id,
+          id: assessment.id
+        }
+      end.to change(CampaignAssessment, :count).by(-1)
+      expect(response.body).to eq(assessment.id.to_s)
+      expect(CampaignAssessment.find_by(id: campaign_assessment.id)).to be_nil
     end
   end
 end

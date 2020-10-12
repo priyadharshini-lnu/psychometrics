@@ -1,18 +1,13 @@
 
-csv << [
-        resource_class.human_attribute_name('active'),
-        resource_class.human_attribute_name('first_name'),
-        resource_class.human_attribute_name('last_name'),
-        resource_class.human_attribute_name('email'),
-        resource_class.human_attribute_name('created_at')
-       ]
+csv << headers
 
 users.each do |user|
   row = [
-          user.decorate.status_text,
+          user.campaign_users.find { |cu| cu.campaign_id == campaign.id }.decorate.status_text,
           user.first_name,
           user.last_name,
           user.email,
+          nil,
           user.decorate.created_at,
          ]
   csv << row

@@ -74,6 +74,7 @@ en:
         other: Other
         all: All
         selected: Selected
+        new_users: New Users
       resource:
         tooltips:
           copy: 'Copy Communication'

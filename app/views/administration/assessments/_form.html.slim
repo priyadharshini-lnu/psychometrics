@@ -16,7 +16,7 @@
                                               wrapper_html: { class: 'hogan' }
         = f.input :name, wrapper_html: { class: 'common mindmill hogan' }
         - if current_user.is?(:superadmin)
-          = f.association :owner, collection: policy_scope(Client).roots.all,
+          = f.association :owner, collection: policy_scope(Client).roots.order(name: :asc),
                                   include_blank: t('administration.tte'),
                                   input_html: { data: { live_search: true } },
                                   wrapper_html: { class: 'common' }
@@ -26,7 +26,7 @@
         = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
                            wrapper_html: { class: 'common mindmill hogan' }
-        = f.association :dimension, collection: policy_scope(Dimension).all,
+        = f.association :dimension, collection: policy_scope(Dimension).all.sorted_by('name_asc'),
                                     include_blank: true,
                                     input_html: { data: { live_search: true } },
                                     wrapper_html: { class: 'common' }

@@ -6,6 +6,6 @@ class RegistrationCodeSerializer < ActiveModel::Serializer
 
   def url
     new_user_registration_url(domain: Settings.domain, host: Settings.domain,
-      subdomain: object.project.subdomain, code: object.code)
+      subdomain: object.project.subdomain, code: object.code, port: Settings.port)
   end
 end

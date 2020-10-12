@@ -74,5 +74,11 @@ describe Campaigns::Users::Create do
         described_class.call!(form, campaign, current_user)
       end.to_not(change { license.license_usages.count })
     end
+
+    it 'calls InvitationMailer if user are created through registration' do
+      expect(InvitationMailer).to receive_message_chain(:invite, :deliver_later)
+
+      described_class.call!(form, campaign)
+    end
   end
 end

@@ -1,8 +1,13 @@
 en:
   frontend:
+    "yes": 'Yes'
+    "no": 'No'
+    are_you_sure: 'Are you sure?'
     login: 'Login'
     edit: 'Edit'
     delete: 'Delete'
+    update: 'Update'
+    upload: 'Upload'
     change_password: 'Change password'
     manage: Manage
     activate: Activate
@@ -16,6 +21,7 @@ en:
     actions:
       remove: Remove
       cancel: Cancel
+      close: Close
       reset: Reset
     model:
       campaigns: Campaigns
@@ -27,3 +33,6 @@ en:
       cancel: Cancel
       default: 'Default'
       response: Response
+      continue: Continue
+      download: Download
+      na: N/A

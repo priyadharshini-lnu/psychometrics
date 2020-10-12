@@ -22,4 +22,14 @@ class UserReport < ApplicationRecord
   def pdf_exists?
     pdf.file.present?
   end
+
+  def user_results
+    UserReports::GetUserResultsQuery.new(self).query
+  end
+
+  def generatable?
+    completed_assessment_ids = user_results.pluck(:assessment_id)
+
+    report.assessment_ids.all? { |id| completed_assessment_ids.include?(id) }
+  end
 end

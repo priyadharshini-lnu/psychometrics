@@ -1,0 +1,33 @@
+.noneFound {
+  border: 1px solid #DBDBDB;
+  border-radius: 6px;
+  padding: 144px 0px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 12px 0px 8px 24px;
+  .noneFoundIcon {
+    background-image: url("~modules/admin/modules/campaigns/routes/Campaign/routes/AssessmentsReports/routes/Sequencing/GroupList/no_groups.png");
+    width: 46px;
+    height: 46px;
+    display: inline-block;
+    margin: 10px auto 0;
+  }
+
+  .noneFoundTitle {
+    margin-top: 24px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 17px;
+    display: inline-block;
+  }
+
+  .noneFoundDescription {
+    font-size: 14px;
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  .addGroup {
+    margin-top: 36px;
+  }
+}

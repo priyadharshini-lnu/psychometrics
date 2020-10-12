@@ -4,5 +4,16 @@ FactoryBot.define do
   factory :campaign do
     name { Faker::Name.name }
     project { create(:project) }
+    start_date { Time.now }
+    end_date { 30.minutes.from_now }
+    status { 'inactive' }
+
+    trait :threesixty do
+      type { ::Campaign::THREESIXTY }
+    end
+
+    trait :with_subjects do
+      subjects { build_list(:threesixty_subject, 1) }
+    end
   end
 end

@@ -35,7 +35,7 @@ module Assessments
       end
 
       def results
-        UsersResult.joins(:user_assessments).
+        UsersResult.joins(:user_assessment).
           where(assessment_id: assessment.id, user_assessments: { campaign_id: campaign.id }).
           includes(:evaluator, :norm)
       end

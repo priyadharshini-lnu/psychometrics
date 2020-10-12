@@ -13,8 +13,7 @@ namespace :users_results do
 
     users_results_form = ::UsersResults::UpdatingForm.from_params(status: :completed)
     UsersResult.in_progress.where('expiry_date <= :current', current: 10.second.from_now).find_each do |result|
-      campaign = Threesixty::Campaign.find_by(campaign_id: result.campaign_id)
-      ::UsersResults::UpdateUsersResult.call(users_results_form, result, campaign)
+      ::UsersResults::UpdateUsersResult.call(users_results_form, result, result.user)
     end
   end
 end

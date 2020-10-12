@@ -118,6 +118,8 @@ class User < ApplicationRecord
             class_name: 'Report'
   has_many :campaigns, through: :campaign_users
 
+  has_one :privacy_consent
+
   accepts_nested_attributes_for :memberships
 
   validates :email, uniqueness: { scope: %i[project_id] }

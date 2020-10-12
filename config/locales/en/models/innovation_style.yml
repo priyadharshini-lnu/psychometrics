@@ -1,9 +1,9 @@
 en:
   activerecord:
     models:
-      occupation: 'Innovation Styles'
+      innovation_style: 'Innovation Styles'
     attributes:
-      occupation: &DEFAULT
+      innovation_style: &DEFAULT
         id: 'ID'
         name: 'Name'
         description: 'Description'

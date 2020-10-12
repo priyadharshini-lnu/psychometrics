@@ -1,10 +1,14 @@
 export default interface Campaign {
   id: number
+  projectId: number
   name: string
   type: string
+  status: string
+  startDate: Date
+  endDate: Date
   assessments: Entity[]
   reports: Entity[]
-  options: Options
+  isFixedTime: boolean
 }
 
 export interface Entity {
@@ -13,6 +17,10 @@ export interface Entity {
   iconUrl: string
 }
 
-export interface Options {
-  enableAssessmentsInSequentialOrder?: boolean
+export interface CampaignOptions {
+  timeZone?: string
+  fixedTime: boolean
+  fixedTimeDuration?: number
+  instructionsEnabled: boolean
+  instructions?: string
 }

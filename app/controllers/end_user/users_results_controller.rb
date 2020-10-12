@@ -6,9 +6,11 @@ module EndUser
     before_action :set_user_result, only: %i[update upload_media_url remove_media update_meta_data
                                              complete_multipart_upload mark_as_user_selected_take]
     before_action :set_user_assessment, only: %i[update]
+    prepend_before_action :authenticate_anonymous_user!, only: %i[update upload_media_url
+                                                                  remove_media update_meta_data
+                                                                  complete_multipart_upload]
 
     def update
-      @threesixty_campaign = @user_assessment.campaign.threesixty? && @user_assessment.campaign.threesixty_campaign
       result_params = ::UsersResults::ExtendResourceParams.call!(
         resource_params.to_h,
         params[:question_ids],
@@ -16,7 +18,7 @@ module EndUser
       )
 
       form = ::UsersResults::UpdatingForm.from_params(result_params)
-      ::UsersResults::UpdateUsersResult.call(form, @users_result, @threesixty_campaign)
+      ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
       render json: @users_result,
              serializer: UsersResultUpdateSerializer,
@@ -29,14 +31,21 @@ module EndUser
     end
 
     def upload_media_url
-      render json: MediaResponses::GetUploadUrl.call!(@users_result, params[:question_id])
+      MediaResponses::GetUploadUrl.call(@users_result, params[:question_id]) do
+        on(:ok) { |data| render json: data }
+        on(:error) do |error|
+          render json: {
+            error: error
+          }, status: 400
+        end
+      end
     end
 
     def upload_callback
       media = MediaResponse.find(params[:media_id])
       media.asset_key = params[:asset_key]
       if media.save
-        render json: media.reload.as_json.merge(filename: media.filename)
+        render json: media.reload, serializer: MediaResponseSerializer
       else
         error_message = media.errors.messages.values.join(',')
         media.destroy
@@ -58,7 +67,7 @@ module EndUser
       media = @users_result.media_responses.find_by!(id: params[:media_id])
       MediaResponses::CompleteMultipartUpload.call!(media, params[:asset_key], params[:upload_id], params[:parts])
 
-      render json: media.reload.as_json
+      render json: media.reload, serializer: MediaResponseSerializer
     end
 
     def mark_as_user_selected_take

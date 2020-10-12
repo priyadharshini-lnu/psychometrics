@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+module UserReports
+  class PrepareDataForReportPreview < BaseCommand
+    private_attr_reader :user_report, :report, :options
+
+    def initialize(user_report, options)
+      @user_report = user_report
+      @report = @user_report.report
+      @options = options
+    end
+
+    def call
+      translations = Translation.to_hash_for_report(report.id, report.assessment_ids, options[:locale])
+
+      broadcast :ok,
+                user: Reports::UserSerializer.new(user_report.user).to_json,
+                results:  UserReports::GroupedResultsByAssessment.call!(user_report).to_json,
+                data: ReportSerializer.new(
+                  report,
+                  user_results: user_report.user_results
+                ).to_json(include: '**'),
+                locales: translations.to_json
+    end
+  end
+end
