@@ -37,44 +37,46 @@ describe Campaigns::Users::AddReport do
     end.to_not(change { UserAssessment.count })
   end
 
-  it 'calls UserReports::GeneratePdfJob if assessment added to users are already completed' do
+  it 'calls UserReports::GenerateAndSavePdfJob' do
     create(
       :user_assessment,
       assessment_id: report.assessments.first.id,
       campaign: campaign_user.campaign,
       subject: campaign_user.user,
       evaluator: campaign_user.user,
-      relationship: Relationship.self_relationship,
-      users_result: create(:users_result)
+      relationship: Relationship.self_relationship
     )
-    expect(UserReports::GeneratePdfJob).to receive(:perform_later)
+    expect(UserReports::GenerateAndSavePdfJob).to receive(:perform_later)
 
     described_class.call!(campaign_user, report)
   end
 
-  it "doesn't calls UserReports::GeneratePdfJob if assessment added to users is not completed" do
-    expect(UserReports::GeneratePdfJob).to_not receive(:perform_later)
+  it 'copies users_result if user have previously given the assessment and add_and_allow_new_response is not set' do
+    answers = { '1' => [{ 'value' => 10 }] }
+    existing_user_result = create(
+      :users_result,
+      evaluator: campaign_user.user,
+      assessment_id: report.assessments.first.id,
+      answers: answers
+    )
+    output = described_class.call!(campaign_user, report)
+    new_user_result = output[:user_assessments].first.users_result
 
-    described_class.call!(campaign_user, report)
+    expect(new_user_result).to_not eq(existing_user_result)
+    expect(new_user_result.answers).to eq(answers)
   end
 
-  it 'sets users_result_id if user have previously given the assessment and add_and_allow_new_response is not set' do
-    user_result = create(:users_result, evaluator: campaign_user.user, assessment_id: report.assessments.first.id)
-    result = described_class.call!(campaign_user, report)
-
-    expect(result[:user_assessments].first.users_result_id).to eq(user_result.id)
-  end
-
-  it "doesn't sets users_result_id if operation is set to 'add_and_allow_new_response" do
-    create(:users_result, evaluator: campaign_user.user, assessment_id: report.assessments.first.id)
+  it "create new user_result record if operation is set to 'add_and_allow_new_response'" do
+    existing_user_result = create(:users_result,
+                                  evaluator: campaign_user.user, assessment_id: report.assessments.first.id)
     result = described_class.call!(campaign_user, report, operation: 'add_and_allow_new_response')
 
-    expect(result[:user_assessments].first.users_result_id).to eq(nil)
+    expect(result[:user_assessments].first.users_result_id).to_not eq(existing_user_result.id)
   end
 
-  it "doesn't sets users_result_id if user have not previously given the assessment" do
+  it 'create new user_result if user have not previously given the assessment' do
     result = described_class.call!(campaign_user, report)
 
-    expect(result[:user_assessments].first.users_result_id).to eq(nil)
+    expect(result[:user_assessments].first.users_result).to be_present
   end
 end

@@ -19,9 +19,9 @@ class Properties extends Component {
 
   render () {
     const { model, questions } = this.props
-    const videoQuestions = _.filter(
-      questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type),
-    )
+    const videoQuestions = _.filter(questions || [], q => AVAILABLE_QUESTION_TYPES.includes(q.type))
+    const options = _.map(videoQuestions, question => ({ label: question.name, value: question.id }))
+
     return (
       <div>
         <div className={styles.title}>Video Response</div>
@@ -30,13 +30,12 @@ class Properties extends Component {
           <div className="mtm">
             Question
             <Select
-              value={getValue(videoQuestions, model.props.questionId)}
-              options={videoQuestions}
-              getOptionValue={opt => opt.id}
-              getOptionLabel={opt => opt.name}
+              value={getValue(options, model.props.questionId)}
+              options={options}
+              getOptionValue={opt => opt.value}
               autoFocus={false}
               isClearable={false}
-              onChange={({ id }) => this.onChange('questionId', id)}
+              onChange={val => this.onChange('questionId', val.value)}
               placeholder="Video Questions"
             />
           </div>

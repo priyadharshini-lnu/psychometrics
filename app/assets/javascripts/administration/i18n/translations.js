@@ -206,11 +206,21 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -342,6 +352,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "innovation_styles_factor": {
         "active": "Active",
@@ -502,6 +520,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "locked_at": "تم القفل في",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "كلمة المرور",
         "password_confirmation": "تأكيد كلمة المرور",
         "remember_created_at": "تم إنشاء التذكير في",
@@ -558,9 +577,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -622,12 +650,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -1118,6 +1147,43 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "url": "Url"
     },
+    "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enable": "Enable instructions"
+        }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
     "clients": {
@@ -1515,6 +1581,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -1819,6 +1889,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -3017,6 +3091,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -3088,6 +3166,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -3187,6 +3266,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -3606,7 +3694,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -3624,6 +3712,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -3676,6 +3765,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -4507,6 +4599,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
@@ -4606,6 +4699,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -4649,6 +4746,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -4664,7 +4762,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -4722,6 +4821,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "حذف",
       "device": "السماح",
@@ -4733,6 +4833,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
         "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "أعد مرة أخرى",
       "retry": "أعد المحاولة",
       "save": "حفظ",
@@ -4752,6 +4853,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "use_this": "استخدم ذلك"
     },
     "wait": "Wait"
+  },
+  "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
+    }
   },
   "assigns": {
     "assign": {
@@ -4845,16 +4965,32 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
-  "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
     },
+    "interrupted": "Interrupted",
+    "new": "New",
+    "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
+  },
+  "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -4870,16 +5006,44 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -4893,16 +5057,61 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
+      }
     }
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
+      "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
-      "not_logged_in_yet": "Not logged in yet"
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully.",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
+      "not_completed_yet": "Not completed yet",
+      "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -4981,6 +5190,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -4999,7 +5209,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
+      "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -5570,28 +5783,40 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {
@@ -6226,13 +6451,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -6241,14 +6466,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
@@ -6344,7 +6569,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -6417,6 +6642,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -6658,6 +6884,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -6769,6 +6996,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -6784,7 +7012,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
@@ -6865,6 +7092,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -6877,9 +7105,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -6922,12 +7147,58 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
+      "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
+      }
+    }
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
     }
   },
   "validations": {
@@ -7209,11 +7480,21 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -7345,6 +7626,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "innovation_styles_factor": {
         "active": "Active",
@@ -7505,6 +7794,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "locked_at": "Locked at",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "remember_created_at": "Remember created at",
@@ -7561,9 +7851,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -7625,12 +7924,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -8121,6 +8421,43 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "url": "Url"
     },
+    "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enable": "Enable instructions"
+        }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
     "clients": {
@@ -8518,6 +8855,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -8822,6 +9163,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -10020,6 +10365,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -10091,6 +10440,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -10190,6 +10540,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -10609,7 +10968,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -10627,6 +10986,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -10679,6 +11039,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -11510,6 +11873,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
@@ -11609,6 +11973,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -11652,6 +12020,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -11667,7 +12036,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -11725,6 +12095,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -11733,6 +12104,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -11749,9 +12121,28 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
+  },
+  "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
+    }
   },
   "assigns": {
     "assign": {
@@ -11845,16 +12236,32 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
-  "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
     },
+    "interrupted": "Interrupted",
+    "new": "New",
+    "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
+  },
+  "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -11870,16 +12277,44 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -11893,16 +12328,61 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
+      }
     }
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
+      "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
-      "not_logged_in_yet": "Not logged in yet"
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully.",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
+      "not_completed_yet": "Not completed yet",
+      "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -11981,6 +12461,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -11999,7 +12480,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
+      "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -12566,28 +13050,40 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {
@@ -13222,13 +13718,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -13237,14 +13733,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
@@ -13340,7 +13836,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -13413,6 +13909,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -13654,6 +14151,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -13765,6 +14263,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -13780,7 +14279,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "main": "<h2>Help</h2> <p>need content for help modal</p>"
@@ -13858,6 +14356,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -13870,9 +14369,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -13915,12 +14411,58 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
+      "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
+      }
+    }
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
     }
   },
   "validations": {
@@ -14202,11 +14744,21 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "update_assessment": {
           "attributes": null
         },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
         "user": {
           "attributes": {
             "email": {
               "user_exists_in_campaign": "User with this email id already exists in the campaign",
               "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "invalid_header": "Invalid header, take header from export"
             }
           }
         }
@@ -14338,6 +14890,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "hogan_report_setting": {
         "load_report": "Load report from Hogan"
+      },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
       },
       "innovation_styles_factor": {
         "active": "Active",
@@ -14498,6 +15058,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "locked_at": "Dikunci pada",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Kata laluan",
         "password_confirmation": "Pengesahan kata laluan",
         "remember_created_at": "Ingat dicipta pada",
@@ -14554,9 +15115,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "updated_at": "Modified Date"
       },
       "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
         "statuses": {
           "completed": "Completed",
           "in_progress": "Resume",
+          "interrupted": "Interrupted",
           "not_started": "New"
         }
       }
@@ -14618,12 +15188,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
       "innovation_styles_factor": "Innovation Styles",
       "library": "Library",
       "license": "License",
       "membership": "Membership",
       "norm": "Norms",
-      "occupation": "Innovation Styles",
+      "occupation": "Occupations",
       "occupations_factor": "Occupations",
       "product": "Product",
       "question": "Question",
@@ -15114,6 +15685,43 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "url": "Url"
     },
+    "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "enable": "Enable instructions"
+        }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active?",
+        "name": "Name",
+        "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
     "clients": {
@@ -15511,6 +16119,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -15815,6 +16427,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -17013,6 +17629,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "delete": {
                 "body": "<p>Are you sure you want to delete?</p>\n",
                 "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
               }
             },
             "toggle_status": {
@@ -17084,6 +17704,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "invitation": "Invitation",
         "kind": "Communication Types",
+        "new_users": "New Users",
         "other": "Other",
         "reminder": "Reminder",
         "selected": "Selected",
@@ -17183,6 +17804,15 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "create": "Create",
     "created": "Successfully created",
     "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
@@ -17602,7 +18232,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "upload": "Upload new file"
       },
       "new": {
-        "header": "New Report"
+        "header": "New Folder"
       },
       "resource": {
         "confirmations": {
@@ -17620,6 +18250,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Item %{name} was successfully updated."
       }
     },
+    "membership": "Membership",
     "memberships": {
       "admin": {
         "new": {
@@ -17672,6 +18303,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "spoof": {
         "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
       },
       "toggle_status": {
         "successfully": "User %{name} was successfully updated."
@@ -18503,6 +19137,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       }
     },
+    "time_zone": "Time Zone",
     "translations": {
       "assessments": {
         "new": {
@@ -18602,6 +19237,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "delete": {
               "body": "<p>Are you sure you want to delete?</p>\n",
               "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
             }
           },
           "toggle_status": {
@@ -18645,6 +19284,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -18660,7 +19300,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -18718,6 +19359,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -18726,6 +19368,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -18742,9 +19385,28 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
+  },
+  "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
+    }
   },
   "assigns": {
     "assign": {
@@ -18838,16 +19500,32 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "message": "Please use latest version of the browsers"
     }
   },
-  "campaign_assessment": {
-    "actions": {
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      }
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
     },
+    "interrupted": "Interrupted",
+    "new": "New",
+    "not_started": "New",
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
+  },
+  "campaign_assessment": {
     "column": {
       "assessment_name": "Assessment name",
       "norm": "Norm",
+      "status": "Status",
       "universal_link": "Universal link"
     },
     "modals": {
@@ -18863,16 +19541,44 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
+      "remove": {
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
       "update_norm": {
         "apply": "Apply this change to existing users in this campaign",
         "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
         "title": "Update Norm",
         "type": "Norm Type",
         "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
       }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
     }
   },
   "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
     "column": {
       "report_bundle": "Report Bundle",
       "report_name": "Report name",
@@ -18886,16 +19592,61 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "skip_existing": "Skip existing user"
       },
       "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
+      }
     }
   },
   "campaign_users": {
     "actions": {
-      "add_report": "Add report"
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
     },
     "details": {
+      "additional_time": "Additional Time",
+      "completed_at": "Completed At",
       "completion_status": "Completion status",
       "last_login": "Last login",
-      "not_logged_in_yet": "Not logged in yet"
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully.",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
+      "not_completed_yet": "Not completed yet",
+      "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
     }
   },
   "checking_wizard": {
@@ -18974,6 +19725,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "common": {
     "actions": {
       "cancel": "Cancel",
+      "close": "Close",
       "remove": "Remove",
       "reset": "Reset"
     },
@@ -18992,7 +19744,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "text": {
       "cancel": "Cancel",
       "confirm": "Confirm",
+      "continue": "Continue",
       "default": "Default",
+      "download": "Download",
+      "na": "N/A",
       "ok": "Ok",
       "response": "Response"
     }
@@ -19559,28 +20314,40 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "frontend": {
     "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
     "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
       "users": {
-        "change_password_confirmation_content": "Are you sure you want to send instructions with link to change password?",
-        "change_password_confirmation_title": "Change password %{full_name}?",
         "completion_statuses": {
           "completed": "Completed",
           "in_progress": "In Progress",
+          "interrupted": "Interrupted",
           "not_started": "Not Started"
-        },
-        "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+        }
       }
     },
     "change_password": "Change password",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "delete": "Delete",
     "edit": "Edit",
     "login": "Login",
     "manage": "Manage",
+    "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
-    }
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "helpers": {
     "page_entries_info": {
@@ -20215,13 +20982,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "gap_assessment": {
         "gap": "Gap",
-        "item": "Item",
+        "item": "Indicator",
         "negative_gap": "Negative Gaps",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
-        "scoring_category": "Scoring Category"
+        "scoring_category": "Competency"
       },
       "highest_lowest": {
         "average": "Average",
@@ -20230,14 +20997,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "email": "Email",
         "first_name": "First Name",
         "highest_scores": "Highest Scores",
-        "item": "Item",
+        "item": "Indicator",
         "last_name": "Last Name",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
         "result": "Result",
         "score": "Score",
-        "scoring_category": "Scoring Category",
+        "scoring_category": "Competency",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
@@ -20333,7 +21100,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "submit": "Reset Password",
       "title": "Forgot Password?"
     },
-    "terms_conditions_privacy": "Terms, Conditions and Privacy Statement",
+    "terms_conditions_privacy": "Privacy Statement",
     "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
   },
   "simple_form": {
@@ -20406,6 +21173,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -20647,6 +21415,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "last_name": "Last Name",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
+        "name": "Name",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -20758,6 +21527,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "denied": "Denied",
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
+    "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
@@ -20773,7 +21543,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "export_pdf": "Export PDF",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
-    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "main": "<h2>Help</h2> <p>need content for help modal</p>"
@@ -20851,6 +21620,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "remind_all": "Remind All",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
+    "report_for": "Report for",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
     "reports": "Reports",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
@@ -20863,9 +21633,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -20908,12 +21675,58 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "svg": "SVG"
   },
   "user": {
+    "fields": {
+      "email": "Email Address",
+      "first_name": "First Name",
+      "last_name": "Last Name"
+    },
     "form": {
       "operation_options": {
         "add_and_allow_new_response": "Add user and allow new response",
         "add_with_existing_response": "Add user with existing response",
         "skip_existing": "Skip existing user"
       }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
+      "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
+      }
+    }
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
     }
   },
   "validations": {

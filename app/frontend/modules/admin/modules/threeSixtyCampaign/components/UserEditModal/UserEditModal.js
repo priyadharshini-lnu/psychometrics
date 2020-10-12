@@ -4,7 +4,7 @@ import {
   Modal, Button, Form, Input,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 
 export default function UserEditModal ({
   closeModal,

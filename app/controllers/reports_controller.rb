@@ -48,15 +48,10 @@ class ReportsController < ApplicationController
       subject: nil,
       membership: @current_membership,
       report: @resource,
-      locale: user_locale,
-      user_report: user_report
+      locale: user_locale
     }
 
     @data = Reports::PrepareDataForReport.call!(args)
-  end
-
-  def user_report
-    @user_report ||= UserReport.find_by(id: params[:user_report_id])
   end
 
   # Authorisation user

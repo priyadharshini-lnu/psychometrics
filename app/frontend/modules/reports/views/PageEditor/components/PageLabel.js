@@ -46,7 +46,8 @@ let PageLabel = class extends Component {
   }
 
   scrollTo = () => {
-    const { page } = this.props
+    const { page, onClick } = this.props
+    onClick(page.id)
     if (page.visible) {
       ScrollDispatcher.scroll(page.id)
     }

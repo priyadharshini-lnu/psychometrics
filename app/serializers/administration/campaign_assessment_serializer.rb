@@ -2,15 +2,11 @@
 
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :norm_type, :enable_universal_links,
-               :universal_link, :norms, :internal
+    attributes :id, :assessment_id, :name, :category, :norm_name, :norm_type, :norm_id, :enable_universal_links,
+               :universal_link, :norms, :is_external
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
-
-    def internal
-      assessment.common?
-    end
 
     def universal_link
       assessment.decorate.anonym_link_for_campaign(object.campaign) if object.enable_universal_links
@@ -18,6 +14,10 @@ module Administration
 
     def norms
       assessment.norms.map { |n| NormSerializer.new(n).to_h }
+    end
+
+    def is_external # rubocop:disable Naming/PredicateName
+      assessment.external?
     end
 
     private

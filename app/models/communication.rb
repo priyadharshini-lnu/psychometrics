@@ -38,9 +38,11 @@ class Communication < ApplicationRecord
   belongs_to :client
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   belongs_to :project, class_name: 'Client', foreign_key: :project_id
-  belongs_to :campaign, class_name: 'Client', foreign_key: :campaign_id
+  belongs_to :campaign, class_name: 'Client', foreign_key: :campaign_id, optional: true
+  # rename project_campaign relation when we will ditch all old structures
+  belongs_to :project_campaign, class_name: 'Campaign', foreign_key: :campaign_id, optional: true
   belongs_to :sub_campaign, class_name: 'Client', foreign_key: :sub_campaign_id
-  belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id
+  belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id, optional: true
   belongs_to :creator, class_name: 'User'
 
   enum recipients: { all: 0, selected: 1, new_users: 2 }, _suffix: true
@@ -63,6 +65,12 @@ class Communication < ApplicationRecord
 
   def selected_memberships
     ::Queries::Memberships::ForCommunication.call(self).join_user
+  end
+
+  def selected_campaign_users
+    return project_campaign.campaign_users.where(user_id: user_ids) if selected_recipients?
+
+    project_campaign.campaign_users
   end
 
   def selected_memberships_ids
@@ -130,12 +138,20 @@ class Communication < ApplicationRecord
   end
 
   def emails_creating
-    selected_memberships.find_each(batch_size: 100) do |membership|
-      emails.create(membership: membership)
+    if project&.migrated?
+      selected_campaign_users.find_each(batch_size: 100) do |campaign_user|
+        emails.create(campaign_user: campaign_user)
+      end
+    else
+      selected_memberships.find_each(batch_size: 100) do |membership|
+        emails.create(membership: membership)
+      end
     end
   end
 
   def not_invited_to_project_current_memberships
+    return selected_campaign_users.joins(:user).where(users: { already_invited: false }) if project.migrated?
+
     current_memberships.distinct.reject(&:already_invited?)
   end
 

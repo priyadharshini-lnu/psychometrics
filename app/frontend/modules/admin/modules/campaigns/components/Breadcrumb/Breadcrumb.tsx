@@ -22,7 +22,7 @@ const Breadcrumb: React.FC<Props> = ({
 }) => {
   useEffect(() => {
     fetch(request)
-  }, [request])
+  }, [JSON.stringify(request)])
 
   return (
     <div className={styles.container}>

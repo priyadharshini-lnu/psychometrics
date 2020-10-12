@@ -3,7 +3,7 @@ import {
   Modal, Button, Input, Alert, message,
 } from 'antd'
 import { CheckOutlined, MailOutlined } from '@ant-design/icons'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 
 export default function SendTestEmailModal ({
   closeModal,

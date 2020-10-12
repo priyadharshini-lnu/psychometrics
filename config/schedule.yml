@@ -30,3 +30,8 @@ weekly_stats_job:
   cron: "0 10 * * SUN" # At 10:00 on Sunday
   class: Licenses::WeeklyStatsJob
   queue_as: cron_tasks
+
+campaign_status_updater_job:
+  cron: "*/10 * * * *" # Every 10 minutes
+  class: CampaignStatusUpdaterJob
+  queue_as: cron_tasks

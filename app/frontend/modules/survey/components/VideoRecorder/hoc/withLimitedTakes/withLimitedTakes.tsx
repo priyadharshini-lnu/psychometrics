@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import axios from 'axios'
-import { CheckOutlined } from '@ant-design/icons'
-import ColoredButton from 'components/ColoredButton'
-import RecordButton from 'components/AudioRecorder/MediaButtons/RecordButton'
-import { InProgressQuestion } from 'core/preview/FlowProcessor/interfaces'
+import { InProgressQuestion, MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
+import { SelectOutlined } from '@ant-design/icons'
+import {
+  Button, Row, Col, Space,
+} from 'antd'
+import cs from 'classnames'
 import { I18n } from 'modules/survey/store/StoreWatchman'
 import MultipleTakeButtons from './MultipleTakeButtons'
 import styles from './styles.scss'
 
 interface Props {
-  onSuccessUpload(answer: Answer, { shouldSaveCurrentPage: boolean }): void
-  saveCurrentPage(): void
+  onSuccessUpload(mediaResponse: MediaResponse): void
   model: {
     id: number
     result: {
@@ -23,6 +24,8 @@ interface Props {
   }
   inProgressQuestions: InProgressQuestion[]
   mediaUrl: string
+  mediaResponses: MediaResponse[]
+  markMediaResponseAsSelected(mediaResponse: MediaResponse): void
 }
 
 export interface Answer {
@@ -33,44 +36,42 @@ export interface Answer {
 
 const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) => (props: Props) => {
   const {
-    onSuccessUpload, model, model: { result }, inProgressQuestions,
+    onSuccessUpload, model, markMediaResponseAsSelected, inProgressQuestions, mediaResponses,
   } = props
-  const [currentTakeNo, setCurrentTakeNo] = useState(1)
+  const [currentTakeIndex, setCurrentTakeIndex] = useState(0)
   const [recordingAllowed, setRecordingAllowed] = useState(false)
 
-  const completedTakes = result.answers.length
+  const completedTakes = mediaResponses.length
 
-  const currentTakeDetails: Answer = _.find(result.answers, ({ take_no }) => take_no === currentTakeNo) as Answer
+  const currentMediaResponse = mediaResponses[currentTakeIndex]
 
-  const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !!currentTakeDetails
+  const showRetakes: boolean = completedTakes > 0 && completedTakes < maxTakes && !!currentMediaResponse
 
   const recordingInProgress = _.find(inProgressQuestions || [], ({ questionId }) => questionId === model.id)
 
+  const currentTakeIsSelected = currentMediaResponse && currentMediaResponse.userSelected
+  const selectedTakeIndex = _.findIndex(mediaResponses, ({ userSelected }) => userSelected)
+
   useEffect(() => {
-    const selectedTake = _.find(result.answers, ({ user_selected }) => user_selected)
-    const currentTakeNo = selectedTake ? selectedTake.take_no : 1
-    setCurrentTakeNo(currentTakeNo)
+    let currentTakeIndexToSet = _.findIndex(mediaResponses, ({ userSelected }) => userSelected)
+    currentTakeIndexToSet = currentTakeIndexToSet > 0 ? currentTakeIndexToSet : 0
+    setCurrentTakeIndex(currentTakeIndexToSet)
   }, [])
 
   const handleAllowRecording = () => {
     setRecordingAllowed(true)
   }
 
-  const handleOnSuccessUpload = (data) => {
-    onSuccessUpload
-      && onSuccessUpload({ ...data, takeNo: currentTakeNo }, { shouldSaveCurrentPage: currentTakeNo !== 1 })
-
-    // First take is always marked as user selected. User can change it after recording second video
-    if (currentTakeNo === 1) { handleUserSelectedTake(data.id) }
+  const handleOnSuccessUpload = (data: MediaResponse) => {
+    onSuccessUpload && onSuccessUpload(data)
   }
 
-  const handleUserSelectedTake = (mediaId: number) => {
-    const { mediaUrl, saveCurrentPage } = props
-    result.moduleResult.userSelectedTake(currentTakeNo)
-    setTimeout(() => saveCurrentPage(), 200)
+  const handleUserSelectedTake = (mediaResponse: MediaResponse) => {
+    const { mediaUrl } = props
+    markMediaResponseAsSelected(mediaResponse)
     axios.put(
       `${mediaUrl}/mark_as_user_selected_take`,
-      { take_no: currentTakeNo, media_id: mediaId },
+      { take_no: currentTakeIndex, media_id: mediaResponse.id },
       {
         headers: {
           'X-CSRF-Token': (document.querySelector('meta[name="csrf-token"]') as Element).getAttribute('content'),
@@ -79,15 +80,53 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
     )
   }
 
+  const overlayControls = () => {
+    if (recordingInProgress) return null
+    return (
+      <div className={styles.overlayControls}>
+        <Row>
+          <Col span="16" offset="4">
+            <Space>
+              {showRetakes && (
+              <Button
+                onClick={() => setCurrentTakeIndex(completedTakes)}
+                className={styles.retakeBtn}
+                type="default"
+                size="large"
+                icon={<span className="fa fa-dot-circle-o" />}
+              >
+                {I18n().t('assessments.video_response.retake')}
+              </Button>
+              )}
+              {completedTakes > 1 && !currentTakeIsSelected && currentMediaResponse && (
+              <Button
+                type="default"
+                className={styles.allowButton}
+                onClick={() => handleUserSelectedTake(currentMediaResponse)}
+                size="large"
+              >
+                <SelectOutlined />
+                {I18n().t('assessments.video_response.use_this')}
+              </Button>
+              )}
+            </Space>
+          </Col>
+          <Col span="4"><div className={styles.currentTakeNo}>{currentTakeIndex + 1}</div></Col>
+        </Row>
+      </div>
+    )
+  }
+
   const renderWrappedComponent = () => (
     <WrappedComponent
       {...props}
-      answer={currentTakeDetails}
-      key={currentTakeNo}
+      mediaResponse={currentMediaResponse}
+      key={currentTakeIndex}
       onSuccessUpload={handleOnSuccessUpload}
       disallowDiscard
       recordingAllowed={recordingAllowed}
       onRecordingAllowed={handleAllowRecording}
+      extraControls={overlayControls()}
     />
   )
 
@@ -95,52 +134,19 @@ const withLimitedTakes = (WrappedComponent, { maxTakes }: { maxTakes: number }) 
     return renderWrappedComponent()
   }
 
-  const currentTakeIsSelected = currentTakeDetails && currentTakeDetails.user_selected
-
   return (
     <div>
       {renderWrappedComponent()}
       {!recordingInProgress && (
-      <div className={styles.retakeContainer}>
-        <div>
+        <div className={cs(styles.takesContainer, 'mtm', 'text-align-c')}>
           <MultipleTakeButtons
             maxTakes={maxTakes}
-            currentTakeNo={currentTakeNo}
-            answers={result.answers}
-            onChangeTake={setCurrentTakeNo}
+            currentTakeIndex={currentTakeIndex}
+            selectedTakeIndex={selectedTakeIndex}
+            mediaResponses={mediaResponses}
+            onChangeTakeIndex={setCurrentTakeIndex}
           />
         </div>
-        <div className="text-align-c">
-          {showRetakes && (
-          <div onClick={() => setCurrentTakeNo(completedTakes + 1)} className={styles.retakeBtn}>
-            <RecordButton className={styles.recordBtnContainer} recordButtonClass={styles.recordBtn} />
-            {I18n().t('assessments.video_response.retake')}
-          </div>
-          )}
-        </div>
-        <div className="userSelectedContainer">
-          {completedTakes > 1 && !currentTakeIsSelected
-            && (
-            <ColoredButton
-              type="primary"
-              className={styles.allowButton}
-              color="green"
-              onClick={() => handleUserSelectedTake(currentTakeDetails.media_id)}
-            >
-              <CheckOutlined />
-              {I18n().t('assessments.video_response.use_this')}
-            </ColoredButton>
-            )}
-          {completedTakes > 1 && currentTakeIsSelected
-            && (
-            <div className={styles.inUse}>
-              <CheckOutlined />
-              {' '}
-              {I18n().t('assessments.video_response.selected')}
-            </div>
-            )}
-        </div>
-      </div>
       )}
     </div>
   )

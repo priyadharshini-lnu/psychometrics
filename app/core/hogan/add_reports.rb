@@ -51,7 +51,8 @@ module Hogan
     end
 
     def add_participant_reports
-      reports.each do |report|
+      reports.each do |user_report|
+        report = user_report.report
         next unless report.hogan?
 
         Services::Hogan::API::AddParticipantReport.call!(

@@ -1,5 +1,6 @@
 import mime from 'mime-types'
 import sanitize from 'utils/sanitizeFileName'
+import humps from 'humps'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
 
@@ -59,7 +60,7 @@ const onUploadDone = (media, data, context) => {
     headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
   }).done((data) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
-    onSuccessUpload(data)
+    onSuccessUpload(humps.camelizeKeys(data))
   }).fail((data) => {
     dispatch({ type: SET_ERRORS, payload: { errorMessages: [data.responseJSON.error_message] } })
   })

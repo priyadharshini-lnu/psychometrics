@@ -34,7 +34,6 @@ export default function UserAssessment ({
   },
   preview,
   markAssessmentTimedOut,
-  block,
   progress,
 }) {
   useEffect(() => {
@@ -69,11 +68,7 @@ export default function UserAssessment ({
           />
         </Content>
       </div>
-      <Content
-        className={
-          cs('fluid-container', { 'has-static-content': _.get(block, ['props', 'staticContent']) })
-        }
-      >
+      <Content className="fluid-container">
         {availableTranslations && availableTranslations.length > 0 && (
           <Row type="flex" justify="end" className="mtm mrm lang-row">
             <Col>
@@ -95,7 +90,7 @@ export default function UserAssessment ({
                   data={assessment}
                   result={results}
                   locales={translations}
-                  dashboardUrl="/assessment_completed"
+                  dashboardUrl={`/campaigns/${campaignId}`}
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
                   selectedLocale={selectedLanguage && selectedLanguage.code}
                   rstore={store}

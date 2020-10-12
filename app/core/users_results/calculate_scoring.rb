@@ -44,7 +44,7 @@ module UsersResults
           question = questions_map[question_scoring.question_id].try(:first)
           scoring_class = "::Scoring::#{question.try(:type)}".safe_constantize
 
-          result = answers[question.try(:id).try(:to_s)]
+          result = users_result.answers[question&.id&.to_s]
           if scoring_class && result && question && !question_scoring.props.empty?
             scoring_point = scoring_class.new.calculate(question, result, question_scoring.props)[:value]
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
@@ -53,10 +53,6 @@ module UsersResults
       end
 
       broadcast :ok, ::UsersResults::Scoring::Extend.call!(scoring, norm_data, users_result.assessment.dimension)
-    end
-
-    def answers
-      users_result.respond_to?(:answers) ? users_result.answers : users_result.results
     end
 
     private

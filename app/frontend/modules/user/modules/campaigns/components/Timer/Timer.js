@@ -7,11 +7,16 @@ const { Countdown } = Statistic
 
 const NOTIFICATION_POINTS = [50, 75, 90]
 const TIMER_STATES = {
-  75: styles.warning,
-  90: styles.danger,
+  75: 'warning',
+  90: 'danger',
 }
 
-const Timer = ({ preview, preview: { expiryDate, timerDuration }, onFinish }) => {
+const Timer = ({
+  preview,
+  preview: { expiryDate, timerDuration },
+  onFinish,
+  background = 'green',
+}) => {
   useEffect(() => {
     if (!timerDuration) return
     const remainingTime = (new Date(expiryDate) - new Date())
@@ -25,7 +30,7 @@ const Timer = ({ preview, preview: { expiryDate, timerDuration }, onFinish }) =>
       notifications.map(notification => clearTimeout(notification))
     }
   }, [timerDuration])
-  const [timerState, setTimerState] = useState(styles.green)
+  const [timerState, setTimerState] = useState(background)
 
   const notificationSetTimeout = (notificationPoint, remainingTime, timerDuration, className) => {
     const notificationRemainingTime = timerDuration * 1000 * (100 - notificationPoint) / 100
@@ -39,24 +44,22 @@ const Timer = ({ preview, preview: { expiryDate, timerDuration }, onFinish }) =>
           setTimerState(TIMER_STATES[notificationPoint])
         }
         notification.warning({
-          message: I18n.t('threesixty.timer.notification', { minutes, seconds }),
+          message: I18n.t('campaign.timer.notification', { minutes, seconds }),
           duration: 15,
           className,
         })
       }, remainingTime - notificationRemainingTime)
     }
   }
-  const style = {
-    backgroundColor: timerState,
-  }
+
+  const bgClass = styles[timerState]
   return (
     expiryDate ? (
       <Countdown
         value={new Date(expiryDate)}
         onFinish={() => onFinish(preview)}
         prefix={<ClockCircleOutlined className="mrs" />}
-        className={styles.timer}
-        style={style}
+        className={[styles.timer, styles.withBg, bgClass]}
       />
     ) : null
   )

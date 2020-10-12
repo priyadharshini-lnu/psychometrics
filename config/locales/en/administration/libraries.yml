@@ -15,7 +15,7 @@ en:
         updated_at: Modified date
         created_at: Created date
       new:
-        header: 'New Report'
+        header: 'New Folder'
       edit:
         header: 'Edit'
       destroy:

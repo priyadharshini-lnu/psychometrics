@@ -5,7 +5,13 @@ export default interface UserAssessment {
   name: string
   category: string
   assessmentId: number
+  isExpired: boolean
+  isExternal: boolean
+  additionalTime: number | null
+  normId: number
   normName: string
+  normType: string
   status: string
   norms?: Norm[]
+  reportIds: number[]
 }

@@ -6,7 +6,7 @@ export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESU
 export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
 export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
 export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
-
+export const REMOVE = 'campaigns/assessments/REMOVE'
 
 export const activateUniversalLink = (campaignId: string, id: number) => ({
   type: ACTIVATE_UNIVERSAL_LINK,
@@ -56,6 +56,18 @@ export const rescoreResponses = (campaignId: number, assessmentId: number) => ({
   },
 })
 
+export const remove = (campaignId: number, assessmentId: number,
+  options: { removeUserAssessments: boolean }) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}`,
+    body: {
+      remove_user_assessments: options.removeUserAssessments,
+    },
+  },
+})
+
 export const importScoringResults = (campaignId: number, assessmentId: number, body: Body) => ({
   type: IMPORT_SCORING_RESULTS,
   request: {
@@ -72,5 +84,6 @@ export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_norm`,
     body: { ...body, id: assessmentId },
+    loader: true,
   },
 })

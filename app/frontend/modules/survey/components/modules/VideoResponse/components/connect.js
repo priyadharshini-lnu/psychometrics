@@ -1,18 +1,28 @@
 import { connect } from 'react-redux'
-import { getI18n, isAssessmentTimedOut } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import { markQuestionInProgress, removeQuestionInProgress } from 'modules/survey/core/preview/FlowProcessor/actions'
-import { saveCurrentPage } from 'core/preview/FlowProcessor/actions'
+import {
+  getI18n,
+  isAssessmentTimedOut,
+  getMediaResponsesByQuestionId,
+} from 'modules/survey/core/preview/FlowProcessor/selectors'
+import {
+  markQuestionInProgress,
+  removeQuestionInProgress,
+  addMediaResponse,
+  removeMediaResponse,
+} from 'modules/survey/core/preview/FlowProcessor/actions'
 
 export default connect(
-  ({ preview }) => ({
+  ({ preview }, { model }) => ({
     type: preview.type,
     mediaUrl: preview.mediaUrl,
     I18n: getI18n(preview),
     isAssessmentTimedOut: isAssessmentTimedOut(preview),
+    mediaResponses: getMediaResponsesByQuestionId(preview, model.id),
   }),
   {
     markQuestionInProgress,
     removeQuestionInProgress,
-    saveCurrentPage,
+    addMediaResponse,
+    removeMediaResponse,
   },
 )

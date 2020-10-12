@@ -1,5 +1,6 @@
 en:
   assessments:
+    unknown_error: "Unknown error occurred."
     categories:
       case_study: Case Study
       psychometric: Assessment
@@ -25,9 +26,10 @@ en:
       saving: 'Saving...'
       retry: 'Retry'
       selected: 'Selected'
-      use_this: 'Use This'
+      use_this: 'Use this take'
       retake: 'Retake'
       start_recording: 'Start recording'
+      offline_message: 'Please check your internet connection.'
       status:
         recording: 'Recording'
       tracker:

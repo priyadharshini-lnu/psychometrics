@@ -7,5 +7,21 @@ module Administration
     def update_norm?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
+
+    def update_additional_time?
+      (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view)) &&
+        record&.users_result&.completed? &&
+        record&.users_result&.expired?
+    end
+
+    def rescore_response?
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+    end
+
+    def reset?
+      (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view)) &&
+        !record&.users_result&.not_started? &&
+        !record&.assessment&.external?
+    end
   end
 end

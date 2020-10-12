@@ -12,3 +12,6 @@ en:
       restart:
         title: 'Continue?'
         copy: 'You had already started this survey. You can choose to Continue or Restart.'
+
+    continue: Continue
+    restart: Restart

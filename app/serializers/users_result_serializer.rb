@@ -5,13 +5,14 @@ class UsersResultSerializer < ActiveModel::Serializer
              :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
-             :subject_datasheet, :highlights, :user_assessment_id
+             :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at
 
-  attribute :relationship, if: -> { object.assessment.threesixty? }
+  attribute :relationship
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
+  has_many :media_responses, serializer: MediaResponseSerializer
 
   def user_assessment_id
     participant&.id
@@ -27,7 +28,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
     translations['question'] = translations['question'].each_with_object({}) do |(question_id, question_details), acc|
       question_text = question_details['questionText']
-      question_text = Threesixty::PipedText::Perform.call!(question_text, instance_options[:piped_text_context])
+      question_text = Threesixty::PipedText::Perform.call!(question_text, piped_text_context)
       acc[question_id] = question_details.merge('questionText' => question_text)
     end
 
@@ -55,7 +56,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def as_manager
-    object.evaluator_id != current_user.id
+    object.evaluator_id != current_user&.id
   end
 
   def user
@@ -71,7 +72,9 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def relationship
-    participant&.relationship&.name
+    return participant&.relationship&.name if object.assessment.threesixty?
+
+    'Self'
   end
 
   def data_sheet
@@ -80,13 +83,6 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def subject_datasheet
     data_sheet_row_data(object.subject.email)
-  end
-
-  def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
-
-    raise "Not supported hogan type #{type}"
   end
 
   def participant
@@ -99,6 +95,27 @@ class UsersResultSerializer < ActiveModel::Serializer
     Highlight.where(assessment_id: ids, user_id: user_id).map do |h|
       HighlightSerializer.new(h)
     end
+  end
+
+  def external_scoring
+    return object.external_results if object.assessment.mindmill?
+
+    if object.assessment.hogan?
+      score = object.external_results&.hogan_score&.dig('participant', 'assessment', 'score') || {}
+      if score.present?
+        return score.each_with_object({}) do |v, res|
+          scales = Array.wrap(v['scales']['scale'])
+          res[normalize_hogan_type(v['type'])] = scales.each_with_object({}) do |factor, inner_res|
+            inner_res[factor['id']] = factor['__content__'].to_f
+          end
+        end
+      end
+    end
+    {}
+  end
+
+  def media_responses
+    object.media_responses.order(:created_at)
   end
 
   private
@@ -120,5 +137,16 @@ class UsersResultSerializer < ActiveModel::Serializer
           joins(:datasheet).
           find_by(datasheets: { project_id: campaign.project.id }, email: email)
     row&.data || {}
+  end
+
+  def normalize_hogan_type(type)
+    return 'Raw' if type == 'RAW'
+    return 'Percentile' if type == 'percentile'
+
+    raise "Not supported hogan type #{type}"
+  end
+
+  def piped_text_context
+    instance_options[:piped_text_context] || {}
   end
 end

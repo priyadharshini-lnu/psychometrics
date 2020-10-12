@@ -116,4 +116,15 @@ class UserDecorator < BaseDecorator
       )
     }.to_json
   end
+
+  def self.export_headers
+    [
+      User.human_attribute_name('active'),
+      User.human_attribute_name('first_name'),
+      User.human_attribute_name('last_name'),
+      User.human_attribute_name('email'),
+      User.human_attribute_name('password'),
+      User.human_attribute_name('created_at')
+    ]
+  end
 end

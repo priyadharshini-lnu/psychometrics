@@ -34,7 +34,7 @@ module Administration
                                              subject_id: resource.user_id,
                                              evaluator_id: params[:id])
         form = ::UsersResults::UpdatingForm.from_params(params.require(:resource))
-        ::UsersResults::UpdateUsersResult.call(form, @users_result, threesixty_campaign)
+        ::UsersResults::UpdateUsersResult.call(form, @users_result, current_user)
 
         head :no_content
       end

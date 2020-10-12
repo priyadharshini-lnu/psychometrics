@@ -8,10 +8,16 @@ module Communications
       def perform(communication)
         return if communication.stop_reminder_datetime && communication.stop_reminder_datetime <= DateTime.current
 
-        memberships = membership_group_by_project_and_user(communication)
+        if communication.project.migrated?
+          fetch_campaign_users(communication).each do |campaign_user|
+            communication.emails.create(campaign_user_id: campaign_user.id)
+          end
+        else
+          memberships = membership_group_by_project_and_user(communication)
 
-        memberships.each do |membership|
-          communication.emails.create(membership_id: membership.first.id)
+          memberships.each do |membership|
+            communication.emails.create(membership_id: membership.first.id)
+          end
         end
 
         scheduled_next_job(communication)
@@ -21,6 +27,13 @@ module Communications
 
       def scheduled_next_job(communication)
         communication.send_email_job.set(wait: communication.delivery_interval_duration).perform_later(communication)
+      end
+
+      def fetch_campaign_users(communication)
+        communication.selected_campaign_users.
+          joins(user_assessments: :users_result).
+          where(user_assessments: { campaign_id: communication.campaign_id, users_results: { status: :not_started } }).
+          distinct
       end
 
       def fetch_memberships(communication)

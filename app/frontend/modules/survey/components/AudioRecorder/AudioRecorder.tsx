@@ -6,6 +6,7 @@ import { getMinutesAndSeconds } from 'utils/time'
 import api from 'middleware/api'
 import useAudioMetrics from 'hooks/useAudioMetrics'
 import DynamicAudioIcon from 'components/DynamicAudioIcon'
+import { MediaResponse } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 import styles from './AudioRecorderStyle.scss'
 import {
   RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE, DEFAULT_MAX_DURATION,
@@ -20,6 +21,7 @@ import Permission from './Permission'
 import AudioPlayer from './AudioPlayer/index'
 import RecorderControl from './Recorder/RecorderControl'
 import PlayerControl from './AudioPlayer/PlayerControl'
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const { $ } = window as any
 
@@ -32,6 +34,7 @@ interface Props {
   readOnly?: boolean
   markQuestionInProgress(questionId: number, progressState: string): void
   removeQuestionInProgress(questionId: number): void
+  mediaResponse: MediaResponse
 }
 
 interface Model {
@@ -56,13 +59,13 @@ interface Answer {
 const AudioRecorder: React.FC<Props> = ({
   mediaUrl,
   model,
-  model: { result },
   fakeUpload,
   onSuccessUpload,
   onRecordingDiscard,
   readOnly,
   markQuestionInProgress,
   removeQuestionInProgress,
+  mediaResponse,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   const recorderRef = useRef<RecorderCore>()
@@ -72,13 +75,13 @@ const AudioRecorder: React.FC<Props> = ({
   const [{ level, pulse }, { updatePulse, resetMetrics }] = useAudioMetrics(recorderRef)
 
   useEffect(() => {
-    if (result && result.answers.length) {
+    if (mediaResponse) {
       dispatch(setRecordingState(RECORDER_STATES.RECORDED))
       dispatch(setUploadState(UPLOAD_STATES.SAVED))
     } else {
       initRecorder()
     }
-  }, [result])
+  }, [mediaResponse])
 
 
   const initRecorder = (): void => {
@@ -144,13 +147,11 @@ const AudioRecorder: React.FC<Props> = ({
 
   const discardRecording = (): void => {
     dispatch(removeFile())
-    if (result && result.answers.length > 0) {
-      const mediaId = result.answers[0].media_id
-      if (mediaId) {
-        api()(dispatch)(removeRecording(`${mediaUrl}/remove_media`, mediaId)).then(() => {
-          onRecordingDiscard && onRecordingDiscard()
-        })
-      }
+    if (mediaResponse) {
+      const { id } = mediaResponse
+      api()(dispatch)(removeRecording(`${mediaUrl}/remove_media`, id)).then(() => {
+        onRecordingDiscard && onRecordingDiscard()
+      })
     } else {
       removeQuestionInProgress(model.id)
     }
@@ -159,7 +160,7 @@ const AudioRecorder: React.FC<Props> = ({
 
   const fileUrl = (): string | void => {
     if (state.file) { return URL.createObjectURL(state.file) }
-    if (result && result.answers.length) { return result.answers[0].value }
+    if (mediaResponse) { return mediaResponse.url }
   }
 
   const updateRecordTime = (time: number): void => {

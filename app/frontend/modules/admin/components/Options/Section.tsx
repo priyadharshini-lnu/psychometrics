@@ -6,7 +6,6 @@ interface Props {
   children: React.ReactNode
 }
 
-
 const Section: React.FC<Props> = ({ label, children }) => (
   <div className={styles.sectionContainer}>
     {label && <div className={styles.label}>{label}</div>}

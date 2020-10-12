@@ -1,10 +1,5 @@
 import Cookies from 'js-cookie'
-
-interface AssessmentExtra {
-  enableNetworkCheck: string | null
-  enableAudioCheck: string | null
-  enableVideoCheck: string | null
-}
+import { AssessmentExtra } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 
 export default {
   run: ({ enableNetworkCheck, enableAudioCheck, enableVideoCheck }: AssessmentExtra): boolean => {

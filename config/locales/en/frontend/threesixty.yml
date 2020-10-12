@@ -55,7 +55,8 @@ en:
     evaluate: Evaluate
     yourself: Yourself
     you: You
-    generate_report: 'Generate Report'
+    download_pdf: 'Download PDF'
+    report_for: 'Report for'
     download_report: Download Report
     download_reports: Download Reports
     processing_report: Processing Report
@@ -121,8 +122,6 @@ en:
       message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.
-    timer:
-      notification: "You have %{minutes} minutes and %{seconds} seconds to complete"
     options:
       global:
         cannot_re_edit: Participants cannot edit evaluations

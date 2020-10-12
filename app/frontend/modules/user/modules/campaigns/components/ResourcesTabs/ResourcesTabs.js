@@ -7,7 +7,7 @@ import ResourceList from '../ResourceList'
 const { TabPane } = Tabs
 
 export default function ResourcesTabs ({
-  assessment, children, highlights, updateHighlight,
+  assessment, children, ...props
 }) {
   if (!assessment.resources_content.length) { return children }
 
@@ -17,7 +17,7 @@ export default function ResourcesTabs ({
         {children}
       </TabPane>
       <TabPane tab="Background Reading" key="resources">
-        <ResourceList assessment={assessment} highlights={highlights} updateHighlight={updateHighlight} />
+        <ResourceList assessment={assessment} {...props} />
       </TabPane>
     </Tabs>
   )

@@ -34,11 +34,11 @@ module Administration::Threesixty
       super_admins_or_admins?
     end
 
-    def remove_user?
+    def export_results?
       super_admins_or_admins?
     end
 
-    def export_results?
+    def remove_user?
       super_admins_or_admins?
     end
 

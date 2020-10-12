@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec::Matchers.define :have_attributes do |attributes|
+RSpec::Matchers.define :psy_have_attributes do |attributes|
   match do |records|
     records.each.with_index do |record, index|
       expected_attributes = record.slice(attributes.first.keys)

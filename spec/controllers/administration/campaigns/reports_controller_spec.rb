@@ -36,6 +36,19 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'toggle_user_access' do
+    let(:campaign_report) { create :campaign_report, campaign: campaign, report: report, user_access: false }
+
+    it 'toggles campaign_report user_access column value' do
+      put :toggle_user_access, params: {
+        new_campaign_id: campaign_report.campaign_id,
+        id: campaign_report.id
+      }
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response['user_access']).to be_truthy
+    end
+  end
+
   describe 'assessments_and_reports' do
     it 'returns reports and assessments' do
       create(:campaign_report, campaign: campaign, report: report, report_family: report_family)
@@ -45,6 +58,19 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
       parsed_response = JSON.parse(response.body)
       check_campaign_reports_and_assesment_response(parsed_response)
+    end
+  end
+
+  describe 'DELETE' do
+    it 'removes campaign_report' do
+      campaign_report = create(:campaign_report, report: report, campaign: campaign)
+      expect do
+        delete :destroy, params: {
+          new_campaign_id: campaign.id,
+          id: campaign_report.id
+        }
+      end.to change(CampaignReport, :count).by(-1)
+      expect(response.body).to eq(campaign_report.id.to_s)
     end
   end
 
@@ -81,14 +107,24 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
     assessment_response = parsed_response['assessments'].first
     expect(assessment_response.keys).to eq(
-      %w[id assessment_id name category norm_name norm_type enable_universal_links universal_link norms internal]
+      %w[
+        id
+        assessment_id
+        name
+        category
+        norm_name
+        norm_type norm_id
+        enable_universal_links
+        universal_link
+        norms
+        is_external
+      ]
     )
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
       'norm_name' => nil,
-      'norm_type' => nil,
-      'internal' => assessment.common?
+      'norm_type' => nil
     })
   end
 end

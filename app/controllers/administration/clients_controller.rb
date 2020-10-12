@@ -8,6 +8,7 @@ module Administration
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
+    append_before_action :init_collections, only: %i[new edit]
 
     def index
       @filter_term = params.dig(:q, :filterable_fields)
@@ -134,6 +135,11 @@ module Administration
     def resource_params
       params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
                                        :account_manager_id, :project_manager_id)
+    end
+
+    def init_collections
+      @super_admins = User.superadmins.sorted_by('first_name_asc')
+      @countries = ::Datas::Geo.order(:country_name).select(:country_name).distinct
     end
   end
 end

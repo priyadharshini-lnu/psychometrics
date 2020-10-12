@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { createReducer, Payload } from 'utils/redux'
 import { normalize } from 'normalizr'
 import { setIn, updateIn } from 'utils/immutable'
+import humps from 'humps'
 import InitPages from './commands/InitPages'
 import NormalizeTree from './commands/NormalizeTree'
 import InitLinearElements from './commands/InitLinearElements'
@@ -15,12 +16,13 @@ import {
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
+  ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, SetLocalResults,
-  InProgressQuestion, QuestionError,
+  InProgressQuestion, QuestionError, MediaResponse,
 } from './interfaces'
 
 const { I18n } = window
@@ -58,6 +60,7 @@ const defaultState: DefaultState = {
   inProgressQuestions: [],
   highlights: {},
   assessmentTimedOut: false,
+  mediaResponses: [],
 }
 
 const HANDLERS = {
@@ -82,6 +85,7 @@ const HANDLERS = {
       resourceType: h.resource_type,
       resourceId: h.resource_id,
     }))
+    const mediaResponses = result.media_responses
 
     return {
       ...defaultState,
@@ -112,7 +116,8 @@ const HANDLERS = {
       randomseed: result.id || Date.now(), // use assign or user id
       dataSheet: result.data_sheet,
       subjectDataSheet: result.subject_datasheet,
-      dbResult: result,
+      dbResult: _.omit(result, 'media_responses'),
+      mediaResponses: humps.camelizeKeys(mediaResponses),
       results: result.results || result.answers || {},
       expiryDate: result.expiry_date,
       timerDuration: data.timer_duration,
@@ -205,6 +210,26 @@ const HANDLERS = {
   },
   [CLEAR_IN_PROGRESS_QUESTION]: state => ({ ...state, inProgressQuestions: [] }),
   [MARK_ASSESSMENT_TIMED_OUT]: state => ({ ...state, assessmentTimedOut: true }),
+  [ADD_MEDIA_RESPONSE]: (state, { payload: { mediaResponse } }: Payload<{ mediaResponse: MediaResponse }>) => (
+    { ...state, mediaResponses: [...state.mediaResponses, mediaResponse] }),
+  [REMOVE_MEDIA_RESPONSE]: (state, { payload: { questionId } }: Payload<{ questionId: number }>) => (
+    updateIn(state, ['mediaResponses'], (mediaResponses: MediaResponse[]) => (
+      _.filter(mediaResponses, ({ questionId: qid }) => qid !== questionId)))
+  ),
+  [MARK_MEDIA_RESPONSE_AS_SELECTED]:
+    (state, { payload: { mediaResponse } }: Payload<{ mediaResponse: MediaResponse }>) => {
+      const { questionId } = mediaResponse
+
+      return updateIn(state, ['mediaResponses'], (mediaResponses: MediaResponse[]) => (
+        _.map(mediaResponses, (mr) => {
+          const { questionId: qid, id } = mr
+
+          if (questionId !== qid) return mediaResponse
+          if (id === mediaResponse.id) return { ...mr, userSelected: true }
+          return { ...mr, userSelected: false }
+        })
+      ))
+    },
 }
 
 export default createReducer(HANDLERS, defaultState)

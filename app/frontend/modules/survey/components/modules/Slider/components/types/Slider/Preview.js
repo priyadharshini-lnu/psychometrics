@@ -14,9 +14,8 @@ export default class extends Component {
     const { model, readOnly } = this.props
     if (readOnly) { return }
     const { props } = model
-
     model.result.answer(i, _.defaultTo(value, props.defaultValue), props.numberOfDecimals)
-    _.debounce(this.forceUpdate.bind(this), 200, { maxWait: 1000 })()
+    _.debounce(this.forceUpdate.bind(this), 100, { maxWait: 100 })()
   }
 
   render () {

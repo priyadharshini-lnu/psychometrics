@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+RSpec.describe Administration::Projects::NewCampaignsController, type: :controller do
+  let(:current_user) { create(:superadmin) }
+  let!(:campaign) { create :campaign }
+
+  before(:each) { login_user(current_user) }
+  after(:each) { sign_out(current_user) }
+
+  describe 'DELETE' do
+    it 'removes campaign_report' do
+      expect do
+        delete :destroy, params: {
+          id: campaign.id,
+          project_id: campaign.project_id
+        }
+      end.to change(Campaign, :count).by(-1)
+      expect(response.body).to eq(campaign.id.to_s)
+    end
+  end
+end

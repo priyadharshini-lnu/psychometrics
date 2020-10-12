@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import { Modules } from 'components/modules'
 import QuestionSerializer from 'models/QuestionSerializer'
 import styles from './Question.scss'
@@ -17,7 +18,7 @@ class QuestionRenderer extends Component {
 
   render () {
     return (
-      <div className={styles.contentOuter}>
+      <div className={cs(styles.contentOuter, 'fr-view')}>
         {this.renderModule()}
       </div>
     )

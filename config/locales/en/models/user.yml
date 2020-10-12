@@ -7,6 +7,8 @@ en:
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project
+            import_data:
+              invalid_header: Invalid header, take header from export
   activerecord:
     models:
       user: Users
@@ -15,6 +17,7 @@ en:
         id: ID
         first_name: First Name
         last_name: Last Name
+        name: Name
         email: Email Address
         current_password: Current password
         password: Password

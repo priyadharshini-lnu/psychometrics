@@ -86,27 +86,12 @@ module Administration
 
         def destroy
           @campaign = project.project_campaigns.find(params[:id])
-          if @campaign.can_destroy?
-            @campaign.destroy
-          else
-            @campaign.errors.add(
-              :base,
-              I18n.t(
-                'administration.clients.projects.threesixty_campaigns.destroy.error',
-                name: @campaign.decorate.display_name
-              )
-            )
+          ::Campaigns::Remove.call(@campaign) do
+            on(:error) { |errors| @campaign.errors[:base] << errors }
           end
           @_resource = @campaign
           respond_to do |format|
             format.js
-          end
-        end
-
-        def export_results
-          results = ::Exports::Assessments::ThreesixtyAssessmentResultsExport.call!(resource.assessment)
-          respond_to do |format|
-            format.xlsx { send_data results.to_stream.read, filename: 'assessment_raw_results.xlsx' }
           end
         end
 

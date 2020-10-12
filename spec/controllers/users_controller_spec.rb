@@ -20,7 +20,7 @@ describe UsersController, type: :controller do
       parsed_result = JSON.parse(response.body)
       expect(response).to have_http_status(:success)
 
-      expected_array = %w[id is_manager email first_name last_name full_name is_super_admin]
+      expected_array = %w[id is_manager email first_name last_name full_name is_anonym is_super_admin]
       expect(parsed_result.keys).to match_array(expected_array)
       expect(parsed_result['id']).to eq(current_user.id)
       expect(parsed_result['first_name']).to eq('Elliot')

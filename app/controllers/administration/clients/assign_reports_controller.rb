@@ -14,7 +14,9 @@ module Administration
                            includes(:reports).
                            where(reports: { disabled: false }).
                            references(:reports).
-                           distinct
+                           distinct.
+                           order('report_families.name')
+
         @_resource = ::Clients::Reports::AssignReportForm.new.with_context(new_record: true)
       end
 

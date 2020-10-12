@@ -14,6 +14,7 @@
           data-type="pass_assessment"
           data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"
           data-locales="#{@translations.to_json}"
+          data-results-url="/assigns/#{@assign.id}"
           data-agile-assets-url="#{Settings.agile_config.asset_url}"
           data-agile-assign-url="#{agile_anonym_assign_url(@assign)}"]
         = javascript_pack_tag 'vendors'

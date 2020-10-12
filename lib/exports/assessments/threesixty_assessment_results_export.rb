@@ -34,7 +34,7 @@ module Exports
           [
             id,
             assessment_id,
-            answers.as('results'),
+            answers,
             status,
             created_at.as('started_at'),
             completed_at,

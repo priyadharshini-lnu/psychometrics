@@ -32,5 +32,20 @@ describe Users::Register do
       allow(Administration::Clients::CreateUser).to receive(:call).and_raise(ActiveRecord::RecordInvalid)
       expect { subject }.to broadcast(:error)
     end
+
+    it 'creates user for new campaign' do
+      campaign = create(:campaign, project: project)
+      create(:registration_code, use_count: 1, campaign: campaign, code: 'Abc', project: project)
+      @form.registration_code = 'Abc'
+      expect { subject }.to broadcast(:ok)
+
+      user = campaign.campaign_users.first.user
+
+      expect(user.slice(:first_name, :last_name, :email)).to eq({
+        'first_name' => 'Tester',
+        'last_name' => 'Person',
+        'email' => 'email-1@tte-test.com'
+      })
+    end
   end
 end
