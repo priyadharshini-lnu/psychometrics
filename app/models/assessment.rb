@@ -83,7 +83,7 @@ class Assessment < ApplicationRecord
   has_many :report_families, through: :reports
 
   # HABTM Memberships
-  has_many :assigns, dependent: :destroy
+  has_many :assigns, dependent: :restrict_with_exception
   has_many :memberships, through: :assigns
 
   # HABTM Clients
