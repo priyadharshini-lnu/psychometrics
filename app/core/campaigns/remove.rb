@@ -19,7 +19,7 @@ module Campaigns
     private
 
     def remove_normal_campaign
-      campaign.participants.destroy_all
+      campaign.user_assessments.destroy_all
       destroy_campaign
     end
 
