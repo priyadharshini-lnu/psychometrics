@@ -142,6 +142,7 @@ module Facades
 
       def fetch_assessments
         return Assessment.none if form.end_level.blank?
+        return form.campaign.assessments if form.project&.migrated?
 
         ::Queries::Assessments::ByClientSubtree.call(form.model.end_level)
       end
