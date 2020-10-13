@@ -54,12 +54,12 @@ const Assessment: React.FC<Props & PropsFromRedux> = ({ assessment, updateAssess
 
       if (assessment.campaignAssessmentGroupId === item.groupId) {
       // Dragging downwards
-        if (dragPosition < hoverPosition && hoverClientY < hoverMiddleY) {
+        if (dragPosition < hoverPosition && hoverClientY < hoverMiddleY / 2) {
           return
         }
 
         // Dragging upwards
-        if (dragPosition > hoverPosition && hoverClientY > hoverMiddleY) {
+        if (dragPosition > hoverPosition && hoverClientY > hoverMiddleY * 1.8) {
           return
         }
 
