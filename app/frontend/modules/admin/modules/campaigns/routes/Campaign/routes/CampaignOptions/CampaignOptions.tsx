@@ -111,8 +111,8 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
               <label>{I18n.t('administration.campaigns.options.proctoring.rules')}</label>
             </Col>
             <Col span={22}>
-              {Object.entries(options.rules || {}).map(
-                ([key]) => (
+              {Object.keys(options.rules || {}).map(
+                key => (
                   <Option
                     label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
                     {...parametersForRules(key)}
