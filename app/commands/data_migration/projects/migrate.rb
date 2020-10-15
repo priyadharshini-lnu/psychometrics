@@ -55,6 +55,7 @@ module DataMigration
         create_campaign_assessments(subject)
         migrate_assigns(subject)
         migrate_registration_codes(subject)
+        set_campaign_user_status
       end
 
       def create_campaign(subject)
@@ -281,6 +282,23 @@ module DataMigration
         log("migrating registration codes of subject #{subject.id}...")
 
         subject.registration_codes.each { code.update_attribute(:campaign_id, campaign_id) }
+      end
+
+      def set_campaign_user_status
+        CampaignUser.where(campaign_id: out_stack[:campaigns].last).find_each do |campaign_user|
+          user_results = UsersResult.where(subject_id: campaign_user.user_id, evaluator_id: campaign_user.user_id).
+                         joins(:user_assessment).where(user_assessments: { campaign_id: campaign_user.campaign_id })
+
+          started_at = user_results.map(&:started_at).compact.min
+          all_assessments_completed = user_results.all?(&:completed?)
+          no_assessments_started = user_results.all?(&:not_started?)
+
+          completion_status = :in_progress
+          completion_status = :completed if all_assessments_completed
+          completion_status = :not_started if no_assessments_started
+
+          campaign_user.update(started_at: started_at, completion_status: completion_status)
+        end
       end
     end
     # rubocop:enable Metrics/ClassLength
