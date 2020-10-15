@@ -281,7 +281,7 @@ module DataMigration
         campaign_id = out_stack[:campaigns].last
         log("migrating registration codes of subject #{subject.id}...")
 
-        subject.registration_codes.each { code.update_attribute(:campaign_id, campaign_id) }
+        subject.registration_codes.each { |code| code.update_attribute(:campaign_id, campaign_id) }
       end
 
       def set_campaign_user_status
