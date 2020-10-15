@@ -36,7 +36,17 @@ class UsersResult < ApplicationRecord
   def expired?
     return false unless expiry_date
 
-    expiry_date < Time.current
+    expiry_date < Time.current || campaign_time_over?(evaluator_id)
+  end
+
+  def campaign_time_over?(user_id)
+    options = user_assessment.campaign.campaign_options
+    return false unless options&.fixed_time
+
+    campaign_user = user_assessment.campaign.campaign_users.find_by(user_id: user_id)
+    return false unless campaign_user.started_at
+
+    campaign_user.started_at + options.fixed_time_duration.minutes < Time.current
   end
 
   def user

@@ -7,6 +7,7 @@ import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
+import { minutesLeft } from 'utils/time'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -22,6 +23,8 @@ export default function UserAssessment ({
       selected_locale: selectedLanguage,
       available_translations: availableTranslations,
       campaign_id: campaignId,
+      campaign_options: campaignOptions,
+      campaign_user: campaignUser,
       translations,
     },
   }, fetchAssessment,
@@ -40,6 +43,11 @@ export default function UserAssessment ({
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.userAssessmentId, edit)
   }, [])
+  let campaignTimeLeft = null
+
+  if (loaded && campaignOptions.fixed_time) {
+    campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
+  }
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -62,7 +70,7 @@ export default function UserAssessment ({
             extra={[
               type !== 'preview_block' && enableProgress
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
+              <Timer key="2" preview={preview} campaignTimeLeft={campaignTimeLeft} onFinish={markAssessmentTimedOut} />,
             ]}
             onBack={() => history.push(`/campaigns/${campaignId}`)}
           />

@@ -8,6 +8,7 @@ module Threesixty
     has_one :project, through: :campaign
     has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_one :datasheet, through: :project
+    has_one :campaign_options, through: :campaign
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :participants, through: :campaign
     has_many :campaign_users, through: :campaign

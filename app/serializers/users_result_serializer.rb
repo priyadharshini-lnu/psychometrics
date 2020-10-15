@@ -14,6 +14,14 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
 
+  has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
+  has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
+  delegate :campaign_options, to: :campaign
+
+  def campaign_user
+    campaign.campaign_users.find_by(user_id: current_user.id)
+  end
+
   def user_assessment_id
     participant&.id
   end

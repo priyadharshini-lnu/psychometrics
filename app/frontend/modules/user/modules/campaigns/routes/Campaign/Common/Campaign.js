@@ -147,6 +147,7 @@ export default function Campaign ({
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
+                                      timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                       disabledReason={campaignClosed
                                         ? I18n.t('campaign.campaign_closed_assessment_take_message')
                                         : I18n.t('campaign.complete_prev')
@@ -175,6 +176,7 @@ export default function Campaign ({
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
                                     disabled={campaignClosed}
+                                    timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                     disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />
                                 )

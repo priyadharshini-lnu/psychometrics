@@ -9,6 +9,7 @@ import Language from 'modules/user/modules/campaigns/components/Language'
 import store from 'modules/user/store'
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 import ResourcesTabs from 'modules/user/modules/campaigns/components/ResourcesTabs'
+import { minutesLeft } from 'utils/time'
 import Confirm from './Confirm'
 import { PropsFromRedux } from './connect'
 
@@ -32,6 +33,8 @@ const Common: React.FC<Props> = ({
       translations,
       current_step: currentStep,
       current_element: currentElement,
+      campaign_options: campaignOptions,
+      campaign_user: campaignUser,
     },
   },
   preview,
@@ -49,6 +52,12 @@ const Common: React.FC<Props> = ({
 
   if (!assessment) { return null }
 
+  let campaignTimeLeft: number | null = null
+
+  if (campaignOptions.fixed_time) {
+    campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
+  }
+
   const reset = () => {
     const { hostname } = location
     Cookies.remove('tte-anonym-payload', { domain: `.${hostname}`, path: '/' })
@@ -65,7 +74,7 @@ const Common: React.FC<Props> = ({
             extra={[
               enableProgress
                   && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
+              <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} campaignTimeLeft={campaignTimeLeft} />,
             ]}
           />
         </Content>

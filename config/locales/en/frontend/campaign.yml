@@ -29,3 +29,8 @@ en:
     timer:
       message: Time left to complete all activities
       notification: "You have %{minutes} minutes and %{seconds} seconds to complete"
+    time_left:
+      continue: Continue
+      cancel: Cancel
+      title: Time left warning
+      notification: "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task."
