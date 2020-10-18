@@ -44,7 +44,6 @@ export type OwnProps = {
   }
   children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
   scrollToFirstError?: boolean
-  notifyValuesChange?(changedValues: object, allValues: object): void
 }
 
 const ResourceForm: React.FC<Props> = ({
@@ -62,7 +61,6 @@ const ResourceForm: React.FC<Props> = ({
   children,
   transformValues,
   scrollToFirstError,
-  notifyValuesChange,
 }: Props) => {
   const baseErrorRef = React.createRef<HTMLDivElement>()
   const [form] = Form.useForm()
@@ -183,9 +181,6 @@ const ResourceForm: React.FC<Props> = ({
       onFinish={handleSave}
       onFieldsChange={(_, allFields) => {
         store.setFields(allFields)
-      }}
-      onValuesChange={(changedValues, allValues) => {
-        if (notifyValuesChange) notifyValuesChange(changedValues, allValues)
       }}
       scrollToFirstError={scrollToFirstError}
       layout="vertical"

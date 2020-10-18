@@ -91,9 +91,8 @@ const CommonCampaignFormModal: React.FC<Props> = ({
       showSuccessMessages
       close={close}
       modalProps={{ width: 550 }}
-      formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON } }}
+      formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON }, onValuesChange: handleValuesChange }}
       transformValues={transformValues}
-      notifyValuesChange={handleValuesChange}
     >
       {() => (
         <>

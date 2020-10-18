@@ -49,7 +49,6 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     resourceId,
     onSuccessfulSubmission,
     storeManager,
-    notifyValuesChange,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
@@ -121,7 +120,6 @@ const ResourceFormModal: React.FC<Props> = (props) => {
         storeManager={{ ...store, ...(storeManager || {}) }}
         onStatusChange={setResourceStatus}
         onSuccessfulSubmission={handleSuccessfulSubmission}
-        notifyValuesChange={notifyValuesChange}
       />
     </Modal>
   )
