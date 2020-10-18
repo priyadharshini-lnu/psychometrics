@@ -43,15 +43,18 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
       if (_.isUndefined(model.result.answers.subject)) {
         handleTestChange('subject', I18n().tQuestion(model, 'subject'))
       }
-      [TO_TYPE, CC_TYPE, BCC_TYPE].forEach((type: ContactType) => {
+      const copyFields: ContactType[] = []
+
+      defaultContactProps.forEach(({ type }) => {
         if (_.isUndefined(model.result.answers[type])) {
           const defaultContacts = _.get(contacts, type)
-          if (defaultContacts) {
+          if (!_.isEmpty(defaultContacts)) {
             model.result.answer({ ...model.result.answers, [type]: defaultContacts })
-            showCopyField(type)
+            copyFields.push(type)
           }
         }
       })
+      showCopyFields(copyFields)
     }, 200)
     return () => clearTimeout(timeout)
   }, [])
@@ -60,8 +63,8 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
     setContactProps(contactProps.map(p => (p.type === type ? { ...p, visible: !p.visible } : p)))
   }
 
-  const showCopyField = (type: ContactType): void => {
-    setContactProps(contactProps.map(p => (p.type === type ? { ...p, visible: true } : p)))
+  const showCopyFields = (types: ContactType[]): void => {
+    setContactProps(contactProps.map(p => (types.includes(p.type) ? { ...p, visible: true } : p)))
   }
 
   const handleTestChange = (key: string, value: string): void => {
