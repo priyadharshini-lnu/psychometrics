@@ -7,6 +7,7 @@ import '../styles.scss'
 import cs from 'classnames'
 import ConditionalWrap from 'conditional-wrap'
 import { UserAssessment, Statuses } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
+import { minutesLeft } from 'utils/time'
 import ContinueIcon from '../ContinueIcon'
 
 const { I18n } = window
@@ -14,27 +15,45 @@ const { I18n } = window
 interface Props {
   userAssessment: UserAssessment
   setShowConfirm(state: boolean): void
+  setShowTimingConfirmation(state: boolean): void
   loading: boolean
   loadAssessmentOrCheckingWizard(): void
   disabled: boolean
   disabledReason: string
+  timer: {
+    fixedTime: boolean
+    campaignDuration: number
+    startedAt: string
+  }
 }
 
 const AssessmentActionBtn: React.FC<Props> = ({
   userAssessment: {
     mindmill, mindmillUrl, url, status, needConfirm,
+    assessmentExtra: { timer },
   },
   setShowConfirm,
+  setShowTimingConfirmation,
   loading,
   loadAssessmentOrCheckingWizard,
   disabled,
   disabledReason,
+  timer: { fixedTime, campaignDuration, startedAt },
 }) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
 
   const showPolicyConfirm = (e: React.MouseEvent) => {
     e.preventDefault()
+
+    if (fixedTime && timer) {
+      const delta = minutesLeft(new Date(startedAt), campaignDuration)
+
+      if (delta < timer / 60) {
+        return setShowTimingConfirmation(true)
+      }
+    }
+
     if (needConfirm) return setShowConfirm(true)
 
     loadAssessmentOrCheckingWizard()

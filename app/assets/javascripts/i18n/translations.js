@@ -123,6 +123,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -761,6 +767,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -1396,6 +1408,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"

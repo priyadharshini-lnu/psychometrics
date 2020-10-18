@@ -9,6 +9,7 @@ import '../styles.scss'
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import { History } from 'history'
 import PrivacyModal from '../PrivacyModal'
+import TimingModal from '../TimingModal'
 import AssessmentCard from '../AssessmentCard'
 import AssessmentActionBtn from './AssessmentActionBtn'
 
@@ -31,12 +32,18 @@ interface Props {
   size: number
   disabled: boolean
   disabledReason: string
+  timer: {
+    fixedTime: boolean
+    campaignDuration: number
+    startedAt: string
+  }
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason,
+  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const loadAssessment = ({
@@ -61,6 +68,16 @@ const InternalAssessment: React.FC<Props> = ({
     acceptPolicy().then(() => {
       loadAssessmentOrCheckingWizard()
     })
+  }
+
+  const startAssessment = () => {
+    if (userAssessment.needConfirm) {
+      setShowConfirm(true)
+      setShowTimingConfirmation(false)
+    } else {
+      setShowTimingConfirmation(false)
+      loadAssessmentOrCheckingWizard()
+    }
   }
 
   return (
@@ -111,10 +128,12 @@ const InternalAssessment: React.FC<Props> = ({
               <AssessmentActionBtn
                 userAssessment={userAssessment}
                 setShowConfirm={setShowConfirm}
+                setShowTimingConfirmation={setShowTimingConfirmation}
                 loading={loading}
                 loadAssessmentOrCheckingWizard={loadAssessmentOrCheckingWizard}
                 disabled={disabled}
                 disabledReason={disabledReason}
+                timer={timer}
               />
             </div>
           </div>
@@ -122,6 +141,16 @@ const InternalAssessment: React.FC<Props> = ({
       </Card>
       {userAssessment.needConfirm
         && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
+      {timer.fixedTime && showTimingConfirmation && (
+        <TimingModal
+          ok={startAssessment}
+          show={showTimingConfirmation}
+          close={() => setShowTimingConfirmation(false)}
+          assessmentName={userAssessment.assessmentName}
+          assessmentTime={(userAssessment.assessmentExtra.timer || 0) / 60}
+          timer={timer}
+        />
+      )}
     </AssessmentCard>
   )
 }

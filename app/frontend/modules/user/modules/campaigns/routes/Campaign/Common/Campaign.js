@@ -45,7 +45,7 @@ export default function Campaign ({
   const counters = _.countBy(campaign.userAssessments, 'status')
   const allAssessmentsComplete = counters.completed === campaign.userAssessments.length
   let prevGroup
-  const ungrouped = _.compact(
+  let ungrouped = _.compact(
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const isMD = useMedia('max-md')
@@ -58,6 +58,15 @@ export default function Campaign ({
   const onTimerFinish = () => {
     fetchCampaign(match.url)
   }
+
+  const allCampaignLevelAsssementIds = _.flatten(
+    [...groups.map(g => g.campaignAssessmentIds), campaign.ungroupedAssessmentsIds],
+  )
+
+  const ungroupedAssessments = campaign.userAssessments.filter(
+    ua => !_.includes(allCampaignLevelAsssementIds, ua.assessmentId),
+  )
+  ungrouped = [...ungrouped, ...ungroupedAssessments]
 
   return (
     <Layout>
@@ -138,6 +147,7 @@ export default function Campaign ({
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
+                                      timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                       disabledReason={campaignClosed
                                         ? I18n.t('campaign.campaign_closed_assessment_take_message')
                                         : I18n.t('campaign.complete_prev')
@@ -154,7 +164,6 @@ export default function Campaign ({
                         <Col xs={24} sm={24} lg={24} xl={24}>
                           <div className={cs('group')}>
                             <div className="group-title">{I18n.t('campaign.ungrouped')}</div>
-
                             <Row type="flex" gutter={[16, 16]} className="cards">
                               {ungrouped.map((userAssessment) => {
                                 const Assessment = Assessments[userAssessment.type]
@@ -167,6 +176,7 @@ export default function Campaign ({
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
                                     disabled={campaignClosed}
+                                    timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                     disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />
                                 )

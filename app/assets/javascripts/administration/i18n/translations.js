@@ -1827,7 +1827,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -5002,6 +5002,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -6852,7 +6858,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -9124,7 +9130,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -12296,6 +12302,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -14142,7 +14154,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -16411,7 +16423,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -19583,6 +19595,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "interrupted": "Interrupted",
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -21429,7 +21447,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",

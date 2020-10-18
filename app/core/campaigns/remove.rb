@@ -12,11 +12,16 @@ module Campaigns
       if campaign.threesixty?
         destroy_threesixty_campaign
       else
-        destroy_campaign
+        remove_normal_campaign
       end
     end
 
     private
+
+    def remove_normal_campaign
+      campaign.user_assessments.destroy_all
+      destroy_campaign
+    end
 
     def destroy_threesixty_campaign
       if can_destroy_threesixty_campaign?
