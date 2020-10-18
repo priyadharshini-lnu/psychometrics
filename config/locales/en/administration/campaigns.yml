@@ -10,6 +10,9 @@ en:
         duration: ''
         instructions:
           enable: Enable instructions
+          save: Save Instructions
+          actions:
+            saved: Instructions saved successfully
         proctoring:
           enable: Enable Proctoring
           rules: Rules

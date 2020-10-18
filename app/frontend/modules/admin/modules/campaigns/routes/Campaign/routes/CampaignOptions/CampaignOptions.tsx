@@ -6,6 +6,7 @@ import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import DurationSelect from 'components/DurationSelect'
 import Editor from 'components/Editor'
+import NotificationDispatcher from 'libs/library/dispatchers/NotificationDispatcher'
 import {
   Row, Col, Button, Radio,
 } from 'antd'
@@ -32,6 +33,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   const parsedCampaignId = parseInt(campaignId, 10)
 
   const [instructions, setInstructions] = useState(options.instructions)
+  const [savingInProgress, setSavingInProgress] = useState(false)
 
   const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
 
@@ -57,7 +59,11 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   }
 
   const saveInstructions = () => {
-    update(parsedProjectId, parsedCampaignId, { ...options, instructions })
+    setSavingInProgress(true)
+    update(parsedProjectId, parsedCampaignId, { ...options, instructions }).then(() => {
+      setSavingInProgress(false)
+      NotificationDispatcher.notify({ message: I18n.t('administration.campaigns.options.instructions.actions.saved') })
+    })
   }
 
   return (
@@ -166,9 +172,10 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
                     size="large"
                     className="mtm"
                     onClick={saveInstructions}
+                    loading={savingInProgress}
                   >
                     <SaveOutlined />
-                    Save
+                    {I18n.t('administration.campaigns.options.instructions.save')}
                   </Button>
                 </Col>
               </Row>

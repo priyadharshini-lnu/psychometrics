@@ -1165,7 +1165,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enable": "Enable instructions"
+          "actions": {
+            "saved": "Instructions saved successfully"
+          },
+          "enable": "Enable instructions",
+          "save": "Save Instructions"
         },
         "proctoring": {
           "enable": "Enable Proctoring",
@@ -1185,8 +1189,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "allow_to_use_paper": "Allow to use Paper",
             "allow_to_use_websites": "Allow to use Websites",
             "allow_voices": "Allow Voices",
-            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
-            "custom_rules": "Custom Rules"
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction"
           },
           "rules": "Rules"
         }
@@ -1827,7 +1830,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -6858,7 +6861,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -8468,7 +8471,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enable": "Enable instructions"
+          "actions": {
+            "saved": "Instructions saved successfully"
+          },
+          "enable": "Enable instructions",
+          "save": "Save Instructions"
         },
         "proctoring": {
           "enable": "Enable Proctoring",
@@ -8488,8 +8495,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "allow_to_use_paper": "Allow to use Paper",
             "allow_to_use_websites": "Allow to use Websites",
             "allow_voices": "Allow Voices",
-            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
-            "custom_rules": "Custom Rules"
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction"
           },
           "rules": "Rules"
         }
@@ -9130,7 +9136,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -14154,7 +14160,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -15761,7 +15767,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "duration": "",
         "fixed_time": "Fixed Time",
         "instructions": {
-          "enable": "Enable instructions"
+          "actions": {
+            "saved": "Instructions saved successfully"
+          },
+          "enable": "Enable instructions",
+          "save": "Save Instructions"
         },
         "proctoring": {
           "enable": "Enable Proctoring",
@@ -15781,8 +15791,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "allow_to_use_paper": "Allow to use Paper",
             "allow_to_use_websites": "Allow to use Websites",
             "allow_voices": "Allow Voices",
-            "allow_wrong_gaze_direction": "Allow wrong gaze direction",
-            "custom_rules": "Custom Rules"
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction"
           },
           "rules": "Rules"
         }
@@ -16423,7 +16432,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -21447,7 +21456,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
