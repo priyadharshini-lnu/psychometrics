@@ -33,7 +33,11 @@ export default function Campaign ({
   loginHogan, acceptPolicy, beginCampaign, fetchCampaign,
 }) {
   const {
-    campaignUser: { startedAt },
+    campaignUser: {
+      startedAt,
+      completedAt,
+      additionalTime,
+    },
     campaignOptions: {
       instructionsEnabled,
       instructions,
@@ -50,7 +54,6 @@ export default function Campaign ({
   )
   const isMD = useMedia('max-md')
   const hasStarted = !!campaignUser.startedAt
-  const timeExtended = campaign
 
   const onBeginCampaign = () => {
     beginCampaign(campaignUser.id)
@@ -101,6 +104,7 @@ export default function Campaign ({
                   instructions={instructions}
                   showBegin={!hasStarted}
                   onBegin={onBeginCampaign}
+                  additionalTime={additionalTime}
                 />
                 <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>

@@ -116,6 +116,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"
@@ -760,6 +761,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"
@@ -1401,6 +1403,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"

@@ -10,6 +10,9 @@ export default function Header ({
   const deadline = new Date(startedAt)
   deadline.setMinutes(deadline.getMinutes() + duration)
 
+  let background = 'white'
+  if (deadline < new Date()) background = 'danger'
+
   return (
     <div className="campaign-header">
       <div className="left">
@@ -24,7 +27,7 @@ export default function Header ({
             <Timer
               preview={{ expiryDate: deadline, timerDuration: duration }}
               onFinish={onFinish}
-              background="white"
+              background={background}
             />
             <span className="mls">{I18n.t('campaign.timer.message')}</span>
           </div>
