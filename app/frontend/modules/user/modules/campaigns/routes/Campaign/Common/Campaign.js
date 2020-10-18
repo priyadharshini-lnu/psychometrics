@@ -50,6 +50,7 @@ export default function Campaign ({
   )
   const isMD = useMedia('max-md')
   const hasStarted = !!campaignUser.startedAt
+  const timeExtended = campaign
 
   const onBeginCampaign = () => {
     beginCampaign(campaignUser.id)

@@ -30,7 +30,6 @@ interface Props {
   formProps?: FormProps
   transformValues?(values: object): object
   scrollToFirstError?: boolean
-  notifyValuesChange?(changedValues: object, allValues: object): void
 }
 
 interface Request {
