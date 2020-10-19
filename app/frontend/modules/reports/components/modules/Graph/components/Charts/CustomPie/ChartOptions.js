@@ -1,7 +1,8 @@
-export default function ChartOptions () {
+export default function ChartOptions (model) {
   return {
     chart: {
       type: 'solidgauge',
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     title: false,
     tooltip: false,
