@@ -43,6 +43,7 @@ en:
         header: 'Assessment Settings'
       destroy:
         successfully: 'Assessment %{name} was Deleted Successfully.'
+        failure: Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.
       copy:
         successfully: 'Assessment %{name} was Copied Successfully.'
         error: 'Assessment #%{name} was not copied.'

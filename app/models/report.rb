@@ -44,14 +44,17 @@ class Report < ApplicationRecord
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-  has_many :clients_reports # on delete cascade
+  has_many :clients_reports, dependent: :restrict_with_error
   has_many :clients, through: :clients_reports
-  has_many :translations, as: :resource
+  has_many :translations, as: :resource, dependent: :destroy
+  # TODO: Remove product_reports and products associations with models and table
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
-  has_many :assigns_reports # on delete restrict
-  has_many :assessments_reports
-  has_many :assessments, -> { order(:name) }, through: :assessments_reports, dependent: :destroy,
+  has_many :assigns_reports, dependent: :restrict_with_error
+  has_many :user_reports, dependent: :restrict_with_error
+  has_many :campaign_reports, dependent: :restrict_with_error
+  has_many :assessments_reports, dependent: :destroy
+  has_many :assessments, -> { order(:name) }, through: :assessments_reports,
                                               before_add: :add_factors_aliases,
                                               before_remove: :remove_factor_aliases
   has_many :assessments_default_order, through: :assessments_reports, source: :assessment

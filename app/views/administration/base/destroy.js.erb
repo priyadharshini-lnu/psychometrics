@@ -1,8 +1,12 @@
-$('#filter').trigger('reloadList');
-// Reinit all plugins
-$(document).trigger('initPlugins');
+<% if resource.destroyed? %>
+  $('#filter').trigger('reloadList');
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
 
-$(document).trigger('close_sidebar');
+  $(document).trigger('close_sidebar');
 
-// Notify message
-noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.decorate.display_name) %>', type: 'success'});
+  // Notify message
+  noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.decorate.display_name) %>', type: 'success'});
+<% else %>
+  noty({text: '<%= t("administration.#{resource_class.model_name.plural}.destroy.failure") %>', type: 'error', timeout: 10000 });
+<% end %>

@@ -744,6 +744,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
+        "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
         "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
@@ -1236,6 +1237,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
+          "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
           "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
@@ -1804,7 +1806,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -2965,6 +2967,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
+            "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
             "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
@@ -4228,6 +4231,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
+        "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
         "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
@@ -6835,7 +6839,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -8024,6 +8028,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
+        "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
         "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
@@ -8516,6 +8521,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
+          "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
           "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
@@ -9084,7 +9090,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -10245,6 +10251,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
+            "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
             "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
@@ -11508,6 +11515,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
+        "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
         "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
@@ -14108,7 +14116,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -15294,6 +15302,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "dashboard": "Assessment Dashboard",
       "destroy": {
+        "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
         "successfully": "Assessment %{name} was Deleted Successfully."
       },
       "edit": {
@@ -15786,6 +15795,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "dashboard": "Assessment Dashboard",
         "destroy": {
+          "failure": "Assessment can't be deleted. This assessment is either linked to a report, campaign or an individual user.",
           "successfully": "Assessment %{name} was Deleted Successfully."
         },
         "edit": {
@@ -16354,7 +16364,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -17515,6 +17525,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
+            "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
             "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
@@ -18778,6 +18789,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
+        "failure": "Report can't be deleted. This report is either linked to a campaign or an individual user.",
         "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
@@ -21378,7 +21390,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
