@@ -86,9 +86,6 @@ export default function Campaign ({
   )
   ungrouped = [...ungrouped, ...ungroupedAssessments]
 
-  // eslint-disable-next-line no-console
-  console.log('isExpired: ', isExpired(), ' canContinue: ', canContinue, ' campaignClosed: ', campaignClosed)
-
   return (
     <Layout>
       <Content className="fluid-container common-campaign">

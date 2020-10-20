@@ -17,11 +17,11 @@ module CampaignUsers
     private
 
     def attributes
-      status = campaign_user.user_assessments.all?(&:completed?) ? 2 : 3
+      status = campaign_user.user_assessments.all?(&:completed?) ? :completed : :interrupted
       {
         completed_at: Time.now,
         completion_status: status,
-        completed_via: status == 2 ? 1 : 0
+        completed_via: status == :completed ? :user : :timed_out
       }
     end
   end

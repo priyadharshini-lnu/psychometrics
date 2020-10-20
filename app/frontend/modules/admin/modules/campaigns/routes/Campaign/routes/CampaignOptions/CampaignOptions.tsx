@@ -42,13 +42,11 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   }, [])
 
   const parametersForField = name => ({
-    name,
     value: (options || {})[name],
     onChange: (value: string | number) => update(parsedProjectId, parsedCampaignId, { ...options, [name]: value }),
   })
 
   const parametersForRules = name => ({
-    name,
     value: !!(options.rules || {})[name],
     onChange: (value: boolean) => update(
       parsedProjectId, parsedCampaignId, { ...options, rules: { ...options.rules, [name]: value } },
@@ -122,6 +120,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
                   {Object.keys(options.rules || {}).map(
                     key => (
                       <Option
+                        key={key}
                         label={I18n.t(`administration.campaigns.options.proctoring.rule_types.${snakeCase(key)}`)}
                         {...parametersForRules(key)}
                       />
