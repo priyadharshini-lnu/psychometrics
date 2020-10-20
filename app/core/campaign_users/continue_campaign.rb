@@ -19,7 +19,8 @@ module CampaignUsers
     def attributes
       {
         completion_status: 1,
-        completed_at: nil
+        completed_at: nil,
+        expiry_date: campaign_user.additional_time&.minutes&.from_now
       }
     end
   end

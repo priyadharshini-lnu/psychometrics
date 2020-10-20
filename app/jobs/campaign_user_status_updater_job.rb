@@ -7,6 +7,7 @@ class CampaignUserStatusUpdaterJob < ApplicationJob
     campaigns.each do |campaign|
       campaign.campaign_users.each do |campaign_user|
         next unless campaign_user.in_progress_campaign?
+
         CampaignUsers::UpdateCompletionStatus.call!(campaign_user)
       end
     end

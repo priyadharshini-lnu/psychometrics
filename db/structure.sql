@@ -38,6 +38,20 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -655,7 +669,8 @@ CREATE TABLE public.campaign_users (
     completed_at timestamp without time zone,
     completed_via integer,
     completion_status integer DEFAULT 0,
-    additional_time integer
+    additional_time integer,
+    expiry_date timestamp without time zone
 );
 
 
@@ -2084,6 +2099,43 @@ CREATE SEQUENCE public.privacy_links_id_seq
 --
 
 ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
+
+
+--
+-- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.proctoring_sessions (
+    id bigint NOT NULL,
+    session_id uuid DEFAULT public.gen_random_uuid(),
+    user_id bigint,
+    campaign_id bigint,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    status integer,
+    results jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.proctoring_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
 
 
 --
@@ -3625,6 +3677,13 @@ ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: proctoring_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
+
+
+--
 -- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4280,6 +4339,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.privacy_links
     ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proctoring_sessions proctoring_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -5364,6 +5431,20 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 
 
 --
+-- Name: index_proctoring_sessions_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_campaign_id ON public.proctoring_sessions USING btree (campaign_id);
+
+
+--
+-- Name: index_proctoring_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_user_id ON public.proctoring_sessions USING btree (user_id);
+
+
+--
 -- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6089,6 +6170,14 @@ ALTER TABLE ONLY public.memberships
 
 
 --
+-- Name: proctoring_sessions fk_rails_387638cd9a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_387638cd9a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: threesixty_reminder_histories fk_rails_38fa0fe639; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6470,6 +6559,14 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: proctoring_sessions fk_rails_9f00367487; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_9f00367487 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
 
 
 --
@@ -7305,6 +7402,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201004131024'),
 ('20201007061140'),
 ('20201007072553'),
-('20201011102042');
+('20201011102042'),
+('20201015102640'),
+('20201020084827');
 
 

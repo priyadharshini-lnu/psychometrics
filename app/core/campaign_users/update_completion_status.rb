@@ -17,9 +17,11 @@ module CampaignUsers
     private
 
     def attributes
+      status = campaign_user.user_assessments.all?(&:completed?) ? 2 : 3
       {
-        completion_status: campaign_user.user_assessments.all?(&:completed?) ? 2 : 3,
-        completed_at: Time.now
+        completed_at: Time.now,
+        completion_status: status,
+        completed_via: status == 2 ? 1 : 0
       }
     end
   end

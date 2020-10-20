@@ -178,7 +178,7 @@ const AssessmentsReports: React.FC<Props> = ({
             {canExtendTime && (
               <>
                 <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
-                  {user.additionalTime}
+                  <span className="prs">{user.additionalTime}</span>
 
                   <Button
                     type="danger"

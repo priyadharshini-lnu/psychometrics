@@ -14,6 +14,7 @@ module EndUser
     def status
       return object.status unless object.fixed_time?
       return object.status unless campaign_user_object.started_at
+      return object.status if campaign_time_extended?
 
       expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
       return 'closed' if expected_end_time < Time.now && object.active?
@@ -22,7 +23,7 @@ module EndUser
     end
 
     def campaign_user
-      attributes = %i[ id campaign_id user_id active started_at completed_at
+      attributes = %i[ id campaign_id user_id active started_at completed_at expiry_date
                        completed_via completion_status additional_time updated_at ]
 
       values = campaign_user_object.slice(*attributes)
@@ -31,7 +32,11 @@ module EndUser
 
       if campaign_user_object.started_at
         values['completed_at'] = campaign_user_object.started_at + object.fixed_time_duration.minutes
-        values['completion_status'] = campaign_user_object.user_assessments.all?(&:completed?) ? 'completed' : 'interrupted'
+        values['completion_status'] = if campaign_user_object.user_assessments.all?(&:completed?)
+                                        'completed'
+                                      else
+                                        'interrupted'
+                                      end
       end
 
       values
@@ -53,6 +58,10 @@ module EndUser
 
     def campaign_user_object
       object.campaign_users.find_by(user_id: current_user.id)
+    end
+
+    def campaign_time_extended?
+      !!campaign_user_object.additional_time && campaign_user_object.expiry_date.blank?
     end
 
     def current_user
