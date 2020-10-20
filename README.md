@@ -102,6 +102,17 @@ Example of using `psy.loc`
 
    `bundle exec rails s -p 3030 -b "ssl://0.0.0.0:3030?key=support/dev-ssl/psy.loc.key&cert=support/dev-ssl/psy.loc.pem"`
 
+# Reverse Proxy
+Reverse proxy can be used to publicly expose local development environment to receive webhooks.
+
+1. Set `domain` to `project458.com`
+1. Set `subdomain` to `www`
+1. Set `protocol` to `http`; SSL termination happens on the proxy server
+1. Run rails server without SSL
+1. Ensure your ssh public key is added in the proxy server
+1. Start reverse proxy session by running `ssh -R 3030:localhost:3030 root@reverse-proxy.tte-work.com`
+
+Following the above steps, your local development environment should be accessible via `https://www.project458.com`
 
 # Run tests
 

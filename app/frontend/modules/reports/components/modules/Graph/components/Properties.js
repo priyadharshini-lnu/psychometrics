@@ -36,6 +36,12 @@ class Properties extends Component {
     model.update()
   }
 
+  changeTransparentBackground = (e) => {
+    const { model } = this.props
+    model.props.transparentBackground = e.currentTarget.checked
+    model.update()
+  }
+
   select = (type, presetName) => {
     const { model } = this.props
     model.changeType(type, presetName)
@@ -92,6 +98,17 @@ class Properties extends Component {
             <span className="caret" />
           </button>
           <Menu model={model} onSelect={this.select} />
+        </div>
+        <hr className={styles.divider} />
+        <div className="margin-top-10">
+          <label style={{ fontWeight: 'normal' }}>
+            <input
+              type="checkbox"
+              checked={model.props.transparentBackground || false}
+              onChange={this.changeTransparentBackground}
+            />
+            Transparent background
+          </label>
         </div>
         <DataSource model={model} onSelect={this.update} onlyNumbers />
         <hr className={styles.divider} />

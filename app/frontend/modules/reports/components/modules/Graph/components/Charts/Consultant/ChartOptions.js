@@ -1,6 +1,7 @@
-export default function ChartOptions () {
+export default function ChartOptions (model) {
   return {
     chart: {
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
       polar: true,
     },
     title: false,
