@@ -19,7 +19,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   delegate :campaign_options, to: :campaign
 
   def campaign_user
-    campaign.campaign_users.find_by(user_id: current_user.id)
+    campaign.campaign_users.find_by(user_id: current_user.id) if current_user
   end
 
   def user_assessment_id
