@@ -26,7 +26,7 @@ const format = 'YYYY-MM-DD HH:mm'
 const range = (start: number, end: number) => Array.from({ length: end - start }, (_, i) => i)
 
 // Can not select days before today and today
-const disabledDate = current => current && current < moment().endOf('day')
+const disabledDate = current => current && current < moment().startOf('day')
 const disabledDateTime = () => ({
   disabledHours: () => range(0, 24).splice(0, moment().hour()),
   disabledMinutes: () => range(0, moment().minute()),

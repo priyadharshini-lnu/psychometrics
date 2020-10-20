@@ -30,14 +30,10 @@ const prevGroupIsCompleted = (campaign, group) => {
 
 export default function Campaign ({
   history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
-  loginHogan, acceptPolicy, beginCampaign, fetchCampaign,
+  loginHogan, acceptPolicy, beginCampaign, continueCampaign, fetchCampaign,
 }) {
   const {
-    campaignUser: {
-      startedAt,
-      completedAt,
-      additionalTime,
-    },
+    campaignUser: { startedAt, completionStatus, additionalTime },
     campaignOptions: {
       instructionsEnabled,
       instructions,
@@ -54,9 +50,14 @@ export default function Campaign ({
   )
   const isMD = useMedia('max-md')
   const hasStarted = !!campaignUser.startedAt
+  const canContinueCampaign = (completionStatus === 'interrupted' && additionalTime)
 
   const onBeginCampaign = () => {
     beginCampaign(campaignUser.id)
+  }
+
+  const onContinueCampaign = () => {
+    continueCampaign(campaignUser.id)
   }
 
   const onTimerFinish = () => {
@@ -83,7 +84,8 @@ export default function Campaign ({
                   currentUser={currentUser}
                   counters={counters}
                   showTimer={!!fixedTime && hasStarted}
-                  timerOptions={{ startedAt, duration }}
+                  campaignUser={campaignUser}
+                  duration={duration}
                   onFinish={onTimerFinish}
                 />
                 {allAssessmentsComplete && (
@@ -103,8 +105,9 @@ export default function Campaign ({
                   instructionsEnabled={instructionsEnabled}
                   instructions={instructions}
                   showBegin={!hasStarted}
+                  showContinue={canContinueCampaign}
                   onBegin={onBeginCampaign}
-                  additionalTime={additionalTime}
+                  onContinue={onContinueCampaign}
                 />
                 <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>

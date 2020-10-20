@@ -5,10 +5,19 @@ import {
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 
 export default function Header ({
-  currentUser, counters, showTimer, timerOptions: { startedAt, duration }, onFinish,
+  currentUser,
+  campaignUser: {
+    startedAt,
+    additionalTime,
+    completionStatus,
+  },
+  counters,
+  showTimer,
+  duration,
+  onFinish,
 }) {
   const deadline = new Date(startedAt)
-  deadline.setMinutes(deadline.getMinutes() + duration)
+  deadline.setMinutes(deadline.getMinutes(startedAt) + duration)
 
   let background = 'white'
   if (deadline < new Date()) background = 'danger'

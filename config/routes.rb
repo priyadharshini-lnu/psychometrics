@@ -739,6 +739,7 @@ Rails.application.routes.draw do
       resources :campaign_users do
         member do
           post :begin_campaign
+          post :continue_campaign
         end
       end
     end

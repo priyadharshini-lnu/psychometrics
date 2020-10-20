@@ -7,7 +7,6 @@ module EndUser
                :groups, :ungrouped_assessments_ids, :campaign_user
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
-    # has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
     has_many :user_reports, serializer: ::EndUser::UserReportSerializer
     has_many :groups, serializer: ::EndUser::GroupSerializer
@@ -32,6 +31,7 @@ module EndUser
 
       if campaign_user_object.started_at
         values['completed_at'] = campaign_user_object.started_at + object.fixed_time_duration.minutes
+        values['completion_status'] = campaign_user_object.user_assessments.all?(&:completed?) ? 'completed' : 'interrupted'
       end
 
       values

@@ -9,6 +9,12 @@ class EndUser::CampaignUsersController < ApplicationController
     render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer
   end
 
+  def continue_campaign
+    CampaignUsers::ContinueCampaign.call!(@campaign_user)
+
+    render json: @campaign_user, serializer: ::EndUser::CampaignUserSerializer
+  end
+
   private
 
   def set_campaign_user

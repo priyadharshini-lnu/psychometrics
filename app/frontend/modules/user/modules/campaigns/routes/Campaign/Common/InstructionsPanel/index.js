@@ -8,15 +8,14 @@ import styles from './styles'
 const { Panel } = Collapse
 
 export default function InstructionsPanel ({
-  instructionsEnabled, instructions, showBegin, additionalTime, onBegin,
+  instructionsEnabled, instructions, showBegin, showContinue, onBegin, onContinue,
 }) {
-  const showActions = showBegin || !!additionalTime
+  const showActions = showBegin || showContinue
   const showInstructions = instructionsEnabled && showActions
   const activePanels = [
     ...(showInstructions ? '1' : []),
     ...(showActions ? '2' : []),
   ]
-  const label = additionalTime ? 'campaign.continue' : 'campaign.begin'
 
   return (
     <div className={styles.container}>
@@ -37,13 +36,24 @@ export default function InstructionsPanel ({
         )}
         {showActions && (
           <Panel key="2" showArrow={false}>
-            <Button
-              type="primary"
-              onClick={onBegin}
-            >
-              <CaretRightOutlined />
-              {I18n.t(label)}
-            </Button>
+            {showContinue && (
+              <Button
+                type="primary"
+                onClick={onContinue}
+              >
+                <CaretRightOutlined />
+                {I18n.t('campaign.continue')}
+              </Button>
+            )}
+            {showBegin && (
+              <Button
+                type="primary"
+                onClick={onBegin}
+              >
+                <CaretRightOutlined />
+                {I18n.t('campaign.begin')}
+              </Button>
+            )}
           </Panel>
         )}
       </Collapse>
