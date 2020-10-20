@@ -54,30 +54,11 @@ const CommonCampaignFormModal: React.FC<Props> = ({
     endDate: values.endDate && values.endDate.format(),
   })
 
-  const fieldMap = {
-    active: 'endDate',
-    inactive: 'startDate',
-    startDate: 'status',
-    endDate: 'status',
-  }
-  const handleValuesChange = (changedValues: object, allValues: object) => {
-    const changedKey = Object.keys(changedValues)[0]
-
-    if (changedKey === 'status') {
-      const value = changedValues[changedKey]
-
-      if (allValues[fieldMap[value]]) setNotice(notices[value])
-      else setNotice(null)
-    } else if (changedKey === 'startDate') {
-      const value = changedValues[changedKey]
-
-      if (value && allValues[fieldMap[changedKey]] === 'inactive') setNotice(notices.inactive)
-      else setNotice(null)
-    } else if (changedKey === 'endDate') {
-      const value = changedValues[changedKey]
-
-      if (value && allValues[fieldMap[changedKey]] === 'active') setNotice(notices.active)
-      else setNotice(null)
+  const handleValuesChange = (changedValues: object, allValues: { status, startDate, endDate }) => {
+    if (allValues.status === 'active' && allValues.endDate) {
+      setNotice(notices.active)
+    } else if (allValues.status === 'inactive' && allValues.startDate) {
+      setNotice(notices.inactive)
     } else {
       setNotice(null)
     }

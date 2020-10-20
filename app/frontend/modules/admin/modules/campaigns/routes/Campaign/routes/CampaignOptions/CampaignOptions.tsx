@@ -141,9 +141,9 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
                       </label>
                     </Col>
                     <Col span={22}>
-                      <Radio.Group defaultValue="passport" buttonStyle="solid" onChange={saveIdentificationType}>
+                      <Radio.Group defaultValue="passport" onChange={saveIdentificationType}>
                         {Object.entries(identifications).map(
-                          ([key, value]) => <Radio.Button key={key} value={key}>{value as string}</Radio.Button>,
+                          ([key, value]) => <Radio key={key} value={key}>{value as string}</Radio>,
                         )}
                       </Radio.Group>
                     </Col>
