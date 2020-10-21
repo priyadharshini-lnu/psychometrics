@@ -49,6 +49,7 @@ module DataMigration
 
       def migrate(subject)
         log("migrating #{subject.depth_symbol} (#{subject.id})")
+        change_applicable_level_of_project
         create_campaign(subject)
         create_campaign_users(subject)
         create_campaign_reports(subject)
@@ -56,6 +57,10 @@ module DataMigration
         migrate_assigns(subject)
         migrate_registration_codes(subject)
         set_campaign_user_status
+      end
+
+      def change_applicable_level_of_project
+        project.update(applicable_level: 'campaign') if project.applicable_level == 'project'
       end
 
       def create_campaign(subject)
