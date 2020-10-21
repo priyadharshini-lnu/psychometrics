@@ -72,7 +72,7 @@ export default function CreateSubjectModal ({
         </Button>,
       ]}
     >
-      <Form {...formItemLayout}>
+      <Form {...formItemLayout} autoComplete="off">
         <AntForm.Item label="Subject">
           <UserAutocomplete
             value={autocompletedUser}

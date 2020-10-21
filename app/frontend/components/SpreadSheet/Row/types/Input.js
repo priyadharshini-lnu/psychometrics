@@ -9,15 +9,15 @@ export default function Input ({
   }
 
   const onChange = ({ currentTarget }) => {
-    updateEntity([index, currentTarget.name], currentTarget.value)
+    updateEntity([index, field.key], currentTarget.value)
   }
 
   return (
     <input
       onKeyDown={({ key }) => onKeyDown(key, number)}
-      name={field.key}
       value={entity[field.key] || ''}
       onChange={onChange}
+      autoComplete="off"
     />
   )
 }

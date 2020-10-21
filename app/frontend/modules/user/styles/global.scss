@@ -6,4 +6,7 @@
       direction: ltr;
     }
   }
+  .ant-modal-mask, .ant-modal-wrap {
+    z-index: 2147483647;
+  }
 }
