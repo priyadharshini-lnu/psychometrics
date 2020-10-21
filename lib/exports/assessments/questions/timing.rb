@@ -7,7 +7,7 @@ module Exports
         FIELDS = %w[firstClick lastClick pageSubmit clickCount].freeze
 
         # Parse RESULT data for XLSX
-        def self.result(user_result, _question, _scoring = false, _export_with_labels = false)
+        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
           answers = get_answers(user_result, question)
           FIELDS.map { |field| answers.try(:[], field) unless answers.blank? }
         end
