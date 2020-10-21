@@ -4,6 +4,30 @@ import FroalaEditor from 'froala-editor'
 
 function changeDirection (className, align) {
   // Wrap block tags.
+  const {
+    type: selectionType,
+    baseNode,
+    baseNode: { parentNode },
+    extentNode,
+    baseOffset,
+    extentOffset,
+  } = this.selection.get()
+
+  const isSingleNodeSelected = baseNode === extentNode
+  const isAllElementTextSelected = (baseOffset === 0 && baseNode.length === extentOffset)
+                            || (extentOffset === 0 && extentNode.length === baseOffset)
+  if (isSingleNodeSelected) {
+    if (selectionType === 'Range' && isAllElementTextSelected === false) {
+      this.format.apply('span', { dir: className })
+      return
+    }
+    const isElementSpanWithDir = this.$(parentNode).attr('dir') && parentNode.tagName.toLowerCase() === 'span'
+    if ((selectionType === 'Caret' || isAllElementTextSelected) && isElementSpanWithDir) {
+      this.$(parentNode).attr('dir', className)
+      return
+    }
+  }
+
   this.selection.save()
   this.html.wrap(true, true, true, true)
   this.selection.restore()
@@ -18,8 +42,7 @@ function changeDirection (className, align) {
     const element = elements[i]
     if (element !== this.el) {
       this.$(element)
-        .removeClass('fr-temp-div ltr rtl')
-        .addClass(className)
+        .attr('dir', className)
         .css('text-align', align)
     }
   }
@@ -37,6 +60,10 @@ FroalaEditor.RegisterCommand('rightToLeft', {
   focus: true,
   undo: true,
   refreshAfterCallback: true,
+  refresh: function refresh ($btn) {
+    const format = this.format.is('', { dir: 'rtl' })
+    $btn.toggleClass('fr-active', format).attr('aria-pressed', format)
+  },
   callback () {
     changeDirection.apply(this, ['rtl', 'right'])
   },
@@ -48,6 +75,10 @@ FroalaEditor.RegisterCommand('leftToRight', {
   focus: true,
   undo: true,
   refreshAfterCallback: true,
+  refresh: function refresh ($btn) {
+    const format = this.format.is('', { dir: 'ltr' })
+    $btn.toggleClass('fr-active', format).attr('aria-pressed', format)
+  },
   callback () {
     changeDirection.apply(this, ['ltr', 'left'])
   },
