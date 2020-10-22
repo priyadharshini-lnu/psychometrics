@@ -13,7 +13,7 @@ const { Option } = Select
 interface Props {
   projectId: number
   close(): void
-  campaign?: {
+  campaign: {
     id: number,
     status: string,
     startDate?: Date,
@@ -25,8 +25,8 @@ interface Props {
 const format = 'YYYY-MM-DD HH:mm'
 const range = (start: number, end: number) => Array.from({ length: end - start }, (_, i) => i)
 
-// Can not select days before today and today
-const disabledDate = current => current && current < moment().endOf('day')
+// Can not select days before today
+const disabledDate = current => current && current < moment().startOf('day')
 const disabledDateTime = () => ({
   disabledHours: () => range(0, 24).splice(0, moment().hour()),
   disabledMinutes: () => range(0, moment().minute()),
@@ -42,10 +42,10 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   close,
   campaign,
 }) => {
-  const [notice, setNotice] = useState(null)
+  const [notice, setNotice] = useState<string | null>(null)
 
   useEffect(() => {
-    if (campaign && campaign.isFixedTime) setNotice(notices[campaign.status])
+    if (campaign.isFixedTime) setNotice(notices[campaign.status])
   }, [])
 
   const transformValues = values => ({
@@ -54,8 +54,14 @@ const CommonCampaignFormModal: React.FC<Props> = ({
     endDate: values.endDate && values.endDate.format(),
   })
 
-  const handleStatusChange = (value) => {
-    setNotice(notices[value])
+  const handleValuesChange = (changedValues: object, allValues: { status, startDate, endDate }) => {
+    if (allValues.status === 'active' && allValues.endDate) {
+      setNotice(notices.active)
+    } else if (allValues.status === 'inactive' && allValues.startDate) {
+      setNotice(notices.inactive)
+    } else {
+      setNotice(null)
+    }
   }
 
   return (
@@ -66,7 +72,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
       showSuccessMessages
       close={close}
       modalProps={{ width: 550 }}
-      formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON } }}
+      formProps={{ initialValues: { status: STATUSES.ACTIVE, type: TYPES.COMMON }, onValuesChange: handleValuesChange }}
       transformValues={transformValues}
     >
       {() => (
@@ -83,7 +89,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
             label={I18n.t('administration.campaigns.form.status')}
             required
           >
-            <Select onChange={handleStatusChange}>
+            <Select>
               {_.map(STATUSES, (status: string) => (
                 <Option key={status} value={status}>{_.capitalize(status)}</Option>))}
             </Select>

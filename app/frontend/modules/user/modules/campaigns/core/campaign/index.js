@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 const BEGIN = 'campaign/BEGIN'
 const FETCH = 'campaign/FETCH'
+const CONTINUE = 'campaign/CONTINUE'
 const DECLINE_EVALUATION = 'campaign/DECLINE_EVALUATION'
 const RESET = 'campaign/RESET_DATA'
 
@@ -26,6 +27,14 @@ export const beginCampaign = campaignUserId => ({
   type: BEGIN,
   request: {
     url: `/campaign_users/${campaignUserId}/begin_campaign`,
+    method: 'post',
+  },
+})
+
+export const continueCampaign = campaignUserId => ({
+  type: CONTINUE,
+  request: {
+    url: `/campaign_users/${campaignUserId}/continue_campaign`,
     method: 'post',
   },
 })
@@ -56,6 +65,7 @@ export const defaultState = {
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true }),
   [BEGIN]: (state, { response }) => (setIn(state, 'campaignUser', response)),
+  [CONTINUE]: (state, { response }) => (setIn(state, 'campaignUser', response)),
   [RESET]: () => defaultState,
   [DECLINE_EVALUATION]: (state, { requestAction: { evaluationId } }) => {
     const evaluations = _.filter(state.evaluations, ({ id }) => id !== evaluationId)

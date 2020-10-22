@@ -3,7 +3,7 @@
 module Administration
   class UserDetailSerializer < ActiveModel::Serializer
     attributes :id, :full_name, :email, :created_at, :last_sign_in_at, :campaigns, :started_at, :completed_at,
-               :additional_time
+               :completion_status, :additional_time
 
     has_many :user_assessments, serializer: Administration::UserAssessmentSerializer
     has_many :user_reports, serializer: Administration::UserReportSerializer
@@ -12,7 +12,16 @@ module Administration
       campaign_user&.active
     end
 
-    attribute :completion_status do
+    def completion_status
+      return campaign_user&.completion_status unless campaign.fixed_time?
+      return campaign_user&.completion_status unless campaign_user.started_at
+
+      start_time = campaign_user&.started_at
+      if start_time
+        expected_end_time = start_time + campaign.fixed_time_duration.minutes
+        return 'interrupted' if expected_end_time < Time.now && campaign.active?
+      end
+
       campaign_user&.completion_status
     end
 

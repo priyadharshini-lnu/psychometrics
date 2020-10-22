@@ -23,4 +23,7 @@ export interface CampaignOptions {
   fixedTimeDuration?: number
   instructionsEnabled: boolean
   instructions?: string
+  proctoringEnabled: boolean
+  rules: object
+  identification: string
 }

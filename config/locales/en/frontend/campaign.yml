@@ -14,6 +14,7 @@ en:
   campaign:
     welcome: 'Welcome'
     begin: Begin Assessment
+    continue: Continue Assessment
     new: 'New'
     not_started: 'New'
     in_progress: 'In Progress'
