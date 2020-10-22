@@ -6595,6 +6595,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -13895,6 +13896,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -21192,6 +21194,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",

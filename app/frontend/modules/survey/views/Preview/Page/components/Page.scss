@@ -92,56 +92,6 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
-
-  .btn {
-    border: 1px solid transparent;
-    transition: all 200ms ease;
-    border-radius: 4px;
-    font-weight: 400;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.015);
-    border-color: #d9d9d9;
-  }
-
-  .btnPrimary {
-    margin: 0 10px;
-    padding: 10px 25px;
-    background-color: $primary-color;
-    border-color: $primary-color;
-    color: $white;
-    font-size: 14px;
-    font-weight: 400;
-    text-transform: uppercase;
-
-    &:hover {
-      background-color: $processing-color;
-    }
-
-    &:active {
-      background-color: $main-dark;
-      color: $white;
-      box-shadow: none;
-    }
-  }
-
-  .btnDefault {
-    padding: 10px 25px;
-    font-size: 14px;
-    font-weight: 400;
-    text-transform: uppercase;
-
-    &:hover {
-      background-color: $white;
-      color: $primary-color;
-      box-shadow: 0 2px 0 lighten($primary-color, 98%);
-      border-color: $primary-color;
-    }
-
-    &:active {
-      background-color: $white;
-      color: $main-dark;
-      box-shadow: none;
-    }
-  }
 }
 
 .footerMinimize {

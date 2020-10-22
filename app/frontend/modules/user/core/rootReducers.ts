@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import preview from 'modules/survey/core/preview'
 import reportBuilder from 'modules/reports/core/builder'
 import currentUser from 'core/currentUser'
+import connection from 'core/connection'
 import campaign from '../modules/campaigns/core/campaign'
 import campaigns from '../modules/campaigns/core/campaigns'
 import nomination from '../modules/campaigns/core/nomination'
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   preview,
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
+  connection,
 })
 
 export type RootState = ReturnType<typeof rootReducer>
