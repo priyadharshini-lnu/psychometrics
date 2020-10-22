@@ -58,7 +58,7 @@ class UsersResult < ApplicationRecord
   end
 
   def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: user_assessment.campaign_id)
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end
 
   def hogan_user_reports
