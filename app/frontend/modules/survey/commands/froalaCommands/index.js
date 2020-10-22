@@ -1,3 +1,7 @@
+import store from 'store'
 import 'libs/Editor/commands/rtlLtr'
-import 'libs/Editor/commands/pipedText'
 import './audio'
+
+import pipedText from 'libs/Editor/commands/pipedText'
+
+pipedText(store)

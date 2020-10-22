@@ -45,7 +45,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   const [notice, setNotice] = useState<string | null>(null)
 
   useEffect(() => {
-    if (campaign.isFixedTime) setNotice(notices[campaign.status])
+    if (campaign && campaign.isFixedTime) setNotice(notices[campaign.status])
   }, [])
 
   const transformValues = values => ({
