@@ -218,14 +218,14 @@ module DataMigration
 
       def associate_users_result_with_agile_events(assign, users_result)
         log('associating agile events with users result', logger.level + 1)
-        assign.agile_events.each do |agile_event|
+        assign.assign_with_result.agile_events.each do |agile_event|
           agile_event.update_attribute(:users_result_id, users_result.id)
         end
       end
 
       def associate_users_result_with_media_responses(assign, users_result)
         log('associating media responses and users result', logger.level + 1)
-        assign.media_responses.each do |media_response|
+        assign.assign_with_result.media_responses.each do |media_response|
           media_response.update_attribute(:users_result_id, users_result.id)
         end
       end
