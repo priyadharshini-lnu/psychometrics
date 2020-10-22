@@ -37,7 +37,6 @@ en:
         header: 'Edit Report Name'
       destroy:
         successfully: 'Report %{name} was successfully deleted.'
-        failure: Report can't be deleted. This report is either linked to a campaign or an individual user.
       create:
         successfully: 'Report %{name} was successfully created.'
       update:

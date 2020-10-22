@@ -8,5 +8,5 @@
   // Notify message
   noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.decorate.display_name) %>', type: 'success'});
 <% else %>
-  noty({text: '<%= t("administration.#{resource_class.model_name.plural}.destroy.failure") %>', type: 'error', timeout: 10000 });
+  noty({text: '<%= resource.errors.full_messages.join(", ") %>', type: 'error', timeout: 14000 });
 <% end %>
