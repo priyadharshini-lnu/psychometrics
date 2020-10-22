@@ -109,7 +109,7 @@ class UsersResultSerializer < ActiveModel::Serializer
     return object.external_results if object.assessment.mindmill?
 
     if object.assessment.hogan?
-      score = object.external_results&.hogan_score&.dig('participant', 'assessment', 'score') || {}
+      score = object.external_results&.dig('participant', 'assessment', 'score') || {}
       if score.present?
         return score.each_with_object({}) do |v, res|
           scales = Array.wrap(v['scales']['scale'])

@@ -94,14 +94,7 @@ const HANDLERS = {
   [SET_UPLOAD_STATE]: (state: State, { payload: { uploadState } }: SetUploadStateAction): State => (
     { ...state, uploadState }),
   [SET_FILE]: (state: State, { payload: { file } }: SetFileAction): State => ({ ...state, file }),
-  [REMOVE_FILE]: (state: State): State => ({
-    ...state,
-    file: null,
-    recordingState: RECORDER_STATES.READY,
-    uploadState: UPLOAD_STATES.READY,
-    playerState: PLAYER_STATE.PAUSED,
-    errorCodes: [],
-  }),
+  [REMOVE_FILE]: () => initialState,
   [SET_ERRORS]: (state: State, { payload: { errorCodes } }: SetErrorsAction): State => (
     { ...state, errorCodes, recordingState: UPLOAD_STATES.ERROR }),
   [SET_PERCENTAGE]: (state: State, { payload: { percent } }: SetPercentAction): State => ({ ...state, percent }),
