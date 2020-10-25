@@ -16,12 +16,10 @@ module UsersResults
           question_recoding = question_recoding_map[answer['question_id']] ||
                               lookup_default_recoding(answer['question_id'])
           if question_recoding
-            {
+            answer.merge({
               'answers' => lookup_type_class(question_recoding)&.
-                call!(answer['answers'], question_recoding) || answer['answers'],
-              'question_id' => answer['question_id'],
-              'not_applicable' => answer['not_applicable']
-            }
+                call!(answer['answers'], question_recoding) || answer['answers']
+            })
           else
             answer
           end
