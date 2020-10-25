@@ -95,9 +95,9 @@ module DataMigration
             active: !membership.disabled
           )
           campaign_user.save!
-
-          update_hogan_credential(membership)
-          update_privacy_consents(membership)
+          membership_with_result = membership.membership_with_result
+          update_hogan_credential(membership_with_result)
+          update_privacy_consents(membership_with_result)
         end
       end
 
