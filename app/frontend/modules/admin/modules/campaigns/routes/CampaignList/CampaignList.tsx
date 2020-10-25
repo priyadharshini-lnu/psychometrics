@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import {
   Dropdown, Table, Tooltip, Menu, Row, Col, Input, Select, Pagination, Avatar,
 } from 'antd'
+import cs from 'classnames'
 import { Link } from 'react-router-dom'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { MoreOutlined, AppstoreOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import moment from 'moment'
-import { STATUSES, DEFAULT_PAGE_SIZE } from 'constants/campaign'
+import { STATUSES, DEFAULT_PAGE_SIZE, TYPES } from 'constants/campaign'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import Modals from 'modules/admin/components/Modals/'
 import array from 'utils/array'
@@ -76,6 +77,12 @@ const CampaignList: React.FC<Props> = ({
     changeFilter('statusEq', value)
   }
 
+  const handleTypeChange = (value: string): void => {
+    if (value === 'All') { return removeFilter('typeEq') }
+
+    changeFilter('typeEq', value)
+  }
+
   return (
     <div>
       <Breadcrumb
@@ -101,6 +108,17 @@ const CampaignList: React.FC<Props> = ({
           <span className="mlm">{`${total} Campaigns`}</span>
         </Col>
         <div className="float-r">
+          <span className={styles.filterLabel}>Type:</span>
+          <Select
+            defaultValue="All"
+            value={filters.typeEq || 'All'}
+            className={cs(styles.typeFilter, 'mrm')}
+            onChange={handleTypeChange}
+          >
+            <Option value="All" key="All">All</Option>
+            {_.map(TYPES, (val: string) => <Option value={val} key={val}>{_.capitalize(val)}</Option>)}
+          </Select>
+          <span className={styles.filterLabel}>Status:</span>
           <Select
             defaultValue="All"
             value={filters.statusEq || 'All'}
