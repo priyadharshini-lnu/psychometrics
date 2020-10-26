@@ -25,10 +25,45 @@ RSpec.configure do |config|
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
         },
-        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse \
-with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming \
-languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\n\
-Single Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
+        contact: {
+          name: 'TTE Support',
+          email: 'info@thetalententerprise.com',
+          url: 'https://www.thetalententerprise.com'
+        },
+        termsOfService: 'https://thetalententerprise.com/privacy-statement/',
+        description:
+        <<~DESCRIPTION
+          ## Introduction
+          Lighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.
+
+          To access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.
+
+          ## Base URL
+          All URLs referenced in this documentation have the following base component.
+
+          `https://%<host>s%<basePath>s`
+
+          To ensure data privacy and security, all requests should be made over `https`. `http` is not supported.
+
+          ## Authentication
+          Basic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.
+
+          ## Workflow
+          There is no particular workflow you need to follow. A typical workflow is shown below.
+
+          <img src="https://tte-static.s3.amazonaws.com/lighthouse/Lighthouse-Typical-Integration.svg" style="width: 100%%;"/>
+
+          ## Terminology
+
+          ### Assessments
+          Assessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.
+
+          ### Campaigns
+          Campaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.
+
+          ### Results
+          After the user sits the required assessments, third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
+        DESCRIPTION
       },
       securityDefinitions: { basic: { type: :basic } },
       paths: {},

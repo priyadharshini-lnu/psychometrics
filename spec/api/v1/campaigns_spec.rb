@@ -27,7 +27,7 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/Campaign'
         examples 'application/json' => {
           'id': 770,
-          'name': 'Duplicated Campaign Name',
+          'name': 'Sales Executive Recruitment May 2020',
           'created_at': '2019-03-05T10:56:53.349+04:00',
           'updated_at': '2019-03-05T10:56:53.349+04:00'
         }
@@ -67,7 +67,7 @@ describe 'Campaigns' do
         end
       end
 
-      response '404', 'Campaign is not found' do
+      response '404', 'Campaign not found' do
         let(:project_id) { project.id }
         let(:campaign_id) { 1111 }
 
@@ -104,13 +104,13 @@ assessments and reports.'
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewCampaigns' }, required: true
 
-      response '200', '' do
+      response '200', 'New user created' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
           'id': 14_602,
-          'first_name': 'Kamaru',
-          'last_name': 'Usman',
-          'email': 'marti@gmail.com',
+          'first_name': 'John',
+          'last_name': 'Doe',
+          'email': 'john.doe@example.com',
           'created_at': '2019-03-04T15:47:33.570+04:00',
           'updated_at': '2019-03-04T15:47:33.950+04:00',
           'campaign_ids': [
@@ -144,13 +144,13 @@ assessments and reports.'
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
-      response '200', '' do
+      response '200', 'Success' do
         schema type: 'array', items: { '$ref' => '#/definitions/Campaign' }
 
         examples 'application/json' => [
           {
             'id': 367,
-            'name': 'Employee Engagement Survey',
+            'name': 'Employee Engagement',
             'created_at': '2018-02-11T10:55:25.569+04:00',
             'updated_at': '2018-02-11T10:55:25.569+04:00'
           }
