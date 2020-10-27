@@ -99,13 +99,9 @@ module Imports
             )
           end
 
-          status = if data['status'] == 'Completed'
-                     :completed
-                   elsif data['status'] == 'New'
-                     :not_started
-                   else
-                     :in_progress
-                   end
+          status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])
+          completion_reason = I18n.t('activerecord.attributes.users_result.completion_reasons').
+                              key(data['completion_reason'])
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
           user_result.assign_attributes(
@@ -113,7 +109,8 @@ module Imports
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
             norm_type: norm_data[:type],
-            status: status
+            status: status,
+            completion_reason: completion_reason
           )
 
           parsed_questions = {}

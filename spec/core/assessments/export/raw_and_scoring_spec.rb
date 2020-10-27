@@ -24,7 +24,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status']
+      expected_first_row = [
+        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
+      ]
       questions.each { |q| expected_first_row << "QID#{q.id}" }
 
       expect(actual_first_row).to eq(expected_first_row)
@@ -36,7 +38,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 7
+      expected_second_row = [nil] * 8
       questions.each { |q| expected_second_row << q.name }
 
       expect(actual_second_row).to eq(expected_second_row)
@@ -48,7 +50,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 7
+      expected_third_row = [nil] * 8
       questions.each { |q| expected_third_row << q.props['questionText'] }
 
       expect(actual_third_row).to eq(expected_third_row)
@@ -89,6 +91,7 @@ describe Assessments::Export::RawAndScoring do
         res.completed_at.try(:strftime, '%D %r'),
         nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
         2,
         3
       ]
@@ -107,7 +110,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status']
+      expected_first_row = [
+        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
+      ]
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.each do |email_field|
         expected_first_row << "QID#{question.id}_#{email_field}"
@@ -122,7 +127,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 7
+      expected_second_row = [nil] * 8
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
 
@@ -135,7 +140,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 7
+      expected_third_row = [nil] * 8
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times do |_i|
         expected_third_row << question.props['questionText']
@@ -170,6 +175,7 @@ describe Assessments::Export::RawAndScoring do
         res.completed_at.try(:strftime, '%D %r'),
         nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
         'Rupert Smith',
         nil,
         nil,
@@ -191,7 +197,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_first_row = xlsx.sheet(0).row(1)
 
-      expected_first_row = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status']
+      expected_first_row = [
+        'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
+      ]
       expected_first_row << "QID#{question.id}"
 
       expect(actual_first_row).to eq(expected_first_row)
@@ -203,7 +211,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
-      expected_second_row = [nil] * 7
+      expected_second_row = [nil] * 8
       expected_second_row << question.name
 
       expect(actual_second_row).to eq(expected_second_row)
@@ -215,7 +223,7 @@ describe Assessments::Export::RawAndScoring do
 
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
-      expected_third_row = [nil] * 7
+      expected_third_row = [nil] * 8
 
       expected_third_row << question.props['questionText']
 
@@ -248,6 +256,7 @@ describe Assessments::Export::RawAndScoring do
         res.completed_at.try(:strftime, '%D %r'),
         nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+        nil,
         "Hey\nHello\nHi"
       ]
 

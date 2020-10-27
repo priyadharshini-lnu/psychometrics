@@ -38,20 +38,6 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
--- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
-
-
---
--- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
-
-
---
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -918,13 +904,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
-    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL
+    stop_reminder boolean DEFAULT false NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -2102,43 +2088,6 @@ ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
 
 --
--- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.proctoring_sessions (
-    id bigint NOT NULL,
-    session_id uuid DEFAULT public.gen_random_uuid(),
-    user_id bigint,
-    campaign_id bigint,
-    started_at timestamp without time zone,
-    completed_at timestamp without time zone,
-    status integer,
-    results jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: proctoring_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.proctoring_sessions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: proctoring_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
-
-
---
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2862,9 +2811,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3035,9 +2982,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -3275,7 +3220,8 @@ CREATE TABLE public.users_results (
     selected_locale character varying,
     additional_time integer,
     reset_count integer DEFAULT 0,
-    started_at timestamp without time zone
+    started_at timestamp without time zone,
+    completion_reason integer
 );
 
 
@@ -3674,13 +3620,6 @@ ALTER TABLE ONLY public.privacy_consents ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('public.privacy_links_id_seq'::regclass);
-
-
---
--- Name: proctoring_sessions id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
 
 
 --
@@ -4339,14 +4278,6 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.privacy_links
     ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
-
-
---
--- Name: proctoring_sessions proctoring_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.proctoring_sessions
-    ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -5431,20 +5362,6 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 
 
 --
--- Name: index_proctoring_sessions_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_proctoring_sessions_on_campaign_id ON public.proctoring_sessions USING btree (campaign_id);
-
-
---
--- Name: index_proctoring_sessions_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_proctoring_sessions_on_user_id ON public.proctoring_sessions USING btree (user_id);
-
-
---
 -- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6170,14 +6087,6 @@ ALTER TABLE ONLY public.memberships
 
 
 --
--- Name: proctoring_sessions fk_rails_387638cd9a; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.proctoring_sessions
-    ADD CONSTRAINT fk_rails_387638cd9a FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE SET NULL;
-
-
---
 -- Name: threesixty_reminder_histories fk_rails_38fa0fe639; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6559,14 +6468,6 @@ ALTER TABLE ONLY public.reports
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT fk_rails_9cb58b8a3f FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
-
-
---
--- Name: proctoring_sessions fk_rails_9f00367487; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.proctoring_sessions
-    ADD CONSTRAINT fk_rails_9f00367487 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
 
 
 --
@@ -7403,7 +7304,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201007061140'),
 ('20201007072553'),
 ('20201011102042'),
-('20201015102640'),
-('20201020084827');
+('20201020084827'),
+('20201021071559');
 
 

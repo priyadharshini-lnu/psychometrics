@@ -19,6 +19,7 @@ class UsersResult < ApplicationRecord
   has_many :agile_events, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
+  enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
     where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')

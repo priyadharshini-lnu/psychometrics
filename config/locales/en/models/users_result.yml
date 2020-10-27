@@ -7,6 +7,10 @@ en:
           in_progress: 'Resume'
           completed: 'Completed'
           interrupted: 'Interrupted'
+        completion_reasons:
+          user_completed: 'User Completed'
+          time_out_online: 'Time out / Online'
+          time_out_offline: 'Time out / Offline'
         result_id: Result ID 
         name: Name
         email: Email
