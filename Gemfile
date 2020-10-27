@@ -185,6 +185,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false
   gem 'stackprof', '~> 0.2.12'
+  gem 'parallel_tests'
 end
 
 group :development do
