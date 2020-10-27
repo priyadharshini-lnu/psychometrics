@@ -13,7 +13,7 @@ module Imports
         #     "index": 0,
         #     "value": true
         #   }, ...]
-        def self.build_answers(data, question, use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, use_scoring = false, _assign)
           return nil if data.compact.blank?
 
           factors_scoring = question.detect_specified_scoring.
@@ -36,7 +36,8 @@ module Imports
           {
             answers: answers,
             question_id: question.id,
-            not_applicable: not_applicable
+            not_applicable: not_applicable,
+            duration: duration
           }
         end
 

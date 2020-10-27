@@ -27,8 +27,10 @@ describe Assessments::Export::RawAndScoring do
       expected_first_row = [
         'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
       ]
-      questions.each { |q| expected_first_row << "QID#{q.id}" }
-
+      questions.each do |q|
+        expected_first_row << "QID#{q.id}"
+        expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
+      end
       expect(actual_first_row).to eq(expected_first_row)
     end
 
@@ -39,9 +41,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
       expected_second_row = [nil] * 8
-      questions.each { |q| expected_second_row << q.name }
+      questions.each { |q| expected_second_row << [q.name] * 2 }
 
-      expect(actual_second_row).to eq(expected_second_row)
+      expect(actual_second_row).to eq(expected_second_row.flatten)
     end
 
     it 'third row in xlsx contains question text' do
@@ -51,9 +53,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_third_row = xlsx.sheet(0).row(3)
       expected_third_row = [nil] * 8
-      questions.each { |q| expected_third_row << q.props['questionText'] }
+      questions.each { |q| expected_third_row << [q.props['questionText']] * 2 }
 
-      expect(actual_third_row).to eq(expected_third_row)
+      expect(actual_third_row).to eq(expected_third_row.flatten)
     end
 
     it 'xlsx contains each user result as separate row' do
@@ -71,8 +73,8 @@ describe Assessments::Export::RawAndScoring do
 
     it 'each user result row in xlsx have result details along with answer to the question' do
       res = create(:users_result, assessment: assessment, campaign: campaign, answers: {
-        questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }] },
-        questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }] }
+        questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }], 'duration' => 30 },
+        questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => nil }
       })
 
       create(:user_assessment, users_result: res, campaign: campaign)
@@ -93,7 +95,9 @@ describe Assessments::Export::RawAndScoring do
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
         nil,
         2,
-        3
+        30,
+        3,
+        nil
       ]
 
       expect(actual_result_row).to eq(expected_result_row)
@@ -118,6 +122,8 @@ describe Assessments::Export::RawAndScoring do
         expected_first_row << "QID#{question.id}_#{email_field}"
       end
 
+      expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
+
       expect(actual_first_row).to eq(expected_first_row)
     end
 
@@ -130,6 +136,9 @@ describe Assessments::Export::RawAndScoring do
       expected_second_row = [nil] * 8
 
       ImportExportConst::EMAIL_QUESTION_FIELDS.count.times { |_i| expected_second_row << question.name }
+
+      # For QID#{question.id}_#{ImportExportConst::DURATION}" column
+      expected_second_row << question.name
 
       expect(actual_second_row).to eq(expected_second_row)
     end
@@ -146,6 +155,9 @@ describe Assessments::Export::RawAndScoring do
         expected_third_row << question.props['questionText']
       end
 
+      # For QID#{question.id}_#{ImportExportConst::DURATION}" column
+      expected_third_row << question.props['questionText']
+
       expect(actual_third_row).to eq(expected_third_row)
     end
 
@@ -155,7 +167,7 @@ describe Assessments::Export::RawAndScoring do
           'answers' => {
             'cc' => nil, 'to' => 'Rupert Smith', 'bcc' => nil,
             'message' => 'message', 'subject' => 'subject'
-          }
+          }, 'duration' => 120
         }
       })
 
@@ -180,7 +192,8 @@ describe Assessments::Export::RawAndScoring do
         nil,
         nil,
         'subject',
-        'message'
+        'message',
+        120
       ]
 
       expect(actual_result_row).to eq(expected_result_row)
@@ -201,6 +214,7 @@ describe Assessments::Export::RawAndScoring do
         'Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason'
       ]
       expected_first_row << "QID#{question.id}"
+      expected_first_row << "QID#{question.id}_#{ImportExportConst::DURATION}"
 
       expect(actual_first_row).to eq(expected_first_row)
     end
@@ -212,9 +226,9 @@ describe Assessments::Export::RawAndScoring do
       xlsx = Roo::Spreadsheet.open(file_name)
       actual_second_row = xlsx.sheet(0).row(2)
       expected_second_row = [nil] * 8
-      expected_second_row << question.name
+      expected_second_row << [question.name] * 2
 
-      expect(actual_second_row).to eq(expected_second_row)
+      expect(actual_second_row).to eq(expected_second_row.flatten)
     end
 
     it 'third row in xlsx contains question text' do
@@ -225,9 +239,9 @@ describe Assessments::Export::RawAndScoring do
       actual_third_row = xlsx.sheet(0).row(3)
       expected_third_row = [nil] * 8
 
-      expected_third_row << question.props['questionText']
+      expected_third_row << [question.props['questionText']] * 2
 
-      expect(actual_third_row).to eq(expected_third_row)
+      expect(actual_third_row).to eq(expected_third_row.flatten)
     end
 
     it 'each row have result with each reply on new line into same column as answer to the question' do
@@ -238,7 +252,7 @@ describe Assessments::Export::RawAndScoring do
             { 'index' => 1, 'value' => 'Hey' },
             { 'index' => 2, 'value' => 'Hello' },
             { 'index' => 3, 'value' => 'Hi' }
-          ] }
+          ], 'duration' => 120 }
       })
       create(:user_assessment, users_result: res, campaign: campaign)
 
@@ -257,7 +271,8 @@ describe Assessments::Export::RawAndScoring do
         nil,
         I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
         nil,
-        "Hey\nHello\nHi"
+        "Hey\nHello\nHi",
+        120
       ]
 
       expect(actual_result_row).to eq(expected_result_row)

@@ -17,6 +17,7 @@ module Exports
           answers = (answers || []).sort_by { |a| a['index'] }.map do |a|
             a['value'].is_a?(Numeric) ? a['value'] + increase : ''
           end
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
@@ -27,6 +28,9 @@ module Exports
             question_id_header << "QID#{question.id}_#{c + 1}"
             question_choices_header << question.props.dig('choicesTexts', c)
           end
+
+          append_duration_header(question, question_id_header, question_choices_header)
+
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

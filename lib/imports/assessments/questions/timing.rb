@@ -4,12 +4,13 @@ module Imports
   module Assessments
     module Questions
       class Timing
-        def self.build_answers(values, question, _use_scoring = false, _assign)
+        def self.build_answers(values, question, duration, _use_scoring = false, _assign)
           return nil if values.compact.blank?
 
           {
             answers: Hash[::Exports::Assessments::Questions::Timing::FIELDS.zip(values)],
-            question_id: question.id
+            question_id: question.id,
+            duration: duration
           }
         end
       end

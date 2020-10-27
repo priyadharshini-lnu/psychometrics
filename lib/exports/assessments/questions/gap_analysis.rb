@@ -20,6 +20,7 @@ module Exports
               answer['values'].map { |v| v + 1 }.join(',')
             ]
           end.flatten
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
@@ -31,6 +32,7 @@ module Exports
             question_choices_header << [question.props.dig('choicesTexts', c),
                                         "#{question.props.dig('choicesTexts', c)} | Why?"]
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header.flatten, question_choice_header: question_choices_header.flatten }
         end
       end

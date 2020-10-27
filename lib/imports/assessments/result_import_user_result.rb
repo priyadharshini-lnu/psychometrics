@@ -4,8 +4,7 @@
 module Imports
   module Assessments
     class ResultImportUserResult < Imports::BaseImport
-      SUPPORT_ROWS = 3
-      SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel
+      include ImportExportConst
       # Authorisation flow
       #
       include Pundit
@@ -115,10 +114,13 @@ module Imports
 
           parsed_questions = {}
           new_results = {}
+          duration = nil
 
           # Parse answers
           data.each do |key, value|
             next unless /qid/.match?(key)
+
+            next duration = value if key.include?(DURATION)
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
@@ -136,7 +138,7 @@ module Imports
               p "#{question.type} - #{e}"
               next
             end
-            parsed_value = parser.build_answers(values, question, scoring, user_result)
+            parsed_value = parser.build_answers(values, question, duration, scoring, user_result)
             new_results[qid] = parsed_value if parsed_value
           end
           user_result.answers = new_results
