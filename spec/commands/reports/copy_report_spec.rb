@@ -5,9 +5,16 @@ require 'rails_helper'
 describe Reports::CopyReport do
   context '.call' do
     let(:report) do
+      filters = create_list(:filter, 2)
+
       report = build(:report)
       pages = build_list(:page, 2)
-      modules = build_list(:module, 4)
+      module1 = build(:module)
+      module2 = build(:module, props: { "filters": [filters.first.id, filters.last.id] })
+      module3 = build(:module, props: { "filters": filters.first.id })
+      module4 = build(:module)
+
+      modules = [module1, module2, module3, module4]
 
       create(:translation, translateable: modules.first, resource: report)
 
@@ -15,8 +22,6 @@ describe Reports::CopyReport do
       pages[1].modules << modules.last(2)
 
       report.pages << pages
-
-      filters = build_list(:filter, 2)
 
       create(:translation, translateable: filters.first, resource: report)
       report.filters << filters
@@ -52,6 +57,13 @@ describe Reports::CopyReport do
         copy = subject[:ok]
 
         expect(copy.pages.first.modules.length).to eq(report.pages.first.modules.length)
+      end
+
+      it 'new modules contain updated filter ids' do
+        copy = subject[:ok]
+
+        expect(copy.pages.first.modules.last.props['filters']).to eq(copy.filter_ids)
+        expect(copy.pages.last.modules.first.props['filters']).to eq(copy.filters.first.id)
       end
 
       it 'copies translations of modules' do
