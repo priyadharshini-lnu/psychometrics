@@ -62,7 +62,7 @@ RSpec.configure do |config|
           Campaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.
 
           ### Results
-          After the user sits the required assessments, third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
+          After the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.
         DESCRIPTION
       },
       securityDefinitions: { basic: { type: :basic } },
