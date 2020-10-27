@@ -742,6 +742,12 @@ Rails.application.routes.draw do
           post :continue_campaign
         end
       end
+
+      resources :users do
+        collection do
+          post :change_locale
+        end
+      end
     end
 
     scope module: :threesixty do

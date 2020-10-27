@@ -10,6 +10,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -60,6 +74,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 
 SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
@@ -3165,7 +3181,8 @@ CREATE TABLE public.users (
     direct_otp_sent_at timestamp without time zone,
     totp_timestamp timestamp without time zone,
     settings jsonb DEFAULT '{}'::jsonb,
-    already_invited boolean DEFAULT false
+    already_invited boolean DEFAULT false,
+    locale character varying
 );
 
 
@@ -3207,13 +3224,13 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
     meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    campaign_id integer,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
@@ -5810,13 +5827,6 @@ CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING 
 
 
 --
--- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
-
-
---
 -- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6611,7 +6621,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -7264,6 +7274,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200531072928'),
 ('20200624204627'),
 ('20200630075308'),
+('20200701101758'),
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
@@ -7303,8 +7314,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201004131024'),
 ('20201007061140'),
 ('20201007072553'),
+('20201020224539'),
 ('20201011102042'),
+('20201015102640'),
 ('20201020084827'),
 ('20201021071559');
-
-

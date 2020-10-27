@@ -1,20 +1,24 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
-import { Route } from 'react-router-dom'
 import {
-  Layout, Menu, Dropdown, Modal,
+  Layout, Menu, Modal,
 } from 'antd'
 import {
-  HomeOutlined, MenuOutlined, GlobalOutlined, QuestionCircleOutlined,
+  HomeOutlined, MenuOutlined, QuestionCircleOutlined,
 } from '@ant-design/icons'
+import LangDropdown from 'components/LangDropdown'
+import cs from 'classnames'
 import styles from './styles.scss'
 import connect from './connect'
 import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
+const pagesToHideLangSelection = ['/pass', '/anonym', '/evaluations']
+const hideLangDropdown = !!_.find(pagesToHideLangSelection, page => location.href.includes(page))
+
 function Navigation ({
-  changeLocale, logout, logo, isFrame, isAnonym,
+  logout, logo, isFrame, isAnonym,
 }) {
   if (isFrame) return null
 
@@ -25,65 +29,45 @@ function Navigation ({
     logout().then(() => location.reload())
   }
 
-  const langMenu = () => (
-    <Menu onClick={({ key }) => { changeLocale(key).then(() => location.reload()) }}>
-      <Menu.Item key="en">
-        English
-      </Menu.Item>
-      <Menu.Item key="ar">
-        Arabic
-      </Menu.Item>
-    </Menu>
-  )
-
   return (
     <Layout.Header className="threesixty-navigation" mode="horizontal">
-      <Route path="/threesixty_campaigns/:id">
-        {() => (
-          <>
-            <div className="logo-wrap" key="logo">
-              <a href="/">
-                {logo
-                  ? <img src={logo} alt="logo" className="logo" />
-                  : <HomeOutlined />}
-              </a>
-            </div>
-            <Menu
-              key="menu"
-              mode="horizontal"
-              theme="light"
-              style={{ lineHeight: '79px', height: '79px' }}
-              overflowedIndicator={<MenuOutlined className="overflow-menu-item align-right" />}
-            >
-              {!isAnonym && (
-                <SubMenu
-                  className="align-right"
-                  title={(
-                    <span className="submenu-title-wrapper">
-                      <MenuOutlined className={styles.userIcon} />
-                    </span>
+      <>
+        <div className="logo-wrap" key="logo">
+          <a href="/">
+            {logo
+              ? <img src={logo} alt="logo" className="logo" />
+              : <HomeOutlined />}
+          </a>
+        </div>
+        <Menu
+          key="menu"
+          mode="horizontal"
+          theme="light"
+          style={{ lineHeight: '79px', height: '79px' }}
+          overflowedIndicator={<MenuOutlined className="overflow-menu-item align-right" />}
+        >
+          {!isAnonym && (
+          <SubMenu
+            className="align-right"
+            title={(
+              <span className="submenu-title-wrapper">
+                <MenuOutlined className={styles.userIcon} />
+              </span>
                   )}
-                >
-                  <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
-                  <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
-                </SubMenu>
-              )}
-              <Menu.Item key="app" className="align-right hidden">
-                <Dropdown overlay={() => langMenu()} trigger={['click']}>
-                  <a>
-                    <GlobalOutlined />
-                    {I18n.t('threesixty.language')}
-                  </a>
-                </Dropdown>
-              </Menu.Item>
-              <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
-                <QuestionCircleOutlined />
+          >
+            <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
+            <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
+          </SubMenu>
+          )}
+          <Menu.Item key="app" className={cs('align-right', { hidden: hideLangDropdown })}>
+            <LangDropdown locales={I18n.availableLocales} current={I18n.currentLocale()} />
+          </Menu.Item>
+          <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
+            <QuestionCircleOutlined />
                 Help
-              </Menu.Item>
-            </Menu>
-          </>
-        )}
-      </Route>
+          </Menu.Item>
+        </Menu>
+      </>
       <Modal
         title={(
           <div className="help-modal-header">

@@ -30,7 +30,8 @@ class EndUser::UserAssessmentsController < ApplicationController
   end
 
   def pass
-    UserAssessments::Pass.call!(@user_assessment, params[:lang])
+    lang = params[:lang] || @user_assessment.selected_locale || user_locale
+    UserAssessments::Pass.call!(@user_assessment, lang)
 
     respond_to do |format|
       format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }

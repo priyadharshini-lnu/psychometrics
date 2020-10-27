@@ -12,6 +12,8 @@ export interface UserAssessment {
   status: string
   needConfirm: boolean
   assessmentExtra: AssessmentExtra
+  selectedLocale: string
+  availableLocales: string[]
 }
 
 export interface AssessmentExtra {

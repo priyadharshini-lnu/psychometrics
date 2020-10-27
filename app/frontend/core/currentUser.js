@@ -31,7 +31,7 @@ export const changeLocale = locale => ({
   type: CHANGE_LOCALE,
   request: {
     method: 'post',
-    url: '/campaigns/change_locale',
+    url: '/users/change_locale',
     body: {
       locale,
     },

@@ -1830,7 +1830,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -5004,6 +5004,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
     "time_left": {
@@ -6863,7 +6870,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -9142,7 +9149,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -12313,6 +12320,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
     "time_left": {
@@ -14168,7 +14182,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -16443,7 +16457,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -19614,6 +19628,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
     "time_left": {
@@ -21469,7 +21490,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
