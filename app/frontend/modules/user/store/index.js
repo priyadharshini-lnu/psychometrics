@@ -4,6 +4,7 @@ import api from 'middleware/api'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
+import * as Sentry from '@sentry/react'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
 
@@ -23,10 +24,13 @@ if (__DEV__) {
   }
 }
 
+
+const sentryReduxEnhancer = Sentry.createReduxEnhancer()
+
 const store = createStore(
   rootReducers,
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(...middleware)),
+  composeEnhancers(applyMiddleware(...middleware), sentryReduxEnhancer),
 )
 
 sagaMiddleware.run(rootSagas)

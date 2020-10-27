@@ -2,8 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import AssessmentContainer from 'modules/survey/containers/AssessmentContainer'
 import { Provider } from 'react-redux'
+import initSentry from 'libs/initSentry'
 import rstore from '../../modules/survey/store'
 import 'modules/user/styles/ant.less'
+
+initSentry()
 
 const ID = window.assessmentPreviewDomElementId || 'psychometrics_preview'
 const root = document.getElementById(ID)
