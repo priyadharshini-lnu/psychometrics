@@ -159,8 +159,8 @@ gem 'enum_help', '~> 0.0.17'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.0.5'
-gem 'rswag-ui', '~> 2.0.5'
+gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
@@ -180,7 +180,7 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'rswag-specs', '~> 2.0.5'
+  gem 'rswag-specs', '~> 2.3.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false

@@ -12,6 +12,9 @@ Rswag::Api.configure do |c|
   # For example, you could leverage this to dynamically assign the "host" property
   #
   c.swagger_filter = lambda do |swagger, _env|
-    swagger['host'] = "#{Settings.domain}#{':' + Settings.port.to_s if Settings.port}"
+    host = "#{Settings.subdomain && Settings.subdomain + '.'}#{Settings.domain}#{Settings.port && ':' + Settings.port}"
+    base_path = swagger['basePath']
+    swagger['host'] = host
+    swagger['info']['description'] = swagger['info']['description'] % { host: host, basePath: base_path }
   end
 end
