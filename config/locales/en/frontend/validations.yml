@@ -1,6 +1,8 @@
 en:
   validations:
-    title: 'Sorry, you cannot continue until you correct the following:'
+    title:
+      one: 'There is one error, please check your responses'
+      other: 'There are %{count} errors, please check your responses'
     issue: 'Issue'
     min_length: 'Your response must be at least %{min} characters.'
     character_range: 'Your response must be at least %{min} and no more than %{max} characters.'

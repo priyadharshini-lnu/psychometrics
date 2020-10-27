@@ -42,8 +42,8 @@ const PropertyPanel: React.FC<Props> = ({
           <Input
             size="small"
             className={styles.input}
-            value={contact}
-            onChange={({ target: { value } }): void => changeContact(value, i)}
+            defaultValue={contact}
+            onBlur={({ target: { value } }): void => changeContact(value, i)}
           />
           <DeleteOutlined onClick={(): void => deleteContact(i)} />
         </div>

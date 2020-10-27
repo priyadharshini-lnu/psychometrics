@@ -645,7 +645,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "required": "الرجاء الإجابة على هذا السؤال",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
-    "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
+    "title": {
+      "one": "هناك خطأ واحد ، يرجى التحقق من ردودك",
+      "other": "هناك %{count} أخطاء ، يرجى التحقق من إجاباتك",
+      "two": "يوجد خطأان ، يرجى التحقق من إجاباتك"
+    }
   }
 });
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
@@ -1288,7 +1292,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
@@ -1931,6 +1938,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   }
 });

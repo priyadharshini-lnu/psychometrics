@@ -41,31 +41,11 @@ class Page extends Component {
 
   renderErrors () {
     const { errors, I18n } = this.props
-    const styleForTitle = this.addLtrStyleIfNeed(I18n.t('validations.title'))
-    const styleForIssue = this.addLtrStyleIfNeed(I18n.t('validations.issue'))
-    let i = 0
+    const validationTitle = I18n.t('validations.title', { count: Object.keys(errors).length })
+    const styleForTitle = this.addLtrStyleIfNeed(validationTitle)
     return (
       <div className={styles.errors}>
-        <h1 style={styleForTitle}>{I18n.t('validations.title')}</h1>
-        <ul style={styleForTitle}>
-          {_.map(errors, (errors, id) => {
-            i += 1
-            return (
-              <li key={id} style={styleForIssue}>
-                <a onClick={this.scroll.bind(this, `question_${id}`)}>
-                  {I18n.t('validations.issue')}
-                  {' '}
-                  {i}
-                </a>
-                <ul>
-                  {_.map(errors, (error, j) => (
-                    <li style={this.addLtrStyleIfNeed(error.message)} key={j}>{error.message}</li>
-                  ))}
-                </ul>
-              </li>
-            )
-          })}
-        </ul>
+        <h1 style={styleForTitle}>{validationTitle}</h1>
       </div>
     )
   }

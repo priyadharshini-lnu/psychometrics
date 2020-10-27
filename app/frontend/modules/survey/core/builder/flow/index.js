@@ -12,6 +12,18 @@ const lookUpPath = (element) => {
   return path
 }
 
+const getRealPath = (state, path) => {
+  let p = ['elements']
+  let strPath = ''
+  return path.map((i) => {
+    if (i === 'elements') { return i }
+    strPath += `${i}`
+    const index = _.findIndex(getIn(state, p), el => el.path.join('') === strPath)
+    p = [...p, index, 'elements']
+    return index
+  })
+}
+
 const HANDLERS = {
   [INIT]: (_, { data }) => denormalize(data.result, schema, data.entities).flow,
   [RESET]: (_, { flow }) => flow,
@@ -26,7 +38,8 @@ const HANDLERS = {
       newState = setIn(newState, [...path, 'props', 'number'], getIn(parent, ['props', 'number']) + 1)
     }
 
-    return updateIn(newState, path, elements => elements.concat(element))
+    const realPath = getRealPath(state, path)
+    return updateIn(newState, realPath, elements => elements.concat(element))
   },
   [ADD_ELEMENT]: (state, { element, newElement }) => {
     const path = lookUpPath(element)

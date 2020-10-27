@@ -695,7 +695,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -5578,7 +5578,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "تم تسجيل الدخول بنجاح.",
       "signed_out": "تم تسجيل الخروج بنجاح."
@@ -7292,7 +7292,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "required": "الرجاء الإجابة على هذا السؤال",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
-    "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
+    "title": {
+      "one": "هناك خطأ واحد ، يرجى التحقق من ردودك",
+      "other": "هناك %{count} أخطاء ، يرجى التحقق من إجاباتك",
+      "two": "يوجد خطأان ، يرجى التحقق من إجاباتك"
+    }
   },
   "views": {
     "pagination": {
@@ -8003,7 +8007,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -12883,7 +12887,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "Signed in successfully.",
       "signed_out": "Signed out successfully."
@@ -14590,7 +14594,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   },
   "views": {
     "pagination": {
@@ -15301,7 +15308,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "instruction": "Please login with your personal account information",
           "password_placeholder": "Password",
           "submit": "Login",
-          "title": "Welcome back!"
+          "title": "Welcome!"
         }
       },
       "shared": {
@@ -20181,7 +20188,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "register": "Register",
           "sign_in": "Login"
         },
-        "title": "Welcome Back!"
+        "title": "Welcome!"
       },
       "signed_in": "Berjaya dilog masuk.",
       "signed_out": "Berjaya dilog keluar."
@@ -21888,7 +21895,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   },
   "views": {
     "pagination": {
