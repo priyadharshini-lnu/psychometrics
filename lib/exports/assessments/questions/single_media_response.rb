@@ -10,15 +10,16 @@ module Exports
           media_response = user_result.media_responses.find_by(question: question)
           return Utility::Array.ensure_size([], question_header_size(question)) if media_response.nil?
 
-          answers = media_response_answers(media_response, user_result, question)
+          duration = get_duration(user_result, question)
+          answers = media_response_answers(media_response, duration)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
-        def self.media_response_answers(media_response, user_result, question)
+        def self.media_response_answers(media_response, duration)
           [
             media_response.asset.url,
             media_response.encoded_id,
-            get_duration(user_result, question)
+            duration
           ]
         end
 
