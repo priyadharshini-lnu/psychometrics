@@ -10,7 +10,7 @@ class TextEntry extends BaseTranslate {
     if (/^choicesTexts/.test(field)) {
       return this.question.props.choicesTexts[extraData.choice]
     }
-    if (['title', 'titleDescription', 'managerName'].includes(field)) {
+    if (['title', 'titleDescription', 'managerName', 'subject'].includes(field)) {
       return this.question.props[field]
     }
     if (/^messageText/.test(field)) {

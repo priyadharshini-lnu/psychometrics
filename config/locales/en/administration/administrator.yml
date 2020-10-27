@@ -3,7 +3,7 @@ en:
     administrator:
       sessions:
         new:
-          title: 'Welcome back!'
+          title: 'Welcome!'
           forgot_password: 'Forgot your password?'
           submit: 'Login'
           password_placeholder: 'Password'

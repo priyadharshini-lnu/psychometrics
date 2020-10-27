@@ -61,7 +61,7 @@ class Question extends Component {
         style={stylesProps}
         ref={(ref) => { this.question = ref }}
         name={`question_${model.id}`}
-        className={`${styles.question}`}
+        className={`${styles.question} highlight-container`}
       >
         <div className={styles.content}>
           {!model.valid && !isEmailTextEntryQuestion(model) && this.renderError()}

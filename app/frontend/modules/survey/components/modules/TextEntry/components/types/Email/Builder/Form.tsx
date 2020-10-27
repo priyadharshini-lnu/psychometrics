@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Input } from 'antd'
+import _ from 'lodash'
 import styles from '../commonStyles.scss'
 import ContactSelect from './ContactSelect'
 import { TO_TYPE, CC_TYPE, BCC_TYPE } from '../constants'
@@ -7,6 +8,10 @@ import { ContactType } from '../interfaces/Email'
 
 interface Props {
   contactList: string[]
+  subject: string
+  contacts: { [key in ContactType]: string[] }
+  changeProps: (value: string, key: string) => void
+  changeContacts: (type: ContactType, value: string[]) => void
 }
 
 interface ContactProps {
@@ -22,7 +27,9 @@ const defaultContactProps: ContactProps[] = [
   { type: BCC_TYPE, visible: false },
 ]
 
-const Form: React.FC<Props> = ({ contactList }) => {
+const Form: React.FC<Props> = ({
+  contactList, changeProps, subject, contacts, changeContacts,
+}) => {
   const [contactProps, setContactProps] = useState<ContactProps[]>(defaultContactProps)
 
   const toggleCopyField = (type: ContactType): void => {
@@ -32,11 +39,18 @@ const Form: React.FC<Props> = ({ contactList }) => {
   return (
     <div className={styles.emailForm}>
       {contactProps.filter(({ visible }) => visible).map(({ type }, i) => (
-        <ContactSelect key={i} contactList={contactList} toggleCopyField={toggleCopyField} type={type} />
+        <ContactSelect
+          key={i}
+          contacts={_.get(contacts, type, [])}
+          contactList={contactList}
+          toggleCopyField={toggleCopyField}
+          type={type}
+          onChange={changeContacts}
+        />
       ))}
       <div className={styles.subject}>
         <div>Subject</div>
-        <Input />
+        <Input defaultValue={subject} onBlur={e => changeProps(e.target.value, 'subject')} />
       </div>
       <div>
         <div>Your Message</div>

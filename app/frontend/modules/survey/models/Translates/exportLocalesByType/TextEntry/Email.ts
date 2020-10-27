@@ -1,8 +1,8 @@
 const Email = ({
-  title, titleDescription, contactList,
+  title, titleDescription, contactList, subject,
 }, result: object): object => {
   result = {
-    ...result, title, titleDescription,
+    ...result, title, titleDescription, subject,
   }
 
   // eslint-disable-next-line arrow-body-style
