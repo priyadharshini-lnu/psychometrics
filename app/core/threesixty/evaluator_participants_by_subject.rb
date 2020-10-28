@@ -2,8 +2,9 @@
 
 module Threesixty
   class EvaluatorParticipantsBySubject < Rectify::Query
-    def initialize(subject)
-      @subject = subject
+    def initialize(subject_id, campaign_id)
+      @subject_id = subject_id
+      @campaign_id = campaign_id
     end
 
     def query
@@ -12,12 +13,12 @@ module Threesixty
         joins(:evaluator).
         selecting { ['*', 'users.email as evaluator_email'] }.
         active.
-        where(subject_id: subject.user_id).
+        where(subject_id: subject_id, campaign_id: campaign_id).
         includes(:relationship)
     end
 
     private
 
-    attr_reader :subject
+    attr_reader :subject_id, :campaign_id
   end
 end
