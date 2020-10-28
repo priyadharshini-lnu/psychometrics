@@ -72,8 +72,8 @@ jobs:
         run: |
           cp config/database.yml.sample config/database.yml
           cp config/application.yml.sample  config/application.yml
-          bundle exec rake db:create
-          bundle exec rake db:structure:load
+          bundle exec rake parallel:create
+          bundle exec rake parallel:load_structure
 
       - name: Run Javascript Tests
         run: yarn test
@@ -92,7 +92,7 @@ jobs:
           fi
 
       - name: Run RSpec
-        run: EAGER_LOAD=1 bundle exec rspec
+        run: EAGER_LOAD=1 bundle exec parallel_test spec -t rspec --runtime-log support/parallel_runtime_rspec.log
 
       - name: Upload test artifacts
         uses: actions/upload-artifact@v1

@@ -174,6 +174,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.1.0'
   gem 'hirb'
+  gem 'parallel_tests'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 4.0.0'

@@ -12,7 +12,7 @@ test:
   host: localhost
   username: postgres
   password: postgres
-  database: ci_test
+  database: ci_test<%= ENV['TEST_ENV_NUMBER'] %>
 
 production:
   <<: *default
