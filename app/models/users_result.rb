@@ -19,6 +19,7 @@ class UsersResult < ApplicationRecord
   has_many :agile_events, dependent: :destroy
 
   enum status: { not_started: 0, in_progress: 1, completed: 2, interrupted: 3 }
+  enum completion_reason: { user_completed: 0, time_out_online: 1, time_out_offline: 2 }
 
   scope :actual_by_options, lambda { |options|
     where('subject_id != evaluator_id') unless options.participants.dig('subject', 'can_evaluate_self')
@@ -36,7 +37,17 @@ class UsersResult < ApplicationRecord
   def expired?
     return false unless expiry_date
 
-    expiry_date < Time.current
+    expiry_date < Time.current || campaign_time_over?(evaluator_id)
+  end
+
+  def campaign_time_over?(user_id)
+    options = user_assessment.campaign.campaign_options
+    return false unless options&.fixed_time
+
+    campaign_user = user_assessment.campaign.campaign_users.find_by(user_id: user_id)
+    return false unless campaign_user.started_at
+
+    campaign_user.started_at + options.fixed_time_duration.minutes < Time.current
   end
 
   def user
@@ -48,7 +59,7 @@ class UsersResult < ApplicationRecord
   end
 
   def user_reports
-    UserReport.where(report_id: assessment.report_ids, user_id: subject_id, campaign_id: user_assessment.campaign_id)
+    UserReport.where(report_id: assessment.report_ids, user_id: subject_id)
   end
 
   def hogan_user_reports

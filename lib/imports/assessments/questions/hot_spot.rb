@@ -20,7 +20,7 @@ module Imports
         #     "value": true/false/null,
         #     "region": 0
         #   }]
-        def self.build_answers(data, question, _use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, _assign)
           return nil if data.compact.blank?
 
           answers = []
@@ -32,7 +32,8 @@ module Imports
           end
           {
             answers: answers,
-            question_id: question.id
+            question_id: question.id,
+            duration: duration
           }
         end
       end

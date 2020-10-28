@@ -68,7 +68,6 @@ describe ::UsersResults::ExpandAnswersByRecoding do
              'choice' => 1, 'values' => [{ 'index' => 1, 'recode_value' => 2, 'value' => true }] },
            { 'scale' => 1,
              'choice' => 3, 'values' => [{ 'index' => 1, 'recode_value' => 2, 'value' => true }] }],
-        'not_applicable' => nil,
         'question_id' => 17_157
       }
     )

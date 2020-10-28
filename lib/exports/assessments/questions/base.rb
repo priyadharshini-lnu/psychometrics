@@ -4,6 +4,7 @@ module Exports
   module Assessments
     module Questions
       class Base
+        include ImportExportConst
         def self.headers(question)
           all_headers = question_id_and_choice_headers(question)
           question_text = ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])
@@ -31,6 +32,19 @@ module Exports
 
         def self.get_not_applicable(result, question)
           result.answers[question.id.to_s].try(:[], 'not_applicable')
+        end
+
+        def self.get_duration(result, question)
+          result.answers[question.id.to_s].try(:[], 'duration')
+        end
+
+        def self.append_duration_header(question, id_header, choices_header)
+          id_header << duration_header(question)
+          choices_header << ''
+        end
+
+        def self.duration_header(question)
+          "QID#{question.id}_#{DURATION}"
         end
       end
     end

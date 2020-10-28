@@ -8,14 +8,15 @@ module Imports
         #   [5]
         # TO:
         #   [{"value": 5}]
-        def self.build_answers(data, question, _use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, _assign)
           return nil if data.compact.blank?
 
           {
             answers: [{
               value: data[0]
             }],
-            question_id: question.id
+            question_id: question.id,
+            duration: duration
           }
         end
       end

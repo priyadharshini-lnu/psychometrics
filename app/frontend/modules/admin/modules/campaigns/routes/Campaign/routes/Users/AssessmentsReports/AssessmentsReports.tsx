@@ -107,7 +107,7 @@ const AssessmentsReports: React.FC<Props> = ({
     })
   }
 
-  const canExtendTime = () => (isFixedTime && (user.additionalTime === null || user.additionalTime === 0))
+  const canExtendTime = (isFixedTime && user.completionStatus === 'interrupted')
 
   return (
     <div>
@@ -175,25 +175,23 @@ const AssessmentsReports: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('common.column.created_at')}>
               {user.createdAt}
             </Descriptions.Item>
-            {isFixedTime && (
+            {canExtendTime && (
               <>
                 <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
-                  {user.additionalTime}
+                  <span className="prs">{user.additionalTime}</span>
 
-                  {canExtendTime() && (
-                    <Button
-                      type="danger"
-                      size="small"
-                      onClick={() => openModal('UpdateCampaignTimeModal', {
-                        campaignId: parsedCampaignId,
-                        userId: parsedUserId,
-                        updateAdditionalTime: extendTime,
-                      })}
-                    >
-                      <PlusOutlined />
-                      <span>{I18n.t('campaign_users.actions.extend_time')}</span>
-                    </Button>
-                  )}
+                  <Button
+                    type="danger"
+                    size="small"
+                    onClick={() => openModal('UpdateCampaignTimeModal', {
+                      campaignId: parsedCampaignId,
+                      userId: parsedUserId,
+                      updateAdditionalTime: extendTime,
+                    })}
+                  >
+                    <PlusOutlined />
+                    <span>{I18n.t('campaign_users.actions.extend_time')}</span>
+                  </Button>
                 </Descriptions.Item>
                 <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
                   {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}

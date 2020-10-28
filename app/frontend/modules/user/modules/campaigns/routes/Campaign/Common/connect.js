@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import {
   fetchCampaign,
   beginCampaign,
+  continueCampaign,
   reset as resetCampaign,
 } from 'modules/user/modules/campaigns/core/campaign'
 import { loginHogan } from '../../../core/campaigns'
@@ -17,6 +18,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchCampaign,
   beginCampaign,
+  continueCampaign,
   resetCampaign,
   loginHogan,
   acceptPolicy,

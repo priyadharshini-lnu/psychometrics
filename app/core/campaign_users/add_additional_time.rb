@@ -26,7 +26,8 @@ module CampaignUsers
     def add_additional_time
       campaign_user.update_attributes(
         completion_status: :interrupted,
-        additional_time: additional_time
+        additional_time: additional_time,
+        expiry_date: nil
       )
     end
 

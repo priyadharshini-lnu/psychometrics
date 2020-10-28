@@ -9,5 +9,5 @@ en:
         keep_sign_in: 'Yes, Keep me signed in'
         submit: 'Login'
         password_placeholder: 'Password'
-        title: Welcome Back!
+        title: Welcome!
         instruction: Please login with your personal account information

@@ -42,9 +42,9 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.7.1'
-gem 'devise-i18n',                '~> 1.9.1'
-gem 'devise_invitable',           '~> 2.0.1'
+gem 'devise',                     '~> 4.7.3'
+gem 'devise-i18n',                '~> 1.9.2'
+gem 'devise_invitable',           '~> 2.0.2'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 
@@ -159,8 +159,8 @@ gem 'enum_help', '~> 0.0.17'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.0.5'
-gem 'rswag-ui', '~> 2.0.5'
+gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
@@ -180,7 +180,7 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'rswag-specs', '~> 2.0.5'
+  gem 'rswag-specs', '~> 2.3.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false

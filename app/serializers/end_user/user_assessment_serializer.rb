@@ -4,7 +4,8 @@ module EndUser
   class UserAssessmentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm
+               :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm, :available_locales,
+               :selected_locale
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
 
@@ -36,6 +37,10 @@ module EndUser
 
     def assessment_name
       object.assessment.name
+    end
+
+    def available_locales
+      ['en'] + ::Translation.available_translation_for_assessment(object.assessment.id)
     end
 
     def normalize_hogan_type(type)

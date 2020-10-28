@@ -5,10 +5,15 @@ import {
 import Timer from 'modules/user/modules/campaigns/components/Timer'
 
 export default function Header ({
-  currentUser, counters, showTimer, timerOptions: { startedAt, duration }, onFinish,
+  currentUser,
+  expiryDate,
+  counters,
+  showTimer,
+  duration,
+  onFinish,
 }) {
-  const deadline = new Date(startedAt)
-  deadline.setMinutes(deadline.getMinutes() + duration)
+  let background = 'white'
+  if (new Date(expiryDate) < new Date()) background = 'danger'
 
   return (
     <div className="campaign-header">
@@ -22,11 +27,11 @@ export default function Header ({
         {showTimer && (
           <div className="timer">
             <Timer
-              preview={{ expiryDate: deadline, timerDuration: duration }}
+              preview={{ expiryDate, timerDuration: duration }}
               onFinish={onFinish}
-              background="white"
+              background={background}
             />
-            <span className="mls">{I18n.t('campaign.timer.message')}</span>
+            {expiryDate && <span className="mls">{I18n.t('campaign.timer.message')}</span>}
           </div>
         )}
       </div>

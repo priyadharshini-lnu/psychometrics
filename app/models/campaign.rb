@@ -45,6 +45,10 @@ class Campaign < ApplicationRecord
     parent.table[:status]
   end
 
+  ransacker :type, formatter: proc { |v| types[v] } do |parent|
+    parent.table[:type]
+  end
+
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
 
   private

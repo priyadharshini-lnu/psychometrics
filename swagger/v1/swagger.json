@@ -8,7 +8,13 @@
       "backgroundColor": "#FFFFFF",
       "altText": "Lighthouse"
     },
-    "description": "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
+    "contact": {
+      "name": "TTE Support",
+      "email": "info@thetalententerprise.com",
+      "url": "https://www.thetalententerprise.com"
+    },
+    "termsOfService": "https://thetalententerprise.com/privacy-statement/",
+    "description": "## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact The Talent Enterprise for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\nBasic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://tte-static.s3.amazonaws.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n"
   },
   "securityDefinitions": {
     "basic": {
@@ -84,7 +90,7 @@
             }
           },
           "401": {
-            "description": "We are disabled",
+            "description": "Authentication error",
             "schema": {
               "$ref": "#/definitions/ApiError"
             },
@@ -163,7 +169,7 @@
             "examples": {
               "application/json": {
                 "id": 770,
-                "name": "Duplicated Campaign Name",
+                "name": "Sales Executive Recruitment May 2020",
                 "created_at": "2019-03-05T10:56:53.349+04:00",
                 "updated_at": "2019-03-05T10:56:53.349+04:00"
               }
@@ -184,7 +190,7 @@
             }
           },
           "404": {
-            "description": "Campaign is not found",
+            "description": "Campaign not found",
             "schema": {
               "$ref": "#/definitions/ApiError"
             },
@@ -242,16 +248,16 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "New user created",
             "schema": {
               "$ref": "#/definitions/User"
             },
             "examples": {
               "application/json": {
                 "id": 14602,
-                "first_name": "Kamaru",
-                "last_name": "Usman",
-                "email": "marti@gmail.com",
+                "first_name": "John",
+                "last_name": "Doe",
+                "email": "john.doe@example.com",
                 "created_at": "2019-03-04T15:47:33.570+04:00",
                 "updated_at": "2019-03-04T15:47:33.950+04:00",
                 "campaign_ids": [
@@ -295,7 +301,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Success",
             "schema": {
               "type": "array",
               "items": {
@@ -306,7 +312,7 @@
               "application/json": [
                 {
                   "id": 367,
-                  "name": "Employee Engagement Survey",
+                  "name": "Employee Engagement",
                   "created_at": "2018-02-11T10:55:25.569+04:00",
                   "updated_at": "2018-02-11T10:55:25.569+04:00"
                 }
@@ -350,7 +356,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Get user reports",
+            "description": "Success",
             "schema": {
               "type": "array",
               "items": {
@@ -361,12 +367,12 @@
               "application/json": [
                 {
                   "id": 127,
-                  "name": "Thriving Index - Alinma Resource - PRO ",
+                  "name": "Thriving Index - Resource Pro",
                   "status": "not_ready",
                   "assessments": [
                     {
                       "id": 91731,
-                      "name": "Thriving Index Assessment - Alinma",
+                      "name": "Thriving Index Assessment",
                       "status": "not_started",
                       "started_at": "2019-01-06T20:54:05.714+04:00",
                       "completed_at": "2019-01-06T20:54:05.714+04:00"
@@ -375,12 +381,12 @@
                 },
                 {
                   "id": 110,
-                  "name": "Thriving Index - Alinma Custom Report",
+                  "name": "Custom Report",
                   "status": "not_ready",
                   "assessments": [
                     {
                       "id": 91731,
-                      "name": "Thriving Index Assessment - Alinma",
+                      "name": "Thriving Index Assessment",
                       "status": "not_started",
                       "started_at": "2019-01-06T20:54:05.714+04:00",
                       "completed_at": "2019-01-06T20:54:05.714+04:00"
@@ -433,15 +439,15 @@
         ],
         "responses": {
           "200": {
-            "description": "Get user report results",
+            "description": "Success",
             "schema": {
               "$ref": "#/definitions/ReportResults"
             },
             "examples": {
               "application/json": {
                 "user_data": {
-                  "first_name": "Spider",
-                  "last_name": "Man"
+                  "first_name": "Jane",
+                  "last_name": "Doe"
                 },
                 "assessments": [
                   {
@@ -541,7 +547,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Get user report PDF",
+            "description": "Success",
             "schema": {
               "$ref": "#/definitions/ReportPdf"
             },
@@ -629,7 +635,7 @@
             }
           },
           "404": {
-            "description": "Raise 404 Not Found if the report is not found",
+            "description": "Resource not found",
             "schema": {
               "$ref": "#/definitions/Dimensions"
             },
@@ -643,7 +649,7 @@
             }
           },
           "412": {
-            "description": "Raise 412 Not Configured if the report doesn't have data configuration",
+            "description": "Resource not configured",
             "schema": {
               "$ref": "#/definitions/Dimensions"
             },
@@ -757,9 +763,9 @@
             "examples": {
               "application/json": {
                 "id": 14602,
-                "first_name": "Kamaru",
-                "last_name": "Usman",
-                "email": "marti@gmail.com",
+                "first_name": "John",
+                "last_name": "Doe",
+                "email": "john.doe@example.com",
                 "created_at": "2019-03-04T15:47:33.570+04:00",
                 "updated_at": "2019-03-04T15:47:33.950+04:00",
                 "campaign_ids": [
@@ -777,13 +783,13 @@
               "application/json": {
                 "code": 1006,
                 "message": "User with this email exists",
-                "more_info": "Email address max@example.com is already taken",
+                "more_info": "Email address john.doe@example.com is already taken",
                 "meta": {
                   "existing_user": {
                     "id": 12,
                     "first_name": "John",
                     "last_name": "Doe",
-                    "email": "john_doe@tte.email",
+                    "email": "john.doe@example.com",
                     "created_at": "2019-10-28T17:00:00.000+04:00"
                   }
                 }
@@ -791,7 +797,7 @@
             }
           },
           "404": {
-            "description": "Project is not found",
+            "description": "Resource not found",
             "schema": {
               "$ref": "#/definitions/ApiError"
             },
@@ -812,7 +818,7 @@
               "application/json": {
                 "code": 1003,
                 "message": "Not enough licenses",
-                "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough \\\nlicenses for <b>Cognitive - Entry Level</b> report."
+                "more_info": "<b>john.doe@example.com</b> in <b>ACME</b> does not have not enough \\\nlicenses for <b>Cognitive - Entry Level</b> report."
               }
             }
           }
@@ -860,7 +866,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Update the user",
+            "description": "User updated",
             "schema": {
               "$ref": "#/definitions/User"
             },

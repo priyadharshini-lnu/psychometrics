@@ -1,8 +1,4 @@
-select.form-control.language.hidden name='language'
-  option = link_to 'Hindi'
-  option selected='selected' = link_to 'English'
-  option = link_to 'Arabic'
-
+#lang-dropdown
 - if defined?(banner) && banner
   div class=(defined?(banner_class) ? banner_class : 'project-logo')
     = image_tag(banner)

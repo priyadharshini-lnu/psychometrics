@@ -49,12 +49,18 @@ module DataMigration
 
       def migrate(subject)
         log("migrating #{subject.depth_symbol} (#{subject.id})")
+        change_applicable_level_of_project
         create_campaign(subject)
         create_campaign_users(subject)
         create_campaign_reports(subject)
         create_campaign_assessments(subject)
         migrate_assigns(subject)
         migrate_registration_codes(subject)
+        set_campaign_user_status
+      end
+
+      def change_applicable_level_of_project
+        project.update(applicable_level: 'campaign') if project.applicable_level == 'project'
       end
 
       def create_campaign(subject)
@@ -89,9 +95,9 @@ module DataMigration
             active: !membership.disabled
           )
           campaign_user.save!
-
-          update_hogan_credential(membership)
-          update_privacy_consents(membership)
+          membership_with_result = membership.membership_with_result
+          update_hogan_credential(membership_with_result)
+          update_privacy_consents(membership_with_result)
         end
       end
 
@@ -212,14 +218,14 @@ module DataMigration
 
       def associate_users_result_with_agile_events(assign, users_result)
         log('associating agile events with users result', logger.level + 1)
-        assign.agile_events.each do |agile_event|
+        assign.assign_with_result.agile_events.each do |agile_event|
           agile_event.update_attribute(:users_result_id, users_result.id)
         end
       end
 
       def associate_users_result_with_media_responses(assign, users_result)
         log('associating media responses and users result', logger.level + 1)
-        assign.media_responses.each do |media_response|
+        assign.assign_with_result.media_responses.each do |media_response|
           media_response.update_attribute(:users_result_id, users_result.id)
         end
       end
@@ -280,7 +286,24 @@ module DataMigration
         campaign_id = out_stack[:campaigns].last
         log("migrating registration codes of subject #{subject.id}...")
 
-        subject.registration_codes.each { code.update_attribute(:campaign_id, campaign_id) }
+        subject.registration_codes.each { |code| code.update_attribute(:campaign_id, campaign_id) }
+      end
+
+      def set_campaign_user_status
+        CampaignUser.where(campaign_id: out_stack[:campaigns].last).find_each do |campaign_user|
+          user_results = UsersResult.where(subject_id: campaign_user.user_id, evaluator_id: campaign_user.user_id).
+                         joins(:user_assessment).where(user_assessments: { campaign_id: campaign_user.campaign_id })
+
+          started_at = user_results.map(&:started_at).compact.min
+          all_assessments_completed = user_results.all?(&:completed?)
+          no_assessments_started = user_results.all?(&:not_started?)
+
+          completion_status = :in_progress
+          completion_status = :completed if all_assessments_completed
+          completion_status = :not_started if no_assessments_started
+
+          campaign_user.update(started_at: started_at, completion_status: completion_status)
+        end
       end
     end
     # rubocop:enable Metrics/ClassLength

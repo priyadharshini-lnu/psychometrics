@@ -29,6 +29,7 @@ module Exports
                                (answer.try(:[], 'value') ? 'On' : 'Off')
                              end
           end
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -39,6 +40,7 @@ module Exports
             question_id_header << "QID#{question.id}_#{i + 1}"
             question_choices_header << question.props.dig('regionsNames', i)
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

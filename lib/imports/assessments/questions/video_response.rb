@@ -4,12 +4,13 @@ module Imports
   module Assessments
     module Questions
       class VideoResponse
-        def self.build_answers(data, question, _use_scoring = false, assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, assign)
           return nil if data.compact.blank?
 
           {
             answers: video_answers(data, assign, question),
-            question_id: question.id
+            question_id: question.id,
+            duration: duration
           }
         end
 

@@ -19,6 +19,7 @@ module Exports
                           else
                             single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
                           end
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -91,6 +92,7 @@ module Exports
               question_choices_header << question.props.dig('choicesTexts', c)
             end
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

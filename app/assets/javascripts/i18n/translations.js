@@ -116,13 +116,27 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -382,6 +396,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -637,7 +652,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
     "required": "الرجاء الإجابة على هذا السؤال",
     "text": "يجب ألا تحتوي إجابتك على أرقام",
-    "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
+    "title": {
+      "one": "هناك خطأ واحد ، يرجى التحقق من ردودك",
+      "other": "هناك %{count} أخطاء ، يرجى التحقق من إجاباتك",
+      "two": "يوجد خطأان ، يرجى التحقق من إجاباتك"
+    }
   }
 });
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
@@ -754,13 +773,27 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -1020,6 +1053,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1272,7 +1306,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
@@ -1389,13 +1426,27 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
     "completed": "Completed",
+    "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
       "heading": "Instructions to follow"
     },
     "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
     "new": "New",
     "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
     "timer": {
       "message": "Time left to complete all activities",
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
@@ -1655,6 +1706,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1907,6 +1959,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "required": "Please answer this question",
     "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
   }
 });

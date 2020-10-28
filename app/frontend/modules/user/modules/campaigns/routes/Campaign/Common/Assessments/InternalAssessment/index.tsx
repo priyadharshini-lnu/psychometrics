@@ -8,8 +8,11 @@ import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import '../styles.scss'
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import { History } from 'history'
+import _ from 'lodash'
 import PrivacyModal from '../PrivacyModal'
+import TimingModal from '../TimingModal'
 import AssessmentCard from '../AssessmentCard'
+import LanguageModal from '../LanguageModal'
 import AssessmentActionBtn from './AssessmentActionBtn'
 
 const { I18n } = window
@@ -31,27 +34,38 @@ interface Props {
   size: number
   disabled: boolean
   disabledReason: string
+  timer: {
+    fixedTime: boolean
+    campaignDuration: number
+    startedAt: string
+  }
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason,
+  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
+  const [showLang, setShowLang] = useState(false)
+  const [showTimingConfirmation, setShowTimingConfirmation] = useState(false)
   const [loading, setLoading] = useState(false)
 
   const loadAssessment = ({
     url, mindmill, mindmillUrl,
-  }) => {
+  }, lang) => {
     const href = mindmill ? mindmillUrl : url
     setLoading(true)
-    location.href = href
+    location.href = `${href}?lang=${lang}`
   }
 
   const loadAssessmentOrCheckingWizard = () => {
     if (WizardIsRequired.run(userAssessment.assessmentExtra)) {
       return routeUtils.moveTo(history, '', `/system_checks/${userAssessment.assessmentId}/${userAssessment.id}`)
     }
-    return loadAssessment(userAssessment)
+    if (!userAssessment.selectedLocale && !_.includes(userAssessment.availableLocales, I18n.currentLocale())) {
+      setShowLang(true)
+    } else {
+      return loadAssessment(userAssessment, userAssessment.selectedLocale || I18n.currentLocale())
+    }
   }
 
   const accept = () => {
@@ -61,6 +75,21 @@ const InternalAssessment: React.FC<Props> = ({
     acceptPolicy().then(() => {
       loadAssessmentOrCheckingWizard()
     })
+  }
+
+  const selectLang = (lang?: string) => {
+    setShowLang(false)
+    return loadAssessment(userAssessment, lang || 'en')
+  }
+
+  const startAssessment = () => {
+    if (userAssessment.needConfirm) {
+      setShowConfirm(true)
+      setShowTimingConfirmation(false)
+    } else {
+      setShowTimingConfirmation(false)
+      loadAssessmentOrCheckingWizard()
+    }
   }
 
   return (
@@ -111,10 +140,12 @@ const InternalAssessment: React.FC<Props> = ({
               <AssessmentActionBtn
                 userAssessment={userAssessment}
                 setShowConfirm={setShowConfirm}
+                setShowTimingConfirmation={setShowTimingConfirmation}
                 loading={loading}
                 loadAssessmentOrCheckingWizard={loadAssessmentOrCheckingWizard}
                 disabled={disabled}
                 disabledReason={disabledReason}
+                timer={timer}
               />
             </div>
           </div>
@@ -122,6 +153,22 @@ const InternalAssessment: React.FC<Props> = ({
       </Card>
       {userAssessment.needConfirm
         && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
+      <LanguageModal
+        locales={userAssessment.availableLocales}
+        show={showLang}
+        onSelect={selectLang}
+        close={() => setShowLang(false)}
+      />
+      {timer.fixedTime && showTimingConfirmation && (
+        <TimingModal
+          ok={startAssessment}
+          show={showTimingConfirmation}
+          close={() => setShowTimingConfirmation(false)}
+          assessmentName={userAssessment.assessmentName}
+          assessmentTime={(userAssessment.assessmentExtra.timer || 0) / 60}
+          timer={timer}
+        />
+      )}
     </AssessmentCard>
   )
 }

@@ -13,8 +13,8 @@ module Reports
 
         copy_pages(report, new_report)
 
-        copy_filters(report, new_report)
-
+        filter_map = copy_filters(report, new_report)
+        update_modules(new_report, filter_map)
         %w[Factor Occupation].map { |type| copy_translations(type, report, new_report) }
 
         new_report
@@ -70,9 +70,11 @@ module Reports
     end
 
     def copy_filters(old_report, new_report)
+      filter_map = {}
       old_report.filters.each do |filter|
         new_filter = make_copy(filter, new_report, 'report_id')
-
+        new_filter.save!
+        filter_map[filter.id] = new_filter.id
         filter.translations.each do |translation|
           new_translation = make_copy(translation, new_report)
 
@@ -80,6 +82,20 @@ module Reports
         end
 
         new_report.filters << new_filter
+      end
+      filter_map
+    end
+
+    def update_modules(report, filter_map)
+      report.modules.each do |mod|
+        if mod.props && mod.props['filters']&.is_a?(Array) && mod.props['filters'].present?
+          new_filters = mod.props['filters'].map { |id| filter_map[id] }
+          mod.update(props: mod.props.merge('filters' => new_filters))
+        end
+
+        if mod.props && mod.props['filters']&.is_a?(Integer)
+          mod.update(props: mod.props.merge('filters' => filter_map[mod.props['filters']]))
+        end
       end
     end
   end

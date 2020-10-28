@@ -14,6 +14,7 @@ en:
   campaign:
     welcome: 'Welcome'
     begin: Begin Assessment
+    continue: Continue Assessment
     new: 'New'
     not_started: 'New'
     in_progress: 'In Progress'
@@ -29,3 +30,14 @@ en:
     timer:
       message: Time left to complete all activities
       notification: "You have %{minutes} minutes and %{seconds} seconds to complete"
+    time_left:
+      continue: Continue
+      cancel: Cancel
+      title: Time left warning
+      notification: "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task."
+    language:
+      title: Select language
+      content: This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment
+      single_lang: This assessment is only available in %{lang}, which is different than you selected language.
+      cancel: Cancel
+      proceed: Proceed

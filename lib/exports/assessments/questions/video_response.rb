@@ -10,15 +10,17 @@ module Exports
           media_responses = user_result.media_responses.where(question: question)
           return Utility::Array.ensure_size([], question_header_size(question)) if media_responses.blank?
 
-          answers = video_response_answers(media_responses)
+          duration = get_duration(user_result, question)
+          answers = video_response_answers(media_responses, duration)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
-        def self.video_response_answers(media_responses)
+        def self.video_response_answers(media_responses, duration)
           [
             user_selected_url(media_responses),
             all_takes_urls(media_responses),
-            all_takes_encoded_media_ids(media_responses)
+            all_takes_encoded_media_ids(media_responses),
+            duration
           ]
         end
 

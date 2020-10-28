@@ -45,10 +45,10 @@
 			});
 
 			this.$message.css({
-				fontSize: '11px',
-				lineHeight: '14px',
+				fontSize: '12px',
+				lineHeight: '16px',
 				textAlign: 'center',
-				padding: '8px 18px 9px',
+				padding: '10px 12px',
 				width: 'auto',
 				position: 'relative'
 			});
@@ -93,7 +93,7 @@
 						border: '1px solid #eee',
 						boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)"
 					});
-					this.$message.css({fontSize: '11px', textAlign: 'center'});
+					this.$message.css({fontSize: '12px', textAlign: 'center'});
 				break;
 				case 'topLeft': case 'topRight':
 				case 'bottomLeft': case 'bottomRight':
@@ -103,7 +103,7 @@
 						border: '1px solid #eee',
 						boxShadow: "0 1px 2px rgba(0, 0, 0, 0.2)"
 					});
-					this.$message.css({fontSize: '11px', textAlign: 'left'});
+					this.$message.css({fontSize: '12px', textAlign: 'left'});
 				break;
 				case 'bottom':
 					this.$bar.css({

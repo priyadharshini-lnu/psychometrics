@@ -1215,6 +1215,11 @@
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.1.1/729a2dd679ec7663fcc600f8c68dbc9b8d44060791f98d0a08d06bbd0524d64a#bb17fde43246d16ea885af064db6b22ff34de678"
   integrity sha512-lea9E73KCk4XS4JIk8WwtRVsSSF5ytuBYMHS0ykgFmfImMvGrvug97jfELXfzaFwwBE08j8XM6zlde4WEu1v6w==
 
+"@types/actioncable@^5.2.3":
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/@types/actioncable/-/actioncable-5.2.3.tgz#215689835399a1be6e7271a2a9d8c8d476c0fd6a"
+  integrity sha512-RxPohXyK0PmC+xAnIrdrd/+0Rp5Pc3e0gMIw+Rc4EorbXApS+i8D00dDC6RxDCXNrmQaIBwiu5iCE7JurC38kA==
+
 "@types/asap@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/asap/-/asap-2.0.0.tgz#d529e9608c83499a62ae08c871c5e62271aa2963"

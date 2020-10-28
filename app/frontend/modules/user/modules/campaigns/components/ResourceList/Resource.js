@@ -19,7 +19,7 @@ function Resource ({
   }
 
   return (
-    <div ref={containerRef} className="resource-content">
+    <div ref={containerRef} className="resource-content highlight-container position-relative">
       <HighlightList
         highlight={highlight}
         contentRef={contentRef}

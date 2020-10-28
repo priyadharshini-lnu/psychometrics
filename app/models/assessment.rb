@@ -76,20 +76,23 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :factors, through: :factors_scoring
 
-  has_many :assessments_reports
+  has_many :assessments_reports, dependent: :restrict_with_error
   has_many :reports, through: :assessments_reports
 
   # HABTM Report Bundles
   has_many :report_families, through: :reports
 
-  # HABTM Memberships
-  has_many :assigns, dependent: :destroy
+  has_many :assigns, dependent: :restrict_with_error
+  has_many :user_assessments, dependent: :restrict_with_error
+  has_many :users_results, dependent: :restrict_with_error
+  has_many :campaign_assessments, dependent: :restrict_with_error
+  has_many :assessments_clients, dependent: :restrict_with_error
   has_many :memberships, through: :assigns
 
   # HABTM Clients
   has_many :clients, through: :reports
 
-  has_one :hogan_assessment_setting
+  has_one :hogan_assessment_setting, dependent: :destroy
   has_one :agile
 
   accepts_nested_attributes_for :hogan_assessment_setting

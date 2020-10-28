@@ -19,10 +19,14 @@ module Assessments
       private
 
       def get_result_details_header
-        ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status']
+        ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm', 'Status', 'Completion Reason']
       end
 
       def result_details_row_values(res)
+        completion_reason =
+          if res.completion_reason
+            I18n.t("activerecord.attributes.users_result.completion_reasons.#{res.completion_reason}")
+          end
         [
           res.encoded_id,
           user_name(res.evaluator.first_name, res.evaluator.last_name),
@@ -30,7 +34,8 @@ module Assessments
           res.created_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           res.norm ? "#{res.norm.name}:#{res.norm_type}" : '',
-          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}")
+          I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
+          completion_reason
         ]
       end
 

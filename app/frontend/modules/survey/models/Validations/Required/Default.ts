@@ -10,6 +10,7 @@ interface ModuleResult {
 const DefaultValidation = {
   run (moduleResult: ModuleResult) {
     const errors: QuestionError[] = []
+    if (!moduleResult.result) return errors
     const { result: { question } } = moduleResult
     if (!moduleResult.requiredValidation()) {
       const validationMessage = I18n().lookup(`${getValidationKey(question)}.required`)

@@ -16,6 +16,7 @@ const Timer = ({
   preview: { expiryDate, timerDuration },
   onFinish,
   background = 'green',
+  campaignTimeLeft,
 }) => {
   useEffect(() => {
     if (!timerDuration) return
@@ -53,10 +54,14 @@ const Timer = ({
   }
 
   const bgClass = styles[timerState]
+
+  const campaignExpire = Date.now() + campaignTimeLeft * 60000
+  const timeLeft = campaignTimeLeft !== null && campaignExpire < new Date(expiryDate) ? campaignExpire : expiryDate
+
   return (
-    expiryDate ? (
+    timeLeft ? (
       <Countdown
-        value={new Date(expiryDate)}
+        value={new Date(timeLeft)}
         onFinish={() => onFinish(preview)}
         prefix={<ClockCircleOutlined className="mrs" />}
         className={[styles.timer, styles.withBg, bgClass]}

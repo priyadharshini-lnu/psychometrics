@@ -20,6 +20,7 @@ module Exports
                     map do |a|
             a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : ''
           end
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, required_size)
         end
 
@@ -30,6 +31,8 @@ module Exports
             question_id_header << "QID#{question.id}_#{c + 1}"
             question_choices_header << question.props.dig('choicesTexts', c)
           end
+          append_duration_header(question, question_id_header, question_choices_header)
+
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

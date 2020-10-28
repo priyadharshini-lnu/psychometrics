@@ -8,12 +8,15 @@ import styles from './styles'
 const { Panel } = Collapse
 
 export default function InstructionsPanel ({
-  instructionsEnabled, instructions, showBegin, onBegin,
+  instructionsEnabled, instructions, showBegin, showContinue, onBegin, onContinue,
 }) {
+  const showActions = showBegin || showContinue
+  const showInstructions = instructionsEnabled && showActions
   const activePanels = [
-    ...(instructionsEnabled ? '1' : []),
-    ...(showBegin ? '2' : []),
+    ...(showInstructions ? '1' : []),
+    ...(showActions ? '2' : []),
   ]
+
   return (
     <div className={styles.container}>
       <Collapse
@@ -31,15 +34,26 @@ export default function InstructionsPanel ({
             {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instructions) }} />}
           </Panel>
         )}
-        {showBegin && (
+        {showActions && (
           <Panel key="2" showArrow={false}>
-            <Button
-              type="primary"
-              onClick={onBegin}
-            >
-              <CaretRightOutlined />
-              {I18n.t('campaign.begin')}
-            </Button>
+            {showContinue && (
+              <Button
+                type="primary"
+                onClick={onContinue}
+              >
+                <CaretRightOutlined />
+                {I18n.t('campaign.continue')}
+              </Button>
+            )}
+            {showBegin && (
+              <Button
+                type="primary"
+                onClick={onBegin}
+              >
+                <CaretRightOutlined />
+                {I18n.t('campaign.begin')}
+              </Button>
+            )}
           </Panel>
         )}
       </Collapse>

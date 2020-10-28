@@ -12,7 +12,7 @@ module Imports
         #   choice: 0,
         #   values: [0,1]
         # }
-        def self.build_answers(data, question, _use_scoring = false, _assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, _assign)
           answers = []
           data.each_slice(2).each_with_index do |batch, choice|
             scale, values = batch # contain scale and values
@@ -28,7 +28,8 @@ module Imports
 
           {
             answers: answers,
-            question_id: question.id
+            question_id: question.id,
+            duration: duration
           }
         end
       end

@@ -8,6 +8,7 @@ import { getLogo } from 'modules/user/modules/campaigns/core/project'
 import { get as getConfig } from 'modules/user/core/config'
 
 const mapStateToProps = state => ({
+  state,
   logo: getLogo(state),
   isFrame: getConfig(state).isFrame,
   isAnonym: getCurrentUser(state).isAnonym,

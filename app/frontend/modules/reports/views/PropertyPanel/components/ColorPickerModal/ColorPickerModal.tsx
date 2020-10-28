@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'lodash'
 import { ColorState, SketchPicker } from 'react-color'
+import { rgba2hex } from 'utils/color'
 import styles from './styles.scss'
 import { Close, ChangeColor, Color } from '../../../../core/temp/colorPicker'
 
@@ -17,9 +18,16 @@ const ColorPickerModal: React.FC<Props> = ({
   isOpen, closePicker, changeColor, onComplete, onChange, color,
 }) => {
   const handleChange = _.debounce((newColor: ColorState) => {
-    changeColor(newColor)
+    newColor.hex = rgba2hex(newColor.rgb)
     onChange && onChange(newColor)
   }, 200)
+
+  const handleComplete = (newColor: ColorState) => {
+    newColor.hex = rgba2hex(newColor.rgb)
+    changeColor(newColor)
+    onComplete && onComplete(newColor)
+  }
+
   if (!isOpen) return null
 
   return (
@@ -27,7 +35,7 @@ const ColorPickerModal: React.FC<Props> = ({
       <div className={styles.cover} onClick={closePicker} />
       <SketchPicker
         className={styles.picker}
-        onChangeComplete={(color: ColorState) => onComplete && onComplete(color)}
+        onChangeComplete={handleComplete}
         color={color}
         onChange={handleChange}
       />

@@ -76,9 +76,9 @@ the campaign\'s default assessments and reports.'
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
           "id": 14_602,
-          "first_name": 'Kamaru',
-          "last_name": 'Usman',
-          "email": 'marti@gmail.com',
+          "first_name": 'John',
+          "last_name": 'Doe',
+          "email": 'john.doe@example.com',
           "created_at": '2019-03-04T15:47:33.570+04:00',
           "updated_at": '2019-03-04T15:47:33.950+04:00',
           "campaign_ids": [
@@ -108,13 +108,13 @@ the campaign\'s default assessments and reports.'
         examples 'application/json' => {
           'code' => 1006,
           'message' => 'User with this email exists',
-          'more_info' => 'Email address max@example.com is already taken',
+          'more_info' => 'Email address john.doe@example.com is already taken',
           'meta' => {
             'existing_user': {
               'id': 12,
               'first_name': 'John',
               'last_name': 'Doe',
-              'email': 'john_doe@tte.email',
+              'email': 'john.doe@example.com',
               'created_at': '2019-10-28T17:00:00.000+04:00'
             }
           }
@@ -146,7 +146,7 @@ the campaign\'s default assessments and reports.'
         end
       end
 
-      response '404', 'Project is not found' do
+      response '404', 'Resource not found' do
         let(:project_id) { 111 }
 
         schema '$ref' => '#/definitions/ApiError'
@@ -178,7 +178,7 @@ the campaign\'s default assessments and reports.'
         examples 'application/json' => {
           "code": 1003,
           "message": 'Not enough licenses',
-          "more_info": '<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough \\
+          "more_info": '<b>john.doe@example.com</b> in <b>ACME</b> does not have not enough \\
 licenses for <b>Cognitive - Entry Level</b> report.'
         }
 
@@ -214,7 +214,7 @@ enough licenses for <b>#{report.name}</b> report.",
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedUser' }, required: true
 
-      response '200', 'Update the user' do
+      response '200', 'User updated' do
         schema '$ref' => '#/definitions/User'
         examples 'application/json' => {
           "id": 14_602,

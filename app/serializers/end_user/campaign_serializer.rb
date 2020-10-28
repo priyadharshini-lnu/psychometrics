@@ -4,7 +4,7 @@ module EndUser
   class CampaignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :type, :status, :start_date, :end_date,
-               :groups, :campaign_user, :ungrouped_assessments_ids
+               :groups, :ungrouped_assessments_ids, :campaign_user
 
     has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
     has_many :user_assessments, serializer: ::EndUser::UserAssessmentSerializer
@@ -13,12 +13,33 @@ module EndUser
 
     def status
       return object.status unless object.fixed_time?
-      return object.status unless campaign_user.started_at
+      return object.status unless campaign_user_object.started_at
+      return object.status if campaign_time_extended?
 
-      expected_end_time = campaign_user.started_at + object.fixed_time_duration.minutes
+      expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
       return 'closed' if expected_end_time < Time.now && object.active?
 
       object.status
+    end
+
+    def campaign_user
+      attributes = %i[ id campaign_id user_id active started_at completed_at expiry_date
+                       completed_via completion_status additional_time updated_at ]
+
+      values = campaign_user_object.slice(*attributes)
+      return values unless object.fixed_time?
+      return values if user_assessments.none?
+
+      if campaign_user_object.started_at
+        values['completed_at'] = campaign_user_object.started_at + object.fixed_time_duration.minutes
+        values['completion_status'] = if campaign_user_object.user_assessments.all?(&:completed?)
+                                        'completed'
+                                      else
+                                        'interrupted'
+                                      end
+      end
+
+      values
     end
 
     def groups
@@ -35,8 +56,12 @@ module EndUser
         merge(Report.assignable)
     end
 
-    def campaign_user
-      current_user.campaign_users.find_by(campaign_id: object.id)
+    def campaign_user_object
+      object.campaign_users.find_by(user_id: current_user.id)
+    end
+
+    def campaign_time_extended?
+      !!campaign_user_object.additional_time && campaign_user_object.expiry_date.blank?
     end
 
     def current_user
