@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react'
+import SentryRRWeb from '@sentry/rrweb'
 
 enum RealEnvToSentryEnv {
   development = 'heroku-develop',
@@ -7,16 +8,17 @@ enum RealEnvToSentryEnv {
   production = 'heroku-prod',
 }
 
-const intiSentry = () => {
+const initSentry = () => {
   const { sentryClientDns, realEnv, currentUser } = window.PsyGlobalState
 
   Sentry.init({
     dsn: sentryClientDns,
     environment: RealEnvToSentryEnv[realEnv],
-    normalizeDepth: 8,
+    normalizeDepth: 4,
+    integrations: [new SentryRRWeb()],
   })
 
   Sentry.setUser(currentUser)
 }
 
-export default intiSentry
+export default initSentry
