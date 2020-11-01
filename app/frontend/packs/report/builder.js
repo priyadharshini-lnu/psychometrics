@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import ReportBuilder from 'modules/reports'
+import initSentry from 'libs/initSentry'
+
+initSentry()
 
 const ID = window.reportDomElementId || 'psychometrics_report_root'
 ReactDOM.render(<ReportBuilder />, document.getElementById(ID))

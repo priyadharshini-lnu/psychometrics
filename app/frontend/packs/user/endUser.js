@@ -3,6 +3,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'modules/user/styles/ant.less'
 import 'modules/user/styles/global.scss'
+import initSentry from 'libs/initSentry'
+
+initSentry()
 
 ReactDOM.render(<Campaigns />, document.getElementById('three-sixty-container'))
 
