@@ -40,7 +40,7 @@ class Question extends Component {
     const { errors } = this.props
     return (
       errors.map((err, i) => (
-        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message)}>
+        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message || '')}>
           {err.message}
         </div>
       ))
