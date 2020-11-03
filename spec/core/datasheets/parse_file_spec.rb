@@ -5,7 +5,13 @@ require 'rails_helper'
 describe Datasheets::ParseFile do
   let(:file)        { double('file', content_type: 'application/xlsx', original_filename: 'datasheet file name') }
   let(:form)        { stub_form(valid?: true, file: file, parsed_file: parsed_file, id: nil) }
-  let(:parsed_file) { [{ 'Email' => 'Email', 'key' => 'key' }, { 'Email' => 'Text', 'key' => 'Text' }, { 'Email' => email, 'key' => 'value' }] }
+  let(:parsed_file) do
+    [
+      { 'Email' => 'Email', 'key' => 'key' },
+      { 'Email' => 'Text', 'key' => 'Text' },
+      { 'Email' => email, 'key' => 'value' }
+    ]
+  end
   let(:email)       { 'test@email.com' }
   let(:project)     { create(:project) }
 
