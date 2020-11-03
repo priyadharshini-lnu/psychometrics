@@ -23,7 +23,7 @@ module Datasheets
 
     def create_and_update_datasheet
       @datasheet = project.datasheet.nil? ? project.build_datasheet : project.datasheet
-      datasheet.attributes = { columns: form.parsed_file.first }
+      datasheet.attributes = { columns: form.parsed_file[1] }
       datasheet.save!
     end
 
