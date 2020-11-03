@@ -7,12 +7,12 @@ import { EditableContext } from './constants'
 const { I18n } = window
 
 interface EditableCellProps {
-  title: React.ReactNode
   editable: boolean
   children: React.ReactNode
   dataIndex: string
   record: Item
-  handleSave(field: string, record: Item): void
+  handleSave(field: string, record: Item): Promise<unknown>
+  editNextColumn(rowKey: string, field: string, direction: string): void
 }
 
 interface Item {
@@ -22,14 +22,13 @@ interface Item {
   standardDeviation: number
 }
 
-
 export const EditableCell: React.FC<EditableCellProps> = ({
-  title,
   editable,
   children,
   dataIndex,
   record,
   handleSave,
+  editNextColumn,
   ...restProps
 }) => {
   const [editing, setEditing] = useState(false)
@@ -49,16 +48,48 @@ export const EditableCell: React.FC<EditableCellProps> = ({
     form.setFieldsValue({ [dataIndex]: record[dataIndex] })
   }
 
-  const save = async (e: React.FocusEvent) => {
-    const field = e.target.id
+  const save = async (target: Element, editNext?: string) => {
+    const field = target.id
     try {
       const values = await form.validateFields()
       toggleEdit()
-      handleSave(field, { ...record, ...values })
+      await handleSave(field, { ...record, ...values })
+      if (editNext) editNextColumn(record.key, field, editNext)
     } catch (errInfo) {
       // eslint-disable-next-line no-console
       console.error('Save failed: ', errInfo)
     }
+  }
+
+  const onEnter = async (e: React.KeyboardEvent) => {
+    save(e.currentTarget)
+  }
+
+  const onTab = async (e: React.KeyboardEvent) => {
+    save(e.currentTarget, e.shiftKey ? 'prev' : 'next')
+  }
+
+  const onEsc = async () => {
+    toggleEdit()
+  }
+
+  const onBlur = async (e: React.FocusEvent) => {
+    save(e.currentTarget)
+  }
+
+  const handleKeyPress = async (e: React.KeyboardEvent) => {
+    const key = e.keyCode
+    const keyMap = {
+      9: onTab,
+      27: onEsc,
+      13: onEnter,
+    }
+
+    // eslint-disable-next-line no-prototype-builtins
+    if (!keyMap.hasOwnProperty(key)) return
+
+    e.preventDefault()
+    keyMap[key](e)
   }
 
   let childNode = children
@@ -68,14 +99,8 @@ export const EditableCell: React.FC<EditableCellProps> = ({
       <Form.Item
         style={{ margin: 0 }}
         name={dataIndex}
-        rules={[
-          {
-            required: true,
-            message: I18n.t('norms.percentile.values.required', { title }),
-          },
-        ]}
       >
-        <InputNumber ref={inputRef} onBlur={save} />
+        <InputNumber ref={inputRef} onKeyDown={handleKeyPress} onBlur={onBlur} />
       </Form.Item>
     ) : (
       <div className="editable-cell-value-wrap" style={{ paddingRight: 24 }} onClick={toggleEdit}>
@@ -84,5 +109,5 @@ export const EditableCell: React.FC<EditableCellProps> = ({
     )
   }
 
-  return <td {...restProps}>{childNode}</td>
+  return <td {...restProps} data-name={dataIndex}>{childNode}</td>
 }

@@ -6,18 +6,24 @@ import {
   nextPage, prevPage,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
+import { isConnected } from 'core/connection'
 
 export default connect(
-  ({ preview, preview: { initialized } }: RootState) => ({
-    preview,
-    hasPrevPage: initialized && getPrevPage(preview),
-    page: initialized && getCurrentPage(preview),
-    questions: initialized && pageQuestionsWithoutHidden(preview),
-    block: initialized && getCurrentBlock(preview),
-    errors: initialized && pageErrors(preview),
-    progress: initialized && getProgress(preview),
-    I18n: getI18n(preview),
-  }),
+  (state: RootState) => {
+    const { preview, preview: { initialized } } = state
+
+    return {
+      preview,
+      hasPrevPage: initialized && getPrevPage(preview),
+      page: initialized && getCurrentPage(preview),
+      questions: initialized && pageQuestionsWithoutHidden(preview),
+      block: initialized && getCurrentBlock(preview),
+      errors: initialized && pageErrors(preview),
+      progress: initialized && getProgress(preview),
+      I18n: getI18n(preview),
+      isDisconnected: !isConnected(state),
+    }
+  },
   {
     nextPage,
     prevPage,

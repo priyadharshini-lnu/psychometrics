@@ -3,6 +3,8 @@
 module Administration
   module Campaigns
     class ReportsController < Administration::Projects::BaseController
+      before_action :set_resource, only: %i[destroy toggle_user_access]
+
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
         if form.valid?
@@ -13,6 +15,18 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: 422
         end
+      end
+
+      def destroy
+        ::CampaignReports::Remove.call!(
+          campaign_report: resource, remove_user_reports: params[:remove_user_reports]
+        )
+        render json: resource.id
+      end
+
+      def toggle_user_access
+        ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
+        render json: resource, serializer: Administration::CampaignReportSerializer
       end
 
       def export
@@ -31,7 +45,7 @@ module Administration
           each_serializer: Administration::CampaignReportSerializer
         )
         assessments = ActiveModelSerializers::SerializableResource.new(
-          campaign.campaign_assessments.includes(:assessment, :norm),
+          campaign.campaign_assessments.includes(:norm, :assessment),
           each_serializer: Administration::CampaignAssessmentSerializer
         )
 
@@ -41,12 +55,26 @@ module Administration
       def report_families
         report_families = campaign.client.
                           report_families.
-                          includes(:reports).
-                          where(reports: { disabled: false }).
+                          eager_load(:reports).
+                          merge(Report.assignable).
                           references(:reports).
                           distinct
         render json: report_families,
           each_serializer: Administration::ReportFamilySerializer
+      end
+
+      def regenerate
+        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
+        ::CampaignReports::GenerateAndSavePdfJob.perform_later(campaign_reports, current_user)
+
+        head :ok
+      end
+
+      def bulk_download
+        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
+        ::CampaignReports::BulkDownloadJob.perform_later(campaign_reports, current_user)
+
+        head :ok
       end
 
       private

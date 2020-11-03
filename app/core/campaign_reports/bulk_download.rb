@@ -1,0 +1,64 @@
+# frozen_string_literal: true
+
+module CampaignReports
+  class BulkDownload < BaseCommand
+    private_attr_reader :campaign_reports, :current_user, :bulk_report
+
+    def initialize(campaign_reports, current_user)
+      @campaign_reports = campaign_reports
+      @current_user = current_user
+      @bulk_report = ::BulkReport.create(user: current_user)
+    end
+
+    def call
+      create_input_directory
+      download_user_reports_from_s3
+
+      ::BulkReports::CompressJob.perform_now(bulk_report)
+      BulkReportMailer.notify(bulk_report).deliver_later
+
+      FileUtils.rm_rf(bulk_report.input_dir)
+
+      broadcast :ok
+    end
+
+    private
+
+    def create_input_directory
+      input_dir = bulk_report.input_dir
+
+      FileUtils.rm_rf(input_dir) if File.directory?(bulk_report.input_dir)
+
+      FileUtils.mkdir_p(input_dir)
+    end
+
+    def download_user_reports_from_s3
+      user_reports_with_pdf.each { |user_report| download_report(user_report) }
+    end
+
+    def download_report(user_report)
+      url = URI(user_report.pdf.url)
+      IO.copy_stream(URI.open(url.to_s), download_path(user_report))
+    rescue OpenURI::HTTPError
+      Rails.logger.error "Download failed for UserReport with id #{user_report.id}"
+    end
+
+    def download_path(user_report)
+      user = user_report.user
+      report = user_report.report
+      dir = bulk_report.input_dir
+      dir = File.join(dir, user.email)
+      filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+
+      FileUtils.mkdir_p(dir)
+      File.join(dir, filename)
+    end
+
+    def user_reports_with_pdf
+      UserReport.where(
+        report_id: campaign_reports.pluck(:report_id),
+        campaign_id: campaign_reports.first.campaign_id
+      ).where.not(pdf: nil).includes(:user, :report)
+    end
+  end
+end

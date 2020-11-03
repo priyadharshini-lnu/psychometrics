@@ -3,8 +3,32 @@
 module Administration
   module Campaigns
     class UserSerializer < ActiveModel::Serializer
-      attributes :id, :first_name, :last_name, :email, :created_by, :created_at, :updated_by, :updated_at,
-                 :active, :completion_status
+      attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
+                 :created_at, :updated_at
+
+      attribute :active do
+        campaign_user&.active
+      end
+
+      attribute :started_at do
+        campaign_user&.started_at && I18n.l(campaign_user&.started_at, format: :short)
+      end
+
+      attribute :completed_at do
+        campaign_user&.completed_at && I18n.l(campaign_user&.completed_at, format: :short)
+      end
+
+      attribute :completed_via do
+        campaign_user&.completed_via
+      end
+
+      attribute :completion_status do
+        campaign_user&.completion_status
+      end
+
+      attribute :additional_time do
+        campaign_user&.additional_time
+      end
 
       def created_at
         I18n.l object.created_at, format: :short
@@ -22,16 +46,12 @@ module Administration
         object.modifier&.email
       end
 
-      def completion_status
-        return 'not_started' if object.user_assessments.empty?
-        return 'not_started' if object.user_assessments.all? { |a| !a.users_result || a.users_result.not_started? }
-        return 'completed' if object.user_assessments.all? { |a| a.users_result&.completed? }
-
-        'in_progress'
+      def full_name
+        object.decorate.full_name
       end
 
-      def active
-        object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign_id] }&.active
+      def campaign_user
+        object.campaign_users.find { |cu| cu.campaign_id == @instance_options[:campaign_id] }
       end
     end
   end

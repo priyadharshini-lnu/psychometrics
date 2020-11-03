@@ -13,6 +13,13 @@ module Communications
         communication.current_memberships.member_or_manager.
           joins(:assigns).where(assigns: { status: :in_progress }).distinct
       end
+
+      def fetch_campaign_users(communication)
+        communication.selected_campaign_users.
+          joins(user_assessments: :users_result).
+          where(user_assessments: { campaign_id: communication.campaign_id, users_results: { status: :in_progress } }).
+          distinct
+      end
     end
   end
 end

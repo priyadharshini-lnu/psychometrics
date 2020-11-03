@@ -12,6 +12,7 @@ html
 
     = csrf_meta_tags
     = jquery_include_tag :google
+    = render 'layouts/pys_global_state'
     = render 'layouts/custom_styles'
     = javascript_include_tag :threesixty
     = javascript_include_tag '//speedof.me/api/api.js'
@@ -32,7 +33,7 @@ html
     #notification-center-container
     = javascript_pack_tag 'notificationCenter'
 
-  - if @current_project.enable_live_chat?
+  - if @current_project&.enable_live_chat?
     javascript:
       (function(d,t) {
         var state = #{@init_state.to_json.html_safe};

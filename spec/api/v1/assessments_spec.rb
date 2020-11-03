@@ -89,7 +89,7 @@ describe 'Assessments' do
         end
       end
 
-      response '401', 'We are disabled' do
+      response '401', 'Authentication error' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         before { membership.user.update(disabled: true) }

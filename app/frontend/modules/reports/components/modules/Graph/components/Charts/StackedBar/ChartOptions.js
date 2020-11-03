@@ -14,6 +14,9 @@ export default function ChartOptions (model) {
     }
   }
   return {
+    chart: {
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
+    },
     colors: _.map(model.props.colors, 'color'),
     credits: {
       enabled: false,

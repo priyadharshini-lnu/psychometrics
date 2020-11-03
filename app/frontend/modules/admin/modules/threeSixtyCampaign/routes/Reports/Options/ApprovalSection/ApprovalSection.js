@@ -11,7 +11,7 @@ export default function ApprovalSection ({
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: updateReportOptions([OBJECT_KEY, name]),
+    onChange: updateReportOptions([OBJECT_KEY, name]),
   })
 
   return (

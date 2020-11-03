@@ -4,7 +4,8 @@ module EndUser
   class UserAssessmentSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :type, :url, :assessment_name, :questions_count, :timing, :mindmill, :hogan, :assessment_category,
-               :assessment_extra, :assessment_id, :status, :user_reports
+               :assessment_extra, :assessment_id, :status, :completion_percent, :need_confirm, :available_locales,
+               :selected_locale
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
 
@@ -13,7 +14,7 @@ module EndUser
     end
 
     def url
-      object.assessment.agile? ? agile_assign_path(object) : pass_user_assessment_path(object)
+      object.assessment.agile? ? agile_user_assessment_path(object) : pass_user_assessment_path(object)
     end
 
     def type
@@ -38,6 +39,10 @@ module EndUser
       object.assessment.name
     end
 
+    def available_locales
+      ['en'] + ::Translation.available_translation_for_assessment(object.assessment.id)
+    end
+
     def normalize_hogan_type(type)
       return 'Raw' if type == 'RAW'
       return 'Percentile' if type == 'percentile'
@@ -50,7 +55,7 @@ module EndUser
     end
 
     def mindmill_url
-      pass_mindmill_assign_path(object)
+      pass_mindmill_user_assessment_path(object)
     end
 
     def hogan
@@ -58,11 +63,20 @@ module EndUser
     end
 
     def hogan_url
-      pass_hogan_assign_path(object.id)
+      pass_hogan_user_assessment_path(object.id)
     end
 
     def completion_percent
-      object.assessment.decorate.completion_percent
+      result = object.users_result
+      return 100 if result.completed?
+
+      answered = result.answers&.size || 0
+      total = object.assessment.questions&.size
+      return 0 if total.nil? || total.zero?
+
+      progress = (100 * answered) / total
+      99 if progress > 99
+      progress
     end
 
     def questions_count
@@ -81,8 +95,8 @@ module EndUser
       object.assessment.category
     end
 
-    def user_reports
-      []
+    def need_confirm
+      object.campaign.project.privacy_consent && object.user.privacy_consent.nil?
     end
   end
 end

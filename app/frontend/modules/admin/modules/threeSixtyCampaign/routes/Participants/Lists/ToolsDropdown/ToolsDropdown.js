@@ -8,15 +8,28 @@ const menu = ({
   projectId, campaignId, resetCampaignWithConfirmation, resetAllNominationsWithConfirmation, openModal, dimensionId,
 }) => (
   <Menu>
-    <Menu.Item key="1">
+    <Menu.Item key="datasheet">
       <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
     </Menu.Item>
-    <Menu.Item key="2">
+    <Menu.Item key="manage_relationship">
       <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
     </Menu.Item>
     <Menu.Divider />
-    <Menu.Item key="4">
-      <a href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`} download>
+    <Menu.Item key="export_results">
+      <a
+        href={`/administration/threesixty_campaigns/${campaignId}/export_results.xlsx`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Export Result
+      </a>
+    </Menu.Item>
+    <Menu.Item key="export_completion_status">
+      <a
+        href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Export Completion Status
       </a>
     </Menu.Item>
@@ -27,12 +40,12 @@ const menu = ({
       </a>
     </Menu.Item>
     <Menu.Divider />
-    <Menu.Item key="5">
+    <Menu.Item key="reset_participant">
       <div onClick={() => resetCampaignWithConfirmation(campaignId)} role="button" tabIndex={-1}>
         Reset All Participants...
       </div>
     </Menu.Item>
-    <Menu.Item key="6">
+    <Menu.Item key="reset_all_nominations">
       <div
         onClick={() => resetAllNominationsWithConfirmation(campaignId)}
         role="button"

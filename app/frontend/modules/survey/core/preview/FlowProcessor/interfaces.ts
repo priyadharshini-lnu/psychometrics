@@ -16,7 +16,7 @@ export interface Question {
   type?: string
   display_logic?: object
   skip_logic?: object[]
-  required_validation?: object
+  required_validation?: { enabled: boolean, type: string }
   props?: any
   hidden?: boolean
 }
@@ -124,6 +124,16 @@ export interface DefaultState {
     [id: string]: Highlight
   },
   assessmentTimedOut: boolean,
+  mediaResponses: MediaResponse[] | [],
+}
+
+export interface MediaResponse {
+  id: number
+  questionId: number
+  filename: string
+  userSelected: boolean
+  url: string
+  createdAt: string
 }
 
 export interface I18nInterface {

@@ -12,7 +12,7 @@ module Services
         @client_stack_ids.each do |client_id|
           break if stop_client_stack_search
 
-          @communications.where(end_level_id: client_id).find_each(batch_size: 100) do |communication|
+          @communications.select { |c| c.end_level_id == client_id }.map do |communication|
             if communication.selected_memberships.include?(@membership)
               communication.emails.create(membership: @membership)
               stop_client_stack_search = true

@@ -15,7 +15,7 @@ describe CampaignAssessments::RecomputeResultsJob do
     create(:users_result,
            status: :completed,
            assessment: campaign_assessment.assessment,
-           user_assessments: [completed_user_assessment])
+           user_assessment: completed_user_assessment)
   end
 
   let(:uncompleted_user_assessment) do
@@ -26,7 +26,7 @@ describe CampaignAssessments::RecomputeResultsJob do
     create(:users_result,
            status: :in_progress,
            assessment: campaign_assessment.assessment,
-           user_assessments: [uncompleted_user_assessment])
+           user_assessment: uncompleted_user_assessment)
   end
 
   let!(:prepared_user_report) do
@@ -38,12 +38,9 @@ describe CampaignAssessments::RecomputeResultsJob do
 
   it do
     expect(::UsersResults::Recompute).to receive(:call!).
-      with(completed_user_result, 'id' => norm.id, 'type' => 'ETI')
+      with(completed_user_result, current_user, norm_id: norm.id, norm_type: 'ETI')
     expect(::UsersResults::Recompute).to_not receive(:call!).
-      with(uncompleted_user_result, 'id' => norm.id, 'type' => 'ETI')
-
-    expect(::UserReports::GeneratePdfJob).to receive(:perform_now).
-      with(prepared_user_report, current_user)
+      with(uncompleted_user_result, current_user, norm_id: norm.id, norm_type: 'ETI')
 
     CampaignAssessments::RecomputeResultsJob.perform_now(campaign_assessment, current_user)
   end

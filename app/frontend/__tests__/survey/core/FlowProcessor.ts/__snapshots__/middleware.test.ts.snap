@@ -2,6 +2,9 @@
 
 exports[`initializing base assessment init action should init assessment data: init_assessment 1`] = `
 Object {
+  "connection": Object {
+    "connected": true,
+  },
   "preview": Object {
     "agileAssetsUrl": undefined,
     "agileAssignUrl": undefined,
@@ -156,6 +159,7 @@ Object {
     "isThreesixty": undefined,
     "linear": false,
     "locales": undefined,
+    "mediaResponses": undefined,
     "mediaUrl": "/assigns/1",
     "metaData": Object {},
     "normRules": Array [],
@@ -410,6 +414,9 @@ Object {
 
 exports[`initializing base assessment middleware should call next if is not NEXT_PAGE: default_store 1`] = `
 Object {
+  "connection": Object {
+    "connected": true,
+  },
   "preview": Object {
     "allPages": Object {},
     "assessmentTimedOut": false,
@@ -433,6 +440,7 @@ Object {
     "isThreesixty": false,
     "linear": false,
     "locales": null,
+    "mediaResponses": Array [],
     "mediaUrl": null,
     "normalizedTree": Object {},
     "prevPages": Array [],

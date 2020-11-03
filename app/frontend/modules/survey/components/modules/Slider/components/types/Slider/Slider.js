@@ -6,8 +6,6 @@ import { Slider as CustomSlider } from 'components/Slider'
 import Utils from 'utils'
 import styles from './Slider.scss'
 
-const TABLE_WIDTH = 700
-
 export default class extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -27,7 +25,6 @@ export default class extends Component {
 
   render () {
     const { model: { props, moduleConfig } } = this.props
-    const gridMargin = `-${TABLE_WIDTH * 0.75 / (2 * props.gridLines)}px`
     return (
       <div className={styles.table}>
         <div className={`${styles.row} ${styles.labels}`}>
@@ -47,7 +44,7 @@ export default class extends Component {
         <div className={`${styles.row} ${styles.gridLines}`}>
           {!props.hideChoiceText && <div className={styles.firstColumn} />}
           {!props.hideGridValues && (
-          <div className={styles.labelItems} style={{ marginLeft: gridMargin, marginRight: gridMargin }}>
+          <div className={styles.labelItems}>
             {_.times(props.gridLines + 1, i => (
               <span key={i}>
                 {props.minValue

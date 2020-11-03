@@ -12,18 +12,18 @@ export class Preview extends Component {
   }
 
   successUpload = (data) => {
-    const { model } = this.props
-    model.result.answer(data.asset.url, data.id, data.filename)
+    const { addMediaResponse } = this.props
+    addMediaResponse(data)
   }
 
   onRecordingDiscard = () => {
-    const { model } = this.props
-    model.result.answer()
+    const { model, removeMediaResponse } = this.props
+    removeMediaResponse(model.id)
   }
 
   renderAudioResponseBlock () {
     const {
-      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress,
+      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress, mediaResponse,
     } = this.props
     const preview = type === 'preview_assessment'
 
@@ -33,6 +33,7 @@ export class Preview extends Component {
         model={model}
         fakeUpload={preview}
         readOnly={readOnly}
+        mediaResponse={mediaResponse}
         onSuccessUpload={this.successUpload}
         onRecordingDiscard={this.onRecordingDiscard}
         markQuestionInProgress={markQuestionInProgress}

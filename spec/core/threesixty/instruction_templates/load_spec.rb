@@ -24,7 +24,7 @@ describe Threesixty::InstructionTemplates::Load do
 
       template_loader.call
 
-      expect(threesixty_campaign.instruction_templates).to have_attributes(instruction_templates_attributes)
+      expect(threesixty_campaign.instruction_templates).to psy_have_attributes(instruction_templates_attributes)
     end
   end
 end

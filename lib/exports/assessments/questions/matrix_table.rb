@@ -6,18 +6,20 @@ module Exports
       class MatrixTable < Base
         include ImportExportConst
         # Parse RESULT data for XLSX
-        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
+        def self.result(user_result, question, scoring = false, export_with_labels = false)
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
           # =>    example: [1,2,3,4]
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
-
+          not_applicable = get_not_applicable(user_result, question)
+          answers = get_answers(user_result, question)
           parsed_result = if question.of_sub_type?('RankOrder', 'ConstantSum', 'TextEntry')
                             multi_scale_answers(answers, question, export_with_labels, not_applicable)
                           else
                             single_scale_answers(answers, question, scoring, export_with_labels, not_applicable)
                           end
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -47,7 +49,7 @@ module Exports
           parsed_result = []
           question.props['choices'].to_i.times do |choice|
             question.props['scalePoints'].to_i.times do |scale|
-              parsed_result << if not_applicable && not_applicable[choice.to_s]
+              parsed_result << if not_applicable && not_applicable[choice.to_s] == true
                                  export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
                                else
                                  (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.
@@ -90,6 +92,7 @@ module Exports
               question_choices_header << question.props.dig('choicesTexts', c)
             end
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

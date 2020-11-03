@@ -1,3 +1,4 @@
+import { ColorState } from 'react-color'
 import { createReducer } from 'utils/redux'
 
 export const OPEN = 'report/temp/colorPicker/OPEN'
@@ -12,8 +13,8 @@ export type Color = {
 } & string
 
 interface OpenParams {
-  onChange: null | undefined | ((color: Color) => void)
-  onComplete: null | undefined | ((color: Color) => void)
+  onChange: null | undefined | ((color: ColorState) => void)
+  onComplete: null | undefined | ((color: ColorState) => void)
   color: Color | null | undefined
 }
 
@@ -22,7 +23,7 @@ export const open = ({ onChange, onComplete, color }: OpenParams) => ({
   payload: { onChange, onComplete, color },
 })
 
-export const changeColor = (color: Color) => ({ type: CHANGE_COLOR, payload: { color } })
+export const changeColor = (color: ColorState) => ({ type: CHANGE_COLOR, payload: { color } })
 export const close = () => ({ type: CLOSE })
 
 interface State {
@@ -55,7 +56,7 @@ const HANDLERS = {
     onComplete,
     color,
   }),
-  [CHANGE_COLOR]: (state: State, { payload: { color } }: ChangeColorResponse) => ({ ...state, color }),
+  [CHANGE_COLOR]: (state: State, { payload: { color } }: ChangeColorResponse) => ({ ...state, color: color.rgb }),
   [CLOSE]: () => ({ isOpen: false, onChange: null, onComplete: null }),
 }
 

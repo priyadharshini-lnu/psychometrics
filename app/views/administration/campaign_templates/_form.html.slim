@@ -3,9 +3,15 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
-      = f.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['threesixty']).map { |a| [a.decorate.name, a.id] }
+      = f.input :assessment_id,
+                as: :select,
+                collection: Assessment.with_category(Assessment.categories['threesixty']).order(:name).map { |a| [a.decorate.name, a.id] },
+                input_html: { data: { live_search: true } }
       #report_field.form-group
-        = f.input :report_id, as: :select, collection: Report.all.map { |a| [a.decorate.name, a.id] }
+        = f.input :report_id,
+                  as: :select,
+                  collection: Report.order(:name).map { |a| [a.decorate.name, a.id] },
+                  input_html: { data: { live_search: true } }
 
   .modal-footer
     .btn-group

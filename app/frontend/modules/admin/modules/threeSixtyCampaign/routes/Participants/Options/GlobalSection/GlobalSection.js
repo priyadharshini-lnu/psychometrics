@@ -10,7 +10,7 @@ export default function GlobalSection ({
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: updateParticipantOptions([OBJECT_KEY, name]),
+    onChange: updateParticipantOptions([OBJECT_KEY, name]),
   })
 
   return (

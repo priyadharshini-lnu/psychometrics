@@ -11,7 +11,8 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(answers, question, scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(user_result, question, scoring = false, _export_with_labels = false)
+          answers = get_answers(user_result, question)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
           required_size = question.props['choices'].to_i
@@ -19,6 +20,7 @@ module Exports
                     map do |a|
             a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : ''
           end
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, required_size)
         end
 
@@ -29,6 +31,8 @@ module Exports
             question_id_header << "QID#{question.id}_#{c + 1}"
             question_choices_header << question.props.dig('choicesTexts', c)
           end
+          append_duration_header(question, question_id_header, question_choices_header)
+
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end

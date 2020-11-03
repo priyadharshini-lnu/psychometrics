@@ -6,6 +6,7 @@ export default function ChartOptions (model) {
     chart: {
       polar: true,
       type: 'line',
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     legend: {
       enabled: true,

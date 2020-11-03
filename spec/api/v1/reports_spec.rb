@@ -39,17 +39,17 @@ describe 'Reports' do
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
-      response '200', 'Get user reports' do
+      response '200', 'Success' do
         schema type: 'array', items: { '$ref' => '#/definitions/UserReport' }
         examples 'application/json' => [
           {
             "id": 127,
-            "name": 'Thriving Index - Alinma Resource - PRO ',
+            "name": 'Thriving Index - Resource Pro',
             "status": 'not_ready',
             "assessments": [
               {
                 "id": 91_731,
-                "name": 'Thriving Index Assessment - Alinma',
+                "name": 'Thriving Index Assessment',
                 "status": 'not_started',
                 "started_at": '2019-01-06T20:54:05.714+04:00',
                 "completed_at": '2019-01-06T20:54:05.714+04:00'
@@ -58,12 +58,12 @@ describe 'Reports' do
           },
           {
             "id": 110,
-            "name": 'Thriving Index - Alinma Custom Report',
+            "name": 'Custom Report',
             "status": 'not_ready',
             "assessments": [
               {
                 "id": 91_731,
-                "name": 'Thriving Index Assessment - Alinma',
+                "name": 'Thriving Index Assessment',
                 "status": 'not_started',
                 "started_at": '2019-01-06T20:54:05.714+04:00',
                 "completed_at": '2019-01-06T20:54:05.714+04:00'
@@ -98,10 +98,10 @@ describe 'Reports' do
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
 
-      response '200', 'Get user report results' do
+      response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {
-          'user_data' => { 'first_name' => 'Spider', 'last_name' => 'Man' },
+          'user_data' => { 'first_name' => 'Jane', 'last_name' => 'Doe' },
           'assessments' => [
             {
               'id' => 17,
@@ -182,7 +182,7 @@ describe 'Reports' do
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
 
-      response '200', 'Get user report PDF' do
+      response '200', 'Success' do
         schema '$ref' => '#/definitions/ReportPdf'
         examples 'application/json' => {
           url: 'https://some.aws.s3.com/report.pdf',
@@ -249,7 +249,7 @@ describe 'Reports' do
         end
       end
 
-      response '404', 'Raise 404 Not Found if the report is not found' do
+      response '404', 'Resource not found' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
           'code' => 1005,
@@ -271,7 +271,7 @@ describe 'Reports' do
         end
       end
 
-      response '200', 'Get report dimensions with occupations' do
+      response '200', 'Success' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
           'dimensions': [
@@ -311,7 +311,7 @@ describe 'Reports' do
         end
       end
 
-      response '200', 'Get report dimensions with occupations since updated_at' do
+      response '200', 'Success' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
           'dimensions': [
@@ -457,7 +457,7 @@ describe 'Reports' do
         end
       end
 
-      response '412', 'Raise 412 Not Configured if the report doesn\'t have data configuration' do
+      response '412', 'Resource not configured' do
         schema '$ref' => '#/definitions/Dimensions'
         examples 'application/json' => {
           'code' => 1007,

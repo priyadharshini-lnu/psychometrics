@@ -42,6 +42,26 @@ describe ::UsersResults::ExtendResourceParams do
     )
   end
 
+  it 'question_ids exist and result is expired' do
+    allow(Time).to receive(:current).and_return(Time.local(2019, 10, 8, 0, 1, 15))
+    users_result.update!(expiry_date: 1.minutes.ago)
+    expect(::UsersResults::ExtendResourceParams.call!(resource_params, [1, 2], users_result)).to eq(
+      'answers' => {
+        '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 37_500 },
+        '2' => {
+          'answers' => [{ 'index' => 1, 'value' => 0 }],
+          'question_id' => 2,
+          'not_applicable' => nil,
+          'duration' => 37_500
+        }
+      },
+      'step' => 1,
+      'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
+      status: 'completed',
+      completion_reason: :time_out_online
+    )
+  end
+
   it 'question_ids not exist' do
     allow(Time).to receive(:current).and_return(Time.local(2019, 10, 8, 0, 1, 15))
     expect(::UsersResults::ExtendResourceParams.call!(resource_params, nil, users_result)).to eq(

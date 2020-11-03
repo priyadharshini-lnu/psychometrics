@@ -1,0 +1,11 @@
+= stylesheet_link_tag :administration
+.row
+  .col-xs-12
+    .contentBox
+      .contentTitleHeader
+        i.glyphicon.glyphicon-alert.titleIcon.pull-left
+        - var = "anonym.labels.#{params[:reason]}"
+        p.contentTitle.pull-left URL #{t(var, default: 'Not Valid')}
+      .questionContent
+        - var = "anonym.copy.#{params[:reason]}"
+        | This URL #{t(var, default: 'is not valid')}. Please contact your administrator.

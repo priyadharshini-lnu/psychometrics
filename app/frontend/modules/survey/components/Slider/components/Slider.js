@@ -1,38 +1,42 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, {
+  useRef, useCallback, useEffect, useState,
+} from 'react'
 import ReactSlider from 'react-slider'
 import styles from './Slider.scss'
 
-class Slider extends Component {
-  static propTypes = {
-    minValue: PropTypes.number.isRequired,
-    maxValue: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-    onChange: PropTypes.func,
-  }
+const Slider = ({
+  minValue, maxValue, value, onChange,
+}) => {
+  const sliderRef = useRef(null)
+  const [invert, setInvert] = useState(false)
 
-  setValue = (percent) => {
-    const { minValue, maxValue, onChange } = this.props
+  const handleChange = useCallback((percent) => {
     const value = minValue + percent * (maxValue - minValue) / 100
     onChange && onChange(value)
-  }
+  }, [sliderRef])
 
-  render () {
-    const { minValue, maxValue, value } = this.props
-    const val = (value - minValue) * 100 / (maxValue - minValue)
-    return (
-      <ReactSlider
-        defaultValue={val}
-        value={val}
-        withBars
-        className={styles.sliderContainer}
-        barClassName={styles.bar}
-        handleClassName={styles.handler}
-        onChange={this.setValue}
-        step={0.001}
-      />
-    )
-  }
+  useEffect(() => {
+    if (!sliderRef.current) return
+    const isRTL = sliderRef.current.slider.closest('.rtl') !== null
+    setInvert(isRTL)
+  }, [sliderRef])
+
+  const val = (value - minValue) * 100 / (maxValue - minValue)
+  return (
+    <ReactSlider
+      ref={sliderRef}
+      defaultValue={val}
+      value={val}
+      invert={invert}
+      className={styles.sliderContainer}
+      withTracks
+      trackClassName={styles.bar}
+      thumbClassName={styles.handler}
+      onAfterChange={handleChange}
+      step={0.001}
+    />
+  )
 }
+
 
 export default Slider

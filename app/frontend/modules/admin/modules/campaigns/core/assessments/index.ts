@@ -8,7 +8,7 @@ import {
   FETCH_ASSESSMENTS_AND_REPORTS,
 } from '../current'
 import {
-  ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, DEACTIVATE_UNIVERSAL_LINK, FETCH_NORMS, UPDATE_NORM,
+  ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, DEACTIVATE_UNIVERSAL_LINK, FETCH_NORMS, UPDATE_NORM, REMOVE,
 } from './actions'
 
 const defaultState = {
@@ -85,6 +85,11 @@ const HANDLERS = {
     })
     return setIn(state, ['list'], assessments)
   },
+  [REMOVE]: (state: State, { response }: { response: number }) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.filter(
+      assessments, (assessment: Assessment) => assessment.id !== response,
+    ))
+  ),
 }
 
 export default createReducer(HANDLERS, defaultState)

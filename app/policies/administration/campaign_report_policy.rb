@@ -13,5 +13,17 @@ module Administration
     def export?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
+
+    def toggle_user_access?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
+
+    def regenerate?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
+
+    def bulk_download?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
+    end
   end
 end

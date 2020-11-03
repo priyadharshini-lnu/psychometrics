@@ -11,26 +11,33 @@ module UsersResults
     end
 
     def call
-      return broadcast :ok, status: :completed if users_result.extra_time_buffer_expired?
+      if users_result.extra_time_buffer_expired?
+        return broadcast :ok, status: 'completed', completion_reason: :time_out_online
+      end
 
       params = resource_params.merge('last_activity_at' => Time.current)
-      params[:status] = users_result.expired? ? :completed : params[:status]
+      params[:status] = users_result.expired? ? 'completed' : params[:status]
 
-      return broadcast :ok, params unless params[answers_key.to_s]
+      # if status is completed we have to fill in completion reason
+      if params[:status] == 'completed'
+        params[:completion_reason] = users_result.expired? ? :time_out_online : :user_completed
+      end
 
-      params_answers = params[answers_key.to_s]
+      return broadcast :ok, params unless params[answer_key.to_s]
 
-      answers = (users_result[answers_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
+      params_answers = params[answer_key.to_s]
+
+      answers = (users_result[answer_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
 
       answers = add_duration(answers, question_ids, users_result.last_activity_at)
 
-      broadcast :ok, params.merge(answers_key.to_s => answers)
+      broadcast :ok, params.merge(answer_key.to_s => answers)
     end
 
     private
 
-    def answers_key
-      @answers_key ||= users_result.respond_to?(:answers) ? :answers : :results
+    def answer_key
+      @answer_key ||= users_result.answer_key
     end
 
     def add_duration(answers, question_ids, last_activity_at)

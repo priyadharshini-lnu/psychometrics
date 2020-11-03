@@ -7,6 +7,7 @@ class CommunicationEmailMailer < ApplicationMailer
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
     body = Mustache.render(@communication_email.communication.body, data)
+    Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{body}")
     mail(
       to: recipient.email,
       subject: @communication_email.communication.subject,

@@ -17,6 +17,7 @@ export default function ChartOptions (model, changeLabel, props, format) {
     chart: {
       type: 'column',
       height: model.props.position.height,
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     title: false,
     subtitle: false,

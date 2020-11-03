@@ -1,6 +1,7 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -16,7 +17,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -74,6 +76,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "حذف",
       "device": "السماح",
@@ -85,6 +88,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
         "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "أعد مرة أخرى",
       "retry": "أعد المحاولة",
       "save": "حفظ",
@@ -104,6 +108,41 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "use_this": "استخدم ذلك"
     },
     "wait": "Wait"
+  },
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "continue": "Continue Assessment",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
+    },
+    "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
+    "new": "New",
+    "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {
@@ -357,6 +396,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -525,9 +565,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -537,6 +574,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "waiting": "Waiting",
     "you": "You",
     "yourself": "Yourself"
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {
@@ -604,6 +661,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
 });
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -619,7 +677,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -677,6 +736,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -685,6 +745,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -701,9 +762,44 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
+  },
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "continue": "Continue Assessment",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
+    },
+    "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
+    "new": "New",
+    "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {
@@ -957,6 +1053,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1122,9 +1219,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -1134,6 +1228,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "waiting": "Waiting",
     "you": "You",
     "yourself": "Yourself"
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {
@@ -1200,6 +1314,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "anonym": {
+    "continue": "Continue",
     "copy": {
       "archived": "has been archived",
       "expired": "has expired",
@@ -1215,7 +1330,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
         "title": "Continue?"
       }
-    }
+    },
+    "restart": "Restart"
   },
   "assessments": {
     "actions": {
@@ -1273,6 +1389,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "not_started": "Start"
       }
     },
+    "unknown_error": "Unknown error occurred.",
     "video_response": {
       "delete": "Delete",
       "device": "Allow",
@@ -1281,6 +1398,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
         "success": "Please allow to use camera and microphone to record audio and Video"
       },
+      "offline_message": "Please check your internet connection.",
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
@@ -1297,9 +1415,44 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use This"
+      "use_this": "Use this take"
     },
     "wait": "Wait"
+  },
+  "campaign": {
+    "begin": "Begin Assessment",
+    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
+    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
+    "complete_all": "Complete all related assessments",
+    "complete_prev": "Complete all prev assessments",
+    "completed": "Completed",
+    "continue": "Continue Assessment",
+    "in_progress": "In Progress",
+    "instructions": {
+      "heading": "Instructions to follow"
+    },
+    "interrupted": "Interrupted",
+    "language": {
+      "cancel": "Cancel",
+      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
+      "proceed": "Proceed",
+      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "title": "Select language"
+    },
+    "new": "New",
+    "not_started": "New",
+    "time_left": {
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
+      "title": "Time left warning"
+    },
+    "timer": {
+      "message": "Time left to complete all activities",
+      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
+    },
+    "ungrouped": "Ungrouped assessments",
+    "welcome": "Welcome"
   },
   "checking_wizard": {
     "audio_check": {
@@ -1553,6 +1706,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "filters": {
       "clear": "Clear Filters"
     },
+    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
       "email_label": "Email Address",
@@ -1718,9 +1872,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "setup_nominations": "Set up nominations",
     "subject": "Subject",
     "submit": "Submit",
-    "timer": {
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
@@ -1730,6 +1881,26 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "waiting": "Waiting",
     "you": "You",
     "yourself": "Yourself"
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "Regenerate"
+    },
+    "messages": {
+      "regenerate_successful": "Report regeneration job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove report %{userReportName}?",
+        "successfully": "%{userReportName} report removed successfully"
+      }
+    },
+    "preview_report": "Preview Report",
+    "statuses": {
+      "generating": "Generating",
+      "not_prepared": "Not Available",
+      "prepared": "Available"
+    }
   },
   "validations": {
     "AudioResponse": {

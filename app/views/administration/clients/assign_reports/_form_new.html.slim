@@ -6,7 +6,8 @@
                 as: :select,
                 collection: @report_families,
                 class: 'form-control',
-                include_blank: true
+                include_blank: true,
+                input_html: { data: { live_search: true } }
       table.table#reports
         thead
           tr

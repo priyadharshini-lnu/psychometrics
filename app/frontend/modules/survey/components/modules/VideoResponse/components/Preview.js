@@ -21,23 +21,27 @@ export class Preview extends Component {
     }
   }
 
-  successUpload = (data, options = { shouldSaveCurrentPage: true }) => {
-    const { model, saveCurrentPage } = this.props
-    const { shouldSaveCurrentPage } = options
-    model.result.answer(data.asset.url, data.id, data.takeNo)
-    if (shouldSaveCurrentPage) { setTimeout(() => saveCurrentPage(), 300) }
+  successUpload = (data) => {
+    const { addMediaResponse } = this.props
+    addMediaResponse(data)
   }
 
   deleteMedia = () => {
-    const { model } = this.props
-    model.result.answer()
+    const { model, removeMediaResponse } = this.props
+    removeMediaResponse(model.id)
   }
 
   renderVideoRecorder () {
     const {
-      model, type, mediaUrl, readOnly, markQuestionInProgress, removeQuestionInProgress, isAssessmentTimedOut,
+      model,
+      type,
+      mediaUrl,
+      readOnly,
+      markQuestionInProgress,
+      removeQuestionInProgress,
+      isAssessmentTimedOut,
+      mediaResponses,
     } = this.props
-    const { result } = model
     const { VideoRecorderComponent } = this
     return (
       <div className="col">
@@ -47,7 +51,7 @@ export class Preview extends Component {
           preview={type === 'preview_assessment'}
           readOnly={readOnly}
           maxDuration={model.props.duration}
-          answer={result && result.answers[0]}
+          mediaResponse={mediaResponses[0]}
           mediaUrl={mediaUrl}
           fitInFrame={model.props.fitInFrame}
           trackerOptions={model.props.trackerOptions}

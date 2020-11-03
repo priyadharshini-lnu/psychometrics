@@ -10,8 +10,8 @@ gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.3.5'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
-gem 'pg',                         '~> 0.18.4'
-gem 'puma',                       '~> 4.3.5'
+gem 'pg',                         '~> 0.19.0'
+gem 'puma',                       '~> 4.3.6'
 gem 'rails',                      '~> 5.1.7'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'staccato-rails'
@@ -42,9 +42,9 @@ source 'https://rails-assets.org/' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.7.1'
-gem 'devise-i18n',                '~> 1.9.1'
-gem 'devise_invitable',           '~> 2.0.1'
+gem 'devise',                     '~> 4.7.3'
+gem 'devise-i18n',                '~> 1.9.2'
+gem 'devise_invitable',           '~> 2.0.2'
 gem 'pundit',                     '~> 2.1.0'
 gem 'two_factor_authentication',  '~> 2.2.0'
 
@@ -159,20 +159,20 @@ gem 'enum_help', '~> 0.0.17'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'date_validator', '~> 0.9.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag-api', '~> 2.0.5'
-gem 'rswag-ui', '~> 2.0.5'
+gem 'rswag-api', '~> 2.3.0'
+gem 'rswag-ui', '~> 2.3.0'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
 gem 'possessive', '~> 1.0.1'
 
-gem 'rails_autoscale_agent', '~> 0.6.3'
+gem 'rails_autoscale_agent', '~> 0.9.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'awesome_print', '~> 1.8.0'
   gem 'byebug', platform: :mri
-  gem 'factory_bot_rails', '~> 5.2.0'
+  gem 'factory_bot_rails', '~> 6.1.0'
   gem 'hirb'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
@@ -180,7 +180,7 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'rswag-specs', '~> 2.0.5'
+  gem 'rswag-specs', '~> 2.3.0'
   gem 'rubocop', '~>  0.82.0', require: false
   gem 'rubocop-performance', '~> 1.5.2'
   gem 'rubocop-rspec', require: false
@@ -207,7 +207,7 @@ group :test do
   gem 'capybara', '~> 3.32.0'
   gem 'capybara-screenshot', '~> 1.0.24'
   gem 'coveralls', '~> 0.8.23', require: false
-  gem 'database_cleaner', '~> 1.7.0'
+  gem 'database_cleaner', '~> 1.8.5'
   gem 'faker', '~> 1.8.7'
   gem 'rails-controller-testing', '~> 1.0.4'
   gem 'rspec-retry', '~> 0.6.1'

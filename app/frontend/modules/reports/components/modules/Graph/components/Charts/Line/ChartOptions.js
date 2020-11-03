@@ -8,6 +8,7 @@ export default function ChartOptions (model) {
       plotShadow: false,
       type: 'line',
       height: model.props.position.height,
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     title: false,
     subtitle: false,

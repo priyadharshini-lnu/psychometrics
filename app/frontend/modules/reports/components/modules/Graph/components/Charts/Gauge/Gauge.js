@@ -46,7 +46,7 @@ class Gauge extends Component {
     const series = data.series(getCorrectResults(model), factor, model)
     const { props } = model
     const assessment = AppStore.getAssessmentById(model.assessment_id)
-    Highcharts.chart(this[`container${factor.id || factor}`], Highcharts.merge(ChartOptions(), {
+    Highcharts.chart(this[`container${factor.id || factor}`], Highcharts.merge(ChartOptions(model), {
       plotOptions: {
         series: {
           colors: [props.speedometerMainColor],

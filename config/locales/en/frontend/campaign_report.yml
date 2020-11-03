@@ -1,5 +1,9 @@
 en:
   campaign_report:
+    actions:
+      bulk_download: Bulk Download
+    messages:
+      bulk_download_successful: Bulk report download job scheduled successfully
     column:
       report_name: Report name
       report_bundle: Report Bundle
@@ -11,3 +15,12 @@ en:
         skip_existing: Skip existing user
         add_with_existing_response: Add report to existing user and keep existing response
         add_and_allow_new_response: Add report to existing user and allow new response
+    modals:
+      remove:
+        title: Remove Report
+        apply: Apply this changes to existing users in this campaign.
+      user_access:
+        title:
+          enable: Enable User Access
+          disable: Disable User Access
+        apply: Apply this changes to existing users in this campaign.

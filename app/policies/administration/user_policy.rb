@@ -13,6 +13,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :client_admin, :project_admin)
   end
 
+  def import?
+    create?
+  end
+
   def create_superadmin?
     @user.is?(:superadmin)
   end
@@ -26,9 +30,10 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def toggle_status?
+    current_user_record = @record.is_a?(Membership) ? @record.user : @record
     return true if @user.is?(:superadmin)
-    return true if @user.is?(:client_admin) && @record.user.is?(:project_admin, :regular)
-    return true if @user.is?(:project_admin) && @record.user.is?(:regular)
+    return true if @user.is?(:client_admin) && current_user_record.is?(:project_admin, :regular)
+    return true if @user.is?(:project_admin) && current_user_record.is?(:regular)
 
     false
   end
@@ -51,10 +56,6 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def export_completion_status?
     index?
-  end
-
-  def import?
-    create?
   end
 
   def spoof?

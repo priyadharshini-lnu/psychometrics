@@ -19,6 +19,10 @@ class Tracker extends Component {
     backward: I18n().t('assessments.video_response.tracker.backward'),
   }
 
+  trackingTimeout = null
+
+  isUnmounted = false
+
   constructor (props) {
     super(props)
 
@@ -57,15 +61,15 @@ class Tracker extends Component {
   }
 
   componentWillUnmount () {
+    this.isUnmounted = true
     this.stopTracking()
     window.removeEventListener('resize', this.calculateBoundaries)
   }
 
   onNoFaceDetected = debounce(() => {
-    const { isTracking, showOverlay } = this.state
+    const { isTracking } = this.state
     if (!isTracking) return
-
-    this.setState({ showOverlay, visibleMessages: ['frame'] })
+    this.setState({ showOverlay: true, visibleMessages: ['frame'] })
   }, 2000, { maxWait: 2000 })
 
   setupBoundingBox () {
@@ -170,7 +174,6 @@ class Tracker extends Component {
   async track () {
     const { isTracking } = this.state
     const { offsetWidth, offsetHeight } = this.videoEl
-
     // tinyFaceDetector requires the size (offsetHeight) to be divisible by 32
     const inputSize = this.closestDivisible(offsetHeight, 32)
 
@@ -203,7 +206,7 @@ class Tracker extends Component {
     }
 
     if (isTracking) {
-      setTimeout(() => this.track(), 500)
+      this.trackingTimeout = setTimeout(() => this.track(), 500)
     }
   }
 
@@ -250,7 +253,8 @@ class Tracker extends Component {
 
   stopTracking () {
     const { isTracking } = this.state
-    if (!isTracking) {
+    clearTimeout(this.trackingTimeout)
+    if (!isTracking || this.isUnmounted) {
       return
     }
 

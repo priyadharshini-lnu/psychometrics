@@ -7,6 +7,10 @@ import Header from 'layouts/AssessmentPreview/Header'
 import { setStore } from 'store/StoreWatchman'
 import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
+import ConnectionCheck from 'components/ConnectionCheck'
+import { connected, disconnected } from 'core/connection'
+import 'styles/ant.less'
+import 'styles/core.scss'
 import 'utils/i18n'
 
 class AssessmentContainer extends Component {
@@ -18,7 +22,6 @@ class AssessmentContainer extends Component {
     } = this.props
 
     this.langPartial = langPartial
-    this.type = type
 
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
@@ -69,11 +72,17 @@ class AssessmentContainer extends Component {
   }
 
   render () {
-    const { disabled, selectedLocale } = this.props
+    const {
+      disabled, selectedLocale, type, rstore,
+    } = this.props
     return (
       <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
+        <ConnectionCheck
+          onConnected={() => rstore.dispatch(connected())}
+          onDisconnected={() => rstore.dispatch(disconnected())}
+        />
         <div className="ant-row">
-          {this.type === 'preview_assessment' && <Header langs={this.langPartial} />}
+          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
           {disabled && this.overlay()}
           <AssessmentPreview />
         </div>

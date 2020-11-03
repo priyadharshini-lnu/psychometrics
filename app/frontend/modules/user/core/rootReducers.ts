@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import preview from 'modules/survey/core/preview'
 import reportBuilder from 'modules/reports/core/builder'
 import currentUser from 'core/currentUser'
+import connection from 'core/connection'
 import campaign from '../modules/campaigns/core/campaign'
 import campaigns from '../modules/campaigns/core/campaigns'
 import nomination from '../modules/campaigns/core/nomination'
@@ -12,6 +13,7 @@ import report from '../modules/campaigns/core/report'
 import checkingWizard from '../modules/campaigns/core/checkingWizard'
 import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
+import anonym from '../modules/campaigns/core/anonym'
 import config from './config'
 
 const rootReducer = combineReducers({
@@ -28,11 +30,14 @@ const rootReducer = combineReducers({
   ui: combineReducers({
     autocomplete,
   }),
+  anonym,
+  project,
   currentUser,
   config,
   preview,
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
+  connection,
 })
 
 export type RootState = ReturnType<typeof rootReducer>

@@ -4,8 +4,7 @@
 module Imports
   module Assessments
     class ResultImportUserResult < Imports::BaseImport
-      SUPPORT_ROWS = 3
-      SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel
+      include ImportExportConst
       # Authorisation flow
       #
       include Pundit
@@ -89,7 +88,7 @@ module Imports
               assessment_id: assessment.id
             )
 
-            UsersCampaignsAssessment.find_or_create_by(
+            UserAssessment.find_or_create_by(
               subject_id: user.id,
               evaluator_id: user.id,
               campaign_id: campaign.id,
@@ -99,13 +98,9 @@ module Imports
             )
           end
 
-          status = if data['status'] == 'Completed'
-                     :completed
-                   elsif data['status'] == 'New'
-                     :not_started
-                   else
-                     :in_progress
-                   end
+          status = I18n.t('activerecord.attributes.users_result.statuses').key(data['status'])
+          completion_reason = I18n.t('activerecord.attributes.users_result.completion_reasons').
+                              key(data['completion_reason'])
 
           norm_data = parse_norm_data(data['norm'], user_result.assessment_id)
           user_result.assign_attributes(
@@ -113,15 +108,19 @@ module Imports
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
             norm_type: norm_data[:type],
-            status: status
+            status: status,
+            completion_reason: completion_reason
           )
 
           parsed_questions = {}
           new_results = {}
+          duration = nil
 
           # Parse answers
           data.each do |key, value|
             next unless /qid/.match?(key)
+
+            next duration = value if key.include?(DURATION)
 
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
@@ -139,15 +138,16 @@ module Imports
               p "#{question.type} - #{e}"
               next
             end
-            parsed_value = parser.build_answers(values, question, scoring, user_result)
+            parsed_value = parser.build_answers(values, question, duration, scoring, user_result)
             new_results[qid] = parsed_value if parsed_value
           end
           user_result.answers = new_results
           if user_result.completed?
             ::UsersResults::Recompute.call!(
               user_result,
-              'id' => user_result.norm_id,
-              'type' => user_result.norm_type
+              user_result.user,
+              norm_id: user_result.norm_id,
+              norm_type: user_result.norm_type
             )
           end
           user_result

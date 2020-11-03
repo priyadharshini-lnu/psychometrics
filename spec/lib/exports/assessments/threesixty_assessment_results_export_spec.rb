@@ -22,7 +22,10 @@ describe Exports::Assessments::ThreesixtyAssessmentResultsExport do
 
     expected_first_row = ['Result ID', 'Subject Name', 'Subject Email', 'Evaluator Name', 'Evaluator Email',
                           'Relationship', 'Started At', 'Completed At', 'Status']
-    questions.each { |q| expected_first_row << "QID#{q.id}" }
+    questions.each do |q|
+      expected_first_row << "QID#{q.id}"
+      expected_first_row << "QID#{q.id}_#{ImportExportConst::DURATION}"
+    end
 
     expect(actual_first_row).to eq(expected_first_row)
   end
@@ -34,9 +37,9 @@ describe Exports::Assessments::ThreesixtyAssessmentResultsExport do
     xlsx = Roo::Spreadsheet.open(file_name)
     actual_second_row = xlsx.sheet(0).row(2)
     expected_second_row = [nil] * 9
-    questions.each { |q| expected_second_row << q.name }
+    questions.each { |q| expected_second_row << [q.name] * 2 }
 
-    expect(actual_second_row).to eq(expected_second_row)
+    expect(actual_second_row).to eq(expected_second_row.flatten)
   end
 
   it 'third row in xlsx contains question text' do
@@ -46,9 +49,9 @@ describe Exports::Assessments::ThreesixtyAssessmentResultsExport do
     xlsx = Roo::Spreadsheet.open(file_name)
     actual_third_row = xlsx.sheet(0).row(3)
     expected_third_row = [nil] * 9
-    questions.each { |q| expected_third_row << q.props['questionText'] }
+    questions.each { |q| expected_third_row << [q.props['questionText']] * 2 }
 
-    expect(actual_third_row).to eq(expected_third_row)
+    expect(actual_third_row).to eq(expected_third_row.flatten)
   end
 
   it 'xlsx contains each users_result as seprate row' do
@@ -66,8 +69,8 @@ describe Exports::Assessments::ThreesixtyAssessmentResultsExport do
 
   it 'each assign row in xlsx have result details along with answer to the question' do
     users_result = create(:users_result, assessment: assessment, answers: {
-      questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }] },
-      questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }] }
+      questions[0].id.to_s => { 'answers' => [{ 'index' => 1, 'value' => true }], 'duration' => 120 },
+      questions[1].id.to_s => { 'answers' => [{ 'index' => 2, 'value' => true }], 'duration' => nil }
     })
     manager_relationship = create(:relationship, name: 'Manager', type: :global)
     create(:threesixty_participant,
@@ -92,7 +95,9 @@ describe Exports::Assessments::ThreesixtyAssessmentResultsExport do
       users_result.completed_at.try(:strftime, '%D %r'),
       I18n.t("activerecord.attributes.threesixty.users_result.statuses.#{users_result.status}"),
       2,
-      3
+      120,
+      3,
+      nil
     ]
 
     expect(actual_result_row).to eq(expected_result_row)

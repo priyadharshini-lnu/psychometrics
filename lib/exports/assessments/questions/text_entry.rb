@@ -13,11 +13,12 @@ module Exports
         # TO:
         #   ['Value']
 
-        def self.result(answers, question, scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(user_result, question, scoring = false, _export_with_labels = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
+          answers = get_answers(user_result, question)
           answers = retrieve_answers(answers, question, scoring)
-          formatted_answers(question, answers)
+          formatted_answers(user_result, question, answers)
         end
 
         def self.retrieve_answers(answers, question, scoring)
@@ -37,12 +38,10 @@ module Exports
           end
         end
 
-        def self.formatted_answers(question, answers)
-          if question.of_sub_type?('Chat')
-            answers.join("\r\n")
-          else
-            Utility::Array.ensure_size(answers, question_header_size(question))
-          end
+        def self.formatted_answers(user_result, question, answers)
+          answers = question.of_sub_type?('Chat') ? [answers.join("\r\n")] : answers
+          answers << get_duration(user_result, question)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.result_label(answers, question)
@@ -66,7 +65,7 @@ module Exports
             question_id_header << "QID#{question.id}"
             question_choices_header << ''
           end
-
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
 

@@ -18,7 +18,7 @@ function Options ({
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: value => update(name, value),
+    onChange: value => update(name, value),
   })
 
   return (

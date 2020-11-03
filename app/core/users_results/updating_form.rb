@@ -10,5 +10,6 @@ module UsersResults
     attribute :current_element
     attribute :current_page
     attribute :last_activity_at, DateTime
+    attribute :completion_reason, String, default: 'user_completed'
   end
 end

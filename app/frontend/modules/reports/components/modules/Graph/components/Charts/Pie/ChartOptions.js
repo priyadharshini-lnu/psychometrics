@@ -2,6 +2,9 @@ import _ from 'lodash'
 
 export default function ChartOptions (model) {
   return {
+    chart: {
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
+    },
     title: false,
     subtitle: false,
     colors: _.map(model.props.colors, 'color'),

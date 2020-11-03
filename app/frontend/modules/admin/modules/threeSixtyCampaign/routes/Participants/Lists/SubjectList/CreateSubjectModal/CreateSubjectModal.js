@@ -7,7 +7,7 @@ import { CheckOutlined } from '@ant-design/icons'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'modules/admin/utils/spreadSheet'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 import userPresenter from 'presenters/user'
 import UserAutocomplete from '../../shared/UserAutocomplete'
 
@@ -72,7 +72,7 @@ export default function CreateSubjectModal ({
         </Button>,
       ]}
     >
-      <Form {...formItemLayout}>
+      <Form {...formItemLayout} autoComplete="off">
         <AntForm.Item label="Subject">
           <UserAutocomplete
             value={autocompletedUser}

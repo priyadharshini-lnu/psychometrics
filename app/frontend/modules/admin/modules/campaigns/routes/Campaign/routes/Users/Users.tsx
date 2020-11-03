@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag,
+  Table, Menu, Row, Col, Input, Select, Pagination, Button, Dropdown, Modal, Switch, Tag, message,
 } from 'antd'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -11,15 +11,16 @@ import settings from 'modules/admin/settings'
 import { State as UserState } from 'modules/admin/modules/campaigns/core/users'
 import Modals from 'modules/admin/components/Modals/'
 
-import User from 'modules/admin/modules/campaigns/interfaces/user'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { Link } from 'react-router-dom'
-import userPresenter from 'presenters/user'
 import styles from './styles.scss'
 import UserFormModal from './UserFormModal'
+import ImportUsersModal from './ImportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
 
 const MODALS = {
   UserFormModal,
+  ImportUsersModal,
 }
 
 const { Column } = Table
@@ -30,7 +31,7 @@ const { I18n } = window
 interface Props {
   fetch(campaignId: string, tableConfig: TableConfig): void
   remove(campaignId: string, id: number): void
-  toggleStatus(campaignId: string, id: number): void
+  toggleStatus(campaignId: string, id: number, options: { updateInListing: boolean }): void
   resetPassword(campaignId: string, id: number): void
   users: UserState
   match: {
@@ -48,7 +49,12 @@ interface Props {
   openModal(name: string, data?: { campaignId: string, user?: User }): void
 }
 
-const statusToColor = { not_started: 'gray', in_progress: 'orange', completed: 'green' }
+const statusToColor = {
+  not_started: 'gray',
+  in_progress: 'orange',
+  completed: 'green',
+  interrupted: 'red',
+}
 
 const UserList: React.FC<Props> = ({
   fetch,
@@ -90,7 +96,7 @@ const UserList: React.FC<Props> = ({
           <span className="mlm">{`${total} Users`}</span>
         </Col>
         <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} />
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
           <Select
             defaultValue="All"
             value={filters.isAnonymEq || 'All'}
@@ -119,7 +125,7 @@ const UserList: React.FC<Props> = ({
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
             <Column
-              title="Id"
+              title={I18n.t('administration.campaigns.users.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
@@ -130,7 +136,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Active"
+              title={I18n.t('administration.campaigns.users.is_active')}
               key="enable"
               render={
                 ({
@@ -140,7 +146,7 @@ const UserList: React.FC<Props> = ({
                     checked={active}
                     onChange={
                       () => {
-                        toggleStatus(campaignId, id)
+                        toggleStatus(campaignId, id, { updateInListing: true })
                       }
                   }
                   />
@@ -148,52 +154,46 @@ const UserList: React.FC<Props> = ({
               }
             />
             <Column
-              title="First Name"
-              key="firstName"
-              sorter
-              sortOrder={getSortOrder('firstName')}
-              dataIndex="firstName"
+              title={I18n.t('administration.campaigns.users.name')}
+              key="fullName"
+              dataIndex="fullName"
             />
             <Column
-              title="Last Name"
-              key="lastName"
-              sorter
-              sortOrder={getSortOrder('lastName')}
-              dataIndex="lastName"
-            />
-            <Column
-              title="Email"
+              title={I18n.t('administration.campaigns.users.email')}
               key="email"
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="email"
             />
             <Column
-              title="Created At"
-              key="createdAt"
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-              dataIndex="createdAt"
+              title={I18n.t('administration.dates.started')}
+              key="startedAt"
+              dataIndex="startedAt"
             />
             <Column
-              title="Created By"
+              title={I18n.t('administration.dates.completed')}
+              key="completedAt"
+              dataIndex="completedAt"
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.created_by')}
               key="createdBy"
               dataIndex="createdBy"
             />
             <Column
-              title="Updated At"
-              key="updatedAt"
-              dataIndex="updatedAt"
-            />
-            <Column
-              title="Updated By"
+              title={I18n.t('administration.campaigns.users.updated_by')}
               key="updated_by"
               sorter
               sortOrder={getSortOrder('email')}
               dataIndex="updated_by"
             />
             <Column
-              title="Completion Status"
+              title={I18n.t('administration.campaigns.users.completed_via')}
+              key="completedVia"
+              dataIndex="completedVia"
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.completion_status')}
               key="completionStatus"
               sorter
               sortOrder={getSortOrder('completionStatus')}
@@ -206,7 +206,7 @@ const UserList: React.FC<Props> = ({
               )}
             />
             <Column
-              title="Action"
+              title={I18n.t('administration.campaigns.actions')}
               key="action"
               render={user => (
                 <Dropdown
@@ -219,8 +219,7 @@ const UserList: React.FC<Props> = ({
                       userId: user.id,
                       email: user.email,
                       remove: () => remove(campaignId, user.id),
-                      firstName: user.firstName,
-                      lastName: user.lastName,
+                      fullName: user.fullName,
                     }) as React.ReactElement
                   )}
                   trigger={['click']}
@@ -256,12 +255,11 @@ interface ActionMenuProps {
   userId: number
   email: string
   remove(): void
-  firstName: string
-  lastName: string
+  fullName: string
 }
 
 const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, resetPassword, remove, campaignId, projectId, userId, firstName, lastName, email,
+  onEdit, resetPassword, remove, campaignId, projectId, userId, email, fullName,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -269,26 +267,34 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('frontend.campaign.users.remove', { email }),
+      content: I18n.t('campaign_users.modals.remove', { email }),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
-      onOk: remove,
+      onOk: () => {
+        remove()
+        message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email }))
+      },
     })
+  }
+
+  const resetPasswordAndShowMessage = () => {
+    resetPassword()
+    message.success(I18n.t('campaign_users.modals.change_password.successfully', { name: fullName }))
   }
 
   const handleChangePassword = () => {
     Modal.confirm({
-      title: I18n.t('frontend.campaign.users.change_password_confirmation_title',
+      title: I18n.t('campaign_users.modals.change_password.title',
         {
-          full_name: userPresenter.getFullName({ firstName, lastName }),
+          name: fullName,
         }),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('frontend.campaign.users.change_password_confirmation_content'),
+      content: I18n.t('campaign_users.modals.change_password.content'),
       okText: I18n.t('yes'),
       cancelText: I18n.t('no'),
-      onOk: resetPassword,
+      onOk: resetPasswordAndShowMessage,
     })
   }
 

@@ -109,22 +109,14 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      begin
-        resource.destroy
-      rescue ActiveRecord::InvalidForeignKey
-        resource.errors.add(:base, :has_dependent_relation)
-      end
+      resource.destroy
       respond_to do |format|
-        if resource.errors.any?
-          format.js { render :error, locals: { message: resource.errors.full_messages.join('<br>') } }
-        else
-          format.html do
-            redirect_back(
-              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
-            )
-          end
-          format.js
+        format.html do
+          redirect_back(
+            fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+          )
         end
+        format.js
       end
     end
 

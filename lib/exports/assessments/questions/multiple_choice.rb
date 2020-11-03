@@ -12,20 +12,18 @@ module Exports
         #   }, ...]
         # TO:
         #   [1]
-        def self.result(answers, question, scoring = false, export_with_labels = false, not_applicable)
-          factors_scoring = question.detect_specified_scoring.
-                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          if answers.present?
-            (answers || []).map do |answer|
-              next factors_scoring[answer['index']] if scoring
-
-              next answer['index'] + 1 unless export_with_labels
-
-              question.props.dig('choicesTexts', answer['index'])
-            end.join(',')
-          elsif not_applicable
-            export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER
-          end
+        def self.result(user_result, question, scoring = false, export_with_labels = false)
+          all_answers = []
+          not_applicable = get_not_applicable(user_result, question)
+          answers = get_answers(user_result, question)
+          all_answers << if answers.present?
+                           retrive_answers(answers, question, scoring, export_with_labels)
+                         elsif not_applicable
+                           (export_with_labels ? question.props['notApplicableLabel'] : NOT_APPLICABLE_PLACEHOLDER)
+                         else
+                           ''
+                         end
+          all_answers << get_duration(user_result, question)
         end
 
         def self.result_label(answers, question)
@@ -34,8 +32,21 @@ module Exports
           [answers]
         end
 
+        def self.retrive_answers(answers, question, scoring, export_with_labels)
+          factors_scoring = question.detect_specified_scoring.
+                            each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
+
+          (answers || []).map do |answer|
+            next factors_scoring[answer['index']] if scoring
+
+            next answer['index'] + 1 unless export_with_labels
+
+            question.props.dig('choicesTexts', answer['index'])
+          end.join(',')
+        end
+
         def self.question_id_header(question)
-          ["QID#{question.id}"]
+          ["QID#{question.id}", duration_header(question)]
         end
       end
     end

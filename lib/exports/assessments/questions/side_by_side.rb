@@ -17,7 +17,8 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
-        def self.result(answers, question, scoring = false, export_with_labels = false, _not_applicable)
+        def self.result(user_result, question, scoring = false, export_with_labels = false)
+          answers = get_answers(user_result, question)
           parsed_result = []
           # Create hash for scoring
           # hash['1-2-3'] = 100
@@ -50,6 +51,7 @@ module Exports
                                end
             end
           end
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -73,6 +75,7 @@ module Exports
               end
             end
           end
+          append_duration_header(question, question_id_header, question_choices_header)
 
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end

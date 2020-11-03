@@ -40,7 +40,14 @@ interface Request {
 
 const ResourceFormModal: React.FC<Props> = (props) => {
   const {
-    title, resourceName, close, modalProps, resource, resourceId, onSuccessfulSubmission, storeManager,
+    title,
+    resourceName,
+    close,
+    modalProps,
+    resource,
+    resourceId,
+    onSuccessfulSubmission,
+    storeManager,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)

@@ -2,7 +2,7 @@
   data-results="#{@data[:results]}"
   data-data="#{@data[:data]}"
   data-locales=@data[:locales]
-  data-campaign="#{@data[:campaign]}"]
+  data-campaign="#{@data[:campaign] || {}}"]
 
 = javascript_pack_tag 'vendors'
 = stylesheet_pack_tag 'vendors'

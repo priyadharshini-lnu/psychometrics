@@ -12,13 +12,15 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+          answers = get_answers(user_result, question)
           answers = (answers || []).map do |answer|
             [
               (answer['scale'] + 1),
               answer['values'].map { |v| v + 1 }.join(',')
             ]
           end.flatten
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
@@ -30,6 +32,7 @@ module Exports
             question_choices_header << [question.props.dig('choicesTexts', c),
                                         "#{question.props.dig('choicesTexts', c)} | Why?"]
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header.flatten, question_choice_header: question_choices_header.flatten }
         end
       end

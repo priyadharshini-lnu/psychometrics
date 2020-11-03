@@ -6,7 +6,7 @@ import {
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import routeUtils from 'utils/route'
-import ErrorAlertBox from 'modules/admin/modules/threeSixtyCampaign/components/ErrorAlertBox'
+import ErrorAlertBox from 'components/ErrorAlertBox'
 import TitleBar from './TitleBar'
 import settings from '../../../settings'
 import styles from './styles.scss'

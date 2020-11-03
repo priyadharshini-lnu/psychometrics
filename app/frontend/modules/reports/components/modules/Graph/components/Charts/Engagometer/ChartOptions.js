@@ -1,4 +1,4 @@
-export default function ChartOptions () {
+export default function ChartOptions (model) {
   return {
     pane: {
       startAngle: -150,
@@ -42,6 +42,7 @@ export default function ChartOptions () {
       plotBackgroundImage: null,
       plotBorderWidth: 0,
       plotShadow: false,
+      backgroundColor: model.props.transparentBackground ? 'transparent' : '#ffffff',
     },
     credits: {
       enabled: false,

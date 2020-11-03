@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   let(:current_user) { create(:superadmin) }
-  let(:user) { create(:user, :with_project_membership) }
+  let(:user) { create(:user, :with_project_membership, email: 'tester@gmail.com') }
   let(:campaign) { create(:campaign, project_id: user.project_id) }
   let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: user) }
-  let(:assessment) { create(:assessment) }
+  let(:assessment) { create(:assessment, name: 'Test Assessment') }
   let(:report) { create(:report, assessments: [assessment]) }
   let(:report_family) { report.report_families.first }
 
@@ -29,11 +29,43 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  describe 'export_completion_status' do
+    it 'check response' do
+      users_result = create(:users_result, evaluator: user, assessment: assessment)
+      create(:user_assessment,
+             campaign: campaign,
+             assessment: assessment,
+             subject: user,
+             evaluator: user,
+             users_result: users_result)
+
+      get :export_completion_status, format: 'csv', params: { new_campaign_id: campaign.id }
+
+      parsed_response = CSV.parse(response.body)
+
+      expect(parsed_response.length).to eq(2)
+      expect(parsed_response.last[2]).to eq('tester@gmail.com')
+      expect(parsed_response.last[4]).to eq('Test Assessment')
+    end
+  end
+
+  describe 'import' do
+    it 'run action successfully' do
+      file = Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/users_export.csv'), 'text/csv')
+      post :import, params: {
+        new_campaign_id: campaign.id,
+        operation: 'add_with_existing_response',
+        import_data: file
+      }
+      expect(campaign.users.exists?(email: 'vlad@gmail.com')).to be_truthy
+      expect(campaign.users.exists?(email: 'fedor@gmail.com')).to be_truthy
+    end
+  end
+
   describe 'PUT toggle_status' do
     it 'toggles user status' do
       put :toggle_status, params: { new_campaign_id: campaign.id, id: user.id }
-      parsed_response = JSON.parse(response.body)
-      expect(parsed_response['active']).to eq(false)
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -59,13 +91,19 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
   private
 
   def check_user_response(user_response)
+    user_response['campaigns'] = user_response['campaigns'].map { |c| c.slice('name', 'id') }
     expect(user_response).to eq({
       'id' => user.id,
       'full_name' => user.decorate.full_name,
       'email' => user.email,
+      'completion_status' => 'not_started',
       'created_at' => I18n.l(user.created_at, format: :short),
       'last_sign_in_at' => nil,
-      'campaigns' => [campaign.slice('name', 'id')]
+      'campaigns' => [campaign.slice('name', 'id')],
+      'active' => campaign_user.active,
+      'additional_time' => campaign_user.additional_time,
+      'completed_at' => nil,
+      'started_at' => nil
     })
   end
 
@@ -75,7 +113,10 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'report_id' => report.id,
       'name' => report.name,
       'user_access' => user_report.user_access,
-      'report_family_name' => report_family.name
+      'report_family_name' => report_family.name,
+      'status' => 'not_prepared',
+      'internal' => true,
+      'report_url' => nil
     })
   end
 
@@ -87,7 +128,11 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'category' => assessment.category,
       'norm_name' => nil,
       'norms' => [],
+      'norm_id' => nil,
       'norm_type' => nil,
+      'additional_time' => nil,
+      'is_expired' => false,
+      'is_external' => false,
       'status' => 'not_started'
     })
   end

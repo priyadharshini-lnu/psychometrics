@@ -11,10 +11,12 @@ class HandleUserResultExpiryJob < ApplicationJob
         UpdateAssign.call(assign_form, assign, assign.membership.user)
       end
 
-    users_results_form = ::UsersResults::UpdatingForm.from_params(status: :completed)
+    users_results_form = ::UsersResults::UpdatingForm.from_params(
+      status: :completed,
+      completion_reason: :time_out_offline
+    )
     UsersResult.in_progress.where('expiry_date <= :current', current: 10.second.from_now).find_each do |result|
-      campaign = Threesixty::Campaign.find_by(campaign_id: result.campaign_id)
-      ::UsersResults::UpdateUsersResult.call(users_results_form, result, campaign)
+      ::UsersResults::UpdateUsersResult.call(users_results_form, result, result.user)
     end
   end
 end

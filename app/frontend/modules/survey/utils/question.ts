@@ -27,3 +27,13 @@ export const getValidationKey = (question: Question): string => {
 export const isEmailTextEntryQuestion = (question: Question): boolean => (
   question.type === 'TextEntry' && question.props.type === 'Email'
 )
+
+export const isMediaResponseQuestion = (question: Question) => (
+  ['FileUpload', 'AudioResponse', 'VideoResponse'].includes(question.type as string)
+)
+
+export const isMandatory = (question: Question) => (
+  question.required_validation
+    && question.required_validation.enabled
+    && question.required_validation.type === 'Force'
+)

@@ -11,7 +11,8 @@ module Exports
         #   }]
         # TO
         #   ['Like or On/Dislike/Neutral or OFF']
-        def self.result(answers, question, _scoring = false, _export_with_labels = false, _not_applicable)
+        def self.result(user_result, question, _scoring = false, _export_with_labels = false)
+          answers = get_answers(user_result, question)
           parsed_result = []
           question.props['regions'].size.times do |r|
             answer = (answers || []).detect { |a| a['region'] == r }
@@ -28,6 +29,7 @@ module Exports
                                (answer.try(:[], 'value') ? 'On' : 'Off')
                              end
           end
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 
@@ -38,6 +40,7 @@ module Exports
             question_id_header << "QID#{question.id}_#{i + 1}"
             question_choices_header << question.props.dig('regionsNames', i)
           end
+          append_duration_header(question, question_id_header, question_choices_header)
           { question_id_header: question_id_header, question_choice_header: question_choices_header }
         end
       end
