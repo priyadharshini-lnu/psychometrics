@@ -5,7 +5,7 @@ require 'rails_helper'
 describe Datasheets::ParseFile do
   let(:file)        { double('file', content_type: 'application/xlsx', original_filename: 'datasheet file name') }
   let(:form)        { stub_form(valid?: true, file: file, parsed_file: parsed_file, id: nil) }
-  let(:parsed_file) { [{ 'Email' => 'text', 'key' => 'text' }, { 'Email' => email, 'key' => 'value' }] }
+  let(:parsed_file) { [{ 'Email' => 'Email', 'key' => 'key' }, { 'Email' => 'Text', 'key' => 'Text' }, { 'Email' => email, 'key' => 'value' }] }
   let(:email)       { 'test@email.com' }
   let(:project)     { create(:project) }
 
@@ -20,7 +20,7 @@ describe Datasheets::ParseFile do
     expect { subject }.to change { Datasheet.count }.from(0).to(1)
     datasheet = Datasheet.last
     expect(datasheet.project).to eq(project)
-    expect(datasheet.columns).to eq(parsed_file.first)
+    expect(datasheet.columns).to eq(parsed_file.second)
   end
 
   it 'creates valid datasheet row' do
