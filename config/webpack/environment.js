@@ -31,10 +31,10 @@ environment.plugins.insert(
 )
 
 //   uncomment it in order to use bundle analyzer
-//   environment.plugins.insert(
-//     'BundleAnalyzerPlugin',
-//     new BundleAnalyzerPlugin(),
-//   )
+// environment.plugins.insert(
+//   'BundleAnalyzerPlugin',
+//   new BundleAnalyzerPlugin(),
+// )
 
 const myCssLoaderOptions = {
   modules: true,
@@ -75,6 +75,13 @@ const vendors = [
   'libs/conditions',
   'libs/library',
   'video.js',
+  'face-api.js',
+  'd3',
+  '@tensorflow/tfjs-core',
+  'codemirror',
+  'sockjs-client',
+  'mime-db',
+  'esprima',
 ]
 
 environment.config.merge({
