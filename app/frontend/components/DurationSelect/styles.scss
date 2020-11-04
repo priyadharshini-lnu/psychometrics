@@ -1,0 +1,7 @@
+:global {
+  .tte-custom {
+    &.ant-picker-dropdown {
+      .ant-picker-now { display: none; }
+    }
+  }
+}
