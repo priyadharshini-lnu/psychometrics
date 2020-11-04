@@ -110,7 +110,13 @@ environment.config.merge({
           priority: 5,
           enforce: true,
         },
-
+        interactiveAssessments: {
+          chunks: 'initial',
+          name: 'interactiveAssessments',
+          test: /@thetalententerprise\/interactive-assessments/,
+          priority: 5,
+          enforce: true,
+        },
       },
     },
   },
