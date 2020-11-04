@@ -59,7 +59,7 @@ describe Assessments::CopyAssessment do
       questions.last.update_attributes(skip_logic: destination_skip_logic)
     end
 
-    let(:copy) { described_class.call(assessment.id)[:ok] }
+    let(:copy) { described_class.call(assessment.id)[:ok][:assessment] }
 
     it 'succeeds' do
       expect(copy).to be_an_instance_of(Assessments::Common)

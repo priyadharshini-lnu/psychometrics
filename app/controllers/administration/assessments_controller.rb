@@ -109,7 +109,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
     respond_to do |format|
       if event[:ok]
-        @cloned_resource = event[:ok]
+        @cloned_resource = event[:ok][:assessment]
         format.js
       else
         format.js do
