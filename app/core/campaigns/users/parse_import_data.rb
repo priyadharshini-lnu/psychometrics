@@ -17,7 +17,7 @@ module Campaigns
         rows = rows.map do |row|
           row.each_with_object({}).with_index do |(value, attrs), index|
             key = HEADER_IMPORT_KEYS[index]
-            attrs[key] = key == :active ? value == 'Yes' : value
+            attrs[key] = key == :active ? value.presence && value == 'Yes' : value
           end
         end
         broadcast :ok, [header] + rows
