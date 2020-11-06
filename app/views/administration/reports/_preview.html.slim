@@ -1,5 +1,7 @@
 #report_preview class="#{params[:export] ? '' : 'html_preview' }" data-data="#{ReportSerializer.new(resource, piped_text_context: {}).to_json(include: '**')}"
 
+= javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'
 = stylesheet_pack_tag 'vendors'
 = stylesheet_pack_tag 'reports'

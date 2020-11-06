@@ -3,6 +3,8 @@
   data-locales=@translations.to_json
   data-lang-partial="#{escape_once (render partial: 'application/lang', locals: { locales: @available_translations })}"]
 
+= javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'
 = stylesheet_pack_tag 'vendors'
 = stylesheet_pack_tag 'survey'

@@ -17,6 +17,8 @@
           data-results-url="/assigns/#{@assign.id}"
           data-agile-assets-url="#{Settings.agile_config.asset_url}"
           data-agile-assign-url="#{agile_anonym_assign_url(@assign)}"]
+        = javascript_pack_tag 'vendors2'
+        = stylesheet_pack_tag 'vendors2'
         = javascript_pack_tag 'vendors'
         = stylesheet_pack_tag 'vendors'
         = stylesheet_pack_tag 'survey'
