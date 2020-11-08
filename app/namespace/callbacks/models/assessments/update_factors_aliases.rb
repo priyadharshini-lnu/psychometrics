@@ -21,7 +21,7 @@ module Callbacks
         private
 
         def dimension_not_changed?(assessment)
-          assessment.changes['dimension_id'].nil?
+          assessment.changes_to_save['dimension_id'].nil?
         end
       end
     end

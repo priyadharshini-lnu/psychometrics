@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Ztable
-  ZTABLE = HashWithIndifferentAccess.new({
+  ZTABLE = ActiveSupport::HashWithIndifferentAccess.new({
     'Z': [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09],
     '-3.9': [0.00005, 0.00005, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00004, 0.00003, 0.00003],
     '-3.8': [0.00007, 0.00007, 0.00007, 0.00006, 0.00006, 0.00006, 0.00006, 0.00005, 0.00005, 0.00005],
