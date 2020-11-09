@@ -40,9 +40,7 @@ module Campaigns
 
         attrs_to_update = strong_attrs.merge(modified_by_id: current_user.id)
 
-        # rubocop:disable Style/NonNilCheck
-        update_active_value(user, attrs[:active]) unless attrs[:active].nil?
-        # rubocop:enable Style/NonNilCheck
+        update_active_value(user, attrs[:active])
 
         user.update!(attrs_to_update)
         add_user_that_pwd_not_changed(user) if pwd_to_be_not_changed
@@ -50,6 +48,8 @@ module Campaigns
       end
 
       def update_active_value(user, active)
+        return if active.nil?
+
         campaign.campaign_users.where(user_id: user.id).update_all(active: active)
       end
 
