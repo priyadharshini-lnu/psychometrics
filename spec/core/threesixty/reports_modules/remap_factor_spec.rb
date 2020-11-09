@@ -21,6 +21,22 @@ describe Threesixty::ReportsModules::RemapFactor do
     expect(report_module.reload.props['factorId']).to eq(new_factor.id)
   end
 
+  it 'maps all factors inside props to new factor id' do
+    old_factor1 = create(:factor)
+    new_factor1 = create(:factor, name: 'new factor 2')
+    report_module = create(:module, page: page, props: {
+      factorIds: [old_factor.id, old_factor1.id]
+    })
+    old_to_new_factor_mapping[old_factor1.id] = new_factor1
+
+    described_class.call(report, old_to_new_factor_mapping)
+
+    source_factor = report_module.reload.props['factorIds']
+
+    expect(source_factor[0]).to eq(new_factor.id)
+    expect(source_factor[1]).to eq(new_factor1.id)
+  end
+
   it "maps all factor inside 'source -> factors' array to new factor" do
     old_factor1 = create(:factor)
     new_factor1 = create(:factor, name: 'new factor 2')
