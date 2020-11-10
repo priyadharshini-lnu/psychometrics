@@ -16,7 +16,6 @@ const { SubMenu } = Menu
 
 const pagesToHideLangSelection = ['/pass', '/anonym', '/evaluations']
 const hideLangDropdown = !!_.find(pagesToHideLangSelection, page => location.href.includes(page))
-                          || I18n.availableLocales.length <= 1
 
 function Navigation ({
   logout, logo, isFrame, isAnonym,
