@@ -15,7 +15,6 @@ import EditProfileModal from '../EditProfileModal'
 const { SubMenu } = Menu
 
 const pagesToHideLangSelection = ['/pass', '/anonym', '/evaluations']
-const hideLangDropdown = !!_.find(pagesToHideLangSelection, page => location.href.includes(page))
 
 function Navigation ({
   logout, logo, isFrame, isAnonym,
@@ -24,6 +23,7 @@ function Navigation ({
 
   const [showHelp, setShowHelp] = useState(false)
   const [editProfileModalOpen, setEditProfileModal] = useState(false)
+  const hideLangDropdown = !!_.find(pagesToHideLangSelection, page => location.href.includes(page))
 
   const onLogout = () => {
     logout().then(() => location.reload())

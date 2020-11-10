@@ -306,6 +306,22 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     }
   }
 
+  .rtl {
+    .common-campaign .campaign-header {
+      .right-wrapper {
+        border-top-left-radius: 0;
+        border-top-right-radius: 150px;
+        padding-left: 0;
+        padding-right: 12px;
+      }
+      .right {
+        border-top-left-radius: 0;
+        border-top-right-radius: 150px;
+        padding-left: 0;
+        padding-right: 60px;
+      }
+    }
+  }
 
   .group {
     background: #ebeaea;

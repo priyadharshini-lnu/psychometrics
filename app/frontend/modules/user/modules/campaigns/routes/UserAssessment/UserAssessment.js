@@ -38,6 +38,7 @@ export default function UserAssessment ({
   preview,
   markAssessmentTimedOut,
   progress,
+  push,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
@@ -72,7 +73,7 @@ export default function UserAssessment ({
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
               <Timer key="2" preview={preview} campaignTimeLeft={campaignTimeLeft} onFinish={markAssessmentTimedOut} />,
             ]}
-            onBack={() => history.push(`/campaigns/${campaignId}`)}
+            onBack={() => push(`/campaigns/${campaignId}`) || history.push(`/campaigns/${campaignId}`)}
           />
         </Content>
       </div>
