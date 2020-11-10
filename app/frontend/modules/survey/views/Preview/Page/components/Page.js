@@ -14,6 +14,14 @@ class Page extends Component {
     page: PropTypes.object.isRequired,
   }
 
+  componentDidMount () {
+    const path = location.pathname.match('threesixty_campaigns/(.*)/evaluations')
+    if (path) {
+      const { fetchCampaignOptions } = this.props
+      fetchCampaignOptions(parseInt(path[1], 10))
+    }
+  }
+
   getBlockClasses () {
     const { block: { props: { staticContent } } } = this.props
 
@@ -57,7 +65,7 @@ class Page extends Component {
       preview: {
         ignoreValidation, readOnly, type,
       },
-      isDisconnected,
+      isDisconnected, isLast,
     } = this.props
 
     if (!page) { return }
@@ -76,6 +84,7 @@ class Page extends Component {
             preview={preview}
             hasPrevPage={hasPrevPage}
             page={page}
+            isLast={isLast}
             prevPage={prevPage}
             nextPage={nextPage}
             isDisconnected={isDisconnected}

@@ -1,11 +1,13 @@
 import { connect } from 'react-redux'
 import {
   getCurrentPage, getCurrentBlock, pageQuestionsWithoutHidden, pageErrors, getPrevPage, getProgress, getI18n,
+  getIsLastPage,
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
 import {
   nextPage, prevPage,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
+import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
 import { isConnected } from 'core/connection'
 
 export default connect(
@@ -20,6 +22,7 @@ export default connect(
       block: initialized && getCurrentBlock(preview),
       errors: initialized && pageErrors(preview),
       progress: initialized && getProgress(preview),
+      isLast: initialized && getIsLastPage(preview),
       I18n: getI18n(preview),
       isDisconnected: !isConnected(state),
     }
@@ -27,5 +30,6 @@ export default connect(
   {
     nextPage,
     prevPage,
+    fetchCampaignOptions,
   },
 )

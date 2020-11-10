@@ -5,7 +5,7 @@ module Threesixty
     include ::Threesixty::InitialState
     layout 'layouts/end_user'
     before_action :set_locale
-    before_action :set_campaign, only: [:show]
+    before_action :set_campaign, only: %i[show options]
     initial_state_for %i[show]
 
     def system_checks
@@ -43,6 +43,10 @@ module Threesixty
                  managed_subjects: managed_subjects, reports: reports, include: '**'
         end
       end
+    end
+
+    def options
+      render json: @campaign.option, serializer: Threesixty::CampaignOptionsSerializer
     end
 
     def change_locale

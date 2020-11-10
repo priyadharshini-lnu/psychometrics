@@ -774,6 +774,9 @@ Rails.application.routes.draw do
         collection do
           post :change_locale
         end
+        member do
+          get :options
+        end
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'
     end

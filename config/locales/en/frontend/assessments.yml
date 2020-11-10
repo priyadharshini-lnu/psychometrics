@@ -16,7 +16,10 @@ en:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
     page:
       next: 'Next'
+      submit: 'Submit'
       back: 'Back'
+      confirm_message_1: Your responses will be submitted and cannot be changed after this
+      confirm_message_2: Are you sure you want to submit your responses?
     video_response:
       device: 'Allow'
       delete: 'Delete'
