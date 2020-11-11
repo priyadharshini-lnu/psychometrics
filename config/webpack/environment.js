@@ -3,6 +3,7 @@ const { env } = require('process')
 const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const cores = require('os').cpus().length
 const less = require('./loaders/less')
 const tsLoader = require('./loaders/ts-loader')
 // uncomment it in order to use bundle analyzer
@@ -42,10 +43,20 @@ const myCssLoaderOptions = {
 }
 
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
+
+environment.loaders.get('babel').use.unshift({
+  loader: 'thread-loader',
+  options: {
+    workers: cores,
+    workerParallelJobs: 50,
+  },
+})
+
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 environment.loaders.append('less', less)
 environment.loaders.append('typescript', tsLoader)
 
+console.log(environment.loaders.get('typescript'))
 loaders.nodeModules.use[0].options.sourceMaps = true
 
 const vendors = [
