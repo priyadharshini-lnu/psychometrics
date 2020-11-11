@@ -11,7 +11,7 @@ module Datasheets
     validate :no_duplicates, if: :file
 
     def parsed_file
-      @parsed_file ||= Roo::Excelx.new(file.path).parse(headers: true, clean: true)
+      @parsed_file ||= Roo::Excelx.new(file.path).parse(headers: true, clean: false)
     end
 
     private

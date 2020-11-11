@@ -5,6 +5,8 @@
                              data-data="#{ReportSerializer.new(@resource, membership: @user_membership).to_json(include: '**')}"
                              data-locales=@translations.to_json]
 
+= javascript_pack_tag 'vendors2'
+= stylesheet_pack_tag 'vendors2'
 = javascript_pack_tag 'vendors'
 = stylesheet_pack_tag 'vendors'
 = stylesheet_pack_tag 'reports'

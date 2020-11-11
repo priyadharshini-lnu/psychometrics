@@ -6,13 +6,13 @@ module Administration
       attribute :norm_id, Float
       attribute :factor_id, Float
       attribute :norm_type, String
-      attribute :field_value, String
       attribute :field_name, String
+      attribute :field_value, Float
 
-      validates :norm_id, :factor_id, :norm_type, :field_name, :field_value, presence: true
+      validates :norm_id, :factor_id, :norm_type, :field_name, presence: true
 
       validates :field_name, inclusion: { in: %w[mean standard_deviation] }
-      validates :field_value, numericality: { greater_than_or_equal_to: 1 }
+      validates :field_value, numericality: { greater_than_or_equal_to: 1 }, allow_nil: true
     end
   end
 end
