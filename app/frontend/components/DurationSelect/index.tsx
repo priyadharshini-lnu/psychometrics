@@ -45,7 +45,7 @@ const DurationSelect: React.FC<Props> = ({
       onChange={handleChange}
       placeholder="DD:HH:mm"
       defaultValue={moment(asFormattedString(duration as number), format)}
-      popupClassName="tte-custom"
+      popupClassName="picker-now-hidden"
       {...props}
     />
   )
