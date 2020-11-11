@@ -54,6 +54,7 @@ export default function Campaign ({
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const isMD = useMedia('max-md')
+  const hasAssessments = !!campaign.userAssessments.length
   const hasStarted = !!campaignUser.startedAt
   const isExpired = () => {
     if (!fixedTime) return campaignClosed
@@ -109,7 +110,7 @@ export default function Campaign ({
                     className="custom-result mvl"
                   />
                 )}
-                {isExpired() && (
+                {hasAssessments && isExpired() && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
@@ -117,7 +118,7 @@ export default function Campaign ({
                 <InstructionsPanel
                   instructionsEnabled={instructionsEnabled}
                   instructions={instructions}
-                  showBegin={!hasStarted}
+                  showBegin={hasAssessments && !hasStarted}
                   showContinue={canContinue}
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
