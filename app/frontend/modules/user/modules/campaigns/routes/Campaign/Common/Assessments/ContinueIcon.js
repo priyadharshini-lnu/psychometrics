@@ -5,7 +5,7 @@ export default function ContinueIcon ({ disabled }) {
   const color = disabled ? '#aaa' : '#01837F'
 
   return (
-    <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg width="18px" height="17px" className="rtl-flip" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
       </defs>

@@ -116,6 +116,7 @@ class PageFooter extends Component {
               type="primary"
               disabled={isDisconnected}
               onClick={this.handleNextClick}
+              className={styles.next}
             >
               {page.nextBtn || I18n().t('assessments.page.next')}
               <span className="mls mrs fa fa-chevron-right rtl-flip" />

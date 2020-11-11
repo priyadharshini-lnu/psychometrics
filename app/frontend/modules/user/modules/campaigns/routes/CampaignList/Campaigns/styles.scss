@@ -19,7 +19,7 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     .ant-card-hoverable:hover {
       border-color: rgba(34, 34, 34, 0.09);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.09);
-    }    
+    }
     .cover {
       position: relative;
       display: flex;
@@ -176,17 +176,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
   }
 
   .rtl {
-    .cards .card {
-      margin-left: 0;
-      margin-right: 16px;
-      max-width: 20%;
-      flex: 1;
-
-      &:nth-child(1) {
-        margin-right: 0;
-      }
-    }
-
     .button {
       svg {
         margin-left: 8px;
