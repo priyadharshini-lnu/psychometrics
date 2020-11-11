@@ -31,10 +31,10 @@ environment.plugins.insert(
 )
 
 //   uncomment it in order to use bundle analyzer
-//   environment.plugins.insert(
-//     'BundleAnalyzerPlugin',
-//     new BundleAnalyzerPlugin(),
-//   )
+// environment.plugins.insert(
+//   'BundleAnalyzerPlugin',
+//   new BundleAnalyzerPlugin(),
+// )
 
 const myCssLoaderOptions = {
   modules: true,
@@ -66,8 +66,6 @@ const vendors = [
   'react-select',
   'axios',
   'lodash',
-  'antd',
-  '@ant-design',
   'redux-logger',
   'action-cable-react',
   'react-addons-update',
@@ -75,6 +73,52 @@ const vendors = [
   'libs/conditions',
   'libs/library',
   'video.js',
+  'face-api.js',
+  'd3',
+  'codemirror',
+  'sockjs-client',
+  'mime-db',
+  'esprima',
+  'fbemitter',
+]
+
+const vendors2 = [
+  'antd',
+  '@ant-design',
+  'rc-picker',
+  'rc-menu',
+  'rc-tree-select',
+  'rc-table',
+  'rc-tree',
+  'rc-tabs',
+  'rc-select',
+  'rc-animate',
+  'rc-slider',
+  'rc-field-form',
+  'rc-trigger',
+  'rc-input-number',
+  'rc-drawer',
+  'rc-steps',
+  'rc-pagination',
+  'rc-progress',
+  'rc-collapse',
+  'rc-notification',
+  'rc-virtual-list',
+  'rc-mentions',
+  'rc-dialog',
+  'rc-switch',
+  'rc-utils',
+  'rc-cascade',
+  'babel-runtime',
+  'tinycolor2',
+  '@tensorflow/tfjs-core',
+  'io-ts',
+  'fp-ts',
+  'history',
+  'recordrtc',
+  'remarkable',
+  'highcharts',
+  'autolinker',
 ]
 
 environment.config.merge({
@@ -86,10 +130,21 @@ environment.config.merge({
           chunks: 'initial',
           name: 'vendors',
           test (mod) {
+            if (vendors.some(str => mod.context && mod.context.includes(str))) {
+              return true
+            }
+            return false
+          },
+          priority: 999,
+        },
+        adminVendors: {
+          chunks: 'initial',
+          name: 'vendors2',
+          test (mod) {
             if (mod.resource && mod.resource.includes('ant.less')) {
               return true
             }
-            if (vendors.some(str => mod.context && mod.context.includes(str))) {
+            if (vendors2.some(str => mod.context && mod.context.includes(str))) {
               return true
             }
             return false
@@ -110,7 +165,13 @@ environment.config.merge({
           priority: 5,
           enforce: true,
         },
-
+        interactiveAssessments: {
+          chunks: 'initial',
+          name: 'interactiveAssessments',
+          test: /@thetalententerprise\/interactive-assessments/,
+          priority: 5,
+          enforce: true,
+        },
       },
     },
   },

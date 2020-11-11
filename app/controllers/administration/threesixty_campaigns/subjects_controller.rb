@@ -9,7 +9,7 @@ module Administration
 
       def index
         query = policy_scope(::Threesixty::Subject).
-                includes(:self_evaluator, :user).
+                includes(:user).
                 where(campaign_id: threesixty_campaign.campaign_id).
                 where(
                   'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
