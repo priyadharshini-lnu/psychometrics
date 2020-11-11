@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Layout, PageHeader, Row, Col, Progress, ConfigProvider,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
@@ -49,47 +49,54 @@ export default function UserAssessment ({
   if (loaded && campaignOptions.fixed_time) {
     campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
   }
+
+  const isRtl = selectedLanguage && selectedLanguage.direction === 'rtl'
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
-      <div className="page-header-wrap">
-        <Content className="fluid-container">
-          <PageHeader
-            className="page-header"
-            backIcon={!isFrame && (
-              <div>
-                <ArrowLeftOutlined />
-                {' '}
+      <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+        <div className="page-header-wrap">
+          <Content className="fluid-container">
+            <PageHeader
+              className="page-header"
+              backIcon={!isFrame && (
+                <div>
+                  {isRtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                  {' '}
                 Back
-              </div>
+                </div>
+              )}
+              title={(
+                <div>
+                  {assessment.name}
+                </div>
             )}
-            title={(
-              <div>
-                {assessment.name}
-              </div>
-            )}
-            extra={[
-              type !== 'preview_block' && enableProgress
+              extra={[
+                type !== 'preview_block' && enableProgress
                 && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} campaignTimeLeft={campaignTimeLeft} onFinish={markAssessmentTimedOut} />,
-            ]}
-            onBack={() => push(`/campaigns/${campaignId}`) || history.push(`/campaigns/${campaignId}`)}
-          />
-        </Content>
-      </div>
-      <Content className="fluid-container">
-        {availableTranslations && availableTranslations.length > 0 && (
-          <Row type="flex" justify="end" className="mtm mrm lang-row">
-            <Col>
-              <Language
-                assignId={userAssessmentId}
-                selectedLanguage={selectedLanguage}
-                availableTranslations={availableTranslations || []}
-              />
-            </Col>
-          </Row>
-        )}
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
+                <Timer
+                  key="2"
+                  preview={preview}
+                  campaignTimeLeft={campaignTimeLeft}
+                  onFinish={markAssessmentTimedOut}
+                />,
+              ]}
+              onBack={() => push(`/campaigns/${campaignId}`) || history.push(`/campaigns/${campaignId}`)}
+            />
+          </Content>
+        </div>
+        <Content className="fluid-container">
+          {availableTranslations && availableTranslations.length > 0 && (
+            <Row type="flex" justify="end" className="mtm mrm lang-row">
+              <Col>
+                <Language
+                  assignId={userAssessmentId}
+                  selectedLanguage={selectedLanguage}
+                  availableTranslations={availableTranslations || []}
+                />
+              </Col>
+            </Row>
+          )}
           <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
             {loaded && !error && (
               <ResourcesTabs assessment={assessment}>
@@ -107,8 +114,8 @@ export default function UserAssessment ({
               </ResourcesTabs>
             )}
           </div>
-        </ConfigProvider>
-      </Content>
+        </Content>
+      </ConfigProvider>
     </Layout>
   )
 }
