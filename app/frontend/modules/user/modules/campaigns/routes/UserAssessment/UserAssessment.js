@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, ConfigProvider,
+  Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -88,25 +88,23 @@ export default function UserAssessment ({
             </Col>
           </Row>
         )}
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-            {loaded && !error && (
-              <ResourcesTabs assessment={assessment}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl={`/campaigns/${campaignId}`}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                />
-              </ResourcesTabs>
-            )}
-          </div>
-        </ConfigProvider>
+        <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
+          {loaded && !error && (
+            <ResourcesTabs assessment={assessment}>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl={`/campaigns/${campaignId}`}
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+              />
+            </ResourcesTabs>
+          )}
+        </div>
       </Content>
     </Layout>
   )
