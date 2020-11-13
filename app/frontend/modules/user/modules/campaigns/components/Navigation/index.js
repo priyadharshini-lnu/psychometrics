@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons'
 import LangDropdown from 'components/LangDropdown'
 import cs from 'classnames'
+import { isRtl } from 'utils/locales'
 import styles from './styles.scss'
 import connect from './connect'
 import EditProfileModal from '../EditProfileModal'
@@ -28,10 +29,11 @@ function Navigation ({
   const onLogout = () => {
     logout().then(() => location.reload())
   }
+  const rtl = isRtl(I18n.currentLocale())
 
   return (
     <Layout.Header className="threesixty-navigation" mode="horizontal">
-      <ConfigProvider direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>
+      <ConfigProvider direction={rtl ? 'rtl' : 'ltr'}>
         <>
           <div className="logo-wrap" key="logo">
             <a href="/">

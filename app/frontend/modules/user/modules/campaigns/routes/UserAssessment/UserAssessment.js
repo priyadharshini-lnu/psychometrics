@@ -8,6 +8,7 @@ import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { minutesLeft } from 'utils/time'
+import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -29,7 +30,6 @@ export default function UserAssessment ({
     },
   }, fetchAssessment,
   match: { params },
-  history,
   isFrame,
   preview: {
     enableProgress,
@@ -50,7 +50,7 @@ export default function UserAssessment ({
     campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
   }
 
-  const isRtl = selectedLanguage && selectedLanguage.direction === 'rtl'
+  const rtl = isRtl(selectedLanguage && selectedLanguage.code || I18n.currentLocale())
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -61,7 +61,7 @@ export default function UserAssessment ({
               className="page-header"
               backIcon={!isFrame && (
                 <div>
-                  {isRtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                  {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                   {' '}
                 Back
                 </div>
@@ -81,7 +81,7 @@ export default function UserAssessment ({
                   onFinish={markAssessmentTimedOut}
                 />,
               ]}
-              onBack={() => push(`/campaigns/${campaignId}`) || history.push(`/campaigns/${campaignId}`)}
+              onBack={() => push(`/campaigns/${campaignId}`)}
             />
           </Content>
         </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  BrowserRouter as Router, Route,
+  Route,
 } from 'react-router-dom'
 import store, { history } from 'modules/user/store'
 import { Provider } from 'react-redux'
@@ -14,22 +14,20 @@ export default function App () {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Router>
-          <PageLayout>
-            <ConnectionCheck
-              onConnected={() => store.dispatch(connected())}
-              onDisconnected={() => store.dispatch(disconnected())}
+        <PageLayout>
+          <ConnectionCheck
+            onConnected={() => store.dispatch(connected())}
+            onDisconnected={() => store.dispatch(disconnected())}
+          />
+          {routes.map((route, i) => (
+            <Route
+              key={i}
+              path={route.path}
+              exact={route.exact}
+              component={route.main}
             />
-            {routes.map((route, i) => (
-              <Route
-                key={i}
-                path={route.path}
-                exact={route.exact}
-                component={route.main}
-              />
-            ))}
-          </PageLayout>
-        </Router>
+          ))}
+        </PageLayout>
       </ConnectedRouter>
     </Provider>
   )
