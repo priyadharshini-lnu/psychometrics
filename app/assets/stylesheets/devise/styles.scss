@@ -139,6 +139,15 @@ body {
   }
 }
 
+.rtl {
+  .devise {
+    #lang-dropdown {
+      left: 10px;
+      right: initial;
+    }
+  }
+}
+
 .center {
   margin: auto;
 }
