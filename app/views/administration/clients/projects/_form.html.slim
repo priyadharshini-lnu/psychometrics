@@ -14,8 +14,15 @@
                 collection: Client.applicable_levels.map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },
                 include_blank: false,
                 disabled: !f.object.new_record?
+
       - if f.object.project?
         label = t('.other_settings')
+        = f.input :locales,
+          as: :select,
+          collection: Settings.enduser_locales,
+          include_blank: false,
+          include_hidden: false,
+          input_html: { multiple: true }
         = f.input :privacy_consent
         = f.input :strong_password_enabled
         = f.simple_fields_for :privacy_link do |p|

@@ -10,7 +10,8 @@ describe Threesixty::EvaluatorSerializer do
       create(:threesixty_subject, user: dustin, campaign: campaign)
     end
     let!(:evaluator_with_subject) do
-      create(:threesixty_evaluator, user: dustin, campaign: campaign)
+      evaluator = create(:threesixty_evaluator, user: dustin, campaign: campaign)
+      Threesixty::Evaluator.eager_load(:self_subject).find(evaluator.id)
     end
     let!(:option) do
       create(:threesixty_option,
@@ -18,7 +19,8 @@ describe Threesixty::EvaluatorSerializer do
                         'approval' => { 'manager_approves_reports' => true } })
     end
     let!(:evaluator) do
-      create(:threesixty_evaluator, user: create(:user), campaign: campaign)
+      evaluator = create(:threesixty_evaluator, user: create(:user), campaign: campaign)
+      Threesixty::Evaluator.eager_load(:self_subject).find(evaluator.id)
     end
     let(:counters) do
       {

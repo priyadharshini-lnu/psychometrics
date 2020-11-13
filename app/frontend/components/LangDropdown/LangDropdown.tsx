@@ -30,7 +30,7 @@ const LangDropdown: React.FC<Props> = ({ locales, current, changeLocale }) => {
       ))}
     </Menu>
   )
-
+  if (locales.length <= 1) return null
   return (
     <div className={styles.container}>
       <Dropdown overlay={menu} trigger={['click']}>

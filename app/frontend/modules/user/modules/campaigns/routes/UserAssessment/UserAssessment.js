@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, ConfigProvider,
+  Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -50,72 +50,70 @@ export default function UserAssessment ({
     campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
   }
 
-  const rtl = isRtl(selectedLanguage && selectedLanguage.code || I18n.currentLocale())
+  const rtl = isRtl((selectedLanguage && selectedLanguage.code) || I18n.currentLocale())
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
-      <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-        <div className="page-header-wrap">
-          <Content className="fluid-container">
-            <PageHeader
-              className="page-header"
-              backIcon={!isFrame && (
-                <div>
-                  {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
-                  {' '}
-                Back
-                </div>
-              )}
-              title={(
-                <div>
-                  {assessment.name}
-                </div>
-            )}
-              extra={[
-                type !== 'preview_block' && enableProgress
-                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-                <Timer
-                  key="2"
-                  preview={preview}
-                  campaignTimeLeft={campaignTimeLeft}
-                  onFinish={markAssessmentTimedOut}
-                />,
-              ]}
-              onBack={() => push(`/campaigns/${campaignId}`)}
-            />
-          </Content>
-        </div>
+      <div className="page-header-wrap">
         <Content className="fluid-container">
-          {availableTranslations && availableTranslations.length > 0 && (
-            <Row type="flex" justify="end" className="mtm mrm lang-row">
-              <Col>
-                <Language
-                  assignId={userAssessmentId}
-                  selectedLanguage={selectedLanguage}
-                  availableTranslations={availableTranslations || []}
-                />
-              </Col>
-            </Row>
-          )}
-          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-            {loaded && !error && (
-              <ResourcesTabs assessment={assessment}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl={`/campaigns/${campaignId}`}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                />
-              </ResourcesTabs>
+          <PageHeader
+            className="page-header"
+            backIcon={!isFrame && (
+              <div>
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                {' '}
+              Back
+              </div>
             )}
-          </div>
+            title={(
+              <div>
+                {assessment.name}
+              </div>
+          )}
+            extra={[
+              type !== 'preview_block' && enableProgress
+              && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+              <Timer
+                key="2"
+                preview={preview}
+                campaignTimeLeft={campaignTimeLeft}
+                onFinish={markAssessmentTimedOut}
+              />,
+            ]}
+            onBack={() => push(`/campaigns/${campaignId}`)}
+          />
         </Content>
-      </ConfigProvider>
+      </div>
+      <Content className="fluid-container">
+        {availableTranslations && availableTranslations.length > 0 && (
+          <Row type="flex" justify="end" className="mtm mrm lang-row">
+            <Col>
+              <Language
+                assignId={userAssessmentId}
+                selectedLanguage={selectedLanguage}
+                availableTranslations={availableTranslations || []}
+              />
+            </Col>
+          </Row>
+        )}
+        <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
+          {loaded && !error && (
+            <ResourcesTabs assessment={assessment}>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl={`/campaigns/${campaignId}`}
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+              />
+            </ResourcesTabs>
+          )}
+        </div>
+      </Content>
     </Layout>
   )
 }

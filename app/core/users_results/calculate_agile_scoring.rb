@@ -121,8 +121,15 @@ module UsersResults
     end
 
     def calculate_norm_zscore(props, scoring_hash)
+      mean = props['mean']
+      standard_deviation = props['standard_deviation']
+
+      return if [mean, standard_deviation].any?(&:blank?)
+
+      mean, standard_deviation = [mean, standard_deviation].map(&:to_f)
+
       factor_score = scoring_hash['score']
-      zscore = ((factor_score.to_f - props['mean'].to_f) / props['standard_deviation'].to_f).round(5)
+      zscore = ((factor_score.to_f - mean) / standard_deviation).round(5)
       norm_score = Ztable.percentile(zscore)
 
       scoring_hash['zscore'] = zscore
@@ -133,7 +140,7 @@ module UsersResults
       sub_factor_ids = scoring[factor_id].dig('sub_factors')
       sub_factor_scores = prepare_sub_factors(get_factor(factor_id), sub_factor_ids)
 
-      zscores = sub_factor_scores.map { |_, score_hash| score_hash['zscore'] }
+      zscores = sub_factor_scores.map { |_, score_hash| score_hash['zscore'] }.reject(&:blank?)
       # Make sure that the zscores are calculated for all sub-factors of this factor
       if zscores.all?
         zscore = weighted_average(sub_factor_scores, :zscore)

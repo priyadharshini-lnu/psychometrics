@@ -178,6 +178,12 @@ class Client < ApplicationRecord
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
+  def available_locales
+    return locales if locales.any?
+
+    Settings.enduser_locales
+  end
+
   def assign_by_membership_and_assessment(membership_id, assessment_id)
     memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)
   end

@@ -767,7 +767,8 @@ CREATE TABLE public.clients (
     strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
-    migrated boolean DEFAULT false
+    migrated boolean DEFAULT false,
+    locales json DEFAULT '[]'::json
 );
 
 
@@ -920,13 +921,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
+    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL,
-    campaign_id bigint
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -3238,7 +3239,8 @@ CREATE TABLE public.users_results (
     additional_time integer,
     reset_count integer DEFAULT 0,
     started_at timestamp without time zone,
-    completion_reason integer
+    completion_reason integer,
+    prev_pages json DEFAULT '[]'::json
 );
 
 
@@ -7314,8 +7316,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201004131024'),
 ('20201007061140'),
 ('20201007072553'),
-('20201020224539'),
 ('20201011102042'),
-('20201015102640'),
 ('20201020084827'),
-('20201021071559');
+('20201020224539'),
+('20201021071559'),
+('20201110230420'),
+('20201111132959');
+
+

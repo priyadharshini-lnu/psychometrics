@@ -1,4 +1,7 @@
 project_name: Psychometrics
+enduser_locales:
+  - en
+  - ar
 timezone: Abu Dhabi
 timezone_tip: ' (GST)'
 react_dev:

@@ -104,7 +104,13 @@ class Text extends Component {
       case 'DataSheet':
         const columnName = _.get(model, ['props', 'source', 'columns', 0])
         if (columnName) {
-          return _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
+          const field = _.find(AppStore.report.dataSheetColumns, { name: columnName })
+          if (!field) break
+          const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
+          if (field.type === 'Markdown') {
+            return { text: renderMarkdown(text), type: 'html' }
+          }
+          return { text }
         }
         break
       case 'Count':
@@ -115,12 +121,12 @@ class Text extends Component {
         const factor = _.get(model, ['props', 'source', 'factors', 0])
         if (factor) {
           const externalScoring = _.get(ResultStore, ['results', model.assessment_id, 'externalScoring'])
-          return Factors.LookupValue.call(externalScoring, sourceType, factor, 'string')
+          return { text: Factors.LookupValue.call(externalScoring, sourceType, factor, 'string') }
         }
         break
       default:
     }
-    return ''
+    return { text: '' }
   }
 
   renderText () {
@@ -206,10 +212,12 @@ class Text extends Component {
           />
         )
       } if (sourceType === 'ResultText') {
+        const textValue = this.lookupResultTextValue(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
-            {/* TODO: Render as markdown only for Datasheet where the column is markdown */}
-            <div>{this.lookupResultTextValue(model)}</div>
+            {textValue.type === 'html' ? (
+              <div dangerouslySetInnerHTML={{ __html: textValue.text }} />
+            ) : <div>{textValue.text}</div>}
           </div>
         )
       }
