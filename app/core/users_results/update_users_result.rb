@@ -36,9 +36,9 @@ module UsersResults
       attributes = form.attributes_with_values
       attributes.delete(:status) if users_result.completed?
       users_result.update!(attributes)
-
       # Calculates scoring and sets time of completion
       if users_result.completed?
+        users_result.answers = ::UsersResults::RemoveDirtyResults.call!(users_result.answers)
         users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result, {})
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
