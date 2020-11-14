@@ -24,7 +24,8 @@
     "paths": {
       "*": [
         "app/frontend/*",
-        "app/frontend/modules/survey*"
+        "app/frontend/modules/survey*",
+        "app/frontend/modules/survey/*"
       ]
     },
     "typeRoots": [
@@ -39,8 +40,8 @@
     "public"
   ],
   "include": [
-    "app/frontend",
-    "app/frontend/modules/survey",
+    "./app/frontend",
+    "./app/frontend/modules/survey",
   ],
   "compileOnSave":false
 }
