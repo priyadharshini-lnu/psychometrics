@@ -6,10 +6,13 @@ module.exports = {
     {
       loader: 'thread-loader',
       options: {
-        workers: cores,
-        workerParallelJobs: 50,
+        workers: cores / 2,
       },
     },
-    'ts-loader',
+    {
+      loader: 'ts-loader',
+      options: {
+      },
+    },
   ],
 }

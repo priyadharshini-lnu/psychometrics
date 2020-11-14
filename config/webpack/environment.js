@@ -4,6 +4,7 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const cores = require('os').cpus().length
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const less = require('./loaders/less')
 const tsLoader = require('./loaders/ts-loader')
 // uncomment it in order to use bundle analyzer
@@ -31,6 +32,12 @@ environment.plugins.insert(
   }),
 )
 
+// environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin({
+//   eslint: {
+//     files: './app/frontend/**/*.{ts,tsx,js,jsx}',
+//   },
+// }))
+
 //   uncomment it in order to use bundle analyzer
 // environment.plugins.insert(
 //   'BundleAnalyzerPlugin',
@@ -47,8 +54,7 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 environment.loaders.get('babel').use.unshift({
   loader: 'thread-loader',
   options: {
-    workers: cores,
-    workerParallelJobs: 50,
+    workers: cores / 2,
   },
 })
 
@@ -135,6 +141,8 @@ const vendors2 = [
 environment.config.merge({
   stats: 'errors-only',
   optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
     splitChunks: {
       cacheGroups: {
         vendors: {

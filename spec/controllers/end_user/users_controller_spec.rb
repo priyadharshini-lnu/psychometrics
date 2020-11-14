@@ -13,10 +13,10 @@ describe EndUser::UsersController, type: :controller do
     it 'change locale' do
       post :change_locale, params: {
         format: :json,
-        locale: 'ru'
+        locale: 'ar'
       }
       expect(response).to have_http_status(:success)
-      expect(I18n.locale).to eq(:ru)
+      expect(I18n.locale).to eq(:ar)
     end
   end
 end

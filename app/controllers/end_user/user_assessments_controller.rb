@@ -31,6 +31,12 @@ class EndUser::UserAssessmentsController < ApplicationController
 
   def pass
     lang = params[:lang] || @user_assessment.selected_locale || user_locale
+    if @current_project.available_locales.include?(lang.to_s)
+      cookies[:locale] = lang
+      current_user&.update_column(:locale, lang)
+    end
+    set_locale
+
     UserAssessments::Pass.call!(@user_assessment, lang)
 
     respond_to do |format|
