@@ -126,7 +126,7 @@ const HANDLERS = {
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
-      prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
+      prevPages: result.prev_pages || [],
       highlights: _.keyBy(highlights, 'id'),
     }
   },

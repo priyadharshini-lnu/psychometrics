@@ -7322,5 +7322,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201021071559'),
 ('20201110230420'),
 ('20201111132959');
-
-

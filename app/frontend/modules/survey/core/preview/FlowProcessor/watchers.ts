@@ -22,8 +22,8 @@ import {
   getQuestion,
 } from './selectors'
 import {
-  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT, ADD_PREV_PAGE,
-  REMOVE_PREV_PAGE, ANSWER, MARK_ASSESSMENT_TIMED_OUT,
+  INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
+  ANSWER, MARK_ASSESSMENT_TIMED_OUT,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
 
@@ -48,14 +48,6 @@ function* genPrevPage () {
     yield put(changeElement(prev.element, prev.page))
     yield put(removePrevPage())
     yield put(clearInProgressQuestion())
-  }
-}
-
-function* genSavePrevPages () {
-  const state = yield select()
-  if (state.preview.type === 'pass_assessment') {
-    const data = state.preview.prevPages
-    localStorage.setItem(`prev_${state.preview.dbResult.id}`, JSON.stringify(data))
   }
 }
 
@@ -125,8 +117,6 @@ export const watchers = [
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
-  takeEvery(ADD_PREV_PAGE, genSavePrevPages),
-  takeEvery(REMOVE_PREV_PAGE, genSavePrevPages),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
 ]

@@ -107,6 +107,7 @@ export const saveResults = (preview, questionIds, currentBlockId?): SaveResults 
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
       status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
+      prev_pages: preview.prevPages,
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,

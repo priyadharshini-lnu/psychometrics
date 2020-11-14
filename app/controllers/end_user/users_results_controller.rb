@@ -93,7 +93,8 @@ module EndUser
 
     def resource_params
       params[:resource].permit(
-        :current_element, :current_page, :status, :step, :norm_id, embedded_data: {}, answers: {}
+        :current_element, :current_page, :status, :step, :norm_id, prev_pages: [:element, :page, questionIds: []],
+        embedded_data: {}, answers: {}
       )
     end
 

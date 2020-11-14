@@ -11,5 +11,6 @@ module UsersResults
     attribute :current_page
     attribute :last_activity_at, DateTime
     attribute :completion_reason, String, default: 'user_completed'
+    attribute :prev_pages, Array, default: []
   end
 end
