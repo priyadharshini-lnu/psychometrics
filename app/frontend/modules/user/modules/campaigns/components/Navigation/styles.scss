@@ -21,6 +21,17 @@
       border-bottom: none;
     }
   }
+
+  .rtl {
+    .ant-layout-header.threesixty-navigation {
+      .align-right {
+        float: left;
+      }
+      .logo-wrap {
+        float: right
+      }
+    }
+  }
 }
 
 .userIcon {

@@ -200,6 +200,16 @@
   }
 }
 
+.rtl {
+  .devise {
+    .nav-tabs {
+      >li {
+        float: right;
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 320px) {
   .devise {
     .panel {

@@ -1,10 +1,9 @@
 import React from 'react'
-import {
-  BrowserRouter as Router, Route,
-} from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import store, { history } from 'modules/user/store'
 import { ConfigProvider } from 'antd'
-import store from 'modules/user/store'
 import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'connected-react-router'
 import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
 import routes from './routes'
@@ -16,7 +15,7 @@ export default function App () {
   return (
     <Provider store={store}>
       <ConfigProvider locale={antdLocale} direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}>
-        <Router>
+        <ConnectedRouter history={history}>
           <PageLayout>
             <ConnectionCheck
               onConnected={() => store.dispatch(connected())}
@@ -31,7 +30,7 @@ export default function App () {
               />
             ))}
           </PageLayout>
-        </Router>
+        </ConnectedRouter>
       </ConfigProvider>
     </Provider>
   )

@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import {
   Layout, PageHeader, Row, Col, Progress,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
 import { minutesLeft } from 'utils/time'
+import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
@@ -29,7 +30,6 @@ export default function UserAssessment ({
     },
   }, fetchAssessment,
   match: { params },
-  history,
   isFrame,
   preview: {
     enableProgress,
@@ -38,6 +38,7 @@ export default function UserAssessment ({
   preview,
   markAssessmentTimedOut,
   progress,
+  push,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
@@ -48,6 +49,8 @@ export default function UserAssessment ({
   if (loaded && campaignOptions.fixed_time) {
     campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
   }
+
+  const rtl = isRtl((selectedLanguage && selectedLanguage.code) || I18n.currentLocale())
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -57,22 +60,27 @@ export default function UserAssessment ({
             className="page-header"
             backIcon={!isFrame && (
               <div>
-                <ArrowLeftOutlined />
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                 {' '}
-                Back
+              Back
               </div>
             )}
             title={(
               <div>
                 {assessment.name}
               </div>
-            )}
+          )}
             extra={[
               type !== 'preview_block' && enableProgress
-                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} campaignTimeLeft={campaignTimeLeft} onFinish={markAssessmentTimedOut} />,
+              && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
+              <Timer
+                key="2"
+                preview={preview}
+                campaignTimeLeft={campaignTimeLeft}
+                onFinish={markAssessmentTimedOut}
+              />,
             ]}
-            onBack={() => history.push(`/campaigns/${campaignId}`)}
+            onBack={() => push(`/campaigns/${campaignId}`)}
           />
         </Content>
       </div>

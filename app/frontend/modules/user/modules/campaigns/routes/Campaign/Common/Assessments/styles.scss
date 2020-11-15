@@ -184,17 +184,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
   }
 
   .rtl {
-    .cards .card {
-      margin-left: 0;
-      margin-right: 16px;
-      max-width: 20%;
-      flex: 1;
-
-      &:nth-child(1) {
-        margin-right: 0;
-      }
-    }
-
     .button {
       svg {
         margin-left: 8px;
