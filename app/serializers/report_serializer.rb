@@ -108,14 +108,20 @@ class ReportSerializer < ActiveModel::Serializer
     end
   end
 
+  # TODO: Remove result.norm_data below after final campaign migration
+  def result_norm_id(result)
+    result.norm_data&.dig('id')&.to_i || result.norm_id
+  end
+
   # Used for Piped Text
   def norm_used
-    norms = Norm.where(id: results.map(&:norm_id).compact).index_by(&:id)
+    norms = Norm.where(id: results.map { |result| result_norm_id(result) }.compact).index_by(&:id)
 
     results.each_with_object({}) do |result, acc|
-      next unless result.norm_id
+      norm_id = result_norm_id(result)
+      next unless norm_id
 
-      acc[result.assessment_id] = norms[result.norm_id]&.decorate&.display_name
+      acc[result.assessment_id] = norms[norm_id]&.decorate&.display_name
     end
   end
 
