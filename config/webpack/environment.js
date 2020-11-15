@@ -61,7 +61,7 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 environment.loaders.get('babel').use.unshift({
   loader: 'thread-loader',
   options: {
-    workers: cores - 2,
+    workers: cores - 1,
     poolTimeout: Infinity,
   },
 })

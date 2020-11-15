@@ -7,7 +7,7 @@ module.exports = {
     {
       loader: 'thread-loader',
       options: {
-        workers: cores - 2,
+        workers: cores - 1,
         poolTimeout: Infinity,
       },
     },
