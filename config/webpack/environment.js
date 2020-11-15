@@ -3,7 +3,6 @@ const { env } = require('process')
 const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const cores = require('os').cpus().length
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const less = require('./loaders/less')
 const tsLoader = require('./loaders/ts-loader')
@@ -61,7 +60,6 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 environment.loaders.get('babel').use.unshift({
   loader: 'thread-loader',
   options: {
-    workers: cores - 1,
     poolTimeout: Infinity,
   },
 })
