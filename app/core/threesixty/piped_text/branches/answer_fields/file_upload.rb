@@ -25,8 +25,9 @@ module Threesixty
               )
             end
 
-            if media_response
-              file_path = media_response.asset.url
+            file_path = media_response.asset.url if media_response
+
+            if file_path
               if get_extname(file_path).in?(PDF_EXTENSIONS)
                 broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
               else
