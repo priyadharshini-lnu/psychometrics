@@ -13,7 +13,21 @@ module Threesixty
 
           def call
             file_path = context.dig(:answers, path.second.to_s, 'answers', 0, 'value')
-            if file_path && valid_file_path?(file_path)
+
+            if context[:assign]
+              media_response = MediaResponse.find_by(question_id: path.second, assign_id: context[:assign].id)
+            end
+
+            if context[:users_result]
+              media_response = MediaResponse.find_by(
+                question_id: path.second,
+                users_result_id: context[:users_result].id
+              )
+            end
+
+            file_path = media_response.asset.url if media_response
+
+            if file_path
               if get_extname(file_path).in?(PDF_EXTENSIONS)
                 broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
               else
