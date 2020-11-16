@@ -44,15 +44,6 @@ if (__DEV__) {
   }))
 }
 
-environment.plugins.insert('Progress', new webpack.ProgressPlugin({
-  profile: true,
-  modulesCount: 500,
-  modules: false,
-  activeModules: true,
-  // TODO webpack 5 default this to true
-  entries: true,
-}))
-
 //   uncomment it in order to use bundle analyzer
 // environment.plugins.insert(
 //   'BundleAnalyzerPlugin',
@@ -69,7 +60,7 @@ const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === '
 environment.loaders.get('babel').use.unshift({
   loader: 'thread-loader',
   options: {
-    poolTimeout: Infinity,
+    poolTimeout: 30000,
   },
 })
 environment.loaders.get('babel').use.unshift({ loader: 'cache-loader' })

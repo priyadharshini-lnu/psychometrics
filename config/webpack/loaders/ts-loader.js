@@ -5,13 +5,14 @@ module.exports = {
     {
       loader: 'thread-loader',
       options: {
-        poolTimeout: Infinity,
+        poolTimeout: 30000,
       },
     },
     {
       loader: 'ts-loader',
       options: {
         transpileOnly: true,
+        happyPackMode: true,
       },
     },
   ],
