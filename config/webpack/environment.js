@@ -44,6 +44,15 @@ if (__DEV__) {
   }))
 }
 
+environment.plugins.insert('Progress', new webpack.ProgressPlugin({
+  profile: true,
+  modulesCount: 500,
+  modules: false,
+  activeModules: true,
+  // TODO webpack 5 default this to true
+  entries: true,
+}))
+
 //   uncomment it in order to use bundle analyzer
 // environment.plugins.insert(
 //   'BundleAnalyzerPlugin',
