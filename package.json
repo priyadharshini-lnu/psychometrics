@@ -9,6 +9,7 @@
   "scripts": {
     "export_pdf": "node ./lib/raster.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --cache",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx app/frontend/ --max-warnings=0 --cache --fix",
     "test": "jest",
     "test:watch": "jest --watch"
   },
