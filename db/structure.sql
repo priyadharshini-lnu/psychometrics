@@ -38,6 +38,20 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -60,6 +74,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 
 SET default_tablespace = '';
+
+SET default_with_oids = false;
 
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
@@ -944,13 +960,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
+    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL,
-    campaign_id bigint
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -2128,6 +2144,42 @@ ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
 
 --
+-- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.proctoring_sessions (
+    id bigint NOT NULL,
+    session_id uuid DEFAULT public.gen_random_uuid(),
+    campaign_user_id bigint,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    status integer,
+    results jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.proctoring_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
+
+
+--
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2851,7 +2903,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3672,6 +3725,13 @@ ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: proctoring_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
+
+
+--
 -- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4335,6 +4395,14 @@ ALTER TABLE ONLY public.privacy_consents
 
 ALTER TABLE ONLY public.privacy_links
     ADD CONSTRAINT privacy_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proctoring_sessions proctoring_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -5423,6 +5491,13 @@ CREATE INDEX index_privacy_consents_on_user_id ON public.privacy_consents USING 
 --
 
 CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btree (client_id);
+
+
+--
+-- Name: index_proctoring_sessions_on_campaign_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
 
 
 --
@@ -6655,6 +6730,14 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: proctoring_sessions fk_rails_be5ab3be9f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_be5ab3be9f FOREIGN KEY (campaign_user_id) REFERENCES public.campaign_users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: user_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7376,6 +7459,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201007061140'),
 ('20201007072553'),
 ('20201011102042'),
+('20201015102640'),
 ('20201020084827'),
 ('20201020224539'),
 ('20201021071559'),

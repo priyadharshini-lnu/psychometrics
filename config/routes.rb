@@ -632,6 +632,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :webhooks do
+    resource :examus, only: %i[create]
+  end
+
   devise_scope :user do
     get 'users/sign_up/success', to: 'users/registrations#success'
   end

@@ -2,6 +2,7 @@
 
 module EndUser
   class CampaignOptionsSerializer < ActiveModel::Serializer
-    attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions_enabled, :instructions
+    attributes :fixed_time, :time_zone, :fixed_time_duration, :instructions_enabled, :instructions,
+               :proctoring_enabled, :identification, :rules
   end
 end

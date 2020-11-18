@@ -13,10 +13,10 @@ module EndUser
 
     def status
       return object.status unless object.fixed_time?
-      return object.status unless campaign_user_object.started_at
       return object.status if campaign_time_extended?
 
       expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
+      expected_end_time += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
       return 'closed' if expected_end_time < Time.now && object.active?
 
       object.status
@@ -30,14 +30,19 @@ module EndUser
       return values unless object.fixed_time?
       return values if user_assessments.none?
 
-      if campaign_user_object.started_at
-        values['completed_at'] = campaign_user_object.started_at + object.fixed_time_duration.minutes
-        values['completion_status'] = if campaign_user_object.user_assessments.all?(&:completed?)
-                                        'completed'
-                                      else
-                                        'interrupted'
-                                      end
+      unless campaign_user_object.started_at
+        values['expiry_date'] = nil
+        values['completion_status'] = :not_started
+
+        return values
       end
+
+      completed_at = campaign_user_object.started_at + object.fixed_time_duration.minutes
+      completed_at += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
+
+      campaign_closed = Time.now > completed_at
+      values['completed_at'] = completed_at if campaign_closed
+      values['completion_status'] = determine_completion_status(campaign_closed)
 
       values
     end
@@ -60,6 +65,12 @@ module EndUser
       object.campaign_users.find_by(user_id: current_user.id)
     end
 
+    def ungrouped_assessments_ids
+      object.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
+    end
+
+    private
+
     def campaign_time_extended?
       !!campaign_user_object.additional_time && campaign_user_object.expiry_date.blank?
     end
@@ -68,8 +79,10 @@ module EndUser
       @current_user ||= instance_options[:current_user]
     end
 
-    def ungrouped_assessments_ids
-      object.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
+    def determine_completion_status(campaign_closed)
+      return :completed if campaign_closed
+
+      campaign_user_object.user_assessments.all?(&:completed?) ? :completed : :in_progress
     end
   end
 end
