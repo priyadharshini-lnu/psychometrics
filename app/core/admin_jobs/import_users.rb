@@ -1,0 +1,40 @@
+# frozen_string_literal: true
+
+module AdminJobs
+  class ImportUsers < BaseCommand
+    include ActionView::Helpers::TagHelper
+    include ActionView::Context
+
+    private_attr_reader :record
+
+    def initialize(record)
+      @record = record
+    end
+
+    def call
+      import_data = CSV.parse(URI.open(record.file.url))
+      import_data = ::Campaigns::Users::ParseImportData.call!(import_data)
+      updated_users = ::Campaigns::Users::ProcessImport.call!(
+        campaign, record.owner, import_data[1..-1], record.data['operation'], record
+      )
+      content =
+        if updated_users
+          [
+            content_tag(:div, I18n.t('user.modals.import.user_with_unchanged_passwords')),
+            content_tag(:ul) do
+              updated_users.map do |u|
+                content_tag(:li, "#{u[:first_name]} #{u[:last_name]} (#{u[:email]})")
+              end.join.html_safe
+            end
+          ].join.html_safe
+        end
+      broadcast :ok, { content: content }
+    end
+
+    private
+
+    def campaign
+      Campaign.find(record.data['campaign_id'])
+    end
+  end
+end

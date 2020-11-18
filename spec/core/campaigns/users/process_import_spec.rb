@@ -5,6 +5,7 @@ require 'rails_helper'
 describe Campaigns::Users::ProcessImport do
   let!(:campaign) { create(:campaign) }
   let!(:current_user) { create(:user) }
+  let(:admin_job_record) { create(:admin_job_record) }
   let(:import_data) do
     [
       {
@@ -28,7 +29,7 @@ describe Campaigns::Users::ProcessImport do
 
   it '.call' do
     campaign.users.create(email: 'vlad@gmail.com', password: 'asdasd')
-    data = described_class.call!(campaign, current_user, import_data, 'add_with_existing_response')
+    data = described_class.call!(campaign, current_user, import_data, 'add_with_existing_response', admin_job_record)
 
     vlad_user = campaign.users.find_by(email: 'vlad@gmail.com')
     vlad_campaign_user = campaign.campaign_users.find_by(user_id: vlad_user.id)

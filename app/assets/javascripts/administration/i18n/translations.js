@@ -672,6 +672,35 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "user_form": "User"
     }
   },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
+  },
   "administration": {
     "actions": "Actions",
     "active": "Active",
@@ -7216,7 +7245,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }
@@ -8003,6 +8032,35 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "user": "Users",
       "user_form": "User"
     }
+  },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
   },
   "administration": {
     "actions": "Actions",
@@ -14535,7 +14593,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }
@@ -15321,6 +15379,35 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "user": "User",
       "user_form": "User"
     }
+  },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
   },
   "administration": {
     "actions": "Actions",
@@ -21853,7 +21940,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }

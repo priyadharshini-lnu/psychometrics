@@ -562,6 +562,12 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
     put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
 
+    resources :admin_jobs, only: %i[index] do
+      collection do
+        put :read_all
+      end
+    end
+
     resources :communications, only: %i[index new create destroy show] do
       member do
         get :download_history, defaults: { format: :csv }

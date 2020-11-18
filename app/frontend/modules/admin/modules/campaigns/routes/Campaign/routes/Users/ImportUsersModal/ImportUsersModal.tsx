@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
-import cs from 'classnames'
 import {
   Button, Modal, message, Alert, Form, Radio, Input,
 } from 'antd'
 import Event from 'interfaces/Event'
 import _ from 'lodash'
-import { ShortUser as User } from 'modules/admin/modules/campaigns/core/users'
-import UserList from './UserList'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
@@ -27,7 +24,6 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
 }) => {
   const [form] = Form.useForm()
   const [file, setFile] = useState<File | null>(null)
-  const [updatedUsers, setUpdatedUsers] = useState<User[]>([])
   const [, setFields] = useState({})
 
   const [errors, setErrors] = useState([])
@@ -41,12 +37,9 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
     })
     data.append('import_data', file)
     importUsers(campaignId, data)
-      .then(({ response }: { response }) => {
+      .then(() => {
         message.info(I18n.t('user.modals.import.success_msg'))
-        setUpdatedUsers(response)
-        if (!response.length) {
-          close()
-        }
+        close()
       })
       .catch(setErrors)
   }
@@ -56,8 +49,6 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
     height: '30px',
     lineHeight: '30px',
   }
-
-  const isFormView = () => !updatedUsers.length
 
   return (
     <Modal
@@ -69,22 +60,13 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
         <Button
           key="back"
           onClick={close}
-          className={cs({ hidden: !isFormView() })}
         >
           {I18n.t('common.actions.cancel')}
-        </Button>,
-        <Button
-          key="close"
-          onClick={close}
-          className={cs({ hidden: isFormView() })}
-        >
-          {I18n.t('common.actions.close')}
         </Button>,
         <Button
           key="submit"
           type="primary"
           disabled={!form.getFieldValue('importData')}
-          className={cs({ hidden: !isFormView() })}
           onClick={() => {
             form.submit()
           }
@@ -95,8 +77,7 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
         </Button>,
       ]}
     >
-      {isFormView() && <p>{I18n.t('user.modals.import.body')}</p>}
-      {!isFormView() && <p>{I18n.t('user.modals.import.user_with_unchanged_passwords')}</p>}
+      <p>{I18n.t('user.modals.import.body')}</p>
       {errors.length ? (
         <Alert
           message={false}
@@ -105,8 +86,6 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
           className="mbm"
         />
       ) : null}
-      {!isFormView() && <UserList users={updatedUsers} />}
-      {isFormView() && (
       <Form
         name="basic"
         form={form}
@@ -133,8 +112,6 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
           </Radio.Group>
         </Form.Item>
       </Form>
-      )
-      }
     </Modal>
   )
 }

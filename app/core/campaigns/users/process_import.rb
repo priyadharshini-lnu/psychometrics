@@ -3,19 +3,21 @@
 module Campaigns
   module Users
     class ProcessImport < BaseCommand
-      private_attr_reader :campaign, :current_user, :rows, :operation
+      private_attr_reader :campaign, :current_user, :rows, :operation, :job_record
       private_attr_accessor :users_those_pwd_not_changed
 
-      def initialize(campaign, current_user, rows, operation)
+      def initialize(campaign, current_user, rows, operation, job_record)
         @campaign = campaign
         @current_user = current_user
         @rows = rows
         @operation = operation
+        @job_record = job_record
         @users_those_pwd_not_changed = []
       end
 
       def call
         transaction do
+          progress = 0
           rows.each do |attrs|
             user = campaign.users.find_by(email: attrs[:email])
             if user
@@ -28,6 +30,8 @@ module Campaigns
                 end
               end
             end
+            progress += 100 / rows.size
+            AdminJob.update_progress(job_record, progress)
           end
         end
         broadcast :ok, users_those_pwd_not_changed

@@ -53,9 +53,10 @@ module Administration
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).
                with_context(campaign: campaign)
         if form.valid?
-          updated_users = ::Campaigns::Users::ProcessImport.
-                          call!(campaign, current_user, import_data[1..-1], params[:operation])
-          render json: updated_users
+          AdminJob.call(:import_users, {
+            operation: params[:operation], campaign_id: params[:new_campaign_id]
+          }, current_user, params[:import_data])
+          render json: :ok
         else
           render json: { errors: form.errors.full_messages }, status: 422
         end

@@ -57,8 +57,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         operation: 'add_with_existing_response',
         import_data: file
       }
-      expect(campaign.users.exists?(email: 'vlad@gmail.com')).to be_truthy
-      expect(campaign.users.exists?(email: 'fedor@gmail.com')).to be_truthy
+      expect(AdminJobRecord.exists?(operation: 'import_users')).to be_truthy
     end
   end
 

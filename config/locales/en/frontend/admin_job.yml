@@ -1,0 +1,26 @@
+en:
+  admin_jobs:
+    notifications: Notifications
+    mark_as_read: Mark all read
+    more: More
+    close: Close
+    errors: Errors
+    attrs:
+      id: 'ID'
+      name: 'Name'
+      created_at: 'Created Date'
+      updated_at: 'Modified Date'
+      active: 'Active'
+      statuses:
+        scheduled: Scheduled
+        in_progress: In Progress
+        completed: Completed
+        completed_with_errors: Completed with errors
+      operations:
+        import_users: "Import Users"
+        rescore_assessment: "Rescore Assessment"
+        import_raw_data: "Import Raw Data"
+        import_scoring_data: "Import Scoring Data"
+        bulk_reports: "Bulk Reports"
+        regenerate_campaign_reports: "Regenerate Campaign Reports"
+        regenerate_report: "Regenerate Report"

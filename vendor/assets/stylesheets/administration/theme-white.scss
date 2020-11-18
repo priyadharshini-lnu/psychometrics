@@ -250,16 +250,7 @@ body.page-container-boxed .page-container {
 }
 /* END PAGE CONTAINER */
 /* NAVIGATION */
-.x-navigation,
-.x-navigation ul {
-  width: 100%;
-  padding: 0px;
-  margin: 0px;
-  float: left;
-  list-style: none;
-  display: block;
-  z-index: 3;
-}
+
 .x-navigation {
   background: #fff;
   /* NAV LIST ELEMENT */
@@ -277,7 +268,7 @@ body.page-container-boxed .page-container {
   /* NAV INFORMER */
   /* END NAV INFORMER */
 }
-.x-navigation li {
+.x-navigation > li {
   float: left;
   display: block;
   width: 100%;
@@ -285,7 +276,7 @@ body.page-container-boxed .page-container {
   margin: 0px;
   position: relative;
 }
-.x-navigation li > a {
+.x-navigation > li > a {
   display: block;
   float: left;
   width: 100%;
@@ -298,8 +289,8 @@ body.page-container-boxed .page-container {
   border-bottom: 1px solid #F0F5F7;
   vertical-align: text-bottom;
 }
-.x-navigation li > a .fa,
-.x-navigation li > a .glyphicon {
+.x-navigation > li > a .fa,
+.x-navigation > li > a .glyphicon {
   color: #3e4a61;
   text-align: center;
   width: 20px;
@@ -312,7 +303,7 @@ body.page-container-boxed .page-container {
   -o-transition: color 200ms ease;
   transition: color 200ms ease;
 }
-.x-navigation li > a:hover {
+.x-navigation > li > a:hover {
   background: #1caf9a;
   color: #fff;
   -webkit-transition: all 200ms ease;
@@ -321,35 +312,9 @@ body.page-container-boxed .page-container {
   -o-transition: all 200ms ease;
   transition: all 200ms ease;
 }
-.x-navigation li > a:hover .fa,
-.x-navigation li > a:hover .glyphicon {
+.x-navigation > li > a:hover .fa,
+.x-navigation > li > a:hover .glyphicon {
   color: #fff;
-}
-.x-navigation li > ul {
-  background: #fff;
-  max-height: 0px;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
-  overflow: hidden;
-}
-.x-navigation li > ul li > a {
-  color: #555;
-  font-size: 12px;
-  line-height: 19px;
-  font-weight: 400;
-  padding: 12px 10px;
-  border-bottom-color: #fff;
-}
-.x-navigation li > ul li > a:hover {
-  background: #1caf9a;
-  color: #ffffff;
-}
-.x-navigation li > ul li.active > a {
-  background: #1caf9a;
-  color: #ffffff;
 }
 .x-navigation li.xn-openable:before {
   position: absolute;
@@ -397,42 +362,6 @@ color:#fff;
 .x-navigation > li.xn-openable:before {
   top: 15px;
 }
-.x-navigation > li > ul > li > a {
-  padding-left: 25px;
-}
-.x-navigation > li > ul > li > a:hover {
-  padding-left: 30px;
-}
-.x-navigation > li > ul > li.active > a {
-  padding-left: 30px;
-}
-.x-navigation > li > ul > li > ul > li > a {
-  padding-left: 40px;
-}
-.x-navigation > li > ul > li > ul > li > a:hover {
-  padding-left: 45px;
-}
-.x-navigation > li > ul > li > ul > li.active > a {
-  padding-left: 45px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li > a {
-  padding-left: 50px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li > a:hover {
-  padding-left: 55px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li.active > a {
-  padding-left: 55px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li > ul > li > a {
-  padding-left: 60px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li > ul > li > a:hover {
-  padding-left: 65px;
-}
-.x-navigation > li > ul > li > ul > li > ul > li > ul > li.active > a {
-  padding-left: 65px;
-}
 .x-navigation > li:last-child > a {
   -moz-border-radius: 0px 0px 0px 5px;
   -webkit-border-radius: 0px 0px 0px 5px;
@@ -474,19 +403,6 @@ color:#fff;
 .x-navigation.x-navigation-horizontal > li.active > a .fa,
 .x-navigation.x-navigation-horizontal > li.active > a .glyphicon {
   color: #1caf9a;
-}
-.x-navigation.x-navigation-horizontal > li ul {
-  width: 220px;
-  position: absolute;
-  overflow: visible;
-  display: none;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  -moz-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
-  z-index: 3;
 }
 .x-navigation.x-navigation-horizontal > li ul ul.xn-drop-white:after {
   border-right-color: #FFF;
