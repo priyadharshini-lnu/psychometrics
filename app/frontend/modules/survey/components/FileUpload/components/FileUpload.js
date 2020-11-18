@@ -103,31 +103,31 @@ export default function FileUpload ({
     <div>
       {showError && <ErrorList errorCodes={errorCodes} errorMessages={errorMessages} errorProps={model.props} />}
       {uploadState !== UPLOAD_STATES.SAVED && (
-      <>
-        <Upload
-          accept={_.join(fileExtension, ',')}
-          customRequest={() => {}}
-          fileList={[]}
-          onChange={handleFileChange}
-          disabled={readOnly}
-        >
-          <Button>
-            <UploadOutlined />
-            {' '}
-            Select File
-          </Button>
-          {'   '}
-          <span>{file && file.name}</span>
-        </Upload>
-        {showProgress && (
-          <Progress
-            type="circle"
-            percent={percent}
-            width={32}
-            className="mtm"
-          />
-        )}
-      </>
+        <>
+          <Upload
+            accept={_.join(fileExtension, ',')}
+            customRequest={() => {}}
+            fileList={[]}
+            onChange={handleFileChange}
+            disabled={readOnly}
+          >
+            <Button>
+              <UploadOutlined />
+              {' '}
+              Select File
+            </Button>
+            {'   '}
+            <span>{file && file.name}</span>
+          </Upload>
+          {showProgress && (
+            <Progress
+              type="circle"
+              percent={percent}
+              width={32}
+              className="mtm"
+            />
+          )}
+        </>
       )}
       {uploadState === UPLOAD_STATES.SAVED
         && <FileDetails localFile={file} savedFile={mediaResponse} removeFile={removeFile} readOnly={readOnly} /> }
