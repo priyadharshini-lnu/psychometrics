@@ -55,6 +55,8 @@ en:
           name: Name
           created_at: Created date
           updated_at: Updated date
+        destroy:
+          successfully: Report successfully deleted from the report bundle
         resource:
           tooltips:
             delete: Delete Report from Bundle
