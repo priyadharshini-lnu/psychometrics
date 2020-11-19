@@ -685,7 +685,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "import_users": "Import Users",
         "regenerate_campaign_reports": "Regenerate Campaign Reports",
         "regenerate_report": "Regenerate Report",
-        "rescore_assessment": "Rescore Assessment"
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
       },
       "statuses": {
         "completed": "Completed",
@@ -1234,7 +1235,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -4227,6 +4228,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -6610,7 +6614,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
         "number_of_evaluators_invited": "مدعو التقييم",
@@ -8046,7 +8050,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "import_users": "Import Users",
         "regenerate_campaign_reports": "Regenerate Campaign Reports",
         "regenerate_report": "Regenerate Report",
-        "rescore_assessment": "Rescore Assessment"
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
       },
       "statuses": {
         "completed": "Completed",
@@ -8595,7 +8600,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -11588,6 +11593,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -13964,7 +13972,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
         "relationships": "Relationships",
@@ -15393,7 +15401,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "import_users": "Import Users",
         "regenerate_campaign_reports": "Regenerate Campaign Reports",
         "regenerate_report": "Regenerate Report",
-        "rescore_assessment": "Rescore Assessment"
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
       },
       "statuses": {
         "completed": "Completed",
@@ -15942,7 +15951,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -18935,6 +18944,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -21311,7 +21323,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
         "relationships": "Relationships",

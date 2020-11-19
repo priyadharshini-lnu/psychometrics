@@ -60,8 +60,8 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
 
   describe 'POST rescore_responses' do
     it 'schedules RecomputeResultsJob' do
-      expect(::CampaignAssessments::RecomputeResultsJob).to receive(:perform_later).
-        with(campaign_assessment, current_user)
+      expect(AdminJob).to receive(:call).
+        with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
 
       post :rescore_responses, params: {
         id: assessment.id,

@@ -2,10 +2,10 @@
 
 module Administration
   class AdminJobsController < Administration::BaseController
-    before_action :skip_authorization, only: %i[index read_all]
+    before_action :skip_authorization
 
     def index
-      jobs = policy_scope(AdminJobRecord).order(created_at: :desc).all
+      jobs = policy_scope(AdminJobRecord).order(created_at: :desc).offset(params[:offset] || 0).limit(20).all
       render json: {
         jobs: jobs.map { |job| AdminJobRecordSerializer.new(job) },
         unread: policy_scope(AdminJobRecord).where(read: false).count
@@ -15,6 +15,12 @@ module Administration
     def read_all
       policy_scope(AdminJobRecord).where(read: false).update_all(read: true)
       render json: :ok
+    end
+
+    def read
+      record = policy_scope(AdminJobRecord).find(params[:id])
+      record.update(read: true)
+      render json: record
     end
   end
 end

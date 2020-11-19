@@ -44,7 +44,7 @@ module Administration
       end
 
       def rescore_responses
-        CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user)
+        AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
         render json: :ok
       end
 

@@ -437,7 +437,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
         "number_of_evaluators_invited": "مدعو التقييم",
@@ -1169,7 +1169,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
         "relationships": "Relationships",
@@ -1894,7 +1894,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "three_sixty_report_summary": {
         "completed": "Completed",
-        "footnote": "*Excluded due to minimum threshold requirement",
+        "footnote": "* Excluded due to minimum threshold requirement",
         "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
         "relationships": "Relationships",

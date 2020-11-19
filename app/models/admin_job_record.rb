@@ -10,11 +10,12 @@ class AdminJobRecord < ApplicationRecord
   enum operation: {
     import_users: 0,
     rescore_assessment: 1,
-    import_raw_data: 2,
-    import_scoring_data: 3,
-    bulk_reports: 4,
-    regenerate_campaign_reports: 5,
-    regenerate_report: 6
+    rescore_user_assessment: 2,
+    import_raw_data: 3,
+    import_scoring_data: 4,
+    bulk_reports: 5,
+    regenerate_campaign_reports: 6,
+    regenerate_report: 7
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

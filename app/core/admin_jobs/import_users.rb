@@ -1,15 +1,9 @@
 # frozen_string_literal: true
 
 module AdminJobs
-  class ImportUsers < BaseCommand
+  class ImportUsers < AdminJobs::Base
     include ActionView::Helpers::TagHelper
     include ActionView::Context
-
-    private_attr_reader :record
-
-    def initialize(record)
-      @record = record
-    end
 
     def call
       import_data = CSV.parse(URI.open(record.file.url))

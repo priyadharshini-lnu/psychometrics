@@ -13,7 +13,9 @@ class AdminJob < ApplicationJob
   end
 
   JOBS = {
-    import_users: AdminJobs::ImportUsers
+    import_users: AdminJobs::ImportUsers,
+    rescore_assessment: AdminJobs::RescoreAssessment,
+    rescore_user_assessment: AdminJobs::RescoreUserAssessment
   }.freeze
 
   def perform(record)

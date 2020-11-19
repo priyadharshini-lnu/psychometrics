@@ -19,6 +19,7 @@ en:
       operations:
         import_users: "Import Users"
         rescore_assessment: "Rescore Assessment"
+        rescore_user_assessment: "Rescore User Assessment"
         import_raw_data: "Import Raw Data"
         import_scoring_data: "Import Scoring Data"
         bulk_reports: "Bulk Reports"

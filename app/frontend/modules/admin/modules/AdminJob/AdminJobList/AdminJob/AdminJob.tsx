@@ -13,7 +13,7 @@ import { AdminJob as AdminJobI } from '../../interfaces'
 
 const { I18n } = window
 
-const AdminJob: React.FC<{job: AdminJobI}> = ({ job }) => {
+const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job, read }) => {
   const [expanded, setExpanded] = useState(false)
   const hasMore = job.errorMessages.length || job.content
 
@@ -29,11 +29,17 @@ const AdminJob: React.FC<{job: AdminJobI}> = ({ job }) => {
     return I18n.t(`admin_jobs.attrs.statuses.${job.status}`)
   }
 
+  const handleClick = () => {
+    if (!job.read) {
+      read(job.id)
+    }
+    setExpanded(!expanded)
+  }
+
   return (
     <List.Item
       className={cs({ [styles.unread]: !job.read, [styles.container]: true })}
-      onClick={() => setExpanded(!expanded)
-      }
+      onClick={handleClick}
       actions={[
         hasMore && (
           <More expanded={expanded} onClick={() => setExpanded(!expanded)} />

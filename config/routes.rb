@@ -566,6 +566,9 @@ Rails.application.routes.draw do
       collection do
         put :read_all
       end
+      member do
+        put :read
+      end
     end
 
     resources :communications, only: %i[index new create destroy show] do

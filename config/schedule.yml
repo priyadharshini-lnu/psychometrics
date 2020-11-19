@@ -40,3 +40,8 @@ campaign_user_status_updater_job:
   cron: "*/1 * * * * " # Every minute
   class: TimeoutCampaignUserJob
   queue_as: cron_tasks
+
+cleaner_admin_job:
+  cron: "0 5 * * SUN" # At 5:00 on Sunday
+  class: CleanerAdminJob
+  queue_as: cron_tasks

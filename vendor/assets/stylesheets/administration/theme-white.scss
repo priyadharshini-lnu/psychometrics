@@ -250,7 +250,15 @@ body.page-container-boxed .page-container {
 }
 /* END PAGE CONTAINER */
 /* NAVIGATION */
-
+.x-navigation {
+  width: 100%;
+  padding: 0px;
+  margin: 0px;
+  float: left;
+  list-style: none;
+  display: block;
+  z-index: 3;
+}
 .x-navigation {
   background: #fff;
   /* NAV LIST ELEMENT */
