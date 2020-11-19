@@ -4,7 +4,7 @@ module Imports
   module Assessments
     module Questions
       class SingleMediaResponse
-        def self.build_answers(data, question, _use_scoring = false, assign)
+        def self.build_answers(data, question, duration, _use_scoring = false, assign)
           return nil if data.compact.blank?
           return nil if data[1].blank?
 
@@ -15,7 +15,9 @@ module Imports
             MediaResponses::FindOrCreateMediaResponseByUserResult.call!(media_record, assign, question)
           end
 
-          nil
+          {
+            duration: duration
+          }
         end
       end
     end

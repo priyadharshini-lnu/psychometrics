@@ -105,6 +105,9 @@
   .checkIcon {
     margin: 0;
   }
+  .optionDescription {
+    padding-inline-start: 8px;
+  }
 }
 
 .questionText {
@@ -129,11 +132,8 @@
     }
   }
   .Horizontal {
-    .listItem {
-      margin-right: 1.2em;
-    }
     .checkIcon {
-      margin-right: 0.4em;
+      margin-right: 0.3em;
     }
   }
 }

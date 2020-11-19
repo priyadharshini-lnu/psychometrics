@@ -12,6 +12,11 @@ export class Preview extends Component {
     model: PropTypes.object.isRequired,
   }
 
+  componentDidMount () {
+    const { model } = this.props
+    model.result.reduxAnswer()
+  }
+
   renderAnswersType () {
     const { model, readOnly } = this.props
     const { type } = model.props

@@ -7,4 +7,6 @@ module ImportExportConst
   SINGLE_MEDIA_IMPORT_EXPORT_FIELDS = %w[file_url media_id duration].freeze
   VIDEO_IMPORT_EXPORT_FIELDS = %w[selected_video_url non_selected_video_urls media_id duration].freeze
   DURATION = 'duration'
+  SUPPORT_ROWS = 3
+  SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel (import)
 end
