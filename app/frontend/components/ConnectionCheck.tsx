@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef } from 'react'
 import { message } from 'antd'
 import { MessageType } from 'antd/lib/message'
@@ -35,7 +36,8 @@ export default function ConnectionCheck (props: Props = {}) {
         handleConnection()
       },
       disconnected () {
-        handleDisconnection()
+        // Disabling due to issue with taking assessments within iframe (Maia Learning)
+        // handleDisconnection()
       },
     })
 
