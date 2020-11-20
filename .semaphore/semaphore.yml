@@ -103,4 +103,12 @@ promotions:
   - name: Deploy to develop
     pipeline_file: heroku-develop.yml
     auto_promote:
-      when: "branch = 'develop' AND result = 'passed'"
+      when: "branch = 'develop'"
+  - name: Deploy to review
+    pipeline_file: heroku-review.yml
+    auto_promote:
+      when: "branch = 'review'"
+  - name: Deploy to staging
+    pipeline_file: heroku-staging.yml
+    auto_promote:
+      when: "branch = 'master' AND result = 'passed'"
