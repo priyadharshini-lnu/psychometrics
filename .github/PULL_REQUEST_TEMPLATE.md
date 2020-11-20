@@ -1,17 +1,11 @@
 <!--- Provide the title of the PR in form of PR-type/LH-XXXX name of the ticket -->
+<!--- PR-type can be either hotfix, feat, chore, docs -->
 
 ## Description
 <!--- Describe your changes in point wise -->
-- 
--
-- 
-
-## Type of change
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Hot fix
-- [ ] Feature
-- [ ] Chore
-- [ ] Documentation
+- [ ]
+- [ ]
+- [ ]
 
 ## Screenshots:
 <!--- If applicable, attach screenshots -->
