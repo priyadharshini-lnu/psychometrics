@@ -81,8 +81,8 @@ class AssessmentContainer extends Component {
           onConnected={() => rstore.dispatch(connected())}
           onDisconnected={() => rstore.dispatch(disconnected())}
         />
+        {type === 'preview_assessment' && <Header langs={this.langPartial} />}
         <div className="ant-row">
-          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
           {disabled && this.overlay()}
           <AssessmentPreview />
         </div>
