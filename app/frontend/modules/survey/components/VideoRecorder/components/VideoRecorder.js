@@ -4,7 +4,8 @@
 /* eslint-disable import/no-unresolved */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Alert } from 'antd'
+import { Alert, Space, Progress } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 import 'recordrtc'
 import videojs from 'videojs'
 import cs from 'classnames'
@@ -51,11 +52,6 @@ class VideoRecorder extends Component {
         setTimeout(() => this.allowRecording(), 300)
       }
     }
-    if (!window.navigator.onLine) {
-      this.setOffline()
-    }
-    window.addEventListener('online', this.setOnline)
-    window.addEventListener('offline', this.setOffline)
   }
 
   componentDidUpdate (prevProps) {
@@ -78,10 +74,6 @@ class VideoRecorder extends Component {
     window.removeEventListener('online', this.setOnline)
     window.removeEventListener('offline', this.setOffline)
   }
-
-  setOnline = () => this.removeError('online')
-
-  setOffline = () => this.setError('online', I18n.t('assessments.video_response.offline_message'))
 
   setError = (key, message) => this.setState(state => ({
     errors: set(key, message, state.errors),
@@ -438,7 +430,7 @@ class VideoRecorder extends Component {
 
   renderControls () {
     const { onSuccessUpload, readOnly } = this.props
-    const { recordingState, deviceReady } = this.state
+    const { recordingState, deviceReady, errors } = this.state
     if (!deviceReady || !onSuccessUpload) { return null }
 
     return (
@@ -456,10 +448,17 @@ class VideoRecorder extends Component {
               </span>
             </button>
           )}
-          {recordingState === 'saving' && (
-            <span className="vjs-control-text" aria-live="polite">
-              { I18n.t('assessments.video_response.saving') }
-            </span>
+          {!errors.upload && recordingState === 'saving' && (
+            <Alert
+              type="info"
+              className={styles.savingBanner}
+              message={(
+                <Space>
+                  <LoadingOutlined />
+                  {I18n.t('assessments.video_response.saving')}
+                </Space>
+              )}
+            />
           )}
         </div>
       </div>
@@ -468,14 +467,9 @@ class VideoRecorder extends Component {
 
   renderProgress () {
     const percent = this.getUploadProgressPercentage()
-    const width = `${percent}%`
+    const { errors } = this.state
     return (
-      <div className={styles.progress}>
-        <div
-          className={`progress-bar-success ${styles.progressBar}`}
-          style={{ width }}
-        />
-      </div>
+      <Progress percent={parseInt(percent, 10)} status={_.isEmpty(errors) ? 'normal' : 'exception'} />
     )
   }
 
@@ -511,7 +505,8 @@ class VideoRecorder extends Component {
 
   renderErrors () {
     const { errors } = this.state
-    if (_.isEmpty(errors)) return null
+    const { errors: otherErrors = {} } = this.props
+    if (_.isEmpty(errors) && _.isEmpty(otherErrors)) return null
     return (
       <Alert
         className="mtm"
@@ -519,6 +514,7 @@ class VideoRecorder extends Component {
         message={(
           <ul className={styles.errors}>
             {_.map(errors, (message, key) => <li key={key}>{message}</li>)}
+            {_.map(otherErrors, (message, key) => <li key={`other${key}`}>{message}</li>)}
           </ul>
         )}
       />
@@ -565,6 +561,7 @@ VideoRecorder.propTypes = {
   fitInFrame: PropTypes.string,
   trackerOptions: PropTypes.object,
   extraControls: PropTypes.node,
+  errors: PropTypes.object,
 }
 
 export default VideoRecorder

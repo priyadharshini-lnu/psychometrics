@@ -580,6 +580,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "assessment_name": "Assessment Name",
         "assessment_type": "Assessment Type",
         "completed_at": "Completed At",
+        "completion_reasons": {
+          "time_out_offline": "Time out / Offline",
+          "time_out_online": "Time out / Online",
+          "user_completed": "User Completed"
+        },
         "email": "Email",
         "name": "Name",
         "result_id": "Result ID",
@@ -1830,7 +1835,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -5008,7 +5013,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "cancel": "Cancel",
       "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
       "proceed": "Proceed",
-      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "single_lang": "This assessment is only available in %{lang}, which is different than you selected language.",
       "title": "Select language"
     },
     "new": "New",
@@ -6870,7 +6875,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -7899,6 +7904,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "assessment_name": "Assessment Name",
         "assessment_type": "Assessment Type",
         "completed_at": "Completed At",
+        "completion_reasons": {
+          "time_out_offline": "Time out / Offline",
+          "time_out_online": "Time out / Online",
+          "user_completed": "User Completed"
+        },
         "email": "Email",
         "name": "Name",
         "result_id": "Result ID",
@@ -9149,7 +9159,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -12179,7 +12189,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
-      "saved": "Saved",
+      "saved": {
+        "label": "Saved",
+        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
+      },
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
@@ -12192,7 +12205,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use this take"
+      "use_this": "Submit this take"
     },
     "wait": "Wait"
   },
@@ -12324,7 +12337,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "cancel": "Cancel",
       "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
       "proceed": "Proceed",
-      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "single_lang": "This assessment is only available in %{lang}, which is different than you selected language.",
       "title": "Select language"
     },
     "new": "New",
@@ -14182,7 +14195,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -15207,6 +15220,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "assessment_name": "Assessment Name",
         "assessment_type": "Assessment Type",
         "completed_at": "Completed At",
+        "completion_reasons": {
+          "time_out_offline": "Time out / Offline",
+          "time_out_online": "Time out / Online",
+          "user_completed": "User Completed"
+        },
         "email": "Email",
         "name": "Name",
         "result_id": "Result ID",
@@ -16457,7 +16475,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -19487,7 +19505,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
-      "saved": "Saved",
+      "saved": {
+        "label": "Saved",
+        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
+      },
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
@@ -19500,7 +19521,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use this take"
+      "use_this": "Submit this take"
     },
     "wait": "Wait"
   },
@@ -19632,7 +19653,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "cancel": "Cancel",
       "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
       "proceed": "Proceed",
-      "single_lang": "This assessment is only available in English, which is different than you selected language.",
+      "single_lang": "This assessment is only available in %{lang}, which is different than you selected language.",
       "title": "Select language"
     },
     "new": "New",
@@ -21490,7 +21511,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
