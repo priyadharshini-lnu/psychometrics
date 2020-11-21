@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef } from 'react'
 import { message } from 'antd'
 import { MessageType } from 'antd/lib/message'
@@ -17,7 +18,7 @@ export default function ConnectionCheck (props: Props = {}) {
 
   const handleDisconnection = () => {
     onDisconnected && onDisconnected()
-    closeMessageRef.current = message.loading({
+    closeMessageRef.current = message.warning({
       content: <b>{I18n.t('shared.internet_disconnected_message')}</b>,
       duration: 0,
       key: MESSAGE_KEY,
@@ -35,7 +36,8 @@ export default function ConnectionCheck (props: Props = {}) {
         handleConnection()
       },
       disconnected () {
-        handleDisconnection()
+        // Disabling due to issue with taking assessments within iframe (Maia Learning)
+        // handleDisconnection()
       },
     })
 

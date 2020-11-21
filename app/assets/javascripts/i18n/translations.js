@@ -827,7 +827,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
-      "saved": "Saved",
+      "saved": {
+        "label": "Saved",
+        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
+      },
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
@@ -840,7 +843,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use this take"
+      "use_this": "Submit this take"
     },
     "wait": "Wait"
   },
@@ -1552,7 +1555,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "retake": "Retake",
       "retry": "Retry",
       "save": "Save",
-      "saved": "Saved",
+      "saved": {
+        "label": "Saved",
+        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
+      },
       "saving": "Saving...",
       "selected": "Selected",
       "start_recording": "Start recording",
@@ -1565,7 +1571,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "frame": "Please make sure that your face aligns with the frame",
         "ready": "Press the Record button when ready to record"
       },
-      "use_this": "Use this take"
+      "use_this": "Submit this take"
     },
     "wait": "Wait"
   },

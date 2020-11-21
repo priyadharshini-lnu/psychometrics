@@ -22,6 +22,7 @@ module MediaResponses
         },
         upload_id: upload_id
       })
+      MediaResponses::MarkAsUserSelected.call!(media_response)
     end
   end
 end

@@ -182,7 +182,7 @@
   flex-direction: column;
 }
 
-@media(max-width: $screen-md) {
+@media(max-width: $screen-lg) {
   .sideStaticContent {
     display: block;
     &>* {

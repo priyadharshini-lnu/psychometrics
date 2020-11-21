@@ -27,7 +27,7 @@ const MultipleTakeButtons: React.FC<Props> = ({
           key={index}
           value={index}
           checked={index === currentTakeIndex}
-          className={cs({
+          className={cs(styles.takeButton, {
             [styles.selectedTakeBtn]: index === selectedTakeIndex,
           })}
         >

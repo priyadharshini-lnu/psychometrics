@@ -1,7 +1,6 @@
 @import 'modules/user/styles/variables';
 
 .recorder {
-  margin-top: 25px;
   position: relative;
 
   :global {
@@ -260,7 +259,6 @@
 }
 
 .controlBar {
-  height: 4em;
   width: auto;
 
   .controls {
@@ -317,6 +315,12 @@
       }
     }
   }
+}
+
+.savingBanner {
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
 }
 
 .progress {

@@ -17,9 +17,16 @@ export const axiosWithRetry = (config: retryAxios.RetryConfig = {}): AxiosInstan
   })
   const instance = axios.create()
   const defaults = {
-    retry: 3,
-    retryDelay: 1000,
+    retry: 5,
+    retryDelay: 2000,
     backoffType: 'exponential',
+    shouldRetry: (err: AxiosError) => {
+      const cfg = retryAxios.getConfig(err)
+      if (cfg && cfg.currentRetryAttempt && cfg.retry && cfg.currentRetryAttempt >= cfg.retry) {
+        return false
+      }
+      return true
+    },
   }
   const raxConfig: retryAxios.RetryConfig = assign(defaults, config, { onRetryAttempt, instance })
   instance.defaults.raxConfig = raxConfig
