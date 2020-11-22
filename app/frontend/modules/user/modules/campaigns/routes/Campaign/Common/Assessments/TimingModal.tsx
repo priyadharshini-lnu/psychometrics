@@ -39,7 +39,7 @@ const TimingModal: React.FC<Props> = ({
           <Button type="primary" onClick={() => ok()}>
             {I18n.t('campaign.time_left.continue')}
           </Button>
-          <Button danger onClick={() => close()}>
+          <Button type="danger" onClick={() => close()}>
             {I18n.t('campaign.time_left.cancel')}
           </Button>
         </div>
