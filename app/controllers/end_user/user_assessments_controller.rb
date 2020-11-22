@@ -50,7 +50,8 @@ class EndUser::UserAssessmentsController < ApplicationController
     {
       evaluator: current_user,
       subject: current_user,
-      threesixty_campaign: {}
+      threesixty_campaign: {},
+      result: @user_assessment.users_result
     }
   end
 
