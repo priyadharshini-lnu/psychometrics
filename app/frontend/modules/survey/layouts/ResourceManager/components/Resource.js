@@ -69,7 +69,7 @@ export default function Resource ({
         </Form>
       </Col>
       <Col style={{ width: 80 }}>
-        <Button danger onClick={remove}>Remove</Button>
+        <Button type="danger" onClick={remove}>Remove</Button>
       </Col>
       <hr />
     </Row>

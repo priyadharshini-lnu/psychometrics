@@ -32,7 +32,7 @@ export const EditableCell: React.FC<EditableCellProps> = ({
   ...restProps
 }) => {
   const [editing, setEditing] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<InputNumber>(null)
   const form = useContext(EditableContext)
 
   useEffect(() => {

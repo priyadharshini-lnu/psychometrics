@@ -107,7 +107,7 @@ export default function RequirementTable (props) {
         </Button>
         <Button
           size="small"
-          danger
+          type="danger"
           className="deny-button"
           onClick={() => updateStatus({
             campaignId, nominationId, evaluatorId: evaluator.id, status: 'denied',

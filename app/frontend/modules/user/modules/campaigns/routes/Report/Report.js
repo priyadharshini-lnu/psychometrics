@@ -91,7 +91,7 @@ function StatusItem ({
   return (
     <div>
       <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
-      <Button className="mlm" onClick={() => handleStatusClick('denied')} danger>Deny</Button>
+      <Button className="mlm" onClick={() => handleStatusClick('denied')} type="danger">Deny</Button>
     </div>
   )
 }

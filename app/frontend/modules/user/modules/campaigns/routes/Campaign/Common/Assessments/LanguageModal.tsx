@@ -32,7 +32,7 @@ const LanguageModal: React.FC<Props> = ({
           <Button type="primary" onClick={() => onSelect(lang)}>
             {I18n.t('campaign.language.proceed')}
           </Button>
-          <Button danger onClick={() => close()}>
+          <Button type="danger" onClick={() => close()}>
             {I18n.t('campaign.language.cancel')}
           </Button>
         </div>
