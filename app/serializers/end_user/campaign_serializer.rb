@@ -14,10 +14,12 @@ module EndUser
     def status
       return object.status unless object.fixed_time?
       return object.status if campaign_time_extended?
+      return object.status if campaign_user_object.completed_at.blank?
 
       expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
-      expected_end_time += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
-      return 'closed' if expected_end_time < Time.now && object.active?
+      expected_end_time += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time?
+
+      return 'closed' if (expected_end_time < Time.now) && object.active?
 
       object.status
     end
@@ -37,12 +39,14 @@ module EndUser
         return values
       end
 
-      completed_at = campaign_user_object.started_at + object.fixed_time_duration.minutes
-      completed_at += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
+      unless campaign_user_object.interrupted_campaign?
+        completed_at = campaign_user_object.started_at + object.fixed_time_duration.minutes
+        completed_at += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
 
-      campaign_closed = Time.now > completed_at
-      values['completed_at'] = completed_at if campaign_closed
-      values['completion_status'] = determine_completion_status(campaign_closed)
+        campaign_closed = Time.now > completed_at
+        values['completed_at'] = completed_at if campaign_closed
+        values['completion_status'] = determine_completion_status(campaign_closed)
+      end
 
       values
     end
