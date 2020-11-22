@@ -22,7 +22,7 @@ module Campaigns
 
         user_assessments = report.assessments.map do |assessment|
           ua = add_assessment_to_user(assessment, user_report)
-          ::CampaignUsers::MarkInProgress.call!(campaign_user) unless ua.completed?
+          ::CampaignUsers::MarkInProgress.call!(campaign_user) unless ua.completed? && campaign_user.started_at?
 
           ua
         end

@@ -75,8 +75,6 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -2904,7 +2902,8 @@ CREATE TABLE public.threesixty_evaluators (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
@@ -3075,7 +3074,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0,
+    completed_evaluators_count integer DEFAULT 0
 );
 
 
