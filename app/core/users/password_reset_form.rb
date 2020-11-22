@@ -13,7 +13,7 @@ module Users
     def check_email_exists!
       project = GetProjectBySubdomain.call!(context.subdomain)
 
-      @user = project ? project.users.find_by(email: email) : User.find_by(email: email, project: nil)
+      @user = User.find_by(email: email, project: project&.id)
 
       errors.add(:email, :wrong_email) unless @user
     end

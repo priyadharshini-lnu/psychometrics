@@ -12,6 +12,7 @@ import ReportList from './ReportList'
 import AssessmentList from './AssessmentList'
 import AddReportModal from '../../AssessmentsReports/routes/Manage/AddReportModal'
 import UpdateNormModal from './UpdateNormModal'
+import UpdateTimeModal from './UpdateTimeModal'
 import UpdateCampaignTimeModal from './UpdateCampaignTimeModal'
 import { Strategies } from '../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 import styles from './styles.scss'
@@ -22,6 +23,7 @@ const { I18n } = window
 const MODALS = {
   AddReportModal,
   UpdateNormModal,
+  UpdateTimeModal,
   UpdateCampaignTimeModal,
 }
 

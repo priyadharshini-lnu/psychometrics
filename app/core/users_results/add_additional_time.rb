@@ -37,9 +37,10 @@ module UsersResults
     end
 
     def mark_in_progress
-      return if user_result.campaign.fixed_time?
+      campaign = user_result.user_assessment.campaign
+      return if campaign.fixed_time?
 
-      campaign_user = user_result.user.campaign_users.where(campaign_id: user_result.campaign_id).first
+      campaign_user = user_result.user.campaign_users.where(campaign_id: campaign.id).first
       ::CampaignUsers::MarkInProgress.call!(campaign_user) if campaign_user
     end
   end
