@@ -55,6 +55,7 @@ export default function Campaign ({
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const isMD = useMedia('max-md')
+  const hasAssessments = !!campaign.userAssessments.length
   const hasStarted = !!campaignUser.startedAt
   const isLocked = () => {
     if (!fixedTime) return campaignClosed
@@ -129,7 +130,7 @@ export default function Campaign ({
                 <InstructionsPanel
                   instructionsEnabled={instructionsEnabled}
                   instructions={instructions}
-                  showBegin={!hasStarted}
+                  showBegin={hasAssessments && !hasStarted}
                   showContinue={canContinue && !allAssessmentsComplete}
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
