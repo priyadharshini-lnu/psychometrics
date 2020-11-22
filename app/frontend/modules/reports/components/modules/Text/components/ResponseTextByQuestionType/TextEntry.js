@@ -13,7 +13,7 @@ const TextEntry = (props) => {
   } = props
   if (isReal && !result) { return null }
 
-  return <div>{_.get(result, [answerIndex, 'value'], 'Default answer')}</div>
+  return <div>{_.get(result, [answerIndex, 'value'], '')}</div>
 }
 
 TextEntry.propTypes = {
