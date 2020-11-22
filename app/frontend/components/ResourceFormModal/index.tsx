@@ -2,10 +2,9 @@ import React, { useState, ReactElement } from 'react'
 import {
   Modal, Button, Spin, Form,
 } from 'antd'
-import { FormInstance } from 'antd/lib/form/util'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
-import { FormProps } from 'antd/lib/form'
+import { FormProps, FormInstance } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
 import ResourceFrom from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'

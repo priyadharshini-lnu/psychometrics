@@ -23,7 +23,7 @@ export default function PrivacyModal ({
           <Button type="primary" onClick={() => accept()}>
             {I18n.t('threesixty.accept_privacy_modal.accept')}
           </Button>
-          <Button type="danger" onClick={() => close()}>
+          <Button danger onClick={() => close()}>
             {I18n.t('threesixty.accept_privacy_modal.reject')}
           </Button>
         </div>

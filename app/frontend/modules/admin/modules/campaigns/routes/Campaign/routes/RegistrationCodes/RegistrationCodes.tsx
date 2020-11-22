@@ -161,7 +161,7 @@ const RegistrationCodes: React.FC<Props> = ({
                     okText="Yes"
                     cancelText="No"
                   >
-                    <Button type="danger" shape="round">
+                    <Button danger shape="round">
                       <CloseOutlined />
                     </Button>
                   </Popconfirm>
