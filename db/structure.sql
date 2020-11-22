@@ -75,6 +75,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -374,12 +376,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -2901,9 +2903,7 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0
 );
 
 
@@ -3074,9 +3074,7 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    evaluation_status integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -3303,12 +3301,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
@@ -6767,7 +6765,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
