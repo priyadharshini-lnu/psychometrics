@@ -159,7 +159,7 @@ class Assign < ApplicationRecord
   end
 
   def norm_id
-    norm_data&.dig('id')
+    norm_data&.dig('id')&.to_i
   end
 
   def assign_with_result

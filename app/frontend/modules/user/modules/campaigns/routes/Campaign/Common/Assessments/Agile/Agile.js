@@ -19,7 +19,7 @@ export default function AgileAssign ({
         parent: 'agile-container',
       },
       service: {
-        baseURL: window.location.href,
+        baseURL: window.location.href.split('?')[0],
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',

@@ -37,9 +37,11 @@ module UserReports
     end
 
     def generate_hogan_report(user_report)
-      # TODO: Take care of this with https://tte.atlassian.net/browse/LH-966.
-      # Need to pass user_assessment as first parameter
-      # Hogan::FetchResultsJob.perform_later(user_report.user_results.first, current_user, user_report.project)
+      Hogan::FetchResultsJob.perform_later(
+        user_report.user_results.first,
+        user_report.user.hogan_credential,
+        user_report.project
+      )
     end
   end
 end

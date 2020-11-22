@@ -59,9 +59,10 @@ module UsersResults
     end
 
     def set_completion_status
-      return if users_result.campaign.fixed_time?
+      camapaign = users_result.user_assessment.campaign
+      return if camapaign.fixed_time?
 
-      campaign_user = current_user.campaign_users.where(campaign_id: users_result.campaign_id).first
+      campaign_user = current_user.campaign_users.where(campaign_id: camapaign.id).first
       ::CampaignUsers::MarkCompleted.call!(campaign_user) if campaign_user.user_assessments.all?(&:completed?)
     end
 

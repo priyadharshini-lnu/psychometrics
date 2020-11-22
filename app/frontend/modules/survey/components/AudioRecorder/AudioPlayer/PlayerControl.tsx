@@ -2,11 +2,11 @@ import React from 'react'
 import { Progress } from 'antd'
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
 import ColoredButton from 'components/ColoredButton'
-import { I18n } from 'modules/survey/store/StoreWatchman'
 import styles from '../AudioRecorderStyle.scss'
 import MediaButtons from '../MediaButtons'
 import { UPLOAD_STATES, PLAYER_STATE } from '../constants'
 
+const { I18n } = window
 interface Props {
   playerState: string
   percent: number
@@ -30,7 +30,7 @@ const PlayerControl: React.FC<Props> = ({
       className={styles.deleteBtn}
       onClick={discardRecording}
     >
-      {I18n().t('assessments.video_response.delete')}
+      {I18n.t('assessments.video_response.delete')}
     </ColoredButton>
     )}
 
@@ -47,15 +47,15 @@ const PlayerControl: React.FC<Props> = ({
             onClick={saveRecording}
             disabled={uploadState === UPLOAD_STATES.SAVING}
           >
-            {uploadState === UPLOAD_STATES.SAVING ? I18n().t('assessments.video_response.saving')
-              : I18n().t('assessments.video_response.save')}
+            {uploadState === UPLOAD_STATES.SAVING ? I18n.t('assessments.video_response.saving')
+              : I18n.t('assessments.video_response.save')}
           </ColoredButton>
         )}
 
     {uploadState === UPLOAD_STATES.SAVED && !readOnly && (
     <div className={styles.savedTextContainer}>
       <CheckOutlined className={styles.icon} />
-      <span className={styles.savedText}>{I18n().t('assessments.video_response.saved')}</span>
+      <span className={styles.savedText}>{I18n.t('assessments.video_response.saved.label')}</span>
     </div>
     )}
 
