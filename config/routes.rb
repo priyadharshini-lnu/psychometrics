@@ -746,6 +746,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           post :change_locale
+          patch :update_details
         end
       end
     end
@@ -815,7 +816,6 @@ Rails.application.routes.draw do
       get :export, on: :member
     end
     resource :profiles, only: %i[update edit]
-    patch 'users/update_details', to: 'users#update_details'
 
     get 'survey_instructions', to: 'home#survey_instructions' # NOTE: does it use anywhere?
     get 'sso/:user_id/:sso_token', to: 'home#sso'
