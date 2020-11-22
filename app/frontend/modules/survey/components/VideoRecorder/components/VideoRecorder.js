@@ -435,7 +435,7 @@ class VideoRecorder extends Component {
 
     return (
       <div className={styles.controlBar}>
-        <div className={cs(styles.controls, 'display-flex')}>
+        <div className={cs(styles.controls, 'display-flex', 'mtm')}>
           {recordingState === 'saved' && !readOnly && (
             <button
               title="Discard"
