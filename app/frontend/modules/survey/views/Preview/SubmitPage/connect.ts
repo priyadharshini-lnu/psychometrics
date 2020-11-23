@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import {
   getCurrentPage, getPrevPage, getI18n,
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
@@ -9,7 +9,7 @@ import { RootState } from 'modules/survey/core/rootReducers'
 import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
 import { isConnected } from 'core/connection'
 
-export default connect(
+export const connecter = connect(
   (state: RootState) => {
     const { preview, preview: { initialized } } = state
 
@@ -27,3 +27,6 @@ export default connect(
     fetchCampaignOptions,
   },
 )
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+export default connecter
