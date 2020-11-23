@@ -168,7 +168,7 @@ export default function Campaign ({
                               <Row type="flex" gutter={[16, 16]} className="cards">
                                 {userAssessments.map((userAssessment) => {
                                   const Assessment = Assessments[userAssessment.type]
-                                  let isDisabled = isLocked() || prevCompleted
+                                  let isDisabled = isLocked() || prevCompleted || !hasStarted
                                   if (!isDisabled && group.previousAssessmentsRequired) {
                                     isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
                                   }
@@ -209,7 +209,7 @@ export default function Campaign ({
                                     size={3}
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
-                                    disabled={isLocked()}
+                                    disabled={isLocked() || !hasStarted}
                                     timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                     disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />
