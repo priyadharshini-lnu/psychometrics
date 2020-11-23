@@ -10,13 +10,14 @@ import InitLinearElements from './commands/InitLinearElements'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
-  CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
+  CHANGE_ELEMENT, SHOW_END, HIDE_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -61,6 +62,7 @@ const defaultState: DefaultState = {
   highlights: {},
   assessmentTimedOut: false,
   mediaResponses: [],
+  showSubmitPage: false,
 }
 
 const HANDLERS = {
@@ -150,6 +152,7 @@ const HANDLERS = {
   ),
   [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
   [SHOW_END]: state => ({ ...state, end: true }),
+  [HIDE_END]: state => ({ ...state, end: false }),
   [SET_EMBEDDED_DATA]: (state, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },
   ),
@@ -185,7 +188,7 @@ const HANDLERS = {
       ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
       : state.blocks
     const end = expired || state.end
-    return end ? {
+    return end && !state.showSubmitPage ? {
       ...state, end, blocks, currentElement: null, currentPage: null,
     } : { ...state, end, blocks }
   },
@@ -230,6 +233,9 @@ const HANDLERS = {
         })
       ))
     },
+  [SHOW_SUBMIT_PAGE]: state => ({ ...state, showSubmitPage: true }),
+  [HIDE_SUBMIT_PAGE]: state => ({ ...state, showSubmitPage: false }),
+
 }
 
 export default createReducer(HANDLERS, defaultState)
