@@ -13,11 +13,10 @@ module EndUser
 
     def status
       return object.status unless object.fixed_time?
-      return object.status if campaign_time_extended?
+      return object.status unless object.active?
+      return object.status unless campaign_user_object.expiry_date?
 
-      expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
-      expected_end_time += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
-      return 'closed' if expected_end_time < Time.now && object.active?
+      return 'closed' if campaign_user_object.expiry_date < Time.now
 
       object.status
     end
@@ -29,20 +28,9 @@ module EndUser
       values = campaign_user_object.slice(*attributes)
       return values unless object.fixed_time?
       return values if user_assessments.none?
+      return values if campaign_user_object.not_started_campaign?
 
-      unless campaign_user_object.started_at
-        values['expiry_date'] = nil
-        values['completion_status'] = :not_started
-
-        return values
-      end
-
-      completed_at = campaign_user_object.started_at + object.fixed_time_duration.minutes
-      completed_at += campaign_user_object.additional_time.minutes if campaign_user_object.additional_time
-
-      campaign_closed = Time.now > completed_at
-      values['completed_at'] = completed_at if campaign_closed
-      values['completion_status'] = determine_completion_status(campaign_closed)
+      values['completion_status'] = determine_completion_status if campaign_user_object.in_progress_campaign?
 
       values
     end
@@ -79,9 +67,7 @@ module EndUser
       @current_user ||= instance_options[:current_user]
     end
 
-    def determine_completion_status(campaign_closed)
-      return :completed if campaign_closed
-
+    def determine_completion_status
       campaign_user_object.user_assessments.all?(&:completed?) ? :completed : :in_progress
     end
   end
