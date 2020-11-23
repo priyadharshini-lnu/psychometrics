@@ -3,6 +3,7 @@ const { env } = require('process')
 const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const less = require('./loaders/less')
 const tsLoader = require('./loaders/ts-loader')
 // uncomment it in order to use bundle analyzer
@@ -29,6 +30,19 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
+if (__DEV__) {
+  environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin({
+    eslint: {
+      files: './app/frontend/**/*.{ts,tsx,js,jsx}',
+    },
+    typescript: {
+      diagnosticOptions: {
+        semantic: true,
+        syntactic: true,
+      },
+    },
+  }))
+}
 
 //   uncomment it in order to use bundle analyzer
 // environment.plugins.insert(
@@ -42,6 +56,16 @@ const myCssLoaderOptions = {
 }
 
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
+
+environment.loaders.get('babel').use.unshift({
+  loader: 'thread-loader',
+  options: {
+    poolTimeout: 30000,
+  },
+})
+environment.loaders.get('babel').use.unshift({ loader: 'cache-loader' })
+
+
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
 environment.loaders.append('less', less)
 environment.loaders.append('typescript', tsLoader)
@@ -124,6 +148,8 @@ const vendors2 = [
 environment.config.merge({
   stats: 'errors-only',
   optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
     splitChunks: {
       cacheGroups: {
         vendors: {

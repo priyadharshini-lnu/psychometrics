@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 const BEGIN = 'campaign/BEGIN'
 const FETCH = 'campaign/FETCH'
+const FETCH_OPTIONS = 'campaign/FETCH_OPTIONS'
 const CONTINUE = 'campaign/CONTINUE'
 const DECLINE_EVALUATION = 'campaign/DECLINE_EVALUATION'
 const RESET = 'campaign/RESET_DATA'
@@ -11,6 +12,12 @@ export const fetchCampaign = url => ({
   type: FETCH,
   request: {
     url: `${url}.json`,
+  },
+})
+export const fetchCampaignOptions = campaignId => ({
+  type: FETCH_OPTIONS,
+  request: {
+    url: `/threesixty_campaigns/${campaignId}/options`,
   },
 })
 
@@ -64,6 +71,7 @@ export const defaultState = {
 
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true }),
+  [FETCH_OPTIONS]: (state, { response }) => setIn(state, 'options', response),
   [BEGIN]: (state, { response }) => (setIn(state, 'campaignUser', response)),
   [CONTINUE]: (state, { response }) => (setIn(state, 'campaignUser', response)),
   [RESET]: () => defaultState,

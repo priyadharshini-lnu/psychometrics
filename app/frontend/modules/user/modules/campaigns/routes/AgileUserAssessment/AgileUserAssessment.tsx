@@ -29,7 +29,7 @@ const AgileUserAssessment: React.FC<Props> = ({
         parent: 'agile-container',
       },
       service: {
-        baseURL: agileUserAssessmentUrl || window.location.href,
+        baseURL: agileUserAssessmentUrl || window.location.href.split('?')[0],
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',

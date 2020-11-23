@@ -1,10 +1,8 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
-import { takeLatest, put, select } from 'redux-saga/effects'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 import { AnyAction } from 'redux'
-import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
 import ApiAction from 'interfaces/ApiAction'
 
 export interface User {
@@ -166,11 +164,5 @@ const HANDLERS = {
 
 export default createReducer(HANDLERS, defaultState)
 
-function* genFetchUsers ({ requestAction }: AnyAction) {
-  const tables = yield select(getTables)
-  yield put(fetch(requestAction.campaignId, tables.usersList))
-}
-
 export const watchers = [
-  takeLatest(IMPORT, genFetchUsers),
 ]

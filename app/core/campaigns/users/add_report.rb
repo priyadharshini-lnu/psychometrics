@@ -20,7 +20,12 @@ module Campaigns
           report_family_id: options[:report_family_id]
         ).find_or_create_by!(campaign: campaign, report: report, user: user)
 
-        user_assessments = report.assessments.map { |assessment| add_assessment_to_user(assessment, user_report) }
+        user_assessments = report.assessments.map do |assessment|
+          ua = add_assessment_to_user(assessment, user_report)
+          ::CampaignUsers::MarkInProgress.call!(campaign_user) if !ua.completed? && campaign_user.completed_campaign?
+
+          ua
+        end
         generate_report_pdf(user_report)
 
         broadcast :ok,

@@ -12,7 +12,7 @@ class UsersResultUpdateSerializer < ActiveModel::Serializer
       evaluator: object.evaluator,
       subject: object.subject,
       threesixty_campaign: @instance_options[:campaign],
-      answers: object.reload.answers || {}
+      result: object
     }
 
     block = Block.find_by(id: @instance_options[:current_block_id])

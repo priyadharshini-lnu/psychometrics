@@ -167,8 +167,7 @@ class AssignsController < ApplicationController
       evaluator: current_user,
       subject: current_user,
       threesixty_campaign: {},
-      assign: @assign,
-      answers: Assign.find(params[:id])&.results || {}
+      result: @assign
     }
   end
 

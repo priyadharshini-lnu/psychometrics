@@ -59,7 +59,7 @@ module Assessments
 
         new_assessment
       end
-      broadcast :ok, new_assessment
+      broadcast :ok, { assessment: new_assessment, questions_mapping: @questions_mapping }
     rescue ActiveRecord::RecordInvalid
       broadcast(:error)
     end

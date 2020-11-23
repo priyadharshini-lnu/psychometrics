@@ -38,7 +38,9 @@ module UsersResults
         additional_time: nil,
         current_element: nil,
         current_page: nil,
-        reset_count: users_result.reset_count + 1
+        completion_reason: nil,
+        reset_count: users_result.reset_count + 1,
+        prev_pages: []
       )
     end
 

@@ -46,4 +46,5 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.assets.precompile += %w[test.scss]
+  config.cache_store = :memory_store
 end

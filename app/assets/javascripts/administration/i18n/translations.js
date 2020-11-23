@@ -672,6 +672,36 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "user_form": "User"
     }
   },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
+  },
   "administration": {
     "actions": "Actions",
     "active": "Active",
@@ -1205,7 +1235,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -4198,6 +4228,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -4831,7 +4864,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "العبارات"
@@ -6577,12 +6613,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
         "number_of_evaluators_invited": "مدعو التقييم",
         "number_of_evaluators_received": "تم تلقي التقييمات",
         "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "ملخص تقرير",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -7208,7 +7249,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }
@@ -7996,6 +8037,36 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "user_form": "User"
     }
   },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
+  },
   "administration": {
     "actions": "Actions",
     "active": "Active",
@@ -8529,7 +8600,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -11522,6 +11593,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -12155,7 +12229,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -13897,12 +13974,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
-        "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "Report Summary",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -14525,7 +14604,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }
@@ -15312,6 +15391,36 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "user_form": "User"
     }
   },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications"
+  },
   "administration": {
     "actions": "Actions",
     "active": "Active",
@@ -15845,7 +15954,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "created_by": "Created By",
         "email": "Email",
         "id": "Id",
-        "is_active": "Active?",
+        "is_active": "Active",
         "name": "Name",
         "updated_by": "Updated By"
       },
@@ -18838,6 +18947,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "New Report Bundle"
       },
       "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
         "index": {
           "add": "Add new Report",
           "title": "Reports in the Bundle",
@@ -19471,7 +19583,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -21213,12 +21328,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
-        "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "Report Summary",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -21841,7 +21958,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
       }

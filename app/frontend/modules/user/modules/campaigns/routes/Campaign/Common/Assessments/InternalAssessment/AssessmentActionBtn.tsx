@@ -81,7 +81,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     <a href={href} className={cs({ disabled })} onClick={showPolicyConfirm}>
       {I18n.t('threesixty.begin')}
       {' '}
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
     </a>
   )
 

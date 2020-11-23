@@ -68,12 +68,14 @@ en:
           items: Items
       three_sixty_report_summary:
         title: Report Summary
+        relationships: Relationships
+        invited: Invited
+        completed: Completed
         subject: 'Subject'
         number_of_evaluators_invited: 'Number of evaluators invited'
-        number_of_evaluators_responded: 'Number of evaluators responded'
-        number_of_evaluators_received: 'Number of evaluations received'
+        total: 'Total'
         total_evaluations: 'Total evaluations for this assessment'
-        number_by_filter_evaluations_received: "Number of %{filter} evaluations received"
+        footnote: '* Excluded due to minimum threshold requirement'
       highest_lowest:
         highest_scores: 'Highest Scores'
         rank: 'Rank'

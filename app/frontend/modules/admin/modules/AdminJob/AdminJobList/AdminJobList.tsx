@@ -1,0 +1,82 @@
+import React, { useState, useEffect } from 'react'
+import {
+  List, Badge, Button, Row, Col,
+} from 'antd'
+import humps from 'humps'
+import {
+  CheckOutlined,
+} from '@ant-design/icons'
+import InfiniteScroll from 'react-infinite-scroller'
+import styles from './styles.scss'
+import { PropsFromRedux } from './connect'
+import AdminJob from './AdminJob'
+
+const { App, I18n } = window
+
+const AdminJobList: React.FC<PropsFromRedux> = ({
+  adminJobs, fetch, unread, read, readAll, createJob, updateJob, hasMore,
+}) => {
+  const [active, setActive] = useState(false)
+
+  useEffect(() => {
+    fetch(adminJobs.length)
+    if (App.cable) {
+      App.cable.subscriptions.create({ channel: 'AdminJobChannel' }, {
+        received ({ action, job }) {
+          if (action === 'create') createJob(humps.camelizeKeys(job))
+          if (action === 'update') updateJob(humps.camelizeKeys(job))
+        },
+      })
+    }
+  }, [])
+
+  const handleClick = () => {
+    setActive(!active)
+  }
+
+  const handleInfiniteOnLoad = () => fetch(adminJobs.length)
+
+  return (
+    <div className={styles.container}>
+      <Badge count={unread} overflowCount={9} offset={[-10, 17]}>
+        <span onClick={handleClick} className={`fa fa-bell ${styles.bellIcon}`} />
+      </Badge>
+      {active && (
+        <div className={styles.list}>
+          <InfiniteScroll
+            initialLoad={false}
+            pageStart={0}
+            loadMore={handleInfiniteOnLoad}
+            hasMore={hasMore}
+            useWindow={false}
+          >
+            <List
+              itemLayout="vertical"
+              dataSource={adminJobs}
+              renderItem={job => <AdminJob job={job} read={read} />}
+              header={(
+                <Row>
+                  <Col span="12">
+                    <h3 className="pt8 pl24">{I18n.t('admin_jobs.notifications')}</h3>
+                  </Col>
+                  <Col span="12" className="text-align-r">
+                    <Button
+                      type="link"
+                      disabled={!unread}
+                      icon={<CheckOutlined />}
+                      onClick={readAll}
+                    >
+                      {I18n.t('admin_jobs.mark_as_read')}
+                    </Button>
+                  </Col>
+                </Row>
+            )}
+            />
+          </InfiniteScroll>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default AdminJobList

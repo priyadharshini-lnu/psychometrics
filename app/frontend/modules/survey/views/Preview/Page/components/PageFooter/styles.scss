@@ -1,0 +1,25 @@
+.popconfirm {
+  width: 200px;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+  padding: 0 12px;
+  .next {
+    margin-left: 5px;
+  }
+
+}
+
+:global {
+  .rtl {
+    :local {
+      .next {
+        margin-right: 5px;
+        margin-left: 0;
+      }
+    }
+  }
+}

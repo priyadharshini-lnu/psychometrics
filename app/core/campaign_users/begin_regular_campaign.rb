@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CampaignUsers
-  class BeginCampaign < BaseCommand
+  class BeginRegularCampaign < BaseCommand
     private_attr_reader :campaign_user
 
     def initialize(campaign_user)
@@ -18,8 +18,8 @@ module CampaignUsers
 
     def attributes
       {
-        completion_status: :in_progress,
         started_at: Time.now,
+        completion_status: :in_progress,
         expiry_date: campaign_user.campaign.fixed_time_duration&.minutes&.from_now
       }
     end

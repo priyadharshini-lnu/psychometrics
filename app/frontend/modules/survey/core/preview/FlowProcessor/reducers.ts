@@ -126,7 +126,7 @@ const HANDLERS = {
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
-      prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
+      prevPages: result.prev_pages || [],
       highlights: _.keyBy(highlights, 'id'),
     }
   },
@@ -158,8 +158,8 @@ const HANDLERS = {
   [SET_DIRTY_RESULTS]: (state, { questionIds: ids }: SetDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
-      return setIn(state.results, [id, 'dirty'], true)
-    }, {})
+      return setIn(results, [id, 'dirty'], true)
+    }, state.results)
     return {
       ...state,
       results: { ...state.results, ...results },
@@ -168,8 +168,8 @@ const HANDLERS = {
   [SET_NOT_DIRTY_RESULTS]: (state, { questionIds: ids }: SetNotDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
-      return ({ ...results, [id]: _.omit(state.results[id], 'dirty') })
-    }, {})
+      return setIn(results, [id, 'dirty'], false)
+    }, state.results)
     return {
       ...state,
       results: { ...state.results, ...results },

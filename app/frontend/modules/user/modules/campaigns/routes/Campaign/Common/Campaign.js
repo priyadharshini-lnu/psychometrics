@@ -30,7 +30,7 @@ const prevGroupIsCompleted = (campaign, group) => {
 
 export default function Campaign ({
   history, match, campaign, campaign: { campaignUser, userReports, groups }, currentUser,
-  loginHogan, acceptPolicy, beginCampaign, continueCampaign, fetchCampaign,
+  loginHogan, acceptPolicy, fetchCampaign, beginCampaign, continueCampaign, examus,
 }) {
   const {
     campaignUser: {
@@ -44,6 +44,7 @@ export default function Campaign ({
       instructions,
       fixedTime,
       fixedTimeDuration: duration,
+      proctoringEnabled: isProctored,
     },
   } = campaign
   const campaignClosed = campaign.status === STATUSES.CLOSED
@@ -54,17 +55,29 @@ export default function Campaign ({
     campaign.ungroupedAssessmentsIds.map(id => _.find(campaign.userAssessments, { assessmentId: id })),
   )
   const isMD = useMedia('max-md')
+  const hasAssessments = !!campaign.userAssessments.length
   const hasStarted = !!campaignUser.startedAt
-  const isExpired = () => {
+  const isLocked = () => {
     if (!fixedTime) return campaignClosed
-    if (completionStatus === 'interrupted') return true
+    if (expiryDate === null) return true
 
     return (new Date(expiryDate) < new Date())
   }
-  const canContinue = isExpired() && !!additionalTime && expiryDate === null
+
+  const canContinue = isLocked() && completionStatus === 'interrupted' && !!additionalTime
+
+  function startProctoredCampaign (jwtToken) {
+    const url = `${examus.url}/integration/simple/${examus.integrationName}/start/?token=${jwtToken}`
+    window.location = url
+  }
 
   const onBeginCampaign = () => {
-    beginCampaign(campaignUser.id)
+    beginCampaign(campaignUser.id).then((response) => {
+      const { jwtToken } = response.response
+      if (isProctored && jwtToken) {
+        startProctoredCampaign(jwtToken)
+      }
+    })
   }
 
   const onContinueCampaign = () => {
@@ -109,7 +122,7 @@ export default function Campaign ({
                     className="custom-result mvl"
                   />
                 )}
-                {isExpired() && (
+                {campaignClosed && (
                   <div className="mvm font-bold">
                     <Alert message={I18n.t('campaign.closed_campaign_message')} type="info" showIcon />
                   </div>
@@ -117,8 +130,8 @@ export default function Campaign ({
                 <InstructionsPanel
                   instructionsEnabled={instructionsEnabled}
                   instructions={instructions}
-                  showBegin={!hasStarted}
-                  showContinue={canContinue}
+                  showBegin={hasAssessments && !hasStarted}
+                  showContinue={canContinue && !allAssessmentsComplete}
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
                 />
@@ -155,7 +168,7 @@ export default function Campaign ({
                               <Row type="flex" gutter={[16, 16]} className="cards">
                                 {userAssessments.map((userAssessment) => {
                                   const Assessment = Assessments[userAssessment.type]
-                                  let isDisabled = isExpired() || prevCompleted
+                                  let isDisabled = isLocked() || prevCompleted || !hasStarted
                                   if (!isDisabled && group.previousAssessmentsRequired) {
                                     isDisabled = prevAssessmentsCompleted(userAssessments, userAssessment)
                                   }
@@ -169,7 +182,7 @@ export default function Campaign ({
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
                                       timer={{ fixedTime, startedAt, campaignDuration: duration }}
-                                      disabledReason={isExpired()
+                                      disabledReason={isLocked()
                                         ? I18n.t('campaign.campaign_closed_assessment_take_message')
                                         : I18n.t('campaign.complete_prev')
                                       }
@@ -196,7 +209,7 @@ export default function Campaign ({
                                     size={3}
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
-                                    disabled={isExpired()}
+                                    disabled={isLocked() || !hasStarted}
                                     timer={{ fixedTime, startedAt, campaignDuration: duration }}
                                     disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />

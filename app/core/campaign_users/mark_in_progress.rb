@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CampaignUsers
-  class UpdateCompletionStatus < BaseCommand
+  class MarkInProgress < BaseCommand
     private_attr_reader :campaign_user
 
     def initialize(campaign_user)
@@ -17,12 +17,7 @@ module CampaignUsers
     private
 
     def attributes
-      status = campaign_user.user_assessments.all?(&:completed?) ? :completed : :interrupted
-      {
-        completed_at: Time.now,
-        completion_status: status,
-        completed_via: status == :completed ? :user : :timed_out
-      }
+      { completion_status: :in_progress, completed_at: nil, completed_via: nil }
     end
   end
 end

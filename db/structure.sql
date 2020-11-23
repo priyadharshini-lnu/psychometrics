@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -52,6 +38,20 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 
 --
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -75,7 +75,44 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+--
+-- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.admin_jobs (
+    id bigint NOT NULL,
+    owner_id bigint,
+    operation smallint,
+    progress double precision DEFAULT 0.0,
+    data json DEFAULT '{}'::json,
+    file character varying,
+    status smallint DEFAULT 0,
+    error_messages json DEFAULT '[]'::json,
+    content character varying,
+    read boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: admin_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.admin_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: admin_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.admin_jobs_id_seq OWNED BY public.admin_jobs.id;
+
 
 --
 -- Name: agile_events; Type: TABLE; Schema: public; Owner: -
@@ -337,12 +374,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -767,7 +804,8 @@ CREATE TABLE public.clients (
     strong_password_enabled boolean DEFAULT false,
     secondary_logo character varying,
     enable_live_chat boolean DEFAULT false NOT NULL,
-    migrated boolean DEFAULT false
+    migrated boolean DEFAULT false,
+    locales json DEFAULT '[]'::json
 );
 
 
@@ -2104,6 +2142,42 @@ ALTER SEQUENCE public.privacy_links_id_seq OWNED BY public.privacy_links.id;
 
 
 --
+-- Name: proctoring_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.proctoring_sessions (
+    id bigint NOT NULL,
+    session_id uuid DEFAULT public.gen_random_uuid(),
+    campaign_user_id bigint,
+    started_at timestamp without time zone,
+    completed_at timestamp without time zone,
+    status integer,
+    results jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.proctoring_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: proctoring_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.proctoring_sessions_id_seq OWNED BY public.proctoring_sessions.id;
+
+
+--
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3224,13 +3298,13 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
+    campaign_id bigint,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    campaign_id integer,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
@@ -3238,7 +3312,8 @@ CREATE TABLE public.users_results (
     additional_time integer,
     reset_count integer DEFAULT 0,
     started_at timestamp without time zone,
-    completion_reason integer
+    completion_reason integer,
+    prev_pages json DEFAULT '[]'::json
 );
 
 
@@ -3259,6 +3334,13 @@ CREATE SEQUENCE public.users_results_id_seq
 --
 
 ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
+
+
+--
+-- Name: admin_jobs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs ALTER COLUMN id SET DEFAULT nextval('public.admin_jobs_id_seq'::regclass);
 
 
 --
@@ -3640,6 +3722,13 @@ ALTER TABLE ONLY public.privacy_links ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: proctoring_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions ALTER COLUMN id SET DEFAULT nextval('public.proctoring_sessions_id_seq'::regclass);
+
+
+--
 -- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3847,6 +3936,14 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 --
 
 ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('public.users_results_id_seq'::regclass);
+
+
+--
+-- Name: admin_jobs admin_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs
+    ADD CONSTRAINT admin_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -4298,6 +4395,14 @@ ALTER TABLE ONLY public.privacy_links
 
 
 --
+-- Name: proctoring_sessions proctoring_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT proctoring_sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: product_images product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4557,6 +4662,13 @@ CREATE INDEX email_histories_campaign ON public.threesixty_email_histories USING
 --
 
 CREATE INDEX email_histories_email_schedule ON public.threesixty_email_histories USING btree (threesixty_email_schedule_id);
+
+
+--
+-- Name: index_admin_jobs_on_owner_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_admin_jobs_on_owner_id ON public.admin_jobs USING btree (owner_id);
 
 
 --
@@ -5379,6 +5491,13 @@ CREATE INDEX index_privacy_links_on_client_id ON public.privacy_links USING btre
 
 
 --
+-- Name: index_proctoring_sessions_on_campaign_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_proctoring_sessions_on_campaign_user_id ON public.proctoring_sessions USING btree (campaign_user_id);
+
+
+--
 -- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5827,6 +5946,13 @@ CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING 
 
 
 --
+-- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
+
+
+--
 -- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5966,6 +6092,14 @@ ALTER TABLE ONLY public.user_reports
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: admin_jobs fk_rails_16c3530f54; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.admin_jobs
+    ADD CONSTRAINT fk_rails_16c3530f54 FOREIGN KEY (owner_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -6590,6 +6724,14 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_bc228f8bf6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: proctoring_sessions fk_rails_be5ab3be9f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.proctoring_sessions
+    ADD CONSTRAINT fk_rails_be5ab3be9f FOREIGN KEY (campaign_user_id) REFERENCES public.campaign_users(id) ON DELETE CASCADE;
 
 
 --
@@ -7274,7 +7416,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200531072928'),
 ('20200624204627'),
 ('20200630075308'),
-('20200701101758'),
 ('20200701104517'),
 ('20200701144435'),
 ('20200701154607'),
@@ -7314,8 +7455,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201004131024'),
 ('20201007061140'),
 ('20201007072553'),
-('20201020224539'),
 ('20201011102042'),
 ('20201015102640'),
 ('20201020084827'),
-('20201021071559');
+('20201020224539'),
+('20201021071559'),
+('20201108094635'),
+('20201110230420'),
+('20201111132959');
+
+

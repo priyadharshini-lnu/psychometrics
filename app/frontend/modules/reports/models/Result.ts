@@ -47,6 +47,8 @@ export default class Result {
 
   rawResults: RawResult[]
 
+  notFilteredResults: RawResult[]
+
   dimensionId: number
 
   assessmentId: number
@@ -79,14 +81,16 @@ export default class Result {
 
   // toJSON = () => ({ name: this.name, filters: this.filters })
 
-  init = (results: RawResult[], user: object, filters: Filter[] | null): Result => {
+  init = (
+    results: RawResult[], user: object, filters: Filter[] | null, notFilteredResults: RawResult[] = [],
+  ): Result => {
     filters = this.addIndividualFilter(filters)
     _.each(filters, (filter: Filter) => {
       this.initResultsByFilter(results, filter)
     })
     this.user = user
     this.rawResults = results
-
+    this.notFilteredResults = notFilteredResults
     this.scoring = SetScoring.run(this.rawResults, this.dimensionId)
     this.questionScoring = SetScoringByQuestion.run(this.rawResults, this.dimensionId)
     this.embeddedData = SetEmbeddedData.run(this.rawResults)
@@ -108,11 +112,12 @@ export default class Result {
   addIndividualFilter = (filters: Filter[] | null): Filter[] => filters?.concat(new Filter(INDIVIDUAL_FILTER)) || []
 
   initResultsByFilter = (results: RawResult[], filter: Filter): void => {
-    let rawResults = results.filter(data => filter.correctByFilter(data))
+    const rawResults = results.filter(data => filter.correctByFilter(data))
+    let filteredResults = [...rawResults]
     if (rawResults.length < filter.minRequiredResponses) {
-      rawResults = []
+      filteredResults = []
     }
-    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(rawResults, this.user, null)
+    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(filteredResults, this.user, null, rawResults)
   }
 
   sortOccupations = (): void => {

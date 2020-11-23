@@ -41,7 +41,7 @@ en:
         reports: Reports
       users:
         id: Id
-        is_active: Active?
+        is_active: Active
         name: Name
         email: Email
         created_by: Created By

@@ -75,7 +75,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
   end
 
   it '[POST] rescore_responses' do
-    expect(::UsersResults::Recompute).to receive(:call!)
+    expect(AdminJob).to receive(:call)
 
     post :rescore_response, params: {
       id: user_assessment.id,

@@ -27,7 +27,7 @@ const bodyFromTableConfig = (tableConfig) => {
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
 
-const buildOptions = ({ options: options = {} }) => ({
+const buildOptions = ({ options = {} }) => ({
   ...options,
   headers: {
     ...options.headers,
@@ -43,7 +43,7 @@ const apiMiddleware = () => next => (action) => {
   const {
     request,
     request: {
-      method: method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
+      method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`

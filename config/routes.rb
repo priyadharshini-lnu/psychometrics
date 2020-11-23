@@ -562,6 +562,15 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
     put '/factors_norms/update_percentile_norm', to: 'factors_norms#update_percentile_norm'
 
+    resources :admin_jobs, only: %i[index] do
+      collection do
+        put :read_all
+      end
+      member do
+        put :read
+      end
+    end
+
     resources :communications, only: %i[index new create destroy show] do
       member do
         get :download_history, defaults: { format: :csv }
@@ -624,6 +633,10 @@ Rails.application.routes.draw do
       end
       resource :registrations, only: %i[new create], as: :registration
     end
+  end
+
+  namespace :webhooks do
+    resource :examus, only: %i[create]
   end
 
   devise_scope :user do
@@ -774,6 +787,9 @@ Rails.application.routes.draw do
 
         collection do
           post :change_locale
+        end
+        member do
+          get :options
         end
       end
       get 'system_checks/:assessment_id/:id', to: 'campaigns#system_checks'

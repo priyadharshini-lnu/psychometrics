@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import cs from 'classnames'
 import { I18n } from 'modules/survey/store/StoreWatchman'
 import { Button, Popconfirm } from 'antd'
+import { getIn } from 'utils/immutable'
 import { getQuestion } from 'modules/survey/core/preview/FlowProcessor/selectors'
-import styles from './Page.scss'
+import styles from './styles.scss'
 
 const BACK = 'BACK'
 const NEXT = 'NEXT'
@@ -66,7 +67,7 @@ class PageFooter extends Component {
 
   render () {
     const {
-      page, preview, preview: { enableBack }, hasPrevPage, isDisconnected,
+      page, preview, preview: { enableBack }, hasPrevPage, isDisconnected, options, isLast,
     } = this.props
     const { popConfirmVisibleFor } = this.state
 
@@ -97,19 +98,52 @@ class PageFooter extends Component {
           hidePopConfirm={this.hidePopConfirm}
           onConfirm={this.moveToNextPage}
         >
-          <Button
-            size="large"
-            type="primary"
-            disabled={isDisconnected}
-            onClick={this.handleNextClick}
-          >
-            {page.nextBtn || I18n().t('assessments.page.next')}
-            <span className="mls mrs fa fa-chevron-right rtl-flip" />
-          </Button>
+          {isLast ? (
+            <Popconfirm
+              title={<PopconfirmTitle options={options} />}
+              onConfirm={this.handleNextClick}
+              okText={I18n().t('common.text.ok')}
+              cancelText={I18n().t('common.text.cancel')}
+              disabled={isDisconnected}
+            >
+              <Button size="large" type="primary" disabled={isDisconnected}>
+                {I18n().t('assessments.page.submit')}
+              </Button>
+            </Popconfirm>
+          ) : (
+            <Button
+              size="large"
+              type="primary"
+              disabled={isDisconnected}
+              onClick={this.handleNextClick}
+              className={styles.next}
+            >
+              {page.nextBtn || I18n().t('assessments.page.next')}
+              <span className="mls mrs fa fa-chevron-right rtl-flip" />
+            </Button>
+          )}
         </QuestionInProgressPopConfirm>
       </div>
     )
   }
+}
+
+function PopconfirmTitle ({ options }) {
+  if (getIn(options, ['global', 'canNotEditEvaluation'])) {
+    return (
+      <div className={styles.popconfirm}>
+        <div>{I18n().t('frontend.are_you_sure')}</div>
+        <div>{I18n().t('assessments.page.confirm_message_1')}</div>
+      </div>
+    )
+  }
+
+
+  return (
+    <div className={styles.popconfirm}>
+      <div>{I18n().t('assessments.page.confirm_message_2')}</div>
+    </div>
+  )
 }
 
 function QuestionInProgressPopConfirm ({

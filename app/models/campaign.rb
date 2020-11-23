@@ -13,7 +13,15 @@ class Campaign < ApplicationRecord
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
   has_one :datasheet, through: :project
   has_one :campaign_options, dependent: :destroy
-  delegate :fixed_time?, :fixed_time_duration, :time_zone, :instructions_enabled, :instructions, to: :campaign_options
+  delegate :fixed_time?,
+           :fixed_time_duration,
+           :time_zone,
+           :instructions_enabled,
+           :instructions,
+           :proctoring_enabled?,
+           :identification,
+           :rules,
+           to: :campaign_options
 
   has_many :relationships, dependent: :destroy
   has_many :license_usages, inverse_of: :campaign
@@ -50,6 +58,7 @@ class Campaign < ApplicationRecord
   end
 
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
+  scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
 
   private
 

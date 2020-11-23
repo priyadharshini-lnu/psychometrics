@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-import _ from 'lodash'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
@@ -103,11 +102,12 @@ export const saveResults = (preview, questionIds, currentBlockId?): SaveResults 
 
   const data = {
     resource: {
-      [answerKey]: _.omitBy(preview.results, 'dirty'),
+      [answerKey]: preview.results,
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
       status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
+      prev_pages: preview.prevPages,
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,

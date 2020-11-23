@@ -72,6 +72,7 @@ class ApplicationController < ::BaseController
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
+    return if request.controller_class.to_s.start_with?('Webhooks')
 
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
     return render_423 if @current_project&.disabled?
@@ -121,7 +122,8 @@ class ApplicationController < ::BaseController
   end
 
   def set_locale
-    I18n.locale = cookies[:locale] || current_user&.locale || I18n.default_locale
+    I18n.locale = cookies[:locale] || current_user&.locale ||
+                  @current_project&.available_locales&.first || I18n.default_locale
   end
 
   def render_423

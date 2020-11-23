@@ -12,7 +12,7 @@ module Threesixty
     enum report_release_status: { waiting: 0, released: 1, on_hold: 2 }, _prefix: :report_status
     enum evaluation_status: { in_progress: 0, completed: 1 }, _prefix: :evaluation_status
 
-    after_update :remove_report_pdf, if: proc { evaluation_status_changed? && evaluation_status_completed? }
+    after_update :remove_report_pdf, if: proc { saved_change_to_evaluation_status? && evaluation_status_completed? }
 
     def evaluators
       participants.includes(:relationship, :subject, :evaluator).where(campaign_id: campaign_id)

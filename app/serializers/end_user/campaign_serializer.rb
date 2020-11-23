@@ -13,11 +13,10 @@ module EndUser
 
     def status
       return object.status unless object.fixed_time?
-      return object.status unless campaign_user_object.started_at
-      return object.status if campaign_time_extended?
+      return object.status unless object.active?
+      return object.status unless campaign_user_object.expiry_date?
 
-      expected_end_time = campaign_user_object.started_at + object.fixed_time_duration.minutes
-      return 'closed' if expected_end_time < Time.now && object.active?
+      return 'closed' if campaign_user_object.expiry_date < Time.now
 
       object.status
     end
@@ -29,15 +28,9 @@ module EndUser
       values = campaign_user_object.slice(*attributes)
       return values unless object.fixed_time?
       return values if user_assessments.none?
+      return values if campaign_user_object.not_started_campaign?
 
-      if campaign_user_object.started_at
-        values['completed_at'] = campaign_user_object.started_at + object.fixed_time_duration.minutes
-        values['completion_status'] = if campaign_user_object.user_assessments.all?(&:completed?)
-                                        'completed'
-                                      else
-                                        'interrupted'
-                                      end
-      end
+      values['completion_status'] = determine_completion_status if campaign_user_object.in_progress_campaign?
 
       values
     end
@@ -60,6 +53,12 @@ module EndUser
       object.campaign_users.find_by(user_id: current_user.id)
     end
 
+    def ungrouped_assessments_ids
+      object.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
+    end
+
+    private
+
     def campaign_time_extended?
       !!campaign_user_object.additional_time && campaign_user_object.expiry_date.blank?
     end
@@ -68,8 +67,8 @@ module EndUser
       @current_user ||= instance_options[:current_user]
     end
 
-    def ungrouped_assessments_ids
-      object.campaign_assessments.ungrouped.order(:position).map(&:assessment_id)
+    def determine_completion_status
+      campaign_user_object.user_assessments.all?(&:completed?) ? :completed : :in_progress
     end
   end
 end

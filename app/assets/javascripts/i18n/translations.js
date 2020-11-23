@@ -55,7 +55,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "العبارات"
@@ -205,6 +208,73 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
+  },
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "default": "Default",
+      "download": "Download",
+      "na": "N/A",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
+  "frontend": {
+    "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
+    "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
+      "users": {
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "interrupted": "Interrupted",
+          "not_started": "Not Started"
+        }
+      }
+    },
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "manage": "Manage",
+    "no": "No",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "languages": {
     "ar": "Arabic",
@@ -366,12 +436,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
         "number_of_evaluators_invited": "مدعو التقييم",
         "number_of_evaluators_received": "تم تلقي التقييمات",
         "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "ملخص تقرير",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -715,7 +790,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -865,6 +943,73 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
+  },
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "default": "Default",
+      "download": "Download",
+      "na": "N/A",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
+  "frontend": {
+    "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
+    "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
+      "users": {
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "interrupted": "Interrupted",
+          "not_started": "Not Started"
+        }
+      }
+    },
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "manage": "Manage",
+    "no": "No",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "languages": {
     "ar": "Arabic",
@@ -1026,12 +1171,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
-        "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "Report Summary",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -1371,7 +1518,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "page": {
       "back": "Back",
-      "next": "Next"
+      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
+      "confirm_message_2": "Are you sure you want to submit your responses?",
+      "next": "Next",
+      "submit": "Submit"
     },
     "pickgrouprank": {
       "items": "Items"
@@ -1521,6 +1671,73 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
+  },
+  "common": {
+    "actions": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "remove": "Remove",
+      "reset": "Reset"
+    },
+    "column": {
+      "action": "Action",
+      "category": "Category",
+      "created_at": "Created at",
+      "id": "Id",
+      "status": "Status"
+    },
+    "model": {
+      "assessments": "Assessments",
+      "campaigns": "Campaigns",
+      "reports": "Reports"
+    },
+    "text": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "continue": "Continue",
+      "default": "Default",
+      "download": "Download",
+      "na": "N/A",
+      "ok": "Ok",
+      "response": "Response"
+    }
+  },
+  "frontend": {
+    "activate": "Activate",
+    "are_you_sure": "Are you sure?",
+    "assessment_groups": {
+      "create_success": "The group is successfully created",
+      "update_success": "The group is successfully updated"
+    },
+    "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "Enter current campaign name given below in text box to remove campaign",
+          "success": "%{campaignName} removed successfully."
+        }
+      },
+      "users": {
+        "completion_statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "interrupted": "Interrupted",
+          "not_started": "Not Started"
+        }
+      }
+    },
+    "change_password": "Change password",
+    "delete": "Delete",
+    "edit": "Edit",
+    "login": "Login",
+    "manage": "Manage",
+    "no": "No",
+    "resource": {
+      "create_success": "%{resourceName} created successfully",
+      "update_success": "%{resourceName} updated successfully"
+    },
+    "update": "Update",
+    "upload": "Upload",
+    "yes": "Yes"
   },
   "languages": {
     "ar": "Arabic",
@@ -1682,12 +1899,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "value": "Value"
       },
       "three_sixty_report_summary": {
-        "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
+        "completed": "Completed",
+        "footnote": "* Excluded due to minimum threshold requirement",
+        "invited": "Invited",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluations received",
-        "number_of_evaluators_responded": "Number of evaluators responded",
+        "relationships": "Relationships",
         "subject": "Subject",
         "title": "Report Summary",
+        "total": "Total",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {

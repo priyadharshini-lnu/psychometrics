@@ -43,8 +43,8 @@ class Task < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   before_create :init
-  before_update :completion_callback, if: proc { status_changed? && completed? }
-  after_save :status_changed_callback, if: proc { status_changed? && !root? }
+  before_update :completion_callback, if: proc { will_save_change_to_status? && completed? }
+  after_save :status_changed_callback, if: proc { saved_change_to_status? && !root? }
 
   def overdue?
     if completed_at && completed?

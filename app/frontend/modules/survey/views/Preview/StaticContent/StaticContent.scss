@@ -4,8 +4,19 @@
   min-height: 50vh;
   padding: 10px;
   margin: 12px 0;
+  margin-left: 12px;
   position: relative;
 }
+
+:global {
+  .rtl {
+    :local(.container) {
+      margin-left: 0;
+      margin-right: 12px;
+    }
+  }
+}
+
 .box {
   border-radius: 9px;
   overflow: hidden;

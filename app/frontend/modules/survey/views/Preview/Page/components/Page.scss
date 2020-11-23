@@ -5,6 +5,7 @@
   margin: 0 auto;
   padding: 0;
   width: 100%;
+  max-width: 960px;
 }
 
 .readOnly {
@@ -86,12 +87,6 @@
 
 .content {
   background: #fff;
-}
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
 }
 
 .footerMinimize {
