@@ -22,6 +22,9 @@ en:
         rescore_user_assessment: "Rescore User Assessment"
         import_raw_data: "Import Raw Data"
         import_scoring_data: "Import Scoring Data"
-        bulk_reports: "Bulk Reports"
-        regenerate_campaign_reports: "Regenerate Campaign Reports"
-        regenerate_report: "Regenerate Report"
+        bulk_download_reports: "Bulk Download Reports"
+        bulk_regenerate_reports: "Regenerate Campaign Reports"
+        bulk_regenerate_user_reports: "Regenerate User Reports"
+    bulk_download_reports:
+      content:
+        title: Links to download reports

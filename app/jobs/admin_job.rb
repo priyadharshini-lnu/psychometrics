@@ -15,7 +15,12 @@ class AdminJob < ApplicationJob
   JOBS = {
     import_users: AdminJobs::ImportUsers,
     rescore_assessment: AdminJobs::RescoreAssessment,
-    rescore_user_assessment: AdminJobs::RescoreUserAssessment
+    rescore_user_assessment: AdminJobs::RescoreUserAssessment,
+    import_scoring_data: AdminJobs::ImportData,
+    import_raw_data: AdminJobs::ImportData,
+    bulk_download_reports: AdminJobs::BulkDownloadReports,
+    bulk_regenerate_reports: AdminJobs::BulkRegenerateReports,
+    bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports
   }.freeze
 
   def perform(record)

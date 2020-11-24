@@ -13,9 +13,9 @@ class AdminJobRecord < ApplicationRecord
     rescore_user_assessment: 2,
     import_raw_data: 3,
     import_scoring_data: 4,
-    bulk_reports: 5,
-    regenerate_campaign_reports: 6,
-    regenerate_report: 7
+    bulk_download_reports: 5,
+    bulk_regenerate_reports: 6,
+    bulk_regenerate_user_reports: 7
   }
 
   enum status: { scheduled: 0, in_progress: 1, completed: 2 }

@@ -30,10 +30,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
   }
 
   const handleClick = () => {
-    if (!job.read) {
-      read(job.id)
-    }
-    setExpanded(!expanded)
+    if (!job.read) read(job.id)
   }
 
   return (

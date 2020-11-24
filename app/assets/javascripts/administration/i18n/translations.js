@@ -679,12 +679,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "id": "ID",
       "name": "Name",
       "operations": {
-        "bulk_reports": "Bulk Reports",
+        "bulk_download_reports": "Bulk Download Reports",
+        "bulk_regenerate_reports": "Regenerate Campaign Reports",
+        "bulk_regenerate_user_reports": "Regenerate User Reports",
         "import_raw_data": "Import Raw Data",
         "import_scoring_data": "Import Scoring Data",
         "import_users": "Import Users",
-        "regenerate_campaign_reports": "Regenerate Campaign Reports",
-        "regenerate_report": "Regenerate Report",
         "rescore_assessment": "Rescore Assessment",
         "rescore_user_assessment": "Rescore User Assessment"
       },
@@ -5077,13 +5077,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
@@ -8044,12 +8044,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "id": "ID",
       "name": "Name",
       "operations": {
-        "bulk_reports": "Bulk Reports",
+        "bulk_download_reports": "Bulk Download Reports",
+        "bulk_regenerate_reports": "Regenerate Campaign Reports",
+        "bulk_regenerate_user_reports": "Regenerate User Reports",
         "import_raw_data": "Import Raw Data",
         "import_scoring_data": "Import Scoring Data",
         "import_users": "Import Users",
-        "regenerate_campaign_reports": "Regenerate Campaign Reports",
-        "regenerate_report": "Regenerate Report",
         "rescore_assessment": "Rescore Assessment",
         "rescore_user_assessment": "Rescore User Assessment"
       },
@@ -12442,13 +12442,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },
@@ -15398,12 +15398,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "id": "ID",
       "name": "Name",
       "operations": {
-        "bulk_reports": "Bulk Reports",
+        "bulk_download_reports": "Bulk Download Reports",
+        "bulk_regenerate_reports": "Regenerate Campaign Reports",
+        "bulk_regenerate_user_reports": "Regenerate User Reports",
         "import_raw_data": "Import Raw Data",
         "import_scoring_data": "Import Scoring Data",
         "import_users": "Import Users",
-        "regenerate_campaign_reports": "Regenerate Campaign Reports",
-        "regenerate_report": "Regenerate Report",
         "rescore_assessment": "Rescore Assessment",
         "rescore_user_assessment": "Rescore User Assessment"
       },
@@ -19796,13 +19796,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "modals": {
       "import_raw": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Raw Results data",
         "upload": "Upload"
       },
       "import_scoring": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
+        "success_msg": "Import successfully scheduled",
         "title": "Import Scoring Results data",
         "upload": "Upload"
       },

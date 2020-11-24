@@ -64,8 +64,7 @@ module Administration
       end
 
       def regenerate
-        user_report_ids = campaign.user_reports.where(id: params[:ids]).pluck(:id)
-        ::UserReports::GenerateAndSavePdfJob.perform_later(user_report_ids, current_user)
+        AdminJob.call(:bulk_regenerate_user_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
 
         head :ok
       end

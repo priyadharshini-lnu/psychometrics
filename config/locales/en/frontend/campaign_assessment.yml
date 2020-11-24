@@ -14,12 +14,12 @@ en:
     modals:
       import_raw:
         title: Import Raw Results data
-        success_msg: Import successfully uploaded
+        success_msg: Import successfully scheduled
         upload: Upload
         body: Refer to the Export functionality to extract a template that can be used to Import here.
       import_scoring:
         title: Import Scoring Results data
-        success_msg: Import successfully uploaded
+        success_msg: Import successfully scheduled
         upload: Upload
         body: Refer to the Export functionality to extract a template that can be used to Import here.
       update_norm:

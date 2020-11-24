@@ -64,15 +64,13 @@ module Administration
       end
 
       def regenerate
-        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
-        ::CampaignReports::GenerateAndSavePdfJob.perform_later(campaign_reports, current_user)
+        AdminJob.call(:bulk_regenerate_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
 
         head :ok
       end
 
       def bulk_download
-        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
-        ::CampaignReports::BulkDownloadJob.perform_later(campaign_reports, current_user)
+        AdminJob.call(:bulk_download_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
 
         head :ok
       end

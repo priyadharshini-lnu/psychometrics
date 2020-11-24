@@ -21,7 +21,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
 
   describe '[POST] update_norm' do
     it 'with apply = false' do
-      expect(::CampaignAssessments::RecomputeResultsJob).to_not receive(:perform_later)
+      expect(AdminJob).to_not receive(:call)
 
       post :update_norm, params: {
         id: assessment.id,
@@ -41,8 +41,8 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     end
 
     it 'with apply = true' do
-      expect(::CampaignAssessments::RecomputeResultsJob).to receive(:perform_later).
-        with(campaign_assessment, current_user)
+      expect(AdminJob).to receive(:call).
+        with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
 
       post :update_norm, params: {
         id: assessment.id,
@@ -59,7 +59,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   end
 
   describe 'POST rescore_responses' do
-    it 'schedules RecomputeResultsJob' do
+    it 'schedules AdminJob' do
       expect(AdminJob).to receive(:call).
         with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
 

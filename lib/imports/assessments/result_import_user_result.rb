@@ -53,7 +53,6 @@ module Imports
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
-
         # Remove support row
         SUPPORT_ROWS.times { rows.shift }
         questions = Question.
@@ -161,10 +160,10 @@ module Imports
       end
 
       def open_spreadsheet
-        case File.extname(file.original_filename)
-          when '.csv' then Roo::CSV.new(file.path)
-          when '.xlsx' then ::Roo::Excelx.new(file.path)
-          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+        case File.extname(file.path)
+          when '.csv' then Roo::CSV.new(file.url)
+          when '.xlsx' then ::Roo::Excelx.new(file.url)
+          else raise t('administration.imports.errors.unknown_type', filename: file.url)
         end
       end
       # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize

@@ -56,16 +56,13 @@ module Administration
       end
 
       def import_results
-        import = ::Imports::Assessments::ResultImportUserResult.new(import_params)
-        import.importer = current_user
-        import.campaign = campaign
-        import.assessment = assessment
-
-        if import.process!
-          render json: :ok
-        else
-          render json: { errors: import.errors.full_messages }, status: :bad_request
-        end
+        operation = params[:scoring] == 'true' ? :import_scoring_data : :import_raw_data
+        AdminJob.call(operation, {
+          assessment_id: params[:id],
+          campaign_id: params[:new_campaign_id],
+          scoring: params[:scoring] == 'true'
+        }, current_user, params[:file])
+        render json: :ok
       end
 
       def update_norm
@@ -73,8 +70,9 @@ module Administration
         if form.valid?
           campaign_assessment.update!(form.attributes)
 
-          CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
-
+          if params[:apply]
+            AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
+          end
           render json: {
             norm_name: campaign_assessment.norm.name,
             norm_type: campaign_assessment.norm_type
