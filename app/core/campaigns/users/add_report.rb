@@ -36,9 +36,17 @@ module Campaigns
       private
 
       def add_assessment_to_user(assessment, user_report)
-        user_assessment = UserAssessment.create_with(
-          users_result_id: user_result(assessment).id
-        ).find_or_create_by!(
+        user_assessment = UserAssessment.find_by(
+          campaign: campaign,
+          assessment_id: assessment.id,
+          subject: user,
+          evaluator: user,
+          relationship: Relationship.self_relationship
+        )
+        return user_assessment if user_assessment
+
+        user_assessment = UserAssessment.create(
+          users_result_id: user_result(assessment).id,
           campaign: campaign,
           assessment_id: assessment.id,
           subject: user,

@@ -17,7 +17,11 @@ global_job_config:
     - name: BUNDLER_VERSION
       value: 2.1.4
     - name: PARALLEL_TEST_PROCESSORS
-      value: '3'
+      value: '2'
+    - name: WEB_CONCURRENCY
+      value: '2'
+    - name: RAILS_MAX_THREADS
+      value: '5'
   prologue:
     commands:
       - checkout
@@ -30,10 +34,20 @@ global_job_config:
       - node --version
       - gem install bundler -v '2.1.4'
       - bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
+auto_cancel:
+  queued:
+    when: "true"
+  running:
+    when: "true"
+
 blocks:
   - name: Setup
     dependencies: []
     task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
       jobs:
         - name: bundle
           commands:
@@ -46,6 +60,10 @@ blocks:
     dependencies:
       - Setup
     task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
       jobs:
         - name: eslint
           commands:
@@ -86,6 +104,10 @@ blocks:
     dependencies:
       - Webpack
     task:
+      agent:
+        machine:
+          type: e1-standard-2
+          os_image: ubuntu1804
       jobs:
         - name: RSpec - feature specs
           commands:
@@ -100,15 +122,15 @@ blocks:
           commands:
             - artifact push capybara_screenshots tmp/capybara
 promotions:
-  - name: Deploy to develop
+  - name: Deploy to Develop
     pipeline_file: heroku-develop.yml
     auto_promote:
       when: "branch = 'develop'"
-  - name: Deploy to review
+  - name: Deploy to Review
     pipeline_file: heroku-review.yml
     auto_promote:
       when: "branch = 'review'"
-  - name: Deploy to staging
+  - name: Deploy to Staging
     pipeline_file: heroku-staging.yml
     auto_promote:
       when: "branch = 'master' AND result = 'passed'"

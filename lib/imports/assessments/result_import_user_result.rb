@@ -113,16 +113,17 @@ module Imports
 
           parsed_questions = {}
           new_results = {}
-          duration = nil
+          duration = {}
 
           # Parse answers
           data.each do |key, value|
             next unless /qid/.match?(key)
 
-            next duration = value if key.include?(DURATION)
-
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
+
+            next duration[qid] = value if key.include?(DURATION)
+
             parsed_questions[qid] ||= []
             parsed_questions[qid] << value
           end
@@ -137,7 +138,7 @@ module Imports
               p "#{question.type} - #{e}"
               next
             end
-            parsed_value = parser.build_answers(values, question, duration, scoring, user_result)
+            parsed_value = parser.build_answers(values, question, duration[qid], scoring, user_result)
             new_results[qid] = parsed_value if parsed_value
           end
           user_result.answers = new_results

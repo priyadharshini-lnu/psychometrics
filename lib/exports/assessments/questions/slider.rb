@@ -15,13 +15,12 @@ module Exports
           answers = get_answers(user_result, question)
           factors_scoring = question.detect_specified_scoring.
                             each_with_object({}) { |s, sum| sum[s['index']] = s['value']; }
-          required_size = question.props['choices'].to_i
           answers = (answers || []).
                     map do |a|
             a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : ''
           end
           answers << get_duration(user_result, question)
-          Utility::Array.ensure_size(answers, required_size)
+          Utility::Array.ensure_size(answers, question_header_size(question))
         end
 
         def self.question_id_and_choice_headers(question)

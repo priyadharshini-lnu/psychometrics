@@ -100,4 +100,8 @@ class UsersResult < ApplicationRecord
   def send_completion_email
     ::Communications::CompletionTypeJob.perform_later(self)
   end
+
+  def norm_data
+    { 'id' => norm_id, 'type' => norm_type }
+  end
 end

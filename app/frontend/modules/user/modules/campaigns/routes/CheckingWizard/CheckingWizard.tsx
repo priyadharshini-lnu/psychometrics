@@ -3,7 +3,9 @@ import _ from 'lodash'
 import {
   PageHeader, Row, Steps, Result, Button, Layout, Col,
 } from 'antd'
+import qs from 'qs'
 import cs from 'classnames'
+import { RouteComponentProps } from 'react-router-dom'
 import { useMedia } from 'modules/user/rootHooks'
 import routeUtils from 'utils/route'
 import { Checks, Config } from 'modules/user/modules/campaigns/core/checkingWizard/interfaces'
@@ -47,6 +49,10 @@ const STEPS = [
   },
 ]
 
+interface Params {
+  assessmentId: string
+  id: string
+}
 
 interface OwnProps {
   checks: Checks
@@ -55,10 +61,9 @@ interface OwnProps {
   history?: object
   campaignId?: number
   id?: number
-  match: { params: { assessmentId: string, id: string } }
 }
 
-type Props = OwnProps & PropsFromRedux
+type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
 
 const CheckingWizard: React.FC<Props> = ({
   url, checks, config, fetch, match: { params }, history, campaignId, id,
@@ -67,7 +72,8 @@ const CheckingWizard: React.FC<Props> = ({
   const parsedId = parseInt(params.id, 10)
 
   useEffect(() => {
-    fetch(parsedAssessmentId, parsedId)
+    const query = qs.parse(location.search.substr(1))
+    fetch(parsedAssessmentId, parsedId, query.type)
   }, [])
 
   const [current, setCurrent] = useState(0)

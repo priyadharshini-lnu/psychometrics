@@ -10,7 +10,7 @@ describe EndUser::UsersController, type: :controller do
   end
 
   describe 'POST /users/change_locale' do
-    it 'change locale' do
+    xit 'change locale' do
       post :change_locale, params: {
         format: :json,
         locale: 'ar'
