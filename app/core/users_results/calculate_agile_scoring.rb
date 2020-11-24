@@ -52,7 +52,7 @@ module UsersResults
     end
 
     def generate_report
-      return ::Assign::GenerateReport.call(user_result, current_user) if user_result.is_a?(Assign)
+      return ::Assigns::GenerateReport.call(user_result, current_user) if user_result.is_a?(Assign)
 
       ::UsersResults::GenerateReports.call(user_result, current_user)
     end
