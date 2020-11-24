@@ -11,4 +11,10 @@
   .displayFlex {
     display: flex;
   }
+
+  .rtl {
+    .rtl-flip {
+      transform: rotateY(180deg);
+    }
+  }
 }
