@@ -7,7 +7,7 @@ module Communications
     def perform(assign)
       communications = Communication.completion.where(assessment_id: assign.assessment_id).includes(:project)
 
-      if assign.is_a?(UsersResult) && assign.user_assessment.campaign.project.migrated?
+      if assign.is_a?(UsersResult)
         return perform_migrated(assign, communications)
       end
 
