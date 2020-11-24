@@ -224,7 +224,7 @@ const HANDLERS = {
         _.map(mediaResponses, (mr) => {
           const { questionId: qid, id } = mr
 
-          if (questionId !== qid) return mediaResponse
+          if (questionId !== qid) return mr
           if (id === mediaResponse.id) return { ...mr, userSelected: true }
           return { ...mr, userSelected: false }
         })
