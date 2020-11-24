@@ -29,12 +29,13 @@ export const defaultState: State = {
 export const FETCH = 'temp/checkingWizard/FETCH'
 export const PRE_SIGN_URL = 'temp/checkingWizard/PRE_SIGN_URL'
 
-export const fetch = (assessmentId: number, id: number): ApiAction<State> => ({
+export const fetch = (assessmentId: number, id: number, type?: string): ApiAction<State> => ({
   type: FETCH,
   request:
     {
       method: 'get',
       url: `/system_checks/${assessmentId}/${id}`,
+      body: { type },
     },
 })
 

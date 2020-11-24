@@ -8,7 +8,11 @@ module EndUser
     attribute :url, unless: -> { object.assessment.threesixty? }
 
     def url
-      object.assessment.agile? ? agile_assign_path(object) : pass_assign_path(object)
+      if object.assessment.agile?
+        return object.is_a?(Assign) ? agile_assign_path(object) : agile_user_assessment_path(object)
+      end
+
+      object.is_a?(Assign) ? pass_assign_path(object) : pass_user_assessment_path(object)
     end
 
     def campaign_id
