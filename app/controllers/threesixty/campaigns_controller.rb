@@ -6,7 +6,7 @@ module Threesixty
     layout 'layouts/end_user'
     before_action :set_locale
     before_action :set_campaign, only: %i[show options]
-    initial_state_for %i[show]
+    initial_state_for %i[show system_checks]
 
     def system_checks
       respond_to do |format|
@@ -18,7 +18,7 @@ module Threesixty
             if assessment.threesixty?
               Threesixty::Participant.find(params[:id])
             else
-              Assign.find(params[:id])
+              params[:type] == 'legacy' ? Assign.find(params[:id]) : UserAssessment.find(params[:id])
             end
 
           render json: entity, serializer: ::EndUser::SystemChecksSerializer
