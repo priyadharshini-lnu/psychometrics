@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress,
+  Layout, PageHeader, Row, Col, Progress, Space,
 } from 'antd'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
@@ -70,16 +70,19 @@ export default function UserAssessment ({
                 {assessment.name}
               </div>
           )}
-            extra={[
-              type !== 'preview_block' && enableProgress
-              && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer
-                key="2"
-                preview={preview}
-                campaignTimeLeft={campaignTimeLeft}
-                onFinish={markAssessmentTimedOut}
-              />,
-            ]}
+            extra={(
+              <Space>
+                {type !== 'preview_block' && enableProgress && (
+                  <Progress key="1" percent={progress} style={{ width: '200px' }} />
+                )}
+                <Timer
+                  key="2"
+                  preview={preview}
+                  campaignTimeLeft={campaignTimeLeft}
+                  onFinish={markAssessmentTimedOut}
+                />
+              </Space>
+            )}
             onBack={() => push(`/campaigns/${campaignId}`)}
           />
         </Content>
