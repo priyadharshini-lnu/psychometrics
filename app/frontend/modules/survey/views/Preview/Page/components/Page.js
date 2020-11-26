@@ -65,7 +65,7 @@ class Page extends Component {
       preview: {
         ignoreValidation, readOnly, type,
       },
-      isDisconnected, isLast,
+      isDisconnected,
     } = this.props
 
     if (!page) { return }
@@ -84,7 +84,6 @@ class Page extends Component {
             preview={preview}
             hasPrevPage={hasPrevPage}
             page={page}
-            isLast={isLast}
             prevPage={prevPage}
             nextPage={nextPage}
             isDisconnected={isDisconnected}

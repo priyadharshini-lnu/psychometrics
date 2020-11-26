@@ -4,7 +4,7 @@
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
-  SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
+  SHOW_PAGE, SHOW_END, HIDE_END, CHANGE_ELEMENT,
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
@@ -20,14 +20,16 @@ import {
   ADD_MEDIA_RESPONSE,
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE,
 } from './consts'
 import {
   NextPage, PrevPage, AddPrevPage, RemovePrevPage,
-  ShowErrors, EmptyErrors, ShowPage, ShowEnd,
+  ShowErrors, EmptyErrors, ShowPage, ShowEnd, HideEnd,
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, ToggleHiddenQuestions,
   ToggleIgnoreValidation, Reset, SetLocalResults, SaveResults,
-  Highlight, QuestionError, MediaResponse,
+  Highlight, QuestionError, MediaResponse, ShowSubmitPage,
+  HideSubmitPage,
 } from './interfaces'
 import { getCurrentBlock } from './selectors'
 
@@ -73,11 +75,15 @@ export const addQuestionError = (questionId: number, errors: QuestionError[]) =>
 export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
 export const showEnd = (): ShowEnd => ({ type: SHOW_END })
+export const hideEnd = (): HideEnd => ({ type: HIDE_END })
 
 export const changeElement = (id: string, page?: number): ChangeElement => ({ type: CHANGE_ELEMENT, id, page })
 
 export const hideQuestion = (id: number): HideQuestion => ({ type: HIDE_QUESTION, id })
 export const showQuestion = (id: number): ShowQuestion => ({ type: SHOW_QUESTION, id })
+
+export const showSubmitPage = (): ShowSubmitPage => ({ type: SHOW_SUBMIT_PAGE })
+export const hideSubmitPage = (): HideSubmitPage => ({ type: HIDE_SUBMIT_PAGE })
 
 export const setEmbeddedData = (data: object): SetEmbeddedData => ({ type: SET_EMBEDDED_DATA, data })
 
@@ -100,13 +106,15 @@ export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSE
 export const saveResults = (preview, questionIds, currentBlockId?): SaveResults => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
 
+  const isComplete = !preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')
+
   const data = {
     resource: {
       [answerKey]: preview.results,
       current_element: preview.currentElement,
       current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
-      status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
+      status: isComplete ? 'completed' : 'in_progress',
       prev_pages: preview.prevPages,
     },
     question_ids: questionIds,

@@ -13,6 +13,9 @@ import {
   setNotDirtyResults,
   setLocalResults,
   clearInProgressQuestion,
+  showSubmitPage,
+  hideSubmitPage,
+  hideEnd,
 } from './actions'
 import {
   getPrevPage,
@@ -41,6 +44,10 @@ function* genInitPageProcessing () {
 function* genPrevPage () {
   // set current page questions results as dirty
   const state = yield select()
+  if (state.preview.showSubmitPage) {
+    yield put(hideEnd())
+    yield put(hideSubmitPage())
+  }
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
   if (prev) {
@@ -110,12 +117,30 @@ function* genSimulatePassingAssessment () {
   }
 }
 
+function* getShowSubmitPage () {
+  const state = yield select()
+  if (state.preview.showSubmitPage) {
+    yield put(hideSubmitPage())
+    return
+  }
+  const { isThreesixty } = state.preview
+
+  const canNotEdit = _.get(
+    state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
+  )
+
+  if (state.preview.enableBack && (!isThreesixty || (isThreesixty && canNotEdit))) {
+    yield put(showSubmitPage())
+  }
+}
+
 export const watchers = [
   takeEvery(INIT, genInitPageProcessing),
   takeEvery(INIT, genFetchLocalResults),
   debounce(200, ANSWER, genSaveResultsLocal),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
+  takeLatest(SHOW_END, getShowSubmitPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),

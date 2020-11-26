@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import Page from 'views/Preview/Page'
 import EndPage from 'views/Preview/EndPage'
+import SubmitPage from 'views/Preview/SubmitPage'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 
 const AssessmentPreview = ({
-  end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl,
+  end, initialized, assessmentCategory, agileAssignUrl, agileAssetsUrl, showSubmitPage,
 }) => {
   const isAgile = () => assessmentCategory === 'agile'
 
@@ -42,6 +43,10 @@ const AssessmentPreview = ({
         <div id="agile-container" />
       </div>
     )
+  }
+
+  if (showSubmitPage) {
+    return <SubmitPage />
   }
 
   return (

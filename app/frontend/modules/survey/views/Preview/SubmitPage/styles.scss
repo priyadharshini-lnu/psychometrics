@@ -1,0 +1,26 @@
+@import '../../../styles/theme';
+@import 'modules/user/styles/variables';
+
+.page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.question {
+  flex: 1;
+  padding: 12px;
+  width: 100%;
+  margin: 16px 0;
+}
+
+.message {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 6px;
+  border-radius: 9px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 6px;
+  border: 1px solid #d9d9d9;
+}

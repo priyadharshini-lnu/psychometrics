@@ -35,12 +35,6 @@ export const getResults = (state): ResultsInterface => state.results
 
 export const isAssessmentTimedOut = (state): boolean => state.assessmentTimedOut
 
-export const getIsLastPage = (state): boolean => {
-  if (getNextPage(state)) { return false }
-  if (getNextElementId(state)) { return false }
-  return true
-}
-
 export const currentPage = (state): number => state.currentPage
 
 export const getElement = (state, id): ElementInterface => state.normalizedTree[id]

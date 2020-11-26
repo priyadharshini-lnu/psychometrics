@@ -7,6 +7,7 @@ export default connect(
     assessmentCategory: preview.assessmentCategory,
     agileAssignUrl: preview.agileAssignUrl,
     agileAssetsUrl: preview.agileAssetsUrl,
+    showSubmitPage: preview.showSubmitPage,
   }),
   {
   },

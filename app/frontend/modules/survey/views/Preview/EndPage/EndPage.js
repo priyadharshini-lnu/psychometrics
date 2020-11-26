@@ -39,6 +39,7 @@ export class EndPage extends Component {
         message = flowElement.props.message
       }
     }
+
     return (
       <div className={styles.page}>
         <div className={styles.logo}>

@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   NEXT_PAGE, PREV_PAGE,
-  SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
+  SHOW_PAGE, SHOW_END, HIDE_END, CHANGE_ELEMENT,
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
   TOGGLE_IGNORE_VALIDATION, RESET,
-  SET_LOCAL_RESULTS,
+  SET_LOCAL_RESULTS, SHOW_SUBMIT_PAGE,
+  HIDE_SUBMIT_PAGE,
 } from './consts'
 
 export interface Question {
@@ -125,6 +126,7 @@ export interface DefaultState {
   },
   assessmentTimedOut: boolean,
   mediaResponses: MediaResponse[] | [],
+  showSubmitPage: boolean
 }
 
 export interface MediaResponse {
@@ -169,6 +171,7 @@ export interface ShowErrors { type: typeof SHOW_ERRORS, errors?: object }
 export interface EmptyErrors { type: typeof EMPTY_ERRORS }
 export interface ShowPage { type: typeof SHOW_PAGE, page: number }
 export interface ShowEnd { type: typeof SHOW_END }
+export interface HideEnd { type: typeof HIDE_END }
 
 export interface ChangeElement { type: typeof CHANGE_ELEMENT, id: string, page?: number }
 export interface HideQuestion { type: typeof HIDE_QUESTION, id: number }
@@ -181,6 +184,8 @@ export interface ToggleIgnoreValidation { type: typeof TOGGLE_IGNORE_VALIDATION 
 export interface Reset { type: typeof RESET }
 export interface SetLocalResults { type: typeof SET_LOCAL_RESULTS, data?: object }
 export interface SaveResults { type: typeof SAVE_RESULTS, request?: object }
+export interface ShowSubmitPage { type: typeof SHOW_SUBMIT_PAGE }
+export interface HideSubmitPage { type: typeof HIDE_SUBMIT_PAGE }
 
 export interface AppStore {
   preview: DefaultState
