@@ -696,6 +696,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
@@ -3429,18 +3434,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -3477,9 +3488,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
@@ -8061,6 +8074,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
@@ -10794,18 +10812,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -10842,9 +10866,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
@@ -15415,6 +15441,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
@@ -18148,18 +18179,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -18196,9 +18233,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
