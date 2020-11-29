@@ -54,6 +54,7 @@ module UserReports
     def report_preview_admin_url
       params = {
         host: Settings.domain,
+        subdomain: Settings.subdomain,
         user_token: current_user.authentication_token,
         lang: options[:lang] || report.default_language || I18n.locale,
         port: Settings.port,
