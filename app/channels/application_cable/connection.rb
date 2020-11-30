@@ -12,7 +12,10 @@ module ApplicationCable
     protected
 
     def find_verified_administrator
-      verified_user = User.find_by_id(cookies.signed['user.id']) || Users::AuthenticateAnonymousUser.call!(cookies)
+      user_id = cookies.signed['user.id']
+      user_id = request.session[:sso]['user_id'] if !user_id && request.session[:sso]
+      verified_user = User.find_by_id(user_id) if user_id
+      verified_user ||= Users::AuthenticateAnonymousUser.call!(cookies)
       verified_user || reject_unauthorized_connection
     end
   end

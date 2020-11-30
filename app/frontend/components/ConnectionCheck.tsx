@@ -36,8 +36,7 @@ export default function ConnectionCheck (props: Props = {}) {
         handleConnection()
       },
       disconnected () {
-        // Disabling due to issue with taking assessments within iframe (Maia Learning)
-        // handleDisconnection()
+        handleDisconnection()
       },
     })
 

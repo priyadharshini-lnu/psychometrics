@@ -51,6 +51,7 @@ class ApplicationController < ::BaseController
         end
         if found_by == :sso
           session[:sso] = {
+            'user_id': user.id,
             'assign_id' => params[:assign_id],
             'display' => params[:display],
             'return_url' => params[:return_url]
