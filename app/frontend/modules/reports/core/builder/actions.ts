@@ -23,6 +23,7 @@ export const PASTE_PAGE = 'report/PASTE_PAGE'
 export const COPY_MODULE = 'report/COPY_MODULE'
 export const PASTE_MODULE = 'report/PASTE_MODULE'
 export const SAVE_DATA_SHEET = 'report/SAVE_DATA_SHEET'
+export const UPLOAD_DATA_SHEET = 'report/UPLOAD_DATA_SHEET'
 
 enum SelectedTypes {
   'Module',
@@ -61,6 +62,15 @@ export const pasteModule = (pageId: number, module: ModuleInterface): PasteModul
 })
 
 export const saveDataSheet = (data: object[]): SaveDataSheet => ({ type: SAVE_DATA_SHEET, data })
+export const uploadDataSheet = (id: number, body: { file: File }) => ({
+  type: UPLOAD_DATA_SHEET,
+  request: {
+    method: 'post',
+    url: `/administration/reports/${id}/upload_data_sheet`,
+    body,
+  },
+})
+
 
 export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
 export const updateCurrentPage = (offset: number, pages: {number: PageInterface}): UpdateCurrentPage => ({

@@ -134,6 +134,11 @@ class Administration::AssessmentsController < Administration::BaseController
     render json: resource.dimension.all_factors.as_json(only: %i[id name])
   end
 
+  def upload_data_sheet
+    @form = ::Datasheets::DatasheetForm.from_params(params)
+    render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
+  end
+
   private
 
   def init_breadcrumbs

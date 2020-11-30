@@ -31,6 +31,7 @@ module Assessments
     end
 
     def data_sheet_columns
+      return object.data_sheet_columns if object.data_sheet_columns.present?
       return [] if !object.threesixty? || connected_campaign.nil?
 
       Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []

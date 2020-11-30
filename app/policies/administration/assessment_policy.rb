@@ -114,6 +114,9 @@ module Administration
       index?
     end
 
+    def upload_data_sheet?
+      create?
+    end
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super

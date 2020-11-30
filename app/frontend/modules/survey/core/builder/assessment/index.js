@@ -5,7 +5,7 @@ import {
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
   ADD_NORM_RULE, REMOVE_NORM_RULE, UPDATE_FLOW,
   TOGGLE_ENABLE_BACK, TOGGLE_ENABLE_PROGRESS, SAVE,
-  SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA,
+  SAVE_REQUEST, SAVE_FAILURE, UPDATE_EXTRA, SAVE_DATA_SHEET,
 } from './actions'
 import {
   CREATE, CLONE_BLOCK, REMOVE, RESTORE_BLOCK,
@@ -40,7 +40,6 @@ const HANDLERS = {
     return ({
       ...state,
       ...assessment,
-      dataSheetColumns: assessment.data_sheet_columns,
       // fix wrong norms initializing app/models/assessments/common.rb:23
       norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules,
       propPanel: {
@@ -114,6 +113,7 @@ const HANDLERS = {
   [SAVE_FAILURE]: state => setIn(state, ['saving'], false),
   [SAVE]: state => setIn(state, ['saving'], false),
   [UPDATE_EXTRA]: (state, { extra }) => ({ ...state, extra }),
+  [SAVE_DATA_SHEET]: (state, { data }) => setIn(state, ['data_sheet_columns'], data),
 }
 
 export default createReducer(HANDLERS, defaultState)

@@ -60,6 +60,7 @@ class AssessmentSerializer < ActiveModel::Serializer
     Translation.to_hash_for_questions(ids, @instance_options[:selected_locale])
   end
 
+  # Check why is this required
   def data_sheet_columns
     return [] if !object.threesixty? || connected_campaign.nil?
 

@@ -404,6 +404,7 @@ Rails.application.routes.draw do
         get :assessments
         get :questions
         get :factors
+        post :upload_data_sheet
       end
 
       scope module: 'assessments' do

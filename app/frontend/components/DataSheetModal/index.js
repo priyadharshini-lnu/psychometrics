@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Modal } from 'react-bootstrap'
-import AppStore from 'rb/store/AppStore'
-import { DATA_SHEET_COLUMN_TYPES } from 'rb/consts/Report'
 import { setIn } from 'utils/immutable'
-import styles from './DataSheetModal.scss'
+import { DATA_SHEET_COLUMN_TYPES } from './constants'
+import styles from './styles.scss'
 import Column from './Column'
 
-const { $ } = window
 const {
   Header, Body, Footer, Title,
 } = Modal
@@ -28,26 +26,18 @@ export default class DataSheetModal extends Component {
 
   sendFile = () => {
     const { file } = this.state
+    const { uploadDataSheet, id } = this.props
     if (!file) return null
     const data = new FormData()
     data.append('file', file, file.name)
-    $.ajax({
-      url: `/administration/reports/${AppStore.report.id}/upload_data_sheet`,
-      data,
-      cache: false,
-      contentType: false,
-      processData: false,
-      method: 'POST',
-      success: (data) => {
-        this.updateColumns(data)
-      },
+    uploadDataSheet(id, data).then(({ response }) => {
+      this.updateColumns(response)
     })
   }
 
   save = () => {
     const { close, saveDataSheet } = this.props
     const { columns } = this.state
-    AppStore.report.dataSheetColumns = _.cloneDeep(columns)
     saveDataSheet(_.cloneDeep(columns))
     close()
   }

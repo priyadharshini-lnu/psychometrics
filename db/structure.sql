@@ -252,7 +252,8 @@ CREATE TABLE public.assessments (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     archived boolean DEFAULT false,
-    resources json
+    resources json,
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 
 
@@ -7462,6 +7463,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201021071559'),
 ('20201108094635'),
 ('20201110230420'),
-('20201111132959');
+('20201111132959'),
+('20201117134043');
 
 

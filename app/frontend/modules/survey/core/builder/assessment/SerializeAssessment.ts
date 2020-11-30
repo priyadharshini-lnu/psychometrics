@@ -60,6 +60,7 @@ const AssessmentSerializer = (data: any): AssessmentInterface => ({
   enable_back: data.enable_back,
   enable_progress: data.enable_progress,
   extra: data.extra,
+  data_sheet_columns: data.data_sheet_columns,
 })
 
 

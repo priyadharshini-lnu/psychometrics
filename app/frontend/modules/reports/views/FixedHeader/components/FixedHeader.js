@@ -128,8 +128,8 @@ export class FixedHeader extends Component {
   }
 
   openDataSheetModal = () => {
-    const { openDataSheet } = this.props
-    openDataSheet({ columns: AppStore.report.dataSheetColumns })
+    const { openDataSheet, report: { builder } } = this.props
+    openDataSheet({ columns: AppStore.report.dataSheetColumns, id: builder.id })
   }
 
   openAliasModal = () => {

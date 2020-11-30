@@ -10,8 +10,10 @@ import Flow from '../Flow'
 import CreateByTemplate from '../CreateByTemplate'
 import MappingNorms from '../MappingNorms'
 import EndOfAssessmentModal from '../EndOfAssessmentModal'
+import DataSheetModal from '../DataSheetModal'
 
 const MODALS = {
+  dataSheetModal: DataSheetModal,
   displayLogic: DisplayLogic,
   defaultValue: DefaultValue,
   randomization: Randomization,
