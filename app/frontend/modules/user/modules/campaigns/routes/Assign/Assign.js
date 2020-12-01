@@ -30,6 +30,7 @@ export default function Assign ({
   preview: {
     enableProgress,
     type,
+    initialized,
   },
   preview,
   markAssessmentTimedOut,
@@ -88,6 +89,7 @@ export default function Assign ({
                 <PassAssessment
                   id="pass_assessment"
                   type="pass_assessment"
+                  initialized={initialized}
                   data={assessment}
                   result={results}
                   locales={translations}

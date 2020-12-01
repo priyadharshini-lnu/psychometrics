@@ -37,6 +37,7 @@ export default function Evaluation ({
   preview: {
     enableProgress,
     type,
+    initialized,
   },
   preview,
   markAssessmentTimedOut,
@@ -180,6 +181,7 @@ export default function Evaluation ({
                   <PassAssessment
                     ref={assessmentRef}
                     id="pass_assessment"
+                    initialized={initialized}
                     type={approve_evaluation ? 'view_results' : 'pass_assessment'}
                     isThreesixty="true"
                     resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}

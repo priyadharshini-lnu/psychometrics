@@ -32,6 +32,7 @@ export default function UserAssessment ({
   match: { params },
   isFrame,
   preview: {
+    initialized,
     enableProgress,
     type,
   },
@@ -105,6 +106,7 @@ export default function UserAssessment ({
               <PassAssessment
                 id="pass_assessment"
                 type="pass_assessment"
+                initialized={initialized}
                 data={assessment}
                 result={results}
                 locales={translations}
