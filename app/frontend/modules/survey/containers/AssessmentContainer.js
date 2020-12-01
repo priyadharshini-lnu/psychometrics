@@ -18,7 +18,7 @@ class AssessmentContainer extends Component {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
       langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
-      notAnEndPage,
+      notAnEndPage, initialized,
     } = this.props
 
     this.langPartial = langPartial
@@ -26,6 +26,7 @@ class AssessmentContainer extends Component {
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
     // store.init(data, type, dbResult, rstore)
+    if (initialized) return null
 
     rstore.dispatch({
       type: INIT,
