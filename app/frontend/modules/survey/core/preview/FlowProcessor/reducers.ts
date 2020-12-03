@@ -130,6 +130,7 @@ const HANDLERS = {
       end: data.notAnEndPage ? false : result.status === 'completed',
       prevPages: result.prev_pages || [],
       highlights: _.keyBy(highlights, 'id'),
+      assessmentTimedOut: result.timed_out || false,
     }
   },
   [SET_LOCAL_RESULTS]: (state, { data }: SetLocalResults) => {

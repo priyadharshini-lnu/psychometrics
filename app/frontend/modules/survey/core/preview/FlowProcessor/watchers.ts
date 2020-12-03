@@ -34,6 +34,11 @@ const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
 function* genInitPageProcessing () {
   const state = yield select()
+
+  if (state.preview.assessmentTimedOut) {
+    yield genSimulatePassingAssessment()
+    return
+  }
   if (!state.preview.currentElement) {
     yield put(nextPage())
   } else {
@@ -119,6 +124,7 @@ function* genSimulatePassingAssessment () {
 
 function* getShowSubmitPage () {
   const state = yield select()
+  if (state.preview.assessmentTimedOut) { return }
   if (state.preview.showSubmitPage) {
     yield put(hideSubmitPage())
     return
