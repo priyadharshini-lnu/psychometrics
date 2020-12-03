@@ -26,6 +26,9 @@ const TYPES = {
         const label = `${model.props.scalePointsTexts[j] || config.defaultScalePointText(j + 1)}`
         answers.push(answer(`row_${i}_col_${j}`, `${choiceLabel} - ${label}`))
       })
+      if (model.props.notApplicable) {
+        answers.push(answer(`row_${i}_not_applicable`, `${choiceLabel} - Not Applicable`))
+      }
     })
 
     return answers
@@ -38,6 +41,10 @@ const TYPES = {
       const label = `${model.props.scalePointsTexts[i] || config.defaultScalePointText(i + 1)}`
       answers.push(answer(`col_${i}`, `${label}`))
       answers.push(answer(`count_col_${i}`, `${label} (Count)`, 'input'))
+
+      if (model.props.notApplicable) {
+        answers.push(answer(`row_${i}_not_applicable`, `${label} - Not Applicable`))
+      }
     })
 
     // TODO: Not implemented recode functionality
@@ -58,6 +65,10 @@ const TYPES = {
         const label = `${model.props.scalePointsTexts[j] || config.defaultScalePointText(j + 1)}`
         answers.push(answer(`row_${i}_col_${j}`, `${choiceLabel} - ${label}`, 'input'))
       })
+
+      if (model.props.notApplicable) {
+        answers.push(answer(`row_${i}_not_applicable`, `${choiceLabel} - Not Applicable`))
+      }
     })
 
     return answers
@@ -80,6 +91,10 @@ const TYPES = {
         const label = `${model.props.scalePointsTexts[j] || config.defaultScalePointText(j + 1)}`
         answers.push(answer(`row_${i}_col_${j}`, `${choiceLabel} - ${label}`))
       })
+
+      if (model.props.notApplicable) {
+        answers.push(answer(`row_${i}_not_applicable`, `${choiceLabel} - Not Applicable`))
+      }
     })
 
     return answers
@@ -95,6 +110,10 @@ const TYPES = {
         const label = `${model.props.scalePointsTexts[j] || config.defaultScalePointText(j + 1)}`
         answers.push(answer(`row_${i}_col_${j}`, `${choiceLabel} - ${label}`))
       })
+
+      if (model.props.notApplicable) {
+        answers.push(answer(`row_${i}_not_applicable`, `${choiceLabel} - Not Applicable`))
+      }
     })
 
     return answers
