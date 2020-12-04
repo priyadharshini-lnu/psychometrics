@@ -67,7 +67,7 @@ describe ::UsersResults::Scoring::AddScore do
           { 'value' => 5, 'question_id' => 2 },
           { 'value' => 2, 'question_id' => 3 }
         ],
-        'score' => 10 # (((2 + 3 + 4) / 3) + 5 + 2)
+        'score' => ((2 + 3 + 4) / 3) + 5 + 2
       },
       factor2.id.to_s => { 'results' => [], 'score' => nil }
     )
@@ -207,14 +207,14 @@ describe ::UsersResults::Scoring::AddScore do
       },
       factor3.id.to_s => {
         'results' => [{ 'value' => [1, 5], 'question_id' => 5 }, { 'value' => 7, 'question_id' => 8 }],
-        'score' => 5.0 # ((1 + 5)/2.0 + 7) / 2.0 = 5.0
+        'score' => (((1 + 5) / 2.0 + 7) / 2.0).round(2)
       },
       factor4.id.to_s => {
-        'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => 2.33 # (2 + 2 + 3) / 3.0 = 2.33
+        'results' => [{ 'value' => [2, 2, 3], 'question_id' => 6 }], 'score' => ((2 + 2 + 3) / 3.0).round(2)
       },
       factor5.id.to_s => { 'results' => [], 'score' => nil },
       factor6.id.to_s => {
-        'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }], 'score' => 1.67 # (1 + 1 + 3) / 3.0 = 1.67
+        'results' => [{ 'value' => [1, 1, 3], 'question_id' => 7 }], 'score' => ((1 + 1 + 3) / 3.0).round(2)
       }
     )
   end
