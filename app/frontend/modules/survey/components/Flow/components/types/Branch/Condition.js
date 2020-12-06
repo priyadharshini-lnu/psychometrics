@@ -78,6 +78,8 @@ export class Condition extends Component {
         <option value="EmbeddedData">Embedded Data</option>
         <option value="DeviceType">Device Type</option>
         <option value="GeoIP">Geo IP Location</option>
+        <option value="DataSheet">Datasheet</option>
+        <option value="SubjectDataSheet">Subject Datasheet</option>
       </select>
     )
   }

@@ -27,6 +27,14 @@ export default {
         value: '',
         predicate: 'EqualTo',
       },
+      DataSheet: {
+        value: '',
+        predicate: 'EqualTo',
+      },
+      SubjectDataSheet: {
+        value: '',
+        predicate: 'EqualTo',
+      },
     },
   },
   Conjoint: {
