@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { setIn } from 'utils/immutable'
 import { INIT, PASTE_PAGE, PASTE_MODULE } from '../actions'
 import {
@@ -32,4 +32,4 @@ const HANDLERS = {
   [PASTE_MODULE]: (state, { module }) => setIn(state, module.id, module.toJSON()),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

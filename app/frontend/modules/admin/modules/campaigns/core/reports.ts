@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import Report from 'modules/admin/modules/campaigns/interfaces/Report'
 import { updateIn } from 'utils/immutable'
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -99,4 +99,4 @@ const HANDLERS = {
   [SELECT_RECORDS]: (state: State, { payload: { ids } }: SelectRecordsAction) => ({ ...state, selectedIds: ids }),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

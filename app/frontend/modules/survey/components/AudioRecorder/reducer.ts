@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { RECORDER_STATES, UPLOAD_STATES, PLAYER_STATE } from './constants'
 
 export interface State {
@@ -105,6 +105,6 @@ const HANDLERS = {
 }
 
 
-const reducer: (state: State, action: Action) => State = createReducer(HANDLERS, {})
+const reducer: (state: State, action: Action) => State = DEPRECATED_createReducer(HANDLERS, {})
 
 export default reducer

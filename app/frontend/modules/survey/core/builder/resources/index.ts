@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import _ from 'lodash'
 import {
   select, takeEvery, put,
@@ -104,7 +104,7 @@ export const defaultState = {
   resources: [],
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
 
 function* genLoadQuestions ({ resource: { assessmentId } }: ReturnType<typeof changeResource>) {
   const { survey: { builder: { resources } } } = yield select()

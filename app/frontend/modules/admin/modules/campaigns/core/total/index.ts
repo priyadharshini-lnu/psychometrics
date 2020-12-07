@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { FETCH, FetchAction } from '../list'
 
 const defaultState = 0
@@ -10,4 +10,4 @@ const HANDLERS = {
   [FETCH]: (_: number, { response }: FetchAction) => response.total,
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

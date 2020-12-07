@@ -1,5 +1,5 @@
 import { ColorState } from 'react-color'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 
 export const OPEN = 'report/temp/colorPicker/OPEN'
 export const CLOSE = 'report/temp/colorPicker/CLOSE'
@@ -60,4 +60,4 @@ const HANDLERS = {
   [CLOSE]: () => ({ isOpen: false, onChange: null, onComplete: null }),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

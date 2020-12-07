@@ -1,11 +1,12 @@
 import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { CampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 export const FETCH = 'campaigns/campaignOptions/FETCH'
 export const UPDATE = 'campaigns/campaignOptions/UPDATE'
 
-const defaultState = {}
+const defaultState = {} as CampaignOptions
 
 export const get = (state): CampaignOptions => _.get(state, ['campaigns', 'campaignOptions'])
 
@@ -26,9 +27,11 @@ export const update = (projectId: number, campaignId: number, body: Partial<Camp
   },
 })
 
+type CampaignOptionResponse = ApiActionResponse<CampaignOptions>
+
 const HANDLERS = {
-  [FETCH]: (state: CampaignOptions, { response }: { response: CampaignOptions }) => ({ ...response }),
-  [UPDATE]: (state: CampaignOptions, { response }: { response: CampaignOptions }) => ({ ...response }),
+  [FETCH]: (_: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...response }),
+  [UPDATE]: (_: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...response }),
 }
 
 export default createReducer(HANDLERS, defaultState)

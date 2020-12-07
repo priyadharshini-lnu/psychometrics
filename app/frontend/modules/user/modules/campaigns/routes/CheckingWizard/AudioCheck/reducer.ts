@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { CheckListStatus } from '../interfaces'
 
 export interface State {
@@ -66,4 +66,4 @@ const HANDLERS = {
   }),
 }
 
-export default createReducer(HANDLERS, initialState)
+export default DEPRECATED_createReducer(HANDLERS, initialState)

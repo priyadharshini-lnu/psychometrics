@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 import { AnyAction } from 'redux'
@@ -162,7 +162,7 @@ const HANDLERS = {
   [EXTEND_TIME]: (state: State, { response }: { response: User }) => (setIn(state, ['current', 'additionalTime'], response.additionalTime)),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
 
 export const watchers = [
 ]

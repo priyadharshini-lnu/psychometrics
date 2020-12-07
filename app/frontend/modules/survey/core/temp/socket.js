@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
@@ -49,7 +49,7 @@ const HANDLERS = {
   [UNSUBSCRIBE_SOCKET]: () => ({ initialized: false }),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
 
 const createSocketChannel = (channel, data) => eventChannel((emit) => {
   socket = new Socket(channel, data, {

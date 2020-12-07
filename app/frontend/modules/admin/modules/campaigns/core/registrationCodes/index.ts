@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
 
@@ -74,4 +74,4 @@ const HANDLERS = {
   ),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

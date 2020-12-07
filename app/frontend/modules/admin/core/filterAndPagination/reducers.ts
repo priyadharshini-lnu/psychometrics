@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
 import {
@@ -70,6 +70,6 @@ const HANDLERS = {
   ),
 }
 
-const reducer: (state: State, action: ActionsReturnType) => State = createReducer(HANDLERS, {})
+const reducer: (state: State, action: ActionsReturnType) => State = DEPRECATED_createReducer(HANDLERS, {})
 
 export default reducer

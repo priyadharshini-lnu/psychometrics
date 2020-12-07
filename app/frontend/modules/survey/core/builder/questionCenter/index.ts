@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 import Question from 'modules/survey/models/Question'
@@ -54,4 +54,4 @@ const HANDLERS = {
   [SAVE]: state => setIn(state, ['saving'], false),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

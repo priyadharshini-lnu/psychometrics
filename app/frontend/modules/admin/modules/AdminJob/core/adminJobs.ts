@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import ApiAction from 'interfaces/ApiAction'
 import { AdminJob } from '../interfaces'
 
@@ -95,4 +95,4 @@ const HANDLERS = {
 }
 
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

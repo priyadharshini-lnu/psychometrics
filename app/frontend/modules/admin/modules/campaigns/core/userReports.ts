@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { updateIn } from 'utils/immutable'
 import UserReport from 'modules/admin/modules/campaigns/interfaces/UserReport'
 import humps from 'humps'
@@ -146,4 +146,4 @@ const HANDLERS = {
   ),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

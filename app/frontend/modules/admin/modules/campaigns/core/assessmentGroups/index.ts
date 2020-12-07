@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { CampaignAssessmentGroup, CampaignAssessment } from './interfaces'
 
 const defaultState = {
@@ -163,4 +163,4 @@ const HANDLERS = {
   },
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

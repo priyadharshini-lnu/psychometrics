@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer, Payload } from 'utils/redux'
+import { DEPRECATED_createReducer, Payload } from 'utils/redux'
 import { normalize } from 'normalizr'
 import { setIn, updateIn } from 'utils/immutable'
 import humps from 'humps'
@@ -239,4 +239,4 @@ const HANDLERS = {
 
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

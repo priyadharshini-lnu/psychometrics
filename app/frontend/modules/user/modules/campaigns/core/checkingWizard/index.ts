@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import _ from 'lodash'
 import Cookies from 'js-cookie'
 import ApiAction from 'interfaces/ApiAction'
@@ -60,4 +60,4 @@ const HANDLERS = {
 }
 
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

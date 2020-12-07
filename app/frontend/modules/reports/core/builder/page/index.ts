@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, ADD_PAGE, SET_PAGE_POSITIONS, PASTE_PAGE, PASTE_MODULE,
@@ -36,4 +36,4 @@ const HANDLERS = {
   [REMOVE_DISPLAY_LOGIC]: (state, { id }) => setIn(state, [id, 'display_logic'], null),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

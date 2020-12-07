@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 
 export const FETCH = 'campaigns/current/FETCH'
@@ -41,4 +41,4 @@ const HANDLERS = {
   [UPDATE]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)

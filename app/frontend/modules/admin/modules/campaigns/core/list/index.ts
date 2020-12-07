@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { put, select, takeEvery } from 'redux-saga/effects'
 import { AnyAction } from 'redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -88,7 +88,7 @@ const HANDLERS = {
   ),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
 
 function* genFetchCampaigns ({ response }: AnyAction) {
   const tables = yield select(getTables)

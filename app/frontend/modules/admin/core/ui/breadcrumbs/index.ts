@@ -1,7 +1,7 @@
 import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 const FETCH = 'ui/breadcrumbs/FETCH'
-
 
 export interface Request {
   fields: string[]
@@ -26,7 +26,7 @@ export interface State {
   }
 }
 
-export const defaultState = {
+export const defaultState: State = {
   client: { },
   project: { },
   campaign: { },
@@ -47,7 +47,7 @@ export type fetchType = typeof fetch
 export type FetchReturnType = ReturnType<typeof fetch>
 
 const HANDLERS = {
-  [FETCH]: (state: State, { response }) => response,
+  [FETCH]: (state: State, { response }: ApiActionResponse<State>): State => response,
 }
 
 export default createReducer(HANDLERS, defaultState)

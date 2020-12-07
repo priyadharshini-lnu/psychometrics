@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
 import { updateIn, setIn } from 'utils/immutable'
@@ -92,4 +92,4 @@ const HANDLERS = {
   ),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
