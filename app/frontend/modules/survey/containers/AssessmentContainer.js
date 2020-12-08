@@ -9,6 +9,8 @@ import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
 import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import 'styles/ant.less'
 import 'styles/core.scss'
 import 'utils/i18n'
@@ -82,10 +84,12 @@ class AssessmentContainer extends Component {
           onDisconnected={() => rstore.dispatch(disconnected())}
         />
         {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-        <div className="ant-row">
-          {disabled && this.overlay()}
-          <AssessmentPreview />
-        </div>
+        <DndProvider backend={HTML5Backend}>
+          <div className="ant-row">
+            {disabled && this.overlay()}
+            <AssessmentPreview />
+          </div>
+        </DndProvider>
       </ConfigProvider>
     )
   }

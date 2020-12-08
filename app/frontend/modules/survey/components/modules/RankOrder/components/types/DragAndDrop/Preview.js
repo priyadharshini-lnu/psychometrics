@@ -4,10 +4,8 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
-import { DndProvider, DragSource, DropTarget } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+import { DragSource, DropTarget } from 'react-dnd'
 import update from 'react-addons-update'
-import ItemPreview from './ItemPreview'
 import styles from './DragAndDrop.scss'
 import DescriptionPreview from '../../DescriptionPreview'
 
@@ -147,24 +145,21 @@ class Preview extends Component {
   render () {
     const { data } = this.state
     return (
-      <DndProvider backend={HTML5Backend}>
-        <div className={styles.preview}>
-          {data.map((item, i) => (
-            <Item
-              key={item.id}
-              id={item.id}
-              index={i}
-              number={i + 1}
-              text={item.text}
-              showDescription={item.showDescription}
-              description={item.description}
-              moveItem={this.moveItem}
-              endMoveItem={this.endMoveItem}
-            />
-          ))}
-          <ItemPreview key="__preview" id="0" number="0" text="Item" />
-        </div>
-      </DndProvider>
+      <div className={styles.preview}>
+        {data.map((item, i) => (
+          <Item
+            key={item.id}
+            id={item.id}
+            index={i}
+            number={i + 1}
+            text={item.text}
+            showDescription={item.showDescription}
+            description={item.description}
+            moveItem={this.moveItem}
+            endMoveItem={this.endMoveItem}
+          />
+        ))}
+      </div>
     )
   }
 }
