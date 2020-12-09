@@ -1,4 +1,4 @@
-import { createReducer } from 'utils/redux'
+import { DEPRECATED_createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,
@@ -116,4 +116,4 @@ const HANDLERS = {
   [SAVE_DATA_SHEET]: (state, { data }) => setIn(state, ['data_sheet_columns'], data),
 }
 
-export default createReducer(HANDLERS, defaultState)
+export default DEPRECATED_createReducer(HANDLERS, defaultState)
