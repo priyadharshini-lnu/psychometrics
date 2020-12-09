@@ -5,6 +5,7 @@
   border-radius: 7px;
   overflow: hidden;
   border-collapse: unset;
+  font-size: 14px;
 
   width: 100%;
   tbody {
@@ -12,8 +13,13 @@
       border-bottom: 1px solid #e8e8e8;
     }
   }
+
+  th {
+    font-weight: 600;
+  }
+
   td, th {
-    padding: 16px 16px;
+    padding: 12px;
   }
 
   tfoot {
@@ -39,7 +45,6 @@
 }
 
 .tdLabel {
-  font-weight: 600;
   text-align: left;
 }
 
@@ -62,5 +67,5 @@
       font-size: 12px;
     }
   }
-  
+
 }
