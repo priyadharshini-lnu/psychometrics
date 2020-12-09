@@ -64,7 +64,9 @@ export default function Campaign ({
     return (new Date(expiryDate) < new Date())
   }
 
-  const canContinue = isLocked() && completionStatus === 'interrupted' && !!additionalTime
+  const canBeginCampaign = !campaignClosed && hasAssessments && !hasStarted
+  const canContinueCampaign = (
+    isLocked() && completionStatus === 'interrupted' && !!additionalTime && !allAssessmentsComplete)
 
   function startProctoredCampaign (jwtToken) {
     const url = `${examus.url}/integration/simple/${examus.integrationName}/start/?token=${jwtToken}`
@@ -130,8 +132,8 @@ export default function Campaign ({
                 <InstructionsPanel
                   instructionsEnabled={instructionsEnabled}
                   instructions={instructions}
-                  showBegin={hasAssessments && !hasStarted}
-                  showContinue={canContinue && !allAssessmentsComplete}
+                  showBegin={canBeginCampaign}
+                  showContinue={canContinueCampaign}
                   onBegin={onBeginCampaign}
                   onContinue={onContinueCampaign}
                 />
