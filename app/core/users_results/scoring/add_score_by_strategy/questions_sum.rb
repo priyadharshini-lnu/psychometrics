@@ -4,10 +4,6 @@ module UsersResults
   module Scoring
     module AddScoreByStrategy
       class QuestionsSum < Questions
-        def call
-          super
-        end
-
         private
 
         def calc_score(results)
