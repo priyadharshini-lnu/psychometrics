@@ -30,13 +30,14 @@ interface Props {
   acceptPolicy(): Promise<unknown>
   history: History
   size: number
+  withSidebar: boolean
   disabled: boolean
   disabledReason: string
   loginHogan(url: string): Promise<{ response: HoganData }>
 }
 
 const Hogan: React.FC<Props> = ({
-  userAssessment, acceptPolicy, loginHogan, size, disabled, disabledReason,
+  userAssessment, acceptPolicy, loginHogan, size, disabled, disabledReason, withSidebar,
 }) => {
   const [hoganData, setHoganData] = useState<HoganData| null>(null)
   const [showConfirm, setShowConfirm] = useState(false)
@@ -66,7 +67,7 @@ const Hogan: React.FC<Props> = ({
   }
 
   return (
-    <AssessmentCard size={size}>
+    <AssessmentCard size={size} withSidebar={withSidebar}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable

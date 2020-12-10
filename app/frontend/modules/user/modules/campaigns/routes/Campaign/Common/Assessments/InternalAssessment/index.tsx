@@ -32,6 +32,7 @@ interface Props {
   acceptPolicy(): Promise<unknown>
   history: History
   size: number
+  withSidebar: boolean
   disabled: boolean
   disabledReason: string
   timer: {
@@ -42,7 +43,7 @@ interface Props {
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer,
+  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer, withSidebar,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
@@ -93,7 +94,7 @@ const InternalAssessment: React.FC<Props> = ({
   }
 
   return (
-    <AssessmentCard size={size}>
+    <AssessmentCard size={size} withSidebar={withSidebar}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable

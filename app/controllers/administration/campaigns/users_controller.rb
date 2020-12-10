@@ -84,7 +84,7 @@ module Administration
         form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
         if form.valid?
           resource.update(form.attributes)
-          render json: resource, serializer: Administration::Campaigns::UserSerializer
+          render json: resource, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end

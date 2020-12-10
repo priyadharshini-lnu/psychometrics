@@ -100,6 +100,7 @@ export default function Campaign ({
     ua => !_.includes(allCampaignLevelAsssementIds, ua.assessmentId),
   )
   ungrouped = [...ungrouped, ...ungroupedAssessments]
+  const hasSidebar = !!userReports.length
 
   return (
     <Layout>
@@ -138,7 +139,7 @@ export default function Campaign ({
                   onContinue={onContinueCampaign}
                 />
                 <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
-                  <Col xs={24} lg={24} xl={18} xxl={18}>
+                  <Col flex="2 0 33.3%">
                     <div className="panel-label">Assessments</div>
                     <Row gutter={[16, 16]}>
                       {groups.map((group) => {
@@ -180,6 +181,7 @@ export default function Campaign ({
                                       history={history}
                                       userAssessment={userAssessment}
                                       size={size}
+                                      withSidebar={hasSidebar}
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
@@ -209,6 +211,7 @@ export default function Campaign ({
                                     history={history}
                                     userAssessment={userAssessment}
                                     size={3}
+                                    withSidebar={hasSidebar}
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
                                     disabled={isLocked() || !hasStarted}
@@ -223,47 +226,49 @@ export default function Campaign ({
                       )}
                     </Row>
                   </Col>
-                  <Col xs={24} lg={24} xl={6} xxl={6}>
-                    <div className="panel-label">Reports</div>
-                    <List
-                      bordered
-                      className="reports-list"
-                      dataSource={userReports}
-                      renderItem={item => (
-                        <List.Item>
-                          <div className="report-row">
-                            <div className="report-item">
-                              <Avatar className="report-icon">{item.reportName[0]}</Avatar>
-                              <div className="report-title">
-                                <div>{item.reportName}</div>
-                                <div>
-                                  {item.status === 'not_prepared' && (
-                                    <Tag style={{ background: 'transparent' }}>
-                                      {I18n.t('user_reports.statuses.not_prepared')}
-                                    </Tag>
-                                  )}
-                                  {item.status === 'generating' && (
-                                    <Tag color="blue" style={{ background: 'transparent' }}>
-                                      {I18n.t('user_reports.statuses.generating')}
-                                    </Tag>
-                                  )}
+                  {!!userReports.length && (
+                    <Col flex="1">
+                      <div className="panel-label">Reports</div>
+                      <List
+                        bordered
+                        className="reports-list"
+                        dataSource={userReports}
+                        renderItem={item => (
+                          <List.Item>
+                            <div className="report-row">
+                              <div className="report-item">
+                                <Avatar className="report-icon">{item.reportName[0]}</Avatar>
+                                <div className="report-title">
+                                  <div>{item.reportName}</div>
+                                  <div>
+                                    {item.status === 'not_prepared' && (
+                                      <Tag style={{ background: 'transparent' }}>
+                                        {I18n.t('user_reports.statuses.not_prepared')}
+                                      </Tag>
+                                    )}
+                                    {item.status === 'generating' && (
+                                      <Tag color="blue" style={{ background: 'transparent' }}>
+                                        {I18n.t('user_reports.statuses.generating')}
+                                      </Tag>
+                                    )}
+                                  </div>
                                 </div>
+                                {item.status === 'prepared' && (
+                                  <a
+                                    href={item.pdfUrl}
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                  >
+                                    <Button type="link" icon={<ArrowDownOutlined />} />
+                                  </a>
+                                )}
                               </div>
-                              {item.status === 'prepared' && (
-                                <a
-                                  href={item.pdfUrl}
-                                  rel="noopener noreferrer"
-                                  target="_blank"
-                                >
-                                  <Button type="link" icon={<ArrowDownOutlined />} />
-                                </a>
-                              )}
                             </div>
-                          </div>
-                        </List.Item>
-                      )}
-                    />
-                  </Col>
+                          </List.Item>
+                        )}
+                      />
+                    </Col>
+                  )}
                 </Row>
               </>
             </div>
