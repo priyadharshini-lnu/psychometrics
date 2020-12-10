@@ -35,4 +35,14 @@
   :global(.ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path) {
     stroke: #1890ff;
   }
+
+  .ant-list-vertical .ant-list-item-meta {
+    margin-bottom: 8px;
+  }
+
+  .more {
+    text-align: center;
+    margin-top: 8px;
+    cursor: pointer;
+  }
 }

@@ -1,5 +1,7 @@
 en:
   admin_jobs:
+    details: Details
+    results: Results
     notifications: Notifications
     mark_as_read: Mark all read
     more: More

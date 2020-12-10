@@ -25,10 +25,13 @@ module AdminJobs
       broadcast :ok, { content: content }
     end
 
-    private
+    def generate_title_link
+      return {} unless campaign
 
-    def campaign
-      Campaign.find(record.data['campaign_id'])
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/users",
+        label: campaign.name
+      }
     end
   end
 end

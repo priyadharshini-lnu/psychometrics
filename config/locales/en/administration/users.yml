@@ -1,6 +1,7 @@
 en:
   administration:
     users: &USERS
+      user: User
       list:
         id: Id
         active: Active

@@ -696,11 +696,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",
@@ -8061,11 +8068,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",
@@ -15415,11 +15429,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "updated_at": "Modified Date"
     },
+    "bulk_download_reports": {
+      "content": {
+        "title": "Links to download reports"
+      }
+    },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",

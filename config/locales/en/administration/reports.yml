@@ -1,6 +1,7 @@
 en:
   administration:
     reports: &REPORTS
+      name: Reports
       types: &types
         common: 'Any'
         eti: 'ETI'

@@ -26,8 +26,10 @@ module Administration
 
       def rescore_response
         user_result = resource.users_result
-
-        AdminJob.call(:rescore_user_assessment, { user_result_id: user_result.id }, current_user)
+        AdminJob.call(:rescore_user_assessment, {
+          user_result_id: user_result.id,
+          campaign_id: campaign.id
+        }, current_user)
 
         render json: :ok
       end

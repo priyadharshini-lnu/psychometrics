@@ -15,14 +15,23 @@ module AdminJobs
       end
     end
 
-    private
-
-    def campaign
-      Campaign.find(record.data['campaign_id'])
+    def generate_title_link
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
+        label: "#{campaign.name} - #{assessment.name}"
+      }
     end
 
+    def generate_details
+      [
+        [I18n.t('administration.assessments.assessment'), assessment.name]
+      ]
+    end
+
+    private
+
     def assessment
-      Assessment.find(record.data['assessment_id'])
+      @assessment ||= Assessment.find(record.data['assessment_id'])
     end
   end
 end

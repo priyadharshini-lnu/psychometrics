@@ -3,17 +3,26 @@
 module AdminJobs
   class BulkRegenerateReports < AdminJobs::Base
     def call
-      campaign_reports = campaign.campaign_reports.where(id: record.data['ids'])
-
       user_reports = campaign_reports.map(&:user_reports).flatten
 
       ::UserReports::GenerateAndSavePdf.call!(user_reports, owner, {}, record)
     end
 
-    private
+    def generate_title_link
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
+        label: "#{campaign.name} - #{campaign_reports.first.report.name} (...)"
+      }
+    end
 
-    def campaign
-      Campaign.find(record.data['campaign_id'])
+    def generate_details
+      [
+        [I18n.t('administration.reports.name'), campaign_reports.map { |cr| cr.report.name }.join(', ')]
+      ]
+    end
+
+    def campaign_reports
+      @campaign_reports ||= campaign.campaign_reports.where(id: record.data['ids'])
     end
   end
 end
