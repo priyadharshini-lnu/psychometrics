@@ -1,5 +1,6 @@
 import { DEPRECATED_createReducer } from 'utils/redux'
 import { updateIn, setIn } from 'utils/immutable'
+import Rule from 'models/Rule'
 import {
   INIT, SELECT_QUESTION, UNSELECT_QUESTION,
   ENABLE, DISABLE, EMPTY_TRASH, MOVE_BLOCK_DOWN, MOVE_BLOCK_UP,
@@ -41,7 +42,7 @@ const HANDLERS = {
       ...state,
       ...assessment,
       // fix wrong norms initializing app/models/assessments/common.rb:23
-      norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules,
+      norm_rules: _.isEmpty(assessment.norm_rules) ? [] : assessment.norm_rules.map(r => new Rule(r)),
       propPanel: {
         question: null,
         offset: null,
@@ -101,9 +102,8 @@ const HANDLERS = {
     return state
   },
   [ADD_NORM_RULE]: (state, { rule }) => (updateIn(state, ['norm_rules'], list => list.concat(rule))),
-  [REMOVE_NORM_RULE]: (state, { rule }) => {
-    const rules = _.clone(state.norm_rules)
-    _.remove(rules, rule)
+  [REMOVE_NORM_RULE]: (state, { index }) => {
+    const rules = state.norm_rules.filter((_r, i) => index !== i)
     return setIn(state, ['norm_rules'], rules)
   },
   [UPDATE_FLOW]: (state, { flow }) => ({ ...state, flow }),

@@ -1,20 +1,8 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { setIn, getIn } from 'utils/immutable'
+import LogicElement from 'components/LogicElement'
 import styles from './RuleElement.scss'
-import Types from './types'
-import ConditionList from './ConditionList'
-
-const DISABLED_QUESTION_TYPES = {
-  TextEntry: {
-    Email: true,
-    Chat: true,
-  },
-  FileUpload: true,
-  VideoResponse: true,
-  AudioResponse: true,
-}
 
 class RuleElement extends Component {
   static propTypes = {
@@ -63,37 +51,9 @@ class RuleElement extends Component {
   }
 
   remove = () => {
-    const { removeNormRule, model } = this.props
-    removeNormRule(model)
+    const { removeNormRule, index } = this.props
+    removeNormRule(index)
     this.forceUpdate()
-  }
-
-  getQuestions = () => {
-    const { questions } = this.props
-    return _.reduce(
-      questions,
-      (res, question) => {
-        if (
-          getIn(DISABLED_QUESTION_TYPES, [question.type]) === true
-          || getIn(DISABLED_QUESTION_TYPES, [
-            question.type,
-            question.props.type,
-          ]) === true
-        ) {
-          return res
-        }
-        return setIn(res, [question.id], question)
-      },
-      {},
-    )
-  }
-
-  renderType () {
-    const { model } = this.props
-    const View = Types[model.type]
-    if (View) {
-      return <View model={model} />
-    }
   }
 
   renderTypeOptions () {
@@ -141,11 +101,14 @@ class RuleElement extends Component {
   renderConditions () {
     const { model } = this.props
 
+    if (!model.conditions) return null
+
     return (
-      <ConditionList
-        questions={this.getQuestions()}
-        model={model}
-        onRemove={this.update}
+      <LogicElement
+        types={[
+          'Question',
+        ]}
+        logic={model.conditions}
       />
     )
   }

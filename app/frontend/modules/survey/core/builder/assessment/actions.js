@@ -31,7 +31,7 @@ export const moveBlockDown = block => ({ type: MOVE_BLOCK_DOWN, block })
 export const moveBlockUp = block => ({ type: MOVE_BLOCK_UP, block })
 
 export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
-export const removeNormRule = rule => ({ type: REMOVE_NORM_RULE, rule })
+export const removeNormRule = index => ({ type: REMOVE_NORM_RULE, index })
 
 export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 
