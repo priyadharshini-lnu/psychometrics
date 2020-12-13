@@ -47,7 +47,9 @@ class Factor < ApplicationRecord
     questions: 0,
     sub_factor_questions: 1,
     sub_factors_average: 2,
-    sub_factors_conditional_average: 3
+    sub_factors_conditional_average: 3,
+    questions_sum: 4,
+    sub_factor_questions_sum: 5
   }, _suffix: :strategy
 
   mount_uploader :icon, ImageUploader

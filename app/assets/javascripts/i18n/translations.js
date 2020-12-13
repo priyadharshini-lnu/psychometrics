@@ -1,5 +1,22 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
+  "administration": {
+    "factors": {
+      "form": {
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
+      }
+    }
+  },
   "anonym": {
     "continue": "Continue",
     "copy": {
@@ -735,6 +752,23 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   }
 });
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
+  "administration": {
+    "factors": {
+      "form": {
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
+      }
+    }
+  },
   "anonym": {
     "continue": "Continue",
     "copy": {
@@ -1463,6 +1497,23 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   }
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
+  "administration": {
+    "factors": {
+      "form": {
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
+      }
+    }
+  },
   "anonym": {
     "continue": "Continue",
     "copy": {

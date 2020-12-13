@@ -29,9 +29,27 @@ module UsersResults
         end
 
         extended_scoring = ::UsersResults::Scoring::AddScore.call!(factor_hash, factor_hash.keys, scoring)
-        extended_scoring = ::UsersResults::Scoring::AddNormScore.call!(extended_scoring, norm_data)
+        extended_scoring = ::UsersResults::Scoring::AddZScore.call!(extended_scoring, norm_data, factor_norm_hash)
+        extended_scoring = ::UsersResults::Scoring::AddNormScore.call!(
+          extended_scoring, norm_data, factor_hash, factor_norm_hash
+        )
 
         broadcast :ok, extended_scoring
+      end
+
+      private
+
+      def factor_norm_hash
+        @factor_norm_hash ||=
+          if norm_data.present? && norm_data['id'] && norm_data['type']
+            FactorsNorm.where(
+              factor_id: scoring.keys,
+              norm_id: norm_data['id'],
+              type: norm_data['type'].downcase
+            ).index_by(&:factor_id)
+          else
+            {}
+          end
       end
     end
   end

@@ -50,7 +50,7 @@ export default function Form (props) {
       <div className="ant-form-vertical">
         <InputFile onChange={onChange} value={resource.icon} />
       </div>
-      {resource.scoring_strategy !== 'questions'
+      {resource.scoring_strategy !== 'questions' && resource.scoring_strategy !== 'questions_sum'
       && <SubFactorList factors={factors} factor={resource} onChange={onChange} errors={errors} />}
     </>
   )
