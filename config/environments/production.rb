@@ -32,11 +32,11 @@ Rails.application.configure do
       'Access-Control-Allow-Headers' => '*'
     )
   end
-  if Settings.asset_host.present?
-    config.public_file_server.headers = {
-      'Access-Control-Allow-Origin' => '*'
-    }
-  end
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, s-maxage=31536000, max-age=15552000',
+    'Expires' => 1.year.from_now.to_formatted_s(:rfc822)
+  }
+  config.public_file_server.headers['Access-Control-Allow-Origin'] = '*' if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new output: { comments: :none }
   config.logger = Syslog::Logger.new 'psychometrics'

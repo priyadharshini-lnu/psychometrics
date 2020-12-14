@@ -6,7 +6,6 @@ html.body-full-height style=device_html_style
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
-    = jquery_include_tag :google
     = render 'layouts/pys_global_state'
     = stylesheet_link_tag 'devise', media: 'all'
     = javascript_include_tag 'administration'
