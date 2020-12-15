@@ -9,6 +9,7 @@ module Administration
       before_action :pundit_authorize, except: %i[
         export_results
         export_hogan_results
+        export_agile_results
         export_normed_results
         enable_universal_links
         disable_universal_links
@@ -32,23 +33,20 @@ module Administration
         @assessment = Assessment.find(params[:assessment_id])
         authorize @assessment
 
-        results = if @assessment.agile?
-                    ::Exports::Assessments::AgileAssessmentResultsExport.call!(@assessment, 1697)
-                  else
-                    ::Exports::Assessments::AssessmentResultsExport.call!(@assessment, client.id, export_results_params)
-                  end
+        results = ::Exports::Assessments::AssessmentResultsExport.call!(@assessment, client.id, export_results_params)
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
           format.xlsx { send_data results.to_stream.read, filename: filename }
         end
       end
 
-      def export_hogan_results
+      def export_agile_results
         @assessment = Assessment.find(params[:assessment_id])
         authorize @assessment
-        results = ::Exports::Assessments::HoganResultsExport.new(client.id, @assessment.id, params[:report_id])
+        results = ::Exports::Assessments::AgileAssessmentResultsExport.call!(@assessment, client.id)
+
         respond_to do |format|
-          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'hogan_assessment_results.xlsx' }
+          format.xlsx { send_data results.to_stream.read, filename: 'agile_assessment_results.xlsx' }
         end
       end
 
@@ -77,6 +75,15 @@ module Administration
         Administration::Clients::Assessments::DisableUniversalLinks.call(client, @assessment)
 
         render :update
+      end
+
+      def export_hogan_results
+        @assessment = Assessment.find(params[:assessment_id])
+        authorize @assessment
+        results = ::Exports::Assessments::HoganResultsExport.new(client.id, @assessment.id, params[:report_id])
+        respond_to do |format|
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'hogan_assessment_results.xlsx' }
+        end
       end
 
       def generate_universal_link

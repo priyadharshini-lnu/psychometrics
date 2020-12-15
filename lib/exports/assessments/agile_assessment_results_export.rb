@@ -3,7 +3,7 @@
 module Exports
   module Assessments
     class AgileAssessmentResultsExport < BaseCommand
-      attr_accessor :assessment_id
+      private_attr_accessor :assessment_id, :client_id
 
       def initialize(assessment, client_id)
         @client_id = client_id
@@ -15,9 +15,14 @@ module Exports
         broadcast :ok, xlsx
       end
 
+      private
+
       def get_xlsx_export_result
-        results = Assign.joins(membership: %i[client user]).includes(:assessment, membership: %i[client user]).where(
-          'clients.ancestry_depth = 1 and assessment_id = (?) and assigns.status IN (?)', assessment_id, [1, 2]
+        results = Assign.joins(membership: %i[client user]).includes(
+          %i[user assessment], membership: %i[client user]
+        ).where(
+          'assessment_id = (?) and assigns.status IN (?) and memberships.client_id = (?)',
+          assessment_id, [1, 2], client_id
         )
         config = Agile.find_by_assessment_id(assessment_id).try(:config)
         Axlsx::Package.new do |package|
@@ -35,17 +40,6 @@ module Exports
             results.each do |result|
               sheet.add_row prepare_score_data(result, questions).flatten, style: wrap
             end
-          end
-        end
-      end
-
-      def scene_data(package, results, questions)
-        package.workbook.add_worksheet(name: 'AgileAssessmentRawResults') do |sheet|
-          header_style = package.workbook.styles.add_style(b: true, sz: 14)
-          # headers = result_details_header + question_headers(questions)
-          sheet.add_row(result_details_header + question_headers(questions), style: header_style)
-          results.each do |result|
-            sheet.add_row(prepare_score_data(result, questions))
           end
         end
       end

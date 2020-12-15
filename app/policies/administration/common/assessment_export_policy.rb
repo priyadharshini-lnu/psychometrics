@@ -29,6 +29,10 @@ module Administration
         @record.hogan? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
 
+      def export_agile_results?
+        @record.agile? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
+      end
+
       def export_mindmill_results?
         @record.mindmill? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
