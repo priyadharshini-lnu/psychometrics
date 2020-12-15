@@ -30,7 +30,7 @@ global_job_config:
       - cache restore node-modules-$(checksum yarn.lock)
       - cache restore webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt)
       - sem-version ruby 2.5.1
-      - sem-version node 12.18.3
+      - sem-version node 14.15.1
       - node --version
       - gem install bundler -v '2.1.4'
       - bundle install -j $(nproc) --retry 3  --without development --path vendor/bundle
