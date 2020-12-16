@@ -58,7 +58,7 @@ module Administration
           }, current_user, params[:import_data])
           render json: :ok
         else
-          render json: { errors: form.errors.full_messages }, status: 422
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
         end
       end
 
