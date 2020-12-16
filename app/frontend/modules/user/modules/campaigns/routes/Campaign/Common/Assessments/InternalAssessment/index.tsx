@@ -9,6 +9,7 @@ import '../styles.scss'
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import { History } from 'history'
 import _ from 'lodash'
+import { getMinutesAndSeconds } from 'utils/time'
 import PrivacyModal from '../PrivacyModal'
 import TimingModal from '../TimingModal'
 import AssessmentCard from '../AssessmentCard'
@@ -39,6 +40,8 @@ interface Props {
     fixedTime: boolean
     campaignDuration: number
     startedAt: string
+    additionalTime: number
+    expiryDate: string
   }
 }
 
@@ -166,7 +169,7 @@ const InternalAssessment: React.FC<Props> = ({
           show={showTimingConfirmation}
           close={() => setShowTimingConfirmation(false)}
           assessmentName={userAssessment.assessmentName}
-          assessmentTime={(userAssessment.assessmentExtra.timer || 0) / 60}
+          assessmentTime={getMinutesAndSeconds(userAssessment.assessmentExtra.timer || 0)}
           timer={timer}
         />
       )}

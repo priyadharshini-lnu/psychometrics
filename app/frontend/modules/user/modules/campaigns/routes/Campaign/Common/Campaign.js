@@ -34,7 +34,6 @@ export default function Campaign ({
 }) {
   const {
     campaignUser: {
-      startedAt,
       expiryDate,
       additionalTime,
       completionStatus,
@@ -185,7 +184,9 @@ export default function Campaign ({
                                       loginHogan={loginHogan}
                                       acceptPolicy={acceptPolicy}
                                       disabled={isDisabled}
-                                      timer={{ fixedTime, startedAt, campaignDuration: duration }}
+                                      timer={{
+                                        fixedTime, campaignDuration: duration, additionalTime, expiryDate,
+                                      }}
                                       disabledReason={isLocked()
                                         ? I18n.t('campaign.campaign_closed_assessment_take_message')
                                         : I18n.t('campaign.complete_prev')
@@ -215,7 +216,9 @@ export default function Campaign ({
                                     loginHogan={loginHogan}
                                     acceptPolicy={acceptPolicy}
                                     disabled={isLocked() || !hasStarted}
-                                    timer={{ fixedTime, startedAt, campaignDuration: duration }}
+                                    timer={{
+                                      fixedTime, campaignDuration: duration, expiryDate,
+                                    }}
                                     disabledReason={I18n.t('campaign.campaign_closed_assessment_take_message')}
                                   />
                                 )

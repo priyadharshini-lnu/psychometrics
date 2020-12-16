@@ -3,7 +3,7 @@ import {
   Button, Modal,
 } from 'antd'
 import './styles.scss'
-import { minutesLeft } from 'utils/time'
+import { minutesLeftFromNow } from 'utils/time'
 
 const { I18n } = window
 
@@ -12,18 +12,20 @@ interface Props {
   ok(): void
   close(): void
   assessmentName: string
-  assessmentTime: number
+  assessmentTime: string
   timer: {
     fixedTime: boolean
     campaignDuration: number
     startedAt: string
+    additionalTime: number
+    expiryDate: string
   }
 }
 
 const TimingModal: React.FC<Props> = ({
-  ok, show, close, assessmentName, assessmentTime, timer: { startedAt, campaignDuration },
+  ok, show, close, assessmentName, assessmentTime, timer: { expiryDate },
 }) => {
-  const delta = minutesLeft(new Date(startedAt), campaignDuration)
+  const delta = minutesLeftFromNow(new Date(expiryDate))
 
   return (
     <Modal
