@@ -3,7 +3,7 @@
 module Campaigns
   module Users
     class ProcessImport < BaseCommand
-      private_attr_reader :campaign, :current_user, :rows, :operation, :job_record
+      private_attr_reader :campaign, :current_user, :rows, :operation, :job_record, :imported_users
       private_attr_accessor :users_those_pwd_not_changed
 
       def initialize(campaign, current_user, rows, operation, job_record)
@@ -13,6 +13,7 @@ module Campaigns
         @operation = operation
         @job_record = job_record
         @users_those_pwd_not_changed = []
+        @imported_users = []
       end
 
       def call
@@ -28,13 +29,16 @@ module Campaigns
                 on(:error) do |error|
                   raise Licenses::NotEnoughError, error.inspect
                 end
+                on(:ok) do |u|
+                  imported_users << u
+                end
               end
             end
             progress += 100 / rows.size
             AdminJob.update_progress(job_record, progress)
           end
         end
-        broadcast :ok, users_those_pwd_not_changed
+        broadcast :ok, users_those_pwd_not_changed, imported_users
       end
 
       def update_user!(user, attrs)
@@ -48,6 +52,7 @@ module Campaigns
 
         user.update!(attrs_to_update)
         add_user_that_pwd_not_changed(user) if pwd_to_be_not_changed
+        imported_users << user
         user
       end
 

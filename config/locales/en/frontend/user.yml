@@ -8,6 +8,7 @@ en:
       import:
         title: Import Users
         user_with_unchanged_passwords: The list of users whose passwords were not changed
+        imported_users: "The number of imported users: %{number}"
         success_msg: The uploaded file has been queued for import. Please check the status in the notifications
         body: Refer to the Export functionality to extract a template that can be used to Import here.
     toolbar:
