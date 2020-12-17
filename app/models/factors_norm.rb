@@ -21,15 +21,12 @@ class FactorsNorm < ApplicationRecord
   #
   self.inheritance_column = :_type_disabled
 
-  # norm types constant
-  NORM_TYPES = %w[eti yti].freeze
   # factor types constant
   FACTOR_TYPES = %w[factors sub_factors].freeze
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
   validates :factor, :norm, presence: true
-  validates :type, inclusion: { in: NORM_TYPES }, allow_nil: true
   validate :scoring_valid
   validate :score_from_less_than_score_to
 
@@ -61,35 +58,17 @@ class FactorsNorm < ApplicationRecord
       end
     end
 
-    #
-    # Return list of structured hashes
-    #
-    # {
-    #   "eti": {
-    #     "factors": <structured_hash>
-    #     "sub_factors": <structured_hash>
-    #   },
-    #   "yti": {
-    #     "factors": <structured_hash>
-    #     "sub_factors": <structured_hash>
-    #   },
-    # }
-    #
-    #
     def export_structured_hash(norm)
-      FactorsNorm::NORM_TYPES.each_with_object(Hash.new({})) do |norm_type, sum|
-        sum[norm_type] = {}
-        sql = Factor.where(dimension_id: norm.dimension_id).
-              with_norm_type(norm_type, norm.id)
-        sum[norm_type]['factors'] = FactorsNorm.structured_hash(sql)
-      end
+      sum = {}
+      sql = Factor.where(dimension_id: norm.dimension_id).with_norm(norm.id)
+      sum['factors'] = FactorsNorm.structured_hash(sql)
+      sum
     end
 
     def change_cell(params)
       factors_norm = FactorsNorm.find_or_create_by(
         norm_id:   params[:norm_id],
-        factor_id: params[:factor_id],
-        type:      params[:type]
+        factor_id: params[:factor_id]
       )
       cell         = factors_norm.props.detect { |item| item['level'] == params[:level] }
       value        = params[:field_value]

@@ -9,20 +9,6 @@ class RuleElement extends Component {
     model: PropTypes.object,
   }
 
-  constructor (props) {
-    super(props)
-    let normUiType = ''
-    if (props.model.norm_id) {
-      normUiType = 'Norm'
-    }
-    if (props.model.norm_type) {
-      normUiType = 'Norm Type'
-    }
-    this.state = {
-      normUiType,
-    }
-  }
-
   changeType = (e) => {
     const { model } = this.props
     model.changeType(e.currentTarget.value)
@@ -33,21 +19,6 @@ class RuleElement extends Component {
     const { model } = this.props
     model.norm_id = e.currentTarget.value
     this.forceUpdate()
-  }
-
-  changeNormType = (e) => {
-    const { model } = this.props
-    model.norm_type = e.currentTarget.value
-    this.forceUpdate()
-  }
-
-  changeNormUiType = (e) => {
-    const { model } = this.props
-    model.norm_type = null
-    model.norm_id = null
-    this.setState({
-      normUiType: e.currentTarget.value,
-    })
   }
 
   remove = () => {
@@ -66,7 +37,6 @@ class RuleElement extends Component {
   }
 
   renderNormOptions () {
-    const { normUiType } = this.state
     const { model, norms } = this.props
     if (!norms.length) {
       return (
@@ -77,21 +47,11 @@ class RuleElement extends Component {
     }
     return (
       <div>
-        <span className={styles.title}>Set Norm or Norm Type:</span>
-        <select className={`${styles.select}`} onChange={this.changeNormUiType} value={normUiType || ''}>
-          <option>Choice...</option>
-          {_.map(['Norm', 'Norm Type'], type => (<option key={type} value={type}>{type}</option>))}
-        </select>
-        {normUiType === 'Norm' && (
+        <span className={styles.title}>Set Norm</span>
+        {(
           <select className={styles.select} value={model.norm_id || ''} onChange={this.changeNorm}>
             {!model.norm_id && <option value="">Choose Norm</option>}
             {_.map(norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
-          </select>
-        )}
-        {normUiType === 'Norm Type' && (
-          <select className={styles.select} value={model.norm_type || ''} onChange={this.changeNormType}>
-            {!model.norm_type && <option value="">Choose Norm Type</option>}
-            {_.map(['YTI', 'ETI'], type => (<option key={type} value={type}>{type}</option>))}
           </select>
         )}
       </div>

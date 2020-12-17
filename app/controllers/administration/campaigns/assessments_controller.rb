@@ -74,8 +74,7 @@ module Administration
             AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
           end
           render json: {
-            norm_name: campaign_assessment.norm.name,
-            norm_type: campaign_assessment.norm_type
+            norm_name: campaign_assessment.norm.name
           }
         else
           render json: { errors: form.errors.messages.values }, status: 422

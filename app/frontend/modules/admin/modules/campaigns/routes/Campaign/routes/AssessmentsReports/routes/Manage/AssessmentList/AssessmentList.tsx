@@ -63,7 +63,7 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, normType, id, isExternal,
+              normName, id, isExternal,
             }) => {
               if (isExternal) {
                 return I18n.t('common.text.na')
@@ -75,7 +75,7 @@ const AssessmentList: React.FC<Props> = ({
                       { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                   }
                 >
-                  {normName ? `${normName}, ${_.toUpper(normType)}` : 'Default'}
+                  {normName || I18n.t('common.text.default')}
                 </a>
               )
             }}

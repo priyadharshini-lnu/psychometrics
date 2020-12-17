@@ -8,7 +8,6 @@ export default interface Assessment {
   assessmentId: number
   normId: number
   normName: string
-  normType: string
   enableUniversalLinks: boolean
   isExternal: boolean
   universalLink: string | null

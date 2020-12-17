@@ -23,7 +23,6 @@ describe UsersResults::Reset do
       occupations: test,
       expiry_date: Time.now,
       last_activity_at: Time.now,
-      norm_type: 'ETI',
       norm_id: norm.id)
   end
   let(:user_report) do
@@ -45,7 +44,6 @@ describe UsersResults::Reset do
       and change { users_result.scoring }.from(test).to(nil).
       and change { users_result.embedded_data }.from(test).to(nil).
       and change { users_result.norm_id }.from(norm.id).to(nil).
-      and change { users_result.norm_type }.from('ETI').to(nil).
       and change { users_result.occupations }.from(test).to(nil).
       and change { users_result.status }.from('completed').to('not_started').
       and change { users_result.completed_at }.from(Time.now).to(nil).

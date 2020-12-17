@@ -2,7 +2,7 @@
 
 module Administration
   class UserAssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_type, :norm_id,
+    attributes :id, :assessment_id, :name, :category, :norm_name, :status, :norms, :norm_id,
                :additional_time, :is_expired, :is_external
 
     delegate :name, :category, to: :assessment
@@ -19,10 +19,6 @@ module Administration
 
     def norm_name
       user_result&.norm&.name
-    end
-
-    def norm_type
-      user_result&.norm_type
     end
 
     def norm_id

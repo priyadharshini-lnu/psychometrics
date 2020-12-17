@@ -113,7 +113,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         name
         category
         norm_name
-        norm_type norm_id
+        norm_id
         enable_universal_links
         universal_link
         norms
@@ -123,8 +123,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
-      'norm_name' => nil,
-      'norm_type' => nil
+      'norm_name' => nil
     })
   end
 end

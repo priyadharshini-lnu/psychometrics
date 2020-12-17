@@ -206,13 +206,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "update_assessment": {
           "attributes": null
         },
-        "update_norm": {
-          "attributes": {
-            "norm_type": {
-              "inclusion": "Please select the correct norm type"
-            }
-          }
-        },
         "user": {
           "attributes": {
             "email": {
@@ -725,7 +718,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -758,6 +751,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -1290,6 +1284,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -1692,7 +1687,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -2000,7 +1996,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -2533,12 +2530,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "form": {
           "load_mindmill_report": "Load from Mindmill",
           "none_external": "None - Use report builder",
-          "select_family": "Select Report Bundle",
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
-          }
+          "select_family": "Select Report Bundle"
         },
         "index": {
           "add": "Add",
@@ -2571,6 +2563,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "type": "Type",
           "updated_at": "Modified date"
         },
+        "name": "Reports",
         "new": {
           "header": "Select Report"
         },
@@ -2630,11 +2623,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
-        },
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
         },
         "update": {
           "successfully": "Report %{name} was successfully updated."
@@ -3041,12 +3029,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "form": {
             "load_mindmill_report": "Load from Mindmill",
             "none_external": "None - Use report builder",
-            "select_family": "Select Report Bundle",
-            "types": {
-              "common": "Any",
-              "eti": "ETI",
-              "yti": "YTI"
-            }
+            "select_family": "Select Report Bundle"
           },
           "index": {
             "add": "Add",
@@ -3079,6 +3062,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "type": "Type",
             "updated_at": "Modified date"
           },
+          "name": "Reports",
           "new": {
             "header": "Select Report"
           },
@@ -3132,11 +3116,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           },
           "toggle_status": {
             "successfully": "Report was successfully updated."
-          },
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
           },
           "update": {
             "successfully": "Report %{name} was successfully updated."
@@ -3202,7 +3181,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -4315,12 +4295,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "load_mindmill_report": "Load from Mindmill",
         "none_external": "None - Use report builder",
-        "select_family": "Select Report Bundle",
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
-        }
+        "select_family": "Select Report Bundle"
       },
       "index": {
         "add": "Add",
@@ -4353,6 +4328,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "type": "Type",
         "updated_at": "Modified date"
       },
+      "name": "Reports",
       "new": {
         "header": "Select Report"
       },
@@ -4406,11 +4382,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
-      },
-      "types": {
-        "common": "Any",
-        "eti": "ETI",
-        "yti": "YTI"
       },
       "update": {
         "successfully": "Report %{name} was successfully updated."
@@ -4821,7 +4792,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -5914,6 +5886,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "upload": "Upload",
     "yes": "Yes"
   },
+  "hello": "Hello world",
   "helpers": {
     "page_entries_info": {
       "more_pages": {
@@ -6457,75 +6430,75 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "ransack": {
-    "all": "all",
-    "and": "and",
-    "any": "any",
-    "asc": "ascending",
-    "attribute": "attribute",
-    "combinator": "combinator",
-    "condition": "condition",
-    "desc": "descending",
-    "or": "or",
-    "predicate": "predicate",
+    "all": "كل",
+    "and": "و",
+    "any": "أيُّ",
+    "asc": "تصاعدي",
+    "attribute": "خاصية",
+    "combinator": "دالة توافقية",
+    "condition": "شرط",
+    "desc": "تنازلي",
+    "or": "أو",
+    "predicate": "فاعل",
     "predicates": {
-      "blank": "is blank",
-      "cont": "contains",
-      "cont_all": "contains all",
-      "cont_any": "contains any",
-      "does_not_match": "doesn't match",
-      "does_not_match_all": "doesn't match all",
-      "does_not_match_any": "doesn't match any",
-      "end": "ends with",
-      "end_all": "ends with all",
-      "end_any": "ends with any",
-      "eq": "equals",
-      "eq_all": "equals all",
-      "eq_any": "equals any",
-      "false": "is false",
-      "gt": "greater than",
-      "gt_all": "greater than all",
-      "gt_any": "greater than any",
-      "gteq": "greater than or equal to",
-      "gteq_all": "greater than or equal to all",
-      "gteq_any": "greater than or equal to any",
-      "in": "in",
-      "in_all": "in all",
-      "in_any": "in any",
-      "lt": "less than",
-      "lt_all": "less than all",
-      "lt_any": "less than any",
-      "lteq": "less than or equal to",
-      "lteq_all": "less than or equal to all",
-      "lteq_any": "less than or equal to any",
-      "matches": "matches",
-      "matches_all": "matches all",
-      "matches_any": "matches any",
-      "not_cont": "doesn't contain",
-      "not_cont_all": "doesn't contain all",
-      "not_cont_any": "doesn't contain any",
-      "not_end": "doesn't end with",
-      "not_end_all": "doesn't end with all",
-      "not_end_any": "doesn't end with any",
-      "not_eq": "not equal to",
-      "not_eq_all": "not equal to all",
-      "not_eq_any": "not equal to any",
-      "not_in": "not in",
-      "not_in_all": "not in all",
-      "not_in_any": "not in any",
-      "not_null": "is not null",
-      "not_start": "doesn't start with",
-      "not_start_all": "doesn't start with all",
-      "not_start_any": "doesn't start with any",
-      "null": "is null",
-      "present": "is present",
-      "start": "starts with",
-      "start_all": "starts with all",
-      "start_any": "starts with any",
-      "true": "is true"
+      "blank": "فراغ",
+      "cont": "محتو",
+      "cont_all": "محتو لجميع",
+      "cont_any": "محتو لواحد على اﻷقل",
+      "does_not_match": "لا يتواءم",
+      "does_not_match_all": "لا يتواءم مع الجميع",
+      "does_not_match_any": "لا يتواءم مع واحد على اﻷقل",
+      "end": "ينتهي بـ",
+      "end_all": "ينتهي بالجميع",
+      "end_any": "ينتهي بواحد على اﻷقل",
+      "eq": "معادل",
+      "eq_all": "معادل للجميع",
+      "eq_any": "معادل على اﻷقل لواحد",
+      "false": "خطأ",
+      "gt": "أكبر من",
+      "gt_all": "أكبر من الجميع",
+      "gt_any": "أكبر من واحد على اﻷقل",
+      "gteq": "أكبر أو مساو لـ",
+      "gteq_all": "أكبر أو مساو للجميع",
+      "gteq_any": "أكبر أو مساو لواحد على اﻷقل",
+      "in": "متضمن لـ",
+      "in_all": "متضمن للجميع",
+      "in_any": "متضمن لواحد على اﻷقل",
+      "lt": "أصغر من",
+      "lt_all": "أصغر من الجميع",
+      "lt_any": "أصغر لواحد على اﻷقل",
+      "lteq": "أصغر أو مساو لـ",
+      "lteq_all": "أصغر أو مساو للجميع",
+      "lteq_any": "أصغر أو مساو لواحد على اﻷقل",
+      "matches": "موائم",
+      "matches_all": "موائم للجميع",
+      "matches_any": "موائم لواحد على اﻷقل",
+      "not_cont": "غير محتو",
+      "not_cont_all": "غير محتو للجميع",
+      "not_cont_any": "غير محتو لواحد على اﻷقل",
+      "not_end": "لا ينتهي بـ",
+      "not_end_all": "لا ينتهي بالجميع",
+      "not_end_any": "لا ينتهي بواحد على اﻷقل",
+      "not_eq": "ليس معادلا لـ",
+      "not_eq_all": "ليس معادلا للجميع",
+      "not_eq_any": "ليس معادلا على اﻷقل لواحد",
+      "not_in": "غير متضمن",
+      "not_in_all": "غير متضمن للجميع",
+      "not_in_any": "غير متضمن لواحد على اﻷقل",
+      "not_null": "غير مساو لقيمة عدم",
+      "not_start": "لا يبدأ بـ",
+      "not_start_all": "لا يبدأ بالجميع",
+      "not_start_any": "لا يبدأ بواحد على اﻷقل",
+      "null": "عدم",
+      "present": "مستقبل",
+      "start": "يبدأ بـ",
+      "start_all": "يبدأ بالجميع",
+      "start_any": "يبدأ بواحد على اﻷقل",
+      "true": "صحيح"
     },
-    "search": "search",
-    "sort": "sort",
-    "value": "value"
+    "search": "بحث",
+    "sort": "ترتيب",
+    "value": "قيمة"
   },
   "reports": {
     "actions": {
@@ -7586,13 +7559,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "update_assessment": {
           "attributes": null
         },
-        "update_norm": {
-          "attributes": {
-            "norm_type": {
-              "inclusion": "Please select the correct norm type"
-            }
-          }
-        },
         "user": {
           "attributes": {
             "email": {
@@ -8105,7 +8071,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -8138,6 +8104,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -8670,6 +8637,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -9072,7 +9040,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -9380,7 +9349,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -9913,12 +9883,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "form": {
           "load_mindmill_report": "Load from Mindmill",
           "none_external": "None - Use report builder",
-          "select_family": "Select Report Bundle",
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
-          }
+          "select_family": "Select Report Bundle"
         },
         "index": {
           "add": "Add",
@@ -9951,6 +9916,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "type": "Type",
           "updated_at": "Modified date"
         },
+        "name": "Reports",
         "new": {
           "header": "Select Report"
         },
@@ -10010,11 +9976,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
-        },
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
         },
         "update": {
           "successfully": "Report %{name} was successfully updated."
@@ -10421,12 +10382,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "form": {
             "load_mindmill_report": "Load from Mindmill",
             "none_external": "None - Use report builder",
-            "select_family": "Select Report Bundle",
-            "types": {
-              "common": "Any",
-              "eti": "ETI",
-              "yti": "YTI"
-            }
+            "select_family": "Select Report Bundle"
           },
           "index": {
             "add": "Add",
@@ -10459,6 +10415,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "type": "Type",
             "updated_at": "Modified date"
           },
+          "name": "Reports",
           "new": {
             "header": "Select Report"
           },
@@ -10512,11 +10469,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           },
           "toggle_status": {
             "successfully": "Report was successfully updated."
-          },
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
           },
           "update": {
             "successfully": "Report %{name} was successfully updated."
@@ -10582,7 +10534,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -11695,12 +11648,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "load_mindmill_report": "Load from Mindmill",
         "none_external": "None - Use report builder",
-        "select_family": "Select Report Bundle",
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
-        }
+        "select_family": "Select Report Bundle"
       },
       "index": {
         "add": "Add",
@@ -11733,6 +11681,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "type": "Type",
         "updated_at": "Modified date"
       },
+      "name": "Reports",
       "new": {
         "header": "Select Report"
       },
@@ -11786,11 +11735,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
-      },
-      "types": {
-        "common": "Any",
-        "eti": "ETI",
-        "yti": "YTI"
       },
       "update": {
         "successfully": "Report %{name} was successfully updated."
@@ -12201,7 +12145,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -13290,6 +13235,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "upload": "Upload",
     "yes": "Yes"
   },
+  "hello": "Hello world",
   "helpers": {
     "page_entries_info": {
       "more_pages": {
@@ -14955,13 +14901,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "update_assessment": {
           "attributes": null
         },
-        "update_norm": {
-          "attributes": {
-            "norm_type": {
-              "inclusion": "Please select the correct norm type"
-            }
-          }
-        },
         "user": {
           "attributes": {
             "email": {
@@ -15474,7 +15413,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -15507,6 +15446,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -16039,6 +15979,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -16441,7 +16382,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -16749,7 +16691,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -17282,12 +17225,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "form": {
           "load_mindmill_report": "Load from Mindmill",
           "none_external": "None - Use report builder",
-          "select_family": "Select Report Bundle",
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
-          }
+          "select_family": "Select Report Bundle"
         },
         "index": {
           "add": "Add",
@@ -17320,6 +17258,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "type": "Type",
           "updated_at": "Modified date"
         },
+        "name": "Reports",
         "new": {
           "header": "Select Report"
         },
@@ -17379,11 +17318,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "toggle_status": {
           "successfully": "Report was successfully updated."
-        },
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
         },
         "update": {
           "successfully": "Report %{name} was successfully updated."
@@ -17790,12 +17724,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "form": {
             "load_mindmill_report": "Load from Mindmill",
             "none_external": "None - Use report builder",
-            "select_family": "Select Report Bundle",
-            "types": {
-              "common": "Any",
-              "eti": "ETI",
-              "yti": "YTI"
-            }
+            "select_family": "Select Report Bundle"
           },
           "index": {
             "add": "Add",
@@ -17828,6 +17757,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "type": "Type",
             "updated_at": "Modified date"
           },
+          "name": "Reports",
           "new": {
             "header": "Select Report"
           },
@@ -17881,11 +17811,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           },
           "toggle_status": {
             "successfully": "Report was successfully updated."
-          },
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
           },
           "update": {
             "successfully": "Report %{name} was successfully updated."
@@ -17951,7 +17876,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -19064,12 +18990,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "load_mindmill_report": "Load from Mindmill",
         "none_external": "None - Use report builder",
-        "select_family": "Select Report Bundle",
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
-        }
+        "select_family": "Select Report Bundle"
       },
       "index": {
         "add": "Add",
@@ -19102,6 +19023,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "type": "Type",
         "updated_at": "Modified date"
       },
+      "name": "Reports",
       "new": {
         "header": "Select Report"
       },
@@ -19155,11 +19077,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "toggle_status": {
         "successfully": "Report was successfully updated."
-      },
-      "types": {
-        "common": "Any",
-        "eti": "ETI",
-        "yti": "YTI"
       },
       "update": {
         "successfully": "Report %{name} was successfully updated."
@@ -19570,7 +19487,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -20659,6 +20577,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "upload": "Upload",
     "yes": "Yes"
   },
+  "hello": "Hello world",
   "helpers": {
     "page_entries_info": {
       "more_pages": {

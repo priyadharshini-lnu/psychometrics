@@ -38,7 +38,6 @@ export interface FetchNormsAction {
 export interface UpdateNormAction {
   response: {
     normName: string
-    normType: string
   },
   requestAction: {
     request: {

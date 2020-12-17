@@ -56,8 +56,6 @@ class Factor < ApplicationRecord
 
   accepts_nested_attributes_for :factors_sub_factors, allow_destroy: true
 
-  # norm types constant
-  NORM_TYPES = %w[eti yti].freeze
   # factor types constant
   FACTOR_TYPES = %w[factors sub_factors].freeze
 
@@ -71,9 +69,8 @@ class Factor < ApplicationRecord
     result
   }
 
-  scope :with_norm_type, lambda { |type, norm_id|
+  scope :with_norm, lambda { |norm_id|
     sql = 'LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id '
-    sql += "and factors_norms.type = '#{type}' " unless type.blank?
     sql += "and factors_norms.norm_id = '#{norm_id}'"
 
     joins(sql)

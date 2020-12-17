@@ -5,7 +5,6 @@ module UsersResults
     attribute :status, Integer
     attribute :embedded_data, Hash, default: nil
     attribute :norm_id, Integer, default: nil
-    attribute :norm_type, Integer, default: nil
     attribute :norm_data, Hash, default: {}
     attribute :answers, Hash, default: nil
     attribute :step, Integer
@@ -17,10 +16,6 @@ module UsersResults
 
     def norm_id
       norm_data.dig(:id)&.to_i
-    end
-
-    def norm_type
-      norm_data.dig(:type)
     end
 
     def attributes

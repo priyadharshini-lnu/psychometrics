@@ -2,10 +2,6 @@ en:
   administration:
     reports: &REPORTS
       name: Reports
-      types: &types
-        common: 'Any'
-        eti: 'ETI'
-        yti: 'YTI'
       index:
         title: Reports
         add: Add
@@ -51,8 +47,6 @@ en:
       toggle_archive:
         successfully: 'Assessment %{name} was %{status} successfully.'
       form:
-        types:
-          <<: *types
         select_family: Select Report Bundle
         none_external: None - Use report builder
         load_mindmill_report: Load from Mindmill

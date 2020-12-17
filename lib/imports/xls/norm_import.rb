@@ -14,7 +14,7 @@ module Imports
       XLS_CONFIG = {
         factor_start_row: 4,
         factor_start_ceil: 2,
-        pages_count: 2
+        pages_count: 1
       }.freeze
 
       def process
@@ -81,7 +81,7 @@ module Imports
         raw_range = (ceil...ceil + FactorsNorm::LEVELS.size * 2)
         return if @current_sheet[row][raw_range].map(&:value).compact.empty?
 
-        factors_norm       = FactorsNorm.new(type: @current_norm_type, norm_id: @norm.id, factor_id: factor.id)
+        factors_norm       = FactorsNorm.new(norm_id: @norm.id, factor_id: factor.id)
         factors_norm.props = []
         raw_range.each_slice(2) do |score_from, score_to|
           @cursor_x = score_from

@@ -128,7 +128,6 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norm_name' => nil,
       'norms' => [],
       'norm_id' => nil,
-      'norm_type' => nil,
       'additional_time' => nil,
       'is_expired' => false,
       'is_external' => false,

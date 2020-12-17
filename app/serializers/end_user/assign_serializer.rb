@@ -76,8 +76,7 @@ module EndUser
     end
 
     def assigned_reports
-      filtered_reports = object.original_assigns_reports.map(&:report)
-      reports = filter_reports_by_type(filtered_reports, object.norm_type)
+      reports = object.original_assigns_reports.map(&:report)
       reports = reports.select { |report| Reports::IsGeneratable.call!(report, object) }
       reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
     end
@@ -88,14 +87,6 @@ module EndUser
 
     def assessment_category
       object.assessment.category
-    end
-
-    private
-
-    def filter_reports_by_type(reports, type)
-      return reports unless type
-
-      reports.select { |r| r.type == type.downcase || r.common? }
     end
   end
 end

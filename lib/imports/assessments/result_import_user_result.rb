@@ -106,7 +106,6 @@ module Imports
             created_at: parse_date(data['started_at'], index),
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
-            norm_type: norm_data[:type],
             status: status,
             completion_reason: completion_reason
           )
@@ -146,8 +145,7 @@ module Imports
             ::UsersResults::Recompute.call!(
               user_result,
               user_result.user,
-              norm_id: user_result.norm_id,
-              norm_type: user_result.norm_type
+              norm_id: user_result.norm_id
             )
           end
           user_result
@@ -190,19 +188,18 @@ module Imports
         end
       end
 
-      def parse_norm_data(norm_data, assessment_id)
-        return {} if norm_data.nil?
+      def parse_norm_data(norm_name, assessment_id)
+        return {} unless norm_name.present?
 
-        norm_name, norm_type = norm_data.to_s.split(':')
-        norm = Norm.
-               joining { dimension }.
-               joining do
+        norm_ids = Norm.
+                   joining { dimension }.
+                   joining do
           dimension.assessments.alias('assessments').
             on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
         end.
-               where(name: norm_name).
-               pluck(:id)
-        { id: norm.try(:first), type: norm_type }
+                   where(name: norm_name).
+                   pluck(:id)
+        { id: norm_ids.try(:first) }
       end
 
       def parse_date(date, index)

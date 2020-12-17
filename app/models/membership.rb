@@ -20,7 +20,6 @@
 # already_invited        :boolean          default(FALSE)
 #
 
-# rubocop:disable Metrics/ClassLength
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
@@ -160,24 +159,6 @@ class Membership < ApplicationRecord
     update_columns(already_invited: true)
   end
 
-  # return true for new or overuse (:yti(:eti)) combinations
-  # TODO: remove it
-  def excess_yti_eti?(report)
-    return true if !report.yti_eti? || reports.empty?
-
-    hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }
-    hash.slice!(Report::ETI_TYPE, Report::YTI_TYPE)
-    report_type_count = hash[report.type]
-    return true if hash.empty?
-    return false if report_type_count.nil?
-
-    count_arr = hash.values
-    count_arr.delete count
-    return true if count_arr.empty? || count_arr.max < report_type_count
-
-    false
-  end
-
   def project?
     project_membership_id.nil?
   end
@@ -281,4 +262,3 @@ class Membership < ApplicationRecord
     end
   end
 end
-# rubocop:enable Metrics/ClassLength

@@ -70,7 +70,6 @@ export const remove = (campaignId: number, campaignAssessmentId: number) => ({
 export interface UpdateNormAction {
   response: {
     normName: string
-    normType: string
   },
   requestAction: {
     request: {

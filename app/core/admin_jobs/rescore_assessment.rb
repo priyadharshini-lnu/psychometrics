@@ -4,8 +4,7 @@ module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
       norm_data = {
-        norm_id: campaign_assessment.norm_id,
-        norm_type: campaign_assessment.norm_type
+        norm_id: campaign_assessment.norm_id
       }
 
       results.find_each do |res|

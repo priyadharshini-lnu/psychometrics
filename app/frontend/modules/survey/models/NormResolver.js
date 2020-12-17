@@ -21,17 +21,8 @@ _.extend(NormResolver.prototype, {
       return resolver.resolve()
     }) || {}
 
-    // TODO (atanych): remove right after https://tte.atlassian.net/browse/LH-1224
-    const ruleWithNormType = this.rules.filter(rule => rule.norm_type).find((rule) => {
-      const resolver = new LogicResolver(
-        new LogicElementModel(rule), { questions: this.questions, results: this.results },
-      )
-      return resolver.resolve()
-    }) || {}
-
     return {
       id: ruleWithNormId.norm_id,
-      type: ruleWithNormType.norm_type,
     }
   },
 })

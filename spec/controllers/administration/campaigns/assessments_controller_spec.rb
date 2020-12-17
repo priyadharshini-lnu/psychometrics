@@ -27,17 +27,15 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         id: assessment.id,
         new_campaign_id: campaign.id,
         apply: false,
-        norm_id: norm.id,
-        norm_type: 'eti'
+        norm_id: norm.id
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
       campaign_assessment.reload
 
-      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_name' => 'Norm')
       expect(campaign_assessment.norm_id).to eq(norm.id)
-      expect(campaign_assessment.norm_type).to eq('eti')
     end
 
     it 'with apply = true' do
@@ -48,13 +46,12 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
         id: assessment.id,
         new_campaign_id: campaign.id,
         apply: true,
-        norm_id: norm.id,
-        norm_type: 'eti'
+        norm_id: norm.id
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
-      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_name' => 'Norm')
     end
   end
 

@@ -53,7 +53,6 @@ test('normalize empty tree to empty list', () => {
   const rules = [
     {
       "norm_id": "1",
-      "norm_type": null,
       "conditions": [
         {
           "conditions": [
@@ -72,25 +71,6 @@ test('normalize empty tree to empty list', () => {
               "predicate": "NotSelected",
               "type": "bool",
               "conditionType": "Question"
-            }
-          ],
-          "prefix": "And"
-        }
-      ]
-    },
-    {
-      "norm_id": null,
-      "norm_type": "YTI",
-      "conditions": [
-        {
-          "conditions": [
-            {
-              "subject": 5,
-              "answer": "0",
-              "predicate": "Displayed",
-              "type": "bool",
-              "conditionType": "Question",
-              "prefix": "And"
             }
           ],
           "prefix": "And"
@@ -209,5 +189,5 @@ test('normalize empty tree to empty list', () => {
     },
   ]
   const resolver = new NormResolver(rules, {}, qwraps, results)
-  expect(resolver.resolve()).toStrictEqual({id: "1", type: "YTI"})
+  expect(resolver.resolve()).toStrictEqual({id: "1"})
 })

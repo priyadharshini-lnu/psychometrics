@@ -32,6 +32,6 @@ class Administration::FactorsNormsController < Administration::BaseController
   end
 
   def change_cell_params
-    params.permit(:norm_id, :norm_type, :factor_id, :type, :level, :score_from, :score_to, :field_name, :field_value)
+    params.permit(:norm_id, :factor_id, :type, :level, :score_from, :score_to, :field_name, :field_value)
   end
 end

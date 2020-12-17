@@ -103,6 +103,6 @@ class UsersResult < ApplicationRecord
   end
 
   def norm_data
-    { 'id' => norm_id, 'type' => norm_type }
+    { 'id' => norm_id }
   end
 end
