@@ -42,8 +42,12 @@ class PropertyPanel extends Component {
 
   renderCustomProperties () {
     const { selected, module, page } = this.props
-    if ((!module && !page) || !selected) { return null }
-    const type = selected.type === 'Module' ? module.type : selected.type
+    let type
+    if ((!module && !page) || !selected) {
+      type = 'Report'
+    } else {
+      type = selected.type === 'Module' ? module.type : selected.type
+    }
     const View = Properties[`${type}Properties`]
     if (!View) { return }
     const model = new ModuleModel(module, { id: module.page_id })
