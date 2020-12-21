@@ -7,14 +7,24 @@ import cs from 'classnames'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
 import { renderMarkdown } from 'rb/utils/Markdown'
-import styles from './CPITopFactors.scss'
+import PieGraph from '../../../../../PieGraph'
+import styles from './FactorsTable.scss'
+
+// Images
+import Accountability from './Icons/accountability.svg'
+import Achievement from './Icons/achievement.svg'
+import Agility from './Icons/agility.svg'
+import Ambiguity from './Icons/ambiguity.svg'
+import Ambition from './Icons/ambition.svg'
 
 const MockData = [
   {
     id: 469,
-    name: 'Angular',
-    alias: 'Angular',
-    meanNormScore: 4,
+    icon_url: Ambiguity,
+    name: 'Ambiguity',
+    alias: 'Ambiguity',
+    meanNormScore: 15,
+    strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -34,9 +44,11 @@ const MockData = [
   },
   {
     id: 470,
-    name: 'Contemplative',
-    alias: 'Contemplative',
-    meanNormScore: 3,
+    icon_url: Achievement,
+    name: 'Achievement',
+    alias: 'Achievement',
+    meanNormScore: 35,
+    strategy: 1,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -56,9 +68,11 @@ const MockData = [
   },
   {
     id: 471,
-    name: 'Conceptual',
-    alias: 'Conceptual',
-    meanNormScore: 2,
+    icon_url: Accountability,
+    name: 'Accountability',
+    alias: 'Accountability',
+    meanNormScore: 55,
+    strategy: 2,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -78,9 +92,11 @@ const MockData = [
   },
   {
     id: 472,
-    name: 'Contemplative',
-    alias: 'Contemplative',
-    meanNormScore: 3,
+    icon_url: Ambition,
+    name: 'Ambition',
+    alias: 'Ambition',
+    meanNormScore: 0.75,
+    strategy: 3,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -100,9 +116,11 @@ const MockData = [
   },
   {
     id: 473,
-    name: 'Conceptual',
-    alias: 'Conceptual',
-    meanNormScore: 1,
+    icon_url: Agility,
+    name: 'Agility',
+    alias: 'Agility',
+    meanNormScore: 95,
+    strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
 * Lorem ipsum dolor sit amet consectetur adipisicing
@@ -122,7 +140,7 @@ const MockData = [
   },
 ]
 
-class ResponseSummary extends Component {
+class FactorsTable extends Component {
   static propTypes = {
     module: PropTypes.object.isRequired,
   }
@@ -139,24 +157,34 @@ class ResponseSummary extends Component {
   prepareRows () {
     const { module, module: { props } } = this.props
     if (ResultStore.realResults) {
-      let factorIds = []
-      if (props.source && props.source.factors) {
-        factorIds = _.map(props.source.factors, 'id')
+      const sourceFactors = _.get(props, ['source', 'factors'], [])
+      const factorIds = sourceFactors.map(f => f.id)
+      if (props.mode === 'topFactors') {
+        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds)
+      } else {
+        const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds)
+        this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))
       }
-      this.topData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds)
     } else {
-      this.topData = this.getMockData(props.maxPosition - props.minPosition + 1)
+      this.factorsData = this.getMockData(props.maxPosition - props.minPosition + 1)
     }
-    if (props.reverseOrder) {
-      this.topData.reverse()
+    if (props.reverseOrder && props.mode === 'topFactors') {
+      this.factorsData.reverse()
     }
+  }
+
+  canShowRank () {
+    const { model: { props: { showRankOrder, mode } } } = this.props
+
+    return (mode !== 'orderedFactors' && showRankOrder)
   }
 
   renderFactors () {
     const { model, module } = this.props
+    const { fontFamily } = module.props.style
 
     return (
-      this.topData.map((factor, i) => {
+      this.factorsData.map((factor, i) => {
         const conditions = _.filter(module.textConditions, { factorId: factor.id })
         let conditionText = null
         let conditionStrengths = null
@@ -177,29 +205,56 @@ class ResponseSummary extends Component {
           conditionBlindspots = factor.blindspots
         }
 
+        const score = factor.strategy === 3 ? factor.meanNormScore * 100 : factor.meanNormScore
+        const percent = factor.strategy === 3 ? score : (score * 100) / 5 // 5-scale
+
         const {
           tableStyle, minPosition, maxPosition, reverseOrder, source: { factors },
+          showDescription, showIcons, showStrengthsBlindspots, showScore,
         } = model.props
-        const listStyle = tableStyle === 'compact' ? styles.defaultLists : styles.styledLists
         const startRank = reverseOrder ? Math.max(1, factors.length - maxPosition + 1) : minPosition
+
         return (
           <tr key={i}>
-            {model.props.showRankOrder && (
+            {this.canShowRank() && (
               <td className={styles.rankOrder}>
-                <span className={tableStyle !== 'compact' ? styles.rankAvatar : ''}>
-                  <span className={styles.rankText}>{startRank + i}</span>
+                <span className={tableStyle !== 'compact' ? cs(styles.star, 'fa', 'fa-star') : ''}>
+                  <span className={styles.text} style={{ fontFamily }}>{startRank + i}</span>
                 </span>
               </td>
             )}
-            <td className={styles.strength}>{I18nStore.tFactor(factor, 'alias')}</td>
-            {model.props.showDescription && <td className={styles.description}>{conditionText}</td>}
-            {model.props.showStrengthsBlindspots && (
-              <td className={cs(styles.strengthsBlindspots, listStyle)}>
-                <div className={styles.strengths} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }} />
-                <div className={styles.blindspots} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }} />
+            <td className={styles.description}>
+              {showIcons && (
+                <div className={styles.icons}>
+                  <img src={factor.icon_url} />
+                </div>
+              )}
+              <div className={styles.content}>
+                <div className={styles.strength}>{I18nStore.tFactor(factor, 'alias')}</div>
+                {showDescription && (
+                  <div className={cs(styles.text, 'mt4')}>{conditionText}</div>
+                )}
+                {showStrengthsBlindspots && (
+                  <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                    <div className={styles.strengths} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }} />
+                    <div className={styles.blindspots} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }} />
+                  </div>
+                )}
+              </div>
+            </td>
+            {showScore && (
+              <td className={styles.score}>
+                {tableStyle !== 'compact'
+                  ? (
+                    <PieGraph
+                      strokeWidth="10"
+                      text={score}
+                      percent={Math.min(percent, 100)}
+                    />
+                  )
+                  : score}
               </td>
             )}
-            {model.props.showScore && <td className={styles.score}>{factor.meanNormScore}</td>}
           </tr>
         )
       })
@@ -215,10 +270,8 @@ class ResponseSummary extends Component {
     return (
       <thead>
         <tr>
-          {model.props.showRankOrder && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
-          <th scope="col">{I18nStore.tModule(module, 'strength') || 'Strength'}</th>
+          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
           {model.props.showDescription && <th scope="col">{I18nStore.tModule(module, 'description') || 'Description'}</th>}
-          {model.props.showStrengthsBlindspots && <th scope="col">{I18nStore.tModule(module, 'strengthsBlindspots') || 'Strengths & Blindspots'}</th>}
           {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
         </tr>
       </thead>
@@ -234,7 +287,7 @@ class ResponseSummary extends Component {
     }
     this.prepareRows()
     return (
-      <table className={cs(styles.table, styles[model.props.tableStyle])} style={style}>
+      <table className={cs(styles.table, styles[model.props.tableStyle || 'default'])} style={style}>
         {this.renderHeader(model.props.showHeader)}
         <tbody>
           {this.renderFactors()}
@@ -244,4 +297,4 @@ class ResponseSummary extends Component {
   }
 }
 
-export default ResponseSummary
+export default FactorsTable

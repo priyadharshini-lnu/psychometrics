@@ -1,9 +1,9 @@
-import CPITopFactors from './CPITopFactors'
+import FactorsTable from './FactorsTable'
 import StrengthClusters from './StrengthClusters'
 import InnovationStyles from './InnovationStyles'
 
 export default {
-  CPITopFactors,
+  FactorsTable,
   StrengthClusters,
   InnovationStyles,
 }

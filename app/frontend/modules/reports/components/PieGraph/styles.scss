@@ -1,0 +1,28 @@
+.pieGraph {
+  svg {
+    width: 5em;
+  }
+  .circleBackground, .circleProgress {
+    fill: none;
+  }
+
+  .circleBackground {
+    stroke: #d8fefd;
+  }
+
+  .circleProgress {
+    stroke: #51d0d4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .textContainer {
+    fill: #f5f3f6;
+  }
+
+  .circleText {
+    font-size: 1.6em;
+    font-weight: 600;
+    fill: #343434;
+  }
+}

@@ -1,0 +1,187 @@
+.table {
+  width: 100%;
+  color: #333333;
+  position: relative;
+  border-spacing: 0;
+  border-radius: 12px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;;
+  border: 0.5px solid #0202020D;
+  box-shadow: 0px 0px 8px #0202020D;
+  font-size: 1em;
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #ededed;
+    }
+    tr:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  th, td {
+    text-align: left;
+  }
+
+  th {
+    padding: 1.5em 1em 1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    font-weight: normal;
+    &.rankOrder, &.score {
+      text-align: center;
+    }
+  }
+
+  td {
+    padding: 1em;
+    text-align: start;
+    vertical-align: top;
+    white-space: normal;
+
+    &.score, &.rankOrder {
+      text-align: center;
+    }
+
+    .strength {
+      color: #333333;
+      font-weight: bold;
+    }
+
+    &.description {
+      color: #7B7B7B;
+      display: grid;
+      gap: 10px;
+      grid-template-areas: "icon content";
+      grid-auto-columns: minmax(50px, auto);
+
+      .strengthsBlindspots {
+        display: flex;
+        flex-direction: row;
+
+        &>div {
+          width: calc(50% - 0.5em);
+        }
+        ul {
+          margin: 0 auto;
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            padding: 0 0 0.35em 1.2em;
+
+            &:before {
+              content: '';
+              top: 5px;
+              left: 0;
+              padding: 0;
+              margin: 0;
+              position: absolute;
+              width: .75em;
+              height: .75em;
+              display: block;
+              background-color: #fff;
+              border-radius: 50%;
+              border: .24em solid #bdbdbd;
+            }
+          }
+        }
+
+        .blindspots {
+          color: #7B7B7B;
+          font-style: italic;
+        }
+      }
+
+      .icons {
+        padding: 5px 0;
+
+        img {
+          width: 2.5em;
+          object-fit: contain;
+        }
+      }
+    }
+
+    &.score {
+      font-weight: bold;
+    }
+  }
+
+  &.default {
+    .strength {
+      font-size: 1.3em;
+    }
+    td {
+      &.score {
+        font-size: 1.25em;
+      }
+    }
+  }
+
+  &.compact {
+    th {
+      font-size: 1em;
+    }
+    &.strength {
+      font-weight: normal;
+    }
+    td {
+      padding: 0.35em 1em;
+      font-size: 1em;
+      &.score {
+        font-weight: normal;
+      }
+
+      &.strengthsBlindspots {
+        ul {
+          li {
+            padding: 0 0 0.5em 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.star {
+  position: relative;
+  display: inline-block;
+  font-size: 3em;
+  color: #51d0d4;
+
+  .text {
+    top: 0;
+    left: 0;
+    color: #FFFFFF;
+    position: absolute;
+    font-weight: 600;
+    transform: scale(.3) translateX(130%);
+  }
+}
+
+body[data-locale="ar"] {
+  .table {
+    direction: rtl;
+
+    th {
+      text-align: right;
+    }
+
+    td {
+      &.strengthsBlindspots {
+        ul {
+          li {
+            padding: 0 1.5em 1.25em 0;
+
+            &:before {
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

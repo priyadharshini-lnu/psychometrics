@@ -16,7 +16,7 @@ if (I18n) {
 }
 const TRANSLATED_MODULES = {
   Text: true,
-  Table: ['CPITopFactors', 'StrengthClusters', 'InnovationStyles'],
+  Table: ['FactorsTable', 'StrengthClusters', 'InnovationStyles'],
   Graph: ['Circumplex'],
 }
 const EXTERNAL_CATEGORIES = ['hogan', 'mindmill']

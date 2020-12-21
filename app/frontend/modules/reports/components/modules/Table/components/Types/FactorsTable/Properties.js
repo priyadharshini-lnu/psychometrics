@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import cs from 'classnames'
 import AppStore from 'rb/store/AppStore'
 import styles from 'rb/views/PropertyPanel/components/PropertyPanel.scss'
 import PropertyFonts from 'rb/components/PropertyFonts'
@@ -7,6 +8,7 @@ import _ from 'lodash'
 import Select from 'react-select'
 import { getValue } from 'rb/presenters/ReactSelectPresenter'
 import connect from './connect'
+import SortableFactors from './SortableFactors'
 
 const ALL_FACTORS = 'All Subfactors'
 
@@ -76,10 +78,46 @@ class Properties extends Component {
     model.update()
   }
 
+  changeMode = (e) => {
+    const { model } = this.props
+    model.props.mode = e.currentTarget.value
+    model.update()
+  }
+
   changeStyle = (propName, e) => {
     const { model } = this.props
     model.props[propName] = e.currentTarget.value
     model.update()
+  }
+
+  setSortedFactors = (factors) => {
+    const { model } = this.props
+    model.props.source = { factors }
+    model.update()
+  }
+
+  renderTableModes () {
+    const { model } = this.props
+    const options = [
+      { label: 'Top Factors', value: 'topFactors' },
+      { label: 'Ordered Factors', value: 'orderedFactors' },
+    ]
+
+    return (
+      options.map((option, i) => (
+        <label className={styles.inputLabel} key={i}>
+          <input
+            className="mrs"
+            type="radio"
+            name="mode"
+            value={option.value}
+            checked={model.props.mode === option.value}
+            onChange={this.changeMode}
+          />
+          {option.label}
+        </label>
+      ))
+    )
   }
 
   renderTopFactors () {
@@ -132,7 +170,6 @@ class Properties extends Component {
     const { model } = this.props
     const layouts = [
       { value: 'default', label: 'Default' },
-      { value: 'comfortable', label: 'Comfortable' },
       { value: 'compact', label: 'Compact' },
     ]
 
@@ -148,23 +185,30 @@ class Properties extends Component {
   }
 
   renderTableOptions () {
-    const { model } = this.props
+    const { model, model: { props: { mode } } } = this.props
     const options = [
-      { label: 'Show Header', prop: 'showHeader', default: false },
-      { label: 'Show RankOrder', prop: 'showRankOrder', default: false },
-      { label: 'Show Score', prop: 'showScore', default: false },
-      { label: 'Show Description', prop: 'showDescription', default: false },
-      { label: 'Show Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
+      { label: 'Header', prop: 'showHeader', default: false },
+      {
+        label: 'Rank',
+        prop: 'showRankOrder',
+        default: false,
+        disabled: mode === 'orderedFactors',
+      },
+      { label: 'Score', prop: 'showScore', default: false },
+      { label: 'Description', prop: 'showDescription', default: false },
+      { label: 'Strengths & Blindspots', prop: 'showStrengthsBlindspots', default: false },
+      { label: 'Icons', prop: 'showIcons', default: false },
     ]
 
     return (
       options.map((option, i) => (
         <label className={styles.inputLabel} key={i}>
           <input
-            style={{ marginRight: '5px' }}
+            className="mrs"
             type="checkbox"
-            checked={_.get(model.props, option.prop, option.default)}
+            checked={!option.disabled && _.get(model.props, option.prop, option.default)}
             onChange={e => this.setProp(option.prop, e)}
+            disabled={option.disabled && option.disabled}
           />
           {option.label}
         </label>
@@ -173,37 +217,52 @@ class Properties extends Component {
   }
 
   render () {
-    const { model } = this.props
+    const { model, model: { props: { mode, source: { factors } } } } = this.props
+
     return (
       <div>
         <div style={{ width: '100%' }} onClick={this.openConditionModal} className="btn btn-default margin-bottom-10">
           Manage conditions
         </div>
-        {this.renderTopFactors()}
-        <div className="margin-bottom-10">
-          <span className={styles.label}>Top Positions (From-To)</span>
-          <div className={styles.selectContainer}>
-            {this.renderMinSelect()}
-            {this.renderMaxSelect()}
-          </div>
-          <div className="margin-top-10">
-            <label className={styles.inputLabel}>
-              <input
-                style={{ marginRight: '5px' }}
-                type="checkbox"
-                checked={model.props.reverseOrder || false}
-                onChange={this.changeOrder}
-              />
-              Reverse order
-            </label>
-          </div>
+        <div className={styles.modes}>
+          <span className={styles.label}>Modes</span>
+          {this.renderTableModes()}
         </div>
+        {this.renderTopFactors()}
+        {mode === 'topFactors' && (
+          <div className="margin-bottom-10">
+            <span className={styles.label}>Top Positions (From-To)</span>
+            <div className={styles.selectContainer}>
+              {this.renderMinSelect()}
+              {this.renderMaxSelect()}
+            </div>
+            <div className="margin-top-10">
+              <label className={styles.inputLabel}>
+                <input
+                  className="mrs"
+                  type="checkbox"
+                  checked={model.props.reverseOrder || false}
+                  onChange={this.changeOrder}
+                />
+                Reverse order
+              </label>
+            </div>
+          </div>
+        )}
+        {mode === 'orderedFactors' && (
+          <div className="mvs">
+            <div className={cs(styles.label, 'mbm mtl')}>Factors Order</div>
+            {factors && <SortableFactors selectedFactors={factors} update={this.setSortedFactors} />}
+          </div>
+        )}
         <hr className={styles.divider} />
         <div className="margin-top-10">
+          <div className={cs(styles.label, 'mbm mtl')}>Show Elements</div>
           {this.renderTableOptions()}
         </div>
         <hr className={styles.divider} />
-        <div className={styles.selectContainer}>
+        <div>
+          {'Style '}
           {this.renderStyleSelect()}
         </div>
         <hr className={styles.divider} />
