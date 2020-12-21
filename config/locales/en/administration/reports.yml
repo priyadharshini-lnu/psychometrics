@@ -32,6 +32,10 @@ en:
         header: 'Select Report'
       edit:
         header: 'Edit Report Name'
+      soft_delete:
+        successfully: 'Report %{name} was moved to Trash Successfully.'
+      restore:
+        successfully: 'Report %{name} was Restored Successfully.'
       destroy:
         successfully: 'Report %{name} was successfully deleted.'
       create:
@@ -63,9 +67,12 @@ en:
           copy: 'Copy Report'
           edit: 'Edit Report'
           delete: 'Delete Report'
+          soft_delete: Soft Delete Assessment
+          restore: Restore
         in_progress:
           copying: Copying
           deleting: Deleting
+          restoring: Restoring
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
@@ -76,6 +83,11 @@ en:
               Delete <strong>Report</strong> ?
             body: >
               <p>Are you sure you want to delete this Report?</p>
+          soft_delete:
+            title:
+              Soft Delete <strong>Report</strong>?
+            body: >
+              <p>Are you sure you want to soft delete this Report?</p>
           detach:
             title:
               Detach <strong>Report</strong> ?

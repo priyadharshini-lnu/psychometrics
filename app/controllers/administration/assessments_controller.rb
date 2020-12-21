@@ -4,7 +4,7 @@ class Administration::AssessmentsController < Administration::BaseController
   include Archivable
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar copy
-                                        preview export toggle_archive questions factors]
+                                        preview export toggle_archive questions factors soft_delete restore]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -15,7 +15,6 @@ class Administration::AssessmentsController < Administration::BaseController
     @_filter_form = policy_scope(resource_class).
                     includes(:dimension, :owner).
                     ransack(params[:q])
-    filter_form.archived_true ||= false
     @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|
@@ -92,6 +91,15 @@ class Administration::AssessmentsController < Administration::BaseController
       end
       format.js
     end
+  end
+
+  def soft_delete
+    resource.soft_delete!(current_user)
+  end
+
+  def restore
+    resource.restore!
+    render 'refresh_list'
   end
 
   # Change resources's status to active/disabled

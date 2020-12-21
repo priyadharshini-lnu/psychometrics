@@ -405,6 +405,8 @@ Rails.application.routes.draw do
         get :questions
         get :factors
         post :upload_data_sheet
+        delete :soft_delete
+        put :restore
       end
 
       scope module: 'assessments' do
@@ -536,6 +538,8 @@ Rails.application.routes.draw do
         put :regenerate
         post :upload_data_sheet
         patch :toggle_archive
+        delete :soft_delete
+        put :restore
       end
       collection do
         get :hogan_reports

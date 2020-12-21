@@ -75,6 +75,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -253,7 +255,9 @@ CREATE TABLE public.assessments (
     icon character varying,
     archived boolean DEFAULT false,
     resources json,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint
 );
 
 
@@ -959,13 +963,13 @@ CREATE TABLE public.communications (
     updated_at timestamp without time zone NOT NULL,
     owner_id integer,
     project_id integer,
+    campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
     creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL,
-    campaign_id bigint
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -2523,7 +2527,9 @@ CREATE TABLE public.reports (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     provider integer,
     category integer DEFAULT 0,
-    archived boolean DEFAULT false
+    archived boolean DEFAULT false,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint
 );
 
 
@@ -2902,7 +2908,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -4729,6 +4736,13 @@ CREATE UNIQUE INDEX index_assessments_clients_on_client_id_and_assessment_id ON 
 
 
 --
+-- Name: index_assessments_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_on_deleted_by_id ON public.assessments USING btree (deleted_by_id);
+
+
+--
 -- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5653,6 +5667,13 @@ CREATE INDEX index_reports_on_assessment_id ON public.reports USING btree (asses
 
 
 --
+-- Name: index_reports_on_deleted_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_deleted_by_id ON public.reports USING btree (deleted_by_id);
+
+
+--
 -- Name: index_reports_pages_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6064,6 +6085,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: reports fk_rails_0fcc82136b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT fk_rails_0fcc82136b FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: assessments_reports fk_rails_105380adfd; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6165,6 +6194,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 ALTER TABLE ONLY public.user_reports
     ADD CONSTRAINT fk_rails_28ab0c4f85 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: assessments fk_rails_292907b1cc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments
+    ADD CONSTRAINT fk_rails_292907b1cc FOREIGN KEY (deleted_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
 
 --
@@ -7465,6 +7502,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201110230420'),
 ('20201111132959'),
 ('20201117134043'),
+('20201208081411'),
 ('20201210065543'),
 ('20201215150644');
 

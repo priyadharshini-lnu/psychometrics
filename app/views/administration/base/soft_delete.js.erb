@@ -1,0 +1,9 @@
+<% if resource.errors.blank? %>
+  $('#filter').trigger('reloadList');
+  $(document).trigger('initPlugins');
+  $(document).trigger('close_sidebar');
+
+  noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.soft_delete.successfully", name: resource.decorate.display_name) %>', type: 'success'});
+<% else %>
+  noty({text: '<%= resource.errors.full_messages.join(", ") %>', type: 'error', timeout: 14000 });
+<% end %>

@@ -117,6 +117,15 @@ module Administration
     def upload_data_sheet?
       create?
     end
+
+    def soft_delete?
+      destroy?
+    end
+
+    def restore?
+      destroy?
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super

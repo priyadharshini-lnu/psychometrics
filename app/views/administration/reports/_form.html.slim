@@ -10,7 +10,7 @@
                           include_blank: t('administration.tte'),
                           input_html: { data: { live_search: true } }
         = f.association :assessments,
-                        collection: assessments_options_for_select(policy_scope(Assessment).unarchived, resource),
+                        collection: assessments_options_for_select(policy_scope(Assessment).unarchived.not_deleted, resource),
                         include_hidden: false,
                         input_html: { multiple: true,
                                       data: { live_search: true,

@@ -24,6 +24,7 @@
 class Assessment < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  include SoftDelete
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [

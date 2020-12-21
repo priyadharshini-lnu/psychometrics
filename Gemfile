@@ -110,7 +110,6 @@ gem 'acts_as_list', '~> 0.8.1'
 
 ### add fake destroying logic for models
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'paranoia', '~> 2.4.1'
 
 # Error tracking
 gem 'sentry-raven', '~> 2.9.0'
@@ -219,6 +218,7 @@ group :test do
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.1.2'
   gem 'wisper-rspec', '~> 1.1.0', require: false
+  gem 'with_model', '~> 2.1.5'
 end
 
 # for creating and rendering QR codes into various formats

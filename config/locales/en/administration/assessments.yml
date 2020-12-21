@@ -41,6 +41,10 @@ en:
         header: 'New assessment'
       edit:
         header: 'Assessment Settings'
+      soft_delete:
+        successfully: 'Assessment %{name} was moved to Trash Successfully.'
+      restore:
+        successfully: 'Assessment %{name} was Restored Successfully.'
       destroy:
         successfully: 'Assessment %{name} was Deleted Successfully.'
       copy:
@@ -71,10 +75,13 @@ en:
           copy: Copy Assessment
           edit: Edit Assessment
           delete: Delete Assessment
+          soft_delete: Soft Delete Assessment
+          restore: Restore
           archive: Archive Assessment
         in_progress:
           copying: Copying
           deleting: Deleting
+          restoring: Restoring
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
@@ -82,9 +89,14 @@ en:
               <p>Are you sure you want to %{status} this Assessment?</p>
           delete:
             title:
-              Delete <strong>Assessment</strong> ?
+              Delete <strong>Assessment</strong>?
             body: >
               <p>Are you sure you want to delete this Assessment?</p>
+          soft_delete:
+            title:
+              Soft Delete <strong>Assessment</strong>?
+            body: >
+              <p>Are you sure you want to soft delete this Assessment?</p>
       dashboard: 'Assessment Dashboard'
       assessment: Assessment
     clients:

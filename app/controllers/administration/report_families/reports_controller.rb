@@ -18,7 +18,7 @@ module Administration
       end
 
       def new
-        @reports = policy_scope(::Report).enabled.where.not(id: @report_family.report_ids)
+        @reports = policy_scope(::Report).enabled.not_deleted.where.not(id: @report_family.report_ids)
         @form = AssignReportForm.new
       end
 

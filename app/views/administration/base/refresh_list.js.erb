@@ -1,0 +1,5 @@
+$('#filter').trigger('reloadList');
+$(document).trigger('initPlugins');
+$(document).trigger('close_sidebar');
+
+noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.#{params[:action]}.successfully", name: resource.decorate.display_name) %>', type: 'success'});

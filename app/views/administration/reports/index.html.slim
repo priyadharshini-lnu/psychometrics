@@ -38,9 +38,9 @@
             = link_to t('shared.filters.clear'), request.path, class: "btn btn-default"
             .form-group.form-group-long
               .btn-group data-toggle="buttons"
-                - [['Active', false], ['Archived', true]].each do |item|
+                - [['Active', 'active'], ['Archived', 'archived'], ['Trash', 'deleted']].each do |item|
                   label class="btn btn-default #{'active' if f.object.archived_true == item.last}"
-                    = f.input_field :archived_true, type: :radio, checked: f.object.archived_true == item.last, value: item.last
+                    = f.input_field :with_resource_state, type: :radio, checked: f.object.with_resource_state == item.last, value: item.last
                     = item.first
         .panel-body
           #filterrific_results

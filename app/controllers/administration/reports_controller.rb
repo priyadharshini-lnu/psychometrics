@@ -10,7 +10,7 @@ module Administration
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
-                                          regenerate upload_data_sheet toggle_archive]
+                                          regenerate upload_data_sheet toggle_archive soft_delete restore]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -31,7 +31,6 @@ module Administration
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.ransack(params[:q])
-      filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -118,6 +117,15 @@ module Administration
         end
         format.js
       end
+    end
+
+    def soft_delete
+      resource.soft_delete!(current_user)
+    end
+
+    def restore
+      resource.restore!
+      render 'refresh_list'
     end
 
     def copy
