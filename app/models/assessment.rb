@@ -88,6 +88,8 @@ class Assessment < ApplicationRecord
   has_many :users_results, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
+  has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
+    class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
 
   # HABTM Clients

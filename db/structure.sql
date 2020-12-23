@@ -350,6 +350,38 @@ ALTER SEQUENCE public.assessments_reports_id_seq OWNED BY public.assessments_rep
 
 
 --
+-- Name: assessors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessors (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    user_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assessors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessors_id_seq OWNED BY public.assessors.id;
+
+
+--
 -- Name: assigns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -569,7 +601,8 @@ CREATE TABLE public.campaign_assessments (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     norm_type character varying,
-    campaign_assessment_group_id bigint
+    campaign_assessment_group_id bigint,
+    assessor_form_id bigint
 );
 
 
@@ -642,7 +675,8 @@ CREATE TABLE public.campaign_reports (
     campaign_id bigint,
     user_access boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assessor_access boolean DEFAULT false
 );
 
 
@@ -3394,6 +3428,13 @@ ALTER TABLE ONLY public.assessments_reports ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: assessors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessors ALTER COLUMN id SET DEFAULT nextval('public.assessors_id_seq'::regclass);
+
+
+--
 -- Name: assigns id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -4008,6 +4049,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT assessments_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assessors assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessors
+    ADD CONSTRAINT assessors_pkey PRIMARY KEY (id);
 
 
 --
@@ -4764,6 +4813,20 @@ CREATE INDEX index_assessments_reports_on_report_id ON public.assessments_report
 
 
 --
+-- Name: index_assessors_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessors_on_campaign_id ON public.assessors USING btree (campaign_id);
+
+
+--
+-- Name: index_assessors_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessors_on_user_id ON public.assessors USING btree (user_id);
+
+
+--
 -- Name: index_assigns_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4845,6 +4908,13 @@ CREATE INDEX index_campaign_assessment_groups_on_campaign_id ON public.campaign_
 --
 
 CREATE INDEX index_campaign_assessments_on_assessment_id ON public.campaign_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_campaign_assessments_on_assessor_form_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessments_on_assessor_form_id ON public.campaign_assessments USING btree (assessor_form_id);
 
 
 --
@@ -6173,6 +6243,14 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 
 
 --
+-- Name: assessors fk_rails_232405a599; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessors
+    ADD CONSTRAINT fk_rails_232405a599 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: license_usages fk_rails_2397339a92; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6933,6 +7011,14 @@ ALTER TABLE ONLY public.relationships
 
 
 --
+-- Name: assessors fk_rails_d77930f003; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessors
+    ADD CONSTRAINT fk_rails_d77930f003 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: hogan_report_settings fk_rails_d77e15b1b7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6978,6 +7064,14 @@ ALTER TABLE ONLY public.communication_emails
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaign_assessments fk_rails_e37db7e3eb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessments
+    ADD CONSTRAINT fk_rails_e37db7e3eb FOREIGN KEY (assessor_form_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
 
 
 --
@@ -7505,6 +7599,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201208081411'),
 ('20201210065543'),
 ('20201215150644'),
-('20201216101338');
+('20201216101338'),
+('20201223095358');
 
 

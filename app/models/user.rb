@@ -117,6 +117,7 @@ class User < ApplicationRecord
             source: :available_reports,
             class_name: 'Report'
   has_many :campaigns, through: :campaign_users
+  has_many :assessors, dependent: :destroy
 
   has_one :privacy_consent
 
