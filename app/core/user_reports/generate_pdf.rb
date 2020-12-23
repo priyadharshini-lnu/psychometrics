@@ -35,7 +35,7 @@ module UserReports
       }.to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
       Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
-      system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
+      Kernel.system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
     end
 
     def make_path

@@ -11,7 +11,6 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Current do
 
     it do
       response = described_class.call!(%w[Current], {})
-      expect { response.call }.to raise_error
       expect(response).to eq('')
     end
   end

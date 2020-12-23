@@ -6,7 +6,7 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
-      @filter_form = policy_scope(@resource_class).search(params[:q])
+      @filter_form = policy_scope(@resource_class).ransack(params[:q])
       @resources = @filter_form.
                    result.
                    joining { assessment }.
