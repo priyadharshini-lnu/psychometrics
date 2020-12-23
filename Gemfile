@@ -106,7 +106,7 @@ gem 'caxlsx_rails', '~> 0.6.0'
 gem 'roo', '~> 2.8.2'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
-gem 'acts_as_list', '~> 0.8.1'
+gem 'acts_as_list', '~> 1.0.2'
 
 ### add fake destroying logic for models
 gem 'active_model_serializers', '~> 0.10.0'
