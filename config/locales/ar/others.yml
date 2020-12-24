@@ -1,0 +1,113 @@
+---
+ar:
+  assessments:
+    actions:
+      goto_dashboard: الذهاب إلى الصفحة الرئيسية
+    audio_response:
+      permission_denied_message: يرجى تمكين الميكروفون في متصفحك لتسجيل الإجابة
+      permission_text: يرجى السماح باستخدام الميكروفون لتسجيل الصوت
+    messages:
+      finish: لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة
+    pickgrouprank:
+      items: العبارات
+    video_response:
+      delete: حذف
+      device: السماح
+      discard: تجاهل
+      file_upload:
+        select_file: اختر الملف
+      media_recorder:
+        failure: هذا المستعرض لا يدعم خاصية "تسجيل الفيديو". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.
+        success: يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو
+      retake: أعد مرة أخرى
+      retry: أعد المحاولة
+      save: حفظ
+      saved: تم الحفظ
+      saving: يتم الحفظ...
+      selected: تم الاختيار
+      start_recording: ابدأ التسجيل
+      tracker:
+        backward: أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.
+        forward: اضغط على زر التسجيل عندما تكون جاهزًا
+        frame: يرجى التأكد من أن وجهك في وضع مناسب مع الإطار
+        ready: اضغط على زر التسجيل عندما تكون جاهزًا
+      use_this: استخدم ذلك
+  checking_wizard:
+    audio_check:
+      test_message: arabic
+  reports:
+    modules:
+      potential_career_short:
+      single_value:
+        question_name: الأسئلة
+      single_value_cluster:
+        competency: كفاءة
+        description: وصف
+        developmental_rating: التصنيف التطويري
+        questions: الأسئلة
+      three_sixty_report_summary:
+        number_by_filter_evaluations_received: عدد تقييم (%{filter}) المدير المباشر
+        number_of_evaluators_invited: مدعو التقييم
+        number_of_evaluators_received: تم تلقي التقييمات
+        title: ملخص تقرير
+  threesixty:
+    question:
+      chat_type:
+        input_placeholder: اكتب رسالتك...
+      email_type:
+        bcc: نسخة مخفية الوجهة
+        cc: نسخة إلى
+        edit: تعديل
+        message: رسالتك
+        send: إرسال
+        subject: الموضوع
+        successful_message: لقد قمت بإرسال البريد الإلكتروني بنجاح
+        to: إلى
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: تم تسجيل الصوت ولكن لم يتم حفظه
+        RECORDING: يتم التسجيل الصوتي
+        SAVING: يتم تحميل التسجيل الصوتي
+      required: يرجى تسجيل الصوت وحفظه قبل المتابعة
+    FileUpload:
+      in_progress:
+        SAVING: يتم تحميل الملف
+      required: الرجاء رفع الملف
+    TextEntry:
+      Email:
+        character_range: يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل وألا تزيد عن %{max} حرف.
+        max_length: يجب ألا يزيد عدد أحرف رسالة البريد الإلكتروني التي تم إدخالها عن {max}% حرف.
+        min_length: يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل.
+        subject:
+          min_length: يجب أن تحتوي خانة "الموضوع" على 10 أحرف على الأقل.
+        to:
+          required: يجب تعبئة الخانة "إلى"
+    VideoResponse:
+      in_progress:
+        recorded: تم تسجيل الفيديو ولكن لم يتم حفظه
+        recording: يتم تسجيل الفيديو
+        saving: يتم تحميل الفيديو المسجل
+      required: يرجى تسجيل الفيديو وحفظه قبل المتابعة
+    character_range: يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.
+    date: "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح"
+    each_group_contains: يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى
+    email: البريد الإلكتروني غير صحيح
+    file_upload:
+      EntityTooLarge: يجب أن يكون حجم الملف أقل من %{maxFileSize} ميجابايت
+      WrongFileType: يجب أن يكون نوع الملف واحدًا من الأنواع التالية %{allowedFileTypes}
+    issue: " الخطأ"
+    least: الرجاء اختيار %{min} خيارات كحد أدنى.
+    least_hotspot: الرجاء اختيار %{min} خيارات كحد أدنى.
+    max_length: " يجب ألا تتجاوز إجابتك %{max} حرفًا."
+    min_length: 'يجب أن تتكون إجابتك من  %{min} حرفًا كحد أدنى. '
+    must_rank_between: " يرجى وضع قيمة من %{min} إلى %{max} لكل عنصر. لا يجب أن تتكرر القيم."
+    must_select: الرجاء اختيار من  %{min} إلى %{max} من الاختيارات
+    number: يجب أن تحتوي الإجابة على أرقام
+    range: 'الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. '
+    required: الرجاء الإجابة على هذا السؤال
+    text: يجب ألا تحتوي إجابتك على أرقام
+    title:
+      one: هناك خطأ واحد ، يرجى التحقق من ردودك
+      other: هناك %{count} أخطاء ، يرجى التحقق من إجاباتك
+      two: يوجد خطأان ، يرجى التحقق من إجاباتك

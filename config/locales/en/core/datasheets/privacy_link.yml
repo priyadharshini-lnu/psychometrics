@@ -1,8 +1,0 @@
-en:
-  activerecord:
-    errors:
-      models:
-        privacy_link:
-          attributes:
-            link:
-              invalid_http_url: 'invalid url'

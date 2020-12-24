@@ -220,6 +220,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "user_exists_in_project": "User with this email id already exists in the project"
             },
             "import_data": {
+              "duplicated_emails": "The following email(s) are duplicated in CSV: %{emails}",
               "invalid_header": "Invalid header, take header from export"
             }
           }
@@ -697,10 +698,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "updated_at": "Modified Date"
     },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",
@@ -718,7 +721,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -751,6 +754,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -841,7 +845,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "confirmations": {
           "delete": {
             "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-            "title": "Delete <strong>Assessment</strong> ?"
+            "title": "Delete <strong>Assessment</strong>?"
+          },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+            "title": "Soft Delete <strong>Assessment</strong>?"
           },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -850,14 +858,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
-          "edit": "Edit Assessment"
+          "edit": "Edit Assessment",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Assessment %{name} was Restored Successfully."
       },
       "sidebar": {
         "assign": "Assign Assessment",
@@ -871,6 +885,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "soft_delete": {
+        "successfully": "Assessment %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -1283,6 +1300,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -1361,7 +1379,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-              "title": "Delete <strong>Assessment</strong> ?"
+              "title": "Delete <strong>Assessment</strong>?"
+            },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+              "title": "Soft Delete <strong>Assessment</strong>?"
             },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -1381,7 +1403,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "import": "Import",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "link": "Link",
           "mindmill_results": "Mindmill",
@@ -1397,8 +1420,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
-            "edit": "Edit Assessment"
+            "edit": "Edit Assessment",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Assessment %{name} was Restored Successfully."
         },
         "select_raw_export_type": {
           "export_with_labels": "Export raw result with labels",
@@ -1417,6 +1445,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "soft_delete": {
+          "successfully": "Assessment %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -1685,7 +1716,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -1993,7 +2025,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -2593,6 +2626,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
               "title": "Regenerate <strong>%{name}</strong>?"
             },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+              "title": "Soft Delete <strong>Report</strong>?"
+            },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
@@ -2601,14 +2638,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "export_data": "Export Data",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "tooltips": {
             "copy": "Copy Report",
             "delete": "Delete Report",
             "edit": "Edit Report",
-            "preview": "Preview Report"
+            "preview": "Preview Report",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Report %{name} was Restored Successfully."
         },
         "sidebar": {
           "copy": "Copy Report",
@@ -2617,6 +2660,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "soft_delete": {
+          "successfully": "Report %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -3096,6 +3142,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
                 "title": "Regenerate <strong>%{name}</strong>?"
               },
+              "soft_delete": {
+                "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+                "title": "Soft Delete <strong>Report</strong>?"
+              },
               "toggle_status": {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
@@ -3103,14 +3153,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "in_progress": {
               "copying": "Copying",
-              "deleting": "Deleting"
+              "deleting": "Deleting",
+              "restoring": "Restoring"
             },
             "tooltips": {
               "copy": "Copy Report",
               "delete": "Delete Report",
               "edit": "Edit Report",
-              "preview": "Preview Report"
+              "preview": "Preview Report",
+              "restore": "Restore",
+              "soft_delete": "Soft Delete Assessment"
             }
+          },
+          "restore": {
+            "successfully": "Report %{name} was Restored Successfully."
           },
           "sidebar": {
             "copy": "Copy Report",
@@ -3119,6 +3175,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "regenerate": "Regenerate Report",
             "title": "Report's options",
             "view": "View Report"
+          },
+          "soft_delete": {
+            "successfully": "Report %{name} was moved to Trash Successfully."
           },
           "toggle_archive": {
             "successfully": "Assessment %{name} was %{status} successfully."
@@ -3195,7 +3254,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -3429,18 +3489,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -3477,9 +3543,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
@@ -4362,6 +4430,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
             "title": "Regenerate <strong>%{name}</strong>?"
           },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+            "title": "Soft Delete <strong>Report</strong>?"
+          },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
@@ -4369,14 +4441,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "copy": "Copy Report",
           "delete": "Delete Report",
           "edit": "Edit Report",
-          "preview": "Preview Report"
+          "preview": "Preview Report",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Report %{name} was Restored Successfully."
       },
       "sidebar": {
         "copy": "Copy Report",
@@ -4385,6 +4463,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "soft_delete": {
+        "successfully": "Report %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -4806,7 +4887,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -6619,7 +6701,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
         "number_of_evaluators_invited": "مدعو التقييم",
         "number_of_evaluators_received": "تم تلقي التقييمات",
-        "number_of_evaluators_responded": "Number of evaluators responded",
         "relationships": "Relationships",
         "subject": "Subject",
         "title": "ملخص تقرير",
@@ -7101,10 +7182,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "first_name_error": "Please input First Name",
     "help": "Help",
     "helps": {
-      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
-      "main": "<h2>Help</h2> <p>need content for help modal</p>",
-      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your Manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a Manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a Manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
-      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or Manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a Manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and Manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+      "main": "<h2>Help</h2> <p>need content for help modal</p>"
     },
     "language": "Language",
     "last_name": "Last Name",
@@ -7249,6 +7327,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "imported_users": "The number of imported users: %{number}",
         "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
@@ -7585,6 +7664,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "user_exists_in_project": "User with this email id already exists in the project"
             },
             "import_data": {
+              "duplicated_emails": "The following email(s) are duplicated in CSV: %{emails}",
               "invalid_header": "Invalid header, take header from export"
             }
           }
@@ -8062,10 +8142,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "updated_at": "Modified Date"
     },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",
@@ -8083,7 +8165,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -8116,6 +8198,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -8206,7 +8289,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "confirmations": {
           "delete": {
             "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-            "title": "Delete <strong>Assessment</strong> ?"
+            "title": "Delete <strong>Assessment</strong>?"
+          },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+            "title": "Soft Delete <strong>Assessment</strong>?"
           },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -8215,14 +8302,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
-          "edit": "Edit Assessment"
+          "edit": "Edit Assessment",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Assessment %{name} was Restored Successfully."
       },
       "sidebar": {
         "assign": "Assign Assessment",
@@ -8236,6 +8329,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "soft_delete": {
+        "successfully": "Assessment %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -8648,6 +8744,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -8726,7 +8823,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-              "title": "Delete <strong>Assessment</strong> ?"
+              "title": "Delete <strong>Assessment</strong>?"
+            },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+              "title": "Soft Delete <strong>Assessment</strong>?"
             },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -8746,7 +8847,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "import": "Import",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "link": "Link",
           "mindmill_results": "Mindmill",
@@ -8762,8 +8864,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
-            "edit": "Edit Assessment"
+            "edit": "Edit Assessment",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Assessment %{name} was Restored Successfully."
         },
         "select_raw_export_type": {
           "export_with_labels": "Export raw result with labels",
@@ -8782,6 +8889,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "soft_delete": {
+          "successfully": "Assessment %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -9050,7 +9160,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -9358,7 +9469,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -9958,6 +10070,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
               "title": "Regenerate <strong>%{name}</strong>?"
             },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+              "title": "Soft Delete <strong>Report</strong>?"
+            },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
@@ -9966,14 +10082,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "export_data": "Export Data",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "tooltips": {
             "copy": "Copy Report",
             "delete": "Delete Report",
             "edit": "Edit Report",
-            "preview": "Preview Report"
+            "preview": "Preview Report",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Report %{name} was Restored Successfully."
         },
         "sidebar": {
           "copy": "Copy Report",
@@ -9982,6 +10104,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "soft_delete": {
+          "successfully": "Report %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -10461,6 +10586,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
                 "title": "Regenerate <strong>%{name}</strong>?"
               },
+              "soft_delete": {
+                "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+                "title": "Soft Delete <strong>Report</strong>?"
+              },
               "toggle_status": {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
@@ -10468,14 +10597,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             },
             "in_progress": {
               "copying": "Copying",
-              "deleting": "Deleting"
+              "deleting": "Deleting",
+              "restoring": "Restoring"
             },
             "tooltips": {
               "copy": "Copy Report",
               "delete": "Delete Report",
               "edit": "Edit Report",
-              "preview": "Preview Report"
+              "preview": "Preview Report",
+              "restore": "Restore",
+              "soft_delete": "Soft Delete Assessment"
             }
+          },
+          "restore": {
+            "successfully": "Report %{name} was Restored Successfully."
           },
           "sidebar": {
             "copy": "Copy Report",
@@ -10484,6 +10619,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "regenerate": "Regenerate Report",
             "title": "Report's options",
             "view": "View Report"
+          },
+          "soft_delete": {
+            "successfully": "Report %{name} was moved to Trash Successfully."
           },
           "toggle_archive": {
             "successfully": "Assessment %{name} was %{status} successfully."
@@ -10560,7 +10698,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -10794,18 +10933,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -10842,9 +10987,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
@@ -11727,6 +11874,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
             "title": "Regenerate <strong>%{name}</strong>?"
           },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+            "title": "Soft Delete <strong>Report</strong>?"
+          },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
@@ -11734,14 +11885,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "copy": "Copy Report",
           "delete": "Delete Report",
           "edit": "Edit Report",
-          "preview": "Preview Report"
+          "preview": "Preview Report",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Report %{name} was Restored Successfully."
       },
       "sidebar": {
         "copy": "Copy Report",
@@ -11750,6 +11907,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "soft_delete": {
+        "successfully": "Report %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -12171,7 +12331,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -14604,6 +14765,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "imported_users": "The number of imported users: %{number}",
         "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
@@ -14939,6 +15101,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "user_exists_in_project": "User with this email id already exists in the project"
             },
             "import_data": {
+              "duplicated_emails": "The following email(s) are duplicated in CSV: %{emails}",
               "invalid_header": "Invalid header, take header from export"
             }
           }
@@ -15416,10 +15579,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "updated_at": "Modified Date"
     },
     "close": "Close",
+    "details": "Details",
     "errors": "Errors",
     "mark_as_read": "Mark all read",
     "more": "More",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "results": "Results"
   },
   "administration": {
     "actions": "Actions",
@@ -15437,7 +15602,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "passwords": {
         "edit": {
           "confirm_password_label": "Confirm Password",
-          "description": "To create a new password, please enter your new password in the boxes below.",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
           "password_label": "Password",
           "submit": "Set New Password",
           "title": "Change your password"
@@ -15470,6 +15635,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "all": " - All - ",
     "any": " - Any - ",
     "assessments": {
+      "assessment": "Assessment",
       "assigns": {
         "create": {
           "successfully": "You successfully finished assigning %{name}"
@@ -15560,7 +15726,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "confirmations": {
           "delete": {
             "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-            "title": "Delete <strong>Assessment</strong> ?"
+            "title": "Delete <strong>Assessment</strong>?"
+          },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+            "title": "Soft Delete <strong>Assessment</strong>?"
           },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -15569,14 +15739,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "archive": "Archive Assessment",
           "copy": "Copy Assessment",
           "delete": "Delete Assessment",
-          "edit": "Edit Assessment"
+          "edit": "Edit Assessment",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Assessment %{name} was Restored Successfully."
       },
       "sidebar": {
         "assign": "Assign Assessment",
@@ -15590,6 +15766,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "new": "New Assessment",
         "preview": "Preview Assessment",
         "title": "Assessment's options"
+      },
+      "soft_delete": {
+        "successfully": "Assessment %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -16002,6 +16181,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "assessments": {
+        "assessment": "Assessment",
         "assigns": {
           "form": {
             "empty_client_ids": "Select clients to continue"
@@ -16080,7 +16260,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "confirmations": {
             "delete": {
               "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-              "title": "Delete <strong>Assessment</strong> ?"
+              "title": "Delete <strong>Assessment</strong>?"
+            },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+              "title": "Soft Delete <strong>Assessment</strong>?"
             },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
@@ -16100,7 +16284,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "import": "Import",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "link": "Link",
           "mindmill_results": "Mindmill",
@@ -16116,8 +16301,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "archive": "Archive Assessment",
             "copy": "Copy Assessment",
             "delete": "Delete Assessment",
-            "edit": "Edit Assessment"
+            "edit": "Edit Assessment",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Assessment %{name} was Restored Successfully."
         },
         "select_raw_export_type": {
           "export_with_labels": "Export raw result with labels",
@@ -16136,6 +16326,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "new": "New Assessment",
           "preview": "Preview Assessment",
           "title": "Assessment's options"
+        },
+        "soft_delete": {
+          "successfully": "Assessment %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -16404,7 +16597,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "copy": {
         "error": "Client Tenancy %{name} was not copied.",
@@ -16712,7 +16906,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       },
       "projects": {
         "archive": {
@@ -17312,6 +17507,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
               "title": "Regenerate <strong>%{name}</strong>?"
             },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+              "title": "Soft Delete <strong>Report</strong>?"
+            },
             "toggle_status": {
               "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
               "title": "<strong>%{status}</strong> %{name}?"
@@ -17320,14 +17519,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "export_data": "Export Data",
           "in_progress": {
             "copying": "Copying",
-            "deleting": "Deleting"
+            "deleting": "Deleting",
+            "restoring": "Restoring"
           },
           "tooltips": {
             "copy": "Copy Report",
             "delete": "Delete Report",
             "edit": "Edit Report",
-            "preview": "Preview Report"
+            "preview": "Preview Report",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
           }
+        },
+        "restore": {
+          "successfully": "Report %{name} was Restored Successfully."
         },
         "sidebar": {
           "copy": "Copy Report",
@@ -17336,6 +17541,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "regenerate": "Regenerate Report",
           "title": "Report's options",
           "view": "View Report"
+        },
+        "soft_delete": {
+          "successfully": "Report %{name} was moved to Trash Successfully."
         },
         "toggle_archive": {
           "successfully": "Assessment %{name} was %{status} successfully."
@@ -17815,6 +18023,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
                 "title": "Regenerate <strong>%{name}</strong>?"
               },
+              "soft_delete": {
+                "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+                "title": "Soft Delete <strong>Report</strong>?"
+              },
               "toggle_status": {
                 "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
                 "title": "<strong>%{status}</strong> %{name}?"
@@ -17822,14 +18034,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "in_progress": {
               "copying": "Copying",
-              "deleting": "Deleting"
+              "deleting": "Deleting",
+              "restoring": "Restoring"
             },
             "tooltips": {
               "copy": "Copy Report",
               "delete": "Delete Report",
               "edit": "Edit Report",
-              "preview": "Preview Report"
+              "preview": "Preview Report",
+              "restore": "Restore",
+              "soft_delete": "Soft Delete Assessment"
             }
+          },
+          "restore": {
+            "successfully": "Report %{name} was Restored Successfully."
           },
           "sidebar": {
             "copy": "Copy Report",
@@ -17838,6 +18056,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "regenerate": "Regenerate Report",
             "title": "Report's options",
             "view": "View Report"
+          },
+          "soft_delete": {
+            "successfully": "Report %{name} was moved to Trash Successfully."
           },
           "toggle_archive": {
             "successfully": "Assessment %{name} was %{status} successfully."
@@ -17914,7 +18135,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "successfully": "User %{name} was successfully updated."
-        }
+        },
+        "user": "User"
       }
     },
     "clients_hierarchy": "Project > Campaign > Sub Campaign",
@@ -18148,18 +18370,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "form": {
         "no_icon": "No Logo yet",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        }
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
       },
       "index": {
         "icon": "Icon",
         "new": "Add",
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other Factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
           "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
@@ -18196,9 +18424,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "deleting": "Deleting"
         },
         "scoring_strategies": {
-          "questions": "Questions",
-          "sub_factor_questions": "Questions of other factors",
-          "sub_factors_average": "Weighted Average of factors",
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
           "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
         },
         "tooltips": {
@@ -19081,6 +19311,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
             "title": "Regenerate <strong>%{name}</strong>?"
           },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+            "title": "Soft Delete <strong>Report</strong>?"
+          },
           "toggle_status": {
             "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
             "title": "<strong>%{status}</strong> %{name}?"
@@ -19088,14 +19322,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "in_progress": {
           "copying": "Copying",
-          "deleting": "Deleting"
+          "deleting": "Deleting",
+          "restoring": "Restoring"
         },
         "tooltips": {
           "copy": "Copy Report",
           "delete": "Delete Report",
           "edit": "Edit Report",
-          "preview": "Preview Report"
+          "preview": "Preview Report",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
         }
+      },
+      "restore": {
+        "successfully": "Report %{name} was Restored Successfully."
       },
       "sidebar": {
         "copy": "Copy Report",
@@ -19104,6 +19344,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "regenerate": "Regenerate Report",
         "title": "Report's options",
         "view": "View Report"
+      },
+      "soft_delete": {
+        "successfully": "Report %{name} was moved to Trash Successfully."
       },
       "toggle_archive": {
         "successfully": "Assessment %{name} was %{status} successfully."
@@ -19525,7 +19768,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "update": {
         "successfully": "User %{name} was successfully updated."
-      }
+      },
+      "user": "User"
     }
   },
   "anonym": {
@@ -21958,6 +22202,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "modals": {
       "import": {
         "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "imported_users": "The number of imported users: %{number}",
         "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
         "title": "Import Users",
         "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
