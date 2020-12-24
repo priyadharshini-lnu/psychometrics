@@ -290,11 +290,11 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({ onEdit, onDelete }) => (
         tabIndex={-1}
         onClick={onEdit}
       >
-          Edit
+        Edit
       </div>
     </Menu.Item>
     <Menu.Item key="copy">
-        Copy
+      Copy
     </Menu.Item>
     <Menu.Item key="delete">
       <div

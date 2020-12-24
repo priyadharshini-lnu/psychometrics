@@ -67,7 +67,7 @@ function Navigation ({
             </Menu.Item>
             <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
               <QuestionCircleOutlined />
-                  Help
+              Help
             </Menu.Item>
           </Menu>
         </>

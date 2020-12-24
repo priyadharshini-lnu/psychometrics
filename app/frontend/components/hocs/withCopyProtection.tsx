@@ -2,6 +2,8 @@ import React from 'react'
 
 function withCopyProtection (WrappedComponent) {
   return class extends React.Component {
+    private ref: HTMLElement
+
     componentDidMount () {
       const disableEvent = (e: Event) => {
         e.preventDefault()
@@ -11,8 +13,6 @@ function withCopyProtection (WrappedComponent) {
         (this.ref as HTMLElement).addEventListener(ev, disableEvent)
       })
     }
-
-    private ref: HTMLElement
 
     render () {
       return <WrappedComponent {...this.props} containerRef={(el) => { this.ref = el }} />

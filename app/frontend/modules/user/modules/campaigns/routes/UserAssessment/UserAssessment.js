@@ -62,7 +62,7 @@ export default function UserAssessment ({
               <div>
                 {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
                 {' '}
-              Back
+                Back
               </div>
             )}
             title={(

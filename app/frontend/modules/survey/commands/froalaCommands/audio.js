@@ -187,6 +187,7 @@ FE.PLUGINS.audio = function (editor) {
   }
 
   return {
+    // eslint-disable-next-line no-underscore-dangle
     _init () {
       if (editor.helpers.isMobile()) {
         editor.events.$on(editor.$el, 'touchstart', 'span.fr-audio', () => {
