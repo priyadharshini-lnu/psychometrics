@@ -26,7 +26,7 @@ import {
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
-  ANSWER, MARK_ASSESSMENT_TIMED_OUT,
+  ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
 
@@ -122,6 +122,13 @@ function* genSimulatePassingAssessment () {
   }
 }
 
+function* genPassAssessmentIfTimedOut () {
+  const state = yield select()
+  if (state.preview.assessmentTimedOut && !state.preview.end) {
+    yield genSimulatePassingAssessment()
+  }
+}
+
 function* getShowSubmitPage () {
   const state = yield select()
   if (state.preview.assessmentTimedOut) { return }
@@ -149,5 +156,6 @@ export const watchers = [
   takeLatest(SHOW_END, getShowSubmitPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
+  takeLatest(REMOVE_QUESTION_IN_PROGRESS, genPassAssessmentIfTimedOut),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
 ]
