@@ -1,0 +1,117 @@
+import React, { useState } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { importAssessors, IMPORT } from 'modules/admin/modules/campaigns/core/assessors'
+import { isRequestInProgress } from 'modules/admin/core/request'
+import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
+import {
+  Button, Modal, message, Alert, Form, Input,
+} from 'antd'
+import Event from 'interfaces/Event'
+import _ from 'lodash'
+
+const connecter = connect(
+  state => ({
+    loading: isRequestInProgress(state, IMPORT),
+  }),
+  {
+    importAssessors,
+  },
+)
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+const { I18n } = window
+
+const operationsOptions = ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response']
+
+interface OwnProps extends PropsFromRedux {
+  campaignId: number
+  close(): void
+}
+
+const ImportAssessorsModal: React.FC<OwnProps> = ({
+  campaignId,
+  close,
+  importAssessors,
+  loading,
+}) => {
+  const [form] = Form.useForm()
+  const [file, setFile] = useState<File | null>(null)
+  const [, setFields] = useState({})
+
+  const [errors, setErrors] = useState([])
+
+  const handleUpdate = (params) => {
+    const data = new FormData()
+    if (!file) return
+
+    _.map(params, (value, key) => {
+      data.append(key, value)
+    })
+    data.append('import_data', file)
+    importAssessors(campaignId, data)
+      .then(() => {
+        message.info(I18n.t('user.modals.import.success_msg'))
+        close()
+      })
+      .catch(setErrors)
+  }
+
+  return (
+    <Modal
+      width={700}
+      title={I18n.t('administration.assessor.modals.import.title')}
+      visible
+      onCancel={close}
+      footer={[
+        <Button
+          key="back"
+          onClick={close}
+        >
+          {I18n.t('common.actions.cancel')}
+        </Button>,
+        <Button
+          key="submit"
+          type="primary"
+          disabled={!form.getFieldValue('importData')}
+          onClick={() => {
+            form.submit()
+          }
+          }
+        >
+          {loading ? <LoadingOutlined /> : <CheckOutlined />}
+          {I18n.t('frontend.update')}
+        </Button>,
+      ]}
+    >
+      <p>{I18n.t('administration.assessor.modals.import.body')}</p>
+      {errors.length ? (
+        <Alert
+          message={false}
+          description={errors.map((e, i) => <div key={i}>{e}</div>)}
+          type="error"
+          className="mbm"
+        />
+      ) : null}
+      <Form
+        name="basic"
+        form={form}
+        onFinish={handleUpdate}
+        initialValues={{ operation: operationsOptions[0] }}
+        onFieldsChange={(a, allFields) => {
+          setFields(allFields)
+        }}
+      >
+        <Form.Item name="importData">
+          <Input
+            type="file"
+            accept=".csv"
+            onChange={({ target: { files } }: Event<HTMLInputElement>) => setFile(files && files[0])}
+          />
+        </Form.Item>
+      </Form>
+    </Modal>
+  )
+}
+
+
+export default connecter(ImportAssessorsModal)

@@ -93,6 +93,12 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :assessors do
+          collection do
+            post :import
+          end
+        end
+
         resources :universal_links, only: %i[show update destroy] do
           member do
             post :activate

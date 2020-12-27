@@ -10,7 +10,7 @@ import routeUtils from 'utils/route'
 interface Props extends Attributes {
   prefix?: string
 }
-const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options']
+const ROUTES = ['/participants', '/assessments_reports', '/registration_codes', '/options']
 
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
@@ -19,9 +19,9 @@ const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
 
   return (
     <Menu className="mbm" onSelect={onClick} selectedKeys={[active]} mode="horizontal">
-      <Menu.Item key="/users">
+      <Menu.Item key="/participants">
         <UserOutlined />
-        Users
+        Participants
       </Menu.Item>
       <Menu.Item key="/assessments_reports">
         <PieChartOutlined />
