@@ -32,7 +32,7 @@ export default function ReportPreview ({
     fetchReport(parsedCampaignId, parsedId)
   }, [])
 
-  const reportIsLoaded = (): boolean => !!userReport && userReport.loaded
+  const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)
 
   const renderReportPreview = () => {
     if (!reportIsLoaded()) { return null }

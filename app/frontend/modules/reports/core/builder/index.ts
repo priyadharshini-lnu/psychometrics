@@ -1,17 +1,61 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import { setIn } from 'utils/immutable'
 import {
   INIT, ENABLE, DISABLE, OPEN_RICH_EDITOR, SELECT_MODULE, UNSELECT_MODULES,
   CLOSE_RICH_EDITOR, RENAME_REPORT, UPDATE_CURRENT_PAGE, ADD_PAGE, CHANGE_SIZE,
   UPDATE_PAGE_POSITIONS, COPY_PAGE, COPY_MODULE, SAVE_DATA_SHEET,
+  InitType, RenameReportType, UpdateCurrentPageType, AddPageType, SelectModuleType,
+  ChangeSizeType, UpdatePagePositionType, SaveDataSheetType, CopyModuleType, CopyPageType,
 } from './actions'
 import { PAGE_SIZES, BASE_FONT_SIZE } from './consts'
 
 const VERTICAL_SPACE_BETWEEN_PAGES = 95
 
-export const defaultState = {
+interface State {
+  id: number | null,
+  loaded: boolean,
+  disabled: boolean,
+  saving: boolean,
+  name: string,
+  filters: [],
+  factors: [],
+  factor_norms: [],
+  occupations: [],
+  props: {
+    sizes: {
+      height: number
+      width: number
+    }
+  },
+  dimension_ids: [],
+  completed_assessments: [],
+  data_configuration: string,
+  data_sheet_columns: [],
+  relationships: [],
+  pages: number[],
+  innovation_styles: {},
+  norm_used: {},
+  result_locale: {},
+  default_language: {},
+  locales: {},
+  assessments: {},
+  blocks: {},
+  questions: {},
+  richEditorOpened: boolean,
+  currentPage: number,
+  selected: {
+    type: string | null,
+    moduleId: number | null,
+  },
+  buffer: {
+    sourceId: number | null,
+    moduleId: number | null,
+  },
+}
+
+export const defaultState: State = {
   id: null,
   loaded: false,
   disabled: false,
@@ -21,7 +65,12 @@ export const defaultState = {
   factors: [],
   factor_norms: [],
   occupations: [],
-  props: {},
+  props: {
+    sizes: {
+      height: 0,
+      width: 0,
+    },
+  },
   dimension_ids: [],
   completed_assessments: [],
   data_configuration: '',
@@ -48,8 +97,9 @@ export const defaultState = {
   },
 }
 
+
 const HANDLERS = {
-  [INIT]: (state, { data }) => {
+  [INIT]: (state: State, { data }: InitType) => {
     const report = data.entities.report[data.result]
     return {
       ...state,
@@ -64,33 +114,35 @@ const HANDLERS = {
       currentPage: state.currentPage || report.pages[0],
     }
   },
-  [ENABLE]: state => ({ ...state, disabled: false }),
-  [DISABLE]: state => ({ ...state, disabled: true }),
-  [OPEN_RICH_EDITOR]: state => ({ ...state, richEditorOpened: true }),
-  [CLOSE_RICH_EDITOR]: state => ({ ...state, richEditorOpened: false }),
-  [RENAME_REPORT]: (state, { name }) => setIn(state, 'name', name),
-  [UPDATE_CURRENT_PAGE]: (state, { offset, pages }) => {
+  [ENABLE]: (state: State) => ({ ...state, disabled: false }),
+  [DISABLE]: (state: State) => ({ ...state, disabled: true }),
+  [OPEN_RICH_EDITOR]: (state: State) => ({ ...state, richEditorOpened: true }),
+  [CLOSE_RICH_EDITOR]: (state: State) => ({ ...state, richEditorOpened: false }),
+  [RENAME_REPORT]: (state: State, { name }: RenameReportType) => setIn(state, 'name', name),
+  [UPDATE_CURRENT_PAGE]: (state: State, { offset, pages }: UpdateCurrentPageType) => {
     const index = Math.round(offset / (state.props.sizes.height + VERTICAL_SPACE_BETWEEN_PAGES))
     const page = _.filter(state.pages, p => !pages[p].removed)[index]
     if (!page) { return state }
     return setIn(state, 'currentPage', page)
   },
-  [ADD_PAGE]: (state, { page, index }) => ({
+  [ADD_PAGE]: (state: State, { page, index }: AddPageType) => ({
     ...state,
     pages: ([...state.pages.slice(0, index), page.id, ...state.pages.slice(index)]),
     currentPage: page.id,
   }),
-  [SELECT_MODULE]: (state, { moduleType, id }) => setIn(state, 'selected', { type: moduleType, moduleId: id }),
-  [UNSELECT_MODULES]: state => ({ ...state, selected: {} }),
-  [CHANGE_SIZE]: (state, { size }) => setIn(state, ['props', 'sizes'], size),
-  [UPDATE_PAGE_POSITIONS]: (state, { pageId, newIndex }) => {
+  [SELECT_MODULE]: (state: State, { moduleType, id }: SelectModuleType) => setIn(
+    state, 'selected', { type: moduleType, moduleId: id },
+  ),
+  [UNSELECT_MODULES]: (state: State) => ({ ...state, selected: { type: null, moduleId: null } }),
+  [CHANGE_SIZE]: (state: State, { size }: ChangeSizeType) => setIn(state, ['props', 'sizes'], size),
+  [UPDATE_PAGE_POSITIONS]: (state: State, { pageId, newIndex }: UpdatePagePositionType) => {
     const pages = _.filter(state.pages, page => page !== pageId)
-    pages.splice(newIndex, 0, pageId)
-    return { ...state, pages }
+    return { ...state, pages: ([...pages.slice(0, newIndex), pageId, ...pages.slice(newIndex)]) }
   },
-  [COPY_PAGE]: (state, { pageId }) => setIn(state, ['buffer', 'sourceId'], pageId),
-  [COPY_MODULE]: (state, { moduleId }) => setIn(state, ['buffer', 'moduleId'], moduleId),
-  [SAVE_DATA_SHEET]: (state, { data }) => setIn(state, ['data_sheet_columns'], data),
+  [COPY_PAGE]: (state: State, { pageId }: CopyPageType) => setIn(state, ['buffer', 'sourceId'], pageId),
+  [COPY_MODULE]: (state: State, { moduleId }: CopyModuleType) => setIn(state, ['buffer', 'moduleId'], moduleId),
+  [SAVE_DATA_SHEET]: (state: State, { data }: SaveDataSheetType) => setIn(state, ['data_sheet_columns'], data),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+
+export default createReducer(HANDLERS, defaultState)

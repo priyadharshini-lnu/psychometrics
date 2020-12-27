@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import { setIn } from 'utils/immutable'
 import Question from 'modules/survey/models/Question'
 import { Question as QuestionInerface } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 import {
   UPDATE_QUESTION, CHANGE_TYPE, ADD_NOTE, RENAME_QUESTION,
+  changeType, renameQuestion,
 } from '../assessment/question/actions'
 import { QuestionSerializer } from '../assessment/SerializeAssessment'
 
@@ -28,6 +29,13 @@ export const save = (q: QuestionInerface) => {
   }
 }
 
+interface State {
+  loaded: boolean,
+  disabled: boolean,
+  saving: boolean,
+  question: QuestionInerface | null,
+}
+
 export const defaultState = {
   loaded: false,
   disabled: false,
@@ -35,23 +43,39 @@ export const defaultState = {
   question: null,
 }
 
+type ChangeTypeType = ReturnType<typeof changeType>
+type RenameQuestionType = ReturnType<typeof renameQuestion>
+interface AddNoteType {
+  type: typeof ADD_NOTE,
+  question: QuestionInerface
+}
+type UpdateQuestionType = AddNoteType
+interface InitQuestionType {
+  type: typeof INIT_QUESTION_CENTER,
+  data: QuestionInerface
+}
+
 const HANDLERS = {
-  [INIT_QUESTION_CENTER]: (state, { data }) => ({
+  [INIT_QUESTION_CENTER]: (state, { data }: InitQuestionType) => ({
     ...state,
     id: data.id,
     question: data,
     loaded: true,
   }),
-  [ADD_NOTE]: (state, { question }) => setIn(state, [question.id, 'showComments'], true),
-  [RENAME_QUESTION]: (state, { question, value }) => setIn(state, [question.id, 'name'], value),
-  [CHANGE_TYPE]: (state, { question, qtype, props }) => {
+  [ADD_NOTE]: (state: State, { question }: AddNoteType) => (
+    setIn(state, [question.id, 'showComments'], true)
+  ),
+  [RENAME_QUESTION]: (state: State, { question, value }: RenameQuestionType) => (
+    setIn(state, [question.id, 'name'], value)
+  ),
+  [CHANGE_TYPE]: (state: State, { question, qtype, props }: ChangeTypeType) => {
     Question.prototype.changeType.call(question, qtype, props)
     return setIn(state, 'question', _.cloneDeep(question))
   },
-  [UPDATE_QUESTION]: (state, { question }) => setIn(
+  [UPDATE_QUESTION]: (state: State, { question }: UpdateQuestionType) => setIn(
     state, 'question', { ...QuestionSerializer(_.cloneDeep(question)) },
   ),
-  [SAVE]: state => setIn(state, ['saving'], false),
+  [SAVE]: (state: State) => setIn(state, ['saving'], false),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)

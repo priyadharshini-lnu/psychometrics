@@ -1,13 +1,15 @@
 import _ from 'lodash'
-import { DEPRECATED_createReducer } from 'utils/redux'
-import { FETCH, FetchAction } from '../list'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { FETCH } from '../list'
 
 const defaultState = 0
+type FetchType = ApiActionResponse<{total: number}>
 
 export const get = (state): number => _.get(state, ['campaigns', 'total'])
 
 const HANDLERS = {
-  [FETCH]: (_: number, { response }: FetchAction) => response.total,
+  [FETCH]: (_: number, { response }: FetchType) => response.total,
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)

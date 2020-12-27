@@ -1,9 +1,5 @@
 import { Action, AnyAction } from 'redux'
 
-export const DEPRECATED_createReducer = (handlers, defaultState) => (state = defaultState, action) => {
-  const handler = handlers[action.type]
-  return handler ? handler(state, action) : state
-}
 type Handlers<State, Types extends string> = {
   readonly [Type in Types]: (state: State, action: AnyAction) => State
 }

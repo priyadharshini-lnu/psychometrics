@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 export default connect(
   (state: RootState) => ({
-    dataSheetColumns: _.get(state, ['state', 'survey', 'builder', 'assessment', 'data_sheet_columns']),
+    dataSheetColumns: _.get(state, ['survey', 'builder', 'assessment', 'data_sheet_columns']),
   }),
   {},
 )

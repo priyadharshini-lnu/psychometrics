@@ -1,7 +1,8 @@
 import _ from 'lodash'
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 export interface RegistrationCode {
   id: number
@@ -13,7 +14,7 @@ export interface RegistrationCode {
   endDate: Date
 }
 
-const defaultState = {
+const defaultState: State = {
   list: [],
   total: 0,
 }
@@ -43,29 +44,28 @@ export const destroy = (campaignId: string, id: number) => ({
   },
 })
 
-export interface FetchAction {
-  response: {
-    list: []
-    total: 0
-  }
-}
 
 export interface State {
   list: RegistrationCode[]
   total: number
 }
 
+type FetchType = ApiActionResponse<{list: [], total: number}>
+type CreateType = ApiActionResponse<RegistrationCode>
+type DestroyType = ApiActionResponse<number>
+type UpdateType = ApiActionResponse<RegistrationCode>
+
 const HANDLERS = {
-  [FETCH]: (_, { response }: FetchAction) => response,
-  [CREATE]: (state: State, { response }: { response: RegistrationCode }) => (
+  [FETCH]: (_, { response }: FetchType) => response,
+  [CREATE]: (state: State, { response }: CreateType) => (
     setIn(state, ['list'], [response, ...state.list])
   ),
-  [DESTROY]: (state: State, { response }: { response: number }) => (
+  [DESTROY]: (state: State, { response }: DestroyType) => (
     updateIn(state, ['list'], (codes: RegistrationCode[]) => _.filter(
       codes, (code: RegistrationCode) => code.id !== response,
     ))
   ),
-  [UPDATE]: (state: State, { response }: { response: RegistrationCode }) => (
+  [UPDATE]: (state: State, { response }: UpdateType) => (
     updateIn(state, ['list'], (codes: RegistrationCode[]) => _.map(codes, (code: RegistrationCode) => {
       if (code.id === response.id) { return response }
 
@@ -74,4 +74,4 @@ const HANDLERS = {
   ),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)

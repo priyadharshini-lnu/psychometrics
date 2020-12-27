@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import { put, select, takeEvery } from 'redux-saga/effects'
 import { AnyAction } from 'redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
@@ -7,8 +7,11 @@ import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import ApiAction from 'interfaces/ApiAction'
 import * as t from 'io-ts'
 import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 const defaultState = []
+
+type State = Campaign[]
 
 export const get = (state): Campaign[] => _.get(state, ['campaigns', 'list'])
 
@@ -64,18 +67,16 @@ export const remove = (campaignId: number, projectId: number) => ({
   },
 })
 
-export interface FetchAction {
-  response: {
-    total: number
-    campaigns: Campaign[]
-  }
-}
 
+type FetchType = ApiActionResponse<{campaigns: Campaign[]}>
+type CreateType = ApiActionResponse<Campaign>
+type UpdateType = CreateType
+type RemoveType = ApiActionResponse<number>
 
 const HANDLERS = {
-  [FETCH]: (_, { response }: FetchAction) => response.campaigns,
-  [CREATE]: (state: Campaign[], { response }: { response: Campaign }) => ([response, ...state]),
-  [UPDATE]: (state: Campaign[], { response }: { response: Campaign }) => (
+  [FETCH]: (_, { response }: FetchType) => response.campaigns,
+  [CREATE]: (state: State, { response }: CreateType) => ([response, ...state]),
+  [UPDATE]: (state: State, { response }: UpdateType) => (
     _.map(state, (campaign: Campaign) => {
       if (campaign.id === response.id) { return response }
 
@@ -83,12 +84,12 @@ const HANDLERS = {
     })
   ),
 
-  [REMOVE]: (state: Campaign[], { response }: { response: number }) => (
+  [REMOVE]: (state: State, { response }: RemoveType) => (
     state.filter(campaign => campaign.id !== response)
   ),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)
 
 function* genFetchCampaigns ({ response }: AnyAction) {
   const tables = yield select(getTables)

@@ -340,7 +340,7 @@ Object {
         },
       },
     },
-    "randomseed": 1,
+    "randomseed": "1",
     "readOnly": undefined,
     "relationship": undefined,
     "relationships": undefined,
@@ -406,7 +406,7 @@ Object {
         "data": Object {},
       },
       "socket": Object {
-        "initialized": null,
+        "initialized": false,
       },
     },
   },
@@ -433,6 +433,7 @@ Object {
     "enableProgress": false,
     "end": false,
     "errors": Object {},
+    "expiryDate": null,
     "hideHiddenQuestions": true,
     "highlights": Object {},
     "ignoreValidations": false,
@@ -452,6 +453,7 @@ Object {
     "results": Object {},
     "showSubmitPage": false,
     "subjectDataSheet": Array [],
+    "timerDuration": null,
     "type": "preview_assessment",
   },
   "survey": Object {
@@ -509,7 +511,7 @@ Object {
         "data": Object {},
       },
       "socket": Object {
-        "initialized": null,
+        "initialized": false,
       },
     },
   },

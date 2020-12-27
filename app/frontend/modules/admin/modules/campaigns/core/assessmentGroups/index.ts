@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { CampaignAssessmentGroup, CampaignAssessment } from './interfaces'
 
 const defaultState = {
@@ -83,26 +84,25 @@ export const remove = ({ campaignId, id }: CampaignAssessmentGroup) => ({
   },
 })
 
-export interface FetchAction {
-  response: {
-    groups: CampaignAssessmentGroup[],
-    assessments: CampaignAssessment[]
-  },
-}
 export interface RemoveAction {
   response: number
 }
 
-export interface AttachAssessmentToGroupAction {
-  id: number
-  request: {
-    body: {
-      groupId: number | null
-      position: number
-    }
-  }
+export interface ResourceResponse {
+  response: CampaignAssessmentGroup
 }
-export interface UpdateAction {
+
+
+export interface State {
+  list: CampaignAssessmentGroup[]
+  assessments: CampaignAssessment[]
+}
+
+export interface FetchResponse {
+  groups: CampaignAssessmentGroup[],
+  assessments: CampaignAssessment[]
+}
+export interface UpdateResponse {
   id: number
   request: {
     body: {
@@ -111,26 +111,17 @@ export interface UpdateAction {
   }
 }
 
-export interface UpdateAssessmentAction {
-  id: number
-  request: {
-    body: object
-  }
-}
-
-export interface ResourceResponse {
-  response: CampaignAssessmentGroup
-}
-
-export interface State {
-  list: CampaignAssessmentGroup[]
-  assessments: CampaignAssessment[]
-}
+type FetchType = ApiActionResponse<FetchResponse>
+type CreateType = ApiActionResponse<CampaignAssessmentGroup>
+type RemoveType = ApiActionResponse<CampaignAssessmentGroup>
+type UpdateType = ReturnType<typeof update>
+type UpdateAssessmentType = ReturnType<typeof updateAssessment>
+type AttachAssessmentToGroupType = ReturnType<typeof attachAssessmentToGroup>
 
 const HANDLERS = {
-  [FETCH]: (_, { response }: FetchAction) => ({ list: response.groups, assessments: response.assessments }),
-  [CREATE]: (state, { response }: ResourceResponse) => ({ ...state, list: [...state.list, response] }),
-  [REMOVE]: (state, { response: id }: ResourceResponse) => ({
+  [FETCH]: (_, { response }: FetchType) => ({ list: response.groups, assessments: response.assessments }),
+  [CREATE]: (state, { response }: CreateType) => ({ ...state, list: [...state.list, response] }),
+  [REMOVE]: (state, { response: id }: RemoveType) => ({
     list: state.list.filter(g => g.id !== id),
     assessments: state.assessments.map((a) => {
       if (a.campaignAssessmentGroupId === id) {
@@ -139,15 +130,15 @@ const HANDLERS = {
       return a
     }),
   }),
-  [UPDATE_REQUEST]: (state, { request: { body }, id }: UpdateAction) => {
+  [UPDATE_REQUEST]: (state, { request: { body }, id }: UpdateType): State => {
     const list = state.list.map(group => (group.id === id ? { ...group, ...body.resource } : group))
     return { ...state, list }
   },
-  [UPDATE_ASSESSMENT_REQUEST]: (state, { request: { body }, id }: UpdateAssessmentAction) => {
+  [UPDATE_ASSESSMENT_REQUEST]: (state, { request: { body }, id }: UpdateAssessmentType): State => {
     const assessments = state.assessments.map(a => (a.id === id ? { ...a, ...body } : a))
     return { ...state, assessments }
   },
-  [ATTACH_ASSESSMENT_TO_GROUP_REQUEST]: (state, { id, request: { body } }: AttachAssessmentToGroupAction) => {
+  [ATTACH_ASSESSMENT_TO_GROUP_REQUEST]: (state, { id, request: { body } }: AttachAssessmentToGroupType): State => {
     // When we attach the assessment to particular position, we have to shift down all existing assessments
     // where position >= new assessment.position
     const assessments = state.assessments.map((a: CampaignAssessment) => {
@@ -163,4 +154,4 @@ const HANDLERS = {
   },
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)

@@ -8,7 +8,7 @@ const connecter = connect(
   (state: RootState) => ({
     preview: state.preview,
     anonym: state.anonym,
-    progress: state.preview.initialized && getProgress(state.preview),
+    progress: getProgress(state.preview),
   }),
   {
     markAssessmentTimedOut,

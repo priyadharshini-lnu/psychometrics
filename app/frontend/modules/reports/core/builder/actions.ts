@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import SerializeReport from './SerializeReport'
 import PageInterface from '../interfaces/Page'
 import ModuleInterface from '../interfaces/Module'
@@ -31,37 +32,21 @@ enum SelectedTypes {
   'Report'
 }
 
-interface OpenRichEditor { type: typeof OPEN_RICH_EDITOR }
-interface CloseRichEditor { type: typeof CLOSE_RICH_EDITOR }
-interface RenameReport { type: typeof RENAME_REPORT, name: string }
-interface UpdateCurrentPage { type: typeof UPDATE_CURRENT_PAGE, offset: number, pages: {number: PageInterface} }
-interface AddPage { type: typeof ADD_PAGE, page: PageInterface, index?: number }
-interface SelectModule { type: typeof SELECT_MODULE, moduleType: SelectedTypes, id: number }
-interface UnselectModules { type: typeof UNSELECT_MODULES }
-interface ChangeSize { type: typeof CHANGE_SIZE, size: {width: number, height: number} }
-interface UpdatePagePositions { type: typeof UPDATE_PAGE_POSITIONS, pageId: number, newIndex: number }
-interface SetPagePositions { type: typeof SET_PAGE_POSITIONS, order: number[] }
-interface CopyPage { type: typeof COPY_PAGE, pageId: number }
-interface PastePage { type: typeof PASTE_PAGE, pageId: number, modules: ModuleInterface[] }
-interface CopyModule { type: typeof COPY_MODULE, moduleId: number }
-interface PasteModule { type: typeof PASTE_MODULE, pageId: number, module: ModuleInterface }
-interface SaveDataSheet { type: typeof SAVE_DATA_SHEET, data: object[] }
-
 export const init = data => ({ type: INIT, data })
-export const openRichEditor = (): OpenRichEditor => ({ type: OPEN_RICH_EDITOR })
-export const closeRichEditor = (): CloseRichEditor => ({ type: CLOSE_RICH_EDITOR })
+export const openRichEditor = () => ({ type: OPEN_RICH_EDITOR })
+export const closeRichEditor = () => ({ type: CLOSE_RICH_EDITOR })
 
-export const copyPage = (pageId: number): CopyPage => ({ type: COPY_PAGE, pageId })
-export const pastePage = (pageId: number, modules: ModuleInterface[]): PastePage => ({
+export const copyPage = (pageId: number) => ({ type: COPY_PAGE, pageId })
+export const pastePage = (pageId: number, modules: ModuleInterface[]) => ({
   type: PASTE_PAGE, pageId, modules,
 })
 
-export const copyModule = (moduleId: number): CopyModule => ({ type: COPY_MODULE, moduleId })
-export const pasteModule = (pageId: number, module: ModuleInterface): PasteModule => ({
+export const copyModule = (moduleId: number) => ({ type: COPY_MODULE, moduleId })
+export const pasteModule = (pageId: number, module: ModuleInterface) => ({
   type: PASTE_MODULE, pageId, module,
 })
 
-export const saveDataSheet = (data: object[]): SaveDataSheet => ({ type: SAVE_DATA_SHEET, data })
+export const saveDataSheet = (data: object[]) => ({ type: SAVE_DATA_SHEET, data })
 export const uploadDataSheet = (id: number, body: { file: File }) => ({
   type: UPLOAD_DATA_SHEET,
   request: {
@@ -72,20 +57,20 @@ export const uploadDataSheet = (id: number, body: { file: File }) => ({
 })
 
 
-export const renameReport = (name: string): RenameReport => ({ type: RENAME_REPORT, name })
-export const updateCurrentPage = (offset: number, pages: {number: PageInterface}): UpdateCurrentPage => ({
+export const renameReport = (name: string) => ({ type: RENAME_REPORT, name })
+export const updateCurrentPage = (offset: number, pages: {[key: number]: PageInterface}) => ({
   type: UPDATE_CURRENT_PAGE, offset, pages,
 })
-export const updatePagePositions = (pageId, newIndex): UpdatePagePositions => ({
+export const updatePagePositions = (pageId: number | never, newIndex: number) => ({
   type: UPDATE_PAGE_POSITIONS, pageId, newIndex,
 })
-export const setPagePositions = (order: number[]): SetPagePositions => ({ type: SET_PAGE_POSITIONS, order })
-export const addPage = (page: PageInterface, index: number): AddPage => ({ type: ADD_PAGE, page, index })
-export const selectModule = (moduleType: SelectedTypes, id: number): SelectModule => ({
+export const setPagePositions = (order: number[]) => ({ type: SET_PAGE_POSITIONS, order })
+export const addPage = (page: PageInterface, index: number) => ({ type: ADD_PAGE, page, index })
+export const selectModule = (moduleType: SelectedTypes, id: number) => ({
   type: SELECT_MODULE, moduleType, id,
 })
-export const unselectModules = (): UnselectModules => ({ type: UNSELECT_MODULES })
-export const changeSize = (size: {width: number, height: number}): ChangeSize => ({ type: CHANGE_SIZE, size })
+export const unselectModules = () => ({ type: UNSELECT_MODULES })
+export const changeSize = (size: {width: number, height: number}) => ({ type: CHANGE_SIZE, size })
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types,@typescript-eslint/no-explicit-any
 export const save = (report: any) => {
   const builder = {
@@ -103,3 +88,21 @@ export const save = (report: any) => {
     },
   }
 }
+
+
+export type CopyPageType = ReturnType<typeof copyPage>
+export type CopyModuleType = ReturnType<typeof copyModule>
+export type PastePageType = ReturnType<typeof pastePage>
+export type PasteModuleType = ReturnType<typeof pasteModule>
+export type InitType = ReturnType<typeof init>
+export type OpenRichEditorType = ReturnType<typeof openRichEditor>
+export type CloseRichEditorType = ReturnType<typeof closeRichEditor>
+export type RenameReportType = ReturnType<typeof renameReport>
+export type UpdateCurrentPageType = ReturnType<typeof updateCurrentPage>
+export type AddPageType = ReturnType<typeof addPage>
+export type SelectModuleType = ReturnType<typeof selectModule>
+export type UnselectModulesType = ReturnType<typeof unselectModules>
+export type ChangeSizeType = ReturnType<typeof changeSize>
+export type UpdatePagePositionType = ReturnType<typeof updatePagePositions>
+export type SetPagePositionType = ReturnType<typeof setPagePositions>
+export type SaveDataSheetType = ApiActionResponse<{data: {}}>

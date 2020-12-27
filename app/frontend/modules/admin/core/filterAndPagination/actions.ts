@@ -42,11 +42,13 @@ export type removeFilterType = typeof removeFilter
 export type changePageType = typeof changePage
 export type changeSortType = typeof changeSort
 export type initTableType = typeof initTable
+export const setTableConfigFromUrlType = typeof setTableConfigFromUrl
 
 export type InitTableReturnType = ReturnType<typeof initTable>
 export type ChangeFilterReturnType = ReturnType<typeof changeFilter>
 export type ChangeSortReturnType = ReturnType<typeof changeSort>
 export type RemoveFilterReturnType = ReturnType<typeof removeFilter>
 export type ChangePageReturnType = ReturnType<typeof changePage>
+export type SetTableConfigFromUrlType = ReturnType<typeof setTableConfigFromUrl>
 export type ActionsReturnType = ChangeFilterReturnType | ChangeSortReturnType |
   RemoveFilterReturnType | ChangePageReturnType

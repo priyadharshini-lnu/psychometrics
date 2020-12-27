@@ -1,8 +1,9 @@
 import _ from 'lodash'
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
 import Norm from 'modules/admin/modules/campaigns/interfaces/Norm'
 import { updateIn, setIn } from 'utils/immutable'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { CREATE as CREATE_REPORT } from '../reports'
 import {
   FETCH_ASSESSMENTS_AND_REPORTS,
@@ -11,42 +12,14 @@ import {
   ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, DEACTIVATE_UNIVERSAL_LINK, FETCH_NORMS, UPDATE_NORM, REMOVE,
 } from './actions'
 
-const defaultState = {
+const defaultState: State = {
   list: [],
+  selectedId: [],
 }
 
 export const get = (state): State => _.get(state, ['campaigns', 'assessments'])
 export const getSingle = (state, id): Assessment | null => state.campaigns.assessments.list
   .find(assessment => assessment.id === id)
-
-export interface FetchAction {
-  response: {
-    assessments: Assessment[],
-  },
-}
-
-export interface FetchNormsAction {
-  response: Norm[],
-  requestAction: {
-    request: {
-      body: {
-        id: number
-      }
-    }
-  }
-}
-export interface UpdateNormAction {
-  response: {
-    normName: string
-  },
-  requestAction: {
-    request: {
-      body: {
-        id: number
-      }
-    }
-  }
-}
 
 export interface ActivateUniversalLinkAction {
   response: Assessment,
@@ -58,17 +31,26 @@ export interface State {
   selectedId: number[],
 }
 
-const updateAssessment = (state, { response }: ActivateUniversalLinkAction) => (
+type ActivateUniversalLinkType = ApiActionResponse<Assessment>
+type FetchType = ApiActionResponse<{assessments: Assessment[]}>
+type FetchNormsType = ApiActionResponse<Norm[]>
+type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
+type RemoveType = ApiActionResponse<number>
+
+
+const updateAssessment = (state: State, { response }: ActivateUniversalLinkType) => (
   updateIn(state, 'list', list => list.map(a => (a.id === response.id ? response : a)))
 )
 
 const HANDLERS = {
-  [FETCH_ASSESSMENTS_AND_REPORTS]: (_, { response }: FetchAction) => ({ list: response.assessments }),
-  [CREATE_REPORT]: (_, { response }: FetchAction) => ({ list: response.assessments }),
+  [FETCH_ASSESSMENTS_AND_REPORTS]: (state: State, { response }: FetchType) => ({
+    ...state, list: response.assessments,
+  }),
+  [CREATE_REPORT]: (state, { response }: FetchType) => ({ ...state, list: response.assessments }),
   [ACTIVATE_UNIVERSAL_LINK]: updateAssessment,
   [DEACTIVATE_UNIVERSAL_LINK]: updateAssessment,
   [REGENERATE_UNIVERSAL_LINK]: updateAssessment,
-  [FETCH_NORMS]: (state, { response, requestAction: { request } }: FetchNormsAction) => {
+  [FETCH_NORMS]: (state, { response, requestAction: { request } }: FetchNormsType) => {
     const assessments = state.list.map((assessment: Assessment) => {
       if (assessment.id !== request.body.id) return assessment
 
@@ -76,7 +58,7 @@ const HANDLERS = {
     })
     return setIn(state, ['list'], assessments)
   },
-  [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormAction) => {
+  [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const assessments = state.list.map((assessment: Assessment) => {
       if (assessment.id !== request.body.id) return assessment
 
@@ -84,11 +66,11 @@ const HANDLERS = {
     })
     return setIn(state, ['list'], assessments)
   },
-  [REMOVE]: (state: State, { response }: { response: number }) => (
+  [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.filter(
       assessments, (assessment: Assessment) => assessment.id !== response,
     ))
   ),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)

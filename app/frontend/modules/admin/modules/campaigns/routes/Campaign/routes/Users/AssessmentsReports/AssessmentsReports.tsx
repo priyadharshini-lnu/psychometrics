@@ -71,7 +71,7 @@ const AssessmentsReports: React.FC<Props> = ({
   }
 
   const userCampaigns = () => {
-    const campaigns = user.campaigns.map((campaign) => {
+    const campaigns = _.map(user.campaigns, (campaign) => {
       if (campaign.id === parsedCampaignId) { return campaign.name }
       return (
         <a key={campaign.id} href={`/administration/projects/${projectId}/new_campaigns/${campaignId}`}>

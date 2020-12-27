@@ -1,4 +1,4 @@
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import {
   select, takeEvery, take, put, call,
 } from 'redux-saga/effects'
@@ -12,7 +12,14 @@ export const SUBSCRIBE_SOCKET = 'survey/temp/socket/SUBSCRIBE_SOCKET'
 export const SUBSCRIBED_SOCKET = 'survey/temp/socket/SUBSCRIBED_SOCKET'
 export const UNSUBSCRIBE_SOCKET = 'survey/temp/socket/UNSUBSCRIBE_SOCKET'
 export const SOCKET_MESSAGE = 'survey/temp/socket/SOCKET_MESSAGE'
-let socket = null
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+interface SocketInterface {
+  channel: any
+  remove()
+}
+
+let socket: SocketInterface
 
 export const socketMessage = data => ({ type: SOCKET_MESSAGE, data })
 
@@ -29,10 +36,15 @@ export const disableApp = () => ({ type: DISABLE })
 
 let count = 1
 
+interface MetaData {
+  data: any
+  request_id?: string
+}
+
 export const perform = (action, data, onResponce) => {
   count += 1
   const reqId = `req_${Date.now() + count}`
-  const metaData = { data }
+  const metaData: MetaData = { data }
   if (onResponce) {
     RequestsPool[reqId] = onResponce
     metaData.request_id = reqId
@@ -40,8 +52,12 @@ export const perform = (action, data, onResponce) => {
   socket.channel.perform(action, metaData)
 }
 
-const defaultState = {
-  initialized: null,
+interface State {
+  initialized: boolean
+}
+
+const defaultState: State = {
+  initialized: false,
 }
 
 const HANDLERS = {
@@ -49,7 +65,7 @@ const HANDLERS = {
   [UNSUBSCRIBE_SOCKET]: () => ({ initialized: false }),
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)
 
 const createSocketChannel = (channel, data) => eventChannel((emit) => {
   socket = new Socket(channel, data, {
@@ -91,5 +107,5 @@ function* genSubsribeSocket ({ channel, data }) {
 }
 
 export const watchers = [
-  takeEvery(SUBSCRIBE_SOCKET, genSubsribeSocket),
+  takeEvery(subscribeSocket, genSubsribeSocket),
 ]

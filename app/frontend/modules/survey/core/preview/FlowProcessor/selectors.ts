@@ -192,7 +192,8 @@ export const getPossibleQuestionsCount = (state): number => {
   return count + pagesQuestions(_.takeRight(currentPage, currentPage.length - state.currentPage))
 }
 
-export const getProgress = (state): number => {
+export const getProgress = (state): number | undefined => {
+  if (!state.initialized) { return }
   const prevQuestions = getPrevQuestionsCount(state)
   const possibleQuestionsCount = getPossibleQuestionsCount(state)
   return _.round((prevQuestions / (prevQuestions + possibleQuestionsCount)) * 100) || 0

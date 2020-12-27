@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { DEPRECATED_createReducer } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import {
   select, takeEvery, put,
 } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
-import * as assessmentActions from '../assessment/actions'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
+import { INIT } from '../assessment/actions'
 import { allQuestions } from '../assessment/selectors'
 
 export const LOAD_ASSESSMNTS = 'builder/resources/LOAD_ASSESSMNTS'
@@ -21,14 +22,17 @@ interface ResourceInterface {
   assessmentId: number | string | null
 }
 
+interface AssessmentInterface {
+  id: number
+  name: string
+}
+
 interface State {
   defaultAssessmen: string | null
-  assessments: [{id: number, name: string}]
+  assessments: AssessmentInterface[]
   assessmentQuestions: {[id: number]: {id: number, name: string, props: any}}
   resources: ResourceInterface[]
 }
-
-interface ChangeResourceAction { type: typeof CHANGE_RESOURCE, index: number, resource: ResourceInterface }
 
 export const loadAssessments = (assessmentId: string) => ({
   type: LOAD_ASSESSMNTS,
@@ -51,13 +55,11 @@ export const loadQuestions = (assessmentId: number | string | null) => ({
 export const reorderResources = (resources: ResourceInterface[]) => ({
   type: REORDER_RESOURCES, resources,
 })
-
 export const addResource = () => ({ type: ADD_RESOURCE })
-export const changeResource = (index: number, resource: ResourceInterface): ChangeResourceAction => ({
+export const changeResource = (index: number, resource: ResourceInterface) => ({
   type: CHANGE_RESOURCE, index, resource,
 })
 export const removeResource = (index: number) => ({ type: REMOVE_RESOURCE, index })
-
 export const saveResources = (assessmentId: number, resources: ResourceInterface[]) => ({
   type: SAVE_RESOURCES,
   request: {
@@ -68,8 +70,18 @@ export const saveResources = (assessmentId: number, resources: ResourceInterface
   },
 })
 
+type LoadAssessmentsType = ApiActionResponse<AssessmentInterface[]>
+type LoadQuestionsType = ApiActionResponse<{[id: number]: {id: number, name: string, props: any}}>
+type AddResourceType = ReturnType<typeof addResource>
+type ChangeResourceType = ReturnType<typeof changeResource>
+type RemoveResourceType = ReturnType<typeof removeResource>
+type ReorderResourceType = ReturnType<typeof reorderResources>
+type SaveResourceType = ApiActionResponse<ResourceInterface>
+
+type InitType = {type: string, data: {entities: {assessment, questions}}}
+
 const HANDLERS = {
-  [assessmentActions.INIT]: (state: State, { data }): State => {
+  [INIT]: (state: State, { data }: InitType): State => {
     const { assessment: assessments, questions } = data.entities
     const [id] = _.keys(assessments)
     const assessment = assessments[id]
@@ -83,28 +95,32 @@ const HANDLERS = {
       },
     }
   },
-  [LOAD_ASSESSMNTS]: (state: State, { response }): State => ({ ...state, assessments: response }),
-  [LOAD_QUESTIONS]: (state: State, { response, requestAction: { assessmentId } }): State => setIn(
+  [LOAD_ASSESSMNTS]: (state: State, { response }: LoadAssessmentsType) => ({ ...state, assessments: response }),
+  [LOAD_QUESTIONS]: (state: State, { response, requestAction: { assessmentId } }: LoadQuestionsType) => setIn(
     state, ['assessmentQuestions', assessmentId], response,
   ),
-  [ADD_RESOURCE]: (state: State): State => ({
+  [ADD_RESOURCE]: (state: State) => ({
     ...state, resources: [...state.resources, { assessmentId: state.defaultAssessmen, questionId: null }],
   }),
-  [CHANGE_RESOURCE]: (state: State, { index, resource }): State => setIn(state, ['resources', index], resource),
-  [REORDER_RESOURCES]: (state: State, { resources }): State => setIn(state, ['resources'], resources),
-  [REMOVE_RESOURCE]: (state: State, { index }): State => setIn(
+  [CHANGE_RESOURCE]: (state: State, { index, resource }: ChangeResourceType) => setIn(
+    state, ['resources', index], resource,
+  ),
+  [REORDER_RESOURCES]: (state: State, { resources }: ReorderResourceType) => setIn(
+    state, ['resources'], resources,
+  ),
+  [REMOVE_RESOURCE]: (state: State, { index }: SaveResourceType) => setIn(
     state, 'resources', _.filter(state.resources, (_resource, i) => i !== index),
   ),
 }
 
-export const defaultState = {
+export const defaultState: State = {
   defaultAssessmen: null,
   assessments: [],
   assessmentQuestions: {},
   resources: [],
 }
 
-export default DEPRECATED_createReducer(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)
 
 function* genLoadQuestions ({ resource: { assessmentId } }: ReturnType<typeof changeResource>) {
   const { survey: { builder: { resources } } } = yield select()
