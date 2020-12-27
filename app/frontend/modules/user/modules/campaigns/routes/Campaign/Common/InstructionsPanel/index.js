@@ -31,7 +31,7 @@ export default function InstructionsPanel ({
             showArrow={false}
             className={styles.customPanel}
           >
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instructions) }} />
+            {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instructions) }} />}
           </Panel>
         )}
         {showActions && (

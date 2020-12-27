@@ -45,7 +45,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
             <div>
               {I18n.t(`admin_jobs.attrs.operations.${job.operation}`)}
               {' '}
-              -
+-
               {' '}
               <small>{moment(job.createdAt).fromNow()}</small>
             </div>
@@ -65,7 +65,7 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
               {job.details.map((el, i) => (
                 <div key={i}>
                   <strong>{el[0]}</strong>
-                  :
+:
                   <span className="pl4">{el[1]}</span>
                 </div>
               ))}

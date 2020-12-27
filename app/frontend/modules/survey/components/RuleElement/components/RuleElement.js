@@ -48,10 +48,12 @@ class RuleElement extends Component {
     return (
       <div>
         <span className={styles.title}>Set Norm</span>
-        <select className={styles.select} value={model.norm_id || ''} onChange={this.changeNorm}>
-          {!model.norm_id && <option value="">Choose Norm</option>}
-          {_.map(norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
-        </select>
+        {(
+          <select className={styles.select} value={model.norm_id || ''} onChange={this.changeNorm}>
+            {!model.norm_id && <option value="">Choose Norm</option>}
+            {_.map(norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
+          </select>
+        )}
       </div>
     )
   }

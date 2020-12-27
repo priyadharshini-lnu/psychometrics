@@ -168,7 +168,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             rel="noopener noreferrer"
             href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx?with_labels=1`}
           >
-            Raw (with labels)
+        Raw (with labels)
           </a>
         </Menu.Item>
         )}
@@ -179,7 +179,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             rel="noopener noreferrer"
             href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_raw_results.xlsx`}
           >
-            Raw (without labels)
+        Raw (without labels)
           </a>
         </Menu.Item>
         )}
@@ -190,7 +190,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             rel="noopener noreferrer"
             href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_scoring_results.xlsx`}
           >
-            Scoring
+        Scoring
           </a>
         </Menu.Item>
         )}
@@ -201,7 +201,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             rel="noopener noreferrer"
             href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_normed_results.xlsx`}
           >
-            Normed
+        Normed
           </a>
         </Menu.Item>
         )}
@@ -212,7 +212,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
             rel="noopener noreferrer"
             href={`/administration/new_campaigns/${campaignId}/assessments/${id}/export_external_results.xlsx`}
           >
-            External
+        External
           </a>
         </Menu.Item>
         )}
@@ -223,14 +223,14 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           <a
             onClick={() => openModal('ImportRawModal', { campaignId, campaignAssessmentId: id })}
           >
-            Raw
+                    Raw
           </a>
         </Menu.Item>
         <Menu.Item key="import_scoring">
           <a
             onClick={() => openModal('ImportScoringModal', { campaignId, campaignAssessmentId: id })}
           >
-            Scoring
+                    Scoring
           </a>
         </Menu.Item>
       </Menu.ItemGroup>
