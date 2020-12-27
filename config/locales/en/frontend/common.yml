@@ -27,6 +27,7 @@ en:
       campaigns: Campaigns
       assessments: Assessments
       reports: Reports
+      datasheet: Datasheet
     text:
       ok: Ok
       confirm: Confirm

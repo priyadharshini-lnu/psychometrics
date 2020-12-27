@@ -243,6 +243,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {
@@ -995,6 +996,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {
@@ -1740,6 +1742,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {

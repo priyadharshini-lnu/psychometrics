@@ -3,14 +3,15 @@ import _ from 'lodash'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
-  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined,
+  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined, DatabaseOutlined,
 } from '@ant-design/icons'
 import routeUtils from 'utils/route'
 
+const { I18n } = window
 interface Props extends Attributes {
   prefix?: string
 }
-const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options']
+const ROUTES = ['/users', '/assessments_reports', '/registration_codes', '/options', '/datasheet']
 
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
@@ -30,6 +31,10 @@ const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
       <Menu.Item key="/registration_codes">
         <QrcodeOutlined />
         Registration codes
+      </Menu.Item>
+      <Menu.Item key="/datasheet">
+        <DatabaseOutlined />
+        {I18n.t('common.model.datasheet')}
       </Menu.Item>
       <Menu.Item key="/options">
         <SettingOutlined />

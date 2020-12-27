@@ -2,6 +2,7 @@ import Users from './Users'
 import AssessmentsReports from './AssessmentsReports'
 import RegistrationCodes from './RegistrationCodes'
 import CampaignOptions from './CampaignOptions'
+import Datasheet from './Datasheet'
 
 const routes = [
   { redirect: true, from: '/', to: '/users' },
@@ -9,6 +10,7 @@ const routes = [
   { path: '/assessments_reports/*', component: AssessmentsReports },
   { path: '/assessments_reports', component: AssessmentsReports },
   { path: '/registration_codes', component: RegistrationCodes },
+  { path: '/datasheet', component: Datasheet },
   { path: '/options', component: CampaignOptions },
 ]
 
