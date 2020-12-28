@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  namespace :assessors do
+    resources :campaigns, only: [:index]
+  end
+
   # Administration panel
   #
   namespace :administration do
