@@ -15,13 +15,11 @@ const connecter = connect(
 
 const Datasheet = () => {
   const { campaignId } = useParams<{ campaignId?: string }>()
-  if (campaignId) {
-    const parsedCampaignId = parseInt(campaignId, 10)
+  if (!campaignId) { return null }
 
-    return <DatasheetManagement parentResource={{ id: parsedCampaignId, type: 'new_campaign' }} />
-  }
+  const parsedCampaignId = parseInt(campaignId, 10)
 
-  return null
+  return <DatasheetManagement parentResource={{ id: parsedCampaignId, type: 'new_campaign' }} />
 }
 
 export default connecter(Datasheet)
