@@ -1,0 +1,185 @@
+import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import {
+  fetch,
+  remove,
+  get as getAssessors,
+} from 'modules/admin/modules/campaigns/core/assessors'
+import { openModal } from 'modules/admin/core/ui/modals'
+import { RootState } from 'modules/admin/core/rootReducers'
+import {
+  Table, Row, Col, Input, Pagination, Button, Dropdown,
+} from 'antd'
+import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import {
+  AppstoreOutlined, PlusOutlined, MoreOutlined,
+} from '@ant-design/icons'
+import settings from 'modules/admin/settings'
+import Modals from 'modules/admin/components/Modals/'
+import { Link } from 'react-router-dom'
+import { ActionsMenu } from './ActionsMenu'
+import styles from './styles.scss'
+import AssessorFormModal from './AssessorFormModal'
+import ImportAssessorsModal from './ImportAssessorsModal'
+import ToolsDropdown from './ToolsDropdown'
+
+const connecter = connect(
+  (state: RootState) => ({
+    assessors: getAssessors(state),
+  }),
+  {
+    fetch,
+    remove,
+    openModal,
+  },
+)
+
+const MODALS = {
+  AssessorFormModal,
+  ImportAssessorsModal,
+}
+
+const { Column } = Table
+const { Search } = Input
+const { I18n } = window
+
+interface Props extends ConnectedProps<typeof connecter> {
+  match: {
+    params: {
+      projectId: string
+      campaignId: string
+    }
+  }
+  tableConfig: TableConfig
+  changeFilter(filterName: string, filterValue: string): void
+  onTableChange(): void
+  getSortOrder(column: string): 'descend' | 'ascend'
+  changePage(page: number): void
+}
+
+const AssessorList: React.FC<Props> = ({
+  fetch,
+  assessors: {
+    list,
+    total,
+  },
+  match: { params: { projectId, campaignId } },
+  tableConfig: {
+    filters,
+    page,
+  },
+  tableConfig,
+  changeFilter,
+  onTableChange,
+  getSortOrder,
+  changePage,
+  openModal,
+  remove,
+}) => {
+  useEffect(() => {
+    fetch(campaignId, tableConfig)
+  }, [tableConfig])
+
+  return (
+    <div>
+      <Row justify="space-between" className="pm">
+        <Col span={4} className="pls">
+          <AppstoreOutlined style={{ fontSize: '16px' }} />
+          <span className="mlm">{I18n.t('administration.assessor.count', { count: total })}</span>
+        </Col>
+        <div>
+          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} />
+          <Search
+            placeholder="Search"
+            className={styles.searchInput}
+            value={filters.filterableFields}
+            onChange={e => changeFilter('filterableFields', e.target.value)}
+          />
+          <div className={styles.newUserButton}>
+            <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId })}>
+              <PlusOutlined />
+              <span>Add Assessor</span>
+            </Button>
+          </div>
+        </div>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+            <Column
+              title={I18n.t('administration.campaigns.users.id')}
+              key="id"
+              sorter
+              sortOrder={getSortOrder('id')}
+              render={({ id }) => (
+                <Link to={`/administration/projects/${projectId}/new_campaigns/${campaignId}/assessors/${id}`}>
+                  {id}
+                </Link>
+              )}
+            />
+            <Column
+              title={I18n.t('administration.users.list.first_name')}
+              key="firstName"
+              dataIndex="firstName"
+            />
+            <Column
+              title={I18n.t('administration.users.list.last_name')}
+              key="lastName"
+              dataIndex="lastName"
+            />
+            <Column
+              title={I18n.t('administration.users.list.email')}
+              key="email"
+              sorter
+              sortOrder={getSortOrder('email')}
+              dataIndex="email"
+            />
+            <Column
+              title={I18n.t('administration.assessor.status')}
+              key="status"
+              dataIndex="status"
+            />
+            <Column
+              title={I18n.t('administration.assessor.evaluations_completed')}
+              key="evaluationsCompleted"
+              dataIndex="evaluationsCompleted"
+            />
+            <Column
+              title={I18n.t('administration.campaigns.actions')}
+              key="action"
+              render={assessor => (
+                <Dropdown
+                  overlay={() => (
+                    ActionsMenu({
+                      onEdit: () => openModal('AssessorFormModal', { campaignId, assessor }),
+                      email: assessor.email,
+                      remove: () => remove(campaignId, assessor.id),
+                    }) as React.ReactElement
+                  )}
+                  trigger={['click']}
+                >
+                  <a>
+                    <MoreOutlined />
+                  </a>
+                </Dropdown>
+              )}
+            />
+          </Table>
+        </Col>
+      </Row>
+      <div className="pl">
+        <Pagination
+          current={page}
+          pageSize={settings.pagination.defaultPageSize}
+          total={total}
+          onChange={changePage}
+          hideOnSinglePage
+        />
+      </div>
+      <Modals modals={MODALS} />
+    </div>
+  )
+}
+
+export default connecter(withEnhancedTable(AssessorList, 'assessorsList', { maintainHistory: true }))

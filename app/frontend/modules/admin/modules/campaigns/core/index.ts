@@ -3,6 +3,7 @@ import list from './list'
 import total from './total'
 import registrationCodes from './registrationCodes'
 import users from './users'
+import assessors from './assessors'
 import current from './current'
 import reports from './reports'
 import assessments from './assessments'
@@ -16,6 +17,7 @@ export default combineReducers({
   total,
   registrationCodes,
   users,
+  assessors,
   current,
   reports,
   assessments,

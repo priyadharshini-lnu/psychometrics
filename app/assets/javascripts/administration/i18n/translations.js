@@ -897,6 +897,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Assessment %{name} was Updated Successfully."
       }
     },
+    "assessor": {
+      "count": "%{count} Assessors",
+      "evaluations_completed": "Evaluations Completed",
+      "modals": {
+        "import": {
+          "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+          "title": "Import Assessors"
+        }
+      },
+      "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
+      "status": "Status",
+      "toolbar": {
+        "import": "Import Assessors",
+        "tools": "Tools"
+      }
+    },
     "assigns": {
       "create": {
         "successfully": "New assign to assessment was successfully created"
@@ -1896,7 +1912,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -6966,7 +6982,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -8313,6 +8329,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Assessment %{name} was Updated Successfully."
       }
     },
+    "assessor": {
+      "count": "%{count} Assessors",
+      "evaluations_completed": "Evaluations Completed",
+      "modals": {
+        "import": {
+          "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+          "title": "Import Assessors"
+        }
+      },
+      "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
+      "status": "Status",
+      "toolbar": {
+        "import": "Import Assessors",
+        "tools": "Tools"
+      }
+    },
     "assigns": {
       "create": {
         "successfully": "New assign to assessment was successfully created"
@@ -9312,7 +9344,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -14375,7 +14407,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -15718,6 +15750,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Assessment %{name} was Updated Successfully."
       }
     },
+    "assessor": {
+      "count": "%{count} Assessors",
+      "evaluations_completed": "Evaluations Completed",
+      "modals": {
+        "import": {
+          "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+          "title": "Import Assessors"
+        }
+      },
+      "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
+      "status": "Status",
+      "toolbar": {
+        "import": "Import Assessors",
+        "tools": "Tools"
+      }
+    },
     "assigns": {
       "create": {
         "successfully": "New assign to assessment was successfully created"
@@ -16717,7 +16765,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
+          "successfully": "License was successfully updated."
         }
       },
       "list": {
@@ -21780,7 +21828,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
+        "name": "Action Item",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
