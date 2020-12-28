@@ -7,9 +7,9 @@ unless defined?(Rails)
   module I18nCsvTasks
     include ::I18n::Tasks::Command::Collection
     cmd :csv_export, desc: 'export translations to CSV'
-    def csv_export(opts = {})
+    def csv_export(_opts = {})
       translations_by_path = {}
-      router = I18n::Tasks::Data::Router::PatternRouter.new(nil, write: i18n.config["csv"]["export"])
+      router = I18n::Tasks::Data::Router::PatternRouter.new(nil, write: i18n.config['csv']['export'])
 
       i18n.locales.each do |locale|
         router.route(locale, i18n.data_forest) do |path, nodes|
@@ -25,10 +25,10 @@ unless defined?(Rails)
       translations_by_path.each do |(path, translations_by_locale)|
         FileUtils.mkdir_p(File.dirname(path))
 
-        CSV.open(path, "wb") do |csv|
-          csv << (["key"] + i18n.locales)
+        CSV.open(path, 'wb') do |csv|
+          csv << (['key'] + i18n.locales)
 
-          translations_by_locale[i18n.base_locale].keys.each do |key|
+          translations_by_locale[i18n.base_locale].each_key do |key|
             values = i18n.locales.map do |locale|
               translations_by_locale[locale][key]
             end
@@ -39,18 +39,19 @@ unless defined?(Rails)
     end
 
     cmd :csv_import, desc: 'import translations from CSV'
-    def csv_import(opts = {})
-      i18n.config["csv"]["import"].each do |file|
+    def csv_import(_opts = {})
+      i18n.config['csv']['import'].each do |file|
         csv = File.read(file, encoding: 'bom|utf-8')
 
         translations = []
         CSV.parse(csv, headers: true) do |row|
-          key = row["key"]
+          key = row['key']
           next unless key
 
           i18n.locales.each do |locale|
-            next unless row.has_key?(locale)
-            translations << [[locale, key].join("."), row[locale]]
+            next unless row.key?(locale)
+
+            translations << [[locale, key].join('.'), row[locale]]
           end
         end
 

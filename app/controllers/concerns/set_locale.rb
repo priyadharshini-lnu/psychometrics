@@ -49,26 +49,25 @@ module SetLocale
     header = request.env['HTTP_ACCEPT_LANGUAGE']
     return if header.nil?
 
-    locales = header.gsub(/\s+/, '').split(",").map do |language_tag|
+    locales = header.gsub(/\s+/, '').split(',').map do |language_tag|
       locale, quality = language_tag.split(/;q=/i)
       quality = quality ? quality.to_f : 1.0
       [locale, quality]
     end.reject do |(locale, quality)|
-      locale == '*' || quality == 0
+      locale == '*' || quality.zero?
     end.sort_by do |(_, quality)|
       quality
     end.map(&:first)
 
     return if locales.empty?
 
-    locale = locales.reverse.find { |locale| available_enduser_locales.any? { |al| match_locale?(al, locale) } }
-    if locale
-      available_enduser_locales.find { |al| match_locale?(al, locale) }
+    locale = locales.reverse.find do |l|
+      available_enduser_locales.any? { |al| match_locale?(al, l) }
     end
+    locale = available_enduser_locales.find { |al| match_locale?(al, locale) } if locale
   end
 
-  def match_locale?(s1, s2)
-    s1.to_s.casecmp(s2.to_s) == 0
+  def match_locale?(str1, str2)
+    str1.to_s.casecmp(str2.to_s).zero?
   end
-
 end
