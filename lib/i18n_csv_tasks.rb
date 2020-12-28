@@ -41,7 +41,7 @@ unless defined?(Rails)
     cmd :csv_import, desc: 'import translations from CSV'
     def csv_import(opts = {})
       i18n.config["csv"]["import"].each do |file|
-        csv = open(file).read.force_encoding('UTF-8')
+        csv = File.read(file, encoding: 'bom|utf-8')
 
         translations = []
         CSV.parse(csv, headers: true) do |row|
@@ -49,7 +49,7 @@ unless defined?(Rails)
           next unless key
 
           i18n.locales.each do |locale|
-            raise "Locale missing for key #{key}! (locales in app: #{locales} / locales in file: #{row.headers.inspect})" unless row.has_key?(locale)
+            next unless row.has_key?(locale)
             translations << [[locale, key].join("."), row[locale]]
           end
         end

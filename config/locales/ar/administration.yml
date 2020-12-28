@@ -1,0 +1,9 @@
+---
+ar:
+  administration:
+    clients:
+      registration_codes:
+        errors:
+          invalid_attribute: "%{attribute} غير صالحة"
+          presence: "%{attribute} غير صالحة"
+          review: يرجى مراجعة المشاكل.

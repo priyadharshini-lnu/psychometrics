@@ -1041,7 +1041,10 @@ en:
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       new:
         code: Registration Code
+        email: Email Address
+        first_name: First Name
         instruction: Fill in the details below to register and create a new account
+        last_name: Last Name
         privacy_notice: We respect your privacy and do not tolerate spam. We will never give away your information to any third party.
         submit: Register
         tabs:
@@ -1231,7 +1234,7 @@ en:
           error_description: You report generation failed. Please contact to Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
-    ar: Arabic
+    ar: العربية
     bg: Bulgarian
     bs: Bosnian
     ca: Catalan
@@ -1239,7 +1242,7 @@ en:
     cs: Czech
     cy: Cymraeg
     da: Danish
-    de: German
+    de: Deutsch
     el: Greek
     en: English
     en-GB: English - UK

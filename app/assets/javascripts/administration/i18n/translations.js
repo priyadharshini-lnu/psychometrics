@@ -392,9 +392,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "disabled": "Disable",
         "email": "Email",
-        "first_name": "First Name",
+        "first_name": "الاسم الاول",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "إسم العائلة",
         "parent": "Direct Manager",
         "parent_id": "Direct Manager",
         "report_ids": "Report IDs",
@@ -510,12 +510,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "current_sign_in_at": "تسجيل الدخول الحالي في",
         "current_sign_in_ip": "عنوان IP لتسجيل الدخول الحالي",
         "disabled": "Disable",
-        "email": "بريد إلكتروني",
+        "email": "البريد الإلكتروني",
         "encrypted_password": "كلمة المرور المشفرة",
         "failed_attempts": "محاولات فاشلة",
-        "first_name": "First Name",
+        "first_name": "الاسم الاول",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "إسم العائلة",
         "last_sign_in_at": "آخر تسجيل دخول في",
         "last_sign_in_ip": "عنوان IP لآخر تسجيل دخول",
         "locked_at": "تم القفل في",
@@ -566,13 +566,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "current_password": "Current password",
         "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
+        "email": "البريد الإلكتروني",
+        "first_name": "الاسم الاول",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "إسم العائلة",
         "parent": "Direct Manager",
         "parent_id": "Direct Manager",
-        "password": "Password",
+        "password": "كلمه السر",
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
@@ -2492,11 +2492,7458 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
           "duplicate_code": "is in use. Try another one.",
           "in_use": "%{attribute} is already in use",
-          "invalid_attribute": "%{attribute} is invalid",
+          "invalid_attribute": "%{attribute} غير صالحة",
           "invalid_end_date": "has to be greater than the start date",
           "license_issue": "Not enough licenses.",
-          "presence": "%{attribute} must be entered",
-          "review": "Please review the problems."
+          "presence": "%{attribute} غير صالحة",
+          "review": "يرجى مراجعة المشاكل."
+        },
+        "form_fields": {
+          "code": "e.g TTE-conf-2019"
+        },
+        "index": {
+          "add": "Add",
+          "title": "Registration Codes"
+        },
+        "list": {
+          "actions": "Actions",
+          "active": "Active",
+          "code": "Code",
+          "end_date": "End date",
+          "name": "Name",
+          "start_date": "Start date",
+          "usage_stats": "Usage stats"
+        },
+        "name": "Registration Codes",
+        "new": {
+          "header": "Add Registration code"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "copy": "Copy",
+          "png": "PNG",
+          "qr_code": "QR code",
+          "svg": "SVG",
+          "tooltips": {
+            "delete": "Delete",
+            "edit": "Edit"
+          },
+          "url": "URL"
+        },
+        "update": {
+          "successfully": "Registration code %{name} was successfully updated."
+        }
+      },
+      "reports": {
+        "copy": {
+          "error": "Report #%{id} was not copied."
+        },
+        "create": {
+          "successfully": "Report %{name} was successfully created for Client."
+        },
+        "destroy": {
+          "successfully": "Report %{name} was successfully deleted from Client."
+        },
+        "edit": {
+          "header": "Edit Report Name"
+        },
+        "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
+          "select_family": "Select Report Bundle",
+          "types": {
+            "common": "Any",
+            "eti": "ETI",
+            "yti": "YTI"
+          }
+        },
+        "index": {
+          "add": "Add",
+          "assessment": "Assessment",
+          "bulk_download": "Bulk Download",
+          "category": "Category",
+          "families": "Report Bundles",
+          "filterrific": {
+            "with_assessment_category": {
+              "360": "360 Feedback",
+              "all": "All",
+              "case_study": "Case Studies",
+              "organisational": "Org Surveys",
+              "psychometric": "Psychometrics"
+            }
+          },
+          "owner": "Owner",
+          "regenerate": "Regenerate Reports",
+          "report_family": "Report Bundle",
+          "title": "Reports",
+          "tooltips": {
+            "create": "Create"
+          }
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "updated_at": "Modified date"
+        },
+        "new": {
+          "header": "Select Report"
+        },
+        "preview": {
+          "export_pdf": "Export to PDF",
+          "title": "Preview"
+        },
+        "regenerate": {
+          "successfully": "Report successfully sent for regeneration"
+        },
+        "regenerates": {
+          "create": {
+            "successfully": "Report(s) successfully sent for regeneration"
+          }
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Report?</p>\n",
+              "title": "Delete <strong>Report</strong> ?"
+            },
+            "detach": {
+              "body": "<p>Are you sure you want to detach this Report?</p>\n",
+              "title": "Detach <strong>Report</strong> ?"
+            },
+            "regenerate": {
+              "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
+              "title": "Regenerate <strong>%{name}</strong>?"
+            },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+              "title": "Soft Delete <strong>Report</strong>?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "export_data": "Export Data",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting",
+            "restoring": "Restoring"
+          },
+          "tooltips": {
+            "copy": "Copy Report",
+            "delete": "Delete Report",
+            "edit": "Edit Report",
+            "preview": "Preview Report",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
+          }
+        },
+        "restore": {
+          "successfully": "Report %{name} was Restored Successfully."
+        },
+        "sidebar": {
+          "copy": "Copy Report",
+          "destroy": "Delete Report",
+          "edit": "Edit Report",
+          "regenerate": "Regenerate Report",
+          "title": "Report's options",
+          "view": "View Report"
+        },
+        "soft_delete": {
+          "successfully": "Report %{name} was moved to Trash Successfully."
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
+        },
+        "toggle_status": {
+          "successfully": "Report was successfully updated."
+        },
+        "types": {
+          "common": "Any",
+          "eti": "ETI",
+          "yti": "YTI"
+        },
+        "update": {
+          "successfully": "Report %{name} was successfully updated."
+        }
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": {
+              "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
+              "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
+              "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
+            },
+            "title": "Delete <strong>%{name}</strong> ?"
+          },
+          "disable": {
+            "body": {
+              "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
+              "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
+              "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
+              "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+            },
+            "title": "Archive <strong>%{name}</strong> ?"
+          },
+          "enable": {
+            "body": {
+              "0": "<p>Are you sure you want to unarchive?</p>",
+              "1": "<p>Are you sure you want to unarchive?</p>",
+              "2": "<p>Are you sure you want to unarchive?</p>",
+              "3": "<p>Are you sure you want to unarchive?</p>"
+            },
+            "title": "Unarchive <strong>%{name}</strong> ?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Client",
+          "create_admin": "Create Client Admin",
+          "delete": "Delete Client",
+          "disable": "Disable Client",
+          "edit": "Edit Client",
+          "enable": "Enable Client"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy client",
+        "design": "Edit Design",
+        "destroy": "Delete client",
+        "disable": "Disable",
+        "edit": "Edit client",
+        "enable": "Enable",
+        "licenses": "Manage Licenses",
+        "new": "New Client",
+        "title": "Client's options",
+        "view_licenses": "View licenses"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
+      },
+      "sub_campaigns": {
+        "archive": {
+          "successfully": "Sub-Campaign %{name} was successfully archived."
+        },
+        "copy": {
+          "error": "Sub-Campaign %{name} was not copied.",
+          "successfully": "Sub-Campaign %{name} was successfully copied."
+        },
+        "create": {
+          "successfully": "Sub-Campaign %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Sub-Campaign"
+        },
+        "export": {
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "header": {
+            "actions": "Actions",
+            "actual_usage": "Actual Usage",
+            "archive_status": "Archive Status",
+            "name": "Name",
+            "sub_campaign": "Sub-Campaigns",
+            "tests_allocated": "Tests Allocated",
+            "users": "Users"
+          },
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
+        },
+        "header": {
+          "actions": "Actions"
+        },
+        "index": {
+          "export": "Export",
+          "new": "Add",
+          "title": "Sub Campaigns"
+        },
+        "list": {
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "header": {
+            "actions": "Actions",
+            "actual_usage": "Actual Usage",
+            "archive_status": "Archive Status",
+            "name": "Name",
+            "sub_campaign": "Sub-Campaigns",
+            "tests_allocated": "Tests Allocated",
+            "users": "Users"
+          },
+          "id": "Id",
+          "name": "Sub-Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
+        },
+        "new": {
+          "header": "New Sub-Campaign"
+        },
+        "resource": {
+          "tooltips": {
+            "copy": "Copy Sub Campaign",
+            "create_report": "Add new Report",
+            "create_user": "Add New User",
+            "delete": "Delete Sub Campaign",
+            "edit": "Edit Sub Campaign"
+          }
+        },
+        "sidebar": {
+          "archive": "Archive Sub-Campaign",
+          "copy": "Copy Sub-Campaign",
+          "destroy": "Delete Sub-Campaign",
+          "disable": "Disable",
+          "edit": "Edit Sub-Campaign",
+          "enable": "Enable",
+          "new": "New Sub-Campaign",
+          "title": "Sub-Campaign's options",
+          "view_licenses": "View licenses"
+        },
+        "toggle_status": {
+          "successfully": "Sub-Campaign %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "Sub-Campaign %{name} was successfully updated."
+        }
+      },
+      "tenancies": "Client Tenancies",
+      "threesixty_campaigns": {
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Campaign '%{name}' was deleted successfully."
+        },
+        "new": {
+          "header": "New 360 Campaign"
+        },
+        "update": {
+          "successfully": "Campaign '%{name}' was successfully updated."
+        }
+      },
+      "toggle_status": {
+        "successfully": "Client Tenancy %{name} was successfully updated."
+      },
+      "tooltips": {
+        "copy": "Copy Campaign",
+        "create_report": "Add New Report",
+        "create_user": "Add New User",
+        "delete": "Delete Campaign",
+        "edit": "Edit Campaign",
+        "export": "Export"
+      },
+      "update": {
+        "successfully": "Client Tenancy %{name} was successfully updated."
+      },
+      "url": "Url",
+      "users": {
+        "admins": {
+          "breadcrumb": "Admin Users",
+          "title": "Admins"
+        },
+        "assigns": {
+          "common": {
+            "detach_assessment": "Assessment %{name} was successfully detached.",
+            "detach_report": "Report %{name} was successfully detached."
+          },
+          "create": {
+            "successfully": "Successfully Updated"
+          },
+          "destroy": {
+            "successfully": "%{name} was successfully detached"
+          },
+          "edit": {
+            "header": "Add Additional Time"
+          },
+          "edit_form": {
+            "additional_time_label": "Additional Time, min",
+            "submit": "Add"
+          },
+          "form": {
+            "assessment": "Assessment",
+            "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
+            "user_access": {
+              "access": "Reports access",
+              "preserve_user_access": "Apply access settings only for the newly added report",
+              "user": "User"
+            }
+          },
+          "index": {
+            "add_assessments": "Add Assessments",
+            "add_reports": "Add Reports",
+            "title": "%{name} - Assessments and Reporting"
+          },
+          "list": {
+            "actions": "Actions",
+            "assessment_name": "Assessment Name",
+            "assessment_type": "Assessment Type",
+            "completed_at": "Completed at",
+            "reports": "Reports",
+            "status": "Status",
+            "uniq_id": "Uniq ID"
+          },
+          "new": {
+            "header": "Assign Assessment and Reports"
+          },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
+          "resource": {
+            "confirms": {
+              "assessment": {
+                "detach": {
+                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
+                  "title": "Detach assessment <strong>%{name}</strong> ?"
+                }
+              },
+              "assigns_report": {
+                "add_user_access": {
+                  "body": "<p>Are you sure you want to add user access to this report?</p>",
+                  "title": "Add user access to <strong>%{name}</strong> ?"
+                },
+                "delete": {
+                  "body": "<p>Are you sure you want to detach this report?</p>",
+                  "title": "Detach <strong>%{name}</strong> ?"
+                },
+                "regenerate": {
+                  "body": "<p>Are you sure you want to regenerate this report?</p>",
+                  "title": "Regenerate <strong>%{name}</strong> ?"
+                },
+                "remove_user_access": {
+                  "body": "<p>Are you sure you want to remove user access to this report?</p>",
+                  "title": "Remove user access to <strong>%{name}</strong> ?"
+                }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
+              }
+            },
+            "generating": "Report \"%{name}\" is generating",
+            "no_access_to_reports": "No access to reports",
+            "no_reports": "No relative reports",
+            "not_completed": "Not completed",
+            "tooltips": {
+              "additional_time": "Add additional time",
+              "assigns_report": {
+                "add_user_access": "Add user access",
+                "delete": "Detach Report",
+                "regenerate": "Regenerate report file",
+                "remove_user_access": "Remove user access"
+              },
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
+            }
+          },
+          "update_additional_time": {
+            "successfully": "Additional time was successfully added"
+          }
+        },
+        "assigns_reports": {
+          "edit": {
+            "header": "Add Reports"
+          },
+          "form": {
+            "access": "Access",
+            "assessment": "Assessment",
+            "detach": "Detach",
+            "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
+            "reports": "Reports",
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
+          },
+          "new": {
+            "header": "Add Reports"
+          },
+          "regenerate": {
+            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
+            "successfully": "Successfully sent to regenerate"
+          },
+          "update": {
+            "successfully": "Successfully Updated"
+          }
+        },
+        "create": {
+          "successfully": "User %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "User %{name} was successfully deleted."
+        },
+        "edit": {
+          "add": "Add",
+          "grants": "Privileges",
+          "hris_data": "HRIS Data",
+          "key": "Key",
+          "personal_data": "Personal Data",
+          "remove": "Remove",
+          "title": "Edit user",
+          "value": "Value"
+        },
+        "edit_hris_data": {
+          "add": "Add",
+          "key": "Key",
+          "remove": "Remove",
+          "value": "Value"
+        },
+        "form": {
+          "choose": " - Choose - "
+        },
+        "form_admin": {
+          "choose_admin": "Choose Admin",
+          "create_admin": "Create Admin"
+        },
+        "index": {
+          "breadcrumb": "Users",
+          "client_tenancy": "Client tenancy",
+          "export": "Export",
+          "export_completion_status": "Completion Status",
+          "export_users": "Users",
+          "filterrific": {
+            "with_role": {
+              "administration": "Administrators",
+              "all": "All",
+              "users": "Users"
+            }
+          },
+          "import": "Import",
+          "import_hris": "HRIS Data",
+          "import_users": "Users",
+          "new": "Add",
+          "new_superadmin": "Add SuperAdmin",
+          "title": "Users",
+          "tooltips": {
+            "create": "Create",
+            "export": "Export",
+            "import": "Import"
+          }
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
+          "updated_at": "Modified Date"
+        },
+        "new": {
+          "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
+          }
+        },
+        "reports": {
+          "copy": {
+            "error": "Report #%{id} was not copied."
+          },
+          "create": {
+            "successfully": "Report %{name} was successfully created."
+          },
+          "destroy": {
+            "successfully": "Report %{name} was successfully deleted."
+          },
+          "edit": {
+            "header": "Edit Report Name"
+          },
+          "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
+            "select_family": "Select Report Bundle",
+            "types": {
+              "common": "Any",
+              "eti": "ETI",
+              "yti": "YTI"
+            }
+          },
+          "index": {
+            "add": "Add",
+            "assessment": "Assessment",
+            "bulk_download": "Bulk Download",
+            "category": "Category",
+            "families": "Report Bundles",
+            "filterrific": {
+              "with_assessment_category": {
+                "360": "360 Feedback",
+                "all": "All",
+                "case_study": "Case Studies",
+                "organisational": "Org Surveys",
+                "psychometric": "Psychometrics"
+              }
+            },
+            "owner": "Owner",
+            "regenerate": "Regenerate Reports",
+            "report_family": "Report Bundle",
+            "title": "Reports",
+            "tooltips": {
+              "create": "Create"
+            }
+          },
+          "list": {
+            "active": "Active",
+            "created_at": "Created date",
+            "id": "Id",
+            "name": "Name",
+            "type": "Type",
+            "updated_at": "Modified date"
+          },
+          "new": {
+            "header": "Select Report"
+          },
+          "preview": {
+            "export_pdf": "Export to PDF",
+            "title": "Preview"
+          },
+          "regenerate": {
+            "successfully": "Report successfully sent for regeneration"
+          },
+          "resource": {
+            "confirmations": {
+              "delete": {
+                "body": "<p>Are you sure you want to delete this Report?</p>\n",
+                "title": "Delete <strong>Report</strong> ?"
+              },
+              "detach": {
+                "body": "<p>Are you sure you want to detach this Report?</p>\n",
+                "title": "Detach <strong>Report</strong> ?"
+              },
+              "regenerate": {
+                "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
+                "title": "Regenerate <strong>%{name}</strong>?"
+              },
+              "soft_delete": {
+                "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+                "title": "Soft Delete <strong>Report</strong>?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}?"
+              }
+            },
+            "in_progress": {
+              "copying": "Copying",
+              "deleting": "Deleting",
+              "restoring": "Restoring"
+            },
+            "tooltips": {
+              "copy": "Copy Report",
+              "delete": "Delete Report",
+              "edit": "Edit Report",
+              "preview": "Preview Report",
+              "restore": "Restore",
+              "soft_delete": "Soft Delete Assessment"
+            }
+          },
+          "restore": {
+            "successfully": "Report %{name} was Restored Successfully."
+          },
+          "sidebar": {
+            "copy": "Copy Report",
+            "destroy": "Delete Report",
+            "edit": "Edit Report",
+            "regenerate": "Regenerate Report",
+            "title": "Report's options",
+            "view": "View Report"
+          },
+          "soft_delete": {
+            "successfully": "Report %{name} was moved to Trash Successfully."
+          },
+          "toggle_archive": {
+            "successfully": "Assessment %{name} was %{status} successfully."
+          },
+          "toggle_status": {
+            "successfully": "Report was successfully updated."
+          },
+          "types": {
+            "common": "Any",
+            "eti": "ETI",
+            "yti": "YTI"
+          },
+          "update": {
+            "successfully": "Report %{name} was successfully updated."
+          }
+        },
+        "reset_password": {
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
+        },
+        "resource": {
+          "confirmations": {
+            "change_password": {
+              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+              "title": "Change password <strong>%{name}</strong> ?"
+            },
+            "delete": {
+              "body": "<p>Are you sure you want to delete this User?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "membership": {
+              "delete": {
+                "body": "<p>Are you sure you want to delete?</p>\n",
+                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
+              }
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "change_password": "Change Password",
+            "chart": "View user report",
+            "delete": "Delete User",
+            "edit": "Edit User",
+            "mail": "Send Mail",
+            "sign_in": "Login as user"
+          }
+        },
+        "sidebar": {
+          "api_keys": "API keys",
+          "assessments_and_reports": "Assessments and Reporting",
+          "destroy": "Delete User",
+          "disable": "Disable",
+          "edit_user": "Edit User",
+          "email": "Send Mail",
+          "enable": "Enable",
+          "export_users": "Export users",
+          "import_users": "Import users",
+          "login_as_user": "Login as User",
+          "new_user": "New User",
+          "reset_password": "Change Password",
+          "title": "User's options"
+        },
+        "spoof": {
+          "successfully": "You was successfully login as %{name}"
+        },
+        "toggle_status": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "user": "User"
+      }
+    },
+    "clients_hierarchy": "Project > Campaign > Sub Campaign",
+    "close": "Close",
+    "communications": {
+      "copy": {
+        "error": "Communication #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Communication created successfully."
+      },
+      "destroy": {
+        "successfully": "Communication %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Communication"
+      },
+      "form": {
+        "all": "All",
+        "body_mustache": "{{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users\n{{first_name}} - Recipient First Name\n{{last_name}} - Recipient Last Name\n{{email}} - Recipient Email\n",
+        "completion": "Completion",
+        "delivery_at": "Delivery at (GST)",
+        "delivery_rules": {
+          "in_progress": "If assessment is in progress",
+          "not_competed": "If assessment is not completed",
+          "not_started": "If assessment is not started",
+          "send_now": "Send now",
+          "specific_datetime": "Send at"
+        },
+        "invitation": "Invitation",
+        "kind": "Communication Types",
+        "new_users": "New Users",
+        "other": "Other",
+        "reminder": "Reminder",
+        "selected": "Selected",
+        "selected_cc_recipients": "Selected CC Recipients",
+        "selected_recipients": "Selected Recipients",
+        "stop_reminder": "Stop sending reminders",
+        "stop_reminder_datetime": "End date for reminders (GST)"
+      },
+      "index": {
+        "clients": "Clients",
+        "completion": "Completion",
+        "invitation": "Invitation",
+        "new": "Add",
+        "other": "Other",
+        "owner": "Owner",
+        "reminder": "Reminder",
+        "title": "Communication center",
+        "tooltips": {
+          "create": "Create"
+        },
+        "type": "Type"
+      },
+      "list": {
+        "actions": "Actions",
+        "author": "Created by",
+        "campaign": "Campaign",
+        "client_name": "Client",
+        "created_at": "Created date",
+        "creator_first_name": "Created by",
+        "delivery_rule": "Delivery",
+        "kind": "Communication type",
+        "project": "Project",
+        "recipients": "Recipients",
+        "sub_campaign": "Sub-campaign",
+        "subject": "Communication subject",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "New Communication"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Communication?</p>\n",
+            "title": "Delete <strong>Communication</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Communication?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Communication",
+          "delete": "Delete Communication",
+          "download": "Download Communication History",
+          "edit": "Edit Communication",
+          "view": "View Communication"
+        }
+      },
+      "show": {
+        "assessment": "Assessment:",
+        "back": "Back",
+        "body": "Body:",
+        "campaign": "Campaign:",
+        "client": "Client:",
+        "communication_type": "Communication type:",
+        "delivery_interval": "Delivery interval:",
+        "delivery_rule": "Delivery rule:",
+        "every_interval": "Every %{interval}",
+        "owner": "Owner:",
+        "project": "Project:",
+        "recipients": "Recipients:",
+        "specific_datetime": "Send at:",
+        "stop_reminder_datetime": "End date for reminders (GST)",
+        "sub_campaign": "Sub Campaign:",
+        "subject": "Subject:",
+        "users": "Users:"
+      },
+      "sidebar": {
+        "copy": "Copy Communication",
+        "destroy": "Delete Communication",
+        "download": "Download Communication History",
+        "edit": "Edit Communication",
+        "new": "New Communication",
+        "title": "Communication's options",
+        "view": "View Communication"
+      },
+      "toggle_status": {
+        "successfully": "Communication was successfully updated."
+      }
+    },
+    "copy": "Copy",
+    "create": "Create",
+    "created": "Successfully created",
+    "created_by": "Created By",
+    "dates": {
+      "completed": "Completed At",
+      "created": "Created At",
+      "end": "End Date",
+      "ended": "Ended At",
+      "start": "Start Date",
+      "started": "Started At",
+      "updated": "Updated At"
+    },
+    "dimensions": {
+      "copy": {
+        "error": "Dimension #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "%{name} dimension was created successfully"
+      },
+      "destroy": {
+        "successfully": "Dimension %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Dimension Name"
+      },
+      "form": {
+        "enable_innovation_styles": "Enable Innovation Styles",
+        "enable_occupations": "Enable Occupations"
+      },
+      "index": {
+        "new": "Add",
+        "owner": "Owner",
+        "title": "Dimensions",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created date",
+        "factors_count": "Factors count",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Dimension"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Dimension?</p>\n",
+            "title": "Delete <strong>Dimension</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Dimension?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Dimension",
+          "delete": "Delete Dimension",
+          "edit": "Edit Dimension Name"
+        }
+      },
+      "sidebar": {
+        "assign": "Assign Dimension",
+        "copy": "Copy Dimension",
+        "destroy": "Delete Dimension",
+        "disable": "Disable Dimension",
+        "edit": "Edit Dimension Name",
+        "enable": "Enable Dimension",
+        "new": "New Dimension",
+        "title": "Dimension's options",
+        "view": "View Dimension"
+      },
+      "toggle_status": {
+        "successfully": "Dimension was successfully updated."
+      }
+    },
+    "disable": "Disable",
+    "edit": "Edit",
+    "enable": "Enable",
+    "factors": {
+      "copy": {
+        "error": "%{name} factor was not copied",
+        "successfully": "%{name} factor was copied successfully"
+      },
+      "create": {
+        "error": "%{name} factor was not created",
+        "successfully": "%{name} factor was created successfully"
+      },
+      "destroy": {
+        "successfully": "Factor %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Factor Name"
+      },
+      "form": {
+        "no_icon": "No Logo yet",
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
+        "scoring_strategy": "Scoring strategy"
+      },
+      "index": {
+        "icon": "Icon",
+        "new": "Add",
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "scoring_strategy": "Scoring strategy",
+        "sub_factors": "Sub factors",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "New Factor"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Factor?</p>\n",
+            "title": "Delete <strong>Factor</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Factor?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "scoring_strategies": {
+          "questions": "Questions (Average)",
+          "questions_sum": "Questions (SUM)",
+          "sub_factor_questions": "Questions of other Factors (Average)",
+          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
+          "sub_factors_average": "Weighted Average of Factors",
+          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
+        },
+        "tooltips": {
+          "copy": "Copy Factor",
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Factor",
+        "destroy": "Delete Factor",
+        "edit": "Edit Factor",
+        "title": "Factor's options",
+        "view": "View Factor"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      },
+      "update": {
+        "error": "%{name} factor was not updated",
+        "successfully": "%{name} factor was updated successfully"
+      }
+    },
+    "genders": {
+      "female": "Female",
+      "male": "Male",
+      "not_set": "Not set"
+    },
+    "hide": "Hide",
+    "home": {
+      "index": {
+        "notifications": "Notifications"
+      }
+    },
+    "import": "Import",
+    "imports": {
+      "assessments": {
+        "results": {
+          "existing_users_whose_password_not_changed_modal_dialog": {
+            "header": "The list of users whose passwords will be not changed"
+          },
+          "form": {
+            "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
+            "import": "Import"
+          }
+        }
+      },
+      "base": {
+        "form": {
+          "import": "Import"
+        }
+      },
+      "errors": {
+        "error": "[Row %{row}] %{error}",
+        "invalid_assign": "Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
+        "invalid_format": "There is no Email column",
+        "norm": {
+          "factor_is_not_described": "[#%{coords}] factor %{factor} is not described above",
+          "factors_mismatch": "[#%{coords}] dimension %{dimension} does not have factor %{factor}",
+          "not_set_dimension": "The name of the Dimension should be written in A-1",
+          "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
+        },
+        "result": {
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
+          "invalid_format": "Invalid File format"
+        },
+        "translation": {
+          "error": "[Translation %{id}] %{error}",
+          "invalid_format": "Invalid File format"
+        },
+        "unknown_type": "Unknown file type: %{filename}",
+        "user": {
+          "not_found": "[Row %{row}] Couldn't find User with Email Address %{email}"
+        }
+      },
+      "form": {
+        "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "import": "Import"
+      },
+      "hris": {
+        "existing_users_whose_password_not_changed_modal_dialog": {
+          "header": "The list of users whose passwords will be not changed"
+        },
+        "form": {
+          "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
+          "import": "Import"
+        }
+      },
+      "new": {
+        "header": "Import"
+      },
+      "users": {
+        "existing_users_whose_password_not_changed_modal_dialog": {
+          "header": "The list of users whose passwords will be not changed"
+        },
+        "form": {
+          "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
+          "import": "Import"
+        }
+      }
+    },
+    "imports_assessments_result_imports": {
+      "create": {
+        "successfully": "Raw Results data was successfully imported"
+      },
+      "modal": {
+        "header": {
+          "raw": "Import Raw Results data",
+          "scoring": "Import Scoring Results data"
+        }
+      },
+      "new": {
+        "header": "New"
+      }
+    },
+    "imports_hris_imports": {
+      "create": {
+        "successfully": "HRIS data was successfully imported"
+      },
+      "new": {
+        "header": "Import HRIS data"
+      }
+    },
+    "imports_user_imports": {
+      "create": {
+        "successfully": "Users was successfully imported"
+      },
+      "new": {
+        "header": "Import Users"
+      }
+    },
+    "innovation_styles": {
+      "copy": {
+        "error": "Innovation Style #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Innovation Style %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Innovation Style %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Innovation Style"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        },
+        "no_icon": "No icon"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Innovation Styles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "New Innovation Style"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
+            "title": "Delete <strong>Innovation Style</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Innovation Style",
+          "delete": "Delete Innovation Style",
+          "edit": "Edit Innovation Style"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Innovation Style",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Innovation Style",
+        "title": "Innovation Style's options"
+      },
+      "toggle_status": {
+        "successfully": "Innovation Style was successfully updated."
+      }
+    },
+    "innovation_styles_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Factor %{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "destroy": "Destroy",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
+    "libraries": {
+      "create": {
+        "successfully": "Item %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Item %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit"
+      },
+      "index": {
+        "new_folder": "New Folder",
+        "owner": "Owner",
+        "title": "Media library",
+        "upload": "Upload"
+      },
+      "list": {
+        "created_at": "Created date",
+        "name": "Name",
+        "new_folder": "New folder",
+        "root": "Media library",
+        "type": "Type",
+        "updated_at": "Modified date",
+        "upload": "Upload new file"
+      },
+      "new": {
+        "header": "New Folder"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete %{name}?</p>\n",
+            "title": "Delete <strong>%{name}</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete",
+          "edit": "Edit"
+        }
+      },
+      "update": {
+        "successfully": "Item %{name} was successfully updated."
+      }
+    },
+    "membership": "Membership",
+    "memberships": {
+      "admin": {
+        "new": {
+          "header": "New admin"
+        }
+      },
+      "admin_chosen": {
+        "successfully": "Admin users was successfully updated."
+      },
+      "create": {
+        "successfully": "User %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "User %{name} was successfully deleted."
+      },
+      "edit": {
+        "add": "Add",
+        "hris_data": "HRIS Data",
+        "key": "Key",
+        "personal_data": "Personal Data",
+        "remove": "Remove",
+        "title": "Edit user",
+        "value": "Value"
+      },
+      "index": {
+        "export": "Export",
+        "filterrific": {
+          "with_role": {
+            "administration": "Administrators",
+            "all": "All",
+            "users": "Users"
+          }
+        },
+        "import": "Import",
+        "import_hris": "HRIS Data",
+        "import_users": "Users",
+        "new": "Add",
+        "title": "Users",
+        "tooltips": {
+          "create": "Create",
+          "export": "Export",
+          "import": "Import"
+        }
+      },
+      "new": {
+        "header": "New user"
+      },
+      "reset_password": {
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
+      },
+      "spoof": {
+        "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_membership_status": {
+        "successfully": "Membership of %{name} was successfully updated."
+      },
+      "toggle_status": {
+        "successfully": "User %{name} was successfully updated."
+      },
+      "update": {
+        "successfully": "User %{name} was successfully updated."
+      }
+    },
+    "meta_title": "Administration panel",
+    "modified_by": "Modified By",
+    "navigation": {
+      "admins": "Admins",
+      "assessments": "Assessments",
+      "campaign_templates": "Campaign Templates",
+      "campaigns": "Campaigns",
+      "client": "Client Tenancy",
+      "client_admins": "Client Admins",
+      "clients": "Client Tenancies",
+      "communication_center": "Communication Center",
+      "create": "Create",
+      "datasheets": "Datasheets",
+      "design": "Design",
+      "dimension": "Dimension",
+      "dimensions": "Dimensions",
+      "factors": "Factors",
+      "home": "Dashboard",
+      "innovation_styles": "Innovation Styles",
+      "innovation_styles_factors": "Factors",
+      "libraries": "Media Library",
+      "licenses": "Licenses",
+      "new_campaign": "New Campaign",
+      "norm": "Norm",
+      "norms": "Norms",
+      "norms_editor": "Norm Editor",
+      "occupations": "Occupations",
+      "occupations_factors": "Factors",
+      "products": "Products",
+      "project_admins": "Project Admins",
+      "projects": "Projects",
+      "psychometrics": "Psychometrics",
+      "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
+      "report_families": "Report Bundles",
+      "reports": "Reports",
+      "statistics": "Statistics",
+      "sub_campaigns": "Sub Campaigns",
+      "sub_factors": "Sub-Factors",
+      "survey": "Survey",
+      "surveys": "Surveys",
+      "users": "Users",
+      "users_add": "Add New",
+      "users_import": "Import"
+    },
+    "new": "New",
+    "no_data_found": "No data found",
+    "norms": {
+      "copy": {
+        "error": "Norm #%{id} was not copied.",
+        "successfully": "Norm #%{name} was copied successfully"
+      },
+      "create": {
+        "successfully": "Norm %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Norm %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Rename Norm"
+      },
+      "editor": {
+        "factors": "Factors",
+        "inplace_title": "Enter value",
+        "sub_factors": "Sub Factors",
+        "title": "Norm Editor",
+        "tooltips": {
+          "edit": "Edit Title"
+        }
+      },
+      "index": {
+        "export": "Export",
+        "import": "Import",
+        "new": "Add",
+        "owner": "Owner",
+        "title": "Norms"
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified date",
+        "updated_by": "Updated by"
+      },
+      "new": {
+        "header": "New norm"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Norm?</p>\n",
+            "title": "Delete <strong>Norm</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Norm?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Norm",
+          "delete": "Delete Norm",
+          "edit": "Rename Norm"
+        }
+      },
+      "sidebar": {
+        "assign": "Assign Norm",
+        "copy": "Copy Norm",
+        "destroy": "Delete Norm",
+        "disable": "Disable",
+        "edit": "Rename Norm",
+        "editor": "Norm Editor",
+        "enable": "Enable",
+        "export": "Export Norm",
+        "import": "Import Norm",
+        "new": "New Norm",
+        "surveys": "Linked Surveys",
+        "title": "Norm's options",
+        "view": "View Norm"
+      },
+      "toggle_status": {
+        "successfully": "Norm was successfully updated."
+      },
+      "update": {
+        "successfully": "Norm %{name} was successfully updated."
+      }
+    },
+    "noty": {
+      "error_408": "This action takes too long. Please try to reload the page.",
+      "error_500": "Something went wrong. Contact your administrator."
+    },
+    "occupations": {
+      "copy": {
+        "error": "Occupation #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Occupation %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Occupation %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit occupation"
+      },
+      "form": {
+        "hint": {
+          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
+        },
+        "no_icon": "No icon"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Occupations",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created Date",
+        "id": "Id",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New occupation"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this occupation?</p>\n",
+            "title": "Delete <strong>Occupation</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Occupation",
+          "delete": "Delete Occupation",
+          "edit": "Edit Occupation"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Occupation",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Occupation",
+        "title": "Occupation's options"
+      },
+      "toggle_status": {
+        "successfully": "Occupation was successfully updated."
+      }
+    },
+    "occupations_factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Factor %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Factor %{name} was successfully detached."
+      },
+      "edit": {
+        "header": "Edit Factor"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "condition": "Condition",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "position": "Position",
+        "updated_at": "Modified date",
+        "weight": "Weight"
+      },
+      "new": {
+        "header": "Attach Factors"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
+      "sidebar": {
+        "destroy": "Destroy Factor",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "Attach Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
+    "products": {
+      "copy": {
+        "error": "Product",
+        "successfully": "Product %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Product %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Product %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Product"
+      },
+      "form": {
+        "add_image": "Add Image",
+        "images": "Images",
+        "prices": "Prices",
+        "reports": "Reports"
+      },
+      "image_fields": {
+        "remove": "Remove Image"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Products list"
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New Product"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Product?</p>\n",
+            "title": "Delete <strong>Product</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Product?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Product",
+          "delete": "Delete Product",
+          "edit": "Edit Product"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Product",
+        "destroy": "Destroy Product",
+        "disable": "Disable",
+        "edit": "Edit Product",
+        "enable": "Enable",
+        "new": "New Product",
+        "title": "Product's options"
+      },
+      "update": {
+        "successfully": "Product %{name} was successfully updated."
+      }
+    },
+    "profiles": {
+      "edit": {
+        "success": "Profile was successfully updated.",
+        "title": "Profile Editor"
+      }
+    },
+    "psychometrics": "Psychometrics",
+    "questions": {
+      "copy": {
+        "successfully": "Question %{name} copied successfully"
+      },
+      "create": {
+        "successfully": "Question %{name} created successfully"
+      },
+      "destroy": {
+        "successfully": "Question %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Question"
+      },
+      "index": {
+        "owner": "Owner"
+      },
+      "new": {
+        "header": "New Question"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Question?</p>\n",
+            "title": "Delete <strong>Question</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Question?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        }
+      }
+    },
+    "report_families": {
+      "copy": {
+        "error": "Report Bundle #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Report Bundle %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Report Bundle %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Report Bundle Name"
+      },
+      "index": {
+        "add": "Add",
+        "families": "Families",
+        "title": "Report Bundles",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "created_at": "Created date",
+        "name": "Name",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "New Report Bundle"
+      },
+      "reports": {
+        "destroy": {
+          "successfully": "Report successfully deleted from the report bundle"
+        },
+        "index": {
+          "add": "Add new Report",
+          "title": "Reports in the Bundle",
+          "tooltips": {
+            "create": "Create"
+          }
+        },
+        "list": {
+          "created_at": "Created date",
+          "name": "Name",
+          "updated_at": "Updated date"
+        },
+        "resource": {
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Report from Bundle?</p>\n",
+              "title": "Delete <strong>Report</strong> from Bundle?"
+            }
+          },
+          "tooltips": {
+            "delete": "Delete Report from Bundle"
+          }
+        }
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Report Bundle?</p>\n",
+            "title": "Delete <strong>Report</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Report Bundle?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Report Bundle",
+          "delete": "Delete Report Bundle",
+          "edit": "Edit Report Bundle",
+          "preview": "Preview Report Bundle"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Report Bundle",
+        "destroy": "Delete Report Bundle",
+        "edit": "Edit Report Bundle",
+        "title": "Report Bundle's options",
+        "view": "View Report Bundle"
+      },
+      "update": {
+        "successfully": "Report Bundle %{name} was successfully updated."
+      }
+    },
+    "reports": {
+      "copy": {
+        "error": "Report #%{id} was not copied."
+      },
+      "create": {
+        "successfully": "Report %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Report %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Report Name"
+      },
+      "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
+        "select_family": "Select Report Bundle",
+        "types": {
+          "common": "Any",
+          "eti": "ETI",
+          "yti": "YTI"
+        }
+      },
+      "index": {
+        "add": "Add",
+        "assessment": "Assessment",
+        "bulk_download": "Bulk Download",
+        "category": "Category",
+        "families": "Report Bundles",
+        "filterrific": {
+          "with_assessment_category": {
+            "360": "360 Feedback",
+            "all": "All",
+            "case_study": "Case Studies",
+            "organisational": "Org Surveys",
+            "psychometric": "Psychometrics"
+          }
+        },
+        "owner": "Owner",
+        "regenerate": "Regenerate Reports",
+        "report_family": "Report Bundle",
+        "title": "Reports",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created date",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "Select Report"
+      },
+      "preview": {
+        "export_pdf": "Export to PDF",
+        "title": "Preview"
+      },
+      "regenerate": {
+        "successfully": "Report successfully sent for regeneration"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Report?</p>\n",
+            "title": "Delete <strong>Report</strong> ?"
+          },
+          "detach": {
+            "body": "<p>Are you sure you want to detach this Report?</p>\n",
+            "title": "Detach <strong>Report</strong> ?"
+          },
+          "regenerate": {
+            "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
+            "title": "Regenerate <strong>%{name}</strong>?"
+          },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
+            "title": "Soft Delete <strong>Report</strong>?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting",
+          "restoring": "Restoring"
+        },
+        "tooltips": {
+          "copy": "Copy Report",
+          "delete": "Delete Report",
+          "edit": "Edit Report",
+          "preview": "Preview Report",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
+        }
+      },
+      "restore": {
+        "successfully": "Report %{name} was Restored Successfully."
+      },
+      "sidebar": {
+        "copy": "Copy Report",
+        "destroy": "Delete Report",
+        "edit": "Edit Report",
+        "regenerate": "Regenerate Report",
+        "title": "Report's options",
+        "view": "View Report"
+      },
+      "soft_delete": {
+        "successfully": "Report %{name} was moved to Trash Successfully."
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
+      },
+      "toggle_status": {
+        "successfully": "Report was successfully updated."
+      },
+      "types": {
+        "common": "Any",
+        "eti": "ETI",
+        "yti": "YTI"
+      },
+      "update": {
+        "successfully": "Report %{name} was successfully updated."
+      }
+    },
+    "save": "Save",
+    "search": "Search",
+    "show": "Show",
+    "sub_factors": {
+      "copy": {
+        "error": "Sub-Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Sub-Factor %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Sub-Factor Name"
+      },
+      "index": {
+        "new": "Add",
+        "title": "Sub-Factors",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "New Sub-Factor"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Sub-Factor?</p>\n",
+            "title": "Delete <strong>Sub-Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Sub-Factor",
+          "delete": "Delete Sub-Factor",
+          "edit": "Edit Sub-Factor Name"
+        }
+      },
+      "sidebar": {
+        "destroy": "Delete Sub-Factor",
+        "edit": "Edit Sub-Factor",
+        "title": "Sub-Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Sub-Factor was successfully updated."
+      }
+    },
+    "templates": {
+      "blocks": {
+        "copy": {
+          "error": "Block \\#%{name} was not copied."
+        },
+        "destroy": {
+          "successfully": "Block %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Block"
+        },
+        "index": {
+          "new": "Add",
+          "templates": {
+            "blocks": "Blocks",
+            "questions": "Questions"
+          },
+          "title": "Blocks",
+          "tooltips": {
+            "create": "Create"
+          }
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
+        },
+        "new": {
+          "header": "New Block"
+        },
+        "new_assign": {
+          "header": "Assign Block to Assessments"
+        },
+        "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
+          "tooltips": {
+            "copy": "Copy Block",
+            "delete": "Delete Block",
+            "edit": "Edit Block"
+          }
+        },
+        "sidebar": {
+          "destroy": "Delete Block",
+          "disable": "Disable",
+          "edit": "Edit Block",
+          "enable": "Enable",
+          "new": "New Block",
+          "new_assign": "Assign Block",
+          "title": "Block's options"
+        }
+      },
+      "questions": {
+        "copy": {
+          "error": "Question"
+        },
+        "destroy": {
+          "successfully": "Question %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Question"
+        },
+        "index": {
+          "new": "Add",
+          "templates": {
+            "blocks": "Blocks",
+            "questions": "Questions"
+          },
+          "title": "Questions",
+          "tooltips": {
+            "create": "Create"
+          }
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created date",
+          "linked_assessments": "Linked assessments",
+          "name": "Name",
+          "updated_at": "Modified date"
+        },
+        "new": {
+          "header": "New Question"
+        },
+        "new_assign": {
+          "header": "Assign Question to Assessments"
+        },
+        "resource": {
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting"
+          },
+          "tooltips": {
+            "copy": "Copy Question",
+            "delete": "Delete Question",
+            "edit": "Edit Question"
+          }
+        },
+        "sidebar": {
+          "destroy": "Delete Question",
+          "disable": "Disable",
+          "edit": "Edit Question",
+          "enable": "Enable",
+          "new": "New Question",
+          "new_assign": "Assign Question",
+          "title": "Question's options"
+        }
+      }
+    },
+    "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
+        "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Evaluator Reminder Rules"
+        },
+        "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
+        "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
+        "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluate_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluation_help": {
+          "description": "Help text displayed on evaluation card on user's dashboard",
+          "name": "Evaluation Help"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "nomination_help": {
+          "description": "Help text displayed on nomination card on user's dashboard",
+          "name": "Nomination Help"
+        },
+        "report_help": {
+          "description": "Help text displayed on report card on user's dashboard",
+          "name": "Reports Help"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
+      },
+      "reports": {
+        "show": {
+          "title": "Subject Report"
+        }
+      }
+    },
+    "time_zone": "Time Zone",
+    "translations": {
+      "assessments": {
+        "new": {
+          "header": "Import Translations"
+        }
+      },
+      "import": {
+        "successfully": "Translations was successfully imported"
+      },
+      "reports": {
+        "new": {
+          "header": "Import Translations"
+        }
+      }
+    },
+    "tte": "TTE",
+    "uniq_id": "Uniq ID",
+    "update": "Update",
+    "updated": "Successfully updated",
+    "users": {
+      "create": {
+        "successfully": "User %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "User %{name} was successfully deleted."
+      },
+      "edit": {
+        "add": "Add",
+        "grants": "Privileges",
+        "hris_data": "HRIS Data",
+        "key": "Key",
+        "personal_data": "Personal Data",
+        "remove": "Remove",
+        "title": "Edit user",
+        "value": "Value"
+      },
+      "form": {
+        "choose": " - Choose - "
+      },
+      "index": {
+        "breadcrumb": "Users",
+        "client_tenancy": "Client tenancy",
+        "export": "Export",
+        "export_completion_status": "Completion Status",
+        "export_users": "Users",
+        "filterrific": {
+          "with_role": {
+            "administration": "Administrators",
+            "all": "All",
+            "users": "Users"
+          }
+        },
+        "import": "Import",
+        "import_hris": "HRIS Data",
+        "import_users": "Users",
+        "new": "Add",
+        "new_superadmin": "Add SuperAdmin",
+        "title": "Users",
+        "tooltips": {
+          "create": "Create",
+          "export": "Export",
+          "import": "Import"
+        }
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "email": "Email",
+        "first_name": "First name",
+        "id": "Id",
+        "last_name": "Last name",
+        "role": "Role",
+        "updated_at": "Modified Date"
+      },
+      "new": {
+        "header": "New user"
+      },
+      "password": {
+        "guidelines": {
+          "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
+        }
+      },
+      "reset_password": {
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
+      },
+      "resource": {
+        "confirmations": {
+          "change_password": {
+            "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+            "title": "Change password <strong>%{name}</strong> ?"
+          },
+          "delete": {
+            "body": "<p>Are you sure you want to delete this User?</p>\n",
+            "title": "Delete <strong>%{name}</strong> ?"
+          },
+          "membership": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete?</p>\n",
+              "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}'s Membership?"
+            }
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this User?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "tooltips": {
+          "change_password": "Change Password",
+          "chart": "View user report",
+          "delete": "Delete User",
+          "edit": "Edit User",
+          "mail": "Send Mail",
+          "sign_in": "Login as user"
+        }
+      },
+      "sidebar": {
+        "api_keys": "API keys",
+        "assessments_and_reports": "Assessments and Reporting",
+        "destroy": "Delete User",
+        "disable": "Disable",
+        "edit_user": "Edit User",
+        "email": "Send Mail",
+        "enable": "Enable",
+        "export_users": "Export users",
+        "import_users": "Import users",
+        "login_as_user": "Login as User",
+        "new_user": "New User",
+        "reset_password": "Change Password",
+        "title": "User's options"
+      },
+      "spoof": {
+        "successfully": "You was successfully login as %{name}"
+      },
+      "toggle_status": {
+        "successfully": "User %{name} was successfully updated."
+      },
+      "update": {
+        "successfully": "User %{name} was successfully updated."
+      },
+      "user": "User"
+    }
+  },
+  "anonym": {
+    "continue": "استمرار",
+    "copy": {
+      "archived": "تمت أرشفتة",
+      "expired": "انتهت صلاحيته",
+      "not_active": "لم يعد نشط"
+    },
+    "labels": {
+      "archived": "مؤرشف",
+      "expired": "منتهي",
+      "not_active": "غير نشط"
+    },
+    "notifications": {
+      "restart": {
+        "copy": "كنت قد بدأت بالدراسة الإستقصائية. بإمكانك المتابعة أو إعادة البدء",
+        "title": "تريد ان تستمر؟"
+      }
+    },
+    "restart": "إعادة البدء"
+  },
+  "assessments": {
+    "actions": {
+      "extend_time": "تمديد الوقت",
+      "goto_dashboard": "الذهاب الى لوحة التعليمات",
+      "rescore": "إعادة التصحيح"
+    },
+    "audio_response": {
+      "permission_denied_message": "الرجاء تمكين إذن الميكروفون في المتصفح للتمكن من تسجيل إجابتك",
+      "permission_text": "الرجاء السماح بإستخدام الميكروفون لتسجيل الصوت"
+    },
+    "categories": {
+      "360": "حملة 360",
+      "agile": "AGILE- آجايل",
+      "case_study": "دراسة حالة",
+      "hogan": " هوجان - Hogan",
+      "mindmill": "ميندميل-  Mindmill",
+      "organisational": "استقصاء",
+      "psychometric": "تقييم"
+    },
+    "decorator": {
+      "no_description": "الوصف فارغ"
+    },
+    "file_upload": {
+      "select_file": "اختر الملف"
+    },
+    "index": {
+      "managers_assessments_button": "تخطيط العمل",
+      "managers_dashboard_button": "لوحة معلومات المدراء",
+      "user_dashboard_button": "لوحة معلومات المستخدم"
+    },
+    "messages": {
+      "finish": "شكراً على وقتك الثمين. لقد تم تسجيل أجوبتك."
+    },
+    "page": {
+      "back": "عودة",
+      "confirm_message_1": "سيتم تسليم أجوبتك ولن تتمكن من تغييرها بعد ذلك",
+      "confirm_message_2": "هل أنت متأكد من أنك تريد تسليم أجوبتك؟",
+      "next": "التالي",
+      "submit": "تسليم"
+    },
+    "pickgrouprank": {
+      "items": "عناصر"
+    },
+    "proceed": "سأُتابع على أي حال",
+    "resource": {
+      "assigned": "التاريخ المعين %{date}",
+      "invite_users": "دعوة المستخدمين",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "results": "نتائج",
+      "status": {
+        "completed": "تم إكماله",
+        "in_progress": "استئناف",
+        "not_started": "ابدأ "
+      }
+    },
+    "unknown_error": "حدث خطأ غير معروف",
+    "video_response": {
+      "delete": "حذف",
+      "device": "السماح",
+      "discard": "تجاهل",
+      "media_recorder": {
+        "failure": "هذا المتصفح لا يدعم تسجيل الفيديو، الرجاء استخدام كروم أو فايرفوكس للتمكن من تسجيل الفيديو",
+        "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
+      },
+      "offline_message": "يرجى التحقق من اتصالك بالإنترنت",
+      "retake": "إعادة المحاولة",
+      "retry": "إعادة المحاولة",
+      "save": "حفظ",
+      "saved": {
+        "label": "تم الحفظ",
+        "tooltip": "تم اختيار هذا الفيديو للتقديم،  يمكنك أن  تأخذ  فيديو آخر إذا أردت."
+      },
+      "saving": "جاري الحفظ",
+      "selected": "المختاره",
+      "start_recording": "ابدأ التسجيل",
+      "status": {
+        "recording": "جاري التسجيل"
+      },
+      "tracker": {
+        "backward": "أنت قريب جداً من الشاشة، يرجى الإبتعاد قليلاً",
+        "forward": "أنت بعيد جداً من الشاشة، يرجى الإقتراب قليلاً",
+        "frame": "الرجاء التأكد من أن وجهك يحاذي الإطار المرسوم على الشاشه",
+        "ready": "اضغط على زر التسجيل عندما تكون جاهزاً "
+      },
+      "use_this": "تسليم هذا"
+    },
+    "wait": "انتظر"
+  },
+  "assessments_reports": {
+    "add_group_form": {
+      "name": "Name",
+      "previous_assessments_required": "Assessments should be completed in order",
+      "previous_group_required": "Previous group should be completed before"
+    },
+    "menu": {
+      "manage": "Manage",
+      "sequencing": "Sequencing"
+    },
+    "sequencing": {
+      "add_group": "Add Group",
+      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
+      "no_groups_description": "Please create new group sequencing with below button",
+      "no_groups_title": "You have no group in sequencing",
+      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
+      "ungrouped_assessments": "Ungrouped Assessments"
+    }
+  },
+  "assigns": {
+    "assign": {
+      "accept_privacy_modal": {
+        "accept": "Accept",
+        "reject": "Reject",
+        "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+        "title": "Data processing consent"
+      },
+      "assigned": "Assigned %{date}",
+      "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start",
+        "overdue": "Overdue"
+      }
+    },
+    "assigns_reports": {
+      "download": "Download",
+      "duration": "Duration",
+      "progress": "Progress",
+      "summary_report": "Summary report"
+    },
+    "decorator": {
+      "completed": "Completed %{date}",
+      "no_description": "Description is empty",
+      "not_completed": "Not Completed"
+    },
+    "index": {
+      "managers_dashboard_button": "Managers Dashboard",
+      "user_dashboard_button": "User Dashboard"
+    },
+    "multiple_report": {
+      "results": "Results"
+    },
+    "notifications": {
+      "completed": "%{user_name} finished assessment \"%{assessment_name}\"",
+      "in_progress": "%{user_name} started to take assessment \"%{assessment_name}\""
+    },
+    "project_assessment": {
+      "accept_privacy_modal": {
+        "accept": "Accept",
+        "reject": "Reject",
+        "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+        "title": "Data processing consent"
+      },
+      "assigned": "Assigned %{date}",
+      "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
+      "questions": {
+        "one": "1 Question",
+        "other": "%{count} Questions",
+        "zero": "No Questions"
+      },
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start",
+        "overdue": "Overdue"
+      }
+    },
+    "reports": {
+      "load_results": "Load Results: %{report}",
+      "processing": "Processing...",
+      "results": "Results"
+    }
+  },
+  "browsers": {
+    "chrome": "Google Chrome",
+    "download": {
+      "chrome": "https://www.google.com/chrome/",
+      "edge": "https://www.microsoft.com/en-us/edge",
+      "firefox": "https://www.mozilla.org/en-US/firefox/new/",
+      "instruction": "Download",
+      "safari": "https://www.apple.com/safari/"
+    },
+    "edge": "Microsoft Edge",
+    "firefox": "Mozilla Firefox",
+    "safari": "Apple Safari",
+    "support": {
+      "instruction": "Please download and use any of the following browsers.",
+      "message": "The browser you are using is not supported by Lighthouse."
+    },
+    "upgrade": {
+      "instruction": "Upgrade Now",
+      "message": "Please use latest version of the browsers"
+    }
+  },
+  "campaign": {
+    "begin": "ابدء التقييم",
+    "campaign_closed_assessment_take_message": "لا يمكنك أخذ التقييم فقد تم إغلاق هذه الحملة",
+    "closed_campaign_message": "هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة",
+    "complete_all": "أكمل جميع التقييمات ذات الصلة",
+    "complete_prev": " أكمل جميع التقييمات السابقة",
+    "completed": "تم إكماله",
+    "continue": "الإستمرار في التقييم",
+    "in_progress": "على قيد التقدم",
+    "instructions": {
+      "heading": "تعليمات يجب اتباعها"
+    },
+    "interrupted": "تمت مقاطعته",
+    "language": {
+      "cancel": "إلغاء",
+      "content": "هذا التقييم غير متوفر باللغة التي إخترتها. يرجى اختيار اللغة التي تريد أن تعطي التقييم",
+      "proceed": "تقدم",
+      "single_lang": "يتوفر هذا التقييم فقط باللغة ال %{lang}، وهو مختلف عن اللغة التي اخترتها",
+      "title": "إختار اللغة"
+    },
+    "new": "جديد",
+    "not_started": "جديد",
+    "time_left": {
+      "cancel": "إلغاء",
+      "continue": "إستمرار",
+      "notification": "كان وقتك المخصص لهذه المهمة \"%{assessmentName}\" هو %{x} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{y} دقيقة لإكمال هذه المهمة.",
+      "title": "تحذير الوقت المتبقي"
+    },
+    "timer": {
+      "message": "الوقت المتبقي لديك لإكمال كافة الأنشطة",
+      "notification": "لديك %{minutes} و %{seconds} لإكمال التقييمات "
+    },
+    "ungrouped": "التقييمات غير المجموعة",
+    "welcome": "مرحباً"
+  },
+  "campaign_assessment": {
+    "column": {
+      "assessment_name": "Assessment name",
+      "norm": "Norm",
+      "status": "Status",
+      "universal_link": "Universal link"
+    },
+    "modals": {
+      "import_raw": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Raw Results data",
+        "upload": "Upload"
+      },
+      "import_scoring": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "success_msg": "Import successfully uploaded",
+        "title": "Import Scoring Results data",
+        "upload": "Upload"
+      },
+      "remove": {
+        "successfully": "%{name} assessment removed successfully.",
+        "title": "Remove assessment %{name}?"
+      },
+      "rescore_response": {
+        "message": "Rescoring scheduled for assessment %{name}",
+        "title": "Rescore Responses"
+      },
+      "reset": {
+        "content": "Are you sure you want to reset result?",
+        "successfully": "Result data was successfully reseted.",
+        "title": "Reset Result for assessment %{name}?"
+      },
+      "update_norm": {
+        "apply": "Apply this change to existing users in this campaign",
+        "select_norm": "Select Norm",
+        "success_msg": "Norms successfully uploaded",
+        "title": "Update Norm",
+        "type": "Norm Type",
+        "update": "Update"
+      },
+      "update_time": {
+        "additional_time": "Time (min)",
+        "title": "Extend Time"
+      }
+    },
+    "statuses": {
+      "completed": "Completed",
+      "in_progress": "In Progress",
+      "interrupted": "Interrupted",
+      "not_started": "Not Started",
+      "universal_link": "Universal link"
+    }
+  },
+  "campaign_report": {
+    "actions": {
+      "bulk_download": "Bulk Download"
+    },
+    "column": {
+      "report_bundle": "Report Bundle",
+      "report_name": "Report name",
+      "user_access": "User Access"
+    },
+    "form": {
+      "operation": "Operation",
+      "operation_options": {
+        "add_and_allow_new_response": "Add report to existing user and allow new response",
+        "add_with_existing_response": "Add report to existing user and keep existing response",
+        "skip_existing": "Skip existing user"
+      },
+      "report": "Report"
+    },
+    "messages": {
+      "bulk_download_successful": "Bulk report download job scheduled successfully"
+    },
+    "modals": {
+      "remove": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": "Remove Report"
+      },
+      "user_access": {
+        "apply": "Apply this changes to existing users in this campaign.",
+        "title": {
+          "disable": "Disable User Access",
+          "enable": "Enable User Access"
+        }
+      }
+    }
+  },
+  "campaign_users": {
+    "actions": {
+      "add_report": "Add report",
+      "extend_time": "Extend Time"
+    },
+    "assessments": {
+      "progress": "Progress"
+    },
+    "details": {
+      "additional_time": "Additional Time",
+      "completed_at": "Completed At",
+      "completion_status": "Completion status",
+      "last_login": "Last login",
+      "modals": {
+        "remove": {
+          "successfully": "User with email %{email} removed successfully.",
+          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
+        }
+      },
+      "not_completed_yet": "Not completed yet",
+      "not_logged_in_yet": "Not logged in yet",
+      "not_started_yet": "Not started yet",
+      "started_at": "Started At",
+      "statuses": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "interrupted": "Interrupted",
+        "not_started": "Not Started"
+      }
+    },
+    "modals": {
+      "change_password": {
+        "content": "Are you sure you want to send instructions with link to change password?",
+        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
+        "title": "Change password %{name}?"
+      },
+      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
+    }
+  },
+  "checking_wizard": {
+    "audio_check": {
+      "access": "إذن الدخول",
+      "access_help": "انقر هنا للحصول على مساعدة",
+      "allow": "السماح",
+      "allow_title": "يرجى السماح بإستخدام الميكروفون للتمكن من تسجيل الصوت",
+      "continue": "متابعة",
+      "processing": "؟؟",
+      "record_title": "الرجاء التحدث وتكرار الجملة التالية 3 مرات",
+      "run_again": "تشغيل مرة أخرى",
+      "speech_detection": "الكشف عن الكلام",
+      "test_message": "سُررت بالتحدث معك",
+      "title": "نحن بحاجة للتأكد من أن النظام الخاص بك يمكنه تسجيل الصوت"
+    },
+    "network_check": {
+      "continue": "استمرار",
+      "download": "تحميل",
+      "levels": {
+        "0": "شبكة سيئة (إعادة الاتصال)",
+        "1": "شبكة سيئة جدا ",
+        "2": "شبكة سيئة",
+        "3": "شبكة متوسطة",
+        "4": "شبكة جيدة ",
+        "5": "شبكة جيدة جدا"
+      },
+      "network": "شبكة",
+      "please_check_connection": " الرجاء التحقق من إتصالك بالإنترنت",
+      "processing": "؟؟",
+      "run_again": "تشغيل مرة أخرى",
+      "run_again_title": "وتشغيل هذا الاختبار مرة أخرى",
+      "start": "ابدأ",
+      "title": "انقر فوق زر ابدأ، لبدء اختبار سرعة الإنترنت",
+      "upload": "تحميل"
+    },
+    "steps": {
+      "audio_check": "إختبار الميكروفون",
+      "network_check": "اختبار سرعة الإنترنت",
+      "system_check": "اختبار النظام",
+      "video_check": "اختبار الكاميرا"
+    },
+    "success": {
+      "start": "ابدأ التقييم",
+      "title": "قد أكملت جميع ال....؟؟  بنجاح "
+    },
+    "system_check": {
+      "continue": "استمرار",
+      "start": "إبدأ",
+      "title": "قبل بدأ هذا التقييم، يحتاج النظام الخاص بك إلى الخضوع لبعض الفحوصات"
+    },
+    "video_check": {
+      "access": "الإذن بالدخول",
+      "access_help": "انقر هنا للحصول على مساعدة",
+      "allow": "السماح",
+      "allow_title": "يرجى السماح بإستخدام الكاميرا لتسجيل الفيديو",
+      "ambient_light": "الإضاءة المحيطة",
+      "continue": "استمرار",
+      "face_detection": "الكشف عن الوجه",
+      "processing": "؟؟",
+      "run_again": "تشغيل مرة أخرى",
+      "title": " نحن بحاجة إلى التأكد من أن النظام الخاص بك يمكنه تسجيل الفيديو"
+    }
+  },
+  "ckeditor": {
+    "buttons": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "next": "Next",
+      "upload": "Upload"
+    },
+    "confirm_delete": "Delete file?",
+    "page_title": "CKEditor Files Manager"
+  },
+  "clear_filter": "Clear Filter",
+  "common": {
+    "actions": {
+      "cancel": "إلغاء",
+      "close": "إغلاق",
+      "remove": "إزالة",
+      "reset": " إعادة"
+    },
+    "column": {
+      "action": "نشاط",
+      "category": "فئة",
+      "created_at": "تم إنشاؤها في",
+      "id": "الهوية",
+      "status": "حالة"
+    },
+    "model": {
+      "assessments": "التقييمات",
+      "campaigns": "الحملات",
+      "reports": "التقييم"
+    },
+    "text": {
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "continue": "متابعة",
+      "default": "الافتراضي",
+      "download": "تحميل",
+      "na": "N / A",
+      "ok": "موافق",
+      "response": "الإجابة"
+    }
+  },
+  "confirmation": {
+    "default_body": "Are you sure?",
+    "default_title": "Confirmation"
+  },
+  "currencies": {
+    "AED": "AED",
+    "BHD": "BHD",
+    "BYN": "BYN",
+    "EUR": "EUR",
+    "GBP": "GBP",
+    "INR": "INR",
+    "KWD": "KWD",
+    "OMR": "OMR",
+    "QAR": "QAR",
+    "SAR": "SAR",
+    "USD": "USD"
+  },
+  "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "abbr_month_names": [
+      null,
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "formats": {
+      "default": "%Y-%m-%d",
+      "long": "%B %d, %Y",
+      "short": "%b %d"
+    },
+    "month_names": [
+      null,
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "order": [
+      "year",
+      "month",
+      "day"
+    ]
+  },
+  "datetime": {
+    "distance_in_words": {
+      "about_x_hours": {
+        "one": "about 1 hour",
+        "other": "about %{count} hours"
+      },
+      "about_x_months": {
+        "one": "about 1 month",
+        "other": "about %{count} months"
+      },
+      "about_x_years": {
+        "one": "about 1 year",
+        "other": "about %{count} years"
+      },
+      "almost_x_years": {
+        "one": "almost 1 year",
+        "other": "almost %{count} years"
+      },
+      "half_a_minute": "half a minute",
+      "less_than_x_minutes": {
+        "one": "less than a minute",
+        "other": "less than %{count} minutes"
+      },
+      "less_than_x_seconds": {
+        "one": "less than 1 second",
+        "other": "less than %{count} seconds"
+      },
+      "over_x_years": {
+        "one": "over 1 year",
+        "other": "over %{count} years"
+      },
+      "x_days": {
+        "one": "1 day",
+        "other": "%{count} days"
+      },
+      "x_minutes": {
+        "one": "1 minute",
+        "other": "%{count} minutes"
+      },
+      "x_months": {
+        "one": "1 month",
+        "other": "%{count} months"
+      },
+      "x_seconds": {
+        "one": "1 second",
+        "other": "%{count} seconds"
+      }
+    },
+    "prompts": {
+      "day": "Day",
+      "hour": "Hour",
+      "minute": "Minute",
+      "month": "Month",
+      "second": "Seconds",
+      "year": "Year"
+    }
+  },
+  "devise": {
+    "administrators": {
+      "meta_title": "Login to administration panel",
+      "passwords": {
+        "edit": {
+          "submit": "Set new password",
+          "title": "Change your password"
+        },
+        "new": {
+          "back": "Return back",
+          "submit": "Send me instructions",
+          "title": "Forgot your password?"
+        }
+      },
+      "sessions": {
+        "new": {
+          "forgot_password": "Forgot your password?",
+          "submit": "تسجيل الدخول",
+          "title": "<strong>Welcome</strong>, Please login"
+        }
+      },
+      "shared": {
+        "links": {
+          "about": "About",
+          "app_name": "© 2016 AppName",
+          "contact_us": "Contact Us",
+          "privacy": "Privacy"
+        }
+      }
+    },
+    "confirmations": {
+      "confirmed": "تم تأكيد عنوان بريدك الإلكتروني بنجاح.",
+      "new": {
+        "resend_confirmation_instructions": "إعادة إرسال تعليمات التأكيد"
+      },
+      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في بضع دقائق."
+    },
+    "failure": {
+      "already_authenticated": "لقد قمت بتسجيل الدخول بالفعل.",
+      "inactive": "لم يتم تفعيل حسابك بعد.",
+      "invalid": "Invalid %{authentication_keys} or password.",
+      "invited": "You have a pending invitation, accept it to finish creating your account.",
+      "last_attempt": "لديك محاولة أو أكثر قبل غلق حسابك.",
+      "locked": "تم غلق حسابك.",
+      "not_found_in_database": "Invalid %{authentication_keys} or password.",
+      "timeout": "انتهى الوقت المخصص للجلسة. الرجاء تسجيل الدخول مرة أخرى للمتابعة.",
+      "unauthenticated": "تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.",
+      "unconfirmed": "تحتاج إلى تأكيد عنوان بريدك الإلكتروني قبل المتابعة."
+    },
+    "invitations": {
+      "edit": {
+        "confirm_password_label": "Confirm Password",
+        "header": "Set your password",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
+        "password_label": "كلمه السر",
+        "submit": "Set New Password",
+        "submit_button": "Set my password",
+        "title": "Create password"
+      },
+      "invitation_removed": "Your invitation was removed.",
+      "invitation_token_invalid": "The invitation token provided is not valid!",
+      "new": {
+        "header": "Send invitation",
+        "submit_button": "Send an invitation"
+      },
+      "no_invitations_remaining": "No invitations remaining",
+      "send_instructions": "An invitation email has been sent to %{email}.",
+      "updated": "Your password was set successfully. You are now signed in.",
+      "updated_not_active": "Your password was set successfully."
+    },
+    "mailer": {
+      "admin_invitation_instructions": {
+        "accept": "Click here to accept the invitation.",
+        "body": "Hello %{name},\nYou have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.\n\n%{accept} Or you can safely ignore this email.\n\nPlease do not share your access credentials with anyone.\n\nRegards,\nLighthouse Team\n",
+        "subject": "Invitation to Lighthouse"
+      },
+      "confirmation_instructions": {
+        "action": "تأكيد حسابي",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "يُمكنك تأكيد بريدك الإلكتروني من خلال الرابط أدناه:",
+        "subject": "تعليمات التأكيد"
+      },
+      "email_changed": {
+        "greeting": "أهلا %{recipient} !",
+        "message": "نتصل بك لإخبارك أنّ عنوان بريدك الإلكتروني قد تم تغييره إلى %{email}.",
+        "subject": "تم تغيير عنوان البريد الإلكتروني"
+      },
+      "invitation_instructions": {
+        "accept": "Accept invitation",
+        "accept_until": "This invitation will be due in %{due_date}.",
+        "hello": "Hello %{email}",
+        "ignore": "If you don't want to accept the invitation, please ignore this email.<br />\\nYour account won't be created until you access the link above and set your password.",
+        "someone_invited_you": "Someone has invited you to %{url}, you can accept it through the link below.",
+        "subject": "The Talent Enterprise – Your Link to Thriving Index"
+      },
+      "password_change": {
+        "greeting": "مرحباً %{recipient}",
+        "message": "لقد قمنا بالاتصال بك لإخبارك أنه قد تم تغيير كلمة مرورك.",
+        "subject": "تم تغيير كلمة المرور"
+      },
+      "reset_password_instructions": {
+        "action": "تغيير كلمة مروري",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "لقد طلب شخص ما رابط لتغيير كلمة مرورك، ويُمكنك القيام بذلك من خلال الرابط أدناه.",
+        "instruction_2": "إذا لم تقم بطلب ذلك، الرجاء تجاهل هذه الرسالة.",
+        "instruction_3": "لن يتم تغيير كلمة مرورك حتى تقوم بفتح الرابط أعلاه وإنشاء كلمة مرور جديدة.",
+        "subject": "تعليمات إعادة تعيين كلمة المرور"
+      },
+      "unlock_instructions": {
+        "action": "إلغاء قفل حسابي",
+        "greeting": "مرحباً %{recipient}",
+        "instruction": "انقر فوق الرابط أدناه لإلغاء قفل حسابك:",
+        "message": "تم غلق حسابك بسس العدد الكبير من محاولات تسجيل الدخول غير الناجحة.",
+        "subject": "تعليمات إلغاء القفل"
+      }
+    },
+    "omniauth_callbacks": {
+      "failure": "تعذر التحقق منك من %{kind} بسبب \"%{reason}\".",
+      "success": "تمت المصادقة بنجاح من حساب %{kind}."
+    },
+    "passwords": {
+      "edit": {
+        "change_my_password": "تغيير كلمة مروري",
+        "change_your_password": "تغيير كلمة مرورك",
+        "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+        "instruction": "To create a new password, please enter your new password in the boxes below",
+        "new_password": "كلمة المرور الجديدة",
+        "submit": "Submit",
+        "title": "Create Password"
+      },
+      "new": {
+        "forgot_your_password": "نسيت كلمة مرورك؟",
+        "send_me_reset_password_instructions": "أرسل لي تعليمات إعادة تعيين كلمة المرور"
+      },
+      "no_token": "لا يُمكنك الوصول إلى هذه الصفحة دون تأكيد رسالة البريد الإلكتروني المحتوية على إعادة تعيين كلمة المرور. إذا كنت قد انتقلت من رسالة تعيين كلمة المرور، الرجاء التأكد من أنك استخدمت رابط URL الكامل الموجود في الرسالة.",
+      "send_instructions": "ستتلقى رسالة بريد إلكرتوني بها تعليمات ععن كيفية إعادة تعيين كلمة مرورك في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رابط استعادة كلمة المرور على عنوان بريدك الإلكتروني في غضون بضع دقائق.",
+      "updated": "تم تغيير كلمة مرورك بنجاح. أنت الآن مُسجِّل الدخول.",
+      "updated_not_active": "تم تغيير كلمة مرورك بنجاح."
+    },
+    "registrations": {
+      "destroyed": "وداعاً! تم إلغاء حسابك بنجاح. نأمل أن نراك مرة أخرى في القريب العاجل.",
+      "edit": {
+        "are_you_sure": "هل أنت متأكد؟",
+        "cancel_my_account": "إلغاء حسابي",
+        "currently_waiting_confirmation_for_email": "قيد انتظار التأكيد حالياً لـ: %{email}",
+        "leave_blank_if_you_don_t_want_to_change_it": "اتركه فارغاً إذا كنت لا ترغب في تغييره",
+        "title": "تحرير %{resource}",
+        "unhappy": "غير سعيد؟",
+        "update": "تحديث",
+        "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
+      },
+      "new": {
+        "code": "رمز التسجيل",
+        "email": "البريد الإلكتروني",
+        "first_name": "الاسم الاول",
+        "instruction": "املأ التفاصيل أدناه للتسجيل وإنشاء حساب جديد",
+        "last_name": "إسم العائلة",
+        "privacy_notice": "نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.",
+        "sign_up": "التسجيل",
+        "submit": "تسجيل",
+        "tabs": {
+          "register": "تسجيل",
+          "sign_in": "تسجيل الدخول"
+        },
+        "terms_notice": "بالتسجيل ، فإنك توافق على <a href=\"%{terms_url}\"> بنود الخدمة وسياسة الخصوصية </a>",
+        "title": "التسجيل"
+      },
+      "signed_up": "مرحباً! لقد قمت بالتسجيل بنجاح.",
+      "signed_up_but_inactive": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك لم يتم تفعيله بعد.",
+      "signed_up_but_locked": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك مغلق.",
+      "signed_up_but_unconfirmed": "تم إرسال رسالة بها رابط التأكيد إلى عنوان بريدك الإلكتروني. الرجاء اتباع الرابط لتفعيل حسابك.",
+      "success": {
+        "actions": {
+          "sign_in": "تسجيل الدخول"
+        },
+        "instruction": "Please check your email for further instructions",
+        "title": "Signup successful"
+      },
+      "update_needs_confirmation": "لقد قمت بتحديث حسابك بنجاح، ولكن نحتاج إلى تأكيد عنوان بريدك الإلكتروني الجديد. الرجاء التحقق من بريدك الإلكتروني واتباع رابط التأكيد لتأكيد عنوان بريدك الإلكتروني الجديد.",
+      "updated": "تم تحديث حسابك بنجاح.",
+      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+    },
+    "sessions": {
+      "already_signed_out": "تم تسجيل الخروج بنجاح.",
+      "new": {
+        "forgot_password": "هل نسيت كلمة السر؟",
+        "instruction": "الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية",
+        "keep_sign_in": "Yes, Keep me signed in",
+        "password_placeholder": "كلمه السر",
+        "sign_in": "تسجيل الدخول",
+        "submit": "تسجيل الدخول",
+        "tabs": {
+          "register": "تسجيل",
+          "sign_in": "تسجيل الدخول"
+        },
+        "title": "مرحباً"
+      },
+      "signed_in": "تم تسجيل الدخول بنجاح.",
+      "signed_out": "تم تسجيل الخروج بنجاح."
+    },
+    "shared": {
+      "links": {
+        "back": "رجوع",
+        "didn_t_receive_confirmation_instructions": "لم تتلقى تعليمات التأكيد؟",
+        "didn_t_receive_unlock_instructions": "لم تتلقى تعليمات إلغاء القفل؟",
+        "forgot_your_password": "نسيت كلمة مرورك؟",
+        "sign_in": "تسجيل الدخول",
+        "sign_in_with_provider": "تسجيل الدخول باستخدام %{provider}",
+        "sign_up": "التسجيل"
+      },
+      "minimum_password_length": {
+        "one": "(%{count} character minimum)",
+        "other": "(%{count} characters minimum)"
+      }
+    },
+    "two_factor_authentication": {
+      "attempt": "الرجاء إدخال OTP ، الذي تلقيته على عنوان بريدك الإلكتروني المسجل",
+      "attempt_failed": "Incorrect OTP! Please try again",
+      "code_has_been_sent": "تم إرسال OTP الجديد الخاص بك إلى عنوان بريدك الإلكتروني المسجل",
+      "contact_administrator": "Please contact your system administrator",
+      "email": {
+        "otp": {
+          "subject": "Your One-Time Password"
+        }
+      },
+      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP",
+      "otp": "Code",
+      "submit": "Verify",
+      "success": "Login with Two Factor Authentication successful",
+      "title": "One-Time Password"
+    },
+    "unlocks": {
+      "new": {
+        "resend_unlock_instructions": "إعادة إرسال تعليمات إلغاء القفل"
+      },
+      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء قفل حسابك في غضون بضع دقائق.",
+      "send_paranoid_instructions": "إذا كان حسابك موجود، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء القفلل غي غضون دقائق.",
+      "unlocked": "تم إلغاء قفل حسابك بنجاح. الرجاء تسجيل الدخول للمتابعة."
+    }
+  },
+  "ecommerce": {
+    "carts": {
+      "show": {
+        "back_to_catalogue": "Back to Catalogue",
+        "next": "Next",
+        "shopping_basket": "Shopping Basket",
+        "total": "Total:",
+        "update_basket": "Update Basket"
+      }
+    },
+    "orders": {
+      "new": {
+        "back_to_basket": "Back to Basket",
+        "order": "Order",
+        "pay": "Pay",
+        "product_name": "Product Name",
+        "product_price": "Product Price",
+        "product_quantity": "Quantity",
+        "product_subtotal": "Positions Price",
+        "total": "Total",
+        "users": "Users"
+      },
+      "success": {
+        "back_to_basket": "Back to Basket",
+        "body": "<h3>Payment successful</h3>\n<p>We will email you a receipt confirming your oder shortly.</p>\n",
+        "go_to_dashboard": "Go to Dashboard",
+        "title": "Payment Successful"
+      }
+    },
+    "products": {
+      "add_to_cart": {
+        "successfully": "Assessment was successfuly added to the basket"
+      },
+      "index": {
+        "assessment_catalogue": "Assessment Catalogue",
+        "shopping_basket": "Shopping Basket"
+      }
+    },
+    "users": {
+      "registrations": {
+        "new": {
+          "register": "Register",
+          "sign_in": "Sign in"
+        }
+      },
+      "sessions": {
+        "new": {
+          "register": "Register",
+          "sign_in": "Sign in"
+        }
+      }
+    }
+  },
+  "enums": {
+    "communication": {
+      "delivery_rule": {
+        "in_progress": "If assessment is in progress",
+        "not_competed": "If assessment is not completed",
+        "not_started": "If assessment is not started",
+        "send_now": "Send now",
+        "specific_datetime": "Send at"
+      },
+      "kind": {
+        "completion": "Completion",
+        "invitation": "Invitation",
+        "other": "Other",
+        "reminder": "Reminder"
+      },
+      "recipients": {
+        "all": "All",
+        "selected": "Selected"
+      }
+    },
+    "report": {
+      "type": {
+        "common": "Any",
+        "eti": "ETI",
+        "yti": "YTI"
+      }
+    }
+  },
+  "errors": {
+    "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
+    "error_500": "Something went wrong. Contact your administrator.",
+    "forbidden": "You do not have access to this page",
+    "forbidden_action": "You do not have permissions to this action",
+    "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
+    "messages": {
+      "accepted": "must be accepted",
+      "after": "must be after %{date}",
+      "after_or_equal_to": "must be after or equal to %{date}",
+      "allowed_file_content_types": "file should be one of %{types}",
+      "already_confirmed": "تم تأكيده بالفعل، الرجاء محاولة تسجيل الدخول",
+      "before": "must be before %{date}",
+      "before_or_equal_to": "must be before or equal to %{date}",
+      "blank": "can't be blank",
+      "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
+      "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
+      "carrierwave_direct_attachment_missing": "attachment is missing",
+      "carrierwave_direct_filename_invalid": "",
+      "carrierwave_direct_filename_taken": "filename was already taken",
+      "carrierwave_direct_upload_missing": "upload is missing",
+      "carrierwave_download_error": "could not be downloaded",
+      "carrierwave_integrity_error": "is not of an allowed file type",
+      "carrierwave_processing_error": "failed to be processed",
+      "confirmation": "doesn't match %{attribute}",
+      "confirmation_period_expired": "يحتاج إلى التأكيد في غضون %{period}،الرجاء طلب رابط تأكيد جديد",
+      "content_type_blacklist_error": "You are not allowed to upload %{content_type} files",
+      "content_type_whitelist_error": "You are not allowed to upload %{content_type} files",
+      "empty": "can't be empty",
+      "equal_to": "must be equal to %{date}",
+      "even": "must be even",
+      "excluded_file_content_types": "file cannot be %{types}",
+      "exclusion": "is reserved",
+      "expired": "قد انتهت المدة، الرجاء طلب رابط تأكيد جديد",
+      "extension_blacklist_error": "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}",
+      "extension_whitelist_error": "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}",
+      "file_size_is_greater_than": "file size must be greater than %{count}",
+      "file_size_is_greater_than_or_equal_to": "file size must be greater than or equal to %{count}",
+      "file_size_is_in": "file size must be between %{min} and %{max}",
+      "file_size_is_less_than": "file size must be less than %{count}",
+      "file_size_is_less_than_or_equal_to": "file size must be less than or equal to %{count}",
+      "greater_than": "must be greater than %{count}",
+      "greater_than_or_equal_to": "must be greater than or equal to %{count}",
+      "inclusion": "is not included in the list",
+      "invalid": "is invalid",
+      "invalid_currency": "must be a valid currency (eg. '100', '5%{decimal}24', or '123%{thousands}456%{decimal}78'). Got %{currency}",
+      "less_than": "must be less than %{count}",
+      "less_than_or_equal_to": "must be less than or equal to %{count}",
+      "max_size_error": "File size should be less than %{max_size}",
+      "min_size_error": "File size should be greater than %{min_size}",
+      "mini_magick_processing_error": "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}",
+      "model_invalid": "Validation failed: %{errors}",
+      "not_a_date": "is not a date",
+      "not_a_number": "is not a number",
+      "not_an_integer": "must be an integer",
+      "not_found": "غير موجود",
+      "not_locked": "لم يتم إلغاء قفله",
+      "not_saved": {
+        "few": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "many": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "one": "1 خطأ منع %{resource} هذا من أن يتم حفظه:",
+        "other": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "two": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
+        "zero": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:"
+      },
+      "odd": "must be odd",
+      "other_than": "must be other than %{count}",
+      "present": "must be blank",
+      "required": "must exist",
+      "rmagick_processing_error": "Failed to manipulate with rmagick, maybe it is not an image?",
+      "taken": "has already been taken",
+      "too_long": {
+        "one": "is too long (maximum is 1 character)",
+        "other": "is too long (maximum is %{count} characters)"
+      },
+      "too_short": {
+        "one": "is too short (minimum is 1 character)",
+        "other": "is too short (minimum is %{count} characters)"
+      },
+      "wrong_length": {
+        "one": "is the wrong length (should be 1 character)",
+        "other": "is the wrong length (should be %{count} characters)"
+      }
+    },
+    "try_again": "Please try again",
+    "unacceptable_request": "A supported version is expected in the Accept header.\n",
+    "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
+  },
+  "evaluators": {
+    "errors": {
+      "can_not_processed": "can not be processed",
+      "exists": "already exists",
+      "max_evaluators": "you already have enough evaluators"
+    }
+  },
+  "flash": {
+    "actions": {
+      "create": {
+        "notice": "%{resource_name} was successfully created."
+      },
+      "destroy": {
+        "alert": "%{resource_name} could not be destroyed.",
+        "notice": "%{resource_name} was successfully destroyed."
+      },
+      "update": {
+        "notice": "%{resource_name} was successfully updated."
+      }
+    }
+  },
+  "frontend": {
+    "activate": "تنشيط",
+    "are_you_sure": "هل أنت متأكد؟",
+    "assessment_groups": {
+      "create_success": "تم إنشاء المجموعة بنجاح",
+      "update_success": "تم تحديث المجموعة بنجاح"
+    },
+    "campaign": {
+      "actions": {
+        "remove": {
+          "confirmation": "أدخل الإسم الحالي للحملة في مربع النص أدناة لإزالة الحملة ",
+          "success": "تمت إزالة الحملة بنجاح %{campaignName}"
+        }
+      },
+      "users": {
+        "completion_statuses": {
+          "completed": "تم إكماله",
+          "in_progress": " على قيد التقدم",
+          "interrupted": "تمت مقاطعته",
+          "not_started": "لم يبدأ بعد"
+        }
+      }
+    },
+    "change_password": "تغيير كلمة السر",
+    "delete": " حذف",
+    "edit": "تعديل",
+    "login": "تسجيل الدخول",
+    "manage": " إدارة",
+    "no": "لا",
+    "resource": {
+      "create_success": "تم إنشاؤه بنجاح %{resourceName}",
+      "update_success": "%{resourceName} تم تحديثه بنجاح"
+    },
+    "update": "تحديث",
+    "upload": "تحميل",
+    "yes": "نعم"
+  },
+  "helpers": {
+    "page_entries_info": {
+      "more_pages": {
+        "display_entries": "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+      },
+      "one_page": {
+        "display_entries": {
+          "one": "Displaying <b>1</b> %{entry_name}",
+          "other": "Displaying <b>all %{count}</b> %{entry_name}",
+          "zero": "No %{entry_name} found"
+        }
+      }
+    },
+    "select": {
+      "prompt": "Please select"
+    },
+    "submit": {
+      "create": "Create %{model}",
+      "submit": "Save %{model}",
+      "update": "Update %{model}"
+    }
+  },
+  "hogan": {
+    "assigns": {
+      "results": {
+        "not_completed": "Hogan Report isn't ready yet",
+        "successfully": "Hogan Report was successfully saved"
+      }
+    }
+  },
+  "home": {
+    "survey_instructions": {
+      "title": "Instructions"
+    }
+  },
+  "i18n_tasks": {
+    "add_missing": {
+      "added": {
+        "one": "Added %{count} key",
+        "other": "Added %{count} keys"
+      }
+    },
+    "cmd": {
+      "args": {
+        "default_text": "Default: %{value}",
+        "desc": {
+          "all_locales": "Do not expect key patterns to start with a locale, instead apply them to all locales implicitly.",
+          "confirm": "Confirm automatically",
+          "data_format": "Data format: %{valid_text}.",
+          "keep_order": "Keep the order of the keys",
+          "key_pattern": "Filter by key pattern (e.g. 'common.*')",
+          "key_pattern_to_rename": "Full key (pattern) to rename. Required",
+          "locale": "i18n_tasks.common.locale",
+          "locale_to_translate_from": "Locale to translate from",
+          "locales_filter": "Locale(s) to process. Special: base",
+          "missing_types": "Filter by types: %{valid}",
+          "new_key_name": "New name, interpolates original name as %{key}. Required",
+          "nostdin": "Do not read from stdin",
+          "out_format": "Output format: %{valid_text}",
+          "pattern_router": "Use pattern router: keys moved per config data.write",
+          "strict": "Avoid inferring dynamic key usages such as t(\"cats.#{cat}.name\"). Takes precedence over the config setting if set.",
+          "translation_backend": "Translation backend (google or deepl)",
+          "value": "Value. Interpolates: %{value}, %{human_key}, %{key}, %{default}, %{value_or_human_key}, %{value_or_default_or_human_key}"
+        }
+      },
+      "desc": {
+        "add_missing": "add missing keys to locale data",
+        "check_consistent_interpolations": "verify that all translations use correct interpolation variables",
+        "check_normalized": "verify that all translation data is normalized",
+        "config": "display i18n-tasks configuration",
+        "data": "show locale data",
+        "data_merge": "merge locale data with trees",
+        "data_remove": "remove keys present in tree from data",
+        "data_write": "replace locale data with tree",
+        "eq_base": "show translations equal to base value",
+        "find": "show where keys are used in the code",
+        "gem_path": "show path to the gem",
+        "health": "is everything OK?",
+        "irb": "start REPL session within i18n-tasks context",
+        "missing": "show missing translations",
+        "mv": "rename/merge the keys in locale data that match the given pattern",
+        "normalize": "normalize translation data: sort and move to the right files",
+        "remove_unused": "remove unused keys",
+        "rm": "remove the keys in locale data that match the given pattern",
+        "translate_missing": "translate missing keys with Google Translate or DeepL Pro",
+        "tree_convert": "convert tree between formats",
+        "tree_filter": "filter tree by key pattern",
+        "tree_merge": "merge trees",
+        "tree_mv_key": "rename/merge/remove the keys matching the given pattern",
+        "tree_set_value": "set values of keys, optionally match a pattern",
+        "tree_subtract": "tree A minus the keys in tree B",
+        "tree_translate": "Google Translate a tree to root locales",
+        "unused": "show unused translations"
+      },
+      "encourage": [
+        "Good job!",
+        "Well done!",
+        "Perfect!"
+      ],
+      "enum_list_opt": {
+        "invalid": "%{invalid} is not in: %{valid}."
+      },
+      "enum_opt": {
+        "invalid": "%{invalid} is not one of: %{valid}."
+      },
+      "errors": {
+        "invalid_format": "invalid format: %{invalid}. valid: %{valid}.",
+        "invalid_locale": "invalid locale: %{invalid}",
+        "invalid_missing_type": {
+          "one": "invalid type: %{invalid}. valid: %{valid}.",
+          "other": "unknown types: %{invalid}. valid: %{valid}."
+        },
+        "pass_forest": "pass locale forest"
+      }
+    },
+    "common": {
+      "continue_q": "Continue?",
+      "key": "Key",
+      "locale": "Locale",
+      "n_more": "%{count} more",
+      "value": "Value"
+    },
+    "data_stats": {
+      "text": "has %{key_count} keys across %{locale_count} locales. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments, a locale has %{per_locale_avg} keys.",
+      "text_single_locale": "has %{key_count} keys in total. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments.",
+      "title": "Forest (%{locales})"
+    },
+    "deepl_translate": {
+      "errors": {
+        "no_api_key": "Setup DeepL Pro API key via DEEPL_AUTH_KEY environment variable or translation.deepl_api_key in config/i18n-tasks.yml. Get the key at https://www.deepl.com/pro.",
+        "no_results": "DeepL returned no results."
+      }
+    },
+    "google_translate": {
+      "errors": {
+        "no_api_key": "Set Google API key via GOOGLE_TRANSLATE_API_KEY environment variable or translation.google_translate_api_key in config/i18n-tasks.yml. Get the key at https://code.google.com/apis/console.",
+        "no_results": "Google Translate returned no results. Make sure billing information is set at https://code.google.com/apis/console."
+      }
+    },
+    "health": {
+      "no_keys_detected": "No keys detected. Check data.read in config/i18n-tasks.yml."
+    },
+    "inconsistent_interpolations": {
+      "none": "No inconsistent interpolations found."
+    },
+    "missing": {
+      "details_title": "Value in other locales or source",
+      "none": "No translations are missing."
+    },
+    "remove_unused": {
+      "confirm": {
+        "one": "%{count} translation will be removed from %{locales}.",
+        "other": "%{count} translation will be removed from %{locales}."
+      },
+      "noop": "No unused keys to remove",
+      "removed": "Removed %{count} keys"
+    },
+    "translate_missing": {
+      "translated": "Translated %{count} keys"
+    },
+    "unused": {
+      "none": "Every translation is in use."
+    },
+    "usages": {
+      "none": "No key usages found."
+    },
+    "yandex_translate": {
+      "errors": {
+        "no_api_key": "Set Yandex API key via YANDEX_API_KEY environment variable or translation.yandex_api_key in config/i18n-tasks.yml. Get the key at https://tech.yandex.com/translate.",
+        "no_results": "Yandex returned no results."
+      }
+    }
+  },
+  "id": "Id",
+  "invites": {
+    "create": {
+      "successfully": "Your invitations was successfully sent"
+    },
+    "form": {
+      "emails_hint": "Set each email in new line",
+      "send_invites": "Send Invites"
+    },
+    "new": {
+      "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "reports_export": {
+      "download": {
+        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
+        "message": "Report is ready"
+      }
+    },
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "error": "An Error is occur",
+          "error_description": "You report generation failed. Please contact to Administrator or try to <b>download</b> again.",
+          "message": "Report is ready"
+        }
+      }
+    }
+  },
+  "languages": {
+    "ar": "العربية",
+    "bg": "Bulgarian",
+    "bs": "Bosnian",
+    "ca": "Catalan",
+    "cn": "Chinese",
+    "cs": "Czech",
+    "cy": "Cymraeg",
+    "da": "Danish",
+    "de": "Deutsch",
+    "el": "Greek",
+    "en": "English",
+    "en-GB": "English - UK",
+    "eo": "Esperanto",
+    "es": "Spanish (Latin America)",
+    "es-ES": "Spanish (Spain)",
+    "et": "Estonian",
+    "fa": "Persian",
+    "fi": "Finnish",
+    "fr": "French",
+    "gu": "Gujarati",
+    "he": "Hebrew",
+    "hi": "Hindi",
+    "hr": "Croatian",
+    "hu": "Hungarian",
+    "id": "Bahasa Indonesia",
+    "it": "Italian",
+    "ja": "Japanese",
+    "km": "Khmer",
+    "ko": "Korean",
+    "lt": "Lithuanian",
+    "lv": "Latvian",
+    "mk": "Macedonian",
+    "mn": "Mongolian",
+    "ms": "Bahasa Malaysia",
+    "my": "Myanmar",
+    "nl": "Dutch",
+    "no": "Norwegian",
+    "pl": "Polish",
+    "pt": "Portuguese",
+    "pt-BR": "Brazilian Portuguese",
+    "ro": "Romanian",
+    "ru": "Russian",
+    "sk": "Slovak",
+    "sl": "Slovenian",
+    "sr-Cyrl": "Serbian Cyrillic",
+    "sr-Latn": "Serbian Latin",
+    "sv": "Swedish",
+    "sw": "Swahili",
+    "ta": "Tamil",
+    "th": "Thai",
+    "tl": "Tagalog",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
+    "ur": "Urdu",
+    "vi": "Vietnamese",
+    "zh": "Chinese Simplified",
+    "zh-TW": "Chinese Traditional"
+  },
+  "layouts": {
+    "users": {
+      "dashboard": "Dashboard",
+      "help": "Help",
+      "logout": "Log Out",
+      "menu": "Menu",
+      "notifications": "Notifications",
+      "profile": "Profile"
+    }
+  },
+  "licenses": {
+    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
+  },
+  "loading": "Processing...",
+  "mailer": {
+    "from": "The Talent Enterprise",
+    "license": {
+      "expire": {
+        "subject": "License expired"
+      },
+      "overuse": {
+        "subject": "License overuse"
+      },
+      "weekly_stats": {
+        "column_headers": {
+          "account_manager": "Account Manager",
+          "client_name": "Client Name",
+          "expiry_date": "Expiry date",
+          "overuse_limit": "Overuse Limit",
+          "project_manager": "Project Manager",
+          "remaining_count": "Remaining Count",
+          "type": "License type",
+          "use_count": "Use count"
+        },
+        "expiry_stats": "Licenses expiring in the next 30 days :",
+        "no_expiry_stats": "No lincenses expiring in the next 30 days.",
+        "no_weekly_stats": "No licenses consumed in the last 7 days.",
+        "notice": "Note - You can unsubscribe to this weekly email from your profile page.",
+        "subject": "Weekly license usage stats",
+        "weekly_stats": "Past week license usage stats :"
+      }
+    }
+  },
+  "managers": {
+    "assessments": {
+      "index": {
+        "actions": "Actions",
+        "name": "Name"
+      },
+      "resource": {
+        "action_planning": "Action Planning"
+      }
+    },
+    "assigns": {
+      "index": {
+        "title": "Assessments and Reporting Centre"
+      },
+      "list": {
+        "action": "Action",
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completion_date": "Completion Date",
+        "name": "Name",
+        "status": "Completion Status"
+      },
+      "resource": {
+        "email": "Email",
+        "save": "Save in PDF",
+        "view": "View"
+      }
+    },
+    "dashboard": {
+      "index": {
+        "assessment_center": "Assessment / Report Centre",
+        "notification_center": "Notification Centre",
+        "notifications": "Notifications",
+        "relationships": "Company Relationships",
+        "reporting": "Reporting",
+        "statistics": "Statistics"
+      }
+    },
+    "notifications": {
+      "index": {
+        "subtitle": "Notifications",
+        "title": "Notification Centre"
+      }
+    },
+    "reports": {
+      "show": {
+        "export_pdf": "Export to PDF",
+        "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
+      }
+    },
+    "tasks": {
+      "comment": {
+        "made_comment": "made a comment."
+      },
+      "edit": {
+        "header": "Update Action Item"
+      },
+      "index": {
+        "subtitle": "Action Items",
+        "title": "Action Planning Dashboard",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "actions": "Actions",
+        "add_item": "Add Action Item",
+        "competency": "Competency",
+        "high": "High Priority",
+        "low": "Low Priority",
+        "medium": "Medium Priority",
+        "subtitle_high": "High Priority Items",
+        "subtitle_low": "Low Priority Items",
+        "subtitle_medium": "Medium Priority Items",
+        "summary": "Showing %{total} of %{total} entries."
+      },
+      "new": {
+        "header": "Create Action Item"
+      },
+      "resource": {
+        "tooltips": {
+          "delete": "Delete Action Item",
+          "edit": "Edit Action Item"
+        }
+      },
+      "resource_extension": {
+        "add": "Add Sub Action Item",
+        "add_comment": "Add Comment",
+        "leave_comment": "Leave a comment/note:",
+        "notes": "Notes/Comments:",
+        "sub_tasks": "Sub Action Items"
+      },
+      "subtasks": {
+        "list": {
+          "actions": "Actions",
+          "date": "Target Completion Date",
+          "name": "Action Item",
+          "status": "Status"
+        }
+      },
+      "summary": {
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "manager_summary": "Manager Summary",
+        "not_started": "Not Started",
+        "overdue": "Overdue",
+        "total": "Total Items"
+      },
+      "summary_managers": {
+        "assignee": "Assigner",
+        "completed": "Completed",
+        "in_progress": "In Progress",
+        "not_started": "Not Started",
+        "overdue": "Overdue"
+      }
+    },
+    "users": {
+      "index": {
+        "title": "Company Relationships"
+      }
+    }
+  },
+  "mindmill": {
+    "assigns": {
+      "results": {
+        "not_completed": "Mindmill Assessment not completed",
+        "successfully": "Mindmill Assessment was successfully pass"
+      }
+    }
+  },
+  "my": "My",
+  "myself": "Myself",
+  "na": "NA",
+  "next": "Next",
+  "no": "No",
+  "nominations": {
+    "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
+  },
+  "norms": {
+    "percentile": {
+      "columns": {
+        "mean": "Mean",
+        "name": "Name",
+        "standard_deviation": "Standard Deviation"
+      },
+      "messages": {
+        "failure": "Error: %{error}.",
+        "success": "Norm for Factor '%{factorName}' updated successfully."
+      },
+      "values": {
+        "empty": "Empty",
+        "required": "%{title} is required"
+      }
+    }
+  },
+  "number": {
+    "currency": {
+      "format": {
+        "delimiter": ",",
+        "format": "%u%n",
+        "precision": 2,
+        "separator": ".",
+        "significant": false,
+        "strip_insignificant_zeros": false,
+        "unit": "$"
+      }
+    },
+    "format": {
+      "delimiter": ",",
+      "precision": 3,
+      "separator": ".",
+      "significant": false,
+      "strip_insignificant_zeros": false
+    },
+    "human": {
+      "decimal_units": {
+        "format": "%n %u",
+        "units": {
+          "billion": "Billion",
+          "million": "Million",
+          "quadrillion": "Quadrillion",
+          "thousand": "Thousand",
+          "trillion": "Trillion",
+          "unit": ""
+        }
+      },
+      "format": {
+        "delimiter": "",
+        "precision": 3,
+        "significant": true,
+        "strip_insignificant_zeros": true
+      },
+      "storage_units": {
+        "format": "%n %u",
+        "units": {
+          "byte": {
+            "one": "Byte",
+            "other": "Bytes"
+          },
+          "eb": "EB",
+          "gb": "GB",
+          "kb": "KB",
+          "mb": "MB",
+          "pb": "PB",
+          "tb": "TB"
+        }
+      }
+    },
+    "percentage": {
+      "format": {
+        "delimiter": "",
+        "format": "%n%"
+      }
+    },
+    "precision": {
+      "format": {
+        "delimiter": ""
+      }
+    }
+  },
+  "profiles": {
+    "edit": {
+      "header": "Profile Settings"
+    },
+    "form": {
+      "username": "Username"
+    },
+    "update": {
+      "successfully": "Profile updated"
+    }
+  },
+  "ransack": {
+    "all": "all",
+    "and": "and",
+    "any": "any",
+    "asc": "ascending",
+    "attribute": "attribute",
+    "combinator": "combinator",
+    "condition": "condition",
+    "desc": "descending",
+    "or": "or",
+    "predicate": "predicate",
+    "predicates": {
+      "blank": "is blank",
+      "cont": "contains",
+      "cont_all": "contains all",
+      "cont_any": "contains any",
+      "does_not_match": "doesn't match",
+      "does_not_match_all": "doesn't match all",
+      "does_not_match_any": "doesn't match any",
+      "end": "ends with",
+      "end_all": "ends with all",
+      "end_any": "ends with any",
+      "eq": "equals",
+      "eq_all": "equals all",
+      "eq_any": "equals any",
+      "false": "is false",
+      "gt": "greater than",
+      "gt_all": "greater than all",
+      "gt_any": "greater than any",
+      "gteq": "greater than or equal to",
+      "gteq_all": "greater than or equal to all",
+      "gteq_any": "greater than or equal to any",
+      "in": "in",
+      "in_all": "in all",
+      "in_any": "in any",
+      "lt": "less than",
+      "lt_all": "less than all",
+      "lt_any": "less than any",
+      "lteq": "less than or equal to",
+      "lteq_all": "less than or equal to all",
+      "lteq_any": "less than or equal to any",
+      "matches": "matches",
+      "matches_all": "matches all",
+      "matches_any": "matches any",
+      "not_cont": "doesn't contain",
+      "not_cont_all": "doesn't contain all",
+      "not_cont_any": "doesn't contain any",
+      "not_end": "doesn't end with",
+      "not_end_all": "doesn't end with all",
+      "not_end_any": "doesn't end with any",
+      "not_eq": "not equal to",
+      "not_eq_all": "not equal to all",
+      "not_eq_any": "not equal to any",
+      "not_in": "not in",
+      "not_in_all": "not in all",
+      "not_in_any": "not in any",
+      "not_null": "is not null",
+      "not_start": "doesn't start with",
+      "not_start_all": "doesn't start with all",
+      "not_start_any": "doesn't start with any",
+      "null": "is null",
+      "present": "is present",
+      "start": "starts with",
+      "start_all": "starts with all",
+      "start_any": "starts with any",
+      "true": "is true"
+    },
+    "search": "search",
+    "sort": "sort",
+    "value": "value"
+  },
+  "reports": {
+    "actions": {
+      "add": "إضافة تقرير",
+      "download": "تحميل التقرير",
+      "view": "عرض التقرير"
+    },
+    "modules": {
+      "common": {
+        "almost_always": "عادةً",
+        "less_typical": "أقل نموذجية",
+        "moderate": "معتدل",
+        "more_typical": "أكثر نموذجية",
+        "rare": "النادرة"
+      },
+      "cpi_occupations": {
+        "occupations": "المهن",
+        "your_potential_suitability": "الملائمة المحتملة الخاصة بك"
+      },
+      "gap_assessment": {
+        "gap": "فجوة",
+        "item": "مؤشر",
+        "negative_gap": " الفجوات السلبية",
+        "no_negative_gaps": "لا توجد فجوات سلبية",
+        "no_positive_gaps": "لا توجد فجوات الإيجابية",
+        "positive_gap": " الفجوات الإيجابية",
+        "rank": "المرتبة",
+        "scoring_category": "الكفاءة"
+      },
+      "highest_lowest": {
+        "average": "متوسط",
+        "bottom_5": "أدنى 5",
+        "category": "فئة",
+        "email": "البريد الإلكتروني",
+        "first_name": "الاسم ",
+        "highest_scores": "أعلى الدرجات",
+        "item": "مؤشر",
+        "last_name": "اسم العائلة",
+        "lowest_scores": " أدنى الدرجات",
+        "mean_score": "متوسط الدرجات",
+        "rank": "المرتبة",
+        "result": " النتيجة",
+        "score": "الدرجة",
+        "scoring_category": "الكفاءة",
+        "sub_competenties": "الكفاءات الفرعية",
+        "top_5": "الخمسة الأوائل"
+      },
+      "potential_career_full": {
+        "bachelors_or_masters_qualification": "البكالوريوس أو الماجستير",
+        "career_strengths_and_results": "قوة المؤهلات المهنية و نتائجك",
+        "career_sub_tracks": "الوظيفي الفرعي",
+        "detailed_career_guide": "دليل وظيفي مُفصل",
+        "diploma_qualification": "دبلوم ",
+        "education_level": "مستوى التعليم",
+        "high_school_entry_roles": "أدوارك في المدرسة الثانوية",
+        "key_career_tracks_within": "وفيما يلي قائمة بالأدوار الوظيفية المحتملة لكل مسار من المسارات المهنية. تذكر بأن هذه القائمة للدلالة فقط وأنها ليست شاملة. لاحظ أن الأدوار المخطوطة بالخط المائل تتطلب مستويات أعلى من التعليم و / أو الخبرة",
+        "potential_areas_of_study": "المجالات المحتملة ",
+        "potential_roles": "الأدوار المحتملة",
+        "strength_high": "نقطة القوة",
+        "strength_low": "القوة التنموية",
+        "strength_moderate": "القوة المُحتملة",
+        "work_environment": "بيئة عملك",
+        "your_suitability": "ملاءمة"
+      },
+      "potential_career_short": {
+        "career": "مهنة",
+        "for_this": "لهذه",
+        "key": "الرئيسية",
+        "strengths": "القوة الرئيسية",
+        "your_scores": " درجاتك"
+      },
+      "single_value": {
+        "factor_name": "فئة الدرجات",
+        "question_name": "أسئلة"
+      },
+      "single_value_cluster": {
+        "competency": "الكفاءة",
+        "description": " الوصف",
+        "developmental_rating": "التقييم التنموي",
+        "questions": "أسئلة"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "عوامل فرعية للمؤشرات المزدهرة التي تم اعتبارها لتوفير النتيجة النهائية لبيئة العمل %{workstyle}",
+        "possible_roles": "الأدوار المحتملة",
+        "work_environments": "بيئات العمل المتوقعة"
+      },
+      "three_sixty_default": {
+        "factor": {
+          "items": "اصناف",
+          "max": "أقصى قيمة",
+          "mean": "المتوسط",
+          "min": "أدنى قيمة ",
+          "standardDeviation": "الانحراف المعياري",
+          "sum": "المجموع",
+          "totalResponses": "إجمالي الردود",
+          "variance": "التباين",
+          "weightedMean": "المتوسط المرجح"
+        },
+        "statistic": "الاحصائيه",
+        "value": "القيمة "
+      },
+      "three_sixty_report_summary": {
+        "completed": "تم اكماله",
+        "footnote": "* مستثناة بسبب الحد الأدنى للمتطلبات",
+        "invited": "المدعوين",
+        "number_of_evaluators_invited": "عدد المقيّمين المدعوين",
+        "relationships": "العلاقات",
+        "subject": "الموضوع",
+        "title": "ملخص التقرير",
+        "total": "الاجمالى",
+        "total_evaluations": "مجموع التقييمات لهذا التقييم"
+      },
+      "video_response": {
+        "no_results": "لم يتم تسجيل مقاطع فيديو"
+      }
+    },
+    "show": {
+      "export_pdf": "التصدير إلى PDF",
+      "header": "تقرير"
+    },
+    "statuses": {
+      "approved": "موافق عليه",
+      "available": "متوفر",
+      "denied": "تم رفضه",
+      "incomplete": "غير مكتمل",
+      "not_available": "غير متوفر",
+      "on_hold": "في الانتظار",
+      "released": "صدر"
+    }
+  },
+  "shared": {
+    "filters": {
+      "clear": "امسح المُرشحات"
+    },
+    "internet_disconnected_message": "نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.",
+    "password_reset": {
+      "description": "الرجاء إدخال عنوان بريدك الإلكتروني في المربع أدناه وانقر فوق زر \"إعادة تعيين كلمة السر\".",
+      "email_label": "عنوان البريد الإلكتروني",
+      "instruction": "أدخل البريد الإلكتروني المرتبط بحسابك",
+      "submit": "إعادة تعيين كلمة السر",
+      "title": "هل نسيت كلمة السر؟"
+    },
+    "terms_conditions_privacy": "بيان الخصوصية",
+    "tte_terms_and_condition": " الشروط والأحكام وبيان الخصوصية الخاص بشركة TTE"
+  },
+  "simple_form": {
+    "error_notification": {
+      "default_message": "Please review the problems below:"
+    },
+    "labels": {
+      "client": {
+        "account_manager": "TTE Account Manager",
+        "account_manager_id": "TTE Account Manager",
+        "applicable_level": "Applicable Level",
+        "applicable_levels": {
+          "campaign": "Campaign",
+          "project": "Project",
+          "sub_campaign": "Sub-Campaign"
+        },
+        "category": "Category",
+        "created_at": "Created Date",
+        "id": "ID",
+        "licenses": "License number",
+        "licenses_expire": "License Expiry Date",
+        "licenses_used": "License Usage",
+        "location": "Location",
+        "logo": "Client logo",
+        "memberships_count": "Users",
+        "name": "Name",
+        "number": "Client Number",
+        "privacy_consent": "Enable data processing consent",
+        "project_manager": "TTE Project Manager",
+        "project_manager_id": "TTE Project Manager",
+        "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
+        "subdomain": "Subdomain",
+        "types": {
+          "associate": "Associate",
+          "corporate": "Corporate",
+          "distributer": "Distributer",
+          "other": "Other",
+          "partner": "Partner",
+          "retail": "Retail",
+          "tte": "TTE"
+        },
+        "updated_at": "Modified Date",
+        "year": "Client Year"
+      },
+      "membership": {
+        "role": "Membership role"
+      }
+    },
+    "no": "No",
+    "placeholders": {
+      "administration/assessments/assign_form": {
+        "access_reports": "Access Report Rules",
+        "access_reports_at": "Access Report at",
+        "access_reports_at_date": "Date",
+        "access_reports_at_time": "Time",
+        "client_ids": "Client Tenancies",
+        "manager_ids": "Managers",
+        "report_ids": "Reports",
+        "user_ids": "Users"
+      },
+      "administrator": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "current_password": "Current password",
+        "disabled": "Disable",
+        "email": "البريد الإلكتروني",
+        "first_name": "First Name",
+        "id": "ID",
+        "last_name": "إسم العائلة",
+        "manage_client_ids": "Client Tenancy",
+        "memberships": "Client Tenancy",
+        "name": "Name",
+        "password": "Password",
+        "password_confirmation": "Password confirmation",
+        "role": "Role",
+        "roles": {
+          "admin": "Admin",
+          "admins": {
+            "admin": "Admin",
+            "project_admin": "Project Admin",
+            "regular": "Client Admin",
+            "superadmin": "Super Admin"
+          },
+          "agile": "AGILE",
+          "case_study": "Case study",
+          "client_admin": "Client Admin",
+          "hogan": "Hogan",
+          "manager": "Manager",
+          "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "project_admin": "Project Admin",
+          "psychometric": "Psychometric",
+          "regular": "Regular",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
+          "threesixty": "Threesixty"
+        },
+        "types": {
+          "anonymous": "Anonymous Users",
+          "identified": "Identified Users"
+        },
+        "updated_at": "Modified Date"
+      },
+      "assessment": {
+        "active": "Active",
+        "categories": {
+          "360": "360 Campaign",
+          "agile": "AGILE",
+          "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
+        },
+        "category": "Category",
+        "completed_at": "Completion Date",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "statuses": {
+          "completed": "Completed",
+          "finished": "finished",
+          "in_progress": "Resume",
+          "interrupted": "Interrupted",
+          "not_started": "New",
+          "overdue": "Overdue"
+        },
+        "timing": "Timing",
+        "types": {
+          "common": "TTE Assessment",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill Assessment"
+        },
+        "updated_at": "Modified Date"
+      },
+      "block": {
+        "active": "Active",
+        "assign_to_assessment_ids": "Assessments",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "client": {
+        "account_manager": "TTE Account Manager",
+        "account_manager_id": "TTE Account Manager",
+        "applicable_level": "Applicable Level",
+        "applicable_levels": {
+          "campaign": "Campaign",
+          "project": "Project",
+          "sub_campaign": "Sub-Campaign"
+        },
+        "category": "Category",
+        "created_at": "Created Date",
+        "id": "ID",
+        "licenses": "License number",
+        "licenses_expire": "License Expiry Date",
+        "licenses_used": "License Usage",
+        "location": "Location",
+        "logo": "Client logo",
+        "memberships_count": "Users",
+        "name": "Name",
+        "number": "Client Number",
+        "privacy_consent": "Enable data processing consent",
+        "project_manager": "TTE Project Manager",
+        "project_manager_id": "TTE Project Manager",
+        "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
+        "subdomain": "Subdomain",
+        "types": {
+          "associate": "Associate",
+          "corporate": "Corporate",
+          "distributer": "Distributer",
+          "other": "Other",
+          "partner": "Partner",
+          "retail": "Retail",
+          "tte": "TTE"
+        },
+        "updated_at": "Modified Date",
+        "year": "Client Year"
+      },
+      "communication": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "updated_at": "Modified Date"
+      },
+      "dimension": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "factors_count": "No. of Factors",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "parent_id": "Parent",
+        "questions_count": "No. of Questions",
+        "updated_at": "Modified Date"
+      },
+      "library": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "type": "Thumbnail",
+        "updated_at": "Modified Date"
+      },
+      "license": {
+        "id": "ID",
+        "number": "License Number",
+        "overuse_number": "Over Use Allowance",
+        "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
+        "unlimited": "Unlimited",
+        "used_number": "Used License Number"
+      },
+      "memebrship": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "disabled": "Disable",
+        "email": "Email",
+        "first_name": "First Name",
+        "id": "ID",
+        "last_name": "إسم العائلة",
+        "parent": "Direct Manager",
+        "parent_id": "Direct Manager",
+        "report_ids": "Report IDs",
+        "roles": {
+          "client_admin": "Client Admin",
+          "manager": "Manager",
+          "member": "User",
+          "project_admin": "Project Admin"
+        },
+        "updated_at": "Modified Date",
+        "user_access": "User Access"
+      },
+      "norm": {
+        "active": "Active",
+        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "created_at": "Created Date",
+        "description": "Description",
+        "description_label": "DESCRIPTION",
+        "diploma_qualification": "Diploma Qualification",
+        "factor_id": "Competency",
+        "factor_id_label": "SELECT COMPETENCY",
+        "full_description": "Full Description",
+        "high_school_entry_roles": "High School Entry Roles",
+        "id": "ID",
+        "key_career_tracks": "Key Career Tracks",
+        "membership_id": "Assigner",
+        "membership_id_label": "SELECT ASSIGNER",
+        "name": "Name",
+        "name_label": "ACTION ITEM",
+        "planned_completed_at": "Due Date",
+        "planned_completed_at_label": "SELECT DUE DATE",
+        "potential_areas_of_study": "Potential Areas of Study",
+        "priority": "Priority",
+        "priority_label": "PRIORITY",
+        "status": "Status",
+        "status_label": "SELECT STATUS",
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started",
+          "overdue": "Overdue"
+        },
+        "updated_at": "Modified Date",
+        "updated_by": "Edited by",
+        "work_environment": "Work Environment"
+      },
+      "product": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "question": {
+        "active": "Active",
+        "assign_to_assessment_ids": "Assessments",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "regenerate_reports": {
+        "report_ids": "Reports"
+      },
+      "report": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "mindmill": "Load report from Mindmill",
+        "mindmill_report": "Mindmill report",
+        "updated_at": "Modified Date"
+      },
+      "user": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "current_password": "Current password",
+        "disabled": "Disable",
+        "email": "البريد الإلكتروني",
+        "first_name": "الاسم الاول",
+        "id": "ID",
+        "last_name": "إسم العائلة",
+        "manage_client_ids": "Client Tenancy",
+        "memberships": "Client Tenancy",
+        "name": "Name",
+        "password": "كلمه السر",
+        "password_confirmation": "Password confirmation",
+        "role": "Role",
+        "roles": {
+          "admin": "Admin",
+          "admins": {
+            "admin": "Admin",
+            "project_admin": "Project Admin",
+            "regular": "Client Admin",
+            "superadmin": "Super Admin"
+          },
+          "agile": "AGILE",
+          "case_study": "Case study",
+          "client_admin": "Client Admin",
+          "hogan": "Hogan",
+          "manager": "Manager",
+          "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "project_admin": "Project Admin",
+          "psychometric": "Psychometric",
+          "regular": "Regular",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
+          "threesixty": "Threesixty"
+        },
+        "types": {
+          "anonymous": "Anonymous Users",
+          "identified": "Identified Users"
+        },
+        "updated_at": "Modified Date"
+      },
+      "user_form": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "current_password": "Current password",
+        "disabled": "Disable",
+        "email": "البريد الإلكتروني",
+        "first_name": "الاسم الاول",
+        "id": "ID",
+        "last_name": "إسم العائلة",
+        "parent": "Direct Manager",
+        "parent_id": "Direct Manager",
+        "password": "كلمه السر",
+        "password_confirmation": "Password confirmation",
+        "role": "Role",
+        "updated_at": "Modified Date"
+      }
+    },
+    "required": {
+      "mark": "*",
+      "text": "required"
+    },
+    "yes": "Yes"
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "تم اكماله",
+      "declined": "رُفض",
+      "denied": "تم رفضه",
+      "done": "منجز",
+      "not_completed": "لم يتم اكماله",
+      "waiting": "منتظر"
+    }
+  },
+  "support": {
+    "array": {
+      "last_word_connector": ", and ",
+      "two_words_connector": " and ",
+      "words_connector": ", "
+    }
+  },
+  "threesixty": {
+    "accept_privacy_modal": {
+      "accept": "اقبل",
+      "reject": "ارفض",
+      "text": "عند إكمال هذا الاستبيان (الاستبيانات)، فإنك توافق على أن يتم استخدام أي بيانات تم جمعها كنتيجة لذلك للأغراض المقصودة والموصوفة في البلاغ الذي تلقيته مسبقاً.سيتم استخدام إجاباتك على الأسئلة المطروحة، بالإضافة إلى أي بيانات أخرى مرتبطة بها، لأغراض تحليل إجاباتك الفردية والإبلاغ عنها.قد نستخدم أيضاً ردودكم كجزء من مشاريع بحثية واسعة النطاق.سيتم التعامل مع بياناتك مع الحساسية المطلوبة والأمان.يرجى النقر على < href ='https://thetalententerprise.com/privacy-statement/' الهدف ='_blank></a> / انتقل إلى هذا الموقع لمعرفة المزيد أو للاتصال بشخص ما للحصول على استفسارات أكثر.",
+      "title": "موافقة معالجة البيانات"
+    },
+    "add": "أو",
+    "and": "و",
+    "approve_all": "الموافقة على جميع ما سبق",
+    "approve_all_successful": "الموافقة على جميع الترشيحات",
+    "approve_evaluations": "الموافقة على التقييمات",
+    "approve_nominations": "الموافقة على الترشيحات",
+    "approve_reports": "الموافقة على التقارير",
+    "approved": "تمت الموافقه",
+    "approving_mail_sent": "تم إرسال بريد الموافقة على الترشيح إلى المدراء",
+    "as_my": "؟؟",
+    "assessment": "تقييم",
+    "back_to_tasks": "الرجوع إلى المهام",
+    "begin": "ابدأ",
+    "cancel": "إلغاء ",
+    "close_evaluation_modal": {
+      "message": "بمجرد عرض التقرير، لن تتمكن %{pronoun_or_name} من تلقي أية تقييمات أخرى",
+      "title": "هل أنت متأكد بأنك تريد عرض التقرير؟"
+    },
+    "closed_campaign_message": "تم إغلاق هذه الحملة 360. لا يمكنك ترشيح أو تقييم أي شخص لهذه الحملة.",
+    "completed": "تم اكماله",
+    "confirm": "هل أنت متأكد؟",
+    "confirmation_for_nomination_removal": "هل أنت متأكد من أنك تريد إزالة الترشيح",
+    "confirmation_required": "مطلوب منك التأكيد ",
+    "confirmation_text_incorrect": "نص التأكيد غير صحيح",
+    "confirmation_text_placeholder": "نص التأكيد هنا",
+    "continue": "استمرار",
+    "dashboard_title": "مرحباً  %{name}",
+    "decline": "رفض",
+    "decline_invite": "رفض الدعوة",
+    "denied": "رفض",
+    "deny_all": "رفض جميع ما سبق",
+    "deny_all_successful": "رفض جميع الترشيحات",
+    "download_pdf": "تحميل PDF",
+    "download_report": "تحميل التقرير",
+    "download_reports": "تحميل التقارير",
+    "edit_user": "تحرير المستخدم",
+    "email_approve_request": "طلب الموافقة على البريد الإلكتروني",
+    "email_schedules": {
+      "delete_successful": "تم حذف جدول البريد الإلكتروني بنجاح"
+    },
+    "evaluate": "تقييم",
+    "evaluation": "التقييم",
+    "evaluation_closed_nomination_message": "لا يمكنك الترشيح لهذا الموضوع حيث قد تم إغلاق التقييم لهذا الموضوع",
+    "evaluations": "التقييمات",
+    "evaluator": "مقييم",
+    "export_pdf": "تصدير PDF",
+    "first_name": "الإسم",
+    "first_name_error": "رجاءً إطبع إسمك",
+    "help": "مساعدة",
+    "helps": {
+      "main": "<h2>مساعدة</h2> <p> المحتوى الضروري للمساعدة مشروط</p>"
+    },
+    "language": "اللغة",
+    "last_name": "اسم العائلة",
+    "last_name_error": "يرجى إدخال اسم العائلة",
+    "load_results": "تحميل النتائج ",
+    "mail_history": {
+      "statuses": {
+        "success": "نجاح",
+        "undelivered": "لم يتم تسليمها"
+      }
+    },
+    "mindmill_confirmation": "بدء هذا التقييم سوف يفقدك النتائج \"%{assessment}\". انقر على زر \"إلغاء الأمر\" إذا كنت تريد ترك النتائج، وانقر فوق \"موافق\" إذا كنت تريد المتابعة",
+    "my_projects": "مشاريعي",
+    "nominate": "ترشح",
+    "nominate_evaluators": "ترشيح المقيّمين إلى",
+    "nomination": "ترشيح",
+    "nominations": "الترشيحات",
+    "options": {
+      "global": {
+        "cannot_re_edit": "لا يمكن للمشاركين تحرير التقييمات"
+      }
+    },
+    "or": "أو",
+    "page_title": "Signify 360° مراجعة - مستوى التطبيق",
+    "participant_list": {
+      "actions": {
+        "approve_report": "الموافقة على التقرير",
+        "download_report": "تحميل التقرير",
+        "edit": "تعديل",
+        "hold_report": "؟؟",
+        "login": "تسجيل الدخول",
+        "mark_as_done": "وضع علامة \" تم\"",
+        "release_report": "إصدار التقرير",
+        "remove_campaign": "إزالتة من الحملة",
+        "remove_report_approval": "إزالة الموافقة على التقرير",
+        "remove_report_hold_release_report": "إزالة التقرير تعليق/إصدار",
+        "remove_subject": "إزالة الموضوع",
+        "unmark_as_done": "إلغاء وضع علامة \" تم\"",
+        "view_report": "عرض التقرير",
+        "view_responses": "عرض الاستجابات"
+      },
+      "confirmation_messages": {
+        "approve_report": "هل أنت متأكد من أنك تريد الموافقة على التقرير؟",
+        "hold_report": "هل أنت متأكد من أنك تريد الاحتفاظ بالتقرير؟",
+        "mark_evaluation_done": "هل أنت متأكد من أنك تريد وضع علامة تقييم كما \"تم\"؟سيتم إغلاق التقييم بهذه الطريقه.",
+        "release_report": "هل أنت متأكد من أنك تريد إصدار تقرير؟",
+        "remove_from_campaign": "هل أنت متأكد من أنك تريد إزالة المستخدم من الحملة؟",
+        "remove_release_hold": "هل أنت متأكد من أنك تريد إزالة حالة الإصدار/الانتظار؟",
+        "remove_report_approval": "هل أنت متأكد من أنك تريد إزالة موافقة التقرير؟",
+        "remove_subject": "هل أنت متأكد من أنك تريد إزالة الموضوع باستخدام البريد الإلكتروني من الحملة؟",
+        "umark_evaluation_as_complete": "هل أنت متأكد من أنك تريد إلغاء تحديد التقييم كما \"تم\"؟"
+      },
+      "report_generation_message": "يتم إنشاء التقرير حالياً. سنحيطك علماً عندما يكون تقريرك جاهزاً."
+    },
+    "processing": "؟؟",
+    "processing_report": "؟؟",
+    "question": {
+      "chat_type": {
+        "input_placeholder": "اكتب رسالتك…"
+      },
+      "email_type": {
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "edit": "تعديل",
+        "max_length_warning": "%{x} الأحرف المتبقية",
+        "message": "رسالتك",
+        "send": "إرسال",
+        "subject": "الموضوع",
+        "successful_message": "لقد قمت بإرسال رسالة البريد الإلكتروني بنجاح",
+        "to": "إلى"
+      }
+    },
+    "remind_all": "تذكير الجميع",
+    "remind_mail_sent": "إرسال رسائل تذكيرية إلى المقيّمين الذين لم يكملوا التقييم",
+    "report_for": "تقرير عن",
+    "report_generation_in_progress": "يتم إنشاء التقرير. سنحيطك علماً عندما يكون تقريرك جاهزاً.",
+    "reports": "تقارير",
+    "reset_campaign_confirmation": "أدخل اسم الحملة الحالي في مربع النص أدناة لإعادة تعيين جميع المشاركين",
+    "reset_nomination_confirmation": "أدخل اسم الحملة الحالي في مربع النص أدناة لإعادة تعيين كافة الترشيحات",
+    "save": "حفظ",
+    "select_relationnship": "حدد نوع العلاقة",
+    "select_relationship": "حدد نوع العلاقة",
+    "self": "النفس",
+    "set_name_for_evaluator": "عيين اسم مقيم",
+    "setup_nominations": "إعداد الترشيحات",
+    "subject": "الموضوع",
+    "submit": "تسليم",
+    "total_progress": "مجموع التقدم المحرز",
+    "user_name_input_placeholder": "اكتب اسمك أو بريدك الإلكتروني...",
+    "validation_errors": "أخطاء التحقق من الصحة",
+    "view_my_report": "عرض التقرير الخاص بي",
+    "view_nominations": "عرض الترشيحات",
+    "view_reports": "عرض التقارير",
+    "waiting": "منتظر",
+    "you": "أنت",
+    "yourself": "نفسك"
+  },
+  "time": {
+    "am": "am",
+    "formats": {
+      "date": "%d/%m/%y",
+      "datetimepicker_client": "DD/MM/YYYY hh:mm A",
+      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
+      "datetimepicker_server": "%d/%m/%Y %I:%M %p",
+      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
+      "datetimepicker_without_time_client": "DD/MM/YYYY",
+      "datetimepicker_without_time_server": "%d/%m/%Y",
+      "default": "%a, %d %b %Y %H:%M:%S %z",
+      "devise": {
+        "mailer": {
+          "invitation_instructions": {
+            "accept_until_format": "%B %d, %Y %I:%M %p"
+          }
+        }
+      },
+      "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
+      "long": "%B %d, %Y %H:%M",
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
+    },
+    "pm": "pm"
+  },
+  "universal_links": {
+    "deactivate_link": "Deactivate Link",
+    "png": "PNG",
+    "regenerate_link": "Regenerate Link",
+    "svg": "SVG"
+  },
+  "user": {
+    "fields": {
+      "email": "البريد الإلكتروني",
+      "first_name": "الاسم الاول",
+      "last_name": "إسم العائلة"
+    },
+    "form": {
+      "operation_options": {
+        "add_and_allow_new_response": "Add user and allow new response",
+        "add_with_existing_response": "Add user with existing response",
+        "skip_existing": "Skip existing user"
+      }
+    },
+    "modals": {
+      "import": {
+        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
+        "imported_users": "The number of imported users: %{number}",
+        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
+        "title": "Import Users",
+        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
+      }
+    },
+    "toolbar": {
+      "export": "Export Users",
+      "export_completion_status": "Export Completion Status",
+      "import": "Import Users"
+    }
+  },
+  "user_assessments": {
+    "modals": {
+      "remove": {
+        "content": "Are you sure you want to remove assessment '%{name}'?",
+        "successfully": "%{name} assessment removed successfully."
+      }
+    }
+  },
+  "user_reports": {
+    "actions": {
+      "regenerate": "تجديد"
+    },
+    "messages": {
+      "regenerate_successful": "تقرير تجديد المهمة تم جدولتة بنجاح"
+    },
+    "modals": {
+      "remove": {
+        "content": "هل أنت متأكد من أنك تريد إزالة التقرير %{userReportName}؟",
+        "successfully": "تم إزالة تقرير %{userReportName} بنجاح"
+      }
+    },
+    "preview_report": "تقرير المعاينة",
+    "statuses": {
+      "generating": "توليد",
+      "not_prepared": "غير متوفر",
+      "prepared": "متوفر"
+    }
+  },
+  "validations": {
+    "AudioResponse": {
+      "in_progress": {
+        "RECORDED": "تم تسجيل الصوت ولكن لم يتم حفظه",
+        "RECORDING": "التسجيل الصوتي على قيد التنفيذ",
+        "SAVING": "التسجيل الصوتي على قيد التحميل"
+      },
+      "required": "الرجاء تسجيل الصوت وحفظه قبل المتابعة"
+    },
+    "FileUpload": {
+      "in_progress": {
+        "SAVING": "جاري تحميل الملف"
+      },
+      "required": "يرجى تحميل الملف"
+    },
+    "TextEntry": {
+      "Email": {
+        "character_range": "يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها %{min} حرف على الأقل ولا تزيد عن %{max} حرف.",
+        "max_length": "يجب ألا تكون رسالة البريد الإلكتروني التي تم إدخالها أكثر من %{max} حرفًا.",
+        "min_length": "يجب أن تكون رسالة البريد الإلكتروني التي تم إدخالها على الأقل %{min} حرفاً.",
+        "subject": {
+          "min_length": "يجب أن يكون الموضوع مكون من  10 أحرف كحد أدنى"
+        },
+        "to": {
+          "required": "؟؟"
+        }
+      }
+    },
+    "VideoResponse": {
+      "in_progress": {
+        "recorded": "تم تسجيل الفيديو ولكن لم يتم حفظه",
+        "recording": "تسجيل الفيديو على قيد التنفيذ",
+        "saving": "الفيديو المسجل على قيد التحميل"
+      },
+      "required": "الرجاء تسجيل الفيديو وحفظه قبل المتابعة"
+    },
+    "actions_still_in_progress": "الإجراءات أدناه على قيد التنفيذ. إذا تابعت فستفقد هذه البيانات.",
+    "blank": "لا يمكن أن تكون فارغة",
+    "character_range": "يجب على اجابتك أن تكون  %{min} حرف على الأقل و أن لا تزيد عن %{max} حرف.",
+    "date": "يجب أن يكون تاريخ صالح (mm/dd/y)",
+    "each_group_contains": "يجب أن تحتوي كل مجموعة على ما لا يقل عن %{min} عنصر ولا تزيد عن %{max} عنصر",
+    "email": "يجب أن تعطينا بريدًا إلكترونيًا صالحًا",
+    "file_upload": {
+      "EntityTooLarge": "يجب أن يكون حجم الملف أقل من %{maxFileSize} ميغابايت",
+      "WrongFileType": "يجب أن يكون نوع الملف أحد %{allowedFileTypes}"
+    },
+    "issue": "المسأله",
+    "least": "الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).",
+    "least_hotspot": "الرجاء الإجابة على الأقل %{min} الاختيار (الخيارات).",
+    "max_length": "يجب ألا تتجاوز الاستجابة %{max} الأحرف.",
+    "min_length": "يجب أن تكون الاستجابة على الأقل %{min} حرفاً.",
+    "must_rank_between": "الرجاء تعيين قيمة من %{min} إلى %{max} لكل عنصر. لا يسمح تكرار القيم.",
+    "must_select": "الرجاء تحديد من %{min} إلى %{max} الاختيارات",
+    "number": "يجب أن يكون ردك عباره عن رقم",
+    "range": "الرجاء الإجابة على الأقل %{min} ولا تزيد عن %{max} الاختيار (الخيارات).",
+    "required": "يرجى الإجابة على هذا السؤال",
+    "text": "يجب ألا يحتوي ردك على أرقام",
+    "title": {
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
+    }
+  },
+  "views": {
+    "pagination": {
+      "first": "&laquo; First",
+      "last": "Last &raquo;",
+      "next": "Next &rsaquo;",
+      "previous": "&lsaquo; Prev",
+      "truncate": "&hellip;"
+    }
+  },
+  "yes": "Yes",
+  "your": "Your",
+  "yourself": "Yourself"
+});
+I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
+  "activemodel": {
+    "attributes": {
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
+        "report_family_id": "Report Bundle"
+      },
+      "datasheet": {
+        "file": "File (.xlsx)"
+      },
+      "new_assessments_client": {
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
+      },
+      "regenerate_reports": {
+        "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
+      }
+    },
+    "errors": {
+      "models": {
+        "admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "Der Vorname darf nicht leer sein"
+            },
+            "last_name": {
+              "blank": "Nachname darf nicht leer sein"
+            }
+          }
+        },
+        "agile": {
+          "answers": {
+            "blank": "Answers can't be blank"
+          },
+          "group_id": {
+            "blank": "Group id can't be blank"
+          }
+        },
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
+        "create_all": {
+          "attributes": {
+            "evaluators": {
+              "email_duplicated": "The subject and evaluator emails are duplicated"
+            },
+            "subjects": {
+              "email_duplicated": "Some subjects have the same email"
+            }
+          }
+        },
+        "create_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "evaluator_email": {
+              "already_exists": "The subject with this evaluator are already connected",
+              "blank": "Evaluator Email can't be blank",
+              "invalid": "Evaluator Email is invalid"
+            },
+            "evaluator_first_name": {
+              "blank": "Der Vorname des Bewerter darf nicht leer sein"
+            },
+            "evaluator_last_name": {
+              "blank": "Der Nachname des Bewerter darf nicht leer sein"
+            },
+            "evaluator_password": {
+              "too_short": "Evaluator password is too short (minimum is %{count} characters)"
+            },
+            "first_name": {
+              "blank": "Der Vorname darf nicht leer sein"
+            },
+            "last_name": {
+              "blank": "Nachname darf nicht leer sein"
+            },
+            "relationship_name": {
+              "blank": "Relationship can't be blank",
+              "invalid": "Relationship %{name} is invalid"
+            },
+            "subject_email": {
+              "blank": "Subject Email can't be blank",
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
+            }
+          }
+        },
+        "datasheet": {
+          "attributes": {
+            "file": {
+              "email_duplicate": "There are duplicates in Email column",
+              "invalid_format": "Invalid format (.xlsx)",
+              "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            },
+            "scheduled_date": {
+              "blank": "Scheduled date field can't be blank"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "content": {
+              "invalid_consolidated_pipetext": "These pipetext are invalid for consolidate messages %{invalid_pipetexts}",
+              "invalid_unconsolidated_pipetext": "These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}"
+            },
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "Der Vorname darf nicht leer sein"
+            },
+            "last_name": {
+              "blank": "Nachname darf nicht leer sein"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "password_reset": {
+          "attributes": {
+            "email": {
+              "wrong_email": "We couldn't find any user with the email you provided."
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
+            "first_name": {
+              "blank": "Der Vorname darf nicht leer sein"
+            },
+            "last_name": {
+              "blank": "Nachname darf nicht leer sein"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "super_admin_edit": {
+          "attributes": {
+            "email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "Der Vorname darf nicht leer sein"
+            },
+            "last_name": {
+              "blank": "Nachname darf nicht leer sein"
+            }
+          }
+        },
+        "update_assessment": {
+          "attributes": null
+        },
+        "update_norm": {
+          "attributes": {
+            "norm_type": {
+              "inclusion": "Please select the correct norm type"
+            }
+          }
+        },
+        "user": {
+          "attributes": {
+            "email": {
+              "user_exists_in_campaign": "User with this email id already exists in the campaign",
+              "user_exists_in_project": "User with this email id already exists in the project"
+            },
+            "import_data": {
+              "duplicated_emails": "The following email(s) are duplicated in CSV: %{emails}",
+              "invalid_header": "Invalid header, take header from export"
+            }
+          }
+        }
+      }
+    },
+    "models": {
+      "assign_report": "Assign report Form",
+      "datasheet": "Datasheet Form",
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "administration/assessments/assign_form": {
+        "access_reports": "Access Report Rules",
+        "access_reports_at": "Access Report at",
+        "access_reports_at_date": "Date",
+        "access_reports_at_time": "Time",
+        "client_ids": "Client Tenancies",
+        "manager_ids": "Managers",
+        "report_ids": "Reports",
+        "user_ids": "Users"
+      },
+      "assessment": {
+        "active": "Active",
+        "categories": {
+          "360": "360 Campaign",
+          "agile": "AGILE",
+          "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
+          "organisational": "Surveys",
+          "psychometric": "Assessment"
+        },
+        "category": "Category",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "statuses": {
+          "finished": "finished"
+        },
+        "timing": "Timing",
+        "types": {
+          "common": "TTE Assessment",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill Assessment"
+        },
+        "updated_at": "Modified Date"
+      },
+      "assign": {
+        "completed_at": "Completion Date",
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "interrupted": "Interrupted",
+          "not_started": "New",
+          "overdue": "Overdue"
+        }
+      },
+      "block": {
+        "active": "Active",
+        "assign_to_assessment_ids": "Assessments",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "client": {
+        "account_manager": "TTE Account Manager",
+        "account_manager_id": "TTE Account Manager",
+        "applicable_level": "Applicable Level",
+        "applicable_levels": {
+          "campaign": "Campaign",
+          "project": "Project",
+          "sub_campaign": "Sub-Campaign"
+        },
+        "category": "Category",
+        "created_at": "Created Date",
+        "id": "ID",
+        "licenses": "License number",
+        "licenses_expire": "License Expiry Date",
+        "licenses_used": "License Usage",
+        "location": "Location",
+        "logo": "Client logo",
+        "memberships_count": "Users",
+        "name": "Name",
+        "number": "Client Number",
+        "privacy_consent": "Enable data processing consent",
+        "project_manager": "TTE Project Manager",
+        "project_manager_id": "TTE Project Manager",
+        "report_ids": "Reports",
+        "strong_password_enabled": "Enable strong password",
+        "subdomain": "Subdomain",
+        "types": {
+          "associate": "Associate",
+          "corporate": "Corporate",
+          "distributer": "Distributer",
+          "other": "Other",
+          "partner": "Partner",
+          "retail": "Retail",
+          "tte": "TTE"
+        },
+        "updated_at": "Modified Date",
+        "year": "Client Year"
+      },
+      "communication": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "updated_at": "Modified Date"
+      },
+      "dimension": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "factors_count": "No. of Factors",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "parent_id": "Parent",
+        "questions_count": "No. of Questions",
+        "updated_at": "Modified Date"
+      },
+      "hogan_report_setting": {
+        "load_report": "Load report from Hogan"
+      },
+      "innovation_style": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "innovation_styles_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "library": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "type": "Thumbnail",
+        "updated_at": "Modified Date"
+      },
+      "license": {
+        "id": "ID",
+        "number": "License Number",
+        "overuse_number": "Over Use Allowance",
+        "type": "License for",
+        "types": {
+          "common": "Common",
+          "threesixty": "Threesixty"
+        },
+        "unlimited": "Unlimited",
+        "used_number": "Used License Number"
+      },
+      "membership": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "disabled": "Disable",
+        "email": "Email",
+        "first_name": "Vorname",
+        "id": "ID",
+        "last_name": "Nachname",
+        "parent": "Direct Manager",
+        "parent_id": "Direct Manager",
+        "report_ids": "Report IDs",
+        "roles": {
+          "client_admin": "Client Admin",
+          "manager": "Manager",
+          "member": "User",
+          "project_admin": "Project Admin"
+        },
+        "updated_at": "Modified Date",
+        "user_access": "User Access"
+      },
+      "norm": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date",
+        "updated_by": "Edited by"
+      },
+      "occupation": {
+        "active": "Active",
+        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "created_at": "Created Date",
+        "description": "Description",
+        "diploma_qualification": "Diploma Qualification",
+        "full_description": "Full Description",
+        "high_school_entry_roles": "High School Entry Roles",
+        "id": "ID",
+        "key_career_tracks": "Key Career Tracks",
+        "name": "Name",
+        "potential_areas_of_study": "Potential Areas of Study",
+        "updated_at": "Modified Date",
+        "work_environment": "Work Environment"
+      },
+      "occupations_factor": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "product": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "question": {
+        "active": "Active",
+        "assign_to_assessment_ids": "Assessments",
+        "created_at": "Created Date",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified Date"
+      },
+      "report": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "mindmill": "Load report from Mindmill",
+        "mindmill_report": "Mindmill report",
+        "updated_at": "Modified Date"
+      },
+      "report_family": {
+        "created_at": "Created Date",
+        "id": "ID",
+        "updated_at": "Modified Date"
+      },
+      "task": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "description": "Description",
+        "description_label": "DESCRIPTION",
+        "factor_id": "Competency",
+        "factor_id_label": "SELECT COMPETENCY",
+        "id": "ID",
+        "membership_id": "Assigner",
+        "membership_id_label": "SELECT ASSIGNER",
+        "name": "Action Item",
+        "name_label": "ACTION ITEM",
+        "planned_completed_at": "Due Date",
+        "planned_completed_at_label": "SELECT DUE DATE",
+        "priority": "Priority",
+        "priority_label": "PRIORITY",
+        "status": "Status",
+        "status_label": "SELECT STATUS",
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "In Progress",
+          "not_started": "Not Started",
+          "overdue": "Overdue"
+        },
+        "updated_at": "Modified Date",
+        "updated_by": "Edited by"
+      },
+      "threesixty": {
+        "users_result": {
+          "statuses": {
+            "completed": "Completed",
+            "in_progress": "Resume",
+            "not_started": "New"
+          }
+        }
+      },
+      "user": {
+        "active": "Active",
+        "confirmation_sent_at": "Bestätigung gesendet am",
+        "confirmation_token": "Bestätigungs-Token",
+        "confirmed_at": "Bestätigt am",
+        "created_at": "Erstellt am",
+        "current_password": "Bisheriges Passwort",
+        "current_sign_in_at": "Aktuelle Anmeldung vom",
+        "current_sign_in_ip": "IP der aktuellen Anmeldung",
+        "disabled": "Disable",
+        "email": "E-Mail-Addresse",
+        "encrypted_password": "Verschlüsseltes Passwort",
+        "failed_attempts": "Fehlversuche",
+        "first_name": "Vorname",
+        "id": "ID",
+        "last_name": "Nachname",
+        "last_sign_in_at": "Letzte Anmeldung am",
+        "last_sign_in_ip": "IP der letzten Anmeldung",
+        "locked_at": "Gesperrt am",
+        "manage_client_ids": "Client Tenancy",
+        "memberships": "Client Tenancy",
+        "name": "Name",
+        "password": "Passwort",
+        "password_confirmation": "Passwortbestätigung",
+        "remember_created_at": "Angemeldet bleiben vom",
+        "remember_me": "Angemeldet bleiben",
+        "reset_password_sent_at": "Passwort-Zurücksetzen-E-Mail gesendet am",
+        "reset_password_token": "Passwort-Zurücksetzen-Token",
+        "role": "Role",
+        "roles": {
+          "admin": "Admin",
+          "admins": {
+            "admin": "Admin",
+            "project_admin": "Project Admin",
+            "regular": "Client Admin",
+            "superadmin": "Super Admin"
+          },
+          "agile": "AGILE",
+          "case_study": "Case study",
+          "client_admin": "Client Admin",
+          "hogan": "Hogan",
+          "manager": "Manager",
+          "member": "User",
+          "mindmill": "Mindmill",
+          "organisational": "Organisational",
+          "project_admin": "Project Admin",
+          "psychometric": "Psychometric",
+          "regular": "Regular",
+          "super_admin": "Super Admin",
+          "superadmin": "Super Admin",
+          "threesixty": "Threesixty"
+        },
+        "sign_in_count": "Anzahl Anmeldungen",
+        "types": {
+          "anonymous": "Anonymous Users",
+          "identified": "Identified Users"
+        },
+        "unconfirmed_email": "Unbestätigte E-Mail-Adresse",
+        "unlock_token": "Entsperrungs-Token",
+        "updated_at": "Aktualisiert am"
+      },
+      "user_form": {
+        "active": "Active",
+        "created_at": "Created Date",
+        "current_password": "Current password",
+        "disabled": "Disable",
+        "email": "E-Mail-Addresse",
+        "first_name": "Vorname",
+        "id": "ID",
+        "last_name": "Nachname",
+        "parent": "Direct Manager",
+        "parent_id": "Direct Manager",
+        "password": "Passwort",
+        "password_confirmation": "Password confirmation",
+        "role": "Role",
+        "updated_at": "Modified Date"
+      },
+      "users_result": {
+        "assessment_name": "Assessment Name",
+        "assessment_type": "Assessment Type",
+        "completed_at": "Completed At",
+        "completion_reasons": {
+          "time_out_offline": "Time out / Offline",
+          "time_out_online": "Time out / Online",
+          "user_completed": "User Completed"
+        },
+        "email": "Email",
+        "name": "Name",
+        "result_id": "Result ID",
+        "started_at": "Started At",
+        "status": "Status",
+        "statuses": {
+          "completed": "Completed",
+          "in_progress": "Resume",
+          "interrupted": "Interrupted",
+          "not_started": "New"
+        }
+      }
+    },
+    "errors": {
+      "messages": {
+        "admin_for_another_tte": "User already admin in another tte",
+        "not_uniqueness": "Assign has already been taken",
+        "record_invalid": "Validation failed: %{errors}",
+        "restrict_dependent_destroy": {
+          "has_many": "Cannot delete record because dependent %{record} exist",
+          "has_one": "Cannot delete record because a dependent %{record} exists"
+        }
+      },
+      "models": {
+        "factors_norm": {
+          "score_from_must_be_number": "Score from must be number",
+          "score_to_less_than_score_from": "Score to is less than Score from",
+          "score_to_must_be_number": "Score to must be number"
+        },
+        "license": {
+          "attributes": {
+            "used_number": {
+              "overused": "License used can't be more than the sum of license allocated and overuse limit."
+            }
+          },
+          "overuse": "License %{name} is overused"
+        },
+        "media_response": {
+          "attributes": {
+            "base": {
+              "max_takes_limit_reached": "Limit reached for maximum takes"
+            }
+          }
+        },
+        "privacy_link": {
+          "attributes": {
+            "link": {
+              "invalid_http_url": "invalid url"
+            }
+          }
+        },
+        "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
+          "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
+          "has_dependent_relation": "This report is assinged on users",
+          "max_assessment_count": "You have reached the limit of %{max} assessments",
+          "min_assessment_count": "The minimum number of assessments is %{min}"
+        }
+      }
+    },
+    "models": {
+      "administration/assessments/assign_form": "Assigns Form",
+      "assessment": "Assessments",
+      "assign": "Assigns",
+      "block": "Block",
+      "client": "Clients",
+      "communication": "Communication",
+      "dimension": "Dimensions",
+      "factor": "Factors",
+      "factors_norm": "factors_norms",
+      "innovation_style": "Innovation Styles",
+      "innovation_styles_factor": "Innovation Styles",
+      "library": "Library",
+      "license": "License",
+      "membership": "Membership",
+      "norm": "Norms",
+      "occupation": "Occupations",
+      "occupations_factor": "Occupations",
+      "product": "Product",
+      "question": "Question",
+      "report": "Report",
+      "report_family": "ReportFamily",
+      "task": "Tasks",
+      "user": {
+        "one": "Benutzer",
+        "other": "Benutzer"
+      },
+      "user_form": "User"
+    }
+  },
+  "admin_jobs": {
+    "attrs": {
+      "active": "Active",
+      "created_at": "Created Date",
+      "id": "ID",
+      "name": "Name",
+      "operations": {
+        "bulk_reports": "Bulk Reports",
+        "import_raw_data": "Import Raw Data",
+        "import_scoring_data": "Import Scoring Data",
+        "import_users": "Import Users",
+        "regenerate_campaign_reports": "Regenerate Campaign Reports",
+        "regenerate_report": "Regenerate Report",
+        "rescore_assessment": "Rescore Assessment",
+        "rescore_user_assessment": "Rescore User Assessment"
+      },
+      "statuses": {
+        "completed": "Completed",
+        "completed_with_errors": "Completed with errors",
+        "in_progress": "In Progress",
+        "scheduled": "Scheduled"
+      },
+      "updated_at": "Modified Date"
+    },
+    "close": "Close",
+    "details": "Details",
+    "errors": "Errors",
+    "mark_as_read": "Mark all read",
+    "more": "More",
+    "notifications": "Notifications",
+    "results": "Results"
+  },
+  "administration": {
+    "actions": "Actions",
+    "active": "Active",
+    "administrator": {
+      "invitations": {
+        "edit": {
+          "confirm_password_label": "Confirm Password",
+          "instruction": "To create a new password, please enter your new password in the boxes below.",
+          "password_label": "Password",
+          "submit": "Set New Password",
+          "title": "Create password"
+        }
+      },
+      "passwords": {
+        "edit": {
+          "confirm_password_label": "Confirm Password",
+          "instruction": "To change the password, please enter your new password in the boxes below.",
+          "password_label": "Password",
+          "submit": "Set New Password",
+          "title": "Change your password"
+        }
+      },
+      "sessions": {
+        "new": {
+          "forgot_password": "Forgot your password?",
+          "instruction": "Please login with your personal account information",
+          "password_placeholder": "Password",
+          "submit": "Login",
+          "title": "Welcome!"
+        }
+      },
+      "shared": {
+        "links": {
+          "about": "About",
+          "app_name": "© 2016 AppName",
+          "contact_us": " Contact Us",
+          "faqs": " FAQs",
+          "privacy": "Privacy Statement",
+          "terms_conditions": " Terms & Conditions"
+        },
+        "simple_design": {
+          "design": "Design",
+          "or": "Or"
+        }
+      }
+    },
+    "all": " - All - ",
+    "any": " - Any - ",
+    "assessments": {
+      "assessment": "Assessment",
+      "assigns": {
+        "create": {
+          "successfully": "You successfully finished assigning %{name}"
+        },
+        "form": {
+          "empty_client_ids": "Select clients to continue"
+        },
+        "new": {
+          "help_block": "Select Clients and then click to the button \"Load Form\"",
+          "load_form": "Load Form",
+          "title": "Assign %{name} Assessment"
+        },
+        "users": {
+          "filter": "Filter",
+          "filter_form": "Filter form",
+          "not_selected_users": "Not Selected Users",
+          "selected_users": "Selected Users"
+        }
+      },
+      "copy": {
+        "error": "Assessment #%{name} was not copied.",
+        "successfully": "Assessment %{name} was Copied Successfully."
+      },
+      "create": {
+        "successfully": "Assessment %{name} was Created Successfully."
+      },
+      "dashboard": "Assessment Dashboard",
+      "destroy": {
+        "successfully": "Assessment %{name} was Deleted Successfully."
+      },
+      "edit": {
+        "header": "Assessment Settings"
+      },
+      "form": {
+        "categories": {
+          "360": "360 Feedback",
+          "agile": "AGILE",
+          "all": "All Categories",
+          "case_study": "Case Studies",
+          "hogan": "Hogan",
+          "mindmill": "Mindmill",
+          "organisational": "Org Surveys",
+          "psychometric": "Psychometrics",
+          "threesixty": "Threesixty"
+        },
+        "statuses": {
+          "finished": "Finished",
+          "in_progress": "In progress"
+        },
+        "timing": {
+          "hint": "For Example: 30 minutes to complete"
+        }
+      },
+      "index": {
+        "filterrific": {
+          "with_category": {
+            "360": "360 Feedback",
+            "agile": "AGILE",
+            "all": "All Categories",
+            "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
+            "organisational": "Org Surveys",
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
+          }
+        },
+        "new": "Add",
+        "owner": "Owner",
+        "title": "Assessments",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "list": {
+        "active": "Active",
+        "created_at": "Created date",
+        "dimension_id": "Dimension Id",
+        "id": "Id",
+        "name": "Name",
+        "type": "Type",
+        "updated_at": "Modified date"
+      },
+      "new": {
+        "header": "New assessment"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
+            "title": "Delete <strong>Assessment</strong>?"
+          },
+          "soft_delete": {
+            "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+            "title": "Soft Delete <strong>Assessment</strong>?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        },
+        "in_progress": {
+          "copying": "Copying",
+          "deleting": "Deleting",
+          "restoring": "Restoring"
+        },
+        "tooltips": {
+          "archive": "Archive Assessment",
+          "copy": "Copy Assessment",
+          "delete": "Delete Assessment",
+          "edit": "Edit Assessment",
+          "restore": "Restore",
+          "soft_delete": "Soft Delete Assessment"
+        }
+      },
+      "restore": {
+        "successfully": "Assessment %{name} was Restored Successfully."
+      },
+      "sidebar": {
+        "assign": "Assign Assessment",
+        "builder": "Questions Builder",
+        "copy": "Copy Assessment",
+        "destroy": "Delete Assessment",
+        "disable": "Disable",
+        "edit": "Assessment Settings",
+        "enable": "Enable",
+        "export": "Export Scoring",
+        "new": "New Assessment",
+        "preview": "Preview Assessment",
+        "title": "Assessment's options"
+      },
+      "soft_delete": {
+        "successfully": "Assessment %{name} was moved to Trash Successfully."
+      },
+      "toggle_archive": {
+        "successfully": "Assessment %{name} was %{status} successfully."
+      },
+      "toggle_status": {
+        "successfully": "Assessment %{name} was Updated Successfully."
+      },
+      "update": {
+        "successfully": "Assessment %{name} was Updated Successfully."
+      }
+    },
+    "assigns": {
+      "create": {
+        "successfully": "New assign to assessment was successfully created"
+      },
+      "destroy": {
+        "successfully": "Assign to assessment was successfully deleted"
+      },
+      "index": {
+        "title": "Reports"
+      },
+      "new": {
+        "header": "Assign Assessment and Reports"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this assign?</p>",
+            "title": "Delete <strong>%{name}</strong> ?"
+          }
+        }
+      }
+    },
+    "assigns_reports": {
+      "edit": {
+        "header": "Edit report assignment"
+      }
+    },
+    "back": "Back",
+    "base": {
+      "id": "id",
+      "top_sidebar": {
+        "search": "Search...",
+        "sign_out_message": {
+          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
+          "title": "Log <strong>Out</strong> ?"
+        }
+      }
+    },
+    "blocks": {
+      "copy": {
+        "successfully": "Block %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Block %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Block %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Block"
+      },
+      "new": {
+        "header": "New Block"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Block?</p>\n",
+            "title": "Delete <strong>Block</strong> ?"
+          },
+          "toggle_status": {
+            "body": "<p>Are you sure you want to %{status} this Block?</p>\n",
+            "title": "<strong>%{status}</strong> %{name}?"
+          }
+        }
+      }
+    },
+    "breadcrumbs": {
+      "admins": "Admins",
+      "assessments": "Assessments",
+      "campaign_templates": "Campaign Templates",
+      "campaigns": "Campaigns",
+      "client": "Client Tenancy",
+      "client_admins": "Client Admins",
+      "clients": "Client Tenancies",
+      "communication_center": "Communication Center",
+      "create": "Create",
+      "datasheets": "Datasheets",
+      "design": "Design",
+      "dimension": "Dimension",
+      "dimensions": "Dimensions",
+      "factors": "Factors",
+      "home": "Dashboard",
+      "innovation_styles": "Innovation Styles",
+      "innovation_styles_factors": "Factors",
+      "libraries": "Media Library",
+      "licenses": "Licenses",
+      "new_campaign": "New Campaign",
+      "norm": "Norm",
+      "norms": "Norms",
+      "norms_editor": "Norm Editor",
+      "occupations": "Occupations",
+      "occupations_factors": "Factors",
+      "products": "Products",
+      "project_admins": "Project Admins",
+      "projects": "Projects",
+      "psychometrics": "Psychometrics",
+      "question_center": "Question Center",
+      "registration_codes": "Registration Codes",
+      "report_families": "Report Bundles",
+      "reports": "Reports",
+      "statistics": "Statistics",
+      "sub_campaigns": "Sub Campaigns",
+      "sub_factors": "Sub-Factors",
+      "survey": "Survey",
+      "surveys": "Surveys",
+      "users": "Users",
+      "users_add": "Add New",
+      "users_import": "Import"
+    },
+    "bulk_reports": {
+      "create": {
+        "no_data": "No data is available for the report type and time range specified",
+        "successfully": "The reports are being created and you will be notified via email when ready"
+      },
+      "download": {
+        "removed": "Sorry, the file has been removed from the system after one week of storage"
+      },
+      "form": {
+        "end_date": "End date",
+        "start_date": "Start date"
+      },
+      "mailer": {
+        "subject": "Download bulk reports"
+      },
+      "new": {
+        "header": "Bulk Download"
+      }
+    },
+    "cable": {
+      "notification": {
+        "assessment_factors": "Factors are fetched",
+        "assessment_update": "Assessment is updated",
+        "block_clone": "Block is copied",
+        "block_create": "Block %{name} is created",
+        "block_create_by_template": "Block was loaded from template",
+        "block_destroy": "Block has been deleted",
+        "block_move_down": "Block %{name} is moved down",
+        "block_move_up": "Block %{name} is moved up",
+        "block_permanent_destroy": "Block is permanently deleted",
+        "block_rename": "Block is renamed",
+        "block_restore": "Block is restored",
+        "block_save_as_template": "Block saved as template",
+        "block_unlink_template": "Block was unlinked",
+        "block_update": "Block is updated",
+        "comment_create": "Comment is created",
+        "comment_destroy": "Comment has been deleted",
+        "geo_filter": "Data filtered",
+        "module_create": "Module %{name} is created",
+        "module_destroy": "Module has been deleted",
+        "module_insert_after": "Module is inserted after",
+        "module_insert_before": "Module is inserted before",
+        "module_move_down": "Module is moved down",
+        "module_move_up": "Module is moved up",
+        "module_rename": "Module is renamed",
+        "module_update": "Module is updated",
+        "page_create": "Page %{name} is created",
+        "page_destroy": "Page has been deleted",
+        "page_move_down": "Page %{name} is moved down",
+        "page_move_up": "Page %{name} is moved up",
+        "page_rename": "Page is renamed",
+        "page_update": "Page is updated",
+        "question_clone": "Question is copied",
+        "question_create": "Question %{name} is created",
+        "question_create_by_template": "Question was loaded from template",
+        "question_create_from_template": "Question is created from template",
+        "question_destroy": "Question has been deleted",
+        "question_insert_after": "Question is inserted after",
+        "question_insert_before": "Question is inserted before",
+        "question_move_down": "Question is moved down",
+        "question_move_up": "Question is moved up",
+        "question_permanent_destroy": "Question is permanently deleted",
+        "question_rename": "Question is renamed",
+        "question_restore": "Question is restored",
+        "question_save_as_template": "Question saved as template",
+        "question_unlink_template": "Question was unlinked",
+        "question_update": "Question is updated",
+        "report_change_aliases": "Aliases are updated",
+        "report_change_data_configuration": "Data Report Configuration was successfully updated",
+        "report_change_filters": "Filters are updated",
+        "report_update": "Report is updated",
+        "scoring_update": "Scoring is updated",
+        "trash_empty": "Trash Comment empty"
+      }
+    },
+    "campaign_templates": {
+      "base": {
+        "active": "Active",
+        "archived": "Archived",
+        "disable": "Archive",
+        "enable": "Unarchive"
+      },
+      "copy": {
+        "error": "Client Tenancy %{name} was not copied.",
+        "successfully": "Client Tenancy %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Client Tenancy %{name} was successfully created."
+      },
+      "designs": {
+        "form": {
+          "no_background": "No Background yet",
+          "no_logo": "No Logo yet"
+        }
+      },
+      "destroy": {
+        "successfully": "Client Tenancy %{name} was successfully deleted."
+      },
+      "edit": {
+        "header": "Edit Client"
+      },
+      "export": {
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
+      },
+      "index": {
+        "export": "Export",
+        "new": "Add",
+        "title": "Campaign templates"
+      },
+      "license": {
+        "header": "%{name} - Edit license"
+      },
+      "licenses": {
+        "update": {
+          "duplicate_licenses": "You have duplicate licenses",
+          "successfully": "Licenses successfully updated"
+        }
+      },
+      "list": {
+        "admin": "Client admin",
+        "client_admins": "Client admins",
+        "created_at": "Created date",
+        "name": "Name",
+        "report_bundle": "Report bundle",
+        "updated_at": "Updated date"
+      },
+      "new": {
+        "header": "New Client"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Campaign Template?</p>\n",
+            "title": "Delete <strong>%{name}</strong> ?"
+          },
+          "disable": {
+            "body": {
+              "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
+              "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
+              "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
+              "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+            },
+            "title": "Archive <strong>%{name}</strong> ?"
+          },
+          "enable": {
+            "body": {
+              "0": "<p>Are you sure you want to unarchive?</p>",
+              "1": "<p>Are you sure you want to unarchive?</p>",
+              "2": "<p>Are you sure you want to unarchive?</p>",
+              "3": "<p>Are you sure you want to unarchive?</p>"
+            },
+            "title": "Unarchive <strong>%{name}</strong> ?"
+          }
+        },
+        "in_progress": {
+          "deleting": "Deleting"
+        },
+        "tooltips": {
+          "copy": "Copy Client",
+          "create_admin": "Create Client Admin",
+          "delete": "Delete Client",
+          "disable": "Disable Client",
+          "edit": "Edit Client",
+          "enable": "Enable Client"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Client",
+        "design": "Edit Design",
+        "destroy": "Delete Client",
+        "disable": "Disable",
+        "edit": "Edit Client",
+        "enable": "Enable",
+        "licenses": "Manage Licenses",
+        "new": "New Client",
+        "title": "Campaign options"
+      },
+      "toggle_status": {
+        "successfully": "Client Tenancy %{name} was successfully updated."
+      },
+      "update": {
+        "successfully": "Client Tenancy %{name} was successfully updated."
+      },
+      "url": "Url"
+    },
+    "campaigns": {
+      "actions": "Manage",
+      "form": {
+        "name": "Name",
+        "status": "Status"
+      },
+      "listing": {
+        "assessments": "Assessments",
+        "id": "Id",
+        "name": "Name",
+        "reports": "Reports",
+        "status": "Status",
+        "type": "Type"
+      },
+      "options": {
+        "duration": "",
+        "fixed_time": "Fixed Time",
+        "instructions": {
+          "actions": {
+            "saved": "Instructions saved successfully"
+          },
+          "enable": "Enable instructions",
+          "save": "Save Instructions"
+        },
+        "proctoring": {
+          "enable": "Enable Proctoring",
+          "identification": "Identification",
+          "identifications": {
+            "face": "Face",
+            "face_and_passport": "Face and Passport",
+            "passport": "Passport"
+          },
+          "rule_types": {
+            "allow_absence_in_frame": "Allow absense in frame",
+            "allow_to_use_books": "Allow to use Books",
+            "allow_to_use_calculator": "Allow to use calculator",
+            "allow_to_use_excel": "Allow to use Excel",
+            "allow_to_use_human_assistant": "Allow to use human assistant",
+            "allow_to_use_messengers": "Allow to use messengers",
+            "allow_to_use_paper": "Allow to use Paper",
+            "allow_to_use_websites": "Allow to use Websites",
+            "allow_voices": "Allow Voices",
+            "allow_wrong_gaze_direction": "Allow wrong gaze direction"
+          },
+          "rules": "Rules"
+        }
+      },
+      "users": {
+        "completed_via": "Completed Via",
+        "completion_status": "Status",
+        "created_by": "Created By",
+        "email": "Email",
+        "id": "Id",
+        "is_active": "Active",
+        "name": "Name",
+        "updated_by": "Updated By"
+      },
+      "validations": {
+        "dates": {
+          "end": "must be after the start date"
+        }
+      }
+    },
+    "choose": " - Choose - ",
+    "clear": "Clear",
+    "clients": {
+      "api_keys": {
+        "create": {
+          "successfully": "New API key was successfully created."
+        },
+        "index": {
+          "breadcrumb": "%{name}'s API keys",
+          "new": "Create new API key",
+          "title": "%{name}'s API keys"
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created",
+          "key": "Key",
+          "token": "Token",
+          "updated_at": "Last modified"
+        },
+        "resource": {
+          "confirmations": {
+            "create": {
+              "body": "<p>Are you sure you want to create a new API key?</p>\n",
+              "title": "<strong>Create</strong> a new API key?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this API key?</p>\n",
+              "title": "<strong>%{status}</strong> API key?"
+            }
+          },
+          "copy": "Copy",
+          "show_and_copy": "Show and Copy"
+        },
+        "toggle_status": {
+          "successfully": "API key was successfully updated."
+        }
+      },
+      "assessments": {
+        "assessment": "Assessment",
+        "assigns": {
+          "form": {
+            "empty_client_ids": "Select clients to continue"
+          }
+        },
+        "copy": {
+          "error": "Assessment #%{name} was not copied.",
+          "successfully": "Assessment %{name} was Copied Successfully."
+        },
+        "create": {
+          "successfully": "Assessment %{name} was Created Successfully."
+        },
+        "dashboard": "Assessment Dashboard",
+        "destroy": {
+          "successfully": "Assessment %{name} was Deleted Successfully."
+        },
+        "edit": {
+          "header": "Assessment Settings"
+        },
+        "form": {
+          "categories": {
+            "360": "360 Feedback",
+            "agile": "AGILE",
+            "all": "All Categories",
+            "case_study": "Case Studies",
+            "hogan": "Hogan",
+            "mindmill": "Mindmill",
+            "organisational": "Org Surveys",
+            "psychometric": "Psychometrics",
+            "threesixty": "Threesixty"
+          },
+          "statuses": {
+            "finished": "Finished",
+            "in_progress": "In progress"
+          },
+          "timing": {
+            "hint": "For Example: 30 minutes to complete"
+          }
+        },
+        "index": {
+          "filterrific": {
+            "with_category": {
+              "360": "360 Feedback",
+              "agile": "AGILE",
+              "all": "All Categories",
+              "case_study": "Case Studies",
+              "hogan": "Hogan",
+              "mindmill": "Mindmill",
+              "organisational": "Org Surveys",
+              "psychometric": "Psychometrics",
+              "threesixty": "Threesixty"
+            }
+          },
+          "new": "Add",
+          "owner": "Owner",
+          "title": "Assessments",
+          "tooltips": {
+            "create": "Create"
+          }
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created date",
+          "dimension_id": "Dimension Id",
+          "id": "Id",
+          "name": "Name",
+          "type": "Type",
+          "universal_link": "Universal link",
+          "updated_at": "Modified date"
+        },
+        "new": {
+          "header": "New assessment"
+        },
+        "resource": {
+          "activate_universal_link": "Activate Universal Link",
+          "confirmations": {
+            "delete": {
+              "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
+              "title": "Delete <strong>Assessment</strong>?"
+            },
+            "soft_delete": {
+              "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
+              "title": "Soft Delete <strong>Assessment</strong>?"
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            },
+            "universal_links": {
+              "regeneration": {
+                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
+                "title": "Are you sure?"
+              }
+            }
+          },
+          "deactivate_universal_link": "Deactivate Universal Link",
+          "export": "Export",
+          "external_results": "External Results",
+          "generate_universal_link": "Generate Universal Link",
+          "import": "Import",
+          "in_progress": {
+            "copying": "Copying",
+            "deleting": "Deleting",
+            "restoring": "Restoring"
+          },
+          "link": "Link",
+          "mindmill_results": "Mindmill",
+          "na": "N/A",
+          "normed_results": "Normed results",
+          "png": "PNG",
+          "qr_code": "QR code",
+          "raw_results": "Raw results",
+          "regenerate_universal_link": "Regenerate Universal Link",
+          "scoring_results": "Scoring results",
+          "svg": "SVG",
+          "tooltips": {
+            "archive": "Archive Assessment",
+            "copy": "Copy Assessment",
+            "delete": "Delete Assessment",
+            "edit": "Edit Assessment",
+            "restore": "Restore",
+            "soft_delete": "Soft Delete Assessment"
+          }
+        },
+        "restore": {
+          "successfully": "Assessment %{name} was Restored Successfully."
+        },
+        "select_raw_export_type": {
+          "export_with_labels": "Export raw result with labels",
+          "export_without_labels": "Export raw result without labels",
+          "select_type": "Select Export Type"
+        },
+        "sidebar": {
+          "assign": "Assign Assessment",
+          "builder": "Questions Builder",
+          "copy": "Copy Assessment",
+          "destroy": "Delete Assessment",
+          "disable": "Disable",
+          "edit": "Assessment Settings",
+          "enable": "Enable",
+          "export": "Export Scoring",
+          "new": "New Assessment",
+          "preview": "Preview Assessment",
+          "title": "Assessment's options"
+        },
+        "soft_delete": {
+          "successfully": "Assessment %{name} was moved to Trash Successfully."
+        },
+        "toggle_archive": {
+          "successfully": "Assessment %{name} was %{status} successfully."
+        },
+        "toggle_status": {
+          "successfully": "Assessment %{name} was Updated Successfully."
+        },
+        "update": {
+          "successfully": "Assessment %{name} was Updated Successfully."
+        }
+      },
+      "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
+        "edit": {
+          "header": "Manage assigned Assessments"
+        },
+        "form": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
+        },
+        "new": {
+          "header": "Add Assessments"
+        }
+      },
+      "assign_reports": {
+        "edit": {
+          "header": "Add Reports"
+        },
+        "form": {
+          "access": "Access",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
+        "form_edit": {
+          "access": "Access",
+          "added_reports": "Already assigned Reports",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
+        "form_new": {
+          "access": "Access",
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "reports": "Reports",
+          "user_access": "User Access"
+        },
+        "new": {
+          "header": "Add Reports"
+        }
+      },
+      "base": {
+        "active": "Active",
+        "archived": "Archived",
+        "disable": "Archive",
+        "enable": "Unarchive"
+      },
+      "campaigns": {
+        "archive": {
+          "successfully": "Campaign %{name} was successfully archived."
+        },
+        "copy": {
+          "error": "Campaign %{name} was not copied.",
+          "successfully": "Campaign %{name} was successfully copied."
+        },
+        "create": {
+          "successfully": "Campaign %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Campaign %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Campaign"
+        },
+        "export": {
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "header": {
+            "actions": "Actions",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
+            "campaigns": "Campaigns",
+            "name": "Name",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
+            "users": "Users"
+          },
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
+        },
+        "index": {
+          "export": "Export",
+          "new": "Add",
+          "title": "Campaigns"
+        },
+        "list": {
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "header": {
+            "actions": "Actions",
+            "actual_usage": "Actual usage",
+            "assessments": "Assessments",
+            "campaigns": "Campaigns",
+            "name": "Name",
+            "reports": "Reports",
+            "sub_campaigns": "Sub-Campaigns",
+            "tests_allocated": "Tests allocated",
+            "users": "Users"
+          },
+          "id": "Id",
+          "name": "Campaign name",
+          "reports": "Reports",
+          "updated_at": "Updated date"
+        },
+        "new": {
+          "header": "New Campaign"
+        },
+        "resource": {
+          "sub_campaign": {
+            "create": "Create New Sub-Campaign"
+          },
+          "tooltips": {
+            "copy": "Copy Campaign",
+            "create_report": "Add New Report",
+            "create_user": "Add New User",
+            "delete": "Delete Campaign",
+            "edit": "Edit Campaign",
+            "export": "Export"
+          }
+        },
+        "sidebar": {
+          "archive": "Archive campaign",
+          "copy": "Copy campaign",
+          "destroy": "Delete campaign",
+          "disable": "Disable",
+          "edit": "Edit campaign",
+          "enable": "Enable",
+          "new": "New campaign",
+          "title": "Campaign's options",
+          "view_licenses": "View licenses"
+        },
+        "toggle_status": {
+          "successfully": "Campaign %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "Campaign %{name} was successfully updated."
+        }
+      },
+      "client_admins": {
+        "create": {
+          "successfully": "User %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "User %{name} was successfully deleted."
+        },
+        "edit": {
+          "add": "Add",
+          "grants": "Privileges",
+          "hris_data": "HRIS Data",
+          "key": "Key",
+          "personal_data": "Personal Data",
+          "remove": "Remove",
+          "title": "Edit user",
+          "value": "Value"
+        },
+        "form": {
+          "choose": " - Choose - ",
+          "choose_admin": "Choose Admin",
+          "create_admin": "Create Admin"
+        },
+        "index": {
+          "breadcrumb": "Client Admins",
+          "title": "Client Admins"
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
+          "updated_at": "Modified Date"
+        },
+        "new": {
+          "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
+          }
+        },
+        "reset_password": {
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
+        },
+        "resource": {
+          "confirmations": {
+            "change_password": {
+              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+              "title": "Change password <strong>%{name}</strong> ?"
+            },
+            "delete": {
+              "body": "<p>Are you sure you want to delete this User?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "membership": {
+              "delete": {
+                "body": "<p>Are you sure you want to delete?</p>\n",
+                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
+              }
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "change_password": "Change Password",
+            "chart": "View user report",
+            "delete": "Delete User",
+            "edit": "Edit User",
+            "mail": "Send Mail",
+            "sign_in": "Login as user"
+          }
+        },
+        "sidebar": {
+          "api_keys": "API keys",
+          "assessments_and_reports": "Assessments and Reporting",
+          "destroy": "Delete User",
+          "disable": "Disable",
+          "edit_user": "Edit User",
+          "email": "Send Mail",
+          "enable": "Enable",
+          "export_users": "Export users",
+          "import_users": "Import users",
+          "login_as_user": "Login as User",
+          "new_user": "New User",
+          "reset_password": "Change Password",
+          "title": "User's options"
+        },
+        "spoof": {
+          "successfully": "You was successfully login as %{name}"
+        },
+        "toggle_status": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "user": "User"
+      },
+      "copy": {
+        "error": "Client Tenancy %{name} was not copied.",
+        "successfully": "Client Tenancy %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Client Tenancy %{name} was successfully created."
+      },
+      "datasheet_rows": {
+        "create": {
+          "successfully": "New Datasheet was successfully uploaded."
+        },
+        "destroy": {
+          "successfully": "Datasheet Row %{name} was successfully deleted."
+        },
+        "index": {
+          "new": "Upload datasheet",
+          "title": "%{name} Datasheet"
+        },
+        "list": {
+          "created_at": "Created date",
+          "email": "Email",
+          "updated_at": "Updated date"
+        },
+        "new": {
+          "header": "Upload datasheet"
+        },
+        "resource": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Datasheet Row?</p>\n",
+            "title": "Delete <strong>%{name}</strong> ?"
+          },
+          "tooltips": {
+            "delete": "Delete"
+          }
+        }
+      },
+      "designs": {
+        "form": {
+          "no_background": "No Background yet",
+          "no_logo": "No Logo yet"
+        }
+      },
+      "destroy": {
+        "successfully": "Client Tenancy %{name} was successfully deleted."
+      },
+      "edit": {
+        "enable_2fa": "Enable Two Factor Authentication",
+        "header": "Edit Client"
+      },
+      "export": {
+        "account_manager_id": "Account manager",
+        "admin": "Client Admin",
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_admin": "Project admin",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
+      },
+      "index": {
+        "export": "Export",
+        "new": "Add",
+        "title": "Client Tenancies"
+      },
+      "license": {
+        "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "actions": "Actions",
+          "activated_at": "Activated at",
+          "activated_by": "Activated by",
+          "campaign_name": "Campaign Name",
+          "created_at": "Created at",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        },
+        "resource": {
+          "tooltips": {
+            "deactivate": "Deactivate license"
+          }
+        },
+        "toggle_status": {
+          "successfully": "The license was %{status} successfully"
+        }
+      },
+      "licenses": {
+        "create": {
+          "successfully": "License was successfully created."
+        },
+        "edit": {
+          "header": "Edit License"
+        },
+        "form": {
+          "add_license": "Add Another License",
+          "license_number": "License Number",
+          "license_overuse_number": "Over Use Allowance",
+          "report_family": "Report Bundle"
+        },
+        "index": {
+          "new": "Add License",
+          "report_family": "Report Bundle",
+          "title": "%{client_name} - Manage Licenses"
+        },
+        "list": {
+          "active": "Active",
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
+          "license_has_expired": "License package has expired",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "type": "Type",
+          "usage_percent": "% of Usage",
+          "used_license_number": "Used licenses",
+          "used_license_overuse_number": "Over Use Allowance",
+          "used_out_of": "%{used_number} out of %{number}"
+        },
+        "new": {
+          "header": "Add License"
+        },
+        "overview": {
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
+          "license_has_expired": "License package has expired",
+          "license_type": "License type",
+          "name": "Name",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "usage_percent": "% of Usage",
+          "used_license_number": "Used licenses",
+          "used_license_overuse_number": "Over Use Allowance",
+          "used_out_of": "%{used_number} out of %{number}"
+        },
+        "resource": {
+          "confirmations": {
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this License?</p>\n",
+              "title": "<strong>%{status}</strong> License for %{name}?"
+            }
+          },
+          "tooltips": {
+            "edit": "Edit License"
+          }
+        },
+        "show": {
+          "date_expire": "Date Of expiry: %{date}",
+          "end_date": "End date",
+          "header": "%{client_name} - Licenses usage",
+          "license_has_expired": "License package has expired",
+          "license_type": "License type",
+          "report_family": "Report bundle",
+          "start_date": "Start date",
+          "usage_percent": "% of Usage",
+          "used_license_number": "Used licenses",
+          "used_license_overuse_number": "Over Use Allowance",
+          "used_out_of": "%{used_number} out of %{number}"
+        },
+        "toggle_status": {
+          "successfully": "Status of License was successfully updated."
+        },
+        "update": {
+          "duplicate_licenses": "You have duplicate licenses",
+          "successfully": "Licenses successfully updated"
+        }
+      },
+      "list": {
+        "account_manager_id": "Account manager",
+        "admin": "Client Admin",
+        "client_admins": "Client admins",
+        "end_date": "End date",
+        "id": "Id",
+        "location": "Location",
+        "name": "Name",
+        "number": "Number",
+        "project_manager_id": "Project manager",
+        "report_bundle": "Report bundle",
+        "start_date": "Start date",
+        "type": "Type",
+        "usage_percent": "Usage %",
+        "used_license_number": "Used license number",
+        "used_license_overuse_number": "License overuse number",
+        "year": "Year"
+      },
+      "new": {
+        "header": "New Client"
+      },
+      "project_admins": {
+        "create": {
+          "successfully": "User %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "User %{name} was successfully deleted."
+        },
+        "edit": {
+          "add": "Add",
+          "grants": "Privileges",
+          "hris_data": "HRIS Data",
+          "key": "Key",
+          "personal_data": "Personal Data",
+          "remove": "Remove",
+          "title": "Edit user",
+          "value": "Value"
+        },
+        "form": {
+          "choose": " - Choose - ",
+          "choose_admin": "Choose Admin",
+          "create_admin": "Create Admin"
+        },
+        "index": {
+          "breadcrumb": "Project Admins",
+          "title": "Project Admins"
+        },
+        "list": {
+          "active": "Active",
+          "created_at": "Created Date",
+          "email": "Email",
+          "first_name": "First name",
+          "id": "Id",
+          "last_name": "Last name",
+          "role": "Role",
+          "updated_at": "Modified Date"
+        },
+        "new": {
+          "header": "New user"
+        },
+        "password": {
+          "guidelines": {
+            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
+          }
+        },
+        "reset_password": {
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
+        },
+        "resource": {
+          "confirmations": {
+            "change_password": {
+              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+              "title": "Change password <strong>%{name}</strong> ?"
+            },
+            "delete": {
+              "body": "<p>Are you sure you want to delete this User?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            },
+            "membership": {
+              "delete": {
+                "body": "<p>Are you sure you want to delete?</p>\n",
+                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
+              },
+              "toggle_status": {
+                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
+                "title": "<strong>%{status}</strong> %{name}'s Membership?"
+              }
+            },
+            "toggle_status": {
+              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
+              "title": "<strong>%{status}</strong> %{name}?"
+            }
+          },
+          "tooltips": {
+            "change_password": "Change Password",
+            "chart": "View user report",
+            "delete": "Delete User",
+            "edit": "Edit User",
+            "mail": "Send Mail",
+            "sign_in": "Login as user"
+          }
+        },
+        "sidebar": {
+          "api_keys": "API keys",
+          "assessments_and_reports": "Assessments and Reporting",
+          "destroy": "Delete User",
+          "disable": "Disable",
+          "edit_user": "Edit User",
+          "email": "Send Mail",
+          "enable": "Enable",
+          "export_users": "Export users",
+          "import_users": "Import users",
+          "login_as_user": "Login as User",
+          "new_user": "New User",
+          "reset_password": "Change Password",
+          "title": "User's options"
+        },
+        "spoof": {
+          "successfully": "You was successfully login as %{name}"
+        },
+        "toggle_status": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "user": "User"
+      },
+      "projects": {
+        "archive": {
+          "successfully": "Project %{name} was successfully archived."
+        },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
+        "campaigns": {
+          "archive": {
+            "successfully": "Campaign %{name} was successfully archived."
+          },
+          "copy": {
+            "error": "Campaign %{name} was not copied.",
+            "successfully": "Campaign %{name} was successfully copied."
+          },
+          "create": {
+            "successfully": "Campaign %{name} was successfully created."
+          },
+          "destroy": {
+            "successfully": "Campaign %{name} was successfully deleted."
+          },
+          "edit": {
+            "header": "Edit Campaign"
+          },
+          "export": {
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
+            "header": {
+              "actions": "Actions",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
+              "campaigns": "Campaigns",
+              "name": "Name",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
+              "users": "Users"
+            },
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
+          },
+          "index": {
+            "export": "Export",
+            "new": "Add",
+            "title": "Campaigns"
+          },
+          "list": {
+            "assessments": "Assessments",
+            "assigned_user": "Assigned users",
+            "completed_user": "Completed users",
+            "created_at": "Created date",
+            "header": {
+              "actions": "Actions",
+              "actual_usage": "Actual usage",
+              "assessments": "Assessments",
+              "campaigns": "Campaigns",
+              "name": "Name",
+              "reports": "Reports",
+              "sub_campaigns": "Sub-Campaigns",
+              "tests_allocated": "Tests allocated",
+              "users": "Users"
+            },
+            "id": "Id",
+            "name": "Campaign name",
+            "reports": "Reports",
+            "updated_at": "Updated date"
+          },
+          "new": {
+            "header": "New Campaign"
+          },
+          "resource": {
+            "sub_campaign": {
+              "create": "Create New Sub-Campaign"
+            },
+            "tooltips": {
+              "copy": "Copy Campaign",
+              "create_report": "Add New Report",
+              "create_user": "Add New User",
+              "delete": "Delete Campaign",
+              "edit": "Edit Campaign",
+              "export": "Export"
+            }
+          },
+          "sidebar": {
+            "archive": "Archive campaign",
+            "copy": "Copy campaign",
+            "destroy": "Delete campaign",
+            "disable": "Disable",
+            "edit": "Edit campaign",
+            "enable": "Enable",
+            "new": "New campaign",
+            "title": "Campaign's options",
+            "view_licenses": "View licenses"
+          },
+          "sub_campaigns": {
+            "archive": {
+              "successfully": "Sub-Campaign %{name} was successfully archived."
+            },
+            "copy": {
+              "error": "Sub-Campaign %{name} was not copied.",
+              "successfully": "Sub-Campaign %{name} was successfully copied."
+            },
+            "create": {
+              "successfully": "Sub-Campaign %{name} was successfully created."
+            },
+            "destroy": {
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
+            },
+            "edit": {
+              "header": "Edit Sub-Campaign"
+            },
+            "export": {
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
+              "header": {
+                "actions": "Actions",
+                "actual_usage": "Actual Usage",
+                "archive_status": "Archive Status",
+                "name": "Name",
+                "sub_campaign": "Sub-Campaigns",
+                "tests_allocated": "Tests Allocated",
+                "users": "Users"
+              },
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
+            },
+            "header": {
+              "actions": "Actions"
+            },
+            "index": {
+              "export": "Export",
+              "new": "Add",
+              "title": "Sub Campaigns"
+            },
+            "list": {
+              "assessments": "Assessments",
+              "assigned_user": "Assigned users",
+              "completed_user": "Completed users",
+              "created_at": "Created date",
+              "header": {
+                "actions": "Actions",
+                "actual_usage": "Actual Usage",
+                "archive_status": "Archive Status",
+                "name": "Name",
+                "sub_campaign": "Sub-Campaigns",
+                "tests_allocated": "Tests Allocated",
+                "users": "Users"
+              },
+              "id": "Id",
+              "name": "Sub-Campaign name",
+              "reports": "Reports",
+              "updated_at": "Updated date"
+            },
+            "new": {
+              "header": "New Sub-Campaign"
+            },
+            "resource": {
+              "tooltips": {
+                "copy": "Copy Sub Campaign",
+                "create_report": "Add new Report",
+                "create_user": "Add New User",
+                "delete": "Delete Sub Campaign",
+                "edit": "Edit Sub Campaign"
+              }
+            },
+            "sidebar": {
+              "archive": "Archive Sub-Campaign",
+              "copy": "Copy Sub-Campaign",
+              "destroy": "Delete Sub-Campaign",
+              "disable": "Disable",
+              "edit": "Edit Sub-Campaign",
+              "enable": "Enable",
+              "new": "New Sub-Campaign",
+              "title": "Sub-Campaign's options",
+              "view_licenses": "View licenses"
+            },
+            "toggle_status": {
+              "successfully": "Sub-Campaign %{name} was successfully updated."
+            },
+            "update": {
+              "successfully": "Sub-Campaign %{name} was successfully updated."
+            }
+          },
+          "toggle_status": {
+            "successfully": "Campaign %{name} was successfully updated."
+          },
+          "update": {
+            "successfully": "Campaign %{name} was successfully updated."
+          }
+        },
+        "copy": {
+          "error": "Project %{name} was not copied.",
+          "successfully": "Project %{name} was successfully copied."
+        },
+        "create": {
+          "successfully": "Project %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Project %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Project"
+        },
+        "export": {
+          "2fa_enabled": "2FA Enabled",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
+          "archive_status": "Status",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Project name",
+          "number": "Number",
+          "project_admin": "Project admins",
+          "reports": "Reports",
+          "tests_allocated": "Tests Allocated",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
+          "url": "URL",
+          "users_count": "Users count"
+        },
+        "form": {
+          "2fa": "2 Factor Authentication",
+          "2fa_enable": "Enable 2 Factor Authentication",
+          "applicable_levels": {
+            "campaign": "Campaign End Level",
+            "project": "Project End Level",
+            "sub_campaign": "Sub-Campaign End Level"
+          },
+          "data_privacy": "Data privacy",
+          "enable_live_chat": "Enable Live Chat",
+          "enable_privacy_links": "Enable privacy link",
+          "other_settings": "Other Settings",
+          "privacy_link": "Privacy link",
+          "privacy_text": "Privacy text",
+          "project_number": "Project Number"
+        },
+        "header": {
+          "actions": "Actions"
+        },
+        "index": {
+          "export": "Export",
+          "new": "Add",
+          "title": "Projects",
+          "tooltips": {
+            "create": "Create",
+            "export": "Export"
+          }
+        },
+        "list": {
+          "2fa_enabled": "2FA Enabled",
+          "actual_usage": "Actual usage",
+          "admin": "Client admin",
+          "applicable_level": "Applicable level",
+          "archive_status": "Status",
+          "assessments": "Assessments",
+          "assigned_user": "Assigned users",
+          "completed_user": "Completed users",
+          "created_at": "Created date",
+          "id": "Id",
+          "name": "Project name",
+          "number": "Number",
+          "project_admin": "Project admins",
+          "reports": "Reports",
+          "tests_allocated": "Tests Allocated",
+          "tte_admin": "TTE project manager",
+          "updated_at": "Modified date",
+          "url": "URL",
+          "users_count": "Users count"
+        },
+        "new": {
+          "header": "New Project"
+        },
+        "resource": {
+          "add_assessment": "Add Assessment",
+          "add_report": "Add Report",
+          "assessments": "Assessments",
+          "tooltips": {
+            "copy": "Copy Project",
+            "create_admin": "Create Project Admin",
+            "create_report": "Add New Report",
+            "create_user": "Add New User",
+            "delete": "Delete Project",
+            "edit": "Edit Project"
+          }
+        },
+        "sidebar": {
+          "admins": "Project Admins",
+          "archive": "Archive Project",
+          "copy": "Copy Project",
+          "design": "Edit Design",
+          "destroy": "Delete Project",
+          "disable": "Disable",
+          "edit": "Edit Project",
+          "enable": "Enable",
+          "new": "New Project",
+          "title": "Project's options",
+          "view_licenses": "View Licenses"
+        },
+        "threesixty_campaigns": {
+          "base": {
+            "active": "Active",
+            "archived": "Archived",
+            "disable": "Archive",
+            "enable": "Unarchive"
+          },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
+          "copy": {
+            "error": "Client Tenancy %{name} was not copied.",
+            "successfully": "Client Tenancy %{name} was successfully copied."
+          },
+          "create": {
+            "successfully": "Client Tenancy %{name} was successfully created."
+          },
+          "designs": {
+            "form": {
+              "no_background": "No Background yet",
+              "no_logo": "No Logo yet"
+            }
+          },
+          "destroy": {
+            "error": "Can't delete %{name} because some dependent associations of subjects or evaluators exist.",
+            "successfully": "Client Tenancy %{name} was successfully deleted."
+          },
+          "edit": {
+            "header": "Edit 360 Campaign"
+          },
+          "export": {
+            "admin": "Client Admin",
+            "assessment": "Assement",
+            "client_admins": "Client Admins",
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status"
+          },
+          "index": {
+            "export": "Export",
+            "new": "Add 360 Campaign",
+            "title": "360 Campaigns"
+          },
+          "license": {
+            "header": "%{name} - Edit license"
+          },
+          "licenses": {
+            "update": {
+              "duplicate_licenses": "You have duplicate licenses",
+              "successfully": "Licenses successfully updated"
+            }
+          },
+          "list": {
+            "admin": "Client Admin",
+            "assessment": "Assement",
+            "client_admins": "Client Admins",
+            "created_at": "Created At",
+            "id": "Id",
+            "name": "Name",
+            "report": "Report",
+            "report_bundle": "Report Bundle",
+            "status": "Status",
+            "updated_at": "Updated date"
+          },
+          "new": {
+            "header": "New 360 Campaign"
+          },
+          "resource": {
+            "confirmations": {
+              "delete": {
+                "body": "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>",
+                "title": "Delete <strong>%{name}</strong>?"
+              },
+              "disable": {
+                "body": {
+                  "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
+                  "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
+                  "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
+                  "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+                },
+                "title": "Archive <strong>%{name}</strong> ?"
+              },
+              "enable": {
+                "body": {
+                  "0": "<p>Are you sure you want to unarchive?</p>",
+                  "1": "<p>Are you sure you want to unarchive?</p>",
+                  "2": "<p>Are you sure you want to unarchive?</p>",
+                  "3": "<p>Are you sure you want to unarchive?</p>"
+                },
+                "title": "Unarchive <strong>%{name}</strong> ?"
+              }
+            },
+            "export_results": "Export results",
+            "raw_results": "Raw results",
+            "tooltips": {
+              "campaigns": {
+                "delete": "Delete Campaign"
+              },
+              "copy": "Copy Client",
+              "create_admin": "Create Client Admin",
+              "delete": "Delete Client",
+              "disable": "Disable Client",
+              "edit": "Edit Client",
+              "enable": "Enable Client"
+            }
+          },
+          "statistics": {
+            "index": {
+              "all_assessments": "All assessments",
+              "assessment_type": "Assessment type",
+              "title": "Statistics"
+            }
+          },
+          "toggle_status": {
+            "successfully": "Client Tenancy %{name} was successfully updated."
+          },
+          "update": {
+            "successfully": "Client Tenancy %{name} was successfully updated."
+          },
+          "url": "Url"
+        },
+        "toggle_status": {
+          "successfully": "Project %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "Project %{name} was successfully updated."
+        }
+      },
+      "registration_codes": {
+        "create": {
+          "successfully": "Registration code %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "Registration code %{name} was successfully deleted."
+        },
+        "edit": {
+          "header": "Edit Registration code"
+        },
+        "errors": {
+          "count_invalid": "cannot be less than the used_count = %{use_count}",
+          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
+          "duplicate_code": "is in use. Try another one.",
+          "in_use": "%{attribute} is already in use",
+          "invalid_attribute": "%{attribute} ist ungültig",
+          "invalid_end_date": "has to be greater than the start date",
+          "license_issue": "Not enough licenses.",
+          "presence": "%{attribute} muss eingegeben werden",
+          "review": "Bitte überprüfen Sie die Probleme."
         },
         "form_fields": {
           "code": "e.g TTE-conf-2019"
@@ -4906,7 +12353,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "notifications": {
       "restart": {
         "copy": "You had already started this survey. You can choose to Continue or Restart.",
-        "title": "Continue?"
+        "title": "fortfahren?"
       }
     },
     "restart": "Restart"
@@ -4914,12 +12361,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "assessments": {
     "actions": {
       "extend_time": "Extend time",
-      "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
+      "goto_dashboard": "zum Dashboard gehen",
       "rescore": "Rescore"
     },
     "audio_response": {
-      "permission_denied_message": "يرجى تمكين الميكروفون في متصفحك لتسجيل الإجابة",
-      "permission_text": "يرجى السماح باستخدام الميكروفون لتسجيل الصوت"
+      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
+      "permission_text": "Please allow to use microphone to record audio"
     },
     "categories": {
       "360": "360 Campaign",
@@ -4927,7 +12374,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "case_study": "Case Study",
       "hogan": "Hogan",
       "mindmill": "Mindmill",
-      "organisational": "Survey",
+      "organisational": "Befragung",
       "psychometric": "Assessment"
     },
     "decorator": {
@@ -4938,21 +12385,21 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "index": {
       "managers_assessments_button": "Action Planning",
-      "managers_dashboard_button": "Managers Dashboard",
+      "managers_dashboard_button": "Managern Dashboard",
       "user_dashboard_button": "User Dashboard"
     },
     "messages": {
-      "finish": "لقد قمت باستكمال الاستبيان، وتم تسجيل اجاباتك. نشكرك على المشاركة"
+      "finish": "Thank you for your time. \nYour responses have now been recorded."
     },
     "page": {
-      "back": "Back",
+      "back": "zurück",
       "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
       "confirm_message_2": "Are you sure you want to submit your responses?",
-      "next": "Next",
+      "next": "weiter",
       "submit": "Submit"
     },
     "pickgrouprank": {
-      "items": "العبارات"
+      "items": "Elemente"
     },
     "proceed": "Proceed Anyway",
     "resource": {
@@ -4963,45 +12410,45 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results",
+      "results": "Ergebnisse",
       "status": {
-        "completed": "Completed",
+        "completed": "abgeschlossen",
         "in_progress": "Resume",
-        "not_started": "Start"
+        "not_started": "starten"
       }
     },
     "unknown_error": "Unknown error occurred.",
     "video_response": {
-      "delete": "حذف",
-      "device": "السماح",
-      "discard": "تجاهل",
-      "file_upload": {
-        "select_file": "اختر الملف"
-      },
+      "delete": "lösch",
+      "device": "Allow",
+      "discard": "Discard",
       "media_recorder": {
-        "failure": "هذا المستعرض لا يدعم خاصية \"تسجيل الفيديو\". الرجاء استخدام Chrome أو Firefox لتسجيل الفيديو.",
-        "success": "يرجى السماح باستخدام الكاميرا والميكروفون لتسجيل الصوت والفيديو"
+        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
+        "success": "Please allow to use camera and microphone to record audio and Video"
       },
       "offline_message": "Please check your internet connection.",
-      "retake": "أعد مرة أخرى",
-      "retry": "أعد المحاولة",
-      "save": "حفظ",
-      "saved": "تم الحفظ",
-      "saving": "يتم الحفظ...",
-      "selected": "تم الاختيار",
-      "start_recording": "ابدأ التسجيل",
+      "retake": "Retake",
+      "retry": "Retry",
+      "save": "speich",
+      "saved": {
+        "label": "Saved",
+        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
+      },
+      "saving": "Saving...",
+      "selected": "Selected",
+      "start_recording": "Start recording",
       "status": {
         "recording": "Recording"
       },
       "tracker": {
-        "backward": "أنت قريب جدًا من الشاشة. يرجى التحرك قليلاً الى الوراء.",
-        "forward": "اضغط على زر التسجيل عندما تكون جاهزًا",
-        "frame": "يرجى التأكد من أن وجهك في وضع مناسب مع الإطار",
-        "ready": "اضغط على زر التسجيل عندما تكون جاهزًا"
+        "backward": "You are too close to the screen. Please move a bit back",
+        "forward": "You are too far away from the screen. Please move a bit closer",
+        "frame": "Please make sure that your face aligns with the frame",
+        "ready": "Press the Record button when ready to record"
       },
-      "use_this": "استخدم ذلك"
+      "use_this": "Submit this take"
     },
-    "wait": "Wait"
+    "wait": "wart"
   },
   "assessments_reports": {
     "add_group_form": {
@@ -5120,7 +12567,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
     "complete_all": "Complete all related assessments",
     "complete_prev": "Complete all prev assessments",
-    "completed": "Completed",
+    "completed": "abgeschlossen",
     "continue": "Continue Assessment",
     "in_progress": "In Progress",
     "instructions": {
@@ -5134,11 +12581,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "single_lang": "This assessment is only available in %{lang}, which is different than you selected language.",
       "title": "Select language"
     },
-    "new": "New",
-    "not_started": "New",
+    "new": "neues",
+    "not_started": "neues",
     "time_left": {
       "cancel": "Cancel",
-      "continue": "Continue",
+      "continue": "fortfahren",
       "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
       "title": "Time left warning"
     },
@@ -5147,7 +12594,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
     },
     "ungrouped": "Ungrouped assessments",
-    "welcome": "Welcome"
+    "welcome": "Willkommen"
   },
   "campaign_assessment": {
     "column": {
@@ -5279,35 +12726,35 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "checking_wizard": {
     "audio_check": {
-      "access": "Access",
+      "access": "Zugriff",
       "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use microphone to record audio",
-      "continue": "Continue",
-      "processing": "Processing",
+      "continue": "fortfahren",
+      "processing": "verarbeitung",
       "record_title": "Please speak and repeat the following sentence 3 times.",
       "run_again": "Run again",
       "speech_detection": "Speech detection",
-      "test_message": "arabic",
+      "test_message": "great to speak with you",
       "title": "We need to ensure your system can record audio."
     },
     "network_check": {
-      "continue": "Continue",
+      "continue": "fortfahren",
       "download": "Download",
       "levels": {
         "0": "Network broken (reconnecting)",
         "1": "Very bad network",
         "2": "Bad network",
-        "3": "Average network",
-        "4": "Good network",
-        "5": "Very good network"
+        "3": "durchschnittliche Netzwerk",
+        "4": "gut Netzwerk",
+        "5": "sehr gut Netzwerk"
       },
-      "network": "Network",
+      "network": "Netzwerk",
       "please_check_connection": "Please check your Internet Connection",
-      "processing": "Processing",
+      "processing": "verarbeitung",
       "run_again": "Run again",
       "run_again_title": "And run this test again",
-      "start": "Start",
+      "start": "starten",
       "title": "Click start to begin internet speed test.",
       "upload": "Upload"
     },
@@ -5322,44 +12769,44 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "title": "You have successfully completed all checks."
     },
     "system_check": {
-      "continue": "Continue",
-      "start": "Start",
+      "continue": "fortfahren",
+      "start": "starten",
       "title": "Before starting this assessment, your system needs to undergo some checks."
     },
     "video_check": {
-      "access": "Access",
+      "access": "Zugriff",
       "access_help": "Click here for help.",
       "allow": "Allow",
       "allow_title": "Please allow to use camera to record Video",
       "ambient_light": "Ambient Light",
-      "continue": "Continue",
+      "continue": "fortfahren",
       "face_detection": "Face detection",
-      "processing": "Processing",
+      "processing": "verarbeitung",
       "run_again": "Run again",
       "title": "We need to ensure your system can record the video"
     }
   },
   "ckeditor": {
     "buttons": {
-      "cancel": "Cancel",
-      "delete": "Delete",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
       "next": "Next",
-      "upload": "Upload"
+      "upload": "Hochladen"
     },
-    "confirm_delete": "Delete file?",
-    "page_title": "CKEditor Files Manager"
+    "confirm_delete": "Datei löschen?",
+    "page_title": "CKEditor Dateimanager"
   },
   "clear_filter": "Clear Filter",
   "common": {
     "actions": {
       "cancel": "Cancel",
-      "close": "Close",
-      "remove": "Remove",
+      "close": "schließe",
+      "remove": "Entfernen",
       "reset": "Reset"
     },
     "column": {
-      "action": "Action",
-      "category": "Category",
+      "action": "Aktion",
+      "category": "Kategorie",
       "created_at": "Created at",
       "id": "Id",
       "status": "Status"
@@ -5367,17 +12814,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
-      "reports": "Reports"
+      "reports": "Berichte"
     },
     "text": {
       "cancel": "Cancel",
-      "confirm": "Confirm",
-      "continue": "Continue",
+      "confirm": "bestätigen",
+      "continue": "fortfahren",
       "default": "Default",
       "download": "Download",
       "na": "N/A",
       "ok": "Ok",
-      "response": "Response"
+      "response": "Antwort"
     }
   },
   "confirmation": {
@@ -5531,7 +12978,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "sessions": {
         "new": {
           "forgot_password": "Forgot your password?",
-          "submit": "Login",
+          "submit": "Anmelden",
           "title": "<strong>Welcome</strong>, Please login"
         }
       },
@@ -5545,31 +12992,31 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "confirmations": {
-      "confirmed": "تم تأكيد عنوان بريدك الإلكتروني بنجاح.",
+      "confirmed": "Ihre E-Mail-Adresse wurde erfolgreich bestätigt.",
       "new": {
-        "resend_confirmation_instructions": "إعادة إرسال تعليمات التأكيد"
+        "resend_confirmation_instructions": "Anleitung zur Bestätigung noch mal schicken"
       },
-      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في غضون بضع دقائق.",
-      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية تأكيد عنوان بريدك الإلكتروني في بضع دقائق."
+      "send_instructions": "Sie erhalten in wenigen Minuten eine E-Mail, mit der Sie Ihre Registrierung bestätigen können.",
+      "send_paranoid_instructions": "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Sie Ihre Registrierung bestätigen können."
     },
     "failure": {
-      "already_authenticated": "لقد قمت بتسجيل الدخول بالفعل.",
-      "inactive": "لم يتم تفعيل حسابك بعد.",
-      "invalid": "Invalid %{authentication_keys} or password.",
+      "already_authenticated": "Sie sind bereits angemeldet.",
+      "inactive": "Ihr Konto ist noch nicht aktiv.",
+      "invalid": "%{authentication_keys} oder Passwort ungültig.",
       "invited": "You have a pending invitation, accept it to finish creating your account.",
-      "last_attempt": "لديك محاولة أو أكثر قبل غلق حسابك.",
-      "locked": "تم غلق حسابك.",
-      "not_found_in_database": "Invalid %{authentication_keys} or password.",
-      "timeout": "انتهى الوقت المخصص للجلسة. الرجاء تسجيل الدخول مرة أخرى للمتابعة.",
-      "unauthenticated": "تحتاج إلى تسجيل الدخول أو التسجيل قبل المتابعة.",
-      "unconfirmed": "تحتاج إلى تأكيد عنوان بريدك الإلكتروني قبل المتابعة."
+      "last_attempt": "Sie haben noch einen Versuch, bis Ihr Konto gesperrt wird.",
+      "locked": "Ihr Konto ist gesperrt.",
+      "not_found_in_database": "%{authentication_keys} oder Passwort ungültig.",
+      "timeout": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+      "unauthenticated": "Sie müssen sich anmelden oder registrieren, bevor Sie fortfahren können.",
+      "unconfirmed": "Sie müssen Ihr Konto bestätigen, bevor Sie fortfahren können."
     },
     "invitations": {
       "edit": {
         "confirm_password_label": "Confirm Password",
         "header": "Set your password",
         "instruction": "To create a new password, please enter your new password in the boxes below",
-        "password_label": "Password",
+        "password_label": "Passwort",
         "submit": "Set New Password",
         "submit_button": "Set my password",
         "title": "Create password"
@@ -5592,15 +13039,15 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "subject": "Invitation to Lighthouse"
       },
       "confirmation_instructions": {
-        "action": "تأكيد حسابي",
-        "greeting": "مرحباً %{recipient}",
-        "instruction": "يُمكنك تأكيد بريدك الإلكتروني من خلال الرابط أدناه:",
-        "subject": "تعليمات التأكيد"
+        "action": "Mein Konto bestätigen",
+        "greeting": "Willkommen %{recipient}!",
+        "instruction": "Folgen Sie dem untenstehenden Link, um Ihr Konto zu bestätigen:",
+        "subject": "Anleitung zur Bestätigung Ihres Kontos"
       },
       "email_changed": {
-        "greeting": "أهلا %{recipient} !",
-        "message": "نتصل بك لإخبارك أنّ عنوان بريدك الإلكتروني قد تم تغييره إلى %{email}.",
-        "subject": "تم تغيير عنوان البريد الإلكتروني"
+        "greeting": "Hallo %{recipient}!",
+        "message": "Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihre E-Mail-Adresse zu %{email} geändert wurde.",
+        "subject": "E-Mail-Adresse geändert"
       },
       "invitation_instructions": {
         "accept": "Accept invitation",
@@ -5611,127 +13058,131 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "subject": "The Talent Enterprise – Your Link to Thriving Index"
       },
       "password_change": {
-        "greeting": "مرحباً %{recipient}",
-        "message": "لقد قمنا بالاتصال بك لإخبارك أنه قد تم تغيير كلمة مرورك.",
-        "subject": "تم تغيير كلمة المرور"
+        "greeting": "Hallo %{recipient}!",
+        "message": "Wir schreiben Ihnen, um Sie darüber zu informieren, dass Ihr Passwort geändert wurde.",
+        "subject": "Passwort geändert"
       },
       "reset_password_instructions": {
-        "action": "تغيير كلمة مروري",
-        "greeting": "مرحباً %{recipient}",
-        "instruction": "لقد طلب شخص ما رابط لتغيير كلمة مرورك، ويُمكنك القيام بذلك من خلال الرابط أدناه.",
-        "instruction_2": "إذا لم تقم بطلب ذلك، الرجاء تجاهل هذه الرسالة.",
-        "instruction_3": "لن يتم تغيير كلمة مرورك حتى تقوم بفتح الرابط أعلاه وإنشاء كلمة مرور جديدة.",
-        "subject": "تعليمات إعادة تعيين كلمة المرور"
+        "action": "Passwort ändern",
+        "greeting": "Hallo %{recipient}!",
+        "instruction": "Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Klicken Sie auf den unten aufgeführten Link um das Passwort zu ändern.",
+        "instruction_2": "Bitte ignorieren Sie diese E-Mail, wenn Sie kein neues Passwort angefordert haben.",
+        "instruction_3": "Das Passwort wird nicht geändert bis Sie den obenstehenden Link abrufen und ein neues Passwort bestimmen.",
+        "subject": "Anleitung für das Zurücksetzen Ihres Passworts"
       },
       "unlock_instructions": {
-        "action": "إلغاء قفل حسابي",
-        "greeting": "مرحباً %{recipient}",
-        "instruction": "انقر فوق الرابط أدناه لإلغاء قفل حسابك:",
-        "message": "تم غلق حسابك بسس العدد الكبير من محاولات تسجيل الدخول غير الناجحة.",
-        "subject": "تعليمات إلغاء القفل"
+        "action": "Mein Konto entsperren",
+        "greeting": "Hallo %{recipient}!",
+        "instruction": "Folgen Sie dem untenstehenden Link, um Ihr Konto zu entsperren:",
+        "message": "Ihr Konto wurde aufgrund einer großen Anzahl von fehlgeschlagenen Anmeldeversuchen gesperrt.",
+        "subject": "Anleitung für die Konto-Freischaltung"
       }
     },
     "omniauth_callbacks": {
-      "failure": "تعذر التحقق منك من %{kind} بسبب \"%{reason}\".",
-      "success": "تمت المصادقة بنجاح من حساب %{kind}."
+      "failure": "Sie konnten nicht mit Ihrem %{kind}-Konto angemeldet werden, weil \"%{reason}\".",
+      "success": "Sie haben sich erfolgreich mit Ihrem %{kind}-Konto angemeldet."
     },
     "passwords": {
       "edit": {
-        "change_my_password": "تغيير كلمة مروري",
-        "change_your_password": "تغيير كلمة مرورك",
-        "confirm_new_password": "تأكيد كلمة المرور الجديدة",
+        "change_my_password": "Ändere mein Passwort",
+        "change_your_password": "Passwort ändern",
+        "confirm_new_password": "Neues Passwort bestätigen",
         "instruction": "To create a new password, please enter your new password in the boxes below",
-        "new_password": "كلمة المرور الجديدة",
+        "new_password": "Neues Passwort",
         "submit": "Submit",
         "title": "Create Password"
       },
       "new": {
-        "forgot_your_password": "نسيت كلمة مرورك؟",
-        "send_me_reset_password_instructions": "أرسل لي تعليمات إعادة تعيين كلمة المرور"
+        "forgot_your_password": "Haben Sie Ihr Passwort vergessen?",
+        "send_me_reset_password_instructions": "Schicken Sie mir die Anleitung, mein Passwort zurückzusetzen"
       },
-      "no_token": "لا يُمكنك الوصول إلى هذه الصفحة دون تأكيد رسالة البريد الإلكتروني المحتوية على إعادة تعيين كلمة المرور. إذا كنت قد انتقلت من رسالة تعيين كلمة المرور، الرجاء التأكد من أنك استخدمت رابط URL الكامل الموجود في الرسالة.",
-      "send_instructions": "ستتلقى رسالة بريد إلكرتوني بها تعليمات ععن كيفية إعادة تعيين كلمة مرورك في غضون بضع دقائق.",
-      "send_paranoid_instructions": "إذا كان بريدك الإلكتروني موجود في قاعدة البيانات لدينا، ستتلقى رابط استعادة كلمة المرور على عنوان بريدك الإلكتروني في غضون بضع دقائق.",
-      "updated": "تم تغيير كلمة مرورك بنجاح. أنت الآن مُسجِّل الدخول.",
-      "updated_not_active": "تم تغيير كلمة مرورك بنجاح."
+      "no_token": "Sie können sich nicht auf dieser Seite anmelden, wenn Sie nicht von einer Passwort-Zurücksetzen-E-Mail kommen. Wenn Sie von solch einer E-Mail kommen, überprüfen Sie bitte, ob Sie die gesamte URL verwendet haben.",
+      "send_instructions": "Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Passwort zurücksetzen können.",
+      "send_paranoid_instructions": "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Passwort zurücksetzen können.",
+      "updated": "Ihr Passwort wurde geändert. Sie sind jetzt angemeldet.",
+      "updated_not_active": "Ihr Passwort wurde erfolgreich geändert."
     },
     "registrations": {
-      "destroyed": "وداعاً! تم إلغاء حسابك بنجاح. نأمل أن نراك مرة أخرى في القريب العاجل.",
+      "destroyed": "Ihr Konto wurde gelöscht. Wir hoffen, dass wir Sie bald wiedersehen.",
       "edit": {
-        "are_you_sure": "هل أنت متأكد؟",
-        "cancel_my_account": "إلغاء حسابي",
-        "currently_waiting_confirmation_for_email": "قيد انتظار التأكيد حالياً لـ: %{email}",
-        "leave_blank_if_you_don_t_want_to_change_it": "اتركه فارغاً إذا كنت لا ترغب في تغييره",
-        "title": "تحرير %{resource}",
-        "unhappy": "غير سعيد؟",
-        "update": "تحديث",
-        "we_need_your_current_password_to_confirm_your_changes": "نحتاج إلى كلمة مرورك الحالية لتأكيد التغيرات التي قمت بها"
+        "are_you_sure": "Sind Sie sicher?",
+        "cancel_my_account": "Konto löschen",
+        "currently_waiting_confirmation_for_email": "Warte auf Bestätigung von %{email}.",
+        "leave_blank_if_you_don_t_want_to_change_it": "freilassen, wenn Sie das nicht ändern wollen",
+        "title": "%{resource} bearbeiten",
+        "unhappy": "Unzufrieden?",
+        "update": "Aktualisieren",
+        "we_need_your_current_password_to_confirm_your_changes": "wir benötigen Ihr aktuelles Passwort, um die Änderung zu bestätigen"
       },
       "new": {
-        "code": "Registration Code",
-        "instruction": "Fill in the details below to register and create a new account",
-        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
-        "sign_up": "التسجيل",
-        "submit": "Register",
+        "code": "Registrierungscode",
+        "email": "E-Mail-Addresse",
+        "first_name": "Vorname",
+        "instruction": "Füllen Sie die folgenden Details aus, um sich zu registrieren und ein neues Konto zu erstellen",
+        "last_name": "Nachname",
+        "privacy_notice": "Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben.",
+        "sign_up": "Registrieren",
+        "submit": "Anmeldung",
         "tabs": {
-          "register": "Register",
-          "sign_in": "Sign In"
+          "register": "Registrieren",
+          "sign_in": "Anmelden"
         },
-        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service and Privacy Policy</a>",
-        "title": "Register Now"
+        "terms_notice": "Mit Ihrer Registrierung stimmen Sie unseren <a href=\"%{terms_url}\"> Nutzungsbedingungen und Datenschutzbestimmungen </a> zu",
+        "title": "Jetzt registrieren"
       },
-      "signed_up": "مرحباً! لقد قمت بالتسجيل بنجاح.",
-      "signed_up_but_inactive": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك لم يتم تفعيله بعد.",
-      "signed_up_but_locked": "لقد قمت بالتسجيل بنجاح. ومع ذلك، لن نتمكن من تسجيل دخولك لحسابك لأن حسابك مغلق.",
-      "signed_up_but_unconfirmed": "تم إرسال رسالة بها رابط التأكيد إلى عنوان بريدك الإلكتروني. الرجاء اتباع الرابط لتفعيل حسابك.",
+      "signed_up": "Herzlich willkommen!",
+      "signed_up_but_inactive": "Sie haben sich erfolgreich registriert. Wir konnten Sie jedoch nicht anmelden, weil Ihr Konto noch nicht aktiviert ist.",
+      "signed_up_but_locked": "Sie haben sich erfolgreich registriert. Wir konnten Sie jedoch nicht anmelden, weil Ihr Konto gesperrt ist.",
+      "signed_up_but_unconfirmed": "Sie erhalten in wenigen Minuten eine E-Mail mit einem Link für die Bestätigung der Registrierung. Klicken Sie auf den Link um Ihr Konto zu aktivieren.",
       "success": {
         "actions": {
-          "sign_in": "Sign In"
+          "sign_in": "Anmelden"
         },
         "instruction": "Please check your email for further instructions",
         "title": "Signup successful"
       },
-      "update_needs_confirmation": "لقد قمت بتحديث حسابك بنجاح، ولكن نحتاج إلى تأكيد عنوان بريدك الإلكتروني الجديد. الرجاء التحقق من بريدك الإلكتروني واتباع رابط التأكيد لتأكيد عنوان بريدك الإلكتروني الجديد.",
-      "updated": "تم تحديث حسابك بنجاح.",
-      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
+      "update_needs_confirmation": "Ihre Daten wurden aktualisiert, aber Sie müssen Ihre neue E-Mail-Adresse bestätigen. Sie erhalten in wenigen Minuten eine E-Mail, mit der Sie die Änderung Ihrer E-Mail-Adresse abschließen können.",
+      "updated": "Ihre Daten wurden aktualisiert.",
+      "updated_but_not_signed_in": "Ihre Daten wurden aktualisiert, aber da sich Ihr Passwort geändert hat, müssen Sie sich erneut anmelden"
     },
     "sessions": {
-      "already_signed_out": "تم تسجيل الخروج بنجاح.",
+      "already_signed_out": "Erfolgreich abgemeldet.",
       "new": {
-        "forgot_password": "Forgot password?",
-        "instruction": "Please login with your personal account information",
+        "email_placeholder": "E-Mail-Addresse",
+        "forgot_password": "Passwort vergessen?",
+        "instruction": "Bitte melden Sie sich mit Ihren persönlichen Kontodaten an",
         "keep_sign_in": "Yes, Keep me signed in",
-        "password_placeholder": "Password",
-        "sign_in": "تسجيل الدخول",
-        "submit": "Login",
+        "password_placeholder": "Passwort",
+        "sign_in": "Anmelden",
+        "submit": "Anmelden",
         "tabs": {
-          "register": "Register",
-          "sign_in": "Login"
+          "register": "Registrieren",
+          "sign_in": "Anmelden"
         },
-        "title": "Welcome!"
+        "title": "Herzlich willkommen!"
       },
-      "signed_in": "تم تسجيل الدخول بنجاح.",
-      "signed_out": "تم تسجيل الخروج بنجاح."
+      "signed_in": "Erfolgreich angemeldet.",
+      "signed_out": "Erfolgreich abgemeldet."
     },
     "shared": {
       "links": {
-        "back": "رجوع",
-        "didn_t_receive_confirmation_instructions": "لم تتلقى تعليمات التأكيد؟",
-        "didn_t_receive_unlock_instructions": "لم تتلقى تعليمات إلغاء القفل؟",
-        "forgot_your_password": "نسيت كلمة مرورك؟",
-        "sign_in": "تسجيل الدخول",
-        "sign_in_with_provider": "تسجيل الدخول باستخدام %{provider}",
-        "sign_up": "التسجيل"
+        "back": "Zurück",
+        "didn_t_receive_confirmation_instructions": "Keine Anleitung zur Bestätigung erhalten?",
+        "didn_t_receive_unlock_instructions": "Keine Anleitung zum Entsperren erhalten?",
+        "forgot_your_password": "Passwort vergessen?",
+        "sign_in": "Anmelden",
+        "sign_in_with_provider": "Mit %{provider} anmelden",
+        "sign_up": "Registrieren"
       },
       "minimum_password_length": {
-        "one": "(%{count} character minimum)",
-        "other": "(%{count} characters minimum)"
+        "one": "(mindestens %{count} Zeichen)",
+        "other": "(mindestens %{count} Zeichen)"
       }
     },
     "two_factor_authentication": {
-      "attempt": "Please enter the OTP, you have received at your registered email address",
+      "attempt": "Bitte geben Sie das OTP ein, das Sie an Ihrer registrierten E-Mail-Adresse erhalten haben",
       "attempt_failed": "Incorrect OTP! Please try again",
-      "code_has_been_sent": "Your new OTP has been sent to your registered email address",
+      "code_has_been_sent": "Ihr neues OTP wurde an Ihre registrierte E-Mail-Adresse gesendet",
       "contact_administrator": "Please contact your system administrator",
       "email": {
         "otp": {
@@ -5746,11 +13197,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "unlocks": {
       "new": {
-        "resend_unlock_instructions": "إعادة إرسال تعليمات إلغاء القفل"
+        "resend_unlock_instructions": "Anleitung zum Entsperren noch mal schicken"
       },
-      "send_instructions": "ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء قفل حسابك في غضون بضع دقائق.",
-      "send_paranoid_instructions": "إذا كان حسابك موجود، ستتلقى رسالة بريد إلكتروني بها تعليمات عن كيفية إلغاء القفلل غي غضون دقائق.",
-      "unlocked": "تم إلغاء قفل حسابك بنجاح. الرجاء تسجيل الدخول للمتابعة."
+      "send_instructions": "Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihr Konto entsperren können.",
+      "send_paranoid_instructions": "Falls Ihre E-Mail-Adresse in unserer Datenbank existiert, erhalten Sie in wenigen Minuten eine E-Mail, mit der Anleitung, wie Sie Ihr Konto entsperren können.",
+      "unlocked": "Ihr Konto wurde entsperrt. Bitte melden Sie sich an, um fortzufahren."
     }
   },
   "ecommerce": {
@@ -5794,14 +13245,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "users": {
       "registrations": {
         "new": {
-          "register": "Register",
-          "sign_in": "Sign in"
+          "register": "Registrieren",
+          "sign_in": "Anmelden"
         }
       },
       "sessions": {
         "new": {
-          "register": "Register",
-          "sign_in": "Sign in"
+          "register": "Registrieren",
+          "sign_in": "Anmelden"
         }
       }
     }
@@ -5843,12 +13294,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
-      "after": "must be after %{date}",
-      "after_or_equal_to": "must be after or equal to %{date}",
+      "after": "muss nach %{date} sein",
+      "after_or_equal_to": "muss nach oder gleich %{date} sein",
       "allowed_file_content_types": "file should be one of %{types}",
-      "already_confirmed": "تم تأكيده بالفعل، الرجاء محاولة تسجيل الدخول",
-      "before": "must be before %{date}",
-      "before_or_equal_to": "must be before or equal to %{date}",
+      "already_confirmed": "wurde bereits bestätigt; bitte versuchen Sie, sich anzumelden",
+      "before": "muss vor %{date} sein",
+      "before_or_equal_to": "muss vor oder gleich %{date} sein",
       "blank": "can't be blank",
       "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
       "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
@@ -5860,7 +13311,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "carrierwave_integrity_error": "is not of an allowed file type",
       "carrierwave_processing_error": "failed to be processed",
       "confirmation": "doesn't match %{attribute}",
-      "confirmation_period_expired": "يحتاج إلى التأكيد في غضون %{period}،الرجاء طلب رابط تأكيد جديد",
+      "confirmation_period_expired": "musste innerhalb von %{period} bestätigt werden, bitte neu anfordern.",
       "content_type_blacklist_error": "You are not allowed to upload %{content_type} files",
       "content_type_whitelist_error": "You are not allowed to upload %{content_type} files",
       "empty": "can't be empty",
@@ -5868,7 +13319,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "even": "must be even",
       "excluded_file_content_types": "file cannot be %{types}",
       "exclusion": "is reserved",
-      "expired": "قد انتهت المدة، الرجاء طلب رابط تأكيد جديد",
+      "expired": "ist abgelaufen, bitte neu anfordern",
       "extension_blacklist_error": "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}",
       "extension_whitelist_error": "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}",
       "file_size_is_greater_than": "file size must be greater than %{count}",
@@ -5887,18 +13338,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "min_size_error": "File size should be greater than %{min_size}",
       "mini_magick_processing_error": "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}",
       "model_invalid": "Validation failed: %{errors}",
-      "not_a_date": "is not a date",
+      "not_a_date": "ist kein Datum",
       "not_a_number": "is not a number",
       "not_an_integer": "must be an integer",
-      "not_found": "غير موجود",
-      "not_locked": "لم يتم إلغاء قفله",
+      "not_found": "nicht gefunden",
+      "not_locked": "ist nicht gesperrt",
       "not_saved": {
-        "few": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
-        "many": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
-        "one": "1 خطأ منع %{resource} هذا من أن يتم حفظه:",
-        "other": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
-        "two": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:",
-        "zero": "%{count} أخطاء منع %{resource} هذا من أن يتم حفظه:"
+        "one": "%{resource} konnte aufgrund eines Fehlers nicht gespeichert werden:",
+        "other": "%{count} Fehler verhinderten das Speichern von %{resource}:"
       },
       "odd": "must be odd",
       "other_than": "must be other than %{count}",
@@ -5960,26 +13407,26 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "users": {
         "completion_statuses": {
-          "completed": "Completed",
+          "completed": "abgeschlossen",
           "in_progress": "In Progress",
           "interrupted": "Interrupted",
           "not_started": "Not Started"
         }
       }
     },
-    "change_password": "Change password",
-    "delete": "Delete",
+    "change_password": "Veränderung Passwort",
+    "delete": "lösch",
     "edit": "Edit",
-    "login": "Login",
+    "login": "Anmelden",
     "manage": "Manage",
     "no": "No",
     "resource": {
       "create_success": "%{resourceName} created successfully",
       "update_success": "%{resourceName} updated successfully"
     },
-    "update": "Update",
+    "update": "aktualisieren",
     "upload": "Upload",
-    "yes": "Yes"
+    "yes": "Ja"
   },
   "helpers": {
     "page_entries_info": {
@@ -6186,7 +13633,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "languages": {
-    "ar": "Arabic",
+    "ar": "العربية",
     "bg": "Bulgarian",
     "bs": "Bosnian",
     "ca": "Catalan",
@@ -6194,7 +13641,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "cs": "Czech",
     "cy": "Cymraeg",
     "da": "Danish",
-    "de": "German",
+    "de": "Deutsch",
     "el": "Greek",
     "en": "English",
     "en-GB": "English - UK",
@@ -6524,81 +13971,81 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "ransack": {
-    "all": "all",
-    "and": "and",
-    "any": "any",
-    "asc": "ascending",
-    "attribute": "attribute",
-    "combinator": "combinator",
-    "condition": "condition",
-    "desc": "descending",
-    "or": "or",
-    "predicate": "predicate",
+    "all": "alle",
+    "and": "und",
+    "any": "beliebige",
+    "asc": "aufsteigend",
+    "attribute": "Attribut",
+    "combinator": "Kombinator",
+    "condition": "Bedingung",
+    "desc": "absteigend",
+    "or": "oder",
+    "predicate": "Eigenschaft",
     "predicates": {
-      "blank": "is blank",
-      "cont": "contains",
-      "cont_all": "contains all",
-      "cont_any": "contains any",
-      "does_not_match": "doesn't match",
-      "does_not_match_all": "doesn't match all",
-      "does_not_match_any": "doesn't match any",
-      "end": "ends with",
-      "end_all": "ends with all",
-      "end_any": "ends with any",
-      "eq": "equals",
-      "eq_all": "equals all",
-      "eq_any": "equals any",
-      "false": "is false",
-      "gt": "greater than",
-      "gt_all": "greater than all",
-      "gt_any": "greater than any",
-      "gteq": "greater than or equal to",
-      "gteq_all": "greater than or equal to all",
-      "gteq_any": "greater than or equal to any",
+      "blank": "ist leer",
+      "cont": "enthält",
+      "cont_all": "enthält alle",
+      "cont_any": "enthält beliebige",
+      "does_not_match": "stimmt nicht überein",
+      "does_not_match_all": "stimmt nicht mit allen überein",
+      "does_not_match_any": "erfüllt ein beliebiger/s nicht",
+      "end": "endet mit",
+      "end_all": "endet mit allen",
+      "end_any": "endet mit beliebigen",
+      "eq": "gleicht",
+      "eq_all": "gleicht allen",
+      "eq_any": "gleicht beliebigen",
+      "false": "ist falsch",
+      "gt": "größer als",
+      "gt_all": "größer als alle",
+      "gt_any": "größer als ein beliebiger/s",
+      "gteq": "größer oder gleich",
+      "gteq_all": "größer oder gleich alle",
+      "gteq_any": "größer oder gleich als ein beliebiger/s",
       "in": "in",
-      "in_all": "in all",
-      "in_any": "in any",
-      "lt": "less than",
-      "lt_all": "less than all",
-      "lt_any": "less than any",
-      "lteq": "less than or equal to",
-      "lteq_all": "less than or equal to all",
-      "lteq_any": "less than or equal to any",
-      "matches": "matches",
-      "matches_all": "matches all",
-      "matches_any": "matches any",
-      "not_cont": "doesn't contain",
-      "not_cont_all": "doesn't contain all",
-      "not_cont_any": "doesn't contain any",
-      "not_end": "doesn't end with",
-      "not_end_all": "doesn't end with all",
-      "not_end_any": "doesn't end with any",
-      "not_eq": "not equal to",
-      "not_eq_all": "not equal to all",
-      "not_eq_any": "not equal to any",
-      "not_in": "not in",
-      "not_in_all": "not in all",
-      "not_in_any": "not in any",
-      "not_null": "is not null",
-      "not_start": "doesn't start with",
-      "not_start_all": "doesn't start with all",
-      "not_start_any": "doesn't start with any",
-      "null": "is null",
-      "present": "is present",
-      "start": "starts with",
-      "start_all": "starts with all",
-      "start_any": "starts with any",
-      "true": "is true"
+      "in_all": "in allen",
+      "in_any": "ist nicht in einem beliebigen",
+      "lt": "kleiner als",
+      "lt_all": "kleiner als alle als alle",
+      "lt_any": "kleiner als ein beliebiger/s",
+      "lteq": "kleiner oder gleich",
+      "lteq_all": "kleiner oder gleich allen",
+      "lteq_any": "kleiner oder gleich beliebige",
+      "matches": "entspricht",
+      "matches_all": "stimmt mit allen überein",
+      "matches_any": "stimmt überein mit einem beliebigen",
+      "not_cont": "enthält nicht",
+      "not_cont_all": "enthält keine/s",
+      "not_cont_any": "enthält ein beliebiger/s nicht",
+      "not_end": "endet nicht mit",
+      "not_end_all": "endet nicht mit allen",
+      "not_end_any": "endet nicht mit beliebigen",
+      "not_eq": "ungleich",
+      "not_eq_all": "ungleich allen",
+      "not_eq_any": "ungleich beliebigen",
+      "not_in": "nicht in",
+      "not_in_all": "nicht in allen",
+      "not_in_any": "nicht in beliebige",
+      "not_null": "ist nicht null",
+      "not_start": "beginnt nicht mit",
+      "not_start_all": "beginnt nicht mit allen",
+      "not_start_any": "beginnt nicht mit beliebigen",
+      "null": "ist null",
+      "present": "ist vorhanden",
+      "start": "beginnt mit",
+      "start_all": "beginnt mit allen",
+      "start_any": "beginnt mit beliebigen",
+      "true": "ist wahr"
     },
-    "search": "search",
-    "sort": "sort",
-    "value": "value"
+    "search": "suchen",
+    "sort": "sortieren",
+    "value": "Wert"
   },
   "reports": {
     "actions": {
-      "add": "Add Report",
+      "add": "hinzufügen Bericht",
       "download": "Download report",
-      "view": "View Report"
+      "view": "Ansicht Bericht"
     },
     "modules": {
       "common": {
@@ -6613,36 +14060,36 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "your_potential_suitability": "Your Potential Suitability"
       },
       "gap_assessment": {
-        "gap": "Gap",
+        "gap": "lück",
         "item": "Indicator",
-        "negative_gap": "Negative Gaps",
+        "negative_gap": "negativ lücken",
         "no_negative_gaps": "There are no Negative Gaps",
         "no_positive_gaps": "There are no Positive Gaps",
-        "positive_gap": "Positive Gaps",
+        "positive_gap": "positiv lücken",
         "rank": "Rank",
-        "scoring_category": "Competency"
+        "scoring_category": "KOMPETENZ"
       },
       "highest_lowest": {
-        "average": "Average",
+        "average": "durchschnittliche",
         "bottom_5": "BOTTOM 5",
-        "category": "Category",
-        "email": "Email",
-        "first_name": "First Name",
+        "category": "Kategorie",
+        "email": "E-Mail",
+        "first_name": "Vorname",
         "highest_scores": "Highest Scores",
         "item": "Indicator",
-        "last_name": "Last Name",
+        "last_name": "Nachname",
         "lowest_scores": "Lowest scores",
         "mean_score": "Mean Score",
         "rank": "Rank",
-        "result": "Result",
+        "result": "Ergebnis",
         "score": "Score",
-        "scoring_category": "Competency",
+        "scoring_category": "KOMPETENZ",
         "sub_competenties": "Sub-Competencies",
         "top_5": "TOP 5"
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
-        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_strengths_and_results": "Karriere Stärken und Ihr Ergebnisse",
         "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
@@ -6650,61 +14097,59 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "high_school_entry_roles": "High School Entry Roles",
         "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
-        "potential_roles": "Potential Roles",
+        "potential_roles": "potenzieller Rolle",
         "strength_high": "Signature Strength",
-        "strength_low": "Developmental Strength",
-        "strength_moderate": "Potential Strength",
-        "work_environment": "Work Environment",
+        "strength_low": "ENTWICKLUNGSBEZOGENE STÄRKE",
+        "strength_moderate": "potenzieller Stärke",
+        "work_environment": "Arbeitsumfeld",
         "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
-        "career": "career",
-        "for_this": "for this",
+        "career": "Karriere",
+        "for_this": "für diese",
         "key": "key",
-        "strengths": "strengths",
+        "strengths": "Stärken",
         "your_scores": "Your Scores"
       },
       "single_value": {
         "factor_name": "Scoring Category",
-        "question_name": "الأسئلة"
+        "question_name": "FRAGEN"
       },
       "single_value_cluster": {
-        "competency": "كفاءة",
-        "description": "وصف",
-        "developmental_rating": "التصنيف التطويري",
-        "questions": "الأسئلة"
+        "competency": "KOMPETENZ",
+        "description": "Description",
+        "developmental_rating": "ENTWICKLUNGSBEZOGENE EINSTUFUNG",
+        "questions": "FRAGEN"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
-        "possible_roles": "Possible Roles",
+        "possible_roles": "möglich Rolle",
         "work_environments": "Expected Work Environments"
       },
       "three_sixty_default": {
         "factor": {
-          "items": "Items",
-          "max": "Max Value",
-          "mean": "Mean",
-          "min": "Min Value",
+          "items": "Elemente",
+          "max": "Max Wert",
+          "mean": "bedeute",
+          "min": "Mindestwert",
           "standardDeviation": "Standard Deviation",
           "sum": "Sum",
-          "totalResponses": "Total Responses",
+          "totalResponses": "Gesamtantwort",
           "variance": "Variance",
           "weightedMean": "Weighted Mean"
         },
         "statistic": "Statistic",
-        "value": "Value"
+        "value": "Wert"
       },
       "three_sixty_report_summary": {
-        "completed": "Completed",
+        "completed": "abgeschlossen",
         "footnote": "* Excluded due to minimum threshold requirement",
-        "invited": "Invited",
-        "number_by_filter_evaluations_received": "عدد تقييم (%{filter}) المدير المباشر",
-        "number_of_evaluators_invited": "مدعو التقييم",
-        "number_of_evaluators_received": "تم تلقي التقييمات",
-        "relationships": "Relationships",
-        "subject": "Subject",
-        "title": "ملخص تقرير",
-        "total": "Total",
+        "invited": "einladen",
+        "number_of_evaluators_invited": "Anzahl der eingeladenen Bewerter",
+        "relationships": "Beziehungen",
+        "subject": "Betreff",
+        "title": "Zusammenfassung des Berichts",
+        "total": "Gesamt",
         "total_evaluations": "Total evaluations for this assessment"
       },
       "video_response": {
@@ -6713,14 +14158,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "show": {
       "export_pdf": "Export to PDF",
-      "header": "Report"
+      "header": "Bericht"
     },
     "statuses": {
-      "approved": "Approved",
-      "available": "Available",
-      "denied": "Denied",
+      "approved": "genehmigt",
+      "available": "Verfügung",
+      "denied": "verweigert",
       "incomplete": "Incomplete",
-      "not_available": "Not available",
+      "not_available": "nicht Verfügung",
       "on_hold": "On hold",
       "released": "Released"
     }
@@ -6732,13 +14177,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
     "password_reset": {
       "description": "Please enter your email address in the box below and click 'Reset Password'.",
-      "email_label": "Email Address",
-      "instruction": "Enter the email associated with your account",
-      "submit": "Reset Password",
-      "title": "Forgot Password?"
+      "email_label": "E-Mail-Adresse",
+      "instruction": "Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein",
+      "submit": "Passwort zurücksetzen",
+      "title": "Passwort vergessen?"
     },
-    "terms_conditions_privacy": "Privacy Statement",
-    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
+    "terms_conditions_privacy": "Datenschutzerklärung",
+    "tte_terms_and_condition": "TTE – Geschäftsbedingungen und Datenschutzerklärung"
   },
   "simple_form": {
     "error_notification": {
@@ -6804,14 +14249,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "current_password": "Current password",
         "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
+        "email": "E-Mail-Addresse",
+        "first_name": "Vorname",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "Nachname",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
         "name": "Name",
-        "password": "Password",
+        "password": "Passwort",
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
@@ -6967,9 +14412,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "disabled": "Disable",
         "email": "Email",
-        "first_name": "First Name",
+        "first_name": "Vorname",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "Nachname",
         "parent": "Direct Manager",
         "parent_id": "Direct Manager",
         "report_ids": "Report IDs",
@@ -7046,14 +14491,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "current_password": "Current password",
         "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
+        "email": "E-Mail-Addresse",
+        "first_name": "Vorname",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "Nachname",
         "manage_client_ids": "Client Tenancy",
         "memberships": "Client Tenancy",
         "name": "Name",
-        "password": "Password",
+        "password": "Passwort",
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "roles": {
@@ -7090,13 +14535,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "created_at": "Created Date",
         "current_password": "Current password",
         "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
+        "email": "E-Mail-Addresse",
+        "first_name": "Vorname",
         "id": "ID",
-        "last_name": "Last Name",
+        "last_name": "Nachname",
         "parent": "Direct Manager",
         "parent_id": "Direct Manager",
-        "password": "Password",
+        "password": "Passwort",
         "password_confirmation": "Password confirmation",
         "role": "Role",
         "updated_at": "Modified Date"
@@ -7110,12 +14555,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "subjects": {
     "statuses": {
-      "completed": "Completed",
+      "completed": "abgeschlossen",
       "declined": "Declined",
-      "denied": "Denied",
+      "denied": "verweigert",
       "done": "Done",
-      "not_completed": "Not Completed",
-      "waiting": "Waiting"
+      "not_completed": "nicht abgeschlossen",
+      "waiting": "warten"
     }
   },
   "support": {
@@ -7127,102 +14572,102 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "threesixty": {
     "accept_privacy_modal": {
-      "accept": "Accept",
-      "reject": "Reject",
-      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
-      "title": "Data processing consent"
+      "accept": "Annehmen",
+      "reject": "Ablehnen",
+      "text": "Mit dem Ausfüllen dieses Fragebogens bzw. dieser Fragebögen erklären Sie sich damit einverstanden, dass die erhobenen Daten für die Zwecke verwendet werden, die in der Mitteilung, die Sie bereits erhalten haben, vorgesehen und beschrieben sind. Ihre Antworten auf die gestellten Fragen werden zusammen mit allen anderen zur Verfügung gestellten Daten zum Zwecke der Analyse und Berichterstattung bezüglich Ihrer individuellen Antworten verwendet. Wir können Ihre Antworten außerdem im Rahmen von groß angelegten Forschungsprojekten verwenden. Ihre Daten werden mit der erforderlichen Vertraulichkeit und Sicherheit behandelt. Bitte klicken Sie <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>hier</a> / und besuchen Sie diese Website, um weitere Informationen zu erhalten oder sich mit jemandem in Verbindung zu setzen, wenn Sie spezifischere Fragen haben.",
+      "title": "Einwilligung zur Datenverarbeitung"
     },
-    "add": "Add",
-    "and": "And",
-    "approve_all": "Approve All",
-    "approve_all_successful": "Approved all nominations",
-    "approve_evaluations": "Approve Evaluations",
-    "approve_nominations": "Approve Nominations",
-    "approve_reports": "Approve Reports",
-    "approved": "Approved",
+    "add": "hinzufügen",
+    "and": "und",
+    "approve_all": "Alle genehmigen",
+    "approve_all_successful": "Alle genehmigen Benennungen",
+    "approve_evaluations": "genehmigen Bewertungen",
+    "approve_nominations": "BENENNUNGEN GENEHMIGEN",
+    "approve_reports": "genehmige Berichten",
+    "approved": "genehmigt",
     "approving_mail_sent": "Mail for approving nomination has been sent to managers",
     "as_my": "as my",
     "assessment": "Assessment",
-    "back_to_tasks": "Back to tasks",
-    "begin": "Begin",
+    "back_to_tasks": "zurück zu den Aufgaben",
+    "begin": "beginnen",
     "cancel": "Cancel",
     "close_evaluation_modal": {
       "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
       "title": "Are you sure you want to view the report?"
     },
     "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
-    "completed": "Completed",
+    "completed": "abgeschlossen",
     "confirm": "Are you sure?",
     "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "confirmation_required": "Confirmation required",
     "confirmation_text_incorrect": "Confirmation text is incorrect",
     "confirmation_text_placeholder": "Confirmation text here",
-    "continue": "Continue",
-    "dashboard_title": "Welcome %{name}",
+    "continue": "fortfahren",
+    "dashboard_title": "Willkommen %{name}",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
-    "denied": "Denied",
-    "deny_all": "Deny All",
-    "deny_all_successful": "Denied all nominations",
+    "denied": "verweigert",
+    "deny_all": "Alle ablehnen",
+    "deny_all_successful": "abgelehnt alle Benennung",
     "download_pdf": "Download PDF",
     "download_report": "Download Report",
     "download_reports": "Download Reports",
     "edit_user": "Edit User",
-    "email_approve_request": "Email Approval Request",
+    "email_approve_request": "E-Mail-Genehmigungsanfrage",
     "email_schedules": {
       "delete_successful": "Email schedule deleted successfully"
     },
-    "evaluate": "Evaluate",
-    "evaluation": "Evaluation",
+    "evaluate": "bewerten",
+    "evaluation": "Bewertu",
     "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
-    "evaluations": "Evaluations",
-    "evaluator": "Evaluator",
+    "evaluations": "Bewertungen",
+    "evaluator": "Bewerter",
     "export_pdf": "Export PDF",
-    "first_name": "First Name",
-    "first_name_error": "Please input First Name",
-    "help": "Help",
+    "first_name": "Vorname",
+    "first_name_error": "Bitte geben Sie den Vornamen ein",
+    "help": "helfen",
     "helps": {
       "main": "<h2>Help</h2> <p>need content for help modal</p>"
     },
     "language": "Language",
-    "last_name": "Last Name",
-    "last_name_error": "Please input Last Name",
+    "last_name": "Nachname",
+    "last_name_error": "Bitte geben Sie einen Nachnamen ein",
     "load_results": "Load Results",
     "mail_history": {
       "statuses": {
-        "success": "Success",
+        "success": "Erfolg",
         "undelivered": "Undelivered"
       }
     },
     "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
-    "my_projects": "My Projects",
+    "my_projects": "Mein projekten",
     "nominate": "Nominate",
     "nominate_evaluators": "Nominate Evaluators to",
-    "nomination": "Nomination",
-    "nominations": "Nominations",
+    "nomination": "Benennung",
+    "nominations": "Benennungen",
     "options": {
       "global": {
         "cannot_re_edit": "Participants cannot edit evaluations"
       }
     },
-    "or": "Or",
+    "or": "oder",
     "page_title": "Signify 360° Review - Apply Level",
     "participant_list": {
       "actions": {
-        "approve_report": "Approve Report",
+        "approve_report": "Bericht genehmigen",
         "download_report": "Download Report",
         "edit": "Edit",
         "hold_report": "Hold report",
-        "login": "Login",
+        "login": "Anmelden",
         "mark_as_done": "Mark as done",
         "release_report": "Release report",
         "remove_campaign": "Remove from campaign",
-        "remove_report_approval": "Remove report approval",
+        "remove_report_approval": "Entfernen Bericht Genehmigung",
         "remove_report_hold_release_report": "Remove Report Hold/Release",
-        "remove_subject": "Remove subject",
+        "remove_subject": "Entfernen Betreff",
         "unmark_as_done": "Unmark as done",
-        "view_report": "View Report",
-        "view_responses": "View Responses"
+        "view_report": "Ansicht Bericht",
+        "view_responses": "Ansicht Antworten"
       },
       "confirmation_messages": {
         "approve_report": "Are you sure you want to approve report?",
@@ -7237,48 +14682,48 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "report_generation_message": "Report is generating. We will let you know when the report is ready."
     },
-    "processing": "Processing",
-    "processing_report": "Processing Report",
+    "processing": "verarbeitung",
+    "processing_report": "verarbeitung Bericht",
     "question": {
       "chat_type": {
-        "input_placeholder": "اكتب رسالتك..."
+        "input_placeholder": "Write your Message..."
       },
       "email_type": {
-        "bcc": "نسخة مخفية الوجهة",
-        "cc": "نسخة إلى",
-        "edit": "تعديل",
+        "bcc": "Bcc",
+        "cc": "Cc",
+        "edit": "Edit",
         "max_length_warning": "%{x} characters remaining",
-        "message": "رسالتك",
-        "send": "إرسال",
-        "subject": "الموضوع",
-        "successful_message": "لقد قمت بإرسال البريد الإلكتروني بنجاح",
-        "to": "إلى"
+        "message": "Your Message",
+        "send": "gesenden",
+        "subject": "Betreff",
+        "successful_message": "You have successfully sent the email",
+        "to": "zu"
       }
     },
-    "remind_all": "Remind All",
+    "remind_all": "alle erinnern",
     "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
-    "report_for": "Report for",
+    "report_for": "Bericht für",
     "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
-    "reports": "Reports",
+    "reports": "Berichte",
     "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
     "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
-    "save": "Save",
-    "select_relationnship": "Select Relationship",
-    "select_relationship": "Select Relationship",
-    "self": "Self",
+    "save": "speich",
+    "select_relationnship": "wählen Beziehung",
+    "select_relationship": "wählen Beziehung",
+    "self": "Selbst",
     "set_name_for_evaluator": "Set name for Evaluator",
-    "setup_nominations": "Set up nominations",
-    "subject": "Subject",
+    "setup_nominations": "BENENNUNGEN FESTLEGEN",
+    "subject": "Betreff",
     "submit": "Submit",
-    "total_progress": "Total progress",
-    "user_name_input_placeholder": "type name or email...",
+    "total_progress": "Gesamtfortschritt",
+    "user_name_input_placeholder": "geben Sie Namen oder E-Mail…",
     "validation_errors": "Validation Errors",
-    "view_my_report": "View My Report",
-    "view_nominations": "View nominations",
-    "view_reports": "View Reports",
-    "waiting": "Waiting",
-    "you": "You",
-    "yourself": "Yourself"
+    "view_my_report": "Ansicht Mein Bericht",
+    "view_nominations": "Ansicht Benennungen",
+    "view_reports": "Ansicht Bericht",
+    "waiting": "warten",
+    "you": "Sie",
+    "yourself": "ihne selbst"
   },
   "time": {
     "am": "am",
@@ -7313,9 +14758,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "user": {
     "fields": {
-      "email": "Email Address",
-      "first_name": "First Name",
-      "last_name": "Last Name"
+      "email": "E-Mail-Addresse",
+      "first_name": "Vorname",
+      "last_name": "Nachname"
     },
     "form": {
       "operation_options": {
@@ -7363,71 +14808,70 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "preview_report": "Preview Report",
     "statuses": {
       "generating": "Generating",
-      "not_prepared": "Not Available",
-      "prepared": "Available"
+      "not_prepared": "nicht Verfügung",
+      "prepared": "Verfügung"
     }
   },
   "validations": {
     "AudioResponse": {
       "in_progress": {
-        "RECORDED": "تم تسجيل الصوت ولكن لم يتم حفظه",
-        "RECORDING": "يتم التسجيل الصوتي",
-        "SAVING": "يتم تحميل التسجيل الصوتي"
+        "RECORDED": "Audio is recorded but not saved",
+        "RECORDING": "Audio recording is in progress",
+        "SAVING": "Recorded audio upload is in progress"
       },
-      "required": "يرجى تسجيل الصوت وحفظه قبل المتابعة"
+      "required": "Please record and save the audio before you continue"
     },
     "FileUpload": {
       "in_progress": {
-        "SAVING": "يتم تحميل الملف"
+        "SAVING": "File upload is in progress"
       },
-      "required": "الرجاء رفع الملف"
+      "required": "Please upload the file"
     },
     "TextEntry": {
       "Email": {
-        "character_range": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل وألا تزيد عن %{max} حرف.",
-        "max_length": "يجب ألا يزيد عدد أحرف رسالة البريد الإلكتروني التي تم إدخالها عن {max}% حرف.",
-        "min_length": "يجب أن تتكون رسالة البريد الإلكتروني التي تم إدخالها من %{min} حرف على الأقل.",
+        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
+        "max_length": "Email message entered must be no more than %{max} characters.",
+        "min_length": "Email message entered must be at least %{min} characters.",
         "subject": {
-          "min_length": "يجب أن تحتوي خانة \"الموضوع\" على 10 أحرف على الأقل."
+          "min_length": "Subject field should have minimum of 10 characters"
         },
         "to": {
-          "required": "يجب تعبئة الخانة \"إلى\""
+          "required": "To field is required"
         }
       }
     },
     "VideoResponse": {
       "in_progress": {
-        "recorded": "تم تسجيل الفيديو ولكن لم يتم حفظه",
-        "recording": "يتم تسجيل الفيديو",
-        "saving": "يتم تحميل الفيديو المسجل"
+        "recorded": "Video is recorded but not saved",
+        "recording": "Video recording is in progress",
+        "saving": "Recorded video upload is in progress"
       },
-      "required": "يرجى تسجيل الفيديو وحفظه قبل المتابعة"
+      "required": "Bitte nehmen Sie das Video auf und speichern Sie es, bevor Sie fortfahren"
     },
     "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
     "blank": "can't be blank",
-    "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
-    "date": "(mm/dd/yyyy) يجب أن يتم إدخال تاريخ صحيح",
-    "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
-    "email": "البريد الإلكتروني غير صحيح",
+    "character_range": "Ihre Antwort muss mindestens %{min} und darf nicht mehr als %{max} Zeichen enthalten.",
+    "date": "Ihre Antwort muss ein gültiges Datum sein (TT/MM/JJJJ)",
+    "each_group_contains": "Jede Gruppe darf nicht weniger als %{min} und nicht mehr als %{max} Elemente enthalten",
+    "email": "Ihre Antwort muss eine gültige E-Mail-Adresse sein",
     "file_upload": {
-      "EntityTooLarge": "يجب أن يكون حجم الملف أقل من %{maxFileSize} ميجابايت",
-      "WrongFileType": "يجب أن يكون نوع الملف واحدًا من الأنواع التالية %{allowedFileTypes}"
+      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
+      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
     },
-    "issue": " الخطأ",
-    "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
-    "least_hotspot": "الرجاء اختيار %{min} خيارات كحد أدنى.",
-    "max_length": " يجب ألا تتجاوز إجابتك %{max} حرفًا.",
-    "min_length": "يجب أن تتكون إجابتك من  %{min} حرفًا كحد أدنى. ",
-    "must_rank_between": " يرجى وضع قيمة من %{min} إلى %{max} لكل عنصر. لا يجب أن تتكرر القيم.",
-    "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
-    "number": "يجب أن تحتوي الإجابة على أرقام",
-    "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
-    "required": "الرجاء الإجابة على هذا السؤال",
-    "text": "يجب ألا تحتوي إجابتك على أرقام",
+    "issue": "Problem",
+    "least": "Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).",
+    "least_hotspot": "Bitte wählen Sie mindestens %{min} Auswahlmöglichkeit(en).",
+    "max_length": "Ihre Antwort darf nicht mehr als %{max} Zeichen enthalten.",
+    "min_length": "Ihre Antwort muss mindestens %{min} Zeichen enthalten.",
+    "must_rank_between": "Bitte weisen Sie für jedes Element einen Wert von %{min} bis %{max} zu. Die Werte dürfen nicht mehrfach vergeben werden.",
+    "must_select": "Bitte wählen Sie von %{min} bis %{max} Auswahlmöglichkeiten",
+    "number": "Ihre Antwort muss eine Zahl sein",
+    "range": "Bitte wählen Sie mindestens %{min} und nicht mehr als %{max} Auswahlmöglichkeit(en).",
+    "required": "Bitte beantworten Sie diese Frage",
+    "text": "Ihre Antwort darf keine Zahlen enthalten",
     "title": {
-      "one": "هناك خطأ واحد ، يرجى التحقق من ردودك",
-      "other": "هناك %{count} أخطاء ، يرجى التحقق من إجاباتك",
-      "two": "يوجد خطأان ، يرجى التحقق من إجاباتك"
+      "one": "There is one error, please check your responses",
+      "other": "There are %{count} errors, please check your responses"
     }
   },
   "views": {
@@ -13113,7 +20557,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "new": {
         "code": "Registration Code",
+        "email": "Email Address",
+        "first_name": "First Name",
         "instruction": "Fill in the details below to register and create a new account",
+        "last_name": "Last Name",
         "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
         "sign_up": "Sign up",
         "submit": "Register",
@@ -13626,7 +21073,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "languages": {
-    "ar": "Arabic",
+    "ar": "العربية",
     "bg": "Bulgarian",
     "bs": "Bosnian",
     "ca": "Catalan",
@@ -13634,7444 +21081,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "cs": "Czech",
     "cy": "Cymraeg",
     "da": "Danish",
-    "de": "German",
-    "el": "Greek",
-    "en": "English",
-    "en-GB": "English - UK",
-    "eo": "Esperanto",
-    "es": "Spanish (Latin America)",
-    "es-ES": "Spanish (Spain)",
-    "et": "Estonian",
-    "fa": "Persian",
-    "fi": "Finnish",
-    "fr": "French",
-    "gu": "Gujarati",
-    "he": "Hebrew",
-    "hi": "Hindi",
-    "hr": "Croatian",
-    "hu": "Hungarian",
-    "id": "Bahasa Indonesia",
-    "it": "Italian",
-    "ja": "Japanese",
-    "km": "Khmer",
-    "ko": "Korean",
-    "lt": "Lithuanian",
-    "lv": "Latvian",
-    "mk": "Macedonian",
-    "mn": "Mongolian",
-    "ms": "Bahasa Malaysia",
-    "my": "Myanmar",
-    "nl": "Dutch",
-    "no": "Norwegian",
-    "pl": "Polish",
-    "pt": "Portuguese",
-    "pt-BR": "Brazilian Portuguese",
-    "ro": "Romanian",
-    "ru": "Russian",
-    "sk": "Slovak",
-    "sl": "Slovenian",
-    "sr-Cyrl": "Serbian Cyrillic",
-    "sr-Latn": "Serbian Latin",
-    "sv": "Swedish",
-    "sw": "Swahili",
-    "ta": "Tamil",
-    "th": "Thai",
-    "tl": "Tagalog",
-    "tr": "Turkish",
-    "uk": "Ukrainian",
-    "ur": "Urdu",
-    "vi": "Vietnamese",
-    "zh": "Chinese Simplified",
-    "zh-TW": "Chinese Traditional"
-  },
-  "layouts": {
-    "users": {
-      "dashboard": "Dashboard",
-      "help": "Help",
-      "logout": "Log Out",
-      "menu": "Menu",
-      "notifications": "Notifications",
-      "profile": "Profile"
-    }
-  },
-  "licenses": {
-    "not_enough_license": "'%{client_name}' does not have enough licenses for '%{report_name}'"
-  },
-  "loading": "Processing...",
-  "mailer": {
-    "from": "The Talent Enterprise",
-    "license": {
-      "expire": {
-        "subject": "License expired"
-      },
-      "overuse": {
-        "subject": "License overuse"
-      },
-      "weekly_stats": {
-        "column_headers": {
-          "account_manager": "Account Manager",
-          "client_name": "Client Name",
-          "expiry_date": "Expiry date",
-          "overuse_limit": "Overuse Limit",
-          "project_manager": "Project Manager",
-          "remaining_count": "Remaining Count",
-          "type": "License type",
-          "use_count": "Use count"
-        },
-        "expiry_stats": "Licenses expiring in the next 30 days :",
-        "no_expiry_stats": "No lincenses expiring in the next 30 days.",
-        "no_weekly_stats": "No licenses consumed in the last 7 days.",
-        "notice": "Note - You can unsubscribe to this weekly email from your profile page.",
-        "subject": "Weekly license usage stats",
-        "weekly_stats": "Past week license usage stats :"
-      }
-    }
-  },
-  "managers": {
-    "assessments": {
-      "index": {
-        "actions": "Actions",
-        "name": "Name"
-      },
-      "resource": {
-        "action_planning": "Action Planning"
-      }
-    },
-    "assigns": {
-      "index": {
-        "title": "Assessments and Reporting Centre"
-      },
-      "list": {
-        "action": "Action",
-        "assessment_name": "Assessment Name",
-        "assessment_type": "Assessment Type",
-        "completion_date": "Completion Date",
-        "name": "Name",
-        "status": "Completion Status"
-      },
-      "resource": {
-        "email": "Email",
-        "save": "Save in PDF",
-        "view": "View"
-      }
-    },
-    "dashboard": {
-      "index": {
-        "assessment_center": "Assessment / Report Centre",
-        "notification_center": "Notification Centre",
-        "notifications": "Notifications",
-        "relationships": "Company Relationships",
-        "reporting": "Reporting",
-        "statistics": "Statistics"
-      }
-    },
-    "notifications": {
-      "index": {
-        "subtitle": "Notifications",
-        "title": "Notification Centre"
-      }
-    },
-    "reports": {
-      "show": {
-        "export_pdf": "Export to PDF",
-        "header": "Report"
-      }
-    },
-    "statistics": {
-      "index": {
-        "title": "Statistics"
-      }
-    },
-    "tasks": {
-      "comment": {
-        "made_comment": "made a comment."
-      },
-      "edit": {
-        "header": "Update Action Item"
-      },
-      "index": {
-        "subtitle": "Action Items",
-        "title": "Action Planning Dashboard",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "actions": "Actions",
-        "add_item": "Add Action Item",
-        "competency": "Competency",
-        "high": "High Priority",
-        "low": "Low Priority",
-        "medium": "Medium Priority",
-        "subtitle_high": "High Priority Items",
-        "subtitle_low": "Low Priority Items",
-        "subtitle_medium": "Medium Priority Items",
-        "summary": "Showing %{total} of %{total} entries."
-      },
-      "new": {
-        "header": "Create Action Item"
-      },
-      "resource": {
-        "tooltips": {
-          "delete": "Delete Action Item",
-          "edit": "Edit Action Item"
-        }
-      },
-      "resource_extension": {
-        "add": "Add Sub Action Item",
-        "add_comment": "Add Comment",
-        "leave_comment": "Leave a comment/note:",
-        "notes": "Notes/Comments:",
-        "sub_tasks": "Sub Action Items"
-      },
-      "subtasks": {
-        "list": {
-          "actions": "Actions",
-          "date": "Target Completion Date",
-          "name": "Action Item",
-          "status": "Status"
-        }
-      },
-      "summary": {
-        "completed": "Completed",
-        "in_progress": "In Progress",
-        "manager_summary": "Manager Summary",
-        "not_started": "Not Started",
-        "overdue": "Overdue",
-        "total": "Total Items"
-      },
-      "summary_managers": {
-        "assignee": "Assigner",
-        "completed": "Completed",
-        "in_progress": "In Progress",
-        "not_started": "Not Started",
-        "overdue": "Overdue"
-      }
-    },
-    "users": {
-      "index": {
-        "title": "Company Relationships"
-      }
-    }
-  },
-  "mindmill": {
-    "assigns": {
-      "results": {
-        "not_completed": "Mindmill Assessment not completed",
-        "successfully": "Mindmill Assessment was successfully pass"
-      }
-    }
-  },
-  "my": "My",
-  "myself": "Myself",
-  "na": "NA",
-  "next": "Next",
-  "no": "No",
-  "nominations": {
-    "approval_email_error": "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
-  },
-  "norms": {
-    "percentile": {
-      "columns": {
-        "mean": "Mean",
-        "name": "Name",
-        "standard_deviation": "Standard Deviation"
-      },
-      "messages": {
-        "failure": "Error: %{error}.",
-        "success": "Norm for Factor '%{factorName}' updated successfully."
-      },
-      "values": {
-        "empty": "Empty",
-        "required": "%{title} is required"
-      }
-    }
-  },
-  "number": {
-    "currency": {
-      "format": {
-        "delimiter": ",",
-        "format": "%u%n",
-        "precision": 2,
-        "separator": ".",
-        "significant": false,
-        "strip_insignificant_zeros": false,
-        "unit": "$"
-      }
-    },
-    "format": {
-      "delimiter": ",",
-      "precision": 3,
-      "separator": ".",
-      "significant": false,
-      "strip_insignificant_zeros": false
-    },
-    "human": {
-      "decimal_units": {
-        "format": "%n %u",
-        "units": {
-          "billion": "Billion",
-          "million": "Million",
-          "quadrillion": "Quadrillion",
-          "thousand": "Thousand",
-          "trillion": "Trillion",
-          "unit": ""
-        }
-      },
-      "format": {
-        "delimiter": "",
-        "precision": 3,
-        "significant": true,
-        "strip_insignificant_zeros": true
-      },
-      "storage_units": {
-        "format": "%n %u",
-        "units": {
-          "byte": {
-            "one": "Byte",
-            "other": "Bytes"
-          },
-          "eb": "EB",
-          "gb": "GB",
-          "kb": "KB",
-          "mb": "MB",
-          "pb": "PB",
-          "tb": "TB"
-        }
-      }
-    },
-    "percentage": {
-      "format": {
-        "delimiter": "",
-        "format": "%n%"
-      }
-    },
-    "precision": {
-      "format": {
-        "delimiter": ""
-      }
-    }
-  },
-  "profiles": {
-    "edit": {
-      "header": "Profile Settings"
-    },
-    "form": {
-      "username": "Username"
-    },
-    "update": {
-      "successfully": "Profile updated"
-    }
-  },
-  "ransack": {
-    "all": "all",
-    "and": "and",
-    "any": "any",
-    "asc": "ascending",
-    "attribute": "attribute",
-    "combinator": "combinator",
-    "condition": "condition",
-    "desc": "descending",
-    "or": "or",
-    "predicate": "predicate",
-    "predicates": {
-      "blank": "is blank",
-      "cont": "contains",
-      "cont_all": "contains all",
-      "cont_any": "contains any",
-      "does_not_match": "doesn't match",
-      "does_not_match_all": "doesn't match all",
-      "does_not_match_any": "doesn't match any",
-      "end": "ends with",
-      "end_all": "ends with all",
-      "end_any": "ends with any",
-      "eq": "equals",
-      "eq_all": "equals all",
-      "eq_any": "equals any",
-      "false": "is false",
-      "gt": "greater than",
-      "gt_all": "greater than all",
-      "gt_any": "greater than any",
-      "gteq": "greater than or equal to",
-      "gteq_all": "greater than or equal to all",
-      "gteq_any": "greater than or equal to any",
-      "in": "in",
-      "in_all": "in all",
-      "in_any": "in any",
-      "lt": "less than",
-      "lt_all": "less than all",
-      "lt_any": "less than any",
-      "lteq": "less than or equal to",
-      "lteq_all": "less than or equal to all",
-      "lteq_any": "less than or equal to any",
-      "matches": "matches",
-      "matches_all": "matches all",
-      "matches_any": "matches any",
-      "not_cont": "doesn't contain",
-      "not_cont_all": "doesn't contain all",
-      "not_cont_any": "doesn't contain any",
-      "not_end": "doesn't end with",
-      "not_end_all": "doesn't end with all",
-      "not_end_any": "doesn't end with any",
-      "not_eq": "not equal to",
-      "not_eq_all": "not equal to all",
-      "not_eq_any": "not equal to any",
-      "not_in": "not in",
-      "not_in_all": "not in all",
-      "not_in_any": "not in any",
-      "not_null": "is not null",
-      "not_start": "doesn't start with",
-      "not_start_all": "doesn't start with all",
-      "not_start_any": "doesn't start with any",
-      "null": "is null",
-      "present": "is present",
-      "start": "starts with",
-      "start_all": "starts with all",
-      "start_any": "starts with any",
-      "true": "is true"
-    },
-    "search": "search",
-    "sort": "sort",
-    "value": "value"
-  },
-  "reports": {
-    "actions": {
-      "add": "Add Report",
-      "download": "Download report",
-      "view": "View Report"
-    },
-    "modules": {
-      "common": {
-        "almost_always": "Almost Always",
-        "less_typical": "Less Typical",
-        "moderate": "Moderate",
-        "more_typical": "More Typical",
-        "rare": "Rare"
-      },
-      "cpi_occupations": {
-        "occupations": "Occupations",
-        "your_potential_suitability": "Your Potential Suitability"
-      },
-      "gap_assessment": {
-        "gap": "Gap",
-        "item": "Indicator",
-        "negative_gap": "Negative Gaps",
-        "no_negative_gaps": "There are no Negative Gaps",
-        "no_positive_gaps": "There are no Positive Gaps",
-        "positive_gap": "Positive Gaps",
-        "rank": "Rank",
-        "scoring_category": "Competency"
-      },
-      "highest_lowest": {
-        "average": "Average",
-        "bottom_5": "BOTTOM 5",
-        "category": "Category",
-        "email": "Email",
-        "first_name": "First Name",
-        "highest_scores": "Highest Scores",
-        "item": "Indicator",
-        "last_name": "Last Name",
-        "lowest_scores": "Lowest scores",
-        "mean_score": "Mean Score",
-        "rank": "Rank",
-        "result": "Result",
-        "score": "Score",
-        "scoring_category": "Competency",
-        "sub_competenties": "Sub-Competencies",
-        "top_5": "TOP 5"
-      },
-      "potential_career_full": {
-        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
-        "career_strengths_and_results": "Career Strengths and Your Results",
-        "career_sub_tracks": "Career Sub-tracks",
-        "detailed_career_guide": "Detailed Career Guide",
-        "diploma_qualification": "Diploma Qualification",
-        "education_level": "Education Level",
-        "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.",
-        "potential_areas_of_study": "Potential Areas of Study",
-        "potential_roles": "Potential Roles",
-        "strength_high": "Signature Strength",
-        "strength_low": "Developmental Strength",
-        "strength_moderate": "Potential Strength",
-        "work_environment": "Work Environment",
-        "your_suitability": "Your Suitability"
-      },
-      "potential_career_short": {
-        "career": "career",
-        "for_this": "for this",
-        "key": "key",
-        "strengths": "strengths",
-        "your_scores": "Your Scores"
-      },
-      "single_value": {
-        "factor_name": "Scoring Category",
-        "question_name": "Questions"
-      },
-      "single_value_cluster": {
-        "competency": "Competency",
-        "description": "Description",
-        "developmental_rating": "Developmental Rating",
-        "questions": "Questions"
-      },
-      "strength_clusters": {
-        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
-        "possible_roles": "Possible Roles",
-        "work_environments": "Expected Work Environments"
-      },
-      "three_sixty_default": {
-        "factor": {
-          "items": "Items",
-          "max": "Max Value",
-          "mean": "Mean",
-          "min": "Min Value",
-          "standardDeviation": "Standard Deviation",
-          "sum": "Sum",
-          "totalResponses": "Total Responses",
-          "variance": "Variance",
-          "weightedMean": "Weighted Mean"
-        },
-        "statistic": "Statistic",
-        "value": "Value"
-      },
-      "three_sixty_report_summary": {
-        "completed": "Completed",
-        "footnote": "* Excluded due to minimum threshold requirement",
-        "invited": "Invited",
-        "number_of_evaluators_invited": "Number of evaluators invited",
-        "relationships": "Relationships",
-        "subject": "Subject",
-        "title": "Report Summary",
-        "total": "Total",
-        "total_evaluations": "Total evaluations for this assessment"
-      },
-      "video_response": {
-        "no_results": "No videos recorded"
-      }
-    },
-    "show": {
-      "export_pdf": "Export to PDF",
-      "header": "Report"
-    },
-    "statuses": {
-      "approved": "Approved",
-      "available": "Available",
-      "denied": "Denied",
-      "incomplete": "Incomplete",
-      "not_available": "Not available",
-      "on_hold": "On hold",
-      "released": "Released"
-    }
-  },
-  "shared": {
-    "filters": {
-      "clear": "Clear Filters"
-    },
-    "internet_disconnected_message": "Trying to reconnect. Please check your internet connection.",
-    "password_reset": {
-      "description": "Please enter your email address in the box below and click 'Reset Password'.",
-      "email_label": "Email Address",
-      "instruction": "Enter the email associated with your account",
-      "submit": "Reset Password",
-      "title": "Forgot Password?"
-    },
-    "terms_conditions_privacy": "Privacy Statement",
-    "tte_terms_and_condition": "TTE - Terms, Conditions and Privacy Statement"
-  },
-  "simple_form": {
-    "error_notification": {
-      "default_message": "Please review the problems below:"
-    },
-    "labels": {
-      "client": {
-        "account_manager": "TTE Account Manager",
-        "account_manager_id": "TTE Account Manager",
-        "applicable_level": "Applicable Level",
-        "applicable_levels": {
-          "campaign": "Campaign",
-          "project": "Project",
-          "sub_campaign": "Sub-Campaign"
-        },
-        "category": "Category",
-        "created_at": "Created Date",
-        "id": "ID",
-        "licenses": "License number",
-        "licenses_expire": "License Expiry Date",
-        "licenses_used": "License Usage",
-        "location": "Location",
-        "logo": "Client logo",
-        "memberships_count": "Users",
-        "name": "Name",
-        "number": "Client Number",
-        "privacy_consent": "Enable data processing consent",
-        "project_manager": "TTE Project Manager",
-        "project_manager_id": "TTE Project Manager",
-        "report_ids": "Reports",
-        "strong_password_enabled": "Enable strong password",
-        "subdomain": "Subdomain",
-        "types": {
-          "associate": "Associate",
-          "corporate": "Corporate",
-          "distributer": "Distributer",
-          "other": "Other",
-          "partner": "Partner",
-          "retail": "Retail",
-          "tte": "TTE"
-        },
-        "updated_at": "Modified Date",
-        "year": "Client Year"
-      },
-      "membership": {
-        "role": "Membership role"
-      }
-    },
-    "no": "No",
-    "placeholders": {
-      "administration/assessments/assign_form": {
-        "access_reports": "Access Report Rules",
-        "access_reports_at": "Access Report at",
-        "access_reports_at_date": "Date",
-        "access_reports_at_time": "Time",
-        "client_ids": "Client Tenancies",
-        "manager_ids": "Managers",
-        "report_ids": "Reports",
-        "user_ids": "Users"
-      },
-      "administrator": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "current_password": "Current password",
-        "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "manage_client_ids": "Client Tenancy",
-        "memberships": "Client Tenancy",
-        "name": "Name",
-        "password": "Password",
-        "password_confirmation": "Password confirmation",
-        "role": "Role",
-        "roles": {
-          "admin": "Admin",
-          "admins": {
-            "admin": "Admin",
-            "project_admin": "Project Admin",
-            "regular": "Client Admin",
-            "superadmin": "Super Admin"
-          },
-          "agile": "AGILE",
-          "case_study": "Case study",
-          "client_admin": "Client Admin",
-          "hogan": "Hogan",
-          "manager": "Manager",
-          "member": "User",
-          "mindmill": "Mindmill",
-          "organisational": "Organisational",
-          "project_admin": "Project Admin",
-          "psychometric": "Psychometric",
-          "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin",
-          "threesixty": "Threesixty"
-        },
-        "types": {
-          "anonymous": "Anonymous Users",
-          "identified": "Identified Users"
-        },
-        "updated_at": "Modified Date"
-      },
-      "assessment": {
-        "active": "Active",
-        "categories": {
-          "360": "360 Campaign",
-          "agile": "AGILE",
-          "case_study": "Case Studies",
-          "hogan": "Hogan",
-          "mindmill": "Mindmill",
-          "organisational": "Surveys",
-          "psychometric": "Assessment"
-        },
-        "category": "Category",
-        "completed_at": "Completion Date",
-        "created_at": "Created Date",
-        "description": "Description",
-        "id": "ID",
-        "name": "Name",
-        "statuses": {
-          "completed": "Completed",
-          "finished": "finished",
-          "in_progress": "Resume",
-          "interrupted": "Interrupted",
-          "not_started": "New",
-          "overdue": "Overdue"
-        },
-        "timing": "Timing",
-        "types": {
-          "common": "TTE Assessment",
-          "hogan": "Hogan",
-          "mindmill": "Mindmill Assessment"
-        },
-        "updated_at": "Modified Date"
-      },
-      "block": {
-        "active": "Active",
-        "assign_to_assessment_ids": "Assessments",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "client": {
-        "account_manager": "TTE Account Manager",
-        "account_manager_id": "TTE Account Manager",
-        "applicable_level": "Applicable Level",
-        "applicable_levels": {
-          "campaign": "Campaign",
-          "project": "Project",
-          "sub_campaign": "Sub-Campaign"
-        },
-        "category": "Category",
-        "created_at": "Created Date",
-        "id": "ID",
-        "licenses": "License number",
-        "licenses_expire": "License Expiry Date",
-        "licenses_used": "License Usage",
-        "location": "Location",
-        "logo": "Client logo",
-        "memberships_count": "Users",
-        "name": "Name",
-        "number": "Client Number",
-        "privacy_consent": "Enable data processing consent",
-        "project_manager": "TTE Project Manager",
-        "project_manager_id": "TTE Project Manager",
-        "report_ids": "Reports",
-        "strong_password_enabled": "Enable strong password",
-        "subdomain": "Subdomain",
-        "types": {
-          "associate": "Associate",
-          "corporate": "Corporate",
-          "distributer": "Distributer",
-          "other": "Other",
-          "partner": "Partner",
-          "retail": "Retail",
-          "tte": "TTE"
-        },
-        "updated_at": "Modified Date",
-        "year": "Client Year"
-      },
-      "communication": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "updated_at": "Modified Date"
-      },
-      "dimension": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "factors_count": "No. of Factors",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "factor": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "parent_id": "Parent",
-        "questions_count": "No. of Questions",
-        "updated_at": "Modified Date"
-      },
-      "library": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "type": "Thumbnail",
-        "updated_at": "Modified Date"
-      },
-      "license": {
-        "id": "ID",
-        "number": "License Number",
-        "overuse_number": "Over Use Allowance",
-        "type": "License for",
-        "types": {
-          "common": "Common",
-          "threesixty": "Threesixty"
-        },
-        "unlimited": "Unlimited",
-        "used_number": "Used License Number"
-      },
-      "memebrship": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "disabled": "Disable",
-        "email": "Email",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "parent": "Direct Manager",
-        "parent_id": "Direct Manager",
-        "report_ids": "Report IDs",
-        "roles": {
-          "client_admin": "Client Admin",
-          "manager": "Manager",
-          "member": "User",
-          "project_admin": "Project Admin"
-        },
-        "updated_at": "Modified Date",
-        "user_access": "User Access"
-      },
-      "norm": {
-        "active": "Active",
-        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
-        "created_at": "Created Date",
-        "description": "Description",
-        "description_label": "DESCRIPTION",
-        "diploma_qualification": "Diploma Qualification",
-        "factor_id": "Competency",
-        "factor_id_label": "SELECT COMPETENCY",
-        "full_description": "Full Description",
-        "high_school_entry_roles": "High School Entry Roles",
-        "id": "ID",
-        "key_career_tracks": "Key Career Tracks",
-        "membership_id": "Assigner",
-        "membership_id_label": "SELECT ASSIGNER",
-        "name": "Name",
-        "name_label": "ACTION ITEM",
-        "planned_completed_at": "Due Date",
-        "planned_completed_at_label": "SELECT DUE DATE",
-        "potential_areas_of_study": "Potential Areas of Study",
-        "priority": "Priority",
-        "priority_label": "PRIORITY",
-        "status": "Status",
-        "status_label": "SELECT STATUS",
-        "statuses": {
-          "completed": "Completed",
-          "in_progress": "In Progress",
-          "not_started": "Not Started",
-          "overdue": "Overdue"
-        },
-        "updated_at": "Modified Date",
-        "updated_by": "Edited by",
-        "work_environment": "Work Environment"
-      },
-      "product": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "question": {
-        "active": "Active",
-        "assign_to_assessment_ids": "Assessments",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "regenerate_reports": {
-        "report_ids": "Reports"
-      },
-      "report": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "mindmill": "Load report from Mindmill",
-        "mindmill_report": "Mindmill report",
-        "updated_at": "Modified Date"
-      },
-      "user": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "current_password": "Current password",
-        "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "manage_client_ids": "Client Tenancy",
-        "memberships": "Client Tenancy",
-        "name": "Name",
-        "password": "Password",
-        "password_confirmation": "Password confirmation",
-        "role": "Role",
-        "roles": {
-          "admin": "Admin",
-          "admins": {
-            "admin": "Admin",
-            "project_admin": "Project Admin",
-            "regular": "Client Admin",
-            "superadmin": "Super Admin"
-          },
-          "agile": "AGILE",
-          "case_study": "Case study",
-          "client_admin": "Client Admin",
-          "hogan": "Hogan",
-          "manager": "Manager",
-          "member": "User",
-          "mindmill": "Mindmill",
-          "organisational": "Organisational",
-          "project_admin": "Project Admin",
-          "psychometric": "Psychometric",
-          "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin",
-          "threesixty": "Threesixty"
-        },
-        "types": {
-          "anonymous": "Anonymous Users",
-          "identified": "Identified Users"
-        },
-        "updated_at": "Modified Date"
-      },
-      "user_form": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "current_password": "Current password",
-        "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "parent": "Direct Manager",
-        "parent_id": "Direct Manager",
-        "password": "Password",
-        "password_confirmation": "Password confirmation",
-        "role": "Role",
-        "updated_at": "Modified Date"
-      }
-    },
-    "required": {
-      "mark": "*",
-      "text": "required"
-    },
-    "yes": "Yes"
-  },
-  "subjects": {
-    "statuses": {
-      "completed": "Completed",
-      "declined": "Declined",
-      "denied": "Denied",
-      "done": "Done",
-      "not_completed": "Not Completed",
-      "waiting": "Waiting"
-    }
-  },
-  "support": {
-    "array": {
-      "last_word_connector": ", and ",
-      "two_words_connector": " and ",
-      "words_connector": ", "
-    }
-  },
-  "threesixty": {
-    "accept_privacy_modal": {
-      "accept": "Accept",
-      "reject": "Reject",
-      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
-      "title": "Data processing consent"
-    },
-    "add": "Add",
-    "and": "And",
-    "approve_all": "Approve All",
-    "approve_all_successful": "Approved all nominations",
-    "approve_evaluations": "Approve Evaluations",
-    "approve_nominations": "Approve Nominations",
-    "approve_reports": "Approve Reports",
-    "approved": "Approved",
-    "approving_mail_sent": "Mail for approving nomination has been sent to managers",
-    "as_my": "as my",
-    "assessment": "Assessment",
-    "back_to_tasks": "Back to tasks",
-    "begin": "Begin",
-    "cancel": "Cancel",
-    "close_evaluation_modal": {
-      "message": "Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations",
-      "title": "Are you sure you want to view the report?"
-    },
-    "closed_campaign_message": "This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.",
-    "completed": "Completed",
-    "confirm": "Are you sure?",
-    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
-    "confirmation_required": "Confirmation required",
-    "confirmation_text_incorrect": "Confirmation text is incorrect",
-    "confirmation_text_placeholder": "Confirmation text here",
-    "continue": "Continue",
-    "dashboard_title": "Welcome %{name}",
-    "decline": "Decline",
-    "decline_invite": "Decline Invite",
-    "denied": "Denied",
-    "deny_all": "Deny All",
-    "deny_all_successful": "Denied all nominations",
-    "download_pdf": "Download PDF",
-    "download_report": "Download Report",
-    "download_reports": "Download Reports",
-    "edit_user": "Edit User",
-    "email_approve_request": "Email Approval Request",
-    "email_schedules": {
-      "delete_successful": "Email schedule deleted successfully"
-    },
-    "evaluate": "Evaluate",
-    "evaluation": "Evaluation",
-    "evaluation_closed_nomination_message": "You can't nominate for this subject as evaluation is closed for this subject",
-    "evaluations": "Evaluations",
-    "evaluator": "Evaluator",
-    "export_pdf": "Export PDF",
-    "first_name": "First Name",
-    "first_name_error": "Please input First Name",
-    "help": "Help",
-    "helps": {
-      "main": "<h2>Help</h2> <p>need content for help modal</p>"
-    },
-    "language": "Language",
-    "last_name": "Last Name",
-    "last_name_error": "Please input Last Name",
-    "load_results": "Load Results",
-    "mail_history": {
-      "statuses": {
-        "success": "Success",
-        "undelivered": "Undelivered"
-      }
-    },
-    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
-    "my_projects": "My Projects",
-    "nominate": "Nominate",
-    "nominate_evaluators": "Nominate Evaluators to",
-    "nomination": "Nomination",
-    "nominations": "Nominations",
-    "options": {
-      "global": {
-        "cannot_re_edit": "Participants cannot edit evaluations"
-      }
-    },
-    "or": "Or",
-    "page_title": "Signify 360° Review - Apply Level",
-    "participant_list": {
-      "actions": {
-        "approve_report": "Approve Report",
-        "download_report": "Download Report",
-        "edit": "Edit",
-        "hold_report": "Hold report",
-        "login": "Login",
-        "mark_as_done": "Mark as done",
-        "release_report": "Release report",
-        "remove_campaign": "Remove from campaign",
-        "remove_report_approval": "Remove report approval",
-        "remove_report_hold_release_report": "Remove Report Hold/Release",
-        "remove_subject": "Remove subject",
-        "unmark_as_done": "Unmark as done",
-        "view_report": "View Report",
-        "view_responses": "View Responses"
-      },
-      "confirmation_messages": {
-        "approve_report": "Are you sure you want to approve report?",
-        "hold_report": "Are you sure you want to hold report?",
-        "mark_evaluation_done": "Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.",
-        "release_report": "Are you sure you want to release report?",
-        "remove_from_campaign": "Are you sure you want to remove user from the campaign?",
-        "remove_release_hold": "Are you sure you want to remove Release/Hold status?",
-        "remove_report_approval": "Are you sure you want to remove report approval?",
-        "remove_subject": "Are you sure you want to remove subject with email from campaign?",
-        "umark_evaluation_as_complete": "Are you sure you want to unmark evaluation as done?"
-      },
-      "report_generation_message": "Report is generating. We will let you know when the report is ready."
-    },
-    "processing": "Processing",
-    "processing_report": "Processing Report",
-    "question": {
-      "chat_type": {
-        "input_placeholder": "Write your Message..."
-      },
-      "email_type": {
-        "bcc": "Bcc",
-        "cc": "Cc",
-        "edit": "Edit",
-        "max_length_warning": "%{x} characters remaining",
-        "message": "Your Message",
-        "send": "Send",
-        "subject": "Subject",
-        "successful_message": "You have successfully sent the email",
-        "to": "To"
-      }
-    },
-    "remind_all": "Remind All",
-    "remind_mail_sent": "Reminders sent to evaluators who haven't completed the evaluation",
-    "report_for": "Report for",
-    "report_generation_in_progress": "Report is generating. We will let you know when the report is ready.",
-    "reports": "Reports",
-    "reset_campaign_confirmation": "Enter current campaign name given below in text box to reset all participants",
-    "reset_nomination_confirmation": "Enter current campaign name given below in text box to reset all nominations",
-    "save": "Save",
-    "select_relationnship": "Select Relationship",
-    "select_relationship": "Select Relationship",
-    "self": "Self",
-    "set_name_for_evaluator": "Set name for Evaluator",
-    "setup_nominations": "Set up nominations",
-    "subject": "Subject",
-    "submit": "Submit",
-    "total_progress": "Total progress",
-    "user_name_input_placeholder": "type name or email...",
-    "validation_errors": "Validation Errors",
-    "view_my_report": "View My Report",
-    "view_nominations": "View nominations",
-    "view_reports": "View Reports",
-    "waiting": "Waiting",
-    "you": "You",
-    "yourself": "Yourself"
-  },
-  "time": {
-    "am": "am",
-    "formats": {
-      "date": "%d/%m/%y",
-      "datetimepicker_client": "DD/MM/YYYY hh:mm A",
-      "datetimepicker_client_with_timezone": "D MMM YYYY / H:mm Z",
-      "datetimepicker_server": "%d/%m/%Y %I:%M %p",
-      "datetimepicker_server_with_timezone": "%d %b %Y / %H:%M %:z",
-      "datetimepicker_without_time_client": "DD/MM/YYYY",
-      "datetimepicker_without_time_server": "%d/%m/%Y",
-      "default": "%a, %d %b %Y %H:%M:%S %z",
-      "devise": {
-        "mailer": {
-          "invitation_instructions": {
-            "accept_until_format": "%B %d, %Y %I:%M %p"
-          }
-        }
-      },
-      "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
-      "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M",
-      "short_date": "%-d %b %Y"
-    },
-    "pm": "pm"
-  },
-  "universal_links": {
-    "deactivate_link": "Deactivate Link",
-    "png": "PNG",
-    "regenerate_link": "Regenerate Link",
-    "svg": "SVG"
-  },
-  "user": {
-    "fields": {
-      "email": "Email Address",
-      "first_name": "First Name",
-      "last_name": "Last Name"
-    },
-    "form": {
-      "operation_options": {
-        "add_and_allow_new_response": "Add user and allow new response",
-        "add_with_existing_response": "Add user with existing response",
-        "skip_existing": "Skip existing user"
-      }
-    },
-    "modals": {
-      "import": {
-        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "imported_users": "The number of imported users: %{number}",
-        "success_msg": "The uploaded file has been queued for import. Please check the status in the notifications",
-        "title": "Import Users",
-        "user_with_unchanged_passwords": "The list of users whose passwords were not changed"
-      }
-    },
-    "toolbar": {
-      "export": "Export Users",
-      "export_completion_status": "Export Completion Status",
-      "import": "Import Users"
-    }
-  },
-  "user_assessments": {
-    "modals": {
-      "remove": {
-        "content": "Are you sure you want to remove assessment '%{name}'?",
-        "successfully": "%{name} assessment removed successfully."
-      }
-    }
-  },
-  "user_reports": {
-    "actions": {
-      "regenerate": "Regenerate"
-    },
-    "messages": {
-      "regenerate_successful": "Report regeneration job scheduled successfully"
-    },
-    "modals": {
-      "remove": {
-        "content": "Are you sure you want to remove report %{userReportName}?",
-        "successfully": "%{userReportName} report removed successfully"
-      }
-    },
-    "preview_report": "Preview Report",
-    "statuses": {
-      "generating": "Generating",
-      "not_prepared": "Not Available",
-      "prepared": "Available"
-    }
-  },
-  "validations": {
-    "AudioResponse": {
-      "in_progress": {
-        "RECORDED": "Audio is recorded but not saved",
-        "RECORDING": "Audio recording is in progress",
-        "SAVING": "Recorded audio upload is in progress"
-      },
-      "required": "Please record and save the audio before you continue"
-    },
-    "FileUpload": {
-      "in_progress": {
-        "SAVING": "File upload is in progress"
-      },
-      "required": "Please upload the file"
-    },
-    "TextEntry": {
-      "Email": {
-        "character_range": "Email message entered must be at least %{min} and no more than %{max} characters.",
-        "max_length": "Email message entered must be no more than %{max} characters.",
-        "min_length": "Email message entered must be at least %{min} characters.",
-        "subject": {
-          "min_length": "Subject field should have minimum of 10 characters"
-        },
-        "to": {
-          "required": "To field is required"
-        }
-      }
-    },
-    "VideoResponse": {
-      "in_progress": {
-        "recorded": "Video is recorded but not saved",
-        "recording": "Video recording is in progress",
-        "saving": "Recorded video upload is in progress"
-      },
-      "required": "Please record and save the video before you continue"
-    },
-    "actions_still_in_progress": "Below actions are in progress. If you proceed you will lose these data.",
-    "blank": "can't be blank",
-    "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (mm/dd/yyyy)",
-    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
-    "email": "Your response must be a valid email",
-    "file_upload": {
-      "EntityTooLarge": "File size should be less than %{maxFileSize} MB",
-      "WrongFileType": "File type should be one of the following %{allowedFileTypes}"
-    },
-    "issue": "Issue",
-    "least": "Please answer at least %{min} choice(s).",
-    "least_hotspot": "Please answer at least %{min} choice(s).",
-    "max_length": "Your response must be no more than %{max} characters.",
-    "min_length": "Your response must be at least %{min} characters.",
-    "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
-    "must_select": "Please select from %{min} to %{max} choices",
-    "number": "Your response must be a number",
-    "range": "Please answer at least %{min} and no more than %{max} choice(s).",
-    "required": "Please answer this question",
-    "text": "Your response must not contain a numbers",
-    "title": {
-      "one": "There is one error, please check your responses",
-      "other": "There are %{count} errors, please check your responses"
-    }
-  },
-  "views": {
-    "pagination": {
-      "first": "&laquo; First",
-      "last": "Last &raquo;",
-      "next": "Next &rsaquo;",
-      "previous": "&lsaquo; Prev",
-      "truncate": "&hellip;"
-    }
-  },
-  "yes": "Yes",
-  "your": "Your",
-  "yourself": "Yourself"
-});
-I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
-  "activemodel": {
-    "attributes": {
-      "assign_report": {
-        "adding_report_ids": "Report(s)",
-        "is_applying_to_existing_users": "Apply these changes to existing users",
-        "report_family_id": "Report Bundle"
-      },
-      "datasheet": {
-        "file": "File (.xlsx)"
-      },
-      "new_assessments_client": {
-        "assessment_ids": "Assessments",
-        "is_applying_to_existing_users": "Apply these changes to existing users"
-      },
-      "regenerate_reports": {
-        "report_ids": "Reports"
-      },
-      "update_assessment": {
-        "is_applying_to_existing_users": "Apply these changes to existing users"
-      }
-    },
-    "errors": {
-      "models": {
-        "admin_edit": {
-          "attributes": {
-            "email": {
-              "blank": "Email field can't be blank",
-              "invalid": "Email is invalid"
-            },
-            "first_name": {
-              "blank": "First name can't be blank"
-            },
-            "last_name": {
-              "blank": "Last name can't be blank"
-            }
-          }
-        },
-        "agile": {
-          "answers": {
-            "blank": "Answers can't be blank"
-          },
-          "group_id": {
-            "blank": "Group id can't be blank"
-          }
-        },
-        "assign_report": {
-          "attributes": {
-            "adding_report_ids": {
-              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
-              "report_family_disabled": "You selected disabled Report Bundle",
-              "reports_disabled": "You selected disabled Report(s)"
-            },
-            "removing_report_ids": {
-              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
-            }
-          }
-        },
-        "create_all": {
-          "attributes": {
-            "evaluators": {
-              "email_duplicated": "The subject and evaluator emails are duplicated"
-            },
-            "subjects": {
-              "email_duplicated": "Some subjects have the same email"
-            }
-          }
-        },
-        "create_one": {
-          "attributes": {
-            "email": {
-              "already_exists": "A subject with same email already exists",
-              "blank": "Email can't be blank",
-              "invalid": "Email is invalid"
-            },
-            "evaluator_email": {
-              "already_exists": "The subject with this evaluator are already connected",
-              "blank": "Evaluator Email can't be blank",
-              "invalid": "Evaluator Email is invalid"
-            },
-            "evaluator_first_name": {
-              "blank": "Evaluator first name can't be blank"
-            },
-            "evaluator_last_name": {
-              "blank": "Evaluator last name can't be blank"
-            },
-            "evaluator_password": {
-              "too_short": "Evaluator password is too short (minimum is %{count} characters)"
-            },
-            "first_name": {
-              "blank": "First name can't be blank"
-            },
-            "last_name": {
-              "blank": "Last name can't be blank"
-            },
-            "relationship_name": {
-              "blank": "Relationship can't be blank",
-              "invalid": "Relationship %{name} is invalid"
-            },
-            "subject_email": {
-              "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid",
-              "not_exists": "Subject not found with email address %{email}"
-            }
-          }
-        },
-        "datasheet": {
-          "attributes": {
-            "file": {
-              "email_duplicate": "There are duplicates in Email column",
-              "invalid_format": "Invalid format (.xlsx)",
-              "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "email_schedule": {
-          "attributes": {
-            "from": {
-              "blank": "From field can't be blank"
-            },
-            "reply_to_email": {
-              "blank": "Reply to email field can't be blank",
-              "invalid": "Reply to email is invalid"
-            },
-            "scheduled_date": {
-              "blank": "Scheduled date field can't be blank"
-            }
-          }
-        },
-        "email_template": {
-          "attributes": {
-            "content": {
-              "invalid_consolidated_pipetext": "These pipetext are invalid for consolidate messages %{invalid_pipetexts}",
-              "invalid_unconsolidated_pipetext": "These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}"
-            },
-            "from": {
-              "blank": "From field can't be blank"
-            },
-            "reply_to_email": {
-              "blank": "Reply to email field can't be blank",
-              "invalid": "Reply to email is invalid"
-            }
-          }
-        },
-        "email_template_test_mail": {
-          "attributes": {
-            "to_email": {
-              "blank": "Email field can't be blank",
-              "invalid": "Email is invalid"
-            }
-          }
-        },
-        "import_one": {
-          "attributes": {
-            "email": {
-              "already_exists": "A subject with same email already exists",
-              "blank": "Email can't be blank",
-              "invalid": "Email is invalid"
-            },
-            "first_name": {
-              "blank": "First name can't be blank"
-            },
-            "last_name": {
-              "blank": "Last name can't be blank"
-            },
-            "password": {
-              "too_short": "Password is too short. Minimum 6 character required"
-            }
-          }
-        },
-        "password_reset": {
-          "attributes": {
-            "email": {
-              "wrong_email": "We couldn't find any user with the email you provided."
-            }
-          }
-        },
-        "profile": {
-          "attributes": {
-            "first_name": {
-              "blank": "First name can't be blank"
-            },
-            "last_name": {
-              "blank": "Last name can't be blank"
-            },
-            "password": {
-              "too_short": "Password is too short. Minimum 6 character required"
-            }
-          }
-        },
-        "super_admin_edit": {
-          "attributes": {
-            "email": {
-              "blank": "Email field can't be blank",
-              "invalid": "Email is invalid"
-            },
-            "first_name": {
-              "blank": "First name can't be blank"
-            },
-            "last_name": {
-              "blank": "Last name can't be blank"
-            }
-          }
-        },
-        "update_assessment": {
-          "attributes": null
-        },
-        "update_norm": {
-          "attributes": {
-            "norm_type": {
-              "inclusion": "Please select the correct norm type"
-            }
-          }
-        },
-        "user": {
-          "attributes": {
-            "email": {
-              "user_exists_in_campaign": "User with this email id already exists in the campaign",
-              "user_exists_in_project": "User with this email id already exists in the project"
-            },
-            "import_data": {
-              "duplicated_emails": "The following email(s) are duplicated in CSV: %{emails}",
-              "invalid_header": "Invalid header, take header from export"
-            }
-          }
-        }
-      }
-    },
-    "models": {
-      "assign_report": "Assign report Form",
-      "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports",
-      "update_assessment": "Update assessment Form"
-    }
-  },
-  "activerecord": {
-    "attributes": {
-      "administration/assessments/assign_form": {
-        "access_reports": "Access Report Rules",
-        "access_reports_at": "Access Report at",
-        "access_reports_at_date": "Date",
-        "access_reports_at_time": "Time",
-        "client_ids": "Client Tenancies",
-        "manager_ids": "Managers",
-        "report_ids": "Reports",
-        "user_ids": "Users"
-      },
-      "assessment": {
-        "active": "Active",
-        "categories": {
-          "360": "360 Campaign",
-          "agile": "AGILE",
-          "case_study": "Case Studies",
-          "hogan": "Hogan",
-          "mindmill": "Mindmill",
-          "organisational": "Surveys",
-          "psychometric": "Assessment"
-        },
-        "category": "Category",
-        "created_at": "Created Date",
-        "description": "Description",
-        "id": "ID",
-        "name": "Name",
-        "statuses": {
-          "finished": "finished"
-        },
-        "timing": "Timing",
-        "types": {
-          "common": "TTE Assessment",
-          "hogan": "Hogan",
-          "mindmill": "Mindmill Assessment"
-        },
-        "updated_at": "Modified Date"
-      },
-      "assign": {
-        "completed_at": "Completion Date",
-        "statuses": {
-          "completed": "Completed",
-          "in_progress": "Resume",
-          "interrupted": "Interrupted",
-          "not_started": "New",
-          "overdue": "Overdue"
-        }
-      },
-      "block": {
-        "active": "Active",
-        "assign_to_assessment_ids": "Assessments",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "client": {
-        "account_manager": "TTE Account Manager",
-        "account_manager_id": "TTE Account Manager",
-        "applicable_level": "Applicable Level",
-        "applicable_levels": {
-          "campaign": "Campaign",
-          "project": "Project",
-          "sub_campaign": "Sub-Campaign"
-        },
-        "category": "Category",
-        "created_at": "Created Date",
-        "id": "ID",
-        "licenses": "License number",
-        "licenses_expire": "License Expiry Date",
-        "licenses_used": "License Usage",
-        "location": "Location",
-        "logo": "Client logo",
-        "memberships_count": "Users",
-        "name": "Name",
-        "number": "Client Number",
-        "privacy_consent": "Enable data processing consent",
-        "project_manager": "TTE Project Manager",
-        "project_manager_id": "TTE Project Manager",
-        "report_ids": "Reports",
-        "strong_password_enabled": "Enable strong password",
-        "subdomain": "Subdomain",
-        "types": {
-          "associate": "Associate",
-          "corporate": "Corporate",
-          "distributer": "Distributer",
-          "other": "Other",
-          "partner": "Partner",
-          "retail": "Retail",
-          "tte": "TTE"
-        },
-        "updated_at": "Modified Date",
-        "year": "Client Year"
-      },
-      "communication": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "updated_at": "Modified Date"
-      },
-      "dimension": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "factors_count": "No. of Factors",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "factor": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "parent_id": "Parent",
-        "questions_count": "No. of Questions",
-        "updated_at": "Modified Date"
-      },
-      "hogan_report_setting": {
-        "load_report": "Load report from Hogan"
-      },
-      "innovation_style": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "description": "Description",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "innovation_styles_factor": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "library": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "type": "Thumbnail",
-        "updated_at": "Modified Date"
-      },
-      "license": {
-        "id": "ID",
-        "number": "License Number",
-        "overuse_number": "Over Use Allowance",
-        "type": "License for",
-        "types": {
-          "common": "Common",
-          "threesixty": "Threesixty"
-        },
-        "unlimited": "Unlimited",
-        "used_number": "Used License Number"
-      },
-      "membership": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "disabled": "Disable",
-        "email": "Email",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "parent": "Direct Manager",
-        "parent_id": "Direct Manager",
-        "report_ids": "Report IDs",
-        "roles": {
-          "client_admin": "Client Admin",
-          "manager": "Manager",
-          "member": "User",
-          "project_admin": "Project Admin"
-        },
-        "updated_at": "Modified Date",
-        "user_access": "User Access"
-      },
-      "norm": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date",
-        "updated_by": "Edited by"
-      },
-      "occupation": {
-        "active": "Active",
-        "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
-        "created_at": "Created Date",
-        "description": "Description",
-        "diploma_qualification": "Diploma Qualification",
-        "full_description": "Full Description",
-        "high_school_entry_roles": "High School Entry Roles",
-        "id": "ID",
-        "key_career_tracks": "Key Career Tracks",
-        "name": "Name",
-        "potential_areas_of_study": "Potential Areas of Study",
-        "updated_at": "Modified Date",
-        "work_environment": "Work Environment"
-      },
-      "occupations_factor": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "product": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "question": {
-        "active": "Active",
-        "assign_to_assessment_ids": "Assessments",
-        "created_at": "Created Date",
-        "id": "ID",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "report": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "mindmill": "Load report from Mindmill",
-        "mindmill_report": "Mindmill report",
-        "updated_at": "Modified Date"
-      },
-      "report_family": {
-        "created_at": "Created Date",
-        "id": "ID",
-        "updated_at": "Modified Date"
-      },
-      "task": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "description": "Description",
-        "description_label": "DESCRIPTION",
-        "factor_id": "Competency",
-        "factor_id_label": "SELECT COMPETENCY",
-        "id": "ID",
-        "membership_id": "Assigner",
-        "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
-        "name_label": "ACTION ITEM",
-        "planned_completed_at": "Due Date",
-        "planned_completed_at_label": "SELECT DUE DATE",
-        "priority": "Priority",
-        "priority_label": "PRIORITY",
-        "status": "Status",
-        "status_label": "SELECT STATUS",
-        "statuses": {
-          "completed": "Completed",
-          "in_progress": "In Progress",
-          "not_started": "Not Started",
-          "overdue": "Overdue"
-        },
-        "updated_at": "Modified Date",
-        "updated_by": "Edited by"
-      },
-      "threesixty": {
-        "users_result": {
-          "statuses": {
-            "completed": "Completed",
-            "in_progress": "Resume",
-            "not_started": "New"
-          }
-        }
-      },
-      "user": {
-        "active": "Active",
-        "confirmation_sent_at": "Pengesahan dihantar ke",
-        "confirmation_token": "Token pengesahan",
-        "confirmed_at": "Disahkan pada",
-        "created_at": "Dicipta pada",
-        "current_password": "Kata laluan kini",
-        "current_sign_in_at": "Kini log masuk pada",
-        "current_sign_in_ip": "IP log masuk kini",
-        "disabled": "Disable",
-        "email": "E-mel",
-        "encrypted_password": "Kata laluan tersulit",
-        "failed_attempts": "Percubaan gagal",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "last_sign_in_at": "Log masuk terakhir pada",
-        "last_sign_in_ip": "IP log masuk terakhir",
-        "locked_at": "Dikunci pada",
-        "manage_client_ids": "Client Tenancy",
-        "memberships": "Client Tenancy",
-        "name": "Name",
-        "password": "Kata laluan",
-        "password_confirmation": "Pengesahan kata laluan",
-        "remember_created_at": "Ingat dicipta pada",
-        "remember_me": "Ingat saya",
-        "reset_password_sent_at": "Kata laluan set semula dihantar pada",
-        "reset_password_token": "Token kata laluan set semula",
-        "role": "Role",
-        "roles": {
-          "admin": "Admin",
-          "admins": {
-            "admin": "Admin",
-            "project_admin": "Project Admin",
-            "regular": "Client Admin",
-            "superadmin": "Super Admin"
-          },
-          "agile": "AGILE",
-          "case_study": "Case study",
-          "client_admin": "Client Admin",
-          "hogan": "Hogan",
-          "manager": "Manager",
-          "member": "User",
-          "mindmill": "Mindmill",
-          "organisational": "Organisational",
-          "project_admin": "Project Admin",
-          "psychometric": "Psychometric",
-          "regular": "Regular",
-          "super_admin": "Super Admin",
-          "superadmin": "Super Admin",
-          "threesixty": "Threesixty"
-        },
-        "sign_in_count": "Kiraan log masuk",
-        "types": {
-          "anonymous": "Anonymous Users",
-          "identified": "Identified Users"
-        },
-        "unconfirmed_email": "E-mel yang belum sah",
-        "unlock_token": "Buka token",
-        "updated_at": "Dikemaskinikan pada"
-      },
-      "user_form": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "current_password": "Current password",
-        "disabled": "Disable",
-        "email": "Email Address",
-        "first_name": "First Name",
-        "id": "ID",
-        "last_name": "Last Name",
-        "parent": "Direct Manager",
-        "parent_id": "Direct Manager",
-        "password": "Password",
-        "password_confirmation": "Password confirmation",
-        "role": "Role",
-        "updated_at": "Modified Date"
-      },
-      "users_result": {
-        "assessment_name": "Assessment Name",
-        "assessment_type": "Assessment Type",
-        "completed_at": "Completed At",
-        "completion_reasons": {
-          "time_out_offline": "Time out / Offline",
-          "time_out_online": "Time out / Online",
-          "user_completed": "User Completed"
-        },
-        "email": "Email",
-        "name": "Name",
-        "result_id": "Result ID",
-        "started_at": "Started At",
-        "status": "Status",
-        "statuses": {
-          "completed": "Completed",
-          "in_progress": "Resume",
-          "interrupted": "Interrupted",
-          "not_started": "New"
-        }
-      }
-    },
-    "errors": {
-      "messages": {
-        "admin_for_another_tte": "User already admin in another tte",
-        "not_uniqueness": "Assign has already been taken",
-        "record_invalid": "Validation failed: %{errors}",
-        "restrict_dependent_destroy": {
-          "has_many": "Cannot delete record because dependent %{record} exist",
-          "has_one": "Cannot delete record because a dependent %{record} exists"
-        }
-      },
-      "models": {
-        "factors_norm": {
-          "score_from_must_be_number": "Score from must be number",
-          "score_to_less_than_score_from": "Score to is less than Score from",
-          "score_to_must_be_number": "Score to must be number"
-        },
-        "license": {
-          "attributes": {
-            "used_number": {
-              "overused": "License used can't be more than the sum of license allocated and overuse limit."
-            }
-          },
-          "overuse": "License %{name} is overused"
-        },
-        "media_response": {
-          "attributes": {
-            "base": {
-              "max_takes_limit_reached": "Limit reached for maximum takes"
-            }
-          }
-        },
-        "privacy_link": {
-          "attributes": {
-            "link": {
-              "invalid_http_url": "invalid url"
-            }
-          }
-        },
-        "report": {
-          "assessments_not_hogan": "All Assessments must be Hogan type",
-          "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
-          "has_dependent_relation": "This report is assinged on users",
-          "max_assessment_count": "You have reached the limit of %{max} assessments",
-          "min_assessment_count": "The minimum number of assessments is %{min}"
-        }
-      }
-    },
-    "models": {
-      "administration/assessments/assign_form": "Assigns Form",
-      "assessment": "Assessments",
-      "assign": "Assigns",
-      "block": "Block",
-      "client": "Clients",
-      "communication": "Communication",
-      "dimension": "Dimensions",
-      "factor": "Factors",
-      "factors_norm": "factors_norms",
-      "innovation_style": "Innovation Styles",
-      "innovation_styles_factor": "Innovation Styles",
-      "library": "Library",
-      "license": "License",
-      "membership": "Membership",
-      "norm": "Norms",
-      "occupation": "Occupations",
-      "occupations_factor": "Occupations",
-      "product": "Product",
-      "question": "Question",
-      "report": "Report",
-      "report_family": "ReportFamily",
-      "task": "Tasks",
-      "user": "User",
-      "user_form": "User"
-    }
-  },
-  "admin_jobs": {
-    "attrs": {
-      "active": "Active",
-      "created_at": "Created Date",
-      "id": "ID",
-      "name": "Name",
-      "operations": {
-        "bulk_reports": "Bulk Reports",
-        "import_raw_data": "Import Raw Data",
-        "import_scoring_data": "Import Scoring Data",
-        "import_users": "Import Users",
-        "regenerate_campaign_reports": "Regenerate Campaign Reports",
-        "regenerate_report": "Regenerate Report",
-        "rescore_assessment": "Rescore Assessment",
-        "rescore_user_assessment": "Rescore User Assessment"
-      },
-      "statuses": {
-        "completed": "Completed",
-        "completed_with_errors": "Completed with errors",
-        "in_progress": "In Progress",
-        "scheduled": "Scheduled"
-      },
-      "updated_at": "Modified Date"
-    },
-    "close": "Close",
-    "details": "Details",
-    "errors": "Errors",
-    "mark_as_read": "Mark all read",
-    "more": "More",
-    "notifications": "Notifications",
-    "results": "Results"
-  },
-  "administration": {
-    "actions": "Actions",
-    "active": "Active",
-    "administrator": {
-      "invitations": {
-        "edit": {
-          "confirm_password_label": "Confirm Password",
-          "instruction": "To create a new password, please enter your new password in the boxes below.",
-          "password_label": "Password",
-          "submit": "Set New Password",
-          "title": "Create password"
-        }
-      },
-      "passwords": {
-        "edit": {
-          "confirm_password_label": "Confirm Password",
-          "instruction": "To change the password, please enter your new password in the boxes below.",
-          "password_label": "Password",
-          "submit": "Set New Password",
-          "title": "Change your password"
-        }
-      },
-      "sessions": {
-        "new": {
-          "forgot_password": "Forgot your password?",
-          "instruction": "Please login with your personal account information",
-          "password_placeholder": "Password",
-          "submit": "Login",
-          "title": "Welcome!"
-        }
-      },
-      "shared": {
-        "links": {
-          "about": "About",
-          "app_name": "© 2016 AppName",
-          "contact_us": " Contact Us",
-          "faqs": " FAQs",
-          "privacy": "Privacy Statement",
-          "terms_conditions": " Terms & Conditions"
-        },
-        "simple_design": {
-          "design": "Design",
-          "or": "Or"
-        }
-      }
-    },
-    "all": " - All - ",
-    "any": " - Any - ",
-    "assessments": {
-      "assessment": "Assessment",
-      "assigns": {
-        "create": {
-          "successfully": "You successfully finished assigning %{name}"
-        },
-        "form": {
-          "empty_client_ids": "Select clients to continue"
-        },
-        "new": {
-          "help_block": "Select Clients and then click to the button \"Load Form\"",
-          "load_form": "Load Form",
-          "title": "Assign %{name} Assessment"
-        },
-        "users": {
-          "filter": "Filter",
-          "filter_form": "Filter form",
-          "not_selected_users": "Not Selected Users",
-          "selected_users": "Selected Users"
-        }
-      },
-      "copy": {
-        "error": "Assessment #%{name} was not copied.",
-        "successfully": "Assessment %{name} was Copied Successfully."
-      },
-      "create": {
-        "successfully": "Assessment %{name} was Created Successfully."
-      },
-      "dashboard": "Assessment Dashboard",
-      "destroy": {
-        "successfully": "Assessment %{name} was Deleted Successfully."
-      },
-      "edit": {
-        "header": "Assessment Settings"
-      },
-      "form": {
-        "categories": {
-          "360": "360 Feedback",
-          "agile": "AGILE",
-          "all": "All Categories",
-          "case_study": "Case Studies",
-          "hogan": "Hogan",
-          "mindmill": "Mindmill",
-          "organisational": "Org Surveys",
-          "psychometric": "Psychometrics",
-          "threesixty": "Threesixty"
-        },
-        "statuses": {
-          "finished": "Finished",
-          "in_progress": "In progress"
-        },
-        "timing": {
-          "hint": "For Example: 30 minutes to complete"
-        }
-      },
-      "index": {
-        "filterrific": {
-          "with_category": {
-            "360": "360 Feedback",
-            "agile": "AGILE",
-            "all": "All Categories",
-            "case_study": "Case Studies",
-            "hogan": "Hogan",
-            "mindmill": "Mindmill",
-            "organisational": "Org Surveys",
-            "psychometric": "Psychometrics",
-            "threesixty": "Threesixty"
-          }
-        },
-        "new": "Add",
-        "owner": "Owner",
-        "title": "Assessments",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created date",
-        "dimension_id": "Dimension Id",
-        "id": "Id",
-        "name": "Name",
-        "type": "Type",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "New assessment"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-            "title": "Delete <strong>Assessment</strong>?"
-          },
-          "soft_delete": {
-            "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
-            "title": "Soft Delete <strong>Assessment</strong>?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting",
-          "restoring": "Restoring"
-        },
-        "tooltips": {
-          "archive": "Archive Assessment",
-          "copy": "Copy Assessment",
-          "delete": "Delete Assessment",
-          "edit": "Edit Assessment",
-          "restore": "Restore",
-          "soft_delete": "Soft Delete Assessment"
-        }
-      },
-      "restore": {
-        "successfully": "Assessment %{name} was Restored Successfully."
-      },
-      "sidebar": {
-        "assign": "Assign Assessment",
-        "builder": "Questions Builder",
-        "copy": "Copy Assessment",
-        "destroy": "Delete Assessment",
-        "disable": "Disable",
-        "edit": "Assessment Settings",
-        "enable": "Enable",
-        "export": "Export Scoring",
-        "new": "New Assessment",
-        "preview": "Preview Assessment",
-        "title": "Assessment's options"
-      },
-      "soft_delete": {
-        "successfully": "Assessment %{name} was moved to Trash Successfully."
-      },
-      "toggle_archive": {
-        "successfully": "Assessment %{name} was %{status} successfully."
-      },
-      "toggle_status": {
-        "successfully": "Assessment %{name} was Updated Successfully."
-      },
-      "update": {
-        "successfully": "Assessment %{name} was Updated Successfully."
-      }
-    },
-    "assigns": {
-      "create": {
-        "successfully": "New assign to assessment was successfully created"
-      },
-      "destroy": {
-        "successfully": "Assign to assessment was successfully deleted"
-      },
-      "index": {
-        "title": "Reports"
-      },
-      "new": {
-        "header": "Assign Assessment and Reports"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this assign?</p>",
-            "title": "Delete <strong>%{name}</strong> ?"
-          }
-        }
-      }
-    },
-    "assigns_reports": {
-      "edit": {
-        "header": "Edit report assignment"
-      }
-    },
-    "back": "Back",
-    "base": {
-      "id": "id",
-      "top_sidebar": {
-        "search": "Search...",
-        "sign_out_message": {
-          "body": "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>",
-          "title": "Log <strong>Out</strong> ?"
-        }
-      }
-    },
-    "blocks": {
-      "copy": {
-        "successfully": "Block %{name} was successfully copied."
-      },
-      "create": {
-        "successfully": "Block %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Block %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Block"
-      },
-      "new": {
-        "header": "New Block"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Block?</p>\n",
-            "title": "Delete <strong>Block</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Block?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        }
-      }
-    },
-    "breadcrumbs": {
-      "admins": "Admins",
-      "assessments": "Assessments",
-      "campaign_templates": "Campaign Templates",
-      "campaigns": "Campaigns",
-      "client": "Client Tenancy",
-      "client_admins": "Client Admins",
-      "clients": "Client Tenancies",
-      "communication_center": "Communication Center",
-      "create": "Create",
-      "datasheets": "Datasheets",
-      "design": "Design",
-      "dimension": "Dimension",
-      "dimensions": "Dimensions",
-      "factors": "Factors",
-      "home": "Dashboard",
-      "innovation_styles": "Innovation Styles",
-      "innovation_styles_factors": "Factors",
-      "libraries": "Media Library",
-      "licenses": "Licenses",
-      "new_campaign": "New Campaign",
-      "norm": "Norm",
-      "norms": "Norms",
-      "norms_editor": "Norm Editor",
-      "occupations": "Occupations",
-      "occupations_factors": "Factors",
-      "products": "Products",
-      "project_admins": "Project Admins",
-      "projects": "Projects",
-      "psychometrics": "Psychometrics",
-      "question_center": "Question Center",
-      "registration_codes": "Registration Codes",
-      "report_families": "Report Bundles",
-      "reports": "Reports",
-      "statistics": "Statistics",
-      "sub_campaigns": "Sub Campaigns",
-      "sub_factors": "Sub-Factors",
-      "survey": "Survey",
-      "surveys": "Surveys",
-      "users": "Users",
-      "users_add": "Add New",
-      "users_import": "Import"
-    },
-    "bulk_reports": {
-      "create": {
-        "no_data": "No data is available for the report type and time range specified",
-        "successfully": "The reports are being created and you will be notified via email when ready"
-      },
-      "download": {
-        "removed": "Sorry, the file has been removed from the system after one week of storage"
-      },
-      "form": {
-        "end_date": "End date",
-        "start_date": "Start date"
-      },
-      "mailer": {
-        "subject": "Download bulk reports"
-      },
-      "new": {
-        "header": "Bulk Download"
-      }
-    },
-    "cable": {
-      "notification": {
-        "assessment_factors": "Factors are fetched",
-        "assessment_update": "Assessment is updated",
-        "block_clone": "Block is copied",
-        "block_create": "Block %{name} is created",
-        "block_create_by_template": "Block was loaded from template",
-        "block_destroy": "Block has been deleted",
-        "block_move_down": "Block %{name} is moved down",
-        "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanently deleted",
-        "block_rename": "Block is renamed",
-        "block_restore": "Block is restored",
-        "block_save_as_template": "Block saved as template",
-        "block_unlink_template": "Block was unlinked",
-        "block_update": "Block is updated",
-        "comment_create": "Comment is created",
-        "comment_destroy": "Comment has been deleted",
-        "geo_filter": "Data filtered",
-        "module_create": "Module %{name} is created",
-        "module_destroy": "Module has been deleted",
-        "module_insert_after": "Module is inserted after",
-        "module_insert_before": "Module is inserted before",
-        "module_move_down": "Module is moved down",
-        "module_move_up": "Module is moved up",
-        "module_rename": "Module is renamed",
-        "module_update": "Module is updated",
-        "page_create": "Page %{name} is created",
-        "page_destroy": "Page has been deleted",
-        "page_move_down": "Page %{name} is moved down",
-        "page_move_up": "Page %{name} is moved up",
-        "page_rename": "Page is renamed",
-        "page_update": "Page is updated",
-        "question_clone": "Question is copied",
-        "question_create": "Question %{name} is created",
-        "question_create_by_template": "Question was loaded from template",
-        "question_create_from_template": "Question is created from template",
-        "question_destroy": "Question has been deleted",
-        "question_insert_after": "Question is inserted after",
-        "question_insert_before": "Question is inserted before",
-        "question_move_down": "Question is moved down",
-        "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanently deleted",
-        "question_rename": "Question is renamed",
-        "question_restore": "Question is restored",
-        "question_save_as_template": "Question saved as template",
-        "question_unlink_template": "Question was unlinked",
-        "question_update": "Question is updated",
-        "report_change_aliases": "Aliases are updated",
-        "report_change_data_configuration": "Data Report Configuration was successfully updated",
-        "report_change_filters": "Filters are updated",
-        "report_update": "Report is updated",
-        "scoring_update": "Scoring is updated",
-        "trash_empty": "Trash Comment empty"
-      }
-    },
-    "campaign_templates": {
-      "base": {
-        "active": "Active",
-        "archived": "Archived",
-        "disable": "Archive",
-        "enable": "Unarchive"
-      },
-      "copy": {
-        "error": "Client Tenancy %{name} was not copied.",
-        "successfully": "Client Tenancy %{name} was successfully copied."
-      },
-      "create": {
-        "successfully": "Client Tenancy %{name} was successfully created."
-      },
-      "designs": {
-        "form": {
-          "no_background": "No Background yet",
-          "no_logo": "No Logo yet"
-        }
-      },
-      "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Client"
-      },
-      "export": {
-        "admin": "Client admin",
-        "client_admins": "Client admins",
-        "created_at": "Created date",
-        "name": "Name",
-        "report_bundle": "Report bundle",
-        "updated_at": "Updated date"
-      },
-      "index": {
-        "export": "Export",
-        "new": "Add",
-        "title": "Campaign templates"
-      },
-      "license": {
-        "header": "%{name} - Edit license"
-      },
-      "licenses": {
-        "update": {
-          "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
-        }
-      },
-      "list": {
-        "admin": "Client admin",
-        "client_admins": "Client admins",
-        "created_at": "Created date",
-        "name": "Name",
-        "report_bundle": "Report bundle",
-        "updated_at": "Updated date"
-      },
-      "new": {
-        "header": "New Client"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Campaign Template?</p>\n",
-            "title": "Delete <strong>%{name}</strong> ?"
-          },
-          "disable": {
-            "body": {
-              "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
-              "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
-              "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
-              "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-            },
-            "title": "Archive <strong>%{name}</strong> ?"
-          },
-          "enable": {
-            "body": {
-              "0": "<p>Are you sure you want to unarchive?</p>",
-              "1": "<p>Are you sure you want to unarchive?</p>",
-              "2": "<p>Are you sure you want to unarchive?</p>",
-              "3": "<p>Are you sure you want to unarchive?</p>"
-            },
-            "title": "Unarchive <strong>%{name}</strong> ?"
-          }
-        },
-        "in_progress": {
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Client",
-          "create_admin": "Create Client Admin",
-          "delete": "Delete Client",
-          "disable": "Disable Client",
-          "edit": "Edit Client",
-          "enable": "Enable Client"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Client",
-        "design": "Edit Design",
-        "destroy": "Delete Client",
-        "disable": "Disable",
-        "edit": "Edit Client",
-        "enable": "Enable",
-        "licenses": "Manage Licenses",
-        "new": "New Client",
-        "title": "Campaign options"
-      },
-      "toggle_status": {
-        "successfully": "Client Tenancy %{name} was successfully updated."
-      },
-      "update": {
-        "successfully": "Client Tenancy %{name} was successfully updated."
-      },
-      "url": "Url"
-    },
-    "campaigns": {
-      "actions": "Manage",
-      "form": {
-        "name": "Name",
-        "status": "Status"
-      },
-      "listing": {
-        "assessments": "Assessments",
-        "id": "Id",
-        "name": "Name",
-        "reports": "Reports",
-        "status": "Status",
-        "type": "Type"
-      },
-      "options": {
-        "duration": "",
-        "fixed_time": "Fixed Time",
-        "instructions": {
-          "actions": {
-            "saved": "Instructions saved successfully"
-          },
-          "enable": "Enable instructions",
-          "save": "Save Instructions"
-        },
-        "proctoring": {
-          "enable": "Enable Proctoring",
-          "identification": "Identification",
-          "identifications": {
-            "face": "Face",
-            "face_and_passport": "Face and Passport",
-            "passport": "Passport"
-          },
-          "rule_types": {
-            "allow_absence_in_frame": "Allow absense in frame",
-            "allow_to_use_books": "Allow to use Books",
-            "allow_to_use_calculator": "Allow to use calculator",
-            "allow_to_use_excel": "Allow to use Excel",
-            "allow_to_use_human_assistant": "Allow to use human assistant",
-            "allow_to_use_messengers": "Allow to use messengers",
-            "allow_to_use_paper": "Allow to use Paper",
-            "allow_to_use_websites": "Allow to use Websites",
-            "allow_voices": "Allow Voices",
-            "allow_wrong_gaze_direction": "Allow wrong gaze direction"
-          },
-          "rules": "Rules"
-        }
-      },
-      "users": {
-        "completed_via": "Completed Via",
-        "completion_status": "Status",
-        "created_by": "Created By",
-        "email": "Email",
-        "id": "Id",
-        "is_active": "Active",
-        "name": "Name",
-        "updated_by": "Updated By"
-      },
-      "validations": {
-        "dates": {
-          "end": "must be after the start date"
-        }
-      }
-    },
-    "choose": " - Choose - ",
-    "clear": "Clear",
-    "clients": {
-      "api_keys": {
-        "create": {
-          "successfully": "New API key was successfully created."
-        },
-        "index": {
-          "breadcrumb": "%{name}'s API keys",
-          "new": "Create new API key",
-          "title": "%{name}'s API keys"
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created",
-          "key": "Key",
-          "token": "Token",
-          "updated_at": "Last modified"
-        },
-        "resource": {
-          "confirmations": {
-            "create": {
-              "body": "<p>Are you sure you want to create a new API key?</p>\n",
-              "title": "<strong>Create</strong> a new API key?"
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this API key?</p>\n",
-              "title": "<strong>%{status}</strong> API key?"
-            }
-          },
-          "copy": "Copy",
-          "show_and_copy": "Show and Copy"
-        },
-        "toggle_status": {
-          "successfully": "API key was successfully updated."
-        }
-      },
-      "assessments": {
-        "assessment": "Assessment",
-        "assigns": {
-          "form": {
-            "empty_client_ids": "Select clients to continue"
-          }
-        },
-        "copy": {
-          "error": "Assessment #%{name} was not copied.",
-          "successfully": "Assessment %{name} was Copied Successfully."
-        },
-        "create": {
-          "successfully": "Assessment %{name} was Created Successfully."
-        },
-        "dashboard": "Assessment Dashboard",
-        "destroy": {
-          "successfully": "Assessment %{name} was Deleted Successfully."
-        },
-        "edit": {
-          "header": "Assessment Settings"
-        },
-        "form": {
-          "categories": {
-            "360": "360 Feedback",
-            "agile": "AGILE",
-            "all": "All Categories",
-            "case_study": "Case Studies",
-            "hogan": "Hogan",
-            "mindmill": "Mindmill",
-            "organisational": "Org Surveys",
-            "psychometric": "Psychometrics",
-            "threesixty": "Threesixty"
-          },
-          "statuses": {
-            "finished": "Finished",
-            "in_progress": "In progress"
-          },
-          "timing": {
-            "hint": "For Example: 30 minutes to complete"
-          }
-        },
-        "index": {
-          "filterrific": {
-            "with_category": {
-              "360": "360 Feedback",
-              "agile": "AGILE",
-              "all": "All Categories",
-              "case_study": "Case Studies",
-              "hogan": "Hogan",
-              "mindmill": "Mindmill",
-              "organisational": "Org Surveys",
-              "psychometric": "Psychometrics",
-              "threesixty": "Threesixty"
-            }
-          },
-          "new": "Add",
-          "owner": "Owner",
-          "title": "Assessments",
-          "tooltips": {
-            "create": "Create"
-          }
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created date",
-          "dimension_id": "Dimension Id",
-          "id": "Id",
-          "name": "Name",
-          "type": "Type",
-          "universal_link": "Universal link",
-          "updated_at": "Modified date"
-        },
-        "new": {
-          "header": "New assessment"
-        },
-        "resource": {
-          "activate_universal_link": "Activate Universal Link",
-          "confirmations": {
-            "delete": {
-              "body": "<p>Are you sure you want to delete this Assessment?</p>\n",
-              "title": "Delete <strong>Assessment</strong>?"
-            },
-            "soft_delete": {
-              "body": "<p>Are you sure you want to soft delete this Assessment?</p>\n",
-              "title": "Soft Delete <strong>Assessment</strong>?"
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this Assessment?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            },
-            "universal_links": {
-              "regeneration": {
-                "body": "Regenerating the Universal Link will cause the existing link to stop working.",
-                "title": "Are you sure?"
-              }
-            }
-          },
-          "deactivate_universal_link": "Deactivate Universal Link",
-          "export": "Export",
-          "external_results": "External Results",
-          "generate_universal_link": "Generate Universal Link",
-          "import": "Import",
-          "in_progress": {
-            "copying": "Copying",
-            "deleting": "Deleting",
-            "restoring": "Restoring"
-          },
-          "link": "Link",
-          "mindmill_results": "Mindmill",
-          "na": "N/A",
-          "normed_results": "Normed results",
-          "png": "PNG",
-          "qr_code": "QR code",
-          "raw_results": "Raw results",
-          "regenerate_universal_link": "Regenerate Universal Link",
-          "scoring_results": "Scoring results",
-          "svg": "SVG",
-          "tooltips": {
-            "archive": "Archive Assessment",
-            "copy": "Copy Assessment",
-            "delete": "Delete Assessment",
-            "edit": "Edit Assessment",
-            "restore": "Restore",
-            "soft_delete": "Soft Delete Assessment"
-          }
-        },
-        "restore": {
-          "successfully": "Assessment %{name} was Restored Successfully."
-        },
-        "select_raw_export_type": {
-          "export_with_labels": "Export raw result with labels",
-          "export_without_labels": "Export raw result without labels",
-          "select_type": "Select Export Type"
-        },
-        "sidebar": {
-          "assign": "Assign Assessment",
-          "builder": "Questions Builder",
-          "copy": "Copy Assessment",
-          "destroy": "Delete Assessment",
-          "disable": "Disable",
-          "edit": "Assessment Settings",
-          "enable": "Enable",
-          "export": "Export Scoring",
-          "new": "New Assessment",
-          "preview": "Preview Assessment",
-          "title": "Assessment's options"
-        },
-        "soft_delete": {
-          "successfully": "Assessment %{name} was moved to Trash Successfully."
-        },
-        "toggle_archive": {
-          "successfully": "Assessment %{name} was %{status} successfully."
-        },
-        "toggle_status": {
-          "successfully": "Assessment %{name} was Updated Successfully."
-        },
-        "update": {
-          "successfully": "Assessment %{name} was Updated Successfully."
-        }
-      },
-      "assign_assessments": {
-        "confirm_remove_dependent_reports": {
-          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
-          "title": "Are you sure want to remove <b>Assessments</b>?"
-        },
-        "edit": {
-          "header": "Manage assigned Assessments"
-        },
-        "form": {
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
-        },
-        "form_edit": {
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "name": "Assessment name",
-          "remove": "Remove"
-        },
-        "new": {
-          "header": "Add Assessments"
-        }
-      },
-      "assign_reports": {
-        "edit": {
-          "header": "Add Reports"
-        },
-        "form": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_edit": {
-          "access": "Access",
-          "added_reports": "Already assigned Reports",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "new_reports": "Add new Reports",
-          "remove": "Remove",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "new": {
-          "header": "Add Reports"
-        }
-      },
-      "base": {
-        "active": "Active",
-        "archived": "Archived",
-        "disable": "Archive",
-        "enable": "Unarchive"
-      },
-      "campaigns": {
-        "archive": {
-          "successfully": "Campaign %{name} was successfully archived."
-        },
-        "copy": {
-          "error": "Campaign %{name} was not copied.",
-          "successfully": "Campaign %{name} was successfully copied."
-        },
-        "create": {
-          "successfully": "Campaign %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "Campaign %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Campaign"
-        },
-        "export": {
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "header": {
-            "actions": "Actions",
-            "actual_usage": "Actual usage",
-            "assessments": "Assessments",
-            "campaigns": "Campaigns",
-            "name": "Name",
-            "reports": "Reports",
-            "sub_campaigns": "Sub-Campaigns",
-            "tests_allocated": "Tests allocated",
-            "users": "Users"
-          },
-          "id": "Id",
-          "name": "Campaign name",
-          "reports": "Reports",
-          "updated_at": "Updated date"
-        },
-        "index": {
-          "export": "Export",
-          "new": "Add",
-          "title": "Campaigns"
-        },
-        "list": {
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "header": {
-            "actions": "Actions",
-            "actual_usage": "Actual usage",
-            "assessments": "Assessments",
-            "campaigns": "Campaigns",
-            "name": "Name",
-            "reports": "Reports",
-            "sub_campaigns": "Sub-Campaigns",
-            "tests_allocated": "Tests allocated",
-            "users": "Users"
-          },
-          "id": "Id",
-          "name": "Campaign name",
-          "reports": "Reports",
-          "updated_at": "Updated date"
-        },
-        "new": {
-          "header": "New Campaign"
-        },
-        "resource": {
-          "sub_campaign": {
-            "create": "Create New Sub-Campaign"
-          },
-          "tooltips": {
-            "copy": "Copy Campaign",
-            "create_report": "Add New Report",
-            "create_user": "Add New User",
-            "delete": "Delete Campaign",
-            "edit": "Edit Campaign",
-            "export": "Export"
-          }
-        },
-        "sidebar": {
-          "archive": "Archive campaign",
-          "copy": "Copy campaign",
-          "destroy": "Delete campaign",
-          "disable": "Disable",
-          "edit": "Edit campaign",
-          "enable": "Enable",
-          "new": "New campaign",
-          "title": "Campaign's options",
-          "view_licenses": "View licenses"
-        },
-        "toggle_status": {
-          "successfully": "Campaign %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "Campaign %{name} was successfully updated."
-        }
-      },
-      "client_admins": {
-        "create": {
-          "successfully": "User %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "User %{name} was successfully deleted."
-        },
-        "edit": {
-          "add": "Add",
-          "grants": "Privileges",
-          "hris_data": "HRIS Data",
-          "key": "Key",
-          "personal_data": "Personal Data",
-          "remove": "Remove",
-          "title": "Edit user",
-          "value": "Value"
-        },
-        "form": {
-          "choose": " - Choose - ",
-          "choose_admin": "Choose Admin",
-          "create_admin": "Create Admin"
-        },
-        "index": {
-          "breadcrumb": "Client Admins",
-          "title": "Client Admins"
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created Date",
-          "email": "Email",
-          "first_name": "First name",
-          "id": "Id",
-          "last_name": "Last name",
-          "role": "Role",
-          "updated_at": "Modified Date"
-        },
-        "new": {
-          "header": "New user"
-        },
-        "password": {
-          "guidelines": {
-            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
-          }
-        },
-        "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
-        },
-        "resource": {
-          "confirmations": {
-            "change_password": {
-              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
-              "title": "Change password <strong>%{name}</strong> ?"
-            },
-            "delete": {
-              "body": "<p>Are you sure you want to delete this User?</p>\n",
-              "title": "Delete <strong>%{name}</strong> ?"
-            },
-            "membership": {
-              "delete": {
-                "body": "<p>Are you sure you want to delete?</p>\n",
-                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
-              },
-              "toggle_status": {
-                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
-                "title": "<strong>%{status}</strong> %{name}'s Membership?"
-              }
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            }
-          },
-          "tooltips": {
-            "change_password": "Change Password",
-            "chart": "View user report",
-            "delete": "Delete User",
-            "edit": "Edit User",
-            "mail": "Send Mail",
-            "sign_in": "Login as user"
-          }
-        },
-        "sidebar": {
-          "api_keys": "API keys",
-          "assessments_and_reports": "Assessments and Reporting",
-          "destroy": "Delete User",
-          "disable": "Disable",
-          "edit_user": "Edit User",
-          "email": "Send Mail",
-          "enable": "Enable",
-          "export_users": "Export users",
-          "import_users": "Import users",
-          "login_as_user": "Login as User",
-          "new_user": "New User",
-          "reset_password": "Change Password",
-          "title": "User's options"
-        },
-        "spoof": {
-          "successfully": "You was successfully login as %{name}"
-        },
-        "toggle_status": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "user": "User"
-      },
-      "copy": {
-        "error": "Client Tenancy %{name} was not copied.",
-        "successfully": "Client Tenancy %{name} was successfully copied."
-      },
-      "create": {
-        "successfully": "Client Tenancy %{name} was successfully created."
-      },
-      "datasheet_rows": {
-        "create": {
-          "successfully": "New Datasheet was successfully uploaded."
-        },
-        "destroy": {
-          "successfully": "Datasheet Row %{name} was successfully deleted."
-        },
-        "index": {
-          "new": "Upload datasheet",
-          "title": "%{name} Datasheet"
-        },
-        "list": {
-          "created_at": "Created date",
-          "email": "Email",
-          "updated_at": "Updated date"
-        },
-        "new": {
-          "header": "Upload datasheet"
-        },
-        "resource": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Datasheet Row?</p>\n",
-            "title": "Delete <strong>%{name}</strong> ?"
-          },
-          "tooltips": {
-            "delete": "Delete"
-          }
-        }
-      },
-      "designs": {
-        "form": {
-          "no_background": "No Background yet",
-          "no_logo": "No Logo yet"
-        }
-      },
-      "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully deleted."
-      },
-      "edit": {
-        "enable_2fa": "Enable Two Factor Authentication",
-        "header": "Edit Client"
-      },
-      "export": {
-        "account_manager_id": "Account manager",
-        "admin": "Client Admin",
-        "client_admins": "Client admins",
-        "end_date": "End date",
-        "id": "Id",
-        "location": "Location",
-        "name": "Name",
-        "number": "Number",
-        "project_admin": "Project admin",
-        "project_manager_id": "Project manager",
-        "report_bundle": "Report bundle",
-        "start_date": "Start date",
-        "type": "Type",
-        "usage_percent": "Usage %",
-        "used_license_number": "Used license number",
-        "used_license_overuse_number": "License overuse number",
-        "year": "Year"
-      },
-      "index": {
-        "export": "Export",
-        "new": "Add",
-        "title": "Client Tenancies"
-      },
-      "license": {
-        "header": "%{name} - Edit license"
-      },
-      "license_usages": {
-        "index": {
-          "title": "Usage Details"
-        },
-        "list": {
-          "actions": "Actions",
-          "activated_at": "Activated at",
-          "activated_by": "Activated by",
-          "campaign_name": "Campaign Name",
-          "created_at": "Created at",
-          "id": "Usage ID",
-          "subject_email": "Subject Email",
-          "subject_name": "Subject Name"
-        },
-        "resource": {
-          "tooltips": {
-            "deactivate": "Deactivate license"
-          }
-        },
-        "toggle_status": {
-          "successfully": "The license was %{status} successfully"
-        }
-      },
-      "licenses": {
-        "create": {
-          "successfully": "License was successfully created."
-        },
-        "edit": {
-          "header": "Edit License"
-        },
-        "form": {
-          "add_license": "Add Another License",
-          "license_number": "License Number",
-          "license_overuse_number": "Over Use Allowance",
-          "report_family": "Report Bundle"
-        },
-        "index": {
-          "new": "Add License",
-          "report_family": "Report Bundle",
-          "title": "%{client_name} - Manage Licenses"
-        },
-        "list": {
-          "active": "Active",
-          "date_expire": "Date Of expiry: %{date}",
-          "end_date": "End date",
-          "header": "%{client_name} - Licenses usage",
-          "license_has_expired": "License package has expired",
-          "license_type": "License type",
-          "report_family": "Report bundle",
-          "start_date": "Start date",
-          "type": "Type",
-          "usage_percent": "% of Usage",
-          "used_license_number": "Used licenses",
-          "used_license_overuse_number": "Over Use Allowance",
-          "used_out_of": "%{used_number} out of %{number}"
-        },
-        "new": {
-          "header": "Add License"
-        },
-        "overview": {
-          "date_expire": "Date Of expiry: %{date}",
-          "end_date": "End date",
-          "header": "%{client_name} - Licenses usage",
-          "license_has_expired": "License package has expired",
-          "license_type": "License type",
-          "name": "Name",
-          "report_family": "Report bundle",
-          "start_date": "Start date",
-          "usage_percent": "% of Usage",
-          "used_license_number": "Used licenses",
-          "used_license_overuse_number": "Over Use Allowance",
-          "used_out_of": "%{used_number} out of %{number}"
-        },
-        "resource": {
-          "confirmations": {
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this License?</p>\n",
-              "title": "<strong>%{status}</strong> License for %{name}?"
-            }
-          },
-          "tooltips": {
-            "edit": "Edit License"
-          }
-        },
-        "show": {
-          "date_expire": "Date Of expiry: %{date}",
-          "end_date": "End date",
-          "header": "%{client_name} - Licenses usage",
-          "license_has_expired": "License package has expired",
-          "license_type": "License type",
-          "report_family": "Report bundle",
-          "start_date": "Start date",
-          "usage_percent": "% of Usage",
-          "used_license_number": "Used licenses",
-          "used_license_overuse_number": "Over Use Allowance",
-          "used_out_of": "%{used_number} out of %{number}"
-        },
-        "toggle_status": {
-          "successfully": "Status of License was successfully updated."
-        },
-        "update": {
-          "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "Licenses successfully updated"
-        }
-      },
-      "list": {
-        "account_manager_id": "Account manager",
-        "admin": "Client Admin",
-        "client_admins": "Client admins",
-        "end_date": "End date",
-        "id": "Id",
-        "location": "Location",
-        "name": "Name",
-        "number": "Number",
-        "project_manager_id": "Project manager",
-        "report_bundle": "Report bundle",
-        "start_date": "Start date",
-        "type": "Type",
-        "usage_percent": "Usage %",
-        "used_license_number": "Used license number",
-        "used_license_overuse_number": "License overuse number",
-        "year": "Year"
-      },
-      "new": {
-        "header": "New Client"
-      },
-      "project_admins": {
-        "create": {
-          "successfully": "User %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "User %{name} was successfully deleted."
-        },
-        "edit": {
-          "add": "Add",
-          "grants": "Privileges",
-          "hris_data": "HRIS Data",
-          "key": "Key",
-          "personal_data": "Personal Data",
-          "remove": "Remove",
-          "title": "Edit user",
-          "value": "Value"
-        },
-        "form": {
-          "choose": " - Choose - ",
-          "choose_admin": "Choose Admin",
-          "create_admin": "Create Admin"
-        },
-        "index": {
-          "breadcrumb": "Project Admins",
-          "title": "Project Admins"
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created Date",
-          "email": "Email",
-          "first_name": "First name",
-          "id": "Id",
-          "last_name": "Last name",
-          "role": "Role",
-          "updated_at": "Modified Date"
-        },
-        "new": {
-          "header": "New user"
-        },
-        "password": {
-          "guidelines": {
-            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
-          }
-        },
-        "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
-        },
-        "resource": {
-          "confirmations": {
-            "change_password": {
-              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
-              "title": "Change password <strong>%{name}</strong> ?"
-            },
-            "delete": {
-              "body": "<p>Are you sure you want to delete this User?</p>\n",
-              "title": "Delete <strong>%{name}</strong> ?"
-            },
-            "membership": {
-              "delete": {
-                "body": "<p>Are you sure you want to delete?</p>\n",
-                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
-              },
-              "toggle_status": {
-                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
-                "title": "<strong>%{status}</strong> %{name}'s Membership?"
-              }
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            }
-          },
-          "tooltips": {
-            "change_password": "Change Password",
-            "chart": "View user report",
-            "delete": "Delete User",
-            "edit": "Edit User",
-            "mail": "Send Mail",
-            "sign_in": "Login as user"
-          }
-        },
-        "sidebar": {
-          "api_keys": "API keys",
-          "assessments_and_reports": "Assessments and Reporting",
-          "destroy": "Delete User",
-          "disable": "Disable",
-          "edit_user": "Edit User",
-          "email": "Send Mail",
-          "enable": "Enable",
-          "export_users": "Export users",
-          "import_users": "Import users",
-          "login_as_user": "Login as User",
-          "new_user": "New User",
-          "reset_password": "Change Password",
-          "title": "User's options"
-        },
-        "spoof": {
-          "successfully": "You was successfully login as %{name}"
-        },
-        "toggle_status": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "user": "User"
-      },
-      "projects": {
-        "archive": {
-          "successfully": "Project %{name} was successfully archived."
-        },
-        "assign_assessments": {
-          "add_assessment": "Add Assessment",
-          "assessments": "Assessments"
-        },
-        "assign_reports": {
-          "add_report": "Add Report"
-        },
-        "campaigns": {
-          "archive": {
-            "successfully": "Campaign %{name} was successfully archived."
-          },
-          "copy": {
-            "error": "Campaign %{name} was not copied.",
-            "successfully": "Campaign %{name} was successfully copied."
-          },
-          "create": {
-            "successfully": "Campaign %{name} was successfully created."
-          },
-          "destroy": {
-            "successfully": "Campaign %{name} was successfully deleted."
-          },
-          "edit": {
-            "header": "Edit Campaign"
-          },
-          "export": {
-            "assessments": "Assessments",
-            "assigned_user": "Assigned users",
-            "completed_user": "Completed users",
-            "created_at": "Created date",
-            "header": {
-              "actions": "Actions",
-              "actual_usage": "Actual usage",
-              "assessments": "Assessments",
-              "campaigns": "Campaigns",
-              "name": "Name",
-              "reports": "Reports",
-              "sub_campaigns": "Sub-Campaigns",
-              "tests_allocated": "Tests allocated",
-              "users": "Users"
-            },
-            "id": "Id",
-            "name": "Campaign name",
-            "reports": "Reports",
-            "updated_at": "Updated date"
-          },
-          "index": {
-            "export": "Export",
-            "new": "Add",
-            "title": "Campaigns"
-          },
-          "list": {
-            "assessments": "Assessments",
-            "assigned_user": "Assigned users",
-            "completed_user": "Completed users",
-            "created_at": "Created date",
-            "header": {
-              "actions": "Actions",
-              "actual_usage": "Actual usage",
-              "assessments": "Assessments",
-              "campaigns": "Campaigns",
-              "name": "Name",
-              "reports": "Reports",
-              "sub_campaigns": "Sub-Campaigns",
-              "tests_allocated": "Tests allocated",
-              "users": "Users"
-            },
-            "id": "Id",
-            "name": "Campaign name",
-            "reports": "Reports",
-            "updated_at": "Updated date"
-          },
-          "new": {
-            "header": "New Campaign"
-          },
-          "resource": {
-            "sub_campaign": {
-              "create": "Create New Sub-Campaign"
-            },
-            "tooltips": {
-              "copy": "Copy Campaign",
-              "create_report": "Add New Report",
-              "create_user": "Add New User",
-              "delete": "Delete Campaign",
-              "edit": "Edit Campaign",
-              "export": "Export"
-            }
-          },
-          "sidebar": {
-            "archive": "Archive campaign",
-            "copy": "Copy campaign",
-            "destroy": "Delete campaign",
-            "disable": "Disable",
-            "edit": "Edit campaign",
-            "enable": "Enable",
-            "new": "New campaign",
-            "title": "Campaign's options",
-            "view_licenses": "View licenses"
-          },
-          "sub_campaigns": {
-            "archive": {
-              "successfully": "Sub-Campaign %{name} was successfully archived."
-            },
-            "copy": {
-              "error": "Sub-Campaign %{name} was not copied.",
-              "successfully": "Sub-Campaign %{name} was successfully copied."
-            },
-            "create": {
-              "successfully": "Sub-Campaign %{name} was successfully created."
-            },
-            "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully deleted."
-            },
-            "edit": {
-              "header": "Edit Sub-Campaign"
-            },
-            "export": {
-              "assessments": "Assessments",
-              "assigned_user": "Assigned users",
-              "completed_user": "Completed users",
-              "created_at": "Created date",
-              "header": {
-                "actions": "Actions",
-                "actual_usage": "Actual Usage",
-                "archive_status": "Archive Status",
-                "name": "Name",
-                "sub_campaign": "Sub-Campaigns",
-                "tests_allocated": "Tests Allocated",
-                "users": "Users"
-              },
-              "id": "Id",
-              "name": "Sub-Campaign name",
-              "reports": "Reports",
-              "updated_at": "Updated date"
-            },
-            "header": {
-              "actions": "Actions"
-            },
-            "index": {
-              "export": "Export",
-              "new": "Add",
-              "title": "Sub Campaigns"
-            },
-            "list": {
-              "assessments": "Assessments",
-              "assigned_user": "Assigned users",
-              "completed_user": "Completed users",
-              "created_at": "Created date",
-              "header": {
-                "actions": "Actions",
-                "actual_usage": "Actual Usage",
-                "archive_status": "Archive Status",
-                "name": "Name",
-                "sub_campaign": "Sub-Campaigns",
-                "tests_allocated": "Tests Allocated",
-                "users": "Users"
-              },
-              "id": "Id",
-              "name": "Sub-Campaign name",
-              "reports": "Reports",
-              "updated_at": "Updated date"
-            },
-            "new": {
-              "header": "New Sub-Campaign"
-            },
-            "resource": {
-              "tooltips": {
-                "copy": "Copy Sub Campaign",
-                "create_report": "Add new Report",
-                "create_user": "Add New User",
-                "delete": "Delete Sub Campaign",
-                "edit": "Edit Sub Campaign"
-              }
-            },
-            "sidebar": {
-              "archive": "Archive Sub-Campaign",
-              "copy": "Copy Sub-Campaign",
-              "destroy": "Delete Sub-Campaign",
-              "disable": "Disable",
-              "edit": "Edit Sub-Campaign",
-              "enable": "Enable",
-              "new": "New Sub-Campaign",
-              "title": "Sub-Campaign's options",
-              "view_licenses": "View licenses"
-            },
-            "toggle_status": {
-              "successfully": "Sub-Campaign %{name} was successfully updated."
-            },
-            "update": {
-              "successfully": "Sub-Campaign %{name} was successfully updated."
-            }
-          },
-          "toggle_status": {
-            "successfully": "Campaign %{name} was successfully updated."
-          },
-          "update": {
-            "successfully": "Campaign %{name} was successfully updated."
-          }
-        },
-        "copy": {
-          "error": "Project %{name} was not copied.",
-          "successfully": "Project %{name} was successfully copied."
-        },
-        "create": {
-          "successfully": "Project %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "Project %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Project"
-        },
-        "export": {
-          "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual usage",
-          "admin": "Client admin",
-          "applicable_level": "Applicable level",
-          "archive_status": "Status",
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "id": "Id",
-          "name": "Project name",
-          "number": "Number",
-          "project_admin": "Project admins",
-          "reports": "Reports",
-          "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE project manager",
-          "updated_at": "Modified date",
-          "url": "URL",
-          "users_count": "Users count"
-        },
-        "form": {
-          "2fa": "2 Factor Authentication",
-          "2fa_enable": "Enable 2 Factor Authentication",
-          "applicable_levels": {
-            "campaign": "Campaign End Level",
-            "project": "Project End Level",
-            "sub_campaign": "Sub-Campaign End Level"
-          },
-          "data_privacy": "Data privacy",
-          "enable_live_chat": "Enable Live Chat",
-          "enable_privacy_links": "Enable privacy link",
-          "other_settings": "Other Settings",
-          "privacy_link": "Privacy link",
-          "privacy_text": "Privacy text",
-          "project_number": "Project Number"
-        },
-        "header": {
-          "actions": "Actions"
-        },
-        "index": {
-          "export": "Export",
-          "new": "Add",
-          "title": "Projects",
-          "tooltips": {
-            "create": "Create",
-            "export": "Export"
-          }
-        },
-        "list": {
-          "2fa_enabled": "2FA Enabled",
-          "actual_usage": "Actual usage",
-          "admin": "Client admin",
-          "applicable_level": "Applicable level",
-          "archive_status": "Status",
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "id": "Id",
-          "name": "Project name",
-          "number": "Number",
-          "project_admin": "Project admins",
-          "reports": "Reports",
-          "tests_allocated": "Tests Allocated",
-          "tte_admin": "TTE project manager",
-          "updated_at": "Modified date",
-          "url": "URL",
-          "users_count": "Users count"
-        },
-        "new": {
-          "header": "New Project"
-        },
-        "resource": {
-          "add_assessment": "Add Assessment",
-          "add_report": "Add Report",
-          "assessments": "Assessments",
-          "tooltips": {
-            "copy": "Copy Project",
-            "create_admin": "Create Project Admin",
-            "create_report": "Add New Report",
-            "create_user": "Add New User",
-            "delete": "Delete Project",
-            "edit": "Edit Project"
-          }
-        },
-        "sidebar": {
-          "admins": "Project Admins",
-          "archive": "Archive Project",
-          "copy": "Copy Project",
-          "design": "Edit Design",
-          "destroy": "Delete Project",
-          "disable": "Disable",
-          "edit": "Edit Project",
-          "enable": "Enable",
-          "new": "New Project",
-          "title": "Project's options",
-          "view_licenses": "View Licenses"
-        },
-        "threesixty_campaigns": {
-          "base": {
-            "active": "Active",
-            "archived": "Archived",
-            "disable": "Archive",
-            "enable": "Unarchive"
-          },
-          "completion_statuses": {
-            "approved": "Approved",
-            "completed": "Completed",
-            "denied": "Denied",
-            "in_progress": "In Progress",
-            "not_started": "Not Started"
-          },
-          "copy": {
-            "error": "Client Tenancy %{name} was not copied.",
-            "successfully": "Client Tenancy %{name} was successfully copied."
-          },
-          "create": {
-            "successfully": "Client Tenancy %{name} was successfully created."
-          },
-          "designs": {
-            "form": {
-              "no_background": "No Background yet",
-              "no_logo": "No Logo yet"
-            }
-          },
-          "destroy": {
-            "error": "Can't delete %{name} because some dependent associations of subjects or evaluators exist.",
-            "successfully": "Client Tenancy %{name} was successfully deleted."
-          },
-          "edit": {
-            "header": "Edit 360 Campaign"
-          },
-          "export": {
-            "admin": "Client Admin",
-            "assessment": "Assement",
-            "client_admins": "Client Admins",
-            "created_at": "Created At",
-            "id": "Id",
-            "name": "Name",
-            "report": "Report",
-            "report_bundle": "Report Bundle",
-            "status": "Status"
-          },
-          "index": {
-            "export": "Export",
-            "new": "Add 360 Campaign",
-            "title": "360 Campaigns"
-          },
-          "license": {
-            "header": "%{name} - Edit license"
-          },
-          "licenses": {
-            "update": {
-              "duplicate_licenses": "You have duplicate licenses",
-              "successfully": "Licenses successfully updated"
-            }
-          },
-          "list": {
-            "admin": "Client Admin",
-            "assessment": "Assement",
-            "client_admins": "Client Admins",
-            "created_at": "Created At",
-            "id": "Id",
-            "name": "Name",
-            "report": "Report",
-            "report_bundle": "Report Bundle",
-            "status": "Status",
-            "updated_at": "Updated date"
-          },
-          "new": {
-            "header": "New 360 Campaign"
-          },
-          "resource": {
-            "confirmations": {
-              "delete": {
-                "body": "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>",
-                "title": "Delete <strong>%{name}</strong>?"
-              },
-              "disable": {
-                "body": {
-                  "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
-                  "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
-                  "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
-                  "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-                },
-                "title": "Archive <strong>%{name}</strong> ?"
-              },
-              "enable": {
-                "body": {
-                  "0": "<p>Are you sure you want to unarchive?</p>",
-                  "1": "<p>Are you sure you want to unarchive?</p>",
-                  "2": "<p>Are you sure you want to unarchive?</p>",
-                  "3": "<p>Are you sure you want to unarchive?</p>"
-                },
-                "title": "Unarchive <strong>%{name}</strong> ?"
-              }
-            },
-            "export_results": "Export results",
-            "raw_results": "Raw results",
-            "tooltips": {
-              "campaigns": {
-                "delete": "Delete Campaign"
-              },
-              "copy": "Copy Client",
-              "create_admin": "Create Client Admin",
-              "delete": "Delete Client",
-              "disable": "Disable Client",
-              "edit": "Edit Client",
-              "enable": "Enable Client"
-            }
-          },
-          "statistics": {
-            "index": {
-              "all_assessments": "All assessments",
-              "assessment_type": "Assessment type",
-              "title": "Statistics"
-            }
-          },
-          "toggle_status": {
-            "successfully": "Client Tenancy %{name} was successfully updated."
-          },
-          "update": {
-            "successfully": "Client Tenancy %{name} was successfully updated."
-          },
-          "url": "Url"
-        },
-        "toggle_status": {
-          "successfully": "Project %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "Project %{name} was successfully updated."
-        }
-      },
-      "registration_codes": {
-        "create": {
-          "successfully": "Registration code %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "Registration code %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Registration code"
-        },
-        "errors": {
-          "count_invalid": "cannot be less than the used_count = %{use_count}",
-          "criteria": "can only contain alphanumeric characters, hyphen (-) and underscore (_)",
-          "duplicate_code": "is in use. Try another one.",
-          "in_use": "%{attribute} is already in use",
-          "invalid_attribute": "%{attribute} is invalid",
-          "invalid_end_date": "has to be greater than the start date",
-          "license_issue": "Not enough licenses.",
-          "presence": "%{attribute} must be entered",
-          "review": "Please review the problems."
-        },
-        "form_fields": {
-          "code": "e.g TTE-conf-2019"
-        },
-        "index": {
-          "add": "Add",
-          "title": "Registration Codes"
-        },
-        "list": {
-          "actions": "Actions",
-          "active": "Active",
-          "code": "Code",
-          "end_date": "End date",
-          "name": "Name",
-          "start_date": "Start date",
-          "usage_stats": "Usage stats"
-        },
-        "name": "Registration Codes",
-        "new": {
-          "header": "Add Registration code"
-        },
-        "resource": {
-          "confirmations": {
-            "delete": {
-              "body": "<p>Are you sure you want to delete this Registration?</p>\n",
-              "title": "Delete <strong>%{name}</strong> ?"
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            }
-          },
-          "copy": "Copy",
-          "png": "PNG",
-          "qr_code": "QR code",
-          "svg": "SVG",
-          "tooltips": {
-            "delete": "Delete",
-            "edit": "Edit"
-          },
-          "url": "URL"
-        },
-        "update": {
-          "successfully": "Registration code %{name} was successfully updated."
-        }
-      },
-      "reports": {
-        "copy": {
-          "error": "Report #%{id} was not copied."
-        },
-        "create": {
-          "successfully": "Report %{name} was successfully created for Client."
-        },
-        "destroy": {
-          "successfully": "Report %{name} was successfully deleted from Client."
-        },
-        "edit": {
-          "header": "Edit Report Name"
-        },
-        "form": {
-          "load_mindmill_report": "Load from Mindmill",
-          "none_external": "None - Use report builder",
-          "select_family": "Select Report Bundle",
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
-          }
-        },
-        "index": {
-          "add": "Add",
-          "assessment": "Assessment",
-          "bulk_download": "Bulk Download",
-          "category": "Category",
-          "families": "Report Bundles",
-          "filterrific": {
-            "with_assessment_category": {
-              "360": "360 Feedback",
-              "all": "All",
-              "case_study": "Case Studies",
-              "organisational": "Org Surveys",
-              "psychometric": "Psychometrics"
-            }
-          },
-          "owner": "Owner",
-          "regenerate": "Regenerate Reports",
-          "report_family": "Report Bundle",
-          "title": "Reports",
-          "tooltips": {
-            "create": "Create"
-          }
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created date",
-          "id": "Id",
-          "name": "Name",
-          "type": "Type",
-          "updated_at": "Modified date"
-        },
-        "new": {
-          "header": "Select Report"
-        },
-        "preview": {
-          "export_pdf": "Export to PDF",
-          "title": "Preview"
-        },
-        "regenerate": {
-          "successfully": "Report successfully sent for regeneration"
-        },
-        "regenerates": {
-          "create": {
-            "successfully": "Report(s) successfully sent for regeneration"
-          }
-        },
-        "resource": {
-          "confirmations": {
-            "delete": {
-              "body": "<p>Are you sure you want to delete this Report?</p>\n",
-              "title": "Delete <strong>Report</strong> ?"
-            },
-            "detach": {
-              "body": "<p>Are you sure you want to detach this Report?</p>\n",
-              "title": "Detach <strong>Report</strong> ?"
-            },
-            "regenerate": {
-              "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
-              "title": "Regenerate <strong>%{name}</strong>?"
-            },
-            "soft_delete": {
-              "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
-              "title": "Soft Delete <strong>Report</strong>?"
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            }
-          },
-          "export_data": "Export Data",
-          "in_progress": {
-            "copying": "Copying",
-            "deleting": "Deleting",
-            "restoring": "Restoring"
-          },
-          "tooltips": {
-            "copy": "Copy Report",
-            "delete": "Delete Report",
-            "edit": "Edit Report",
-            "preview": "Preview Report",
-            "restore": "Restore",
-            "soft_delete": "Soft Delete Assessment"
-          }
-        },
-        "restore": {
-          "successfully": "Report %{name} was Restored Successfully."
-        },
-        "sidebar": {
-          "copy": "Copy Report",
-          "destroy": "Delete Report",
-          "edit": "Edit Report",
-          "regenerate": "Regenerate Report",
-          "title": "Report's options",
-          "view": "View Report"
-        },
-        "soft_delete": {
-          "successfully": "Report %{name} was moved to Trash Successfully."
-        },
-        "toggle_archive": {
-          "successfully": "Assessment %{name} was %{status} successfully."
-        },
-        "toggle_status": {
-          "successfully": "Report was successfully updated."
-        },
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
-        },
-        "update": {
-          "successfully": "Report %{name} was successfully updated."
-        }
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": {
-              "0": "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>",
-              "1": "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>",
-              "2": "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
-            },
-            "title": "Delete <strong>%{name}</strong> ?"
-          },
-          "disable": {
-            "body": {
-              "0": "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>",
-              "1": "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>",
-              "2": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>",
-              "3": "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
-            },
-            "title": "Archive <strong>%{name}</strong> ?"
-          },
-          "enable": {
-            "body": {
-              "0": "<p>Are you sure you want to unarchive?</p>",
-              "1": "<p>Are you sure you want to unarchive?</p>",
-              "2": "<p>Are you sure you want to unarchive?</p>",
-              "3": "<p>Are you sure you want to unarchive?</p>"
-            },
-            "title": "Unarchive <strong>%{name}</strong> ?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Client",
-          "create_admin": "Create Client Admin",
-          "delete": "Delete Client",
-          "disable": "Disable Client",
-          "edit": "Edit Client",
-          "enable": "Enable Client"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy client",
-        "design": "Edit Design",
-        "destroy": "Delete client",
-        "disable": "Disable",
-        "edit": "Edit client",
-        "enable": "Enable",
-        "licenses": "Manage Licenses",
-        "new": "New Client",
-        "title": "Client's options",
-        "view_licenses": "View licenses"
-      },
-      "statistics": {
-        "index": {
-          "all_assessments": "All assessments",
-          "assessment_type": "Assessment type",
-          "title": "Statistics"
-        }
-      },
-      "sub_campaigns": {
-        "archive": {
-          "successfully": "Sub-Campaign %{name} was successfully archived."
-        },
-        "copy": {
-          "error": "Sub-Campaign %{name} was not copied.",
-          "successfully": "Sub-Campaign %{name} was successfully copied."
-        },
-        "create": {
-          "successfully": "Sub-Campaign %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Sub-Campaign"
-        },
-        "export": {
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "header": {
-            "actions": "Actions",
-            "actual_usage": "Actual Usage",
-            "archive_status": "Archive Status",
-            "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
-            "users": "Users"
-          },
-          "id": "Id",
-          "name": "Sub-Campaign name",
-          "reports": "Reports",
-          "updated_at": "Updated date"
-        },
-        "header": {
-          "actions": "Actions"
-        },
-        "index": {
-          "export": "Export",
-          "new": "Add",
-          "title": "Sub Campaigns"
-        },
-        "list": {
-          "assessments": "Assessments",
-          "assigned_user": "Assigned users",
-          "completed_user": "Completed users",
-          "created_at": "Created date",
-          "header": {
-            "actions": "Actions",
-            "actual_usage": "Actual Usage",
-            "archive_status": "Archive Status",
-            "name": "Name",
-            "sub_campaign": "Sub-Campaigns",
-            "tests_allocated": "Tests Allocated",
-            "users": "Users"
-          },
-          "id": "Id",
-          "name": "Sub-Campaign name",
-          "reports": "Reports",
-          "updated_at": "Updated date"
-        },
-        "new": {
-          "header": "New Sub-Campaign"
-        },
-        "resource": {
-          "tooltips": {
-            "copy": "Copy Sub Campaign",
-            "create_report": "Add new Report",
-            "create_user": "Add New User",
-            "delete": "Delete Sub Campaign",
-            "edit": "Edit Sub Campaign"
-          }
-        },
-        "sidebar": {
-          "archive": "Archive Sub-Campaign",
-          "copy": "Copy Sub-Campaign",
-          "destroy": "Delete Sub-Campaign",
-          "disable": "Disable",
-          "edit": "Edit Sub-Campaign",
-          "enable": "Enable",
-          "new": "New Sub-Campaign",
-          "title": "Sub-Campaign's options",
-          "view_licenses": "View licenses"
-        },
-        "toggle_status": {
-          "successfully": "Sub-Campaign %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "Sub-Campaign %{name} was successfully updated."
-        }
-      },
-      "tenancies": "Client Tenancies",
-      "threesixty_campaigns": {
-        "create": {
-          "successfully": "Campaign %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "Campaign '%{name}' was deleted successfully."
-        },
-        "new": {
-          "header": "New 360 Campaign"
-        },
-        "update": {
-          "successfully": "Campaign '%{name}' was successfully updated."
-        }
-      },
-      "toggle_status": {
-        "successfully": "Client Tenancy %{name} was successfully updated."
-      },
-      "tooltips": {
-        "copy": "Copy Campaign",
-        "create_report": "Add New Report",
-        "create_user": "Add New User",
-        "delete": "Delete Campaign",
-        "edit": "Edit Campaign",
-        "export": "Export"
-      },
-      "update": {
-        "successfully": "Client Tenancy %{name} was successfully updated."
-      },
-      "url": "Url",
-      "users": {
-        "admins": {
-          "breadcrumb": "Admin Users",
-          "title": "Admins"
-        },
-        "assigns": {
-          "common": {
-            "detach_assessment": "Assessment %{name} was successfully detached.",
-            "detach_report": "Report %{name} was successfully detached."
-          },
-          "create": {
-            "successfully": "Successfully Updated"
-          },
-          "destroy": {
-            "successfully": "%{name} was successfully detached"
-          },
-          "edit": {
-            "header": "Add Additional Time"
-          },
-          "edit_form": {
-            "additional_time_label": "Additional Time, min",
-            "submit": "Add"
-          },
-          "form": {
-            "assessment": "Assessment",
-            "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "user_access": {
-              "access": "Reports access",
-              "preserve_user_access": "Apply access settings only for the newly added report",
-              "user": "User"
-            }
-          },
-          "index": {
-            "add_assessments": "Add Assessments",
-            "add_reports": "Add Reports",
-            "title": "%{name} - Assessments and Reporting"
-          },
-          "list": {
-            "actions": "Actions",
-            "assessment_name": "Assessment Name",
-            "assessment_type": "Assessment Type",
-            "completed_at": "Completed at",
-            "reports": "Reports",
-            "status": "Status",
-            "uniq_id": "Uniq ID"
-          },
-          "new": {
-            "header": "Assign Assessment and Reports"
-          },
-          "reset": {
-            "successfully": "Result data was successfully reseted"
-          },
-          "resource": {
-            "confirms": {
-              "assessment": {
-                "detach": {
-                  "body": "<p>This action will remove these report's & all the assessments associated with them : </p><ul>%{items}</ul>",
-                  "title": "Detach assessment <strong>%{name}</strong> ?"
-                }
-              },
-              "assigns_report": {
-                "add_user_access": {
-                  "body": "<p>Are you sure you want to add user access to this report?</p>",
-                  "title": "Add user access to <strong>%{name}</strong> ?"
-                },
-                "delete": {
-                  "body": "<p>Are you sure you want to detach this report?</p>",
-                  "title": "Detach <strong>%{name}</strong> ?"
-                },
-                "regenerate": {
-                  "body": "<p>Are you sure you want to regenerate this report?</p>",
-                  "title": "Regenerate <strong>%{name}</strong> ?"
-                },
-                "remove_user_access": {
-                  "body": "<p>Are you sure you want to remove user access to this report?</p>",
-                  "title": "Remove user access to <strong>%{name}</strong> ?"
-                }
-              },
-              "reset": {
-                "body": "<p>Are you sure you want to reset result?</p>",
-                "title": "Reset <strong>Result</strong> ?"
-              }
-            },
-            "generating": "Report \"%{name}\" is generating",
-            "no_access_to_reports": "No access to reports",
-            "no_reports": "No relative reports",
-            "not_completed": "Not completed",
-            "tooltips": {
-              "additional_time": "Add additional time",
-              "assigns_report": {
-                "add_user_access": "Add user access",
-                "delete": "Detach Report",
-                "regenerate": "Regenerate report file",
-                "remove_user_access": "Remove user access"
-              },
-              "delete": "Detach Assessment",
-              "reset": "Reset result"
-            }
-          },
-          "update_additional_time": {
-            "successfully": "Additional time was successfully added"
-          }
-        },
-        "assigns_reports": {
-          "edit": {
-            "header": "Add Reports"
-          },
-          "form": {
-            "access": "Access",
-            "assessment": "Assessment",
-            "detach": "Detach",
-            "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": {
-              "access": "Reports access",
-              "user": "User"
-            }
-          },
-          "new": {
-            "header": "Add Reports"
-          },
-          "regenerate": {
-            "failure": "Report can't be generated. These assessments are not completed '%{assessment_names}'.",
-            "successfully": "Successfully sent to regenerate"
-          },
-          "update": {
-            "successfully": "Successfully Updated"
-          }
-        },
-        "create": {
-          "successfully": "User %{name} was successfully created."
-        },
-        "destroy": {
-          "successfully": "User %{name} was successfully deleted."
-        },
-        "edit": {
-          "add": "Add",
-          "grants": "Privileges",
-          "hris_data": "HRIS Data",
-          "key": "Key",
-          "personal_data": "Personal Data",
-          "remove": "Remove",
-          "title": "Edit user",
-          "value": "Value"
-        },
-        "edit_hris_data": {
-          "add": "Add",
-          "key": "Key",
-          "remove": "Remove",
-          "value": "Value"
-        },
-        "form": {
-          "choose": " - Choose - "
-        },
-        "form_admin": {
-          "choose_admin": "Choose Admin",
-          "create_admin": "Create Admin"
-        },
-        "index": {
-          "breadcrumb": "Users",
-          "client_tenancy": "Client tenancy",
-          "export": "Export",
-          "export_completion_status": "Completion Status",
-          "export_users": "Users",
-          "filterrific": {
-            "with_role": {
-              "administration": "Administrators",
-              "all": "All",
-              "users": "Users"
-            }
-          },
-          "import": "Import",
-          "import_hris": "HRIS Data",
-          "import_users": "Users",
-          "new": "Add",
-          "new_superadmin": "Add SuperAdmin",
-          "title": "Users",
-          "tooltips": {
-            "create": "Create",
-            "export": "Export",
-            "import": "Import"
-          }
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created Date",
-          "email": "Email",
-          "first_name": "First name",
-          "id": "Id",
-          "last_name": "Last name",
-          "role": "Role",
-          "updated_at": "Modified Date"
-        },
-        "new": {
-          "header": "New user"
-        },
-        "password": {
-          "guidelines": {
-            "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
-          }
-        },
-        "reports": {
-          "copy": {
-            "error": "Report #%{id} was not copied."
-          },
-          "create": {
-            "successfully": "Report %{name} was successfully created."
-          },
-          "destroy": {
-            "successfully": "Report %{name} was successfully deleted."
-          },
-          "edit": {
-            "header": "Edit Report Name"
-          },
-          "form": {
-            "load_mindmill_report": "Load from Mindmill",
-            "none_external": "None - Use report builder",
-            "select_family": "Select Report Bundle",
-            "types": {
-              "common": "Any",
-              "eti": "ETI",
-              "yti": "YTI"
-            }
-          },
-          "index": {
-            "add": "Add",
-            "assessment": "Assessment",
-            "bulk_download": "Bulk Download",
-            "category": "Category",
-            "families": "Report Bundles",
-            "filterrific": {
-              "with_assessment_category": {
-                "360": "360 Feedback",
-                "all": "All",
-                "case_study": "Case Studies",
-                "organisational": "Org Surveys",
-                "psychometric": "Psychometrics"
-              }
-            },
-            "owner": "Owner",
-            "regenerate": "Regenerate Reports",
-            "report_family": "Report Bundle",
-            "title": "Reports",
-            "tooltips": {
-              "create": "Create"
-            }
-          },
-          "list": {
-            "active": "Active",
-            "created_at": "Created date",
-            "id": "Id",
-            "name": "Name",
-            "type": "Type",
-            "updated_at": "Modified date"
-          },
-          "new": {
-            "header": "Select Report"
-          },
-          "preview": {
-            "export_pdf": "Export to PDF",
-            "title": "Preview"
-          },
-          "regenerate": {
-            "successfully": "Report successfully sent for regeneration"
-          },
-          "resource": {
-            "confirmations": {
-              "delete": {
-                "body": "<p>Are you sure you want to delete this Report?</p>\n",
-                "title": "Delete <strong>Report</strong> ?"
-              },
-              "detach": {
-                "body": "<p>Are you sure you want to detach this Report?</p>\n",
-                "title": "Detach <strong>Report</strong> ?"
-              },
-              "regenerate": {
-                "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
-                "title": "Regenerate <strong>%{name}</strong>?"
-              },
-              "soft_delete": {
-                "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
-                "title": "Soft Delete <strong>Report</strong>?"
-              },
-              "toggle_status": {
-                "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
-                "title": "<strong>%{status}</strong> %{name}?"
-              }
-            },
-            "in_progress": {
-              "copying": "Copying",
-              "deleting": "Deleting",
-              "restoring": "Restoring"
-            },
-            "tooltips": {
-              "copy": "Copy Report",
-              "delete": "Delete Report",
-              "edit": "Edit Report",
-              "preview": "Preview Report",
-              "restore": "Restore",
-              "soft_delete": "Soft Delete Assessment"
-            }
-          },
-          "restore": {
-            "successfully": "Report %{name} was Restored Successfully."
-          },
-          "sidebar": {
-            "copy": "Copy Report",
-            "destroy": "Delete Report",
-            "edit": "Edit Report",
-            "regenerate": "Regenerate Report",
-            "title": "Report's options",
-            "view": "View Report"
-          },
-          "soft_delete": {
-            "successfully": "Report %{name} was moved to Trash Successfully."
-          },
-          "toggle_archive": {
-            "successfully": "Assessment %{name} was %{status} successfully."
-          },
-          "toggle_status": {
-            "successfully": "Report was successfully updated."
-          },
-          "types": {
-            "common": "Any",
-            "eti": "ETI",
-            "yti": "YTI"
-          },
-          "update": {
-            "successfully": "Report %{name} was successfully updated."
-          }
-        },
-        "reset_password": {
-          "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
-        },
-        "resource": {
-          "confirmations": {
-            "change_password": {
-              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
-              "title": "Change password <strong>%{name}</strong> ?"
-            },
-            "delete": {
-              "body": "<p>Are you sure you want to delete this User?</p>\n",
-              "title": "Delete <strong>%{name}</strong> ?"
-            },
-            "membership": {
-              "delete": {
-                "body": "<p>Are you sure you want to delete?</p>\n",
-                "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
-              },
-              "toggle_status": {
-                "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
-                "title": "<strong>%{status}</strong> %{name}'s Membership?"
-              }
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this User?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}?"
-            }
-          },
-          "tooltips": {
-            "change_password": "Change Password",
-            "chart": "View user report",
-            "delete": "Delete User",
-            "edit": "Edit User",
-            "mail": "Send Mail",
-            "sign_in": "Login as user"
-          }
-        },
-        "sidebar": {
-          "api_keys": "API keys",
-          "assessments_and_reports": "Assessments and Reporting",
-          "destroy": "Delete User",
-          "disable": "Disable",
-          "edit_user": "Edit User",
-          "email": "Send Mail",
-          "enable": "Enable",
-          "export_users": "Export users",
-          "import_users": "Import users",
-          "login_as_user": "Login as User",
-          "new_user": "New User",
-          "reset_password": "Change Password",
-          "title": "User's options"
-        },
-        "spoof": {
-          "successfully": "You was successfully login as %{name}"
-        },
-        "toggle_status": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "update": {
-          "successfully": "User %{name} was successfully updated."
-        },
-        "user": "User"
-      }
-    },
-    "clients_hierarchy": "Project > Campaign > Sub Campaign",
-    "close": "Close",
-    "communications": {
-      "copy": {
-        "error": "Communication #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Communication created successfully."
-      },
-      "destroy": {
-        "successfully": "Communication %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Communication"
-      },
-      "form": {
-        "all": "All",
-        "body_mustache": "{{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users\n{{first_name}} - Recipient First Name\n{{last_name}} - Recipient Last Name\n{{email}} - Recipient Email\n",
-        "completion": "Completion",
-        "delivery_at": "Delivery at (GST)",
-        "delivery_rules": {
-          "in_progress": "If assessment is in progress",
-          "not_competed": "If assessment is not completed",
-          "not_started": "If assessment is not started",
-          "send_now": "Send now",
-          "specific_datetime": "Send at"
-        },
-        "invitation": "Invitation",
-        "kind": "Communication Types",
-        "new_users": "New Users",
-        "other": "Other",
-        "reminder": "Reminder",
-        "selected": "Selected",
-        "selected_cc_recipients": "Selected CC Recipients",
-        "selected_recipients": "Selected Recipients",
-        "stop_reminder": "Stop sending reminders",
-        "stop_reminder_datetime": "End date for reminders (GST)"
-      },
-      "index": {
-        "clients": "Clients",
-        "completion": "Completion",
-        "invitation": "Invitation",
-        "new": "Add",
-        "other": "Other",
-        "owner": "Owner",
-        "reminder": "Reminder",
-        "title": "Communication center",
-        "tooltips": {
-          "create": "Create"
-        },
-        "type": "Type"
-      },
-      "list": {
-        "actions": "Actions",
-        "author": "Created by",
-        "campaign": "Campaign",
-        "client_name": "Client",
-        "created_at": "Created date",
-        "creator_first_name": "Created by",
-        "delivery_rule": "Delivery",
-        "kind": "Communication type",
-        "project": "Project",
-        "recipients": "Recipients",
-        "sub_campaign": "Sub-campaign",
-        "subject": "Communication subject",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "New Communication"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Communication?</p>\n",
-            "title": "Delete <strong>Communication</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Communication?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Communication",
-          "delete": "Delete Communication",
-          "download": "Download Communication History",
-          "edit": "Edit Communication",
-          "view": "View Communication"
-        }
-      },
-      "show": {
-        "assessment": "Assessment:",
-        "back": "Back",
-        "body": "Body:",
-        "campaign": "Campaign:",
-        "client": "Client:",
-        "communication_type": "Communication type:",
-        "delivery_interval": "Delivery interval:",
-        "delivery_rule": "Delivery rule:",
-        "every_interval": "Every %{interval}",
-        "owner": "Owner:",
-        "project": "Project:",
-        "recipients": "Recipients:",
-        "specific_datetime": "Send at:",
-        "stop_reminder_datetime": "End date for reminders (GST)",
-        "sub_campaign": "Sub Campaign:",
-        "subject": "Subject:",
-        "users": "Users:"
-      },
-      "sidebar": {
-        "copy": "Copy Communication",
-        "destroy": "Delete Communication",
-        "download": "Download Communication History",
-        "edit": "Edit Communication",
-        "new": "New Communication",
-        "title": "Communication's options",
-        "view": "View Communication"
-      },
-      "toggle_status": {
-        "successfully": "Communication was successfully updated."
-      }
-    },
-    "copy": "Copy",
-    "create": "Create",
-    "created": "Successfully created",
-    "created_by": "Created By",
-    "dates": {
-      "completed": "Completed At",
-      "created": "Created At",
-      "end": "End Date",
-      "ended": "Ended At",
-      "start": "Start Date",
-      "started": "Started At",
-      "updated": "Updated At"
-    },
-    "dimensions": {
-      "copy": {
-        "error": "Dimension #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "%{name} dimension was created successfully"
-      },
-      "destroy": {
-        "successfully": "Dimension %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Dimension Name"
-      },
-      "form": {
-        "enable_innovation_styles": "Enable Innovation Styles",
-        "enable_occupations": "Enable Occupations"
-      },
-      "index": {
-        "new": "Add",
-        "owner": "Owner",
-        "title": "Dimensions",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created date",
-        "factors_count": "Factors count",
-        "id": "Id",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "new": {
-        "header": "New Dimension"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Dimension?</p>\n",
-            "title": "Delete <strong>Dimension</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Dimension?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Dimension",
-          "delete": "Delete Dimension",
-          "edit": "Edit Dimension Name"
-        }
-      },
-      "sidebar": {
-        "assign": "Assign Dimension",
-        "copy": "Copy Dimension",
-        "destroy": "Delete Dimension",
-        "disable": "Disable Dimension",
-        "edit": "Edit Dimension Name",
-        "enable": "Enable Dimension",
-        "new": "New Dimension",
-        "title": "Dimension's options",
-        "view": "View Dimension"
-      },
-      "toggle_status": {
-        "successfully": "Dimension was successfully updated."
-      }
-    },
-    "disable": "Disable",
-    "edit": "Edit",
-    "enable": "Enable",
-    "factors": {
-      "copy": {
-        "error": "%{name} factor was not copied",
-        "successfully": "%{name} factor was copied successfully"
-      },
-      "create": {
-        "error": "%{name} factor was not created",
-        "successfully": "%{name} factor was created successfully"
-      },
-      "destroy": {
-        "successfully": "Factor %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Factor Name"
-      },
-      "form": {
-        "no_icon": "No Logo yet",
-        "scoring_strategies": {
-          "questions": "Questions (Average)",
-          "questions_sum": "Questions (SUM)",
-          "sub_factor_questions": "Questions of other Factors (Average)",
-          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
-          "sub_factors_average": "Weighted Average of Factors",
-          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        },
-        "scoring_strategies_tip": " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.",
-        "scoring_strategy": "Scoring strategy"
-      },
-      "index": {
-        "icon": "Icon",
-        "new": "Add",
-        "scoring_strategies": {
-          "questions": "Questions (Average)",
-          "questions_sum": "Questions (SUM)",
-          "sub_factor_questions": "Questions of other Factors (Average)",
-          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
-          "sub_factors_average": "Weighted Average of Factors",
-          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        },
-        "scoring_strategy": "Scoring strategy",
-        "sub_factors": "Sub factors",
-        "title": "Factors",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created date",
-        "id": "Id",
-        "name": "Name",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "New Factor"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Factor?</p>\n",
-            "title": "Delete <strong>Factor</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Factor?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "scoring_strategies": {
-          "questions": "Questions (Average)",
-          "questions_sum": "Questions (SUM)",
-          "sub_factor_questions": "Questions of other Factors (Average)",
-          "sub_factor_questions_sum": "Questions of other Factors (SUM)",
-          "sub_factors_average": "Weighted Average of Factors",
-          "sub_factors_conditional_average": "Conditional Weighted Average of Factors"
-        },
-        "tooltips": {
-          "copy": "Copy Factor",
-          "delete": "Delete Factor",
-          "edit": "Edit Factor"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Factor",
-        "destroy": "Delete Factor",
-        "edit": "Edit Factor",
-        "title": "Factor's options",
-        "view": "View Factor"
-      },
-      "toggle_status": {
-        "successfully": "Factor was successfully updated."
-      },
-      "update": {
-        "error": "%{name} factor was not updated",
-        "successfully": "%{name} factor was updated successfully"
-      }
-    },
-    "genders": {
-      "female": "Female",
-      "male": "Male",
-      "not_set": "Not set"
-    },
-    "hide": "Hide",
-    "home": {
-      "index": {
-        "notifications": "Notifications"
-      }
-    },
-    "import": "Import",
-    "imports": {
-      "assessments": {
-        "results": {
-          "existing_users_whose_password_not_changed_modal_dialog": {
-            "header": "The list of users whose passwords will be not changed"
-          },
-          "form": {
-            "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
-            "import": "Import"
-          }
-        }
-      },
-      "base": {
-        "form": {
-          "import": "Import"
-        }
-      },
-      "errors": {
-        "error": "[Row %{row}] %{error}",
-        "invalid_assign": "Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
-        "invalid_format": "There is no Email column",
-        "norm": {
-          "factor_is_not_described": "[#%{coords}] factor %{factor} is not described above",
-          "factors_mismatch": "[#%{coords}] dimension %{dimension} does not have factor %{factor}",
-          "not_set_dimension": "The name of the Dimension should be written in A-1",
-          "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
-        },
-        "result": {
-          "error": "[Row %{row}] %{error}",
-          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
-          "invalid_format": "Invalid File format"
-        },
-        "translation": {
-          "error": "[Translation %{id}] %{error}",
-          "invalid_format": "Invalid File format"
-        },
-        "unknown_type": "Unknown file type: %{filename}",
-        "user": {
-          "not_found": "[Row %{row}] Couldn't find User with Email Address %{email}"
-        }
-      },
-      "form": {
-        "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "import": "Import"
-      },
-      "hris": {
-        "existing_users_whose_password_not_changed_modal_dialog": {
-          "header": "The list of users whose passwords will be not changed"
-        },
-        "form": {
-          "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
-          "import": "Import"
-        }
-      },
-      "new": {
-        "header": "Import"
-      },
-      "users": {
-        "existing_users_whose_password_not_changed_modal_dialog": {
-          "header": "The list of users whose passwords will be not changed"
-        },
-        "form": {
-          "description": "Refer to the Export functionality to extract a template that can be used to Import here.",
-          "import": "Import"
-        }
-      }
-    },
-    "imports_assessments_result_imports": {
-      "create": {
-        "successfully": "Raw Results data was successfully imported"
-      },
-      "modal": {
-        "header": {
-          "raw": "Import Raw Results data",
-          "scoring": "Import Scoring Results data"
-        }
-      },
-      "new": {
-        "header": "New"
-      }
-    },
-    "imports_hris_imports": {
-      "create": {
-        "successfully": "HRIS data was successfully imported"
-      },
-      "new": {
-        "header": "Import HRIS data"
-      }
-    },
-    "imports_user_imports": {
-      "create": {
-        "successfully": "Users was successfully imported"
-      },
-      "new": {
-        "header": "Import Users"
-      }
-    },
-    "innovation_styles": {
-      "copy": {
-        "error": "Innovation Style #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Innovation Style %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Innovation Style %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Innovation Style"
-      },
-      "form": {
-        "hint": {
-          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        },
-        "no_icon": "No icon"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Innovation Styles",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "created_at": "Created date",
-        "id": "Id",
-        "name": "Name",
-        "position": "Position",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "New Innovation Style"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this innovation style?</p>\n",
-            "title": "Delete <strong>Innovation Style</strong> ?"
-          }
-        },
-        "tooltips": {
-          "copy": "Copy Innovation Style",
-          "delete": "Delete Innovation Style",
-          "edit": "Edit Innovation Style"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Innovation Style",
-        "disable": "Disable",
-        "edit": "Edit",
-        "enable": "Enable",
-        "new": "New Innovation Style",
-        "title": "Innovation Style's options"
-      },
-      "toggle_status": {
-        "successfully": "Innovation Style was successfully updated."
-      }
-    },
-    "innovation_styles_factors": {
-      "copy": {
-        "error": "Factor #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Factor %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Factor %{name} was successfully detached."
-      },
-      "edit": {
-        "header": "Edit Factor"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Factors",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "condition": "Condition",
-        "created_at": "Created date",
-        "id": "Id",
-        "name": "Name",
-        "position": "Position",
-        "updated_at": "Modified date",
-        "weight": "Weight"
-      },
-      "new": {
-        "header": "Attach Factors"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this factor?</p>",
-            "title": "Delete <strong>Factor</strong> ?"
-          }
-        },
-        "tooltips": {
-          "delete": "Delete Factor",
-          "edit": "Edit Factor"
-        }
-      },
-      "sidebar": {
-        "destroy": "Destroy",
-        "disable": "Disable",
-        "edit": "Edit",
-        "enable": "Enable",
-        "new": "Attach Factor",
-        "title": "Factor's options"
-      },
-      "toggle_status": {
-        "successfully": "Factor was successfully updated."
-      }
-    },
-    "libraries": {
-      "create": {
-        "successfully": "Item %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Item %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit"
-      },
-      "index": {
-        "new_folder": "New Folder",
-        "owner": "Owner",
-        "title": "Media library",
-        "upload": "Upload"
-      },
-      "list": {
-        "created_at": "Created date",
-        "name": "Name",
-        "new_folder": "New folder",
-        "root": "Media library",
-        "type": "Type",
-        "updated_at": "Modified date",
-        "upload": "Upload new file"
-      },
-      "new": {
-        "header": "New Folder"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete %{name}?</p>\n",
-            "title": "Delete <strong>%{name}</strong> ?"
-          }
-        },
-        "tooltips": {
-          "delete": "Delete",
-          "edit": "Edit"
-        }
-      },
-      "update": {
-        "successfully": "Item %{name} was successfully updated."
-      }
-    },
-    "membership": "Membership",
-    "memberships": {
-      "admin": {
-        "new": {
-          "header": "New admin"
-        }
-      },
-      "admin_chosen": {
-        "successfully": "Admin users was successfully updated."
-      },
-      "create": {
-        "successfully": "User %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "User %{name} was successfully deleted."
-      },
-      "edit": {
-        "add": "Add",
-        "hris_data": "HRIS Data",
-        "key": "Key",
-        "personal_data": "Personal Data",
-        "remove": "Remove",
-        "title": "Edit user",
-        "value": "Value"
-      },
-      "index": {
-        "export": "Export",
-        "filterrific": {
-          "with_role": {
-            "administration": "Administrators",
-            "all": "All",
-            "users": "Users"
-          }
-        },
-        "import": "Import",
-        "import_hris": "HRIS Data",
-        "import_users": "Users",
-        "new": "Add",
-        "title": "Users",
-        "tooltips": {
-          "create": "Create",
-          "export": "Export",
-          "import": "Import"
-        }
-      },
-      "new": {
-        "header": "New user"
-      },
-      "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
-      },
-      "spoof": {
-        "successfully": "You was successfully login as %{name}"
-      },
-      "toggle_membership_status": {
-        "successfully": "Membership of %{name} was successfully updated."
-      },
-      "toggle_status": {
-        "successfully": "User %{name} was successfully updated."
-      },
-      "update": {
-        "successfully": "User %{name} was successfully updated."
-      }
-    },
-    "meta_title": "Administration panel",
-    "modified_by": "Modified By",
-    "navigation": {
-      "admins": "Admins",
-      "assessments": "Assessments",
-      "campaign_templates": "Campaign Templates",
-      "campaigns": "Campaigns",
-      "client": "Client Tenancy",
-      "client_admins": "Client Admins",
-      "clients": "Client Tenancies",
-      "communication_center": "Communication Center",
-      "create": "Create",
-      "datasheets": "Datasheets",
-      "design": "Design",
-      "dimension": "Dimension",
-      "dimensions": "Dimensions",
-      "factors": "Factors",
-      "home": "Dashboard",
-      "innovation_styles": "Innovation Styles",
-      "innovation_styles_factors": "Factors",
-      "libraries": "Media Library",
-      "licenses": "Licenses",
-      "new_campaign": "New Campaign",
-      "norm": "Norm",
-      "norms": "Norms",
-      "norms_editor": "Norm Editor",
-      "occupations": "Occupations",
-      "occupations_factors": "Factors",
-      "products": "Products",
-      "project_admins": "Project Admins",
-      "projects": "Projects",
-      "psychometrics": "Psychometrics",
-      "question_center": "Question Center",
-      "registration_codes": "Registration Codes",
-      "report_families": "Report Bundles",
-      "reports": "Reports",
-      "statistics": "Statistics",
-      "sub_campaigns": "Sub Campaigns",
-      "sub_factors": "Sub-Factors",
-      "survey": "Survey",
-      "surveys": "Surveys",
-      "users": "Users",
-      "users_add": "Add New",
-      "users_import": "Import"
-    },
-    "new": "New",
-    "no_data_found": "No data found",
-    "norms": {
-      "copy": {
-        "error": "Norm #%{id} was not copied.",
-        "successfully": "Norm #%{name} was copied successfully"
-      },
-      "create": {
-        "successfully": "Norm %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Norm %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Rename Norm"
-      },
-      "editor": {
-        "factors": "Factors",
-        "inplace_title": "Enter value",
-        "sub_factors": "Sub Factors",
-        "title": "Norm Editor",
-        "tooltips": {
-          "edit": "Edit Title"
-        }
-      },
-      "index": {
-        "export": "Export",
-        "import": "Import",
-        "new": "Add",
-        "owner": "Owner",
-        "title": "Norms"
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created date",
-        "dimension_id": "Dimension Id",
-        "id": "Id",
-        "name": "Name",
-        "updated_at": "Modified date",
-        "updated_by": "Updated by"
-      },
-      "new": {
-        "header": "New norm"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Norm?</p>\n",
-            "title": "Delete <strong>Norm</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Norm?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Norm",
-          "delete": "Delete Norm",
-          "edit": "Rename Norm"
-        }
-      },
-      "sidebar": {
-        "assign": "Assign Norm",
-        "copy": "Copy Norm",
-        "destroy": "Delete Norm",
-        "disable": "Disable",
-        "edit": "Rename Norm",
-        "editor": "Norm Editor",
-        "enable": "Enable",
-        "export": "Export Norm",
-        "import": "Import Norm",
-        "new": "New Norm",
-        "surveys": "Linked Surveys",
-        "title": "Norm's options",
-        "view": "View Norm"
-      },
-      "toggle_status": {
-        "successfully": "Norm was successfully updated."
-      },
-      "update": {
-        "successfully": "Norm %{name} was successfully updated."
-      }
-    },
-    "noty": {
-      "error_408": "This action takes too long. Please try to reload the page.",
-      "error_500": "Something went wrong. Contact your administrator."
-    },
-    "occupations": {
-      "copy": {
-        "error": "Occupation #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Occupation %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Occupation %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit occupation"
-      },
-      "form": {
-        "hint": {
-          "key_career_tracks": "\"+\" - list, \"*\" - bold. Example: + *Biology* - some description..."
-        },
-        "no_icon": "No icon"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Occupations",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "created_at": "Created Date",
-        "id": "Id",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "new": {
-        "header": "New occupation"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this occupation?</p>\n",
-            "title": "Delete <strong>Occupation</strong> ?"
-          }
-        },
-        "tooltips": {
-          "copy": "Copy Occupation",
-          "delete": "Delete Occupation",
-          "edit": "Edit Occupation"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Occupation",
-        "disable": "Disable",
-        "edit": "Edit",
-        "enable": "Enable",
-        "new": "New Occupation",
-        "title": "Occupation's options"
-      },
-      "toggle_status": {
-        "successfully": "Occupation was successfully updated."
-      }
-    },
-    "occupations_factors": {
-      "copy": {
-        "error": "Factor #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Factor %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Factor %{name} was successfully detached."
-      },
-      "edit": {
-        "header": "Edit Factor"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Factors",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "condition": "Condition",
-        "created_at": "Created date",
-        "id": "Id",
-        "name": "Name",
-        "position": "Position",
-        "updated_at": "Modified date",
-        "weight": "Weight"
-      },
-      "new": {
-        "header": "Attach Factors"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this factor?</p>",
-            "title": "Delete <strong>Factor</strong> ?"
-          }
-        },
-        "tooltips": {
-          "delete": "Delete Factor",
-          "edit": "Edit Factor"
-        }
-      },
-      "sidebar": {
-        "destroy": "Destroy Factor",
-        "disable": "Disable",
-        "edit": "Edit",
-        "enable": "Enable",
-        "new": "Attach Factor",
-        "title": "Factor's options"
-      },
-      "toggle_status": {
-        "successfully": "Factor was successfully updated."
-      }
-    },
-    "products": {
-      "copy": {
-        "error": "Product",
-        "successfully": "Product %{name} was successfully copied."
-      },
-      "create": {
-        "successfully": "Product %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Product %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Product"
-      },
-      "form": {
-        "add_image": "Add Image",
-        "images": "Images",
-        "prices": "Prices",
-        "reports": "Reports"
-      },
-      "image_fields": {
-        "remove": "Remove Image"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Products list"
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "name": "Name",
-        "updated_at": "Modified Date"
-      },
-      "new": {
-        "header": "New Product"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Product?</p>\n",
-            "title": "Delete <strong>Product</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Product?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting"
-        },
-        "tooltips": {
-          "copy": "Copy Product",
-          "delete": "Delete Product",
-          "edit": "Edit Product"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Product",
-        "destroy": "Destroy Product",
-        "disable": "Disable",
-        "edit": "Edit Product",
-        "enable": "Enable",
-        "new": "New Product",
-        "title": "Product's options"
-      },
-      "update": {
-        "successfully": "Product %{name} was successfully updated."
-      }
-    },
-    "profiles": {
-      "edit": {
-        "success": "Profile was successfully updated.",
-        "title": "Profile Editor"
-      }
-    },
-    "psychometrics": "Psychometrics",
-    "questions": {
-      "copy": {
-        "successfully": "Question %{name} copied successfully"
-      },
-      "create": {
-        "successfully": "Question %{name} created successfully"
-      },
-      "destroy": {
-        "successfully": "Question %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Question"
-      },
-      "index": {
-        "owner": "Owner"
-      },
-      "new": {
-        "header": "New Question"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Question?</p>\n",
-            "title": "Delete <strong>Question</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Question?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        }
-      }
-    },
-    "report_families": {
-      "copy": {
-        "error": "Report Bundle #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Report Bundle %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Report Bundle %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Report Bundle Name"
-      },
-      "index": {
-        "add": "Add",
-        "families": "Families",
-        "title": "Report Bundles",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "created_at": "Created date",
-        "name": "Name",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "New Report Bundle"
-      },
-      "reports": {
-        "destroy": {
-          "successfully": "Report successfully deleted from the report bundle"
-        },
-        "index": {
-          "add": "Add new Report",
-          "title": "Reports in the Bundle",
-          "tooltips": {
-            "create": "Create"
-          }
-        },
-        "list": {
-          "created_at": "Created date",
-          "name": "Name",
-          "updated_at": "Updated date"
-        },
-        "resource": {
-          "confirmations": {
-            "delete": {
-              "body": "<p>Are you sure you want to delete this Report from Bundle?</p>\n",
-              "title": "Delete <strong>Report</strong> from Bundle?"
-            }
-          },
-          "tooltips": {
-            "delete": "Delete Report from Bundle"
-          }
-        }
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Report Bundle?</p>\n",
-            "title": "Delete <strong>Report</strong> ?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Report Bundle?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "tooltips": {
-          "copy": "Copy Report Bundle",
-          "delete": "Delete Report Bundle",
-          "edit": "Edit Report Bundle",
-          "preview": "Preview Report Bundle"
-        }
-      },
-      "sidebar": {
-        "copy": "Copy Report Bundle",
-        "destroy": "Delete Report Bundle",
-        "edit": "Edit Report Bundle",
-        "title": "Report Bundle's options",
-        "view": "View Report Bundle"
-      },
-      "update": {
-        "successfully": "Report Bundle %{name} was successfully updated."
-      }
-    },
-    "reports": {
-      "copy": {
-        "error": "Report #%{id} was not copied."
-      },
-      "create": {
-        "successfully": "Report %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "Report %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Report Name"
-      },
-      "form": {
-        "load_mindmill_report": "Load from Mindmill",
-        "none_external": "None - Use report builder",
-        "select_family": "Select Report Bundle",
-        "types": {
-          "common": "Any",
-          "eti": "ETI",
-          "yti": "YTI"
-        }
-      },
-      "index": {
-        "add": "Add",
-        "assessment": "Assessment",
-        "bulk_download": "Bulk Download",
-        "category": "Category",
-        "families": "Report Bundles",
-        "filterrific": {
-          "with_assessment_category": {
-            "360": "360 Feedback",
-            "all": "All",
-            "case_study": "Case Studies",
-            "organisational": "Org Surveys",
-            "psychometric": "Psychometrics"
-          }
-        },
-        "owner": "Owner",
-        "regenerate": "Regenerate Reports",
-        "report_family": "Report Bundle",
-        "title": "Reports",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created date",
-        "id": "Id",
-        "name": "Name",
-        "type": "Type",
-        "updated_at": "Modified date"
-      },
-      "new": {
-        "header": "Select Report"
-      },
-      "preview": {
-        "export_pdf": "Export to PDF",
-        "title": "Preview"
-      },
-      "regenerate": {
-        "successfully": "Report successfully sent for regeneration"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Report?</p>\n",
-            "title": "Delete <strong>Report</strong> ?"
-          },
-          "detach": {
-            "body": "<p>Are you sure you want to detach this Report?</p>\n",
-            "title": "Detach <strong>Report</strong> ?"
-          },
-          "regenerate": {
-            "body": "<p>Are you sure you want to regenerate this Report for all Users?</p>",
-            "title": "Regenerate <strong>%{name}</strong>?"
-          },
-          "soft_delete": {
-            "body": "<p>Are you sure you want to soft delete this Report?</p>\n",
-            "title": "Soft Delete <strong>Report</strong>?"
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this Report?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "in_progress": {
-          "copying": "Copying",
-          "deleting": "Deleting",
-          "restoring": "Restoring"
-        },
-        "tooltips": {
-          "copy": "Copy Report",
-          "delete": "Delete Report",
-          "edit": "Edit Report",
-          "preview": "Preview Report",
-          "restore": "Restore",
-          "soft_delete": "Soft Delete Assessment"
-        }
-      },
-      "restore": {
-        "successfully": "Report %{name} was Restored Successfully."
-      },
-      "sidebar": {
-        "copy": "Copy Report",
-        "destroy": "Delete Report",
-        "edit": "Edit Report",
-        "regenerate": "Regenerate Report",
-        "title": "Report's options",
-        "view": "View Report"
-      },
-      "soft_delete": {
-        "successfully": "Report %{name} was moved to Trash Successfully."
-      },
-      "toggle_archive": {
-        "successfully": "Assessment %{name} was %{status} successfully."
-      },
-      "toggle_status": {
-        "successfully": "Report was successfully updated."
-      },
-      "types": {
-        "common": "Any",
-        "eti": "ETI",
-        "yti": "YTI"
-      },
-      "update": {
-        "successfully": "Report %{name} was successfully updated."
-      }
-    },
-    "save": "Save",
-    "search": "Search",
-    "show": "Show",
-    "sub_factors": {
-      "copy": {
-        "error": "Sub-Factor #%{id} was not copied."
-      },
-      "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully deleted."
-      },
-      "edit": {
-        "header": "Edit Sub-Factor Name"
-      },
-      "index": {
-        "new": "Add",
-        "title": "Sub-Factors",
-        "tooltips": {
-          "create": "Create"
-        }
-      },
-      "new": {
-        "header": "New Sub-Factor"
-      },
-      "resource": {
-        "confirmations": {
-          "delete": {
-            "body": "<p>Are you sure you want to delete this Sub-Factor?</p>\n",
-            "title": "Delete <strong>Sub-Factor</strong> ?"
-          }
-        },
-        "tooltips": {
-          "copy": "Copy Sub-Factor",
-          "delete": "Delete Sub-Factor",
-          "edit": "Edit Sub-Factor Name"
-        }
-      },
-      "sidebar": {
-        "destroy": "Delete Sub-Factor",
-        "edit": "Edit Sub-Factor",
-        "title": "Sub-Factor's options"
-      },
-      "toggle_status": {
-        "successfully": "Sub-Factor was successfully updated."
-      }
-    },
-    "templates": {
-      "blocks": {
-        "copy": {
-          "error": "Block \\#%{name} was not copied."
-        },
-        "destroy": {
-          "successfully": "Block %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Block"
-        },
-        "index": {
-          "new": "Add",
-          "templates": {
-            "blocks": "Blocks",
-            "questions": "Questions"
-          },
-          "title": "Blocks",
-          "tooltips": {
-            "create": "Create"
-          }
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created date",
-          "linked_assessments": "Linked assessments",
-          "name": "Name",
-          "updated_at": "Modified date"
-        },
-        "new": {
-          "header": "New Block"
-        },
-        "new_assign": {
-          "header": "Assign Block to Assessments"
-        },
-        "resource": {
-          "in_progress": {
-            "copying": "Copying",
-            "deleting": "Deleting"
-          },
-          "tooltips": {
-            "copy": "Copy Block",
-            "delete": "Delete Block",
-            "edit": "Edit Block"
-          }
-        },
-        "sidebar": {
-          "destroy": "Delete Block",
-          "disable": "Disable",
-          "edit": "Edit Block",
-          "enable": "Enable",
-          "new": "New Block",
-          "new_assign": "Assign Block",
-          "title": "Block's options"
-        }
-      },
-      "questions": {
-        "copy": {
-          "error": "Question"
-        },
-        "destroy": {
-          "successfully": "Question %{name} was successfully deleted."
-        },
-        "edit": {
-          "header": "Edit Question"
-        },
-        "index": {
-          "new": "Add",
-          "templates": {
-            "blocks": "Blocks",
-            "questions": "Questions"
-          },
-          "title": "Questions",
-          "tooltips": {
-            "create": "Create"
-          }
-        },
-        "list": {
-          "active": "Active",
-          "created_at": "Created date",
-          "linked_assessments": "Linked assessments",
-          "name": "Name",
-          "updated_at": "Modified date"
-        },
-        "new": {
-          "header": "New Question"
-        },
-        "new_assign": {
-          "header": "Assign Question to Assessments"
-        },
-        "resource": {
-          "in_progress": {
-            "copying": "Copying",
-            "deleting": "Deleting"
-          },
-          "tooltips": {
-            "copy": "Copy Question",
-            "delete": "Delete Question",
-            "edit": "Edit Question"
-          }
-        },
-        "sidebar": {
-          "destroy": "Delete Question",
-          "disable": "Disable",
-          "edit": "Edit Question",
-          "enable": "Enable",
-          "new": "New Question",
-          "new_assign": "Assign Question",
-          "title": "Question's options"
-        }
-      }
-    },
-    "tenancies": "Tenancies",
-    "threesixty_campaigns": {
-      "email_templates": {
-        "approve_nomination": {
-          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
-          "name": "Approve Nomination"
-        },
-        "approve_report": {
-          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
-          "name": "Approve Report"
-        },
-        "categories": {
-          "approvals": "Approvals",
-          "invitations": "Invitations",
-          "reminders": "Reminders",
-          "report_ready": "Report Ready"
-        },
-        "custom_message": {
-          "description": "This message can be sent to anyone participating in the assessment",
-          "name": "Custom Message"
-        },
-        "days_repeated": "days, repeated",
-        "evaluator_invite": {
-          "description": "This message will be sent to all participants that are evaluators",
-          "name": "Evaluator Invite"
-        },
-        "evaluator_reminder": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder",
-          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Evaluator Reminder Rules"
-        },
-        "from": "From",
-        "manager_report_ready": {
-          "description": "This message is sent to a subject's manager once the subject's report is ready",
-          "name": "Manager Report Ready"
-        },
-        "nomination_denied": {
-          "description": "This message is sent to subjects when a nomination is denied",
-          "name": "Nomination Denied"
-        },
-        "reply_to_email": "Reply to email",
-        "request_approval": {
-          "description": "This message is sent to managers when a subject requests approval",
-          "name": "Request Approval"
-        },
-        "schedule_email": "Schedule Email",
-        "send_test_email": "Send Test Email",
-        "subject": "Subject",
-        "subject_invite": {
-          "description": "This message will be sent to invite subjects to participate in the assessment",
-          "name": "Subject Invite"
-        },
-        "subject_reminder": {
-          "description": "Message sent to each participant to remind them to participate in the assessment",
-          "name": "Subject Reminder",
-          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
-        },
-        "subject_report_ready": {
-          "description": "This message is sent to a subject once their report is ready",
-          "name": "Subject Report Ready"
-        },
-        "times": "times"
-      },
-      "instruction_templates": {
-        "evaluate_others": {
-          "description": "This message will be displayed when participants are evaluating others from inside the portal",
-          "name": "Evaluate Others"
-        },
-        "evaluate_self": {
-          "description": "This message will be displayed to subjects when they begin their self-evaluation",
-          "name": "Evaluator Self"
-        },
-        "evaluation_help": {
-          "description": "Help text displayed on evaluation card on user's dashboard",
-          "name": "Evaluation Help"
-        },
-        "evaluator_welcome": {
-          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
-          "name": "Evaluator welcome"
-        },
-        "invite_evaluators": {
-          "description": "This message will be displayed to subjects when they begin nominating evaluators",
-          "name": "Invite Evaluators"
-        },
-        "nomination_help": {
-          "description": "Help text displayed on nomination card on user's dashboard",
-          "name": "Nomination Help"
-        },
-        "report_help": {
-          "description": "Help text displayed on report card on user's dashboard",
-          "name": "Reports Help"
-        },
-        "welcome_message": {
-          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
-          "name": "Welcome Message"
-        }
-      },
-      "reports": {
-        "show": {
-          "title": "Subject Report"
-        }
-      }
-    },
-    "time_zone": "Time Zone",
-    "translations": {
-      "assessments": {
-        "new": {
-          "header": "Import Translations"
-        }
-      },
-      "import": {
-        "successfully": "Translations was successfully imported"
-      },
-      "reports": {
-        "new": {
-          "header": "Import Translations"
-        }
-      }
-    },
-    "tte": "TTE",
-    "uniq_id": "Uniq ID",
-    "update": "Update",
-    "updated": "Successfully updated",
-    "users": {
-      "create": {
-        "successfully": "User %{name} was successfully created."
-      },
-      "destroy": {
-        "successfully": "User %{name} was successfully deleted."
-      },
-      "edit": {
-        "add": "Add",
-        "grants": "Privileges",
-        "hris_data": "HRIS Data",
-        "key": "Key",
-        "personal_data": "Personal Data",
-        "remove": "Remove",
-        "title": "Edit user",
-        "value": "Value"
-      },
-      "form": {
-        "choose": " - Choose - "
-      },
-      "index": {
-        "breadcrumb": "Users",
-        "client_tenancy": "Client tenancy",
-        "export": "Export",
-        "export_completion_status": "Completion Status",
-        "export_users": "Users",
-        "filterrific": {
-          "with_role": {
-            "administration": "Administrators",
-            "all": "All",
-            "users": "Users"
-          }
-        },
-        "import": "Import",
-        "import_hris": "HRIS Data",
-        "import_users": "Users",
-        "new": "Add",
-        "new_superadmin": "Add SuperAdmin",
-        "title": "Users",
-        "tooltips": {
-          "create": "Create",
-          "export": "Export",
-          "import": "Import"
-        }
-      },
-      "list": {
-        "active": "Active",
-        "created_at": "Created Date",
-        "email": "Email",
-        "first_name": "First name",
-        "id": "Id",
-        "last_name": "Last name",
-        "role": "Role",
-        "updated_at": "Modified Date"
-      },
-      "new": {
-        "header": "New user"
-      },
-      "password": {
-        "guidelines": {
-          "error": "Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character."
-        }
-      },
-      "reset_password": {
-        "successfully": "User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes."
-      },
-      "resource": {
-        "confirmations": {
-          "change_password": {
-            "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
-            "title": "Change password <strong>%{name}</strong> ?"
-          },
-          "delete": {
-            "body": "<p>Are you sure you want to delete this User?</p>\n",
-            "title": "Delete <strong>%{name}</strong> ?"
-          },
-          "membership": {
-            "delete": {
-              "body": "<p>Are you sure you want to delete?</p>\n",
-              "title": "Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?"
-            },
-            "toggle_status": {
-              "body": "<p>Are you sure you want to %{status} this Membership?</p>\n",
-              "title": "<strong>%{status}</strong> %{name}'s Membership?"
-            }
-          },
-          "toggle_status": {
-            "body": "<p>Are you sure you want to %{status} this User?</p>\n",
-            "title": "<strong>%{status}</strong> %{name}?"
-          }
-        },
-        "tooltips": {
-          "change_password": "Change Password",
-          "chart": "View user report",
-          "delete": "Delete User",
-          "edit": "Edit User",
-          "mail": "Send Mail",
-          "sign_in": "Login as user"
-        }
-      },
-      "sidebar": {
-        "api_keys": "API keys",
-        "assessments_and_reports": "Assessments and Reporting",
-        "destroy": "Delete User",
-        "disable": "Disable",
-        "edit_user": "Edit User",
-        "email": "Send Mail",
-        "enable": "Enable",
-        "export_users": "Export users",
-        "import_users": "Import users",
-        "login_as_user": "Login as User",
-        "new_user": "New User",
-        "reset_password": "Change Password",
-        "title": "User's options"
-      },
-      "spoof": {
-        "successfully": "You was successfully login as %{name}"
-      },
-      "toggle_status": {
-        "successfully": "User %{name} was successfully updated."
-      },
-      "update": {
-        "successfully": "User %{name} was successfully updated."
-      },
-      "user": "User"
-    }
-  },
-  "anonym": {
-    "continue": "Continue",
-    "copy": {
-      "archived": "has been archived",
-      "expired": "has expired",
-      "not_active": "is no longer active"
-    },
-    "labels": {
-      "archived": "Archived",
-      "expired": "Expired",
-      "not_active": "Not Active"
-    },
-    "notifications": {
-      "restart": {
-        "copy": "You had already started this survey. You can choose to Continue or Restart.",
-        "title": "Continue?"
-      }
-    },
-    "restart": "Restart"
-  },
-  "assessments": {
-    "actions": {
-      "extend_time": "Extend time",
-      "goto_dashboard": "Go To Dashboard",
-      "rescore": "Rescore"
-    },
-    "audio_response": {
-      "permission_denied_message": "Please enable microphone permission in your browser to record the answer",
-      "permission_text": "Please allow to use microphone to record audio"
-    },
-    "categories": {
-      "360": "360 Campaign",
-      "agile": "AGILE",
-      "case_study": "Case Study",
-      "hogan": "Hogan",
-      "mindmill": "Mindmill",
-      "organisational": "Survey",
-      "psychometric": "Assessment"
-    },
-    "decorator": {
-      "no_description": "Description is empty"
-    },
-    "file_upload": {
-      "select_file": "Select file"
-    },
-    "index": {
-      "managers_assessments_button": "Action Planning",
-      "managers_dashboard_button": "Managers Dashboard",
-      "user_dashboard_button": "User Dashboard"
-    },
-    "messages": {
-      "finish": "Thank you for your time. \nYour responses have now been recorded."
-    },
-    "page": {
-      "back": "Back",
-      "confirm_message_1": "Your responses will be submitted and cannot be changed after this",
-      "confirm_message_2": "Are you sure you want to submit your responses?",
-      "next": "Next",
-      "submit": "Submit"
-    },
-    "pickgrouprank": {
-      "items": "Items"
-    },
-    "proceed": "Proceed Anyway",
-    "resource": {
-      "assigned": "Assigned %{date}",
-      "invite_users": "Invite Users",
-      "questions": {
-        "one": "1 Question",
-        "other": "%{count} Questions",
-        "zero": "No Questions"
-      },
-      "results": "Results",
-      "status": {
-        "completed": "Completed",
-        "in_progress": "Resume",
-        "not_started": "Start"
-      }
-    },
-    "unknown_error": "Unknown error occurred.",
-    "video_response": {
-      "delete": "Delete",
-      "device": "Allow",
-      "discard": "Discard",
-      "media_recorder": {
-        "failure": "This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording",
-        "success": "Please allow to use camera and microphone to record audio and Video"
-      },
-      "offline_message": "Please check your internet connection.",
-      "retake": "Retake",
-      "retry": "Retry",
-      "save": "Save",
-      "saved": {
-        "label": "Saved",
-        "tooltip": "This video has been marked for submission. Alternatively you can choose another take."
-      },
-      "saving": "Saving...",
-      "selected": "Selected",
-      "start_recording": "Start recording",
-      "status": {
-        "recording": "Recording"
-      },
-      "tracker": {
-        "backward": "You are too close to the screen. Please move a bit back",
-        "forward": "You are too far away from the screen. Please move a bit closer",
-        "frame": "Please make sure that your face aligns with the frame",
-        "ready": "Press the Record button when ready to record"
-      },
-      "use_this": "Submit this take"
-    },
-    "wait": "Wait"
-  },
-  "assessments_reports": {
-    "add_group_form": {
-      "name": "Name",
-      "previous_assessments_required": "Assessments should be completed in order",
-      "previous_group_required": "Previous group should be completed before"
-    },
-    "menu": {
-      "manage": "Manage",
-      "sequencing": "Sequencing"
-    },
-    "sequencing": {
-      "add_group": "Add Group",
-      "no_assessments": "Drag and drop the assessments from the ungrouped assessments",
-      "no_groups_description": "Please create new group sequencing with below button",
-      "no_groups_title": "You have no group in sequencing",
-      "no_ungrouped_assessments": "Drag and drop the assessments to the ungrouped assessments",
-      "ungrouped_assessments": "Ungrouped Assessments"
-    }
-  },
-  "assigns": {
-    "assign": {
-      "accept_privacy_modal": {
-        "accept": "Accept",
-        "reject": "Reject",
-        "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
-        "title": "Data processing consent"
-      },
-      "assigned": "Assigned %{date}",
-      "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
-      "questions": {
-        "one": "1 Question",
-        "other": "%{count} Questions",
-        "zero": "No Questions"
-      },
-      "status": {
-        "completed": "Completed",
-        "in_progress": "Resume",
-        "not_started": "Start",
-        "overdue": "Overdue"
-      }
-    },
-    "assigns_reports": {
-      "download": "Download",
-      "duration": "Duration",
-      "progress": "Progress",
-      "summary_report": "Summary report"
-    },
-    "decorator": {
-      "completed": "Completed %{date}",
-      "no_description": "Description is empty",
-      "not_completed": "Not Completed"
-    },
-    "index": {
-      "managers_dashboard_button": "Managers Dashboard",
-      "user_dashboard_button": "User Dashboard"
-    },
-    "multiple_report": {
-      "results": "Results"
-    },
-    "notifications": {
-      "completed": "%{user_name} finished assessment \"%{assessment_name}\"",
-      "in_progress": "%{user_name} started to take assessment \"%{assessment_name}\""
-    },
-    "project_assessment": {
-      "accept_privacy_modal": {
-        "accept": "Accept",
-        "reject": "Reject",
-        "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
-        "title": "Data processing consent"
-      },
-      "assigned": "Assigned %{date}",
-      "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
-      "questions": {
-        "one": "1 Question",
-        "other": "%{count} Questions",
-        "zero": "No Questions"
-      },
-      "status": {
-        "completed": "Completed",
-        "in_progress": "Resume",
-        "not_started": "Start",
-        "overdue": "Overdue"
-      }
-    },
-    "reports": {
-      "load_results": "Load Results: %{report}",
-      "processing": "Processing...",
-      "results": "Results"
-    }
-  },
-  "browsers": {
-    "chrome": "Google Chrome",
-    "download": {
-      "chrome": "https://www.google.com/chrome/",
-      "edge": "https://www.microsoft.com/en-us/edge",
-      "firefox": "https://www.mozilla.org/en-US/firefox/new/",
-      "instruction": "Download",
-      "safari": "https://www.apple.com/safari/"
-    },
-    "edge": "Microsoft Edge",
-    "firefox": "Mozilla Firefox",
-    "safari": "Apple Safari",
-    "support": {
-      "instruction": "Please download and use any of the following browsers.",
-      "message": "The browser you are using is not supported by Lighthouse."
-    },
-    "upgrade": {
-      "instruction": "Upgrade Now",
-      "message": "Please use latest version of the browsers"
-    }
-  },
-  "campaign": {
-    "begin": "Begin Assessment",
-    "campaign_closed_assessment_take_message": "Can't take assessment as this campaign is closed.",
-    "closed_campaign_message": "This campaign is closed. You can't take any assessment within this campaign.",
-    "complete_all": "Complete all related assessments",
-    "complete_prev": "Complete all prev assessments",
-    "completed": "Completed",
-    "continue": "Continue Assessment",
-    "in_progress": "In Progress",
-    "instructions": {
-      "heading": "Instructions to follow"
-    },
-    "interrupted": "Interrupted",
-    "language": {
-      "cancel": "Cancel",
-      "content": "This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment",
-      "proceed": "Proceed",
-      "single_lang": "This assessment is only available in %{lang}, which is different than you selected language.",
-      "title": "Select language"
-    },
-    "new": "New",
-    "not_started": "New",
-    "time_left": {
-      "cancel": "Cancel",
-      "continue": "Continue",
-      "notification": "Your allocated time for this task \"%{assessmentName}\" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.",
-      "title": "Time left warning"
-    },
-    "timer": {
-      "message": "Time left to complete all activities",
-      "notification": "You have %{minutes} minutes and %{seconds} seconds to complete"
-    },
-    "ungrouped": "Ungrouped assessments",
-    "welcome": "Welcome"
-  },
-  "campaign_assessment": {
-    "column": {
-      "assessment_name": "Assessment name",
-      "norm": "Norm",
-      "status": "Status",
-      "universal_link": "Universal link"
-    },
-    "modals": {
-      "import_raw": {
-        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
-        "title": "Import Raw Results data",
-        "upload": "Upload"
-      },
-      "import_scoring": {
-        "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
-        "success_msg": "Import successfully uploaded",
-        "title": "Import Scoring Results data",
-        "upload": "Upload"
-      },
-      "remove": {
-        "successfully": "%{name} assessment removed successfully.",
-        "title": "Remove assessment %{name}?"
-      },
-      "rescore_response": {
-        "message": "Rescoring scheduled for assessment %{name}",
-        "title": "Rescore Responses"
-      },
-      "reset": {
-        "content": "Are you sure you want to reset result?",
-        "successfully": "Result data was successfully reseted.",
-        "title": "Reset Result for assessment %{name}?"
-      },
-      "update_norm": {
-        "apply": "Apply this change to existing users in this campaign",
-        "select_norm": "Select Norm",
-        "success_msg": "Norms successfully uploaded",
-        "title": "Update Norm",
-        "type": "Norm Type",
-        "update": "Update"
-      },
-      "update_time": {
-        "additional_time": "Time (min)",
-        "title": "Extend Time"
-      }
-    },
-    "statuses": {
-      "completed": "Completed",
-      "in_progress": "In Progress",
-      "interrupted": "Interrupted",
-      "not_started": "Not Started",
-      "universal_link": "Universal link"
-    }
-  },
-  "campaign_report": {
-    "actions": {
-      "bulk_download": "Bulk Download"
-    },
-    "column": {
-      "report_bundle": "Report Bundle",
-      "report_name": "Report name",
-      "user_access": "User Access"
-    },
-    "form": {
-      "operation": "Operation",
-      "operation_options": {
-        "add_and_allow_new_response": "Add report to existing user and allow new response",
-        "add_with_existing_response": "Add report to existing user and keep existing response",
-        "skip_existing": "Skip existing user"
-      },
-      "report": "Report"
-    },
-    "messages": {
-      "bulk_download_successful": "Bulk report download job scheduled successfully"
-    },
-    "modals": {
-      "remove": {
-        "apply": "Apply this changes to existing users in this campaign.",
-        "title": "Remove Report"
-      },
-      "user_access": {
-        "apply": "Apply this changes to existing users in this campaign.",
-        "title": {
-          "disable": "Disable User Access",
-          "enable": "Enable User Access"
-        }
-      }
-    }
-  },
-  "campaign_users": {
-    "actions": {
-      "add_report": "Add report",
-      "extend_time": "Extend Time"
-    },
-    "assessments": {
-      "progress": "Progress"
-    },
-    "details": {
-      "additional_time": "Additional Time",
-      "completed_at": "Completed At",
-      "completion_status": "Completion status",
-      "last_login": "Last login",
-      "modals": {
-        "remove": {
-          "successfully": "User with email %{email} removed successfully.",
-          "title": "Are you sure you want to remove this user from campaing %{campaignName}?"
-        }
-      },
-      "not_completed_yet": "Not completed yet",
-      "not_logged_in_yet": "Not logged in yet",
-      "not_started_yet": "Not started yet",
-      "started_at": "Started At",
-      "statuses": {
-        "completed": "Completed",
-        "in_progress": "In Progress",
-        "interrupted": "Interrupted",
-        "not_started": "Not Started"
-      }
-    },
-    "modals": {
-      "change_password": {
-        "content": "Are you sure you want to send instructions with link to change password?",
-        "successfully": "User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.",
-        "title": "Change password %{name}?"
-      },
-      "remove": "Are you sure you want to remove user with email %{email} from this campaing?"
-    }
-  },
-  "checking_wizard": {
-    "audio_check": {
-      "access": "Access",
-      "access_help": "Click here for help.",
-      "allow": "Allow",
-      "allow_title": "Please allow to use microphone to record audio",
-      "continue": "Continue",
-      "processing": "Processing",
-      "record_title": "Please speak and repeat the following sentence 3 times.",
-      "run_again": "Run again",
-      "speech_detection": "Speech detection",
-      "test_message": "great to speak with you",
-      "title": "We need to ensure your system can record audio."
-    },
-    "network_check": {
-      "continue": "Continue",
-      "download": "Download",
-      "levels": {
-        "0": "Network broken (reconnecting)",
-        "1": "Very bad network",
-        "2": "Bad network",
-        "3": "Average network",
-        "4": "Good network",
-        "5": "Very good network"
-      },
-      "network": "Network",
-      "please_check_connection": "Please check your Internet Connection",
-      "processing": "Processing",
-      "run_again": "Run again",
-      "run_again_title": "And run this test again",
-      "start": "Start",
-      "title": "Click start to begin internet speed test.",
-      "upload": "Upload"
-    },
-    "steps": {
-      "audio_check": "Microphone Test",
-      "network_check": "Internet Speed Test",
-      "system_check": "System Check",
-      "video_check": "Video Camera Test"
-    },
-    "success": {
-      "start": "Start assessment",
-      "title": "You have successfully completed all checks."
-    },
-    "system_check": {
-      "continue": "Continue",
-      "start": "Start",
-      "title": "Before starting this assessment, your system needs to undergo some checks."
-    },
-    "video_check": {
-      "access": "Access",
-      "access_help": "Click here for help.",
-      "allow": "Allow",
-      "allow_title": "Please allow to use camera to record Video",
-      "ambient_light": "Ambient Light",
-      "continue": "Continue",
-      "face_detection": "Face detection",
-      "processing": "Processing",
-      "run_again": "Run again",
-      "title": "We need to ensure your system can record the video"
-    }
-  },
-  "ckeditor": {
-    "buttons": {
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "next": "Next",
-      "upload": "Upload"
-    },
-    "confirm_delete": "Delete file?",
-    "page_title": "CKEditor Files Manager"
-  },
-  "clear_filter": "Clear Filter",
-  "common": {
-    "actions": {
-      "cancel": "Cancel",
-      "close": "Close",
-      "remove": "Remove",
-      "reset": "Reset"
-    },
-    "column": {
-      "action": "Action",
-      "category": "Category",
-      "created_at": "Created at",
-      "id": "Id",
-      "status": "Status"
-    },
-    "model": {
-      "assessments": "Assessments",
-      "campaigns": "Campaigns",
-      "reports": "Reports"
-    },
-    "text": {
-      "cancel": "Cancel",
-      "confirm": "Confirm",
-      "continue": "Continue",
-      "default": "Default",
-      "download": "Download",
-      "na": "N/A",
-      "ok": "Ok",
-      "response": "Response"
-    }
-  },
-  "confirmation": {
-    "default_body": "Are you sure?",
-    "default_title": "Confirmation"
-  },
-  "currencies": {
-    "AED": "AED",
-    "BHD": "BHD",
-    "BYN": "BYN",
-    "EUR": "EUR",
-    "GBP": "GBP",
-    "INR": "INR",
-    "KWD": "KWD",
-    "OMR": "OMR",
-    "QAR": "QAR",
-    "SAR": "SAR",
-    "USD": "USD"
-  },
-  "date": {
-    "abbr_day_names": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
-    ],
-    "abbr_month_names": [
-      null,
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
-    ],
-    "day_names": [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "formats": {
-      "default": "%Y-%m-%d",
-      "long": "%B %d, %Y",
-      "short": "%b %d"
-    },
-    "month_names": [
-      null,
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "order": [
-      "year",
-      "month",
-      "day"
-    ]
-  },
-  "datetime": {
-    "distance_in_words": {
-      "about_x_hours": {
-        "one": "about 1 hour",
-        "other": "about %{count} hours"
-      },
-      "about_x_months": {
-        "one": "about 1 month",
-        "other": "about %{count} months"
-      },
-      "about_x_years": {
-        "one": "about 1 year",
-        "other": "about %{count} years"
-      },
-      "almost_x_years": {
-        "one": "almost 1 year",
-        "other": "almost %{count} years"
-      },
-      "half_a_minute": "half a minute",
-      "less_than_x_minutes": {
-        "one": "less than a minute",
-        "other": "less than %{count} minutes"
-      },
-      "less_than_x_seconds": {
-        "one": "less than 1 second",
-        "other": "less than %{count} seconds"
-      },
-      "over_x_years": {
-        "one": "over 1 year",
-        "other": "over %{count} years"
-      },
-      "x_days": {
-        "one": "1 day",
-        "other": "%{count} days"
-      },
-      "x_minutes": {
-        "one": "1 minute",
-        "other": "%{count} minutes"
-      },
-      "x_months": {
-        "one": "1 month",
-        "other": "%{count} months"
-      },
-      "x_seconds": {
-        "one": "1 second",
-        "other": "%{count} seconds"
-      }
-    },
-    "prompts": {
-      "day": "Day",
-      "hour": "Hour",
-      "minute": "Minute",
-      "month": "Month",
-      "second": "Seconds",
-      "year": "Year"
-    }
-  },
-  "devise": {
-    "administrators": {
-      "meta_title": "Login to administration panel",
-      "passwords": {
-        "edit": {
-          "submit": "Set new password",
-          "title": "Change your password"
-        },
-        "new": {
-          "back": "Return back",
-          "submit": "Send me instructions",
-          "title": "Forgot your password?"
-        }
-      },
-      "sessions": {
-        "new": {
-          "forgot_password": "Forgot your password?",
-          "submit": "Login",
-          "title": "<strong>Welcome</strong>, Please login"
-        }
-      },
-      "shared": {
-        "links": {
-          "about": "About",
-          "app_name": "© 2016 AppName",
-          "contact_us": "Contact Us",
-          "privacy": "Privacy"
-        }
-      }
-    },
-    "confirmations": {
-      "confirmed": "Alamat e-mel anda telah berjaya disahkan.",
-      "new": {
-        "resend_confirmation_instructions": "Hantar semula pengesahan arahan"
-      },
-      "send_instructions": "Anda akan menerima e-mel dengan arahan untuk bagaimana untuk mengesahkan alamat e-mel anda dalam beberapa minit.",
-      "send_paranoid_instructions": "Jika emel anda wujud di dalam pangkalan data kami, anda akan menerima e-mel dengan arahan untuk bagaimana mengesahkan alamat e-mel anda dalam beberapa minit."
-    },
-    "failure": {
-      "already_authenticated": "Anda telah log masuk.",
-      "inactive": "Akaun anda belum diaktifkan lagi.",
-      "invalid": "Invalid %{authentication_keys} or password.",
-      "invited": "You have a pending invitation, accept it to finish creating your account.",
-      "last_attempt": "Anda ada satu lagi percubaan sebelum akaun anda dikunci.",
-      "locked": "Akaun anda telah dikunci.",
-      "not_found_in_database": "Invalid %{authentication_keys} or password.",
-      "timeout": "Sesi anda telah tamat. Sila log masuk lagi untuk meneruskan.",
-      "unauthenticated": "Anda perlu log masuk atau daftar sebelum meneruskan.",
-      "unconfirmed": "Anda perlu mengesahkan alamat e-mel anda sebelum meneruskan."
-    },
-    "invitations": {
-      "edit": {
-        "confirm_password_label": "Confirm Password",
-        "header": "Set your password",
-        "instruction": "To create a new password, please enter your new password in the boxes below",
-        "password_label": "Password",
-        "submit": "Set New Password",
-        "submit_button": "Set my password",
-        "title": "Create password"
-      },
-      "invitation_removed": "Your invitation was removed.",
-      "invitation_token_invalid": "The invitation token provided is not valid!",
-      "new": {
-        "header": "Send invitation",
-        "submit_button": "Send an invitation"
-      },
-      "no_invitations_remaining": "No invitations remaining",
-      "send_instructions": "An invitation email has been sent to %{email}.",
-      "updated": "Your password was set successfully. You are now signed in.",
-      "updated_not_active": "Your password was set successfully."
-    },
-    "mailer": {
-      "admin_invitation_instructions": {
-        "accept": "Click here to accept the invitation.",
-        "body": "Hello %{name},\nYou have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.\n\n%{accept} Or you can safely ignore this email.\n\nPlease do not share your access credentials with anyone.\n\nRegards,\nLighthouse Team\n",
-        "subject": "Invitation to Lighthouse"
-      },
-      "confirmation_instructions": {
-        "action": "Sahkan akaun saya",
-        "greeting": "Selamat datang %{recipient}!",
-        "instruction": "Anda boleh mengesahkan akaun e-mel anda melalui pautan di bawah:",
-        "subject": "Arahan pengesahan"
-      },
-      "email_changed": {
-        "greeting": "Hello %{recipient}!",
-        "message": "We're contacting you to notify you that your email has been changed to %{email}.",
-        "subject": "Email Changed"
-      },
-      "invitation_instructions": {
-        "accept": "Accept invitation",
-        "accept_until": "This invitation will be due in %{due_date}.",
-        "hello": "Hello %{email}",
-        "ignore": "If you don't want to accept the invitation, please ignore this email.<br />\\nYour account won't be created until you access the link above and set your password.",
-        "someone_invited_you": "Someone has invited you to %{url}, you can accept it through the link below.",
-        "subject": "The Talent Enterprise – Your Link to Thriving Index"
-      },
-      "password_change": {
-        "greeting": "Helo %{recipient}!",
-        "message": "Kami sedang menghubungi anda untuk memberitahu anda bahawa kata laluan anda telah ditukar.",
-        "subject": "Kata Laluan Ditukar"
-      },
-      "reset_password_instructions": {
-        "action": "Tukar kata laluan saya",
-        "greeting": "Helo %{recipient}!",
-        "instruction": "Seseorang telah meminta sebuah pautan untuk menukar kata laluan anda dan anda boleh melakukannya melalui pautan di bawah.",
-        "instruction_2": "Jika anda tidak meminta ini, sila abaikan e-mel ini.",
-        "instruction_3": "Kata laluan anda tidak akan ditukar sehingga anda mengakses pautan di atas dan membuat yang baru.",
-        "subject": "Arahan kata laluan set semula"
-      },
-      "unlock_instructions": {
-        "action": "Buka akaun saya",
-        "greeting": "Helo %{recipient}!",
-        "instruction": "Klik pautan di bawah untuk membuka akaun anda:",
-        "message": "Akaun anda telah dikunci disebabkan terlalu banyak kegagalan percubaan log masuk.",
-        "subject": "Arahan membuka"
-      }
-    },
-    "omniauth_callbacks": {
-      "failure": "Tidak dapat mengesahkan anda daripada %{kind} kerana \"%{reason}\".",
-      "success": "Berjaya mengesahkan daripada akaun %{kind}."
-    },
-    "passwords": {
-      "edit": {
-        "change_my_password": "Tukar kata laluan saya",
-        "change_your_password": "Tukar kata laluan anda",
-        "confirm_new_password": "Sahkan kata laluan baru",
-        "instruction": "To create a new password, please enter your new password in the boxes below",
-        "new_password": "Kata laluan baru",
-        "submit": "Submit",
-        "title": "Create Password"
-      },
-      "new": {
-        "forgot_your_password": "Lupa kata laluan anda?",
-        "send_me_reset_password_instructions": "Hantar saya arahan kata laluan set semula"
-      },
-      "no_token": "Anda tidak boleh mengakses halaman ini tanpa didatangi daripada e-mel kata laluan set semula. Jika anda datang daripada e-mel kata laluan set semula, sila pastikan anda telah menggunakan URL penuh yang diberikan.",
-      "send_instructions": "Anda akan menerima sebuah e-mel dengan arahan mengenai bagaimana untuk menetapkan semula kata laluan anda dalam beberapa minit.",
-      "send_paranoid_instructions": "Jika alamat e-mel anda wujud di dalam pangkalan data kami, anda akan menerima sebuah pemulihan kata laluan di alamat e-mel anda dalam beberapa minit.",
-      "updated": "Kata laluan anda telah berjaya ditukar. Anda kini telah log masuk.",
-      "updated_not_active": "Kata laluan anda telah berjaya ditukar"
-    },
-    "registrations": {
-      "destroyed": "Selamat tinggal! Akaun anda telah berjaya dibatalkan. Kami berharap untuk berjumpa dengan anda lagi.",
-      "edit": {
-        "are_you_sure": "Adakah anda pasti?",
-        "cancel_my_account": "Batalkan akaun saya",
-        "currently_waiting_confirmation_for_email": "Kini menunggu pengesahan untuk: %{email}",
-        "leave_blank_if_you_don_t_want_to_change_it": "tinggalkan kosong jika anda tidak ingin untuk mengubahnya",
-        "title": "Edit %{resource}",
-        "unhappy": "Tidak Gembira?",
-        "update": "Kemas Kini",
-        "we_need_your_current_password_to_confirm_your_changes": "kami memerlukan kata laluan anda yang kini untuk mengesahkan perubahan anda"
-      },
-      "new": {
-        "code": "Registration Code",
-        "instruction": "Fill in the details below to register and create a new account",
-        "privacy_notice": "We respect your privacy and do not tolerate spam. We will never give away your information to any third party.",
-        "sign_up": "Daftar",
-        "submit": "Register",
-        "tabs": {
-          "register": "Register",
-          "sign_in": "Sign In"
-        },
-        "terms_notice": "By registering, you agree to our <a href=\"%{terms_url}\">Terms of Service and Privacy Policy</a>",
-        "title": "Register Now"
-      },
-      "signed_up": "Selamat datang! Anda telah berjaya mendaftar.",
-      "signed_up_but_inactive": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda belum diaktifkan.",
-      "signed_up_but_locked": "Anda telah berjaya mendaftar. Namun, kami tidak dapat melog masuk anda kerana akaun anda telah dikunci.",
-      "signed_up_but_unconfirmed": "Sebuah mesej dengan pautan pengesahan telah dihantar ke alamat e-mel anda. Sila ikuti pautan tersebut untuk mengaktifkan akaun anda.",
-      "success": {
-        "actions": {
-          "sign_in": "Sign In"
-        },
-        "instruction": "Please check your email for further instructions",
-        "title": "Signup successful"
-      },
-      "update_needs_confirmation": "Anda telah mengemas kini akaun anda dengan berjaya, tetapi kami perlu mengesahkan alamat e-mel anda yang baharu. Sila periksa e-mel anda dan ikuti pautan pengesahan untuk mengesahkan alamat e-mel anda yang baharu.",
-      "updated": "Akaun anda telah berjaya dikemaskinikan.",
-      "updated_but_not_signed_in": "Your account has been updated successfully, but since your password was changed, you need to sign in again"
-    },
-    "sessions": {
-      "already_signed_out": "Berjaya dilog keluar.",
-      "new": {
-        "forgot_password": "Forgot password?",
-        "instruction": "Please login with your personal account information",
-        "keep_sign_in": "Yes, Keep me signed in",
-        "password_placeholder": "Password",
-        "sign_in": "Log masuk",
-        "submit": "Login",
-        "tabs": {
-          "register": "Register",
-          "sign_in": "Login"
-        },
-        "title": "Welcome!"
-      },
-      "signed_in": "Berjaya dilog masuk.",
-      "signed_out": "Berjaya dilog keluar."
-    },
-    "shared": {
-      "links": {
-        "back": "Kembali",
-        "didn_t_receive_confirmation_instructions": "Tidak mendapat arahan pengesahan?",
-        "didn_t_receive_unlock_instructions": "Tidak mendapat arahan membuka akaun?",
-        "forgot_your_password": "Lupa kata laluan anda?",
-        "sign_in": "Log masuk",
-        "sign_in_with_provider": "Log masuk dengan %{provider}",
-        "sign_up": "Daftar"
-      },
-      "minimum_password_length": {
-        "one": "(%{count} character minimum)",
-        "other": "(%{count} characters minimum)"
-      }
-    },
-    "two_factor_authentication": {
-      "attempt": "Please enter the OTP, you have received at your registered email address",
-      "attempt_failed": "Incorrect OTP! Please try again",
-      "code_has_been_sent": "Your new OTP has been sent to your registered email address",
-      "contact_administrator": "Please contact your system administrator",
-      "email": {
-        "otp": {
-          "subject": "Your One-Time Password"
-        }
-      },
-      "max_login_attempts_reached": "You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP",
-      "otp": "Code",
-      "submit": "Verify",
-      "success": "Login with Two Factor Authentication successful",
-      "title": "One-Time Password"
-    },
-    "unlocks": {
-      "new": {
-        "resend_unlock_instructions": "Hantar semula arahan buka akaun"
-      },
-      "send_instructions": "Anda akan menerima sebuah e-mel dengan arahan untuk bagaimana untuk membuka akaun anda dalam beberapa minit.",
-      "send_paranoid_instructions": "Jika akaun anda wujud, anda akan menerima sebuah e-mel dengan arahan untuk bagaimana untuk membukanya dalam beberapa minit.",
-      "unlocked": "Akaun anda telah berjaya dibuka. Sila log masuk untuk meneruskan."
-    }
-  },
-  "ecommerce": {
-    "carts": {
-      "show": {
-        "back_to_catalogue": "Back to Catalogue",
-        "next": "Next",
-        "shopping_basket": "Shopping Basket",
-        "total": "Total:",
-        "update_basket": "Update Basket"
-      }
-    },
-    "orders": {
-      "new": {
-        "back_to_basket": "Back to Basket",
-        "order": "Order",
-        "pay": "Pay",
-        "product_name": "Product Name",
-        "product_price": "Product Price",
-        "product_quantity": "Quantity",
-        "product_subtotal": "Positions Price",
-        "total": "Total",
-        "users": "Users"
-      },
-      "success": {
-        "back_to_basket": "Back to Basket",
-        "body": "<h3>Payment successful</h3>\n<p>We will email you a receipt confirming your oder shortly.</p>\n",
-        "go_to_dashboard": "Go to Dashboard",
-        "title": "Payment Successful"
-      }
-    },
-    "products": {
-      "add_to_cart": {
-        "successfully": "Assessment was successfuly added to the basket"
-      },
-      "index": {
-        "assessment_catalogue": "Assessment Catalogue",
-        "shopping_basket": "Shopping Basket"
-      }
-    },
-    "users": {
-      "registrations": {
-        "new": {
-          "register": "Register",
-          "sign_in": "Sign in"
-        }
-      },
-      "sessions": {
-        "new": {
-          "register": "Register",
-          "sign_in": "Sign in"
-        }
-      }
-    }
-  },
-  "enums": {
-    "communication": {
-      "delivery_rule": {
-        "in_progress": "If assessment is in progress",
-        "not_competed": "If assessment is not completed",
-        "not_started": "If assessment is not started",
-        "send_now": "Send now",
-        "specific_datetime": "Send at"
-      },
-      "kind": {
-        "completion": "Completion",
-        "invitation": "Invitation",
-        "other": "Other",
-        "reminder": "Reminder"
-      },
-      "recipients": {
-        "all": "All",
-        "selected": "Selected"
-      }
-    },
-    "report": {
-      "type": {
-        "common": "Any",
-        "eti": "ETI",
-        "yti": "YTI"
-      }
-    }
-  },
-  "errors": {
-    "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
-    "error_500": "Something went wrong. Contact your administrator.",
-    "forbidden": "You do not have access to this page",
-    "forbidden_action": "You do not have permissions to this action",
-    "format": "%{attribute} %{message}",
-    "invalid_token": "Something went wrong. Plese reload the page and try again.",
-    "messages": {
-      "accepted": "must be accepted",
-      "after": "must be after %{date}",
-      "after_or_equal_to": "must be after or equal to %{date}",
-      "allowed_file_content_types": "file should be one of %{types}",
-      "already_confirmed": "telah disahkan, sila cuba untuk log masuk",
-      "before": "must be before %{date}",
-      "before_or_equal_to": "must be before or equal to %{date}",
-      "blank": "can't be blank",
-      "carrierwave_direct_allowed_extensions": "Wrong file type uploaded. Allowed extensions are %{extensions}",
-      "carrierwave_direct_allowed_schemes": "Allowed schemes are %{schemes}",
-      "carrierwave_direct_attachment_missing": "attachment is missing",
-      "carrierwave_direct_filename_invalid": "",
-      "carrierwave_direct_filename_taken": "filename was already taken",
-      "carrierwave_direct_upload_missing": "upload is missing",
-      "carrierwave_download_error": "could not be downloaded",
-      "carrierwave_integrity_error": "is not of an allowed file type",
-      "carrierwave_processing_error": "failed to be processed",
-      "confirmation": "doesn't match %{attribute}",
-      "confirmation_period_expired": "perlu disahkan dalam %{period}, sila minta yang baharu",
-      "content_type_blacklist_error": "You are not allowed to upload %{content_type} files",
-      "content_type_whitelist_error": "You are not allowed to upload %{content_type} files",
-      "empty": "can't be empty",
-      "equal_to": "must be equal to %{date}",
-      "even": "must be even",
-      "excluded_file_content_types": "file cannot be %{types}",
-      "exclusion": "is reserved",
-      "expired": "telah tamat, sila minta yang baharu",
-      "extension_blacklist_error": "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}",
-      "extension_whitelist_error": "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}",
-      "file_size_is_greater_than": "file size must be greater than %{count}",
-      "file_size_is_greater_than_or_equal_to": "file size must be greater than or equal to %{count}",
-      "file_size_is_in": "file size must be between %{min} and %{max}",
-      "file_size_is_less_than": "file size must be less than %{count}",
-      "file_size_is_less_than_or_equal_to": "file size must be less than or equal to %{count}",
-      "greater_than": "must be greater than %{count}",
-      "greater_than_or_equal_to": "must be greater than or equal to %{count}",
-      "inclusion": "is not included in the list",
-      "invalid": "is invalid",
-      "invalid_currency": "must be a valid currency (eg. '100', '5%{decimal}24', or '123%{thousands}456%{decimal}78'). Got %{currency}",
-      "less_than": "must be less than %{count}",
-      "less_than_or_equal_to": "must be less than or equal to %{count}",
-      "max_size_error": "File size should be less than %{max_size}",
-      "min_size_error": "File size should be greater than %{min_size}",
-      "mini_magick_processing_error": "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}",
-      "model_invalid": "Validation failed: %{errors}",
-      "not_a_date": "is not a date",
-      "not_a_number": "is not a number",
-      "not_an_integer": "must be an integer",
-      "not_found": "tidak dijumpai",
-      "not_locked": "tidak dikunci",
-      "not_saved": {
-        "one": "1 ralat telah melarang %{resource} ini daripada disimpan:",
-        "other": "%{count} ralat telah melarang %{resource} daripada disimpan:"
-      },
-      "odd": "must be odd",
-      "other_than": "must be other than %{count}",
-      "present": "must be blank",
-      "required": "must exist",
-      "rmagick_processing_error": "Failed to manipulate with rmagick, maybe it is not an image?",
-      "taken": "has already been taken",
-      "too_long": {
-        "one": "is too long (maximum is 1 character)",
-        "other": "is too long (maximum is %{count} characters)"
-      },
-      "too_short": {
-        "one": "is too short (minimum is 1 character)",
-        "other": "is too short (minimum is %{count} characters)"
-      },
-      "wrong_length": {
-        "one": "is the wrong length (should be 1 character)",
-        "other": "is the wrong length (should be %{count} characters)"
-      }
-    },
-    "try_again": "Please try again",
-    "unacceptable_request": "A supported version is expected in the Accept header.\n",
-    "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
-  },
-  "evaluators": {
-    "errors": {
-      "can_not_processed": "can not be processed",
-      "exists": "already exists",
-      "max_evaluators": "you already have enough evaluators"
-    }
-  },
-  "flash": {
-    "actions": {
-      "create": {
-        "notice": "%{resource_name} was successfully created."
-      },
-      "destroy": {
-        "alert": "%{resource_name} could not be destroyed.",
-        "notice": "%{resource_name} was successfully destroyed."
-      },
-      "update": {
-        "notice": "%{resource_name} was successfully updated."
-      }
-    }
-  },
-  "frontend": {
-    "activate": "Activate",
-    "are_you_sure": "Are you sure?",
-    "assessment_groups": {
-      "create_success": "The group is successfully created",
-      "update_success": "The group is successfully updated"
-    },
-    "campaign": {
-      "actions": {
-        "remove": {
-          "confirmation": "Enter current campaign name given below in text box to remove campaign",
-          "success": "%{campaignName} removed successfully."
-        }
-      },
-      "users": {
-        "completion_statuses": {
-          "completed": "Completed",
-          "in_progress": "In Progress",
-          "interrupted": "Interrupted",
-          "not_started": "Not Started"
-        }
-      }
-    },
-    "change_password": "Change password",
-    "delete": "Delete",
-    "edit": "Edit",
-    "login": "Login",
-    "manage": "Manage",
-    "no": "No",
-    "resource": {
-      "create_success": "%{resourceName} created successfully",
-      "update_success": "%{resourceName} updated successfully"
-    },
-    "update": "Update",
-    "upload": "Upload",
-    "yes": "Yes"
-  },
-  "helpers": {
-    "page_entries_info": {
-      "more_pages": {
-        "display_entries": "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
-      },
-      "one_page": {
-        "display_entries": {
-          "one": "Displaying <b>1</b> %{entry_name}",
-          "other": "Displaying <b>all %{count}</b> %{entry_name}",
-          "zero": "No %{entry_name} found"
-        }
-      }
-    },
-    "select": {
-      "prompt": "Please select"
-    },
-    "submit": {
-      "create": "Create %{model}",
-      "submit": "Save %{model}",
-      "update": "Update %{model}"
-    }
-  },
-  "hogan": {
-    "assigns": {
-      "results": {
-        "not_completed": "Hogan Report isn't ready yet",
-        "successfully": "Hogan Report was successfully saved"
-      }
-    }
-  },
-  "home": {
-    "survey_instructions": {
-      "title": "Instructions"
-    }
-  },
-  "i18n_tasks": {
-    "add_missing": {
-      "added": {
-        "one": "Added %{count} key",
-        "other": "Added %{count} keys"
-      }
-    },
-    "cmd": {
-      "args": {
-        "default_text": "Default: %{value}",
-        "desc": {
-          "all_locales": "Do not expect key patterns to start with a locale, instead apply them to all locales implicitly.",
-          "confirm": "Confirm automatically",
-          "data_format": "Data format: %{valid_text}.",
-          "keep_order": "Keep the order of the keys",
-          "key_pattern": "Filter by key pattern (e.g. 'common.*')",
-          "key_pattern_to_rename": "Full key (pattern) to rename. Required",
-          "locale": "i18n_tasks.common.locale",
-          "locale_to_translate_from": "Locale to translate from",
-          "locales_filter": "Locale(s) to process. Special: base",
-          "missing_types": "Filter by types: %{valid}",
-          "new_key_name": "New name, interpolates original name as %{key}. Required",
-          "nostdin": "Do not read from stdin",
-          "out_format": "Output format: %{valid_text}",
-          "pattern_router": "Use pattern router: keys moved per config data.write",
-          "strict": "Avoid inferring dynamic key usages such as t(\"cats.#{cat}.name\"). Takes precedence over the config setting if set.",
-          "translation_backend": "Translation backend (google or deepl)",
-          "value": "Value. Interpolates: %{value}, %{human_key}, %{key}, %{default}, %{value_or_human_key}, %{value_or_default_or_human_key}"
-        }
-      },
-      "desc": {
-        "add_missing": "add missing keys to locale data",
-        "check_consistent_interpolations": "verify that all translations use correct interpolation variables",
-        "check_normalized": "verify that all translation data is normalized",
-        "config": "display i18n-tasks configuration",
-        "data": "show locale data",
-        "data_merge": "merge locale data with trees",
-        "data_remove": "remove keys present in tree from data",
-        "data_write": "replace locale data with tree",
-        "eq_base": "show translations equal to base value",
-        "find": "show where keys are used in the code",
-        "gem_path": "show path to the gem",
-        "health": "is everything OK?",
-        "irb": "start REPL session within i18n-tasks context",
-        "missing": "show missing translations",
-        "mv": "rename/merge the keys in locale data that match the given pattern",
-        "normalize": "normalize translation data: sort and move to the right files",
-        "remove_unused": "remove unused keys",
-        "rm": "remove the keys in locale data that match the given pattern",
-        "translate_missing": "translate missing keys with Google Translate or DeepL Pro",
-        "tree_convert": "convert tree between formats",
-        "tree_filter": "filter tree by key pattern",
-        "tree_merge": "merge trees",
-        "tree_mv_key": "rename/merge/remove the keys matching the given pattern",
-        "tree_set_value": "set values of keys, optionally match a pattern",
-        "tree_subtract": "tree A minus the keys in tree B",
-        "tree_translate": "Google Translate a tree to root locales",
-        "unused": "show unused translations"
-      },
-      "encourage": [
-        "Good job!",
-        "Well done!",
-        "Perfect!"
-      ],
-      "enum_list_opt": {
-        "invalid": "%{invalid} is not in: %{valid}."
-      },
-      "enum_opt": {
-        "invalid": "%{invalid} is not one of: %{valid}."
-      },
-      "errors": {
-        "invalid_format": "invalid format: %{invalid}. valid: %{valid}.",
-        "invalid_locale": "invalid locale: %{invalid}",
-        "invalid_missing_type": {
-          "one": "invalid type: %{invalid}. valid: %{valid}.",
-          "other": "unknown types: %{invalid}. valid: %{valid}."
-        },
-        "pass_forest": "pass locale forest"
-      }
-    },
-    "common": {
-      "continue_q": "Continue?",
-      "key": "Key",
-      "locale": "Locale",
-      "n_more": "%{count} more",
-      "value": "Value"
-    },
-    "data_stats": {
-      "text": "has %{key_count} keys across %{locale_count} locales. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments, a locale has %{per_locale_avg} keys.",
-      "text_single_locale": "has %{key_count} keys in total. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments.",
-      "title": "Forest (%{locales})"
-    },
-    "deepl_translate": {
-      "errors": {
-        "no_api_key": "Setup DeepL Pro API key via DEEPL_AUTH_KEY environment variable or translation.deepl_api_key in config/i18n-tasks.yml. Get the key at https://www.deepl.com/pro.",
-        "no_results": "DeepL returned no results."
-      }
-    },
-    "google_translate": {
-      "errors": {
-        "no_api_key": "Set Google API key via GOOGLE_TRANSLATE_API_KEY environment variable or translation.google_translate_api_key in config/i18n-tasks.yml. Get the key at https://code.google.com/apis/console.",
-        "no_results": "Google Translate returned no results. Make sure billing information is set at https://code.google.com/apis/console."
-      }
-    },
-    "health": {
-      "no_keys_detected": "No keys detected. Check data.read in config/i18n-tasks.yml."
-    },
-    "inconsistent_interpolations": {
-      "none": "No inconsistent interpolations found."
-    },
-    "missing": {
-      "details_title": "Value in other locales or source",
-      "none": "No translations are missing."
-    },
-    "remove_unused": {
-      "confirm": {
-        "one": "%{count} translation will be removed from %{locales}.",
-        "other": "%{count} translation will be removed from %{locales}."
-      },
-      "noop": "No unused keys to remove",
-      "removed": "Removed %{count} keys"
-    },
-    "translate_missing": {
-      "translated": "Translated %{count} keys"
-    },
-    "unused": {
-      "none": "Every translation is in use."
-    },
-    "usages": {
-      "none": "No key usages found."
-    },
-    "yandex_translate": {
-      "errors": {
-        "no_api_key": "Set Yandex API key via YANDEX_API_KEY environment variable or translation.yandex_api_key in config/i18n-tasks.yml. Get the key at https://tech.yandex.com/translate.",
-        "no_results": "Yandex returned no results."
-      }
-    }
-  },
-  "id": "Id",
-  "invites": {
-    "create": {
-      "successfully": "Your invitations was successfully sent"
-    },
-    "form": {
-      "emails_hint": "Set each email in new line",
-      "send_invites": "Send Invites"
-    },
-    "new": {
-      "header": "Invite Form"
-    }
-  },
-  "jobs": {
-    "reports_export": {
-      "download": {
-        "description": "Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>",
-        "message": "Report is ready"
-      }
-    },
-    "threesixty": {
-      "reports": {
-        "download": {
-          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
-          "error": "An Error is occur",
-          "error_description": "You report generation failed. Please contact to Administrator or try to <b>download</b> again.",
-          "message": "Report is ready"
-        }
-      }
-    }
-  },
-  "languages": {
-    "ar": "Arabic",
-    "bg": "Bulgarian",
-    "bs": "Bosnian",
-    "ca": "Catalan",
-    "cn": "Chinese",
-    "cs": "Czech",
-    "cy": "Cymraeg",
-    "da": "Danish",
-    "de": "German",
+    "de": "Deutsch",
     "el": "Greek",
     "en": "English",
     "en-GB": "English - UK",

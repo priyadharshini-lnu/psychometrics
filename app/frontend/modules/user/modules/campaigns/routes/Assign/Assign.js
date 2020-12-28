@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, ConfigProvider, Affix,
+  Layout, PageHeader, Row, Col, Progress, ConfigProvider, Affix, Space,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
+import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
+const { I18n } = window
 
 export default function Assign ({
   assign: {
@@ -25,7 +27,6 @@ export default function Assign ({
     },
   }, fetchAssessment,
   match: { params },
-  history,
   isFrame,
   preview: {
     enableProgress,
@@ -40,6 +41,7 @@ export default function Assign ({
     const { edit } = qs.parse(location.search.substr(1))
     fetchAssessment(params.assignId, edit)
   }, [])
+  const rtl = isRtl(I18n.uiLocale)
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -49,11 +51,10 @@ export default function Assign ({
             <PageHeader
               className="page-header"
               backIcon={!isFrame && (
-                <div>
-                  <ArrowLeftOutlined />
-                  {' '}
-                  Back
-                </div>
+                <Space>
+                  {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                  {` ${I18n.t('assessments.page.back', { locale: I18n.uiLocale })}`}
+                </Space>
               )}
               title={(
                 <div>
@@ -65,7 +66,7 @@ export default function Assign ({
                   && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
                 <Timer key="2" preview={preview} onFinish={markAssessmentTimedOut} />,
               ]}
-              onBack={() => history.push('/dashboard')}
+              onBack={() => { window.location.href = '/dashboard' }}
             />
           </Content>
         </div>

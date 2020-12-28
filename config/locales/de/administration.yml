@@ -1,0 +1,9 @@
+---
+de:
+  administration:
+    clients:
+      registration_codes:
+        errors:
+          invalid_attribute: "%{attribute} ist ungültig"
+          presence: "%{attribute} muss eingegeben werden"
+          review: Bitte überprüfen Sie die Probleme.

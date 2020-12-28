@@ -7,11 +7,12 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
 
     .panel-body
       /! Nav tabs
-      ul.nav.nav-tabs
-        li.active
-          = link_to t('.tabs.sign_in'), new_user_session_path
-        li
-          = link_to t('.tabs.register'), new_user_registration_path
+      .text-align-c
+        ul.nav.nav-tabs
+          li.active
+            = link_to t('.tabs.sign_in'), new_user_session_path
+          li
+            = link_to t('.tabs.register'), new_user_registration_path
       /! Tab panes
       .tab-content
         .tab-pane.fade.in.active role="tabpanel"
@@ -26,7 +27,7 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
             .username.input-group.mbm
               span#username.input-group-addon
                 i.icon-user
-              = f.input_field :email, placeholder: 'Email Address', class: 'form-control input-lg'
+              = f.input_field :email, placeholder: t('.email_placeholder'), class: 'form-control input-lg'
             .password.input-group.mbm
               span#password.input-group-addon
                 i.icon-lock
