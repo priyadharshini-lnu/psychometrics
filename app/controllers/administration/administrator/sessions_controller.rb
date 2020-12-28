@@ -14,7 +14,9 @@ module Administration
       end
 
       # Redirect administrator after log in
-      def after_sign_in_path_for(_resource)
+      def after_sign_in_path_for(resource)
+        return assessors_campaigns_path if resource.is?(:assessor)
+
         administration_root_path
       end
 

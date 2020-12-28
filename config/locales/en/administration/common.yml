@@ -81,6 +81,7 @@ en:
       campaign_templates: Campaign Templates
       new_campaign: New Campaign
       new_datasheet: New Datasheet
+      assessor_dashboard: Assessor Dashboard
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE

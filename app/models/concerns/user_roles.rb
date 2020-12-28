@@ -16,7 +16,12 @@ module UserRoles
     }.freeze
 
     USER_ROLES_SCOPES = {
-      administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE],
+      administration: [
+        USER_ROLES.key(SUPER_ADMIN_ROLE),
+        :assessor,
+        Membership::PROJECT_ADMIN_ROLE,
+        Membership::CLIENT_ADMIN_ROLE
+      ],
       user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
     }.freeze
 
@@ -36,6 +41,7 @@ module UserRoles
           else
             [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
           end
+    arr << :assessor if assessors.exists?
     (arr & roles).any?
   end
 
@@ -67,5 +73,9 @@ module UserRoles
 
   def admin?
     is?(:superadmin, :client_admin, :project_admin)
+  end
+
+  def assessor?
+    is?(:assessor)
   end
 end
