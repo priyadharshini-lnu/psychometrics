@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
+        resources :datasheets, only: [:index]
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -139,6 +140,10 @@ Rails.application.routes.draw do
     end
 
     resources :projects do
+      scope module: :projects do
+        resources :datasheets, only: [:index]
+      end
+
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
           resources :registration_codes

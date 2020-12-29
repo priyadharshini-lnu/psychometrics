@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux'
 import * as t from 'io-ts'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
 export interface Request<T> {
   method?: string
@@ -7,6 +8,8 @@ export interface Request<T> {
   loader?: boolean
   camelize?: boolean
   decamelize?: boolean
+  debounce?: number
+  tableConfig?: TableConfig
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any
   typedResponse?: t.Type<T>

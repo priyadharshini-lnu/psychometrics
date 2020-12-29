@@ -1001,6 +1001,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -3924,6 +3925,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -5354,6 +5356,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {
@@ -8430,6 +8433,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -11353,6 +11357,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -12783,6 +12788,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {
@@ -15848,6 +15854,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -18771,6 +18778,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "libraries": "Media Library",
       "licenses": "Licenses",
       "new_campaign": "New Campaign",
+      "new_datasheet": "New Datasheet",
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
@@ -20201,6 +20209,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "model": {
       "assessments": "Assessments",
       "campaigns": "Campaigns",
+      "datasheet": "Datasheet",
       "reports": "Reports"
     },
     "text": {

@@ -24,6 +24,7 @@ import instructionTemplates from '../modules/threeSixtyCampaign/core/instruction
 import campaignDetails from '../modules/threeSixtyCampaign/core/campaignDetails'
 import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
+import datasheetReducers from '../modules/DatasheetManagement/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
@@ -57,6 +58,7 @@ const createRootReducer = history => combineReducers({
   request,
   tables,
   campaigns: campaignReducers,
+  datasheet: datasheetReducers,
 })
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>
