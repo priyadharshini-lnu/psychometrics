@@ -102,3 +102,6 @@ en:
     clients:
       assessments:
         <<: *ASSESSMENTS
+    survey_builder:
+      property_panel:
+        allow_content_copy: 'Allow content copying'

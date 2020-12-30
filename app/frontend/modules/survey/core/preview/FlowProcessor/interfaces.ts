@@ -20,6 +20,7 @@ export interface Question {
   required_validation?: { enabled: boolean, type: string }
   props?: any
   hidden?: boolean
+  isNeedToAddLtrManually?: boolean
 }
 
 export interface Block {
