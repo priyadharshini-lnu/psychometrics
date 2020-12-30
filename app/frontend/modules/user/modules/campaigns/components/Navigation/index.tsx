@@ -10,8 +10,8 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
+import { RootState } from 'modules/user/core/rootReducers'
 
-import { RootState } from 'modules/admin/core/rootReducers'
 import {
   getLogo,
   getName as getProjectName,
@@ -134,7 +134,7 @@ const Navigation: FC<PropsFromRedux> = ({
             overflowedIndicator={
               <MenuOutlined className={styles.menuItemIcons} />
             }
-            triggerSubMenuAction="click"
+            // triggerSubMenuAction="click"  // TODO: it appears in ant 4.4 version and seems doesn't work for now
             selectedKeys={activeMenuKey}
             onClick={({ key }) => changeActiveMenuKey([`${key}`])}
           >

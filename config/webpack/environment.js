@@ -30,7 +30,7 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
-if (__DEV__) {
+if (__DEV__ || env.ENABLE_TS_FORK_CHECKER) {
   environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin({
     eslint: {
       files: './app/frontend/**/*.{ts,tsx,js,jsx}',
