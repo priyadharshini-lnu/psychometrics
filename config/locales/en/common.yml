@@ -26,6 +26,8 @@ en:
   id: Id
   next: Next
   loading: 'Processing...'
+  select: Select
+  empty: Empty
   languages:
     en: 'English'
     en-GB: 'English - UK'

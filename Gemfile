@@ -141,6 +141,7 @@ gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 0.12.2'
+gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.13.3'
 gem 'reform-rails', '~> 0.1.7'
 gem 'validates_timeliness', '~> 4.0.2'

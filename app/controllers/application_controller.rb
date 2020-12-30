@@ -9,6 +9,7 @@ class ApplicationController < ::BaseController
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
   after_action :allow_iframe, if: proc { use_iframe? }
+  around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -39,6 +40,12 @@ class ApplicationController < ::BaseController
   end
 
   private
+
+  def set_mobility_locale
+    Mobility.with_locale(current_user&.locale || I18n.default_locale) do
+      yield
+    end
+  end
 
   def authenticate_user!
     return if @anonymous_user

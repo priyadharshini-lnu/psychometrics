@@ -16,7 +16,10 @@ module CampaignInitialState
     @init_state = {
       currentUser: ::Administration::Campaigns::CurrentUserSerializer.
                   new(current_user, current_membership: current_membership).
-                  to_h
+                  to_h,
+      config: {
+        availableLocales: I18n.available_locales
+      }
     }
   end
 end

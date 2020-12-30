@@ -5796,6 +5796,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     }
   },
+  "empty": "Empty",
   "enums": {
     "communication": {
       "delivery_rule": {
@@ -6710,6 +6711,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "released": "Released"
     }
   },
+  "select": "Select",
   "shared": {
     "filters": {
       "clear": "Clear Filters"
@@ -13228,6 +13230,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     }
   },
+  "empty": "Empty",
   "enums": {
     "communication": {
       "delivery_rule": {
@@ -14135,6 +14138,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "released": "Released"
     }
   },
+  "select": "Select",
   "shared": {
     "filters": {
       "clear": "Clear Filters"
@@ -20649,6 +20653,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     }
   },
+  "empty": "Empty",
   "enums": {
     "communication": {
       "delivery_rule": {
@@ -21556,6 +21561,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "released": "Released"
     }
   },
+  "select": "Select",
   "shared": {
     "filters": {
       "clear": "Clear Filters"

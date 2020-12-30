@@ -81,6 +81,10 @@ module Administration
       index?
     end
 
+    def fetch_campaign_instructions?
+      index?
+    end
+
     def update_campaign_options?
       index?
     end

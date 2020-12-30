@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import currentUser from 'core/currentUser'
+import config from 'core/config'
 import { connectRouter } from 'connected-react-router'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
 import campaignReducers from '../modules/campaigns/core'
@@ -55,6 +56,7 @@ const createRootReducer = history => combineReducers({
     breadcrumbs,
   }),
   currentUser,
+  config,
   request,
   tables,
   campaigns: campaignReducers,

@@ -78,10 +78,10 @@ module Threesixty
         return if recipient_ids.blank?
 
         email_schedule_attributes = email_template.
-                                    slice(:name, :subject, :from, :reply_to_email, :content,
-                                          :threesixty_campaign_id, :consolidated).
+                                    slice(:name, :from, :reply_to_email, :threesixty_campaign_id, :consolidated).
                                     merge(
                                       recipient_ids: recipient_ids,
+                                      template_id: email_template.id,
                                       meta: meta,
                                       scheduled_date: context[:scheduled_date] || 10.seconds.from_now
                                     )

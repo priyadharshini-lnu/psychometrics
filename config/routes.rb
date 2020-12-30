@@ -158,6 +158,7 @@ Rails.application.routes.draw do
 
           member do
             get :fetch_campaign_options
+            get :fetch_campaign_instructions
             put :update_campaign_options
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }

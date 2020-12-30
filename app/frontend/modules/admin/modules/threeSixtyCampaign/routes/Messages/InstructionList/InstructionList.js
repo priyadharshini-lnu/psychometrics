@@ -1,7 +1,8 @@
+/* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Row, Col, Button, Empty, message,
+  Row, Col, Button, Empty, message, Select,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -12,9 +13,13 @@ import settings from '../../../settings'
 import styles from './styles.scss'
 import TemplateMenu from './TemplateMenu'
 
+const { Option } = Select
+
 export default function InstructionList ({
-  instructionTemplates: { list },
+  availableLocales,
+  instructionTemplates: { list, listWithLocales },
   fetch,
+  fetchByLocales,
   update,
   save,
   history,
@@ -31,13 +36,35 @@ export default function InstructionList ({
       })
   }, [])
 
+  useEffect(() => {
+    fetchByLocales(campaignId, selectedId, [leftLocale, rightLocale])
+  }, [selectedId])
+
   const [errors, setErrors] = useState(null)
+  const [leftLocale, setLeftLocale] = useState('en')
+  const [rightLocale, setRightLocale] = useState(null)
+
+  const updateLeftLocale = (locale) => {
+    setLeftLocale(locale)
+    fetchByLocales(campaignId, selectedId, [locale, rightLocale])
+  }
+
+  const updateRightLocale = (locale) => {
+    setRightLocale(locale)
+    fetchByLocales(campaignId, selectedId, [leftLocale, locale])
+  }
 
   const selectedTemplate = _.find(list, ({ id }) => id === parseInt(selectedId, 10))
+  const selectedLeftLocale = _.find(listWithLocales, (
+    { id, locale },
+  ) => id === parseInt(selectedId, 10) && locale === leftLocale) || {}
+  const selectedRightLocale = _.find(listWithLocales, (
+    { id, locale },
+  ) => id === parseInt(selectedId, 10) && locale === rightLocale) || {}
   if (!selectedTemplate) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
 
   const saveTemplate = () => {
-    save(campaignId, selectedTemplate)
+    save(campaignId, { ...selectedTemplate, ...selectedLeftLocale }, leftLocale)
       .then(() => {
         setErrors(null)
         message.success('Template saved successfully', 5)
@@ -56,12 +83,39 @@ export default function InstructionList ({
           toggleEnabled={() => { update(selectedTemplate.id, 'enabled', !selectedTemplate.enabled) }}
         />
         <div className={styles.content}>
+          <div className="display-flex justify-content-space-between mt8">
+            <Select defaultValue="en" className="mb8" onChange={updateLeftLocale}>
+              {availableLocales.map(locale => (
+                <Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Option>
+              ))}
+            </Select>
+            <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+              <Option value={null}>
+                {I18n.t('empty')}
+              </Option>
+              {availableLocales.map(locale => (
+                <Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Option>
+              ))}
+            </Select>
+          </div>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
-          <Editor
-            type={selectedTemplate.name}
-            content={selectedTemplate.content}
-            handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
-          />
+          <div className="display-flex">
+            <Editor
+              className="flex1"
+              type={selectedTemplate.name}
+              content={selectedLeftLocale.content || ''}
+              handleContentChange={(value) => { update(selectedTemplate.id, 'content', value, leftLocale) }}
+            />
+            {rightLocale && (
+            <div className={styles.comparisonBody}>
+              <div className="m16" dangerouslySetInnerHTML={{ __html: selectedRightLocale.content }} />
+            </div>
+            )}
+          </div>
         </div>
 
         <Button
