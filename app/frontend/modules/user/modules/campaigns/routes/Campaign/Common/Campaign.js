@@ -229,7 +229,7 @@ export default function Campaign ({
                       )}
                     </Row>
                   </Col>
-                  {!!userReports.length && (
+                  {userReports.length !== 0 && (
                     <Col flex="1">
                       <div className="panel-label">Reports</div>
                       <List
@@ -240,7 +240,7 @@ export default function Campaign ({
                           <List.Item>
                             <div className="report-row">
                               <div className="report-item">
-                                <Avatar className="report-icon">{item.reportName[0]}</Avatar>
+                                <Avatar className="report-icon me-4">{item.reportName[0]}</Avatar>
                                 <div className="report-title">
                                   <div>{item.reportName}</div>
                                   <div>

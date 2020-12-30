@@ -527,6 +527,22 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "approved": "Approved",
     "approving_mail_sent": "Mail for approving nomination has been sent to managers",
     "as_my": "as my",
+    "assesment": {
+      "modals": {
+        "help": {
+          "body": "<h2>Help</h2> <p>need content for help modal</p>",
+          "title": "Help"
+        }
+      },
+      "navigation": {
+        "menu": {
+          "help": "Help",
+          "logout": "Logout",
+          "profile": "Profile",
+          "switching-lang": "Switching language"
+        }
+      }
+    },
     "assessment": "Assessment",
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
@@ -1277,6 +1293,22 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "approved": "Approved",
     "approving_mail_sent": "Mail for approving nomination has been sent to managers",
     "as_my": "as my",
+    "assesment": {
+      "modals": {
+        "help": {
+          "body": "<h2>Help</h2> <p>need content for help modal</p>",
+          "title": "Help"
+        }
+      },
+      "navigation": {
+        "menu": {
+          "help": "Help",
+          "logout": "Logout",
+          "profile": "Profile",
+          "switching-lang": "Switching language"
+        }
+      }
+    },
     "assessment": "Assessment",
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
@@ -1316,9 +1348,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "help": "Help",
-    "helps": {
-      "main": "<h2>Help</h2> <p>need content for help modal</p>"
-    },
     "language": "Language",
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
@@ -2023,6 +2052,22 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "approved": "Approved",
     "approving_mail_sent": "Mail for approving nomination has been sent to managers",
     "as_my": "as my",
+    "assesment": {
+      "modals": {
+        "help": {
+          "body": "<h2>Help</h2> <p>need content for help modal</p>",
+          "title": "Help"
+        }
+      },
+      "navigation": {
+        "menu": {
+          "help": "Help",
+          "logout": "Logout",
+          "profile": "Profile",
+          "switching-lang": "Switching language"
+        }
+      }
+    },
     "assessment": "Assessment",
     "back_to_tasks": "Back to tasks",
     "begin": "Begin",
@@ -2062,9 +2107,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
     "help": "Help",
-    "helps": {
-      "main": "<h2>Help</h2> <p>need content for help modal</p>"
-    },
     "language": "Language",
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",

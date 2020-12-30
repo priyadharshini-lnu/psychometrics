@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react'
-import _ from 'lodash'
+import round from 'lodash/round'
+import truncate from 'lodash/truncate'
 import {
   Row, Col, Card, Progress,
 } from 'antd'
@@ -12,7 +13,7 @@ import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
 export default function Threesixty ({ campaign }) {
-  const totalProgress = _.round(getTotalProgress(campaign))
+  const totalProgress = round(getTotalProgress(campaign))
 
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
@@ -37,8 +38,8 @@ export default function Threesixty ({ campaign }) {
         >
           <div className="card-body">
             <div className="card-content">
-              <div className="card-title">
-                {campaign.assessmentName}
+              <div className="card-title" title={campaign.assessmentName}>
+                {truncate(campaign.assessmentName, { length: 55 })}
               </div>
               <Row type="flex" className="info-line">
                 <Col className="info-block">

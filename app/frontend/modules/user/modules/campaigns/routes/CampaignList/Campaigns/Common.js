@@ -5,6 +5,8 @@ import {
 } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import truncate from 'lodash/truncate'
+
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
@@ -30,8 +32,8 @@ export default function Common ({ campaign }) {
         >
           <div className="card-body">
             <div className="card-content">
-              <div className="card-title">
-                {campaign.name}
+              <div className="card-title" title={campaign.name}>
+                {truncate(campaign.name, { length: 55 })}
               </div>
               <Row type="flex" className="info-line">
                 <Col className="info-block">

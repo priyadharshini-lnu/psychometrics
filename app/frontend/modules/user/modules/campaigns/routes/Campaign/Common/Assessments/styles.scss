@@ -4,9 +4,7 @@ $colors: #246479 #9DD8D7 #00B1A8;
 $text-colors: #FFFFFF #246479 #FFFFFF;
 
 :global {
-  .cards .card {
-    margin-bottom: 12px;
-    min-width: 230px;
+  .card {
     >a {
       text-decoration: none;
     }
