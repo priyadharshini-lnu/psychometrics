@@ -95,7 +95,7 @@ blocks:
           commands:
             - |
               if [[ ! -d public/packs-test ]]; then
-                bundle exec rails webpacker:compile \
+                ENABLE_TS_FORK_CHECKER=1 bundle exec rails webpacker:compile \
                 && cache store webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt) public/packs-test
               else
                 echo "No need to compile assets. Asset fetched from cache."
