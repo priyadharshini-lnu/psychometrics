@@ -2,7 +2,8 @@ import React, { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Layout, Row, Col } from 'antd'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from 'modules/user/core/rootReducers'
+
 import {
   getPrivacyText,
   privacyPageLink,

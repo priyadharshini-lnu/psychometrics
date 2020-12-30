@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { Row, PageHeader } from 'antd'
 
-import { RootState } from 'modules/admin/core/rootReducers'
+import { RootState } from 'modules/user/core/rootReducers'
 import { get as getCurrentUser } from 'core/currentUser'
 import { downloadReport } from 'modules/user/modules/campaigns/core/report'
 import {
