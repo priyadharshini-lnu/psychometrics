@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   namespace :assessors do
     resources :campaigns, only: [:index]
+
+    get '/', to: 'users#dashboard', as: :dashboard
+    get '*all', to: 'users#dashboard', constraints: { all: /.*/ }
   end
 
   # Administration panel

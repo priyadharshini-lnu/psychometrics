@@ -6,4 +6,12 @@ class Assessors::BaseController < Administration::BaseController
       sign_out current_user unless current_user.is?(:assessor)
     end
   end
+
+  private
+
+  def define_scope(object)
+    return [:assessors, object].flatten if [object].flatten.exclude?(:assessors)
+
+    object
+  end
 end

@@ -15,8 +15,8 @@
           .profile-data-title= t("activerecord.attributes.user.roles.admins.superadmin") if current_user.superadmin?
 
     - if policy([:assessors, :campaign]).index?
-      = active_link_to(assessors_campaigns_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessor_dashboard'), placement: 'right' })
-        .fa.fa-briefcase
+      = active_link_to(assessors_dashboard_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessor_dashboard'), placement: 'right' })
+        .fa.fa-dashboard
         span.xn-text = t('administration.navigation.assessor_dashboard')
 
     - if policy(:client).index?
