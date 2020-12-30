@@ -983,6 +983,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "breadcrumbs": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -1912,7 +1913,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -3907,6 +3908,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "navigation": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -4514,6 +4516,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "toggle_status": {
         "successfully": "Sub-Factor was successfully updated."
+      }
+    },
+    "survey_builder": {
+      "property_panel": {
+        "allow_content_copy": "Allow content copying"
       }
     },
     "templates": {
@@ -6984,7 +6991,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -8433,6 +8440,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "breadcrumbs": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -9362,7 +9370,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -11357,6 +11365,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "navigation": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -11964,6 +11973,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "toggle_status": {
         "successfully": "Sub-Factor was successfully updated."
+      }
+    },
+    "survey_builder": {
+      "property_panel": {
+        "allow_content_copy": "Allow content copying"
       }
     },
     "templates": {
@@ -14427,7 +14441,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",
@@ -15869,6 +15883,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "breadcrumbs": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -16798,7 +16813,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "update": {
           "duplicate_licenses": "You have duplicate licenses",
-          "successfully": "License was successfully updated."
+          "successfully": "Licenses successfully updated"
         }
       },
       "list": {
@@ -18793,6 +18808,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "navigation": {
       "admins": "Admins",
       "assessments": "Assessments",
+      "assessor_dashboard": "Assessor Dashboard",
       "campaign_templates": "Campaign Templates",
       "campaigns": "Campaigns",
       "client": "Client Tenancy",
@@ -19400,6 +19416,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "toggle_status": {
         "successfully": "Sub-Factor was successfully updated."
+      }
+    },
+    "survey_builder": {
+      "property_panel": {
+        "allow_content_copy": "Allow content copying"
       }
     },
     "templates": {
@@ -21863,7 +21884,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "membership_id": "Assigner",
         "membership_id_label": "SELECT ASSIGNER",
-        "name": "Action Item",
+        "name": "Name",
         "name_label": "ACTION ITEM",
         "planned_completed_at": "Due Date",
         "planned_completed_at_label": "SELECT DUE DATE",

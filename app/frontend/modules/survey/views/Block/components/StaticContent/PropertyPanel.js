@@ -1,21 +1,28 @@
 import React from 'react'
 import ColorPicker from 'components/ColorPicker'
-import { Input } from 'antd'
+import { Input, Checkbox } from 'antd'
+
 import styles from './StaticContent.scss'
 import settings from './settings'
 
-export default function PropertyPanel ({
+const { I18n } = window
+
+const PropertyPanel = ({
   model,
   model: {
     props: {
       staticContent,
       staticContent: {
-        backgroundColor, backgroundImageOptions, layout, backgroundImage,
+        backgroundColor,
+        backgroundImageOptions,
+        layout,
+        backgroundImage,
+        allowContentCopy,
       },
     },
   },
   updateBlockProps,
-}) {
+}) => {
   const changeLayout = ({ target: { value } }) => {
     updateBlockProps(model, {
       staticContent: { ...staticContent, layout: value },
@@ -37,6 +44,12 @@ export default function PropertyPanel ({
   const changeColor = (e) => {
     updateBlockProps(model, {
       staticContent: { ...staticContent, backgroundColor: e.hex },
+    })
+  }
+
+  const handleOnAllowCopy = ({ target: { checked } }) => {
+    updateBlockProps(model, {
+      staticContent: { ...staticContent, allowContentCopy: checked },
     })
   }
 
@@ -63,16 +76,15 @@ export default function PropertyPanel ({
           onComplete={changeColor}
           color={backgroundColor || '#fff'}
         />
-        <span className={`icon fa fa-trash ${styles.menuicon}`} onClick={() => changeColor({ hex: null })} />
+        <span
+          className={`icon fa fa-trash ${styles.menuicon}`}
+          onClick={() => changeColor({ hex: null })}
+        />
       </div>
       <hr className={styles.divider} />
       <div>
         <div className={styles.label}>Background Image URL:</div>
-        <Input
-          value={backgroundImage}
-          size="small"
-          onChange={changeImageUrl}
-        />
+        <Input value={backgroundImage} size="small" onChange={changeImageUrl} />
       </div>
       <hr className={styles.divider} />
       <div>
@@ -89,6 +101,12 @@ export default function PropertyPanel ({
           </label>
         ))}
       </div>
+      <hr className={styles.divider} />
+      <Checkbox onChange={handleOnAllowCopy} defaultChecked={allowContentCopy}>
+        {I18n.t('administration.survey_builder.property_panel.allow_content_copy')}
+      </Checkbox>
     </div>
   )
 }
+
+export default PropertyPanel
