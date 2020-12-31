@@ -13,7 +13,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import styles from './styles.scss'
 
 const connecter = connect(
@@ -26,16 +26,7 @@ const connecter = connect(
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
-interface OwnProps {
-  tableConfig: TableConfig
-  changeFilter(filterName: string, filterValue: string): void
-  removeFilter(filterName: string): void
-  onTableChange(): void
-  getSortOrder(column: string): 'descend' | 'ascend'
-  changePage(page: number): void
-}
-
-type Props = OwnProps & PropsFromRedux
+type Props = TableProps & PropsFromRedux
 
 const { Column } = Table
 const { Search } = Input
@@ -109,8 +100,8 @@ const CampaignList: React.FC<Props> = (
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
-              render={({ name, campaignUrl }) => (
-                <Link to={campaignUrl}>{name}</Link>
+              render={({ name, id }) => (
+                <Link to={`assessors/campaigns/${id}/users`}>{name}</Link>
               )}
             />
             <Column

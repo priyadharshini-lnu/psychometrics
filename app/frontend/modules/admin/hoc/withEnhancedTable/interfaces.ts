@@ -1,0 +1,10 @@
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+
+export interface TableProps {
+  tableConfig: TableConfig
+  changeFilter(filterName: string, filterValue: string): void
+  removeFilter(filterName: string): void
+  onTableChange(): void
+  getSortOrder(column: string): 'descend' | 'ascend'
+  changePage(page: number): void
+}

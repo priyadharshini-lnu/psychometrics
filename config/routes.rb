@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   namespace :assessors do
-    resources :campaigns, only: [:index]
+    constraints(proc { |request| request.format == 'html' }) do
+      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
 
-    get '/', to: 'users#dashboard', as: :dashboard
-    get '*all', to: 'users#dashboard', constraints: { all: /.*/ }
+      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
+    end
+
+    resources :campaigns, only: [:index] do
+      resources :users, only: [:index]
+    end
   end
 
   # Administration panel

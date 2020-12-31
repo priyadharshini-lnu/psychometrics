@@ -76,6 +76,8 @@ module UserScopes
 
     scope :eq_id, ->(id) { where(id: id) }
     scope :filterable_fields, ->(query) { eq_id(query).or(search_query(query)) }
+    scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
+    scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
   end
 
   # rubocop:enable Metrics/BlockLength
