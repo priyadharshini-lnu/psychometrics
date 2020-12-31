@@ -28,12 +28,13 @@ module SetLocale
   end
 
   def ui_locale
-    possible_locales = [cookies[:locale], current_user&.locale, @current_project&.available_locales&.first].compact
-    locale = possible_locales.find(&:valid_ui_locale?) || I18n.default_locale.to_s
-    unless params[:lang].blank?
-      locale = valid_ui_locale?(params[:lang]) ? params[:lang] : I18n.default_locale.to_s
-    end
-    locale
+    locale = [
+      cookies[:locale],
+      current_user&.locale,
+      @current_project&.available_locales&.first
+    ].find { |l| valid_ui_locale?(l) }
+    locale = params[:lang] if valid_ui_locale?(params[:lang])
+    locale || I18n.default_locale.to_s
   end
 
   def valid_ui_locale?(locale)
