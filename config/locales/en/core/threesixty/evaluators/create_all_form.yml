@@ -1,8 +1,0 @@
-en:
-  activemodel:
-    errors:
-      models:
-        create_all:
-          attributes:
-            evaluators:
-              email_duplicated: 'The subject and evaluator emails are duplicated'

@@ -1,8 +1,0 @@
-en:
-  activemodel:
-    errors:
-      models:
-        update_norm:
-          attributes:
-            norm_type:
-              inclusion: "Please select the correct norm type"

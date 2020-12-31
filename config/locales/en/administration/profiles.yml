@@ -1,6 +1,0 @@
-en:
-  administration:
-    profiles:
-      edit:
-        title: "Profile Editor"
-        success: "Profile was successfully updated."

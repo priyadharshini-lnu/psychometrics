@@ -15,6 +15,7 @@ import Timer from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
+const { I18n } = window
 
 export default function UserAssessment ({
   userAssessment: {
@@ -39,7 +40,6 @@ export default function UserAssessment ({
   preview,
   markAssessmentTimedOut,
   progress,
-  push,
 }) {
   useEffect(() => {
     const { edit } = qs.parse(location.search.substr(1))
@@ -51,7 +51,7 @@ export default function UserAssessment ({
     campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
   }
 
-  const rtl = isRtl((selectedLanguage && selectedLanguage.code) || I18n.currentLocale())
+  const rtl = isRtl(I18n.uiLocale)
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -60,11 +60,10 @@ export default function UserAssessment ({
           <PageHeader
             className="page-header"
             backIcon={!isFrame && (
-              <div>
+              <Space>
                 {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
-                {' '}
-              Back
-              </div>
+                {` ${I18n.t('assessments.page.back')}`}
+              </Space>
             )}
             title={(
               <div>
@@ -84,7 +83,7 @@ export default function UserAssessment ({
                 />
               </Space>
             )}
-            onBack={() => push(`/campaigns/${campaignId}`)}
+            onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
           />
         </Content>
       </div>

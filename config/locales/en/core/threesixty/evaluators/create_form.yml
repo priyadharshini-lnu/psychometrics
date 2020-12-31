@@ -1,6 +1,0 @@
-en:
-  evaluators:
-    errors:
-      can_not_processed: 'can not be processed'
-      exists: 'already exists'
-      max_evaluators: 'you already have enough evaluators'
