@@ -29,7 +29,7 @@ module SetLocale
 
   def ui_locale
     possible_locales = [cookies[:locale], current_user&.locale, @current_project&.available_locales&.first]
-    locale = possible_locales.find(I18n.default_locale.to_s) { |l| valid_ui_locale?(l) }
+    locale = possible_locales.find(-> { I18n.default_locale.to_s }) { |l| valid_ui_locale?(l) }
     unless params[:lang].blank?
       locale = valid_ui_locale?(params[:lang]) ? params[:lang] : I18n.default_locale.to_s
     end
