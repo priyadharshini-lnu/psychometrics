@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 import React from 'react'
 
-export default function ContinueIcon () {
+export default function ContinueIcon ({ className = '' }) {
   return (
-    <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" className={className}>
       <defs>
         <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
       </defs>

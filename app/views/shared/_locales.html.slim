@@ -3,3 +3,4 @@
 javascript:
   I18n.availableLocales = #{(@current_project&.available_locales || Settings.enduser_locales).to_json.html_safe}
   I18n.locale = "#{I18n.locale}"
+  I18n.uiLocale = "#{I18n.locale}"

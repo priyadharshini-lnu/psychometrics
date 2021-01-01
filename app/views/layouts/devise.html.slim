@@ -1,5 +1,5 @@
 doctype html
-html.body-full-height style=device_html_style
+html.body-full-height
   head
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
@@ -10,6 +10,6 @@ html.body-full-height style=device_html_style
     = stylesheet_link_tag 'devise', media: 'all'
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
-  body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}"
+  body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}" style=device_html_style
     .main#devise
       = yield

@@ -1,5 +1,0 @@
-en:
-  frontend:
-    resource:
-      create_success: '%{resourceName} created successfully'
-      update_success: '%{resourceName} updated successfully'

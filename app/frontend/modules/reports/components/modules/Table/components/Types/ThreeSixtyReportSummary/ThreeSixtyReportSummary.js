@@ -8,6 +8,8 @@ import _ from 'lodash'
 import styles from './styles.scss'
 
 export default function ThreeSixtyReportSummary ({ model }) {
+  const { fontFamily } = model.props.style
+
   const buildResults = (filters) => {
     const evaluatorsByFilter = filters.reduce((res, filter) => {
       const evaluators = (getIn(ResultStore, ['campaignDetails', 'evaluators']) || [])
@@ -54,7 +56,7 @@ export default function ThreeSixtyReportSummary ({ model }) {
   const total = buildTotal(results)
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ fontFamily }}>
       <table className={styles.table}>
         <thead>
           <tr>

@@ -113,7 +113,7 @@ export default function ReportPreview ({
           ]}
         >
           <Row justify="center">
-            <Col lg={12} md={18} sm={24}>
+            <Col>
               <div className="reportContainer">
                 {renderReportPreview()}
               </div>
