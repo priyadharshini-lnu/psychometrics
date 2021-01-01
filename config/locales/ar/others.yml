@@ -237,6 +237,7 @@ ar:
           sign_in: تسجيل الدخول
     sessions:
       new:
+        email: البريد الإلكتروني
         forgot_password: هل نسيت كلمة السر؟
         instruction: الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية
         password_placeholder: كلمه السر

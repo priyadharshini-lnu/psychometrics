@@ -1066,6 +1066,7 @@ en:
     sessions:
       already_signed_out: Signed out successfully.
       new:
+        email: Email Address
         forgot_password: Forgot password?
         instruction: Please login with your personal account information
         keep_sign_in: Yes, Keep me signed in
