@@ -149,7 +149,7 @@ de:
           sign_in: Anmelden
     sessions:
       new:
-        email_placeholder: E-Mail-Addresse
+        email: E-Mail-Addresse
         forgot_password: Passwort vergessen?
         instruction: Bitte melden Sie sich mit Ihren persönlichen Kontodaten an
         password_placeholder: Passwort

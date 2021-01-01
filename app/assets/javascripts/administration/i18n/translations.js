@@ -5701,6 +5701,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "sessions": {
       "already_signed_out": "تم تسجيل الخروج بنجاح.",
       "new": {
+        "email": "البريد الإلكتروني",
         "forgot_password": "هل نسيت كلمة السر؟",
         "instruction": "الرجاء تسجيل الدخول باستخدام معلومات حسابك الشخصية",
         "keep_sign_in": "Yes, Keep me signed in",
@@ -13148,7 +13149,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "sessions": {
       "already_signed_out": "Erfolgreich abgemeldet.",
       "new": {
-        "email_placeholder": "E-Mail-Addresse",
+        "email": "E-Mail-Addresse",
         "forgot_password": "Passwort vergessen?",
         "instruction": "Bitte melden Sie sich mit Ihren persönlichen Kontodaten an",
         "keep_sign_in": "Yes, Keep me signed in",
@@ -20589,6 +20590,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "sessions": {
       "already_signed_out": "Signed out successfully.",
       "new": {
+        "email": "Email Address",
         "forgot_password": "Forgot password?",
         "instruction": "Please login with your personal account information",
         "keep_sign_in": "Yes, Keep me signed in",
