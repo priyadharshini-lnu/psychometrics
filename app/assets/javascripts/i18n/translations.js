@@ -39,6 +39,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   },
   "assessments": {
     "actions": {
+      "evaluate": "Evaluate",
       "extend_time": "Extend time",
       "goto_dashboard": "الذهاب إلى الصفحة الرئيسية",
       "rescore": "Rescore"
@@ -808,6 +809,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "assessments": {
     "actions": {
+      "evaluate": "Evaluate",
       "extend_time": "Extend time",
       "goto_dashboard": "Go To Dashboard",
       "rescore": "Rescore"
@@ -1567,6 +1569,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   },
   "assessments": {
     "actions": {
+      "evaluate": "Evaluate",
       "extend_time": "Extend time",
       "goto_dashboard": "Go To Dashboard",
       "rescore": "Rescore"

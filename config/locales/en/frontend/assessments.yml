@@ -53,5 +53,6 @@ en:
       goto_dashboard: Go To Dashboard
       rescore: Rescore
       extend_time: Extend time
+      evaluate: Evaluate
     wait: 'Wait'
     proceed: 'Proceed Anyway'
