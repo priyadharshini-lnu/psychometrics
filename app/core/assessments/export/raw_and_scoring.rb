@@ -31,7 +31,7 @@ module Assessments
           res.encoded_id,
           user_name(res.evaluator.first_name, res.evaluator.last_name),
           res.evaluator.email,
-          res.created_at.try(:strftime, '%D %r'),
+          res.started_at.try(:strftime, '%D %r'),
           res.completed_at.try(:strftime, '%D %r'),
           res.norm ? res.norm.name : '',
           I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
