@@ -1,3 +1,4 @@
+<% require './lib/i18n_csv_tasks' %>
 # i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
 
 # The "main" locale.
@@ -18,7 +19,7 @@ data:
     ## Default:
     # - config/locales/%{locale}.yml
     ## More files:
-     - config/locales/**/*.%{locale}.yml
+     - config/locales/%{locale}/*.yml
     ## Another gem (replace %#= with %=):
     # - "<%#= %x[bundle show vagrant].chomp %>/templates/locales/%{locale}.yml"
 
@@ -29,6 +30,8 @@ data:
     # - ['{devise, simple_form}.*', 'config/locales/\1.%{locale}.yml']
     ## Catch-all default:
     # - config/locales/%{locale}.yml
+    - ['administration.*', 'config/locales/%{locale}/administration.yml']
+    - config/locales/%{locale}/others.yml
 
   ## Specify the router (see Readme for details). Valid values: conservative_router, pattern_router, or a custom class.
   # router: convervative_router
@@ -118,3 +121,9 @@ search:
 #
 # <%#= I18n::Tasks.add_scanner 'I18n::Tasks::Scanners::PatternMapper',
 #        patterns: [['\bSpree\.t[( ]\s*%{key}', 'spree.%{key}']] %>
+
+csv:
+  export:
+    - tmp/i18n-export/export.csv
+  import:
+    - tmp/i18n-export/import.csv

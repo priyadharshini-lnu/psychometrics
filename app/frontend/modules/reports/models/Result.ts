@@ -77,6 +77,8 @@ export default class Result {
     this.dimensionId = _.find(AppStore.assessments, { id: this.assessmentId })?.dimensionId
     this.resultsByFilter = {}
     this.embeddedData = {}
+    this.dataSheet = {}
+    this.groupedDataSheet = []
   }
 
   // toJSON = () => ({ name: this.name, filters: this.filters })

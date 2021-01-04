@@ -73,7 +73,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS || status === INTERRUPTED) {
     return (
       <LinkTag>
-        {loading ? <LoadingOutlined /> : <ContinueIcon />}
+        {loading ? <LoadingOutlined /> : <ContinueIcon className="rtl-flip" />}
         {' '}
         {I18n.t('threesixty.continue')}
       </LinkTag>
@@ -110,7 +110,7 @@ const renderButtonContent = ({
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>

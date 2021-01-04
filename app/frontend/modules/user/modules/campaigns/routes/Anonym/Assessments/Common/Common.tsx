@@ -38,7 +38,7 @@ const Common: React.FC<Props> = ({
     },
   },
   preview,
-  preview: { enableProgress },
+  preview: { enableProgress, initialized },
   progress,
   markAssessmentTimedOut,
 }) => {
@@ -100,6 +100,7 @@ const Common: React.FC<Props> = ({
                   id="pass_assessment"
                   type="pass_assessment"
                   isThreesixty="true"
+                  initialized={initialized}
                   resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}
                   data={assessment}
                   result={results}

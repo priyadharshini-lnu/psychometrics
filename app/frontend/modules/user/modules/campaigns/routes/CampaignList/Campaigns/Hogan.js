@@ -59,7 +59,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS) {
     return (
       <a href="#" onClick={showPolicyConfirm}>
-        {loading ? <LoadingOutlined /> : <ContinueIcon />}
+        {loading ? <LoadingOutlined /> : <ContinueIcon className="rtl-flip" />}
         {' '}
         {I18n.t('threesixty.continue')}
       </a>
@@ -94,7 +94,7 @@ const renderButtonContent = ({
   }
   return (
     <a href="#" onClick={showPolicyConfirm}>
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>

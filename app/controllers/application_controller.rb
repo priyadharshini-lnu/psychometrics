@@ -131,8 +131,7 @@ class ApplicationController < ::BaseController
   end
 
   def set_locale
-    I18n.locale = cookies[:locale] || current_user&.locale ||
-                  @current_project&.available_locales&.first || I18n.default_locale
+    I18n.locale = ui_locale
   end
 
   def render_423

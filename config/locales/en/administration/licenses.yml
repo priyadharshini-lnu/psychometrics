@@ -1,3 +1,0 @@
-en:
-  licenses:
-    not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"

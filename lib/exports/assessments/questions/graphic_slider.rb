@@ -12,7 +12,7 @@ module Exports
         def self.result(user_result, question, _scoring = false, _export_with_labels = false)
           answers = get_answers(user_result, question)
           answers = (answers || []).map { |answer| answer['value'] }
-          all_answers << get_duration(user_result, question)
+          answers << get_duration(user_result, question)
           Utility::Array.ensure_size(answers, question_header_size(question))
         end
 

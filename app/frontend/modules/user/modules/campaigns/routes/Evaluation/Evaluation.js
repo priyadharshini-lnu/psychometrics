@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider,
+  Layout, Row, Col, Menu, Dropdown, PageHeader, Tooltip, Progress, Button, ConfigProvider, Space,
 } from 'antd'
-import { DownOutlined, ArrowLeftOutlined } from '@ant-design/icons'
+import { DownOutlined, ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import userPresenter from 'presenters/user'
 import statusPresenter from 'presenters/status'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
+import { isRtl } from 'utils/locales'
 import './styles.scss'
 import Language from '../../components/Language'
 import store from '../../../../store'
@@ -14,6 +15,7 @@ import Timer from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
+const { I18n } = window
 
 export default function Evaluation ({
   evaluation: {
@@ -33,10 +35,10 @@ export default function Evaluation ({
     },
   }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
-  history,
   preview: {
     enableProgress,
     type,
+    initialized,
   },
   preview,
   markAssessmentTimedOut,
@@ -128,11 +130,11 @@ export default function Evaluation ({
 
   const handleBackButtonClick = () => {
     clearEvaluation()
-    history.push(`/threesixty_campaigns/${params.campaignId}`)
+    window.location.href = `/threesixty_campaigns/${params.campaignId}`
   }
 
   if (!loaded || error) { return null }
-
+  const rtl = isRtl(I18n.uiLocale)
   return (
     <Layout>
       <div className="page-header-wrap">
@@ -140,11 +142,10 @@ export default function Evaluation ({
           <PageHeader
             className="page-header"
             backIcon={(
-              <div>
-                <ArrowLeftOutlined />
-                {' '}
-                Back to tasks
-              </div>
+              <Space>
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                {` ${I18n.t('assessments.page.back')}`}
+              </Space>
             )}
             title={title()}
             onBack={handleBackButtonClick}
@@ -180,6 +181,7 @@ export default function Evaluation ({
                   <PassAssessment
                     ref={assessmentRef}
                     id="pass_assessment"
+                    initialized={initialized}
                     type={approve_evaluation ? 'view_results' : 'pass_assessment'}
                     isThreesixty="true"
                     resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${id}`}

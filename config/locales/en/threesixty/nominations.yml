@@ -1,3 +1,0 @@
-en:
-  nominations:
-    approval_email_error: "Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}"
