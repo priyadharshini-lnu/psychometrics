@@ -8,7 +8,7 @@ import {
   setDirtyResults, setNotDirtyResults, toggleHiddenQuestions,
   toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
   clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
-  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected,
+  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
 } from './actions'
 
 export interface Question {
@@ -130,6 +130,7 @@ export interface DefaultState {
   showSubmitPage: boolean
   expiryDate: Date | null
   timerDuration: number | null
+  isSimulation: boolean
 }
 
 export interface MediaResponse {
@@ -253,3 +254,4 @@ export interface AppStore {
 }
 
 export type SetLocalResults = ReturnType<typeof setLocalResults>
+export type SetIsSimulation = ReturnType<typeof setIsSimulation>

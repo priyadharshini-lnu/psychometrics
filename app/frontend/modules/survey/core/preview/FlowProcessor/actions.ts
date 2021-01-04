@@ -20,7 +20,7 @@ import {
   ADD_MEDIA_RESPONSE,
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
-  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
 } from './consts'
 import {
   Highlight, QuestionError, MediaResponse,
@@ -88,6 +88,7 @@ export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
 export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
 export const reset = () => ({ type: RESET })
 export const setLocalResults = (data: object) => ({ type: SET_LOCAL_RESULTS, data })
+export const setIsSimulation = () => ({ type: SET_IS_SIMULATION })
 
 export const markQuestionInProgress = (questionId, progressState) => (
   { type: MARK_QUESTION_IN_PROGRESS, questionId, progressState })
@@ -105,14 +106,16 @@ export const saveResults = (preview, questionIds, currentBlockId?) => {
   const data = {
     resource: {
       [answerKey]: preview.results,
-      current_element: preview.currentElement,
-      current_page: preview.currentPage,
       embedded_data: preview.embeddedData,
       status: isComplete ? 'completed' : 'in_progress',
       prev_pages: preview.prevPages,
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,
+  }
+  if (!preview.isSimulation) {
+    data.resource.current_element = preview.currentElement
+    data.resource.current_page = preview.currentPage
   }
   const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
   if (preview.end) {

@@ -16,6 +16,7 @@ import {
   showSubmitPage,
   hideSubmitPage,
   hideEnd,
+  setIsSimulation,
 } from './actions'
 import {
   getPrevPage,
@@ -115,6 +116,7 @@ function* genSaveResultsIfNoVideoQuestionInProgress () {
 }
 
 function* genSimulatePassingAssessment () {
+  yield put(setIsSimulation())
   let state = yield select()
   while (!state.preview.end) {
     yield put(nextPage({ skipValidations: true }))

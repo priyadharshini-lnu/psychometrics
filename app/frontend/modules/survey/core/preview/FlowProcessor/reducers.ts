@@ -17,7 +17,7 @@ import {
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
-  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
@@ -70,6 +70,7 @@ const defaultState: State = {
   showSubmitPage: false,
   expiryDate: null,
   timerDuration: null,
+  isSimulation: false,
 }
 
 const HANDLERS = {
@@ -247,14 +248,7 @@ const HANDLERS = {
     },
   [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
   [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
-
+  [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
 }
 
-type Types = string
-type Actions = InitType | AddPrevPage | ShowErrors | ShowPage | AnswerType | SaveResults |
-                ChangeElement | HideQuestion | ShowQuestion | SetEmbeddedData |
-                SetDirtyResults | SetNotDirtyResults | SetLocalResults | UpdateHightlight |
-                MarkQuestionInProgress | RemoveQuestionInProgress | AddQuestionError | RemoveQuestionError|
-                AddMediaResponse | RemoveMediaResponse | MarkMediaResponseAsSelected
-
-export default createReducer<State, Types, Actions>(HANDLERS, defaultState)
+export default createReducer(HANDLERS, defaultState)
