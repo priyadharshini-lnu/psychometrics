@@ -37,12 +37,16 @@ class ImageUploader < CarrierWave::Uploader::Base
     %w[jpg jpeg gif png bmp svg]
   end
 
+  def raster_extensions
+    %w[jpg jpeg gif png bmp]
+  end
+
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
   def url(version = nil)
-    svg? ? super() : super(version)
+    file && raster?(file) ? super(version) : super()
   end
 
   protected
@@ -57,6 +61,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def raster?(new_file)
-    new_file.extension != 'svg'
+    raster_extensions.include?(new_file.extension)
   end
 end

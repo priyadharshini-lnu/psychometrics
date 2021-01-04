@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600');
 
 html {
-  background: asset-url('background.jpg') no-repeat center center;
-  background-size: cover;
   position: relative;
   min-height: 100%;
 }
 body {
-  background-color: transparent;
+  background: no-repeat center center;
+  background-size: cover;
   font-family: 'Fira Sans', sans-serif;
   height: 100%;
 }
