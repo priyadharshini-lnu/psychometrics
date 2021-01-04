@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
 
     resources :campaigns, only: [:index] do
-      resources :users, only: [:index]
+      resources :users, only: %i[index show]
     end
   end
 

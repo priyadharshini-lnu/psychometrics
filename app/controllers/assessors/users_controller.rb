@@ -2,7 +2,8 @@
 
 class Assessors::UsersController < Administration::BaseController
   skip_after_action :verify_policy_scoped, only: :index
-  before_action :skip_authorization, only: [:dashboard]
+  before_action :skip_authorization, only: %i[dashboard show]
+  before_action :set_resource, only: [:show]
 
   def index
     users = policy_scope([:assessors, User]).
@@ -18,7 +19,24 @@ class Assessors::UsersController < Administration::BaseController
     }
   end
 
+  def show
+    user_assessments = UserAssessment.where(evaluator: current_user, subject: @user, campaign_id: params[:campaign_id])
+    serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
+      user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer
+    )
+    render json: {
+      user: Administration::Assessors::UserSerializer.new(@user).to_h,
+      userAssessments: serialized_user_assessments
+    }
+  end
+
   def dashboard
     raise NotAuthorizedError unless current_user.is?(:assessor)
+  end
+
+  private
+
+  def set_resource
+    @user = policy_scope([:assessors, User]).find(params[:id])
   end
 end

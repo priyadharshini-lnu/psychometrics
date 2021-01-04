@@ -5,6 +5,7 @@ import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
+import { UserAssessmentTR } from './userAssessments'
 
 const UserTR = t.type({
   id: t.number,
@@ -17,14 +18,30 @@ const UserListResponseTR = t.type({
   total: t.number,
 })
 
+const SingleUserTR = t.type({
+  id: t.number,
+  email: t.string,
+  fullName: t.string,
+})
+export type SingleUser = t.TypeOf<typeof SingleUserTR>
+
+const FetchSingleTR = t.type({
+  user: SingleUserTR,
+  userAssessments: t.array(UserAssessmentTR),
+})
+export type FetchSingle = t.TypeOf<typeof FetchSingleTR>
+
 export type User = t.TypeOf<typeof UserTR>
-export type State = t.TypeOf<typeof UserListResponseTR>
+export type UserListResponse = t.TypeOf<typeof UserListResponseTR>
+export type State = UserListResponse & { current?: SingleUser }
 
 const defaultState: State = { list: [], total: 0 }
 
-export const get = (state: RootState): State => _.get(state, ['assessors', 'users'])
+export const get = (state: RootState) => _.get(state, ['assessors', 'users'])
+export const getCurrent = (state: RootState) => _.get(get(state), ['current'])
 
 export const FETCH = 'assessors/users/FETCH'
+export const FETCH_SINGLE = 'assessors/users/FETCH_SINGLE'
 
 export const fetch = (campaignId: number, tableConfig: TableConfig): ApiAction<State> => ({
   type: FETCH,
@@ -37,8 +54,19 @@ export const fetch = (campaignId: number, tableConfig: TableConfig): ApiAction<S
   },
 })
 
+export const fetchSingle = (campaignId: number, userId: number): ApiAction<FetchSingle> => ({
+  type: FETCH_SINGLE,
+  request: {
+    method: 'get',
+    url: `/assessors/campaigns/${campaignId}/users/${userId}`,
+    typedResponse: FetchSingleTR,
+  },
+})
+
 const HANDLERS = {
   [FETCH]: (_: State, { response }: ApiActionResponse<State>) => response,
+  [FETCH_SINGLE]: (state: State, { response }: ApiActionResponse<FetchSingle>) => (
+    { ...state, current: response.user }),
 }
 
 export default createReducer(HANDLERS, defaultState)

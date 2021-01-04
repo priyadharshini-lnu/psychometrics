@@ -563,6 +563,7 @@ en:
     restart: Restart
   assessments:
     actions:
+      evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
       rescore: Rescore
