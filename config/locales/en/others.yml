@@ -142,7 +142,7 @@ en:
             last_name:
               blank: Last name can't be blank
         update_assessment:
-          attributes:
+          attributes: 
         update_norm:
           attributes:
             norm_type:
@@ -415,6 +415,7 @@ en:
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
+          assessor_form: Assessor Form
           case_study: Case study
           client_admin: Client Admin
           hogan: Hogan
@@ -924,8 +925,8 @@ en:
       category: Category
       created_at: Created at
       id: Id
-      status: Status
       name: Name
+      status: Status
     model:
       assessments: Assessments
       campaigns: Campaigns

@@ -546,6 +546,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "superadmin": "Super Admin"
           },
           "agile": "AGILE",
+          "assessor_form": "Assessor Form",
           "case_study": "Case study",
           "client_admin": "Client Admin",
           "hogan": "Hogan",
@@ -8086,6 +8087,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "superadmin": "Super Admin"
           },
           "agile": "AGILE",
+          "assessor_form": "Assessor Form",
           "case_study": "Case study",
           "client_admin": "Client Admin",
           "hogan": "Hogan",
@@ -15625,6 +15627,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "superadmin": "Super Admin"
           },
           "agile": "AGILE",
+          "assessor_form": "Assessor Form",
           "case_study": "Case study",
           "client_admin": "Client Admin",
           "hogan": "Hogan",

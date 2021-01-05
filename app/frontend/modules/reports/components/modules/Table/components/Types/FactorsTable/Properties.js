@@ -10,7 +10,7 @@ import { getValue } from 'rb/presenters/ReactSelectPresenter'
 import connect from './connect'
 import SortableFactors from './SortableFactors'
 
-const ALL_FACTORS = 'All Subfactors'
+const ALL_FACTORS = 'All Factors'
 
 class Properties extends Component {
   static propTypes = {
@@ -22,7 +22,7 @@ class Properties extends Component {
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
-    const factors = _.map(AppStore.subfactors[dimensionId], this.factor)
+    const factors = _.map(AppStore.factors[dimensionId], this.factor)
     factors.unshift({ id: ALL_FACTORS, alias: ALL_FACTORS })
     return factors
   }
@@ -32,7 +32,7 @@ class Properties extends Component {
     const assessmentId = model.assessment_id
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
-    return _.map(model.filterFactors(AppStore.subfactors[dimensionId]), this.factor)
+    return _.map(model.filterFactors(AppStore.factors[dimensionId]), this.factor)
   }
 
   factor = f => ({ id: f.id, alias: `${f.alias.substring(0, 24)}` })
@@ -124,7 +124,7 @@ class Properties extends Component {
     const { model } = this.props
     return (
       <div>
-        <span className={styles.label}>Subfactors</span>
+        <span className={styles.label}>Factors</span>
         <Select
           name="form-field-name"
           value={getValue(this.collectFactors(), _.result(model, 'props.source.factors', 'Choose factor'))}
@@ -153,7 +153,7 @@ class Properties extends Component {
     const assessment = _.find(AppStore.assessments, { id: model.assessment_id })
     const dimensionId = assessment && assessment.dimensionId
     if (!dimensionId) { return null }
-    let max = AppStore.subfactors[dimensionId].length + 1
+    let max = AppStore.factors[dimensionId].length + 1
     if (max < 6) { max = 6 }
     return (
       <select onChange={e => this.changeProp('maxPosition', e)} value={model.props.maxPosition}>
