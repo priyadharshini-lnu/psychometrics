@@ -15,7 +15,7 @@ module Assessors
       end
 
       def resolve
-        scope.joins(:user_assessments).where(user_assessments: { evaluator: user })
+        scope.joins(:user_assessments).where(user_assessments: { evaluator: user }).distinct
       end
     end
   end

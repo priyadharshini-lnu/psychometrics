@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Administration::Campaigns::AssessorsController, type: :controller do
   let(:current_user) { create(:superadmin) }
+  let(:assessor) { create(:assessor) }
   let(:campaign) { create(:campaign) }
   let!(:assessment1) { create(:assessment, category: :assessor_form, name: 'A 1') }
   let!(:assessment2) { create(:assessment, category: :assessor_form, name: 'A 2') }
@@ -17,6 +18,32 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
   before(:each) { login_user(current_user) }
   before(:each) { create(:relationship, name: Relationship::ASSESSOR, type: :global) }
   after(:each) { sign_out(current_user) }
+
+  describe 'index' do
+    it 'returns assesor details' do
+      get :index, params: { new_campaign_id: assessor.campaign_id }, format: :json
+
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response['total']).to eq(1)
+      expect(parsed_response['list']).to eq([{
+        'id' => assessor.id,
+        'full_name' => assessor.user.decorate.full_name,
+        'email' => assessor.user.email,
+        'status' => 'completed',
+        'completed_evaluations' => 0,
+        'total_evaluations' => 0
+      }])
+    end
+  end
+
+  describe 'destroy' do
+    it 'destroys the assessor record' do
+      delete :destroy, params: { new_campaign_id: assessor.campaign_id, id: assessor.id }, format: :json
+
+      expect(Assessor.find_by(id: assessor.id)).to eq(nil)
+    end
+  end
 
   it '[GET] available_assessments' do
     get :available_assessments, params: {

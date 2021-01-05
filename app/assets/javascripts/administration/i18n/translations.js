@@ -919,7 +919,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "assessor": {
       "count": "%{count} Assessors",
-      "evaluations_completed": "Evaluations Completed",
+      "evaluations": "Evaluations",
       "modals": {
         "create_assessor": {
           "add": "Add",
@@ -949,6 +949,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
       "status": "Status",
+      "statuses": {
+        "completed": "Completed",
+        "not_completed": "Not Completed"
+      },
       "toolbar": {
         "import": "Import Assessors",
         "tools": "Tools"
@@ -5432,6 +5436,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "category": "فئة",
       "created_at": "تم إنشاؤها في",
       "id": "الهوية",
+      "name": "Name",
       "status": "حالة"
     },
     "model": {
@@ -8457,7 +8462,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     },
     "assessor": {
       "count": "%{count} Assessors",
-      "evaluations_completed": "Evaluations Completed",
+      "evaluations": "Evaluations",
       "modals": {
         "create_assessor": {
           "add": "Add",
@@ -8487,6 +8492,10 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       },
       "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
       "status": "Status",
+      "statuses": {
+        "completed": "Completed",
+        "not_completed": "Not Completed"
+      },
       "toolbar": {
         "import": "Import Assessors",
         "tools": "Tools"
@@ -12970,6 +12979,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "category": "Kategorie",
       "created_at": "Created at",
       "id": "Id",
+      "name": "Name",
       "status": "Status"
     },
     "model": {
@@ -15988,7 +15998,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "assessor": {
       "count": "%{count} Assessors",
-      "evaluations_completed": "Evaluations Completed",
+      "evaluations": "Evaluations",
       "modals": {
         "create_assessor": {
           "add": "Add",
@@ -16018,6 +16028,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "remove_confirmation": "Are you sure you want to remove assessor with email %{email} from this campaing?",
       "status": "Status",
+      "statuses": {
+        "completed": "Completed",
+        "not_completed": "Not Completed"
+      },
       "toolbar": {
         "import": "Import Assessors",
         "tools": "Tools"
@@ -20501,6 +20515,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "category": "Category",
       "created_at": "Created at",
       "id": "Id",
+      "name": "Name",
       "status": "Status"
     },
     "model": {

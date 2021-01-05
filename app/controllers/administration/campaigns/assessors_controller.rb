@@ -7,13 +7,15 @@ module Administration
 
       def index
         assessors = campaign.assessors.ransack(params[:filters]).result
+        paginated_assessors = assessors.page(params[:page])
 
         respond_to do |format|
           format.json do
             serialized_assessors = ActiveModelSerializers::SerializableResource.new(
-              assessors.page(params[:page]),
+              paginated_assessors,
               each_serializer: Administration::Campaigns::AssessorSerializer,
-              campaign_id: campaign.id
+              campaign_id: campaign.id,
+              evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
             )
 
             render json: {
@@ -57,18 +59,27 @@ module Administration
       end
 
       def destroy
-        throw 'Not implemented yet'
+        ::Assessors::Remove.call!(resource)
+
+        render json: resource.id
       end
 
       private
 
       def pundit_authorize
-        authorize(resource || Assessor, nil, policy_class: Campaigns::AssessorPolicy)
+        authorize(resource || Assessor, nil, policy_class: Administration::Campaigns::AssessorPolicy)
       end
 
       def resource_class
         Assessor
       end
+
+      # rubocop:disable Naming/MemoizedInstanceVariableName
+      def set_resource
+        @_resource ||= policy_scope(Assessor, policy_scope_class: Administration::Campaigns::AssessorPolicy::Scope).
+                       find(params[:id])
+      end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end

@@ -36,13 +36,11 @@ export const CLEAR_FORM = 'campaigns/assessor/CLEAR_FORM'
 
 const AssessorTR = t.type({
   id: t.number,
-  firstName: t.string,
-  lastName: t.string,
+  fullName: t.string,
   email: t.string,
-  evaluationsCompleted: t.number,
+  totalEvaluations: t.number,
+  completedEvaluations: t.number,
   status: t.string,
-  createdAt: t.string,
-  updatedAt: t.string,
 })
 
 type Assessor = t.TypeOf<typeof AssessorTR>

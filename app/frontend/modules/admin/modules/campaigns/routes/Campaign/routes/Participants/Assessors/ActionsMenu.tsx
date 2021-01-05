@@ -6,13 +6,12 @@ const { I18n } = window
 
 
 interface ActionMenuProps {
-  onEdit(): void
   email: string
   remove(): void
 }
 
 export const ActionsMenu: React.FC<ActionMenuProps> = ({
-  onEdit, remove, email,
+  remove, email,
 }) => {
   const handleDelete = () => {
     Modal.confirm({
@@ -32,15 +31,6 @@ export const ActionsMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Menu>
-      <Menu.Item key="edit">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={onEdit}
-        >
-          {I18n.t('frontend.edit')}
-        </div>
-      </Menu.Item>
       <Menu.Item key="delete">
         <div
           role="button"

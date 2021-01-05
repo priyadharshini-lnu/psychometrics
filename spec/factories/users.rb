@@ -85,9 +85,14 @@ FactoryBot.define do
 
     trait :assessor do
       role { User::ADMIN_ROLE }
+      transient do
+        with_campaign { nil }
+      end
 
-      after(:create) do |user|
-        create :assessor, user: user
+      after(:create) do |user, evaluator|
+        attrs = { user: user }
+        attrs[:campaign] = evaluator.with_campaign if evaluator.with_campaign
+        create :assessor, attrs
       end
     end
   end

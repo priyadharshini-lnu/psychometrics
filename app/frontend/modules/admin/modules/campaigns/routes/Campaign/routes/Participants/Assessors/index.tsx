@@ -119,31 +119,26 @@ const AssessorList: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.users.list.first_name')}
-              key="firstName"
-              dataIndex="firstName"
-            />
-            <Column
-              title={I18n.t('administration.users.list.last_name')}
-              key="lastName"
-              dataIndex="lastName"
+              title={I18n.t('common.column.name')}
+              key="fullName"
+              dataIndex="fullName"
+              sorter
+              sortOrder={getSortOrder('fullName')}
             />
             <Column
               title={I18n.t('administration.users.list.email')}
               key="email"
-              sorter
-              sortOrder={getSortOrder('email')}
               dataIndex="email"
             />
             <Column
-              title={I18n.t('administration.assessor.status')}
+              title={I18n.t('common.column.status')}
               key="status"
-              dataIndex="status"
+              render={({ status }) => I18n.t(`administration.assessor.statuses.${status}`)}
             />
             <Column
-              title={I18n.t('administration.assessor.evaluations_completed')}
+              title={I18n.t('administration.assessor.evaluations')}
               key="evaluationsCompleted"
-              dataIndex="evaluationsCompleted"
+              render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
             />
             <Column
               title={I18n.t('administration.campaigns.actions')}
@@ -152,7 +147,6 @@ const AssessorList: React.FC<Props> = ({
                 <Dropdown
                   overlay={() => (
                     ActionsMenu({
-                      onEdit: () => openModal('AssessorFormModal', { campaignId, assessor, projectId }),
                       email: assessor.email,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement

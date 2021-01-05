@@ -155,7 +155,7 @@ en:
         successfully: Assessment %{name} was Updated Successfully.
     assessor:
       count: "%{count} Assessors"
-      evaluations_completed: Evaluations Completed
+      evaluations: Evaluations
       modals:
         create_assessor:
           add: Add
@@ -183,6 +183,9 @@ en:
       toolbar:
         import: Import Assessors
         tools: Tools
+      statuses:
+        completed: Completed
+        not_completed: Not Completed
     assigns:
       create:
         successfully: New assign to assessment was successfully created

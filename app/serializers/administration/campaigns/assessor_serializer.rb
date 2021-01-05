@@ -3,23 +3,37 @@
 module Administration
   module Campaigns
     class AssessorSerializer < ActiveModel::Serializer
-      attributes :id, :first_name, :last_name, :email, :created_at, :updated_at,
-                 :status, :evaluations_completed
+      attributes :id, :full_name, :email,
+                 :status, :total_evaluations, :completed_evaluations
 
-      delegate :first_name, :last_name, :email, to: :user
+      delegate :email, to: :user
 
-      def user
-        object.user
+      def full_name
+        user.decorate.full_name
       end
 
       def status
-        # TODO: Implement
-        'undefined'
+        return :completed if total_evaluations == completed_evaluations
+
+        :not_completed
       end
 
-      def evaluations_completed
-        # TODO: Implement
-        -1
+      def total_evaluations
+        evalutions_count[:total]
+      end
+
+      def completed_evaluations
+        evalutions_count[:completed]
+      end
+
+      private
+
+      def evalutions_count
+        instance_options[:evalutions_count][object.user_id] || { total: 0, completed: 0 }
+      end
+
+      def user
+        object.user
       end
     end
   end
