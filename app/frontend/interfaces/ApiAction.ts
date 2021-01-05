@@ -4,6 +4,7 @@ import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
 export interface Request<T> {
   method?: string
+  mocked?: boolean
   url: string
   loader?: boolean
   camelize?: boolean

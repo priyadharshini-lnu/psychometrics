@@ -29,6 +29,7 @@ export const fetch = (parentType: string, parentId: number): ApiAction<ListRespo
   type: FETCH,
   request: {
     method: 'get',
+    mocked: true,
     debounce: 500,
     typedResponse: ListResponseTR,
     url: `/administration/${parentType}s/${parentId}/datasheets`,

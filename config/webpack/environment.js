@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { environment, loaders } = require('@rails/webpacker')
 const { env } = require('process')
 const { resolve } = require('path')
