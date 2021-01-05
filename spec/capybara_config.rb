@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+if ENV['TEST_ENV_NUMBER'].present?
+  Webdrivers.install_dir = File.expand_path('~/.webdrivers/' + ENV['TEST_ENV_NUMBER'].to_s)
+end
+
 Capybara.default_max_wait_time = 10
 
 Capybara.register_driver :chrome do |app|
