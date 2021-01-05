@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   def project_background
-    if @current_project&.background&.url
+    if @current_project&.background&.image?
       "background-image: url('#{@current_project.background.url}');"
     elsif @current_project&.background_color.present?
       "background: #{@current_project.background_color};"

@@ -145,7 +145,7 @@ class Client < ApplicationRecord
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_uploader :logo, ImageUploader
-  mount_uploader :background, ImageUploader
+  mount_uploader :background, BackgroundUploader
   mount_uploader :secondary_logo, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
