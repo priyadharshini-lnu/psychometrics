@@ -13,6 +13,7 @@ import { watchers as recipientCriteriaWatchers } from '../modules/threeSixtyCamp
 import { watchers as campaignAssessment } from '../modules/campaigns/core/assessments/watchers'
 import { watchers as user } from '../modules/campaigns/core/users'
 import { watchers as campaign } from '../modules/campaigns/core/list'
+import { watchers as assessors } from '../modules/campaigns/core/assessors'
 
 
 export default function* () {
@@ -30,5 +31,6 @@ export default function* () {
     ...campaignAssessment,
     ...user,
     ...campaign,
+    ...assessors,
   ])
 }

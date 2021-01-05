@@ -41,12 +41,18 @@ en:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
         create_all:
           attributes:
+            assessors:
+              email_duplicated: The subject and assessor emails are duplicated
             evaluators:
               email_duplicated: The subject and evaluator emails are duplicated
             subjects:
               email_duplicated: Some subjects have the same email
         create_one:
           attributes:
+            assessor_email:
+              already_exists: The subject with this assessor are already connected
+              blank: Assessor Email can't be blank
+              invalid: Assessor Email is invalid
             email:
               already_exists: A subject with same email already exists
               blank: Email can't be blank

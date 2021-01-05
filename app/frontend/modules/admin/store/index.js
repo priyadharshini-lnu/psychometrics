@@ -15,7 +15,7 @@ let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: 'Admin store' })
   }
 }
 

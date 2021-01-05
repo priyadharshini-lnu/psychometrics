@@ -24,6 +24,22 @@ module Administration
         end
       end
 
+      def create_all
+        form = ::Assessors::CreateAllForm.from_params(params).with_context(campaign: campaign)
+        if form.valid?
+          ::Assessors::CreateAll.call!(form.assessors, campaign, current_user)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
+      def available_assessments
+        render json: Assessment.assessor_form.
+          select(:id, :name).
+          where("owner_id is NULL OR owner_id = #{client.id}").map { |a| { id: a.id, name: a.name } }
+      end
+
       def import
         throw 'Not implemented yet'
       end

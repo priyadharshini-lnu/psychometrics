@@ -33,6 +33,7 @@ class Assessment < ApplicationRecord
     CASE_STUDY = 'case_study',
     THREESIXTY = 'threesixty',
     MINDMILL = 'mindmill',
+    ASSESSOR_FORM = 'assessor_form',
     HOGAN = 'hogan',
     AGILE = 'agile'
   ].freeze
@@ -43,7 +44,8 @@ class Assessment < ApplicationRecord
     threesixty: THREESIXTY,
     mindmill: MINDMILL,
     hogan: HOGAN,
-    agile: AGILE
+    agile: AGILE,
+    assessor_form: ASSESSOR_FORM
   }.freeze
 
   # Assessments constant
@@ -130,6 +132,7 @@ class Assessment < ApplicationRecord
   scope :disabled, -> { where(disabled: true) }
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
+  scope :assessor_form, -> { where(category: CATEGORIES[:assessor_form]) }
   scope :with_category, lambda { |category|
     where(category: category)
   }

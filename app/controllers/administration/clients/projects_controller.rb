@@ -41,13 +41,6 @@ module Administration
         @_resource.privacy_link.present? || @_resource.build_privacy_link
       end
 
-      def search_users
-        users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
-          ::Projects::SearchUserSerializer.new(user).to_h
-        end
-        render json: users
-      end
-
       def export
         @_resources = policy_scope(resource_class).projects_of(client.id).includes(:project_admins)
         respond_to do |format|

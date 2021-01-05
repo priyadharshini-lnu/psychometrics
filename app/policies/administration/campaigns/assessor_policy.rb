@@ -6,6 +6,14 @@ module Administration
       def index?
         @user.is?(:superadmin, :client_admin, :project_admin)
       end
+
+      def available_assessments?
+        index?
+      end
+
+      def create_all?
+        index?
+      end
     end
   end
 end

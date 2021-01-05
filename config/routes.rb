@@ -103,12 +103,15 @@ Rails.application.routes.draw do
           collection do
             post :import
             get :export_completion_status
+            post :search
           end
         end
 
         resources :assessors do
           collection do
             post :import
+            get :available_assessments
+            post :create_all
           end
         end
 
@@ -162,6 +165,7 @@ Rails.application.routes.draw do
         resources :new_campaigns do
           collection do
             get :templates_and_assessment
+            post :search_users
           end
 
           member do
@@ -174,6 +178,12 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :projects do
+      member do
+        post :search_users
+      end
+    end
+
     ### CLIENTS
     resources :clients do
       member do
@@ -268,9 +278,6 @@ Rails.application.routes.draw do
         resources :projects, concerns: :client_editable do
           collection do
             get :export
-          end
-          member do
-            post :search_users
           end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do

@@ -59,6 +59,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "create_all": {
           "attributes": {
+            "assessors": {
+              "email_duplicated": "The subject and assessor emails are duplicated"
+            },
             "evaluators": {
               "email_duplicated": "The subject and evaluator emails are duplicated"
             },
@@ -69,6 +72,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "create_one": {
           "attributes": {
+            "assessor_email": {
+              "already_exists": "The subject with this assessor are already connected",
+              "blank": "Assessor Email can't be blank",
+              "invalid": "Assessor Email is invalid"
+            },
             "email": {
               "already_exists": "A subject with same email already exists",
               "blank": "Email can't be blank",
@@ -801,6 +809,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "360": "360 Feedback",
           "agile": "AGILE",
           "all": "All Categories",
+          "assessor_form": "Assessor Form",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -822,6 +831,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -911,6 +921,27 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "count": "%{count} Assessors",
       "evaluations_completed": "Evaluations Completed",
       "modals": {
+        "create_assessor": {
+          "add": "Add",
+          "cancel": "Cancel",
+          "form": {
+            "add": "Add",
+            "assessments": "Assessments",
+            "assessor": "Assessor",
+            "assessor_placeholder": "Search Assessor...",
+            "subject": "Subject",
+            "subject_placeholder": "Search Subject..."
+          },
+          "sheet": {
+            "assessments": "Assessments",
+            "assessments_placeholder": "Select",
+            "assessor_email": "Assessor's Email",
+            "assessor_first_name": "Assessor's First Name",
+            "assessor_last_name": "Assessor's Last Name",
+            "subject_email": "Subject's Email"
+          },
+          "title": "Add assessor"
+        },
         "import": {
           "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
           "title": "Import Assessors"
@@ -1351,6 +1382,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -1372,6 +1404,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "360": "360 Feedback",
               "agile": "AGILE",
               "all": "All Categories",
+              "assessor_form": "Assessor Form",
               "case_study": "Case Studies",
               "hogan": "Hogan",
               "mindmill": "Mindmill",
@@ -7561,6 +7594,9 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         },
         "create_all": {
           "attributes": {
+            "assessors": {
+              "email_duplicated": "The subject and assessor emails are duplicated"
+            },
             "evaluators": {
               "email_duplicated": "The subject and evaluator emails are duplicated"
             },
@@ -7571,6 +7607,11 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         },
         "create_one": {
           "attributes": {
+            "assessor_email": {
+              "already_exists": "The subject with this assessor are already connected",
+              "blank": "Assessor Email can't be blank",
+              "invalid": "Assessor Email is invalid"
+            },
             "email": {
               "already_exists": "A subject with same email already exists",
               "blank": "Email can't be blank",
@@ -8306,6 +8347,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "360": "360 Feedback",
           "agile": "AGILE",
           "all": "All Categories",
+          "assessor_form": "Assessor Form",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -8327,6 +8369,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -8416,6 +8459,27 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "count": "%{count} Assessors",
       "evaluations_completed": "Evaluations Completed",
       "modals": {
+        "create_assessor": {
+          "add": "Add",
+          "cancel": "Cancel",
+          "form": {
+            "add": "Add",
+            "assessments": "Assessments",
+            "assessor": "Assessor",
+            "assessor_placeholder": "Search Assessor...",
+            "subject": "Subject",
+            "subject_placeholder": "Search Subject..."
+          },
+          "sheet": {
+            "assessments": "Assessments",
+            "assessments_placeholder": "Select",
+            "assessor_email": "Assessor's Email",
+            "assessor_first_name": "Assessor's First Name",
+            "assessor_last_name": "Assessor's Last Name",
+            "subject_email": "Subject's Email"
+          },
+          "title": "Add assessor"
+        },
         "import": {
           "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
           "title": "Import Assessors"
@@ -8856,6 +8920,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -8877,6 +8942,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "360": "360 Feedback",
               "agile": "AGILE",
               "all": "All Categories",
+              "assessor_form": "Assessor Form",
               "case_study": "Case Studies",
               "hogan": "Hogan",
               "mindmill": "Mindmill",
@@ -15062,6 +15128,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "create_all": {
           "attributes": {
+            "assessors": {
+              "email_duplicated": "The subject and assessor emails are duplicated"
+            },
             "evaluators": {
               "email_duplicated": "The subject and evaluator emails are duplicated"
             },
@@ -15072,6 +15141,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "create_one": {
           "attributes": {
+            "assessor_email": {
+              "already_exists": "The subject with this assessor are already connected",
+              "blank": "Assessor Email can't be blank",
+              "invalid": "Assessor Email is invalid"
+            },
             "email": {
               "already_exists": "A subject with same email already exists",
               "blank": "Email can't be blank",
@@ -15804,6 +15878,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "360": "360 Feedback",
           "agile": "AGILE",
           "all": "All Categories",
+          "assessor_form": "Assessor Form",
           "case_study": "Case Studies",
           "hogan": "Hogan",
           "mindmill": "Mindmill",
@@ -15825,6 +15900,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -15914,6 +15990,27 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "count": "%{count} Assessors",
       "evaluations_completed": "Evaluations Completed",
       "modals": {
+        "create_assessor": {
+          "add": "Add",
+          "cancel": "Cancel",
+          "form": {
+            "add": "Add",
+            "assessments": "Assessments",
+            "assessor": "Assessor",
+            "assessor_placeholder": "Search Assessor...",
+            "subject": "Subject",
+            "subject_placeholder": "Search Subject..."
+          },
+          "sheet": {
+            "assessments": "Assessments",
+            "assessments_placeholder": "Select",
+            "assessor_email": "Assessor's Email",
+            "assessor_first_name": "Assessor's First Name",
+            "assessor_last_name": "Assessor's Last Name",
+            "subject_email": "Subject's Email"
+          },
+          "title": "Add assessor"
+        },
         "import": {
           "body": "Refer to the Export functionality to extract a template that can be used to Import here.",
           "title": "Import Assessors"
@@ -16354,6 +16451,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "360": "360 Feedback",
             "agile": "AGILE",
             "all": "All Categories",
+            "assessor_form": "Assessor Form",
             "case_study": "Case Studies",
             "hogan": "Hogan",
             "mindmill": "Mindmill",
@@ -16375,6 +16473,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "360": "360 Feedback",
               "agile": "AGILE",
               "all": "All Categories",
+              "assessor_form": "Assessor Form",
               "case_study": "Case Studies",
               "hogan": "Hogan",
               "mindmill": "Mindmill",

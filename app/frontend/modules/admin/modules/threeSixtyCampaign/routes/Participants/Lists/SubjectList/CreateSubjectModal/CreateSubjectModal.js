@@ -9,7 +9,7 @@ import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'modules/admin/utils/spreadSheet'
 import ErrorAlertBox from 'components/ErrorAlertBox'
 import userPresenter from 'presenters/user'
-import UserAutocomplete from '../../shared/UserAutocomplete'
+import UserAutocomplete from 'components/UserAutocomplete'
 
 const tableFields = [
   {

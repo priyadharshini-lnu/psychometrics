@@ -37,6 +37,13 @@ module Administration
         end
       end
 
+      def search
+        users = ::Users::SearchQuery.new(campaign, params[:q]).query.map do |user|
+          ::Projects::SearchUserSerializer.new(user).to_h
+        end
+        render json: users
+      end
+
       def export_completion_status
         headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
         headers['Content-Type'] ||= 'text/csv'

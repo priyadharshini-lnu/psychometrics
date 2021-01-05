@@ -19,7 +19,7 @@ const middleware = [api, sagaMiddleware, flowMiddleware, thunk, routerMiddleware
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
-    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ name: 'User store' })
   }
   if (!__DISABLE_LOGGER_) {
     middleware.push(logger)

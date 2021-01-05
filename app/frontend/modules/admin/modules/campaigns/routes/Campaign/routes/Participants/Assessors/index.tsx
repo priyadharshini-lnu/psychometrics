@@ -97,7 +97,7 @@ const AssessorList: React.FC<Props> = ({
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
           <div className={styles.newUserButton}>
-            <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId })}>
+            <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
               <PlusOutlined />
               <span>Add Assessor</span>
             </Button>
@@ -152,7 +152,7 @@ const AssessorList: React.FC<Props> = ({
                 <Dropdown
                   overlay={() => (
                     ActionsMenu({
-                      onEdit: () => openModal('AssessorFormModal', { campaignId, assessor }),
+                      onEdit: () => openModal('AssessorFormModal', { campaignId, assessor, projectId }),
                       email: assessor.email,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement

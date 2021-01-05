@@ -87,6 +87,16 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     end
   end
 
+  it 'POST search' do
+    u = create(:user, email: 'atanych@gmail.com')
+    create(:campaign_user, campaign: campaign, user: u)
+    post :search, params: { new_campaign_id: campaign.id, q: 'atanych' }
+
+    parsed_response = JSON.parse(response.body)
+    expect(parsed_response.length).to eq(1)
+    expect(parsed_response.first['email']).to eq('atanych@gmail.com')
+  end
+
   private
 
   def check_user_response(user_response)

@@ -42,5 +42,11 @@ module Users
     def scope
       :user
     end
+
+    def invite_assessor!(invited_by)
+      self.skip_invitation = true
+      invite!(invited_by, {})
+      InvitationMailer.invite_admin(id, @raw_invitation_token).deliver_later
+    end
   end
 end

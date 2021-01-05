@@ -69,6 +69,7 @@ en:
           '360': 360 Feedback
           agile: AGILE
           all: All Categories
+          assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
           mindmill: Mindmill
@@ -86,6 +87,7 @@ en:
             '360': 360 Feedback
             agile: AGILE
             all: All Categories
+            assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
             mindmill: Mindmill
@@ -155,6 +157,24 @@ en:
       count: "%{count} Assessors"
       evaluations_completed: Evaluations Completed
       modals:
+        create_assessor:
+          add: Add
+          cancel: Cancel
+          form:
+            add: Add
+            assessments: Assessments
+            assessor: Assessor
+            assessor_placeholder: Search Assessor...
+            subject: Subject
+            subject_placeholder: Search Subject...
+          sheet:
+            assessments: Assessments
+            assessments_placeholder: Select
+            assessor_email: Assessor's Email
+            assessor_first_name: Assessor's First Name
+            assessor_last_name: Assessor's Last Name
+            subject_email: Subject's Email
+          title: Add assessor
         import:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
@@ -505,6 +525,7 @@ en:
             '360': 360 Feedback
             agile: AGILE
             all: All Categories
+            assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
             mindmill: Mindmill
@@ -522,6 +543,7 @@ en:
               '360': 360 Feedback
               agile: AGILE
               all: All Categories
+              assessor_form: Assessor Form
               case_study: Case Studies
               hogan: Hogan
               mindmill: Mindmill
