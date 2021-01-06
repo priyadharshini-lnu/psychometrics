@@ -16,6 +16,16 @@ module Administration
         end
       end
 
+      def export_agile_raw_results
+        results = ::Assessments::Export::AgileRaw.call!(
+          assessment, campaign
+        )
+
+        respond_to do |format|
+          format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-agile-raw-results.xlsx" }
+        end
+      end
+
       def export_scoring_results
         results = ::Assessments::Export::RawAndScoring.call!(assessment, campaign, scoring: true)
 
