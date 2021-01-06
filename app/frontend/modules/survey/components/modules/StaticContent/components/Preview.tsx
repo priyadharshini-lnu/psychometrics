@@ -80,6 +80,6 @@ const TypeRender: FC<TypeRenderProps> = ({ model }): JSX.Element | null => {
   return <View model={model} key={type} />
 }
 
-const ConnectedPreview = connect(Preview)
+const ConnectedPreview = connector(Preview)
 
 export default ConnectedPreview
