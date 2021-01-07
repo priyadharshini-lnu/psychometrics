@@ -33,7 +33,7 @@ module Administration
         @assessment = Assessment.find(params[:assessment_id])
         authorize @assessment
 
-        results = ::Exports::Assessments::AssessmentResultsExport.call!(@assessment, client.id)
+        results = ::Exports::Assessments::AssessmentResultsExport.call!(@assessment, client.id, export_results_params)
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
           format.xlsx { send_data results.to_stream.read, filename: filename }

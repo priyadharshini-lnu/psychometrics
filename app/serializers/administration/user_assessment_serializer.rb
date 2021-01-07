@@ -37,6 +37,10 @@ module Administration
       assessment.external?
     end
 
+    def is_agile # rubocop:disable Naming/PredicateName
+      assessment.agile?
+    end
+
     private
 
     def norm

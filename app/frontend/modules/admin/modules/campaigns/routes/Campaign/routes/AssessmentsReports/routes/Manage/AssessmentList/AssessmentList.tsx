@@ -158,6 +158,44 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
     message.info(I18n.t('campaign_assessment.modals.rescore_response.message', { name }))
   }
 
+  if (assessment.isAgile) {
+    return (
+      <Menu>
+        <Menu.ItemGroup key="export" title="Export">
+          {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
+            <Menu.Item key="export_raw_labels">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={
+                  `/administration/new_campaigns/${campaignId}/assessments/${id}/export_agile_raw_results.xlsx`}
+              >
+                Raw
+              </a>
+            </Menu.Item>
+          )}
+        </Menu.ItemGroup>
+        <Menu.Divider />
+        <Menu.Item key="rescoring">
+          <a
+            onClick={handleRescoreResponse}
+          >
+            {I18n.t('campaign_assessment.modals.rescore_response.title')}
+          </a>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item key="remove">
+          <div
+            role="button"
+            tabIndex={-1}
+            onClick={() => openModal('RemoveAssessmentModal', { assessment, campaignId, campaignAssessmentId: id })}
+          >
+            {I18n.t('common.actions.remove')}
+          </div>
+        </Menu.Item>
+      </Menu>
+    )
+  }
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">

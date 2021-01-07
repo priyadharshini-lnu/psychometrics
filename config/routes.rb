@@ -123,6 +123,7 @@ Rails.application.routes.draw do
         resources :assessments, only: %i[create destroy] do
           member do
             get :export_raw_results
+            get :export_agile_raw_results
             get :export_scoring_results
             get :export_normed_results
             get :export_external_results

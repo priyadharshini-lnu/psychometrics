@@ -6,8 +6,7 @@ module Exports
       private_attr_accessor :assessment
 
       def get_xlsx_export_result
-
-        config = Agile.find_by_assessment_id(assessment_id).try(:config)
+        config = Agile.find_by_assessment_id(assessment.id).try(:config)
 
         Axlsx::Package.new do |package|
           package.use_shared_strings = true

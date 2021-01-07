@@ -22,7 +22,9 @@ module Administration
         )
 
         respond_to do |format|
-          format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-agile-raw-results.xlsx" }
+          format.xlsx do
+            send_data results.to_stream.read, filename: "assessment-#{assessment.id}-agile-raw-results.xlsx"
+          end
         end
       end
 

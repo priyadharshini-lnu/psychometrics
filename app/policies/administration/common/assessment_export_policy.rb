@@ -29,7 +29,7 @@ module Administration
         @record.hogan? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
 
-      def export_agile_results?
+      def export_agile_raw_results?
         @record.agile? && (@user.is?(:superadmin) || @user.has_grant?(:assigns, :view))
       end
 

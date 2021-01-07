@@ -118,6 +118,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         universal_link
         norms
         is_external
+        is_agile
       ]
     )
     expect(assessment_response).to include({
