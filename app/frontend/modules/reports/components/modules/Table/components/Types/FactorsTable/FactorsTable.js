@@ -267,13 +267,13 @@ class FactorsTable extends Component {
       return null
     }
 
-    const { module, model } = this.props
+    const { model } = this.props
     return (
       <thead>
         <tr>
-          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
-          {model.props.showDescription && <th scope="col">{I18nStore.tModule(module, 'description') || 'Description'}</th>}
-          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
+          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
+          <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
+          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th>}
         </tr>
       </thead>
     )

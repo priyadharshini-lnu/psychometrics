@@ -1484,6 +1484,10 @@ en:
       cpi_occupations:
         occupations: Occupations
         your_potential_suitability: Your Potential Suitability
+      factors_table:
+        description: Description
+        rank: Rank
+        score: Score
       gap_assessment:
         gap: Gap
         item: Indicator
