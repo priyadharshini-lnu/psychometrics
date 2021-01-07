@@ -180,12 +180,12 @@ en:
           title: Import Assessors
       remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaing?
       status: Status
-      toolbar:
-        import: Import Assessors
-        tools: Tools
       statuses:
         completed: Completed
         not_completed: Not Completed
+      toolbar:
+        import: Import Assessors
+        tools: Tools
     assigns:
       create:
         successfully: New assign to assessment was successfully created

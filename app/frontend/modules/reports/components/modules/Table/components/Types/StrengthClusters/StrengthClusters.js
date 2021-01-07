@@ -7,6 +7,7 @@ import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
 import cs from 'classnames'
 import { renderMarkdown } from 'rb/utils/Markdown'
+import { TopFactorType } from 'rb/models/Results/interfaces'
 import styles from './StrengthClusters.scss'
 
 const MockSubfactors = [
@@ -191,7 +192,7 @@ class StrengthClusters extends Component {
     if (ResultStore.realResults) {
       const factorIds = _.map(props.source.factors, 'id')
       this.topData = ResultStore.results[module.assessment_id]
-        .getTopFactors(props.minPosition, props.maxPosition, factorIds, false)
+        .getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Factor)
     } else {
       this.topData = _.take(MockData, props.maxPosition - props.minPosition + 1)
     }

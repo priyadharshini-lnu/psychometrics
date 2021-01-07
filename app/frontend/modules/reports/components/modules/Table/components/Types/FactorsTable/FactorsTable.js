@@ -7,6 +7,7 @@ import cs from 'classnames'
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
 import { renderMarkdown } from 'rb/utils/Markdown'
+import { TopFactorType } from 'rb/models/Results/interfaces'
 import PieGraph from '../../../../../PieGraph'
 import styles from './FactorsTable.scss'
 
@@ -160,9 +161,9 @@ class FactorsTable extends Component {
       const sourceFactors = _.get(props, ['source', 'factors'], [])
       const factorIds = sourceFactors.map(f => f.id)
       if (props.mode === 'topFactors') {
-        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds)
+        this.factorsData = ResultStore.results[module.assessment_id].getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Any)
       } else {
-        const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds)
+        const factorData = ResultStore.results[module.assessment_id].getTopFactors(0, factorIds.length, factorIds, TopFactorType.Any)
         this.factorsData = _.sortBy(factorData, f => factorIds.indexOf(f.id))
       }
     } else {
@@ -266,13 +267,13 @@ class FactorsTable extends Component {
       return null
     }
 
-    const { module, model } = this.props
+    const { model } = this.props
     return (
       <thead>
         <tr>
-          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.tModule(module, 'rankOrder') || 'Rank'}</th>}
-          {model.props.showDescription && <th scope="col">{I18nStore.tModule(module, 'description') || 'Description'}</th>}
-          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.tModule(module, 'score') || 'Score'}</th>}
+          {this.canShowRank() && <th className={styles.rankOrder} scope="col">{I18nStore.t('reports.modules.factors_table.rank')}</th>}
+          <th scope="col">{I18nStore.t('reports.modules.factors_table.description')}</th>
+          {model.props.showScore && <th className={styles.score} scope="col">{I18nStore.t('reports.modules.factors_table.score')}</th>}
         </tr>
       </thead>
     )

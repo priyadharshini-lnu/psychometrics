@@ -8,6 +8,7 @@ import _ from 'lodash'
 import Scoring from 'modules/reports/models/Scoring'
 import store from 'modules/reports/store'
 import schema from 'modules/reports/store/schema'
+import { TopFactorType } from 'modules/reports/models/Results/interfaces'
 import { normalize } from 'normalizr'
 
 beforeAll(() => {
@@ -177,7 +178,7 @@ test('getTopFactors(from, to, factorIds, subfactors)', () => {
     const res = new Result(190)
     res.init(results, user, filters)
 
-    expect(res.getTopFactors(2, 3, [2335, 2336, 2337], false)).toStrictEqual([
+    expect(res.getTopFactors(2, 3, [2335, 2336, 2337], TopFactorType.Factor)).toStrictEqual([
         {
             "alias": "Receptive (2)",
             "description": "You may enjoy learning by seeking feedback from others around you. At the same time, in situations where recognition or ongoing support is not available, you will tend to find other ways and means to enhance your learning experience.",
@@ -195,7 +196,7 @@ test('getTopFactors(from, to, factorIds, subfactors)', () => {
             "meanRawScore": 4
         }
     ])
-    expect(res.getTopFactors(1, 3, [2335, 2336, 2337], true)).toStrictEqual([])
+    expect(res.getTopFactors(1, 3, [2335, 2336, 2337], TopFactorType.SubFactor)).toStrictEqual([])
 })
 
 test('getTopSubFactors(from, to, factorId)', () => {

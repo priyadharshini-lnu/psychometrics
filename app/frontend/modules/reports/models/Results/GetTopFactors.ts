@@ -1,14 +1,14 @@
 import _ from 'lodash'
 import AppStore from '../../store/AppStore'
 import { ScoringData } from './interfaces/ResultScoring'
-import { ResultsByFilter, TopFactor } from './interfaces'
+import { ResultsByFilter, TopFactor, TopFactorType } from './interfaces'
 
 export default {
   run: (
     from: number,
     to: number,
     factorIds: number[],
-    areSubfactors: boolean,
+    factorType: TopFactorType,
     resultsByFilter: ResultsByFilter,
     dimensionId: number,
   ): TopFactor[] => {
@@ -16,8 +16,11 @@ export default {
     const filtered = _.pick(resultsByFilter.individual.scoring, factorIds)
     const factors = _.reduce(filtered, (factors: TopFactor[], d: ScoringData, factorId: string) => {
       const factorData = AppStore.mapFactors[dimensionId][factorId]
-
-      if (factorData && areSubfactors === AppStore.isSubfactor(parseInt(factorId, 10))) {
+      const isSubFactor = AppStore.isSubfactor(parseInt(factorId, 10))
+      const isValidFactorType = factorType === TopFactorType.Any
+        || (factorType === TopFactorType.SubFactor && isSubFactor)
+        || (factorType === TopFactorType.Factor && !isSubFactor)
+      if (factorData && isValidFactorType) {
         return [...factors, {
           meanRawScore: _.round(_.meanBy(d.results, 'value'), 2),
           meanNormScore: _.round(_.meanBy(d.results, 'norm'), 2),

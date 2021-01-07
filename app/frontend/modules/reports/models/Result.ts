@@ -16,6 +16,7 @@ import {
   AverageFactor,
   OccupationFactor,
   QuestionScoringWithoutFactorsObject,
+  TopFactorType,
 } from './Results/interfaces'
 
 import {
@@ -145,8 +146,8 @@ export default class Result {
   }
 
   // eslint-disable-next-line arrow-body-style
-  getTopFactors = (from: number, to: number, factorIds: number[], subfactors = true): TopFactor[] => {
-    return GetTopFactors.run(from, to, factorIds, subfactors, this.resultsByFilter, this.dimensionId)
+  getTopFactors = (from: number, to: number, factorIds: number[], factorType: TopFactorType): TopFactor[] => {
+    return GetTopFactors.run(from, to, factorIds, factorType, this.resultsByFilter, this.dimensionId)
   }
 
   getBranchData = (filterId: string | null, branchName: string): ResultScoring => {
@@ -163,12 +164,12 @@ export default class Result {
 
   getTopSubFactors = (from: number, to: number, factorId: number): TopFactor[] => {
     const subFactorIds = _.get(AppStore.mapSubfactorIdsByFactor, [this.dimensionId, factorId], [])
-    return GetTopFactors.run(from, to, subFactorIds, true, this.resultsByFilter, this.dimensionId)
+    return GetTopFactors.run(from, to, subFactorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)
   }
 
   getTopFactorByRank = (rank: number): TopFactor => {
     const factorIds = AppStore.subfactors[this.dimensionId].map(f => f.id)
-    return GetTopFactors.run(rank, rank, factorIds, true, this.resultsByFilter, this.dimensionId)[0]
+    return GetTopFactors.run(rank, rank, factorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)[0]
   }
 
   // eslint-disable-next-line arrow-body-style
