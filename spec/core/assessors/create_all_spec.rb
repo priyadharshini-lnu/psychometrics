@@ -24,6 +24,7 @@ describe Assessors::CreateAll do
     [
       {
         assessor_email: 'existing.atanov@gmail.com',
+        assessor_password: 'Password@21',
         assessor_first_name: 'Vlad',
         assessor_last_name: 'Ata',
         subject_email: 'fedor@gmail.com',
@@ -32,6 +33,7 @@ describe Assessors::CreateAll do
       {
         assessor_email: 'unexising.atanov@gmail.com',
         assessor_first_name: 'Vlad',
+        assessor_password: 'Password@21',
         assessor_last_name: 'Ata',
         subject_email: 'ivan@gmail.com',
         assessment_ids: [assessment1.id, assessment2.id]
@@ -41,8 +43,12 @@ describe Assessors::CreateAll do
 
   it 'existing assessor user' do
     create(:relationship, name: Relationship::ASSESSOR, type: :global)
-    described_class.call!(params, campaign, create(:user))
+    new_assessors, existing_assessors_whose_password_not_changed = described_class.call!(
+      params, campaign, create(:user)
+    )
 
+    expect(new_assessors.size).to eq(2)
+    expect(existing_assessors_whose_password_not_changed.first.email).to eq('existing.atanov@gmail.com')
     assessor_user = User.find_by(email: 'existing.atanov@gmail.com')
     assessor = Assessor.exists?(user: assessor_user, campaign: campaign)
 

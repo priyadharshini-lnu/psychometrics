@@ -21,8 +21,6 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const { I18n } = window
 
-const operationsOptions = ['skip_existing', 'add_with_existing_response', 'add_and_allow_new_response']
-
 interface OwnProps extends PropsFromRedux {
   campaignId: number
   close(): void
@@ -96,7 +94,6 @@ const ImportAssessorsModal: React.FC<OwnProps> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ operation: operationsOptions[0] }}
         onFieldsChange={(a, allFields) => {
           setFields(allFields)
         }}

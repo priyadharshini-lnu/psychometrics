@@ -8,6 +8,8 @@ module Assessors
       @assessors = assessors
       @campaign = campaign
       @current_user = current_user
+      @existing_assessors_whose_password_not_changed = []
+      @new_assessors = []
     end
 
     def call
@@ -22,7 +24,7 @@ module Assessors
           create_user_assessment(assessor_user, subject, assessment_id)
         end
       end
-      broadcast :ok
+      broadcast :ok, @new_assessors, @existing_assessors_whose_password_not_changed
     end
 
     private
@@ -32,7 +34,9 @@ module Assessors
     end
 
     def create_assessor(user)
-      Assessor.create!(campaign: campaign, user: user)
+      assessor = Assessor.create!(campaign: campaign, user: user)
+      @new_assessors << assessor
+      assessor
     end
 
     def create_user_assessment(assessor_user, subject, assessment_id)
@@ -54,12 +58,15 @@ module Assessors
 
     def find_or_create_assessor_user(assessor_attrs)
       user = User.find_by(email: assessor_attrs[:assessor_email], project: nil)
-      unless user
+      if user
+        @existing_assessors_whose_password_not_changed << user if assessor_attrs[:assessor_password].present?
+      else
         user = ::Users::Admin.create!(
           email: assessor_attrs[:assessor_email],
+          password: assessor_attrs[:assessor_password],
           first_name: assessor_attrs[:assessor_first_name],
           last_name: assessor_attrs[:assessor_last_name],
-          create_by_invite: true,
+          create_by_invite: assessor_attrs[:assessor_password].blank?,
           project: nil
         )
         user.invite_assessor!(current_user)
@@ -68,7 +75,7 @@ module Assessors
     end
 
     def find_subject(assessor_attrs)
-      User.find_by(email: assessor_attrs[:subject_email])
+      User.find_by(email: assessor_attrs[:subject_email], project_id: campaign.project_id)
     end
   end
 end

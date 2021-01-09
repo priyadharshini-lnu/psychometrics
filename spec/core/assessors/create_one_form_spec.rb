@@ -6,6 +6,8 @@ describe Assessors::CreateOneForm do
   let(:project) { create(:project) }
 
   let(:campaign) { create(:campaign, project: project) }
+  let(:assessment1) { create(:assessment, category: :assessor_form) }
+  let(:assessment2) { create(:assessment, category: :assessor_form) }
 
   it 'invalid emails' do
     form = described_class.new(subject_email: 'accc')
@@ -23,5 +25,29 @@ describe Assessors::CreateOneForm do
     form.with_context(campaign: campaign)
     form.validate
     expect(form.errors.messages[:assessor_email]).to include('The subject with this assessor are already connected')
+  end
+
+  it 'invalid assessment_ids' do
+    form = described_class.new(assessment_ids: [1, 2])
+    form.with_context(campaign: campaign)
+    form.validate
+    expect(form.errors.messages[:assessment_ids]).to include('Assessment 1 can\'t be attached to an assessor')
+  end
+
+  it 'valid form' do
+    create(:relationship, name: Relationship::ASSESSOR)
+    user = create(:user, email: 'sub@gmail.com')
+    create(:campaign_user, user: user, campaign: campaign)
+    campaign.users.create(email: 'sub@gmail.com')
+
+    form = described_class.new(
+      assessment_ids: [assessment1.id, assessment2.id],
+      assessor_first_name: 'Nick',
+      assessor_last_name: 'Diaz',
+      assessor_email: 'diaz@gmail.com',
+      subject_email: 'sub@gmail.com'
+    )
+    form.with_context(campaign: campaign)
+    expect(form.validate).to eq(true)
   end
 end

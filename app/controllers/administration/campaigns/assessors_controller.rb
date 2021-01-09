@@ -37,13 +37,21 @@ module Administration
       end
 
       def available_assessments
-        render json: Assessment.assessor_form.
-          select(:id, :name).
-          where("owner_id is NULL OR owner_id = #{client.id}").map { |a| { id: a.id, name: a.name } }
+        query = ::Assessors::AvailableAssessmentsQuery.new(client).query
+        render json: query.select(:id, :name).map { |a| { id: a.id, name: a.name } }
       end
 
       def import
-        throw 'Not implemented yet'
+        assessors = ::Assessors::ParseImportData.call!(params[:import_data])
+        form = ::Assessors::CreateAllForm.from_params(assessors: assessors).with_context(campaign: campaign)
+        if form.valid?
+          AdminJob.call(
+            :import_assessors, { campaign_id: params[:new_campaign_id] }, current_user, params[:import_data]
+          )
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
+        end
       end
 
       def show

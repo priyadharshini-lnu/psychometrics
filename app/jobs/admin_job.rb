@@ -14,6 +14,7 @@ class AdminJob < ApplicationJob
 
   JOBS = {
     import_users: AdminJobs::ImportUsers,
+    import_assessors: AdminJobs::ImportAssessors,
     rescore_assessment: AdminJobs::RescoreAssessment,
     rescore_user_assessment: AdminJobs::RescoreUserAssessment,
     import_scoring_data: AdminJobs::ImportData,

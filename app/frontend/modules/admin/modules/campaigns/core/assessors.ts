@@ -89,7 +89,6 @@ export const importAssessors = (campaignId: number, body: any) => ({
     url: `/administration/new_campaigns/${campaignId}/assessors/import`,
     body,
     loader: true,
-    typedResponse: AssessorTR,
   },
 })
 

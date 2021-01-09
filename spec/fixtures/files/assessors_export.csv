@@ -1,0 +1,3 @@
+subject_email,assessor_email,assessor_first_name,assessor_last_name,assessor_password,assessment_ids
+user1@gmail.com,newi@gmail.com,Ivan,Kuzmin,Password@21,"10, 11"
+user1@gmail.com,newi2@gmail.com,Ivan,Kuzmin,Password@21,"10, 11"

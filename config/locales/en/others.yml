@@ -49,6 +49,8 @@ en:
               email_duplicated: Some subjects have the same email
         create_one:
           attributes:
+            assessment_ids:
+              invalid: "Assessment %{id} can't be attached to an assessor"
             assessor_email:
               already_exists: The subject with this assessor are already connected
               blank: Assessor Email can't be blank
@@ -533,6 +535,7 @@ en:
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
         import_users: Import Users
+        import_assessors: Import Assessors
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
