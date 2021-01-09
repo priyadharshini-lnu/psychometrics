@@ -1232,8 +1232,8 @@ en:
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
-          error: An Error is occur
-          error_description: You report generation failed. Please contact to Administrator or try to <b>download</b> again.
+          error: An Error occurred
+          error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
     ar: العربية
