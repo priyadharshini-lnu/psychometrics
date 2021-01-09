@@ -85,7 +85,7 @@ const createSocketChannel = (channel, data) => eventChannel((emit) => {
 })
 
 
-function* genSubsribeSocket ({ channel, data }) {
+function* genSubsribeSocket ({ channel, data }: ReturnType<typeof subscribeSocket>) {
   const { survey } = yield select()
   if (survey.ui.socket.initialized) { return }
   const socketChannel = yield call(createSocketChannel, channel, data)
@@ -107,5 +107,5 @@ function* genSubsribeSocket ({ channel, data }) {
 }
 
 export const watchers = [
-  takeEvery(subscribeSocket, genSubsribeSocket),
+  takeEvery(SUBSCRIBE_SOCKET, genSubsribeSocket),
 ]

@@ -41,11 +41,10 @@ module UsersResults
 
       def factor_norm_hash
         @factor_norm_hash ||=
-          if norm_data.present? && norm_data['id'] && norm_data['type']
+          if norm_data.present? && norm_data['id']
             FactorsNorm.where(
               factor_id: scoring.keys,
-              norm_id: norm_data['id'],
-              type: norm_data['type'].downcase
+              norm_id: norm_data['id']
             ).index_by(&:factor_id)
           else
             {}

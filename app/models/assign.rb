@@ -152,12 +152,6 @@ class Assign < ApplicationRecord
     self.class.encode_id id
   end
 
-  def norm_type
-    return norm_data['type'] if norm_data && norm_data['id'] && norm_data['type']
-
-    nil
-  end
-
   def norm_id
     norm_data&.dig('id')&.to_i
   end
