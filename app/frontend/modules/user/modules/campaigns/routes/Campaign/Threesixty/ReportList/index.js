@@ -53,9 +53,9 @@ function ReportList ({
         size="large"
         header={(
           <div className="header">
-            <div className="letter-icon">R</div>
+            <div className="letter-icon">{I18n.t('threesixty.reports')[0].toUpperCase()}</div>
             <div className="caption">
-              Reports
+              {I18n.t('threesixty.reports')}
               <div className="progress-bars">
                 <Progress
                   className="progress-line"

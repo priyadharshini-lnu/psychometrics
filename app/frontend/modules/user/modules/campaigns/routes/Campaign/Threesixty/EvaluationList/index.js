@@ -92,7 +92,7 @@ function EvaluationList ({
         </Link>
 
         {item.subjectEvaluationClosed && (
-        <Tooltip placement="top" title="Evaluation is closed for this subject">
+        <Tooltip placement="top" title={I18n.t('threesixty.evaluation_closed_message')}>
           <InfoCircleOutlined />
         </Tooltip>
         )}
@@ -156,7 +156,7 @@ function EvaluationList ({
       className="column-list evaluations-list"
       header={(
         <div className="header">
-          <div className="letter-icon">E</div>
+          <div className="letter-icon">{I18n.t('threesixty.evaluations')[0].toUpperCase()}</div>
           <div className="caption">
             {I18n.t('threesixty.evaluations')}
             <div className="progress-bars">

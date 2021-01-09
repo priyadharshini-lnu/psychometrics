@@ -1,16 +1,10 @@
 import _ from 'lodash'
 
-const PREDICATES = {
-  atleast: 'At least',
-  exactly: 'Exactly',
-  atmost: 'At most',
-}
-
+const { I18n } = window
 
 export default {
   getCondition ({ comparator, value }: { comparator: string, value: string }) {
     if (_.isEmpty(value)) { return '' }
-    return `${PREDICATES[comparator]} ${value}`
+    return I18n.t(`threesixty.nomination_predicates.${comparator}`, { count: value })
   },
-
 }

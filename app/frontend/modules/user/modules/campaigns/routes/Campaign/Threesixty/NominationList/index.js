@@ -85,7 +85,7 @@ function NominationList ({
       size="large"
       header={(
         <div className="header">
-          <div className="letter-icon">N</div>
+          <div className="letter-icon">{I18n.t('threesixty.nominations')[0].toUpperCase()}</div>
           <div className="caption">
             {I18n.t('threesixty.nominations')}
             <div className="progress-bars">
