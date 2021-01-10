@@ -24,7 +24,7 @@ const MockData = [
     icon_url: Ambiguity,
     name: 'Ambiguity',
     alias: 'Ambiguity',
-    meanNormScore: 15,
+    meanNormScore: 65.8,
     strategy: 0,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     strengths: `
@@ -206,7 +206,7 @@ class FactorsTable extends Component {
           conditionBlindspots = factor.blindspots
         }
 
-        const score = factor.strategy === 3 ? factor.meanNormScore * 100 : factor.meanNormScore
+        const score = _.round(factor.meanNormScore || factor.meanRawScore, 1)
         const percent = factor.strategy === 3 ? score : (score * 100) / 5 // 5-scale
 
         const {
