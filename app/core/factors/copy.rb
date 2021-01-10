@@ -38,7 +38,8 @@ module Factors
       return if factor_sub_factor.nil?
 
       attributes = factor_sub_factor.attributes.except('id', 'created_at', 'updated_at').merge(
-        factor_id: new_factor.id, sub_factor_id: new_sub_factor.id
+        factor_id: new_factor.id, sub_factor_id: new_sub_factor.id, weight: new_factor.weight,
+        predicate: new_factor.predicate, value: new_factor.value
       )
       FactorsSubFactor.create(attributes)
     end

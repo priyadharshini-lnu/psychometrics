@@ -18,7 +18,7 @@ module UsersResults
 
         sub_factor_hash = FactorsSubFactor.
                           where(factor_id: factor_hash.keys, sub_factor_id: factor_hash.keys).
-                          select(:factor_id, :sub_factor_id, :weight).
+                          select(:factor_id, :sub_factor_id, :weight, :predicate, :value).
                           group_by(&:factor_id)
 
         factor_hash = factor_hash.reduce({}) do |new_factor_hash, (factor_id, factor)|
