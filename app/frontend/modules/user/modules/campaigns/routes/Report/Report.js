@@ -32,7 +32,7 @@ export default function Report ({
     downloadReport(campaignId, userReportId, defaultLanguage.code)
       .then(({ response }) => {
         if (response.success) {
-          message.success('Report is generating. We will let you know when the report is ready.', 3)
+          message.success(I18n.t('threesixty.report_generation_in_progress'), 3)
         }
       })
   }
@@ -57,7 +57,11 @@ export default function Report ({
           )}
           onBack={() => history.push(`/threesixty_campaigns/${params.campaignId}`)}
           extra={[
-            <Button icon={<DownloadOutlined />} onClick={() => requestDownloadReport(params.campaignId, params.id)}>
+            <Button
+              key="download"
+              icon={<DownloadOutlined />}
+              onClick={() => requestDownloadReport(params.campaignId, params.id)}
+            >
               {I18n.t('threesixty.download_pdf')}
             </Button>,
           ]}

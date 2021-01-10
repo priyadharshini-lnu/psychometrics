@@ -725,6 +725,7 @@ en:
     complete_prev: Complete all prev assessments
     completed: Completed
     continue: Continue Assessment
+    details: Details
     in_progress: In Progress
     instructions:
       heading: Instructions to follow
@@ -1231,8 +1232,8 @@ en:
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
-          error: An Error is occur
-          error_description: You report generation failed. Please contact to Administrator or try to <b>download</b> again.
+          error: An Error occurred
+          error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
     ar: العربية
@@ -1429,6 +1430,9 @@ en:
   my: My
   myself: Myself
   na: NA
+  navigation:
+    logout: Logout
+    profile: Profile
   next: Next
   'no': 'No'
   nominations:
@@ -1903,6 +1907,15 @@ en:
       text: required
     'yes': 'Yes'
   subjects:
+    approval_statuses:
+      approved: Approved
+      denied: Denied
+      waiting: Needs Approval
+    report_statuses:
+      failed: Failed
+      generating: Generating
+      not_prepared: Not Ready
+      prepared: Done
     statuses:
       completed: Completed
       declined: Declined
@@ -1918,6 +1931,7 @@ en:
       title: Data processing consent
     add: Add
     and: And
+    approve: Approve
     approve_all: Approve All
     approve_all_successful: Approved all nominations
     approve_evaluations: Approve Evaluations
@@ -1956,6 +1970,7 @@ en:
       delete_successful: Email schedule deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
+    evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     evaluations: Evaluations
     evaluator: Evaluator
@@ -1978,6 +1993,10 @@ en:
     nominate: Nominate
     nominate_evaluators: Nominate Evaluators to
     nomination: Nomination
+    nomination_predicates:
+      atleast: At least %{count}
+      atmost: At most %{count}
+      exactly: Exactly %{count}
     nominations: Nominations
     options:
       global:
@@ -2010,7 +2029,7 @@ en:
         remove_report_approval: Are you sure you want to remove report approval?
         remove_subject: Are you sure you want to remove subject with email from campaign?
         umark_evaluation_as_complete: Are you sure you want to unmark evaluation as done?
-      report_generation_message: Report is generating. We will let you know when the report is ready.
+      report_generation_message: Report is being generated. We will let you know when the report is ready.
     processing: Processing
     processing_report: Processing Report
     question:
@@ -2029,7 +2048,7 @@ en:
     remind_all: Remind All
     remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
     report_for: Report for
-    report_generation_in_progress: Report is generating. We will let you know when the report is ready.
+    report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
     reports: Reports
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
@@ -2071,11 +2090,17 @@ en:
     png: PNG
     regenerate_link: Regenerate Link
     svg: SVG
+  update_profile:
+    cancel: Cancel
+    title: Update Profile
+    update: Update
+    updated_successfully: Profile updated successfully
   user:
     fields:
       email: Email Address
       first_name: First Name
       last_name: Last Name
+      password: Password
     form:
       operation_options:
         add_and_allow_new_response: Add user and allow new response

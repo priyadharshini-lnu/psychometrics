@@ -66,7 +66,7 @@ export default function Common ({ campaign }) {
                   </g>
                 </svg>
                 {' '}
-                <span className="card-detail-txt mls">Details</span>
+                <span className="card-detail-txt mls">{I18n.t('campaign.details')}</span>
               </div>
             </div>
           </div>

@@ -58,8 +58,10 @@ function Navigation ({
                 </span>
                     )}
             >
-              <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
-              <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
+              <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>
+                {I18n.t('navigation.profile')}
+              </Menu.Item>
+              <Menu.Item key="logout" onClick={onLogout}>{I18n.t('navigation.logout')}</Menu.Item>
             </SubMenu>
             )}
             <Menu.Item key="app" className={cs('align-right', { hidden: hideLangDropdown })}>
@@ -67,7 +69,7 @@ function Navigation ({
             </Menu.Item>
             <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
               <QuestionCircleOutlined />
-                  Help
+              {I18n.t('navigation.help')}
             </Menu.Item>
           </Menu>
         </>

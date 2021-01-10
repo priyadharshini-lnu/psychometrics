@@ -25,6 +25,10 @@ de:
               blank: Der Vorname darf nicht leer sein
             last_name:
               blank: Nachname darf nicht leer sein
+        password_reset:
+          attributes:
+            email:
+              wrong_email: Wir konnten keinen Benutzer mit der von Ihnen angegebenen E-Mail finden.
         profile:
           attributes:
             first_name:
@@ -63,6 +67,10 @@ de:
       organisational: Befragung
     index:
       managers_dashboard_button: Managern Dashboard
+    messages:
+      finish: |-
+        Vielen Dank für Ihre Zeit.
+        Ihre Antworten wurden jetzt aufgezeichnet.
     page:
       back: zurück
       next: weiter
@@ -79,6 +87,7 @@ de:
     wait: wart
   campaign:
     completed: abgeschlossen
+    details: Einzelheiten
     new: neues
     not_started: neues
     time_left:
@@ -181,6 +190,17 @@ de:
     login: Anmelden
     update: aktualisieren
     'yes': Ja
+  jobs:
+    threesixty:
+      reports:
+        download:
+          description: 'Um den Bericht herunterzuladen, folgen Sie bitte dem Link: <a href=''%{url}'' target=''_blank''>Herunterladen</a>'
+          error: Ein Fehler ist aufgetreten
+          error_description: Die Berichterstellung ist fehlgeschlagen. Bitte wenden Sie sich an den Administrator oder versuchen Sie erneut, <strong> herunterzuladen </strong>.
+          message: Bericht ist fertig
+  navigation:
+    logout: Ausloggen
+    profile: Profil
   reports:
     actions:
       add: hinzufügen Bericht
@@ -269,6 +289,15 @@ de:
         last_name: Nachname
         password: Passwort
   subjects:
+    approval_statuses:
+      approved: genehmigt
+      denied: verweigert
+      waiting: eine Genehmigung brauchen
+    report_statuses:
+      failed: Gescheitert
+      generating: Derzeit wird generiert
+      not_prepared: Nicht bereit
+      prepared: Bereit
     statuses:
       completed: abgeschlossen
       denied: verweigert
@@ -282,23 +311,34 @@ de:
       title: Einwilligung zur Datenverarbeitung
     add: hinzufügen
     and: und
+    approve: Genehmigen
     approve_all: Alle genehmigen
     approve_all_successful: Alle genehmigen Benennungen
     approve_evaluations: genehmigen Bewertungen
     approve_nominations: BENENNUNGEN GENEHMIGEN
     approve_reports: genehmige Berichten
     approved: genehmigt
+    as_my: als meinen
     back_to_tasks: zurück zu den Aufgaben
     begin: beginnen
+    close_evaluation_modal:
+      message: Sobald Sie den Bericht angezeigt haben, kann %{pronoun_or_name} keine weiteren Bewertungen erhalten
+      title: Möchten Sie den Bericht wirklich anzeigen?
     completed: abgeschlossen
+    confirmation_for_nomination_removal: Möchten Sie die Nominierung wirklich entfernen?
     continue: fortfahren
     dashboard_title: Willkommen %{name}
+    decline_invite: Einladung ablehnen
     denied: verweigert
+    deny: Ablehnen
     deny_all: Alle ablehnen
-    deny_all_successful: abgelehnt alle Benennung
+    deny_all_successful: Abgelehnt alle Benennung
+    download_pdf: PDF Herunterladen
     email_approve_request: E-Mail-Genehmigungsanfrage
     evaluate: bewerten
     evaluation: Bewertu
+    evaluation_closed_message: Die Bewertung ist für dieses Thema geschlossen
+    evaluation_closed_nomination_message: Sie können für diese Person keine Nominierung vornehmen, da die Überprüfung für diese Person geschlossen ist
     evaluations: Bewertungen
     evaluator: Bewerter
     first_name: Vorname
@@ -310,7 +350,13 @@ de:
       statuses:
         success: Erfolg
     my_projects: Mein projekten
+    nominate: Nominieren
+    nominate_evaluators: Nominiere nominieren für
     nomination: Benennung
+    nomination_predicates:
+      atleast: Mindestens %{count}
+      atmost: Höchstens %{count}
+      exactly: Genau %{count}
     nominations: Benennungen
     or: oder
     participant_list:
@@ -321,6 +367,7 @@ de:
         remove_subject: Entfernen Betreff
         view_report: Ansicht Bericht
         view_responses: Ansicht Antworten
+      report_generation_message: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
     processing: verarbeitung
     processing_report: verarbeitung Bericht
     question:
@@ -329,7 +376,9 @@ de:
         subject: Betreff
         to: zu
     remind_all: alle erinnern
+    remind_mail_sent: Erinnerungen wurden an Prüfer gesendet, die die Prüfung noch nicht abgeschlossen haben
     report_for: Bericht für
+    report_generation_in_progress: Bericht wird generiert. Wir werden Sie informieren, wenn der Bericht fertig ist.
     reports: Berichte
     save: speich
     select_relationnship: wählen Beziehung
@@ -345,11 +394,20 @@ de:
     waiting: warten
     you: Sie
     yourself: ihne selbst
+  title:
+    one: Es gibt einen Fehler, bitte überprüfen Sie Ihre Antworten
+    other: Es gibt %{count} Fehler, bitte überprüfen Sie Ihre Antworten
+  update_profile:
+    cancel: Stornieren
+    title: Profil aktualisieren
+    update: Aktualisieren
+    updated_successfully: Profil erfolgreich aktualisiert
   user:
     fields:
       email: E-Mail-Addresse
       first_name: Vorname
       last_name: Nachname
+      password: Passwort
   user_reports:
     statuses:
       not_prepared: nicht Verfügung
