@@ -13,7 +13,7 @@ module Exports
           workbook = package.workbook
           wrap = workbook.styles.add_style alignment: { wrap_text: true }
 
-          questions = get_questions(config, 'AssessmentScene')
+          questions = get_question_ids(config, 'AssessmentScene')
 
           headers = result_details_header + question_headers(questions)
 
@@ -44,7 +44,7 @@ module Exports
         ]
       end
 
-      def get_questions(config, scene_type)
+      def get_question_ids(config, scene_type)
         config['groups'].collect { |group| group['scenes'].select { |s| s['type'] == scene_type } }.
           select { |s| s.size.positive? }.
           flatten(1).
@@ -57,10 +57,10 @@ module Exports
         res = result.answers || {}
         row_values = result_details_row_values(result)
 
-        answers_by_id = res.inject({}) { |obj, g| obj.merge(g['answers']) }
+        answers_by_id = res.inject({}) { |obj, group| obj.merge(group['answers']) }
 
-        result_values = questions.map do |q|
-          [answers_by_id.dig(q, 'answers')&.join(','), answers_by_id.dig(q, 'duration')]
+        result_values = questions.map do |question|
+          [answers_by_id.dig(question, 'answers')&.join(','), answers_by_id.dig(question, 'duration')]
         end.flatten
 
         row_values + result_values
