@@ -9,7 +9,7 @@ module Administration
       before_action :pundit_authorize, except: %i[
         export_results
         export_hogan_results
-        export_agile_results
+        export_agile_raw_results
         export_normed_results
         enable_universal_links
         disable_universal_links
@@ -40,13 +40,13 @@ module Administration
         end
       end
 
-      def export_agile_results
+      def export_agile_raw_results
         @assessment = Assessment.find(params[:assessment_id])
         authorize @assessment
         results = ::Exports::Assessments::AgileAssessmentResultsExport.call!(@assessment, client.id)
 
         respond_to do |format|
-          format.xlsx { send_data results.to_stream.read, filename: 'agile_assessment_results.xlsx' }
+          format.xlsx { send_data results.to_stream.read, filename: 'agile_assessment_raw_results.xlsx' }
         end
       end
 

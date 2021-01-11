@@ -67,9 +67,9 @@ tr id=dom_id(resource)
           =<> t('.export')
           span.caret
         ul.dropdown-menu
-          - if policy(resource).export_agile_results? && resource.agile?
+          - if policy(resource).export_agile_raw_results? && resource.agile?
             li
-              = link_to t('.raw_results'), administration_client_assessment_export_agile_results_path(client, resource, format: 'xlsx')
+              = link_to t('.raw_results'), administration_client_assessment_export_agile_raw_results_path(client, resource, format: 'xlsx')
           - else 
             - if policy(resource).export_scoring_results?
               li

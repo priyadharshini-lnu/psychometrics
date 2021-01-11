@@ -324,7 +324,7 @@ Rails.application.routes.draw do
           get :select_raw_export_type
           get :export_results
           get :export_normed_results
-          get :export_agile_results
+          get :export_agile_raw_results
           get :export_hogan_results
           put :enable_universal_links
           put :disable_universal_links

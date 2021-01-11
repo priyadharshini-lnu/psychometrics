@@ -26,8 +26,8 @@ module Administration
       export_results?
     end
 
-    def export_agile_results?
-      export_results?
+    def export_agile_raw_results?
+      export_agile_raw_results?
     end
 
     def import_results?

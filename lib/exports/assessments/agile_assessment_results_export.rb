@@ -35,7 +35,7 @@ module Exports
           %i[user assessment], membership: %i[client user]
         ).where(
           'assessment_id = (?) and assigns.status IN (?) and memberships.client_id = (?)',
-          assessment_id, [1, 2], client_id
+          assessment.id, [1, 2], client_id
         )
       end
     end

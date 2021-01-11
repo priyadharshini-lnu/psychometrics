@@ -1,0 +1,22 @@
+completedGroups:
+- 
+normId: 121,
+groups:
+- id: 'intro-group'
+  scenes:
+  - id: intro-1
+    type: AssessmentScene
+    data:
+      theme: white
+      maxDuration: 240
+      blocks:
+        - id: nf-1-ass-block-1
+          type: Comparator
+          randomise: true
+          questions:
+            - id: cmp-1
+              text: questions:nf.which_is_greater
+              left: 7
+              right: 12
+              answers:
+                - left

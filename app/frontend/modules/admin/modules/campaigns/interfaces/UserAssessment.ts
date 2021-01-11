@@ -7,7 +7,6 @@ export default interface UserAssessment {
   assessmentId: number
   isExpired: boolean
   isExternal: boolean
-  isAgile: boolean
   additionalTime: number | null
   normId: number
   normName: string

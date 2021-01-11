@@ -22,7 +22,7 @@ module Exports
 
             results.
               find_each(batch_size: 100) do |result|
-              sheet.add_row prepare_score_data(result, questions).flatten, style: wrap if result.answers
+              sheet.add_row prepare_raw_data(result, questions).flatten, style: wrap if result.answers
             end
           end
         end
@@ -53,7 +53,7 @@ module Exports
           collect { |q| q['id'] }
       end
 
-      def prepare_score_data(result, questions)
+      def prepare_raw_data(result, questions)
         res = result.answers || {}
         row_values = result_details_row_values(result)
 
