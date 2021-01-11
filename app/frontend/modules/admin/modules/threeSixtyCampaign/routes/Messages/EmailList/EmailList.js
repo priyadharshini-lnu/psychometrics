@@ -111,16 +111,19 @@ export default function Emails ({
                 </Option>
               ))}
             </Select>
-            <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
-              <Option value={null}>
-                {I18n.t('empty')}
-              </Option>
-              {availableLocales.map(locale => (
-                <Option key={locale} value={locale}>
-                  {I18n.t(`languages.${locale}`)}
+            <div>
+              <span className="mr8">{I18n.t('common.text.reference_language')}</span>
+              <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+                <Option value={null}>
+                  {I18n.t('empty')}
                 </Option>
-              ))}
-            </Select>
+                {availableLocales.map(locale => (
+                  <Option key={locale} value={locale}>
+                    {I18n.t(`languages.${locale}`)}
+                  </Option>
+                ))}
+              </Select>
+            </div>
           </div>
           <div className="display-flex">
             <Input

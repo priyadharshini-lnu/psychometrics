@@ -72,7 +72,9 @@ const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
   [FETCH_BY_LOCALES]: (state, { response }) => {
     const listWithLocales = response.map(
-      resItem => state.listWithLocales.find(item => item.locale === resItem.locale) || resItem,
+      resItem => state.listWithLocales.find(
+        item => item.locale === resItem.locale && item.id === resItem.id,
+      ) || resItem,
     )
     return { ...state, listWithLocales }
   },

@@ -91,16 +91,19 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
               </Select.Option>
             ))}
           </Select>
-          <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
-            <Select.Option value="">
-              {I18n.t('empty')}
-            </Select.Option>
-            {availableLocales.map(locale => (
-              <Select.Option key={locale} value={locale}>
-                {I18n.t(`languages.${locale}`)}
+          <div>
+            <span className="mr8">{I18n.t('common.text.reference_language')}</span>
+            <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+              <Select.Option value="">
+                {I18n.t('empty')}
               </Select.Option>
-            ))}
-          </Select>
+              {availableLocales.map(locale => (
+                <Select.Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
         </div>
       </Col>
       <Col span={24}>

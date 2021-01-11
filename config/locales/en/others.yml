@@ -944,6 +944,7 @@ en:
       na: N/A
       ok: Ok
       response: Response
+      reference_language: Reference Language
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation
