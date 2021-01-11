@@ -104,7 +104,7 @@ export default function Emails ({
             onChange={(e) => { update(selectedTemplate.id, 'replyToEmail', e.target.value) }}
           />
           <div className="display-flex justify-content-space-between">
-            <Select defaultValue="en" className="mb8" onChange={updateLeftLocale}>
+            <Select defaultValue="en" className="mb8 width150px" onChange={updateLeftLocale}>
               {availableLocales.map(locale => (
                 <Option key={locale} value={locale}>
                   {I18n.t(`languages.${locale}`)}
@@ -113,7 +113,7 @@ export default function Emails ({
             </Select>
             <div>
               <span className="mr8">{I18n.t('common.text.reference_language')}</span>
-              <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+              <Select className="mb8 width150px" placeholder={I18n.t('select')} onChange={updateRightLocale}>
                 <Option value={null}>
                   {I18n.t('empty')}
                 </Option>

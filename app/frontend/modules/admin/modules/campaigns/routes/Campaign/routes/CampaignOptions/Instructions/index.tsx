@@ -84,7 +84,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
     <Row>
       <Col span={24}>
         <div className="display-flex justify-content-space-between mt8">
-          <Select defaultValue="en" className="mb8" onChange={updateLeftLocale}>
+          <Select defaultValue="en" className="mb8 width150px" onChange={updateLeftLocale}>
             {availableLocales.map(locale => (
               <Select.Option key={locale} value={locale}>
                 {I18n.t(`languages.${locale}`)}
@@ -93,7 +93,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
           </Select>
           <div>
             <span className="mr8">{I18n.t('common.text.reference_language')}</span>
-            <Select className="mb8" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+            <Select className="mb8 width150px" placeholder={I18n.t('select')} onChange={updateRightLocale}>
               <Select.Option value="">
                 {I18n.t('empty')}
               </Select.Option>
