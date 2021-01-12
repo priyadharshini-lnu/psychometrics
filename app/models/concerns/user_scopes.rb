@@ -75,7 +75,13 @@ module UserScopes
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
 
     scope :eq_id, ->(id) { where(id: id) }
-    scope :filterable_fields, ->(query) { eq_id(query).or(search_query(query)) }
+    scope :filterable_fields, lambda { |search_term|
+      if (search_term !~ /\D/) && search_term.present?
+        eq_id(search_term).or(search_query(search_term))
+      else
+        search_query(search_term)
+      end
+    }
     scope :sort_by_full_name_asc, -> { order(first_name: :asc, last_name: :asc) }
     scope :sort_by_full_name_desc, -> { order(first_name: :desc, last_name: :desc) }
   end
