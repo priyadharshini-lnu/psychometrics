@@ -49,6 +49,18 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     end
   end
 
+  describe 'toggle_assessor_access' do
+    it 'toggles campaign_report user_access column value' do
+      campaign_report = create(:campaign_report, campaign: campaign, report: report, assessor_access: false)
+      patch :toggle_assessor_access, params: {
+        new_campaign_id: campaign_report.campaign_id,
+        id: campaign_report.id
+      }
+
+      expect(campaign_report.reload.assessor_access).to eq(true)
+    end
+  end
+
   describe 'assessments_and_reports' do
     it 'returns reports and assessments' do
       create(:campaign_report, campaign: campaign, report: report, report_family: report_family)
@@ -98,11 +110,12 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
 
   def check_campaign_reports_and_assesment_response(parsed_response)
     report_response = parsed_response['reports'].first
-    expect(report_response.keys).to eq(%w[id report_id name user_access report_family_name])
+    expect(report_response.keys).to eq(%w[id report_id name user_access assessor_access report_family_name])
     expect(report_response).to include({
       'name' => report.name,
       'report_family_name' => report_family.name,
-      'user_access' => false
+      'user_access' => false,
+      'assessor_access' => false
     })
 
     assessment_response = parsed_response['assessments'].first

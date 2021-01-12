@@ -816,6 +816,7 @@ en:
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
+      assessor_access: Assessor Access
     form:
       operation: Operation
       operation_options:
