@@ -8,7 +8,7 @@ module Administration
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
-    append_before_action :init_collections, only: %i[new edit]
+    append_before_action :init_collections, only: %i[new create edit update]
 
     def index
       @filter_term = params.dig(:q, :filterable_fields)
