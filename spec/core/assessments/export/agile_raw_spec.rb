@@ -71,7 +71,7 @@ describe Assessments::Export::AgileRaw do
         users_result.completed_at.try(:strftime, '%D %r'),
         users_result.assessment.name,
         nil,
-        nil,
+        'equal',
         1.502
       ]
 

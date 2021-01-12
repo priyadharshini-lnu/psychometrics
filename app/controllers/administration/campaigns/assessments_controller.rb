@@ -7,24 +7,12 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        results = ::Assessments::Export::RawAndScoring.call!(
+        results = ::Assessments::Export::RawExport.call!(
           assessment, campaign, export_with_labels: !!params[:with_labels]
         )
 
         respond_to do |format|
           format.xlsx { send_data results.to_stream.read, filename: "assessment-#{assessment.id}-raw-results.xlsx" }
-        end
-      end
-
-      def export_agile_raw_results
-        results = ::Assessments::Export::AgileRaw.call!(
-          assessment, campaign
-        )
-
-        respond_to do |format|
-          format.xlsx do
-            send_data results.to_stream.read, filename: "assessment-#{assessment.id}-agile-raw-results.xlsx"
-          end
         end
       end
 

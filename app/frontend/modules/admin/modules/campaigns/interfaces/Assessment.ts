@@ -9,7 +9,6 @@ export default interface Assessment {
   normId: number
   normName: string
   enableUniversalLinks: boolean
-  isAgile: boolean
   isExternal: boolean
   universalLink: string | null
   norms?: Norm[]

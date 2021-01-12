@@ -3,7 +3,7 @@
 module Administration
   class CampaignAssessmentSerializer < ActiveModel::Serializer
     attributes :id, :assessment_id, :name, :category, :norm_name, :norm_id, :enable_universal_links,
-               :universal_link, :norms, :is_external, :is_agile
+               :universal_link, :norms, :is_external
 
     delegate :id, :name, :category, to: :assessment
     delegate :name, to: :norm, prefix: true, allow_nil: true
@@ -18,10 +18,6 @@ module Administration
 
     def is_external # rubocop:disable Naming/PredicateName
       assessment.external?
-    end
-
-    def is_agile # rubocop:disable Naming/PredicateName
-      assessment.agile?
     end
 
     private

@@ -123,7 +123,6 @@ Rails.application.routes.draw do
         resources :assessments, only: %i[create destroy] do
           member do
             get :export_raw_results
-            get :export_agile_raw_results
             get :export_scoring_results
             get :export_normed_results
             get :export_external_results
@@ -324,7 +323,6 @@ Rails.application.routes.draw do
           get :select_raw_export_type
           get :export_results
           get :export_normed_results
-          get :export_agile_raw_results
           get :export_hogan_results
           put :enable_universal_links
           put :disable_universal_links

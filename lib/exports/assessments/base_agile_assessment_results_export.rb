@@ -45,12 +45,12 @@ module Exports
       end
 
       def get_question_ids(config, scene_type)
-        config['groups'].collect { |group| group['scenes'].select { |s| s['type'] == scene_type } }.
-          select { |s| s.size.positive? }.
+        config['groups'].collect { |group| group['scenes'].select { |scene| scene['type'] == scene_type } }.
+          select { |scene| scene.size.positive? }.
           flatten(1).
-          flat_map { |s| s.dig('data', 'blocks') }.
-          flat_map { |b| b['questions'] }.
-          collect { |q| q['id'] }
+          flat_map { |scene| scene.dig('data', 'blocks') }.
+          flat_map { |blocks| blocks['questions'] }.
+          collect { |question| question['id'] }
       end
 
       def prepare_raw_data(result, questions)
