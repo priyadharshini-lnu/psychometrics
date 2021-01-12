@@ -8,6 +8,7 @@ import { FormInstance } from 'antd/lib/form/util'
 import { Status } from './constants'
 import { PropsFromRedux } from './connect'
 import { Resource } from './interfaces'
+import FieldsUtil from './FieldsUtil'
 
 type Props = PropsFromRedux & OwnProps
 
@@ -42,7 +43,9 @@ export type OwnProps = {
     fields?: FieldData[],
     setFields?(fields: object): void
   }
-  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+  children({
+    form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
+  }): ReactElement
   scrollToFirstError?: boolean
 }
 
@@ -147,7 +150,7 @@ const ResourceForm: React.FC<Props> = ({
           let messageText = I18n.lookup(`frontend.${resourceName}.${operation()}_success`)
           messageText = messageText
             || I18n.t(`frontend.resource.${operation()}_success`, { resourceName: readableResourceName() })
-          message.info(messageText)
+          message.success(messageText)
         }
         onSuccessfulSubmission && onSuccessfulSubmission(response)
       })
@@ -162,7 +165,7 @@ const ResourceForm: React.FC<Props> = ({
   const handleErrors = (errors: Error) => {
     let newFields: FieldData[] = []
     _.each(errors, (error: string | string[], name: string) => {
-      const field = _.find(store.fields, { name })
+      const field = _.find(store.fields, field => _.includes(field.name as string[], name))
       const errors: string[] = _.castArray(error)
       let newField: FieldData = { name, errors }
       if (field) {
@@ -199,7 +202,9 @@ const ResourceForm: React.FC<Props> = ({
             />
           </div>
         )}
-      {children({ form: store.form, status, isEdit: isEdit() })}
+      {children({
+        form: store.form, status, isEdit: isEdit(), fieldsUtil: new FieldsUtil(store.fields),
+      })}
     </Form>
   )
 }

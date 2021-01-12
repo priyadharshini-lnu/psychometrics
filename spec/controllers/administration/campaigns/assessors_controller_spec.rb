@@ -74,4 +74,15 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
 
     expect(parsed_response).to eq('ok')
   end
+
+  describe 'GET show' do
+    it 'renders assessor user details' do
+      get :show, params: { new_campaign_id: assessor.campaign_id, id: assessor.id }, format: :json
+
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response).to eq({
+        'id' => assessor.user_id, 'email' => assessor.user.email, 'full_name' => assessor.user.decorate.full_name
+      })
+    end
+  end
 end

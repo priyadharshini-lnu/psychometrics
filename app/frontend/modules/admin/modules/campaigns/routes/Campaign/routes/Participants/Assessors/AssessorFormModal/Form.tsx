@@ -10,6 +10,7 @@ import {
 import UserAutocomplete from 'components/UserAutocomplete'
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
 
@@ -17,7 +18,7 @@ const { I18n } = window
 const localI18n = (code, params = {}) => I18n.t(`administration.assessor.modals.create_assessor.form.${code}`, params)
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     autocompletedAssessors: getAutocomplete(state).assessors || [],
     autocompletedSubjects: getAutocomplete(state).subjects || [],
     assessments: getAvailableAssessments(state),

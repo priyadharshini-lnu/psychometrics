@@ -158,6 +158,21 @@ en:
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
+      assessments:
+        subject_name: Subject Name
+        subject_email: Subject Email
+        assessment_name: Assessment Name
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
+        reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
+        bulk_delete_successful: Assessor assessments deleted successfully
+        actions:
+          reset: Reset Evaluation
+          add_subject: Add Subject
+      add_subject_modal:
+        title: 'Add subject'
+        subject: Subject
+        assessment: Assessment
+        subject_placeholder: Search subject..
       modals:
         create_assessor:
           add: Add
@@ -180,7 +195,7 @@ en:
         import:
           body: Refer to the Export functionality to extract a template that can be used to Import here.
           title: Import Assessors
-      remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaing?
+      remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
       status: Status
       statuses:
         completed: Completed

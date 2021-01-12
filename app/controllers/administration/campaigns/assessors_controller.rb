@@ -55,7 +55,7 @@ module Administration
       end
 
       def show
-        throw 'Not implemented yet'
+        render json: resource.user, serializer: Administration::Assessors::UserSerializer
       end
 
       def create

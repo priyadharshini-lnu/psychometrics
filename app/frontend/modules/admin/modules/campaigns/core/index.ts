@@ -11,6 +11,7 @@ import userReports from './userReports'
 import userAssessments from './userAssessments'
 import assessmentGroups from './assessmentGroups'
 import campaignOptions from './campaignOptions'
+import assessorAssessments from './assessorAssessments'
 
 export default combineReducers({
   list,
@@ -25,4 +26,5 @@ export default combineReducers({
   userAssessments,
   assessmentGroups,
   campaignOptions,
+  assessorAssessments,
 })

@@ -13,6 +13,7 @@ import {
 } from 'modules/admin/modules/campaigns/core/assessors'
 import { get as getAutocomplete } from 'modules/admin/core/ui/autocomplete'
 import ErrorAlertBox from 'components/ErrorAlertBox'
+import { RootState } from 'modules/admin/core/rootReducers'
 import Form from './Form'
 
 interface Props {
@@ -57,7 +58,7 @@ const tableFields = [
 
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     errors: getForm(state).errors,
     assessors: getForm(state).attrs,
     assessments: getAvailableAssessments(state),

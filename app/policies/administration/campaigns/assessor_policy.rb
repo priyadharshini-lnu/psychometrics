@@ -14,6 +14,14 @@ module Administration
       def create_all?
         index?
       end
+
+      def show?
+        index?
+      end
+
+      def user_assessments?
+        index?
+      end
     end
   end
 end

@@ -1,42 +1,39 @@
 import { connect, ConnectedProps } from 'react-redux'
-import React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import {
-  Row, Col, PageHeader,
-} from 'antd'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { PageHeader } from 'antd'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import { getCurrent, fetchSingle } from 'modules/admin/modules/campaigns/core/assessors'
+import { RootState } from 'modules/admin/core/rootReducers'
 import AssessmentList from './AssessmentList'
-import { Strategies } from '../../../AssessmentsReports/routes/Manage/AddReportModal/interfaces'
 
 const { I18n } = window
 
 const connecter = connect(
-  () => ({
+  (state: RootState) => ({
+    assessor: getCurrent(state),
   }),
   {
+    fetchSingle,
   },
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
-interface OwnProps {
-  openModal(name: string, data?: { campaignId: number, userId: number, strategy: Strategies }): void,
-}
+export type Props = PropsFromRedux
 
-interface Params {
-  projectId: string
-  campaignId: string
-  id: string
-}
-
-export type Props = OwnProps & PropsFromRedux & RouteComponentProps<Params>
-
-const AssessorDetails: React.FC<Props> = ({
-  match: { params: { campaignId } },
-}) => {
+const AssessorDetails: React.FC<Props> = ({ assessor, fetchSingle }) => {
+  const { campaignId, id } = useParams<{ campaignId: string, id: string }>()
   const parsedCampaignId = parseInt(campaignId, 10)
+  const parsedId = parseInt(id, 10)
+
+  useEffect(() => {
+    fetchSingle(parsedCampaignId, parsedId)
+  }, [])
+
+  if (!assessor) { return null }
 
   return (
-    <div>
+    <>
       <Breadcrumb
         request={{
           fields: ['project', 'campaign', 'client'],
@@ -54,26 +51,26 @@ const AssessorDetails: React.FC<Props> = ({
           link: state => `/administration/projects/${state.project.id}/new_campaigns`,
           label: state => state.project.name,
         }, {
-          // eslint-disable-next-line max-len
-          link: state => `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/assessors`,
+          link: state => (
+            `/administration/projects/${state.project.id}/new_campaigns/${state.campaign.id}/participants/assessors`
+          ),
           label: state => state.campaign?.name,
-        }]}
+        },
+        {
+          label: () => assessor.email,
+        },
+        ]}
       />
-      <Row justify="space-between" className="pm">
-        <PageHeader
-          ghost={false}
-          title="user.fullName"
-          subTitle="user.email"
-        />
-        <Col span={4} className="pls">
-          Not implemented yet
-        </Col>
-      </Row>
-      <div className="pm">
+      <PageHeader
+        ghost={false}
+        title={assessor.fullName}
+        subTitle={assessor.email}
+      />
+      <div className="pl">
         <h3>{I18n.t('common.model.assessments')}</h3>
         <AssessmentList />
       </div>
-    </div>
+    </>
   )
 }
 export default connecter(AssessorDetails)

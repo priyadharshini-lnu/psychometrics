@@ -7,9 +7,12 @@ import { getTables } from 'modules/admin/core/filterAndPagination/selectors'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import * as t from 'io-ts'
 import { closeModal } from 'modules/admin/core/ui/modals'
+import ApiAction from 'interfaces/ApiAction'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const defaultState: State = {
   list: [],
+  current: null,
   availableAssessments: [],
   form: {
     attrs: [],
@@ -18,10 +21,10 @@ const defaultState: State = {
   total: 0,
 }
 
-export const get = (state): State => _.get(state, ['campaigns', 'assessors'])
-export const getCurrent = (state): AssessorDetails => _.get(get(state), ['current'])
-export const getForm = state => _.get(get(state), ['form'])
-export const getAvailableAssessments = state => _.get(get(state), ['availableAssessments'])
+export const get = (state: RootState): State => _.get(state, ['campaigns', 'assessors'])
+export const getCurrent = (state: RootState) => _.get(get(state), ['current'])
+export const getForm = (state: RootState) => _.get(get(state), ['form'])
+export const getAvailableAssessments = (state: RootState) => _.get(get(state), ['availableAssessments'])
 
 export const FETCH = 'campaigns/FETCH_ASSESSORS'
 export const CREATE = 'resource/campaigns/assessor/CREATE'
@@ -33,6 +36,7 @@ export const CREATE_ALL_ASSESSORS_FAILURE = 'campaigns/assessor/CREATE_ALL_ASSES
 export const FILL_ASSESSORS = 'campaigns/assessor/FILL_ASSESSORS'
 export const FETCH_AVAILABLE_ASSESSMENTS = 'campaigns/assessor/FETCH_AVAILABLE_ASSESSMENTS'
 export const CLEAR_FORM = 'campaigns/assessor/CLEAR_FORM'
+export const FETCH_SINGLE = 'campaigns/assessor/FETCH_SINGLE'
 
 const AssessorTR = t.type({
   id: t.number,
@@ -59,6 +63,21 @@ type AvailableAssessment = t.TypeOf<typeof AvailableAssessmentTR>
 
 const FetchAvailableAssessmentsTR = t.array(AvailableAssessmentTR)
 
+const SingleAssessorTR = t.type({
+  id: t.number,
+  email: t.string,
+  fullName: t.string,
+})
+export type SingleAssessor = t.TypeOf<typeof SingleAssessorTR>
+
+export const fetchSingle = (campaignId: number, assessorId: number): ApiAction<SingleAssessor> => ({
+  type: FETCH_SINGLE,
+  request: {
+    method: 'get',
+    url: `/administration/new_campaigns/${campaignId}/assessors/${assessorId}`,
+    typedResponse: SingleAssessorTR,
+  },
+})
 
 export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -118,17 +137,6 @@ export const remove = (campaignId: string, id: number) => ({
   },
 })
 
-export interface AssessorDetails {
-  id: number
-  firstName: string
-  lastName: string
-  fullName: string
-  email: string
-  status: string
-  evaluationsComplete: number
-}
-
-
 export interface AssessorFormItem {
   assessorEmail?: string
   assessorFirstName?: string
@@ -142,6 +150,7 @@ export interface Assessment {
 }
 export interface State {
   list: Assessor[]
+  current: SingleAssessor | null
   availableAssessments: Assessment[]
   form: {
     attrs: AssessorFormItem[]
@@ -155,9 +164,11 @@ type FetchAvailableAssessmentsType = ApiActionResponse<AvailableAssessment[]>
 type CreateType = ApiActionResponse<Assessor>
 type UpdateType = ApiActionResponse<Assessor>
 type RemoveType = ApiActionResponse<number>
+type FetchSingleType = ApiActionResponse<SingleAssessor>
 
 const HANDLERS = {
   [FETCH]: (state: State, { response }: FetchType) => ({ ...state, ...response }),
+  [FETCH_SINGLE]: (state: State, { response }: FetchSingleType) => ({ ...state, current: response }),
   [FETCH_AVAILABLE_ASSESSMENTS]: (state: State, { response }: FetchAvailableAssessmentsType) => (
     { ...state, availableAssessments: response }
   ),

@@ -128,6 +128,17 @@ Rails.application.routes.draw do
             get :available_assessments
             post :create_all
           end
+
+          scope module: :assessors do
+            resources :user_assessments, only: %i[index create] do
+              member do
+                put :reset
+              end
+              collection do
+                delete :bulk_delete
+              end
+            end
+          end
         end
 
         resources :universal_links, only: %i[show update destroy] do
