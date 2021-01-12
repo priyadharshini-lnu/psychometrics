@@ -1705,10 +1705,10 @@
     node-fetch "~2.1.2"
     seedrandom "2.4.3"
 
-"@thetalententerprise/interactive-assessments@1.2.0-alpha.3":
-  version "1.2.0-alpha.3"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.2.0-alpha.3/b05e4216c8b8c78850951961b1dd2d68dc652b116e84a939db6706a2d30c4a62#9606409f7d70f9a6009362645c210d585fae3fa7"
-  integrity sha512-fgiv6Zd00wNh81oJw6qdqDFekTWPXFZ0Zkg4pG+hrPKWcLhk28BhTviFo1AXDVkfoVsDSnF2w9c6xal6NW4XXw==
+"@thetalententerprise/interactive-assessments@1.2.0-alpha.4":
+  version "1.2.0-alpha.4"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.2.0-alpha.4/ee3ac3805596a2eb393fd418d8a98b1a7e85253b4a99bb5f02b388999e91478d#a37a564ef8de35b84af418d2e0abe6e99253d188"
+  integrity sha512-/rqQv4lEdIy1I7C4xgpx2mODdP0ESzxavr1oA7ZxJ6+ftrNE1TDUoD0etXb0f2u6NHGu2EKFcPN+5Qy/IJB6XA==
 
 "@types/actioncable@^5.2.3":
   version "5.2.3"
