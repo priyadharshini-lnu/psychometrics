@@ -8,11 +8,26 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  concern :media_uploades do
+    member do
+      get :upload_media_url
+      put :upload_callback
+      delete :remove_media
+      put :complete_multipart_upload
+      put :mark_as_user_selected_take
+      put :update_meta_data
+    end
+  end
+
   namespace :assessors do
     constraints(proc { |request| request.format == 'html' }) do
       get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
-
       get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
+    end
+
+    resources :evaluations, only: [:show] do
+      get :subject_assessment
+      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
     end
 
     resources :campaigns, only: [:index] do
@@ -717,18 +732,10 @@ Rails.application.routes.draw do
       get ':assessment_key/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assigns, only: %i[index update] do
+    resources :assigns, only: %i[index update], concerns: :media_uploades do
       get :pass, on: :member
       get :assessment, on: :member
       post :accept_privacy, on: :collection
-      member do
-        get :upload_media_url
-        put :upload_callback
-        delete :remove_media
-        put :complete_multipart_upload
-        put :mark_as_user_selected_take
-        put :update_meta_data
-      end
     end
 
     resources :highlights, only: %i[update]
@@ -769,16 +776,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_assessments do
-        resources :users_results, only: %i[update] do
-          member do
-            get :upload_media_url
-            put :upload_callback
-            delete :remove_media
-            put :complete_multipart_upload
-            put :mark_as_user_selected_take
-            put :update_meta_data
-          end
-        end
+        resources :users_results, only: %i[update], concerns: :media_uploades
         member do
           get :assessment
           get :pass

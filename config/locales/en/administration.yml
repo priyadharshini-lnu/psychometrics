@@ -154,6 +154,8 @@ en:
       update:
         successfully: Assessment %{name} was Updated Successfully.
     assessor:
+      home: "Dashboard"
+      completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
       modals:

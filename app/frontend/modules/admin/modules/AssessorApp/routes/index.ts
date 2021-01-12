@@ -1,6 +1,7 @@
 import CampaignList from './CampaignList'
 import UserList from './UserList'
 import UserDetails from './UserDetails'
+import Evaluation from './Evaluation'
 
 const routes = [
   {
@@ -14,6 +15,10 @@ const routes = [
   {
     path: '/campaigns/:campaignId/users',
     component: UserList,
+  },
+  {
+    path: '/evaluations/:userAssessmentId',
+    component: Evaluation,
   },
 ]
 

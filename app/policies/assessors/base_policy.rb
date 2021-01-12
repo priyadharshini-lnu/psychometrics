@@ -10,7 +10,7 @@ module Assessors
     end
 
     def index?
-      @user.is?(:assessor)
+      @user.is?(:assessor) || @user.is?(:superadmin)
     end
 
     def show?

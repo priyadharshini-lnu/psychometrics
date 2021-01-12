@@ -24,6 +24,14 @@ if (I18n) {
 }
 
 export const getQuestions = (state, ids): Question[] => denormalize(ids, [question], state)
+export const getAllAnsweredQuestions = (state): Question[] => _.reduce(
+  state.allPages, (res, block) => {
+    const questions = _.flatten(_.map(
+      block, page => getQuestions(state, page.questions).filter(q => state.results[q.id]),
+    ))
+    return [...res, ...questions]
+  }, [],
+)
 
 export const getQuestion = (state, id): Question => state.questions[id]
 export const getCurrentBlock = (state): Block => {

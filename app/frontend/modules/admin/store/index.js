@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import { routerMiddleware } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
+import flowMiddleware from 'modules/survey/core/preview/FlowProcessor/middleware'
 import rootSagas from '../core/rootSagas'
 import rootReducers from '../core/rootReducers'
 
@@ -24,7 +25,7 @@ const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 const store = createStore(
   rootReducers(history),
   __INITIAL_STATE__,
-  composeEnhancers(applyMiddleware(api, sagaMiddleware, logger, routerMiddleware(history), thunk)),
+  composeEnhancers(applyMiddleware(api, sagaMiddleware, logger, flowMiddleware, routerMiddleware(history), thunk)),
 )
 
 sagaMiddleware.run(rootSagas)

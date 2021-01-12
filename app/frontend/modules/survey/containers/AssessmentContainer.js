@@ -20,7 +20,7 @@ class AssessmentContainer extends Component {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
       langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
-      notAnEndPage, initialized,
+      notAnEndPage, initialized, dontSaveStore,
     } = this.props
 
     this.langPartial = langPartial
@@ -47,7 +47,9 @@ class AssessmentContainer extends Component {
       },
       result: dbResult,
     })
-    setStore(rstore)
+    if (!dontSaveStore) {
+      setStore(rstore)
+    }
   }
 
   componentWillUnmount () {
@@ -76,7 +78,7 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, rstore,
+      disabled, selectedLocale, type, rstore, showAsSinglePage,
     } = this.props
     return (
       <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
@@ -88,7 +90,7 @@ class AssessmentContainer extends Component {
         <DndProvider backend={HTML5Backend}>
           <div className="ant-row">
             {disabled && this.overlay()}
-            <AssessmentPreview />
+            <AssessmentPreview showAsSinglePage={showAsSinglePage} />
           </div>
         </DndProvider>
       </ConfigProvider>

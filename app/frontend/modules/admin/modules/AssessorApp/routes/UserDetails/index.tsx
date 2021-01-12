@@ -96,10 +96,10 @@ const UserDetails: React.FC<Props> = (
               <Column
                 title={I18n.t('common.column.action')}
                 key="action"
-                render={() => (
+                render={({ id }) => (
                   <Dropdown
                     overlay={() => (
-                    ActionsMenu({}) as React.ReactElement
+                    ActionsMenu({ userAssessmentId: id }) as React.ReactElement
                     )}
                     trigger={['click']}
                   >
@@ -117,22 +117,22 @@ const UserDetails: React.FC<Props> = (
   )
 }
 
-const ActionsMenu: React.FC = () => {
-  const handleEvaluate = () => {}
-
-  return (
-    <Menu>
-      <Menu.Item key="evaluate">
-        <div
-          role="button"
-          tabIndex={-1}
-          onClick={handleEvaluate}
-        >
-          {I18n.t('assessments.actions.evaluate')}
-        </div>
-      </Menu.Item>
-    </Menu>
-  )
+interface ActionsProps {
+  userAssessmentId: number
 }
+
+const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId }) => (
+  <Menu>
+    <Menu.Item key="evaluate">
+      <a
+        href={`/assessors/evaluations/${userAssessmentId}`}
+        role="button"
+        tabIndex={-1}
+      >
+        {I18n.t('assessments.actions.evaluate')}
+      </a>
+    </Menu.Item>
+  </Menu>
+)
 
 export default withEnhancedTable(connecter(UserDetails), 'assessorsUserDetails', { maintainHistory: true })
