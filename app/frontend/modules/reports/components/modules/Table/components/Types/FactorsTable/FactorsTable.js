@@ -21,7 +21,7 @@ import Ambition from './Icons/ambition.svg'
 const MockData = [
   {
     id: 469,
-    icon_url: Ambiguity,
+    icon: Ambiguity,
     name: 'Ambiguity',
     alias: 'Ambiguity',
     meanNormScore: 65.8,
@@ -45,7 +45,7 @@ const MockData = [
   },
   {
     id: 470,
-    icon_url: Achievement,
+    icon: Achievement,
     name: 'Achievement',
     alias: 'Achievement',
     meanNormScore: 35,
@@ -69,7 +69,7 @@ const MockData = [
   },
   {
     id: 471,
-    icon_url: Accountability,
+    icon: Accountability,
     name: 'Accountability',
     alias: 'Accountability',
     meanNormScore: 55,
@@ -93,7 +93,7 @@ const MockData = [
   },
   {
     id: 472,
-    icon_url: Ambition,
+    icon: Ambition,
     name: 'Ambition',
     alias: 'Ambition',
     meanNormScore: 0.75,
@@ -117,7 +117,7 @@ const MockData = [
   },
   {
     id: 473,
-    icon_url: Agility,
+    icon: Agility,
     name: 'Agility',
     alias: 'Agility',
     meanNormScore: 95,
@@ -227,7 +227,7 @@ class FactorsTable extends Component {
             <td className={styles.description}>
               {showIcons && (
                 <div className={styles.icons}>
-                  <img src={factor.icon_url} />
+                  <img src={factor.icon} />
                 </div>
               )}
               <div className={styles.content}>
