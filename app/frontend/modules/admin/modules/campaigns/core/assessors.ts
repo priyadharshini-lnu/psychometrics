@@ -90,7 +90,7 @@ export const fetch = (campaignId: string, tableConfig: TableConfig) => ({
   },
 })
 
-export const fetchAvailableAssessments = (campaignId: string) => ({
+export const fetchAvailableAssessments = (campaignId: string | number) => ({
   type: FETCH_AVAILABLE_ASSESSMENTS,
   request: {
     method: 'get',

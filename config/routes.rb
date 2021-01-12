@@ -155,6 +155,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            put :update_assessor_form
             post :rescore_responses
           end
         end

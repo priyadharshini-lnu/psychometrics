@@ -81,6 +81,22 @@ const AssessmentList: React.FC<Props> = ({
             }}
           />
           <Column
+            title={I18n.t('campaign_assessment.column.assessor_form')}
+            key="assessorFormName"
+            render={({
+              assessorFormName, id,
+            }) => (
+              <a
+                onClick={
+                    () => openModal('UpdateAssessorFormModal',
+                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                  }
+              >
+                {assessorFormName || I18n.t('common.text.na')}
+              </a>
+            )}
+          />
+          <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
             key="universalLink"
             render={({

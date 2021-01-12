@@ -6,6 +6,8 @@ export default interface Assessment {
   reportIds: number[]
   category: string
   assessmentId: number
+  assessorFormId: number
+  assessorFormName: string
   normId: number
   normName: string
   enableUniversalLinks: boolean

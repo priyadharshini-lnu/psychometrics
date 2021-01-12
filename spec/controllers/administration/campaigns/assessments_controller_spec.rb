@@ -7,6 +7,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   let(:campaign) { create(:campaign) }
   let(:dimension) { create(:dimension) }
   let(:assessment) { create(:assessment, dimension: dimension) }
+  let!(:assessor_form) { create(:assessment, category: :assessor_form, name: 'A 1') }
   let!(:campaign_assessment) { create(:campaign_assessment, assessment: assessment, campaign: campaign) }
   let!(:norm) { create(:norm, name: 'Norm', dimension: dimension) }
   let(:report) { create(:report, assessments: [assessment]) }
@@ -53,6 +54,24 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
 
       expect(parsed_response).to eq('norm_name' => 'Norm')
     end
+  end
+
+  it '[PUT] update_assessor_form' do
+    expect(AdminJob).to_not receive(:call)
+
+    put :update_assessor_form, params: {
+      id: assessment.id,
+      new_campaign_id: campaign.id,
+      apply: false,
+      assessor_form_id: assessor_form.id
+    }, as: :json
+
+    parsed_response = JSON.parse(response.body)
+
+    campaign_assessment.reload
+
+    expect(parsed_response).to eq('assessor_form_name' => 'A 1', 'assessor_form_id' => assessor_form.id)
+    expect(campaign_assessment.assessor_form_id).to eq(assessor_form.id)
   end
 
   describe 'POST rescore_responses' do

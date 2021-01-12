@@ -118,6 +118,8 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         universal_link
         norms
         is_external
+        assessor_form_name
+        assessor_form_id
       ]
     )
     expect(assessment_response).to include({

@@ -13,6 +13,7 @@ import { Strategies } from './AddReportModal/interfaces'
 import UniversalLinkModal from './UniversalLinkModal'
 import ImportRawModal from './ImportRawModal'
 import UpdateNormModal from './UpdateNormModal'
+import UpdateAssessorFormModal from './UpdateAssessorFormModal'
 import ImportScoringModal from './ImportScoringModal'
 import RemoveReportModal from './RemoveReportModal'
 import RemoveAssessmentModal from './RemoveAssessmentModal'
@@ -26,6 +27,7 @@ const MODALS = {
   ImportRawModal,
   ImportScoringModal,
   UpdateNormModal,
+  UpdateAssessorFormModal,
   RemoveReportModal,
   ToggleUserAccessModal,
   RemoveAssessmentModal,

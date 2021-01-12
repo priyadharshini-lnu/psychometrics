@@ -772,6 +772,7 @@ en:
       norm: Norm
       status: Status
       universal_link: Universal link
+      assessor_form: Assessor Form
     modals:
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
@@ -798,7 +799,11 @@ en:
         select_norm: Select Norm
         success_msg: Norms successfully uploaded
         title: Update Norm
-        type: Norm Type
+        update: Update
+      update_assessor_form:
+        select_assessor: Select Assessor Form
+        success_msg: Assessor Form successfully uploaded
+        title: Update Assessor Form
         update: Update
       update_time:
         additional_time: Time (min)

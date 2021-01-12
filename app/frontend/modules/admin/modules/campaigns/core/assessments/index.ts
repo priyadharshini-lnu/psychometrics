@@ -9,7 +9,11 @@ import {
   FETCH_ASSESSMENTS_AND_REPORTS,
 } from '../current'
 import {
-  ACTIVATE_UNIVERSAL_LINK, REGENERATE_UNIVERSAL_LINK, DEACTIVATE_UNIVERSAL_LINK, FETCH_NORMS, UPDATE_NORM, REMOVE,
+  ACTIVATE_UNIVERSAL_LINK,
+  REGENERATE_UNIVERSAL_LINK,
+  DEACTIVATE_UNIVERSAL_LINK,
+  FETCH_NORMS, UPDATE_NORM,
+  REMOVE, UPDATE_ASSESSOR_FORM,
 } from './actions'
 
 const defaultState: State = {
@@ -34,7 +38,8 @@ export interface State {
 type ActivateUniversalLinkType = ApiActionResponse<Assessment>
 type FetchType = ApiActionResponse<{assessments: Assessment[]}>
 type FetchNormsType = ApiActionResponse<Norm[]>
-type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
+type UpdateNormType = ApiActionResponse<{normName: string}>
+type UpdateAssessorForm = ApiActionResponse<{assessorFormName: string, assessorFormId: number | undefined}>
 type RemoveType = ApiActionResponse<number>
 
 
@@ -59,6 +64,14 @@ const HANDLERS = {
     return setIn(state, ['list'], assessments)
   },
   [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
+    const assessments = state.list.map((assessment: Assessment) => {
+      if (assessment.id !== request.body.id) return assessment
+
+      return { ...assessment, ...response }
+    })
+    return setIn(state, ['list'], assessments)
+  },
+  [UPDATE_ASSESSOR_FORM]: (state, { response, requestAction: { request } }: UpdateAssessorForm) => {
     const assessments = state.list.map((assessment: Assessment) => {
       if (assessment.id !== request.body.id) return assessment
 

@@ -81,6 +81,14 @@ module Administration
         end
       end
 
+      def update_assessor_form
+        campaign_assessment.update!(assessor_form_id: params[:assessor_form_id])
+        render json: {
+          assessor_form_name: campaign_assessment.assessor_form&.name,
+          assessor_form_id: campaign_assessment.assessor_form&.id
+        }
+      end
+
       private
 
       def assessment
