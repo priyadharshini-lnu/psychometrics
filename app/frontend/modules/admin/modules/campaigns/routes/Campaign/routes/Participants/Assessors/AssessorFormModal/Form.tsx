@@ -47,7 +47,6 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 
 const Form: React.FC<Props & PropsFromRedux> = ({
   campaignId,
-  projectId,
   assessments,
   autocompletedSubjects,
   autocompletedAssessors,
@@ -102,7 +101,7 @@ const Form: React.FC<Props & PropsFromRedux> = ({
           onChange={setAutocompletedAssessor}
           users={autocompletedAssessors}
           onSelect={user => onSelect('assessor', user)}
-          url={`/administration/projects/${projectId}/search_users`}
+          url="/administration/users/search_admins"
           source="assessors"
           placeholder={localI18n('assessor_placeholder')}
         />

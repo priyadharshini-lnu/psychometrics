@@ -17,6 +17,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     create?
   end
 
+  def search_admins?
+    index?
+  end
+
   def create_superadmin?
     @user.is?(:superadmin)
   end

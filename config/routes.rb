@@ -547,6 +547,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :create_superadmin
+        post :search_admins
         get :export
       end
     end

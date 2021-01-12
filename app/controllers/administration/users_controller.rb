@@ -19,6 +19,13 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
+  def search_admins
+    users = ::Users::Admin.search_query(params[:q]).map do |user|
+      ::Projects::SearchUserSerializer.new(user).to_h
+    end
+    render json: users
+  end
+
   # GET /administration/resources/1
   def show; end
 
