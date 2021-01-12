@@ -7,7 +7,7 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        results = ::Assessments::Export::RawAndScoring.call!(
+        results = ::Assessments::Export::RawExport.call!(
           assessment, campaign, export_with_labels: !!params[:with_labels]
         )
 

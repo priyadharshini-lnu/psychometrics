@@ -161,7 +161,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
+        {AssessmentPolicy.exportRawResultsWithLabel(currentUser, assessment) && (
         <Menu.Item key="export_raw_labels">
           <a
             target="_blank"
@@ -172,7 +172,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
+        {AssessmentPolicy.exportRawResultsWithoutLabel(currentUser, assessment) && (
         <Menu.Item key="export_raw">
           <a
             target="_blank"
