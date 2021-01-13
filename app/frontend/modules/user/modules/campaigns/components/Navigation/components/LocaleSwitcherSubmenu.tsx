@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Menu } from 'antd'
 import {
   LoadingOutlined,
+  DownOutlined,
 } from '@ant-design/icons'
 
 import styles from '../styles.scss'
@@ -31,7 +32,15 @@ export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
     return null
   }
 
-  let localeSubmenuTitle = I18n.t(`languages.${currentLocale}`)
+  let localeSubmenuTitle: JSX.Element = (
+    <>
+      <span>
+        {I18n.t(`languages.${currentLocale}`)}
+        {' '}
+      </span>
+      <DownOutlined />
+    </>
+  )
   if (isLocaleLoading) {
     localeSubmenuTitle = (
       <>
