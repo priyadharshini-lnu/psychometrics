@@ -121,7 +121,11 @@ const Navigation: FC<PropsFromRedux> = ({
             <img
               src={logo}
               alt={projectName}
-              className={styles.logo}
+              // reason for inline style -> LH-1187
+              style={{
+                maxHeight: '70px',
+                maxWidth: '100%',
+              }}
               loading="lazy"
             />
           </Link>
@@ -203,11 +207,10 @@ interface ProfileSubmenuProps {
   handleLogout: () => Promise<void>
 }
 
-const ProfileSubmenu: FC<ProfileSubmenuProps & Pick<PropsFromRedux, 'isAnonym'>> = ({
-  isAnonym,
-  toggleModalVisibility,
-  handleLogout,
-  ...restMenuProps
+const ProfileSubmenu: FC<
+  ProfileSubmenuProps & Pick<PropsFromRedux, 'isAnonym'>
+> = ({
+  isAnonym, toggleModalVisibility, handleLogout, ...restMenuProps
 }) => {
   if (isAnonym) {
     return null
