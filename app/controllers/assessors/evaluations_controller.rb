@@ -5,6 +5,7 @@ class Assessors::EvaluationsController < Assessors::BaseController
 
   def show
     user_result = @assessor_assessment.users_result
+    user_result.update(current_element: nil, current_page: nil, status: :in_progress) if params[:edit] == 'true'
 
     user_result.update(last_activity_at: DateTime.current)
     render json: serialize_data(@assessor_assessment, user_result)

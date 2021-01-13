@@ -71,6 +71,9 @@ const defaultState: State = {
   expiryDate: null,
   timerDuration: null,
   isSimulation: false,
+  factors: [],
+  scoring: null,
+  isAssessor: false,
 }
 
 const HANDLERS = {
@@ -139,6 +142,9 @@ const HANDLERS = {
       prevPages: result.prev_pages || [],
       highlights: _.keyBy(highlights, 'id'),
       assessmentTimedOut: result.timed_out || false,
+      factors: result.factors,
+      scoring: result.scoring,
+      isAssessor: data.isAssessor,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
@@ -196,13 +202,23 @@ const HANDLERS = {
   [RESET]: (state: State) => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
-  [SAVE_RESULTS]: (state: State, { response: { expired, currentBlock } }: SaveResults) => {
+  [SAVE_RESULTS]: (state: State, {
+    response: {
+      expired, currentBlock, factors, scoring,
+    },
+  }: SaveResults) => {
     const blocks = currentBlock
       ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
       : state.blocks
     const end = expired || state.end
     return end && !state.showSubmitPage ? {
-      ...state, end, blocks, currentElement: null, currentPage: null,
+      ...state,
+      end,
+      blocks,
+      currentElement: null,
+      currentPage: null,
+      factors,
+      scoring,
     } : { ...state, end, blocks }
   },
   [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {

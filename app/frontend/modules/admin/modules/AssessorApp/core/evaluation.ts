@@ -35,12 +35,13 @@ type FetchType = ApiActionResponse<{
   result: Result,
 }>
 
-export const fetchAssessorAssessment = (evaluationId: number) => ({
+export const fetchAssessorAssessment = (evaluationId: number, edit: boolean) => ({
   type: FETCH_ASSESSOR_ASSESSMENT,
   request: {
     method: 'get',
     url: `/assessors/evaluations/${evaluationId}`,
     camelize: false,
+    body: { edit },
   },
 })
 

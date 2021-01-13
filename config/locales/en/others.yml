@@ -579,6 +579,8 @@ en:
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
       rescore: Rescore
+      re_evaluate: Click Here to Re-Evaluate
+      back_to_campaign: Back to Campaign
     audio_response:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio

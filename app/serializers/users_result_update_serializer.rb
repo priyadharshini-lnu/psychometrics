@@ -2,9 +2,15 @@
 
 class UsersResultUpdateSerializer < ActiveModel::Serializer
   attributes :expired, :current_block
+  attribute :scoring, if: -> { object.completed? }
+  attribute :factors, if: -> { object.completed? }
 
   def expired
     object.expired?
+  end
+
+  def factors
+    Factor.where(id: object.scoring&.keys)
   end
 
   def current_block

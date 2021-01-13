@@ -131,6 +131,9 @@ export interface DefaultState {
   expiryDate: Date | null
   timerDuration: number | null
   isSimulation: boolean
+  factors: []
+  scoring: {} | null
+  isAssessor: boolean
 }
 
 export interface MediaResponse {
@@ -188,6 +191,7 @@ export interface InitData {
   timer_duration: number
   notAnEndPage: boolean
   category: string
+  isAssessor: boolean
 }
 export interface Result {
   id: number
@@ -197,6 +201,8 @@ export interface Result {
   data_sheet: []
   subject_datasheet: []
   results?: {}
+  scoring?: {}
+  factors: []
   answers?: {}
   expiry_date: Date
   meta_data: {}
@@ -211,6 +217,8 @@ export interface Result {
 interface SaveResponse {
   expired: boolean
   currentBlock: Block
+  scoring?: {}
+  factors?: []
 }
 
 export interface InitType { type: string, data: InitData, result: Result}
