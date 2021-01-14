@@ -13,7 +13,7 @@ module UsersResults
       end
 
       def call
-        return broadcast :ok, extended_scoring unless norm
+        return broadcast :ok, scoring unless norm
 
         extended_scoring = scoring.reduce({}) do |extending_scoring, (factor_id, value)|
           norm_score =
