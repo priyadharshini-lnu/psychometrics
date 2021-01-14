@@ -1,19 +1,16 @@
 import React, { FC } from 'react'
-import { Menu } from 'antd'
-import {
-  LoadingOutlined,
-  DownOutlined,
-} from '@ant-design/icons'
+import { Menu, Space } from 'antd'
+import { LoadingOutlined, DownOutlined } from '@ant-design/icons'
 
 import styles from '../styles.scss'
 
 const { I18n } = window
 
 interface LocaleSwitcherSubmenuProps {
-    isLocaleSwitcherHidden: boolean
-    isLocaleLoading: boolean
-    handleLocaleChange: (localeKey: string) => Promise<void>
-  }
+  isLocaleSwitcherHidden: boolean
+  isLocaleLoading: boolean
+  handleLocaleChange: (localeKey: string) => Promise<void>
+}
 
 export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
   isLocaleSwitcherHidden,
@@ -33,13 +30,12 @@ export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
   }
 
   let localeSubmenuTitle: JSX.Element = (
-    <>
+    <Space>
       <span>
         {I18n.t(`languages.${currentLocale}`)}
-        {' '}
       </span>
       <DownOutlined />
-    </>
+    </Space>
   )
   if (isLocaleLoading) {
     localeSubmenuTitle = (
