@@ -65,7 +65,7 @@ const AssessorAssessment: React.FC<Props> = ({
             dashboardUrl={`/assessors/campaigns/${result.campaign_id}/users`}
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${result.id}`}
             rstore={store}
-            isAssessor
+            showScoringOnEndPage
           />
         )}
       </Content>

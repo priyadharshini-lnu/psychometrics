@@ -39,15 +39,15 @@ export class EndPage extends Component {
       <div>
         <Table
           columns={[{
-            title: 'ID',
+            title: I18n.t('assessments.scoring.id'),
             dataIndex: 'id',
             key: 'id',
           }, {
-            title: 'Competency',
+            title: I18n.t('assessments.scoring.competency'),
             dataIndex: 'competency',
             key: 'competency',
           }, {
-            title: 'Score',
+            title: I18n.t('assessments.scoring.score'),
             dataIndex: 'score',
             key: 'score',
           }]}
@@ -65,7 +65,7 @@ export class EndPage extends Component {
 
   render () {
     const {
-      flowElement, dashboardUrl, isAnonymousAssessment, I18n, isAssessor,
+      flowElement, dashboardUrl, isAnonymousAssessment, I18n, showScoringOnEndPage,
     } = this.props
     let message = I18n.t('assessments.messages.finish')
 
@@ -84,8 +84,8 @@ export class EndPage extends Component {
         <div className={styles.end} style={this.addLtrStyleIfNeed(message)}>
           {message}
         </div>
-        {isAssessor && this.renderScoring()}
-        {!isAssessor && !isAnonymousAssessment && (
+        {showScoringOnEndPage && this.renderScoring()}
+        {!showScoringOnEndPage && !isAnonymousAssessment && (
           <div className={styles.end}>
             <a href={dashboardUrl}>{I18n.t('assessments.actions.goto_dashboard')}</a>
           </div>

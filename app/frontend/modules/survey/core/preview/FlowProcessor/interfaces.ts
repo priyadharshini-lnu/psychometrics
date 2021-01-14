@@ -133,7 +133,7 @@ export interface DefaultState {
   isSimulation: boolean
   factors: []
   scoring: {} | null
-  isAssessor: boolean
+  showScoringOnEndPage: boolean
 }
 
 export interface MediaResponse {
@@ -191,7 +191,8 @@ export interface InitData {
   timer_duration: number
   notAnEndPage: boolean
   category: string
-  isAssessor: boolean
+  showScoringOnEndPage: boolean
+  factors: []
 }
 export interface Result {
   id: number

@@ -21,7 +21,8 @@ module UsersResults::ControllerConcern
 
     render json: @users_result,
             serializer: UsersResultUpdateSerializer,
-            current_block_id: params[:current_block_id]
+            current_block_id: params[:current_block_id],
+            current_user: current_user
   end
 
   def update_meta_data

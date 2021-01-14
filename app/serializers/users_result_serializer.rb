@@ -18,6 +18,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
   delegate :campaign_options, to: :campaign
+  has_many :factors, serializer: ::UsersResults::FactorSerializer
 
   def factors
     Factor.where(id: object.scoring&.keys)

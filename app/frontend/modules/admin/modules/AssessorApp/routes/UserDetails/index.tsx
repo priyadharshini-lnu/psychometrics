@@ -96,10 +96,10 @@ const UserDetails: React.FC<Props> = (
               <Column
                 title={I18n.t('common.column.action')}
                 key="action"
-                render={({ id }) => (
+                render={({ id, status }) => (
                   <Dropdown
                     overlay={() => (
-                    ActionsMenu({ userAssessmentId: id }) as React.ReactElement
+                    ActionsMenu({ userAssessmentId: id, status }) as React.ReactElement
                     )}
                     trigger={['click']}
                   >
@@ -119,17 +119,18 @@ const UserDetails: React.FC<Props> = (
 
 interface ActionsProps {
   userAssessmentId: number
+  status: string
 }
 
-const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId }) => (
+const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId, status }) => (
   <Menu>
     <Menu.Item key="evaluate">
       <a
-        href={`/assessors/evaluations/${userAssessmentId}`}
+        href={`/assessors/evaluations/${userAssessmentId}${status === 'completed' ? '?edit=true' : ''}`}
         role="button"
         tabIndex={-1}
       >
-        {I18n.t('assessments.actions.evaluate')}
+        {status === 'completed' ? I18n.t('assessments.actions.reevaluate') : I18n.t('assessments.actions.evaluate') }
       </a>
     </Menu.Item>
   </Menu>

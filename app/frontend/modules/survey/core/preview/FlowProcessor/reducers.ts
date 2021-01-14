@@ -73,7 +73,7 @@ const defaultState: State = {
   isSimulation: false,
   factors: [],
   scoring: null,
-  isAssessor: false,
+  showScoringOnEndPage: false,
 }
 
 const HANDLERS = {
@@ -144,7 +144,7 @@ const HANDLERS = {
       assessmentTimedOut: result.timed_out || false,
       factors: result.factors,
       scoring: result.scoring,
-      isAssessor: data.isAssessor,
+      showScoringOnEndPage: data.showScoringOnEndPage,
     }
   },
   [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {

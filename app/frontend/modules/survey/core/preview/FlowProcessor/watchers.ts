@@ -138,13 +138,13 @@ function* getShowSubmitPage () {
     yield put(hideSubmitPage())
     return
   }
-  const { isThreesixty } = state.preview
+  const { enableBack, isThreesixty, showScoringOnEndPage } = state.preview
 
   const canNotEdit = _.get(
     state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
   )
 
-  if (state.preview.enableBack && (!isThreesixty || (isThreesixty && canNotEdit))) {
+  if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
     yield put(showSubmitPage())
   }
 }

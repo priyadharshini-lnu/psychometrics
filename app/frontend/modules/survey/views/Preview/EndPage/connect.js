@@ -9,7 +9,7 @@ export default connect(
     I18n: getI18n(preview),
     scoring: preview.scoring,
     factors: preview.factors,
-    isAssessor: preview.isAssessor,
+    showScoringOnEndPage: preview.showScoringOnEndPage,
   }),
   {
   },
