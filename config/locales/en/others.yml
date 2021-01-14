@@ -574,11 +574,18 @@ en:
         title: Continue?
     restart: Restart
   assessments:
+    scoring:
+      id: ID
+      competency: Competency
+      score: Score
     actions:
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
       rescore: Rescore
+      reevaluate: Re-Evaluate
+      re_evaluate: Click Here to Re-Evaluate
+      back_to_campaign: Back to Campaign
     audio_response:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio

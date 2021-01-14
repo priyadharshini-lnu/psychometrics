@@ -7,6 +7,9 @@ export default connect(
     dashboardUrl: preview.dashboardUrl,
     dbResult: preview.dbResult,
     I18n: getI18n(preview),
+    scoring: preview.scoring,
+    factors: preview.factors,
+    showScoringOnEndPage: preview.showScoringOnEndPage,
   }),
   {
   },

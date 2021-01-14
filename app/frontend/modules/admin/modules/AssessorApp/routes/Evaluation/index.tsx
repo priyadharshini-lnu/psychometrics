@@ -4,6 +4,7 @@ import store from 'modules/admin/store'
 import { Col, Row } from 'antd'
 import { useParams } from 'react-router-dom'
 import Breadcrumbs from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import qs from 'qs'
 import AssessorAssessment from './AssessorAssessment'
 import UserAssessment from './UserAssessment'
 import { fetchAssessorAssessment } from '../../core/evaluation'
@@ -26,7 +27,8 @@ const Evaluation = ({
 }) => {
   const { userAssessmentId } = useParams<{ userAssessmentId: string }>()
   useEffect(() => {
-    fetch(parseInt(userAssessmentId, 10))
+    const { edit } = qs.parse(location.search.substr(1))
+    fetch(parseInt(userAssessmentId, 10), edit)
   }, [])
 
   if (!result) { return null }

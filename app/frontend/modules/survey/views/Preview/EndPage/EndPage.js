@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
+import { Table } from 'antd'
 import PropTypes from 'prop-types'
 import styles from './EndPage.scss'
 
@@ -27,9 +28,44 @@ export class EndPage extends Component {
     return null
   }
 
+  renderScoring () {
+    const { scoring, factors, dashboardUrl } = this.props
+    if (!scoring) { return null }
+    const data = _.map(scoring, (s, id) => ({
+      id, competency: _.find(factors, { id: +id }).name, score: s.score,
+    }))
+
+    return (
+      <div>
+        <Table
+          columns={[{
+            title: I18n.t('assessments.scoring.id'),
+            dataIndex: 'id',
+            key: 'id',
+          }, {
+            title: I18n.t('assessments.scoring.competency'),
+            dataIndex: 'competency',
+            key: 'competency',
+          }, {
+            title: I18n.t('assessments.scoring.score'),
+            dataIndex: 'score',
+            key: 'score',
+          }]}
+          dataSource={data}
+          pagination={false}
+        />
+        <div className={styles.links}>
+          <a href="?edit=true">{I18n.t('assessments.actions.re_evaluate')}</a>
+          {' | '}
+          <a href={dashboardUrl}>{I18n.t('assessments.actions.back_to_campaign')}</a>
+        </div>
+      </div>
+    )
+  }
+
   render () {
     const {
-      flowElement, dashboardUrl, isAnonymousAssessment, I18n,
+      flowElement, dashboardUrl, isAnonymousAssessment, I18n, showScoringOnEndPage,
     } = this.props
     let message = I18n.t('assessments.messages.finish')
 
@@ -48,7 +84,8 @@ export class EndPage extends Component {
         <div className={styles.end} style={this.addLtrStyleIfNeed(message)}>
           {message}
         </div>
-        {!isAnonymousAssessment && (
+        {showScoringOnEndPage && this.renderScoring()}
+        {!showScoringOnEndPage && !isAnonymousAssessment && (
           <div className={styles.end}>
             <a href={dashboardUrl}>{I18n.t('assessments.actions.goto_dashboard')}</a>
           </div>
