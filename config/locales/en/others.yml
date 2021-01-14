@@ -126,6 +126,23 @@ en:
               blank: Last name can't be blank
             password:
               too_short: Password is too short. Minimum 6 character required
+              too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        register:
+          attributes:
+            email:
+              blank: Email Address is required
+              in_use: This Email Address is in use. If you already have an account, please sign in.
+              invalid: Email Address is invalid
+              too_long: Email Address is too long
+            first_name:
+              blank: First Name is required
+              too_long: First Name is too long
+            last_name:
+              blank: Last Name is required
+              too_long: Last Name is too long
+            registration_code:
+              blank: Registration code is required
+              invalid: Registration code is invalid
         super_admin_edit:
           attributes:
             email:
@@ -1022,7 +1039,18 @@ en:
       password_change:
         subject: Password Changed
       reset_password_instructions:
-        subject: Reset password instructions
+        body: |
+          Hello %{name}!
+
+          Someone has requested a link to change your password. You can do this through the link below.
+
+          <a href="%{change_password_link}">Change Password</a>
+
+          If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+
+          Regards,
+          Lighthouse Team
+        subject: Instructions for resetting your password
       unlock_instructions:
         subject: Unlock instructions
     omniauth_callbacks:

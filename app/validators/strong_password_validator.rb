@@ -5,7 +5,7 @@ class StrongPasswordValidator < ActiveModel::EachValidator
   REGEX = /\A(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[[:^alnum:]])/x.freeze
 
   def validate_each(record, attribute, value)
-    record.errors.add(attribute, I18n.t('administration.users.password.guidelines.error')) unless strong?(value)
+    record.errors.add(attribute, I18n.t('activemodel.errors.models.profile.attributes.password.too_weak')) unless strong?(value)
   end
 
   private

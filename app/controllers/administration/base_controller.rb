@@ -35,5 +35,9 @@ module Administration
     def resource=(resource)
       @_resource = resource
     end
+
+    def set_locale
+      I18n.locale = I18n.default_locale
+    end
   end
 end
