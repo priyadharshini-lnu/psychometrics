@@ -35,7 +35,7 @@ export const LocaleSwitcherSubmenu: FC<LocaleSwitcherSubmenuProps> = ({
   let localeSubmenuTitle: JSX.Element = (
     <>
       <span>
-        {currentLocale.toUpperCase()}
+        {I18n.t(`languages.${currentLocale}`)}
         {' '}
       </span>
       <DownOutlined />
