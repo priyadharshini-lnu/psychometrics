@@ -181,7 +181,7 @@ class Client < ApplicationRecord
   def available_locales
     return locales if locales.any?
 
-    Settings.enduser_locales
+    [I18n.default_locale]
   end
 
   def assign_by_membership_and_assessment(membership_id, assessment_id)

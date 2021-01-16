@@ -4,7 +4,7 @@ html {
 }
 
 html, body {
-  background: asset-url('backgroundImage.png') no-repeat center center fixed;
+  background: url(asset-path('backgroundImage.png')) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

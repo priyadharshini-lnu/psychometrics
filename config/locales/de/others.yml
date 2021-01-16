@@ -35,6 +35,25 @@ de:
               blank: Der Vorname darf nicht leer sein
             last_name:
               blank: Nachname darf nicht leer sein
+            password:
+              too_short: Das Passwort ist zu kurz. Mindestens 6 Zeichen erforderlich
+              too_weak: 'Das Passwort muss enthalten: Mindestens 8 Zeichen, 1 Kleinbuchstabe, 1 Großbuchstabe, 1 Zahl und 1 Sonderzeichen.'
+        register:
+          attributes:
+            email:
+              blank: Die E-Mail-Adresse muss ausgefüllt werden
+              in_use: Diese E-Mail-Adresse wird verwendet. Wenn Sie bereits ein Konto haben, melden Sie sich bitte an
+              invalid: E-mail Adresse ist nicht korrekt
+              too_long: E-Mail-Adresse ist zu lang
+            first_name:
+              blank: Der Vorname muss ausgefüllt werden
+              too_long: Vorname ist zu lang
+            last_name:
+              blank: Nachname muss ausgefüllt werden
+              too_long: Nachname ist zu lang
+            registration_code:
+              blank: Registrierungscode ist erforderlich
+              invalid: Der Registrierungscode ist ungültig
         super_admin_edit:
           attributes:
             first_name:
@@ -138,6 +157,20 @@ de:
     invitations:
       edit:
         password_label: Passwort
+    mailer:
+      reset_password_instructions:
+        body: |
+          Hallo %{name}!
+
+          Jemand hat einen Link angefordert, um Ihr Passwort zu ändern. Sie können dies über den unten stehenden Link tun.
+
+          <a href="%{change_password_link}">Passwort ändern</a>
+
+          Wenn Sie dies nicht angefordert haben, können Sie diese E-Mail ignorieren. Ihr Passwort ändert sich erst, wenn Sie auf den obigen Link zugreifen und ein neues erstellen.
+
+          Grüße,
+          Lighthouse-Team
+        subject: Anweisungen zum Zurücksetzen Ihres Passworts
     registrations:
       new:
         code: Registrierungscode
