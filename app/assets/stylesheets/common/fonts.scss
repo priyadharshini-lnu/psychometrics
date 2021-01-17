@@ -1,13 +1,13 @@
 @font-face {
   font-family: gotham-book;
-  src: asset-url('gotham-book.eot');
-  src: asset-url('gotham-book.eot?#iefix') format('embedded-opentype'), asset-url('gotham-book.woff') format('woff'), asset-url('gotham-book.ttf') format('truetype');
+  src: url(asset-path('gotham-book.eot'));
+  src: url(asset-path('gotham-book.eot?#iefix')) format('embedded-opentype'), url(asset-path('gotham-book.woff')) format('woff'), url(asset-path('gotham-book.ttf')) format('truetype');
 }
 
 @font-face {
   font-family: Century Gothic;
-  src: asset-url('century_gothic__2.eot');
-  src: asset-url('century_gothic__2.eot?#iefix') format('embedded-opentype'), asset-url('century-gothic.woff') format('woff'), asset-url('century-gothic.ttf') format('truetype');
+  src: url(asset-path('century_gothic__2.eot'));
+  src: url(asset-path('century_gothic__2.eot?#iefix')) format('embedded-opentype'), url(asset-path('century-gothic.woff')) format('woff'), url(asset-path('century-gothic.ttf')) format('truetype');
 }
 
 /* open-sans-latin-300-italic*/

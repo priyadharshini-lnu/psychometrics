@@ -11,5 +11,6 @@ html.body-full-height
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
   body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}" style=device_html_style
+    = render 'devise/shared/video'
     .main#devise
       = yield
