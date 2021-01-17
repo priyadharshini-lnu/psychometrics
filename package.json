@@ -71,7 +71,7 @@
     "babel-preset-env": "^1.7.0",
     "cache-loader": "^4.1.0",
     "classnames": "^2.2.6",
-    "codemirror": "^5.59.0",
+    "codemirror": "^5.59.1",
     "conditional-wrap": "^1.0.2",
     "connected-react-router": "^6.8.0",
     "crypto-js": "^4.0.0",
