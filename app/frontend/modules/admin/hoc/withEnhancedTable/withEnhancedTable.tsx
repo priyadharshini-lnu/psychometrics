@@ -42,7 +42,7 @@ interface PropsPassed extends Props {
   maintainHistory: boolean
 }
 
-interface Options {
+export interface Options {
   maintainHistory: boolean
 }
 

@@ -338,4 +338,4 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   )
 }
 
-export default withEnhancedTable(UserList, 'usersList', { maintainHistory: true })
+export default withEnhancedTable<{}>(UserList, 'usersList', { maintainHistory: true })

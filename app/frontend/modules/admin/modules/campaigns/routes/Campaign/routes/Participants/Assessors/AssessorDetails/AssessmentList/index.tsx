@@ -227,4 +227,4 @@ const ActionsMenu: React.FC<ActionsMenuProps> = ({ subjectEmail, reset }) => {
 }
 
 
-export default connecter(withEnhancedTable(AssessmentList, 'assessorAssessmentsList', { maintainHistory: true }))
+export default connecter(withEnhancedTable<{}>(AssessmentList, 'assessorAssessmentsList', { maintainHistory: true }))
