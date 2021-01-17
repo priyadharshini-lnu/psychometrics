@@ -11,9 +11,8 @@ export default function InstructionsPanel ({
   instructionsEnabled, instructions, showBegin, showContinue, onBegin, onContinue,
 }) {
   const showActions = showBegin || showContinue
-  const showInstructions = instructionsEnabled && showActions
   const activePanels = [
-    ...(showInstructions ? '1' : []),
+    ...(instructionsEnabled ? '1' : []),
     ...(showActions ? '2' : []),
   ]
 
@@ -28,7 +27,6 @@ export default function InstructionsPanel ({
           <Panel
             header={I18n.t('campaign.instructions.heading')}
             key="1"
-            showArrow={false}
             className={styles.customPanel}
           >
             {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instructions, { ADD_TAGS: ['iframe'] }) }} />}
