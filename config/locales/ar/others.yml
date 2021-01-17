@@ -109,7 +109,7 @@ ar:
     continue: الإستمرار في التقييم
     in_progress: على قيد التقدم
     instructions:
-      heading: تعليمات يجب اتباعها
+      heading: يرجى قراءة الإرشادات أدناه قبل أن تبدأ
     interrupted: تمت مقاطعته
     language:
       cancel: إلغاء
@@ -119,6 +119,9 @@ ar:
       title: إختار اللغة
     new: جديد
     not_started: جديد
+    panels:
+      assessments: التقييمات
+      reports: تقارير
     time_left:
       cancel: إلغاء
       continue: إستمرار

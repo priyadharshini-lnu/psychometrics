@@ -137,7 +137,7 @@ export default function Campaign ({
                 />
                 <Row className={['cards-container', hasStarted ? '' : 'disabled']} gutter={16}>
                   <Col xs={24} lg={24} xl={18} xxl={18}>
-                    <div className="panel-label">Assessments</div>
+                    <div className="panel-label">{I18n.t('campaign.panels.assessments')}</div>
                     <Row gutter={[16, 16]}>
                       {groups.map((group) => {
                         const size = group.campaignAssessmentIds.length
@@ -222,7 +222,7 @@ export default function Campaign ({
                     </Row>
                   </Col>
                   <Col xs={24} lg={24} xl={6} xxl={6}>
-                    <div className="panel-label">Reports</div>
+                    <div className="panel-label">{I18n.t('campaign.panels.reports')}</div>
                     <List
                       bordered
                       className="reports-list"
