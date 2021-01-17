@@ -65,16 +65,15 @@ I18nStore.prototype = new EventEmitter()
 
 _.extend(I18nStore.prototype, {
   lookup (code) {
-    return I18n.lookup(code)
+    return I18n.lookup(code, { locale: this.locale })
   },
 
   t (code, data) {
-    return I18n.t(code, data)
+    return I18n.t(code, { locale: this.locale, ...(data || {}) })
   },
 
   setLocale (locale) {
     if (locale) {
-      I18n.locale = locale
       this.locale = locale
     }
   },

@@ -134,6 +134,23 @@ en:
               blank: Last name can't be blank
             password:
               too_short: Password is too short. Minimum 6 character required
+              too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        register:
+          attributes:
+            email:
+              blank: Email Address is required
+              in_use: This Email Address is in use. If you already have an account, please sign in.
+              invalid: Email Address is invalid
+              too_long: Email Address is too long
+            first_name:
+              blank: First Name is required
+              too_long: First Name is too long
+            last_name:
+              blank: Last Name is required
+              too_long: Last Name is too long
+            registration_code:
+              blank: Registration code is required
+              invalid: Registration code is invalid
         super_admin_edit:
           attributes:
             email:
@@ -751,9 +768,10 @@ en:
     complete_prev: Complete all prev assessments
     completed: Completed
     continue: Continue Assessment
+    details: Details
     in_progress: In Progress
     instructions:
-      heading: Instructions to follow
+      heading: Please read the guidelines below before you get started
     interrupted: Interrupted
     language:
       cancel: Cancel
@@ -763,6 +781,9 @@ en:
       title: Select language
     new: New
     not_started: New
+    panels:
+      assessments: Assessments
+      reports: Reports
     time_left:
       cancel: Cancel
       continue: Continue
@@ -1058,7 +1079,18 @@ en:
       password_change:
         subject: Password Changed
       reset_password_instructions:
-        subject: Reset password instructions
+        body: |
+          Hello %{name}!
+
+          Someone has requested a link to change your password. You can do this through the link below.
+
+          <a href="%{change_password_link}">Change Password</a>
+
+          If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+
+          Regards,
+          Lighthouse Team
+        subject: Instructions for resetting your password
       unlock_instructions:
         subject: Unlock instructions
     omniauth_callbacks:
@@ -1269,8 +1301,8 @@ en:
       reports:
         download:
           description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
-          error: An Error is occur
-          error_description: You report generation failed. Please contact to Administrator or try to <b>download</b> again.
+          error: An Error occurred
+          error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
           message: Report is ready
   languages:
     ar: العربية
@@ -1467,6 +1499,9 @@ en:
   my: My
   myself: Myself
   na: NA
+  navigation:
+    logout: Logout
+    profile: Profile
   next: Next
   'no': 'No'
   nominations:
@@ -1946,6 +1981,15 @@ en:
       text: required
     'yes': 'Yes'
   subjects:
+    approval_statuses:
+      approved: Approved
+      denied: Denied
+      waiting: Needs Approval
+    report_statuses:
+      failed: Failed
+      generating: Generating
+      not_prepared: Not Ready
+      prepared: Done
     statuses:
       completed: Completed
       declined: Declined
@@ -1961,6 +2005,7 @@ en:
       title: Data processing consent
     add: Add
     and: And
+    approve: Approve
     approve_all: Approve All
     approve_all_successful: Approved all nominations
     approve_evaluations: Approve Evaluations
@@ -2010,6 +2055,7 @@ en:
       delete_successful: Email schedule deleted successfully
     evaluate: Evaluate
     evaluation: Evaluation
+    evaluation_closed_message: Evaluation is closed for this subject
     evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
     evaluations: Evaluations
     evaluator: Evaluator
@@ -2032,6 +2078,10 @@ en:
     nominate: Nominate
     nominate_evaluators: Nominate Evaluators to
     nomination: Nomination
+    nomination_predicates:
+      atleast: At least %{count}
+      atmost: At most %{count}
+      exactly: Exactly %{count}
     nominations: Nominations
     options:
       global:
@@ -2064,7 +2114,7 @@ en:
         remove_report_approval: Are you sure you want to remove report approval?
         remove_subject: Are you sure you want to remove subject with email from campaign?
         umark_evaluation_as_complete: Are you sure you want to unmark evaluation as done?
-      report_generation_message: Report is generating. We will let you know when the report is ready.
+      report_generation_message: Report is being generated. We will let you know when the report is ready.
     processing: Processing
     processing_report: Processing Report
     question:
@@ -2083,7 +2133,7 @@ en:
     remind_all: Remind All
     remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
     report_for: Report for
-    report_generation_in_progress: Report is generating. We will let you know when the report is ready.
+    report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
     reports: Reports
     reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
     reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
@@ -2125,11 +2175,17 @@ en:
     png: PNG
     regenerate_link: Regenerate Link
     svg: SVG
+  update_profile:
+    cancel: Cancel
+    title: Update Profile
+    update: Update
+    updated_successfully: Profile updated successfully
   user:
     fields:
       email: Email Address
       first_name: First Name
       last_name: Last Name
+      password: Password
     form:
       operation_options:
         add_and_allow_new_response: Add user and allow new response

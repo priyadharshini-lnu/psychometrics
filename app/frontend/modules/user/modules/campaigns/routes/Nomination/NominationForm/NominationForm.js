@@ -66,7 +66,7 @@ export default function NominationForm (props) {
         <div>
           {I18n.t('threesixty.nominate_evaluators')}
           {' '}
-          {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
+          {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
       <div className="form">

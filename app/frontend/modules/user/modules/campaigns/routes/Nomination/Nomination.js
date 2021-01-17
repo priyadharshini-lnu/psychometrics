@@ -67,7 +67,7 @@ export default function Nominations (props) {
                 {I18n.t('threesixty.back_to_tasks')}
               </div>
             )}
-            title="Nomination"
+            title={I18n.t('threesixty.nomination')}
             onBack={() => props.history.push(`/threesixty_campaigns/${props.match.params.campaignId}`)}
           />
         </Content>

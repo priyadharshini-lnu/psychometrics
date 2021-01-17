@@ -808,9 +808,6 @@ en:
           updated_at: Modified Date
         new:
           header: New user
-        password:
-          guidelines:
-            error: 'Password must contain : Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
         reset_password:
           successfully: User  %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
         resource:

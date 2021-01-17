@@ -43,12 +43,12 @@ export default function EditProfileModal ({
   return (
     <Modal
       width={600}
-      title="Update Profile"
+      title={I18n.t('update_profile.title')}
       visible
       onCancel={closeModal}
       footer={[
         <Button key="back" onClick={closeModal}>
-          Cancel
+          {I18n.t('update_profile.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -56,26 +56,26 @@ export default function EditProfileModal ({
           onClick={handleFormSave}
         >
           <CheckOutlined />
-          Update
+          {I18n.t('update_profile.update')}
         </Button>,
       ]}
     >
       <ErrorAlertBox errors={errors} className="mtl mbl" />
       <Form className="editProfile">
-        <Form.Item label="Email">
+        <Form.Item label={I18n.t('user.fields.email')}>
           <Input value={email} disabled />
         </Form.Item>
 
 
-        <Form.Item label="Password">
+        <Form.Item label={I18n.t('user.fields.password')}>
           <Input.Password value={password} name="password" onChange={handleInputChange} />
         </Form.Item>
 
-        <Form.Item label="First Name">
+        <Form.Item label={I18n.t('user.fields.first_name')}>
           <Input value={firstName} name="firstName" onChange={handleInputChange} />
         </Form.Item>
 
-        <Form.Item label="Last Name">
+        <Form.Item label={I18n.t('user.fields.last_name')}>
           <Input value={lastName} name="lastName" onChange={handleInputChange} />
         </Form.Item>
       </Form>
