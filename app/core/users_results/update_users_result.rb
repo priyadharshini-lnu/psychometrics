@@ -63,7 +63,7 @@ module UsersResults
       return if camapaign.fixed_time?
 
       campaign_user = current_user.campaign_users.where(campaign_id: camapaign.id).first
-      ::CampaignUsers::MarkCompleted.call!(campaign_user) if campaign_user.user_assessments.all?(&:completed?)
+      ::CampaignUsers::MarkCompleted.call!(campaign_user) if campaign_user&.user_assessments&.all?(&:completed?)
     end
 
     def generate_report
