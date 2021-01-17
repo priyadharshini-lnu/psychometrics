@@ -50,7 +50,7 @@ en:
         create_one:
           attributes:
             assessment_ids:
-              invalid: "Assessment %{id} can't be attached to an assessor"
+              invalid: Assessment %{id} can't be attached to an assessor
             assessor_email:
               already_exists: The subject with this assessor are already connected
               blank: Assessor Email can't be blank
@@ -161,9 +161,7 @@ en:
             last_name:
               blank: Last name can't be blank
         update_assessment:
-          attributes:
-        user_assessment:
-          subject_and_assessment_exists: Assessment and subject pair already exists
+          attributes: 
         update_norm:
           attributes:
             norm_type:
@@ -176,6 +174,8 @@ en:
             import_data:
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+        user_assessment:
+          subject_and_assessment_exists: Assessment and subject pair already exists
     models:
       assign_report: Assign report Form
       datasheet: Datasheet Form
@@ -551,10 +551,10 @@ en:
         bulk_regenerate_reports: Regenerate Campaign Reports
         bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        import_assessors: Import Assessors
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
         import_users: Import Users
-        import_assessors: Import Assessors
         regenerate_campaign_reports: Regenerate Campaign Reports
         regenerate_report: Regenerate Report
         rescore_assessment: Rescore Assessment
@@ -591,18 +591,14 @@ en:
         title: Continue?
     restart: Restart
   assessments:
-    scoring:
-      id: ID
-      competency: Competency
-      score: Score
     actions:
+      back_to_campaign: Back to Campaign
       evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
-      rescore: Rescore
-      reevaluate: Re-Evaluate
       re_evaluate: Click Here to Re-Evaluate
-      back_to_campaign: Back to Campaign
+      reevaluate: Re-Evaluate
+      rescore: Rescore
     audio_response:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
@@ -645,6 +641,10 @@ en:
         completed: Completed
         in_progress: Resume
         not_started: Start
+    scoring:
+      competency: Competency
+      id: ID
+      score: Score
     unknown_error: Unknown error occurred.
     video_response:
       delete: Delete
@@ -797,10 +797,10 @@ en:
   campaign_assessment:
     column:
       assessment_name: Assessment name
+      assessor_form: Assessor Form
       norm: Norm
       status: Status
       universal_link: Universal link
-      assessor_form: Assessor Form
     modals:
       import_raw:
         body: Refer to the Export functionality to extract a template that can be used to Import here.
@@ -822,16 +822,16 @@ en:
         content: Are you sure you want to reset result?
         successfully: Result data was successfully reseted.
         title: Reset Result for assessment %{name}?
+      update_assessor_form:
+        select_assessor: Select Assessor Form
+        success_msg: Assessor Form successfully uploaded
+        title: Update Assessor Form
+        update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
         success_msg: Norms successfully uploaded
         title: Update Norm
-        update: Update
-      update_assessor_form:
-        select_assessor: Select Assessor Form
-        success_msg: Assessor Form successfully uploaded
-        title: Update Assessor Form
         update: Update
       update_time:
         additional_time: Time (min)
@@ -846,10 +846,10 @@ en:
     actions:
       bulk_download: Bulk Download
     column:
+      assessor_access: Assessor Access
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
-      assessor_access: Assessor Access
     form:
       operation: Operation
       operation_options:
@@ -957,8 +957,8 @@ en:
     actions:
       cancel: Cancel
       close: Close
-      remove: Remove
       delete: Delete
+      remove: Remove
       reset: Reset
     column:
       action: Action
@@ -969,10 +969,10 @@ en:
       status: Status
     model:
       assessments: Assessments
+      assessors: Assessors
       campaigns: Campaigns
       datasheet: Datasheet
       reports: Reports
-      assessors: Assessors
     text:
       cancel: Cancel
       confirm: Confirm
@@ -981,8 +981,8 @@ en:
       download: Download
       na: N/A
       ok: Ok
-      response: Response
       reference_language: Reference Language
+      response: Response
   confirmation:
     default_body: Are you sure?
     default_title: Confirmation

@@ -154,25 +154,25 @@ en:
       update:
         successfully: Assessment %{name} was Updated Successfully.
     assessor:
-      home: "Dashboard"
+      add_subject_modal:
+        assessment: Assessment
+        subject: Subject
+        subject_placeholder: Search subject..
+        title: Add subject
+      assessments:
+        actions:
+          add_subject: Add Subject
+          reset: Reset Evaluation
+        assessment_name: Assessment Name
+        bulk_delete_successful: Assessor assessments deleted successfully
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
+        reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
+        subject_email: Subject Email
+        subject_name: Subject Name
       completed_at: Completed At
       count: "%{count} Assessors"
       evaluations: Evaluations
-      assessments:
-        subject_name: Subject Name
-        subject_email: Subject Email
-        assessment_name: Assessment Name
-        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
-        reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
-        bulk_delete_successful: Assessor assessments deleted successfully
-        actions:
-          reset: Reset Evaluation
-          add_subject: Add Subject
-      add_subject_modal:
-        title: 'Add subject'
-        subject: Subject
-        assessment: Assessment
-        subject_placeholder: Search subject..
+      home: Dashboard
       modals:
         create_assessor:
           add: Add

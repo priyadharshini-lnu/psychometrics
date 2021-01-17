@@ -152,7 +152,7 @@ const Navigation: FC<PropsFromRedux> = ({
               key="help"
               onClick={() => toggleModalVisibility(ModalKeys.HELP, ModalVisibiltyStates.OPEN)
               }
-              title={I18n.t('threesixty.assesment.navigation.menu.help')}
+              title={I18n.t('navigation.help')}
               className={cs(styles.menuItemIcons, 'hidden')}
             >
               <QuestionCircleOutlined />
@@ -230,10 +230,10 @@ const ProfileSubmenu: FC<
         onClick={() => toggleModalVisibility(ModalKeys.PROFILE, ModalVisibiltyStates.OPEN)
         }
       >
-        {I18n.t('threesixty.assesment.navigation.menu.profile')}
+        {I18n.t('navigation.profile')}
       </Menu.Item>
       <Menu.Item key="logout" onClick={handleLogout}>
-        {I18n.t('threesixty.assesment.navigation.menu.logout')}
+        {I18n.t('navigation.logout')}
       </Menu.Item>
     </Menu.SubMenu>
   )
