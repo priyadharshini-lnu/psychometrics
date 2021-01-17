@@ -745,7 +745,7 @@ en:
     details: Details
     in_progress: In Progress
     instructions:
-      heading: Instructions to follow
+      heading: Please read the guidelines below before you get started
     interrupted: Interrupted
     language:
       cancel: Cancel
@@ -755,6 +755,9 @@ en:
       title: Select language
     new: New
     not_started: New
+    panels:
+      assessments: Assessments
+      reports: Reports
     time_left:
       cancel: Cancel
       continue: Continue
