@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'modules/user/styles/ant.less'
 import 'modules/user/styles/global.scss'
+import 'styles/utils.scss'
 import initSentry from 'libs/initSentry'
 
 initSentry()
