@@ -167,7 +167,7 @@
     "remarkable": "^1.7.1",
     "reselect": "^4.0.0",
     "retry-axios": "^2.2.1",
-    "rrweb": "^0.9.9",
+    "rrweb": "^0.9.13",
     "sass-loader": "^10.1.0",
     "scroll-js": "^3.1.0",
     "seedrandom": "^3.0.5",
