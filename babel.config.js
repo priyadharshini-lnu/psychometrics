@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = function (api) {
   const validEnv = ['development', 'test', 'production']
   const currentEnv = api.env()
@@ -30,6 +31,7 @@ module.exports = function (api) {
         {
           forceAllTransforms: true,
           useBuiltIns: 'entry',
+          corejs: '3.8',
           modules: 'commonjs',
           exclude: ['transform-typeof-symbol'],
         },
@@ -90,9 +92,10 @@ module.exports = function (api) {
         },
       ],
     ].filter(Boolean),
-    ignore: [/node_modules\/(?!query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/],
+    ignore: [
+      // eslint-disable-next-line max-len
+      /node_modules\/(?!query-string|split-on-first|redux-logger|strict-uri-encode|scroll-js|react-use|green-audio-player)/,
+    ],
     sourceMaps: true,
-    // test: ['app/frontend', 'node_modules/survey-ui'],
-    // ignore: [/node_modules\/(?!survey-ui)/],
   }
 }
