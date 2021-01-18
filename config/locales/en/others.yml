@@ -161,7 +161,7 @@ en:
             last_name:
               blank: Last name can't be blank
         update_assessment:
-          attributes: 
+          attributes:
         update_norm:
           attributes:
             norm_type:
@@ -761,7 +761,7 @@ en:
       instruction: Upgrade Now
       message: Please use latest version of the browsers
   campaign:
-    begin: Begin Assessment
+    begin: Begin your tasks
     campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
     closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
     complete_all: Complete all related assessments
@@ -771,7 +771,7 @@ en:
     details: Details
     in_progress: In Progress
     instructions:
-      heading: Please read the guidelines below before you get started
+      heading: Please review the guidelines below before you get started. Wish you all the best!
     interrupted: Interrupted
     language:
       cancel: Cancel
@@ -782,7 +782,7 @@ en:
     new: New
     not_started: New
     panels:
-      assessments: Assessments
+      assessments: Tasks
       reports: Reports
     time_left:
       cancel: Cancel
@@ -790,9 +790,9 @@ en:
       notification: Your allocated time for this task "%{assessmentName}" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.
       title: Time left warning
     timer:
-      message: Time left to complete all activities
+      message: Time left to complete all tasks
       notification: You have %{minutes} minutes and %{seconds} seconds to complete
-    ungrouped: Ungrouped assessments
+    ungrouped: Ungrouped tasks
     welcome: Welcome
   campaign_assessment:
     column:

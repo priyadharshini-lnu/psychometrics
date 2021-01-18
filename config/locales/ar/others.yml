@@ -100,7 +100,7 @@ ar:
       use_this: تسليم هذا
     wait: انتظر
   campaign:
-    begin: ابدء التقييم
+    begin: ابدأ مهامك
     campaign_closed_assessment_take_message: لا يمكنك أخذ التقييم فقد تم إغلاق هذه الحملة
     closed_campaign_message: هذه الحملة مغلقة. لا يمكنك إجراء أي تقييم ضمن هذه الحملة
     complete_all: أكمل جميع التقييمات ذات الصلة
@@ -109,7 +109,7 @@ ar:
     continue: الإستمرار في التقييم
     in_progress: على قيد التقدم
     instructions:
-      heading: يرجى قراءة الإرشادات أدناه قبل أن تبدأ
+      heading: يرجى مراجعة الإرشادات أدناه قبل أن تبدأ. أتمنى لك الأفضل!
     interrupted: تمت مقاطعته
     language:
       cancel: إلغاء
@@ -120,7 +120,7 @@ ar:
     new: جديد
     not_started: جديد
     panels:
-      assessments: التقييمات
+      assessments: مهامك
       reports: تقارير
     time_left:
       cancel: إلغاء
@@ -128,9 +128,9 @@ ar:
       notification: كان وقتك المخصص لهذه المهمة "%{assessmentName}" هو %{x} دقيقة فقط. نظراً للوقت المنقضي الإجمالي، لديك الآن %{y} دقيقة لإكمال هذه المهمة.
       title: تحذير الوقت المتبقي
     timer:
-      message: الوقت المتبقي لديك لإكمال كافة الأنشطة
+      message: الوقت المتبقي لإكمال جميع المهام
       notification: 'لديك %{minutes} و %{seconds} لإكمال التقييمات '
-    ungrouped: التقييمات غير المجموعة
+    ungrouped: مهام غير مجمعة
     welcome: مرحباً
   checking_wizard:
     audio_check:

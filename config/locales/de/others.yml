@@ -107,6 +107,8 @@ de:
   campaign:
     completed: abgeschlossen
     details: Einzelheiten
+    instructions:
+      heading: Bitte lesen Sie die folgenden Richtlinien, bevor Sie beginnen. Alles Gute für dich!
     new: neues
     not_started: neues
     time_left:
