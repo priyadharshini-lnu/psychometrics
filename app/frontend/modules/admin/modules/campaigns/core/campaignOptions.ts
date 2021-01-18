@@ -11,7 +11,7 @@ export const UPDATE = 'campaigns/campaignOptions/UPDATE'
 export const UPDATE_INSTRUCTIONS = 'campaigns/campaignOptions/UPDATE_INSTRUCTIONS'
 
 
-const Instruction = t.type({ instructions: t.string, locale: t.string })
+const Instruction = t.type({ instructions: t.union([t.string, t.null]), locale: t.string })
 const InstructionList = t.array(Instruction)
 
 const defaultState = {} as CampaignOptions
