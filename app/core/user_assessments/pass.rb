@@ -25,6 +25,7 @@ module UserAssessments
       }
       params[:selected_locale] = lang if lang
       params[:expiry_date] = time.second.from_now if time
+      params[:started_at] = Time.now unless user_assessment.users_result.started_at
 
       params
     end

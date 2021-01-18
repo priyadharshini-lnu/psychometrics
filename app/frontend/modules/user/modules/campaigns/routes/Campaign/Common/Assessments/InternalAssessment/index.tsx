@@ -58,7 +58,9 @@ const InternalAssessment: React.FC<Props> = ({
   }, lang) => {
     const href = mindmill ? mindmillUrl : url
     setLoading(true)
-    location.href = `${href}?lang=${lang}`
+
+    const params = new URLSearchParams(`lang=${lang}`)
+    location.href = `${href}?${params.toString()}`
   }
 
   const loadAssessmentOrCheckingWizard = () => {
