@@ -13,6 +13,6 @@ end
 
 module SassC
   class Engine
-    prepend AppSassCEngine
+    prepend ScssEngine
   end
 end
