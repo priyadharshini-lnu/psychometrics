@@ -37,7 +37,7 @@ export default function InstructionList ({
   }, [])
 
   useEffect(() => {
-    fetchByLocales(campaignId, selectedId, [leftLocale, rightLocale])
+    if (selectedId) { fetchByLocales(campaignId, selectedId, [leftLocale, rightLocale]) }
   }, [selectedId])
 
   const [errors, setErrors] = useState(null)
