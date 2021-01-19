@@ -7,7 +7,7 @@ module ScssEngine
     css = super
     return css if Settings.asset_host.blank?
 
-    css.gsub(Settings.asset_host, '')
+    css.gsub("//#{Settings.asset_host}", '')
   end
 end
 
