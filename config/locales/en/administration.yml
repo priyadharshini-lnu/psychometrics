@@ -202,6 +202,7 @@ en:
         not_completed: Not Completed
       toolbar:
         import: Import Assessors
+        export: Export Assessors
         tools: Tools
     assigns:
       create:

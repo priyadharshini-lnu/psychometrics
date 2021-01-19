@@ -10,6 +10,19 @@ module Administration
         paginated_assessors = assessors.page(params[:page])
 
         respond_to do |format|
+          format.csv do
+            user_assessment_by_subject_and_evaluator = UserAssessment.includes(:subject, :evaluator, :relationship).
+                                                       where(
+                                                         campaign_id: campaign.id,
+                                                         relationships: { name: Relationship::ASSESSOR }
+                                                       ).
+                                                       group_by { |ua| [ua.subject_id, ua.evaluator_id] }
+            headers['Content-Disposition'] = 'attachment; filename="assessors.csv"'
+            headers['Content-Type'] ||= 'text/csv'
+            render :index, locals: {
+              user_assessment_by_subject_and_evaluator: user_assessment_by_subject_and_evaluator
+            }
+          end
           format.json do
             serialized_assessors = ActiveModelSerializers::SerializableResource.new(
               paginated_assessors,

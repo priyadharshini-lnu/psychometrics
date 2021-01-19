@@ -17,6 +17,11 @@ const menu = ({
         {I18n.t('administration.assessor.toolbar.import')}
       </a>
     </Menu.Item>
+    <Menu.Item key="export">
+      <a href={`/administration/new_campaigns/${campaignId}/assessors.csv`}>
+        {I18n.t('administration.assessor.toolbar.export')}
+      </a>
+    </Menu.Item>
   </Menu>
 )
 
