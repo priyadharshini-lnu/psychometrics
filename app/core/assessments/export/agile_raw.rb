@@ -19,7 +19,7 @@ module Assessments
       def result_details_row_values(res)
         [
           res.encoded_id,
-          res.campaign.name,
+          campaign.name,
           res.user.first_name,
           res.user.last_name,
           res.user.email,
