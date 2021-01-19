@@ -1,6 +1,8 @@
-import _ from 'lodash'
+import lodashGet from 'lodash/get'
+
 import { RootState } from 'modules/admin/core/rootReducers'
-import { createReducer, Payload } from 'utils/redux'
+
+import { createReducer } from 'utils/redux'
 
 export interface State {
   id?: number
@@ -9,16 +11,6 @@ export interface State {
 
 const defaultState: State = {}
 
-const SET = 'parentResource/SET'
+export default createReducer({}, defaultState)
 
-export const get = (state: RootState): State => _.get(state, ['datasheet', 'parentResource'])
-
-export const set = parentResource => (
-  { type: SET, payload: parentResource }
-)
-
-const HANDLERS = {
-  [SET]: (_: State, { payload }: Payload<State>) => payload,
-}
-
-export default createReducer(HANDLERS, defaultState)
+export const get = (state: RootState): State => lodashGet(state, ['datasheet', 'parentResource'])

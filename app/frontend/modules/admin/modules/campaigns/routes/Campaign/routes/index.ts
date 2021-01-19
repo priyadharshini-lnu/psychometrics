@@ -1,8 +1,8 @@
 import { Participants, Subjects, Assessors } from './Participants'
 import AssessmentsReports from './AssessmentsReports'
 import RegistrationCodes from './RegistrationCodes'
+import { Datasheet } from './Datasheet'
 import CampaignOptions from './CampaignOptions'
-import Datasheet from './Datasheet'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },

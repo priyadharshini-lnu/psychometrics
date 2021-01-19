@@ -1,35 +1,24 @@
-import React, { useEffect } from 'react'
-import store from 'modules/admin/store'
+import React from 'react'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
+
 import IncorrectResponseErrorModal from 'components/IncorrectResponseErrorModal'
-import isEmpty from 'lodash/isEmpty'
-import DatasheetListing from './routes/DatasheetListing'
-import {
-  State as ParentResource,
-  set as setParentResource,
-  get as getParenResource,
-} from './core/parentResource'
+import store from 'modules/admin/store'
+import { DatasheetManagement } from './DatasheetManagement'
 
-interface Props {
-  parentResource?: ParentResource
-}
+import { ParentResourceType } from './interfaces/index'
 
-const App: React.FC<Props> = ({ parentResource }) => {
-  useEffect(() => {
-    if (parentResource) {
-      store.dispatch(setParentResource(parentResource))
-    }
-  }, [])
-
-  return (
-    <div className="ms" style={{ background: 'white' }}>
-      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      <Provider store={store as any}>
-        {!isEmpty(getParenResource(store.getState())) && <DatasheetListing />}
-        <IncorrectResponseErrorModal />
-      </Provider>
-    </div>
-  )
-}
+// We need this app as projects datasheet is not under new campaign app
+const App: React.FC = () => (
+  <div className="mt-4 mb-4 ms-4 me-4" style={{ background: 'white' }}>
+    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+    <Provider store={store as any}>
+      <BrowserRouter>
+        <DatasheetManagement parentResourceType={ParentResourceType.Project} />
+      </BrowserRouter>
+      <IncorrectResponseErrorModal />
+    </Provider>
+  </div>
+)
 
 export default App

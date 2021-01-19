@@ -1,14 +1,19 @@
-import _ from 'lodash'
+import lodashGet from 'lodash/get'
+
 import { RootState } from 'modules/admin/core/rootReducers'
 import { createReducer } from 'utils/redux'
-import { FETCH, FetchAction } from './list'
 
-const defaultState = 0
+import { FETCH, FetchAction, ADD } from './list'
 
-export const get = (state: RootState): number => _.get(state, ['datasheet', 'total'])
+export type State = number
 
 const HANDLERS = {
-  [FETCH]: (_: number, { response }: FetchAction) => response.total,
+  [FETCH]: (_: State, { response }: FetchAction) => response.total,
+  [ADD]: (state: number) => state + 1,
 }
 
+const defaultState: State = 0
+
 export default createReducer(HANDLERS, defaultState)
+
+export const get = (state: RootState): State => lodashGet(state, ['datasheet', 'total'])

@@ -3,7 +3,11 @@ import _ from 'lodash'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
-  UserOutlined, SettingOutlined, PieChartOutlined, QrcodeOutlined, DatabaseOutlined,
+  UserOutlined,
+  SettingOutlined,
+  PieChartOutlined,
+  QrcodeOutlined,
+  DatabaseOutlined,
 } from '@ant-design/icons'
 import routeUtils from 'utils/route'
 
@@ -11,13 +15,12 @@ const { I18n } = window
 interface Props extends Attributes {
   prefix?: string
 }
-
-const ROUTES = ['/participants', '/assessments_reports', '/registration_codes', '/options', '/datasheet']
+const ROUTES = ['/participants', '/assessments_reports', '/registration_codes', '/datasheet', '/options']
 
 const MyMenu: React.FC<Props & RouteComponentProps> = ({ history, prefix }) => {
   const onClick = ({ key }) => routeUtils.moveTo(history, prefix, key)
 
-  const active = _.find(ROUTES, (key => location.pathname.includes(key))) as string
+  const active = _.find(ROUTES, key => location.pathname.includes(key)) as string
 
   return (
     <Menu className="mbm" onSelect={onClick} selectedKeys={[active]} mode="horizontal">

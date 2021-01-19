@@ -7,7 +7,10 @@ import 'styles/utils.scss'
 import initSentry from 'libs/initSentry'
 
 initSentry()
-ReactDOM.render(<DatasheetManagementApp />, document.getElementById('datasheet-management-container'))
+ReactDOM.render(
+  <DatasheetManagementApp />,
+  document.getElementById('datasheet-management-container'),
+)
 
 if (__DEV__) {
   if (module.hot) {
