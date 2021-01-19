@@ -85,4 +85,14 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
       })
     end
   end
+
+  describe 'GET spoof' do
+    it 'sign_in assessor and redirects to assessors_dashboard_path' do
+      expect(controller).to receive(:sign_in).with(assessor.user)
+
+      get :spoof, params: { new_campaign_id: assessor.campaign_id, id: assessor.id }
+
+      expect(response).to redirect_to(assessors_dashboard_path)
+    end
+  end
 end

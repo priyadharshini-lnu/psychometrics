@@ -129,6 +129,9 @@ Rails.application.routes.draw do
             get :available_assessments
             post :create_all
           end
+          member do
+            get :spoof
+          end
 
           scope module: :assessors do
             resources :user_assessments, only: %i[index create] do

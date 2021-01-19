@@ -22,6 +22,10 @@ module Administration
       def user_assessments?
         index?
       end
+
+      def spoof?
+        @user.is?(:superadmin)
+      end
     end
   end
 end

@@ -5,6 +5,7 @@ import {
   remove,
   get as getAssessors,
 } from 'modules/admin/modules/campaigns/core/assessors'
+import { get as getCurrentUser } from 'core/currentUser'
 import { openModal } from 'modules/admin/core/ui/modals'
 import { RootState } from 'modules/admin/core/rootReducers'
 import {
@@ -18,6 +19,7 @@ import {
 import settings from 'modules/admin/settings'
 import Modals from 'modules/admin/components/Modals/'
 import { Link } from 'react-router-dom'
+import User from 'modules/admin/modules/campaigns/interfaces/User'
 import { ActionsMenu } from './ActionsMenu'
 import styles from './styles.scss'
 import AssessorFormModal from './AssessorFormModal'
@@ -27,6 +29,7 @@ import ToolsDropdown from './ToolsDropdown'
 const connecter = connect(
   (state: RootState) => ({
     assessors: getAssessors(state),
+    currentUser: getCurrentUser(state) as User,
   }),
   {
     fetch,
@@ -76,6 +79,7 @@ const AssessorList: React.FC<Props> = ({
   changePage,
   openModal,
   remove,
+  currentUser,
 }) => {
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -147,6 +151,9 @@ const AssessorList: React.FC<Props> = ({
                 <Dropdown
                   overlay={() => (
                     ActionsMenu({
+                      campaignId,
+                      currentUser,
+                      id: assessor.id,
                       email: assessor.email,
                       remove: () => remove(campaignId, assessor.id),
                     }) as React.ReactElement

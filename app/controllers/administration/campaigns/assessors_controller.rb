@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class AssessorsController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[update show destroy]
+      before_action :set_resource, only: %i[update show destroy spoof]
 
       def index
         assessors = campaign.assessors.ransack(params[:filters]).result
@@ -70,6 +70,12 @@ module Administration
         ::Assessors::Remove.call!(resource)
 
         render json: resource.id
+      end
+
+      def spoof
+        sign_in(resource.user)
+        flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
+        redirect_to assessors_dashboard_path
       end
 
       private
