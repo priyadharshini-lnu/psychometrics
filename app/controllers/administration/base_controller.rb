@@ -6,6 +6,8 @@ module Administration
     include Administration::Helpers
     layout 'administration'
 
+    before_action :set_locale
+
     append_after_action :verify_authorized, except: :index
     append_after_action :verify_policy_scoped, only: :index
 
