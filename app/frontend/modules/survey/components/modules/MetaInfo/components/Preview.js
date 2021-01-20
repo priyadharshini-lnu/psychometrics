@@ -6,7 +6,7 @@ import {
 
 import styles from './MetaInfo.scss'
 
-const { ActiveXObject } = window
+const { ActiveXObject, navigator } = window
 
 export class MetaInfoPreview extends Component {
   static propTypes = {
@@ -46,8 +46,8 @@ export class MetaInfoPreview extends Component {
         } catch (e) {
           return '6.0.0'
         }
-        // eslint-disable-next-line no-console
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.warn(e)
       }
       return new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
@@ -61,8 +61,8 @@ export class MetaInfoPreview extends Component {
             .replace(/\D+/g, '.')
             .match(/^\.?(.+)\.?$/)[1]
         }
-        // eslint-disable-next-line no-console
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.warn(e)
       }
     }
