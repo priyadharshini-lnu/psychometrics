@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { browserName, browserVersion, osName } from 'react-device-detect'
+import {
+  browserName, browserVersion, osName, osVersion,
+} from 'react-device-detect'
 
 import styles from './MetaInfo.scss'
 
@@ -21,7 +23,7 @@ export class MetaInfoPreview extends Component {
     const answer = {
       browser: browserName,
       version: browserVersion,
-      os: osName,
+      os: `${osName} ${osVersion}`,
       screen: `${screen.width}x${screen.height}`,
       flash: this.getFlashVersion(),
       java: navigator.javaEnabled(),
