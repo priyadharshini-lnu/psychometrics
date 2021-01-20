@@ -21,12 +21,17 @@ class Assessors::UsersController < Administration::BaseController
 
   def show
     user_assessments = UserAssessment.where(evaluator: current_user, subject: @user, campaign_id: params[:campaign_id])
+    user_reports = UserReport.assessor_report_for_campaign(params[:campaign_id]).where(user_id: @user.id)
     serialized_user_assessments = ActiveModelSerializers::SerializableResource.new(
       user_assessments, each_serializer: Administration::Assessors::UserAssessmentSerializer
     )
+    serialized_user_reports = ActiveModelSerializers::SerializableResource.new(
+      user_reports, each_serializer: Administration::Assessors::UserReportSerializer
+    )
     render json: {
       user: Administration::Assessors::UserSerializer.new(@user).to_h,
-      userAssessments: serialized_user_assessments
+      user_assessments: serialized_user_assessments,
+      user_reports: serialized_user_reports
     }
   end
 

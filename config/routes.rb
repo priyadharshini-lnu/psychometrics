@@ -20,7 +20,18 @@ Rails.application.routes.draw do
   end
 
   namespace :assessors do
-    constraints(proc { |request| request.format == 'html' }) do
+    constraints(proc { |request| request.format.pdf? || request.format.html? }) do
+      resources :campaigns, only: [] do
+        resources :user_reports, only: [] do
+          member do
+            get :download
+            get :pdf_preview
+          end
+        end
+      end
+    end
+
+    constraints(proc { |request| request.format.html? }) do
       get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
       get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
     end
@@ -32,6 +43,10 @@ Rails.application.routes.draw do
 
     resources :campaigns, only: [:index] do
       resources :users, only: %i[index show]
+    end
+
+    resources :campaigns, only: [] do
+      resources :user_reports, only: [:show]
     end
   end
 

@@ -9,9 +9,8 @@ import {
 import { MoreOutlined } from '@ant-design/icons'
 import { useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
-import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
-import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
 import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import ReportList from './ReportList'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -24,8 +23,7 @@ const connecter = connect(
 )
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
-
-type Props = TableProps & PropsFromRedux
+type Props = PropsFromRedux
 
 const { Column } = Table
 const { I18n } = window
@@ -113,6 +111,10 @@ const UserDetails: React.FC<Props> = (
           </Col>
         </Row>
       </div>
+      <div className="pl">
+        <h3>{I18n.t('common.model.reports')}</h3>
+        <ReportList />
+      </div>
     </>
   )
 }
@@ -136,4 +138,4 @@ const ActionsMenu: React.FC<ActionsProps> = ({ userAssessmentId, status }) => (
   </Menu>
 )
 
-export default withEnhancedTable(connecter(UserDetails), 'assessorsUserDetails', { maintainHistory: true })
+export default connecter(UserDetails)

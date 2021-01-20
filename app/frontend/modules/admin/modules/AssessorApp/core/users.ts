@@ -6,6 +6,7 @@ import * as t from 'io-ts'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { UserAssessmentTR } from './userAssessments'
+import { UserReportTR } from './userReports'
 
 const UserTR = t.type({
   id: t.number,
@@ -28,6 +29,7 @@ export type SingleUser = t.TypeOf<typeof SingleUserTR>
 const FetchSingleTR = t.type({
   user: SingleUserTR,
   userAssessments: t.array(UserAssessmentTR),
+  userReports: t.array(UserReportTR),
 })
 export type FetchSingle = t.TypeOf<typeof FetchSingleTR>
 

@@ -57,12 +57,6 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
   end
 
   describe 'GET show' do
-    it 'renders on html request' do
-      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :html
-
-      expect(response).to render_template('administration/projects/new_campaigns/index')
-    end
-
     it 'renders json response' do
       get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
 
