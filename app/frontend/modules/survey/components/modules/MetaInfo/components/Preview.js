@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import platform from 'platform'
+import { browserName, browserVersion, osName } from 'react-device-detect'
+
 import styles from './MetaInfo.scss'
 
 const { ActiveXObject } = window
+
 export class MetaInfoPreview extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
@@ -11,11 +13,15 @@ export class MetaInfoPreview extends Component {
 
   componentDidMount () {
     const { model, readOnly } = this.props
-    if (readOnly) { return }
+
+    if (readOnly) {
+      return
+    }
+
     const answer = {
-      browser: platform.name,
-      version: platform.version,
-      os: platform.description.split(' on ')[1],
+      browser: browserName,
+      version: browserVersion,
+      os: osName,
       screen: `${screen.width}x${screen.height}`,
       flash: this.getFlashVersion(),
       java: navigator.javaEnabled(),
@@ -39,7 +45,9 @@ export class MetaInfoPreview extends Component {
           return '6.0.0'
         }
         // eslint-disable-next-line no-console
-      } catch (e) { console.warn(e) }
+      } catch (e) {
+        console.warn(e)
+      }
       return new ActiveXObject('ShockwaveFlash.ShockwaveFlash')
         .GetVariable('$version').replace(/\D+/g, '.').match(/^\.?(.+)\.?$/)[1]
     // other browsers
@@ -52,13 +60,20 @@ export class MetaInfoPreview extends Component {
             .match(/^\.?(.+)\.?$/)[1]
         }
         // eslint-disable-next-line no-console
-      } catch (e) { console.warn(e) }
+      } catch (e) {
+        console.warn(e)
+      }
     }
     return '0.0.0'
   }
 
   render () {
-    const { model: { result: { answers } } } = this.props
+    const {
+      model: {
+        result: { answers },
+      },
+    } = this.props
+
     return (
       <div>
         <h4>Browser Meta Info</h4>
