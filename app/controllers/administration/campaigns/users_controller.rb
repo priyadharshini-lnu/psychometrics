@@ -80,7 +80,9 @@ module Administration
             on(:ok) do |user|
               return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
             end
-            on(:error) { |errors| return render json: { errors: errors }, status: 422 }
+            on(:error) do |errors|
+              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
+            end
           end
         else
           render json: { errors: form.errors.messages }, status: 422

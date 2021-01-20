@@ -575,6 +575,7 @@ en:
     more: More
     notifications: Notifications
     results: Results
+    invalid_job: This notification corresponds to deleted record
   anonym:
     continue: Continue
     copy:

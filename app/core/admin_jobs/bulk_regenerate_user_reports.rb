@@ -20,14 +20,18 @@ module AdminJobs
       ]
     end
 
+    def valid?
+      campaign.present? && user_reports.present? && user.present?
+    end
+
     private
 
     def user_reports
-      @user_reports ||= campaign.user_reports.where(id: record.data['ids'])
+      @user_reports ||= campaign&.user_reports&.where(id: record.data['ids'])
     end
 
     def user
-      @user ||= user_reports.first.user
+      @user ||= user_reports.first&.user
     end
   end
 end

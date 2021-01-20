@@ -16,7 +16,7 @@ module Assessors
           CSV.new(URI.open(import_data.url), headers: true).read
         end
       rows = csv.map { |row| row.to_h.symbolize_keys }.map do |row|
-        row[:assessment_ids] = (row[:assessment_ids] || []).split(',').map(&:to_i)
+        row[:assessment_ids] = (row[:assessment_ids] || '').split(',').map(&:to_i)
         row
       end
       broadcast :ok, rows

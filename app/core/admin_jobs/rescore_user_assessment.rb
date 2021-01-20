@@ -21,14 +21,18 @@ module AdminJobs
       ]
     end
 
+    def valid?
+      campaign.present? && user_result.present? && user.present? && user_result.assessment.present?
+    end
+
     private
 
     def user_result
-      @user_result ||= UsersResult.find(record.data['user_result_id'])
+      @user_result ||= UsersResult.find_by(id: record.data['user_result_id'])
     end
 
     def user
-      user_result.user
+      user_result&.user
     end
   end
 end

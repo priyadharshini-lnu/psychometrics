@@ -27,7 +27,7 @@ module Campaigns
               form = ::Campaigns::Users::Import::CreateForm.new(attrs.merge(operation: operation))
               ::Campaigns::Users::Create.call(form, campaign, current_user) do
                 on(:error) do |error|
-                  raise Licenses::NotEnoughError, error.inspect
+                  raise Licenses::NotEnoughError, error
                 end
                 on(:ok) do |u|
                   imported_users << u

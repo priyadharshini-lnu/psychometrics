@@ -4,6 +4,7 @@ export interface AdminJob {
   errorMessages: string[]
   details: string[][]
   content: string
+  isValid: boolean
   read: boolean
   status: string
   operation: string

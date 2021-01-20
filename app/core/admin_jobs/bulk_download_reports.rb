@@ -22,6 +22,10 @@ module AdminJobs
       broadcast :ok, { content: content }
     end
 
+    def valid?
+      campaign.present? && campaign_reports.present?
+    end
+
     def generate_title_link
       {
         href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",

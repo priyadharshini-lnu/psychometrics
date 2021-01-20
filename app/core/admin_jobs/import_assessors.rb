@@ -30,9 +30,11 @@ module AdminJobs
       broadcast :ok, { content: content }
     end
 
-    def generate_title_link
-      return {} unless campaign
+    def valid?
+      campaign.present?
+    end
 
+    def generate_title_link
       {
         href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessors",
         label: campaign.name

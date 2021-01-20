@@ -46,7 +46,7 @@ cleaner_admin_job:
   class: CleanerAdminJob
   queue_as: cron_tasks
 
-cleaner_admin_job:
+remove_soft_deleted_resources:
   cron: "0 6 * * SUN" # At 6:00 on Sunday
   class: RemoveSoftDeletedResources
   queue_as: cron_tasks

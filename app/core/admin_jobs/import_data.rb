@@ -28,10 +28,14 @@ module AdminJobs
       ]
     end
 
+    def valid?
+      campaign.present? && assessment.present?
+    end
+
     private
 
     def assessment
-      @assessment ||= Assessment.find(record.data['assessment_id'])
+      @assessment ||= Assessment.find_by(id: record.data['assessment_id'])
     end
   end
 end

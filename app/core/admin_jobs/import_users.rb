@@ -39,5 +39,9 @@ module AdminJobs
         label: campaign.name
       }
     end
+
+    def valid?
+      campaign.present?
+    end
   end
 end

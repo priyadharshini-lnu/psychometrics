@@ -22,6 +22,10 @@ module AdminJobs
       []
     end
 
+    def valid?
+      true
+    end
+
     class << self
       def generate_title_link(record)
         new(record).generate_title_link
@@ -29,6 +33,10 @@ module AdminJobs
 
       def generate_details(record)
         new(record).generate_details
+      end
+
+      def valid?(record)
+        new(record).valid?
       end
     end
 

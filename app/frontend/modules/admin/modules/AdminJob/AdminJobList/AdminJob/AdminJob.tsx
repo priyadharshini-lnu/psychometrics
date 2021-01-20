@@ -15,7 +15,7 @@ const { I18n } = window
 
 const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job, read }) => {
   const [expanded, setExpanded] = useState(false)
-  const hasMore = job.errorMessages.length || job.content || !!job.details.length
+  const hasMore = job.isValid && (job.errorMessages.length || job.content || !!job.details.length)
 
   const getStatus = (job: AdminJobI) => {
     if (job.errorMessages.length) return 'exception'
@@ -50,7 +50,9 @@ const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job,
               <small>{moment(job.createdAt).fromNow()}</small>
             </div>
             <div>
-              <a target="_blank" rel="noopener noreferrer" href={job.titleLink.href}>{job.titleLink.label}</a>
+              {job.isValid
+                ? <a target="_blank" rel="noopener noreferrer" href={job.titleLink.href}>{job.titleLink.label}</a>
+                : <div className={styles.invalidJob}>{I18n.t('admin_jobs.invalid_job')}</div>}
             </div>
           </>
         )}
