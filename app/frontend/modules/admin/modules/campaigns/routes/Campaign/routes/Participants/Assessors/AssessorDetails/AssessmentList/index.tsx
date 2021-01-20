@@ -69,10 +69,21 @@ const AssessmentList: React.FC<Props> = ({
     fetch(parsedCampaignId, parsedAssessorId, tableConfig)
   }, [tableConfig])
 
-  const handleBulkDelete = async () => {
-    await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds)
-    await fetch(parsedCampaignId, parsedAssessorId, tableConfig)
-    message.success(I18n.t('administration.assessor.assessments.bulk_delete_successful'))
+  const handleBulkDelete = () => {
+    Modal.confirm({
+      title: I18n.t('common.text.confirm'),
+      icon: <ExclamationCircleOutlined />,
+      centered: true,
+      width: 650,
+      content: I18n.t('administration.assessor.assessments.bulk_delete_confirmation'),
+      okText: I18n.t('common.text.ok'),
+      cancelText: I18n.t('common.text.cancel'),
+      onOk: async () => {
+        await bulkDelete(parsedCampaignId, parsedAssessorId, selectedIds)
+        await fetch(parsedCampaignId, parsedAssessorId, tableConfig)
+        message.success(I18n.t('administration.assessor.assessments.bulk_delete_successful'))
+      },
+    })
   }
 
   return (

@@ -28,16 +28,16 @@ en:
       shared:
         links:
           about: About
-          app_name: '© 2016 AppName'
-          contact_us: ' Contact Us'
-          faqs: ' FAQs'
+          app_name: "© 2016 AppName"
+          contact_us: " Contact Us"
+          faqs: " FAQs"
           privacy: Privacy Statement
-          terms_conditions: ' Terms & Conditions'
+          terms_conditions: " Terms & Conditions"
         simple_design:
           design: Design
           or: Or
-    all: ' - All - '
-    any: ' - Any - '
+    all: " - All - "
+    any: " - Any - "
     assessments:
       assessment: Assessment
       assigns:
@@ -119,7 +119,7 @@ en:
             title: Soft Delete <strong>Assessment</strong>?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Assessment?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -164,6 +164,7 @@ en:
           add_subject: Add Subject
           reset: Reset Evaluation
         assessment_name: Assessment Name
+        bulk_delete_confirmation: Are you sure you wan to delete selected records?
         bulk_delete_successful: Assessor assessments deleted successfully
         reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
         reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
@@ -201,8 +202,8 @@ en:
         completed: Completed
         not_completed: Not Completed
       toolbar:
-        import: Import Assessors
         export: Export Assessors
+        import: Import Assessors
         tools: Tools
     assigns:
       create:
@@ -216,7 +217,7 @@ en:
       resource:
         confirmations:
           delete:
-            body: '<p>Are you sure you want to delete this assign?</p>'
+            body: "<p>Are you sure you want to delete this assign?</p>"
             title: Delete <strong>%{name}</strong> ?
     assigns_reports:
       edit:
@@ -227,7 +228,7 @@ en:
       top_sidebar:
         search: Search...
         sign_out_message:
-          body: '<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>'
+          body: "<p>Are you sure you want to log out?</p> <p>Press No if you want to continue work. Press Yes to logout current user.</p>"
           title: Log <strong>Out</strong> ?
     blocks:
       copy:
@@ -247,7 +248,7 @@ en:
             title: Delete <strong>Block</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Block?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
     breadcrumbs:
       admins: Admins
       assessments: Assessments
@@ -390,7 +391,7 @@ en:
         new: Add
         title: Campaign templates
       license:
-        header: '%{name} - Edit license'
+        header: "%{name} - Edit license"
       licenses:
         update:
           duplicate_licenses: You have duplicate licenses
@@ -411,17 +412,17 @@ en:
             title: Delete <strong>%{name}</strong> ?
           disable:
             body:
-              '0': '<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>'
-              '1': '<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>'
-              '2': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
-              '3': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
+              '0': "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>"
+              '1': "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>"
+              '2': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+              '3': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
             title: Archive <strong>%{name}</strong> ?
           enable:
             body:
-              '0': '<p>Are you sure you want to unarchive?</p>'
-              '1': '<p>Are you sure you want to unarchive?</p>'
-              '2': '<p>Are you sure you want to unarchive?</p>'
-              '3': '<p>Are you sure you want to unarchive?</p>'
+              '0': "<p>Are you sure you want to unarchive?</p>"
+              '1': "<p>Are you sure you want to unarchive?</p>"
+              '2': "<p>Are you sure you want to unarchive?</p>"
+              '3': "<p>Are you sure you want to unarchive?</p>"
             title: Unarchive <strong>%{name}</strong> ?
         in_progress:
           deleting: Deleting
@@ -498,7 +499,7 @@ en:
       validations:
         dates:
           end: must be after the start date
-    choose: ' - Choose - '
+    choose: " - Choose - "
     clear: Clear
     clients:
       api_keys:
@@ -518,10 +519,10 @@ en:
           confirmations:
             create:
               body: "<p>Are you sure you want to create a new API key?</p>\n"
-              title: '<strong>Create</strong> a new API key?'
+              title: "<strong>Create</strong> a new API key?"
             toggle_status:
               body: "<p>Are you sure you want to %{status} this API key?</p>\n"
-              title: '<strong>%{status}</strong> API key?'
+              title: "<strong>%{status}</strong> API key?"
           copy: Copy
           show_and_copy: Show and Copy
         toggle_status:
@@ -598,7 +599,7 @@ en:
               title: Soft Delete <strong>Assessment</strong>?
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Assessment?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
             universal_links:
               regeneration:
                 body: Regenerating the Universal Link will cause the existing link to stop working.
@@ -662,9 +663,9 @@ en:
         edit:
           header: Manage assigned Assessments
         form:
-          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
         form_edit:
-          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           name: Assessment name
           remove: Remove
         new:
@@ -674,20 +675,20 @@ en:
           header: Add Reports
         form:
           access: Access
-          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           reports: Reports
           user_access: User Access
         form_edit:
           access: Access
           added_reports: Already assigned Reports
-          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           new_reports: Add new Reports
           remove: Remove
           reports: Reports
           user_access: User Access
         form_new:
           access: Access
-          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+          apply_to_existing_users_hint: "(If is not selected, changes will be applied only to new users)"
           reports: Reports
           user_access: User Access
         new:
@@ -792,7 +793,7 @@ en:
           title: Edit user
           value: Value
         form:
-          choose: ' - Choose - '
+          choose: " - Choose - "
           choose_admin: Choose Admin
           create_admin: Create Admin
         index:
@@ -828,7 +829,7 @@ en:
                 title: "<strong>%{status}</strong> %{name}'s Membership?"
             toggle_status:
               body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
           tooltips:
             change_password: Change Password
             chart: View user report
@@ -869,7 +870,7 @@ en:
           successfully: Datasheet Row %{name} was successfully deleted.
         index:
           new: Upload datasheet
-          title: '%{name} Datasheet'
+          title: "%{name} Datasheet"
         list:
           created_at: Created date
           email: Email
@@ -914,7 +915,7 @@ en:
         new: Add
         title: Client Tenancies
       license:
-        header: '%{name} - Edit license'
+        header: "%{name} - Edit license"
       license_usages:
         index:
           title: Usage Details
@@ -945,55 +946,55 @@ en:
         index:
           new: Add License
           report_family: Report Bundle
-          title: '%{client_name} - Manage Licenses'
+          title: "%{client_name} - Manage Licenses"
         list:
           active: Active
           date_expire: 'Date Of expiry: %{date}'
           end_date: End date
-          header: '%{client_name} - Licenses usage'
+          header: "%{client_name} - Licenses usage"
           license_has_expired: License package has expired
           license_type: License type
           report_family: Report bundle
           start_date: Start date
           type: Type
-          usage_percent: '% of Usage'
+          usage_percent: "% of Usage"
           used_license_number: Used licenses
           used_license_overuse_number: Over Use Allowance
-          used_out_of: '%{used_number} out of %{number}'
+          used_out_of: "%{used_number} out of %{number}"
         new:
           header: Add License
         overview:
           date_expire: 'Date Of expiry: %{date}'
           end_date: End date
-          header: '%{client_name} - Licenses usage'
+          header: "%{client_name} - Licenses usage"
           license_has_expired: License package has expired
           license_type: License type
           name: Name
           report_family: Report bundle
           start_date: Start date
-          usage_percent: '% of Usage'
+          usage_percent: "% of Usage"
           used_license_number: Used licenses
           used_license_overuse_number: Over Use Allowance
-          used_out_of: '%{used_number} out of %{number}'
+          used_out_of: "%{used_number} out of %{number}"
         resource:
           confirmations:
             toggle_status:
               body: "<p>Are you sure you want to %{status} this License?</p>\n"
-              title: '<strong>%{status}</strong> License for %{name}?'
+              title: "<strong>%{status}</strong> License for %{name}?"
           tooltips:
             edit: Edit License
         show:
           date_expire: 'Date Of expiry: %{date}'
           end_date: End date
-          header: '%{client_name} - Licenses usage'
+          header: "%{client_name} - Licenses usage"
           license_has_expired: License package has expired
           license_type: License type
           report_family: Report bundle
           start_date: Start date
-          usage_percent: '% of Usage'
+          usage_percent: "% of Usage"
           used_license_number: Used licenses
           used_license_overuse_number: Over Use Allowance
-          used_out_of: '%{used_number} out of %{number}'
+          used_out_of: "%{used_number} out of %{number}"
         toggle_status:
           successfully: Status of License was successfully updated.
         update:
@@ -1033,7 +1034,7 @@ en:
           title: Edit user
           value: Value
         form:
-          choose: ' - Choose - '
+          choose: " - Choose - "
           choose_admin: Choose Admin
           create_admin: Create Admin
         index:
@@ -1072,7 +1073,7 @@ en:
                 title: "<strong>%{status}</strong> %{name}'s Membership?"
             toggle_status:
               body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
           tooltips:
             change_password: Change Password
             chart: View user report
@@ -1402,7 +1403,7 @@ en:
             new: Add 360 Campaign
             title: 360 Campaigns
           license:
-            header: '%{name} - Edit license'
+            header: "%{name} - Edit license"
           licenses:
             update:
               duplicate_licenses: You have duplicate licenses
@@ -1423,21 +1424,21 @@ en:
           resource:
             confirmations:
               delete:
-                body: '<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>'
+                body: "<p>Are you sure you want to delete?</p> <p>This action cannot be undone. This will permanently delete the <strong>%{name}</strong> campaign, sub-campaigns, and all associations.</p> <p>Please type <strong>%{name}</strong> to confirm.</p>"
                 title: Delete <strong>%{name}</strong>?
               disable:
                 body:
-                  '0': '<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>'
-                  '1': '<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>'
-                  '2': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
-                  '3': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
+                  '0': "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>"
+                  '1': "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>"
+                  '2': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+                  '3': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
                 title: Archive <strong>%{name}</strong> ?
               enable:
                 body:
-                  '0': '<p>Are you sure you want to unarchive?</p>'
-                  '1': '<p>Are you sure you want to unarchive?</p>'
-                  '2': '<p>Are you sure you want to unarchive?</p>'
-                  '3': '<p>Are you sure you want to unarchive?</p>'
+                  '0': "<p>Are you sure you want to unarchive?</p>"
+                  '1': "<p>Are you sure you want to unarchive?</p>"
+                  '2': "<p>Are you sure you want to unarchive?</p>"
+                  '3': "<p>Are you sure you want to unarchive?</p>"
                 title: Unarchive <strong>%{name}</strong> ?
             export_results: Export results
             raw_results: Raw results
@@ -1475,11 +1476,11 @@ en:
           count_invalid: cannot be less than the used_count = %{use_count}
           criteria: can only contain alphanumeric characters, hyphen (-) and underscore (_)
           duplicate_code: is in use. Try another one.
-          in_use: '%{attribute} is already in use'
-          invalid_attribute: '%{attribute} is invalid'
+          in_use: "%{attribute} is already in use"
+          invalid_attribute: "%{attribute} is invalid"
           invalid_end_date: has to be greater than the start date
           license_issue: Not enough licenses.
-          presence: '%{attribute} must be entered'
+          presence: "%{attribute} must be entered"
           review: Please review the problems.
         form_fields:
           code: e.g TTE-conf-2019
@@ -1504,7 +1505,7 @@ en:
               title: Delete <strong>%{name}</strong> ?
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
           copy: Copy
           png: PNG
           qr_code: QR code
@@ -1578,14 +1579,14 @@ en:
               body: "<p>Are you sure you want to detach this Report?</p>\n"
               title: Detach <strong>Report</strong> ?
             regenerate:
-              body: '<p>Are you sure you want to regenerate this Report for all Users?</p>'
+              body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
               title: Regenerate <strong>%{name}</strong>?
             soft_delete:
               body: "<p>Are you sure you want to soft delete this Report?</p>\n"
               title: Soft Delete <strong>Report</strong>?
             toggle_status:
               body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
           export_data: Export Data
           in_progress:
             copying: Copying
@@ -1623,23 +1624,23 @@ en:
         confirmations:
           delete:
             body:
-              '0': '<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>'
-              '1': '<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>'
-              '2': '<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>'
+              '0': "<p>Are you sure you want to delete?</p> <p>All Campaigns, Sub-campaigns and users will also be deleted</p>"
+              '1': "<p>Are you sure you want to delete?</p> <p>All Sub-campaigns and users will also be deleted</p>"
+              '2': "<p>Are you sure you want to delete?</p> <p>All users will also be deleted</p>"
             title: Delete <strong>%{name}</strong> ?
           disable:
             body:
-              '0': '<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>'
-              '1': '<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>'
-              '2': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
-              '3': '<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>'
+              '0': "<p>Are you sure you want to archive?</p> <p>All Campaigns, Sub-campaigns and users will also be archived</p>"
+              '1': "<p>Are you sure you want to archive?</p> <p>All Sub-campaigns and users will also be archived</p>"
+              '2': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
+              '3': "<p>Are you sure you want to archive?</p> <p>All users will also be archived</p>"
             title: Archive <strong>%{name}</strong> ?
           enable:
             body:
-              '0': '<p>Are you sure you want to unarchive?</p>'
-              '1': '<p>Are you sure you want to unarchive?</p>'
-              '2': '<p>Are you sure you want to unarchive?</p>'
-              '3': '<p>Are you sure you want to unarchive?</p>'
+              '0': "<p>Are you sure you want to unarchive?</p>"
+              '1': "<p>Are you sure you want to unarchive?</p>"
+              '2': "<p>Are you sure you want to unarchive?</p>"
+              '3': "<p>Are you sure you want to unarchive?</p>"
             title: Unarchive <strong>%{name}</strong> ?
         in_progress:
           copying: Copying
@@ -1775,7 +1776,7 @@ en:
           create:
             successfully: Successfully Updated
           destroy:
-            successfully: '%{name} was successfully detached'
+            successfully: "%{name} was successfully detached"
           edit:
             header: Add Additional Time
           edit_form:
@@ -1791,7 +1792,7 @@ en:
           index:
             add_assessments: Add Assessments
             add_reports: Add Reports
-            title: '%{name} - Assessments and Reporting'
+            title: "%{name} - Assessments and Reporting"
           list:
             actions: Actions
             assessment_name: Assessment Name
@@ -1812,19 +1813,19 @@ en:
                   title: Detach assessment <strong>%{name}</strong> ?
               assigns_report:
                 add_user_access:
-                  body: '<p>Are you sure you want to add user access to this report?</p>'
+                  body: "<p>Are you sure you want to add user access to this report?</p>"
                   title: Add user access to <strong>%{name}</strong> ?
                 delete:
-                  body: '<p>Are you sure you want to detach this report?</p>'
+                  body: "<p>Are you sure you want to detach this report?</p>"
                   title: Detach <strong>%{name}</strong> ?
                 regenerate:
-                  body: '<p>Are you sure you want to regenerate this report?</p>'
+                  body: "<p>Are you sure you want to regenerate this report?</p>"
                   title: Regenerate <strong>%{name}</strong> ?
                 remove_user_access:
-                  body: '<p>Are you sure you want to remove user access to this report?</p>'
+                  body: "<p>Are you sure you want to remove user access to this report?</p>"
                   title: Remove user access to <strong>%{name}</strong> ?
               reset:
-                body: '<p>Are you sure you want to reset result?</p>'
+                body: "<p>Are you sure you want to reset result?</p>"
                 title: Reset <strong>Result</strong> ?
             generating: Report "%{name}" is generating
             no_access_to_reports: No access to reports
@@ -1879,7 +1880,7 @@ en:
           remove: Remove
           value: Value
         form:
-          choose: ' - Choose - '
+          choose: " - Choose - "
         form_admin:
           choose_admin: Choose Admin
           create_admin: Create Admin
@@ -1978,14 +1979,14 @@ en:
                 body: "<p>Are you sure you want to detach this Report?</p>\n"
                 title: Detach <strong>Report</strong> ?
               regenerate:
-                body: '<p>Are you sure you want to regenerate this Report for all Users?</p>'
+                body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
                 title: Regenerate <strong>%{name}</strong>?
               soft_delete:
                 body: "<p>Are you sure you want to soft delete this Report?</p>\n"
                 title: Soft Delete <strong>Report</strong>?
               toggle_status:
                 body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-                title: '<strong>%{status}</strong> %{name}?'
+                title: "<strong>%{status}</strong> %{name}?"
             in_progress:
               copying: Copying
               deleting: Deleting
@@ -2037,7 +2038,7 @@ en:
                 title: "<strong>%{status}</strong> %{name}'s Membership?"
             toggle_status:
               body: "<p>Are you sure you want to %{status} this User?</p>\n"
-              title: '<strong>%{status}</strong> %{name}?'
+              title: "<strong>%{status}</strong> %{name}?"
           tooltips:
             change_password: Change Password
             chart: View user report
@@ -2137,7 +2138,7 @@ en:
             title: Delete <strong>Communication</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Communication?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -2180,45 +2181,45 @@ en:
     created: Successfully created
     created_by: Created By
     datasheets:
+      drawers:
+        add_edit:
+          cancelText: Cancel
+          markdown:
+            preview: Preview
+            title: Markdown
+          save: Save
+          saving: Saving
+          success_message_add: New record added
+          success_message_edit: Record updated
+          title_add: Add datasheet record
+          title_edit: Edit datasheet record
+          validations:
+            required_email: Please enter email
+        view:
+          campaign_title: Campaign level record
+          edit_button: Edit
+          project_title: Project level record
+          title: Datasheet record details
       list:
-        header:
-          add_record: Add record
-          search_record: Search records
         column_toggler:
           title: Show/Hide columns
           tool_tip: Show/Hide table columns
-      drawers:
-        view:
-          title: 'Datasheet record details'
-          campaign_title: 'Campaign level record'
-          project_title: 'Project level record'
-          edit_button: 'Edit'
-        add_edit:
-          title_add: 'Add datasheet record'
-          title_edit: 'Edit datasheet record'
-          success_message_add: 'New record added'
-          success_message_edit: 'Record updated'
-          save: 'Save'
-          saving: 'Saving'
-          cancelText: 'Cancel'
-          validations:
-            required_email: 'Please enter email'
-          markdown:
-            title: 'Markdown'
-            preview: 'Preview'
+        header:
+          add_record: Add record
+          search_record: Search records
       modals:
         delete_records:
-          title:
-            one: 'Delete record'
-            other: 'Delete records'
+          cancelText: Cancel
           content:
-            one: 'Are you sure you want to delete the record?'
-            other: 'Are you sure you want to delete {{count}} records?'
-          okText: 'Yes, delete'
-          cancelText: 'Cancel'
+            one: Are you sure you want to delete the record?
+            other: Are you sure you want to delete {{count}} records?
+          okText: Yes, delete
           successMessage:
-            one: 'Record deleted'
-            other: '{{count}} records deleted'
+            one: Record deleted
+            other: "{{count}} records deleted"
+          title:
+            one: Delete record
+            other: Delete records
     dates:
       completed: Completed At
       created: Created At
@@ -2231,7 +2232,7 @@ en:
       copy:
         error: 'Dimension #%{id} was not copied.'
       create:
-        successfully: '%{name} dimension was created successfully'
+        successfully: "%{name} dimension was created successfully"
       destroy:
         successfully: Dimension %{name} was successfully deleted.
       edit:
@@ -2261,7 +2262,7 @@ en:
             title: Delete <strong>Dimension</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Dimension?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -2286,11 +2287,11 @@ en:
     enable: Enable
     factors:
       copy:
-        error: '%{name} factor was not copied'
-        successfully: '%{name} factor was copied successfully'
+        error: "%{name} factor was not copied"
+        successfully: "%{name} factor was copied successfully"
       create:
-        error: '%{name} factor was not created'
-        successfully: '%{name} factor was created successfully'
+        error: "%{name} factor was not created"
+        successfully: "%{name} factor was created successfully"
       destroy:
         successfully: Factor %{name} was successfully deleted.
       edit:
@@ -2304,7 +2305,7 @@ en:
           sub_factor_questions_sum: Questions of other Factors (SUM)
           sub_factors_average: Weighted Average of Factors
           sub_factors_conditional_average: Conditional Weighted Average of Factors
-        scoring_strategies_tip: ' <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added.'
+        scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
         scoring_strategy: Scoring strategy
       index:
         icon: Icon
@@ -2336,7 +2337,7 @@ en:
             title: Delete <strong>Factor</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Factor?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -2360,8 +2361,8 @@ en:
       toggle_status:
         successfully: Factor was successfully updated.
       update:
-        error: '%{name} factor was not updated'
-        successfully: '%{name} factor was updated successfully'
+        error: "%{name} factor was not updated"
+        successfully: "%{name} factor was updated successfully"
     genders:
       female: Female
       male: Male
@@ -2383,20 +2384,20 @@ en:
         form:
           import: Import
       errors:
-        error: '[Row %{row}] %{error}'
+        error: "[Row %{row}] %{error}"
         invalid_assign: Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty
         invalid_format: There is no Email column
         norm:
-          factor_is_not_described: '[#%{coords}] factor %{factor} is not described above'
-          factors_mismatch: '[#%{coords}] dimension %{dimension} does not have factor %{factor}'
+          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
+          factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
           not_set_dimension: The name of the Dimension should be written in A-1
-          sub_factors_mismatch: '[#%{coords}] dimension %{dimension} does not have sub factor %{factor}'
+          sub_factors_mismatch: "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         result:
-          error: '[Row %{row}] %{error}'
+          error: "[Row %{row}] %{error}"
           invalid_assign: "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           invalid_format: Invalid File format
         translation:
-          error: '[Translation %{id}] %{error}'
+          error: "[Translation %{id}] %{error}"
           invalid_format: Invalid File format
         unknown_type: 'Unknown file type: %{filename}'
         user:
@@ -2508,7 +2509,7 @@ en:
       resource:
         confirmations:
           delete:
-            body: '<p>Are you sure you want to delete this factor?</p>'
+            body: "<p>Are you sure you want to delete this factor?</p>"
             title: Delete <strong>Factor</strong> ?
         tooltips:
           delete: Delete Factor
@@ -2689,7 +2690,7 @@ en:
             title: Delete <strong>Norm</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Norm?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -2788,7 +2789,7 @@ en:
       resource:
         confirmations:
           delete:
-            body: '<p>Are you sure you want to delete this factor?</p>'
+            body: "<p>Are you sure you want to delete this factor?</p>"
             title: Delete <strong>Factor</strong> ?
         tooltips:
           delete: Delete Factor
@@ -2836,7 +2837,7 @@ en:
             title: Delete <strong>Product</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Product?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -2879,7 +2880,7 @@ en:
             title: Delete <strong>Question</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Question?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
     report_families:
       copy:
         error: 'Report Bundle #%{id} was not copied.'
@@ -2927,7 +2928,7 @@ en:
             title: Delete <strong>Report</strong> ?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Report Bundle?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           copy: Copy Report Bundle
           delete: Delete Report Bundle
@@ -3001,14 +3002,14 @@ en:
             body: "<p>Are you sure you want to detach this Report?</p>\n"
             title: Detach <strong>Report</strong> ?
           regenerate:
-            body: '<p>Are you sure you want to regenerate this Report for all Users?</p>'
+            body: "<p>Are you sure you want to regenerate this Report for all Users?</p>"
             title: Regenerate <strong>%{name}</strong>?
           soft_delete:
             body: "<p>Are you sure you want to soft delete this Report?</p>\n"
             title: Soft Delete <strong>Report</strong>?
           toggle_status:
             body: "<p>Are you sure you want to %{status} this Report?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         in_progress:
           copying: Copying
           deleting: Deleting
@@ -3076,6 +3077,15 @@ en:
     survey_builder:
       property_panel:
         allow_content_copy: Allow content copying
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
     templates:
       blocks:
         copy:
@@ -3249,15 +3259,6 @@ en:
       reports:
         new:
           header: Import Translations
-    table:
-      entries:
-        total:
-          one: 'Total : 1'
-          other: 'Total : {{count}}'
-          zero: 'Total : 0'
-        selected:
-          one: 1 row selected
-          other: '{{count}} rows selected'
     tte: TTE
     uniq_id: Uniq ID
     update: Update
@@ -3277,7 +3278,7 @@ en:
         title: Edit user
         value: Value
       form:
-        choose: ' - Choose - '
+        choose: " - Choose - "
       index:
         breadcrumb: Users
         client_tenancy: Client tenancy
@@ -3332,7 +3333,7 @@ en:
               title: "<strong>%{status}</strong> %{name}'s Membership?"
           toggle_status:
             body: "<p>Are you sure you want to %{status} this User?</p>\n"
-            title: '<strong>%{status}</strong> %{name}?'
+            title: "<strong>%{status}</strong> %{name}?"
         tooltips:
           change_password: Change Password
           chart: View user report
