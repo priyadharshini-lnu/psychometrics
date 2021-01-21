@@ -571,11 +571,11 @@ en:
     close: Close
     details: Details
     errors: Errors
+    invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
     notifications: Notifications
     results: Results
-    invalid_job: This notification corresponds to deleted record
   anonym:
     continue: Continue
     copy:
@@ -964,6 +964,8 @@ en:
     column:
       action: Action
       category: Category
+      completion_count: Completion Count
+      completion_status: Completion Status
       created_at: Created at
       id: Id
       name: Name

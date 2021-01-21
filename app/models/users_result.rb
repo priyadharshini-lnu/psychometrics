@@ -105,4 +105,8 @@ class UsersResult < ApplicationRecord
   def norm_data
     { 'id' => norm_id }
   end
+
+  def self.statuses_count
+    UsersResult.statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
+  end
 end

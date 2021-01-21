@@ -6,8 +6,10 @@ class Assessors::CampaignsController < Assessors::BaseController
   def index
     campaigns = policy_scope(Campaign).ransack(params[:filters]).
                 result
+    paginated_campaigns = campaigns.page(params[:page])
     serialized_campaigns = ActiveModelSerializers::SerializableResource.new(
-      campaigns.page(params[:page]), each_serializer: Administration::Assessors::CampaignSerializer
+      paginated_campaigns, each_serializer: Administration::Assessors::CampaignSerializer,
+      subject_statuses_count: Assessors::SubjectStatusesCount.call!(current_user, paginated_campaigns.pluck(:id))
     )
 
     render json: {

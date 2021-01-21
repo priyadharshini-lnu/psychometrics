@@ -9,8 +9,12 @@ class Assessors::UsersController < Administration::BaseController
     users = policy_scope([:assessors, User]).
             where(user_assessments: { campaign_id: params[:campaign_id] }).
             ransack(params[:filters]).result
+    paginated_users = users.page(params[:page])
     serialized_users = ActiveModelSerializers::SerializableResource.new(
-      users.page(params[:page]), each_serializer: Administration::Assessors::UserSerializer
+      paginated_users, each_serializer: Administration::Assessors::UserSerializer,
+      evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
+        paginated_users.pluck(:id), current_user, params[:campaign_id]
+      )
     )
 
     render json: {

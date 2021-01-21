@@ -25,7 +25,10 @@ RSpec.describe Assessors::UsersController, type: :controller do
       expect(parsed_response['list']).to eq([{
         'id' => assessors_user.id,
         'full_name' => assessors_user.decorate.full_name,
-        'email' => assessors_user.email
+        'email' => assessors_user.email,
+        'completion_status' => 'not_started',
+        'completed_evaluations' => 0,
+        'total_evaluations' => 1
       }])
     end
   end
@@ -38,7 +41,10 @@ RSpec.describe Assessors::UsersController, type: :controller do
       expect(parsed_response['user']).to eq({
         'id' => subject_user.id,
         'full_name' => subject_user.decorate.full_name,
-        'email' => subject_user.email
+        'email' => subject_user.email,
+        'completed_evaluations' => 0,
+        'total_evaluations' => 0,
+        'completion_status' => 'completed'
       })
     end
 

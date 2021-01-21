@@ -12,6 +12,9 @@ const UserTR = t.type({
   id: t.number,
   fullName: t.string,
   email: t.string,
+  totalEvaluations: t.number,
+  completedEvaluations: t.number,
+  completionStatus: t.string,
 })
 
 const UserListResponseTR = t.type({

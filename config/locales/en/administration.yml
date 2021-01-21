@@ -205,6 +205,16 @@ en:
         export: Export Assessors
         import: Import Assessors
         tools: Tools
+    assessor_campaigns:
+      statuses:
+        completed: Completed
+        in_progress: In progress
+        not_started: Not started
+    assessor_subjects:
+      statuses:
+        completed: Completed
+        in_progress: In progress
+        not_started: Not started
     assigns:
       create:
         successfully: New assign to assessment was successfully created
