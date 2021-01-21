@@ -3,6 +3,7 @@ import {
   Layout, PageHeader, Space,
 } from 'antd'
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import qs from 'qs'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { isRtl } from 'utils/locales'
 import './styles.scss'
@@ -16,6 +17,7 @@ export default function AgileAssign ({
   agileAssetsUrl,
 }) {
   const initializeAgile = () => {
+    const { lang } = qs.parse(location.search.substr(1))
     const appOptions = {
       scale: {
         parent: 'agile-container',
@@ -31,6 +33,7 @@ export default function AgileAssign ({
       settings: {
         returnURL: '/',
         assetsBaseURL: agileAssetsUrl,
+        locale: lang,
       },
     }
 

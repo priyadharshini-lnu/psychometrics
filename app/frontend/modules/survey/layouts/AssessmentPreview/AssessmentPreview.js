@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import qs from 'qs'
 import Page from 'views/Preview/Page'
 import EndPage from 'views/Preview/EndPage'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
@@ -12,6 +13,7 @@ const AssessmentPreview = ({
     isAgile() && initializeAgile()
   }, [])
 
+  const { lang } = qs.parse(location.search.substr(1))
   const initializeAgile = () => {
     const appOptions = {
       scale: {
@@ -28,6 +30,7 @@ const AssessmentPreview = ({
       settings: {
         returnURL: '',
         assetsBaseURL: agileAssetsUrl,
+        locale: lang,
       },
     }
 
