@@ -40,6 +40,8 @@ module EndUser
     end
 
     def available_locales
+      return object.assessment.agile.translations.keys if object.assessment.agile?
+
       ['en'] + ::Translation.available_translation_for_assessment(object.assessment.id)
     end
 

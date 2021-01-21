@@ -15,7 +15,7 @@ import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
-const pagesToHideLangSelection = ['/pass', '/anonym', '/evaluations']
+const pagesToHideLangSelection = ['/pass', '/anonym', '/evaluations', '/agile_user_assessments']
 
 function Navigation ({
   logout, logo, isFrame, isAnonym,
