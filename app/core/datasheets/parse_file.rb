@@ -23,12 +23,12 @@ module Datasheets
 
     def create_and_update_datasheet
       @datasheet = project.datasheet.nil? ? project.build_datasheet : project.datasheet
-      datasheet.attributes = { columns: form.parsed_file.first }
+      datasheet.attributes = { columns: form.parsed_file.second }
       datasheet.save!
     end
 
     def parse_file
-      form.parsed_file[1..-1].each do |data|
+      form.parsed_file[2..-1].each do |data|
         email = ActionView::Base.full_sanitizer.sanitize(data[Datasheet::EMAIL_COLUMN])
         next if email.blank?
 

@@ -10,9 +10,20 @@ import { PathReporter } from 'io-ts/PathReporter'
 
 const debounceTimers = {}
 const buildUrl = ({
-  method = 'get', url, body, tableConfig,
+  method = 'get', url, body, tableConfig, mocked,
 }) => {
-  if (method !== 'get') return url
+  if (mocked) {
+    const mockedURL = new URL(window.location.origin)
+    const WEBPACK_SERVER_PORT = '3035'
+    const mockedServerURL = `${mockedURL.protocol}//${mockedURL.hostname}:${WEBPACK_SERVER_PORT}${url}`
+
+    return mockedServerURL
+  }
+
+  if (method !== 'get') {
+    return url
+  }
+
   const normalizedBody = humps.decamelizeKeys({ ...bodyFromTableConfig(tableConfig), ...body })
 
   return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
@@ -27,7 +38,7 @@ const bodyFromTableConfig = (tableConfig) => {
   return setIn(data, ['filters', 's'], `${_.snakeCase(tableConfig.sort.columnName)} ${tableConfig.sort.order}`)
 }
 
-const buildOptions = ({ options: options = {} }) => ({
+const buildOptions = ({ options = {} }) => ({
   ...options,
   headers: {
     ...options.headers,
@@ -43,7 +54,7 @@ const apiMiddleware = () => next => (action) => {
   const {
     request,
     request: {
-      method: method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
+      method = 'get', body = {}, loader, camelize = true, decamelize = true, responseType, typedResponse,
     },
   } = action
   const REQUEST = `${action.type}_REQUEST`

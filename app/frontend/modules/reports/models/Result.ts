@@ -16,6 +16,7 @@ import {
   AverageFactor,
   OccupationFactor,
   QuestionScoringWithoutFactorsObject,
+  TopFactorType,
 } from './Results/interfaces'
 
 import {
@@ -47,6 +48,8 @@ export default class Result {
 
   rawResults: RawResult[]
 
+  notFilteredResults: RawResult[]
+
   dimensionId: number
 
   assessmentId: number
@@ -75,18 +78,22 @@ export default class Result {
     this.dimensionId = _.find(AppStore.assessments, { id: this.assessmentId })?.dimensionId
     this.resultsByFilter = {}
     this.embeddedData = {}
+    this.dataSheet = {}
+    this.groupedDataSheet = []
   }
 
   // toJSON = () => ({ name: this.name, filters: this.filters })
 
-  init = (results: RawResult[], user: object, filters: Filter[] | null): Result => {
+  init = (
+    results: RawResult[], user: object, filters: Filter[] | null, notFilteredResults: RawResult[] = [],
+  ): Result => {
     filters = this.addIndividualFilter(filters)
     _.each(filters, (filter: Filter) => {
       this.initResultsByFilter(results, filter)
     })
     this.user = user
     this.rawResults = results
-
+    this.notFilteredResults = notFilteredResults
     this.scoring = SetScoring.run(this.rawResults, this.dimensionId)
     this.questionScoring = SetScoringByQuestion.run(this.rawResults, this.dimensionId)
     this.embeddedData = SetEmbeddedData.run(this.rawResults)
@@ -108,11 +115,12 @@ export default class Result {
   addIndividualFilter = (filters: Filter[] | null): Filter[] => filters?.concat(new Filter(INDIVIDUAL_FILTER)) || []
 
   initResultsByFilter = (results: RawResult[], filter: Filter): void => {
-    let rawResults = results.filter(data => filter.correctByFilter(data))
+    const rawResults = results.filter(data => filter.correctByFilter(data))
+    let filteredResults = [...rawResults]
     if (rawResults.length < filter.minRequiredResponses) {
-      rawResults = []
+      filteredResults = []
     }
-    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(rawResults, this.user, null)
+    this.resultsByFilter[filter.id] = (new Result(this.assessmentId)).init(filteredResults, this.user, null, rawResults)
   }
 
   sortOccupations = (): void => {
@@ -138,8 +146,8 @@ export default class Result {
   }
 
   // eslint-disable-next-line arrow-body-style
-  getTopFactors = (from: number, to: number, factorIds: number[], subfactors = true): TopFactor[] => {
-    return GetTopFactors.run(from, to, factorIds, subfactors, this.resultsByFilter, this.dimensionId)
+  getTopFactors = (from: number, to: number, factorIds: number[], factorType: TopFactorType): TopFactor[] => {
+    return GetTopFactors.run(from, to, factorIds, factorType, this.resultsByFilter, this.dimensionId)
   }
 
   getBranchData = (filterId: string | null, branchName: string): ResultScoring => {
@@ -156,12 +164,12 @@ export default class Result {
 
   getTopSubFactors = (from: number, to: number, factorId: number): TopFactor[] => {
     const subFactorIds = _.get(AppStore.mapSubfactorIdsByFactor, [this.dimensionId, factorId], [])
-    return GetTopFactors.run(from, to, subFactorIds, true, this.resultsByFilter, this.dimensionId)
+    return GetTopFactors.run(from, to, subFactorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)
   }
 
   getTopFactorByRank = (rank: number): TopFactor => {
     const factorIds = AppStore.subfactors[this.dimensionId].map(f => f.id)
-    return GetTopFactors.run(rank, rank, factorIds, true, this.resultsByFilter, this.dimensionId)[0]
+    return GetTopFactors.run(rank, rank, factorIds, TopFactorType.SubFactor, this.resultsByFilter, this.dimensionId)[0]
   }
 
   // eslint-disable-next-line arrow-body-style

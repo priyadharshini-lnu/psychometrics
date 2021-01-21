@@ -2,17 +2,23 @@
 
 module UserReports
   class GenerateAndSavePdf < BaseCommand
-    private_attr_reader :current_user, :campaign, :report, :user, :user_reports, :options
+    private_attr_reader :current_user, :job_record, :campaign, :report, :user, :user_reports, :options
 
-    def initialize(user_reports, current_user, options = {})
+    def initialize(user_reports, current_user, options = {}, job_record = nil)
       @user_reports = Array.wrap(user_reports)
       @current_user = current_user
+      @job_record = job_record
       @options = options
     end
 
     def call
+      progress = 0
       user_reports.each do |user_report|
-        next unless user_report.generatable?
+        progress += 100 / user_reports.size
+        unless user_report.generatable?
+          AdminJob.update_progress(job_record, progress) if job_record
+          next
+        end
 
         user_report.update(status: :generating)
 
@@ -21,6 +27,7 @@ module UserReports
         generate_mindminl_report(user_report) if report.mindmill?
         generate_hogan_report(user_report) if report.hogan?
         generate_internal_report(user_report) if report.provider_internal?
+        AdminJob.update_progress(job_record, progress) if job_record
       end
 
       broadcast :ok
@@ -37,9 +44,11 @@ module UserReports
     end
 
     def generate_hogan_report(user_report)
-      # TODO: Take care of this with https://tte.atlassian.net/browse/LH-966.
-      # Need to pass user_assessment as first parameter
-      # Hogan::FetchResultsJob.perform_later(user_report.user_results.first, current_user, user_report.project)
+      Hogan::FetchResultsJob.perform_later(
+        user_report.user_results.first,
+        user_report.user.hogan_credential,
+        user_report.project
+      )
     end
   end
 end

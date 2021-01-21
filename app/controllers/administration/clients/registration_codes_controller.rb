@@ -12,7 +12,7 @@ module Administration
       append_before_action :pundit_authorize
 
       def index
-        @_filter_form = client.registration_codes.search(params[:q])
+        @_filter_form = client.registration_codes.ransack(params[:q])
         @_resources = filter_form.result.page(params[:page])
         respond_to do |format|
           format.html

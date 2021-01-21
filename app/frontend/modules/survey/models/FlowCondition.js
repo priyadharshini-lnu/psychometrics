@@ -12,6 +12,7 @@ _.extend(FlowCondition.prototype, {
   setData (attrs) {
     this.conditionType = attrs.conditionType || 'Question'
     this.subject = attrs.subject
+    this.field = attrs.field
     this.prefix = attrs.prefix
     this.answer = attrs.answer
     this.predicate = attrs.predicate
@@ -24,6 +25,7 @@ _.extend(FlowCondition.prototype, {
       conditionType: this.conditionType,
       type: this.type,
       subject: this.subject,
+      field: this.field,
       prefix: this.prefix,
       answer: this.answer,
       predicate: this.predicate,

@@ -9,6 +9,8 @@ import styles from 'layouts/Dashboard/Dashboard.scss'
 import { INIT } from 'modules/survey/core/preview/FlowProcessor/consts'
 import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
+import { DndProvider } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 import 'styles/ant.less'
 import 'styles/core.scss'
 import 'utils/i18n'
@@ -18,7 +20,7 @@ class AssessmentContainer extends Component {
     const {
       data, type, locales, isThreesixty, resultsUrl, dashboardUrl,
       langPartial, result, selectedLocale, isAnonymousAssessment, rstore,
-      notAnEndPage,
+      notAnEndPage, initialized, dontSaveStore, showScoringOnEndPage,
     } = this.props
 
     this.langPartial = langPartial
@@ -26,6 +28,7 @@ class AssessmentContainer extends Component {
     const dbResult = result || null
     // store.resultLocalStorageKey = [`${store.isThreesixty ? 'users_result' : 'assign'}/${dbResult.id}`]
     // store.init(data, type, dbResult, rstore)
+    if (initialized) return null
 
     rstore.dispatch({
       type: INIT,
@@ -41,10 +44,13 @@ class AssessmentContainer extends Component {
         resultsUrl,
         dashboardUrl,
         notAnEndPage,
+        showScoringOnEndPage,
       },
       result: dbResult,
     })
-    setStore(rstore)
+    if (!dontSaveStore) {
+      setStore(rstore)
+    }
   }
 
   componentWillUnmount () {
@@ -73,7 +79,7 @@ class AssessmentContainer extends Component {
 
   render () {
     const {
-      disabled, selectedLocale, type, rstore,
+      disabled, selectedLocale, type, rstore, showAsSinglePage,
     } = this.props
     return (
       <ConfigProvider direction={selectedLocale === 'ar' ? 'rtl' : 'ltr'}>
@@ -81,11 +87,13 @@ class AssessmentContainer extends Component {
           onConnected={() => rstore.dispatch(connected())}
           onDisconnected={() => rstore.dispatch(disconnected())}
         />
-        <div className="ant-row">
-          {type === 'preview_assessment' && <Header langs={this.langPartial} />}
-          {disabled && this.overlay()}
-          <AssessmentPreview />
-        </div>
+        {type === 'preview_assessment' && <Header langs={this.langPartial} />}
+        <DndProvider backend={HTML5Backend}>
+          <div className="ant-row">
+            {disabled && this.overlay()}
+            <AssessmentPreview showAsSinglePage={showAsSinglePage} />
+          </div>
+        </DndProvider>
       </ConfigProvider>
     )
   }

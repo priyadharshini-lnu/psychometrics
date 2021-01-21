@@ -1,10 +1,12 @@
 @import '../../../../styles/theme';
 @import 'modules/user/styles/variables';
+@import 'styles/variables';
 
 .block {
   margin: 0 auto;
   padding: 0;
   width: 100%;
+  max-width: 960px;
 }
 
 .readOnly {
@@ -86,12 +88,6 @@
 
 .content {
   background: #fff;
-}
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
 }
 
 .footerMinimize {
@@ -187,7 +183,7 @@
   flex-direction: column;
 }
 
-@media(max-width: $screen-md) {
+@media(max-width: $screen-lg) {
   .sideStaticContent {
     display: block;
     &>* {

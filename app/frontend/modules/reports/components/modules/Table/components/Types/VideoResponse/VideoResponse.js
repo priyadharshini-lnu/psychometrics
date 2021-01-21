@@ -34,7 +34,7 @@ const Evaluator = ({ evaluator }) => (
   <div className={styles.evaluator}>
     <div className="text-align-c">
       <a
-        href={evaluator.video}
+        href={evaluator?.video?.url}
         className={styles.videoBox}
         target="_blank"
         rel="noopener noreferrer"
@@ -62,12 +62,14 @@ export default class VideoResponse extends Component {
     )
 
     return rawResults.map(({
-      user, id, relationship, answers,
+      user, id, relationship, media_responses: media,
     }) => ({
       relationship,
       id,
       fullName: userPresenter.getFullName({ firstName: user.first_name, lastName: user.last_name }),
-      video: _.get(answers, [model.props.questionId, 'answers', 0, 'value']),
+      video: _(media)
+        .filter({ question_id: model.props.questionId })
+        .sortBy('user_selected').last(),
     })).filter(x => x.video)
   }
 

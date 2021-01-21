@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useRef } from 'react'
 import { message } from 'antd'
 import { MessageType } from 'antd/lib/message'
@@ -10,14 +11,16 @@ interface Props {
 }
 
 const MESSAGE_KEY = 'connectionCheck'
+const { setTimeout, clearTimeout } = window
 
 export default function ConnectionCheck (props: Props = {}) {
   const closeMessageRef = useRef<MessageType>()
+  const timerRef = useRef<number>()
   const { onConnected, onDisconnected } = props
 
   const handleDisconnection = () => {
     onDisconnected && onDisconnected()
-    closeMessageRef.current = message.loading({
+    closeMessageRef.current = message.warning({
       content: <b>{I18n.t('shared.internet_disconnected_message')}</b>,
       duration: 0,
       key: MESSAGE_KEY,
@@ -32,10 +35,11 @@ export default function ConnectionCheck (props: Props = {}) {
   useEffect(() => {
     const subscription = App.cable?.subscriptions.create({ channel: 'ConnectionCheckChannel' }, {
       connected () {
+        if (timerRef.current) { clearTimeout(timerRef.current) }
         handleConnection()
       },
       disconnected () {
-        handleDisconnection()
+        timerRef.current = setTimeout(handleDisconnection, 500)
       },
     })
 

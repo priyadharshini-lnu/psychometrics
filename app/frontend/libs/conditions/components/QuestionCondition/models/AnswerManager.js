@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import Config from '../Config'
+import Config, { AdditionalConditions } from '../Config'
 import MatrixTableConditions from './MatrixTableConditions'
 import SideBySideConditions from './SideBySideConditions'
 import PickGroupRankConditions from './PickGroupRankConditions'
@@ -131,6 +131,10 @@ class AnswerManager {
       result = _.map(this.question.props[fields.collection], (field, i) => (
         { value: i.toString(), label: `${field || this.config.defaultChoiceText(i + 1)}`, type: fields.type }
       ))
+    }
+
+    if (this.question.props.notApplicable) {
+      result.push(AdditionalConditions.NotApplicable)
     }
 
     if (fields && fields.additional) {

@@ -119,8 +119,8 @@ export default class ResponseText extends Component {
   }
 
   renderTextEntryFormAnswerIndex () {
-    const { assessment_id: assessmentId, props: { question, answerIndex } } = this.props.model
-    const currentQuestion = this.lookupQuestionById(assessmentId, question)
+    const { props: { question, answerIndex } } = this.props.model
+    const currentQuestion = this.lookupQuestionById(question)
     if (!currentQuestion || currentQuestion.type !== 'TextEntry'
       || currentQuestion.props.type !== 'Form') { return false }
     const { choices } = currentQuestion.props

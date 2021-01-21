@@ -18,9 +18,19 @@ export const getCountdownTime = (time: number): string => {
 
 export const formatedDate = date => moment(date).format(FORMAT)
 
-export const minutesLeft = (start: Date, durationMin: number): number => {
-  const delta = +start + durationMin * 60000 - Date.now()
+export const minutesLeft = (start: Date, durationMs: number): number => {
+  const delta = +start + durationMs - Date.now()
   return (
     delta > 0 ? Math.floor(delta / 60000) : 0
   )
+}
+
+export const minutesLeftFromNow = (date: Date) => {
+  const deltaTime = +new Date(date) - Date.now()
+  return Math.floor(deltaTime / 60000)
+}
+
+export const secondsLeftFromNow = (date: Date) => {
+  const deltaTime = +new Date(date) - Date.now()
+  return Math.floor(deltaTime / 1000)
 }

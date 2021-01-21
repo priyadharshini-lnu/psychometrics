@@ -4,6 +4,8 @@
 import _ from 'lodash'
 import DefaultProps from 'constants/DefaultProps'
 import ModuleConfigs from 'constants/ModuleConfigs'
+import seedrandom from 'seedrandom'
+import { shuffle } from 'utils/array'
 import Condition from './QuestionCondition'
 import Result from './Preview/Result'
 import LogicElement from './logic/LogicElement'
@@ -22,12 +24,12 @@ const loadConditions = (question, conditions) => {
   })
 }
 
-const shuffleChoices = (question) => {
+const shuffleChoices = (question, seed) => {
   const { props } = question
   const { choices } = props
   let ids = _.times(choices, i => i)
   if (props.randomization.type !== 'No') {
-    ids = _.shuffle(_.times(choices, i => i))
+    ids = shuffle(_.times(choices, i => i), seed ? seedrandom(seed) : undefined)
     if (props.randomization.type === 'Some' && props.choices > props.randomization.questions) {
       ids = ids.slice(0, props.randomization.questions)
     }
@@ -37,7 +39,7 @@ const shuffleChoices = (question) => {
 }
 
 export class QuestionSerializer {
-  static wrap (attrs, answers, notApplicable = null) {
+  static wrap (attrs, answers, notApplicable = null, randomseed = null) {
     if (!attrs) {
       return null
     }
@@ -71,7 +73,7 @@ export class QuestionSerializer {
       loadConditions(question, attrs.validation.args.conditions || [])
     }
     _.extend(question.props, _.clone(attrs.props))
-    shuffleChoices(question)
+    shuffleChoices(question, randomseed)
     question.result = new Result(question, answers, notApplicable)
 
     return question

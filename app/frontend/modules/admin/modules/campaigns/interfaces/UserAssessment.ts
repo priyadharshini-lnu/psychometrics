@@ -10,7 +10,6 @@ export default interface UserAssessment {
   additionalTime: number | null
   normId: number
   normName: string
-  normType: string
   status: string
   norms?: Norm[]
   reportIds: number[]

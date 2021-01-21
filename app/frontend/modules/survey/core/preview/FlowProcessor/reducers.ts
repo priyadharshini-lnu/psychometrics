@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import _ from 'lodash'
-import { createReducer, Payload } from 'utils/redux'
+import { createReducer } from 'utils/redux'
 import { normalize } from 'normalizr'
 import { setIn, updateIn } from 'utils/immutable'
 import humps from 'humps'
@@ -10,24 +10,30 @@ import InitLinearElements from './commands/InitLinearElements'
 import { assessment } from '../../../store/schema'
 import {
   INIT, ANSWER, SHOW_ERRORS, EMPTY_ERRORS, SHOW_PAGE,
-  CHANGE_ELEMENT, SHOW_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
+  CHANGE_ELEMENT, SHOW_END, HIDE_END, SET_EMBEDDED_DATA, HIDE_QUESTION,
   ADD_PREV_PAGE, REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
   SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS, TOGGLE_IGNORE_VALIDATION,
   RESET, SAVE_RESULTS, UPDATE_HIGHLIGHT_REQUEST, SET_LOCAL_RESULTS,
   MARK_QUESTION_IN_PROGRESS, REMOVE_QUESTION_IN_PROGRESS, CLEAR_IN_PROGRESS_QUESTION,
   ADD_QUESTION_ERROR, REMOVE_QUESTION_ERROR, MARK_ASSESSMENT_TIMED_OUT,
   ADD_MEDIA_RESPONSE, REMOVE_MEDIA_RESPONSE, MARK_MEDIA_RESPONSE_AS_SELECTED,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
 } from './consts'
 import {
   DefaultState, AddPrevPage, ShowErrors, ShowPage,
   ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
   SetDirtyResults, SetNotDirtyResults, SetLocalResults,
-  InProgressQuestion, QuestionError, MediaResponse,
+  InProgressQuestion, MediaResponse, MarkQuestionInProgress,
+  RemoveQuestionInProgress, Highlight, AnswerType,
+  InitType, AddQuestionError, RemoveQuestionError,
+  SaveResults, UpdateHightlight, AddMediaResponse, RemoveMediaResponse,
+  MarkMediaResponseAsSelected,
 } from './interfaces'
 
 const { I18n } = window
+type State = DefaultState
 
-const defaultState: DefaultState = {
+const defaultState: State = {
   initialized: false,
   isThreesixty: false,
   hideHiddenQuestions: true,
@@ -61,10 +67,17 @@ const defaultState: DefaultState = {
   highlights: {},
   assessmentTimedOut: false,
   mediaResponses: [],
+  showSubmitPage: false,
+  expiryDate: null,
+  timerDuration: null,
+  isSimulation: false,
+  factors: [],
+  scoring: null,
+  showScoringOnEndPage: false,
 }
 
 const HANDLERS = {
-  [INIT]: (state, { data, result }) => {
+  [INIT]: (state, { data, result }: InitType) => {
     const normalizedData = normalize({ blocks: data.blocks }, assessment)
     const resultsUrl = data.resultsUrl || `/assigns/${result.id}`
 
@@ -79,7 +92,7 @@ const HANDLERS = {
       I18n.locale = data.locale
     }
 
-    const highlights = (result.highlights || []).map(h => ({
+    const highlights = (result.highlights || []).map<Highlight>(h => ({
       id: h.id,
       data: h.data,
       resourceType: h.resource_type,
@@ -103,7 +116,7 @@ const HANDLERS = {
       resultsUrl,
       enableBack: data.enable_back,
       enableProgress: data.enable_progress,
-      allPages: InitPages.run(data, result.id || Date.now()),
+      allPages: InitPages.run(data, (result.id || Date.now()).toString()),
       normalizedTree,
       normRules: data.norm_rules,
       hrisData: result.hris || {},
@@ -113,7 +126,7 @@ const HANDLERS = {
       questions: normalizedData.entities.questions,
       currentElement: result.current_element || null,
       currentPage: result.current_page || 0,
-      randomseed: result.id || Date.now(), // use assign or user id
+      randomseed: (result.id || Date.now()).toString(), // use assign or user id
       dataSheet: result.data_sheet,
       subjectDataSheet: result.subject_datasheet,
       dbResult: _.omit(result, 'media_responses'),
@@ -126,77 +139,96 @@ const HANDLERS = {
       agileAssetsUrl: data.agileAssetsUrl,
       agileAssignUrl: data.agileAssignUrl,
       end: data.notAnEndPage ? false : result.status === 'completed',
-      prevPages: JSON.parse(localStorage.getItem(`prev_${result.id}`) || '[]'),
+      prevPages: result.prev_pages || [],
       highlights: _.keyBy(highlights, 'id'),
+      assessmentTimedOut: result.timed_out || false,
+      factors: result.factors,
+      scoring: result.scoring,
+      showScoringOnEndPage: data.showScoringOnEndPage,
     }
   },
-  [SET_LOCAL_RESULTS]: (state, { data }: SetLocalResults) => {
+  [SET_LOCAL_RESULTS]: (state: State, { data }: SetLocalResults) => {
     const results = _.reduce(data, (acc, result, key) => (
       acc[key] || (!state.questions[key]) ? acc : setIn(acc, key, result)
     ), state.results)
     return setIn(state, 'results', results)
   },
-  [ANSWER]: (state, { result }) => setIn(state, ['results', result.question_id], result),
-  [SHOW_ERRORS]: (state, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
-  [EMPTY_ERRORS]: state => setIn(state, ['errors'], defaultState.errors),
-  [CHANGE_ELEMENT]: (state, { id, page }: ChangeElement) => ({ ...state, currentPage: page || 0, currentElement: id }),
-  [SHOW_PAGE]: (state, { page }: ShowPage) => ({ ...state, currentPage: page }),
-  [ADD_PREV_PAGE]: (state, { page }: AddPrevPage) => ({ ...state, prevPages: [...state.prevPages, page] }),
-  [ADD_QUESTION_ERROR]: (state, { questionId, errors }: { questionId: number, errors: QuestionError}) => (
+  [ANSWER]: (state: State, { result }: AnswerType) => setIn(state, ['results', result.question_id], result),
+  [SHOW_ERRORS]: (state: State, { errors }: ShowErrors) => setIn(state, ['errors'], errors),
+  [EMPTY_ERRORS]: (state: State) => setIn(state, ['errors'], defaultState.errors),
+  [CHANGE_ELEMENT]: (state: State, { id, page }: ChangeElement) => ({
+    ...state, currentPage: page || 0, currentElement: id,
+  }),
+  [SHOW_PAGE]: (state: State, { page }: ShowPage) => ({ ...state, currentPage: page }),
+  [ADD_PREV_PAGE]: (state: State, { page }: AddPrevPage) => ({
+    ...state, prevPages: [...state.prevPages, page],
+  }),
+  [ADD_QUESTION_ERROR]: (state: State, { questionId, errors }: AddQuestionError) => (
     setIn(state, ['errors', questionId], errors)
   ),
-  [REMOVE_QUESTION_ERROR]: (state, { questionId }: { questionId: number}) => (
+  [REMOVE_QUESTION_ERROR]: (state: State, { questionId }: RemoveQuestionError) => (
     setIn(state, ['errors'], _.omit(state.errors, [questionId]))
   ),
-  [REMOVE_PREV_PAGE]: state => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
-  [SHOW_END]: state => ({ ...state, end: true }),
-  [SET_EMBEDDED_DATA]: (state, { data }: SetEmbeddedData) => setIn(
+  [REMOVE_PREV_PAGE]: (state: State) => setIn(state, 'prevPages', _.slice(state.prevPages, 0, -1)),
+  [SHOW_END]: (state: State) => ({ ...state, end: true }),
+  [HIDE_END]: (state: State) => ({ ...state, end: false }),
+  [SET_EMBEDDED_DATA]: (state: State, { data }: SetEmbeddedData) => setIn(
     state, 'embeddedData', { ...state.embeddedData, ...data },
   ),
-  [HIDE_QUESTION]: (state, { id }: HideQuestion) => setIn(state, ['questions', id, 'hidden'], true),
-  [SHOW_QUESTION]: (state, { id }: ShowQuestion) => setIn(state, ['questions', id, 'hidden'], false),
-  [SET_DIRTY_RESULTS]: (state, { questionIds: ids }: SetDirtyResults) => {
+  [HIDE_QUESTION]: (state: State, { id }: HideQuestion) => setIn(state, ['questions', id, 'hidden'], true),
+  [SHOW_QUESTION]: (state: State, { id }: ShowQuestion) => setIn(state, ['questions', id, 'hidden'], false),
+  [SET_DIRTY_RESULTS]: (state: State, { questionIds: ids }: SetDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
-      return setIn(state.results, [id, 'dirty'], true)
-    }, {})
+      return setIn(results, [id, 'dirty'], true)
+    }, state.results)
     return {
       ...state,
       results: { ...state.results, ...results },
     }
   },
-  [SET_NOT_DIRTY_RESULTS]: (state, { questionIds: ids }: SetNotDirtyResults) => {
+  [SET_NOT_DIRTY_RESULTS]: (state: State, { questionIds: ids }: SetNotDirtyResults) => {
     const results = ids.reduce((results, id) => {
       if (!state.results[id]) { return results }
-      return ({ ...results, [id]: _.omit(state.results[id], 'dirty') })
-    }, {})
+      return setIn(results, [id, 'dirty'], false)
+    }, state.results)
     return {
       ...state,
       results: { ...state.results, ...results },
     }
   },
-  [TOGGLE_HIDDEN_QUESTIONS]: state => setIn(state, ['hideHiddenQuestions'], !state.hideHiddenQuestions),
-  [TOGGLE_IGNORE_VALIDATION]: state => setIn(state, ['ignoreValidations'], !state.ignoreValidations),
-  [RESET]: state => ({
+  [TOGGLE_HIDDEN_QUESTIONS]: (state: State) => setIn(state, ['hideHiddenQuestions'], !state.hideHiddenQuestions),
+  [TOGGLE_IGNORE_VALIDATION]: (state: State) => setIn(state, ['ignoreValidations'], !state.ignoreValidations),
+  [RESET]: (state: State) => ({
     ...state, results: {}, currentElement: null, current_page: 0, end: false,
   }),
-  [SAVE_RESULTS]: (state, { response: { expired, currentBlock } }) => {
+  [SAVE_RESULTS]: (state: State, {
+    response: {
+      expired, currentBlock, factors, scoring,
+    },
+  }: SaveResults) => {
     const blocks = currentBlock
       ? setIn(state.blocks, currentBlock.id, { ...state.blocks[currentBlock.id], props: currentBlock.props })
       : state.blocks
     const end = expired || state.end
-    return end ? {
-      ...state, end, blocks, currentElement: null, currentPage: null,
+    return end && !state.showSubmitPage ? {
+      ...state,
+      end,
+      blocks,
+      currentElement: null,
+      currentPage: null,
+      factors,
+      scoring,
     } : { ...state, end, blocks }
   },
-  [UPDATE_HIGHLIGHT_REQUEST]: (state, { payload }) => {
+  [UPDATE_HIGHLIGHT_REQUEST]: (state: State, { payload }: UpdateHightlight) => {
     if (_.get(state, ['highlights', payload.id])) return setIn(state, ['highlights', payload.id], payload)
 
     return { ...state, highlights: { ...state.highlights, [payload.id]: payload } }
   },
-  [MARK_QUESTION_IN_PROGRESS]: (state, { questionId, progressState }: { questionId: number, progressState: string}) => {
+  [MARK_QUESTION_IN_PROGRESS]: (state: State, { questionId, progressState }: MarkQuestionInProgress) => {
     const { inProgressQuestions } = state
-    const currentQuestion: InProgressQuestion = _.find(inProgressQuestions, { questionId })
+    const currentQuestion = _.find(inProgressQuestions, { questionId })
     if (currentQuestion) {
       return updateIn(state, 'inProgressQuestions', (questions: InProgressQuestion[]) => (
         questions.map(question => (question.questionId === questionId ? { questionId, progressState } : question))
@@ -204,32 +236,35 @@ const HANDLERS = {
     }
     return { ...state, inProgressQuestions: [...inProgressQuestions, { questionId, progressState }] }
   },
-  [REMOVE_QUESTION_IN_PROGRESS]: (state, { questionId }: { questionId: string}) => {
+  [REMOVE_QUESTION_IN_PROGRESS]: (state: State, { questionId }: RemoveQuestionInProgress) => {
     const inProgressQuestions = _.filter(state.inProgressQuestions, ({ questionId: id }) => id !== questionId)
     return { ...state, inProgressQuestions }
   },
-  [CLEAR_IN_PROGRESS_QUESTION]: state => ({ ...state, inProgressQuestions: [] }),
-  [MARK_ASSESSMENT_TIMED_OUT]: state => ({ ...state, assessmentTimedOut: true }),
-  [ADD_MEDIA_RESPONSE]: (state, { payload: { mediaResponse } }: Payload<{ mediaResponse: MediaResponse }>) => (
+  [CLEAR_IN_PROGRESS_QUESTION]: (state: State) => ({ ...state, inProgressQuestions: [] }),
+  [MARK_ASSESSMENT_TIMED_OUT]: (state: State) => ({ ...state, assessmentTimedOut: true }),
+  [ADD_MEDIA_RESPONSE]: (state: State, { payload: { mediaResponse } }: AddMediaResponse) => (
     { ...state, mediaResponses: [...state.mediaResponses, mediaResponse] }),
-  [REMOVE_MEDIA_RESPONSE]: (state, { payload: { questionId } }: Payload<{ questionId: number }>) => (
+  [REMOVE_MEDIA_RESPONSE]: (state: State, { payload: { questionId } }: RemoveMediaResponse) => (
     updateIn(state, ['mediaResponses'], (mediaResponses: MediaResponse[]) => (
       _.filter(mediaResponses, ({ questionId: qid }) => qid !== questionId)))
   ),
   [MARK_MEDIA_RESPONSE_AS_SELECTED]:
-    (state, { payload: { mediaResponse } }: Payload<{ mediaResponse: MediaResponse }>) => {
+    (state: State, { payload: { mediaResponse } }: MarkMediaResponseAsSelected) => {
       const { questionId } = mediaResponse
 
       return updateIn(state, ['mediaResponses'], (mediaResponses: MediaResponse[]) => (
         _.map(mediaResponses, (mr) => {
           const { questionId: qid, id } = mr
 
-          if (questionId !== qid) return mediaResponse
+          if (questionId !== qid) return mr
           if (id === mediaResponse.id) return { ...mr, userSelected: true }
           return { ...mr, userSelected: false }
         })
       ))
     },
+  [SHOW_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: true }),
+  [HIDE_SUBMIT_PAGE]: (state: State) => ({ ...state, showSubmitPage: false }),
+  [SET_IS_SIMULATION]: (state: State) => ({ ...state, isSimulation: true }),
 }
 
 export default createReducer(HANDLERS, defaultState)

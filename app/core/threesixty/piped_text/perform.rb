@@ -56,7 +56,7 @@ module Threesixty
           key: 'answer',
           name: 'answer',
           class_name: 'Threesixty::PipedText::Branches::Answer',
-          required_context: %i[answers]
+          required_context: %i[result]
         }
       ].freeze
 

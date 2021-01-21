@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Tabs,
 } from 'antd'
@@ -11,13 +11,15 @@ export default function ResourcesTabs ({
 }) {
   if (!assessment.resources_content.length) { return children }
 
+  const [tab, setTab] = useState('assessment')
+
   return (
-    <Tabs defaultActiveKey="assessment" className="tabs-row">
+    <Tabs defaultActiveKey={tab} className="tabs-row" onChange={setTab}>
       <TabPane tab="Assessment" key="assessment">
-        {children}
+        {tab === 'assessment' && children}
       </TabPane>
       <TabPane tab="Background Reading" key="resources">
-        <ResourceList assessment={assessment} {...props} />
+        {tab === 'resources' && <ResourceList assessment={assessment} {...props} />}
       </TabPane>
     </Tabs>
   )

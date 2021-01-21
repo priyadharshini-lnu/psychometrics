@@ -30,7 +30,7 @@ class DataSheet extends Component {
     return (
       <Select
         name="form-field-name"
-        value={getValue(this.getOptions(), this.getValue())}
+        value={getValue(this.getOptions(), this.getValue(), 'name')}
         getOptionValue={opt => opt.name}
         getOptionLabel={opt => opt.name}
         options={this.getOptions()}

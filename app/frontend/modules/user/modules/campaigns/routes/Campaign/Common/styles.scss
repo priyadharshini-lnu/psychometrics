@@ -1,4 +1,5 @@
 @import 'modules/user/styles/variables';
+@import 'styles/variables';
 
 $colors: #246479 #9DD8D7 #00B1A8;
 $text-colors: #FFFFFF #246479 #FFFFFF;
@@ -306,6 +307,23 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     }
   }
 
+  .rtl {
+    .common-campaign .campaign-header {
+      .right-wrapper {
+        border-top-left-radius: 0;
+        border-top-right-radius: 150px;
+        padding-left: 0;
+        padding-right: 12px;
+      }
+      .right {
+        border-top-left-radius: 0;
+        border-top-right-radius: 150px;
+        padding-left: 0;
+        padding-right: 60px;
+      }
+    }
+
+  }
 
   .group {
     background: #ebeaea;
@@ -338,7 +356,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         position: relative;
         left: 0;
       }
-      margin-right: 5px;
     }
 
     @for $i from 1 through 3 {
@@ -592,17 +609,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
 
 
   .rtl {
-    .cards .card {
-      margin-left: 0;
-      margin-right: 16px;
-      max-width: 20%;
-      flex: 1;
-
-      &:nth-child(1) {
-        margin-right: 0;
-      }
-    }
-
     .button {
       svg {
         margin-left: 8px;

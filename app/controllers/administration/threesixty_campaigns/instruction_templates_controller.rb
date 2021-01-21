@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class InstructionTemplatesController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[update]
+      before_action :set_resource, only: %i[update show]
       append_before_action :pundit_authorize
 
       def index
@@ -12,10 +12,21 @@ module Administration
         render json: threesixty_campaign.instruction_templates.order(:name)
       end
 
+      def show
+        response = params[:locales].values.map do |locale|
+          Mobility.with_locale(locale) do
+            ::Threesixty::InstructionTemplateLocaleSerializer.new(resource, locale: locale).to_h
+          end
+        end
+        render json: response
+      end
+
       def update
         form = ::Threesixty::InstructionTemplateForm.from_params(params[:instruction_template])
         if form.valid?
-          resource.update!(form.attributes)
+          Mobility.with_locale(params[:locale]) do
+            resource.update!(form.attributes)
+          end
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

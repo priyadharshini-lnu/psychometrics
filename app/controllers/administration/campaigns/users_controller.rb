@@ -37,6 +37,13 @@ module Administration
         end
       end
 
+      def search
+        users = ::Users::SearchQuery.new(campaign, params[:q]).query.map do |user|
+          ::Projects::SearchUserSerializer.new(user).to_h
+        end
+        render json: users
+      end
+
       def export_completion_status
         headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
         headers['Content-Type'] ||= 'text/csv'
@@ -53,11 +60,12 @@ module Administration
         form = ::Campaigns::Users::ImportForm.new(import_data: import_data, operation: params[:operation]).
                with_context(campaign: campaign)
         if form.valid?
-          updated_users = ::Campaigns::Users::ProcessImport.
-                          call!(campaign, current_user, import_data[1..-1], params[:operation])
-          render json: updated_users
+          AdminJob.call(:import_users, {
+            operation: params[:operation], campaign_id: params[:new_campaign_id]
+          }, current_user, params[:import_data])
+          render json: :ok
         else
-          render json: { errors: form.errors.full_messages }, status: 422
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
         end
       end
 
@@ -72,7 +80,9 @@ module Administration
             on(:ok) do |user|
               return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
             end
-            on(:error) { |errors| return render json: { errors: errors }, status: 422 }
+            on(:error) do |errors|
+              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
+            end
           end
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -83,7 +93,7 @@ module Administration
         form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
         if form.valid?
           resource.update(form.attributes)
-          render json: resource, serializer: Administration::Campaigns::UserSerializer
+          render json: resource, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end

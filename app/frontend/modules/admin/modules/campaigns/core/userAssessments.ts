@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import UserAssessment from 'modules/admin/modules/campaigns/interfaces/UserAssessment'
 import { updateIn } from 'utils/immutable'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { FETCH_SINGLE } from './users'
 import { CREATE as CREATE_REPORT } from './userReports'
 
@@ -67,45 +68,25 @@ export const remove = (campaignId: number, campaignAssessmentId: number) => ({
   },
 })
 
-export interface UpdateNormAction {
-  response: {
-    normName: string
-    normType: string
-  },
-  requestAction: {
-    request: {
-      body: {
-        campaignAssessmentId: number
-      }
-    }
-  }
-}
-
-export interface FetchAction {
-  response: {
-    userAssessments: UserAssessment[],
-  },
-}
-export interface UpdateAdditionalTimeAction {
-  requestAction: {
-    campaignAssessmentId: number
-  }
-  response: object
-}
-
 export interface State {
   list: UserAssessment[]
 }
 
+type FetchType = ApiActionResponse<{userAssessments: UserAssessment[]}>
+type UpdateAdditionalTimeType = ApiActionResponse<{}>
+type UpdateNormType = ApiActionResponse<{normName: string, normType: string}>
+type ResetType = ApiActionResponse<UserAssessment>
+type RemoveType = ApiActionResponse<number>
+
 const HANDLERS = {
-  [FETCH_SINGLE]: (_, { response }: FetchAction) => ({ list: response.userAssessments }),
-  [CREATE_REPORT]: (_, { response }: FetchAction) => ({ list: response.userAssessments }),
+  [FETCH_SINGLE]: (_, { response }: FetchType) => ({ list: response.userAssessments }),
+  [CREATE_REPORT]: (_, { response }: FetchType) => ({ list: response.userAssessments }),
   [UPDATE_ADDITIONAL_TIME]: (state, {
     requestAction: {
       campaignAssessmentId,
     },
     response,
-  }: UpdateAdditionalTimeAction) => {
+  }: UpdateAdditionalTimeType) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== campaignAssessmentId) return assessment
 
@@ -113,12 +94,12 @@ const HANDLERS = {
     })
     return { ...state, list }
   },
-  [REMOVE]: (state: State, { response }: { response: number }) => (
+  [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.filter(
       userAssessments, (userAssessment: UserAssessment) => userAssessment.id !== response,
     ))
   ),
-  [RESET]: (state: State, { response }: { response: UserAssessment }) => (
+  [RESET]: (state: State, { response }: ResetType) => (
     updateIn(state, ['list'], (userAssessments: UserAssessment[]) => _.map(userAssessments,
       (userAssessment: UserAssessment) => {
         if (userAssessment.id === response.id) { return response }
@@ -126,7 +107,7 @@ const HANDLERS = {
         return userAssessment
       }))
   ),
-  [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormAction) => {
+  [UPDATE_NORM]: (state, { response, requestAction: { request } }: UpdateNormType) => {
     const list = state.list.map((assessment: UserAssessment) => {
       if (assessment.id !== request.body.campaignAssessmentId) return assessment
 

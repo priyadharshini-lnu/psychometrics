@@ -35,7 +35,7 @@ module UserReports
       }.to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
       Rails.logger.info "$(cd #{Rails.root} && npm run export_pdf -- #{args})"
-      system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
+      Kernel.system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
     end
 
     def make_path
@@ -46,35 +46,35 @@ module UserReports
     def report_preview_url
       if current_user.is?(:regular)
         report_preview_user_url
+      elsif current_user.is?(:assessor)
+        report_preview_assessor_url
       else
         report_preview_admin_url
       end
     end
 
+    def report_preview_assessor_url
+      params = default_report_preview_url_params.merge!(
+        subdomain: Settings.subdomain,
+        campaign_id: campaign.id
+      )
+
+      pdf_preview_assessors_campaign_user_report_path(params)
+    end
+
     def report_preview_admin_url
-      params = {
-        host: Settings.domain,
-        user_token: current_user.authentication_token,
-        lang: options[:lang] || report.default_language || I18n.locale,
-        port: Settings.port,
-        protocol: Settings.protocol,
-        new_campaign_id: campaign.id,
-        id: user_report.id
-      }
+      params = default_report_preview_url_params.merge!(
+        subdomain: Settings.subdomain,
+        new_campaign_id: campaign.id
+      )
 
       pdf_preview_administration_new_campaign_user_report_url(params)
     end
 
     def report_preview_user_url
-      params = {
-        host: Settings.domain,
-        subdomain: current_user.project.subdomain,
-        user_token: current_user.authentication_token,
-        lang: options[:lang] || report.default_language || I18n.locale,
-        port: Settings.port,
-        protocol: Settings.protocol,
-        id: user_report.id
-      }
+      params = default_report_preview_url_params.merge!(
+        subdomain: current_user.project.subdomain
+      )
 
       pdf_preview_user_report_url(params)
     end
@@ -86,6 +86,17 @@ module UserReports
     def report_directory
       dir = Rails.root.join('tmp', 'reports')
       File.join(dir, user.email)
+    end
+
+    def default_report_preview_url_params
+      {
+        host: Settings.domain,
+        user_token: current_user.authentication_token,
+        lang: options[:lang] || report.default_language || I18n.locale,
+        port: Settings.port,
+        protocol: Settings.protocol,
+        id: user_report.id
+      }
     end
   end
 end

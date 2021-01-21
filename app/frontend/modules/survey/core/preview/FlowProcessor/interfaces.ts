@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import {
-  NEXT_PAGE, PREV_PAGE,
-  SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
-  SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
-  SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
-  REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
-  SET_NOT_DIRTY_RESULTS, TOGGLE_HIDDEN_QUESTIONS,
-  TOGGLE_IGNORE_VALIDATION, RESET,
-  SET_LOCAL_RESULTS,
-} from './consts'
+  setLocalResults, nextPage, addPrevPage,
+  removePrevPage, showErrors, emptyErrors, showPage, addQuestionError,
+  removeQuestionError, showEnd, hideEnd, changeElement, hideQuestion,
+  showQuestion, showSubmitPage, hideSubmitPage, setEmbeddedData,
+  setDirtyResults, setNotDirtyResults, toggleHiddenQuestions,
+  toggleIgnoreValidation, reset, markQuestionInProgress, removeQuestionInProgress,
+  clearInProgressQuestion, markAssessmentTimedOut, updateHighlight,
+  addMediaResponse, removeMediaResponse, markMediaResponseAsSelected, setIsSimulation,
+} from './actions'
 
 export interface Question {
   id: number
@@ -19,6 +20,7 @@ export interface Question {
   required_validation?: { enabled: boolean, type: string }
   props?: any
   hidden?: boolean
+  isNeedToAddLtrManually?: boolean
 }
 
 export interface Block {
@@ -96,7 +98,7 @@ export interface DefaultState {
   hideHiddenQuestions: boolean
   ignoreValidations: boolean
   readOnly: boolean
-  elements: []
+  elements: ElementInterface[]
   hrisData?: {}
   blocks: {[id: number]: Block}
   questions: {[id: number]: Question}
@@ -107,14 +109,14 @@ export interface DefaultState {
   results: ResultsInterface
   prevPages: {element: string; page: number}[]
   currentElement: string | null
-  currentPage: number
+  currentPage: number | null
   errors: {} | null
   dashboardUrl: string
   mediaUrl: string | null
   dataSheetColumns: {[key: string]: {}}[]
   dataSheet: {[key: string]: {}}[]
   subjectDataSheet: { [key: string]: {} }[]
-  relationships: []
+  relationships: string[]
   relationship: string | null
   locales: any
   agileAssetsUrl?: string
@@ -125,6 +127,13 @@ export interface DefaultState {
   },
   assessmentTimedOut: boolean,
   mediaResponses: MediaResponse[] | [],
+  showSubmitPage: boolean
+  expiryDate: Date | null
+  timerDuration: number | null
+  isSimulation: boolean
+  factors: []
+  scoring: {} | null
+  showScoringOnEndPage: boolean
 }
 
 export interface MediaResponse {
@@ -161,27 +170,97 @@ declare global {
   }
 }
 
-export interface NextPage { type: typeof NEXT_PAGE }
-export interface PrevPage { type: typeof PREV_PAGE, request?: object }
-export interface AddPrevPage { type: typeof ADD_PREV_PAGE, page: number }
-export interface RemovePrevPage { type: typeof REMOVE_PREV_PAGE }
-export interface ShowErrors { type: typeof SHOW_ERRORS, errors?: object }
-export interface EmptyErrors { type: typeof EMPTY_ERRORS }
-export interface ShowPage { type: typeof SHOW_PAGE, page: number }
-export interface ShowEnd { type: typeof SHOW_END }
+export interface InitData {
+  resultsUrl: string
+  type: string
+  blocks: Block[]
+  flow: { elements: ElementInterface[]}
+  locale: string
+  isThreesixty: boolean
+  dashboardUrl: string
+  data_sheet_columns: []
+  relationships: string[]
+  isAnonymousAssessment: boolean
+  readOnly: boolean
+  enable_back: boolean
+  enable_progress: boolean
+  norm_rules: []
+  locales: any
+  agileAssetsUrl: string
+  agileAssignUrl: string
+  timer_duration: number
+  notAnEndPage: boolean
+  category: string
+  showScoringOnEndPage: boolean
+  factors: []
+}
+export interface Result {
+  id: number
+  relationship: string
+  current_element: string
+  current_page: number
+  data_sheet: []
+  subject_datasheet: []
+  results?: {}
+  scoring?: {}
+  factors: []
+  answers?: {}
+  expiry_date: Date
+  meta_data: {}
+  status: string
+  timed_out: boolean
+  prev_pages: []
+  media_responses: []
+  hris: {}
+  highlights: [{id: string, data: {}, resource_type: string, resource_id: number}]
+}
 
-export interface ChangeElement { type: typeof CHANGE_ELEMENT, id: string, page?: number }
-export interface HideQuestion { type: typeof HIDE_QUESTION, id: number }
-export interface ShowQuestion { type: typeof SHOW_QUESTION, id: number }
-export interface SetEmbeddedData { type: typeof SET_EMBEDDED_DATA, data: object }
-export interface SetDirtyResults { type: typeof SET_DIRTY_RESULTS, questionIds: number[] }
-export interface SetNotDirtyResults { type: typeof SET_NOT_DIRTY_RESULTS, questionIds: number[] }
-export interface ToggleHiddenQuestions { type: typeof TOGGLE_HIDDEN_QUESTIONS }
-export interface ToggleIgnoreValidation { type: typeof TOGGLE_IGNORE_VALIDATION }
-export interface Reset { type: typeof RESET }
-export interface SetLocalResults { type: typeof SET_LOCAL_RESULTS, data?: object }
-export interface SaveResults { type: typeof SAVE_RESULTS, request?: object }
+interface SaveResponse {
+  expired: boolean
+  currentBlock: Block
+  scoring?: {}
+  factors?: []
+}
 
+export interface InitType { type: string, data: InitData, result: Result}
+export interface AnswerType { type: string, result: any }
+
+export type NextPage = ReturnType<typeof nextPage>
+export type PrevPage = ApiActionResponse<{}>
+export type AddPrevPage = ReturnType<typeof addPrevPage>
+export type RemovePrevPage = ReturnType<typeof removePrevPage>
+export type ShowErrors = ReturnType<typeof showErrors>
+export type EmptyErrors = ReturnType<typeof emptyErrors>
+export type ShowPage = ReturnType<typeof showPage>
+export type ShowEnd = ReturnType<typeof showEnd>
+export type HideEnd = ReturnType<typeof hideEnd>
+export type AddQuestionError = ReturnType<typeof addQuestionError>
+export type RemoveQuestionError = ReturnType<typeof removeQuestionError>
+export type MarkQuestionInProgress = ReturnType<typeof markQuestionInProgress>
+export type RemoveQuestionInProgress = ReturnType<typeof removeQuestionInProgress>
+export type ClearInProgressQuestion = ReturnType<typeof clearInProgressQuestion>
+export type MarkAssessmentTimedOut = ReturnType<typeof markAssessmentTimedOut>
+
+export type ChangeElement = ReturnType<typeof changeElement>
+export type HideQuestion = ReturnType<typeof hideQuestion>
+export type ShowQuestion = ReturnType<typeof showQuestion>
+export type SetEmbeddedData = ReturnType<typeof setEmbeddedData>
+export type SetDirtyResults = ReturnType<typeof setDirtyResults>
+export type SetNotDirtyResults = ReturnType<typeof setNotDirtyResults>
+export type ToggleHiddenQuestions = ReturnType<typeof toggleHiddenQuestions>
+export type ToggleIgnoreValidation = ReturnType<typeof toggleIgnoreValidation>
+export type Reset = ReturnType<typeof reset>
+export type SaveResults = ApiActionResponse<SaveResponse>
+export type ShowSubmitPage = ReturnType<typeof showSubmitPage>
+export type HideSubmitPage = ReturnType<typeof hideSubmitPage>
+export type UpdateHightlight = ApiActionResponse<typeof updateHighlight>
+
+export type AddMediaResponse = ReturnType<typeof addMediaResponse>
+export type RemoveMediaResponse = ReturnType<typeof removeMediaResponse>
+export type MarkMediaResponseAsSelected = ReturnType<typeof markMediaResponseAsSelected>
 export interface AppStore {
   preview: DefaultState
 }
+
+export type SetLocalResults = ReturnType<typeof setLocalResults>
+export type SetIsSimulation = ReturnType<typeof setIsSimulation>

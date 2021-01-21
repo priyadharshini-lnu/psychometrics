@@ -66,6 +66,8 @@ _.extend(Result.prototype, {
 
   processCustomValidation () {
     const message = I18n().tCustomValidation(this.question)
+    if (!message) { return }
+
     const { conditions } = this.question.validation.args
 
     const validations = _.map(conditions, condition => new Validations.Custom(condition))

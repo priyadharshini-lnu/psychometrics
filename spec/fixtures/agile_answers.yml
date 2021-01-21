@@ -1,0 +1,8 @@
+- answers:
+    cmp-1:
+      id: cmp-1
+      duration: 1.502
+      end_time: 1608191030698
+      group_id: nf-1-group
+      answers:
+        - equal

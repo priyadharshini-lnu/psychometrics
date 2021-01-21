@@ -5,8 +5,8 @@ html.body-full-height
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     = csrf_meta_tags
-    = jquery_include_tag :google
     = javascript_include_tag 'application'
+    = render 'layouts/pys_global_state'
     = render 'layouts/favicons'
   body data-locale="#{@selected_locale  || params[:lang] || I18n.locale}"
     = yield

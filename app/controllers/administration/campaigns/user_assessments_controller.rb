@@ -9,9 +9,9 @@ module Administration
       def update_norm
         user_result = resource.users_result
 
-        ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id, :norm_type))
+        ::UsersResults::Recompute.call!(user_result, current_user, params.permit(:norm_id))
 
-        render json: { norm_name: user_result.norm.name, norm_type: user_result.norm_type }
+        render json: { norm_name: user_result.norm.name }
       end
 
       def update_additional_time
@@ -26,8 +26,10 @@ module Administration
 
       def rescore_response
         user_result = resource.users_result
-
-        ::UsersResults::Recompute.call!(user_result, current_user)
+        AdminJob.call(:rescore_user_assessment, {
+          user_result_id: user_result.id,
+          campaign_id: campaign.id
+        }, current_user)
 
         render json: :ok
       end

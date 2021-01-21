@@ -103,7 +103,7 @@ export default function RequirementTable (props) {
             campaignId, nominationId, evaluatorId: evaluator.id, status: 'approved',
           })}
         >
-          Approve
+          {I18n.t('threesixty.approve')}
         </Button>
         <Button
           size="small"
@@ -113,7 +113,7 @@ export default function RequirementTable (props) {
             campaignId, nominationId, evaluatorId: evaluator.id, status: 'denied',
           })}
         >
-          Deny
+          {I18n.t('threesixty.deny')}
         </Button>
       </Row>
     )

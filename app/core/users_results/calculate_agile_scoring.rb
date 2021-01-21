@@ -13,7 +13,7 @@ module UsersResults
 
     def call
       return broadcast(:invalid) unless user_result.completed?
-      return broadcast(:invalid) if user_result.norm_type.nil? || user_result.norm_id.nil?
+      return broadcast(:invalid) if user_result.norm_id.nil?
       return broadcast(:invalid) if user_result.answers.blank?
 
       @results = user_result.answers.map { |hash| hash['answers'] }.reduce(&:merge)
@@ -52,7 +52,7 @@ module UsersResults
     end
 
     def generate_report
-      return ::Assign::GenerateReport.call(user_result, current_user) if user_result.is_a?(Assign)
+      return ::Assigns::GenerateReport.call(user_result, current_user) if user_result.is_a?(Assign)
 
       ::UsersResults::GenerateReports.call(user_result, current_user)
     end

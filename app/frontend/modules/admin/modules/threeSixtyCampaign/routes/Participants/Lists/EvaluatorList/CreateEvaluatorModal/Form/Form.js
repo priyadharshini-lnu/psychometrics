@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Form as AntForm, Select, Button } from 'antd'
 import _ from 'lodash'
 import userPresenter from 'presenters/user'
-import UserAutocomplete from '../../../shared/UserAutocomplete'
+import UserAutocomplete from 'components/UserAutocomplete'
 
 const formItemLayout = { labelCol: { span: 5 }, wrapperCol: { span: 12 } }
 
@@ -13,7 +13,7 @@ export default function Form ({
   relationships,
   onSubmit,
   match: {
-    params: { projectId, clientId, campaignId },
+    params: { projectId, campaignId },
   },
 }) {
   const [evaluator, setEvaluator] = useState({})
@@ -64,7 +64,7 @@ export default function Form ({
           onChange={setAutocompletedEvaluator}
           users={autocompletedEvaluators}
           onSelect={user => onSelect('evaluator', user)}
-          url={`/administration/clients/${clientId}/projects/${projectId}/search_users`}
+          url={`/administration/projects/${projectId}/search_users`}
           source="evaluators"
           placeholder="Search Evaluator..."
         />

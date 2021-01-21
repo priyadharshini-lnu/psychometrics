@@ -19,6 +19,7 @@ require 'capybara/rspec'
 require 'support/mailer_macros'
 RSpec.configure do |config|
   config.color = true
+  config.extend(WithModel)
   config.include(MailerMacros)
   config.before(:each) { reset_email }
   config.expect_with :rspec do |expectations|

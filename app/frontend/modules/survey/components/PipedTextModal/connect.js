@@ -4,7 +4,7 @@ import { closeModal, getData } from 'modules/admin/core/ui/modals'
 export default connect(
   ({ survey }) => ({
     ...getData(survey).pipedText,
-    dataSheetColumns: survey.builder.assessment.dataSheetColumns,
+    dataSheetColumns: survey.builder.assessment.data_sheet_columns,
     questions: survey.builder.questions,
   }),
   {

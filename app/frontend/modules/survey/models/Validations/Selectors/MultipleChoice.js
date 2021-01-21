@@ -2,6 +2,9 @@ import _ from 'lodash'
 
 function find (condition) {
   const answers = _.get(condition, ['result', 'answers'], [])
+  if (condition.answer === 'not_applicable') {
+    return _.get(condition, ['result', 'not_applicable'], false)
+  }
   return _.find(answers, { index: +condition.answer, value: true })
 }
 

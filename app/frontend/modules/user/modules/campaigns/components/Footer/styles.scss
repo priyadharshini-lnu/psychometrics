@@ -1,73 +1,9 @@
 @import 'modules/user/styles/variables';
 :global {
-  footer.threesixty-footer {
+  footer.ant-layout-footer {
     background: transparent;
     border-top: 1px solid #e8e8e8;
-    padding: 0;
+    padding: 2rem 50px;
 
-    .footer-wrapper {
-      padding: 15px 25px;
-      display: flex;
-      align-items: center;
-
-
-      .content {
-        width: 100%;
-        display: grid;
-        column-gap: 5px;
-        grid-template-rows: 60px;
-        grid-template-columns: 90px 1fr 180px;
-        grid-template-areas: "left links right";
-
-        align-items: center;
-
-        display: -ms-grid;
-        -ms-grid-rows: 60px;
-        -ms-grid-columns: 90px 1fr 180px;
-
-        .tte-logo {
-          -ms-grid-column: 1;
-          grid-area: left;
-        }
-
-        .links {
-          -ms-grid-column: 2;
-          grid-area: links;
-          min-width: 0;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          a {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-          }
-        }
-
-        .partner-logo {
-          -ms-grid-column: 3;
-          grid-area: right;
-        }
-
-        .tte-logo, .partner-logo {
-          img {
-            max-height: 52px;
-            max-width: 180px;
-          }
-        }
-
-
-        @media(max-width: $screen-md) {
-          display: flex;
-          flex-direction: column;
-
-          .links {
-            padding: 20px 0;
-          }
-        }
-      }
-    }
   }
 }

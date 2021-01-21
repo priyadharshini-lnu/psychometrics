@@ -31,6 +31,10 @@ module Threesixty::InitialState
         url: Settings.live_chat.base_url,
         token: Settings.live_chat.token,
         enabled: @current_project.enable_live_chat
+      },
+      examus: {
+        url: Settings.examus.url,
+        integrationName: Settings.examus.integration_name
       }
     }
   end

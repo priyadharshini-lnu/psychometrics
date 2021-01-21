@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Form, Checkbox, Select, Radio, message, Alert,
+  Modal, Button, Form, Checkbox, Select, message, Alert,
 } from 'antd'
 import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import Assessment from 'modules/admin/modules/campaigns/interfaces/Assessment'
@@ -13,7 +13,6 @@ const { Option } = Select
 
 interface FormAttrs {
   normId: number
-  normType: string
   apply: boolean
 }
 
@@ -43,13 +42,6 @@ const UpdateNormModal: React.FC<Props> = ({
       }).catch(setErrors)
   }
 
-  const isFiveScaleNormSelected = () => {
-    const normId = form.getFieldValue('normId') || assessment.normId
-    const selectedNormType = _.find(assessment.norms, ({ id }) => id === normId)?.normType
-
-    return selectedNormType === 'five_scale'
-  }
-
   return (
     <Modal
       width={650}
@@ -74,7 +66,7 @@ const UpdateNormModal: React.FC<Props> = ({
         name="basic"
         form={form}
         onFinish={handleUpdate}
-        initialValues={{ normType: assessment.normType, normId: assessment.normId }}
+        initialValues={{ normId: assessment.normId }}
         onFieldsChange={(_, allFields) => {
           setFields(allFields)
         }}
@@ -99,18 +91,6 @@ const UpdateNormModal: React.FC<Props> = ({
             ))}
           </Select>
         </Form.Item>
-        {isFiveScaleNormSelected() && (
-        <Form.Item name="normType">
-          <Radio.Group>
-            <Radio value="yti">
-            YTI
-            </Radio>
-            <Radio value="eti">
-            ETI
-            </Radio>
-          </Radio.Group>
-        </Form.Item>
-        )}
         <Form.Item name="apply" valuePropName="checked">
           <Checkbox>{I18n.t('campaign_assessment.modals.update_norm.apply')}</Checkbox>
         </Form.Item>

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
@@ -63,7 +63,7 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
-    DownloadHelpers.clear_downloads
+    DownloadHelpers.clear_downloads unless ENV.key? 'TEST_ENV_NUMBER'
   end
 
   config.around(:each) do |example|

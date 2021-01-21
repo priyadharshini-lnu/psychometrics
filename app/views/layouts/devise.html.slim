@@ -1,16 +1,16 @@
 doctype html
-html.body-full-height style=device_html_style
+html.body-full-height
   head
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
-    = jquery_include_tag :google
     = render 'layouts/pys_global_state'
     = stylesheet_link_tag 'devise', media: 'all'
     = javascript_include_tag 'administration'
     = render 'layouts/favicons'
-  body
+  body class=(rtl? ? 'rtl' : 'ltr' ) data-locale="#{I18n.locale}" style=device_html_style
+    = render 'devise/shared/video'
     .main#devise
       = yield

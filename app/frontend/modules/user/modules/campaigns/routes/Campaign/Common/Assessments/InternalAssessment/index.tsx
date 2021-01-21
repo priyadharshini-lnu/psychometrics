@@ -9,6 +9,7 @@ import '../styles.scss'
 import { UserAssessment } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
 import { History } from 'history'
 import _ from 'lodash'
+import { getMinutesAndSeconds } from 'utils/time'
 import PrivacyModal from '../PrivacyModal'
 import TimingModal from '../TimingModal'
 import AssessmentCard from '../AssessmentCard'
@@ -32,17 +33,20 @@ interface Props {
   acceptPolicy(): Promise<unknown>
   history: History
   size: number
+  withSidebar: boolean
   disabled: boolean
   disabledReason: string
   timer: {
     fixedTime: boolean
     campaignDuration: number
     startedAt: string
+    additionalTime: number
+    expiryDate: string
   }
 }
 
 const InternalAssessment: React.FC<Props> = ({
-  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer,
+  userAssessment, acceptPolicy, history, size, disabled, disabledReason, timer, withSidebar,
 }) => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showLang, setShowLang] = useState(false)
@@ -54,7 +58,9 @@ const InternalAssessment: React.FC<Props> = ({
   }, lang) => {
     const href = mindmill ? mindmillUrl : url
     setLoading(true)
-    location.href = `${href}?lang=${lang}`
+
+    const params = new URLSearchParams(`lang=${lang}`)
+    location.href = `${href}?${params.toString()}`
   }
 
   const loadAssessmentOrCheckingWizard = () => {
@@ -93,7 +99,7 @@ const InternalAssessment: React.FC<Props> = ({
   }
 
   return (
-    <AssessmentCard size={size}>
+    <AssessmentCard size={size} withSidebar={withSidebar}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable
@@ -165,7 +171,7 @@ const InternalAssessment: React.FC<Props> = ({
           show={showTimingConfirmation}
           close={() => setShowTimingConfirmation(false)}
           assessmentName={userAssessment.assessmentName}
-          assessmentTime={(userAssessment.assessmentExtra.timer || 0) / 60}
+          assessmentTime={getMinutesAndSeconds(userAssessment.assessmentExtra.timer || 0)}
           timer={timer}
         />
       )}

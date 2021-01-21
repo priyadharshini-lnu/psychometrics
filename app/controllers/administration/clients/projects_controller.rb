@@ -41,13 +41,6 @@ module Administration
         @_resource.privacy_link.present? || @_resource.build_privacy_link
       end
 
-      def search_users
-        users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
-          ::Projects::SearchUserSerializer.new(user).to_h
-        end
-        render json: users
-      end
-
       def export
         @_resources = policy_scope(resource_class).projects_of(client.id).includes(:project_admins)
         respond_to do |format|
@@ -80,7 +73,8 @@ module Administration
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent, :two_factor_enabled, :strong_password_enabled,
                                          :login_box_position, :secondary_logo, :remove_secondary_logo,
-                                         :enable_live_chat, privacy_link_attributes: %i[id text link _destroy])
+                                         :enable_live_chat, locales: [],
+                                         privacy_link_attributes: %i[id text link _destroy])
       end
 
       def set_privacy_link_enabled

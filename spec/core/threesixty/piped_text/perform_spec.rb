@@ -76,18 +76,13 @@ describe Threesixty::PipedText::Perform do
     end
 
     it do
-      response = described_class.call!('{{answer://FileUpload/826?w=50%&h=500px}}', answers: {
-        '826' => {
-          'answers' => [
-            {
-              'value' => 'https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf',
-              'filename' => 'Screen_Shot_2020-05-21_at_20.51.00.pdf',
-              'media_id' => 1
-            }
-          ],
-          'question_id' => 826
-        }
-      })
+      result = double
+      media_response = double
+      allow(result).to receive_message_chain(:media_responses, :find_by) { media_response }
+      allow(media_response).to receive_message_chain(:asset, :url) {
+                                 'https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf'
+                               }
+      response = described_class.call!('{{answer://FileUpload/826?w=50%&h=500px}}', result: result)
       expect(response).to eq('<object style="width: 50%; height: 500px; background: black; border: none;"'\
         ' data="https://lvh.me:3030/uploads/media_response/asset/prometeus.pdf" type="application/pdf"></object>')
     end

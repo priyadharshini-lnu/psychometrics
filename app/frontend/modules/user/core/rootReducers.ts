@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { connectRouter } from 'connected-react-router'
 import preview from 'modules/survey/core/preview'
 import reportBuilder from 'modules/reports/core/builder'
 import currentUser from 'core/currentUser'
@@ -15,8 +16,9 @@ import autocomplete from './ui/autocomplete'
 import project from '../modules/campaigns/core/project'
 import anonym from '../modules/campaigns/core/anonym'
 import config from './config'
+import examus from './examus'
 
-const rootReducer = combineReducers({
+const rootReducer = history => combineReducers({
   campaigns: combineReducers({
     campaign,
     nomination,
@@ -37,9 +39,11 @@ const rootReducer = combineReducers({
   preview,
   report: combineReducers({ builder: reportBuilder }),
   checkingWizard,
+  examus,
   connection,
+  router: connectRouter(history),
 })
 
-export type RootState = ReturnType<typeof rootReducer>
+export type RootState = ReturnType<ReturnType<typeof rootReducer>>
 
 export default rootReducer

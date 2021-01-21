@@ -30,6 +30,7 @@ module UsersResults
       answers = (users_result[answer_key]&.slice(*params_answers.keys) || {}).deep_merge(params_answers)
 
       answers = add_duration(answers, question_ids, users_result.last_activity_at)
+      answers = merge_with_existing(users_result, answers)
 
       broadcast :ok, params.merge(answer_key.to_s => answers)
     end
@@ -48,6 +49,10 @@ module UsersResults
       question_ids.reduce(answers) do |extended_answers, question_id|
         extended_answers.deep_merge(question_id.to_s => { 'duration' => duration })
       end
+    end
+
+    def merge_with_existing(users_result, answers)
+      (users_result.public_send(answer_key) || {}).merge(answers)
     end
   end
 end

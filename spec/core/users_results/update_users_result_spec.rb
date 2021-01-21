@@ -91,8 +91,9 @@ describe ::UsersResults::UpdateUsersResult do
           allow(users_result).to receive(:'completed?').and_return(true)
         end
 
+        it { expect(::UsersResults::RemoveDirtyResults).to receive(:call!).with(subject.answers).and_return({}) }
         it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
-        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject, {}) }
+        it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }
       end

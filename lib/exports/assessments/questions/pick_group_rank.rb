@@ -40,7 +40,7 @@ module Exports
                                join(', ')
             end
           end
-          answers << get_duration(user_result, question)
+          parsed_result << get_duration(user_result, question)
           Utility::Array.ensure_size(parsed_result, question_header_size(question))
         end
 

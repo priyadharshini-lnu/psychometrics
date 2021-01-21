@@ -104,7 +104,6 @@ const HANDLERS = {
     { ...state, recordingTime }),
 }
 
-
-const reducer: (state: State, action: Action) => State = createReducer(HANDLERS, {})
+const reducer: (state, action) => State = createReducer(HANDLERS, initialState)
 
 export default reducer

@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 
-import _ from 'lodash'
 import NormResolver from './commands/NormResolver'
 import {
   NEXT_PAGE, PREV_PAGE,
-  SHOW_PAGE, SHOW_END, CHANGE_ELEMENT,
+  SHOW_PAGE, SHOW_END, HIDE_END, CHANGE_ELEMENT,
   SHOW_ERRORS, EMPTY_ERRORS, SAVE_RESULTS,
   SET_EMBEDDED_DATA, HIDE_QUESTION, ADD_PREV_PAGE,
   REMOVE_PREV_PAGE, SET_DIRTY_RESULTS, SHOW_QUESTION,
@@ -21,18 +20,14 @@ import {
   ADD_MEDIA_RESPONSE,
   REMOVE_MEDIA_RESPONSE,
   MARK_MEDIA_RESPONSE_AS_SELECTED,
+  SHOW_SUBMIT_PAGE, HIDE_SUBMIT_PAGE, SET_IS_SIMULATION,
 } from './consts'
 import {
-  NextPage, PrevPage, AddPrevPage, RemovePrevPage,
-  ShowErrors, EmptyErrors, ShowPage, ShowEnd,
-  ChangeElement, HideQuestion, ShowQuestion, SetEmbeddedData,
-  SetDirtyResults, SetNotDirtyResults, ToggleHiddenQuestions,
-  ToggleIgnoreValidation, Reset, SetLocalResults, SaveResults,
   Highlight, QuestionError, MediaResponse,
 } from './interfaces'
 import { getCurrentBlock } from './selectors'
 
-export const nextPage = (params = {}): NextPage => ({ type: NEXT_PAGE, ...params })
+export const nextPage = (params = {}) => ({ type: NEXT_PAGE, ...params })
 
 export const saveCurrentPage = () => (dispatch, getState) => {
   const { preview } = getState()
@@ -42,7 +37,7 @@ export const saveCurrentPage = () => (dispatch, getState) => {
   }
 }
 
-export const prevPage = (preview): PrevPage => {
+export const prevPage = (preview) => {
   if (preview.type !== 'pass_assessment') {
     return { type: PREV_PAGE }
   }
@@ -59,36 +54,41 @@ export const prevPage = (preview): PrevPage => {
   }
 }
 
-export const addPrevPage = (page): AddPrevPage => ({ type: ADD_PREV_PAGE, page })
+export const addPrevPage = page => ({ type: ADD_PREV_PAGE, page })
 
-export const removePrevPage = (): RemovePrevPage => ({ type: REMOVE_PREV_PAGE })
+export const removePrevPage = () => ({ type: REMOVE_PREV_PAGE })
 
-export const showErrors = (errors): ShowErrors => ({ type: SHOW_ERRORS, errors })
+export const showErrors = errors => ({ type: SHOW_ERRORS, errors })
 
-export const emptyErrors = (): EmptyErrors => ({ type: EMPTY_ERRORS })
+export const emptyErrors = () => ({ type: EMPTY_ERRORS })
 
-export const showPage = (page): ShowPage => ({ type: SHOW_PAGE, page })
+export const showPage = page => ({ type: SHOW_PAGE, page })
 export const addQuestionError = (questionId: number, errors: QuestionError[]) => (
   { type: ADD_QUESTION_ERROR, questionId, errors })
 
 export const removeQuestionError = (questionId: number) => ({ type: REMOVE_QUESTION_ERROR, questionId })
 
-export const showEnd = (): ShowEnd => ({ type: SHOW_END })
+export const showEnd = () => ({ type: SHOW_END })
+export const hideEnd = () => ({ type: HIDE_END })
 
-export const changeElement = (id: string, page?: number): ChangeElement => ({ type: CHANGE_ELEMENT, id, page })
+export const changeElement = (id: string, page?: number) => ({ type: CHANGE_ELEMENT, id, page })
 
-export const hideQuestion = (id: number): HideQuestion => ({ type: HIDE_QUESTION, id })
-export const showQuestion = (id: number): ShowQuestion => ({ type: SHOW_QUESTION, id })
+export const hideQuestion = (id: number) => ({ type: HIDE_QUESTION, id })
+export const showQuestion = (id: number) => ({ type: SHOW_QUESTION, id })
 
-export const setEmbeddedData = (data: object): SetEmbeddedData => ({ type: SET_EMBEDDED_DATA, data })
+export const showSubmitPage = () => ({ type: SHOW_SUBMIT_PAGE })
+export const hideSubmitPage = () => ({ type: HIDE_SUBMIT_PAGE })
 
-export const setDirtyResults = (questionIds): SetDirtyResults => ({ type: SET_DIRTY_RESULTS, questionIds })
-export const setNotDirtyResults = (questionIds): SetNotDirtyResults => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })
+export const setEmbeddedData = (data: object) => ({ type: SET_EMBEDDED_DATA, data })
 
-export const toggleHiddenQuestions = (): ToggleHiddenQuestions => ({ type: TOGGLE_HIDDEN_QUESTIONS })
-export const toggleIgnoreValidation = (): ToggleIgnoreValidation => ({ type: TOGGLE_IGNORE_VALIDATION })
-export const reset = (): Reset => ({ type: RESET })
-export const setLocalResults = (data: object): SetLocalResults => ({ type: SET_LOCAL_RESULTS, data })
+export const setDirtyResults = questionIds => ({ type: SET_DIRTY_RESULTS, questionIds })
+export const setNotDirtyResults = questionIds => ({ type: SET_NOT_DIRTY_RESULTS, questionIds })
+
+export const toggleHiddenQuestions = () => ({ type: TOGGLE_HIDDEN_QUESTIONS })
+export const toggleIgnoreValidation = () => ({ type: TOGGLE_IGNORE_VALIDATION })
+export const reset = () => ({ type: RESET })
+export const setLocalResults = (data: object) => ({ type: SET_LOCAL_RESULTS, data })
+export const setIsSimulation = () => ({ type: SET_IS_SIMULATION })
 
 export const markQuestionInProgress = (questionId, progressState) => (
   { type: MARK_QUESTION_IN_PROGRESS, questionId, progressState })
@@ -98,19 +98,24 @@ export const clearInProgressQuestion = () => ({ type: CLEAR_IN_PROGRESS_QUESTION
 
 export const markAssessmentTimedOut = (questionId: number) => ({ type: MARK_ASSESSMENT_TIMED_OUT, questionId })
 
-export const saveResults = (preview, questionIds, currentBlockId?): SaveResults => {
+export const saveResults = (preview, questionIds, currentBlockId?) => {
   const answerKey = !preview.resultsUrl || preview.resultsUrl.includes('/assigns/') ? 'results' : 'answers'
+
+  const isComplete = !preview.showSubmitPage && (preview.end || preview.dbResult.status === 'completed')
 
   const data = {
     resource: {
-      [answerKey]: _.omitBy(preview.results, 'dirty'),
-      current_element: preview.currentElement,
-      current_page: preview.currentPage,
+      [answerKey]: preview.results,
       embedded_data: preview.embeddedData,
-      status: (preview.end || preview.dbResult.status === 'completed') ? 'completed' : 'in_progress',
+      status: isComplete ? 'completed' : 'in_progress',
+      prev_pages: preview.prevPages,
     },
     question_ids: questionIds,
     current_block_id: currentBlockId,
+  }
+  if (!preview.isSimulation) {
+    data.resource.current_element = preview.currentElement
+    data.resource.current_page = preview.currentPage
   }
   const url = preview.resultsUrl || `/assigns/${preview.dbResult.id}`
   if (preview.end) {

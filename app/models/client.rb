@@ -145,7 +145,7 @@ class Client < ApplicationRecord
   enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_uploader :logo, ImageUploader
-  mount_uploader :background, ImageUploader
+  mount_uploader :background, BackgroundUploader
   mount_uploader :secondary_logo, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
@@ -177,6 +177,12 @@ class Client < ApplicationRecord
   scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
   scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
+
+  def available_locales
+    return locales if locales.any?
+
+    [I18n.default_locale]
+  end
 
   def assign_by_membership_and_assessment(membership_id, assessment_id)
     memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)

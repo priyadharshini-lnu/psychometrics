@@ -106,15 +106,15 @@ module Administration
                     join_user.
                     where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
                     group_by(&:client_name)
-        @_filter_form = Membership.search(client_id_in: @clients.map(&:id))
+        @_filter_form = Membership.ransack(client_id_in: @clients.map(&:id))
         filter_form.id_not_in = @assign_form.user_ids
         filter_form.id_in = @assign_form.user_ids
-        @_users = policy_scope(Membership).search(client_id_in: @clients.map(&:id)).result
+        @_users = policy_scope(Membership).ransack(client_id_in: @clients.map(&:id)).result
       end
 
       def init_search_users
         @search = policy_scope(::Membership).where.
-                  not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
+                  not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).ransack(params[:q])
 
         # Limit to use only assigned clients
         #   And clients where user has access

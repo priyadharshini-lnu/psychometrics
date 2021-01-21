@@ -9,6 +9,7 @@ class ApplicationController < ::BaseController
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
   after_action :allow_iframe, if: proc { use_iframe? }
+  around_action :set_mobility_locale
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -40,6 +41,12 @@ class ApplicationController < ::BaseController
 
   private
 
+  def set_mobility_locale
+    Mobility.with_locale(current_user&.locale || I18n.default_locale) do
+      yield
+    end
+  end
+
   def authenticate_user!
     return if @anonymous_user
 
@@ -51,6 +58,7 @@ class ApplicationController < ::BaseController
         end
         if found_by == :sso
           session[:sso] = {
+            'user_id': user.id,
             'assign_id' => params[:assign_id],
             'display' => params[:display],
             'return_url' => params[:return_url]
@@ -70,8 +78,10 @@ class ApplicationController < ::BaseController
 
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
+    return if request.controller_class.to_s.start_with?('Assessors')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     return if request.controller_class.to_s.start_with?('Api::V1')
+    return if request.controller_class.to_s.start_with?('Webhooks')
 
     @current_project = GetProjectBySubdomain.call!(request.subdomain)
     return render_423 if @current_project&.disabled?
@@ -121,7 +131,7 @@ class ApplicationController < ::BaseController
   end
 
   def set_locale
-    I18n.locale = cookies[:locale] || current_user&.locale || I18n.default_locale
+    I18n.locale = ui_locale
   end
 
   def render_423

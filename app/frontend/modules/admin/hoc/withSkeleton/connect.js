@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { getLodingState } from 'modules/admin/core/request'
+import { getLoadingState } from 'modules/admin/core/request'
 
 
 export default connect(
-  state => ({ loading: getLodingState(state) }),
+  state => ({ loading: getLoadingState(state) }),
   null,
 )

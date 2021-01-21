@@ -55,6 +55,7 @@ class Question extends Component {
     const style = {
       cursor: selected ? 'default' : 'pointer',
     }
+
     return (
       <div
         ref={(ref) => { this.question = ref }}

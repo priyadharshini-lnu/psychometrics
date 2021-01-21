@@ -7,9 +7,7 @@ module Communications
     def perform(assign)
       communications = Communication.completion.where(assessment_id: assign.assessment_id).includes(:project)
 
-      if assign.is_a?(UsersResult) && assign.user_assessment.campaign.project.migrated?
-        return perform_migrated(assign, communications)
-      end
+      return perform_migrated(assign, communications) if assign.is_a?(UsersResult)
 
       ::Services::Communications::CheckByLevelStack.call(
         membership: assign.membership,
@@ -20,9 +18,12 @@ module Communications
     private
 
     def perform_migrated(user_result, communications)
+      campaign_id = user_result.user_assessment&.campaign_id
+      return unless campaign_id
+
       communications = communications.select { |c| c.project&.migrated? }
       campaign_user = CampaignUser.find_by(
-        campaign_id: user_result.user_assessment.campaign_id,
+        campaign_id: campaign_id,
         user_id: user_result.user_id
       )
       communications.each do |communication|

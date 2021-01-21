@@ -6,13 +6,14 @@ gem 'bundler',                    '>= 1.8.4'
 gem 'rack',                       '~> 2.2.0'
 
 gem 'barnes',                     '~> 0.0.7'
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jbuilder',                   '~> 2.10.0'
 gem 'jquery-rails',               '~> 4.3.5'
-gem 'jquery-rails-cdn',           '~> 1.1.2'
+gem 'jwt',                        '~> 2.2.2'
 gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 gem 'pg',                         '~> 0.19.0'
 gem 'puma',                       '~> 4.3.6'
-gem 'rails',                      '~> 5.1.7'
+gem 'rails',                      '~> 5.2.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'staccato-rails'
 gem 'uglifier', '~> 3.0.2'
@@ -67,7 +68,7 @@ gem 'kaminari',                   '~> 0.17.0'
 gem 'breadcrumbs_on_rails',       '~> 4.0.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack', '~> 1.8.10'
+gem 'ransack', '~> 2.3.0'
 gem 'react-rails', '~> 1.10.0' # we use only one helper "react_component"
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
@@ -105,17 +106,16 @@ gem 'caxlsx_rails', '~> 0.6.0'
 gem 'roo', '~> 2.8.2'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
-gem 'acts_as_list', '~> 0.8.1'
+gem 'acts_as_list', '~> 1.0.2'
 
 ### add fake destroying logic for models
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'paranoia', '~> 2.4.1'
 
 # Error tracking
 gem 'sentry-raven', '~> 2.9.0'
 
 # DSL for activerecord
-gem 'baby_squeel', '~> 1.3.1'
+gem 'baby_squeel', git: 'https://github.com/TheTalentEnterprise/baby_squeel.git', branch: 'feature/fix-97'
 
 # Cloning ActiveRecord object
 gem 'deep_cloneable', '~> 2.4.0'
@@ -141,6 +141,7 @@ gem 'bootstrap-slider-rails', '~> 9.2.0'
 gem 'hashids', '~> 1.0.5'
 
 gem 'dry-types', '~> 0.12.2'
+gem 'mobility', '~> 1.0.0'
 gem 'money-rails', '~> 1.13.3'
 gem 'reform-rails', '~> 0.1.7'
 gem 'validates_timeliness', '~> 4.0.2'
@@ -174,6 +175,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_bot_rails', '~> 6.1.0'
   gem 'hirb'
+  gem 'parallel_tests'
   gem 'pry-byebug', '~> 3.9.0'
   gem 'pry-rails', '~> 0.3.4'
   gem 'rspec-rails', '~> 4.0.0'
@@ -217,6 +219,7 @@ group :test do
   gem 'timecop', '~> 0.9.1'
   gem 'webdrivers', '~> 4.1.2'
   gem 'wisper-rspec', '~> 1.1.0', require: false
+  gem 'with_model', '~> 2.1.5'
 end
 
 # for creating and rendering QR codes into various formats

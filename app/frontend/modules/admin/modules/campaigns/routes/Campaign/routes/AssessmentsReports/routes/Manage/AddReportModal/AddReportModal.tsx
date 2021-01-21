@@ -95,12 +95,18 @@ const AddReportModal: React.FC<Props> = ({
             label={I18n.t('campaign_report.column.report_bundle')}
             rules={[{ required: true }]}
           >
-            <Select placeholder="Nothing selected">
+            <Select
+              showSearch
+              placeholder="Nothing selected"
+              optionFilterProp="children"
+              filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+            >
               {_.map(reportFamilies, (reportFamily: ReportFamily) => (
                 <Option key={reportFamily.id} value={reportFamily.id}>{reportFamily.name}</Option>
               ))}
             </Select>
           </Form.Item>
+
           <Form.Item
             name="operation"
             label={I18n.t('campaign_report.form.operation')}

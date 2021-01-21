@@ -1,9 +1,4 @@
 .row.mbm
   .col-sm-12.phn
-    .btn-group
-      - FactorsNorm::NORM_TYPES.each do |value|
-        = link_to value.upcase,
-                [:editor, :administration, resource, factor_type: @filter_data.factor_type, norm_type: value],
-                class: "btn btn-default #{'active' if @filter_data.norm_type == value}", remote: true
     .mvm
       = render partial: 'factors'

@@ -1,4 +1,4 @@
-:global {
+  :global {
   @import 'base';
   @import '~normalize.css/normalize';
 
@@ -10,5 +10,11 @@
   }
   .displayFlex {
     display: flex;
+  }
+
+  .rtl {
+    .rtl-flip {
+      transform: rotateY(180deg);
+    }
   }
 }

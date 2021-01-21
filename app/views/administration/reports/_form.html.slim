@@ -9,9 +9,8 @@
                           collection: policy_scope(Client).enabled.roots.order(:name),
                           include_blank: t('administration.tte'),
                           input_html: { data: { live_search: true } }
-        = f.input :type, include_blank: false
         = f.association :assessments,
-                        collection: assessments_options_for_select(policy_scope(Assessment).unarchived, resource),
+                        collection: assessments_options_for_select(policy_scope(Assessment).unarchived.not_deleted, resource),
                         include_hidden: false,
                         input_html: { multiple: true,
                                       data: { live_search: true,

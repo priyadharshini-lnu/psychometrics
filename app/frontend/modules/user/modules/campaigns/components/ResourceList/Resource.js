@@ -1,15 +1,20 @@
-/* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
-import './styles.scss'
+
 import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
-import withCopyProtection from 'components/hocs/withCopyProtection'
+import { useCopyProtection } from 'utils/hooks'
+
 import connect from './connect'
 
-function Resource ({
-  resource, highlight, updateHighlight, translations, containerRef,
-}) {
+import './styles.scss'
+
+const Resource = ({
+  resource, highlight, updateHighlight, translations,
+}) => {
   const contentRef = useRef(null)
+  const containerRef = useRef(null)
   const [selection, setSelection] = useState(null)
+
+  useCopyProtection(containerRef)
 
   const handleMouseUp = () => {
     const selection = window.getSelection()
@@ -32,6 +37,7 @@ function Resource ({
         className="resource-content"
         onMouseUp={handleMouseUp}
         ref={contentRef}
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: _.get(translations, [resource.id, 'questionText']) || resource.props.questionText,
         }}
@@ -40,4 +46,4 @@ function Resource ({
   )
 }
 
-export default withCopyProtection(connect(Resource))
+export default connect(Resource)

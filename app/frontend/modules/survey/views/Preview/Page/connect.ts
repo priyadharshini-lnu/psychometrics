@@ -6,6 +6,7 @@ import {
   nextPage, prevPage,
 } from 'modules/survey/core/preview/FlowProcessor/actions'
 import { RootState } from 'modules/survey/core/rootReducers'
+import { fetchCampaignOptions } from 'modules/user/modules/campaigns/core/campaign'
 import { isConnected } from 'core/connection'
 
 export default connect(
@@ -27,5 +28,6 @@ export default connect(
   {
     nextPage,
     prevPage,
+    fetchCampaignOptions,
   },
 )

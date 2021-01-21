@@ -14,7 +14,7 @@ import PipedTextModal from './PipedTextModal'
 
 const MODALS = {
   filter: FilterModal,
-  dataSheet: DataSheetModal,
+  dataSheetModal: DataSheetModal,
   alias: AliasModal,
   savePopUp: SavePopUp,
   dataConfiguration: DataConfigurationModal,

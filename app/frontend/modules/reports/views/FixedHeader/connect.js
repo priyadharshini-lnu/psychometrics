@@ -26,7 +26,7 @@ export default connect(
     unselectModules,
     selectModule,
     openFilter: data => openModal('filter', data),
-    openDataSheet: data => openModal('dataSheet', data),
+    openDataSheet: data => openModal('dataSheetModal', data),
     openAlias: data => openModal('alias', data),
     openDataConfiguration: data => openModal('dataConfiguration', data),
   },

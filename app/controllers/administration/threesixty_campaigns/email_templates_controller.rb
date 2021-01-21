@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class EmailTemplatesController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[update send_test_email]
+      before_action :set_resource, only: %i[show update send_test_email]
       append_before_action :pundit_authorize
 
       def index
@@ -12,11 +12,22 @@ module Administration
         render json: threesixty_campaign.email_templates.order(:id)
       end
 
+      def show
+        response = params[:locales].values.map do |locale|
+          Mobility.with_locale(locale) do
+            ::Threesixty::EmailTemplateLocaleSerializer.new(resource, locale: locale).to_h
+          end
+        end
+        render json: response
+      end
+
       def update
         form = ::Threesixty::EmailTemplateForm.from_params(params[:email_template]).
                with_context(email_template: resource)
         if form.valid?
-          resource.update!(form.attributes)
+          Mobility.with_locale(params[:locale]) do
+            resource.update!(form.attributes)
+          end
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import 'modules/admin/styles/ant.less'
 import 'modules/admin/styles/common.scss'
+import 'styles/utils.scss'
+import initSentry from 'libs/initSentry'
 
+initSentry()
 ReactDOM.render(<CampaignsApp />, document.getElementById('campaigns-container'))
 
 if (__DEV__) {

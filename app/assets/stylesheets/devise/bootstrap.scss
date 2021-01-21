@@ -88,10 +88,12 @@
   }
 
   .nav-tabs {
-    width: 125px;
+    display: inline-block;
     margin: 0 auto;
 
     > li {
+      display: inline-block;
+      float: none;
       > a {
         padding: 10px 6px;
         color: #868585;
@@ -199,6 +201,7 @@
     font-size: 12px;
   }
 }
+
 
 @media screen and (min-width: 320px) {
   .devise {

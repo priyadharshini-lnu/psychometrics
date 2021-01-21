@@ -11,7 +11,7 @@ module Administration
 
       # GET /administration/resources
       def index
-        @_filter_form = policy_scope(resource_class).templates.includes(blocks: [:assessment]).search(params[:q])
+        @_filter_form = policy_scope(resource_class).templates.includes(blocks: [:assessment]).ransack(params[:q])
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|

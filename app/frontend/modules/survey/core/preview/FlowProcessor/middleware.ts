@@ -72,18 +72,23 @@ const FlowMiddleware = ({ getState, dispatch }) => next => (action) => {
   }
 
   const questions = pageQuestionsWithoutHidden(preview)
-  const errors = ValidationProcessor.run(questions, preview.results, preview.mediaResponses)
 
-  if (_.size(errors) > 0) {
-    dispatch(showErrors(errors))
-    return
+  if (!action.skipValidations && !preview.ignoreValidations) {
+    const errors = ValidationProcessor.run(questions, preview.results, preview.mediaResponses)
+
+    if (_.size(errors) > 0) {
+      dispatch(showErrors(errors))
+      return
+    }
   }
 
   dispatch(emptyErrors())
 
   if (preview.currentElement) {
     const questionIds = questions.map(q => q.id)
-    dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage, questionIds }))
+    if (!_.find(preview.prevPages, { element: preview.currentElement, page: preview.currentPage })) {
+      dispatch(addPrevPage({ element: preview.currentElement, page: preview.currentPage, questionIds }))
+    }
   }
 
   const skipLogic = getSkipLogicSelector(preview)

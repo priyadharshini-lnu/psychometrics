@@ -7,18 +7,17 @@ import {
   RemoveFilterReturnType,
   ChangePageReturnType,
   ChangeFilterReturnType,
+  SetTableConfigFromUrlType,
   INIT_TABLE,
   CHANGE_FILTER,
   CHANGE_PAGE,
   REMOVE_FILTER,
   CHANGE_SORT,
   SET_TABLE_CONFIG,
-  ActionsReturnType,
 } from './actions'
 import { State, TableConfig } from './interfaces'
 
-export const initialState = {
-}
+export const initialState = {}
 
 export const defaultTableConfig: TableConfig = {
   filters: {},
@@ -32,7 +31,7 @@ const HANDLERS = {
   [INIT_TABLE]: (state: State, { payload: { tableName, maintainHistory } }: InitTableReturnType) => (
     { ...state, [tableName]: { ...defaultTableConfig, maintainHistory, initialized: !maintainHistory } }
   ),
-  [SET_TABLE_CONFIG]: (state: State, { payload: { tableConfig } }: { payload: { tableConfig: TableConfig } }) => (
+  [SET_TABLE_CONFIG]: (state: State, { payload: { tableConfig } }: SetTableConfigFromUrlType) => (
     _.transform(state, (result: State, config: TableConfig, tableName: string) => {
       if (config.maintainHistory) {
         result[tableName] = { ...config, ...tableConfig, initialized: true }
@@ -70,6 +69,6 @@ const HANDLERS = {
   ),
 }
 
-const reducer: (state: State, action: ActionsReturnType) => State = createReducer(HANDLERS, {})
+const reducer = createReducer(HANDLERS, {})
 
 export default reducer

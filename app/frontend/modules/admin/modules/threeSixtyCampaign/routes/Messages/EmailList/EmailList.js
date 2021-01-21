@@ -1,7 +1,8 @@
+/* eslint-disable react/no-danger */
 import React, { useEffect, useState } from 'react'
 import Editor from 'components/Editor'
 import {
-  Input, Row, Col, Button, Empty, message, Switch,
+  Input, Row, Col, Button, Empty, message, Switch, Select,
 } from 'antd'
 import { SaveOutlined } from '@ant-design/icons'
 import _ from 'lodash'
@@ -17,10 +18,14 @@ import FooterBar from './FooterBar'
 import SentTestEmailModal from './SendTestEmailModal'
 import EmailScheduleModal from './EmailScheduleModal'
 
+const { Option } = Select
+
 export default function Emails ({
-  emailTemplates: { list },
+  availableLocales,
+  emailTemplates: { list, listWithLocales },
   fetch,
   update,
+  fetchByLocales,
   save,
   openModal,
   history,
@@ -38,14 +43,36 @@ export default function Emails ({
       })
   }, [])
 
+  useEffect(() => {
+    if (selectedId) { fetchByLocales(campaignId, selectedId, [leftLocale, rightLocale]) }
+  }, [selectedId])
+
   const [errors, setErrors] = useState(null)
+  const [leftLocale, setLeftLocale] = useState('en')
+  const [rightLocale, setRightLocale] = useState(null)
+
+  const updateLeftLocale = (locale) => {
+    setLeftLocale(locale)
+    fetchByLocales(campaignId, selectedId, [locale, rightLocale])
+  }
+
+  const updateRightLocale = (locale) => {
+    setRightLocale(locale)
+    fetchByLocales(campaignId, selectedId, [leftLocale, locale])
+  }
 
   const selectedTemplate = _.find(list, ({ id }) => id === parseInt(selectedId, 10))
+  const selectedLeftLocale = _.find(listWithLocales, (
+    { id, locale },
+  ) => id === parseInt(selectedId, 10) && locale === leftLocale) || {}
+  const selectedRightLocale = _.find(listWithLocales, (
+    { id, locale },
+  ) => id === parseInt(selectedId, 10) && locale === rightLocale) || {}
 
   if (_.isUndefined(selectedTemplate)) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
 
   const saveTemplate = () => {
-    save(campaignId, selectedTemplate)
+    save(campaignId, { ...selectedTemplate, ...selectedLeftLocale }, leftLocale)
       .then(() => {
         setErrors(null)
         message.success('Template saved successfully', 5)
@@ -76,19 +103,59 @@ export default function Emails ({
             className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'replyToEmail', e.target.value) }}
           />
+          <div className="display-flex justify-content-space-between">
+            <Select defaultValue="en" className="mb8 width150px" onChange={updateLeftLocale}>
+              {availableLocales.map(locale => (
+                <Option key={locale} value={locale}>
+                  {I18n.t(`languages.${locale}`)}
+                </Option>
+              ))}
+            </Select>
+            <div>
+              <span className="mr8">{I18n.t('common.text.reference_language')}</span>
+              <Select className="mb8 width150px" placeholder={I18n.t('select')} onChange={updateRightLocale}>
+                <Option value={null}>
+                  {I18n.t('empty')}
+                </Option>
+                {availableLocales.map(locale => (
+                  <Option key={locale} value={locale}>
+                    {I18n.t(`languages.${locale}`)}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+          </div>
+          <div className="display-flex">
+            <Input
+              addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+              value={selectedLeftLocale.subject}
+              className="mb8"
+              onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value, leftLocale) }}
+            />
+            {rightLocale && (
+            <Input
+              addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+              value={selectedRightLocale.subject}
+              readOnly
+              className="mb8"
+            />
+            )}
+          </div>
+          <div className="display-flex">
+            <Editor
+              className="flex1"
+              type={selectedTemplate.name}
+              content={selectedLeftLocale.content || ''}
+              details={{ consolidation: selectedTemplate.consolidated }}
+              handleContentChange={(value) => { update(selectedTemplate.id, 'content', value, leftLocale) }}
+            />
+            {rightLocale && (
+            <div className={styles.comparisonBody}>
+              <div className="m16" dangerouslySetInnerHTML={{ __html: selectedRightLocale.content }} />
+            </div>
+            )}
+          </div>
 
-          <Input
-            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
-            value={selectedTemplate.subject}
-            className="mbm"
-            onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value) }}
-          />
-          <Editor
-            type={selectedTemplate.name}
-            content={selectedTemplate.content}
-            details={{ consolidation: selectedTemplate.consolidated }}
-            handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
-          />
         </div>
 
         <FooterBar emailTemplate={selectedTemplate} />

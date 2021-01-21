@@ -1,0 +1,136 @@
+import React, { useState } from 'react'
+import cs from 'classnames'
+import moment from 'moment'
+import {
+  List, Space, Alert, Progress,
+} from 'antd'
+import {
+  DownOutlined,
+  UpOutlined,
+} from '@ant-design/icons'
+import styles from './styles.scss'
+import { AdminJob as AdminJobI } from '../../interfaces'
+
+const { I18n } = window
+
+const AdminJob: React.FC<{job: AdminJobI, read: (id: number) => void}> = ({ job, read }) => {
+  const [expanded, setExpanded] = useState(false)
+  const hasMore = job.isValid && (job.errorMessages.length || job.content || !!job.details.length)
+
+  const getStatus = (job: AdminJobI) => {
+    if (job.errorMessages.length) return 'exception'
+    if (job.status === 'completed') return 'success'
+    return 'active'
+  }
+  const getDescription = (job: AdminJobI) => {
+    if (job.errorMessages.length && job.status === 'completed') {
+      return I18n.t('admin_jobs.attrs.statuses.completed_with_errors')
+    }
+    return I18n.t(`admin_jobs.attrs.statuses.${job.status}`)
+  }
+
+  const handleClick = () => {
+    if (!job.read) read(job.id)
+  }
+
+  return (
+    <List.Item
+      className={cs({ [styles.unread]: !job.read, [styles.container]: true })}
+      onClick={handleClick}
+    >
+      <List.Item.Meta
+        avatar={<AvatarByStatus status={getStatus(job)} progress={job.progress} />}
+        title={(
+          <>
+            <div>
+              {I18n.t(`admin_jobs.attrs.operations.${job.operation}`)}
+              {' '}
+-
+              {' '}
+              <small>{moment(job.createdAt).fromNow()}</small>
+            </div>
+            <div>
+              {job.isValid
+                ? <a target="_blank" rel="noopener noreferrer" href={job.titleLink.href}>{job.titleLink.label}</a>
+                : <div className={styles.invalidJob}>{I18n.t('admin_jobs.invalid_job')}</div>}
+            </div>
+          </>
+        )}
+        description={getDescription(job)}
+      />
+      {expanded && !!job.details.length && (
+        <Alert
+          message={I18n.t('admin_jobs.details')}
+          type="info"
+          description={(
+            <>
+              {job.details.map((el, i) => (
+                <div key={i}>
+                  <strong>{el[0]}</strong>
+:
+                  <span className="pl4">{el[1]}</span>
+                </div>
+              ))}
+            </>
+)}
+        />
+      )}
+      {expanded && job.content && (
+        <Alert
+          message={I18n.t('admin_jobs.results')}
+          className="mt4"
+          type="info"
+          description={
+            // eslint-disable-next-line react/no-danger
+            <div dangerouslySetInnerHTML={{ __html: job.content }} />
+          }
+        />
+      )}
+      {expanded && !!job.errorMessages.length && (
+        <Alert
+          message={I18n.t('admin_jobs.errors')}
+          description={(
+            <ul>{job.errorMessages.map((err, i) => (<li key={i}>{err}</li>))}</ul>
+          )}
+          type="error"
+        />
+      )}
+      {hasMore && (
+      <div className={styles.more}>
+        <More expanded={expanded} onClick={() => setExpanded(!expanded)} />
+      </div>
+      )}
+    </List.Item>
+  )
+}
+
+export default AdminJob
+
+
+const More: React.FC<{expanded: boolean, onClick: () => void}> = ({ expanded, onClick }) => (
+  <div onClick={onClick}>
+    <Space>
+      {expanded ? (
+        <>
+          <UpOutlined />
+          {I18n.t('admin_jobs.close')}
+        </>
+      ) : (
+        <>
+          <DownOutlined />
+          {I18n.t('admin_jobs.more')}
+        </>
+      )}
+    </Space>
+  </div>
+)
+
+interface Props {
+  status: 'success' | 'exception' | 'active'
+  progress: number
+}
+
+const AvatarByStatus: React.FC<Props> = ({
+  status,
+  progress,
+}) => <Progress type="circle" percent={progress} width={50} status={status} />

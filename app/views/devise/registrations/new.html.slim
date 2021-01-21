@@ -5,11 +5,12 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
 
     .panel-body
       /! Nav tabs
-      ul.nav.nav-tabs
-        li
-          = link_to t('.tabs.sign_in'), new_user_session_path
-        li.active
-          = link_to t('.tabs.register'), new_user_registration_path
+      .text-align-c
+        ul.nav.nav-tabs
+          li
+            = link_to t('.tabs.sign_in'), new_user_session_path
+          li.active
+            = link_to t('.tabs.register'), new_user_registration_path
       /! Tab panes
       .tab-content
         .tab-pane.fade.in.active role="tabpanel"
@@ -25,20 +26,20 @@ div class=([@current_project&.login_box_position || 'right', 'box', 'devise', na
                 .firstname.input-group
                   span#firstname.input-group-addon
                     i.icon-user
-                  = f.input_field :first_name, placeholder: 'First Name', class: 'form-control input-lg'
+                  = f.input_field :first_name, placeholder: t('.first_name'), class: 'form-control input-lg'
 
             .col-xs-6.phn.pls.mbm
               = form_group_for f, :last_name do
                 .lastname.input-group
                   span#lastname.input-group-addon
                     i.icon-user
-                  = f.input_field :last_name, placeholder: 'Last Name', class: 'form-control input-lg'
+                  = f.input_field :last_name, placeholder: t('.last_name'), class: 'form-control input-lg'
 
             = form_group_for f, :email do
               .username.input-group
                 span#username.input-group-addon
                   i.icon-email
-                = f.input_field :email, placeholder: 'Email Address', class: 'form-control input-lg'
+                = f.input_field :email, placeholder: t('.email'), class: 'form-control input-lg'
             span.help-block.small.mbm = t('.privacy_notice')
 
             = form_group_for f, :registration_code do

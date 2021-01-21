@@ -10,7 +10,7 @@ module Administration
 
       # GET /administration/resources
       def index
-        @_filter_form = policy_scope(resource_class).search(params[:q])
+        @_filter_form = policy_scope(resource_class).ransack(params[:q])
         @_resources = filter_form.
                       result.
                       joining do |a|

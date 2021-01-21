@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader, Row, Col, Progress, ConfigProvider,
+  Layout, PageHeader, Row, Col, Progress, Space,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { minutesLeft } from 'utils/time'
+import { secondsLeftFromNow } from 'utils/time'
+import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
 import Timer from '../../components/Timer'
 import ResourcesTabs from '../../components/ResourcesTabs'
 
 const { Content } = Layout
+const { I18n } = window
 
 export default function UserAssessment ({
   userAssessment: {
@@ -29,9 +31,9 @@ export default function UserAssessment ({
     },
   }, fetchAssessment,
   match: { params },
-  history,
   isFrame,
   preview: {
+    initialized,
     enableProgress,
     type,
   },
@@ -46,8 +48,10 @@ export default function UserAssessment ({
   let campaignTimeLeft = null
 
   if (loaded && campaignOptions.fixed_time) {
-    campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
+    campaignTimeLeft = secondsLeftFromNow(new Date(campaignUser.expiry_date))
   }
+
+  const rtl = isRtl(I18n.uiLocale)
   // TODO: Fix by creating a setting for list of rtl languages
   return (
     <Layout>
@@ -56,23 +60,30 @@ export default function UserAssessment ({
           <PageHeader
             className="page-header"
             backIcon={!isFrame && (
-              <div>
-                <ArrowLeftOutlined />
-                {' '}
-                Back
-              </div>
+              <Space>
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                {` ${I18n.t('assessments.page.back')}`}
+              </Space>
             )}
             title={(
               <div>
                 {assessment.name}
               </div>
+          )}
+            extra={(
+              <Space>
+                {type !== 'preview_block' && enableProgress && (
+                  <Progress key="1" percent={progress} style={{ width: '200px' }} />
+                )}
+                <Timer
+                  key="2"
+                  preview={preview}
+                  campaignTimeLeft={campaignTimeLeft}
+                  onFinish={markAssessmentTimedOut}
+                />
+              </Space>
             )}
-            extra={[
-              type !== 'preview_block' && enableProgress
-                && (<Progress key="1" percent={progress} style={{ width: '200px' }} />),
-              <Timer key="2" preview={preview} campaignTimeLeft={campaignTimeLeft} onFinish={markAssessmentTimedOut} />,
-            ]}
-            onBack={() => history.push(`/campaigns/${campaignId}`)}
+            onBack={() => { window.location.href = `/campaigns/${campaignId}` }}
           />
         </Content>
       </div>
@@ -88,25 +99,24 @@ export default function UserAssessment ({
             </Col>
           </Row>
         )}
-        <ConfigProvider direction={selectedLanguage && selectedLanguage.direction}>
-          <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
-            {loaded && !error && (
-              <ResourcesTabs assessment={assessment}>
-                <PassAssessment
-                  id="pass_assessment"
-                  type="pass_assessment"
-                  data={assessment}
-                  result={results}
-                  locales={translations}
-                  dashboardUrl={`/campaigns/${campaignId}`}
-                  resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
-                  selectedLocale={selectedLanguage && selectedLanguage.code}
-                  rstore={store}
-                />
-              </ResourcesTabs>
-            )}
-          </div>
-        </ConfigProvider>
+        <div className={cs('evaluation-container', selectedLanguage && selectedLanguage.direction)}>
+          {loaded && !error && (
+            <ResourcesTabs assessment={assessment}>
+              <PassAssessment
+                id="pass_assessment"
+                type="pass_assessment"
+                initialized={initialized}
+                data={assessment}
+                result={results}
+                locales={translations}
+                dashboardUrl={`/campaigns/${campaignId}`}
+                resultsUrl={`/user_assessments/${userAssessmentId}/users_results/${results.id}`}
+                selectedLocale={selectedLanguage && selectedLanguage.code}
+                rstore={store}
+              />
+            </ResourcesTabs>
+          )}
+        </div>
       </Content>
     </Layout>
   )

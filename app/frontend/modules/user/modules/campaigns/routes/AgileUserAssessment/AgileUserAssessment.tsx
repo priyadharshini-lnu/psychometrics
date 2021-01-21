@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader,
+  Layout, PageHeader, Space,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { isRtl } from 'utils/locales'
 import './styles.scss'
 import { PropsFromRedux } from './connect'
 
 const { Content } = Layout
+const { I18n } = window
 
 interface OwnProps {
   agileUserAssessmentUrl?: string
@@ -17,7 +19,6 @@ interface OwnProps {
 type Props = OwnProps & PropsFromRedux & RouteComponentProps
 
 const AgileUserAssessment: React.FC<Props> = ({
-  history,
   isFrame,
   agileAssetsUrl,
   agileUserAssessmentUrl,
@@ -29,7 +30,7 @@ const AgileUserAssessment: React.FC<Props> = ({
         parent: 'agile-container',
       },
       service: {
-        baseURL: agileUserAssessmentUrl || window.location.href,
+        baseURL: agileUserAssessmentUrl || window.location.href.split('?')[0],
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -48,7 +49,7 @@ const AgileUserAssessment: React.FC<Props> = ({
   useEffect(() => {
     initializeAgile()
   }, [])
-
+  const rtl = isRtl(I18n.uiLocale)
   return (
     <Layout>
       <Content className="fluid-container">
@@ -56,13 +57,12 @@ const AgileUserAssessment: React.FC<Props> = ({
           title={null}
           className="page-header"
           backIcon={!isFrame && (
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back
-            </div>
+            <Space>
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                {` ${I18n.t('assessments.page.back')}`}
+            </Space>
           )}
-          onBack={() => history.push('/campaigns')}
+          onBack={() => { window.location.href = '/campaigns' }}
         >
           <div id="agile-container" className="agile-container" />
           <div className="mbl" />

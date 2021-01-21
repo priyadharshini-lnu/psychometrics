@@ -55,7 +55,7 @@ const Timer = ({
 
   const bgClass = styles[timerState]
 
-  const campaignExpire = Date.now() + campaignTimeLeft * 60000
+  const campaignExpire = Date.now() + campaignTimeLeft * 1000
   const timeLeft = campaignTimeLeft !== null && campaignExpire < new Date(expiryDate) ? campaignExpire : expiryDate
 
   return (

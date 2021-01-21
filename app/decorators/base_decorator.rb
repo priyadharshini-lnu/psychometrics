@@ -64,6 +64,13 @@ class BaseDecorator < Draper::Decorator
     }.to_json
   end
 
+  def soft_delete_confirmation
+    {
+      title: I18n.t("administration.#{i18n}.resource.confirmations.soft_delete.title", name: display_name),
+      body: I18n.t("administration.#{i18n}.resource.confirmations.soft_delete.body")
+    }.to_json
+  end
+
   def archive_confirmation
     {
       title: I18n.t("administration.#{i18n}.resource.confirmations.archive.title", name: display_name),

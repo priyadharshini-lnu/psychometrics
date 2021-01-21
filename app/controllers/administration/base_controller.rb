@@ -6,6 +6,8 @@ module Administration
     include Administration::Helpers
     layout 'administration'
 
+    before_action :set_locale
+
     append_after_action :verify_authorized, except: :index
     append_after_action :verify_policy_scoped, only: :index
 
@@ -19,7 +21,7 @@ module Administration
 
     def authenticate_user!
       if user_signed_in?
-        sign_out current_user unless current_user.is?(:superadmin, :client_admin, :project_admin)
+        sign_out current_user unless current_user.is?(:superadmin, :client_admin, :project_admin, :assessor)
       end
       super
     end
@@ -34,6 +36,10 @@ module Administration
 
     def resource=(resource)
       @_resource = resource
+    end
+
+    def set_locale
+      I18n.locale = I18n.default_locale
     end
   end
 end

@@ -10,7 +10,7 @@ module Administration
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview
-                                          regenerate upload_data_sheet toggle_archive]
+                                          regenerate upload_data_sheet toggle_archive soft_delete restore]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -31,7 +31,6 @@ module Administration
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.ransack(params[:q])
-      filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -42,7 +41,7 @@ module Administration
 
     def upload_data_sheet
       @form = ::Datasheets::DatasheetForm.from_params(params)
-      render json: @form.parsed_file.first.map { |k, v| { name: k, type: v } }
+      render json: @form.parsed_file.second.map { |k, v| { name: k, type: v } }
     end
 
     def show
@@ -120,6 +119,15 @@ module Administration
       end
     end
 
+    def soft_delete
+      resource.soft_delete!(current_user)
+    end
+
+    def restore
+      resource.restore!
+      render 'refresh_list'
+    end
+
     def copy
       event = ::Reports::CopyReport.call(resource.id)
 
@@ -171,7 +179,7 @@ module Administration
     end
 
     def resource_params
-      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
+      report_params = params.require(:resource).permit(:name, :owner_id, :mindmill, :icon, :icon_color, :props,
                                                        :remove_icon, :default_language, report_family_ids: [],
                                                        assessment_ids: [],
                                        hogan_report_setting_attributes: %i[id hogan_report_id _destroy])

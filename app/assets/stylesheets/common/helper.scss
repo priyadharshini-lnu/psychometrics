@@ -61,6 +61,30 @@ $space40: 40px;
   margin-top: $space40 !important;
 }
 
+.mr4 {
+  margin-right: $space4 !important;
+}
+
+.mr8 {
+  margin-right: $space8 !important;
+}
+
+.mr16 {
+  margin-right: $space16 !important;
+}
+
+.mr24 {
+  margin-right: $space24 !important;
+}
+
+.mr32 {
+  margin-right: $space32 !important;
+}
+
+.mr40 {
+  margin-right: $space40 !important;
+}
+
 .mb0 {
   margin-bottom: 0 !important;
 }
@@ -115,6 +139,62 @@ $space40: 40px;
 
 .pb40 {
   padding-bottom: $space40 !important;
+}
+
+.pt0 {
+  padding-top: 0 !important;
+}
+
+.pt4 {
+  padding-top: $space4 !important;
+}
+
+.pt8 {
+  padding-top: $space8 !important;
+}
+
+.pt16 {
+  padding-top: $space16 !important;
+}
+
+.pt24 {
+  padding-top: $space24 !important;
+}
+
+.pt32 {
+  padding-top: $space32 !important;
+}
+
+.pt40 {
+  padding-top: $space40 !important;
+}
+
+.pl0 {
+  padding-left: 0 !important;
+}
+
+.pl4 {
+  padding-left: $space4 !important;
+}
+
+.pl8 {
+  padding-left: $space8 !important;
+}
+
+.pl16 {
+  padding-left: $space16 !important;
+}
+
+.pl24 {
+  padding-left: $space24 !important;
+}
+
+.pl32 {
+  padding-left: $space32 !important;
+}
+
+.pl40 {
+  padding-left: $space40 !important;
 }
 
 .ptn,
@@ -380,6 +460,10 @@ $space40: 40px;
   display: flex;
 }
 
+.flex1 {
+  flex: 1;
+}
+
 .justify-content-space-between {
   justify-content: space-between;
 }
@@ -393,12 +477,24 @@ $space40: 40px;
   margin-top: -10px;
 }
 
+.width100percent {
+  width: 100%;
+}
+
+.width150px {
+  width: 150px;
+}
+
 .text-align-r {
   text-align: right !important;
 }
 
 .text-align-c {
   text-align: center !important;
+}
+
+.text-align-e {
+  text-align: end !important;
 }
 
 .float-r {
@@ -410,6 +506,9 @@ $space40: 40px;
 }
 .position-relative {
   position: relative !important;
+}
+.z-index-2 {
+  z-index: 2 !important;
 }
 
 .font-bold {

@@ -3,19 +3,23 @@
 module Campaigns
   module Users
     class ParseImportData < BaseCommand
-      private_attr_reader :import_data
+      private_attr_reader :records
 
       HEADER_IMPORT_KEYS = %i[active first_name last_name email password created_at].freeze
 
       def initialize(import_data)
-        @import_data = import_data
+        @records =
+          if import_data.is_a?(ActionDispatch::Http::UploadedFile) || import_data.is_a?(Rack::Test::UploadedFile)
+            Roo::CSV.new(import_data.path).to_a
+          else
+            import_data
+          end
       end
 
       def call
-        rows = Roo::CSV.new(import_data.path).to_a
-        header = rows.shift
-        rows = rows.map do |row|
-          row.each_with_object({}).with_index do |(value, attrs), index|
+        header = records.shift
+        rows = records.map do |record|
+          record.each_with_object({}).with_index do |(value, attrs), index|
             key = HEADER_IMPORT_KEYS[index]
             attrs[key] = key == :active ? value.presence && value == 'Yes' : value
           end

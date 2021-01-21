@@ -92,7 +92,7 @@ module Exports
         return if norm_data.nil? || norm_data['id'].nil?
 
         norm = Norm.find(norm_data['id'])
-        "#{norm.name}:#{norm_data['type']}"
+        norm.name
       rescue ActiveRecord::RecordNotFound
         Rails.logger.error("Norm #{norm_data['id']} is not found")
       end

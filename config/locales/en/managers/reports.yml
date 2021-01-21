@@ -1,6 +1,0 @@
-en:
-  managers:
-    reports:
-      show:
-        header: 'Report'
-        export_pdf: 'Export to PDF'

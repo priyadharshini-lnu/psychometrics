@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects'
 import filterAndPaginationWatcher from 'modules/admin/core/filterAndPagination/watchers'
+import { watchers as flow } from 'modules/survey/core/preview/FlowProcessor/watchers'
 import { watchers as subjects } from '../modules/threeSixtyCampaign/core/subjects'
 import { watchers as evaluators } from '../modules/threeSixtyCampaign/core/evaluators'
 import participantOptions from '../modules/threeSixtyCampaign/core/participantOptions/watchers'
@@ -13,6 +14,7 @@ import { watchers as recipientCriteriaWatchers } from '../modules/threeSixtyCamp
 import { watchers as campaignAssessment } from '../modules/campaigns/core/assessments/watchers'
 import { watchers as user } from '../modules/campaigns/core/users'
 import { watchers as campaign } from '../modules/campaigns/core/list'
+import { watchers as assessors } from '../modules/campaigns/core/assessors'
 
 
 export default function* () {
@@ -30,5 +32,7 @@ export default function* () {
     ...campaignAssessment,
     ...user,
     ...campaign,
+    ...flow,
+    ...assessors,
   ])
 }

@@ -34,7 +34,8 @@ describe ::UsersResults::ExtendResourceParams do
           'question_id' => 2,
           'not_applicable' => nil,
           'duration' => 37_500
-        }
+        },
+        '3' => { 'answers' => [], 'question_id' => 3, 'not_applicable' => true, 'duration' => 12_345 }
       },
       'step' => 1,
       'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
@@ -53,7 +54,8 @@ describe ::UsersResults::ExtendResourceParams do
           'question_id' => 2,
           'not_applicable' => nil,
           'duration' => 37_500
-        }
+        },
+        '3' => { 'answers' => [], 'question_id' => 3, 'not_applicable' => true, 'duration' => 12_345 }
       },
       'step' => 1,
       'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),
@@ -67,7 +69,8 @@ describe ::UsersResults::ExtendResourceParams do
     expect(::UsersResults::ExtendResourceParams.call!(resource_params, nil, users_result)).to eq(
       'answers' => {
         '1' => { 'answers' => [], 'question_id' => 1, 'not_applicable' => true, 'duration' => 1234 },
-        '2' => { 'answers' => [{ 'index' => 1, 'value' => 0 }], 'question_id' => 2, 'not_applicable' => nil }
+        '2' => { 'answers' => [{ 'index' => 1, 'value' => 0 }], 'question_id' => 2, 'not_applicable' => nil },
+        '3' => { 'answers' => [], 'question_id' => 3, 'not_applicable' => true, 'duration' => 12_345 }
       },
       'step' => 1,
       'last_activity_at' => Time.local(2019, 10, 8, 0, 1, 15),

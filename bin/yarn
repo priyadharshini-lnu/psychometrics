@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+APP_ROOT = File.expand_path('..', __dir__)
+Dir.chdir(APP_ROOT) do
+  # rubocop:disable Style/RedundantBegin
+  begin
+    exec 'yarnpkg', *ARGV
+  rescue Errno::ENOENT
+    warn 'Yarn executable was not detected in the system.'
+    warn 'Download Yarn at https://yarnpkg.com/en/docs/install'
+    exit 1
+  end
+  # rubocop:enable Style/RedundantBegin
+end

@@ -7,7 +7,7 @@ import '../styles.scss'
 import cs from 'classnames'
 import ConditionalWrap from 'conditional-wrap'
 import { UserAssessment, Statuses } from 'modules/user/modules/campaigns/core/userAssessment/interfaces'
-import { minutesLeft } from 'utils/time'
+import { minutesLeftFromNow } from 'utils/time'
 import ContinueIcon from '../ContinueIcon'
 
 const { I18n } = window
@@ -24,6 +24,7 @@ interface Props {
     fixedTime: boolean
     campaignDuration: number
     startedAt: string
+    expiryDate: string
   }
 }
 
@@ -38,7 +39,9 @@ const AssessmentActionBtn: React.FC<Props> = ({
   loadAssessmentOrCheckingWizard,
   disabled,
   disabledReason,
-  timer: { fixedTime, campaignDuration, startedAt },
+  timer: {
+    fixedTime, expiryDate,
+  },
 }) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
@@ -46,10 +49,9 @@ const AssessmentActionBtn: React.FC<Props> = ({
   const showPolicyConfirm = (e: React.MouseEvent) => {
     e.preventDefault()
 
-    if (fixedTime && timer) {
-      const delta = minutesLeft(new Date(startedAt), campaignDuration)
-
-      if (delta < timer / 60) {
+    if (fixedTime && expiryDate) {
+      const deltaTime = minutesLeftFromNow(new Date(expiryDate))
+      if (deltaTime < (timer || 0) / 60) {
         return setShowTimingConfirmation(true)
       }
     }
@@ -81,7 +83,7 @@ const AssessmentActionBtn: React.FC<Props> = ({
     <a href={href} className={cs({ disabled })} onClick={showPolicyConfirm}>
       {I18n.t('threesixty.begin')}
       {' '}
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
     </a>
   )
 

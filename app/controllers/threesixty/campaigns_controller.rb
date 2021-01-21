@@ -5,8 +5,8 @@ module Threesixty
     include ::Threesixty::InitialState
     layout 'layouts/end_user'
     before_action :set_locale
-    before_action :set_campaign, only: [:show]
-    initial_state_for %i[show]
+    before_action :set_campaign, only: %i[show options]
+    initial_state_for %i[show system_checks]
 
     def system_checks
       respond_to do |format|
@@ -18,7 +18,7 @@ module Threesixty
             if assessment.threesixty?
               Threesixty::Participant.find(params[:id])
             else
-              Assign.find(params[:id])
+              params[:type] == 'legacy' ? Assign.find(params[:id]) : UserAssessment.find(params[:id])
             end
 
           render json: entity, serializer: ::EndUser::SystemChecksSerializer
@@ -43,6 +43,10 @@ module Threesixty
                  managed_subjects: managed_subjects, reports: reports, include: '**'
         end
       end
+    end
+
+    def options
+      render json: @campaign.option, serializer: Threesixty::CampaignOptionsSerializer
     end
 
     def change_locale

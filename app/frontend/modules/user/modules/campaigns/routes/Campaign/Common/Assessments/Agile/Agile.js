@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, PageHeader,
+  Layout, PageHeader, Space,
 } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
+import { isRtl } from 'utils/locales'
 import './styles.scss'
 
 const { Content } = Layout
+const { I18n } = window
 
 export default function AgileAssign ({
   history,
@@ -19,7 +21,7 @@ export default function AgileAssign ({
         parent: 'agile-container',
       },
       service: {
-        baseURL: window.location.href,
+        baseURL: window.location.href.split('?')[0],
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
@@ -39,17 +41,18 @@ export default function AgileAssign ({
     initializeAgile()
   }, [])
 
+  const rtl = isRtl(I18n.uiLocale)
+
   return (
     <Layout>
       <Content className="fluid-container">
         <PageHeader
           className="page-header"
           backIcon={!isFrame && (
-            <div>
-              <ArrowLeftOutlined />
-              {' '}
-              Back
-            </div>
+            <Space>
+                {rtl ? <ArrowRightOutlined /> : <ArrowLeftOutlined />}
+                {` ${I18n.t('assessments.page.back')}`}
+            </Space>
           )}
           onBack={() => history.push('/campaigns')}
         >

@@ -57,8 +57,7 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
         operation: 'add_with_existing_response',
         import_data: file
       }
-      expect(campaign.users.exists?(email: 'vlad@gmail.com')).to be_truthy
-      expect(campaign.users.exists?(email: 'fedor@gmail.com')).to be_truthy
+      expect(AdminJobRecord.exists?(operation: 'import_users')).to be_truthy
     end
   end
 
@@ -83,9 +82,19 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
     it 'sends email to user to reset password' do
       get :reset_password, params: { new_campaign_id: campaign.id, id: user.id }
       expect(ActionMailer::Base.deliveries.count(1))
-      expect(ActionMailer::Base.deliveries.first.subject).to eq('Reset password instructions')
+      expect(ActionMailer::Base.deliveries.first.subject).to eq('Instructions for resetting your password')
       expect(response).to have_http_status(:success)
     end
+  end
+
+  it 'POST search' do
+    u = create(:user, email: 'atanych@gmail.com')
+    create(:campaign_user, campaign: campaign, user: u)
+    post :search, params: { new_campaign_id: campaign.id, q: 'atanych' }
+
+    parsed_response = JSON.parse(response.body)
+    expect(parsed_response.length).to eq(1)
+    expect(parsed_response.first['email']).to eq('atanych@gmail.com')
   end
 
   private
@@ -129,7 +138,6 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       'norm_name' => nil,
       'norms' => [],
       'norm_id' => nil,
-      'norm_type' => nil,
       'additional_time' => nil,
       'is_expired' => false,
       'is_external' => false,

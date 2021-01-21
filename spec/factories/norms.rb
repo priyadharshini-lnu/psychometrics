@@ -22,9 +22,7 @@ FactoryBot.define do
           if norm.percentile?
             create(:factors_norm, :percentile, norm: norm, factor: factor)
           else
-            FactorsNorm::NORM_TYPES.each do |type|
-              create(:factors_norm, type: type, norm: norm, factor: factor)
-            end
+            create(:factors_norm, norm: norm, factor: factor)
           end
         end
       end

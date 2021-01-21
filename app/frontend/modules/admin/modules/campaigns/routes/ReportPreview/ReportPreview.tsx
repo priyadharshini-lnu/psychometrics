@@ -32,7 +32,7 @@ export default function ReportPreview ({
     fetchReport(parsedCampaignId, parsedId)
   }, [])
 
-  const reportIsLoaded = (): boolean => !!userReport && userReport.loaded
+  const reportIsLoaded = (): boolean | undefined => (userReport && userReport.loaded)
 
   const renderReportPreview = () => {
     if (!reportIsLoaded()) { return null }
@@ -113,7 +113,7 @@ export default function ReportPreview ({
           ]}
         >
           <Row justify="center">
-            <Col lg={12} md={18} sm={24}>
+            <Col>
               <div className="reportContainer">
                 {renderReportPreview()}
               </div>

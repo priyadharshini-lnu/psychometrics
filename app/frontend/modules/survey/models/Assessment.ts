@@ -8,4 +8,5 @@ export default interface AssessmentInterface {
   enable_progress: boolean
   blocks?: any[]
   extra: any
+  data_sheet_columns: { name: string, type: string }[]
 }

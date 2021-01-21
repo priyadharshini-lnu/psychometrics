@@ -12,15 +12,15 @@ module Threesixty
           VALID_EXTENSIONS = MS_EXTENSIONS + PDF_EXTENSIONS
 
           def call
-            file_path = context.dig(:answers, path.second.to_s, 'answers', 0, 'value')
-            if file_path && valid_file_path?(file_path)
-              if get_extname(file_path).in?(PDF_EXTENSIONS)
-                broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
-              else
-                broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_path)}\"></iframe>"
-              end
+            media_response = context[:result].media_responses.find_by(question_id: path.second)
+            file_path = media_response&.asset&.url
+
+            return broadcast :ok, nil unless file_path
+
+            if get_extname(file_path).in?(PDF_EXTENSIONS)
+              broadcast :ok, "<object style=\"#{styles}\" data=\"#{file_path}\" type=\"application/pdf\"></object>"
             else
-              broadcast :ok, nil
+              broadcast :ok, "<iframe style=\"#{styles}\" src=\"#{src(file_path)}\"></iframe>"
             end
           end
 

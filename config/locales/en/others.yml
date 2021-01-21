@@ -1,0 +1,2276 @@
+---
+en:
+  activemodel:
+    attributes:
+      assign_report:
+        adding_report_ids: Report(s)
+        is_applying_to_existing_users: Apply these changes to existing users
+        report_family_id: Report Bundle
+      datasheet:
+        file: File (.xlsx)
+      new_assessments_client:
+        assessment_ids: Assessments
+        is_applying_to_existing_users: Apply these changes to existing users
+      regenerate_reports:
+        report_ids: Reports
+      update_assessment:
+        is_applying_to_existing_users: Apply these changes to existing users
+    errors:
+      models:
+        admin_edit:
+          attributes:
+            email:
+              blank: Email field can't be blank
+              invalid: Email is invalid
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+        agile:
+          answers:
+            blank: Answers can't be blank
+          group_id:
+            blank: Group id can't be blank
+        assign_report:
+          attributes:
+            adding_report_ids:
+              not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+              report_family_disabled: You selected disabled Report Bundle
+              reports_disabled: You selected disabled Report(s)
+            removing_report_ids:
+              not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+        create_all:
+          attributes:
+            assessors:
+              email_duplicated: The subject and assessor emails are duplicated
+            evaluators:
+              email_duplicated: The subject and evaluator emails are duplicated
+            subjects:
+              email_duplicated: Some subjects have the same email
+        create_one:
+          attributes:
+            assessment_ids:
+              invalid: Assessment %{id} can't be attached to an assessor
+            assessor_email:
+              already_exists: The subject with this assessor are already connected
+              blank: Assessor Email can't be blank
+              invalid: Assessor Email is invalid
+            email:
+              already_exists: A subject with same email already exists
+              blank: Email can't be blank
+              invalid: Email is invalid
+            evaluator_email:
+              already_exists: The subject with this evaluator are already connected
+              blank: Evaluator Email can't be blank
+              invalid: Evaluator Email is invalid
+            evaluator_first_name:
+              blank: Evaluator first name can't be blank
+            evaluator_last_name:
+              blank: Evaluator last name can't be blank
+            evaluator_password:
+              too_short: Evaluator password is too short (minimum is %{count} characters)
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+            relationship_name:
+              blank: Relationship can't be blank
+              invalid: Relationship %{name} is invalid
+            subject_email:
+              blank: Subject Email can't be blank
+              invalid: Subject Email is invalid
+              not_exists: Subject not found with email address %{email}
+        datasheet:
+          attributes:
+            file:
+              email_duplicate: There are duplicates in Email column
+              invalid_format: Invalid format (.xlsx)
+              no_email_column: File does not contain Email column
+        email_schedule:
+          attributes:
+            from:
+              blank: From field can't be blank
+            reply_to_email:
+              blank: Reply to email field can't be blank
+              invalid: Reply to email is invalid
+            scheduled_date:
+              blank: Scheduled date field can't be blank
+        email_template:
+          attributes:
+            content:
+              invalid_consolidated_pipetext: These pipetext are invalid for consolidate messages %{invalid_pipetexts}
+              invalid_unconsolidated_pipetext: These pipetext are invalid for unconsolidated messages %{invalid_pipetexts}
+            from:
+              blank: From field can't be blank
+            reply_to_email:
+              blank: Reply to email field can't be blank
+              invalid: Reply to email is invalid
+        email_template_test_mail:
+          attributes:
+            to_email:
+              blank: Email field can't be blank
+              invalid: Email is invalid
+        import_one:
+          attributes:
+            email:
+              already_exists: A subject with same email already exists
+              blank: Email can't be blank
+              invalid: Email is invalid
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+            password:
+              too_short: Password is too short. Minimum 6 character required
+        password_reset:
+          attributes:
+            email:
+              wrong_email: We couldn't find any user with the email you provided.
+        profile:
+          attributes:
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+            password:
+              too_short: Password is too short. Minimum 6 character required
+              too_weak: 'Password must contain: Minimum of 8 characters, 1 lowercase, 1 uppercase, 1 number and 1 special character.'
+        register:
+          attributes:
+            email:
+              blank: Email Address is required
+              in_use: This Email Address is in use. If you already have an account, please sign in.
+              invalid: Email Address is invalid
+              too_long: Email Address is too long
+            first_name:
+              blank: First Name is required
+              too_long: First Name is too long
+            last_name:
+              blank: Last Name is required
+              too_long: Last Name is too long
+            registration_code:
+              blank: Registration code is required
+              invalid: Registration code is invalid
+        super_admin_edit:
+          attributes:
+            email:
+              blank: Email field can't be blank
+              invalid: Email is invalid
+            first_name:
+              blank: First name can't be blank
+            last_name:
+              blank: Last name can't be blank
+        update_assessment:
+          attributes:
+        update_norm:
+          attributes:
+            norm_type:
+              inclusion: Please select the correct norm type
+        user:
+          attributes:
+            email:
+              user_exists_in_campaign: User with this email id already exists in the campaign
+              user_exists_in_project: User with this email id already exists in the project
+            import_data:
+              duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
+              invalid_header: Invalid header, take header from export
+        user_assessment:
+          subject_and_assessment_exists: Assessment and subject pair already exists
+    models:
+      assign_report: Assign report Form
+      datasheet: Datasheet Form
+      regenerate_reports: Regenerate Reports
+      update_assessment: Update assessment Form
+  activerecord:
+    attributes:
+      administration/assessments/assign_form:
+        access_reports: Access Report Rules
+        access_reports_at: Access Report at
+        access_reports_at_date: Date
+        access_reports_at_time: Time
+        client_ids: Client Tenancies
+        manager_ids: Managers
+        report_ids: Reports
+        user_ids: Users
+      assessment:
+        active: Active
+        categories:
+          '360': 360 Campaign
+          agile: AGILE
+          case_study: Case Studies
+          hogan: Hogan
+          mindmill: Mindmill
+          organisational: Surveys
+          psychometric: Assessment
+        category: Category
+        created_at: Created Date
+        description: Description
+        id: ID
+        name: Name
+        statuses:
+          finished: finished
+        timing: Timing
+        types:
+          common: TTE Assessment
+          hogan: Hogan
+          mindmill: Mindmill Assessment
+        updated_at: Modified Date
+      assign:
+        completed_at: Completion Date
+        statuses:
+          completed: Completed
+          in_progress: Resume
+          interrupted: Interrupted
+          not_started: New
+          overdue: Overdue
+      block:
+        active: Active
+        assign_to_assessment_ids: Assessments
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      client:
+        account_manager: TTE Account Manager
+        account_manager_id: TTE Account Manager
+        applicable_level: Applicable Level
+        applicable_levels:
+          campaign: Campaign
+          project: Project
+          sub_campaign: Sub-Campaign
+        category: Category
+        created_at: Created Date
+        id: ID
+        licenses: License number
+        licenses_expire: License Expiry Date
+        licenses_used: License Usage
+        location: Location
+        logo: Client logo
+        memberships_count: Users
+        name: Name
+        number: Client Number
+        privacy_consent: Enable data processing consent
+        project_manager: TTE Project Manager
+        project_manager_id: TTE Project Manager
+        report_ids: Reports
+        strong_password_enabled: Enable strong password
+        subdomain: Subdomain
+        types:
+          associate: Associate
+          corporate: Corporate
+          distributer: Distributer
+          other: Other
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Modified Date
+        year: Client Year
+      communication:
+        created_at: Created Date
+        id: ID
+        updated_at: Modified Date
+      dimension:
+        active: Active
+        created_at: Created Date
+        factors_count: No. of Factors
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      factor:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        parent_id: Parent
+        questions_count: No. of Questions
+        updated_at: Modified Date
+      hogan_report_setting:
+        load_report: Load report from Hogan
+      innovation_style:
+        active: Active
+        created_at: Created Date
+        description: Description
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      innovation_styles_factor:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      library:
+        created_at: Created Date
+        id: ID
+        type: Thumbnail
+        updated_at: Modified Date
+      license:
+        id: ID
+        number: License Number
+        overuse_number: Over Use Allowance
+        type: License for
+        types:
+          common: Common
+          threesixty: Threesixty
+        unlimited: Unlimited
+        used_number: Used License Number
+      membership:
+        active: Active
+        created_at: Created Date
+        disabled: Disable
+        email: Email
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        parent: Direct Manager
+        parent_id: Direct Manager
+        report_ids: Report IDs
+        roles:
+          client_admin: Client Admin
+          manager: Manager
+          member: User
+          project_admin: Project Admin
+        updated_at: Modified Date
+        user_access: User Access
+      norm:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+        updated_by: Edited by
+      occupation:
+        active: Active
+        bachelors_or_masters_qualification: Bachelors or Masters Qualification
+        created_at: Created Date
+        description: Description
+        diploma_qualification: Diploma Qualification
+        full_description: Full Description
+        high_school_entry_roles: High School Entry Roles
+        id: ID
+        key_career_tracks: Key Career Tracks
+        name: Name
+        potential_areas_of_study: Potential Areas of Study
+        updated_at: Modified Date
+        work_environment: Work Environment
+      occupations_factor:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      product:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      question:
+        active: Active
+        assign_to_assessment_ids: Assessments
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      report:
+        created_at: Created Date
+        id: ID
+        mindmill: Load report from Mindmill
+        mindmill_report: Mindmill report
+        updated_at: Modified Date
+      report_family:
+        created_at: Created Date
+        id: ID
+        updated_at: Modified Date
+      task:
+        active: Active
+        created_at: Created Date
+        description: Description
+        description_label: DESCRIPTION
+        factor_id: Competency
+        factor_id_label: SELECT COMPETENCY
+        id: ID
+        membership_id: Assigner
+        membership_id_label: SELECT ASSIGNER
+        name: Action Item
+        name_label: ACTION ITEM
+        planned_completed_at: Due Date
+        planned_completed_at_label: SELECT DUE DATE
+        priority: Priority
+        priority_label: PRIORITY
+        status: Status
+        status_label: SELECT STATUS
+        statuses:
+          completed: Completed
+          in_progress: In Progress
+          not_started: Not Started
+          overdue: Overdue
+        updated_at: Modified Date
+        updated_by: Edited by
+      threesixty:
+        users_result:
+          statuses:
+            completed: Completed
+            in_progress: Resume
+            not_started: New
+      user:
+        active: Active
+        created_at: Created Date
+        current_password: Current password
+        disabled: Disable
+        email: Email Address
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        manage_client_ids: Client Tenancy
+        memberships: Client Tenancy
+        name: Name
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Project Admin
+            regular: Client Admin
+            superadmin: Super Admin
+          agile: AGILE
+          assessor_form: Assessor Form
+          case_study: Case study
+          client_admin: Client Admin
+          hogan: Hogan
+          manager: Manager
+          member: User
+          mindmill: Mindmill
+          organisational: Organisational
+          project_admin: Project Admin
+          psychometric: Psychometric
+          regular: Regular
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Threesixty
+        types:
+          anonymous: Anonymous Users
+          identified: Identified Users
+        updated_at: Modified Date
+      user_form:
+        active: Active
+        created_at: Created Date
+        current_password: Current password
+        disabled: Disable
+        email: Email Address
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        parent: Direct Manager
+        parent_id: Direct Manager
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        updated_at: Modified Date
+      users_result:
+        assessment_name: Assessment Name
+        assessment_type: Assessment Type
+        completed_at: Completed At
+        completion_reasons:
+          time_out_offline: Time out / Offline
+          time_out_online: Time out / Online
+          user_completed: User Completed
+        email: Email
+        name: Name
+        result_id: Result ID
+        started_at: Started At
+        status: Status
+        statuses:
+          completed: Completed
+          in_progress: Resume
+          interrupted: Interrupted
+          not_started: New
+    errors:
+      messages:
+        admin_for_another_tte: User already admin in another tte
+        not_uniqueness: Assign has already been taken
+      models:
+        factors_norm:
+          score_from_must_be_number: Score from must be number
+          score_to_less_than_score_from: Score to is less than Score from
+          score_to_must_be_number: Score to must be number
+        license:
+          attributes:
+            used_number:
+              overused: License used can't be more than the sum of license allocated and overuse limit.
+          overuse: License %{name} is overused
+        media_response:
+          attributes:
+            base:
+              max_takes_limit_reached: Limit reached for maximum takes
+        privacy_link:
+          attributes:
+            link:
+              invalid_http_url: invalid url
+        report:
+          assessments_not_hogan: All Assessments must be Hogan type
+          has_already_assigned: Assessment can’t be changed since it is already assigned to the user or applicable level
+          has_dependent_relation: This report is assinged on users
+          max_assessment_count: You have reached the limit of %{max} assessments
+          min_assessment_count: The minimum number of assessments is %{min}
+    models:
+      administration/assessments/assign_form: Assigns Form
+      assessment: Assessments
+      assign: Assigns
+      block: Block
+      client: Clients
+      communication: Communication
+      dimension: Dimensions
+      factor: Factors
+      factors_norm: factors_norms
+      innovation_style: Innovation Styles
+      innovation_styles_factor: Innovation Styles
+      library: Library
+      license: License
+      membership: Membership
+      norm: Norms
+      occupation: Occupations
+      occupations_factor: Occupations
+      product: Product
+      question: Question
+      report: Report
+      report_family: ReportFamily
+      task: Tasks
+      user: Users
+      user_form: User
+  admin_jobs:
+    attrs:
+      active: Active
+      created_at: Created Date
+      id: ID
+      name: Name
+      operations:
+        bulk_download_reports: Bulk Download Reports
+        bulk_regenerate_reports: Regenerate Campaign Reports
+        bulk_regenerate_user_reports: Regenerate User Reports
+        bulk_reports: Bulk Reports
+        import_assessors: Import Assessors
+        import_raw_data: Import Raw Data
+        import_scoring_data: Import Scoring Data
+        import_users: Import Users
+        regenerate_campaign_reports: Regenerate Campaign Reports
+        regenerate_report: Regenerate Report
+        rescore_assessment: Rescore Assessment
+        rescore_user_assessment: Rescore User Assessment
+      statuses:
+        completed: Completed
+        completed_with_errors: Completed with errors
+        in_progress: In Progress
+        scheduled: Scheduled
+      updated_at: Modified Date
+    bulk_download_reports:
+      content:
+        title: Links to download reports
+    close: Close
+    details: Details
+    errors: Errors
+    mark_as_read: Mark all read
+    more: More
+    notifications: Notifications
+    results: Results
+    invalid_job: This notification corresponds to deleted record
+  anonym:
+    continue: Continue
+    copy:
+      archived: has been archived
+      expired: has expired
+      not_active: is no longer active
+    labels:
+      archived: Archived
+      expired: Expired
+      not_active: Not Active
+    notifications:
+      restart:
+        copy: You had already started this survey. You can choose to Continue or Restart.
+        title: Continue?
+    restart: Restart
+  assessments:
+    actions:
+      back_to_campaign: Back to Campaign
+      evaluate: Evaluate
+      extend_time: Extend time
+      goto_dashboard: Go To Dashboard
+      re_evaluate: Click Here to Re-Evaluate
+      reevaluate: Re-Evaluate
+      rescore: Rescore
+    audio_response:
+      permission_denied_message: Please enable microphone permission in your browser to record the answer
+      permission_text: Please allow to use microphone to record audio
+    categories:
+      '360': 360 Campaign
+      agile: AGILE
+      case_study: Case Study
+      hogan: Hogan
+      mindmill: Mindmill
+      organisational: Survey
+      psychometric: Assessment
+    decorator:
+      no_description: Description is empty
+    file_upload:
+      select_file: Select file
+    index:
+      managers_assessments_button: Action Planning
+      managers_dashboard_button: Managers Dashboard
+      user_dashboard_button: User Dashboard
+    messages:
+      finish: "Thank you for your time. \nYour responses have now been recorded."
+    page:
+      back: Back
+      confirm_message_1: Your responses will be submitted and cannot be changed after this
+      confirm_message_2: Are you sure you want to submit your responses?
+      next: Next
+      submit: Submit
+    pickgrouprank:
+      items: Items
+    proceed: Proceed Anyway
+    resource:
+      assigned: Assigned %{date}
+      invite_users: Invite Users
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      results: Results
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
+    scoring:
+      competency: Competency
+      id: ID
+      score: Score
+    unknown_error: Unknown error occurred.
+    video_response:
+      delete: Delete
+      device: Allow
+      discard: Discard
+      media_recorder:
+        failure: This browser doesn't support Video Recording. Please use Chrome or Firefox for Video Recording
+        success: Please allow to use camera and microphone to record audio and Video
+      offline_message: Please check your internet connection.
+      retake: Retake
+      retry: Retry
+      save: Save
+      saved:
+        label: Saved
+        tooltip: This video has been marked for submission. Alternatively you can choose another take.
+      saving: Saving...
+      selected: Selected
+      start_recording: Start recording
+      status:
+        recording: Recording
+      tracker:
+        backward: You are too close to the screen. Please move a bit back
+        forward: You are too far away from the screen. Please move a bit closer
+        frame: Please make sure that your face aligns with the frame
+        ready: Press the Record button when ready to record
+      use_this: Submit this take
+    wait: Wait
+  assessments_reports:
+    add_group_form:
+      name: Name
+      previous_assessments_required: Assessments should be completed in order
+      previous_group_required: Previous group should be completed before
+    menu:
+      manage: Manage
+      sequencing: Sequencing
+    sequencing:
+      add_group: Add Group
+      no_assessments: Drag and drop the assessments from the ungrouped assessments
+      no_groups_description: Please create new group sequencing with below button
+      no_groups_title: You have no group in sequencing
+      no_ungrouped_assessments: Drag and drop the assessments to the ungrouped assessments
+      ungrouped_assessments: Ungrouped Assessments
+  assigns:
+    assign:
+      accept_privacy_modal:
+        accept: Accept
+        reject: Reject
+        text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+        title: Data processing consent
+      assigned: Assigned %{date}
+      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
+        overdue: Overdue
+    assigns_reports:
+      download: Download
+      duration: Duration
+      progress: Progress
+      summary_report: Summary report
+    decorator:
+      completed: Completed %{date}
+      no_description: Description is empty
+      not_completed: Not Completed
+    index:
+      managers_dashboard_button: Managers Dashboard
+      user_dashboard_button: User Dashboard
+    multiple_report:
+      results: Results
+    notifications:
+      completed: '%{user_name} finished assessment "%{assessment_name}"'
+      in_progress: '%{user_name} started to take assessment "%{assessment_name}"'
+    project_assessment:
+      accept_privacy_modal:
+        accept: Accept
+        reject: Reject
+        text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+        title: Data processing consent
+      assigned: Assigned %{date}
+      mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+      questions:
+        one: 1 Question
+        other: "%{count} Questions"
+        zero: No Questions
+      status:
+        completed: Completed
+        in_progress: Resume
+        not_started: Start
+        overdue: Overdue
+    reports:
+      load_results: 'Load Results: %{report}'
+      processing: Processing...
+      results: Results
+  browsers:
+    chrome: Google Chrome
+    download:
+      chrome: https://www.google.com/chrome/
+      edge: https://www.microsoft.com/en-us/edge
+      firefox: https://www.mozilla.org/en-US/firefox/new/
+      instruction: Download
+      safari: https://www.apple.com/safari/
+    edge: Microsoft Edge
+    firefox: Mozilla Firefox
+    safari: Apple Safari
+    support:
+      instruction: Please download and use any of the following browsers.
+      message: The browser you are using is not supported by Lighthouse.
+    upgrade:
+      instruction: Upgrade Now
+      message: Please use latest version of the browsers
+  campaign:
+    begin: Begin your tasks
+    campaign_closed_assessment_take_message: Can't take assessment as this campaign is closed.
+    closed_campaign_message: This campaign is closed. You can't take any assessment within this campaign.
+    complete_all: Complete all related assessments
+    complete_prev: Complete all prev assessments
+    completed: Completed
+    continue: Continue Assessment
+    details: Details
+    in_progress: In Progress
+    instructions:
+      heading: Please review the guidelines below before you get started. Wish you all the best!
+    interrupted: Interrupted
+    language:
+      cancel: Cancel
+      content: This assessment is not available in the language that you have selected. Please pick the language in which you want to give the assessment
+      proceed: Proceed
+      single_lang: This assessment is only available in %{lang}, which is different than you selected language.
+      title: Select language
+    new: New
+    not_started: New
+    panels:
+      assessments: Tasks
+      reports: Reports
+    time_left:
+      cancel: Cancel
+      continue: Continue
+      notification: Your allocated time for this task "%{assessmentName}" was %{x} minutes. Due to the overall elapsed time, you now have only %{y} minutes as your adjusted time to complete this task.
+      title: Time left warning
+    timer:
+      message: Time left to complete all tasks
+      notification: You have %{minutes} minutes and %{seconds} seconds to complete
+    ungrouped: Ungrouped tasks
+    welcome: Welcome
+  campaign_assessment:
+    column:
+      assessment_name: Assessment name
+      assessor_form: Assessor Form
+      norm: Norm
+      status: Status
+      universal_link: Universal link
+    modals:
+      import_raw:
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+        success_msg: Import successfully uploaded
+        title: Import Raw Results data
+        upload: Upload
+      import_scoring:
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+        success_msg: Import successfully uploaded
+        title: Import Scoring Results data
+        upload: Upload
+      remove:
+        successfully: "%{name} assessment removed successfully."
+        title: Remove assessment %{name}?
+      rescore_response:
+        message: Rescoring scheduled for assessment %{name}
+        title: Rescore Responses
+      reset:
+        content: Are you sure you want to reset result?
+        successfully: Result data was successfully reseted.
+        title: Reset Result for assessment %{name}?
+      update_assessor_form:
+        select_assessor: Select Assessor Form
+        success_msg: Assessor Form successfully uploaded
+        title: Update Assessor Form
+        update: Update
+      update_norm:
+        apply: Apply this change to existing users in this campaign
+        select_norm: Select Norm
+        success_msg: Norms successfully uploaded
+        title: Update Norm
+        update: Update
+      update_time:
+        additional_time: Time (min)
+        title: Extend Time
+    statuses:
+      completed: Completed
+      in_progress: In Progress
+      interrupted: Interrupted
+      not_started: Not Started
+      universal_link: Universal link
+  campaign_report:
+    actions:
+      bulk_download: Bulk Download
+    column:
+      assessor_access: Assessor Access
+      report_bundle: Report Bundle
+      report_name: Report name
+      user_access: User Access
+    form:
+      operation: Operation
+      operation_options:
+        add_and_allow_new_response: Add report to existing user and allow new response
+        add_with_existing_response: Add report to existing user and keep existing response
+        skip_existing: Skip existing user
+      report: Report
+    messages:
+      bulk_download_successful: Bulk report download job scheduled successfully
+    modals:
+      remove:
+        apply: Apply this changes to existing users in this campaign.
+        title: Remove Report
+      user_access:
+        apply: Apply this changes to existing users in this campaign.
+        title:
+          disable: Disable User Access
+          enable: Enable User Access
+  campaign_users:
+    actions:
+      add_report: Add report
+      extend_time: Extend Time
+    assessments:
+      progress: Progress
+    details:
+      additional_time: Additional Time
+      completed_at: Completed At
+      completion_status: Completion status
+      last_login: Last login
+      modals:
+        remove:
+          successfully: User with email %{email} removed successfully.
+          title: Are you sure you want to remove this user from campaing %{campaignName}?
+      not_completed_yet: Not completed yet
+      not_logged_in_yet: Not logged in yet
+      not_started_yet: Not started yet
+      started_at: Started At
+      statuses:
+        completed: Completed
+        in_progress: In Progress
+        interrupted: Interrupted
+        not_started: Not Started
+    modals:
+      change_password:
+        content: Are you sure you want to send instructions with link to change password?
+        successfully: User %{name} will receive an email with instructions on how to reset his/her password in a few minutes.
+        title: Change password %{name}?
+      remove: Are you sure you want to remove user with email %{email} from this campaing?
+  checking_wizard:
+    audio_check:
+      access: Access
+      access_help: Click here for help.
+      allow: Allow
+      allow_title: Please allow to use microphone to record audio
+      continue: Continue
+      processing: Processing
+      record_title: Please speak and repeat the following sentence 3 times.
+      run_again: Run again
+      speech_detection: Speech detection
+      test_message: great to speak with you
+      title: We need to ensure your system can record audio.
+    network_check:
+      continue: Continue
+      download: Download
+      levels:
+        '0': Network broken (reconnecting)
+        '1': Very bad network
+        '2': Bad network
+        '3': Average network
+        '4': Good network
+        '5': Very good network
+      network: Network
+      please_check_connection: Please check your Internet Connection
+      processing: Processing
+      run_again: Run again
+      run_again_title: And run this test again
+      start: Start
+      title: Click start to begin internet speed test.
+      upload: Upload
+    steps:
+      audio_check: Microphone Test
+      network_check: Internet Speed Test
+      system_check: System Check
+      video_check: Video Camera Test
+    success:
+      start: Start assessment
+      title: You have successfully completed all checks.
+    system_check:
+      continue: Continue
+      start: Start
+      title: Before starting this assessment, your system needs to undergo some checks.
+    video_check:
+      access: Access
+      access_help: Click here for help.
+      allow: Allow
+      allow_title: Please allow to use camera to record Video
+      ambient_light: Ambient Light
+      continue: Continue
+      face_detection: Face detection
+      processing: Processing
+      run_again: Run again
+      title: We need to ensure your system can record the video
+  clear_filter: Clear Filter
+  common:
+    actions:
+      cancel: Cancel
+      close: Close
+      delete: Delete
+      remove: Remove
+      reset: Reset
+    column:
+      action: Action
+      category: Category
+      created_at: Created at
+      id: Id
+      name: Name
+      status: Status
+    model:
+      assessments: Assessments
+      assessors: Assessors
+      campaigns: Campaigns
+      datasheet: Datasheet
+      reports: Reports
+    text:
+      cancel: Cancel
+      confirm: Confirm
+      continue: Continue
+      default: Default
+      download: Download
+      na: N/A
+      ok: Ok
+      reference_language: Reference Language
+      response: Response
+  confirmation:
+    default_body: Are you sure?
+    default_title: Confirmation
+  currencies:
+    AED: AED
+    BHD: BHD
+    BYN: BYN
+    EUR: EUR
+    GBP: GBP
+    INR: INR
+    KWD: KWD
+    OMR: OMR
+    QAR: QAR
+    SAR: SAR
+    USD: USD
+  devise:
+    administrators:
+      meta_title: Login to administration panel
+      passwords:
+        edit:
+          submit: Set new password
+          title: Change your password
+        new:
+          back: Return back
+          submit: Send me instructions
+          title: Forgot your password?
+      sessions:
+        new:
+          forgot_password: Forgot your password?
+          submit: Login
+          title: "<strong>Welcome</strong>, Please login"
+      shared:
+        links:
+          about: About
+          app_name: "© 2016 AppName"
+          contact_us: Contact Us
+          privacy: Privacy
+    confirmations:
+      confirmed: Your email address has been successfully confirmed.
+      send_instructions: You will receive an email with instructions for how to confirm your email address in a few minutes.
+      send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes.
+    failure:
+      already_authenticated: You are already signed in.
+      inactive: Your account is not activated yet.
+      invalid: Invalid %{authentication_keys} or password.
+      invited: You have a pending invitation, accept it to finish creating your account.
+      last_attempt: You have one more attempt before your account is locked.
+      locked: Your account is locked.
+      not_found_in_database: Invalid %{authentication_keys} or password.
+      timeout: Your session expired. Please login again to continue.
+      unauthenticated: You need to login or register before continuing.
+      unconfirmed: You have to confirm your email address before continuing.
+    invitations:
+      edit:
+        confirm_password_label: Confirm Password
+        header: Set your password
+        instruction: To create a new password, please enter your new password in the boxes below
+        password_label: Password
+        submit: Set New Password
+        submit_button: Set my password
+        title: Create password
+      invitation_removed: Your invitation was removed.
+      invitation_token_invalid: The invitation token provided is not valid!
+      new:
+        header: Send invitation
+        submit_button: Send an invitation
+      no_invitations_remaining: No invitations remaining
+      send_instructions: An invitation email has been sent to %{email}.
+      updated: Your password was set successfully. You are now signed in.
+      updated_not_active: Your password was set successfully.
+    mailer:
+      admin_invitation_instructions:
+        accept: Click here to accept the invitation.
+        body: |
+          Hello %{name},
+          You have been invited to access the admin panel of Lighthouse - The Talent Enterprise assessment platform.
+
+          %{accept} Or you can safely ignore this email.
+
+          Please do not share your access credentials with anyone.
+
+          Regards,
+          Lighthouse Team
+        subject: Invitation to Lighthouse
+      confirmation_instructions:
+        subject: Confirmation instructions
+      invitation_instructions:
+        accept: Accept invitation
+        accept_until: This invitation will be due in %{due_date}.
+        hello: Hello %{email}
+        ignore: If you don't want to accept the invitation, please ignore this email.<br />\nYour account won't be created until you access the link above and set your password.
+        someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
+        subject: The Talent Enterprise – Your Link to Thriving Index
+      password_change:
+        subject: Password Changed
+      reset_password_instructions:
+        body: |
+          Hello %{name}!
+
+          Someone has requested a link to change your password. You can do this through the link below.
+
+          <a href="%{change_password_link}">Change Password</a>
+
+          If you didn't request this, you can safely ignore this email. Your password won't change until you access the link above and create a new one.
+
+          Regards,
+          Lighthouse Team
+        subject: Instructions for resetting your password
+      unlock_instructions:
+        subject: Unlock instructions
+    omniauth_callbacks:
+      failure: Could not authenticate you from %{kind} because "%{reason}".
+      success: Successfully authenticated from %{kind} account.
+    passwords:
+      edit:
+        instruction: To create a new password, please enter your new password in the boxes below
+        submit: Submit
+        title: Create Password
+      no_token: You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided.
+      send_instructions: You will receive an email with instructions on how to reset your password in a few minutes.
+      send_paranoid_instructions: If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes.
+      updated: Your password has been changed successfully. You are now signed in.
+      updated_not_active: Your password has been changed successfully.
+    registrations:
+      destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
+      new:
+        code: Registration Code
+        email: Email Address
+        first_name: First Name
+        instruction: Fill in the details below to register and create a new account
+        last_name: Last Name
+        privacy_notice: We respect your privacy and do not tolerate spam. We will never give away your information to any third party.
+        submit: Register
+        tabs:
+          register: Register
+          sign_in: Sign In
+        terms_notice: By registering, you agree to our <a href="%{terms_url}">Terms of Service and Privacy Policy</a>
+        title: Register Now
+      signed_up: Welcome! You have signed up successfully.
+      signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
+      signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
+      signed_up_but_unconfirmed: A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
+      success:
+        actions:
+          sign_in: Sign In
+        instruction: Please check your email for further instructions
+        title: Signup successful
+      update_needs_confirmation: You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address.
+      updated: Your account has been updated successfully.
+    sessions:
+      already_signed_out: Signed out successfully.
+      new:
+        email: Email Address
+        forgot_password: Forgot password?
+        instruction: Please login with your personal account information
+        keep_sign_in: Yes, Keep me signed in
+        password_placeholder: Password
+        submit: Login
+        tabs:
+          register: Register
+          sign_in: Login
+        title: Welcome!
+      signed_in: Signed in successfully.
+      signed_out: Signed out successfully.
+    two_factor_authentication:
+      attempt: Please enter the OTP, you have received at your registered email address
+      attempt_failed: Incorrect OTP! Please try again
+      code_has_been_sent: Your new OTP has been sent to your registered email address
+      contact_administrator: Please contact your system administrator
+      email:
+        otp:
+          subject: Your One-Time Password
+      max_login_attempts_reached: You have reached the maximum number of attempts for the current OTP. Click on Resend OTP to receive a new OTP
+      otp: Code
+      submit: Verify
+      success: Login with Two Factor Authentication successful
+      title: One-Time Password
+    unlocks:
+      send_instructions: You will receive an email with instructions for how to unlock your account in a few minutes.
+      send_paranoid_instructions: If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.
+      unlocked: Your account has been unlocked successfully. Please login to continue.
+  ecommerce:
+    carts:
+      show:
+        back_to_catalogue: Back to Catalogue
+        next: Next
+        shopping_basket: Shopping Basket
+        total: 'Total:'
+        update_basket: Update Basket
+    orders:
+      new:
+        back_to_basket: Back to Basket
+        order: Order
+        pay: Pay
+        product_name: Product Name
+        product_price: Product Price
+        product_quantity: Quantity
+        product_subtotal: Positions Price
+        total: Total
+        users: Users
+      success:
+        back_to_basket: Back to Basket
+        body: |
+          <h3>Payment successful</h3>
+          <p>We will email you a receipt confirming your oder shortly.</p>
+        go_to_dashboard: Go to Dashboard
+        title: Payment Successful
+    products:
+      add_to_cart:
+        successfully: Assessment was successfuly added to the basket
+      index:
+        assessment_catalogue: Assessment Catalogue
+        shopping_basket: Shopping Basket
+    users:
+      registrations:
+        new:
+          register: Register
+          sign_in: Sign in
+      sessions:
+        new:
+          register: Register
+          sign_in: Sign in
+  empty: Empty
+  enums:
+    communication:
+      delivery_rule:
+        in_progress: If assessment is in progress
+        not_competed: If assessment is not completed
+        not_started: If assessment is not started
+        send_now: Send now
+        specific_datetime: Send at
+      kind:
+        completion: Completion
+        invitation: Invitation
+        other: Other
+        reminder: Reminder
+      recipients:
+        all: All
+        selected: Selected
+    report:
+      type:
+        common: Any
+        eti: ETI
+        yti: YTI
+  errors:
+    error_500: Something went wrong. Contact your administrator.
+    forbidden: You do not have access to this page
+    forbidden_action: You do not have permissions to this action
+    invalid_token: Something went wrong. Plese reload the page and try again.
+    messages:
+      already_confirmed: was already confirmed, please try signing in
+      carrierwave_direct_allowed_extensions: Wrong file type uploaded. Allowed extensions are %{extensions}
+      carrierwave_direct_filename_invalid: ''
+      confirmation_period_expired: needs to be confirmed within %{period}, please request a new one
+      expired: has expired, please request a new one
+      not_found: not found
+      not_locked: was not locked
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
+    try_again: Please try again
+  evaluators:
+    errors:
+      can_not_processed: can not be processed
+      exists: already exists
+      max_evaluators: you already have enough evaluators
+  frontend:
+    activate: Activate
+    are_you_sure: Are you sure?
+    assessment_groups:
+      create_success: The group is successfully created
+      update_success: The group is successfully updated
+    campaign:
+      actions:
+        remove:
+          confirmation: Enter current campaign name given below in text box to remove campaign
+          success: "%{campaignName} removed successfully."
+      users:
+        completion_statuses:
+          completed: Completed
+          in_progress: In Progress
+          interrupted: Interrupted
+          not_started: Not Started
+    change_password: Change password
+    delete: Delete
+    edit: Edit
+    login: Login
+    manage: Manage
+    'no': 'No'
+    resource:
+      create_success: "%{resourceName} added successfully"
+      update_success: "%{resourceName} updated successfully"
+    update: Update
+    upload: Upload
+    'yes': 'Yes'
+  hogan:
+    assigns:
+      results:
+        not_completed: Hogan Report isn't ready yet
+        successfully: Hogan Report was successfully saved
+  id: Id
+  invites:
+    create:
+      successfully: Your invitations was successfully sent
+    form:
+      emails_hint: Set each email in new line
+      send_invites: Send Invites
+    new:
+      header: Invite Form
+  jobs:
+    reports_export:
+      download:
+        description: Report '%{report_name}' genarated for user '%{user_name}' <a href='%{url}' target='_blank'>Download</a>
+        message: Report is ready
+    threesixty:
+      reports:
+        download:
+          description: 'To download the report, please follow link: <a href=''%{url}'' target=''_blank''>Download</a>'
+          error: An Error occurred
+          error_description: Your report generation failed. Please contact the Administrator or try to <b>download</b> again.
+          message: Report is ready
+  languages:
+    ar: العربية
+    bg: Bulgarian
+    bs: Bosnian
+    ca: Catalan
+    cn: Chinese
+    cs: Czech
+    cy: Cymraeg
+    da: Danish
+    de: Deutsch
+    el: Greek
+    en: English
+    en-GB: English - UK
+    eo: Esperanto
+    es: Spanish (Latin America)
+    es-ES: Spanish (Spain)
+    et: Estonian
+    fa: Persian
+    fi: Finnish
+    fr: French
+    gu: Gujarati
+    he: Hebrew
+    hi: Hindi
+    hr: Croatian
+    hu: Hungarian
+    id: Bahasa Indonesia
+    it: Italian
+    ja: Japanese
+    km: Khmer
+    ko: Korean
+    lt: Lithuanian
+    lv: Latvian
+    mk: Macedonian
+    mn: Mongolian
+    ms: Bahasa Malaysia
+    my: Myanmar
+    nl: Dutch
+    'no': Norwegian
+    pl: Polish
+    pt: Portuguese
+    pt-BR: Brazilian Portuguese
+    ro: Romanian
+    ru: Russian
+    sk: Slovak
+    sl: Slovenian
+    sr-Cyrl: Serbian Cyrillic
+    sr-Latn: Serbian Latin
+    sv: Swedish
+    sw: Swahili
+    ta: Tamil
+    th: Thai
+    tl: Tagalog
+    tr: Turkish
+    uk: Ukrainian
+    ur: Urdu
+    vi: Vietnamese
+    zh: Chinese Simplified
+    zh-TW: Chinese Traditional
+  layouts:
+    users:
+      dashboard: Dashboard
+      help: Help
+      logout: Log Out
+      menu: Menu
+      notifications: Notifications
+      profile: Profile
+  licenses:
+    not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
+  loading: Processing...
+  mailer:
+    from: The Talent Enterprise
+    license:
+      expire:
+        subject: License expired
+      overuse:
+        subject: License overuse
+      weekly_stats:
+        column_headers:
+          account_manager: Account Manager
+          client_name: Client Name
+          expiry_date: Expiry date
+          overuse_limit: Overuse Limit
+          project_manager: Project Manager
+          remaining_count: Remaining Count
+          type: License type
+          use_count: Use count
+        expiry_stats: 'Licenses expiring in the next 30 days :'
+        no_expiry_stats: No lincenses expiring in the next 30 days.
+        no_weekly_stats: No licenses consumed in the last 7 days.
+        notice: Note - You can unsubscribe to this weekly email from your profile page.
+        subject: Weekly license usage stats
+        weekly_stats: 'Past week license usage stats :'
+  managers:
+    assessments:
+      index:
+        actions: Actions
+        name: Name
+      resource:
+        action_planning: Action Planning
+    assigns:
+      index:
+        title: Assessments and Reporting Centre
+      list:
+        action: Action
+        assessment_name: Assessment Name
+        assessment_type: Assessment Type
+        completion_date: Completion Date
+        name: Name
+        status: Completion Status
+      resource:
+        email: Email
+        save: Save in PDF
+        view: View
+    dashboard:
+      index:
+        assessment_center: Assessment / Report Centre
+        notification_center: Notification Centre
+        notifications: Notifications
+        relationships: Company Relationships
+        reporting: Reporting
+        statistics: Statistics
+    notifications:
+      index:
+        subtitle: Notifications
+        title: Notification Centre
+    reports:
+      show:
+        export_pdf: Export to PDF
+        header: Report
+    statistics:
+      index:
+        title: Statistics
+    tasks:
+      comment:
+        made_comment: made a comment.
+      edit:
+        header: Update Action Item
+      index:
+        subtitle: Action Items
+        title: Action Planning Dashboard
+        tooltips:
+          create: Create
+      list:
+        actions: Actions
+        add_item: Add Action Item
+        competency: Competency
+        high: High Priority
+        low: Low Priority
+        medium: Medium Priority
+        subtitle_high: High Priority Items
+        subtitle_low: Low Priority Items
+        subtitle_medium: Medium Priority Items
+        summary: Showing %{total} of %{total} entries.
+      new:
+        header: Create Action Item
+      resource:
+        tooltips:
+          delete: Delete Action Item
+          edit: Edit Action Item
+      resource_extension:
+        add: Add Sub Action Item
+        add_comment: Add Comment
+        leave_comment: 'Leave a comment/note:'
+        notes: 'Notes/Comments:'
+        sub_tasks: Sub Action Items
+      subtasks:
+        list:
+          actions: Actions
+          date: Target Completion Date
+          name: Action Item
+          status: Status
+      summary:
+        completed: Completed
+        in_progress: In Progress
+        manager_summary: Manager Summary
+        not_started: Not Started
+        overdue: Overdue
+        total: Total Items
+      summary_managers:
+        assignee: Assigner
+        completed: Completed
+        in_progress: In Progress
+        not_started: Not Started
+        overdue: Overdue
+    users:
+      index:
+        title: Company Relationships
+  mindmill:
+    assigns:
+      results:
+        not_completed: Mindmill Assessment not completed
+        successfully: Mindmill Assessment was successfully pass
+  my: My
+  myself: Myself
+  na: NA
+  navigation:
+    logout: Logout
+    profile: Profile
+  next: Next
+  'no': 'No'
+  nominations:
+    approval_email_error: Last email approval was sent at %{last_sent_at}. You can send next reminder mail in %{wait_time}
+  norms:
+    percentile:
+      columns:
+        mean: Mean
+        name: Name
+        standard_deviation: Standard Deviation
+      messages:
+        failure: 'Error: %{error}.'
+        success: Norm for Factor '%{factorName}' updated successfully.
+      values:
+        empty: Empty
+        required: "%{title} is required"
+  profiles:
+    edit:
+      header: Profile Settings
+    form:
+      username: Username
+    update:
+      successfully: Profile updated
+  reports:
+    actions:
+      add: Add Report
+      download: Download report
+      view: View Report
+    modules:
+      common:
+        almost_always: Almost Always
+        less_typical: Less Typical
+        moderate: Moderate
+        more_typical: More Typical
+        rare: Rare
+      cpi_occupations:
+        occupations: Occupations
+        your_potential_suitability: Your Potential Suitability
+      factors_table:
+        description: Description
+        rank: Rank
+        score: Score
+      gap_assessment:
+        gap: Gap
+        item: Indicator
+        negative_gap: Negative Gaps
+        no_negative_gaps: There are no Negative Gaps
+        no_positive_gaps: There are no Positive Gaps
+        positive_gap: Positive Gaps
+        rank: Rank
+        scoring_category: Competency
+      highest_lowest:
+        average: Average
+        bottom_5: BOTTOM 5
+        category: Category
+        email: Email
+        first_name: First Name
+        highest_scores: Highest Scores
+        item: Indicator
+        last_name: Last Name
+        lowest_scores: Lowest scores
+        mean_score: Mean Score
+        rank: Rank
+        result: Result
+        score: Score
+        scoring_category: Competency
+        sub_competenties: Sub-Competencies
+        top_5: TOP 5
+      potential_career_full:
+        bachelors_or_masters_qualification: Bachelors or Masters Qualification
+        career_strengths_and_results: Career Strengths and Your Results
+        career_sub_tracks: Career Sub-tracks
+        detailed_career_guide: Detailed Career Guide
+        diploma_qualification: Diploma Qualification
+        education_level: Education Level
+        high_school_entry_roles: High School Entry Roles
+        key_career_tracks_within: Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do note that roles in italics require higher levels of education and / or experience.
+        potential_areas_of_study: Potential Areas of Study
+        potential_roles: Potential Roles
+        strength_high: Signature Strength
+        strength_low: Developmental Strength
+        strength_moderate: Potential Strength
+        work_environment: Work Environment
+        your_suitability: Your Suitability
+      potential_career_short:
+        career: career
+        for_this: for this
+        key: key
+        strengths: strengths
+        your_scores: Your Scores
+      single_value:
+        factor_name: Scoring Category
+        question_name: Questions
+      single_value_cluster:
+        competency: Competency
+        description: Description
+        developmental_rating: Developmental Rating
+        questions: Questions
+      strength_clusters:
+        index_sub_factors_considered: Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment
+        possible_roles: Possible Roles
+        work_environments: Expected Work Environments
+      three_sixty_default:
+        factor:
+          items: Items
+          max: Max Value
+          mean: Mean
+          min: Min Value
+          standardDeviation: Standard Deviation
+          sum: Sum
+          totalResponses: Total Responses
+          variance: Variance
+          weightedMean: Weighted Mean
+        statistic: Statistic
+        value: Value
+      three_sixty_report_summary:
+        completed: Completed
+        footnote: "* Excluded due to minimum threshold requirement"
+        invited: Invited
+        number_of_evaluators_invited: Number of evaluators invited
+        relationships: Relationships
+        subject: Subject
+        title: Report Summary
+        total: Total
+        total_evaluations: Total evaluations for this assessment
+      video_response:
+        no_results: No videos recorded
+    show:
+      export_pdf: Export to PDF
+      header: Report
+    statuses:
+      approved: Approved
+      available: Available
+      denied: Denied
+      incomplete: Incomplete
+      not_available: Not available
+      on_hold: On hold
+      released: Released
+  select: Select
+  shared:
+    filters:
+      clear: Clear Filters
+    internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    password_reset:
+      description: Please enter your email address in the box below and click 'Reset Password'.
+      email_label: Email Address
+      instruction: Enter the email associated with your account
+      submit: Reset Password
+      title: Forgot Password?
+    terms_conditions_privacy: Privacy Statement
+    tte_terms_and_condition: TTE - Terms, Conditions and Privacy Statement
+  simple_form:
+    error_notification:
+      default_message: 'Please review the problems below:'
+    labels:
+      client:
+        account_manager: TTE Account Manager
+        account_manager_id: TTE Account Manager
+        applicable_level: Applicable Level
+        applicable_levels:
+          campaign: Campaign
+          project: Project
+          sub_campaign: Sub-Campaign
+        category: Category
+        created_at: Created Date
+        id: ID
+        licenses: License number
+        licenses_expire: License Expiry Date
+        licenses_used: License Usage
+        location: Location
+        logo: Client logo
+        memberships_count: Users
+        name: Name
+        number: Client Number
+        privacy_consent: Enable data processing consent
+        project_manager: TTE Project Manager
+        project_manager_id: TTE Project Manager
+        report_ids: Reports
+        strong_password_enabled: Enable strong password
+        subdomain: Subdomain
+        types:
+          associate: Associate
+          corporate: Corporate
+          distributer: Distributer
+          other: Other
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Modified Date
+        year: Client Year
+      membership:
+        role: Membership role
+    'no': 'No'
+    placeholders:
+      administration/assessments/assign_form:
+        access_reports: Access Report Rules
+        access_reports_at: Access Report at
+        access_reports_at_date: Date
+        access_reports_at_time: Time
+        client_ids: Client Tenancies
+        manager_ids: Managers
+        report_ids: Reports
+        user_ids: Users
+      administrator:
+        active: Active
+        created_at: Created Date
+        current_password: Current password
+        disabled: Disable
+        email: Email Address
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        manage_client_ids: Client Tenancy
+        memberships: Client Tenancy
+        name: Name
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Project Admin
+            regular: Client Admin
+            superadmin: Super Admin
+          agile: AGILE
+          case_study: Case study
+          client_admin: Client Admin
+          hogan: Hogan
+          manager: Manager
+          member: User
+          mindmill: Mindmill
+          organisational: Organisational
+          project_admin: Project Admin
+          psychometric: Psychometric
+          regular: Regular
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Threesixty
+        types:
+          anonymous: Anonymous Users
+          identified: Identified Users
+        updated_at: Modified Date
+      assessment:
+        active: Active
+        categories:
+          '360': 360 Campaign
+          agile: AGILE
+          case_study: Case Studies
+          hogan: Hogan
+          mindmill: Mindmill
+          organisational: Surveys
+          psychometric: Assessment
+        category: Category
+        completed_at: Completion Date
+        created_at: Created Date
+        description: Description
+        id: ID
+        name: Name
+        statuses:
+          completed: Completed
+          finished: finished
+          in_progress: Resume
+          interrupted: Interrupted
+          not_started: New
+          overdue: Overdue
+        timing: Timing
+        types:
+          common: TTE Assessment
+          hogan: Hogan
+          mindmill: Mindmill Assessment
+        updated_at: Modified Date
+      block:
+        active: Active
+        assign_to_assessment_ids: Assessments
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      client:
+        account_manager: TTE Account Manager
+        account_manager_id: TTE Account Manager
+        applicable_level: Applicable Level
+        applicable_levels:
+          campaign: Campaign
+          project: Project
+          sub_campaign: Sub-Campaign
+        category: Category
+        created_at: Created Date
+        id: ID
+        licenses: License number
+        licenses_expire: License Expiry Date
+        licenses_used: License Usage
+        location: Location
+        logo: Client logo
+        memberships_count: Users
+        name: Name
+        number: Client Number
+        privacy_consent: Enable data processing consent
+        project_manager: TTE Project Manager
+        project_manager_id: TTE Project Manager
+        report_ids: Reports
+        strong_password_enabled: Enable strong password
+        subdomain: Subdomain
+        types:
+          associate: Associate
+          corporate: Corporate
+          distributer: Distributer
+          other: Other
+          partner: Partner
+          retail: Retail
+          tte: TTE
+        updated_at: Modified Date
+        year: Client Year
+      communication:
+        created_at: Created Date
+        id: ID
+        updated_at: Modified Date
+      dimension:
+        active: Active
+        created_at: Created Date
+        factors_count: No. of Factors
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      factor:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        parent_id: Parent
+        questions_count: No. of Questions
+        updated_at: Modified Date
+      library:
+        created_at: Created Date
+        id: ID
+        type: Thumbnail
+        updated_at: Modified Date
+      license:
+        id: ID
+        number: License Number
+        overuse_number: Over Use Allowance
+        type: License for
+        types:
+          common: Common
+          threesixty: Threesixty
+        unlimited: Unlimited
+        used_number: Used License Number
+      memebrship:
+        active: Active
+        created_at: Created Date
+        disabled: Disable
+        email: Email
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        parent: Direct Manager
+        parent_id: Direct Manager
+        report_ids: Report IDs
+        roles:
+          client_admin: Client Admin
+          manager: Manager
+          member: User
+          project_admin: Project Admin
+        updated_at: Modified Date
+        user_access: User Access
+      norm:
+        active: Active
+        bachelors_or_masters_qualification: Bachelors or Masters Qualification
+        created_at: Created Date
+        description: Description
+        description_label: DESCRIPTION
+        diploma_qualification: Diploma Qualification
+        factor_id: Competency
+        factor_id_label: SELECT COMPETENCY
+        full_description: Full Description
+        high_school_entry_roles: High School Entry Roles
+        id: ID
+        key_career_tracks: Key Career Tracks
+        membership_id: Assigner
+        membership_id_label: SELECT ASSIGNER
+        name: Name
+        name_label: ACTION ITEM
+        planned_completed_at: Due Date
+        planned_completed_at_label: SELECT DUE DATE
+        potential_areas_of_study: Potential Areas of Study
+        priority: Priority
+        priority_label: PRIORITY
+        status: Status
+        status_label: SELECT STATUS
+        statuses:
+          completed: Completed
+          in_progress: In Progress
+          not_started: Not Started
+          overdue: Overdue
+        updated_at: Modified Date
+        updated_by: Edited by
+        work_environment: Work Environment
+      product:
+        active: Active
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      question:
+        active: Active
+        assign_to_assessment_ids: Assessments
+        created_at: Created Date
+        id: ID
+        name: Name
+        updated_at: Modified Date
+      regenerate_reports:
+        report_ids: Reports
+      report:
+        created_at: Created Date
+        id: ID
+        mindmill: Load report from Mindmill
+        mindmill_report: Mindmill report
+        updated_at: Modified Date
+      user:
+        active: Active
+        created_at: Created Date
+        current_password: Current password
+        disabled: Disable
+        email: Email Address
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        manage_client_ids: Client Tenancy
+        memberships: Client Tenancy
+        name: Name
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        roles:
+          admin: Admin
+          admins:
+            admin: Admin
+            project_admin: Project Admin
+            regular: Client Admin
+            superadmin: Super Admin
+          agile: AGILE
+          case_study: Case study
+          client_admin: Client Admin
+          hogan: Hogan
+          manager: Manager
+          member: User
+          mindmill: Mindmill
+          organisational: Organisational
+          project_admin: Project Admin
+          psychometric: Psychometric
+          regular: Regular
+          super_admin: Super Admin
+          superadmin: Super Admin
+          threesixty: Threesixty
+        types:
+          anonymous: Anonymous Users
+          identified: Identified Users
+        updated_at: Modified Date
+      user_form:
+        active: Active
+        created_at: Created Date
+        current_password: Current password
+        disabled: Disable
+        email: Email Address
+        first_name: First Name
+        id: ID
+        last_name: Last Name
+        parent: Direct Manager
+        parent_id: Direct Manager
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        updated_at: Modified Date
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'
+  subjects:
+    approval_statuses:
+      approved: Approved
+      denied: Denied
+      waiting: Needs Approval
+    report_statuses:
+      failed: Failed
+      generating: Generating
+      not_prepared: Not Ready
+      prepared: Done
+    statuses:
+      completed: Completed
+      declined: Declined
+      denied: Denied
+      done: Done
+      not_completed: Not Completed
+      waiting: Waiting
+  threesixty:
+    accept_privacy_modal:
+      accept: Accept
+      reject: Reject
+      text: In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.
+      title: Data processing consent
+    add: Add
+    and: And
+    approve: Approve
+    approve_all: Approve All
+    approve_all_successful: Approved all nominations
+    approve_evaluations: Approve Evaluations
+    approve_nominations: Approve Nominations
+    approve_reports: Approve Reports
+    approved: Approved
+    approving_mail_sent: Mail for approving nomination has been sent to managers
+    as_my: as my
+    assesment:
+      modals:
+        help:
+          body: "<h2>Help</h2> <p>need content for help modal</p>"
+          title: Help
+      navigation:
+        menu:
+          help: Help
+          logout: Logout
+          profile: Profile
+          switching-lang: Switching language
+    assessment: Assessment
+    back_to_tasks: Back to tasks
+    begin: Begin
+    cancel: Cancel
+    close_evaluation_modal:
+      message: Once you view the report, %{pronoun_or_name} won't be able to receive any further evaluations
+      title: Are you sure you want to view the report?
+    closed_campaign_message: This 360 campaign is closed. You can't nominate or evaluate anyone for this campaign.
+    completed: Completed
+    confirm: Are you sure?
+    confirmation_for_nomination_removal: Are you sure you want to remove the nomination
+    confirmation_required: Confirmation required
+    confirmation_text_incorrect: Confirmation text is incorrect
+    confirmation_text_placeholder: Confirmation text here
+    continue: Continue
+    dashboard_title: Welcome %{name}
+    decline: Decline
+    decline_invite: Decline Invite
+    denied: Denied
+    deny_all: Deny All
+    deny_all_successful: Denied all nominations
+    download_pdf: Download PDF
+    download_report: Download Report
+    download_reports: Download Reports
+    edit_user: Edit User
+    email_approve_request: Email Approval Request
+    email_schedules:
+      delete_successful: Email schedule deleted successfully
+    evaluate: Evaluate
+    evaluation: Evaluation
+    evaluation_closed_message: Evaluation is closed for this subject
+    evaluation_closed_nomination_message: You can't nominate for this subject as evaluation is closed for this subject
+    evaluations: Evaluations
+    evaluator: Evaluator
+    export_pdf: Export PDF
+    first_name: First Name
+    first_name_error: Please input First Name
+    help: Help
+    helps:
+      main: "<h2>Help</h2> <p>need content for help modal</p>"
+    language: Language
+    last_name: Last Name
+    last_name_error: Please input Last Name
+    load_results: Load Results
+    mail_history:
+      statuses:
+        success: Success
+        undelivered: Undelivered
+    mindmill_confirmation: Starting this assessment you will lost results "%{assessment}". Click "Cancel" if you want leave results, and click "Ok" if you want continue
+    my_projects: My Projects
+    nominate: Nominate
+    nominate_evaluators: Nominate Evaluators to
+    nomination: Nomination
+    nomination_predicates:
+      atleast: At least %{count}
+      atmost: At most %{count}
+      exactly: Exactly %{count}
+    nominations: Nominations
+    options:
+      global:
+        cannot_re_edit: Participants cannot edit evaluations
+    or: Or
+    page_title: Signify 360° Review - Apply Level
+    participant_list:
+      actions:
+        approve_report: Approve Report
+        download_report: Download Report
+        edit: Edit
+        hold_report: Hold report
+        login: Login
+        mark_as_done: Mark as done
+        release_report: Release report
+        remove_campaign: Remove from campaign
+        remove_report_approval: Remove report approval
+        remove_report_hold_release_report: Remove Report Hold/Release
+        remove_subject: Remove subject
+        unmark_as_done: Unmark as done
+        view_report: View Report
+        view_responses: View Responses
+      confirmation_messages:
+        approve_report: Are you sure you want to approve report?
+        hold_report: Are you sure you want to hold report?
+        mark_evaluation_done: Are you sure you want to mark evaluation as done? Evaluation will be closed for this subject.
+        release_report: Are you sure you want to release report?
+        remove_from_campaign: Are you sure you want to remove user from the campaign?
+        remove_release_hold: Are you sure you want to remove Release/Hold status?
+        remove_report_approval: Are you sure you want to remove report approval?
+        remove_subject: Are you sure you want to remove subject with email from campaign?
+        umark_evaluation_as_complete: Are you sure you want to unmark evaluation as done?
+      report_generation_message: Report is being generated. We will let you know when the report is ready.
+    processing: Processing
+    processing_report: Processing Report
+    question:
+      chat_type:
+        input_placeholder: Write your Message...
+      email_type:
+        bcc: Bcc
+        cc: Cc
+        edit: Edit
+        max_length_warning: "%{x} characters remaining"
+        message: Your Message
+        send: Send
+        subject: Subject
+        successful_message: You have successfully sent the email
+        to: To
+    remind_all: Remind All
+    remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
+    report_for: Report for
+    report_generation_in_progress: Report is being generated. We will let you know when the report is ready.
+    reports: Reports
+    reset_campaign_confirmation: Enter current campaign name given below in text box to reset all participants
+    reset_nomination_confirmation: Enter current campaign name given below in text box to reset all nominations
+    save: Save
+    select_relationnship: Select Relationship
+    select_relationship: Select Relationship
+    self: Self
+    set_name_for_evaluator: Set name for Evaluator
+    setup_nominations: Set up nominations
+    subject: Subject
+    submit: Submit
+    total_progress: Total progress
+    user_name_input_placeholder: type name or email...
+    validation_errors: Validation Errors
+    view_my_report: View My Report
+    view_nominations: View nominations
+    view_reports: View Reports
+    waiting: Waiting
+    you: You
+    yourself: Yourself
+  time:
+    formats:
+      date: "%d/%m/%y"
+      datetimepicker_client: DD/MM/YYYY hh:mm A
+      datetimepicker_client_with_timezone: D MMM YYYY / H:mm Z
+      datetimepicker_server: "%d/%m/%Y %I:%M %p"
+      datetimepicker_server_with_timezone: "%d %b %Y / %H:%M %:z"
+      datetimepicker_without_time_client: DD/MM/YYYY
+      datetimepicker_without_time_server: "%d/%m/%Y"
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"
+      iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
+      short: "%d %b %Y / %H:%M"
+      short_date: "%-d %b %Y"
+  universal_links:
+    deactivate_link: Deactivate Link
+    png: PNG
+    regenerate_link: Regenerate Link
+    svg: SVG
+  update_profile:
+    cancel: Cancel
+    title: Update Profile
+    update: Update
+    updated_successfully: Profile updated successfully
+  user:
+    fields:
+      email: Email Address
+      first_name: First Name
+      last_name: Last Name
+      password: Password
+    form:
+      operation_options:
+        add_and_allow_new_response: Add user and allow new response
+        add_with_existing_response: Add user with existing response
+        skip_existing: Skip existing user
+    modals:
+      import:
+        body: Refer to the Export functionality to extract a template that can be used to Import here.
+        imported_users: 'The number of imported users: %{number}'
+        success_msg: The uploaded file has been queued for import. Please check the status in the notifications
+        title: Import Users
+        user_with_unchanged_passwords: The list of users whose passwords were not changed
+    toolbar:
+      export: Export Users
+      export_completion_status: Export Completion Status
+      import: Import Users
+  user_assessments:
+    modals:
+      remove:
+        content: Are you sure you want to remove assessment '%{name}'?
+        successfully: "%{name} assessment removed successfully."
+  user_reports:
+    actions:
+      regenerate: Regenerate
+    messages:
+      regenerate_successful: Report regeneration job scheduled successfully
+    modals:
+      remove:
+        content: Are you sure you want to remove report %{userReportName}?
+        successfully: "%{userReportName} report removed successfully"
+    preview_report: Preview Report
+    statuses:
+      generating: Generating
+      not_prepared: Not Available
+      prepared: Available
+  validations:
+    AudioResponse:
+      in_progress:
+        RECORDED: Audio is recorded but not saved
+        RECORDING: Audio recording is in progress
+        SAVING: Recorded audio upload is in progress
+      required: Please record and save the audio before you continue
+    FileUpload:
+      in_progress:
+        SAVING: File upload is in progress
+      required: Please upload the file
+    TextEntry:
+      Email:
+        character_range: Email message entered must be at least %{min} and no more than %{max} characters.
+        max_length: Email message entered must be no more than %{max} characters.
+        min_length: Email message entered must be at least %{min} characters.
+        subject:
+          min_length: Subject field should have minimum of 10 characters
+        to:
+          required: To field is required
+    VideoResponse:
+      in_progress:
+        recorded: Video is recorded but not saved
+        recording: Video recording is in progress
+        saving: Recorded video upload is in progress
+      required: Please record and save the video before you continue
+    actions_still_in_progress: Below actions are in progress. If you proceed you will lose these data.
+    blank: can't be blank
+    character_range: Your response must be at least %{min} and no more than %{max} characters.
+    date: Your response must be a valid date (mm/dd/yyyy)
+    each_group_contains: Each group needs to contain not less than %{min} and not more than %{max} items
+    email: Your response must be a valid email
+    file_upload:
+      EntityTooLarge: File size should be less than %{maxFileSize} MB
+      WrongFileType: File type should be one of the following %{allowedFileTypes}
+    issue: Issue
+    least: Please answer at least %{min} choice(s).
+    least_hotspot: Please answer at least %{min} choice(s).
+    max_length: Your response must be no more than %{max} characters.
+    min_length: Your response must be at least %{min} characters.
+    must_rank_between: Please assign a value from %{min} to %{max} for each item. Values may not be repeated.
+    must_select: Please select from %{min} to %{max} choices
+    number: Your response must be a number
+    range: Please answer at least %{min} and no more than %{max} choice(s).
+    required: Please answer this question
+    text: Your response must not contain a numbers
+    title:
+      one: There is one error, please check your responses
+      other: There are %{count} errors, please check your responses
+  'yes': 'Yes'
+  your: Your
+  yourself: Yourself

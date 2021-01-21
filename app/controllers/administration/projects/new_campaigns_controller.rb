@@ -10,7 +10,8 @@ module Administration
       skip_after_action :verify_policy_scoped, only: %i[index show]
       append_before_action :pundit_authorize
       before_action :set_campaign, only: %i[
-        show update assessments_and_reports fetch_campaign_options update_campaign_options destroy
+        show update assessments_and_reports fetch_campaign_options
+        fetch_campaign_instructions update_campaign_options destroy
       ]
 
       def index
@@ -82,6 +83,15 @@ module Administration
         render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
       end
 
+      def fetch_campaign_instructions
+        response = params[:locales].values.map do |locale|
+          Mobility.with_locale(locale) do
+            CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
+          end
+        end
+        render json: response
+      end
+
       def update_campaign_options
         campaign_options = @campaign.campaign_options
 
@@ -89,7 +99,9 @@ module Administration
         form = ::Campaigns::CampaignOptions::Form.from_params(attributes)
 
         if form.valid?
-          campaign_options.update_attributes(campaign_options_params)
+          Mobility.with_locale(params[:locale]) do
+            campaign_options.update_attributes(campaign_options_params)
+          end
           render json: campaign_options, serializer: Administration::Campaigns::CampaignOptionsSerializer
         else
           render json: { errors: form.errors.messages }, status: 422

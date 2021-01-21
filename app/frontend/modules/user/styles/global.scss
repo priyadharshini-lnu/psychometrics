@@ -1,12 +1,16 @@
+@import 'modules/user/styles/variables';
+
 :global {
   .rtl {
     direction: rtl;
 
-    input[type=radio] {
+    input[type='radio'] {
       direction: ltr;
     }
   }
-  .ant-modal-mask, .ant-modal-wrap, .ant-select-dropdown {
+  .ant-modal-mask,
+  .ant-modal-wrap,
+  .ant-select-dropdown {
     z-index: 2147483647;
   }
 }

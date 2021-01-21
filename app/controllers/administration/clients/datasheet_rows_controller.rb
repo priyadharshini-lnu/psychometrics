@@ -11,7 +11,7 @@ module Administration
       append_before_action :pundit_authorize
 
       def index
-        @_filter_form = policy_scope(resource_class).search(params[:q])
+        @_filter_form = policy_scope(resource_class).ransack(params[:q])
         @_resources = filter_form.
                       result.
                       joins(:datasheet).

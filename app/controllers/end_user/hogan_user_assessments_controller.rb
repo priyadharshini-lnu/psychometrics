@@ -7,11 +7,11 @@ class EndUser::HoganUserAssessmentsController < ApplicationController
     if params[:status] == 'Completed'
       @user_assessment.users_result.update(status: :completed, completed_at: Time.current)
     end
+    user_result = @user_assessment.users_result
 
     Hogan::FetchResultsJob.set(wait: 30.seconds).
-      perform_later(@user_assessment, current_user.hogan_credential, @user_assessment.campaign.project)
+      perform_later(user_result, current_user.hogan_credential, @user_assessment.campaign.project)
 
-    user_result = @user_assessment.users_result
     UsersResults::GenerateReports.call(
       user_result,
       current_user,

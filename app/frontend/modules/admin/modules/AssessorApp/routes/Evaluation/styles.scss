@@ -1,0 +1,15 @@
+@import 'modules/user/styles/variables';
+
+.card {
+  border: 1px solid #e8e8e8;
+  border-left: none;
+  :global {
+    .ant-card-extra {
+      padding: 0;
+    }
+  }
+}
+
+.breadcrumbs {
+  padding: 5px !important;
+}

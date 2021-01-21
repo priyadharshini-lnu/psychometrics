@@ -47,9 +47,19 @@ class EndUser::UsersController < ApplicationController
   end
 
   def change_locale
-    cookies[:locale] = params[:locale] if I18n.available_locales.include?(params[:locale]&.to_sym)
+    cookies[:locale] = params[:locale] if @current_project.available_locales.include?(params[:locale])
     set_locale
     current_user&.update_column(:locale, I18n.locale)
+  end
+
+  def update_details
+    form = Users::ProfileForm.from_params(params[:user]).with_context(user: current_user)
+    if form.valid?
+      current_user.update!(form.attributes)
+      render json: current_user, serializer: Threesixty::CurrentUserSerializer
+    else
+      render json: { errors: form.errors.messages }, status: :bad_request
+    end
   end
 
   private

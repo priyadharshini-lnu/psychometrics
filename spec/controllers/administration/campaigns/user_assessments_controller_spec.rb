@@ -43,17 +43,15 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
     post :update_norm, params: {
       id: user_assessment.id,
       new_campaign_id: campaign.id,
-      norm_id: norm.id,
-      norm_type: 'ETI'
+      norm_id: norm.id
     }, as: :json
 
     parsed_response = JSON.parse(response.body)
 
     users_result.reload
 
-    expect(parsed_response).to eq('norm_type' => 'ETI', 'norm_name' => 'Norm')
+    expect(parsed_response).to eq('norm_name' => 'Norm')
     expect(users_result.norm_id).to eq(norm.id)
-    expect(users_result.norm_type).to eq('ETI')
   end
 
   it '[POST] update_additional_time' do
@@ -75,7 +73,7 @@ RSpec.describe Administration::Campaigns::UserAssessmentsController, type: :cont
   end
 
   it '[POST] rescore_responses' do
-    expect(::UsersResults::Recompute).to receive(:call!)
+    expect(AdminJob).to receive(:call)
 
     post :rescore_response, params: {
       id: user_assessment.id,

@@ -78,7 +78,9 @@ feature 'CRUD Assessment' do
       end
 
       scenario 'Destroy Assessment' do
+        assessment.soft_delete!(current_user)
         visit '/administration/assessments'
+        find('#deleted_tab').click
         find("#assessment_#{assessment.id} .delete").click
         find(:button, text: 'Yes').click
         expect(page).to have_content t('administration.assessments.destroy.successfully', name: 'My assessment')

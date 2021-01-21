@@ -12,6 +12,7 @@ class Question extends Component {
     model: PropTypes.object.isRequired,
     page: PropTypes.object.isRequired,
     readOnly: PropTypes.bool,
+    randomseed: PropTypes.string,
   }
 
   componentDidMount () {
@@ -25,12 +26,12 @@ class Question extends Component {
   addLtrStyleIfNeed = phrase => (phrase.match(/[A-Za-z]+(?:\|;|\.|!|\?|:)/) !== null ? { direction: 'ltr' } : {})
 
   renderPreview () {
-    const { model, result } = this.props
+    const { model, result, randomseed } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
     return (
       <View
         {...this.props}
-        model={QuestionSerializer.wrap(model, result.answers, result.not_applicable)}
+        model={QuestionSerializer.wrap(model, result.answers, result.not_applicable, randomseed)}
         preview
       />
     )
@@ -40,7 +41,7 @@ class Question extends Component {
     const { errors } = this.props
     return (
       errors.map((err, i) => (
-        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message)}>
+        <div key={i} className={styles.error} style={this.addLtrStyleIfNeed(err.message || '')}>
           {err.message}
         </div>
       ))

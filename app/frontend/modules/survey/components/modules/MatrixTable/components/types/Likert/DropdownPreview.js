@@ -11,14 +11,14 @@ export default class extends Component {
 
   changeValue = (choice, e) => {
     const { model: { result } } = this.props
+    result.notApplicable = result.notApplicable || {}
     if (e.currentTarget.value === NOT_APPLICABLE) {
       _.remove(result.answers, { choice })
-      result.notApplicable = result.notApplicable || {}
       result.notApplicable[choice] = true
       result.reduxAnswer()
     } else {
       result.notApplicable[choice] = false
-      result.answer(e.currentTarget.value, choice, e.currentTarget.checked)
+      result.answer(e.currentTarget.value, choice, e.currentTarget.value)
     }
     this.forceUpdate()
   }

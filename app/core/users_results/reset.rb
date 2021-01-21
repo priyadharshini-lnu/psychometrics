@@ -31,14 +31,15 @@ module UsersResults
         completed_at: nil,
         step: 0,
         norm_id: nil,
-        norm_type: nil,
         expiry_date: nil,
         last_activity_at: nil,
         meta_data: {},
         additional_time: nil,
         current_element: nil,
         current_page: nil,
-        reset_count: users_result.reset_count + 1
+        completion_reason: nil,
+        reset_count: users_result.reset_count + 1,
+        prev_pages: []
       )
     end
 

@@ -92,6 +92,10 @@ module Reports
           new_filters = mod.props['filters'].map { |id| filter_map[id] }
           mod.update(props: mod.props.merge('filters' => new_filters))
         end
+        if mod.props && mod.props['filter']&.is_a?(Array) && mod.props['filter'].present?
+          new_filters = mod.props['filter'].map { |id| filter_map[id] }
+          mod.update(props: mod.props.merge('filter' => new_filters))
+        end
 
         if mod.props && mod.props['filters']&.is_a?(Integer)
           mod.update(props: mod.props.merge('filters' => filter_map[mod.props['filters']]))

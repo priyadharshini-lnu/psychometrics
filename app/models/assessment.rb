@@ -24,6 +24,7 @@
 class Assessment < ApplicationRecord
   include Copyable
   include RansackSearchableFields
+  include SoftDelete
 
   # CATEGORIES constant
   CATEGORIES_TYPES = [
@@ -32,6 +33,7 @@ class Assessment < ApplicationRecord
     CASE_STUDY = 'case_study',
     THREESIXTY = 'threesixty',
     MINDMILL = 'mindmill',
+    ASSESSOR_FORM = 'assessor_form',
     HOGAN = 'hogan',
     AGILE = 'agile'
   ].freeze
@@ -42,7 +44,8 @@ class Assessment < ApplicationRecord
     threesixty: THREESIXTY,
     mindmill: MINDMILL,
     hogan: HOGAN,
-    agile: AGILE
+    agile: AGILE,
+    assessor_form: ASSESSOR_FORM
   }.freeze
 
   # Assessments constant
@@ -87,6 +90,8 @@ class Assessment < ApplicationRecord
   has_many :users_results, dependent: :restrict_with_error
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :assessments_clients, dependent: :restrict_with_error
+  has_many :assessor_campaign_assessments, dependent: :restrict_with_error,
+    class_name: 'CampaignAssessment', foreign_key: :assessor_form_id
   has_many :memberships, through: :assigns
 
   # HABTM Clients
@@ -127,6 +132,7 @@ class Assessment < ApplicationRecord
   scope :disabled, -> { where(disabled: true) }
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
+  scope :assessor_form, -> { where(category: CATEGORIES[:assessor_form]) }
   scope :with_category, lambda { |category|
     where(category: category)
   }

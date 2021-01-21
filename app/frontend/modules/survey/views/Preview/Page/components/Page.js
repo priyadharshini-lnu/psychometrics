@@ -14,6 +14,14 @@ class Page extends Component {
     page: PropTypes.object.isRequired,
   }
 
+  componentDidMount () {
+    const path = location.pathname.match('threesixty_campaigns/(.*)/evaluations')
+    if (path) {
+      const { fetchCampaignOptions } = this.props
+      fetchCampaignOptions(parseInt(path[1], 10))
+    }
+  }
+
   getBlockClasses () {
     const { block: { props: { staticContent } } } = this.props
 

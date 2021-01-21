@@ -6,9 +6,9 @@ module RansackSearchableFields
   included do
     scope :filterable_fields, lambda { |search_term|
       if (search_term !~ /\D/) && search_term.present?
-        where("#{table_name}.id= ? OR name ILIKE ? ", search_term, "%#{search_term}%")
+        where("#{table_name}.id = ? OR #{table_name}.name ILIKE ? ", search_term, "%#{search_term}%")
       else
-        where("name ILIKE '%#{search_term}%'")
+        where("#{table_name}.name ILIKE ?", "%#{search_term}%")
       end
     }
   end

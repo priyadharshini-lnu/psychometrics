@@ -3,6 +3,8 @@
 class Relationship < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
+  ASSESSOR = 'Assessor'
+
   belongs_to :campaign
   enum type: { global: 0, campaign: 1 }
   enum assign_type: { manual: 0, automatic: 1 }
@@ -13,5 +15,9 @@ class Relationship < ApplicationRecord
 
   def self.manager_relationship
     Relationship.find_by(name: 'Manager', type: :global)
+  end
+
+  def self.assessor_relationship
+    Relationship.find_by(name: ASSESSOR, type: :global)
   end
 end

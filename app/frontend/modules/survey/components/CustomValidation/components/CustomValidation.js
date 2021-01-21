@@ -25,7 +25,11 @@ export class CustomValidation extends Component {
   }
 
   cancel = () => {
-    const { close } = this.props
+    const { question, close } = this.props
+    if (!question.validation.message) {
+      question.validation.type = 'None'
+      question.update()
+    }
     this.setState({ error: false })
     close()
   }

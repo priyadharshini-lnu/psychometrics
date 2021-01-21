@@ -8,6 +8,8 @@ import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import truncate from 'lodash/truncate'
+
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import './styles.scss'
@@ -71,7 +73,7 @@ const renderButtonContent = ({
   if (status === IN_PROGRESS || status === INTERRUPTED) {
     return (
       <LinkTag>
-        {loading ? <LoadingOutlined /> : <ContinueIcon />}
+        {loading ? <LoadingOutlined /> : <ContinueIcon className="rtl-flip" />}
         {' '}
         {I18n.t('threesixty.continue')}
       </LinkTag>
@@ -108,7 +110,7 @@ const renderButtonContent = ({
   }
   return (
     <a href={href} onClick={showPolicyConfirm}>
-      {loading ? <LoadingOutlined /> : <PlayCircleOutlined />}
+      {loading ? <LoadingOutlined /> : <PlayCircleOutlined className="rtl-flip" />}
       {' '}
       {I18n.t('threesixty.begin')}
     </a>
@@ -126,7 +128,9 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
   }
 
   const loadAssessmentOrCheckingWizard = () => {
-    if (WizardIsRequired.run(assign.assessmentExtra)) return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}`)
+    if (WizardIsRequired.run(assign.assessmentExtra)) {
+      return routeUtils.moveTo(history, '', `/system_checks/${assign.assessmentId}/${assign.id}?type=legacy`)
+    }
     return loadAssessment(assign)
   }
 
@@ -160,8 +164,8 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
       >
         <div className="card-body">
           <div className="card-content">
-            <div className="card-title">
-              {assign.assessmentName}
+            <div className="card-title" title={assign.assessmentName}>
+              {truncate(assign.assessmentName, { length: 55 })}
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">

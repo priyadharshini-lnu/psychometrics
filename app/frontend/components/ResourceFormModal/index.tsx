@@ -7,6 +7,7 @@ import { LoadingOutlined, CheckOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 import { FormProps } from 'antd/lib/form'
 import { ModalProps } from 'antd/lib/modal'
+import { FieldData } from 'rc-field-form/lib/interface'
 import ResourceFrom from '../ResourceForm'
 import { Status as ResourceStatus } from '../ResourceForm/constants'
 import { Resource } from '../ResourceForm/interfaces'
@@ -14,7 +15,9 @@ import { Resource } from '../ResourceForm/interfaces'
 interface Props {
   resourceName: string
   requestScope?: string
-  children({ form: FormInstance, status: string, isEdit: boolean }): ReactElement
+  children({
+    form: FormInstance, status: string, isEdit: boolean, fieldsUtil: FieldsUtil,
+  }): ReactElement
   close(): void
   title?: string
   resource?: Resource
@@ -24,7 +27,9 @@ interface Props {
   onSuccessfulSubmission?(response: object): void
   request?: Partial<Request>
   storeManager?: {
-    form: FormInstance
+    form?: FormInstance,
+    fields?: FieldData[],
+    setFields? (fields: object): void
   }
   modalProps: ModalProps
   formProps?: FormProps
@@ -54,6 +59,8 @@ const ResourceFormModal: React.FC<Props> = (props) => {
   const [form] = Form.useForm()
   const store = {
     form: (storeManager && storeManager.form) || form,
+    fields: (storeManager && storeManager.fields),
+    setFields: (storeManager && storeManager.setFields),
   }
 
   const isEdit = () => !!resource || !!resourceId

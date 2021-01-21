@@ -63,7 +63,7 @@ const AssessmentList: React.FC<Props> = ({
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
             render={({
-              normName, normType, id, isExternal,
+              normName, id, isExternal,
             }) => {
               if (isExternal) {
                 return I18n.t('common.text.na')
@@ -75,10 +75,26 @@ const AssessmentList: React.FC<Props> = ({
                       { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                   }
                 >
-                  {normName ? `${normName}, ${_.toUpper(normType)}` : 'Default'}
+                  {normName || I18n.t('common.text.default')}
                 </a>
               )
             }}
+          />
+          <Column
+            title={I18n.t('campaign_assessment.column.assessor_form')}
+            key="assessorFormName"
+            render={({
+              assessorFormName, id,
+            }) => (
+              <a
+                onClick={
+                    () => openModal('UpdateAssessorFormModal',
+                      { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                  }
+              >
+                {assessorFormName || I18n.t('common.text.na')}
+              </a>
+            )}
           />
           <Column
             title={I18n.t('campaign_assessment.column.universal_link')}
@@ -161,7 +177,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
   return (
     <Menu>
       <Menu.ItemGroup key="export" title="Export">
-        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
+        {AssessmentPolicy.exportRawResultsWithLabel(currentUser, assessment) && (
         <Menu.Item key="export_raw_labels">
           <a
             target="_blank"
@@ -172,7 +188,7 @@ const ActionsMenu: React.FC<ActionMenuProps> = ({
           </a>
         </Menu.Item>
         )}
-        {AssessmentPolicy.exportRawResults(currentUser, assessment) && (
+        {AssessmentPolicy.exportRawResultsWithoutLabel(currentUser, assessment) && (
         <Menu.Item key="export_raw">
           <a
             target="_blank"

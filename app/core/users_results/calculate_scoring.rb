@@ -24,9 +24,9 @@
 
 module UsersResults
   class CalculateScoring < BaseCommand
-    def initialize(users_result, norm_data)
+    def initialize(users_result, norm_data = nil)
       @users_result = users_result
-      @norm_data = norm_data
+      @norm_data = norm_data || users_result.norm_data
       @scoring = {}
     end
 

@@ -3,10 +3,13 @@
 module Hogan
   class FetchResultsJob < ApplicationJob
     queue_as :external_results
+    retry_on StandardError, wait: ->(executions) { executions * 2.minutes }, attempts: 3
 
-    def perform(user_assessment, credentials, project)
-      user_assessment.users_result.hogan_user_reports.each do |user_report|
-        Hogan::FetchResults.call!(user_assessment, user_report.report, credentials, project)
+    def perform(user_result, credentials, project)
+      user_result.hogan_user_reports.each do |user_report|
+        Hogan::FetchResults.call(user_result.user_assessment, user_report.report, credentials, project) do
+          on(:not_completed) { raise StandardError, 'Unable to fetch hogan report' }
+        end
       end
     end
   end

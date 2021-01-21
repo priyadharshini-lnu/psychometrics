@@ -10,10 +10,10 @@ Bundler.require(*Rails.groups)
 
 module Psychometrics
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
     config.time_zone = Settings.timezone
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.2
+    config.active_record.belongs_to_required_by_default = false
 
     # Load all translates inside folders
     #
@@ -22,6 +22,7 @@ module Psychometrics
                                        ja km ko
                                        lt lv mk mn ms my nl no pl pt-BR pt ro ru sk sl sr-Cyrl sr-Latn sv sw ta th tl
                                        tr uk ur vi zh zh-TW]
+
     config.i18n.default_locale = :en
     config.i18n.locale = :en
     config.i18n.fallbacks = [:en]
@@ -31,5 +32,10 @@ module Psychometrics
     config.eager_load_paths << Rails.root.join('lib')
     # Setup Active Job to use Sidekiq
     config.active_job.queue_adapter = :sidekiq
+
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
   end
 end

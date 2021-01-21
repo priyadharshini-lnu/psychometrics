@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+module AdminJobs
+  class BulkDownloadReports < AdminJobs::Base
+    include ActionView::Helpers::TagHelper
+    include ActionView::Context
+
+    def call
+      bulk_report = ::CampaignReports::BulkDownload.call!(campaign_reports, owner, record)
+
+      content = [
+        content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
+        content_tag(:ul) do
+          bulk_report.files.map do |file|
+            content_tag(:li) do
+              content_tag(:a, file.store_dir, href: file.url)
+            end
+          end.join.html_safe
+        end
+      ].join.html_safe
+
+      broadcast :ok, { content: content }
+    end
+
+    def valid?
+      campaign.present? && campaign_reports.present?
+    end
+
+    def generate_title_link
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
+        label: "#{campaign.name} - #{campaign_reports.first.report.name} (...)"
+      }
+    end
+
+    def generate_details
+      [
+        [I18n.t('administration.reports.name'), campaign_reports.map { |cr| cr.report.name }.join(', ')]
+      ]
+    end
+
+    private
+
+    def campaign_reports
+      @campaign_reports ||= campaign.campaign_reports.where(id: record.data['ids'])
+    end
+  end
+end

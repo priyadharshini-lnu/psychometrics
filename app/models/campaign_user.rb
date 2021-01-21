@@ -10,6 +10,10 @@ class CampaignUser < ApplicationRecord
   has_many :evaluation_results, through: :user
   has_many :user_assessments, through: :user
   has_many :user_reports, through: :user
+  has_many :proctoring_sessions, dependent: :destroy
+
+  scope :in_progress, -> { where(completion_status: :in_progress) }
+  scope :completed, -> { where(completion_status: :completed) }
 
   def disabled
     !active

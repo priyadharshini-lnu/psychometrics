@@ -10,7 +10,7 @@ module Administration
       super
     end
 
-    def policy_scope(scope)
+    def policy_scope(scope, extra = {})
       scope = define_scope(scope)
       super
     end
@@ -28,7 +28,9 @@ module Administration
     private
 
     def define_scope(object)
-      object = [:administration, object].flatten if [object].flatten.index(:administration).nil?
+      if [object].flatten.exclude?(:administration) && [object].flatten.exclude?(:assessors)
+        object = [:administration, object].flatten
+      end
       object
     end
   end

@@ -5,9 +5,9 @@ import {
 
 
 export default function AssessmentCard ({
-  size, children,
+  size, children, withSidebar,
 }) {
-  let cols = 8
+  let cols = withSidebar ? 8 : 6
   if (size <= 2) {
     cols = size === 1 ? 24 : 12
   }
