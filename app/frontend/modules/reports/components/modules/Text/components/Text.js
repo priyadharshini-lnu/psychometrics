@@ -189,8 +189,8 @@ class Text extends Component {
           </div>
         )
       } if (sourceType === 'PipedText') {
-        _.templateSettings.interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
-        const compiled = _.template(I18nStore.tModule(model, 'text'))
+        const templateInterpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
+        const compiled = _.template(I18nStore.tModule(model, 'text'), { interpolate: templateInterpolate })
 
         const html = compiled({
           first_name: _.get(ResultStore, 'user.first_name', '{{first_name}}'),
