@@ -108,9 +108,9 @@ class Text extends Component {
           if (!field) break
           const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
           if (field.type === 'Markdown') {
-            return { text: <ReactMarkdown>{text}</ReactMarkdown>, type: 'html' }
+            return <ReactMarkdown>{text}</ReactMarkdown>
           }
-          return { text }
+          return text
         }
         break
       case 'Count':
@@ -121,12 +121,12 @@ class Text extends Component {
         const factor = _.get(model, ['props', 'source', 'factors', 0])
         if (factor) {
           const externalScoring = _.get(ResultStore, ['results', model.assessment_id, 'externalScoring'])
-          return { text: Factors.LookupValue.call(externalScoring, sourceType, factor, 'string') }
+          return Factors.LookupValue.call(externalScoring, sourceType, factor, 'string')
         }
         break
       default:
     }
-    return { text: '' }
+    return ''
   }
 
   renderText () {
@@ -210,7 +210,7 @@ class Text extends Component {
         const textValue = this.lookupResultTextValue(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
-            <div>{textValue.text}</div>
+            <div>{textValue}</div>
           </div>
         )
       }
