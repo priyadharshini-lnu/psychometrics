@@ -53,6 +53,7 @@
       "id": "5ff4d1dbcf6e9ce25fa58be4",
       "email": "Vera@email.com",
       "first_name": "Kelley",
+      "level": 2020,
       "notes": "# An H1 Header\n## An H2 Header\n### An H3 Header\n#### An H4 Header",
       "twitter_bio": "This is a very loooooooooooooooooooooooooooooooong text",
       "Resume": "<div><h2>This is Header</h2> <p>this is the resumeeeeeeeeeeeeee html type</p></div>"
@@ -65,6 +66,10 @@
       {
         "id": "firstName",
         "type": "string"
+      },
+      {
+        "id": "level",
+        "type": "numeric"
       },
       {
         "id": "notes",

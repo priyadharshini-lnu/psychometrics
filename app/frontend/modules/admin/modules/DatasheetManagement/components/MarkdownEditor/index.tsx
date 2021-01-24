@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import {
   Row, Col, Input, Typography, Tooltip,
 } from 'antd'
@@ -9,7 +9,12 @@ import styles from './styles.scss'
 
 const { I18n } = window
 
-export const MarkdownEditor = ({ content, onChange }) => (
+interface Props {
+  value?: string
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void
+}
+
+export const MarkdownEditor: FC<Props> = ({ value, onChange }) => (
   <>
     <Row className={styles.headerRow}>
       <Col span="12" className={styles.headerRowCol}>
@@ -34,10 +39,10 @@ export const MarkdownEditor = ({ content, onChange }) => (
     </Row>
     <Row align="stretch" justify="center" className={styles.container}>
       <Col span="12" className={styles.editor}>
-        <Input.TextArea value={content} onChange={onChange} autoSize={false} />
+        <Input.TextArea value={value} onChange={onChange} />
       </Col>
       <Col span="12" className={styles.viewer}>
-        <ReactMarkdown>{content}</ReactMarkdown>
+        <ReactMarkdown>{value}</ReactMarkdown>
       </Col>
     </Row>
   </>
