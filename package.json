@@ -163,7 +163,6 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0",
-    "remarkable": "^1.7.1",
     "reselect": "^4.0.0",
     "retry-axios": "^2.2.1",
     "rrweb": "^0.9.13",
