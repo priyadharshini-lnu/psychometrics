@@ -71,7 +71,7 @@ const Navigation: FC<PropsFromRedux> = ({
   const { pathname } = useLocation()
   const [isLocaleLoading, toggleLocaleLoadingTo] = useState(false)
 
-  const PAGES_TO_HIDE_LOCALE_SWITCHER = ['/pass', '/anonym', '/evaluations']
+  const PAGES_TO_HIDE_LOCALE_SWITCHER = ['/pass', '/anonym', '/evaluations', '/agile_user_assessments']
   const isLocaleSwitcherHidden = useMemo(
     () => PAGES_TO_HIDE_LOCALE_SWITCHER.some(
       pageToHideLangSelection => pageToHideLangSelection === pathname,
