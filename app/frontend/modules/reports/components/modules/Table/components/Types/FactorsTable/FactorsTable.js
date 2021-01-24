@@ -1,14 +1,15 @@
-/* eslint-disable react/no-danger */
 /* eslint-disable max-len */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
 import cs from 'classnames'
+import ReactMarkdown from 'react-markdown'
+
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
-import { renderMarkdown } from 'rb/utils/Markdown'
 import { TopFactorType } from 'rb/models/Results/interfaces'
 import PieGraph from '../../../../../PieGraph'
+
 import styles from './FactorsTable.scss'
 
 // Images
@@ -237,8 +238,12 @@ class FactorsTable extends Component {
                 )}
                 {showStrengthsBlindspots && (
                   <div className={cs(styles.strengthsBlindspots, 'mt8')}>
-                    <div className={styles.strengths} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }} />
-                    <div className={styles.blindspots} dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }} />
+                    <ReactMarkdown className={styles.strengths}>
+                      {conditionStrengths}
+                    </ReactMarkdown>
+                    <ReactMarkdown className={styles.blindspots}>
+                      {conditionBlindspots}
+                    </ReactMarkdown>
                   </div>
                 )}
               </div>

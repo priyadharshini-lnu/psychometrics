@@ -4,6 +4,11 @@ import _ from 'lodash'
 import React, { Component } from 'react'
 import cs from 'classnames'
 import PropTypes from 'prop-types'
+import ReactMarkdown from 'react-markdown'
+import FroalaEditor from 'react-froala-wysiwyg'
+import 'froala-editor/js/froala_editor.pkgd.min'
+import 'froala-editor/js/plugins.pkgd.min'
+
 import Foundation from 'rb/components/Foundation'
 import store from 'rb/store/PageList'
 import ResultStore from 'rb/store/ResultStore'
@@ -11,18 +16,13 @@ import AppStore from 'rb/store/AppStore'
 import RichEditorStore from 'rb/store/RichEditorStore'
 import I18nStore from 'rb/store/I18nStore'
 import Factors from 'rb/commands/Factors'
-import { renderMarkdown } from 'rb/utils/Markdown'
 import 'rb/commands/froalaCommands'
-import 'froala-editor/js/froala_editor.pkgd.min'
-import 'froala-editor/js/plugins.pkgd.min'
-import FroalaEditor from 'react-froala-wysiwyg'
 import ResponseTextByQuestionType from './ResponseTextByQuestionType'
 import styles from './Text.scss'
 import config from './froalaConfig'
 import GetText from './GetText'
 import GetStyles from './GetStyles'
 
-const { md } = window
 class Text extends Component {
   editor = null
 
@@ -108,7 +108,7 @@ class Text extends Component {
           if (!field) break
           const text = _.get(ResultStore, ['results', model.assessment_id, 'dataSheet', columnName])
           if (field.type === 'Markdown') {
-            return { text: renderMarkdown(text), type: 'html' }
+            return { text: <ReactMarkdown>{text}</ReactMarkdown>, type: 'html' }
           }
           return { text }
         }
@@ -167,31 +167,26 @@ class Text extends Component {
 
     if (preview) {
       if (sourceType === 'ConditionalText') {
-        const html = renderMarkdown(model.getTextByCondition())
         return (
           <div
             ref={(ref) => { this.editor = ref }}
             className={styles.editor}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          >
+            <ReactMarkdown>
+              {model.getTextByCondition()}
+            </ReactMarkdown>
+          </div>
         )
       } if (sourceType === 'ConditionalFactorOccupationText') {
-        const html = renderMarkdown(GetText.run(model))
         return (
           <div
             ref={(ref) => { this.editor = ref }}
             className={styles.editor}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        )
-      } if (sourceType === 'ConditionalFactorOccupationText') {
-        const html = md.render(GetText.run(model))
-        return (
-          <div
-            ref={(ref) => { this.editor = ref }}
-            className={styles.editor}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          >
+            <ReactMarkdown>
+              {GetText.run(model)}
+            </ReactMarkdown>
+          </div>
         )
       } if (sourceType === 'PipedText') {
         _.templateSettings.interpolate = /{{(first_name|last_name|completed_at|norm_used|locale_name)}}/g
@@ -215,9 +210,7 @@ class Text extends Component {
         const textValue = this.lookupResultTextValue(model)
         return (
           <div ref={(ref) => { this.editor = ref }} className={styles.editor}>
-            {textValue.type === 'html' ? (
-              <div dangerouslySetInnerHTML={{ __html: textValue.text }} />
-            ) : <div>{textValue.text}</div>}
+            <div>{textValue.text}</div>
           </div>
         )
       }
