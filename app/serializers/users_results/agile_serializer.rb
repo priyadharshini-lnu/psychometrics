@@ -20,7 +20,7 @@ module UsersResults
 
     def locale
       {
-        selected: object.selected_locale || I18n.default_locale,
+        selected: object.selected_locale,
         defaultLocale: I18n.default_locale,
         available: translations.keys,
         translations: translations

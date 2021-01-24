@@ -1746,10 +1746,10 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
-"@thetalententerprise/interactive-assessments@1.2.0-alpha.4":
-  version "1.2.0-alpha.4"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.2.0-alpha.4/ee3ac3805596a2eb393fd418d8a98b1a7e85253b4a99bb5f02b388999e91478d#a37a564ef8de35b84af418d2e0abe6e99253d188"
-  integrity sha512-/rqQv4lEdIy1I7C4xgpx2mODdP0ESzxavr1oA7ZxJ6+ftrNE1TDUoD0etXb0f2u6NHGu2EKFcPN+5Qy/IJB6XA==
+"@thetalententerprise/interactive-assessments@1.2.1":
+  version "1.2.1"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/interactive-assessments/1.2.1/32b5cbf4d4cd2e20a6299d83ab0282829a68b72b38c1bb9bcc2238ae9db10568#0ea0c981dfbaaa647fa25cc1482d1b7486a0587a"
+  integrity sha512-0jbJ5ZiCDUdjxJzsRBGqtvgvh7RsaUAsKyWXI5VgAOY/uiClowzKqwJhP+N7xBKIKb5tZMJzSQgDdUGGd7Vrqw==
 
 "@types/actioncable@^5.2.3":
   version "5.2.3"
