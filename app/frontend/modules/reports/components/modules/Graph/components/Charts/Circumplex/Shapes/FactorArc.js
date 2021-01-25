@@ -41,10 +41,12 @@ class FactorArc {
           const startLoc = /M(.*?)A/
           const middleLoc = /A(.*?)0 0 1/
           const endLoc = /0 0 1 (.*?)$/
-          const newStart = endLoc.exec(newArc)[1]
-          const newEnd = startLoc.exec(newArc)[1]
-          const middleSec = middleLoc.exec(newArc)[1]
-          newArc = `M${newStart}A${middleSec}0 0 0 ${newEnd}`
+          const newStart = _.get(endLoc.exec(newArc), 1)
+          const newEnd = _.get(startLoc.exec(newArc), 1)
+          const middleSec = _.get(middleLoc.exec(newArc), 1)
+          if (newStart && newEnd && middleSec) {
+            newArc = `M${newStart}A${middleSec}0 0 0 ${newEnd}`
+          }
         }
         this.svgContainer
           .append('path')

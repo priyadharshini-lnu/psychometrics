@@ -72,6 +72,10 @@ export default {
     factorsWidth: 30,
     innerCircleRadius: 60,
     innerCircleText: 'The Light House',
+    source: {
+      type: 'Factor',
+      factors: [],
+    },
   },
   Consultant: {
     numberOfDecimals: 0,
