@@ -22,6 +22,7 @@ const { Option } = Select
 
 export default function Emails ({
   availableLocales,
+  emailTemplates,
   emailTemplates: { list, listWithLocales },
   fetch,
   update,
@@ -117,7 +118,7 @@ export default function Emails ({
                 <Option value={null}>
                   {I18n.t('empty')}
                 </Option>
-                {availableLocales.map(locale => (
+                {emailTemplates.availableLocales.map(locale => (
                   <Option key={locale} value={locale}>
                     {I18n.t(`languages.${locale}`)}
                   </Option>

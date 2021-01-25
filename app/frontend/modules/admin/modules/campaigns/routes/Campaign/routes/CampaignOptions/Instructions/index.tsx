@@ -97,7 +97,7 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
               <Select.Option value="">
                 {I18n.t('empty')}
               </Select.Option>
-              {availableLocales.map(locale => (
+              {(options.availableLocales || []).map(locale => (
                 <Select.Option key={locale} value={locale}>
                   {I18n.t(`languages.${locale}`)}
                 </Select.Option>
