@@ -26,7 +26,8 @@ class AssignSerializer < ActiveModel::Serializer
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :available_translations, :selected_locale, :translations,
              :type, :occupations, :innovation_styles, :expiry_date, :meta_data,
-             :current_element, :current_page, :seedrandom, :reset_count, :highlights
+             :current_element, :current_page, :seedrandom, :reset_count, :highlights,
+             :subject_datasheet
 
   has_one :user, serializer: UserSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
@@ -124,6 +125,7 @@ class AssignSerializer < ActiveModel::Serializer
       end
     row&.data || {}
   end
+  alias subject_datasheet data_sheet
 
   def normalize_hogan_type(type)
     # TODO: (shuja): Add subscale

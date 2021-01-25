@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class ReportsController < Administration::Projects::BaseController
-      before_action :set_resource, only: %i[destroy toggle_user_access]
+      before_action :set_resource, only: %i[destroy toggle_user_access toggle_assessor_access]
 
       def create
         form = ::Campaigns::Reports::Form.from_params(resource_params)
@@ -27,6 +27,12 @@ module Administration
       def toggle_user_access
         ::CampaignReports::ToggleUserAccess.call!(resource, params[:toggle_user_access])
         render json: resource, serializer: Administration::CampaignReportSerializer
+      end
+
+      def toggle_assessor_access
+        resource.toggle!(:assessor_access)
+
+        head :ok
       end
 
       def export
@@ -64,15 +70,13 @@ module Administration
       end
 
       def regenerate
-        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
-        ::CampaignReports::GenerateAndSavePdfJob.perform_later(campaign_reports, current_user)
+        AdminJob.call(:bulk_regenerate_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
 
         head :ok
       end
 
       def bulk_download
-        campaign_reports = campaign.campaign_reports.where(id: params[:ids]).to_a
-        ::CampaignReports::BulkDownloadJob.perform_later(campaign_reports, current_user)
+        AdminJob.call(:bulk_download_reports, { ids: params[:ids], campaign_id: campaign.id }, current_user)
 
         head :ok
       end

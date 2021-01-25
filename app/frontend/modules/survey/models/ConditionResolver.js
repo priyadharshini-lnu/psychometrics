@@ -1,11 +1,16 @@
 import _ from 'lodash'
 import { EventEmitter } from 'fbemitter'
 import Validations from 'models/Validations'
+import FlowDatasheetResolver from 'models/logic/resolvers/FlowDatasheetResolver'
 
-const ConditionResolver = function (conditions, { questions, results }) {
+const ConditionResolver = function (conditions, {
+  questions, results, dataSheet, subjectDataSheet,
+}) {
   this.conditions = conditions
   this.questions = questions
   this.results = results
+  this.dataSheet = dataSheet
+  this.subjectDataSheet = subjectDataSheet
 }
 
 ConditionResolver.prototype = new EventEmitter()
@@ -75,6 +80,14 @@ _.extend(ConditionResolver.prototype, {
 
     if (condition.conditionType === 'GeoIP') {
       return {}
+    }
+
+    if (condition.conditionType === 'DataSheet') {
+      return FlowDatasheetResolver.run(condition, this.dataSheet)
+    }
+
+    if (condition.conditionType === 'SubjectDataSheet') {
+      return FlowDatasheetResolver.run(condition, this.subjectDataSheet)
     }
   },
 

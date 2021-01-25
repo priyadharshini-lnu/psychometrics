@@ -30,6 +30,8 @@ _.extend(MatrixTable.prototype, {
   Likert (scale, choice, value) {
     if (this.result.question.props.answersType === 'MultipleAnswer') {
       this.multipleAnswer(scale, choice, value)
+    } else if (this.result.question.props.answersType === 'Dropdown') {
+      this.dropDown(scale, choice)
     } else {
       this.singleAnswer(scale, choice)
     }
@@ -71,6 +73,11 @@ _.extend(MatrixTable.prototype, {
   },
 
   singleAnswer (scale, choice) {
+    _.remove(this.result.answers, { choice })
+    this.result.answers.push({ scale, choice, value: true })
+  },
+
+  dropDown (scale, choice) {
     _.remove(this.result.answers, { choice })
     this.result.answers.push({ scale, choice, value: true })
   },

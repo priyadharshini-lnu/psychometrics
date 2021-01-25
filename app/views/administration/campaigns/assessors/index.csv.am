@@ -1,0 +1,21 @@
+
+csv << [
+  'subject_email',
+  'assessor_email',
+  'assessor_first_name',
+  'assessor_last_name',
+  'assessor_password',
+  'assessment_ids',
+]
+user_assessment_by_subject_and_evaluator.each do |_key, list|
+  ua = list.first
+  row = [
+          ua.subject.email,
+          ua.evaluator.email,
+          ua.evaluator.first_name,
+          ua.evaluator.last_name,
+          nil,
+          list.map(&:assessment_id).join(', '),
+         ]
+  csv << row
+end

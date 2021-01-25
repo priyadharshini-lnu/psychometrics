@@ -18,6 +18,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end
 
+    def toggle_assessor_access?
+      toggle_user_access?
+    end
+
     def regenerate?
       @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
     end

@@ -46,8 +46,9 @@ class UsersResult < ApplicationRecord
 
     campaign_user = user_assessment.campaign.campaign_users.find_by(user_id: user_id)
     return false unless campaign_user.started_at
+    return false unless campaign_user.expiry_date
 
-    campaign_user.started_at + options.fixed_time_duration.minutes < Time.current
+    campaign_user.expiry_date < Time.current
   end
 
   def user
@@ -102,6 +103,10 @@ class UsersResult < ApplicationRecord
   end
 
   def norm_data
-    { 'id' => norm_id, 'type' => norm_type }
+    { 'id' => norm_id }
+  end
+
+  def self.statuses_count
+    UsersResult.statuses.keys.each_with_object({}) { |status, acc| acc[status.to_sym] = 0 }
   end
 end

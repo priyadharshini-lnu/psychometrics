@@ -13,7 +13,7 @@ module Administration
       def index
         @filter_term = params.dig(:q, :subject_cont)
         @_filter_form = license.license_usages.includes(:campaign,
-                                                        :status_updated_by).order(created_at: :desc).search(params[:q])
+                                                        :status_updated_by).order(created_at: :desc).ransack(params[:q])
         filter_form.status_eq ||= 0
         @_resources = @_filter_form.result.page(params[:page])
 

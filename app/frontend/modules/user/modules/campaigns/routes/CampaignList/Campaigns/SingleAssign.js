@@ -8,6 +8,8 @@ import {
   DownloadOutlined, CheckOutlined, LoadingOutlined, PlayCircleOutlined, ClockCircleOutlined,
 } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import truncate from 'lodash/truncate'
+
 import routeUtils from 'utils/route'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import './styles.scss'
@@ -162,8 +164,8 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy, history 
       >
         <div className="card-body">
           <div className="card-content">
-            <div className="card-title">
-              {assign.assessmentName}
+            <div className="card-title" title={assign.assessmentName}>
+              {truncate(assign.assessmentName, { length: 55 })}
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">

@@ -1,0 +1,81 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+describe Assessments::Export::AgileRaw do
+  let(:current_user) { create(:superadmin) }
+  let(:campaign) { create(:campaign) }
+  let!(:assessment) { create(:assessment, :agile) }
+  let(:user) { create(:user) }
+  let(:users_result) do
+    create(
+      :users_result,
+      subject: user,
+      campaign: campaign,
+      assessment: assessment,
+      answers: YAML.load_file("#{Rails.root}/spec/fixtures/agile_answers.yml")
+    )
+  end
+
+  let!(:user_assessment) { create(:user_assessment, subject: user, campaign: campaign, users_result: users_result) }
+  let(:file_name) { 'assessment_export.xlsx' }
+
+  after do
+    FileUtils.rm(file_name) if File.exist?(file_name)
+  end
+
+  context 'Agile raw export' do
+    it 'first row in xlsx contains result_details_header along with question ids' do
+      assessment.agile.update(config: YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml"))
+
+      xlsx = described_class.call!(assessment, campaign)
+      xlsx.serialize(file_name)
+
+      xlsx = Roo::Spreadsheet.open(file_name)
+      actual_first_row = xlsx.sheet(0).row(1)
+
+      expected_first_row = [
+        'ID',
+        'Project',
+        'First Name',
+        'Last Name',
+        'Email',
+        'Assessment ID',
+        'completed_at',
+        'Assessment Name',
+        nil,
+        'cmp-1.answers',
+        'cmp-1.duration'
+      ]
+
+      expect(actual_first_row).to eq(expected_first_row)
+    end
+
+    it 'second row in xlsx  contains actual data' do
+      config = YAML.load_file("#{Rails.root}/spec/fixtures/agile_group.yml")
+      agile = assessment.agile
+      agile.update(config: config)
+
+      xlsx = described_class.call!(assessment, campaign)
+      xlsx.serialize(file_name)
+
+      xlsx = Roo::Spreadsheet.open(file_name)
+      actual_second_row = xlsx.sheet(0).row(2)
+      expected_second_row = [
+        users_result.encoded_id,
+        users_result.campaign.try(:name),
+        users_result.user.first_name,
+        users_result.user.last_name,
+        users_result.user.email,
+        users_result.assessment_id,
+        users_result.completed_at.try(:strftime, '%D %r'),
+        users_result.assessment.name,
+        nil,
+        'equal',
+        1.502
+      ]
+
+      expect(actual_second_row).to eq(expected_second_row.flatten)
+    end
+  end
+end

@@ -281,6 +281,9 @@ ar:
     update: تحديث
     upload: تحميل
     'yes': نعم
+  navigation:
+    logout: تسجيل خروج
+    profile: الملف الشخصى
   reports:
     actions:
       add: إضافة تقرير

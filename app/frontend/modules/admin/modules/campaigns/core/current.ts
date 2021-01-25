@@ -1,5 +1,6 @@
 import { createReducer } from 'utils/redux'
 import Campaign from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 
 export const FETCH = 'campaigns/current/FETCH'
 export const UPDATE = 'campaigns/current/UPDATE'
@@ -32,9 +33,7 @@ export const fetchAssessmentAndReports = (campaignId: string) => ({
   },
 })
 
-export interface FetchAction {
-  response: Campaign
-}
+type FetchAction = ApiActionResponse<Campaign>
 
 const HANDLERS = {
   [FETCH]: (state: Campaign, { response }: FetchAction) => ({ ...state, ...response }),

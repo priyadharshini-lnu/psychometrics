@@ -1,4 +1,5 @@
 @import 'modules/user/styles/variables';
+@import 'styles/variables';
 
 $colors: #246479 #9DD8D7 #00B1A8;
 $text-colors: #FFFFFF #246479 #FFFFFF;
@@ -355,7 +356,6 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
         position: relative;
         left: 0;
       }
-      margin-right: 5px;
     }
 
     @for $i from 1 through 3 {

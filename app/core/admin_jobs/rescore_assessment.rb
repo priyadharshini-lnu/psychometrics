@@ -4,8 +4,7 @@ module AdminJobs
   class RescoreAssessment < AdminJobs::Base
     def call
       norm_data = {
-        norm_id: campaign_assessment.norm_id,
-        norm_type: campaign_assessment.norm_type
+        norm_id: campaign_assessment.norm_id
       }
 
       results.find_each do |res|
@@ -14,10 +13,35 @@ module AdminJobs
       broadcast :ok
     end
 
+    def generate_title_link
+      {
+        href: "/administration/projects/#{campaign.project_id}/new_campaigns/#{campaign.id}/assessments_reports/manage",
+        label: "#{campaign.name} - #{assessment.name}"
+      }
+    end
+
+    def generate_details
+      [
+        [I18n.t('administration.assessments.assessment'), assessment.name]
+      ]
+    end
+
+    def valid?
+      campaign.present? && assessment.present?
+    end
+
     private
 
     def campaign_assessment
-      @campaign_assessment ||= CampaignAssessment.find(record.data['campaign_assessment_id'])
+      @campaign_assessment ||= CampaignAssessment.find_by(id: record.data['campaign_assessment_id'])
+    end
+
+    def campaign
+      campaign_assessment&.campaign
+    end
+
+    def assessment
+      campaign_assessment&.assessment
     end
 
     def results

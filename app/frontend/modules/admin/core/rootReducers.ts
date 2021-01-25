@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux'
 import currentUser from 'core/currentUser'
+import config from 'core/config'
 import { connectRouter } from 'connected-react-router'
 import tables from 'modules/admin/core/filterAndPagination/reducers'
+import preview from 'modules/survey/core/preview'
+import connection from 'core/connection'
 import campaignReducers from '../modules/campaigns/core'
 import subjects from '../modules/threeSixtyCampaign/core/subjects'
 import evaluators from '../modules/threeSixtyCampaign/core/evaluators'
@@ -24,6 +27,8 @@ import instructionTemplates from '../modules/threeSixtyCampaign/core/instruction
 import campaignDetails from '../modules/threeSixtyCampaign/core/campaignDetails'
 import mailHistories from '../modules/threeSixtyCampaign/core/mailHistories'
 import users from '../modules/threeSixtyCampaign/core/users'
+import assessorsReducers from '../modules/AssessorApp/core'
+import datasheetReducers from '../modules/DatasheetManagement/core'
 
 const createRootReducer = history => combineReducers({
   router: connectRouter(history),
@@ -54,9 +59,14 @@ const createRootReducer = history => combineReducers({
     breadcrumbs,
   }),
   currentUser,
+  config,
   request,
   tables,
   campaigns: campaignReducers,
+  assessors: assessorsReducers,
+  datasheet: datasheetReducers,
+  preview,
+  connection,
 })
 
 export type RootState = ReturnType<ReturnType<typeof createRootReducer>>

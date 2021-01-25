@@ -59,6 +59,7 @@ _.extend(Question.prototype, {
         ids = ids.slice(0, props.randomization.questions)
       }
     }
+
     this.choicesIds = ids
     return ids
   },

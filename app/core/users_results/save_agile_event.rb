@@ -46,11 +46,10 @@ module UsersResults
 
     def norm_attributes
       norm_id = user_result&.agile&.config&.dig('normId')
-      norm_type = 'percentile'
 
-      return { norm_data: { id: norm_id, type: norm_type } } if user_result.is_a?(Assign)
+      return { norm_data: { id: norm_id } } if user_result.is_a?(Assign)
 
-      { norm_id: norm_id, norm_type: norm_type }
+      { norm_id: norm_id }
     end
   end
 end

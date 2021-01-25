@@ -54,7 +54,6 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Other do
 
     it do
       response = described_class.call!(%w[Other -1d], {})
-      expect { response.call }.to raise_error
       expect(response).to eq('')
     end
   end

@@ -29,7 +29,7 @@ class Properties extends Component {
     const assessment = _.find(AppStore.assessments, { id: assessmentId })
     const dimensionId = assessment && assessment.dimensionId
 
-    if (['CPITopFactors', 'StrengthClusters'].includes(type)) {
+    if (['FactorsTable', 'StrengthClusters'].includes(type)) {
       model.props.source = { factors: _.map(AppStore.subfactors[dimensionId], this.factor) }
     }
     this.update()
@@ -109,8 +109,8 @@ class Properties extends Component {
             <div className={styles.item} type="FactorQuestionsScore" onClick={this.changeType}>
               Factor - Questions Mean Score
             </div>
-            <div className={styles.item} type="CPITopFactors" onClick={this.changeType}>
-              Career - Top Factors
+            <div className={styles.item} type="FactorsTable" onClick={this.changeType}>
+              Factors
             </div>
             <div className={styles.item} type="CPIOccupations" onClick={this.changeType}>
               Career - Occupations

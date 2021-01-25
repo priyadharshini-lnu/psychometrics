@@ -6,7 +6,7 @@ describe Campaigns::Users::ImportForm do
   let(:campaign) { create(:campaign) }
   let(:attrs) do
     { import_data: [
-      ['Active', 'First Name', 'Last Name', 'Email Address', 'Password', 'Created Date'],
+      UserDecorator.export_headers,
       {
         active: true,
         first_name: 'Vlad',
@@ -19,7 +19,7 @@ describe Campaigns::Users::ImportForm do
   end
   let(:invalid_user_attrs) do
     { import_data: [
-      ['Active', 'First Name', 'Last Name', 'Email Address', 'Password', 'Created Date'],
+      UserDecorator.export_headers,
       {
         active: true,
         first_name: 'Vlad',
@@ -55,7 +55,6 @@ describe Campaigns::Users::ImportForm do
 
   it 'passes all validations' do
     form = described_class.new(attrs).with_context(campaign: campaign)
-
     expect(form.valid?).to eq(true)
   end
 end

@@ -1,0 +1,141 @@
+
+import React, { useEffect } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { get as getUsers, fetch } from 'modules/admin/modules/AssessorApp/core/users'
+import {
+  Table, Row, Col, Input, Pagination,
+} from 'antd'
+import settings from 'modules/admin/settings'
+import { AppstoreOutlined } from '@ant-design/icons'
+import { Link, useParams } from 'react-router-dom'
+import { RootState } from 'modules/admin/core/rootReducers'
+import withEnhancedTable from 'modules/admin/hoc/withEnhancedTable'
+import { TableProps } from 'modules/admin/hoc/withEnhancedTable/interfaces'
+import Breadcrumb from 'modules/admin/modules/campaigns/components/Breadcrumb'
+import styles from './styles.scss'
+
+const connecter = connect(
+  (state: RootState) => ({
+    users: getUsers(state),
+  }),
+  {
+    fetch,
+  },
+)
+
+export type PropsFromRedux = ConnectedProps<typeof connecter>
+
+type Props = TableProps & PropsFromRedux
+
+const { Column } = Table
+const { Search } = Input
+const { I18n } = window
+
+const UserList: React.FC<Props> = (
+  {
+    users: { list, total },
+    fetch,
+    tableConfig: {
+      filters,
+      page,
+    },
+    tableConfig,
+    changeFilter,
+    onTableChange,
+    getSortOrder,
+    changePage,
+  },
+) => {
+  const { campaignId } = useParams<{campaignId?: string}>()
+  let parsedCampaignId: null | number = null
+  if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
+  if (!parsedCampaignId) { return null }
+
+  useEffect(() => {
+    if (parsedCampaignId) { fetch(parsedCampaignId, tableConfig) }
+  }, [tableConfig])
+
+  return (
+    <>
+      <Breadcrumb
+        request={{
+          fields: ['project', 'campaign', 'client'],
+          data: { campaignId: parsedCampaignId },
+        }}
+        crumbs={[{
+          link: () => '/assessors',
+          label: () => I18n.t('common.model.campaigns'),
+        }, {
+          label: state => state.campaign.name,
+        },
+        ]}
+      />
+      <Row justify="space-between" className="pm">
+        <Col span={4} className="pls">
+          <AppstoreOutlined style={{ fontSize: '16px' }} />
+          <span className="mlm">{`${total} Users`}</span>
+        </Col>
+        <div className="float-r">
+          <Search
+            placeholder="Search"
+            className={styles.searchInput}
+            value={filters.filterableFields}
+            onChange={e => changeFilter('filterableFields', e.target.value)}
+          />
+        </div>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table className="mtm" rowKey="id" dataSource={list} onChange={onTableChange} pagination={false}>
+            <Column
+              title={I18n.t('administration.campaigns.users.id')}
+              key="id"
+              sorter
+              sortOrder={getSortOrder('id')}
+              render={({ id }) => (
+                <Link to={`/assessors/campaigns/${campaignId}/users/${id}`}>
+                  {id}
+                </Link>
+              )}
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.name')}
+              key="fullName"
+              dataIndex="fullName"
+              sorter
+              sortOrder={getSortOrder('fullName')}
+            />
+            <Column
+              title={I18n.t('administration.campaigns.users.email')}
+              key="email"
+              sorter
+              sortOrder={getSortOrder('email')}
+              dataIndex="email"
+            />
+            <Column
+              title={I18n.t('common.column.completion_status')}
+              key="status"
+              render={({ completionStatus }) => I18n.t(`administration.assessor_subjects.statuses.${completionStatus}`)}
+            />
+            <Column
+              title={I18n.t('common.column.completion_count')}
+              key="evaluationsCompleted"
+              render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
+            />
+          </Table>
+        </Col>
+      </Row>
+      <div className="pl">
+        <Pagination
+          current={page}
+          pageSize={settings.pagination.defaultPageSize}
+          total={total}
+          onChange={changePage}
+          hideOnSinglePage
+        />
+      </div>
+    </>
+  )
+}
+
+export default withEnhancedTable(connecter(UserList), 'assessorsUserList', { maintainHistory: true })

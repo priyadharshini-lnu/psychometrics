@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react'
+/* eslint-disable react/no-danger */
+import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
 import TimeZoneSelect from 'components/TimeZoneSelect'
 import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
 import DurationSelect from 'components/DurationSelect'
-import Editor from 'components/Editor'
-import NotificationDispatcher from 'libs/library/dispatchers/NotificationDispatcher'
 import {
-  Row, Col, Button, Radio,
+  Row, Col, Radio,
 } from 'antd'
-import { SaveOutlined } from '@ant-design/icons'
 import { snakeCase } from 'lodash'
 import styles from './styles.scss'
 import { PropsFromRedux } from './connect'
+import Instructions from './Instructions'
 
 const { I18n } = window
 
@@ -27,13 +26,11 @@ interface Params {
 }
 
 const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = ({
-  options, fetch, update, match: { params: { projectId, campaignId } },
+  options,
+  fetch, update, match: { params: { projectId, campaignId } },
 }) => {
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
-
-  const [instructions, setInstructions] = useState(options.instructions)
-  const [savingInProgress, setSavingInProgress] = useState(false)
 
   const identifications = I18n.t('administration.campaigns.options.proctoring.identifications')
 
@@ -41,9 +38,12 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
     fetch(parsedProjectId, parsedCampaignId)
   }, [])
 
+
   const parametersForField = name => ({
     value: (options || {})[name],
-    onChange: (value: string | number) => update(parsedProjectId, parsedCampaignId, { ...options, [name]: value }),
+    onChange: (value: string | number) => update(
+      parsedProjectId, parsedCampaignId, { ...options, [name]: value },
+    ),
   })
 
   const parametersForRules = name => ({
@@ -56,14 +56,6 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   const saveIdentificationType = (e) => {
     const { value } = e.target
     update(parsedProjectId, parsedCampaignId, { ...options, identification: value })
-  }
-
-  const saveInstructions = () => {
-    setSavingInProgress(true)
-    update(parsedProjectId, parsedCampaignId, { ...options, instructions }).then(() => {
-      setSavingInProgress(false)
-      NotificationDispatcher.notify({ message: I18n.t('administration.campaigns.options.instructions.actions.saved') })
-    })
   }
 
   return (
@@ -158,33 +150,7 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
           {...parametersForField('instructionsEnabled')}
         />
 
-        {options.instructionsEnabled && (
-          <Row>
-            <Col span={24}>
-              <Row>
-                <Col span={16} offset={2}>
-                  <Editor
-                    type={null}
-                    details={null}
-                    className={null}
-                    content={instructions || options.instructions}
-                    handleContentChange={(value) => { setInstructions(value) }}
-                  />
-                  <Button
-                    type="primary"
-                    size="large"
-                    className="mtm"
-                    onClick={saveInstructions}
-                    loading={savingInProgress}
-                  >
-                    <SaveOutlined />
-                    {I18n.t('administration.campaigns.options.instructions.save')}
-                  </Button>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        )}
+        {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
       </Section>
     </div>
   )

@@ -18,9 +18,12 @@ module Communications
     private
 
     def perform_migrated(user_result, communications)
+      campaign_id = user_result.user_assessment&.campaign_id
+      return unless campaign_id
+
       communications = communications.select { |c| c.project&.migrated? }
       campaign_user = CampaignUser.find_by(
-        campaign_id: user_result.user_assessment.campaign_id,
+        campaign_id: campaign_id,
         user_id: user_result.user_id
       )
       communications.each do |communication|

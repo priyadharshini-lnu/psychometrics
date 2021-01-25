@@ -17,7 +17,7 @@ module Administration
                         :sub_campaign,
                         :creator
                       ).
-                      search(params[:q])
+                      ransack(params[:q])
 
       @_resources = filter_form.result.page(params[:page])
 

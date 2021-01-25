@@ -79,6 +79,10 @@ module Administration
       assessments?
     end
 
+    def update_assessor_form?
+      update_norm?
+    end
+
     def can_configure_universal_links?
       !@record.external? && @user.is?(:superadmin)
     end
@@ -112,6 +116,18 @@ module Administration
 
     def factors?
       index?
+    end
+
+    def upload_data_sheet?
+      create?
+    end
+
+    def soft_delete?
+      destroy?
+    end
+
+    def restore?
+      destroy?
     end
 
     class Scope < Administration::BasePolicy::Scope

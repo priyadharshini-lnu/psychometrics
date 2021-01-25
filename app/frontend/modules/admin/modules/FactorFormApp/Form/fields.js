@@ -4,26 +4,11 @@ import { QuestionCircleOutlined } from '@ant-design/icons'
 
 const ScoringStrategyLabel = () => (
   <span>
-    Scoring Strategy&nbsp;
+    <span className="mr4">{I18n.t('administration.factors.form.scoring_strategy')}</span>
     <Tooltip
       title={(
-        <div>
-          <strong>Questions:</strong>
-          {' '}
-          This is like current scoring method when there are questions linked to a factor.
-          <br />
-          <br />
-          <strong>Questions of Other Factors:</strong>
-          {' '}
-          This is like current scoring method when there are sub-factors
-          for a factor, only change is the addition of weight.
-          <br />
-          <br />
-          <strong>Weighted Sum of Factors:</strong>
-          {' '}
-          Here the scores of the selected other factors are multiplied by
-          their weights are added.
-        </div>
+        // eslint-disable-next-line react/no-danger
+        <div dangerouslySetInnerHTML={{ __html: I18n.t('administration.factors.form.scoring_strategies_tip') }} />
       )}
     >
       <QuestionCircleOutlined />

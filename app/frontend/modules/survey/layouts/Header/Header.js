@@ -12,6 +12,11 @@ import moment from 'moment'
 import styles from './Header.scss'
 
 export class Header extends Component {
+  openDataSheetModal = () => {
+    const { openDataSheetModal, assessment } = this.props
+    openDataSheetModal({ columns: assessment.data_sheet_columns, id: assessment.id })
+  }
+
   openFlow = () => {
     const { openFlow } = this.props
     openFlow()
@@ -203,6 +208,7 @@ export class Header extends Component {
               ) : (
                 <MenuItem onSelect={this.addTimer}>Add Timer</MenuItem>
               )}
+              <MenuItem onSelect={this.openDataSheetModal}>Manage Datasheet</MenuItem>
             </DropdownButton>
             <form
               style={{ display: 'none' }}

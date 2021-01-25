@@ -1,38 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { setIn, getIn } from 'utils/immutable'
+import LogicElement from 'components/LogicElement'
 import styles from './RuleElement.scss'
-import Types from './types'
-import ConditionList from './ConditionList'
-
-const DISABLED_QUESTION_TYPES = {
-  TextEntry: {
-    Email: true,
-    Chat: true,
-  },
-  FileUpload: true,
-  VideoResponse: true,
-  AudioResponse: true,
-}
 
 class RuleElement extends Component {
   static propTypes = {
     model: PropTypes.object,
-  }
-
-  constructor (props) {
-    super(props)
-    let normUiType = ''
-    if (props.model.norm_id) {
-      normUiType = 'Norm'
-    }
-    if (props.model.norm_type) {
-      normUiType = 'Norm Type'
-    }
-    this.state = {
-      normUiType,
-    }
   }
 
   changeType = (e) => {
@@ -47,53 +21,10 @@ class RuleElement extends Component {
     this.forceUpdate()
   }
 
-  changeNormType = (e) => {
-    const { model } = this.props
-    model.norm_type = e.currentTarget.value
-    this.forceUpdate()
-  }
-
-  changeNormUiType = (e) => {
-    const { model } = this.props
-    model.norm_type = null
-    model.norm_id = null
-    this.setState({
-      normUiType: e.currentTarget.value,
-    })
-  }
-
   remove = () => {
-    const { removeNormRule, model } = this.props
-    removeNormRule(model)
+    const { removeNormRule, index } = this.props
+    removeNormRule(index)
     this.forceUpdate()
-  }
-
-  getQuestions = () => {
-    const { questions } = this.props
-    return _.reduce(
-      questions,
-      (res, question) => {
-        if (
-          getIn(DISABLED_QUESTION_TYPES, [question.type]) === true
-          || getIn(DISABLED_QUESTION_TYPES, [
-            question.type,
-            question.props.type,
-          ]) === true
-        ) {
-          return res
-        }
-        return setIn(res, [question.id], question)
-      },
-      {},
-    )
-  }
-
-  renderType () {
-    const { model } = this.props
-    const View = Types[model.type]
-    if (View) {
-      return <View model={model} />
-    }
   }
 
   renderTypeOptions () {
@@ -106,7 +37,6 @@ class RuleElement extends Component {
   }
 
   renderNormOptions () {
-    const { normUiType } = this.state
     const { model, norms } = this.props
     if (!norms.length) {
       return (
@@ -117,21 +47,11 @@ class RuleElement extends Component {
     }
     return (
       <div>
-        <span className={styles.title}>Set Norm or Norm Type:</span>
-        <select className={`${styles.select}`} onChange={this.changeNormUiType} value={normUiType || ''}>
-          <option>Choice...</option>
-          {_.map(['Norm', 'Norm Type'], type => (<option key={type} value={type}>{type}</option>))}
-        </select>
-        {normUiType === 'Norm' && (
+        <span className={styles.title}>Set Norm</span>
+        {(
           <select className={styles.select} value={model.norm_id || ''} onChange={this.changeNorm}>
             {!model.norm_id && <option value="">Choose Norm</option>}
             {_.map(norms, norm => (<option key={norm.id} value={norm.id || ''}>{norm.name}</option>))}
-          </select>
-        )}
-        {normUiType === 'Norm Type' && (
-          <select className={styles.select} value={model.norm_type || ''} onChange={this.changeNormType}>
-            {!model.norm_type && <option value="">Choose Norm Type</option>}
-            {_.map(['YTI', 'ETI'], type => (<option key={type} value={type}>{type}</option>))}
           </select>
         )}
       </div>
@@ -141,11 +61,14 @@ class RuleElement extends Component {
   renderConditions () {
     const { model } = this.props
 
+    if (!model.conditions) return null
+
     return (
-      <ConditionList
-        questions={this.getQuestions()}
-        model={model}
-        onRemove={this.update}
+      <LogicElement
+        types={[
+          'Question',
+        ]}
+        logic={model.conditions}
       />
     )
   }

@@ -53,7 +53,7 @@ export default class QuestionResolver extends BaseResolver {
       case 'HotSpot':
         return true
       default:
-        return !!_.find(this.result.question.choicesIds, this.answer)
+        return this.question.choicesIds.includes(parseInt(this.answer, 10))
     }
   }
 
@@ -62,7 +62,7 @@ export default class QuestionResolver extends BaseResolver {
       case 'HotSpot':
         return true
       default:
-        return !_.find(this.result.question.choicesIds, this.answer)
+        return !this.question.choicesIds.includes(parseInt(this.answer, 10))
     }
   }
 

@@ -3,14 +3,12 @@ import ModuleInterface from '../../interfaces/Module'
 export const UPDATE_MODULE = 'report/module/UPDATE_MODULE'
 export const REMOVE_MODULE = 'report/page/REMOVE_MODULE'
 
-interface UpdateModule { type: typeof UPDATE_MODULE, module: ModuleInterface }
-interface RemoveModule {
-  type: typeof REMOVE_MODULE
-  id: number
-}
-
-export const removeModule = (id: number): RemoveModule => ({
+export const removeModule = (id: number) => ({
   type: REMOVE_MODULE, id,
 })
 
-export const updateModule = (module: ModuleInterface): UpdateModule => ({ type: UPDATE_MODULE, module })
+export const updateModule = (module: ModuleInterface) => ({ type: UPDATE_MODULE, module })
+
+
+export type UpdateModuleType = ReturnType<typeof updateModule>
+export type RemoveModuleType = ReturnType<typeof removeModule>

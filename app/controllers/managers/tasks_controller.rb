@@ -17,7 +17,7 @@ module Managers
                        membership_id: @managers.pluck(:id),
                        owner_id: @current_membership.id
                      ).
-                     references(:membership).search(params[:q])
+                     references(:membership).ransack(params[:q])
       @resources   = @filter_form.result
       @tasks = Task.roots.joins(:membership).
                where(

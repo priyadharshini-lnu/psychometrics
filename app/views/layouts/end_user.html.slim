@@ -11,7 +11,6 @@ html
       }
 
     = csrf_meta_tags
-    = jquery_include_tag :google
     = render 'shared/locales'
     = render 'layouts/pys_global_state'
     = render 'layouts/custom_styles'
@@ -21,7 +20,6 @@ html
     = stylesheet_link_tag 'threesixty_dependencies', media: 'all'
     = stylesheet_pack_tag 'vendors2'
     = stylesheet_pack_tag 'vendors'
-    = javascript_pack_tag 'shim'
     = stylesheet_pack_tag 'survey'
     = javascript_pack_tag 'survey'
     = stylesheet_pack_tag 'reports'

@@ -20,7 +20,7 @@ module Campaigns
         end
         broadcast :ok, user
       rescue Licenses::NotEnoughError => e
-        broadcast :error, { base: e.message }
+        broadcast :error, e.message
       end
 
       private

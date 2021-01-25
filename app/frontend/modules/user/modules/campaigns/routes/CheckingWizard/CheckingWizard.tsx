@@ -73,7 +73,7 @@ const CheckingWizard: React.FC<Props> = ({
 
   useEffect(() => {
     const query = qs.parse(location.search.substr(1))
-    fetch(parsedAssessmentId, parsedId, query.type)
+    fetch(parsedAssessmentId, parsedId, query.type?.toString())
   }, [])
 
   const [current, setCurrent] = useState(0)

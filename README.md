@@ -116,5 +116,18 @@ Following the above steps, your local development environment should be accessib
 
 # Run tests
 
-1. `$> bundle exec rspec`
-.
+```sh
+bundle exec rspec
+```
+
+# Other Development Tasks
+
+## Localisation
+Add the strings to one of the locale files
+- `config/locales/en/others.yml` For all non-admin and shared keys
+- `config/locales/en/administration.yml` For all `administration.*` keys
+
+Run the following rake task to normalize the keys
+```sh
+bundle exec i18n-tasks normalize -p
+```

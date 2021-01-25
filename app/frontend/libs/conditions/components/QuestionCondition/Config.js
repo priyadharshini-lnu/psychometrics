@@ -1,4 +1,4 @@
-const AdditionalConditions = {
+export const AdditionalConditions = {
   SelectedCount: { value: 'SelectedCount', label: 'Selected Count', type: 'input' },
   TextField: { value: 'TextField', label: 'Text Field', type: 'input' },
   Dislike: { value: 'Dislike', label: 'Dislike', type: 'bool' },
@@ -11,6 +11,7 @@ const AdditionalConditions = {
   OnCount: { value: 'OnCount', label: 'On (Count)', type: 'input' },
   Off: { value: 'Off', label: 'Off', type: 'bool' },
   OffCount: { value: 'OffCount', label: 'Off (Count)', type: 'input' },
+  NotApplicable: { value: 'not_applicable', label: 'Not Applicable', type: 'bool' },
 }
 
 const Config = {

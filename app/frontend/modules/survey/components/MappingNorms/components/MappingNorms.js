@@ -17,14 +17,14 @@ export class MappingNorms extends Component {
 
   addRule = () => {
     const { addNormRule } = this.props
-    addNormRule(new Rule({ conditions: [{ conditionType: 'Hris' }] }))
+    addNormRule(new Rule())
   }
 
   renderRules () {
     const { norms } = this.props
 
     return _.map(norms, (rule, index) => (
-      <RuleElement key={index} model={rule} />
+      <RuleElement key={index} model={rule} index={index} />
     ))
   }
 

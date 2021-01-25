@@ -17,6 +17,7 @@ export default connect(
     trash: trashItems(state),
   }),
   {
+    openDataSheetModal: data => openModal('dataSheetModal', data),
     openFlow: data => openModal('flow', data),
     openMapNorms: data => openModal('mapNorms', data),
     openCreateByTemplate: data => openModal('createByTemplate', data),

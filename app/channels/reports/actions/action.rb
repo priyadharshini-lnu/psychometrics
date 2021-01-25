@@ -21,7 +21,7 @@ module Reports
               unless !!request.try(:[], 'data').try(:[], 'without_notification')
                 response[:notification] = {
                   level: 'success',
-                  message: I18n.t("administration.cable.notification.#{action_name}", data)
+                  message: I18n.t("administration.cable.notification.#{action_name}")
                 }
               end
 

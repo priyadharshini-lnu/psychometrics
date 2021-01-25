@@ -48,7 +48,7 @@ module Assessments
                              res.user.email,
                              res.created_at.try(:strftime, '%D %r'),
                              res.completed_at.try(:strftime, '%D %r'),
-                             res.norm ? "#{res.norm.name}:#{res.norm_type}" : '',
+                             res.norm ? res.norm.name : '',
                              I18n.t("activerecord.attributes.users_result.statuses.#{res.status}"),
                              *normed_results.values]
             end

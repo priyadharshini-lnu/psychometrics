@@ -16,6 +16,7 @@ import InnovationStyleConditionCollection from './InnovationStyleConditionCollec
 import ModulesTranslates from './ModulesTranslates'
 
 export const DATA_SHEET = 'DataSheet'
+const ALL_FACTORS = 'All Factors'
 
 const Module = function (attrs = {}, page) {
   this.store = page
@@ -38,7 +39,7 @@ const Module = function (attrs = {}, page) {
   this.setRelevantFactorsData()
   if (this.props.textConditions) {
     this.textConditions = _.map(this.props.textConditions, (cond) => {
-      if (_.includes(['CPITopFactors', 'StrengthClusters'], this.props.type)
+      if (_.includes(['FactorsTable', 'StrengthClusters'], this.props.type)
           || this.props.sourceType === 'ConditionalFactorOccupationText') {
         return new CPIConditionCollection(cond, this)
       } if (this.props.type === 'InnovationStyles') {
@@ -74,12 +75,12 @@ _.extend(Module.prototype, {
   },
 
   changeType (type, presetName) {
-    const preset = Presets[presetName]
+    const preset = Presets[presetName] || {}
     this.props.type = type
     this.props.presetName = presetName
     this.props.filter = null
     this.props.dataFormat = 'Count'
-    _.merge(this.props, preset)
+    this.props = { ...this.props, ...preset }
     this.update()
   },
 
@@ -180,10 +181,10 @@ _.extend(Module.prototype, {
     if (filter && filter.Factor && filter.Factor !== true) {
       return _.filter(factors, (factor) => {
         if (filter.Factor === 'factor') {
-          return AppStore.isMainfactor(factor.id)
+          return AppStore.isMainfactor(factor.id) || factor.id === ALL_FACTORS
         }
         if (filter.Factor === 'subfactor') {
-          return AppStore.isSubfactor(factor.id)
+          return AppStore.isSubfactor(factor.id) || factor.id === ALL_FACTORS
         }
       })
     }
@@ -191,7 +192,7 @@ _.extend(Module.prototype, {
   },
 
   addConditionCollection (attrs) {
-    if (_.includes(['CPITopFactors', 'StrengthClusters'], this.props.type)
+    if (_.includes(['FactorsTable', 'StrengthClusters'], this.props.type)
       || this.props.sourceType === 'ConditionalFactorOccupationText') {
       this.textConditions.push(new CPIConditionCollection(attrs, this))
     } else if (this.props.type === 'InnovationStyles') {

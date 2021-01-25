@@ -2,7 +2,7 @@ import _ from 'lodash'
 import { createReducer } from 'utils/redux'
 import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 import { setIn, updateIn } from 'utils/immutable'
-import { AnyAction } from 'redux'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import ApiAction from 'interfaces/ApiAction'
 
 export interface User {
@@ -104,13 +104,6 @@ export const extendTime = (campaignId: number, id: number, additionalTime: numbe
   },
 })
 
-export interface FetchAction {
-  response: {
-    list: []
-    total: 0
-  }
-}
-
 export interface UserDetails {
   id: number
   fullName: string
@@ -128,27 +121,36 @@ export interface UserDetails {
 export interface State {
   list: User[]
   total: number
-  current: UserDetails
+  current?: UserDetails
 }
 
+type FetchType = ApiActionResponse<{list: [], total: number}>
+type FetchSingleType = ApiActionResponse<UserDetails>
+type CreateType = ApiActionResponse<User>
+type UpdateType = ApiActionResponse<User>
+type RemoveType = ApiActionResponse<number>
+type ToggleStatusType = ApiActionResponse<{id: number, options: { updateInListing: boolean }}>
+type ExtendTimeType = ApiActionResponse<User>
+
 const HANDLERS = {
-  [FETCH]: (_, { response }: FetchAction) => response,
-  [FETCH_SINGLE]: (_state, { response }: AnyAction) => (
-    { current: _.omit(response, ['userAssessments', 'userReport']) }),
-  [CREATE]: (state: State, { response }: { response: User }) => (setIn(state, ['list'], [response, ...state.list])),
-  [UPDATE]: (state: State, { response }: { response: User }) => (
+  [FETCH]: (_: State, { response }: FetchType) => response,
+  [FETCH_SINGLE]: (state: State, { response }: FetchSingleType) => ({
+    ...state, current: response,
+  }),
+  [CREATE]: (state: State, { response }: CreateType) => (setIn(state, ['list'], [response, ...state.list])),
+  [UPDATE]: (state: State, { response }: UpdateType) => (
     updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
       if (user.id === response.id) { return response }
 
       return user
     }))
   ),
-  [REMOVE]: (state: State, { response }: { response: number }) => (
+  [REMOVE]: (state: State, { response }: RemoveType) => (
     updateIn(state, ['list'], (users: User[]) => _.filter(
       users, (user: User) => user.id !== response,
     ))
   ),
-  [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: { id: number, options: { updateInListing: boolean } }) => {
+  [TOGGLE_STATUS_REQUEST]: (state: State, { id, options }: ToggleStatusType) => {
     if (options.updateInListing) {
       return updateIn(state, ['list'], (users: User[]) => _.map(users, (user: User) => {
         if (user.id !== id) return user
@@ -156,10 +158,10 @@ const HANDLERS = {
         return { ...user, active: !user.active }
       }))
     }
-    return setIn(state, ['current', 'active'], !state.current.active)
+    return setIn(state, ['current', 'active'], _.get(state, ['current', 'active']))
   },
   // eslint-disable-next-line max-len
-  [EXTEND_TIME]: (state: State, { response }: { response: User }) => (setIn(state, ['current', 'additionalTime'], response.additionalTime)),
+  [EXTEND_TIME]: (state: State, { response }: ExtendTimeType) => (setIn(state, ['current', 'additionalTime'], response.additionalTime)),
 }
 
 export default createReducer(HANDLERS, defaultState)

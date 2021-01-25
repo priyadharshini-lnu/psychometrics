@@ -6,7 +6,7 @@ class AdminJob < ApplicationJob
   around_perform :around_perform
 
   rescue_from Exception do |error|
-    errors = arguments.first.error_messages + [error.inspect]
+    errors = arguments.first.error_messages + [error.message]
     arguments.first.update!(error_messages: errors, status: :completed, progress: 100)
     Raven.capture_exception(error)
     AdminJob.broadcast(:update, arguments.first)
@@ -14,18 +14,19 @@ class AdminJob < ApplicationJob
 
   JOBS = {
     import_users: AdminJobs::ImportUsers,
+    import_assessors: AdminJobs::ImportAssessors,
     rescore_assessment: AdminJobs::RescoreAssessment,
-    rescore_user_assessment: AdminJobs::RescoreUserAssessment
+    rescore_user_assessment: AdminJobs::RescoreUserAssessment,
+    import_scoring_data: AdminJobs::ImportData,
+    import_raw_data: AdminJobs::ImportData,
+    bulk_download_reports: AdminJobs::BulkDownloadReports,
+    bulk_regenerate_reports: AdminJobs::BulkRegenerateReports,
+    bulk_regenerate_user_reports: AdminJobs::BulkRegenerateUserReports
   }.freeze
 
   def perform(record)
     response = JOBS[record.operation.to_sym].call!(record)
     record.update(response) if response
-  end
-
-  def add_error(error)
-    errors = arguments.first.error_messages + [error]
-    arguments.first.update!(error_messages: errors)
   end
 
   class << self

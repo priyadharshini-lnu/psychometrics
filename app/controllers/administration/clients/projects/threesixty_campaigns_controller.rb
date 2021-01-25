@@ -29,7 +29,10 @@ module Administration
                 }
               }
             },
-            currentUser: serialized_current_user
+            currentUser: serialized_current_user,
+            config: {
+              availableLocales: I18n.available_locales
+            }
           }
         end
 

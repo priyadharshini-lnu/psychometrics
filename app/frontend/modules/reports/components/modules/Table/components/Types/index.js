@@ -27,8 +27,8 @@ import GapAssessmentScoring from './GapAssessmentScoring/GapAssessmentScoring'
 import GapAssessmentScoringProps from './GapAssessmentScoring/Properties'
 import SingleValueScoring from './SingleValueScoring/SingleValueScoring'
 import SingleValueScoringProps from './SingleValueScoring/Properties'
-import CPITopFactors from './CPITopFactors/CPITopFactors'
-import CPITopFactorsProps from './CPITopFactors/Properties'
+import FactorsTable from './FactorsTable/FactorsTable'
+import FactorsTableProps from './FactorsTable/Properties'
 import CPIOccupations from './CPIOccupations/CPIOccupations'
 import CPIOccupationsProps from './CPIOccupations/Properties'
 import PotentialCareerShort from './PotentialCareerShort/PotentialCareerShort'
@@ -58,7 +58,7 @@ export default {
   GapAssessment,
   GapAssessmentScoring,
   SingleValueScoring,
-  CPITopFactors,
+  FactorsTable,
   CPIOccupations,
   PotentialCareerShort,
   PotentialCareerFull,
@@ -82,7 +82,7 @@ export const PropTypes = {
   HighestLowestQuestion: HighestLowestQuestionProps,
   SingleValueScoring: SingleValueScoringProps,
   GapAssessmentScoring: GapAssessmentScoringProps,
-  CPITopFactors: CPITopFactorsProps,
+  FactorsTable: FactorsTableProps,
   CPIOccupations: CPIOccupationsProps,
   PotentialCareerShort: PotentialCareerShortProps,
   PotentialCareerFull: PotentialCareerFullProps,

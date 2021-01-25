@@ -1,0 +1,88 @@
+[
+  {
+    "type": "project",
+    "record": {
+      "id": "5ff4d1dbcf6e9ce25fa58be4",
+      "email": "Vera@email.com",
+      "first_name": "Kelley F",
+      "last_name": "Pugh",
+      "notes": "# An H1 Header\n## An H2 Header\n### An H3 Header\n#### An H4 Header from project",
+      "twitter_bio": "This is a very loooooooooooooooooooooooooooooooong text for project",
+      "Resume": "<div><h2>This is Header Project</h2> <p>this is the resumeeeeeeeeeeeeee html type</p></div>",
+      "level": 9,
+      "Pass in project": "Yes"
+    },
+    "columns": [
+      {
+        "id": "email",
+        "type": "string"
+      },
+      {
+        "id": "firstName",
+        "type": "string"
+      },
+      {
+        "id": "lastName",
+        "type": "string"
+      },
+      {
+        "id": "notes",
+        "type": "markdown"
+      },
+      {
+        "id": "twitterBio",
+        "type": "text"
+      },
+      {
+        "id": "resume",
+        "type": "html"
+      },
+      {
+        "id": "level",
+        "type": "numeric"
+      },
+      {
+        "id": "Pass in project",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "type": "new_campaign",
+    "record": {
+      "id": "5ff4d1dbcf6e9ce25fa58be4",
+      "email": "Vera@email.com",
+      "first_name": "Kelley",
+      "level": 2020,
+      "notes": "# An H1 Header\n## An H2 Header\n### An H3 Header\n#### An H4 Header",
+      "twitter_bio": "This is a very loooooooooooooooooooooooooooooooong text",
+      "Resume": "<div><h2>This is Header</h2> <p>this is the resumeeeeeeeeeeeeee html type</p></div>"
+    },
+    "columns": [
+      {
+        "id": "email",
+        "type": "string"
+      },
+      {
+        "id": "firstName",
+        "type": "string"
+      },
+      {
+        "id": "level",
+        "type": "numeric"
+      },
+      {
+        "id": "notes",
+        "type": "markdown"
+      },
+      {
+        "id": "twitterBio",
+        "type": "text"
+      },
+      {
+        "id": "resume",
+        "type": "html"
+      }
+    ]
+  }
+]

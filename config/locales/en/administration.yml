@@ -69,6 +69,7 @@ en:
           '360': 360 Feedback
           agile: AGILE
           all: All Categories
+          assessor_form: Assessor Form
           case_study: Case Studies
           hogan: Hogan
           mindmill: Mindmill
@@ -86,6 +87,7 @@ en:
             '360': 360 Feedback
             agile: AGILE
             all: All Categories
+            assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
             mindmill: Mindmill
@@ -151,6 +153,68 @@ en:
         successfully: Assessment %{name} was Updated Successfully.
       update:
         successfully: Assessment %{name} was Updated Successfully.
+    assessor:
+      add_subject_modal:
+        assessment: Assessment
+        subject: Subject
+        subject_placeholder: Search subject..
+        title: Add subject
+      assessments:
+        actions:
+          add_subject: Add Subject
+          reset: Reset Evaluation
+        assessment_name: Assessment Name
+        bulk_delete_confirmation: Are you sure you wan to delete selected records?
+        bulk_delete_successful: Assessor assessments deleted successfully
+        reset_confirmation: Are you sure you want to reset evaluation for subject with email %{subjectEmail}?
+        reset_successfully: Reset evaluation successful for for subject with email %{subjectEmail}
+        subject_email: Subject Email
+        subject_name: Subject Name
+      completed_at: Completed At
+      count: "%{count} Assessors"
+      evaluations: Evaluations
+      home: Dashboard
+      modals:
+        create_assessor:
+          add: Add
+          cancel: Cancel
+          form:
+            add: Add
+            assessments: Assessments
+            assessor: Assessor
+            assessor_placeholder: Search Assessor...
+            subject: Subject
+            subject_placeholder: Search Subject...
+          sheet:
+            assessments: Assessments
+            assessments_placeholder: Select
+            assessor_email: Assessor's Email
+            assessor_first_name: Assessor's First Name
+            assessor_last_name: Assessor's Last Name
+            subject_email: Subject's Email
+          title: Add assessor
+        import:
+          body: Refer to the Export functionality to extract a template that can be used to Import here.
+          title: Import Assessors
+      remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+      status: Status
+      statuses:
+        completed: Completed
+        not_completed: Not Completed
+      toolbar:
+        export: Export Assessors
+        import: Import Assessors
+        tools: Tools
+    assessor_campaigns:
+      statuses:
+        completed: Completed
+        in_progress: In progress
+        not_started: Not started
+    assessor_subjects:
+      statuses:
+        completed: Completed
+        in_progress: In progress
+        not_started: Not started
     assigns:
       create:
         successfully: New assign to assessment was successfully created
@@ -198,6 +262,7 @@ en:
     breadcrumbs:
       admins: Admins
       assessments: Assessments
+      assessor_dashboard: Assessor Dashboard
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -216,6 +281,7 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
+      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor
@@ -491,6 +557,7 @@ en:
             '360': 360 Feedback
             agile: AGILE
             all: All Categories
+            assessor_form: Assessor Form
             case_study: Case Studies
             hogan: Hogan
             mindmill: Mindmill
@@ -508,6 +575,7 @@ en:
               '360': 360 Feedback
               agile: AGILE
               all: All Categories
+              assessor_form: Assessor Form
               case_study: Case Studies
               hogan: Hogan
               mindmill: Mindmill
@@ -1501,6 +1569,7 @@ en:
           name: Name
           type: Type
           updated_at: Modified date
+        name: Reports
         new:
           header: Select Report
         preview:
@@ -1903,6 +1972,7 @@ en:
             name: Name
             type: Type
             updated_at: Modified date
+          name: Reports
           new:
             header: Select Report
           preview:
@@ -2120,6 +2190,46 @@ en:
     create: Create
     created: Successfully created
     created_by: Created By
+    datasheets:
+      drawers:
+        add_edit:
+          cancelText: Cancel
+          markdown:
+            preview: Preview
+            title: Markdown
+          save: Save
+          saving: Saving
+          success_message_add: New record added
+          success_message_edit: Record updated
+          title_add: Add datasheet record
+          title_edit: Edit datasheet record
+          validations:
+            required_email: Please enter email
+        view:
+          campaign_title: Campaign level record
+          edit_button: Edit
+          project_title: Project level record
+          title: Datasheet record details
+      list:
+        column_toggler:
+          title: Show/Hide columns
+          tool_tip: Show/Hide table columns
+        header:
+          add_record: Add record
+          search_record: Search records
+      modals:
+        delete_records:
+          cancelText: Cancel
+          content:
+            one: Are you sure you want to delete the record?
+            other: Are you sure you want to delete {{count}} records?
+          okText: Yes, delete
+          successMessage:
+            one: Record deleted
+            other: "{{count}} records deleted"
+          title:
+            one: Delete record
+            other: Delete records
     dates:
       completed: Completed At
       created: Created At
@@ -2507,6 +2617,7 @@ en:
     navigation:
       admins: Admins
       assessments: Assessments
+      assessor_dashboard: Assessor Dashboard
       campaign_templates: Campaign Templates
       campaigns: Campaigns
       client: Client Tenancy
@@ -2525,6 +2636,7 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
+      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor
@@ -2883,6 +2995,7 @@ en:
         name: Name
         type: Type
         updated_at: Modified date
+      name: Reports
       new:
         header: Select Report
       preview:
@@ -2971,6 +3084,18 @@ en:
         title: Sub-Factor's options
       toggle_status:
         successfully: Sub-Factor was successfully updated.
+    survey_builder:
+      property_panel:
+        allow_content_copy: Allow content copying
+    table:
+      entries:
+        selected:
+          one: 1 row selected
+          other: "{{count}} rows selected"
+        total:
+          one: 'Total : 1'
+          other: 'Total : {{count}}'
+          zero: 'Total : 0'
     templates:
       blocks:
         copy:

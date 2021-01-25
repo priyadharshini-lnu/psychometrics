@@ -7,6 +7,8 @@ import {
 import {
   DownloadOutlined, LoadingOutlined, ClockCircleOutlined, CheckOutlined, PlayCircleOutlined,
 } from '@ant-design/icons'
+import truncate from 'lodash/truncate'
+
 import './styles.scss'
 import ContinueIcon from './ContinueIcon'
 import PrivacyModal from './PrivacyModal'
@@ -149,8 +151,8 @@ export default function Hogan ({ campaign: assign, acceptPolicy, loginHogan }) {
       >
         <div className="card-body">
           <div className="card-content">
-            <div className="card-title">
-              {assign.assessmentName}
+            <div className="card-title" title={assign.assessmentName}>
+              {truncate(assign.assessmentName, { length: 55 })}
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">

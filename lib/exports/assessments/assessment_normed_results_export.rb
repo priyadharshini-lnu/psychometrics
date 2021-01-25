@@ -48,7 +48,7 @@ module Exports
                              assign.user_email,
                              assign.started_at.try(:strftime, '%D %r'),
                              assign.completed_at.try(:strftime, '%D %r'),
-                             norm ? "#{norm.name}:#{assign.norm_data['type']}" : '',
+                             norm ? norm.name : '',
                              I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
                              *normed_results.values]
             end

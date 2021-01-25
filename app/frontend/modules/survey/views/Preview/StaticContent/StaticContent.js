@@ -1,25 +1,36 @@
 /* eslint-disable react/no-danger */
 import React, { useRef, useState } from 'react'
 import cs from 'classnames'
+
 import {
   FIXED_TOP, LEFT, RIGHT, NORMAL_TOP,
 } from 'views/Block/components/StaticContent/settings'
 import GetBackgroundStyles from 'views/Block/components/StaticContent/getBackgroundStyles'
 import { useAudioPlayer } from 'modules/survey/hooks/useAudioPlayer'
-import styles from './StaticContent.scss'
+import { useCopyProtection } from 'utils/hooks'
 import HighlightList from './HighlightList'
 
+import styles from './StaticContent.scss'
+
 const StaticContent = ({
-  block, block: { props: { staticContent } }, preview, highlight, updateHighlight,
-  I18n, containerRef,
+  block, block: { props: { staticContent } }, preview, highlight, updateHighlight, I18n,
 }) => {
-  const contentRef = useRef(null)
-  useAudioPlayer(contentRef)
+  const containerRef = useRef()
+  const shouldEnableContentCopy = staticContent?.allowContentCopy ?? false
+  useCopyProtection(containerRef, shouldEnableContentCopy)
+
   const [selection, setSelection] = useState(null)
 
+  const contentRef = useRef(null)
+  useAudioPlayer(contentRef)
+
   const handleMouseUp = () => {
-    const selection = window.getSelection()
-    if (selection.toString()) setSelection(selection.getRangeAt(0))
+    if (shouldEnableContentCopy === false) {
+      const selection = window.getSelection()
+      if (selection.toString()) {
+        setSelection(selection.getRangeAt(0))
+      }
+    }
   }
 
   const getStaticContentClasses = () => ({
@@ -40,6 +51,7 @@ const StaticContent = ({
         className={styles.box}
         style={GetBackgroundStyles.run(staticContent)}
       >
+        {!shouldEnableContentCopy && (
         <HighlightList
           highlight={highlight}
           contentRef={contentRef}
@@ -48,6 +60,7 @@ const StaticContent = ({
           preview={preview}
           staticContent={staticContent}
         />
+        )}
         <div
           onMouseUp={handleMouseUp}
           ref={contentRef}

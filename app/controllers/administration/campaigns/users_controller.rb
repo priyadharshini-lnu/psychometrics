@@ -37,6 +37,13 @@ module Administration
         end
       end
 
+      def search
+        users = ::Users::SearchQuery.new(campaign, params[:q]).query.map do |user|
+          ::Projects::SearchUserSerializer.new(user).to_h
+        end
+        render json: users
+      end
+
       def export_completion_status
         headers['Content-Disposition'] = 'attachment; filename="completion_statuses.csv"'
         headers['Content-Type'] ||= 'text/csv'
@@ -58,7 +65,7 @@ module Administration
           }, current_user, params[:import_data])
           render json: :ok
         else
-          render json: { errors: form.errors.full_messages }, status: 422
+          render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: 422
         end
       end
 
@@ -73,7 +80,9 @@ module Administration
             on(:ok) do |user|
               return render json: user, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
             end
-            on(:error) { |errors| return render json: { errors: errors }, status: 422 }
+            on(:error) do |errors|
+              return render json: { errors: errors.is_a?(String) ? { base: errors } : errors }, status: 422
+            end
           end
         else
           render json: { errors: form.errors.messages }, status: 422
@@ -84,7 +93,7 @@ module Administration
         form = ::Campaigns::Users::EditForm.from_params(resource_params).with_context(campaign: campaign)
         if form.valid?
           resource.update(form.attributes)
-          render json: resource, serializer: Administration::Campaigns::UserSerializer
+          render json: resource, serializer: Administration::Campaigns::UserSerializer, campaign_id: campaign.id
         else
           render json: { errors: form.errors.messages }, status: 422
         end

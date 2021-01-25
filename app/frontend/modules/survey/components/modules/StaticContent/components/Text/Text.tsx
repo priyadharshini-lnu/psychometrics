@@ -4,7 +4,7 @@ import { Highlight } from 'modules/survey/core/preview/FlowProcessor/interfaces'
 
 interface Props {
   model: object
-  style: string
+  className: string
   highlight: Highlight
   updateHighlight: (highlight: Highlight, data: object) => void
   I18n: {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Text: React.FC<Props> = ({
-  model, style, I18n, highlight, updateHighlight,
+  model, className, I18n, highlight, updateHighlight,
 }) => {
   const contentRef = useRef(null)
 
@@ -36,7 +36,7 @@ const Text: React.FC<Props> = ({
       />
       <div
         onMouseUp={handleMouseUp}
-        className={style}
+        className={className}
         ref={contentRef}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}

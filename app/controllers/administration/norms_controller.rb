@@ -95,13 +95,7 @@ class Administration::NormsController < Administration::BaseController
     add_breadcrumb resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
 
-    editor_form_params = editor_params
-    unless resource.percentile?
-      editor_form_params[:norm_type] = 'eti' unless editor_params[:norm_type] == 'yti'
-    end
-
-    @filter_data = NormEditorForm.new(editor_form_params)
-    scope = Factor.where(dimension_id: resource.dimension_id).with_norm_type(@filter_data.norm_type, resource.id)
+    scope = Factor.where(dimension_id: resource.dimension_id).with_norm(resource.id)
     @_resources = FactorsNorm.structured_hash(scope)
 
     respond_to do |format|
@@ -132,6 +126,6 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def editor_params
-    params.permit(:norm_type, :factor_type)
+    params.permit(:factor_type)
   end
 end

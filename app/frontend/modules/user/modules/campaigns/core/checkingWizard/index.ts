@@ -2,12 +2,17 @@ import { createReducer } from 'utils/redux'
 import _ from 'lodash'
 import Cookies from 'js-cookie'
 import ApiAction from 'interfaces/ApiAction'
+import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { Config, Checks } from './interfaces'
 
 interface State {
  checks: Checks
  config: Config
  preSignedUrl: string | null
+ campaignId?: number
+ id?: number
+ url?: string
+ transcribeSupportedLocales?: string[]
 }
 
 export const defaultState: State = {
@@ -48,16 +53,17 @@ export const preSignUrl = () => ({
     },
 })
 
+type FetchType = ReturnType<typeof fetch>
+type PageSignType = ApiActionResponse<{url: string}>
 
 const HANDLERS = {
-  [FETCH]: (state: State, { response }) => {
+  [FETCH]: (state: State, { response }: FetchType) => {
     const checks = _.reduce(response.checks, (result, value, key) => (
       { ...result, [key]: value && !Cookies.get(`checking_wizard.${key}`) }
     ), {})
     return { ...state, ...response, checks }
   },
-  [PRE_SIGN_URL]: (state: State, { response: { url } }) => ({ ...state, preSignedUrl: url }),
+  [PRE_SIGN_URL]: (state: State, { response: { url } }: PageSignType) => ({ ...state, preSignedUrl: url }),
 }
-
 
 export default createReducer(HANDLERS, defaultState)

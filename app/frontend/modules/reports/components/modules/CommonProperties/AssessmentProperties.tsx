@@ -18,7 +18,7 @@ const AssessmentProperties: React.FC<Props> = ({ assessmentId, changeAssessment 
         <Select
           options={selectOptions}
           value={getValue(selectOptions, assessmentId)}
-          onChange={a => changeAssessment(a.value)}
+          onChange={a => changeAssessment(a?.value)}
         />
       </div>
     </div>

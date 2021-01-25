@@ -7,6 +7,7 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
   let(:campaign) { create(:campaign) }
   let(:dimension) { create(:dimension) }
   let(:assessment) { create(:assessment, dimension: dimension) }
+  let!(:assessor_form) { create(:assessment, category: :assessor_form, name: 'A 1') }
   let!(:campaign_assessment) { create(:campaign_assessment, assessment: assessment, campaign: campaign) }
   let!(:norm) { create(:norm, name: 'Norm', dimension: dimension) }
   let(:report) { create(:report, assessments: [assessment]) }
@@ -21,45 +22,60 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
 
   describe '[POST] update_norm' do
     it 'with apply = false' do
-      expect(::CampaignAssessments::RecomputeResultsJob).to_not receive(:perform_later)
+      expect(AdminJob).to_not receive(:call)
 
       post :update_norm, params: {
         id: assessment.id,
         new_campaign_id: campaign.id,
         apply: false,
-        norm_id: norm.id,
-        norm_type: 'eti'
+        norm_id: norm.id
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
       campaign_assessment.reload
 
-      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_name' => 'Norm')
       expect(campaign_assessment.norm_id).to eq(norm.id)
-      expect(campaign_assessment.norm_type).to eq('eti')
     end
 
     it 'with apply = true' do
-      expect(::CampaignAssessments::RecomputeResultsJob).to receive(:perform_later).
-        with(campaign_assessment, current_user)
+      expect(AdminJob).to receive(:call).
+        with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
 
       post :update_norm, params: {
         id: assessment.id,
         new_campaign_id: campaign.id,
         apply: true,
-        norm_id: norm.id,
-        norm_type: 'eti'
+        norm_id: norm.id
       }, as: :json
 
       parsed_response = JSON.parse(response.body)
 
-      expect(parsed_response).to eq('norm_type' => 'eti', 'norm_name' => 'Norm')
+      expect(parsed_response).to eq('norm_name' => 'Norm')
     end
   end
 
+  it '[PUT] update_assessor_form' do
+    expect(AdminJob).to_not receive(:call)
+
+    put :update_assessor_form, params: {
+      id: assessment.id,
+      new_campaign_id: campaign.id,
+      apply: false,
+      assessor_form_id: assessor_form.id
+    }, as: :json
+
+    parsed_response = JSON.parse(response.body)
+
+    campaign_assessment.reload
+
+    expect(parsed_response).to eq('assessor_form_name' => 'A 1', 'assessor_form_id' => assessor_form.id)
+    expect(campaign_assessment.assessor_form_id).to eq(assessor_form.id)
+  end
+
   describe 'POST rescore_responses' do
-    it 'schedules RecomputeResultsJob' do
+    it 'schedules AdminJob' do
       expect(AdminJob).to receive(:call).
         with(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
 

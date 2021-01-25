@@ -42,7 +42,7 @@ const AgileUserAssessment: React.FC<Props> = ({
       settings: {
         returnURL: isAnonym ? '' : '/',
         assetsBaseURL: agileAssetsUrl,
-        locale: lang,
+        locale: lang?.toString(),
       },
     }
 

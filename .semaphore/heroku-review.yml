@@ -15,7 +15,7 @@ global_job_config:
     - name: BUNDLER_VERSION
       value: 2.1.4
     - name: HEROKU_REMOTE
-      value: https://git.heroku.com/lighthouse-review.git
+      value: https://git.heroku.com/tte-lighthouse.git
     - name: DATABASE_URL
       value: "postgres://postgres:postgres@localhost:5432/ci"
     - name: AWS_ACCESS_KEY_ID
@@ -46,7 +46,7 @@ blocks:
           - cache restore node-modules-prod-$(checksum yarn.lock)
           - cache restore webpack-compile-prod-$(checksum yarn.lock)-$(checksum webpack-files.txt)
           - sem-version ruby 2.5.1
-          - sem-version node 12.18.3
+          - sem-version node 14.15.1
           - sem-service start postgres --username=postgres --password=postgres
           - sem-service start redis
           - cp config/database.yml.sample config/database.yml

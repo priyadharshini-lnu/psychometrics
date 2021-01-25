@@ -4,9 +4,10 @@ import {
   update,
   get as getCampaignOptions,
 } from 'modules/admin/modules/campaigns/core/campaignOptions'
+import { RootState } from 'modules/admin/core/rootReducers'
 
 const connecter = connect(
-  state => ({
+  (state: RootState) => ({
     options: getCampaignOptions(state),
   }),
   {

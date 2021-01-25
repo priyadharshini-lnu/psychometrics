@@ -7,7 +7,7 @@ module Administration
       before_action :pundit_authorize
 
       def export_raw_results
-        results = ::Assessments::Export::RawAndScoring.call!(
+        results = ::Assessments::Export::RawExport.call!(
           assessment, campaign, export_with_labels: !!params[:with_labels]
         )
 
@@ -56,16 +56,13 @@ module Administration
       end
 
       def import_results
-        import = ::Imports::Assessments::ResultImportUserResult.new(import_params)
-        import.importer = current_user
-        import.campaign = campaign
-        import.assessment = assessment
-
-        if import.process!
-          render json: :ok
-        else
-          render json: { errors: import.errors.full_messages }, status: :bad_request
-        end
+        operation = params[:scoring] == 'true' ? :import_scoring_data : :import_raw_data
+        AdminJob.call(operation, {
+          assessment_id: params[:id],
+          campaign_id: params[:new_campaign_id],
+          scoring: params[:scoring] == 'true'
+        }, current_user, params[:file])
+        render json: :ok
       end
 
       def update_norm
@@ -73,15 +70,23 @@ module Administration
         if form.valid?
           campaign_assessment.update!(form.attributes)
 
-          CampaignAssessments::RecomputeResultsJob.perform_later(campaign_assessment, current_user) if params[:apply]
-
+          if params[:apply]
+            AdminJob.call(:rescore_assessment, { campaign_assessment_id: campaign_assessment.id }, current_user)
+          end
           render json: {
-            norm_name: campaign_assessment.norm.name,
-            norm_type: campaign_assessment.norm_type
+            norm_name: campaign_assessment.norm.name
           }
         else
           render json: { errors: form.errors.messages.values }, status: 422
         end
+      end
+
+      def update_assessor_form
+        campaign_assessment.update!(assessor_form_id: params[:assessor_form_id])
+        render json: {
+          assessor_form_name: campaign_assessment.assessor_form&.name,
+          assessor_form_id: campaign_assessment.assessor_form&.id
+        }
       end
 
       private

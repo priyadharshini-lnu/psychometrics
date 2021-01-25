@@ -2,10 +2,10 @@ import { connect } from 'react-redux'
 import {
   fetch as fetchParticipantOptions,
 } from 'modules/admin/modules/threeSixtyCampaign/core/participantOptions/actions'
-import { getLodingState } from 'modules/admin/core/request'
+import { getLoadingState } from 'modules/admin/core/request'
 
 export default connect(
-  state => ({ loading: getLodingState(state) }),
+  state => ({ loading: getLoadingState(state) }),
   {
     fetchParticipantOptions,
   },

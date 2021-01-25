@@ -7,11 +7,11 @@ export const CLEAR_RESPONSE_DATA_MISMATCHED = 'request/CLEAR_RESPONSE_DATA_MISMA
 
 export const get = state => _.get(state, ['request'])
 export const isRequestInProgress = (state, name) => {
-  const request = get(state)
+  const request = get(state).lastRequest
 
   return request.loading && request.name === name
 }
-export const getLodingState = state => _.get(get(state), ['lastRequest', 'loading'])
+export const getLoadingState = state => _.get(get(state), ['lastRequest', 'loading'])
 export const getResponseDataMismatchRequest = state => _.get(get(state), ['responseDataMismatchRequest'])
 
 export const loading = () => ({ type: LOADING, name })

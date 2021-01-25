@@ -22,6 +22,10 @@ module Administration
       def export_completion_status?
         @user.is?(:superadmin, :client_admin, :project_admin)
       end
+
+      def search?
+        index?
+      end
     end
   end
 end

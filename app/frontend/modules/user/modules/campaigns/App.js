@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import ConnectionCheck from 'components/ConnectionCheck'
 import { connected, disconnected } from 'core/connection'
 import routes from './routes'
-import PageLayout from './components/PageLayout'
+import { PageLayout } from './components/PageLayout'
 
 const { antdLocale } = window
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { environment, loaders } = require('@rails/webpacker')
 const { env } = require('process')
 const { resolve } = require('path')
@@ -30,7 +31,7 @@ environment.plugins.insert(
     RecordRTC: 'recordrtc',
   }),
 )
-if (__DEV__) {
+if (__DEV__ || env.ENABLE_TS_FORK_CHECKER) {
   environment.plugins.insert('TsForkChecker', new ForkTsCheckerWebpackPlugin({
     eslint: {
       files: './app/frontend/**/*.{ts,tsx,js,jsx}',
@@ -73,7 +74,6 @@ environment.loaders.append('typescript', tsLoader)
 loaders.nodeModules.use[0].options.sourceMaps = true
 
 const vendors = [
-  'core-js/shim',
   'react',
   'react-dom',
   'react-dnd',

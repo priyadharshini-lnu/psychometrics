@@ -171,7 +171,7 @@ export default {
       HighestLowestQuestion: 'Highest - Lowest Questions Score',
       SingleValueScoring: 'Single Value - Scoring',
       GapAssessmentScoring: 'Gap Assessment - Scoring',
-      CPITopFactors: 'Career - Top Factors',
+      FactorsTable: 'Factors',
       CPIOccupations: 'Career - Occupations',
       PotentialCareerShort: 'Career - Potential (short)',
       PotentialCareerFull: 'Career - Potential (full)',

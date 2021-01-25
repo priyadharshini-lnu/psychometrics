@@ -3,10 +3,15 @@ import IAssessment from '../interfaces/Assessment'
 import User from '../interfaces/User'
 
 const isExternal = category => ['hogan', 'mindmill'].includes(category)
+const isAgile = category => category === 'agile'
 const isInternal = category => !isExternal(category)
 
 const Assessment = {
-  exportRawResults: (currentUser: User, record: IAssessment) => {
+  exportRawResultsWithLabel: (currentUser: User, record: IAssessment) => {
+    if (isAgile(record.category)) return false
+    return Assessment.exportRawResultsWithoutLabel(currentUser, record)
+  },
+  exportRawResultsWithoutLabel: (currentUser: User, record: IAssessment) => {
     if (isExternal(record.category)) return false
     if (isSuperAdmin(currentUser)) return true
     return hasGrant(currentUser, 'assessments', 'export')
@@ -14,8 +19,12 @@ const Assessment = {
   exportScoringResults: (
     currentUser: User,
     record: IAssessment,
-  ) => Assessment.exportRawResults(currentUser, record),
+  ) => {
+    if (isAgile(record.category)) return false
+    return Assessment.exportRawResultsWithLabel(currentUser, record)
+  },
   exportNormedResults: (currentUser: User, record: IAssessment) => {
+    if (isAgile(record.category)) return false
     if (isExternal(record.category)) return false
     if (isSuperAdmin(currentUser)) return true
 
@@ -28,6 +37,7 @@ const Assessment = {
     return hasGrant(currentUser, 'assigns', 'view')
   },
   importResults: (currentUser: User, record: IAssessment) => {
+    if (isAgile(record.category)) return false
     if (isExternal(record.category)) return false
     if (isSuperAdmin(currentUser)) return true
 

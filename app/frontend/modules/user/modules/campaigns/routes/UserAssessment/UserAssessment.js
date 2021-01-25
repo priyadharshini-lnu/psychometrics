@@ -7,7 +7,7 @@ import qs from 'qs'
 import cs from 'classnames'
 import './styles.scss'
 import PassAssessment from 'modules/survey/containers/AssessmentContainer'
-import { minutesLeft } from 'utils/time'
+import { secondsLeftFromNow } from 'utils/time'
 import { isRtl } from 'utils/locales'
 import Language from '../../components/Language'
 import store from '../../../../store'
@@ -48,7 +48,7 @@ export default function UserAssessment ({
   let campaignTimeLeft = null
 
   if (loaded && campaignOptions.fixed_time) {
-    campaignTimeLeft = minutesLeft(new Date(campaignUser.started_at), campaignOptions.fixed_time_duration)
+    campaignTimeLeft = secondsLeftFromNow(new Date(campaignUser.expiry_date))
   }
 
   const rtl = isRtl(I18n.uiLocale)

@@ -41,12 +41,20 @@ en:
               not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
         create_all:
           attributes:
+            assessors:
+              email_duplicated: The subject and assessor emails are duplicated
             evaluators:
               email_duplicated: The subject and evaluator emails are duplicated
             subjects:
               email_duplicated: Some subjects have the same email
         create_one:
           attributes:
+            assessment_ids:
+              invalid: Assessment %{id} can't be attached to an assessor
+            assessor_email:
+              already_exists: The subject with this assessor are already connected
+              blank: Assessor Email can't be blank
+              invalid: Assessor Email is invalid
             email:
               already_exists: A subject with same email already exists
               blank: Email can't be blank
@@ -166,6 +174,8 @@ en:
             import_data:
               duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
               invalid_header: Invalid header, take header from export
+        user_assessment:
+          subject_and_assessment_exists: Assessment and subject pair already exists
     models:
       assign_report: Assign report Form
       datasheet: Datasheet Form
@@ -426,6 +436,7 @@ en:
             regular: Client Admin
             superadmin: Super Admin
           agile: AGILE
+          assessor_form: Assessor Form
           case_study: Case study
           client_admin: Client Admin
           hogan: Hogan
@@ -536,7 +547,11 @@ en:
       id: ID
       name: Name
       operations:
+        bulk_download_reports: Bulk Download Reports
+        bulk_regenerate_reports: Regenerate Campaign Reports
+        bulk_regenerate_user_reports: Regenerate User Reports
         bulk_reports: Bulk Reports
+        import_assessors: Import Assessors
         import_raw_data: Import Raw Data
         import_scoring_data: Import Scoring Data
         import_users: Import Users
@@ -550,9 +565,13 @@ en:
         in_progress: In Progress
         scheduled: Scheduled
       updated_at: Modified Date
+    bulk_download_reports:
+      content:
+        title: Links to download reports
     close: Close
     details: Details
     errors: Errors
+    invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
     more: More
     notifications: Notifications
@@ -574,8 +593,12 @@ en:
     restart: Restart
   assessments:
     actions:
+      back_to_campaign: Back to Campaign
+      evaluate: Evaluate
       extend_time: Extend time
       goto_dashboard: Go To Dashboard
+      re_evaluate: Click Here to Re-Evaluate
+      reevaluate: Re-Evaluate
       rescore: Rescore
     audio_response:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
@@ -619,6 +642,10 @@ en:
         completed: Completed
         in_progress: Resume
         not_started: Start
+    scoring:
+      competency: Competency
+      id: ID
+      score: Score
     unknown_error: Unknown error occurred.
     video_response:
       delete: Delete
@@ -771,6 +798,7 @@ en:
   campaign_assessment:
     column:
       assessment_name: Assessment name
+      assessor_form: Assessor Form
       norm: Norm
       status: Status
       universal_link: Universal link
@@ -795,12 +823,16 @@ en:
         content: Are you sure you want to reset result?
         successfully: Result data was successfully reseted.
         title: Reset Result for assessment %{name}?
+      update_assessor_form:
+        select_assessor: Select Assessor Form
+        success_msg: Assessor Form successfully uploaded
+        title: Update Assessor Form
+        update: Update
       update_norm:
         apply: Apply this change to existing users in this campaign
         select_norm: Select Norm
         success_msg: Norms successfully uploaded
         title: Update Norm
-        type: Norm Type
         update: Update
       update_time:
         additional_time: Time (min)
@@ -815,6 +847,7 @@ en:
     actions:
       bulk_download: Bulk Download
     column:
+      assessor_access: Assessor Access
       report_bundle: Report Bundle
       report_name: Report name
       user_access: User Access
@@ -925,17 +958,23 @@ en:
     actions:
       cancel: Cancel
       close: Close
+      delete: Delete
       remove: Remove
       reset: Reset
     column:
       action: Action
       category: Category
+      completion_count: Completion Count
+      completion_status: Completion Status
       created_at: Created at
       id: Id
+      name: Name
       status: Status
     model:
       assessments: Assessments
+      assessors: Assessors
       campaigns: Campaigns
+      datasheet: Datasheet
       reports: Reports
     text:
       cancel: Cancel
@@ -945,6 +984,7 @@ en:
       download: Download
       na: N/A
       ok: Ok
+      reference_language: Reference Language
       response: Response
   confirmation:
     default_body: Are you sure?
@@ -1168,6 +1208,7 @@ en:
         new:
           register: Register
           sign_in: Sign in
+  empty: Empty
   enums:
     communication:
       delivery_rule:
@@ -1235,7 +1276,7 @@ en:
     manage: Manage
     'no': 'No'
     resource:
-      create_success: "%{resourceName} created successfully"
+      create_success: "%{resourceName} added successfully"
       update_success: "%{resourceName} updated successfully"
     update: Update
     upload: Upload
@@ -1502,6 +1543,10 @@ en:
       cpi_occupations:
         occupations: Occupations
         your_potential_suitability: Your Potential Suitability
+      factors_table:
+        description: Description
+        rank: Rank
+        score: Score
       gap_assessment:
         gap: Gap
         item: Indicator
@@ -1598,6 +1643,7 @@ en:
       not_available: Not available
       on_hold: On hold
       released: Released
+  select: Select
   shared:
     filters:
       clear: Clear Filters
@@ -1971,6 +2017,17 @@ en:
     approved: Approved
     approving_mail_sent: Mail for approving nomination has been sent to managers
     as_my: as my
+    assesment:
+      modals:
+        help:
+          body: "<h2>Help</h2> <p>need content for help modal</p>"
+          title: Help
+      navigation:
+        menu:
+          help: Help
+          logout: Logout
+          profile: Profile
+          switching-lang: Switching language
     assessment: Assessment
     back_to_tasks: Back to tasks
     begin: Begin

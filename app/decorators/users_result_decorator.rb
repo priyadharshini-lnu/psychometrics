@@ -10,7 +10,7 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def started_at
-    I18n.l(object.created_at, format: :date) if object.created_at
+    I18n.l(object.started_at, format: :date) if object.started_at
   end
 
   def completed_at_with_time
@@ -18,7 +18,7 @@ class UsersResultDecorator < BaseDecorator
   end
 
   def started_at_with_time
-    object.created_at.try(:strftime, '%D %r')
+    object.started_at.try(:strftime, '%D %r')
   end
 
   def display_name

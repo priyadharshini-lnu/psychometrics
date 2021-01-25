@@ -16,7 +16,7 @@ module Administration
         @_filter_form = policy_scope(resource_class).
                         includes(user: %i[clients memberships]).
                         where(role: Membership::PROJECT_ADMIN_ROLE).
-                        join_user.search(params[:q])
+                        join_user.ransack(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 

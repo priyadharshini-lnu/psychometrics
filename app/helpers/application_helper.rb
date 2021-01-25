@@ -46,4 +46,10 @@ module ApplicationHelper
 
     BrowserDetector.new(settings).detect(browser)
   end
+
+  def admin_dashboard_path
+    return assessors_dashboard_path if current_user.is?(:assessor)
+
+    administration_root_path
+  end
 end

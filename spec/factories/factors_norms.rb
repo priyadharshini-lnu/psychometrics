@@ -15,7 +15,6 @@ FactoryBot.define do
   factory :factors_norm do
     factor
     norm
-    type { FactorsNorm::NORM_TYPES.sample }
 
     props do
       FactorsNorm::LEVELS.map do |level|

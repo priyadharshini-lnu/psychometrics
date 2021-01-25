@@ -5,11 +5,24 @@ import { ElementInterface, QuestionsInterface, ResultsInterface } from '../inter
 
 const BranchProcessor = {
   run (
-    { questions, results }: { questions: QuestionsInterface; results: ResultsInterface},
+    store: {
+      questions: QuestionsInterface
+      results: ResultsInterface
+      dataSheet: { [key: string]: object }
+      subjectDataSheet: { [key: string]: object }
+    },
     element: ElementInterface,
   ): boolean {
+    const {
+      questions, results, dataSheet, subjectDataSheet,
+    } = store
     const qwraps = _.map(questions, q => QuestionSerializer.wrap(q, results[q.id]?.answers))
-    const resolver = new ConditionResolver(element.props.conditions, { questions: qwraps, results })
+    const resolver = new ConditionResolver(
+      element.props.conditions,
+      {
+        questions: qwraps, results, dataSheet, subjectDataSheet,
+      },
+    )
     return !!resolver.resolve()
   },
 }

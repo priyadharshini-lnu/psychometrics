@@ -2,23 +2,21 @@
 
 xlsx_package.use_shared_strings = true
 wb = xlsx_package.workbook
-FactorsNorm::NORM_TYPES.each do |type|
-  styles = wb.styles
-  text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: :center }, b: true
+styles = wb.styles
+text_center_bold = styles.add_style alignment: { horizontal: :center, vertical: :center }, b: true
 
-  wb.add_worksheet(name: "#{resource.name} #{type.upcase}") do |sheet|
-    sheet.add_row [resource.dimension.name]
-    sheet.add_row
-    sheet.add_row [nil, nil] + resource.decorate.xls_levels_row, style: text_center_bold
-    @factors_norms[type]['factors'].each do |factor|
-      current_row = [nil, factor[:name]]
-      FactorsNorm::LEVELS.each do |level|
-        cell = factor[:factors_norms_props].find { |c| c['level'] == level }
-        current_row << cell.try(:[], 'score_from')
-        current_row << cell.try(:[], 'score_to')
-      end
-      sheet.add_row current_row
+wb.add_worksheet(name: resource.name) do |sheet|
+  sheet.add_row [resource.dimension.name]
+  sheet.add_row
+  sheet.add_row [nil, nil] + resource.decorate.xls_levels_row, style: text_center_bold
+  @factors_norms.each do |factor|
+    current_row = [nil, factor[:name]]
+    FactorsNorm::LEVELS.each do |level|
+      cell = factor[:factors_norms_props].find { |c| c['level'] == level }
+      current_row << cell.try(:[], 'score_from')
+      current_row << cell.try(:[], 'score_to')
     end
-    sheet.add_row
+    sheet.add_row current_row
   end
+  sheet.add_row
 end

@@ -18,7 +18,8 @@ export const TOGGLE_ENABLE_PROGRESS = 'survey/assessment/TOGGLE_ENABLE_PROGRESS'
 export const SAVE = 'survey/assessment/SAVE'
 export const SAVE_REQUEST = 'survey/assessment/SAVE_REQUEST'
 export const SAVE_FAILURE = 'survey/assessment/SAVE_FAILURE'
-
+export const SAVE_DATA_SHEET = 'builder/assessment/SAVE_DATA_SHEET'
+export const UPLOAD_DATA_SHEET = 'builder/assessment/UPLOAD_DATA_SHEET'
 export const UPDATE_EXTRA = 'builder/assessment/UPDATE_EXTRA'
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
@@ -30,7 +31,7 @@ export const moveBlockDown = block => ({ type: MOVE_BLOCK_DOWN, block })
 export const moveBlockUp = block => ({ type: MOVE_BLOCK_UP, block })
 
 export const addNormRule = rule => ({ type: ADD_NORM_RULE, rule })
-export const removeNormRule = rule => ({ type: REMOVE_NORM_RULE, rule })
+export const removeNormRule = index => ({ type: REMOVE_NORM_RULE, index })
 
 export const updateFlow = flow => ({ type: UPDATE_FLOW, flow })
 
@@ -56,3 +57,14 @@ export const saveAssessment = (data) => {
 }
 
 export const updateExtra = extra => ({ type: UPDATE_EXTRA, extra })
+
+export const saveDataSheet = data => ({ type: SAVE_DATA_SHEET, data })
+
+export const uploadDataSheet = (id, body) => ({
+  type: UPLOAD_DATA_SHEET,
+  request: {
+    method: 'post',
+    url: `/administration/assessments/${id}/upload_data_sheet`,
+    body,
+  },
+})

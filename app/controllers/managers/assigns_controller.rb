@@ -10,7 +10,7 @@ module Managers
                      includes(:assessment, :user).
                      joining { assessment }.
                      where.has { assessment.disabled.eq(nil) | assessment.disabled.eq(false) }.
-                     search(params[:q])
+                     ransack(params[:q])
       @reports = @current_project.reports.enabled.
                  with_assessment_category(%w[360 organisational]).
                  available_to_view.

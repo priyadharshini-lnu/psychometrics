@@ -7,11 +7,27 @@ class UserAssessment < ApplicationRecord
   belongs_to :project, class_name: 'Client'
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
+  belongs_to :assessor
   belongs_to :relationship
   belongs_to :users_result, dependent: :destroy
   has_one :mindmill_credential, through: :users_result
 
   delegate :selected_locale, to: :users_result
+
+  scope :sort_by_subject_name_asc, -> { joins(:subject).merge(User.sort_by_full_name_asc) }
+  scope :sort_by_subject_name_desc, -> { joins(:subject).merge(User.sort_by_full_name_desc) }
+
+  scope :filter_by_subject_or_assessment, lambda { |query|
+    joins(:subject, :assessment).where(
+      'users.first_name ILIKE :query OR users.last_name ILIKE :query OR users.email ILIKE :query OR
+      assessments.name ILIKE :query',
+      query: "%#{query}%"
+    )
+  }
+
+  def self.ransackable_scopes(_auth_object = nil)
+    %i[filter_by_subject_or_assessment]
+  end
 
   def completed?
     users_result&.completed?

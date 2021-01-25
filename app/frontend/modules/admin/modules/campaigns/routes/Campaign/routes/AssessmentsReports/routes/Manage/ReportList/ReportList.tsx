@@ -28,6 +28,7 @@ const ReportList: React.FC<Props> = ({
   match: { params: { projectId, campaignId } },
   openModal,
   selectRecords,
+  toggleAssessorAccess,
 }) => {
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -64,6 +65,16 @@ const ReportList: React.FC<Props> = ({
                 checked={userAccess}
                 onChange={() => openModal('ToggleUserAccessModal',
                   { campaignId, campaignReportId: id, userAccess })}
+              />
+            )}
+          />
+          <Column
+            title={I18n.t('campaign_report.column.assessor_access')}
+            key="userAccess"
+            render={({ assessorAccess, id }) => (
+              <Switch
+                checked={assessorAccess}
+                onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
               />
             )}
           />

@@ -2,7 +2,7 @@
 
 module Administration
   class CampaignReportSerializer < ActiveModel::Serializer
-    attributes :id, :report_id, :name, :user_access, :report_family_name
+    attributes :id, :report_id, :name, :user_access, :assessor_access, :report_family_name
 
     delegate :name, to: :report
     delegate :name, to: :report_family, prefix: true

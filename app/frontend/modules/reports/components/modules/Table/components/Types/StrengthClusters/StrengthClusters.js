@@ -1,12 +1,14 @@
-/* eslint-disable react/no-danger */
 /* eslint-disable max-len */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import cs from 'classnames'
+import ReactMarkdown from 'react-markdown'
+
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
-import cs from 'classnames'
-import { renderMarkdown } from 'rb/utils/Markdown'
+import { TopFactorType } from 'rb/models/Results/interfaces'
+
 import styles from './StrengthClusters.scss'
 
 const MockSubfactors = [
@@ -191,7 +193,7 @@ class StrengthClusters extends Component {
     if (ResultStore.realResults) {
       const factorIds = _.map(props.source.factors, 'id')
       this.topData = ResultStore.results[module.assessment_id]
-        .getTopFactors(props.minPosition, props.maxPosition, factorIds, false)
+        .getTopFactors(props.minPosition, props.maxPosition, factorIds, TopFactorType.Factor)
     } else {
       this.topData = _.take(MockData, props.maxPosition - props.minPosition + 1)
     }
@@ -311,13 +313,17 @@ class StrengthClusters extends Component {
                 <td className={cs(styles.text, styles.roles, styles.darkGrayBg)}>
                   <div>
                     <strong>{I18nStore.t('reports.modules.strength_clusters.possible_roles')}</strong>
-                    <div dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionPossibleRoles) }} />
+                    <ReactMarkdown>
+                      {conditionPossibleRoles}
+                    </ReactMarkdown>
                   </div>
                 </td>
                 <td className={cs(styles.text, styles.workstyles, styles.darkGrayBg)}>
                   <div>
                     <strong>{I18nStore.t('reports.modules.strength_clusters.work_environments')}</strong>
-                    <div dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionWorkstyles) }} />
+                    <ReactMarkdown>
+                      {conditionWorkstyles}
+                    </ReactMarkdown>
                   </div>
                 </td>
               </tr>

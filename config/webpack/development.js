@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const apiMocker = require('mocker-api')
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -23,6 +24,22 @@ if (config.devServer.https === true && sslCert) {
     devServer: {
       https: {
         ...sslCert,
+      },
+    },
+  })
+}
+
+// Adds API Mocker to dev server
+if (process.env.NODE_ENV === 'development' && process.env.RUN_MOCK_SERVER) {
+  config.merge({
+    devServer: {
+      before (app) {
+        apiMocker(app, path.resolve(__dirname, '../mocker/index.js'), {
+          header: {
+            'Access-Control-Allow-Origin': 'https://www.lvh.me:3030',
+            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, X-CSRF-Token',
+          },
+        })
       },
     },
   })

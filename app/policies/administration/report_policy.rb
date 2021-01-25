@@ -74,6 +74,14 @@ module Administration
       @user.is?(:superadmin) && !record.try(:external_report?)
     end
 
+    def soft_delete?
+      destroy?
+    end
+
+    def restore?
+      destroy?
+    end
+
     class Scope < Scope
       def resolve
         scope = super

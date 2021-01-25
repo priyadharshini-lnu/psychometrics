@@ -42,6 +42,7 @@ class Campaign < ApplicationRecord
   has_many :assessments, through: :campaign_assessments
   has_many :users, through: :campaign_users
   has_many :registration_codes, dependent: :destroy
+  has_many :assessors, dependent: :destroy
 
   delegate :client, to: :project
   THREESIXTY = 'threesixty'

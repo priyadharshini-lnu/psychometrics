@@ -1,13 +1,14 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import ReactMarkdown from 'react-markdown'
+
 import ResultStore from 'rb/store/ResultStore'
 import AppStore from 'rb/store/AppStore'
 import I18nStore from 'rb/store/I18nStore'
 import store from 'rb/store/PropertyPanelStore'
-import { renderMarkdown } from 'rb/utils/Markdown'
 import CircularProgress from './CircularProgress'
+
 import styles from './InnovationStyles.scss'
 
 const SCORE_PROGRESS_SIZE = 130
@@ -119,14 +120,12 @@ class InnovationStyles extends Component {
                     </div>
                   </div>
                   <div className={styles.detailsBottom}>
-                    <div
-                      className={styles.strengths}
-                      dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionStrengths) }}
-                    />
-                    <div
-                      className={styles.blindspots}
-                      dangerouslySetInnerHTML={{ __html: renderMarkdown(conditionBlindspots) }}
-                    />
+                    <ReactMarkdown className={styles.strengths}>
+                      {conditionStrengths}
+                    </ReactMarkdown>
+                    <ReactMarkdown className={styles.blindspots}>
+                      {conditionBlindspots}
+                    </ReactMarkdown>
                   </div>
                 </div>
               </div>

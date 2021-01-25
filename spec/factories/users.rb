@@ -82,5 +82,18 @@ FactoryBot.define do
     trait :skip_validate do
       to_create { |instance| instance.save(validate: false) }
     end
+
+    trait :assessor do
+      role { User::ADMIN_ROLE }
+      transient do
+        with_campaign { nil }
+      end
+
+      after(:create) do |user, evaluator|
+        attrs = { user: user }
+        attrs[:campaign] = evaluator.with_campaign if evaluator.with_campaign
+        create :assessor, attrs
+      end
+    end
   end
 end

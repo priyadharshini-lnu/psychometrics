@@ -8,6 +8,48 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
 
+  concern :media_uploades do
+    member do
+      get :upload_media_url
+      put :upload_callback
+      delete :remove_media
+      put :complete_multipart_upload
+      put :mark_as_user_selected_take
+      put :update_meta_data
+    end
+  end
+
+  namespace :assessors do
+    constraints(proc { |request| request.format.pdf? || request.format.html? }) do
+      resources :campaigns, only: [] do
+        resources :user_reports, only: [] do
+          member do
+            get :download
+            get :pdf_preview
+          end
+        end
+      end
+    end
+
+    constraints(proc { |request| request.format.html? }) do
+      get '/', to: 'users#dashboard', as: :dashboard, constraints: { format: :html }
+      get '*all', to: 'users#dashboard', constraints: { all: /.*/, format: :html }
+    end
+
+    resources :evaluations, only: [:show] do
+      get :subject_assessment
+      resources :results, controller: 'users_results', only: %i[update], concerns: :media_uploades
+    end
+
+    resources :campaigns, only: [:index] do
+      resources :users, only: %i[index show]
+    end
+
+    resources :campaigns, only: [] do
+      resources :user_reports, only: [:show]
+    end
+  end
+
   # Administration panel
   #
   namespace :administration do
@@ -52,6 +94,7 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
+        resources :datasheets, only: [:index]
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -68,6 +111,7 @@ Rails.application.routes.draw do
           member do
             get :export
             patch :toggle_user_access
+            patch :toggle_assessor_access
           end
         end
         resources :user_reports do
@@ -90,6 +134,29 @@ Rails.application.routes.draw do
           collection do
             post :import
             get :export_completion_status
+            post :search
+          end
+        end
+
+        resources :assessors do
+          collection do
+            post :import
+            get :available_assessments
+            post :create_all
+          end
+          member do
+            get :spoof
+          end
+
+          scope module: :assessors do
+            resources :user_assessments, only: %i[index create] do
+              member do
+                put :reset
+              end
+              collection do
+                delete :bulk_delete
+              end
+            end
           end
         end
 
@@ -107,6 +174,7 @@ Rails.application.routes.draw do
             post :import_results
             get :norms
             post :update_norm
+            put :update_assessor_form
             post :rescore_responses
           end
         end
@@ -129,6 +197,10 @@ Rails.application.routes.draw do
     end
 
     resources :projects do
+      scope module: :projects do
+        resources :datasheets, only: [:index]
+      end
+
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
         scope module: :campaigns do
           resources :registration_codes
@@ -139,10 +211,12 @@ Rails.application.routes.draw do
         resources :new_campaigns do
           collection do
             get :templates_and_assessment
+            post :search_users
           end
 
           member do
             get :fetch_campaign_options
+            get :fetch_campaign_instructions
             put :update_campaign_options
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
             get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
@@ -150,6 +224,12 @@ Rails.application.routes.draw do
         end
       end
     end
+    resources :projects do
+      member do
+        post :search_users
+      end
+    end
+
     ### CLIENTS
     resources :clients do
       member do
@@ -244,9 +324,6 @@ Rails.application.routes.draw do
         resources :projects, concerns: :client_editable do
           collection do
             get :export
-          end
-          member do
-            post :search_users
           end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
@@ -404,6 +481,9 @@ Rails.application.routes.draw do
         get :assessments
         get :questions
         get :factors
+        post :upload_data_sheet
+        delete :soft_delete
+        put :restore
       end
 
       scope module: 'assessments' do
@@ -487,6 +567,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :create_superadmin
+        post :search_admins
         get :export
       end
     end
@@ -535,6 +616,8 @@ Rails.application.routes.draw do
         put :regenerate
         post :upload_data_sheet
         patch :toggle_archive
+        delete :soft_delete
+        put :restore
       end
       collection do
         get :hogan_reports
@@ -681,18 +764,10 @@ Rails.application.routes.draw do
       get ':assessment_key/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assigns, only: %i[index update] do
+    resources :assigns, only: %i[index update], concerns: :media_uploades do
       get :pass, on: :member
       get :assessment, on: :member
       post :accept_privacy, on: :collection
-      member do
-        get :upload_media_url
-        put :upload_callback
-        delete :remove_media
-        put :complete_multipart_upload
-        put :mark_as_user_selected_take
-        put :update_meta_data
-      end
     end
 
     resources :highlights, only: %i[update]
@@ -733,16 +808,7 @@ Rails.application.routes.draw do
       end
 
       resources :user_assessments do
-        resources :users_results, only: %i[update] do
-          member do
-            get :upload_media_url
-            put :upload_callback
-            delete :remove_media
-            put :complete_multipart_upload
-            put :mark_as_user_selected_take
-            put :update_meta_data
-          end
-        end
+        resources :users_results, only: %i[update], concerns: :media_uploades
         member do
           get :assessment
           get :pass

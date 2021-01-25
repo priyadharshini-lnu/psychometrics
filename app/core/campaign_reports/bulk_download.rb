@@ -2,11 +2,12 @@
 
 module CampaignReports
   class BulkDownload < BaseCommand
-    private_attr_reader :campaign_reports, :current_user, :bulk_report
+    private_attr_reader :campaign_reports, :current_user, :bulk_report, :job_record
 
-    def initialize(campaign_reports, current_user)
+    def initialize(campaign_reports, current_user, job_record)
       @campaign_reports = campaign_reports
       @current_user = current_user
+      @job_record = job_record
       @bulk_report = ::BulkReport.create(user: current_user)
     end
 
@@ -19,7 +20,7 @@ module CampaignReports
 
       FileUtils.rm_rf(bulk_report.input_dir)
 
-      broadcast :ok
+      broadcast :ok, bulk_report
     end
 
     private
@@ -33,7 +34,12 @@ module CampaignReports
     end
 
     def download_user_reports_from_s3
-      user_reports_with_pdf.each { |user_report| download_report(user_report) }
+      progress = 0
+      user_reports_with_pdf.each do |user_report|
+        download_report(user_report)
+        progress += 100 / user_reports_with_pdf.size
+        AdminJob.update_progress(job_record, progress)
+      end
     end
 
     def download_report(user_report)

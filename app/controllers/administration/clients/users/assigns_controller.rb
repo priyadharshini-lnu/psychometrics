@@ -19,7 +19,7 @@ module Administration
                             :project_assign,
                             enabled_assigns_reports: %i[report assign]
                           ).
-                          search(params[:q])
+                          ransack(params[:q])
           @_resources = filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
                      ransack(clients_reports_client_id_eq: client.id).

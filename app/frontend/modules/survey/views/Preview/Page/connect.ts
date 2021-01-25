@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import {
   getCurrentPage, getCurrentBlock, pageQuestionsWithoutHidden, pageErrors, getPrevPage, getProgress, getI18n,
-  getIsLastPage,
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
 import {
   nextPage, prevPage,
@@ -22,7 +21,6 @@ export default connect(
       block: initialized && getCurrentBlock(preview),
       errors: initialized && pageErrors(preview),
       progress: initialized && getProgress(preview),
-      isLast: initialized && getIsLastPage(preview),
       I18n: getI18n(preview),
       isDisconnected: !isConnected(state),
     }

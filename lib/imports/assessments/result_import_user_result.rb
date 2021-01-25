@@ -53,7 +53,6 @@ module Imports
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.to_a
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
-
         # Remove support row
         SUPPORT_ROWS.times { rows.shift }
         questions = Question.
@@ -107,7 +106,6 @@ module Imports
             created_at: parse_date(data['started_at'], index),
             completed_at: parse_date(data['completed_at'], index),
             norm_id: norm_data[:id],
-            norm_type: norm_data[:type],
             status: status,
             completion_reason: completion_reason
           )
@@ -147,8 +145,7 @@ module Imports
             ::UsersResults::Recompute.call!(
               user_result,
               user_result.user,
-              norm_id: user_result.norm_id,
-              norm_type: user_result.norm_type
+              norm_id: user_result.norm_id
             )
           end
           user_result
@@ -162,10 +159,10 @@ module Imports
       end
 
       def open_spreadsheet
-        case File.extname(file.original_filename)
-          when '.csv' then Roo::CSV.new(file.path)
-          when '.xlsx' then ::Roo::Excelx.new(file.path)
-          else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
+        case File.extname(file.path)
+          when '.csv' then Roo::CSV.new(file.url)
+          when '.xlsx' then ::Roo::Excelx.new(file.url)
+          else raise t('administration.imports.errors.unknown_type', filename: file.url)
         end
       end
       # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/AbcSize
@@ -191,19 +188,18 @@ module Imports
         end
       end
 
-      def parse_norm_data(norm_data, assessment_id)
-        return {} if norm_data.nil?
+      def parse_norm_data(norm_name, assessment_id)
+        return {} unless norm_name.present?
 
-        norm_name, norm_type = norm_data.to_s.split(':')
-        norm = Norm.
-               joining { dimension }.
-               joining do
+        norm_ids = Norm.
+                   joining { dimension }.
+                   joining do
           dimension.assessments.alias('assessments').
             on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id))
         end.
-               where(name: norm_name).
-               pluck(:id)
-        { id: norm.try(:first), type: norm_type }
+                   where(name: norm_name).
+                   pluck(:id)
+        { id: norm_ids.try(:first) }
       end
 
       def parse_date(date, index)

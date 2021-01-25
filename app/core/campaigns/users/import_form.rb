@@ -12,6 +12,7 @@ module Campaigns
 
       validate :validate_header
       validate :validate_body
+      validate :validate_duplicated_emails
 
       private
 
@@ -25,6 +26,14 @@ module Campaigns
                  with_context(campaign: context.campaign)
           errors.add(:import_data, "Row #{index + 1}: #{form.errors.full_messages.join("\n")}") if form.invalid?
         end
+      end
+
+      def validate_duplicated_emails
+        emails = []
+        import_data[1..-1].map { |a| a[:email] }.group_by { |a| a }.each do |email, group|
+          emails << email if group.size > 1
+        end
+        errors.add(:import_data, :duplicated_emails, emails: emails.join(', ')) if emails.present?
       end
     end
   end

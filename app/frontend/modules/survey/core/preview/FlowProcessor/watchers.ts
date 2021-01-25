@@ -13,6 +13,10 @@ import {
   setNotDirtyResults,
   setLocalResults,
   clearInProgressQuestion,
+  showSubmitPage,
+  hideSubmitPage,
+  hideEnd,
+  setIsSimulation,
 } from './actions'
 import {
   getPrevPage,
@@ -23,7 +27,7 @@ import {
 } from './selectors'
 import {
   INIT, SHOW_PAGE, PREV_PAGE, SHOW_END, RESET, CHANGE_ELEMENT,
-  ANSWER, MARK_ASSESSMENT_TIMED_OUT,
+  ANSWER, MARK_ASSESSMENT_TIMED_OUT, REMOVE_QUESTION_IN_PROGRESS,
 } from './consts'
 import { InProgressQuestion } from './interfaces'
 
@@ -31,6 +35,11 @@ const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000
 
 function* genInitPageProcessing () {
   const state = yield select()
+
+  if (state.preview.assessmentTimedOut) {
+    yield genSimulatePassingAssessment()
+    return
+  }
   if (!state.preview.currentElement) {
     yield put(nextPage())
   } else {
@@ -41,6 +50,10 @@ function* genInitPageProcessing () {
 function* genPrevPage () {
   // set current page questions results as dirty
   const state = yield select()
+  if (state.preview.showSubmitPage) {
+    yield put(hideEnd())
+    yield put(hideSubmitPage())
+  }
   const questions = pageQuestions(state.preview)
   const prev = getPrevPage(state.preview)
   if (prev) {
@@ -103,10 +116,36 @@ function* genSaveResultsIfNoVideoQuestionInProgress () {
 }
 
 function* genSimulatePassingAssessment () {
+  yield put(setIsSimulation())
   let state = yield select()
   while (!state.preview.end) {
     yield put(nextPage({ skipValidations: true }))
     state = yield select()
+  }
+}
+
+function* genPassAssessmentIfTimedOut () {
+  const state = yield select()
+  if (state.preview.assessmentTimedOut && !state.preview.end) {
+    yield genSimulatePassingAssessment()
+  }
+}
+
+function* getShowSubmitPage () {
+  const state = yield select()
+  if (state.preview.assessmentTimedOut) { return }
+  if (state.preview.showSubmitPage) {
+    yield put(hideSubmitPage())
+    return
+  }
+  const { enableBack, isThreesixty, showScoringOnEndPage } = state.preview
+
+  const canNotEdit = _.get(
+    state, ['campaigns', 'campaign', 'options', 'participants', 'global', 'canNotEditEvaluation'],
+  )
+
+  if (enableBack && !showScoringOnEndPage && (!isThreesixty || (isThreesixty && canNotEdit))) {
+    yield put(showSubmitPage())
   }
 }
 
@@ -116,7 +155,9 @@ export const watchers = [
   debounce(200, ANSWER, genSaveResultsLocal),
   takeEvery(RESET, genInitPageProcessing),
   takeEvery(PREV_PAGE, genPrevPage),
+  takeLatest(SHOW_END, getShowSubmitPage),
   takeEvery([CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genUpdateResultsAsNotDirty),
   takeLatest(MARK_ASSESSMENT_TIMED_OUT, genSaveResultsIfNoVideoQuestionInProgress),
+  takeLatest(REMOVE_QUESTION_IN_PROGRESS, genPassAssessmentIfTimedOut),
   debounce(200, [CHANGE_ELEMENT, SHOW_PAGE, SHOW_END], genSaveResults),
 ]

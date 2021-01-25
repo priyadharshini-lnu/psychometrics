@@ -8,6 +8,10 @@ describe UserReports::GeneratePdf do
   let(:report) { user_report.report }
   let(:current_user) { create(:superadmin) }
 
+  before do
+    allow(Kernel).to receive(:system)
+  end
+
   it 'create report pdf in tmp location where current_user is a super admin' do
     output_path = described_class.call!(user_report, current_user)
 

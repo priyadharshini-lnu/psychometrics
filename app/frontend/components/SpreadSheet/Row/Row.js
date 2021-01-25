@@ -9,7 +9,7 @@ export default function Row ({
       {fields.map((field, number) => {
         const Component = types[field.type || 'Input']
         return (
-          <td key={field.key}>
+          <td key={field.key} style={field.styles || {}}>
             <Component
               context={context}
               field={field}

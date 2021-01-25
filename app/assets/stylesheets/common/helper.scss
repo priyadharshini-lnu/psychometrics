@@ -61,6 +61,30 @@ $space40: 40px;
   margin-top: $space40 !important;
 }
 
+.mr4 {
+  margin-right: $space4 !important;
+}
+
+.mr8 {
+  margin-right: $space8 !important;
+}
+
+.mr16 {
+  margin-right: $space16 !important;
+}
+
+.mr24 {
+  margin-right: $space24 !important;
+}
+
+.mr32 {
+  margin-right: $space32 !important;
+}
+
+.mr40 {
+  margin-right: $space40 !important;
+}
+
 .mb0 {
   margin-bottom: 0 !important;
 }
@@ -436,6 +460,10 @@ $space40: 40px;
   display: flex;
 }
 
+.flex1 {
+  flex: 1;
+}
+
 .justify-content-space-between {
   justify-content: space-between;
 }
@@ -447,6 +475,14 @@ $space40: 40px;
 
 .margin-top-minus-10 {
   margin-top: -10px;
+}
+
+.width100percent {
+  width: 100%;
+}
+
+.width150px {
+  width: 150px;
 }
 
 .text-align-r {

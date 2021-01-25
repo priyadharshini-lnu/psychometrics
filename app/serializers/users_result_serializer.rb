@@ -6,7 +6,7 @@ class UsersResultSerializer < ActiveModel::Serializer
              :manager_evaluation_status, :campaign_id, :available_translations, :translations,
              :selected_locale, :current_element, :current_page, :seedrandom, :expiry_date,
              :subject_datasheet, :highlights, :user_assessment_id, :external_scoring, :started_at,
-             :prev_pages
+             :prev_pages, :timed_out, :completed_at, :factors
 
   attribute :relationship
 
@@ -18,6 +18,15 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :campaign_options, serializer: ::EndUser::CampaignOptionsSerializer
   has_one :campaign_user, serializer: ::EndUser::CampaignUserSerializer
   delegate :campaign_options, to: :campaign
+  has_many :factors, serializer: ::UsersResults::FactorSerializer
+
+  def factors
+    Factor.where(id: object.scoring&.keys)
+  end
+
+  def timed_out
+    object.expired?
+  end
 
   def campaign_user
     campaign.campaign_users.find_by(user_id: current_user.id) if current_user

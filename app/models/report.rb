@@ -17,12 +17,8 @@
 
 class Report < ApplicationRecord
   include Copyable
-
-  TYPES = [
-    COMMON_TYPE = 'common',
-    YTI_TYPE = 'yti',
-    ETI_TYPE = 'eti'
-  ].freeze
+  include RansackSearchableFields
+  include SoftDelete
 
   PROVIDERS = {
     internal: 0,
@@ -99,7 +95,6 @@ class Report < ApplicationRecord
   before_save :delete_hogan_report_setting, :set_provider
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
-  enum type: TYPES
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
   enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
@@ -135,24 +130,9 @@ class Report < ApplicationRecord
   }
   scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
-  scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
   scope :not_external, -> { where(provider: :internal) }
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }
-  scope :filterable_fields, lambda { |search_term|
-    if (search_term !~ /\D/) && search_term.present?
-      where('reports.id= ? OR reports.name ILIKE ? ', search_term, "%#{search_term}%")
-    else
-      where("reports.name ILIKE '%#{search_term}%'")
-    end
-  }
-
-  class << self
-    # White list scopes for Ransack
-    def ransackable_scopes(_auth_object = nil)
-      %i[filterable_fields]
-    end
-  end
 
   # Copy report with nested resources
   def clone
@@ -161,10 +141,6 @@ class Report < ApplicationRecord
     )
     @cloned_item.gen_uniq_name
     @cloned_item
-  end
-
-  def yti_eti?
-    [Report::YTI_TYPE, Report::ETI_TYPE].include? type
   end
 
   # Returns true if Report is external pdf from mindmill or hogan

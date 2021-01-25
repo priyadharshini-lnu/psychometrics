@@ -11,9 +11,11 @@ interface Props {
 }
 
 const MESSAGE_KEY = 'connectionCheck'
+const { setTimeout, clearTimeout } = window
 
 export default function ConnectionCheck (props: Props = {}) {
   const closeMessageRef = useRef<MessageType>()
+  const timerRef = useRef<number>()
   const { onConnected, onDisconnected } = props
 
   const handleDisconnection = () => {
@@ -33,11 +35,11 @@ export default function ConnectionCheck (props: Props = {}) {
   useEffect(() => {
     const subscription = App.cable?.subscriptions.create({ channel: 'ConnectionCheckChannel' }, {
       connected () {
+        if (timerRef.current) { clearTimeout(timerRef.current) }
         handleConnection()
       },
       disconnected () {
-        // Disabling due to issue with taking assessments within iframe (Maia Learning)
-        // handleDisconnection()
+        timerRef.current = setTimeout(handleDisconnection, 500)
       },
     })
 

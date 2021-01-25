@@ -1,3 +1,5 @@
+import * as t from 'io-ts'
+
 export const ACTIVATE_UNIVERSAL_LINK = 'campaigns/ACTIVATE_UNIVERSAL_LINK'
 export const DEACTIVATE_UNIVERSAL_LINK = 'campaigns/DEACTIVATE_UNIVERSAL_LINK'
 export const REGENERATE_UNIVERSAL_LINK = 'campaigns/REGENERATE_UNIVERSAL_LINK'
@@ -5,6 +7,7 @@ export const IMPORT_RAW_RESULTS = 'campaigns/assessments/IMPORT_RAW_RESULTS'
 export const IMPORT_SCORING_RESULTS = 'campaigns/assessments/IMPORT_SCORING_RESULTS'
 export const FETCH_NORMS = 'campaigns/assessments/FETCH_NORMS'
 export const UPDATE_NORM = 'campaigns/assessments/UPDATE_NORM'
+export const UPDATE_ASSESSOR_FORM = 'campaigns/assessments/UPDATE_ASSESSOR_FORM'
 export const RESCORE_RESPONSES = 'campaigns/assessments/RESCORE_RESPONSES'
 export const REMOVE = 'campaigns/assessments/REMOVE'
 
@@ -85,5 +88,21 @@ export const updateNorm = (campaignId: number, assessmentId: number, body) => ({
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_norm`,
     body: { ...body, id: assessmentId },
     loader: true,
+  },
+})
+
+const UpdateAssessorFormTR = t.type({
+  assessorFormName: t.union([t.string, t.null]),
+  assessorFormId: t.union([t.number, t.null]),
+})
+
+export const updateAssessorForm = (campaignId: number, assessmentId: number, body) => ({
+  type: UPDATE_ASSESSOR_FORM,
+  request: {
+    method: 'put',
+    url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/update_assessor_form`,
+    body: { ...body, id: assessmentId },
+    loader: true,
+    typedResponse: UpdateAssessorFormTR,
   },
 })

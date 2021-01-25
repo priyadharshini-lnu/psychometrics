@@ -195,10 +195,7 @@ module DataMigration
         attributes['subject_id'] = assign_with_result.membership&.user_id
         attributes['evaluator_id'] = assign_with_result.membership&.user_id
 
-        if assign_with_result.norm_data
-          attributes['norm_id'] = assign_with_result.norm_data.fetch('id', nil)
-          attributes['norm_type'] = assign_with_result.norm_data.fetch('type', nil)
-        end
+        attributes['norm_id'] = assign_with_result.norm_data.fetch('id', nil) if assign_with_result.norm_data
 
         users_result = UsersResult.new(attributes)
         users_result.save!

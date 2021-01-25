@@ -6,6 +6,7 @@ import {
 } from 'modules/survey/core/preview/FlowProcessor/selectors'
 
 const state = {
+  initialized: true,
   currentPage: 0,
   allPages: {
     1: [{questions: [1,2,3]}, {questions: [4,5]}],
@@ -97,6 +98,7 @@ test('getProgress', () => {
 
 describe('getProgress with multiple block pages', () => {
   const state = {
+    initialized: true,
     currentPage: 0,
     allPages: {
       1: [{questions: [1,2,3]}, {questions: [4,5]}],
@@ -118,7 +120,7 @@ describe('getProgress with multiple block pages', () => {
   }
 
   test('getProgress', () => {
-    expect(getProgress({allPages: {}, normalizedTree: {}})).toStrictEqual(0)
+    expect(getProgress({initialized: true, allPages: {}, normalizedTree: {}})).toStrictEqual(0)
     expect(getProgress({...state, allPages: {}})).toStrictEqual(0)
     expect(getProgress({...state, currentElement: '0'})).toStrictEqual(0)
     expect(getProgress({...state, currentElement: '0/1/0'})).toStrictEqual(45)
@@ -164,6 +166,7 @@ describe('lookForEndOfAssessment  ', () => {
 
 describe('getPossibleBlocks', () => {
   const state = {
+    initialized: true,
     currentPage: 0,
     allPages: {
       1: [{questions: [1,2,3]}, {questions: [4,5]}],
