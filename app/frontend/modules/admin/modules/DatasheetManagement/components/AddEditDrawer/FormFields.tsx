@@ -1,52 +1,100 @@
-import React, { FC } from 'react'
+import React, { ChangeEvent, FC } from 'react'
 import {
   Col, Form, Input, InputNumber, Row,
 } from 'antd'
 
-import {
-  ColumnType,
-} from 'modules/admin/modules/DatasheetManagement/core/list'
+import { ColumnType } from 'modules/admin/modules/DatasheetManagement/core/list'
+
+import { MarkdownEditor } from 'modules/admin/modules/DatasheetManagement/components/MarkdownEditor'
+import HTMLEditor from 'components/Editor'
 
 const { I18n } = window
 
+interface FieldOnChange {
+  (event: ChangeEvent<HTMLInputElement>): void
+  (event: ChangeEvent<HTMLTextAreaElement>): void
+  (value: number): void
+  (value: string): void
+}
 interface InputFieldProps {
-    type: ColumnType
+  type: ColumnType
+  value?: string | number
+  onChange?: FieldOnChange
 }
 
-export const InputField: FC<InputFieldProps> = ({ type, ...restProps }) => {
+export const InputField: FC<InputFieldProps> = ({
+  type,
+  ...fieldItemProps
+}) => {
+  if (fieldItemProps.onChange === undefined) {
+    return null
+  }
+
   if (type === 'string') {
-    return <Input {...restProps} />
+    return <Input {...fieldItemProps} />
   }
-  if (type === 'numeric') {
-    return <InputNumber className="w-100" {...restProps} />
-  }
+
   if (type === 'text') {
-    return <Input.TextArea autoSize={{ minRows: 6, maxRows: 6 }} {...restProps} />
+    return (
+      <Input.TextArea
+        autoSize={{ minRows: 6, maxRows: 6 }}
+        {...fieldItemProps}
+      />
+    )
   }
-  if (type === 'html') {
-    return <>html</>
+
+  if (type === 'numeric') {
+    return (
+      <InputNumber
+        className="w-100"
+        value={fieldItemProps.value as number}
+        onChange={fieldItemProps.onChange}
+      />
+    )
   }
+
   if (type === 'markdown') {
-    return <>mark</>
+    return (
+      <MarkdownEditor
+        value={fieldItemProps.value as string}
+        onChange={fieldItemProps.onChange}
+      />
+    )
   }
+
+  if (type === 'html') {
+    return (
+      <HTMLEditor
+        content={fieldItemProps.value as string}
+        handleContentChange={fieldItemProps.onChange}
+      />
+    )
+  }
+
   return null
 }
 
 interface EmailFieldProps {
-    isInAddMode: boolean
-    email: string
-  }
+  isInAddMode: boolean
+  email: string
+}
 
-export const EmailField: FC<EmailFieldProps> = ({ isInAddMode, email, ...restProps }) => {
+export const EmailField: FC<EmailFieldProps> = ({
+  isInAddMode,
+  email,
+  ...restProps
+}) => {
   if (isInAddMode) {
     return (
       <Form.Item
-        rules={[{
-          required: true,
-          message: I18n.t(
-            'administration.datasheets.drawers.add_edit.validations.required_email',
-          ),
-        }]}
+        rules={[
+          {
+            required: true,
+            message: I18n.t(
+              'administration.datasheets.drawers.add_edit.validations.required_email',
+            ),
+          },
+        ]}
         label="Email"
         name="email"
       >

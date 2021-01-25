@@ -1,22 +1,20 @@
-/* eslint-disable react/no-danger */
 /* eslint-disable max-len */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import cs from 'classnames'
+import yaml from 'js-yaml'
+import ReactMarkdown from 'react-markdown'
+
 import ResultStore from 'rb/store/ResultStore'
 import I18nStore from 'rb/store/I18nStore'
 import invoiceIcon from 'rb/static/icons/invoice.png'
-import cs from 'classnames'
-import yaml from 'js-yaml'
 import subTracksIcon from 'rb/static/icons/career-sub-tracks.svg'
 import potentialAreaIcon from 'rb/static/icons/potential-areas-of-study.svg'
 import workEnvironmentIcon from 'rb/static/icons/typical-work-environment.svg'
 import careerStrengthsIcon from 'rb/static/icons/career-strengths.svg'
 
-
-import { renderMarkdown } from 'rb/utils/Markdown'
 import styles from './PotentialCareerFull.scss'
-
 
 const MockOccupation = {
   id: 1,
@@ -203,7 +201,9 @@ class PotentialCareerFull extends Component {
     return (
       <div className={styles.trackBox} key={i}>
         <div className={styles.trackTitle}>{track.title}</div>
-        <div className={styles.trackDescription} dangerouslySetInnerHTML={{ __html: renderMarkdown(track.description) }} />
+        <ReactMarkdown className={styles.trackDescription}>
+          {track.description}
+        </ReactMarkdown>
       </div>
     )
   }
@@ -254,10 +254,9 @@ class PotentialCareerFull extends Component {
           {this.renderStars(this.occupationData.stars)}
         </div>
 
-        <div
-          className={styles.description}
-          dangerouslySetInnerHTML={{ __html: renderMarkdown(I18nStore.tOccupation(this.occupationData, 'fullDescription')) }}
-        />
+        <ReactMarkdown className={styles.description}>
+          {I18nStore.tOccupation(this.occupationData, 'fullDescription')}
+        </ReactMarkdown>
 
         <div className={styles.details}>
           <div className={styles.left}>
@@ -267,10 +266,9 @@ class PotentialCareerFull extends Component {
                 <div className={styles.titleText}>{I18nStore.t('reports.modules.potential_career_full.potential_areas_of_study')}</div>
                 <div className={styles.line} />
               </div>
-              <div
-                className={styles.panelBody}
-                dangerouslySetInnerHTML={{ __html: renderMarkdown(I18nStore.tOccupation(this.occupationData, 'potentialAreasOfStudy')) }}
-              />
+              <ReactMarkdown className={styles.panelBody}>
+                {I18nStore.tOccupation(this.occupationData, 'potentialAreasOfStudy')}
+              </ReactMarkdown>
             </div>
             <div className={styles.panel}>
               <div className={styles.panelTitle}>
@@ -278,10 +276,9 @@ class PotentialCareerFull extends Component {
                 <div className={styles.titleText}>{I18nStore.t('reports.modules.potential_career_full.work_environment')}</div>
                 <div className={styles.line} />
               </div>
-              <div
-                className={styles.panelBody}
-                dangerouslySetInnerHTML={{ __html: renderMarkdown(I18nStore.tOccupation(this.occupationData, 'workEnvironment')) }}
-              />
+              <ReactMarkdown className={styles.panelBody}>
+                {I18nStore.tOccupation(this.occupationData, 'workEnvironment')}
+              </ReactMarkdown>
             </div>
           </div>
           <div className={styles.right}>

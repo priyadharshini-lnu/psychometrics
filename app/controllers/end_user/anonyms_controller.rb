@@ -14,6 +14,7 @@ module EndUser
     initial_state_for :show
     before_action :perform_browser_check, only: [:show]
     before_action :set_user_assessment_and_result, only: [:show]
+    before_action :set_locale
 
     ANONYM_COOKIE_KEY = 'tte-anonym-payload'
 
@@ -21,7 +22,7 @@ module EndUser
       redirect_to(action: 'error', reason: 'archived') && return if assessment.archived?
       redirect_to(action: 'error', reason: 'not_active') && return unless @campaign_assessment.enable_universal_links?
 
-      @user_assessment.update(selected_locale: params[:lang]) if params[:lang]
+      @user_result.update(selected_locale: params[:lang]) if params[:lang]
 
       campaign_user = @campaign_assessment.campaign.campaign_users.find_by(user_id: current_user.id)
       campaign_user.update(started_at: Time.now) unless campaign_user.started_at
@@ -103,6 +104,10 @@ module EndUser
 
     def use_iframe?
       false
+    end
+
+    def set_locale
+      I18n.locale = ui_locale
     end
   end
 end

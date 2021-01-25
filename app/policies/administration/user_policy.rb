@@ -30,7 +30,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def update?
-    @user.is?(:superadmin, :client_admin, :project_admin)
+    @user.is?(:superadmin, :client_admin, :project_admin, :assessor)
   end
 
   def toggle_status?

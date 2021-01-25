@@ -5,7 +5,7 @@ csv << [
   'assessor_first_name',
   'assessor_last_name',
   'assessor_password',
-  'assessments',
+  'assessment_ids',
 ]
 user_assessment_by_subject_and_evaluator.each do |_key, list|
   ua = list.first

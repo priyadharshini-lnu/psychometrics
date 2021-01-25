@@ -123,6 +123,20 @@ const CampaignList: React.FC<Props> = (
               key="status"
               render={({ status }) => capitalize(status)}
             />
+            <Column
+              title={I18n.t('common.column.completion_status')}
+              key="completion_status"
+              render={({ completionStatus }) => (
+                I18n.t(`administration.assessor_campaigns.statuses.${completionStatus}`)
+              )}
+            />
+            <Column
+              title={I18n.t('common.column.completion_count')}
+              key="completionCount"
+              render={({ completedSubjectCount, totalSubjectCount }) => (
+                `${completedSubjectCount} / ${totalSubjectCount}`
+              )}
+            />
           </Table>
         </Col>
       </Row>

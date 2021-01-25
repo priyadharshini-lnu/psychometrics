@@ -10,6 +10,9 @@ const CampaignTR = t.type({
   id: t.number,
   name: t.string,
   status: t.string,
+  completedSubjectCount: t.number,
+  totalSubjectCount: t.number,
+  completionStatus: t.string,
 })
 
 const CampaignListResponseTR = t.type({

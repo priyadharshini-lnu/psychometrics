@@ -22,7 +22,7 @@
   & > textarea {
     resize: none;
     border: none;
-    height: 100%;
+    height: 100% !important; // will be changed with css reordering
     border-radius: 0;
     overflow-y: scroll;
   }

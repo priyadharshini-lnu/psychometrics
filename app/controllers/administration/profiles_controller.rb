@@ -36,7 +36,7 @@ module Administration
       params.require(:user).permit(
         :first_name, :last_name, :email,
         :password, :password_confirmation, :weekly_license_stats
-      )
+      ).merge(id: current_user.id)
     end
   end
 end

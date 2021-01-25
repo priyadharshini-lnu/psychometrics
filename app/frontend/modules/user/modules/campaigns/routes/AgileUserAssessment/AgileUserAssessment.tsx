@@ -5,6 +5,7 @@ import {
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { InteractiveAssessments } from '@thetalententerprise/interactive-assessments'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
+import qs from 'qs'
 import { isRtl } from 'utils/locales'
 import './styles.scss'
 import { PropsFromRedux } from './connect'
@@ -25,6 +26,7 @@ const AgileUserAssessment: React.FC<Props> = ({
   isAnonym,
 }) => {
   const initializeAgile = () => {
+    const { lang } = qs.parse(location.search.substr(1))
     const appOptions = {
       scale: {
         parent: 'agile-container',
@@ -40,6 +42,7 @@ const AgileUserAssessment: React.FC<Props> = ({
       settings: {
         returnURL: isAnonym ? '' : '/',
         assetsBaseURL: agileAssetsUrl,
+        locale: lang?.toString(),
       },
     }
 

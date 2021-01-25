@@ -112,6 +112,16 @@ const UserList: React.FC<Props> = (
               sortOrder={getSortOrder('email')}
               dataIndex="email"
             />
+            <Column
+              title={I18n.t('common.column.completion_status')}
+              key="status"
+              render={({ completionStatus }) => I18n.t(`administration.assessor_subjects.statuses.${completionStatus}`)}
+            />
+            <Column
+              title={I18n.t('common.column.completion_count')}
+              key="evaluationsCompleted"
+              render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
+            />
           </Table>
         </Col>
       </Row>

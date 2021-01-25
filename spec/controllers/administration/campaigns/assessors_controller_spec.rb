@@ -81,7 +81,12 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
 
       parsed_response = JSON.parse(response.body)
       expect(parsed_response).to eq({
-        'id' => assessor.user_id, 'email' => assessor.user.email, 'full_name' => assessor.user.decorate.full_name
+        'id' => assessor.user_id,
+        'email' => assessor.user.email,
+        'full_name' => assessor.user.decorate.full_name,
+        'completed_evaluations' => 0,
+        'total_evaluations' => 0,
+        'completion_status' => 'completed'
       })
     end
   end
