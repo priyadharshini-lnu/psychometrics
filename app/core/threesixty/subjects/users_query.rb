@@ -18,7 +18,7 @@ module Threesixty
 
       def sql
         <<-SQL.strip_heredoc
-        SELECT users.id, users.email, users.first_name, users.last_name
+        SELECT users.id, users.email, users.first_name, users.last_name, users.locale
         FROM threesixty_subjects
         JOIN users on users.id = threesixty_subjects.user_id
         WHERE campaign_id = :campaign_id AND (users.email LIKE :query OR users.first_name LIKE :query OR users.last_name LIKE :query)

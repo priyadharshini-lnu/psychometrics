@@ -59,10 +59,14 @@ en:
               already_exists: A subject with same email already exists
               blank: Email can't be blank
               invalid: Email is invalid
+            locale:
+              inclusion: Wrong locale
             evaluator_email:
               already_exists: The subject with this evaluator are already connected
               blank: Evaluator Email can't be blank
               invalid: Evaluator Email is invalid
+            evaluator_locale:
+              inclusion: Wrong locale
             evaluator_first_name:
               blank: Evaluator first name can't be blank
             evaluator_last_name:
@@ -116,6 +120,8 @@ en:
               already_exists: A subject with same email already exists
               blank: Email can't be blank
               invalid: Email is invalid
+            locale:
+              inclusion: Wrong locale
             first_name:
               blank: First name can't be blank
             last_name:
@@ -168,6 +174,8 @@ en:
               inclusion: Please select the correct norm type
         user:
           attributes:
+            locale:
+              inclusion: Wrong locale
             email:
               user_exists_in_campaign: User with this email id already exists in the campaign
               user_exists_in_project: User with this email id already exists in the project

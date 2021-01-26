@@ -17,11 +17,11 @@ module Projects
 
     def sql
       <<-SQL.strip_heredoc
-        SELECT users.id, users.email, users.first_name, users.last_name, 'users' as source
+        SELECT users.id, users.email, users.first_name, users.last_name, users.locale, 'users' as source
         FROM users
         WHERE project_id = :project_id AND (email LIKE :query OR first_name LIKE :query OR last_name LIKE :query)
         UNION
-        SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name, 'datasheets' as source
+        SELECT datasheet_rows.id, datasheet_rows.email, null as first_name, null as last_name, null as locale, 'datasheets' as source
         FROM datasheet_rows
         JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and datasheets.project_id = :project_id
         WHERE datasheet_rows.email LIKE :query

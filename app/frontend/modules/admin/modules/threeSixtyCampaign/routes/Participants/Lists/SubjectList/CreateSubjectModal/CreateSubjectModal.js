@@ -24,6 +24,10 @@ const tableFields = [
     name: 'Last Name',
     key: 'lastName',
   },
+  {
+    name: 'Locale',
+    key: 'locale',
+  },
 ]
 
 const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
@@ -38,7 +42,7 @@ export default function CreateSubjectModal ({
   creationInProgress,
   clearForm,
   match: {
-    params: { projectId, clientId, campaignId },
+    params: { projectId, campaignId },
   },
 }) {
   useEffect(() => () => {
@@ -81,7 +85,7 @@ export default function CreateSubjectModal ({
             source="users"
             users={autocompletedUsers}
             placeholder="Search Subject..."
-            url={`/administration/clients/${clientId}/projects/${projectId}/search_users`}
+            url={`/administration/projects/${projectId}/search_users`}
           />
         </AntForm.Item>
       </Form>

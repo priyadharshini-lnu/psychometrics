@@ -40,6 +40,7 @@ module Threesixty
             password: evaluator[:evaluator_password],
             first_name: evaluator[:evaluator_first_name],
             last_name: evaluator[:evaluator_last_name],
+            locale: evaluator[:evaluator_locale],
             create_by_invite: evaluator[:evaluator_password].blank?,
             project: project
           )

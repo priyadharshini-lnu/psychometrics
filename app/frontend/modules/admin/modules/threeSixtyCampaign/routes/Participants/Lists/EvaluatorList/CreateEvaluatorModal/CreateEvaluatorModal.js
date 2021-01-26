@@ -25,6 +25,10 @@ const tableFields = [
     key: 'evaluatorLastName',
   },
   {
+    name: "Evaluator's Locale",
+    key: 'evaluatorLocale',
+  },
+  {
     name: "Subject's Email",
     key: 'subjectEmail',
   },
@@ -70,6 +74,7 @@ export default function CreateEvaluatorModal ({
       evaluatorEmail: user.evaluator && user.evaluator.email,
       evaluatorFirstName: user.evaluator && user.evaluator.firstName,
       evaluatorLastName: user.evaluator && user.evaluator.lastName,
+      evaluatorLocale: user.evaluator && user.evaluator.locale,
       relationshipName: user.relationship.name,
     })
     fillEvaluators(newEvaluators)

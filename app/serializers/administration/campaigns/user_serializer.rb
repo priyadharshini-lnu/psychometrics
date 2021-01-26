@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class UserSerializer < ActiveModel::Serializer
       attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
-                 :created_at, :updated_at
+                 :created_at, :updated_at, :locale
 
       attribute :active do
         campaign_user&.active

@@ -43,7 +43,7 @@ module Administration
       end
 
       def create_all
-        validate_and_add_evalutors(params)
+        validate_and_add_evaluators(params)
       end
 
       def download_example_import_file
@@ -57,8 +57,8 @@ module Administration
         form = ::Threesixty::Evaluators::ImportFileForm.from_params(params).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          evaluators = evalutors_from_csv(form.file.path)
-          validate_and_add_evalutors(evaluators: evaluators)
+          evaluators = evaluators_from_csv(form.file.path)
+          validate_and_add_evaluators(evaluators: evaluators)
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
@@ -71,7 +71,7 @@ module Administration
         @_resource_class ||= ::Threesixty::Evaluator # rubocop:disable Naming/MemoizedInstanceVariableName
       end
 
-      def validate_and_add_evalutors(evaluators)
+      def validate_and_add_evaluators(evaluators)
         form = ::Threesixty::Evaluators::CreateAllForm.from_params(evaluators).
                with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
@@ -82,7 +82,7 @@ module Administration
         end
       end
 
-      def evalutors_from_csv(file_path)
+      def evaluators_from_csv(file_path)
         csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
         csv.map { |row| row.to_h.symbolize_keys }
       end
