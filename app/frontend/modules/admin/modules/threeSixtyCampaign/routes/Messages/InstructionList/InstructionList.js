@@ -17,6 +17,7 @@ const { Option } = Select
 
 export default function InstructionList ({
   availableLocales,
+  instructionTemplates,
   instructionTemplates: { list, listWithLocales },
   fetch,
   fetchByLocales,
@@ -97,7 +98,7 @@ export default function InstructionList ({
                 <Option value={null}>
                   {I18n.t('empty')}
                 </Option>
-                {availableLocales.map(locale => (
+                {instructionTemplates.availableLocales.map(locale => (
                   <Option key={locale} value={locale}>
                     {I18n.t(`languages.${locale}`)}
                   </Option>

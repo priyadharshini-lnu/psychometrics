@@ -30,4 +30,5 @@ export interface CampaignOptions {
   proctoringEnabled: boolean
   rules: object
   identification: string
+  availableLocales: string[]
 }
