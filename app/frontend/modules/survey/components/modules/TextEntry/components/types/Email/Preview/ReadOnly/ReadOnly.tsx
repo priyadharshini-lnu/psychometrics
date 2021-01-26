@@ -13,7 +13,7 @@ interface Props {
 const ReadOnly: React.FC<Props> = ({ model }) => {
   const {
     answers: {
-      message, cc, bcc, to,
+      message, cc, bcc, to, subject,
     },
   } = model.result
 
@@ -35,6 +35,12 @@ const ReadOnly: React.FC<Props> = ({ model }) => {
             <tr>
               <td className={styles.contactLabel}>{I18n().t('threesixty.question.email_type.bcc')}</td>
               <td>{bcc.join(', ')}</td>
+            </tr>
+          ) : null}
+          {subject && subject.length ? (
+            <tr>
+              <td className={styles.contactLabel}>{I18n().t('threesixty.question.email_type.subject')}</td>
+              <td>{subject}</td>
             </tr>
           ) : null}
         </tbody>
