@@ -98,7 +98,7 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
         <div>{I18n().t('threesixty.question.email_type.subject')}</div>
         <Form.Item {...validationProps('subject')}>
           <Input
-            value={model.result.answers.subject}
+            defaultValue={model.result.answers.subject}
             onChange={({ target: { value } }): void => handleTestChange('subject', value)}
             disabled={readOnly}
           />
@@ -109,7 +109,7 @@ const EmailForm: React.FC<Props> = ({ model, readOnly, errors }) => {
         <Form.Item {...validationProps('message')}>
           <TextArea
             className={styles.message}
-            value={message}
+            defaultValue={message}
             rows={7}
             onChange={({ target: { value } }): void => handleTestChange('message', value)}
             disabled={readOnly}
