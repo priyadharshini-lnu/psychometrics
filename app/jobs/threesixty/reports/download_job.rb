@@ -17,7 +17,7 @@ module Threesixty
         send_to_user
       rescue Exception => e # rubocop:disable Lint/RescueException
         notify_error
-        Raven.capture_exception(e)
+        Sentry.capture_exception(e)
       end
 
       private

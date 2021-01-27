@@ -10,7 +10,7 @@ module Threesixty
           find_each do |schedule_email|
             Threesixty::Emails::SendSingleScheduledEmail.call!(schedule_email)
         rescue StandardError => e
-          Raven.capture_exception(e)
+          Sentry.capture_exception(e)
           end
       end
     end
