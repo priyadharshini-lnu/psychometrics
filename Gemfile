@@ -112,8 +112,8 @@ gem 'acts_as_list', '~> 1.0.2'
 gem 'active_model_serializers', '~> 0.10.0'
 
 # Error tracking
-gem 'sentry-ruby', '~> 4.1.4'
 gem 'sentry-rails', '~> 4.1.5'
+gem 'sentry-ruby', '~> 4.1.4'
 gem 'sentry-sidekiq', '~> 4.1.2'
 
 # DSL for activerecord
