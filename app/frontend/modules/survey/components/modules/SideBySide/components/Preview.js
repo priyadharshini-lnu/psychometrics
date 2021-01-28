@@ -1,6 +1,8 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './SideBySide.scss'
 import TableHeader from './TableHeaderPreview'
 import TableBody from './TableBodyPreview'
@@ -27,9 +29,9 @@ export class Preview extends Component {
     return (
       <div style={{ position: 'relative' }}>
         <div className={styles.questionText}>
-          <div
+          <SafeHTML
             className={styles.questionTextPreview}
-            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+            html={I18n.tQuestion(model, 'questionText')}
           />
         </div>
         <table className={styles.preview}>

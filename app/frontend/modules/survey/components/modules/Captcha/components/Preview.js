@@ -1,7 +1,7 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Recaptcha from 'react-google-recaptcha'
+import { SafeHTML } from 'components/SafeHTML'
 import styles from './Captcha.scss'
 import connect from '../connect'
 
@@ -29,9 +29,9 @@ export class CaptchaPreview extends Component {
     return (
       <div>
         <div className={styles.questionText}>
-          <div
+          <SafeHTML
+            html={I18n.tQuestion(model, 'questionText')}
             className={styles.questionTextPreview}
-            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
           />
         </div>
         <Recaptcha

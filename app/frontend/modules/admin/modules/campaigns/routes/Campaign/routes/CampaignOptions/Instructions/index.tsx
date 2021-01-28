@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import Editor from 'components/Editor'
@@ -15,6 +14,9 @@ import {
   get as getCampaignOptions,
 } from 'modules/admin/modules/campaigns/core/campaignOptions'
 import { RootState } from 'modules/admin/core/rootReducers'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './styles.scss'
 
 const { I18n } = window
@@ -117,9 +119,9 @@ const Instructions: React.FC<OwnProps & PropsFromRedux> = ({
           />
           {rightLocale && (
           <div className={styles.comparisonBody}>
-            <div
+            <SafeHTML
+              html={selectedRightLocale ? selectedRightLocale.instructions : ''}
               className="m16"
-              dangerouslySetInnerHTML={{ __html: selectedRightLocale ? selectedRightLocale.instructions : '' }}
             />
           </div>
           )}

@@ -1,8 +1,9 @@
-/* eslint-disable react/no-danger */
 import React from 'react'
 import { Collapse, Button } from 'antd'
 import { CaretRightOutlined } from '@ant-design/icons'
-import DOMPurify from 'dompurify'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './styles'
 
 const { Panel } = Collapse
@@ -29,7 +30,10 @@ export default function InstructionsPanel ({
             key="1"
             className={styles.customPanel}
           >
-            {<div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(instructions, { ADD_TAGS: ['iframe'] }) }} />}
+            <SafeHTML
+              html={instructions}
+              sanitizeConfig={{ ADD_TAGS: ['iframe'] }}
+            />
           </Panel>
         )}
         {showActions && (

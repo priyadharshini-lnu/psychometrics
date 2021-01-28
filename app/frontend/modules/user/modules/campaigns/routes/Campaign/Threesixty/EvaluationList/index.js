@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -7,6 +6,8 @@ import {
 import {
   CheckSquareFilled, InfoCircleOutlined, QuestionCircleOutlined, EllipsisOutlined, DownOutlined,
 } from '@ant-design/icons'
+import { SafeHTML } from 'components/SafeHTML'
+
 import userPresenter from 'presenters/user'
 import WizardIsRequired from 'modules/user/core/WizardIsRequired'
 import { STATUSES } from 'constants/userResult'
@@ -211,7 +212,7 @@ function EvaluationList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: evaluationHelp.content }} />
+        <SafeHTML html={evaluationHelp.content} />
       </Modal>
       )}
     </List>

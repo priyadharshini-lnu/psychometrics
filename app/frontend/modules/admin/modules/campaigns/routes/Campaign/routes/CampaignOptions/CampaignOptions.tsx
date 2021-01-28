@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import Section from 'modules/admin/components/Options/Section'

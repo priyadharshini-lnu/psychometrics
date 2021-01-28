@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 import React from 'react'
 import {
   Layout, Row, Col, Alert, List, Avatar, Button, Tag, Result,

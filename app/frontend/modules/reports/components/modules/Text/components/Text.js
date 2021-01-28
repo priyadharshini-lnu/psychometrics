@@ -1,4 +1,3 @@
-/* eslint-disable react/no-danger */
 /* eslint-disable no-case-declarations */
 import _ from 'lodash'
 import React, { Component } from 'react'
@@ -9,6 +8,7 @@ import FroalaEditor from 'react-froala-wysiwyg'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
+import { SafeHTML } from 'components/SafeHTML'
 import Foundation from 'rb/components/Foundation'
 import store from 'rb/store/PageList'
 import ResultStore from 'rb/store/ResultStore'
@@ -200,10 +200,10 @@ class Text extends Component {
           locale_name: _.get(AppStore, ['report', 'result_locale', assessmentId], '{{locale_name}}'),
         })
         return (
-          <div
+          <SafeHTML
             ref={(ref) => { this.editor = ref }}
             className={cs(styles.editor, 'ltr')}
-            dangerouslySetInnerHTML={{ __html: html }}
+            html={html}
           />
         )
       } if (sourceType === 'ResultText') {
@@ -215,10 +215,10 @@ class Text extends Component {
         )
       }
       return (
-        <div
+        <SafeHTML
+          html={I18nStore.tModule(model, 'text')}
           ref={(ref) => { this.editor = ref }}
           className={styles.editor}
-          dangerouslySetInnerHTML={{ __html: I18nStore.tModule(model, 'text') }}
         />
       )
     }
@@ -240,7 +240,7 @@ class Text extends Component {
           onModelChange={this.onChange}
         />
       )
-      : <div key="text" className={styles.editor} dangerouslySetInnerHTML={{ __html: text }} />
+      : <SafeHTML className={styles.editor} html={text} />
   }
 
   render () {

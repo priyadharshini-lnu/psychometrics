@@ -1,5 +1,3 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable max-len */
 import React, { useEffect, useState } from 'react'
 import {
   Layout, PageHeader, Alert,
@@ -7,9 +5,11 @@ import {
 import { ArrowLeftOutlined } from '@ant-design/icons'
 import _ from 'lodash'
 
+import { SafeHTML } from 'components/SafeHTML'
 import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
 import NameModal from './NominationForm/NameModal'
+
 import './styles.scss'
 
 const { Content } = Layout
@@ -27,7 +27,8 @@ export default function Nominations (props) {
     { isSelf, options: { participants: options }, evalautionCompletedForSubject },
   } = props
   const instruction = _.find(instructions, { name: 'invite_evaluators' })
-  const hasNominationPermission = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+  const hasNominationPermission = isSelf
+    ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
   const canNominate = hasNominationPermission && !evalautionCompletedForSubject
 
   const handleAddNomination = values => addNomination({
@@ -85,7 +86,7 @@ export default function Nominations (props) {
             )}
             {instruction && (
               <div className="content">
-                <div dangerouslySetInnerHTML={{ __html: instruction.content }} />
+                <SafeHTML html={instruction.content} />
               </div>
             )}
             {canNominate && (

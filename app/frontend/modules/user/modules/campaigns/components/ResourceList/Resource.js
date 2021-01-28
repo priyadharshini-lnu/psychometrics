@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import { SafeHTML } from 'components/SafeHTML'
 
 import HighlightList from 'modules/survey/views/Preview/StaticContent/HighlightList'
 import { useCopyProtection } from 'utils/hooks'
@@ -33,14 +34,11 @@ const Resource = ({
           highlight, data, _.assign({}, opts, { assessmentId: resource.assessment_id }),
         )}
       />
-      <div
+      <SafeHTML
         className="resource-content"
-        onMouseUp={handleMouseUp}
+        html={_.get(translations, [resource.id, 'questionText']) || resource.props.questionText}
         ref={contentRef}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: _.get(translations, [resource.id, 'questionText']) || resource.props.questionText,
-        }}
+        onMouseUp={handleMouseUp}
       />
     </div>
   )

@@ -1,8 +1,8 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import FileUploadBlock from 'components/FileUpload'
+import { SafeHTML } from 'components/SafeHTML'
 import connect from './connect'
 
 export class Preview extends Component {
@@ -43,12 +43,11 @@ export class Preview extends Component {
 
   render () {
     const { model, I18n } = this.props
-    I18n.tQuestion(model, 'questionText')
     return (
       <div>
-        <div
+        <SafeHTML
+          html={I18n.tQuestion(model, 'questionText')}
           className={textEntryStyles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
         />
         {this.renderFileUploadBlock()}
       </div>

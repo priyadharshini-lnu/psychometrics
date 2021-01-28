@@ -1,8 +1,10 @@
-/* eslint-disable react/no-danger */
-import _ from 'lodash'
 import React, { Component } from 'react'
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import Raphael from 'raphael'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './HotSpot.scss'
 import connect from '../connect'
 
@@ -134,9 +136,9 @@ export class Preview extends Component {
     const { model, I18n } = this.props
     return (
       <div>
-        <div
+        <SafeHTML
           className={styles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+          html={I18n.tQuestion(model, 'questionText')}
         />
         <div ref={(ref) => { this.raphaelPaper = ref }} className={styles.graphicWrap}>
           {this.renderGraphic()}

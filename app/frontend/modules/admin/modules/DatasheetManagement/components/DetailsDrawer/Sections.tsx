@@ -2,15 +2,15 @@ import React, { FC } from 'react'
 import {
   Button, Col, Descriptions, Row, Skeleton, Typography,
 } from 'antd'
-
 import ReactMarkdown from 'react-markdown'
+
 import {
   DrawerDataRecord,
   DrawerModes,
   ToggleDrawer,
 } from 'modules/admin/modules/DatasheetManagement/interfaces'
 
-import { InnerHTML } from 'components/InnerHTML'
+import { SafeHTML } from 'components/SafeHTML'
 
 import { toReadableString } from 'modules/admin/modules/DatasheetManagement/utils'
 
@@ -59,7 +59,7 @@ const DisplayRecordValue: FC<DisplayRecordValue> = ({ record }) => {
   }
 
   if (record.type === 'html') {
-    return <InnerHTML as="span" value={record.value} shouldSanitize />
+    return <SafeHTML as="span" html={`${record.value}`} />
   }
 
   return <>{record.value}</>
