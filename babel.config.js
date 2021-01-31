@@ -51,6 +51,8 @@ module.exports = function (api) {
       isTestEnv && require('babel-plugin-dynamic-import-node'),
       require('@babel/plugin-transform-destructuring').default,
       require('@babel/plugin-proposal-export-default-from'),
+      require('@babel/plugin-proposal-optional-chaining').default,
+      require('@babel/plugin-proposal-nullish-coalescing-operator').default,
       [
         require('@babel/plugin-proposal-class-properties').default,
         {
@@ -91,8 +93,6 @@ module.exports = function (api) {
           removeImport: true,
         },
       ],
-      [require('@babel/plugin-proposal-optional-chaining').default],
-      [require('@babel/plugin-proposal-nullish-coalescing-operator').default],
     ].filter(Boolean),
     ignore: [
       // eslint-disable-next-line max-len
