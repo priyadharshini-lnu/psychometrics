@@ -7,7 +7,9 @@ module Threesixty
     belongs_to :report
     has_one :project, through: :campaign
     has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
-    has_one :datasheet, through: :project
+    has_one :project_datasheet, through: :campaign
+    has_one :campaign_datasheet, through: :campaign, class_name: 'Datasheet',
+      foreign_key: :campaign_id, dependent: :destroy
     has_one :campaign_options, through: :campaign
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_many :participants, through: :campaign
@@ -25,7 +27,7 @@ module Threesixty
 
     enum type: %i[empty standard_360 previous_360]
 
-    delegate :client, :name, :subjects, :evaluators, :project, :participants, to: :campaign
+    delegate :client, :name, :subjects, :evaluators, :project, :participants, :datasheet, to: :campaign
     delegate :logo, to: :client
 
     EMPTY = 'empty'

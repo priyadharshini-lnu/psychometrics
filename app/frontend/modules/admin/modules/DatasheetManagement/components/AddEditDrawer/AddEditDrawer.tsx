@@ -1,4 +1,4 @@
-import React, { FC, ReactText, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import {
   Button,
   Col,
@@ -110,7 +110,7 @@ const AddEditDrawerComponent: FC<Props> = ({
     values: Record<string, string | number>,
   ): Promise<void> => {
     if (isInEditMode) {
-      await update(parentResourceType, parentResourceId, values)
+      await update(currentDatasheetId, parentResourceType, parentResourceId, values)
       message.success(
         I18n.t(
           'administration.datasheets.drawers.add_edit.success_message_edit',
@@ -130,7 +130,7 @@ const AddEditDrawerComponent: FC<Props> = ({
     toggleDrawer(DrawerModes.None)
   }
 
-  let datasheetFormValues: Record<string, ReactText> = {}
+  let datasheetFormValues: Record<string, string | number | null> = {}
   let email = ''
   if (isInEditMode) {
     datasheetFormValues = datasheetDetails.find(detail => detail.type === parentResourceType)

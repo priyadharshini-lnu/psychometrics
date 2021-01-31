@@ -75,6 +75,8 @@ CREATE TYPE public.user_roles AS ENUM (
 
 SET default_tablespace = '';
 
+SET default_with_oids = false;
+
 --
 -- Name: admin_jobs; Type: TABLE; Schema: public; Owner: -
 --
@@ -409,12 +411,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0
 );
@@ -1145,6 +1147,39 @@ ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
 
 
 --
+-- Name: datasheet_column_preferences; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.datasheet_column_preferences (
+    id bigint NOT NULL,
+    resource_type character varying,
+    resource_id bigint,
+    visible_columns json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: datasheet_column_preferences_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.datasheet_column_preferences_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: datasheet_column_preferences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.datasheet_column_preferences_id_seq OWNED BY public.datasheet_column_preferences.id;
+
+
+--
 -- Name: datasheet_rows; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1186,7 +1221,8 @@ CREATE TABLE public.datasheets (
     project_id bigint,
     columns jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -1611,8 +1647,7 @@ CREATE TABLE public.hogan_credentials (
     participant_id character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    user_id bigint,
-    provider integer DEFAULT 0
+    user_id bigint
 );
 
 
@@ -3009,7 +3044,8 @@ CREATE TABLE public.threesixty_evaluators (
     user_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    approved_evaluations_count integer DEFAULT 0
+    approved_evaluations_count integer DEFAULT 0,
+    evaluators_count integer DEFAULT 0
 );
 
 
@@ -3440,12 +3476,12 @@ CREATE TABLE public.users_results (
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
     campaign_id bigint,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     norm_type character varying,
@@ -3664,6 +3700,13 @@ ALTER TABLE ONLY public.communications_users ALTER COLUMN id SET DEFAULT nextval
 --
 
 ALTER TABLE ONLY public.data_geos ALTER COLUMN id SET DEFAULT nextval('public.data_geos_id_seq'::regclass);
+
+
+--
+-- Name: datasheet_column_preferences id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_column_preferences ALTER COLUMN id SET DEFAULT nextval('public.datasheet_column_preferences_id_seq'::regclass);
 
 
 --
@@ -4332,6 +4375,14 @@ ALTER TABLE ONLY public.data_geos
 
 
 --
+-- Name: datasheet_column_preferences datasheet_column_preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_column_preferences
+    ADD CONSTRAINT datasheet_column_preferences_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: datasheet_rows datasheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4852,6 +4903,13 @@ ALTER TABLE ONLY public.users_results
 
 
 --
+-- Name: datasheet_column_preference_resource; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX datasheet_column_preference_resource ON public.datasheet_column_preferences USING btree (resource_type, resource_id);
+
+
+--
 -- Name: email_histories_campaign; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5367,6 +5425,13 @@ CREATE INDEX index_datasheet_rows_on_datasheet_id ON public.datasheet_rows USING
 --
 
 CREATE UNIQUE INDEX index_datasheet_rows_on_email_and_datasheet_id ON public.datasheet_rows USING btree (email, datasheet_id);
+
+
+--
+-- Name: index_datasheets_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_datasheets_on_campaign_id ON public.datasheets USING btree (campaign_id);
 
 
 --
@@ -6316,6 +6381,14 @@ ALTER TABLE ONLY public.threesixty_options
 
 
 --
+-- Name: datasheets fk_rails_048d5b6779; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheets
+    ADD CONSTRAINT fk_rails_048d5b6779 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_email_template_translations fk_rails_04c41c48a8; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7104,7 +7177,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
 
 
 --
@@ -7832,7 +7905,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20201226142007'),
 ('20201226152556'),
 ('20210104093506'),
-('20210112082218'),
-('20210118113839');
+('20210118113839'),
+('20210124114207'),
+('20210127111351');
 
 

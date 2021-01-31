@@ -1,1 +1,1 @@
-export const COLUMN_ID_EMAIL = 'email'
+export const COLUMN_ID_EMAIL = 'Email'

@@ -7,28 +7,30 @@ import ApiAction from 'interfaces/ApiAction'
 import { ApiActionResponse } from 'interfaces/ApiActionResponse'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { ParentResourceType } from 'modules/admin/modules/DatasheetManagement/core/current'
+import { TableConfig } from 'modules/admin/core/filterAndPagination/interfaces'
 
 export const DataSheetTR = t.intersection([
-  t.record(t.string, t.union([t.string, t.number])),
+  t.record(t.string, t.union([t.string, t.number, t.null])),
   t.type({
-    id: t.string,
-    email: t.string,
+    id: t.number,
+    Email: t.string,
   }),
 ])
 export type DataSheet = t.TypeOf<typeof DataSheetTR>
 
 const ColumnTypeTR = t.keyof({
-  string: null,
-  numeric: null,
-  text: null,
-  html: null,
-  markdown: null,
+  String: null,
+  Number: null,
+  Text: null,
+  HTML: null,
+  Markdown: null,
 })
 export type ColumnType = t.TypeOf<typeof ColumnTypeTR>
 
 export const ColumnTR = t.type({
   id: t.string,
   type: ColumnTypeTR,
+  visible: t.boolean,
 })
 export type Column = t.TypeOf<typeof ColumnTR>
 
@@ -44,15 +46,16 @@ export const FETCH = 'datasheetManagement/FETCH_DATASHEET'
 export const fetch = (
   parentType: ParentResourceType,
   parentId: number,
+  tableConfig: TableConfig,
 ): ApiAction<FetchResponse> => ({
   type: FETCH,
   request: {
     method: 'get',
-    mocked: true,
     loader: true,
     camelize: false,
+    tableConfig,
     typedResponse: FetchResponseTR,
-    url: `/administration/${parentType}s/${parentId}/datasheets`,
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows`,
   },
 })
 
@@ -75,11 +78,11 @@ export const add = (
   request: {
     body: record,
     method: 'post',
-    mocked: true,
     loader: true,
+    decamelize: false,
     camelize: false,
     typedResponse: DataSheetTR,
-    url: `/administration/${parentType}s/${parentId}/datasheets`,
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows`,
   },
 })
 
@@ -90,6 +93,7 @@ export type UpdateResponse = t.TypeOf<typeof DataSheetTR>
 export const UPDATE = 'datasheetManagement/UPDATE_DATASHEET_RECORD'
 
 export const update = (
+  id: string,
   parentType: ParentResourceType,
   parentId: number,
   record: Partial<DataSheet>,
@@ -98,35 +102,29 @@ export const update = (
   request: {
     body: record,
     method: 'put',
-    mocked: true,
     loader: true,
+    decamelize: false,
     camelize: false,
     typedResponse: DataSheetTR,
-    url: `/administration/${parentType}s/${parentId}/datasheets`,
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows/${id}`,
   },
 })
 
 export type UpdateAction = ApiActionResponse<UpdateResponse>
 
-export const BatchDeleteResponseTR = t.type({ success: t.string })
-export type BatchDeleteResponse = t.TypeOf<typeof BatchDeleteResponseTR>
+export const BULK_DELETE = 'datasheetManagement/BULK_DELETE_DATASHEET_RECORDS'
 
-export const BATCH_DELETE = 'datasheetManagement/BATCH_DELETE_DATASHEET_RECORDS'
-
-export const batchDelete = (
+export const bulkDelete = (
   parentType: ParentResourceType,
   parentId: number,
   recordIds: string[],
-): ApiAction<BatchDeleteResponse> => ({
-  type: BATCH_DELETE,
+) => ({
+  type: BULK_DELETE,
   request: {
     method: 'delete',
-    body: recordIds,
-    mocked: true,
+    body: { ids: recordIds },
     loader: true,
-    camelize: false,
-    typedResponse: BatchDeleteResponseTR,
-    url: `/administration/${parentType}s/${parentId}/datasheets/`,
+    url: `/administration/${parentType}s/${parentId}/datasheet_rows/bulk_delete`,
   },
 })
 
@@ -141,7 +139,6 @@ const HANDLERS = {
     }
     return record
   }),
-  [BATCH_DELETE]: (state: State) => state,
 }
 
 const defaultState: State = []

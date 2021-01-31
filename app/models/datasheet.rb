@@ -3,8 +3,9 @@
 class Datasheet < ApplicationRecord
   # Contains the name of column which contains Email
   EMAIL_COLUMN = 'Email'
-
+  ADVANCE_TYPES = %w[HTML Markdown].freeze
   belongs_to :project, class_name: 'Client'
+  belongs_to :campaign
   has_many :rows, class_name: 'DatasheetRow', inverse_of: :datasheet, dependent: :destroy
 
   def normalize_columns
@@ -13,5 +14,9 @@ class Datasheet < ApplicationRecord
 
   def column_names
     columns&.keys
+  end
+
+  def parent_resource
+    @parent_resource ||= project || campaign
   end
 end

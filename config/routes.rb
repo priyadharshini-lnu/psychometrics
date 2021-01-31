@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     end
   end
 
+  concern :datasheet_management do
+    collection do
+      delete :bulk_delete
+      put :save_column_preference
+    end
+  end
+
   namespace :assessors do
     constraints(proc { |request| request.format.pdf? || request.format.html? }) do
       resources :campaigns, only: [] do
@@ -94,7 +101,8 @@ Rails.application.routes.draw do
 
     resources :new_campaigns, only: [] do
       scope module: :campaigns do
-        resources :datasheets, only: [:index]
+        resources :datasheet_rows, concerns: :datasheet_management
+
         resources :registration_codes do
           member do
             get :download_qrcode
@@ -198,7 +206,7 @@ Rails.application.routes.draw do
 
     resources :projects do
       scope module: :projects do
-        resources :datasheets, only: [:index]
+        resources :datasheet_rows, concerns: :datasheet_management
       end
 
       resources :new_campaigns, only: [], constraints: proc { |request| %w[csv json].include?(request.format) } do
