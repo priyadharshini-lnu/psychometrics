@@ -3,7 +3,6 @@
 class CampaignOptions < ApplicationRecord
   extend Mobility
   belongs_to :campaign
-  has_many :translations, class_name: 'CampaignOptionTranslation'
 
   translates :instructions
 
