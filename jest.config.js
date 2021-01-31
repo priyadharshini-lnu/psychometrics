@@ -1,3 +1,6 @@
+/** @typedef {import('ts-jest/dist/types')} */
+/** @type {import('@jest/types').Config.InitialOptions} */
+
 module.exports = {
   roots: [
     '<rootDir>/app/frontend',
@@ -25,7 +28,7 @@ module.exports = {
     __PROD__: {},
     __DISABLE_LOGGER_: {},
     'ts-jest': {
-      tsConfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json',
     },
   },
 }
