@@ -25,10 +25,11 @@ global_job_config:
   prologue:
     commands:
       - checkout
-      - 'find ./app/frontend -type f -exec md5sum {} + > webpack-files.txt'
+      - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'
+      - 'md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt'
       - cache restore bundle--gems-$(checksum Gemfile.lock)
       - cache restore node-modules-$(checksum yarn.lock)
-      - cache restore webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt)
+      - cache restore webpack-compile-$(checksum webpack-files.txt)
       - sem-version ruby 2.5.1
       - sem-version node 14.15.1
       - node --version
@@ -96,7 +97,7 @@ blocks:
             - |
               if [[ ! -d public/packs-test ]]; then
                 ENABLE_TS_FORK_CHECKER=1 bundle exec rails webpacker:compile \
-                && cache store webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt) public/packs-test
+                && cache store webpack-compile-$(checksum webpack-files.txt) public/packs-test
               else
                 echo "No need to compile assets. Asset fetched from cache."
               fi
