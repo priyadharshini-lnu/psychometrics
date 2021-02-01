@@ -18,4 +18,12 @@ class EndUser::AgileUserAssessmentsController < ApplicationController
   def skip_authentication?
     @anonymous__user.present?
   end
+
+  def campaign_intial_state
+    {
+      campaign: {
+        id: @user_assessment.campaign_id
+      }
+    }
+  end
 end
