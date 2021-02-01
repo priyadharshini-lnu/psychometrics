@@ -2232,6 +2232,10 @@ en:
       generating: Generating
       not_prepared: Not Available
       prepared: Available
+    readable_statuses:
+      generating: Report is being generated
+      not_prepared: Report is not available
+      prepared: Download the report
   validations:
     AudioResponse:
       in_progress:
