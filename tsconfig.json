@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "declaration":false,
-    "emitDecoratorMetadata":true,
-    "experimentalDecorators":true,
+    "target":"ESNext",
     "lib": [
-      "es6",
-      "dom",
-      "es2017"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
+    "declaration":false,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata":false,
+    "experimentalDecorators":true,
     "module":"commonjs",
     "moduleResolution":"node",
     "sourceMap":true,
-    "target":"es5",
     "jsx":"react",
     "allowJs": true,
+    "resolveJsonModule":true,
     "allowSyntheticDefaultImports":true,
     "esModuleInterop": true ,
     "noImplicitAny":false,

@@ -43,6 +43,13 @@ module.exports = function (api) {
           useBuiltIns: true,
         },
       ],
+      [
+        require('@babel/preset-typescript').default,
+        {
+          isTSX: true,
+          allExtensions: true,
+        },
+      ],
     ].filter(Boolean),
     plugins: [
       require('babel-plugin-macros'),
