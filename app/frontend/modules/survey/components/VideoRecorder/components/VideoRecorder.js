@@ -124,7 +124,7 @@ class VideoRecorder extends Component {
   getUploadUrl = async (id) => {
     const { mediaUrl } = this.props
     try {
-      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url?question_id=${id}`)
+      const response = await axiosInstance.get(`${mediaUrl}/upload_media_url.json?question_id=${id}`)
       this.urlDetails = response.data
       this.removeError('uploadUrl')
     } catch (error) {

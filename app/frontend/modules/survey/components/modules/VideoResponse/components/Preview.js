@@ -8,6 +8,7 @@ import { SafeHTML } from 'components/SafeHTML'
 
 import connect from './connect'
 import styles from '../VideoResponse.scss'
+import VideoPlayer from './VideoPlayer'
 
 export class Preview extends Component {
   static propTypes = {
@@ -45,6 +46,16 @@ export class Preview extends Component {
       mediaResponses,
     } = this.props
     const { VideoRecorderComponent } = this
+
+    if (readOnly) {
+      return (
+        <VideoPlayer
+          mediaResponse={mediaResponses[0]}
+          mediaUrl={mediaUrl}
+        />
+      )
+    }
+
     return (
       <div className="col">
         <VideoRecorderComponent
