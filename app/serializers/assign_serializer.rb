@@ -27,7 +27,7 @@ class AssignSerializer < ActiveModel::Serializer
              :relationship, :available_translations, :selected_locale, :translations,
              :type, :occupations, :innovation_styles, :expiry_date, :meta_data,
              :current_element, :current_page, :seedrandom, :reset_count, :highlights,
-             :subject_datasheet
+             :subject_datasheet, :prev_pages
 
   has_one :user, serializer: UserSerializer
   has_many :media_responses, serializer: MediaResponseSerializer
