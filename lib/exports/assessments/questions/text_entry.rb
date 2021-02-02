@@ -45,7 +45,8 @@ module Exports
         end
 
         def self.result_label(answers, question)
-          result(answers, question, true)
+          answers = retrieve_answers(answers, question, false)
+          question.of_sub_type?('Chat') ? answers.join("\r\n") : answers
         end
 
         def self.question_id_and_choice_headers(question)

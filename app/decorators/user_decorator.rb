@@ -17,7 +17,7 @@ class UserDecorator < BaseDecorator
 
   def role
     if object.is?(:admin)
-      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop}")
+      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop || 'assessor'}")
     else
       I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
     end
