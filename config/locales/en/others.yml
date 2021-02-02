@@ -161,7 +161,7 @@ en:
             last_name:
               blank: Last name can't be blank
         update_assessment:
-          attributes: 
+          attributes:
         update_norm:
           attributes:
             norm_type:
@@ -430,6 +430,7 @@ en:
         role: Role
         roles:
           admin: Admin
+          assessor: Assessor
           admins:
             admin: Admin
             project_admin: Project Admin
