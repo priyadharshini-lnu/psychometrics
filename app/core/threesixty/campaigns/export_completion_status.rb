@@ -35,7 +35,8 @@ module Threesixty
                            joins(
                              'LEFT JOIN users_results
               on users_results.subject_id = user_assessments.subject_id
-              and users_results.evaluator_id = user_assessments.evaluator_id'
+              and users_results.evaluator_id = user_assessments.evaluator_id
+              and users_results.campaign_id = user_assessments.campaign_id'
                            ).
                            includes(:subject, :evaluator, :relationship)
             participants.each do |participant|
