@@ -136,7 +136,7 @@ export class TextEditor extends Component {
   renderValue () {
     const { value } = this.props
     const { value: svalue, edit } = this.state
-    return { __html: edit ? svalue : value }
+    return edit ? svalue : value
   }
 
   renderText () {
