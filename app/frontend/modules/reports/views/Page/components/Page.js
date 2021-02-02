@@ -61,7 +61,7 @@ class Page extends Component {
           style={{ width: builder.props.sizes.width }}
         >
           <Header {...this.props} />
-          {page.displayLogic && <DisplayLogic {...this.props} model={page} />}
+          {renderMoudles && page.displayLogic && <DisplayLogic {...this.props} model={page} />}
           <div className={styles.pageContent} style={style}>
             {renderMoudles && modules.map(this.renderModuleType)}
             {renderMoudles && showOnAllPages.map(this.renderShadowModule)}

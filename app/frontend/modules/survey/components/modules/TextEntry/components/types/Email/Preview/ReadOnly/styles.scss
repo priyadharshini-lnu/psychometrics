@@ -1,6 +1,10 @@
 .container {
   margin: 0 24px 24px 24px;
 
+  .body {
+    white-space: break-spaces;
+  }
+
   .contactLabel {
     padding-right: 12px;
     color: #b1b1b1;
@@ -9,5 +13,6 @@
 
   td {
     vertical-align: middle;
+    border: none !important;
   }
 }
