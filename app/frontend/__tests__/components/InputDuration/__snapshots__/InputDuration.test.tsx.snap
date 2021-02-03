@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<DocumentFragment>
+  <input
+    class="ant-input user-defined-class"
+    placeholder="Enter as 4d 3h 2m 1s"
+    type="text"
+    value=""
+  />
+</DocumentFragment>
+`;

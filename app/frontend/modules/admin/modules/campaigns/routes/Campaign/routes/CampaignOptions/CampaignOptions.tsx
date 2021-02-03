@@ -1,33 +1,54 @@
 import React, { useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
+import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import {
+  Row, Col, Radio, Tooltip,
+} from 'antd'
+import snakeCase from 'lodash/snakeCase'
+import round from 'lodash/round'
+import { QuestionCircleOutlined } from '@ant-design/icons'
+
+import { RootState } from 'modules/admin/core/rootReducers'
+import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
+import {
+  fetch,
+  update,
+  get as getCampaignOptions,
+} from 'modules/admin/modules/campaigns/core/campaignOptions'
+
+import TimeZoneSelect from 'components/TimeZoneSelect'
+import InputDuration from 'components/InputDuration'
 import Section from 'modules/admin/components/Options/Section'
 import Option from 'modules/admin/components/Options/Expandable'
-import TimeZoneSelect from 'components/TimeZoneSelect'
-import { CampaignOptions as ICampaignOptions } from 'modules/admin/modules/campaigns/interfaces/Campaign'
-import DurationSelect from 'components/DurationSelect'
-import {
-  Row, Col, Radio,
-} from 'antd'
-import { snakeCase } from 'lodash'
-import styles from './styles.scss'
-import { PropsFromRedux } from './connect'
 import Instructions from './Instructions'
 
 const { I18n } = window
+
+const connector = connect(
+  (state: RootState) => ({
+    options: getCampaignOptions(state),
+  }),
+  {
+    fetch,
+    update,
+  },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   options: ICampaignOptions
 }
 
-interface Params {
-  projectId: string
-  campaignId: string
-}
+type Props = OwnProps & PropsFromRedux
 
-const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFromRedux> = ({
+const CampaignOptions: React.FC<Props> = ({
   options,
-  fetch, update, match: { params: { projectId, campaignId } },
+  fetch,
+  update,
 }) => {
+  const { projectId, campaignId } = useParams<{ projectId: string, campaignId: string }>()
+
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
 
@@ -45,6 +66,15 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
     ),
   })
 
+  const parametersForFixedTimeDuration = ({
+    value: options.fixedTimeDuration ? options.fixedTimeDuration * 60 : 0,
+    onChange: (value: number) => update(
+      parsedProjectId,
+      parsedCampaignId,
+      { ...options, fixedTimeDuration: round(value / 60) },
+    ),
+  })
+
   const parametersForRules = name => ({
     value: !!(options.rules || {})[name],
     onChange: (value: boolean) => update(
@@ -58,14 +88,16 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   }
 
   return (
-    <div className={styles.container}>
+    <div className="pt-4 pb-4 ps-4 pe-4">
       <Section>
         <div className="mbl">
           <Row>
             <Col span={24}>
               <Row>
-                <Col span={2}><label>{I18n.t('administration.time_zone')}</label></Col>
-                <Col span={22}>
+                <Col span={2}>
+                  <label>{I18n.t('administration.time_zone')}</label>
+                </Col>
+                <Col span={5}>
                   <TimeZoneSelect
                     {...parametersForField('timeZone')}
                   />
@@ -85,12 +117,17 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
             <div className="mbl">
               <Row>
                 <Col span={24}>
-                  <Row>
-                    <Col span={22} offset={2}>
-                      <DurationSelect
-                        className={styles.durationSelect}
-                        {...parametersForField('fixedTimeDuration')}
+                  <Row align="middle">
+                    <Col span={5} offset={2}>
+                      <InputDuration
+                        placeholder={I18n.t('administration.components.input_duration.placeholder')}
+                        {...parametersForFixedTimeDuration}
                       />
+                    </Col>
+                    <Col>
+                      <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
+                        <QuestionCircleOutlined className="ms-4" />
+                      </Tooltip>
                     </Col>
                   </Row>
                 </Col>
@@ -155,4 +192,4 @@ const CampaignOptions: React.FC<OwnProps & RouteComponentProps<Params> & PropsFr
   )
 }
 
-export default CampaignOptions
+export default connector(CampaignOptions)

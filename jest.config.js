@@ -14,6 +14,7 @@ module.exports = {
     '^.+\\.js?$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',
   },
+  setupFilesAfterEnv: ['<rootDir>/config/jest-setup.js'],
   preset: 'ts-jest',
   moduleDirectories: [
     'node_modules',
