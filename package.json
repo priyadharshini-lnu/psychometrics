@@ -158,7 +158,7 @@
     "react-tagcloud": "^1.4.1",
     "react-use-media": "^0.3.0",
     "recordrtc": "^5.5.4",
-    "redux": "^4.0.1",
+    "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.0.2",
     "redux-thunk": "^2.3.0",
