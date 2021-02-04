@@ -189,7 +189,7 @@
     "@types/react-color": "2.17.3",
     "@types/react-router-dom": "^5.1.7",
     "@types/react-select": "3.0.28",
-    "core-js": "3.8.2",
+    "core-js": "3.8.3",
     "eslint-plugin-jest-dom": "^3.6.5",
     "eslint-plugin-testing-library": "^3.10.1",
     "husky": "^3.0.8",
