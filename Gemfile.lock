@@ -164,7 +164,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
-    capybara-screenshot (1.0.24)
+    capybara-screenshot (1.0.25)
       capybara (>= 1.0, < 4)
       launchy
     carrierwave (1.2.3)
@@ -458,7 +458,7 @@ GEM
     nenv (0.3.0)
     newrelic_rpm (6.3.0.355)
     nio4r (2.5.4)
-    nokogiri (1.11.0)
+    nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     nori (2.6.0)
