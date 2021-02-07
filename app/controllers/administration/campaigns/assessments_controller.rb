@@ -31,6 +31,14 @@ module Administration
         end
       end
 
+      def export_raw_factor_scores
+        results = ::Assessments::Export::RawFactorScores.call!(assessment, campaign)
+        respond_to do |format|
+          export_file_name = "assessment-#{assessment.id}-raw-factor-scores.xlsx"
+          format.xlsx { send_data results.to_stream.read, filename: export_file_name }
+        end
+      end
+
       def export_external_results
         result =
           if assessment.mindmill?

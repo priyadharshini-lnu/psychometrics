@@ -84,7 +84,7 @@ blocks:
               fi
         - name: RuboCop
           commands:
-            - bundle exec rubocop
+            - bundle exec rubocop --parallel
   - name: JS tests & Compile
     dependencies:
       - Linters
