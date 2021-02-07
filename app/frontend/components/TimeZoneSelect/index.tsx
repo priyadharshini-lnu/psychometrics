@@ -181,10 +181,10 @@ const TimeZoneSelect: React.FC<Props> = ({
 
   return (
     <Select
+      className="w-100"
       showSearch
       value={selectedTimeZone}
       onChange={handleChange}
-      style={{ width: 240 }}
       optionFilterProp="children"
       filterOption={(input, option) => option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       {...props}

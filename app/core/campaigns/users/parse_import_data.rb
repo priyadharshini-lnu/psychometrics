@@ -5,7 +5,7 @@ module Campaigns
     class ParseImportData < BaseCommand
       private_attr_reader :records
 
-      HEADER_IMPORT_KEYS = %i[active first_name last_name email password created_at].freeze
+      HEADER_IMPORT_KEYS = %i[active first_name last_name email locale password created_at].freeze
 
       def initialize(import_data)
         @records =

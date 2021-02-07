@@ -1,3 +1,6 @@
+/** @typedef {import('ts-jest/dist/types')} */
+/** @type {import('@jest/types').Config.InitialOptions} */
+
 module.exports = {
   roots: [
     '<rootDir>/app/frontend',
@@ -11,6 +14,7 @@ module.exports = {
     '^.+\\.js?$': 'babel-jest',
     '^.+\\.tsx?$': 'ts-jest',
   },
+  setupFilesAfterEnv: ['<rootDir>/config/jest-setup.js'],
   preset: 'ts-jest',
   moduleDirectories: [
     'node_modules',
@@ -25,7 +29,7 @@ module.exports = {
     __PROD__: {},
     __DISABLE_LOGGER_: {},
     'ts-jest': {
-      tsConfig: 'tsconfig.json',
+      tsconfig: 'tsconfig.json',
     },
   },
 }

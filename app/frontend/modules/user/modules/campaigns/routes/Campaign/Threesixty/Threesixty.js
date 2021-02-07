@@ -1,10 +1,10 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable max-len */
 import React from 'react'
 import {
   Layout, Row, Col, PageHeader, Progress, Alert,
 } from 'antd'
 import _ from 'lodash'
+import { SafeHTML } from 'components/SafeHTML'
+
 import { STATUSES } from 'constants/campaign'
 import Nominations from './NominationList'
 import Evaluations from './EvaluationList'
@@ -46,7 +46,7 @@ export default function Campaign ({
                 <div>
                   {welcomeMessage && (
                     <Row type="flex" className="assessment-info">
-                      <div dangerouslySetInnerHTML={{ __html: welcomeMessage.content }} />
+                      <SafeHTML html={welcomeMessage.content} />
                     </Row>
                   )}
 

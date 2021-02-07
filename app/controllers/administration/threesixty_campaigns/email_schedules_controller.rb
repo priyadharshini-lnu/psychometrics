@@ -9,7 +9,7 @@ module Administration
 
       def index
         skip_policy_scope
-        email_schedules = threesixty_campaign.email_schedules.order(created_at: :desc)
+        email_schedules = threesixty_campaign.email_schedules.includes(:template).order(created_at: :desc)
         total = email_schedules.count
         email_schedules = email_schedules.page(params[:page])
 

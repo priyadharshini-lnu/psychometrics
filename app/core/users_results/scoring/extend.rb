@@ -43,7 +43,6 @@ module UsersResults
         @factor_norm_hash ||=
           if norm_data.present? && norm_data['id']
             FactorsNorm.where(
-              factor_id: scoring.keys,
               norm_id: norm_data['id']
             ).index_by(&:factor_id)
           else

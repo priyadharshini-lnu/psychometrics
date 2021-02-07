@@ -1,10 +1,10 @@
-/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
   List, Collapse, Progress, Modal, Tooltip,
 } from 'antd'
 import { CheckSquareFilled, QuestionCircleOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
+import { SafeHTML } from 'components/SafeHTML'
 import _ from 'lodash'
 import userPresenter from 'presenters/user'
 import './styles.scss'
@@ -137,7 +137,7 @@ function NominationList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: nominationHelp.content }} />
+        <SafeHTML html={nominationHelp.content} />
       </Modal>
       )}
     </List>

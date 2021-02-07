@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
 import {
   Table,
   Row,
@@ -25,7 +26,11 @@ import {
 } from 'modules/admin/modules/DatasheetManagement/core/list'
 import { get as getTotal } from 'modules/admin/modules/DatasheetManagement/core/total'
 import { get as getParentResource } from 'modules/admin/modules/DatasheetManagement/core/parentResource'
-import { get as getColumnDefinitions } from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
+import {
+  get as getColumnDefinitions,
+  setVisibleColumns,
+  getVisibleColumnNames,
+} from 'modules/admin/modules/DatasheetManagement/core/columnDefinitions'
 import { isRequestInProgress } from 'modules/admin/core/request'
 
 import { RootState } from 'modules/admin/core/rootReducers'
@@ -53,10 +58,12 @@ const connector = connect(
     isListLoading: isRequestInProgress(state, FETCH_DATASHEET),
     total: getTotal(state),
     columnDefinitions: getColumnDefinitions(state),
+    visibleColumns: getVisibleColumnNames(state),
     temp__parentResourceId: getParentResource(state).id, // wont be needing this when projects comes under router
   }),
   {
     fetch,
+    setVisibleColumns,
   },
 )
 
@@ -76,9 +83,12 @@ const DatasheetManagementComponent: FC<Props> = ({
   columnDefinitions,
   parentResourceType,
   tableConfig: { filters, page },
+  tableConfig,
   changeFilter,
   changePage,
   fetch,
+  visibleColumns,
+  setVisibleColumns,
 }) => {
   const { campaignId } = useParams<{
     projectId?: string
@@ -98,13 +108,8 @@ const DatasheetManagementComponent: FC<Props> = ({
   const [activeDrawerIs, setDrawerTo] = useState<DrawerModes>(DrawerModes.None)
   const [currentDatasheetId, setCurrentDatasheetId] = useState('')
 
-  const [visibleColumnsKeys, setVisibleColumnsKey] = useState([COLUMN_ID_EMAIL])
-
   const allColumns = useMemo(
     () => columnDefinitions
-      .filter(
-        column => column.type === 'string' || column.type === 'numeric',
-      )
       .map((filteredColumn) => {
         if (filteredColumn.id === COLUMN_ID_EMAIL) {
           return {
@@ -129,14 +134,14 @@ const DatasheetManagementComponent: FC<Props> = ({
     [columnDefinitions],
   )
 
-  const visibleColumns = useMemo(
-    () => allColumns.filter(orignalColumn => visibleColumnsKeys.includes(orignalColumn.dataIndex)),
-    [columnDefinitions, visibleColumnsKeys],
+  const visibleColumnsDefinition = useMemo(
+    () => allColumns.filter(originalColumn => visibleColumns.includes(originalColumn.dataIndex)),
+    [columnDefinitions, visibleColumns],
   )
 
   useEffect(() => {
-    fetch(parentResourceType, parentResourceId)
-  }, [])
+    fetch(parentResourceType, parentResourceId, tableConfig)
+  }, [tableConfig])
 
   const toggleDrawer = (mode: DrawerModes, id = '') => {
     setDrawerTo(mode)
@@ -144,7 +149,7 @@ const DatasheetManagementComponent: FC<Props> = ({
   }
 
   const onVisibleColumnsChange = (changedVisibleColumnKey: string[]): void => {
-    setVisibleColumnsKey(changedVisibleColumnKey)
+    setVisibleColumns(parentResourceType, parentResourceId, changedVisibleColumnKey)
   }
 
   return (
@@ -171,22 +176,24 @@ const DatasheetManagementComponent: FC<Props> = ({
               placeholder={I18n.t(
                 'administration.datasheets.list.header.search_record',
               )}
-              value={filters.filterableFields}
-              onChange={e => changeFilter('filterableFields', e.target.value)}
+              value={filters.emailCont}
+              onChange={e => changeFilter('emailCont', e.target.value)}
             />
             <ColumnToggler
-              visibleColumnsKeys={visibleColumnsKeys}
+              visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
             <ToolsDropdown />
-            <Button
-              type="primary"
-              onClick={() => toggleDrawer(DrawerModes.Add)}
-              disabled={isListLoading}
-            >
-              <PlusOutlined />
-              {I18n.t('administration.datasheets.list.header.add_record')}
-            </Button>
+            {isEmpty(columnDefinitions) || (
+              <Button
+                type="primary"
+                onClick={() => toggleDrawer(DrawerModes.Add)}
+                disabled={isListLoading}
+              >
+                <PlusOutlined />
+                {I18n.t('administration.datasheets.list.header.add_record')}
+              </Button>
+            )}
           </Space>
         </Col>
       </Row>
@@ -194,7 +201,7 @@ const DatasheetManagementComponent: FC<Props> = ({
         <Col span={24}>
           <Table
             loading={isListLoading}
-            columns={visibleColumns}
+            columns={visibleColumnsDefinition}
             dataSource={list}
             rowKey={row => row.id}
             pagination={false}

@@ -6,6 +6,7 @@ module Threesixty
       attribute :evaluator_first_name, String
       attribute :evaluator_last_name, String
       attribute :evaluator_email, String
+      attribute :evaluator_locale, String
       attribute :evaluator_password, String
       attribute :relationship_name, String
       attribute :subject_email, String
@@ -14,6 +15,7 @@ module Threesixty
       validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
       validates :evaluator_password, length: { within: Devise.password_length }, allow_blank: true
       validates :evaluator_password, allow_blank: true, strong_password: true, if: :enable_strong_password?
+      validates :evaluator_locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
 
       validate :check_subject
       validate :check_existing_relationship

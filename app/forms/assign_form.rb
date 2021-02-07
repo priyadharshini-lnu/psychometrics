@@ -9,4 +9,5 @@ class AssignForm < Rectify::Form
   attribute :current_element, String
   attribute :current_page, Integer
   attribute :last_activity_at, DateTime
+  attribute :prev_pages, Array, default: []
 end

@@ -25,10 +25,11 @@ global_job_config:
   prologue:
     commands:
       - checkout
-      - 'find ./app/frontend -type f -exec md5sum {} + > webpack-files.txt'
+      - 'find ./app/frontend ./config/webpack -type f -exec md5sum {} + > webpack-files.txt'
+      - 'md5sum *.js *.json yarn.lock .eslintrc >> webpack-files.txt'
       - cache restore bundle--gems-$(checksum Gemfile.lock)
       - cache restore node-modules-$(checksum yarn.lock)
-      - cache restore webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt)
+      - cache restore webpack-compile-$(checksum webpack-files.txt)
       - sem-version ruby 2.5.1
       - sem-version node 14.15.1
       - node --version
@@ -65,7 +66,7 @@ blocks:
           type: e1-standard-2
           os_image: ubuntu1804
       jobs:
-        - name: eslint
+        - name: ESlint
           commands:
             - |
               if [[ ! -d public/packs-test ]]; then
@@ -73,10 +74,18 @@ blocks:
               else
                 echo "No need to run eslint"
               fi
-        - name: rubocop
+        - name: TypeScript
+          commands:
+            - |
+              if [[ ! -d public/packs-test ]]; then
+                yarn types
+              else
+                echo "No need to run typescript check"
+              fi
+        - name: RuboCop
           commands:
             - bundle exec rubocop
-  - name: Webpack
+  - name: JS tests & Compile
     dependencies:
       - Linters
     task:
@@ -88,21 +97,21 @@ blocks:
           - cp config/application.yml.sample  config/application.yml
           - 'PARALLEL_TEST_PROCESSORS=1 bundle exec rake parallel:create parallel:load_structure'
       jobs:
-        - name: Run Javascript Tests
+        - name: Jest
           commands:
             - yarn test
-        - name: Webpack Compile
+        - name: Webpack
           commands:
             - |
               if [[ ! -d public/packs-test ]]; then
-                ENABLE_TS_FORK_CHECKER=1 bundle exec rails webpacker:compile \
-                && cache store webpack-compile-$(checksum yarn.lock)-$(checksum webpack-files.txt) public/packs-test
+                bundle exec rails webpacker:compile \
+                && cache store webpack-compile-$(checksum webpack-files.txt) public/packs-test
               else
                 echo "No need to compile assets. Asset fetched from cache."
               fi
-  - name: RSpec
+  - name: Ruby tests
     dependencies:
-      - Webpack
+      - JS tests & Compile
     task:
       agent:
         machine:

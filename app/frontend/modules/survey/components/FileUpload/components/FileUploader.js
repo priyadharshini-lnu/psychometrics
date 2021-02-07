@@ -10,7 +10,7 @@ const FileUploader = {
   run: context => $.get(context.urls.mediaUploadUrl,
     (data) => {
       uploadFile(data, context)
-    }),
+    }, 'json'),
 }
 
 export default FileUploader

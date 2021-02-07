@@ -59,7 +59,7 @@ module Imports
       ActiveRecord::Base.transaction do
         if memberships.map(&:valid?).all?
           memberships.each(&:save!).each_with_index do |membership, _index|
-            membership.user.invite!(importer, client_id)
+            membership.user.invite!(importer, client_id) unless membership.user.already_invited?
             apply_assigned_assessments(membership)
             apply_reports(membership)
           end
@@ -148,7 +148,8 @@ module Imports
       user.assign_attributes(
         password: password,
         invitation_token: nil,
-        invitation_accepted_at: user.invitation_accepted_at || Time.current
+        invitation_accepted_at: user.invitation_accepted_at || Time.current,
+        already_invited: true
       )
 
       memberships_attributes[:already_invited] = true

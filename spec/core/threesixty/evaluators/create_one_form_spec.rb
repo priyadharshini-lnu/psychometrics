@@ -69,4 +69,10 @@ describe Threesixty::Evaluators::CreateOneForm do
 
     expect(form.errors.messages[:evaluator_password]).to be_empty
   end
+
+  it 'validates locale' do
+    form = described_class.new(evaluator_locale: 'invalid').with_context(campaign: campaign)
+    form.validate
+    expect(form.errors.messages[:evaluator_locale]).to include('Wrong locale')
+  end
 end

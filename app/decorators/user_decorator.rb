@@ -17,7 +17,7 @@ class UserDecorator < BaseDecorator
 
   def role
     if object.is?(:admin)
-      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop}")
+      I18n.t("activerecord.attributes.user.roles.#{object.memberships.pluck(:role).pop || 'assessor'}")
     else
       I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
     end
@@ -118,13 +118,16 @@ class UserDecorator < BaseDecorator
   end
 
   def self.export_headers
-    [
-      User.human_attribute_name('active'),
-      User.human_attribute_name('first_name'),
-      User.human_attribute_name('last_name'),
-      User.human_attribute_name('email'),
-      User.human_attribute_name('password'),
-      User.human_attribute_name('created_at')
-    ]
+    I18n.with_locale(I18n.default_locale) do
+      [
+        User.human_attribute_name('active'),
+        User.human_attribute_name('first_name'),
+        User.human_attribute_name('last_name'),
+        User.human_attribute_name('email'),
+        User.human_attribute_name('locale'),
+        User.human_attribute_name('password'),
+        User.human_attribute_name('created_at')
+      ]
+    end
   end
 end

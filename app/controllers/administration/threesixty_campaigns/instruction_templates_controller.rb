@@ -13,12 +13,12 @@ module Administration
       end
 
       def show
-        response = params[:locales].values.map do |locale|
+        list = params[:locales].values.map do |locale|
           Mobility.with_locale(locale) do
             ::Threesixty::InstructionTemplateLocaleSerializer.new(resource, locale: locale).to_h
           end
         end
-        render json: response
+        render json: { list: list, available_locales: resource.translations.map(&:locale) }
       end
 
       def update

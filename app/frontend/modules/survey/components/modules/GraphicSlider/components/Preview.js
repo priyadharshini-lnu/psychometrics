@@ -1,9 +1,11 @@
-/* eslint-disable react/no-danger */
 import _ from 'lodash'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactSlider from 'react-slider'
 import classNames from 'classnames'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './GraphicSlider.scss'
 import connect from '../connect'
 
@@ -32,9 +34,9 @@ export class Preview extends Component {
     return (
       <div style={{ position: 'relative' }}>
         <div className={`${styles.mainrow} ${styles[props.textPosition]}`}>
-          <div
+          <SafeHTML
             className={`${styles.questionText} ${styles.column}`}
-            dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+            html={I18n.tQuestion(model, 'questionText')}
           />
           <div className={`${styles.questionSlider} ${styles.column}`}>
             <div className={`${styles.row} ${styles[props.sliderPosition]}`}>

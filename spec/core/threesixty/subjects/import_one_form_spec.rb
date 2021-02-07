@@ -33,4 +33,10 @@ describe Threesixty::Subjects::ImportOneForm do
 
     expect(form.errors.messages[:email]).to include('Email is invalid')
   end
+
+  it 'validates locale' do
+    form = described_class.new(locale: 'invalid').with_context(campaign: campaign)
+    form.validate
+    expect(form.errors.messages[:locale]).to include('Wrong locale')
+  end
 end

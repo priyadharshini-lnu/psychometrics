@@ -5,10 +5,12 @@ const { resolve } = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const less = require('./loaders/less')
-const tsLoader = require('./loaders/ts-loader')
-// uncomment it in order to use bundle analyzer
+
+// Uncomment to activate bundle analyzer
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
+const less = require('./loaders/less')
+const jsTsLoader = require('./loaders/js-ts-loader')
 
 const DEVTOOL = env.DEVTOOL || false
 const __DEV__ = env.NODE_ENV === 'development'
@@ -45,31 +47,25 @@ if (__DEV__ || env.ENABLE_TS_FORK_CHECKER) {
   }))
 }
 
-//   uncomment it in order to use bundle analyzer
+// Uncomment to activate bundle analyzer
 // environment.plugins.insert(
-//   'BundleAnalyzerPlugin',
+//  'BundleAnalyzerPlugin',
 //   new BundleAnalyzerPlugin(),
 // )
 
 const myCssLoaderOptions = {
   modules: true,
-  localIdentName: env.NODE_ENV === 'production' ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
+  localIdentName: __PROD__ ? '[hash:base64:5]' : '[name]__[local]___[hash:base64:5]',
 }
 
 const CSSLoader = environment.loaders.get('sass').use.find(el => el.loader === 'css-loader')
 
-environment.loaders.get('babel').use.unshift({
-  loader: 'thread-loader',
-  options: {
-    poolTimeout: 30000,
-  },
-})
-environment.loaders.get('babel').use.unshift({ loader: 'cache-loader' })
-
-
 CSSLoader.options = merge(CSSLoader.options, myCssLoaderOptions)
+
 environment.loaders.append('less', less)
-environment.loaders.append('typescript', tsLoader)
+
+// Loader for javascript and typescript files
+environment.loaders.append('babel', jsTsLoader)
 
 loaders.nodeModules.use[0].options.sourceMaps = true
 

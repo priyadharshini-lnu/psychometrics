@@ -1,9 +1,10 @@
-/* eslint-disable react/no-danger */
-/* eslint-disable max-len */
 import React from 'react'
 import {
   Button, Modal,
 } from 'antd'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import './styles.scss'
 
 export default function PrivacyModal ({
@@ -29,7 +30,10 @@ export default function PrivacyModal ({
         </div>
       )}
     >
-      <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.accept_privacy_modal.text') }} />
+      <SafeHTML
+        html={I18n.t('threesixty.accept_privacy_modal.text')}
+        className="help-modal-body"
+      />
     </Modal>
   )
 }

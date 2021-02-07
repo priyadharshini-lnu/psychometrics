@@ -52,6 +52,12 @@ describe Campaigns::Users::CreateForm do
     expect(form.errors[:email]).to include('User with this email id already exists in the project')
   end
 
+  it 'validates locale' do
+    form = described_class.new(locale: 'invalid').with_context(campaign: campaign)
+    form.validate
+    expect(form.errors.messages[:locale]).to include('Wrong locale')
+  end
+
   it 'passes all validations' do
     form = described_class.new(attributes).with_context(campaign: campaign)
 

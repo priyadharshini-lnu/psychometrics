@@ -10,9 +10,14 @@ export const FETCH_INSTRUCTIONS = 'campaigns/campaignOptions/FETCH_INSTRUCTIONS'
 export const UPDATE = 'campaigns/campaignOptions/UPDATE'
 export const UPDATE_INSTRUCTIONS = 'campaigns/campaignOptions/UPDATE_INSTRUCTIONS'
 
+const { I18n } = window
 
 const Instruction = t.type({ instructions: t.union([t.string, t.null]), locale: t.string })
 const InstructionList = t.array(Instruction)
+const FetchInstructionsTR = t.type({
+  list: InstructionList,
+  availableLocales: t.array(t.string),
+})
 
 const defaultState = {} as CampaignOptions
 
@@ -32,7 +37,7 @@ export const fetchInstructions = (projectId: number, campaignId: number, locales
     method: 'get',
     url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/fetch_campaign_instructions`,
     body: { locales: locales.filter(l => l) },
-    typedResponse: InstructionList,
+    typedResponse: FetchInstructionsTR,
   },
 })
 
@@ -55,16 +60,20 @@ export const updateInstructions = (instructions: string, locale: string) => ({
 })
 
 type CampaignOptionResponse = ApiActionResponse<CampaignOptions>
-type FetchInstructionsResponse = ApiActionResponse<InstructionsWithLocale[]>
+type FetchInstructionsResponse = ApiActionResponse<{ list: InstructionsWithLocale[], availableLocales: string[]}>
 
 
 const HANDLERS = {
   [FETCH]: (state: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...state, ...response }),
   [FETCH_INSTRUCTIONS]: (state: CampaignOptions, { response }: FetchInstructionsResponse) => {
-    const instructionsWithLocales = response.map(
+    const instructionsWithLocales = response.list.map(
       resItem => (state.instructionsWithLocales || []).find(item => item.locale === resItem.locale) || resItem,
     )
-    return { ...state, instructionsWithLocales }
+    return {
+      ...state,
+      instructionsWithLocales,
+      availableLocales: _.uniq([I18n.defaultLocale, ...response.availableLocales]),
+    }
   },
   [UPDATE]: (state: CampaignOptions, { response }: CampaignOptionResponse) => ({ ...state, ...response }),
   [UPDATE_INSTRUCTIONS]: (state: CampaignOptions,

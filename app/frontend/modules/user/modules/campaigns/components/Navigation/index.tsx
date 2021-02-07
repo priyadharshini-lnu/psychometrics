@@ -10,6 +10,8 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import cs from 'classnames'
+import { SafeHTML } from 'components/SafeHTML'
+
 import { RootState } from 'modules/user/core/rootReducers'
 
 import {
@@ -179,13 +181,7 @@ const Navigation: FC<PropsFromRedux> = ({
           }
           footer={null}
         >
-          <div
-            className="help-modal-body"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t('threesixty.assesment.modals.help.body'),
-            }}
-          />
+          <SafeHTML html={I18n.t('threesixty.assesment.modals.help.body')} />
         </Modal>
       )}
 

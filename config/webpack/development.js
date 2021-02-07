@@ -1,10 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 const fs = require('fs')
 const path = require('path')
+const { env } = require('process')
 const apiMocker = require('mocker-api')
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
-
 const environment = require('./environment')
+
+const __DEV__ = env.NODE_ENV || 'development'
 
 function getCerts (host) {
   const keyPath = path.resolve(__dirname, `../../support/dev-ssl/${host}.key`)
@@ -30,7 +32,7 @@ if (config.devServer.https === true && sslCert) {
 }
 
 // Adds API Mocker to dev server
-if (process.env.NODE_ENV === 'development' && process.env.RUN_MOCK_SERVER) {
+if (__DEV__ && env.RUN_MOCK_SERVER === 'true') {
   config.merge({
     devServer: {
       before (app) {

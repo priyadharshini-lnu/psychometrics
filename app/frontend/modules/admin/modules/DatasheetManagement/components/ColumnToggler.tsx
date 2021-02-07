@@ -38,10 +38,7 @@ const ColumnTogglerComponent: FC<Props> = ({
 
   const columnsForCheckboxes = useMemo(
     () => columnDefinitions
-      .filter(
-        column => column.id !== COLUMN_ID_EMAIL
-            && (column.type === 'string' || column.type === 'numeric'),
-      )
+      .filter(column => column.id !== COLUMN_ID_EMAIL && ['String', 'Text', 'Number'].includes(column.type))
       .map(filteredColumn => ({
         title: toReadableString(filteredColumn.id),
         name: filteredColumn.id,

@@ -24,6 +24,7 @@ const AgileUserAssessment: React.FC<Props> = ({
   agileAssetsUrl,
   agileUserAssessmentUrl,
   isAnonym,
+  campaignId,
 }) => {
   const initializeAgile = () => {
     const { lang } = qs.parse(location.search.substr(1))
@@ -40,7 +41,7 @@ const AgileUserAssessment: React.FC<Props> = ({
         },
       },
       settings: {
-        returnURL: isAnonym ? '' : '/',
+        returnURL: isAnonym ? '' : `/campaigns/${campaignId}`,
         assetsBaseURL: agileAssetsUrl,
         locale: lang?.toString(),
       },

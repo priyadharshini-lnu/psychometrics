@@ -1,4 +1,5 @@
 import React from 'react'
+import { SafeHTML } from 'components/SafeHTML'
 import styles from './Header.scss'
 
 const Header = ({
@@ -23,8 +24,7 @@ const Header = ({
     <div className={styles.restart}>
       <button className="btn btn-success" onClick={reset}>Click Here to Start Over</button>
     </div>
-    {/* eslint-disable-next-line react/no-danger */}
-    <div dangerouslySetInnerHTML={{ __html: langs }} />
+    <SafeHTML html={langs} />
   </div>
 )
 

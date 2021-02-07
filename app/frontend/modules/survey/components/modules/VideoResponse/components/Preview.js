@@ -1,11 +1,14 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
 import textEntryStyles from 'components/modules/TextEntry/components/TextEntry.scss'
 import VideoRecorder from 'components/VideoRecorder'
 import withLimitedTakes from 'components/VideoRecorder/hoc/withLimitedTakes'
+import { SafeHTML } from 'components/SafeHTML'
+
 import connect from './connect'
 import styles from '../VideoResponse.scss'
+import VideoPlayer from './VideoPlayer'
 
 export class Preview extends Component {
   static propTypes = {
@@ -43,6 +46,16 @@ export class Preview extends Component {
       mediaResponses,
     } = this.props
     const { VideoRecorderComponent } = this
+
+    if (readOnly) {
+      return (
+        <VideoPlayer
+          mediaResponse={mediaResponses[0]}
+          mediaUrl={mediaUrl}
+        />
+      )
+    }
+
     return (
       <div className="col">
         <VideoRecorderComponent
@@ -70,9 +83,9 @@ export class Preview extends Component {
     I18n.tQuestion(model, 'questionText')
     return (
       <div className={styles.videoResponse}>
-        <div
+        <SafeHTML
           className={textEntryStyles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+          html={I18n.tQuestion(model, 'questionText')}
         />
         {this.renderVideoRecorder()}
       </div>

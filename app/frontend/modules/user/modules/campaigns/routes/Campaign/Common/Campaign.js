@@ -1,9 +1,8 @@
-/* eslint-disable react/no-danger */
 import React from 'react'
 import {
-  Layout, Row, Col, Alert, List, Avatar, Button, Tag, Result,
+  Layout, Row, Col, Alert, List, Avatar, Button, Result, Tooltip,
 } from 'antd'
-import { ArrowDownOutlined } from '@ant-design/icons'
+import { DownloadOutlined } from '@ant-design/icons'
 import { STATUSES } from 'constants/campaign'
 import './styles.scss'
 import cs from 'classnames'
@@ -243,28 +242,17 @@ export default function Campaign ({
                                 <Avatar className="report-icon me-4">{item.reportName[0]}</Avatar>
                                 <div className="report-title">
                                   <div>{item.reportName}</div>
-                                  <div>
-                                    {item.status === 'not_prepared' && (
-                                      <Tag style={{ background: 'transparent' }}>
-                                        {I18n.t('user_reports.statuses.not_prepared')}
-                                      </Tag>
-                                    )}
-                                    {item.status === 'generating' && (
-                                      <Tag color="blue" style={{ background: 'transparent' }}>
-                                        {I18n.t('user_reports.statuses.generating')}
-                                      </Tag>
-                                    )}
-                                  </div>
                                 </div>
-                                {item.status === 'prepared' && (
-                                  <a
-                                    href={item.pdfUrl}
+                                <Tooltip title={I18n.t(`user_reports.readable_statuses.${item.status}`)}>
+                                  <Button
+                                    type="link"
+                                    href={item.status === 'prepared' ? item.pdfUrl : ''}
                                     rel="noopener noreferrer"
                                     target="_blank"
-                                  >
-                                    <Button type="link" icon={<ArrowDownOutlined />} />
-                                  </a>
-                                )}
+                                    disabled={item.status !== 'prepared'}
+                                    icon={<DownloadOutlined />}
+                                  />
+                                </Tooltip>
                               </div>
                             </div>
                           </List.Item>

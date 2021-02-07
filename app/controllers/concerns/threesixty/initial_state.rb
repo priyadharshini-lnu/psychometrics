@@ -21,7 +21,7 @@ module Threesixty::InitialState
           privacyText: @current_project.privacy_link&.text,
           privacyPageLink: @current_project.privacy_link&.link
         }
-      },
+      }.merge(campaign_intial_state),
       config: {
         isFrame: use_iframe?,
         agileAssetsUrl: Settings.agile_config.asset_url
@@ -43,5 +43,9 @@ module Threesixty::InitialState
     ::Threesixty::CurrentUserSerializer.new(current_user).
       as_json.
       deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+  end
+
+  def campaign_intial_state
+    {}
   end
 end

@@ -8,8 +8,10 @@ module Reports
         question = Question.find_by!(id: data['questionId'], assessment_id: data['assessmentId'])
         parser = "Exports::Assessments::Questions::#{question.type}".constantize
         header = parser.headers(question)[:question_id_header]
+        header_without_duration = header.select { |a| a.exclude?('duration') }
+
         # Question types which return multiple headers/values not supported at this time
-        return decorate(question) if assign&.results.blank? || header.length != 1
+        return decorate(question) if assign&.results.blank? || header_without_duration.length != 1
 
         answers = assign.results[question.id.to_s].try(:[], 'answers')
         answer = parser.result_label(answers, question)

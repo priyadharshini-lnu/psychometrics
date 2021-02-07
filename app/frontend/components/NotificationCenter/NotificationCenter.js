@@ -1,6 +1,7 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import { notification } from 'antd'
+
+import { SafeHTML } from 'components/SafeHTML'
 
 export default class NotificationCenter extends Component {
   componentDidMount () {
@@ -8,7 +9,7 @@ export default class NotificationCenter extends Component {
       received: (data) => {
         const config = {
           message: data.message,
-          description: <div dangerouslySetInnerHTML={{ __html: data.description }} />,
+          description: <SafeHTML html={data.description} />,
           duration: 0,
         }
         const type = data.type || 'success'

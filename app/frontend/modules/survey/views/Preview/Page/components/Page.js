@@ -61,19 +61,21 @@ class Page extends Component {
   render () {
     const {
       page, questions, errors, nextPage, preview, prevPage, hasPrevPage,
-      block: { props: { staticContent } },
+      block: {
+        props: { staticContent },
+        id: blockId,
+      },
       preview: {
         ignoreValidation, readOnly, type,
       },
       isDisconnected,
     } = this.props
-
     if (!page) { return }
     return (
       <div className={cs(this.getBlockClasses(), styles.block, `fe-ass-page-container-${type}`)}>
         {readOnly && <div className={styles.readOnly}>Is read only mode, you can not change any results.</div>}
         <div className={this.getQuestionContainerClasses()}>
-          {staticContent && <StaticContent />}
+          {staticContent && <StaticContent key={blockId} />}
           <div className={cs(styles.questionsBlock, { staticBlockQuestionList: staticContent })}>
             {!ignoreValidation && !_.isEmpty(errors) && this.renderErrors(page)}
             <QuestionList readOnly={readOnly} page={page} questions={questions} />

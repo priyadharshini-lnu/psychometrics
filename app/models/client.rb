@@ -113,6 +113,7 @@ class Client < ApplicationRecord
 
   has_one :datasheet, foreign_key: :project_id, dependent: :destroy
   has_one :privacy_link, dependent: :destroy
+  has_one :datasheet_column_preference, as: :resource
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
   accepts_nested_attributes_for :privacy_link, allow_destroy: true

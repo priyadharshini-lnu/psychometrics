@@ -84,12 +84,12 @@ module Administration
       end
 
       def fetch_campaign_instructions
-        response = params[:locales].values.map do |locale|
+        list = params[:locales].values.map do |locale|
           Mobility.with_locale(locale) do
             CampaignOptionsLocaleSerializer.new(@campaign.campaign_options, locale: locale).to_h
           end
         end
-        render json: response
+        render json: { list: list, available_locales: @campaign.campaign_options.translations.map(&:locale) }
       end
 
       def update_campaign_options

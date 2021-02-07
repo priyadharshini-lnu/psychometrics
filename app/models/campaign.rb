@@ -11,8 +11,11 @@ class Campaign < ApplicationRecord
 
   has_one :threesixty_campaign, class_name: 'Threesixty::Campaign', dependent: :destroy
   has_one :threesixty_option, through: :threesixty_campaign, class_name: 'Threesixty::Option', source: :option
-  has_one :datasheet, through: :project
   has_one :campaign_options, dependent: :destroy
+  has_one :project_datasheet, through: :project, source: :datasheet
+  has_one :campaign_datasheet, class_name: 'Datasheet', foreign_key: :campaign_id, dependent: :destroy
+  has_one :datasheet_column_preference, as: :resource
+
   delegate :fixed_time?,
            :fixed_time_duration,
            :time_zone,
@@ -60,6 +63,10 @@ class Campaign < ApplicationRecord
 
   scope :visible_to_end_user, -> { where(status: %i[active closed]) }
   scope :fixed_time, -> { joins(:campaign_options).where(campaign_options: { fixed_time: true }) }
+
+  def datasheet
+    campaign_datasheet || project_datasheet
+  end
 
   private
 

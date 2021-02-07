@@ -7,9 +7,11 @@ module Threesixty
       attribute :last_name, String
       attribute :email, String
       attribute :password, String
+      attribute :locale, String
 
       validates :password, length: { within: Devise.password_length }, allow_blank: true
       validates :password, allow_blank: true, strong_password: true, if: :enable_strong_password?
+      validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
 
       validates :email, :first_name, :last_name, presence: true
       validates :email, format: { with: Devise.email_regexp }

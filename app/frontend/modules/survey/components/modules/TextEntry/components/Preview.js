@@ -1,6 +1,8 @@
-/* eslint-disable react/no-danger */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+
+import { SafeHTML } from 'components/SafeHTML'
+
 import styles from './TextEntry.scss'
 import Previews from './Previews'
 import connect from '../connect'
@@ -22,9 +24,9 @@ export class Preview extends Component {
     I18n.tQuestion(model, 'questionText')
     return (
       <div>
-        <div
+        <SafeHTML
           className={styles.questionTextPreview}
-          dangerouslySetInnerHTML={{ __html: I18n.tQuestion(model, 'questionText') }}
+          html={I18n.tQuestion(model, 'questionText')}
         />
         {this.renderAnswersType()}
       </div>
