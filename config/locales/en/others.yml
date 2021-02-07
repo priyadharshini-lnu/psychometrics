@@ -609,6 +609,7 @@ en:
       re_evaluate: Click Here to Re-Evaluate
       reevaluate: Re-Evaluate
       rescore: Rescore
+      download_csv: Download CSV
     audio_response:
       permission_denied_message: Please enable microphone permission in your browser to record the answer
       permission_text: Please allow to use microphone to record audio
