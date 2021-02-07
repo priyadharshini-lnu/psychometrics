@@ -2188,7 +2188,7 @@ en:
         successfully: Communication was successfully updated.
     components:
       input_duration:
-        placeholder: Enter as '1d 2h 3m 4s'
+        placeholder: Enter as '1d 2h 3m'
     copy: Copy
     create: Create
     created: Successfully created
