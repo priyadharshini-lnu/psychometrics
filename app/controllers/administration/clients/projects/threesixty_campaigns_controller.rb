@@ -32,6 +32,9 @@ module Administration
             currentUser: serialized_current_user,
             config: {
               availableLocales: I18n.available_locales
+            },
+            datasheet: {
+              parentResource: { type: 'new_campaign', id: resource.campaign_id }
             }
           }
         end

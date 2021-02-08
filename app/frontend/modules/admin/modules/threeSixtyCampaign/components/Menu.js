@@ -1,7 +1,12 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Menu } from 'antd'
-import { UserOutlined, MailOutlined, PieChartOutlined } from '@ant-design/icons'
+import {
+  UserOutlined,
+  MailOutlined,
+  PieChartOutlined,
+  DatabaseOutlined,
+} from '@ant-design/icons'
 import routeUtils from 'utils/route'
 import settings from '../settings'
 
@@ -21,6 +26,10 @@ const MyMenu = ({ history, routes }) => {
       <Menu.Item key="/reports/options">
         <PieChartOutlined />
         Reports
+      </Menu.Item>
+      <Menu.Item key="/datasheets">
+        <DatabaseOutlined />
+        {I18n.t('common.model.datasheet')}
       </Menu.Item>
     </Menu>
   )

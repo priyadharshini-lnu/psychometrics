@@ -102,13 +102,12 @@ const DatasheetManagementComponent: FC<Props> = ({
     campaignId?: string
   }>()
 
-  const parentResourceId: number | undefined = parentResourceType === ParentResourceType.Campaign && campaignId
-    ? parseInt(campaignId, 10)
-    : temp__parentResourceId
-
-  if (parentResourceId === undefined || parentResourceId === 0) {
-    return null
+  let parentResourceId = temp__parentResourceId
+  if (!parentResourceId && parentResourceType === ParentResourceType.Campaign && campaignId) {
+    parentResourceId = parseInt(campaignId, 10)
   }
+
+  if (parentResourceId === undefined) { return null }
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
 
@@ -147,6 +146,8 @@ const DatasheetManagementComponent: FC<Props> = ({
   )
 
   useEffect(() => {
+    if (parentResourceId === undefined) { return }
+
     fetch(parentResourceType, parentResourceId, tableConfig)
   }, [tableConfig])
 
@@ -156,6 +157,8 @@ const DatasheetManagementComponent: FC<Props> = ({
   }
 
   const onVisibleColumnsChange = (changedVisibleColumnKey: string[]): void => {
+    if (parentResourceId === undefined) { return }
+
     setVisibleColumns(parentResourceType, parentResourceId, changedVisibleColumnKey)
   }
 
