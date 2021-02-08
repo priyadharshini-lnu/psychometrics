@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     collection do
       delete :bulk_delete
       put :save_column_preference
+      put :import
+      get :export
     end
   end
 

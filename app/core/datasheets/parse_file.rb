@@ -2,29 +2,33 @@
 
 module Datasheets
   class ParseFile < Rectify::Command
-    def initialize(form, project)
+    private_attr_reader :form, :parent_resource, :datasheet
+
+    def initialize(form, parent_resource)
       @form = form
-      @project = project
+      @parent_resource = parent_resource
     end
 
     def call
-      return broadcast :invalid if form.invalid?
-
       transaction do
         create_and_update_datasheet
         parse_file
       end
+
       broadcast :ok, datasheet
     end
 
     private
 
-    attr_reader :form, :project, :datasheet
-
     def create_and_update_datasheet
-      @datasheet = project.datasheet.nil? ? project.build_datasheet : project.datasheet
-      datasheet.attributes = { columns: form.parsed_file.second }
-      datasheet.save!
+      @datasheet = if parent_resource.is_a?(Campaign)
+                     parent_resource.campaign_datasheet || parent_resource.build_campaign_datasheet
+                   else
+                     parent_resource.datasheet || parent_resource.build_datasheet
+                   end
+      columns_in_file = form.parsed_file.second
+      columns = form.replace_existing? ? columns_in_file : datasheet.columns.merge(columns_in_file)
+      datasheet.update!(columns: columns)
     end
 
     def parse_file
@@ -33,7 +37,8 @@ module Datasheets
         next if email.blank?
 
         row = datasheet.rows.find_or_initialize_by(email: email)
-        row.data = data.except(Datasheet::EMAIL_COLUMN)
+        data = data.except(Datasheet::EMAIL_COLUMN)
+        row.data = form.replace_existing? ? data : row.data.merge(data)
         row.save!
       end
     end

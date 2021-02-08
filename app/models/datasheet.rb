@@ -4,6 +4,7 @@ class Datasheet < ApplicationRecord
   # Contains the name of column which contains Email
   EMAIL_COLUMN = 'Email'
   ADVANCE_TYPES = %w[HTML Markdown].freeze
+  ALL_COLUMN_TYPES = %w[String Text Number HTML Markdown].freeze
   belongs_to :project, class_name: 'Client'
   belongs_to :campaign
   has_many :rows, class_name: 'DatasheetRow', inverse_of: :datasheet, dependent: :destroy

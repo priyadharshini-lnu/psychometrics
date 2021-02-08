@@ -24,17 +24,6 @@ module Administration
         end
       end
 
-      def new
-        @form = ::Datasheets::DatasheetForm.new
-      end
-
-      def create
-        @form = ::Datasheets::DatasheetForm.from_params(params)
-        ::Datasheets::ParseFile.call(@form, project) do
-          on(:invalid) { render :new }
-        end
-      end
-
       def destroy
         resource.destroy
       end

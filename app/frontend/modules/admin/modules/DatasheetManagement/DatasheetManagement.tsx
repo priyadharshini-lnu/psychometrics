@@ -43,12 +43,15 @@ import {
 import { COLUMN_ID_EMAIL } from 'modules/admin/modules/DatasheetManagement/constants'
 import settings from 'modules/admin/settings'
 
+import Modals from 'modules/admin/components/Modals/'
+
 import { CountDisplay } from 'components/CountDisplay'
 import { ColumnToggler } from 'modules/admin/modules/DatasheetManagement/components/ColumnToggler'
 import { SelectionActions } from 'modules/admin/modules/DatasheetManagement/components/SelectionActions'
-import { ToolsDropdown } from 'modules/admin/modules/DatasheetManagement/components/ToolsDropdown'
+import ToolsDropdown from 'modules/admin/modules/DatasheetManagement/components/ToolsDropdown'
 import { DetailsDrawer } from 'modules/admin/modules/DatasheetManagement/components/DetailsDrawer'
 import { AddEditDrawer } from 'modules/admin/modules/DatasheetManagement/components/AddEditDrawer'
+import ImportDatasheetModal from 'modules/admin/modules/DatasheetManagement/components/ImportDatasheetModal'
 
 const { I18n } = window
 
@@ -74,6 +77,10 @@ interface OwnProps {
 }
 
 type Props = OwnProps & PropsFromRedux & TableProps
+
+const MODALS = {
+  ImportDatasheetModal,
+}
 
 const DatasheetManagementComponent: FC<Props> = ({
   list,
@@ -183,7 +190,7 @@ const DatasheetManagementComponent: FC<Props> = ({
               visibleColumnsKeys={visibleColumns}
               onVisibleColumnsChange={onVisibleColumnsChange}
             />
-            <ToolsDropdown />
+            <ToolsDropdown parentId={parentResourceId} parentType={parentResourceType} />
             {isEmpty(columnDefinitions) || (
               <Button
                 type="primary"
@@ -241,6 +248,7 @@ const DatasheetManagementComponent: FC<Props> = ({
         parentResourceType={parentResourceType}
         parentResourceId={parentResourceId}
       />
+      <Modals modals={MODALS} />
     </>
   )
 }

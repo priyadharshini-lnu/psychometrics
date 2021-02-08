@@ -12,6 +12,10 @@ module Administration
         @datasheet ||= project.datasheet
       end
 
+      def parent_resource
+        project
+      end
+
       def set_init_state
         @init_state = {
           datasheet: {

@@ -281,7 +281,6 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
-      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor
@@ -2639,7 +2638,6 @@ en:
       libraries: Media Library
       licenses: Licenses
       new_campaign: New Campaign
-      new_datasheet: New Datasheet
       norm: Norm
       norms: Norms
       norms_editor: Norm Editor

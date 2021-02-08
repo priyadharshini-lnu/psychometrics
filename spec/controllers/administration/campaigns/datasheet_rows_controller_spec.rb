@@ -132,4 +132,45 @@ RSpec.describe Administration::Campaigns::DatasheetRowsController, type: :contro
       expect(DatasheetRow.find_by(id: datasheet_row2.id)).to eq(nil)
     end
   end
+
+  describe 'PUT import' do
+    it 'sends errors if imported xlsx is not valid' do
+      file = Rack::Test::UploadedFile.new(
+        Rails.root.join('spec/fixtures/files/datasheet/invalid_file.xlsx'), 'application/xlsx'
+      )
+      put :import, params: {
+        new_campaign_id: campaign.id,
+        operation: 'replace_existing',
+        file: file
+      }
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response['errors']).to eq(['File does not contain Email column'])
+    end
+
+    it 'create AdminJobRecord for import_datasheet job if file is valid' do
+      file = Rack::Test::UploadedFile.new(
+        Rails.root.join('spec/fixtures/files/datasheet/valid_file.xlsx'), 'application/xlsx'
+      )
+      put :import, params: {
+        new_campaign_id: campaign.id,
+        operation: 'replace_existing',
+        file: file
+      }
+
+      expect(AdminJobRecord.exists?(operation: 'import_datasheet')).to be_truthy
+    end
+  end
+
+  describe 'GET export' do
+    it 'sends xlsx file' do
+      data = 'data'
+      xlsx = double
+      allow(xlsx).to receive_message_chain(:to_stream, :read) { data }
+      expect(::Datasheets::Export).to receive(:call!).with(datasheet).and_return(xlsx)
+      expect(controller).to receive(:send_data).with(data, filename: "datasheet-for-#{campaign.name}.xlsx")
+
+      get :export, format: 'xlsx', params: { new_campaign_id: campaign.id }
+    end
+  end
 end
