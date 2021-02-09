@@ -96,11 +96,11 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def data_sheet
-    data_sheet_row_data(object.evaluator.email)
+    campaign.datasheet_data(object.evaluator.email)
   end
 
   def subject_datasheet
-    data_sheet_row_data(object.subject.email)
+    campaign.datasheet_data(object.subject.email)
   end
 
   def participant
@@ -148,13 +148,6 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def locale
     instance_options[:locale] || I18n.default_locale
-  end
-
-  def data_sheet_row_data(email)
-    row = DatasheetRow.
-          joins(:datasheet).
-          find_by(datasheets: { project_id: campaign.project.id }, email: email)
-    row&.data || {}
   end
 
   def normalize_hogan_type(type)

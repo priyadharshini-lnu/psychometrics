@@ -9,10 +9,6 @@ class Datasheet < ApplicationRecord
   belongs_to :campaign
   has_many :rows, class_name: 'DatasheetRow', inverse_of: :datasheet, dependent: :destroy
 
-  def normalize_columns
-    columns.map { |k, v| { name: k, type: v } }
-  end
-
   def column_names
     columns&.keys
   end

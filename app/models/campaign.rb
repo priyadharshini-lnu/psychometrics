@@ -68,6 +68,27 @@ class Campaign < ApplicationRecord
     campaign_datasheet || project_datasheet
   end
 
+  def datasheet_data(email)
+    project_datasheet_data = project.datasheet&.rows&.find_by(email: email)&.data || {}
+    campaign_datasheet_data = datasheet&.rows&.find_by(email: email)&.data || {}
+
+    project_datasheet_data.merge(campaign_datasheet_data)
+  end
+
+  def datasheet_column_names
+    datasheet_columns.keys
+  end
+
+  def datasheet_columns
+    project_datasheet_columns = project.datasheet&.columns || {}
+    campaign_datasheet_columns = datasheet&.columns || {}
+    project_datasheet_columns.merge(campaign_datasheet_columns)
+  end
+
+  def nomalized_datasheet_columns
+    datasheet_columns.map { |k, v| { name: k, type: v } }
+  end
+
   private
 
   def ensure_campaign_options
